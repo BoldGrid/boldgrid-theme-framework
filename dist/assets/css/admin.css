@@ -1,0 +1,66 @@
+#boldgrid-hide-post-title .dashicons-editor-help {
+  color: #777;
+  position: relative;
+  top: 5px; }
+
+#boldgrid-hide-post-title .dashicons-editor-help:hover {
+  cursor: help; }
+
+#boldgrid-hide-post-title .spinner {
+  float: none;
+  height: 27px; }
+
+#boldgrid-hide-post-title {
+  position: relative; }
+
+#boldgrid-hide-post-title input {
+  margin-left: 10px; }
+
+#boldgrid-hide-post-title .boldgrid-tooltip {
+  left: 38px;
+  top: 25px; }
+
+#boldgrid-hide-post-title .dashicons:hover ~ .boldgrid-tooltip {
+  display: block; }
+
+.boldgrid-tooltip {
+  margin-top: 2px;
+  position: absolute;
+  padding: 5px;
+  opacity: .8;
+  filter: alpha(opacity=80);
+  zoom: 1;
+  display: none;
+  z-index: 9999; }
+
+.boldgrid-tooltip:hover {
+  display: block; }
+
+.boldgrid-tooltip-inner {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 12px;
+  font-size: 11px;
+  background-color: #000;
+  color: #fff;
+  max-width: 200px;
+  padding: 5px 8px 4px 8px;
+  text-align: center;
+  white-space: normal; }
+
+.boldgrid-tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-bottom-style: solid;
+  border: 5px dashed #000;
+  border-top: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  position: absolute;
+  width: 0;
+  height: 0;
+  line-height: 0; }

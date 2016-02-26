@@ -1,0 +1,24 @@
+// Bootstrap Additions
+#content .row,
+#content .col-xs-1, #content .col-xs-2, #content .col-xs-3, #content .col-xs-4, #content .col-xs-5, #content .col-xs-6,
+#content .col-xs-7, #content .col-xs-8, #content .col-xs-9, #content .col-xs-10, #content .col-xs-11,#content .col-xs-12,
+#content .col-sm-1,#content .col-sm-2,#content .col-sm-3,#content .col-sm-4,#content .col-sm-5,#content .col-sm-6,
+#content .col-sm-7,#content .col-sm-8,#content .col-sm-9,#content .col-sm-10,#content .col-sm-11,
+#content .col-sm-12, #content .col-md-1,#content .col-md-2,#content .col-md-3,#content .col-md-4,#content .col-md-5,
+#content .col-md-6,#content .col-md-7,#content .col-md-8,#content .col-md-9,#content .col-md-10,#content .col-md-11,#content .col-md-12 {
+    min-height: 30px;
+}
+#content .row .row, 
+#content .row .row [class*="col-xs"],
+#content .row .row [class*="col-sm"],
+#content .row .row [class*="col-md"],
+#content .row .row [class*="col-lg"] {
+    min-height: 15px;
+}
+
+// Bootstrap Nav Dropdown on Hover
+@media (min-width: 992px) {
+    .dropdown:hover .dropdown-menu {
+       display: block;
+    }
+}

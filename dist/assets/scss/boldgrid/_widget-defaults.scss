@@ -1,0 +1,22 @@
+// Default Widget Styles
+select[name="archive-dropdown"] {
+	width: auto;
+}
+.footer-company-details .textwidget {
+	text-align: center;
+	color: white;
+}
+.widget.well{
+	color: #333;
+	a, .site-info a{
+		color: #333;
+	}
+}
+.boldgrid-widget {
+	.widget-title {
+		display: none;
+	}
+	&.widget {
+		margin: 0;
+	}
+}

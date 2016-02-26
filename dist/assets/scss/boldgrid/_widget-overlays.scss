@@ -1,0 +1,30 @@
+// Widget Overlay Styles
+#boldgrid-widget-area-overlay{
+	display: table;
+	vertical-align: middle;
+	text-align: center;
+	width: 100%;
+	z-index: 9999;
+	height:100px;
+	min-height:50px;
+	padding:5px;
+	background-color: rgba(255,255,255,0.7);
+	border-radius: 5px;
+	box-shadow: 0 0 15px 5px rgba(33, 117, 155, 1);
+	position: absolute;
+	&:before{
+		content: "";
+		height: 25%;	
+	}
+	h2 {
+		display: table-cell;
+		vertical-align: middle;
+		font-family: "Arial Black", Gadget, sans-serif !important;
+		font-size: 24px;
+		color: #333 !important;	
+	}
+	&.empty-widget-area{
+		box-shadow: 0 0 15px 5px rgb(213, 78, 33);
+		background-color: rgba(255, 166, 166, 0.7);	
+	}
+}

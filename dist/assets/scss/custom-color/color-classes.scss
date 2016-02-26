@@ -1,0 +1,58 @@
+/**
+ * Text Contrast
+ * Compares contrast of a given color to the light/dark arguments and returns whichever is most "contrasty"
+ */
+@function text-contrast( $color ) {
+  	@if $color == null {
+   		@return null;
+  	}
+  	@else {
+    	$color-brightness: brightness($color);  
+    	$light-text-brightness: brightness($light_text);
+    	$dark-text-brightness: brightness($dark_text);
+  
+    	@if (abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness)) {
+        	@return $light_text;
+    	} @else {
+        	@return $dark_text;
+		}
+	}
+}
+@function brightness($color) {
+	@return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
+}
+
+@if variable-exists( palette-primary_1 ) {
+  $text-contrast-palette-primary_1: text-contrast( $palette-primary_1 );
+  .color-1-text-contrast { color: $text-contrast-palette-primary_1 ! important; }
+}
+@if variable-exists( palette-primary_2 ) {
+  $text-contrast-palette-primary_2: text-contrast( $palette-primary_2 );
+  .color-2-text-contrast { color: $text-contrast-palette-primary_2 ! important; }
+}
+@if variable-exists( palette-primary_3 ) {
+  $text-contrast-palette-primary_3: text-contrast( $palette-primary_3 );
+  .color-3-text-contrast { color: $text-contrast-palette-primary_3 ! important; }
+}
+@if variable-exists( palette-primary_4 ) {
+  $text-contrast-palette-primary_4: text-contrast( $palette-primary_4 );
+  .color-4-text-contrast { color: $text-contrast-palette-primary_4 ! important; }
+}
+@if variable-exists( palette-primary_5 ) {
+  $text-contrast-palette-primary_5: text-contrast( $palette-primary_5 );
+  .color-5-text-contrast { color: $text-contrast-palette-primary_5 ! important; }
+}
+@if variable-exists( palette-primary-neutral-color ) {
+  $text-contrast-palette-primary-neutral-color: text-contrast( $palette-primary-neutral-color );
+  .color-neutral-text-contrast { color: $text-contrast-palette-primary-neutral-color ! important; }
+}
+
+/*create single css classes to apply palettes on universal elements*/
+$names: color background border;
+@for $i from 1 through length( $names ) {
+	@each $color in $colors {
+		$which-color: index( $colors, $color );
+		.color#{$which-color}-#{nth( $names, $i )} { #{nth( $names, $i )}: $color ! important; }
+		.color#{$which-color}-#{nth($names, $i)}-hover:hover { #{nth( $names, $i )}: $color ! important; }
+	}
+}

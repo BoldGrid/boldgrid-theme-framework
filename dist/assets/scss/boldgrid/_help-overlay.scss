@@ -1,0 +1,82 @@
+// Widget Overlay Styles
+.overlay-help {
+	position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,.6);
+    z-index: 9999;
+    min-width: 900px;
+}
+.overlay-help-inside {
+	position: fixed;
+	margin:30px;
+	background-color: white;
+	max-width:1700px;
+	left: 0;
+	right: 0;
+	img {
+		margin: 0 auto;
+		display: block;	
+	}
+	.button { 
+		margin: 10px;
+		display: none;
+	}
+}
+#boldgrid-customizer-overlay-help {
+	display: none;
+	.overlay-help-text{
+		font-family: "Open Sans",sans-serif !important;
+		color: black !important;
+	}
+	.overlay-help-text h2 {
+		font-family: "Open Sans",sans-serif !important;
+		color: black !important;
+		padding: 0px;
+		margin: 10px 0;
+		font-size: 24px;
+	}
+}
+.overlay-help-text {
+	padding: 5px;
+	padding-left: 40px;
+	background-color: #ddd;
+	#close-help-popup { 
+		cursor: pointer;
+		color: #dd4b39;
+		opacity: .8;
+		margin-top: 5px;
+		margin-right: 15px;
+	}
+	#close-help-popup:hover { 
+		opacity: 1;
+	}
+	p {
+		max-width: 660px;
+		font-size: 14px;
+		color: #000000 !important;
+	}
+}
+@media (min-width: 900px) {
+	.overlay-help-inside {
+		position: fixed;
+		margin-left:120px;
+		margin-right:120px;
+		left: 0;
+		right: 0;
+	}
+	.overlay-help-inside .button {
+		display: inline;
+	}
+}
+@media (max-width: 1000px) {
+	.overlay-help-inside {
+		position: fixed;
+		margin-left:0px;
+		margin-right:0px;
+		left: 0;
+		right: 0;
+	}
+}

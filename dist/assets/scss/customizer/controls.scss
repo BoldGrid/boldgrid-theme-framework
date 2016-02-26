@@ -1,0 +1,760 @@
+/*****************************************************
+************General BoldGrid Rules****************
+******************************************************/
+.boldgrid-icon-newtab {
+	background: url(../img/icon-newpage.png) no-repeat right center;
+	display: inline;
+	margin-right: 2px;
+	padding-right: 14px;
+}
+
+.overlay {
+	&-prompt{
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		background-color: rgba(255,255,255,.8);
+		width: 100%;
+		height: 100%;
+		z-index: 99999;
+	}	
+	&-content{
+		margin: 20px 0px;
+		margin-top: 0px;
+		border-radius: 5px;
+		background-color: #FFFFFF;
+		padding: 10px;
+		.buttony-primary {
+			margin-right: 5px;	
+		}
+	}
+}
+
+.in-themes-panel #accordion-section-boldgrid_customizer_help_panel,
+.section-open #accordion-section-boldgrid_customizer_help_panel,
+.collapsed #accordion-section-boldgrid_customizer_help_panel,
+.in-sub-panel #accordion-section-boldgrid_customizer_help_panel  {
+	display: none;
+}
+
+#customize-theme-controls #accordion-section-boldgrid_customizer_help_panel {
+	position: fixed;
+	bottom: 42px;
+	width: 300px;
+	list-style:none;
+	.active > h3 {
+		background-color: #F95B26 !important;
+		color: white !important;
+	}
+}
+
+/*****************************************************
+************Kirki Control Rules****************
+******************************************************/
+#customize-theme-controls {
+	.control-section.open .accordion-section-title {
+		color: #fff !important;
+		&:after{
+			color: #fff;
+		}
+	}
+	.customize-control-switch label {
+		display: block;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 24px;
+		margin-bottom: 5px;
+	}	
+}
+
+/*****************************************************
+************General Color Palette Rules****************
+******************************************************/
+[data-neutral-color]~.palette-action-buttons .boldgrid-neutral-color {
+	display: block;
+}
+
+.palette-action-buttons {
+	margin-top: 12px;
+	.boldgrid-neutral-color {
+		display: none;
+	}
+}
+.wp-core-ui .button.palette-creator-button {
+	width: 92%;
+    margin: 2px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.palette-buttons.button.upload-button {
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.active-palette-section.boldgrid-neutral-color {
+	border-color: orange;
+}
+
+.boldgrid-neutral-color {
+	background-color: white;
+	border:2px solid lightgrey;
+	height: 25px;
+    font-weight: bold;
+	line-height: 25px;
+	margin: 2px;
+	margin-bottom: 5px;
+    text-align: center;
+    &:hover{
+		cursor: pointer;
+		border-color: orange;
+    }
+}
+
+.bg-lock-controls,
+.boldgrid-neutral-color,
+.boldgrid-active-palette,   
+.boldgrid-inactive-palette .boldgrid-palette-colors {
+	width: 92%;
+	position: relative;
+}
+
+.generated-palettes-container .boldgrid-inactive-palette .boldgrid-palette-colors {
+	width: 97%;
+} 
+
+.color-lock {
+    display: inline-block;	
+    text-align: center;
+    > span {
+		left: 2px;
+		position: relative !important;
+    }
+}
+
+.color-palette-columns-5 .bg-lock-controls > .color-lock,
+.color-palette-columns-5 .boldgrid-active-palette .boldgrid-palette-colors,
+.color-palette-columns-5 .boldgrid-palette-colors > span  {
+	width: 20%;
+}
+.color-palette-columns-4 .bg-lock-controls > .color-lock,
+.color-palette-columns-4 .boldgrid-active-palette .boldgrid-palette-colors,
+.color-palette-columns-4 .boldgrid-palette-colors > span  {
+	width: 25%;
+}
+.color-palette-columns-3 .bg-lock-controls > .color-lock,
+.color-palette-columns-3 .boldgrid-active-palette .boldgrid-palette-colors,
+.color-palette-columns-3 .boldgrid-palette-colors > span  {
+	width: 33.333%;
+}
+.color-palette-columns-2 .bg-lock-controls > .color-lock,
+.color-palette-columns-2 .boldgrid-active-palette .boldgrid-palette-colors,
+.color-palette-columns-2 .boldgrid-palette-colors > span {
+	width: 50%;
+}
+.color-palette-columns-1 .bg-lock-controls > .color-lock,
+.color-palette-columns-1 .boldgrid-active-palette .boldgrid-palette-colors,
+.color-palette-columns-1 .boldgrid-palette-colors > span {
+	width: 100%;
+}
+
+.boldgrid-color-palette-wrapper {
+	.wp-color-result {
+		display: none;
+		&.expanded-wp-colorpicker {
+			height: 28px;
+			&:after {
+				line-height: 28px;
+				font-size: 13px;
+			}
+		}
+	}
+	.wp-picker{
+		&-container{
+			width: 92%;
+			.button {
+				margin-left: 3px;
+			}
+			input[type=text].wp-color-picker {
+				width: 140px;
+			}
+		}
+		&-clear {
+			display: none;
+		}
+		&-open+.wp-picker-input-wrap .close-color-picker {
+			display: inline-block;
+		}
+	}
+	.close-color-picker {
+		line-height: 23px;
+		height: 25px;
+		display: none;
+	}
+}
+
+/*****************************************************
+************Inactive Color Palette Rules****************
+******************************************************/
+.boldgrid-active-palette, .boldgrid-inactive-palette {
+	list-style-type: none;
+	margin-top: 0;
+	padding: 0;
+	margin-bottom: 5px;
+}
+
+.boldgrid-palette-colors > span {
+	height: 100%;
+	display: inline-block;
+}
+
+.boldgrid-inactive-palette .boldgrid-palette-colors {
+	font-size: 0;
+	border: 3px solid;
+	border-color: transparent;
+	height: 33px;
+	&:hover {
+		border: 3px solid;
+		border-color: #fb5f14;	
+		cursor: pointer;
+	}
+}
+
+/*****************************************************
+************Active Color Palette Rules****************
+******************************************************/
+.boldgrid-active-palette {
+	border: 3px solid;
+	border-color: #fb5f14;
+	height: 84px;
+	margin-top: 15px;
+	li {
+		margin-top: 0px;
+		margin-bottom: 0px;
+		cursor: move;
+		border: 1px solid white;
+		box-sizing:border-box;
+		&:first-of-type {
+			margin-top: 0px;
+		}
+	}
+	.boldgrid-palette-colors {
+		display: inline-block;
+		height: 100%;
+		position: relative;
+	}
+	.active-palette-section {
+		border: 2px solid orange;
+		box-sizing: border-box;
+	}
+}
+
+/*****************************************************
+************Advanced Color Palettes Section****************
+******************************************************/
+.boldgrid-advanced-options {
+	margin-top: 10px;
+	&-label {
+		border-bottom: 1px solid lightgray;
+		&:hover {
+			border-color: darkgray;
+		}
+		.dashicons-arrow-down {
+			float: right;
+		}
+	}
+}
+
+/*****************************************************
+************Palette Dashicons Generate Mode****************
+******************************************************/
+.boldgrid-neutral-color.active-palette-section:before,
+.boldgrid-active-palette .boldgrid-palette-colors:before {
+	content: "\f140";
+	position: absolute;
+	display: none;
+	font-family: dashicons;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	height: 20px;
+	line-height: 1;
+	text-align: center;
+	text-decoration: inherit;
+	vertical-align: top;
+	color: #555;
+	width: 20px;
+	left: 29%;
+	top: -25px;
+}
+
+.boldgrid-active-palette .active-palette-section.boldgrid-palette-colors:before {
+	display: inline-block;
+}
+
+.boldgrid-neutral-color.active-palette-section:before {
+	content: "\f141";
+	display: inline-block;
+	left: auto;
+    right: -17px;
+    top: 2px;
+}
+
+.boldgrid-active-palette .boldgrid-palette-colors:hover:before {
+	content: "↔";
+	display: inline-block;
+	font-size: 28px;
+	top: -32px;
+	left: 18%;
+}
+
+.boldgrid-copy-palette:hover {
+	color: #f95b26;
+}
+.boldgrid-remove-palette:hover {
+	color: red;
+}
+
+.boldgrid-active-palette:hover .boldgrid-duplicate-dashicons .dashicons,
+.boldgrid-inactive-palette:hover .boldgrid-duplicate-dashicons .dashicons {
+	opacity: 1;
+}
+
+.boldgrid-color-palette-wrapper .dashicons {
+	opacity: .0;
+	width: 6px;
+	position: absolute;
+	display: inline;
+}
+
+.boldgrid-color-palette-wrapper .boldgrid-active-palette .dashicons {
+	opacity: .5;
+}
+
+
+[data-copy-on-mod="1"] .dashicons.boldgrid-remove-palette,
+.boldgrid-active-palette .boldgrid-duplicate-dashicons .dashicons.boldgrid-remove-palette {
+	width: 0;
+	display: none;
+}
+
+.boldgrid-duplicate-dashicons {
+	display: inline;
+	cursor: pointer;
+}
+
+.boldgrid-copy-palette {
+	top: 20px;
+	right: -15px;
+}
+
+.boldgrid-copy-palette.dashicons-admin-post {
+	-webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+	    -ms-transform: rotate(-45deg); /* IE 9 */
+		transform: rotate(-45deg);	
+}
+
+.boldgrid-remove-palette {
+	top: -3px;
+	right: -13px;
+}
+
+.current-palette-wrapper .boldgrid-copy-palette {
+	top: 64px;
+}
+
+
+
+/*****************************************************
+************Palette Generate Mode****************
+******************************************************/
+.bg-lock-controls .color-lock > span{
+	cursor: pointer;
+}
+
+
+.bg-lock-controls,
+.generate-palettes-selection-section {
+ 	display: none;
+}
+/*
+.generated-palettes-container {
+	margin: 20px 0px;
+}
+*/
+.palette-generate-mode .bg-lock-controls,
+.palette-generate-mode .generate-palettes-selection-section {
+	display: block;
+}
+.palette-generate-mode .generate-palettes-selection-section {
+	border: 1px solid lightgrey;
+	padding: 5px;
+	background-color: white;
+}
+
+.palette-generate-mode .generate-palettes-selection-section h3{
+	margin-top: 5px;	
+	margin-bottom: 5px;	
+}	 
+
+.wp-core-ui .palette-generate-mode .button.palette-creator-button {
+	margin-bottom: 5px;
+}
+
+.palette-generate-mode .boldgrid-active-palette .boldgrid-palette-colors {
+	cursor: pointer;
+}
+
+.palette-generate-mode .boldgrid-active-palette .boldgrid-palette-colors.selected-for-generation,
+.palette-generate-mode .boldgrid-active-palette .boldgrid-palette-colors:hover {
+	opacity: 1;
+}
+
+.palette-generate-mode .bg-lock-controls .selected-for-generation .dashicons:before {
+    content: "\f160";
+    color: #f95b26;
+}
+/*****************************************************
+************Color Palette Transparency Code****************
+******************************************************/
+.pluto-alpha-container .transparency {
+	height:24px;
+	width:100%;
+	background-color:#FFF;
+	background-image:url(../../img/transparency-grid.png);
+	box-shadow:0 0 5px rgba(0,0,0,0.4) inset;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding:0;
+}
+
+.pluto-alpha-container .ui-slider-handle {
+	color:#777;
+	background-color:#FFF;
+	text-shadow:0 1px 0 #FFF;
+	text-decoration:none;
+	position:absolute;
+	z-index:2;
+	box-shadow:0 1px 2px rgba(0,0,0,0.2);
+	border:1px solid #aaa;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	opacity:0.9;
+	margin-top:-2px;
+	height:20px;
+	cursor:ew-resize;
+	font-size:12px;
+	padding:3px;
+}
+
+.pluto-alpha-container .ui-slider {
+	position:relative;
+	text-align:center;
+	width:88%;
+}
+
+.wp-picker-container a.wp-picker-open ~ div.pluto-alpha-container {
+	display:block;
+}
+
+.pluto-alpha-container {
+	box-sizing:padding-box;
+	display:none;
+	border:1px solid #dfdfdf;
+	border-top:none;
+	background:#FFF;
+	padding:0 11px 6px;
+}
+
+.customize-control-alphacolor .wp-picker-container .iris-picker {
+	border-bottom:none;
+}
+
+/*****************************************************
+************Background Type Controls****************
+******************************************************/
+.background-type-controls {
+	width: calc(100% + 15px);
+	height: 40px;
+	background-color: white;
+	padding: 4px;
+	position: relative;
+	left: -10px;
+	top: -15px;
+	border-bottom:1px solid lightgrey;
+	.ui-button {
+		background-color: #f7f7f7;
+		padding: 9px;
+		border: 1px solid lightgrey;
+		font-size: 14px;
+		line-height: 20px;
+		height: 34px;
+		&set{
+			width:224px;
+			margin: 6px auto 0 auto;
+			label {
+				margin: -3px;
+			}		
+		}
+		&.ui-state-active {
+			background-color: lightgrey;
+		}
+		&.ui-corner-right {
+			border-top-left-radius: 0px;
+			border-bottom-left-radius: 0px;
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+		&.ui-corner-left {
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;		
+		}
+	}
+}
+
+#customize-control-boldgrid-background-type .tooltip {
+	top: -10px;
+	right:-5px !important;
+}
+
+/*****************************************************
+************Sticky Controls****************
+******************************************************/
+.expanded .boldgrid-sticky-customizer {
+	#customize-control-boldgrid_background_color,
+	.background-type-controls,
+	.boldgrid-pattern-selection-heading {
+		z-index: 9999;
+		width: 273px;
+		left: 2px;
+		background-color: white;
+		border-bottom: 1px solid lightgrey;
+		transition: background-color .25s;
+		position: fixed;
+	}
+	#customize-control-boldgrid_background_color {
+		top: 95px;
+		padding: 4px;
+	}
+	.background-type-controls {
+		top: 46px;
+	}
+	.boldgrid-pattern-selection-heading {
+		top: 163px;
+		z-index: 9998;
+		padding: 4px;
+	}
+}
+
+
+@media (max-width: 640px) {
+	.expanded .boldgrid-sticky-customizer .background-type-controls,
+	.expanded .boldgrid-sticky-customizer #customize-control-boldgrid_background_color,
+	.expanded .boldgrid-sticky-customizer .boldgrid-pattern-selection-heading {
+    	width: 100%;
+  	}
+  
+  	#customize-theme-controls #accordion-section-boldgrid_customizer_help_panel {
+  		display: none;
+  	}
+  
+}
+
+/*****************************************************
+************Background Pattern Controls****************
+******************************************************/
+
+.pattern-wrapper { 
+	margin: 0 auto;
+	width: 235px;
+	.patternpreview {
+		width:100px;
+		height:100px;
+		display: inline-block;
+		margin:2px;
+		border: 5px solid #333;
+		border-radius: 5px;
+		cursor: pointer;
+		&.active-pattern {
+			border-color: orange;
+		}
+	}
+}
+
+.background-type-controls,
+.pattern-wrapper {
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.boldgrid-pattern-selection-heading { 
+	margin-bottom:5px;
+}
+
+.boldgrid-pattern-wrapper .boldgrid-pattern-selection-heading a:after {
+    content: "No Pattern Selected";
+}
+
+.boldgrid-pattern-wrapper[data-pattern-selected="1"] .boldgrid-pattern-selection-heading a:after {
+	content: "Remove Selected Pattern";
+}
+
+#customize-controls li.customize-control a.tooltip.hint--left {
+	right: 0px;
+	z-index: 1;
+}
+
+
+/**
+ * Site Identity Panel
+ */
+#customize-control-logo_text_decoration > label > select,
+#customize-control-logo_text_transform > label > select,
+#customize-control-logo_font_family > label > select,
+#customize-control-logo_text_decoration_hover > label > select {
+	float:right;
+}
+
+#customize-control-logo_font_family > label > select {
+    width: 130px;
+    height: 23px;
+}
+#accordion-section-title_tagline > ul > li > label > span {
+    display: inline-block;	
+}
+.customize-control-checkbox input[type="checkbox"]:before {
+    content: "";
+    position: absolute;
+    /* left: 0; */
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.customize-control-checkbox input[type="checkbox"]:checked:before {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid black;
+}
+
+.customize-control-radio-image .image.ui-buttonset label.ui-state-active {
+    border: 3px solid #00a0d2;
+}
+
+.boldgrid-subdescription {
+	margin: 0px;
+	padding: 10px;
+	&.bottom-description{
+		margin-top: 10px;
+	}
+	&.edit-in-admin {
+		margin-top: 58px;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);	
+	}
+	.button {
+		margin: 5px;
+	}
+}
+
+
+
+
+// CSS Lock - Unlocked
+.lock {
+	margin-left:auto;
+	margin-right:auto;
+	padding-left: 5px;
+	width: 14px;
+	cursor: pointer;
+	div {
+		margin: 0px auto;
+		position: relative; 
+	}
+	.top {
+		width: 4px;
+		height: 8px;
+		border-radius: 10px;
+		border: 3px solid #555;
+		border-bottom: 4px solid transparent;
+		-webkit-transform: translate(7px,0px); /* Safari */
+		-moz-transform: translate(7px,0px); /* Firefox */
+		-ms-transform: translate(7px,0px); /* IE 9 */
+		transform: translate(7px,0px);
+	}
+	.mid {
+		background: #eee;
+		border-left: 3px solid #555;
+		border-right: 3px solid #555;
+		width: 4px;
+		height: 3px;
+		top: -9px;
+		z-index: 99;
+		-webkit-transform: translate(7px,0px); /* Safari */
+		-moz-transform: translate(7px,0px); /* Firefox */
+		-ms-transform: translate(7px,0px); /* IE 9 */
+		transform: translate(7px,0px);
+	}
+	.bottom {
+		height: 13px;
+		margin: -10px auto;
+		background: #555;
+		border-top: 1px solid #eee;
+		border-radius: 3px 3px 0 0;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		.keyhole-top {
+			width: 4px;
+			height: 4px;
+			border-radius: 4px;
+			background: #eee;
+			margin: 3px auto 0;
+		}
+		.keyhole-bottom {
+			width: 2px;
+			height: 6px;
+			border-radius: 0;
+			background: #eee;
+			margin: -3px auto 0;		
+		}
+	}
+}
+
+// CSS Lock & Unlock Toggle
+.selected-for-generation {
+	.lock {
+		.top {
+			border: 3px solid #f95b26;
+		}
+		.mid {
+			border-left: 3px solid #f95b26;
+			border-right: 3px solid #f95b26;
+		}
+		.bottom {
+			background: #f95b26;
+		}
+	}
+	.unlock {
+		> div.top, .div.mid {
+			-webkit-transform: translate(0px,0px); /* Safari */
+			-moz-transform: translate(0px,0px); /* Firefox */
+			-ms-transform: translate(0px,0px); /* IE 9 */
+			transform: translate(0px,0px);			
+		}
+	}	
+}

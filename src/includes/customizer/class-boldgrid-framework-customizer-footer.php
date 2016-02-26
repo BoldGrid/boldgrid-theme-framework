@@ -1,0 +1,339 @@
+<?php
+/**
+ * Class: Boldgrid_Framework_Customizer_Footer
+ *
+ * This is the class responsible for adding the footer's functionality
+ * to the footer.  It contains all controls for the custom panel in the
+ * WordPress customizer under Advanced > Footer Settings.
+ *
+ * @since      1.0.0
+ * @category   Customizer
+ * @package    Boldgrid_Framework
+ * @subpackage Boldgrid_Framework_Customizer_Footer
+ * @author     BoldGrid <support@boldgrid.com>
+ * @link       https://boldgrid.com
+ */
+
+// If this file is called directly, abort.
+defined( 'WPINC' ) ? : die;
+
+/**
+ * Class: Boldgrid_Framework_Customizer_Footer
+ *
+ * This is the class responsible for adding the footer's functionality
+ * to the footer.  It contains all controls for the custom panel in the
+ * WordPress customizer under Advanced > Footer Settings.
+ *
+ * @since      1.0.0
+ */
+class Boldgrid_Framework_Customizer_Footer {
+
+	/**
+	 * The BoldGrid Theme Framework configurations.
+	 *
+	 * @since     1.0.0
+	 * @access    protected
+	 * @var       string     $configs       The BoldGrid Theme Framework configurations.
+	 */
+	protected $configs;
+
+	/**
+	 * Initialize the class and set its properties.
+	 *
+	 * @since     1.0.0
+	 * @param     string $configs       The BoldGrid Theme Framework configurations.
+	 */
+	public function __construct( $configs ) {
+		$this->configs = $configs;
+	}
+
+	/**
+	 * Add the Footer Panel to the WordPress Customizer.  This also
+	 * adds the controls we need for the custom CSS and custom JS
+	 * textareas.
+	 *
+	 * @since     1.0.0
+	 *
+	 * @param array $wp_customize WordPress customizer object.
+	 */
+	public function footer_panel( $wp_customize ) {
+
+		$config = $this->configs['customizer-options']['footer_panel'];
+
+		if ( true === $config ) {
+
+			// It really doesn't matter if another plugin or the theme adds
+			// the same section; they will merge.
+			$wp_customize->add_section(
+				'boldgrid_footer_panel',
+				array(
+					'title'    => __( 'Footer Settings', 'bgtfw' ),
+					'priority' => 130, // After all core sections.
+					'panel' => 'boldgrid_other',
+					'description' => __( 'This section will allow you to modify any features that are not menus or widgets. To edit the default widget in your footer click <a data-focus-section="sidebar-widgets-boldgrid-widget-3" href="#">here</a>.', 'bgtfw' ),
+				)
+			);
+
+			$footer_widget_control = $this->configs['customizer-options']['footer_controls']['widgets'];
+
+			if ( true === $footer_widget_control ) {
+				// 'theme_mod's are stored with the theme, so different themes can have
+				// unique custom css rules with basically no extra effort.
+				$wp_customize->add_setting(
+					'boldgrid_footer_widgets',
+					array(
+						'type'      => 'theme_mod',
+						'default'   => '0',
+						'transport' => 'refresh',
+					)
+				);
+				// Uses the 'radio' type in WordPress.
+				$wp_customize->add_control(
+					'boldgrid_footer_widgets',
+					array(
+						'label'       => __( 'Footer Widget Columns', 'bgtfw' ),
+						'description' => __( 'Select the number of footer widget columns you wish to display.', 'bgtfw' ),
+						'type'        => 'radio',
+						'priority'    => 10,
+						'choices'     => array(
+							'0'   => '0',
+							'1'   => '1',
+							'2'   => '2',
+							'3'   => '3',
+							'4'   => '4',
+						),
+						'section'     => 'boldgrid_footer_panel',
+					)
+				);
+				Kirki::add_field(
+					'',
+					array(
+						'type'        => 'custom',
+						'setting'     => 'boldgrid_footer_widget_help',
+						'section'     => 'boldgrid_footer_panel',
+						'default'     => '<a class="button button-primary open-widgets-section">' .
+											__( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
+						'priority'    => 15,
+						'description' => __( 'You can add widgets to your footer from the widgets section.', 'bgtfw' ),
+					)
+				);
+			}
+
+			$header_custom_html = $this->configs['customizer-options']['footer_controls']['custom_html'];
+
+			if ( true === $header_custom_html ) {
+				// 'theme_mod's are stored with the theme, so different themes
+				// can have unique custom css rules with basically no extra effort.
+				$wp_customize->add_setting(
+					'boldgrid_footer_html',
+					array(
+						'type'      => 'theme_mod',
+						'transport' => 'refresh',
+					)
+				);
+				// Uses the `textarea` type added in WordPress 4.0.
+				$wp_customize->add_control(
+					'boldgrid_footer_html',
+					array(
+						'label'       => __( 'Custom Footer HTML', 'bgtfw' ),
+						'description' => __( 'Add your custom HTML for your footer here', 'bgtfw' ),
+						'type'        => 'textarea',
+						'priority'    => 20,
+						'section'     => 'boldgrid_footer_panel',
+					)
+				);
+			}
+		}
+
+	}
+
+	/**
+	 * This adds the group of controls in the customizer that are
+	 * responsible for showing/hiding/editing the footer attribution
+	 * links at the bottom of a user's page.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @param array $wp_customize WordPress customizer object.
+	 */
+	public function add_attrbution_control( $wp_customize ) {
+
+		$configs = $this->configs;
+		Kirki::add_field(
+			'',
+			array(
+				'type'        => 'custom',
+				'setting'     => 'boldgrid_attribution_heading',
+				'label'       => __( 'Attribution Control', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => '',
+				'priority'    => 30,
+			)
+		);
+		Kirki::add_field(
+			'',
+			array(
+				'type'        => 'checkbox',
+				'setting'     => 'hide_boldgrid_attribution',
+				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => false,
+				'priority'    => 40,
+			)
+		);
+		Kirki::add_field(
+			'',
+			array(
+				'type'        => 'checkbox',
+				'setting'     => 'hide_wordpress_attribution',
+				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => false,
+				'priority'    => 50,
+			)
+		);
+		Kirki::add_field(
+			'',
+			array(
+				'type'        => 'checkbox',
+				'setting'     => 'hide_partner_attribution',
+				'label'       => __( 'Hide Partner Attribution', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => false,
+				'priority'    => 60,
+			)
+		);
+	}
+
+	/**
+	 *  Responsible for adding the attribution links to the footer of a BoldGrid theme.
+	 *
+	 *  @since     1.0.0
+	 */
+	public function attribution_display_action() {
+
+		$theme_mods = '';
+		$reseller_data = get_option( 'boldgrid_reseller', false );
+
+		// If the user hasn't disabled the footer, add the links.
+		if ( get_theme_mod( 'boldgrid_enable_footer', true ) ) {
+
+			// BoldGrid.com Link.
+			if ( false === get_theme_mod( 'hide_boldgrid_attribution' ) ) {
+				$theme_mods .= sprintf( __( 'Built with %s | ', 'bgtfw' ),
+				'<a href="http://www.boldgrid.com/" rel="nofollow" target="_blank">BoldGrid</a>' );
+			}
+
+			// WordPress.org Link.
+			if ( false === get_theme_mod( 'hide_wordpress_attribution' ) ) {
+				$theme_mods .= sprintf( __( 'Powered by %s | ', 'bgtfw' ),
+				'<a href="https://wordpress.org/" rel="nofollow" target="_blank">WordPress</a>' );
+			}
+
+			// Authorized Reseller/Partner Link.
+			if ( false === get_theme_mod( 'hide_partner_attribution' ) ) {
+				if ( ! empty( $reseller_data['reseller_title'] ) ) {
+					$theme_mods .= sprintf( __( 'Support from %s | ', 'bgtfw' ),
+						'<a href="' . $reseller_data['reseller_website_url'] .
+					'" rel="nofollow" target="_blank">' . $reseller_data['reseller_title'] . '</a>' );
+				}
+			}
+		}
+
+		// If theme configs have attribution_links declared, add the link.
+		if ( ! empty( $this->configs['temp']['attribution_links'] ) ) {
+			$theme_mods .= $this->attribution_link( );
+		} ?>
+
+		<span class="attribution-theme-mods"><?php echo $theme_mods ?></span>
+		<?php
+	}
+
+	/**
+	 * Create the attribution link and keep link filterable for BoldGrid Staging
+	 *
+	 * @since 1.0.1
+	 * @return string
+	 */
+	public function attribution_link() {
+
+		$option = 'boldgrid_attribution';
+		$option = apply_filters( 'boldgrid_attribution_filter', $option );
+		$attribution_data = get_option( $option );
+		$attribution_page = get_page_by_title( 'Attribution' );
+
+		// If option is available use that or try to find the page by slug name.
+		if ( ! empty( $attribution_data['page']['id'] ) ) {
+			$link = '<a href="' . get_permalink( $attribution_data['page']['id'] ) . '">' . __( 'Special Thanks', 'bgtfw' ) . '</a>';
+		} elseif ( $attribution_page ) {
+			$link = '<a href="' . get_site_url( null, 'attribution' ) . '">' . __( 'Special Thanks', 'bgtfw' ) . '</a>';
+		} else {
+			$link = '';
+		}
+
+		return $link;
+	}
+
+	/**
+	 *  This will remove all actions, menus, and widgets based on configs if the
+	 *  user selects to disable their footer.
+	 *
+	 *  @since     1.0.0
+	 */
+	public function maybe_remove_all_footer_actions() {
+		if ( false === get_theme_mod( 'boldgrid_enable_footer', true ) ) {
+			$footer_actions = $this->configs['action']['inside_footer'];
+
+			// This is the boldgrid_menu_footer_center section.
+			foreach ( $this->configs['menu']['footer_menus'] as $menu ) {
+				$footer_actions[] = $this->configs['menu']['action_prefix'] . $menu;
+			}
+
+			foreach ( $footer_actions as $footer_action ) {
+				remove_all_actions( $footer_action );
+			}
+
+			foreach ( $this->configs['widget']['footer_widgets'] as $widget ) {
+				unregister_sidebar( $widget );
+			}
+		}
+	}
+
+	/**
+	 *  This adds the enable/disable switch in the customizer, so that a
+	 *  user can enable/disable their footer.
+	 *
+	 *  @since    1.0.0
+	 */
+	public function add_enable_control() {
+		Kirki::add_field(
+			'',
+			array(
+				'type' => 'switch',
+				'setting' => 'boldgrid_enable_footer',
+				'label' => __( 'Enable Footer', 'bgtfw' ),
+				'section' => 'boldgrid_footer_panel',
+				'default' => true,
+				'priority' => 5,
+			)
+		);
+	}
+
+	/**
+	 *  If a user has selected to disable their footer, this will
+	 *  pass along a new class to the <body> element called disabled-footer,
+	 *  so that it can be targetted with appropriate CSS or JS.
+	 *
+	 * @param array $body_classes Classes to add to body of page.
+	 * @return    string     $body_classes   String contains classes to add to body of page.
+	 * @since     1.0.0
+	 */
+	public function collapse_body_margin( $body_classes ) {
+
+		if ( false === get_theme_mod( 'boldgrid_enable_footer', true ) ) {
+			$body_classes[] = 'disabled-footer';
+		}
+
+		return $body_classes;
+	}
+}

@@ -1,0 +1,30 @@
+//Generic Menu Styles Defaults
+.boldgrid-framework-menu {
+	background-color: white;
+	padding: 5px;
+	ul {
+		padding: 0px 10px;
+		margin-top: 12px;
+	}
+}
+.footer-center-items, .boldgrid-framework-menu {
+	li:after {
+		content: " | ";
+	}
+	li:last-of-type:after {
+		content: "";	
+	}
+}
+.footer-center-menu, .boldgrid-framework-menu {
+	li {
+		list-style: none;
+		display: inline;
+		list-style-type: none;
+	}
+}
+.footer-center-items li a {
+	&[href="#"]:hover, &[href="#"], &:not([href]) {
+		text-decoration: none;
+		cursor: text;
+	}
+}

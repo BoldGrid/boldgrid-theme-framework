@@ -1,0 +1,32 @@
+<?php
+/**
+ * Color Palette Configuration Options.
+ *
+ * @package Boldgrid_Theme_Framework
+ * @subpackage Boldgrid_Theme_Framework\Configs
+ *
+ * @since    1.1
+ *
+ * @return   array   An array of color palette configs.
+ */
+
+return array(
+	'enabled' => true,
+	'defaults' => array(),
+	'light_text' => '#ffffff',
+	'dark_text' => '#4d4d4d',
+	'settings' => array(
+		// Directory that contains SCSS files to be compiled.
+		'scss_directory' => array(
+			'framework_dir' => '/inc/boldgrid-theme-framework/assets/scss/custom-color',
+			'default' => '/inc/boldgrid-theme-framework-config/scss',
+		),
+
+		// After the helper compiles the css, where should the css be stored?
+		'output_css_name' => '/css/color-palettes.css',
+
+		// Should the output be minified?
+		'minify_output' => true,
+	),
+);
+?>

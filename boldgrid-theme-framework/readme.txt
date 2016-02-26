@@ -19,6 +19,9 @@ user guide for more information.
 
 == Changelog ==
 
+= 1.0.8.2 =
+* BUG Fix:		JIRA WPB-1663   Updating Kirki to 2.0.9
+
 = 1.0.8.1 = 
 * BUG Fix:				Fixing Issue with toggling controls
 

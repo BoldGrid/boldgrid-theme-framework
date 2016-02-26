@@ -21,21 +21,21 @@ var gulp     = require( 'gulp' ),
 
 // Configs
 var config = {
-  fontsDest: './dist/assets/fonts',
+  fontsDest: './boldgrid-theme-framework/assets/fonts',
   src: './src',
-  dist: './dist',
+  dist: './boldgrid-theme-framework',
   bower: './bower_components' ,
-  jsDest: './dist/assets/js',
-  scss_dest: '../dist/inc/assets/scss',
+  jsDest: './boldgrid-theme-framework/assets/js',
+  scss_dest: '../boldgrid-theme-framework/inc/assets/scss',
   scss_src: './inc/assets/scss',
-  css_dest: '../dist/inc/assets/css',
+  css_dest: '../boldgrid-theme-framework/inc/assets/css',
   css_src: './inc/assets/css',
-  img_dest: '../dist/inc/assets/img',
+  img_dest: '../boldgrid-theme-framework/inc/assets/img',
   img_src: './inc/assets/img/**/*',
   layouts_src: './layouts',
-  layouts_dest: '../dist/layouts',
+  layouts_dest: '../boldgrid-theme-framework/layouts',
   scss_minify: 'compressed', // or uncompressed for dev
-}
+};
 
 // Create a bower task to retrieve bower_components on build
 gulp.task( 'bower', function(  ) { 

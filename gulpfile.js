@@ -17,7 +17,8 @@ var gulp     = require( 'gulp' ),
     phpcs    = require( 'gulp-phpcs' ),
     gutil    = require( 'gutil' ),
     del      = require( 'del' ),
-    bower    = require( 'gulp-bower' );
+    bower    = require( 'gulp-bower' ),
+    readme   = require( 'gulp-readme-to-markdown' );
 
 // Configs
 var config = {
@@ -117,6 +118,13 @@ gulp.task( 'frameworkFiles', function(  ) {
    ])
     .pipe( gulp.dest( config.dist ) );
 } );
+
+//Converto readme.txt to md
+gulp.task('readme', function() {
+  gulp.src([ config.src + '/readme.txt' ])
+  .pipe( readme() )
+  .pipe(gulp.dest('./'));
+});
 
 // Framework Images.  Pipe through newer images only!
 gulp.task( 'images', function(  ) {
@@ -253,6 +261,7 @@ gulp.task( 'build', function( cb ) {
   sequence(
     'clean',
     'bower',
+    'readme',
     ['jsHint', 'frameworkJs'],
     ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
     ['scssCompile', 'bootstrapCompile'],

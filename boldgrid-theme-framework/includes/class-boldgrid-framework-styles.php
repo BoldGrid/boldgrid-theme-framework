@@ -46,7 +46,10 @@ class BoldGrid_Framework_Styles {
 	 * @since     1.0.0
 	 */
 	public function get_fonts_url() {
-		return BoldGrid::add_fonts( $this->configs['font']['types'], $this->configs['font']['translators'] );
+		return BoldGrid::add_fonts(
+			$this->configs['font']['types'],
+			$this->configs['font']['translators']
+		);
 	}
 
 	/**
@@ -79,46 +82,80 @@ class BoldGrid_Framework_Styles {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		/* Load Custom Google Fonts */
-		wp_enqueue_style( 'boldgrid-google-fonts',
-		$this->get_fonts_url(), array(), null );
+		wp_enqueue_style(
+			'boldgrid-google-fonts',
+			$this->get_fonts_url(),
+			array(),
+			null
+		);
 
 		/* Font Awesome */
-		wp_enqueue_style( 'font-awesome',
+		wp_enqueue_style(
+			'font-awesome',
 			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
-		array(), '4.5.0' );
+			array(),
+			'4.5.0'
+		);
 
 		/* Underscores */
-		wp_enqueue_style( 'underscores-styles',
-		$this->configs['framework']['css_dir'] . 'underscores/underscores' . $suffix . '.css' );
+		wp_enqueue_style(
+			'underscores-styles',
+			$this->configs['framework']['css_dir'] . 'underscores/underscores' . $suffix . '.css',
+			array(),
+			'4.5.0'
+		);
 
 		/* Bootstrap */
-		wp_enqueue_style( 'bootstrap-styles',
+		wp_enqueue_style(
+			'bootstrap-styles',
 			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap' . $suffix . '.css',
-		array(), '3.3.1' );
+			array(),
+			'3.3.1'
+		);
 
 		/* Framework Base Styles */
-		wp_enqueue_style( 'boldgrid-theme-framework',
-			$configs['framework']['css_dir'] . 'boldgrid-theme-framework' . $suffix . '.css',
-		array(), $configs['version'] );
+		wp_enqueue_style(
+			'boldgrid-theme-framework',
+			$this->configs['framework']['css_dir'] . 'boldgrid-theme-framework' . $suffix . '.css',
+			array(),
+			$this->configs['version']
+		);
 
-	    /* If using a child theme, auto-load the parent theme style. */
-	    if ( is_child_theme( ) ) {
-	        wp_enqueue_style( 'parent-style', trailingslashit( get_template_directory_uri( ) ) . 'style.css',
-			array( 'bootstrap-styles', 'font-awesome', 'theme-slug-fonts' ), null );
-	    }
-
-		// Add animate.css for animation effects if a theme requests it.
-		if ( true === $this->configs['scripts']['animate-css'] ) {
-			wp_enqueue_style( 'boldgrid-animate-css',
-				$this->configs['framework']['css_dir'] . 'animate-css/animate' . $suffix . 'css',
-				array(), $this->configs['version']
+		/* If using a child theme, auto-load the parent theme style. */
+		if ( is_child_theme( ) ) {
+			wp_enqueue_style(
+				'parent-style',
+				trailingslashit( get_template_directory_uri(  ) ) . 'style.css',
+				array(
+					'bootstrap-styles',
+					'font-awesome',
+					'theme-slug-fonts'
+				),
+				null
 			);
 		}
 
-	    /* Always load active theme's style.css. */
-	    wp_enqueue_style( 'style', get_stylesheet_uri( ),
-		array( 'bootstrap-styles', 'font-awesome', 'boldgrid-google-fonts' ), null  );
+		// Add animate.css for animation effects if a theme requests it.
+		if ( true === $this->configs['scripts']['animate-css'] ) {
+			wp_enqueue_style(
+				'boldgrid-animate-css',
+				$this->configs['framework']['css_dir'] . 'animate-css/animate' . $suffix . 'css',
+				array(),
+				$this->configs['version']
+			);
+		}
 
+		/* Always load active theme's style.css. */
+		wp_enqueue_style(
+			'style',
+			get_stylesheet_uri(  ),
+			array(
+				'bootstrap-styles',
+				'font-awesome',
+				'boldgrid-google-fonts'
+			),
+			null
+		);
 	}
 
 	/**
@@ -152,14 +189,11 @@ class BoldGrid_Framework_Styles {
 	 * @since     1.0.0
 	 */
 	public function add_editor_styling() {
-
 		$local_files = $this->get_local_editor_styles();
 		$local_files[] = $this->get_fonts_url();
 
 		apply_filters( 'boldgrid_theme_framework_editor_styles', $local_files );
-
 		add_editor_style( $local_files );
-
 	}
 
 	/**

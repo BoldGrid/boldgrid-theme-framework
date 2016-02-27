@@ -88,7 +88,7 @@ gulp.task( 'phpDeps', function(  ) {
     config.bower + '/scssphp/**/*.php'
   ])
     .pipe( gulp.dest( config.dist + '/includes/scssphp' ) );
-  // Kirki Customizer Controls
+  // Kirki Customizer Controls.
   gulp.src([
     '!' + config.bower + '/kirki/assets',
     '!' + config.bower + '/kirki/assets/**',
@@ -97,18 +97,23 @@ gulp.task( 'phpDeps', function(  ) {
     config.bower + '/kirki/**/*.{php,pot}',
    ])
     .pipe( replace( 'kirki-logo.svg', 'boldgrid-logo.svg' ) )
-    .pipe( replace( '/** Button styles **/', '/** Button styles **' ) )
     .pipe( gulp.dest( config.dist + '/includes/kirki' ) );
-  gulp.src( config.bower + '/kirki/assets/**/*.{json,png,css,map,scss,js}' )
+  // Get Kirki CSS.
+  gulp.src( config.bower + '/kirki/assets/**/*.{css,map}' )
+    .pipe( replace('Button styles **/', 'Button styles **', true ) )
     .pipe( gulp.dest( config.dist + '/includes/kirki/assets' ) );
+  // Get Kirki Assets.
+  gulp.src( config.bower + '/kirki/assets/**/*.{json,png,scss,js}' )
+    .pipe( gulp.dest( config.dist + '/includes/kirki/assets' ) );
+  // Add BoldGrid Logo to Kirki.
   gulp.src( config.src + '/assets/img/boldgrid-logo.svg' )
     .pipe( gulp.dest( config.dist + '/includes/kirki/assets/images' ) );
-  // Black Studio TinyMCE Widget
+  // Black Studio TinyMCE Widget.
   gulp.src( config.src + '/includes/black-studio-tinymce-widget/**/*' )
     .pipe( gulp.dest( config.dist + '/includes/black-studio-tinymce-widget' ) );
 } );
 
-// Copy Framework Files
+// Copy Framework Files.
 gulp.task( 'frameworkFiles', function(  ) {
   gulp.src([
     '!' + config.src + '/includes/black-studio-tinymce-widget',
@@ -131,7 +136,7 @@ gulp.task( 'images', function(  ) {
    // .pipe( notify( { message: 'Image minification complete', onLast: true } ) );
 } );
 
-// Setup Translate
+// Setup Translate.
 gulp.task( 'translate', function (  ) {
   return gulp.src( config.src + '/**/*.php' )
     .pipe( sort() )

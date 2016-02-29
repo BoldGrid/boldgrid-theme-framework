@@ -20,6 +20,9 @@ user guide for more information.
 
 == Changelog ==
 
+= 1.0.8.3 =
+* Update: Moved repo to github.
+
 = 1.0.8.2 =
 * Fix: Updating Kirki to 2.0.9
 

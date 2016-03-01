@@ -90,10 +90,11 @@ class BoldGrid_Framework_Widgets {
 			if ( false === $filled ) {
 				$filled_data = "data-empty-area='true'";
 			}
-
-			echo '<div data-widget-area="accordion-section-sidebar-widgets-<?php esc_attr( $index ) ?>" <?php esc_attr( $filled_data ) ?>';
+		
+			echo '<div data-widget-area="accordion-section-sidebar-widgets-' .
+				esc_attr( $index ) . '" ' .  esc_attr( $filled_data ) . '>';
 		};
-
+		
 		$after_function = function ( $index, $filled = false ) {
 			echo '</div>';
 		};

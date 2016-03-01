@@ -67,6 +67,11 @@
 	}	
 }
 
+#customize-controls .description {
+    font-weight: normal !important;
+    font-size: 1em !important;
+}
+
 /*****************************************************
 ************General Color Palette Rules****************
 ******************************************************/
@@ -545,7 +550,7 @@
 		top: 46px;
 	}
 	.boldgrid-pattern-selection-heading {
-		top: 163px;
+		top: 161px;
 		z-index: 9998;
 		padding: 4px;
 	}

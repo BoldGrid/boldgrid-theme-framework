@@ -232,9 +232,9 @@ class Boldgrid_Framework_Activate {
 		 * 3. The SQL failed to update the database.
 		 * In an obscure bug, the call below is failing because of scenario #2 above.
 		 * Below, we'll try to fix this by emptying the value before setting it.
-		 * update_option( 'sidebars_widgets', array() );
-		 * update_option( 'sidebars_widgets', $all_widgets );
 		 */
+		update_option( 'sidebars_widgets', array() );
+		update_option( 'sidebars_widgets', $all_widgets );
 	}
 
 	/**

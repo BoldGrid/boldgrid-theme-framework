@@ -25,7 +25,7 @@ var config = {
   fontsDest: './boldgrid-theme-framework/assets/fonts',
   src: './src',
   dist: './boldgrid-theme-framework',
-  bower: './bower_components' ,
+  bower: './bower_components',
   jsDest: './boldgrid-theme-framework/assets/js',
   scss_dest: '../boldgrid-theme-framework/inc/assets/scss',
   scss_src: './inc/assets/scss',
@@ -39,9 +39,9 @@ var config = {
 };
 
 // Create a bower task to retrieve bower_components on build
-gulp.task( 'bower', function(  ) { 
+gulp.task( 'bower', function(  ) {
   return bower(  )
-     .pipe( gulp.dest( config.bower ) ) 
+     .pipe( gulp.dest( config.bower ) )
 } );
 
 // Clean distribution on build.
@@ -211,7 +211,8 @@ gulp.task( 'scssCompile', function(  ) {
     .pipe( sass.sync(  ).on( 'error', sass.logError ) )
     .pipe( gulp.dest( config.dist + '/assets/css' ) )
     .pipe( cssnano({
-        discardComments: {removeAll: true}
+        discardComments: {removeAll: true},
+        zindex: false
       }) )
     .pipe( rename({ suffix: '.min' }) )
     .pipe( gulp.dest( config.dist + '/assets/css' ) );

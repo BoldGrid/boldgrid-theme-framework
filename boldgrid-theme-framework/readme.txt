@@ -20,6 +20,10 @@ user guide for more information.
 
 == Changelog ==
 
+= 1.0.9.1 =
+* Fix: Attribution links unintentionally hidden from footer.
+* Fix: zIndex issues with magnified files.
+
 = 1.0.9 =
 * Fix: Preventing titles for showing up when menu title is markup.
 

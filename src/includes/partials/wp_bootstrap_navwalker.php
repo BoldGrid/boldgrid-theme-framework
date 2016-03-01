@@ -102,15 +102,9 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 
 			$item_output = $args->before;
 
-			/*
-			 * Glyphicons
-			 * ===========
-			 * Since the the menu item is NOT a Divider or Header we check the see
-			 * if there is a value in the attr_title property. If the attr_title
-			 * property is NOT null we apply it as the class name for the glyphicon.
-			 */
+			// Title Attribute.
 			if ( ! empty( $item->attr_title ) )
-				$item_output .= '<a'. $attributes .'><span class="glyphicon ' . esc_attr( $item->attr_title ) . '"></span>&nbsp;';
+				$item_output .= '<a'. $attributes .'title ="' . esc_attr( $item->attr_title ) .'">';
 			else
 				$item_output .= '<a'. $attributes .'>';
 

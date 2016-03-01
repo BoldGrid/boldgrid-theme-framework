@@ -95,6 +95,10 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			$attributes = '';
 			foreach ( $atts as $attr => $value ) {
 				if ( ! empty( $value ) ) {
+					if ( 'title' == $attr &&  $value != strip_tags( $value ) ) {
+						continue;
+					}
+					
 					$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
 					$attributes .= ' ' . $attr . '="' . $value . '"';
 				}

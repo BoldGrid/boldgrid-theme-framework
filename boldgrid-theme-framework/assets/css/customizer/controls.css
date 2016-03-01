@@ -565,13 +565,6 @@
   height: 100%;
   border: none; }
 
-.customize-control-checkbox input[type="checkbox"]:checked:before {
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid black; }
-
 .customize-control-radio-image .image.ui-buttonset label.ui-state-active {
   border: 3px solid #00a0d2; }
 

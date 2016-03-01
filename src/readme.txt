@@ -20,6 +20,9 @@ user guide for more information.
 
 == Changelog ==
 
+= 1.0.9 =
+* Fix: Preventing titles for showing up when menu title is markup.
+
 = 1.0.8.3 =
 * Update: Moved repo to github.
 

@@ -153,6 +153,7 @@ class BoldGrid_Framework {
 			'admin',
 			'activate',
 			'api',
+			'bootstrap-compile',
 			'comments',
 			'editor',
 			'i18n',
@@ -383,8 +384,14 @@ class BoldGrid_Framework {
 	private function boldgrid_theme_setup() {
 
 		$boldgrid_theme_setup = new BoldGrid_Framework_Setup( $this->configs );
+		$bootstrap_compile = new Boldgrid_Framework_Bootstrap_Compile( $this->configs );
 
 		$this->loader->add_action( 'after_setup_theme', $boldgrid_theme_setup, 'boldgrid_setup' );
+
+		if ( $this->configs['bootstrap-compile'] ) {
+			$this->loader->add_action( 'customize_save', $bootstrap_compile, 'bootstrap_build' );
+			$this->loader->add_action( 'after_switch_theme', $bootstrap_compile, 'bootstrap_build' );
+		}
 
 		// TODO: Merge these standalone files into classes and our existing structure.
 		$boldgrid_theme_setup->add_additional_setup();

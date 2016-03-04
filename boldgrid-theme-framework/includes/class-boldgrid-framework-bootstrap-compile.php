@@ -74,12 +74,16 @@ class Boldgrid_Framework_Bootstrap_Compile {
 	public function get_active_palette() {
 		$boldgrid_colors = array();
 		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
-		$current_palette = $palettes['state']['active-palette'];
-		$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
-		$i = 0;
-		foreach ( $colors as $color ) {
-			$i++;
-			$boldgrid_colors[ $current_palette.'_'.$i ] = $color;
+
+		if ( null !== $palettes ) {
+			$current_palette = $palettes['state']['active-palette'];
+			$colors = $palettes['state']['palettes'][$current_palette]['colors'];
+			$i = 0;
+
+			foreach ( $colors as $color ) {
+				$i++;
+				$boldgrid_colors[$current_palette.'_'.$i] = $color;
+			}
 		}
 
 		return $boldgrid_colors;

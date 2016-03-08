@@ -291,7 +291,7 @@ msgid "Footer Settings"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:73
-msgid "This section will allow you to modify any features that are not menus or widgets. To edit the default widget in your footer click <a data-focus-section=\"sidebar-widgets-boldgrid-widget-3\" href=\"#\">here</a>."
+msgid "This section allows you to modify features that are not menus or widgets."
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:94
@@ -310,47 +310,55 @@ msgstr ""
 msgid "You can add widgets to your footer from the widgets section."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:138
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:127
+msgid "Edit Footer Widgets"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:129
+msgid "You can edit your default footer widgets from the widget panel."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:157
 msgid "Custom Footer HTML"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:139
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:158
 msgid "Add your custom HTML for your footer here"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:167
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:186
 msgid "Attribution Control"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:178
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:197
 msgid "Hide BoldGrid Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:189
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:208
 msgid "Hide WordPress Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:200
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:219
 msgid "Hide Partner Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:223
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:242
 msgid "Built with %s | "
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:229
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:248
 msgid "Powered by %s | "
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:236
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:255
 msgid "Support from %s | "
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:267, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:269
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:286, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:288
 msgid "Special Thanks"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:314
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:333
 msgid "Enable Footer"
 msgstr ""
 

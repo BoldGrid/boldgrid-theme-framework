@@ -70,7 +70,7 @@ class Boldgrid_Framework_Customizer_Footer {
 					'title'    => __( 'Footer Settings', 'bgtfw' ),
 					'priority' => 130, // After all core sections.
 					'panel' => 'boldgrid_other',
-					'description' => __( 'This section will allow you to modify any features that are not menus or widgets. To edit the default widget in your footer click <a data-focus-section="sidebar-widgets-boldgrid-widget-3" href="#">here</a>.', 'bgtfw' ),
+					'description' => __( 'This section allows you to modify features that are not menus or widgets.', 'bgtfw' ),
 				)
 			);
 
@@ -94,7 +94,7 @@ class Boldgrid_Framework_Customizer_Footer {
 						'label'       => __( 'Footer Widget Columns', 'bgtfw' ),
 						'description' => __( 'Select the number of footer widget columns you wish to display.', 'bgtfw' ),
 						'type'        => 'radio',
-						'priority'    => 10,
+						'priority'    => 70,
 						'choices'     => array(
 							'0'   => '0',
 							'1'   => '1',
@@ -112,9 +112,28 @@ class Boldgrid_Framework_Customizer_Footer {
 						'setting'     => 'boldgrid_footer_widget_help',
 						'section'     => 'boldgrid_footer_panel',
 						'default'     => '<a class="button button-primary open-widgets-section">' .
-											__( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
-						'priority'    => 15,
+							__( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
+						'priority'    => 80,
 						'description' => __( 'You can add widgets to your footer from the widgets section.', 'bgtfw' ),
+					)
+				);
+				Kirki::add_field(
+					'',
+					array(
+						'type'        => 'custom',
+						'setting'     => 'boldgrid_edit_footer_widget_help',
+						'section'     => 'boldgrid_footer_panel',
+						'default'     => '<a data-focus-section="sidebar-widgets-boldgrid-widget-3" class="button button-primary" href="#">' .
+							__( 'Edit Footer Widgets', 'bgtfw' ) . '</a>',
+						'priority'    => 60,
+						'description' => __( 'You can edit your default footer widgets from the widget panel.', 'bgtfw' ),
+						'required' => array(
+							array(
+								'setting' => 'boldgrid_enable_footer',
+								'operator' => '==',
+								'value' => true,
+							),
+						),
 					)
 				);
 			}
@@ -138,7 +157,7 @@ class Boldgrid_Framework_Customizer_Footer {
 						'label'       => __( 'Custom Footer HTML', 'bgtfw' ),
 						'description' => __( 'Add your custom HTML for your footer here', 'bgtfw' ),
 						'type'        => 'textarea',
-						'priority'    => 20,
+						'priority'    => 90,
 						'section'     => 'boldgrid_footer_panel',
 					)
 				);
@@ -167,7 +186,7 @@ class Boldgrid_Framework_Customizer_Footer {
 				'label'       => __( 'Attribution Control', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => '',
-				'priority'    => 30,
+				'priority'    => 20,
 			)
 		);
 		Kirki::add_field(
@@ -178,7 +197,7 @@ class Boldgrid_Framework_Customizer_Footer {
 				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
-				'priority'    => 40,
+				'priority'    => 30,
 			)
 		);
 		Kirki::add_field(
@@ -189,7 +208,7 @@ class Boldgrid_Framework_Customizer_Footer {
 				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
-				'priority'    => 50,
+				'priority'    => 40,
 			)
 		);
 		Kirki::add_field(
@@ -200,7 +219,7 @@ class Boldgrid_Framework_Customizer_Footer {
 				'label'       => __( 'Hide Partner Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
-				'priority'    => 60,
+				'priority'    => 50,
 			)
 		);
 	}

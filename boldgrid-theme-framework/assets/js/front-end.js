@@ -17,16 +17,16 @@ jQuery( function( $ ) {
 		$( window ).on( 'resize', sticky_footer );
 
 	});
-	
+
 	/**
 	 *  Init the WOW JS Javascript
 	 */
 	var wow_js = function () {
-		
+
 		if ( BOLDGRID_THEME_FRAMEWORK.wow_js_enabled ) {
 			new WOW().init();
 		}
-		
+
 	};
 
 	/**
@@ -46,7 +46,7 @@ jQuery( function( $ ) {
 
 	};
 
-	/** 
+	/**
 	 *  Add a sticky footer to the theme, so the footer
 	 *  always remains at the bottom of the screen and
 	 *  looks nice.
@@ -59,7 +59,7 @@ jQuery( function( $ ) {
 	 *  height from the filler, so it doesn't overflow.
 	 */
 	var sticky_footer = function(  ) {
-		
+
 		var footer = $( 'footer#colophon' );
 		if ( !footer.length ) {
 			return;
@@ -82,7 +82,7 @@ jQuery( function( $ ) {
 				// Set negative margin to the wrapper's bottom
 				sticky_wrapper.css({ 'marginBottom': ~footer_height + 1 + 'px'});
 
-				// Give the filler div a height for the remaining distance inbetween. 
+				// Give the filler div a height for the remaining distance inbetween.
 				$( '#boldgrid-sticky-filler' ).css({ 'height': sticky_filler - footer_height });
 
 				// If in admin keep WYSIWYG and caluculate adminbar height
@@ -96,8 +96,6 @@ jQuery( function( $ ) {
 						'bottom': admin_bar_height + 'px',
 					});
 				}
-				
-				$( '.site' ).css( 'height', 'auto' );
 
 			} else {
 
@@ -108,7 +106,7 @@ jQuery( function( $ ) {
 		}
 	};
 
-	/** 
+	/**
 	 *  Events for desktop users who think they
 	 *  are using mobile by resizing their window.
 	 *  And touch events for the true mobile users.

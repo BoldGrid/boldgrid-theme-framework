@@ -29,6 +29,9 @@ user guide for more information.
 * Update: Added alt-font to tagline and widgets, and change section title.
 * Fix: Correcting issues with sticky footer.
 
+### 1.0.9.2 ###
+* Fix: Color palettes not working on staging sites.
+
 ### 1.0.9.1 ###
 * Fix: Attribution links unintentionally hidden from footer.
 * Fix: zIndex issues with magnified files.

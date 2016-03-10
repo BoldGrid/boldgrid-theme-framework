@@ -20,6 +20,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.0.9.2 ###
+* Fix: Color palettes not working on staging sites.
+
 ### 1.0.9.1 ###
 * Fix: Attribution links unintentionally hidden from footer.
 * Fix: zIndex issues with magnified files.

@@ -327,16 +327,14 @@ class Boldgrid_Framework_SCSS {
 
 			$template_dir = $this->get_template_dir();
 
-			if ( file_exists( $template_dir . $config_settings['output_css_name'] ) ) {
-				// Update CSS file.
-				$wp_filesystem->put_contents(
-					$template_dir . $config_settings['output_css_name'],
-					$compiled,
-					FS_CHMOD_FILE
-				);
+			// Update CSS file.
+			$wp_filesystem->put_contents(
+				$template_dir . $config_settings['output_css_name'],
+				$compiled,
+				FS_CHMOD_FILE
+			);
 
-				$success = true;
-			}
+			$success = true;
 		}
 
 		return $success;

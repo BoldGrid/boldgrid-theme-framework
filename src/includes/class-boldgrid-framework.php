@@ -636,13 +636,15 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function define_global_hooks() {
-		$enabled = defined( 'BOLDGRID_THEME_HELPER_SCSS_COMPILE' ) ? BOLDGRID_THEME_HELPER_SCSS_COMPILE : null;
+		$auto_compile_enabled = defined( 'BOLDGRID_THEME_HELPER_SCSS_COMPILE' ) ? BOLDGRID_THEME_HELPER_SCSS_COMPILE : null;
 
 		$boldgrid_theme_helper_scss = new Boldgrid_Framework_SCSS( $this->configs );
 		$boldgrid_theme_helper_staging = new Boldgrid_Framework_Staging( $this->configs );
+		$bootstrap_compile = new Boldgrid_Framework_Bootstrap_Compile( $this->configs );
 
 		// If the user has access, and your configuration flag is set to on.
-		if ( defined( 'BOLDGRID_THEME_HELPER_SCSS_COMPILE' ) && $enabled ) {
+		if ( $auto_compile_enabled ) {
+			$this->loader->add_action( 'wp_loaded', $bootstrap_compile, 'bootstrap_build' );
 			$this->loader->add_action( 'wp_loaded', $boldgrid_theme_helper_scss, 'update_css' );
 		}
 

@@ -23,6 +23,12 @@ user guide for more information.
 
 == Changelog ==
 
+= 1.0.10 =
+* Update: Changing email links to @example.com.
+* Update: Reorganized advanced footer panel.
+* Update: Added alt-font to tagline and widgets, and change section title.
+* Fix: Correcting issues with sticky footer.
+
 = 1.0.9.1 =
 * Fix: Attribution links unintentionally hidden from footer.
 * Fix: zIndex issues with magnified files.

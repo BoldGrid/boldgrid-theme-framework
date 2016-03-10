@@ -1,4 +1,7 @@
 === BoldGrid Theme Framework ===
+
+[![Build Status](https://travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
+
 Contributors: rramo012, timph  
 Tags: inspiration,customization,build,create,design  
 Requires at least: 4.3  
@@ -19,6 +22,12 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your function.php
 
 == Changelog ==
+
+= 1.0.10 =
+* Update: Changing email links to @example.com.
+* Update: Reorganized advanced footer panel.
+* Update: Added alt-font to tagline and widgets, and change section title.
+* Fix: Correcting issues with sticky footer.
 
 = 1.0.9.1 =
 * Fix: Attribution links unintentionally hidden from footer.

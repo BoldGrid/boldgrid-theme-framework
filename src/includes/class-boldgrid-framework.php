@@ -388,7 +388,7 @@ class BoldGrid_Framework {
 
 		$this->loader->add_action( 'after_setup_theme', $boldgrid_theme_setup, 'boldgrid_setup' );
 
-		if ( $this->configs['bootstrap-compile'] ) {
+		if ( ! empty( $this->configs['bootstrap-compile'] ) ) {
 			$this->loader->add_action( 'customize_save', $bootstrap_compile, 'bootstrap_build' );
 			$this->loader->add_action( 'after_switch_theme', $bootstrap_compile, 'bootstrap_build' );
 		}

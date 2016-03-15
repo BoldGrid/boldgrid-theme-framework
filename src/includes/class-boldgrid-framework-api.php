@@ -178,7 +178,7 @@ class BoldGrid {
 	 */
 	public function boldgrid_link_pingback() {
 	?>
-	
+
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ) ?>">
 	<?php
 	}
@@ -211,9 +211,10 @@ class BoldGrid {
 		$image_attributes = wp_get_attachment_image_src( absint( get_theme_mod( 'boldgrid_logo_setting' ) ), 'full' );
 		if ( $image_attributes ) { ?>
 		<div class="site-title">
-		<a class='logo-site-title' href="<?php echo esc_url( home_url( '/' ) ); ?>"  rel="home">
-			<img src="<?php echo esc_attr( $image_attributes[0] ); ?>" width="<?php echo esc_attr( $image_attributes[1] ); ?>" height="<?php echo esc_attr( $image_attributes[2] ); ?>" /></div>
-		</a>
+			<a class='logo-site-title' href="<?php echo esc_url( home_url( '/' ) ); ?>"  rel="home">
+				<img src="<?php echo esc_attr( $image_attributes[0] ); ?>" width="<?php echo esc_attr( $image_attributes[1] ); ?>" height="<?php echo esc_attr( $image_attributes[2] ); ?>" />
+			</a>
+		</div>
 		<?php }
 	}
 

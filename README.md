@@ -1,6 +1,6 @@
 # BoldGrid Theme Framework #
 
-[![Build Status](https://travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
+**[![Build Status](https:** //travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
 
 **Contributors:** rramo012, timph  
 **Tags:** inspiration,customization,build,create,design  
@@ -26,6 +26,7 @@ user guide for more information.
 ### 1.1 ###
 * New Feature: Typography controls now have image previews.
 * Bug fix: Unique menu names not formatted correctly.
+* Bug fix: On start over, staging menus are not deleted.
 
 ### 1.0.10 ###
 * Update: Changing email links to @example.com.

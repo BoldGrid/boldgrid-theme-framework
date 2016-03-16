@@ -71,10 +71,16 @@ class Boldgrid_Framework_Activate {
 	 * iterate through each menu and delete it.
 	 *
 	 * @since 1.0.5
+	 *
+	 * @param bool $active Are we resetting an active installation?
 	 */
-	public function remove_saved_menus() {
+	public function remove_saved_menus( $active ) {
 		// Get a list of all menus we've created.
-		$menus_created = get_option( 'boldgrid_menus_created', array() );
+		if( $active ) {
+			$menus_created = get_option( 'boldgrid_menus_created', array() );
+		} else {
+			$menus_created = get_option( 'boldgrid_staging_boldgrid_menus_created', array() );
+		}
 
 		// If we haven't created any menus, abort.
 		if ( empty( $menus_created ) ) {
@@ -149,13 +155,15 @@ class Boldgrid_Framework_Activate {
 	 * Removing any menu locations and widget locations
 	 *
 	 * @since 1.0.0
+	 *
+	 * @param bool $active Are we resetting an active installation?
 	 */
-	public function reset() {
+	public function reset( $active = true ) {
 		$this->reset_nav_locations();
 		$this->remove_saved_widgets();
 
 		// Delete all 'default menus' created.
-		$this->remove_saved_menus();
+		$this->remove_saved_menus( $active );
 
 		// Delete Option indicating that the framework needs to be setup.
 		delete_option( 'boldgrid_framework_init' );

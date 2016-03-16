@@ -26,6 +26,7 @@ user guide for more information.
 ### 1.1 ###
 * New Feature: Typography controls now have image previews.
 * Bug fix: Unique menu names not formatted correctly.
+* Bug fix: Seacrh results hiding page titles unintentionally.
 
 ### 1.0.10 ###
 * Update: Changing email links to @example.com.

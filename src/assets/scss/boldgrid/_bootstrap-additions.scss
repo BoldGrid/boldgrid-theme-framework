@@ -22,3 +22,12 @@
        display: block;
     }
 }
+
+.content-area .row {
+	display:flex;
+	flex-wrap: wrap;
+	&:before,
+	&:after {
+	  width: 0;
+	}
+}

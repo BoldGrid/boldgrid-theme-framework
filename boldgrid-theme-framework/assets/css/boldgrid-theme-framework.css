@@ -43,6 +43,13 @@
   .dropdown:hover .dropdown-menu {
     display: block; } }
 
+.content-area .row {
+  display: flex;
+  flex-wrap: wrap; }
+
+.content-area .row:before, .content-area .row:after {
+  width: 0; }
+
 /*--------------------------------------------------------------
 # Customizer Styles
 --------------------------------------------------------------*/

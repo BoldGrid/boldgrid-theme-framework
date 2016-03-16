@@ -23,6 +23,10 @@ user guide for more information.
 
 == Changelog ==
 
+= 1.1 =
+* New Feature: Typography controls now have image previews.
+* Bug fix: Unique menu names not formatted correctly.
+
 = 1.0.10 =
 * Update: Changing email links to @example.com.
 * Update: Reorganized advanced footer panel.

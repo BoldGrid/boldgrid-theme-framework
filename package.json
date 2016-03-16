@@ -19,6 +19,7 @@
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-bower": "0.0.13",
+    "gulp-changed": "^1.3.0",
     "gulp-clean": "^0.3.2",
     "gulp-concat-util": "^0.5.5",
     "gulp-cssnano": "^2.1.1",

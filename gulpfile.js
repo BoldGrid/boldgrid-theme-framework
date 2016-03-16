@@ -19,6 +19,7 @@ var gulp     = require( 'gulp' ),
     del      = require( 'del' ),
     clean    = require( 'gulp-clean' ),
     fs       = require( 'fs' ),
+    changed  = require('gulp-changed'),
     bower    = require( 'gulp-bower' ),
     readme   = require( 'gulp-readme-to-markdown' );
 
@@ -54,15 +55,15 @@ gulp.task( 'fontFamilyCss', function(  ) {
 	    css = '',
 	    family,
 	    position;
-	
+
 	for ( var key in webFonts.items ) {
 		family = webFonts.items[key].family;
 		position = -5 + ( key * -40 );
-		
+
 		css += '.selectize-input .item[data-value="' + family + '"] {background-position:0px ' + position + 'px;}';
 		css += '.selectize-dropdown-content [data-value="' + family + '"] {background-position:8px ' + position + 'px;}';
 	}
-	
+
 	// Write to file.
 	fs.writeFileSync( outFilename, css );
 	gulp.src( outFilename )
@@ -163,6 +164,7 @@ gulp.task('readme', function() {
 gulp.task( 'images', function(  ) {
   return  gulp.src( [ config.src + '/assets/img/**/*.{png,jpg,gif}'] )
     .pipe( newer( config.dist + '/assets/img' ) )
+    //.pipe( changed( config.src + '/assets/img' ) )
     .pipe( imagemin( {
       optimizationLevel: 7,
       progressive: true,
@@ -297,11 +299,16 @@ gulp.task( 'build', function( cb ) {
     'bower',
     'readme',
     ['jsHint', 'frameworkJs'],
-    ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
+    ['scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
+    'images',
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
     cb
   );
+});
+
+gulp.task( 'css', function( cb ) {
+	sequence( 'frameworkFiles', 'scssDeps', 'scssCompile', 'fontFamilyCss', cb );
 });
 
 gulp.task( 'prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ]);

@@ -422,6 +422,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'customizer_reorganization' );
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'set_text_contrast' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $boldgrid_theme_customizer, 'custom_customize_enqueue' );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $boldgrid_theme_customizer, 'enqueue_styles' );
 		$this->loader->add_action( 'customize_preview_init', $boldgrid_theme_customizer, 'add_help_overlay' );
 
 		// Background Controls.

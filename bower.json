@@ -21,7 +21,7 @@
     "bootstrap-sass": "~3.3.6",
     "color-js": "https://github.com/brehaut/color-js.git",
     "scssphp": "https://github.com/leafo/scssphp.git#0.4",
-    "kirki": "https://github.com/aristath/kirki.git#2.0.9",
+    "kirki": "https://github.com/aristath/kirki.git#2.1.0.1",
     "jquery.stellar": "~0.6.2",
     "sass.js": "~0.9.4",
     "wow": "wowjs#^1.1.2",

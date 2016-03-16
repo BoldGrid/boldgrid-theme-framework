@@ -17,6 +17,8 @@ var gulp     = require( 'gulp' ),
     phpcs    = require( 'gulp-phpcs' ),
     gutil    = require( 'gutil' ),
     del      = require( 'del' ),
+    clean    = require( 'gulp-clean' ),
+    fs       = require( 'fs' ),
     bower    = require( 'gulp-bower' ),
     readme   = require( 'gulp-readme-to-markdown' );
 
@@ -42,6 +44,30 @@ var config = {
 gulp.task( 'bower', function(  ) {
   return bower(  )
      .pipe( gulp.dest( config.bower ) )
+} );
+
+// Create CSS file for font-family control based on webfonts.json.
+gulp.task( 'fontFamilyCss', function(  ) {
+	var fileContent = fs.readFileSync( config.src + "/assets/json/webfonts.json", "utf8" ),
+	    webFonts = JSON.parse( fileContent ),
+	    outFilename = 'font-family-controls.min.css',
+	    css = '',
+	    family,
+	    position;
+	
+	for ( var key in webFonts.items ) {
+		family = webFonts.items[key].family;
+		position = -5 + ( key * -40 );
+		
+		css += '.selectize-input .item[data-value="' + family + '"] {background-position:0px ' + position + 'px;}';
+		css += '.selectize-dropdown-content [data-value="' + family + '"] {background-position:8px ' + position + 'px;}';
+	}
+	
+	// Write to file.
+	fs.writeFileSync( outFilename, css );
+	gulp.src( outFilename )
+	  .pipe( clean( config.dist + '/assets/css/customizer/' + outFilename ) )
+	  .pipe( gulp.dest( config.dist + '/assets/css/customizer' ) );
 } );
 
 // Clean distribution on build.
@@ -104,8 +130,10 @@ gulp.task( 'phpDeps', function(  ) {
     .pipe( replace('Button styles **/', 'Button styles **', true ) )
     .pipe( gulp.dest( config.dist + '/includes/kirki/assets' ) );
   // Get Kirki Assets.
-  gulp.src( config.bower + '/kirki/assets/**/*.{json,png,scss,js}' )
+  gulp.src( config.bower + '/kirki/assets/**/*.{png,scss,js}' )
     .pipe( gulp.dest( config.dist + '/includes/kirki/assets' ) );
+  gulp.src( config.src + "/assets/json/webfonts.json" )
+     .pipe( gulp.dest( config.dist + '/includes/kirki/assets/json' ) );
   // Add BoldGrid Logo to Kirki.
   gulp.src( config.src + '/assets/img/boldgrid-logo.svg' )
     .pipe( gulp.dest( config.dist + '/includes/kirki/assets/images' ) );
@@ -271,6 +299,7 @@ gulp.task( 'build', function( cb ) {
     ['jsHint', 'frameworkJs'],
     ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
     ['scssCompile', 'bootstrapCompile'],
+    'fontFamilyCss',
     cb
   );
 });

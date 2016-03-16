@@ -14,14 +14,16 @@
  * @uses       Kirki\Scripts\EnqueueScript
  */
 
-class Boldgrid_Framework_Customizer_Help extends Kirki_Customizer_Scripts_Enqueue {
+class Boldgrid_Framework_Customizer_Help  {
 
-	public function generate_script( $args = array() ) { }
+	public function __construct() {
+		add_action( 'customize_controls_print_scripts', array( $this, 'customize_controls_print_footer_scripts' ) );
+	}
 
 	/**
 	 * Add the help bubble
 	 */
-	function customize_controls_print_footer_scripts() {
+	public function customize_controls_print_footer_scripts() {
 
 		// Boldgrid - this files was copied from the kirki framework.
 		global $boldgrid_theme_framework;
@@ -56,10 +58,4 @@ class Boldgrid_Framework_Customizer_Help extends Kirki_Customizer_Scripts_Enqueu
 		echo Kirki_Scripts_Registry::prepare( $script );
 	}
 
-
-	public function customize_controls_print_scripts() {}
-
-	public function customize_controls_enqueue_scripts() {}
-
-	public function wp_footer() {}
 }

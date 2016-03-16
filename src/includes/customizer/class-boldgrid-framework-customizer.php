@@ -51,6 +51,18 @@ class BoldGrid_Framework_Customizer {
 	}
 
 	/**
+	 * Enqueue General customizer helper styles.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $configs    An array of the theme framework configurations
+	 */
+	public function enqueue_styles() {
+		wp_enqueue_style( 'boldgrid-customizer-controls-base',
+			$this->configs['framework']['css_dir'] . 'customizer/font-family-controls.min.css' );
+	}
+
+	/**
 	 * Enqueue General customizer helper scripts.
 	 *
 	 * @since    1.0.0
@@ -110,8 +122,8 @@ class BoldGrid_Framework_Customizer {
 		<div class="overlay-prompt">
 			<div class="overlay-content">
 				<h3>Transferred Theme Modifications</h3>
-				<p>Following your recent theme switch, your previous theme modifications 
-				were transferred to this theme. You can choose to undo these changes or 
+				<p>Following your recent theme switch, your previous theme modifications
+				were transferred to this theme. You can choose to undo these changes or
 				accept them and continue modifying your new theme.
 				</p>
 				<button class="button button-primary" type="button" id="accept-theme-mod-changes">Accept</button>

@@ -72,6 +72,46 @@
     font-size: 1em !important;
 }
 
+[id^="customize-control-"][id$="_font_family"] {
+
+    .selectize-dropdown-content {
+        .option,
+        .option.active,
+        .option:hover {
+            padding: 8px 8px !important;
+            color: transparent;
+        }
+    }
+    
+    .selectize-input .item,
+    .selectize-dropdown-content .option {
+        color: transparent;
+        background-image: url(../../img/web-fonts.png);
+    }
+    
+    .selectize-dropdown-content,
+    .selectize-input { 
+        [data-value="sans-serif"],
+        [data-value="monospace"],
+        [data-value="serif"] {
+            color: black !important;
+            background-image: none !important;
+         }
+    }
+    
+    .selectize-control.single .selectize-input {
+        height:44px;
+        .item {
+            width: 220px;
+            height: 100%;
+        }
+        &:after {
+            line-height: 44px;
+            height: 100%;
+        }
+    }
+}
+
 /*****************************************************
 ************General Color Palette Rules****************
 ******************************************************/

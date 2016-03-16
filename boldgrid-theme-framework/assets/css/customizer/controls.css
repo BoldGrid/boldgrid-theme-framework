@@ -63,6 +63,37 @@
   font-weight: normal !important;
   font-size: 1em !important; }
 
+[id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content .option,
+[id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content .option.active,
+[id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content .option:hover {
+  padding: 8px 8px !important;
+  color: transparent; }
+
+[id^="customize-control-"][id$="_font_family"] .selectize-input .item,
+[id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content .option {
+  color: transparent;
+  background-image: url(../../img/web-fonts.png); }
+
+[id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content [data-value="sans-serif"],
+[id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content [data-value="monospace"],
+[id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content [data-value="serif"],
+[id^="customize-control-"][id$="_font_family"] .selectize-input [data-value="sans-serif"],
+[id^="customize-control-"][id$="_font_family"] .selectize-input [data-value="monospace"],
+[id^="customize-control-"][id$="_font_family"] .selectize-input [data-value="serif"] {
+  color: black !important;
+  background-image: none !important; }
+
+[id^="customize-control-"][id$="_font_family"] .selectize-control.single .selectize-input {
+  height: 44px; }
+
+[id^="customize-control-"][id$="_font_family"] .selectize-control.single .selectize-input .item {
+  width: 220px;
+  height: 100%; }
+
+[id^="customize-control-"][id$="_font_family"] .selectize-control.single .selectize-input:after {
+  line-height: 44px;
+  height: 100%; }
+
 /*****************************************************
 ************General Color Palette Rules****************
 ******************************************************/

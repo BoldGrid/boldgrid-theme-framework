@@ -1,6 +1,6 @@
 # BoldGrid Theme Framework #
 
-[![Build Status](https:** //travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
+[![Build Status](https://travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
 
 **Contributors:** rramo012, timph  
 **Tags:** inspiration,customization,build,create,design  

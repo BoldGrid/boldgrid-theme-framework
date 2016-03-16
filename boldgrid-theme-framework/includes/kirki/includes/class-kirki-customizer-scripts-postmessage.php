@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Kirki_PostMessage' ) ) {
+if ( ! class_exists( 'Kirki_Customizer_Scripts_PostMessage' ) ) {
 	class Kirki_Customizer_Scripts_PostMessage extends Kirki_Customizer_Scripts {
 
 		/**
@@ -49,6 +49,20 @@ if ( ! class_exists( 'Kirki_PostMessage' ) ) {
 
 			$script = '';
 			/**
+			 * If in our config we've set 'postMessage' to 'auto',
+			 * then use the 'output' argument to auto-generate the js_vars
+			 */
+			$config_id = ( isset( $args['kirki_config'] ) ) ? $args['kirki_config'] : 'global';
+			if ( isset( Kirki::$config[ $config_id ]['postMessage'] ) && 'auto' == Kirki::$config[ $config_id ]['postMessage'] ) {
+				if ( ! isset( $args['js_vars'] ) || empty( $args['js_vars'] ) ) {
+					if ( isset( $args['output'] ) ) {
+						$args['js_vars']   = $args['output'];
+						$args['transport'] = 'postMessage';
+					}
+				}
+			}
+
+			/**
 			 * Make sure "transport" is defined
 			 */
 			$args['transport'] = ( isset( $args['transport'] ) ) ? $args['transport'] : 'refresh';
@@ -74,7 +88,7 @@ if ( ! class_exists( 'Kirki_PostMessage' ) ) {
 					 */
 					$js_vars = array(
 						'element'     => ( isset( $js_vars['element'] ) ) ? sanitize_text_field( $js_vars['element'] ) : '',
-						'function'    => ( isset( $js_vars['function'] ) ) ? esc_js( $js_vars['function'] ) : '',
+						'function'    => ( isset( $js_vars['function'] ) ) ? esc_js( $js_vars['function'] ) : 'css',
 						'property'    => ( isset( $js_vars['property'] ) ) ? esc_js( $js_vars['property'] ) : '',
 						'units'       => ( isset( $js_vars['units'] ) ) ? esc_js( $js_vars['units'] ) : '',
 						'prefix'      => ( isset( $js_vars['prefix'] ) ) ? esc_js( $js_vars['prefix'] ) : '',
@@ -96,7 +110,7 @@ if ( ! class_exists( 'Kirki_PostMessage' ) ) {
 						$script .= '$(\'' . $js_vars['element'] . '\').html( newval );';
 
 						// execute js_callback (callback must exist in dom before this script - see priority on the action/
-						if ( ! empty( $js_callback ) ){
+						if ( ! empty( $js_callback ) ) {
 							$script .= $js_callback . '(\'' . $js_vars['element'] . '\', newval);'; // js_callback(element, newval);
 						}
 
@@ -132,7 +146,7 @@ if ( ! class_exists( 'Kirki_PostMessage' ) ) {
 							$units  = ( ! empty( $js_vars['units'] ) ) ? '+\'' . $js_vars['units'] . '\'' : '';
 							$prefix = ( ! empty( $js_vars['prefix'] ) ) ? '\'' . $js_vars['prefix'] . '\'+' : '';
 							// this.style.setProperty( 'color', 'red', 'important' ); - jquery won't fix .css !important issue so we go oldschool
-							$script .= '$(\'' . $js_vars['element'] . '\').each(function(){ this.style.setProperty(\'' .  $js_vars['property'] . '\', ' . $prefix . 'newval' . $units . ', \'important\');});';
+							$script .= '$(\'' . $js_vars['element'] . '\').each(function(){ this.style.setProperty(\'' . $js_vars['property'] . '\', ' . $prefix . 'newval' . $units . ', \'important\');});';
 						} else {
 							$units  = ( ! empty( $js_vars['units'] ) ) ? " + '" . $js_vars['units'] . "'" : '';
 							$prefix = ( ! empty( $js_vars['prefix'] ) ) ? "'" . $js_vars['prefix'] . "' + " : '';

@@ -142,7 +142,7 @@ class Boldgrid_Framework_Menu {
 
 		// Make this menu name a unique name by appending 'dash number' to it. Ex: menu-name-2.
 		for ( $x = 2; $x <= 100; $x++ ) {
-			$new_menu_name  = $name .= '-' . $x;
+			$new_menu_name = $name . '-' . $x;
 			$menu_exists = is_nav_menu( $new_menu_name );
 
 			if ( ! $menu_exists ) {

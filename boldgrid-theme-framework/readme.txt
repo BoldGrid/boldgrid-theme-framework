@@ -23,6 +23,9 @@ user guide for more information.
 
 == Changelog ==
 
+= 1.0.11 In progress =
+* Bug fix: Unique menu names not formatted correctly.
+
 = 1.0.10 =
 * Update: Changing email links to @example.com.
 * Update: Reorganized advanced footer panel.

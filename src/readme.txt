@@ -27,6 +27,8 @@ user guide for more information.
 * New Feature: Typography controls now have image previews.
 * Bug fix: Unique menu names not formatted correctly.
 * Bug fix: On start over, staging menus are not deleted.
+* Bug fix: Seacrh results hiding page titles unintentionally.
+
 
 = 1.0.10 =
 * Update: Changing email links to @example.com.

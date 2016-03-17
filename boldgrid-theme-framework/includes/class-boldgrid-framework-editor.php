@@ -60,7 +60,7 @@ class Boldgrid_Framework_Editor {
 	public function hide_page_title() {
 		global $post;
 		$inline_css = null;
-		if ( $post ) {
+		if ( $post && ( is_page() || is_single () ) ) {
 			$post_meta = get_post_meta( $post->ID );
 
 			// This was updated to invert logic, from hide page title to display page title
@@ -139,18 +139,18 @@ class Boldgrid_Framework_Editor {
 						<div id="boldgrid-hide-post-title">
 							<input style='display:none' type='checkbox' value='0' checked='checked' name='boldgrid-display-post-title'>
 							<label>
-							<input value="1" name="boldgrid-display-post-title" {$checked} {$disabled} type='checkbox'> Display  
-							 $post_type  title </label><span class="dashicons dashicons-editor-help"></span> 
+							<input value="1" name="boldgrid-display-post-title" {$checked} {$disabled} type='checkbox'> Display
+							 $post_type  title </label><span class="dashicons dashicons-editor-help"></span>
 							<span class="spinner"></span>
 							<div class='boldgrid-tooltip'>
 								<div class="boldgrid-tooltip-arrow">
 								</div>
 								<div class="boldgrid-tooltip-inner">
-									The {$post_type} title displays as a heading at the top of your {$post_type}. 
-									Your BoldGrid theme supports this feature. 
+									The {$post_type} title displays as a heading at the top of your {$post_type}.
+									Your BoldGrid theme supports this feature.
 								</div>
 							</div>
-						</div>				
+						</div>
 HTML;
             } );
 		}

@@ -170,6 +170,7 @@ class BoldGrid_Framework {
 			'staging',
 			'styles',
 			'widgets',
+			'wrapper',
 		);
 
 		foreach ( $library_files as $filename ) {
@@ -274,6 +275,12 @@ class BoldGrid_Framework {
 		$boldgrid_styles  = new BoldGrid_Framework_Styles( $this->configs );
 		$boldgrid_scripts = new BoldGrid_Framework_Scripts( $this->configs );
 		$boldgrid_theme   = new BoldGrid( $this->configs );
+		$wrapper          = new Boldgrid_Framework_Wrapper();
+
+		// Load Theme Wrapper.
+		if ( true === $this->configs['boldgrid-parent-theme'] ) {
+			$this->loader->add_filter( 'template_include', $wrapper, 'wrap', 109 );
+		}
 
 		// Add Theme Styles.
 		$this->loader->add_action( 'wp_enqueue_scripts', $boldgrid_styles, 'boldgrid_enqueue_styles' );

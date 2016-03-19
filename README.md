@@ -2,22 +2,22 @@
 
 **[![Build Status](https:** //travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
 
-**Contributors:** rramo012, timph  
-**Tags:** inspiration,customization,build,create,design  
-**Requires at least:** 4.3  
-**Tested up to:** 4.4.2  
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+**Contributors:** rramo012, timph
+**Tags:** inspiration,customization,build,create,design
+**Requires at least:** 4.3
+**Tested up to:** 4.4.2
+**License:** GPLv2 or later
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 ## Description ##
 
-BoldGrid Theme Framework is a library that allows you to easily make BoldGrid themes. 
-Please see our reference guide for more information: https://www.boldgrid.com/docs/configuration-file  
+BoldGrid Theme Framework is a library that allows you to easily make BoldGrid themes.
+Please see our reference guide for more information: https://www.boldgrid.com/docs/configuration-file
 
 ## Installation ##
 
-1. Create a configuration that overrides required fields. Please see the BoldGrid theme 
-user guide for more information. 
+1. Create a configuration that overrides required fields. Please see the BoldGrid theme
+user guide for more information.
 
 1. Include boldgrid-theme-framework.php from your function.php
 
@@ -28,7 +28,7 @@ user guide for more information.
 * Bug fix: Unique menu names not formatted correctly.
 * Bug fix: On start over, staging menus are not deleted.
 * Bug fix: Seacrh results hiding page titles unintentionally.
-
+* Misc: Setting default style of menus as inline.
 
 ### 1.0.10 ###
 * Update: Changing email links to @example.com.
@@ -56,7 +56,7 @@ user guide for more information.
 * Fix: Fixing Issue with toggling controls
 
 ### 1.0.8 ###
-* Fix:Enable page title toggle on new pages	
+* Fix:Enable page title toggle on new pages
 * Update: Update kirki to v2.0.3
 * Update: Updating PHP Sass compiler
 * Update: Updating JS Sass compiler

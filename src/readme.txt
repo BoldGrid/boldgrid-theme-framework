@@ -27,7 +27,7 @@ user guide for more information.
 * New Feature: Typography controls now have image previews.
 * Bug fix: Unique menu names not formatted correctly.
 * Bug fix: On start over, staging menus are not deleted.
-* Bug fix: Seacrh results hiding page titles unintentionally.
+* Bug fix: Search results hiding page titles unintentionally.
 * Misc: Setting default style of menus as inline.
 
 = 1.0.10 =

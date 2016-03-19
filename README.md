@@ -1,6 +1,6 @@
 # BoldGrid Theme Framework #
 
-**[![Build Status](https:** //travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE)
+[![Build Status](https://travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=master)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE)
 
 **Contributors:** rramo012, timph
 **Tags:** inspiration,customization,build,create,design

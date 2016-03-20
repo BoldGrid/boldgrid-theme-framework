@@ -11,6 +11,8 @@
  * @link       https://boldgrid.com
  */
 
+use Leafo\ScssPhp\Compiler;
+
 /**
  * Class: Boldgrid_Framework_Bootstrap_Compile
  *

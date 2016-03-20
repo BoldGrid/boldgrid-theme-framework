@@ -77,12 +77,12 @@ class Boldgrid_Framework_Bootstrap_Compile {
 
 		if ( null !== $palettes ) {
 			$current_palette = $palettes['state']['active-palette'];
-			$colors = $palettes['state']['palettes'][$current_palette]['colors'];
+			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
 			$i = 0;
 
 			foreach ( $colors as $color ) {
 				$i++;
-				$boldgrid_colors[$current_palette.'_'.$i] = $color;
+				$boldgrid_colors[ $current_palette.'_'.$i ] = $color;
 			}
 		}
 
@@ -99,7 +99,7 @@ class Boldgrid_Framework_Bootstrap_Compile {
 		if ( ! class_exists( '\Leafo\ScssPhp\Compiler' ) ) {
 			require_once $this->configs['framework']['includes_dir'] . '/scssphp/scss.inc.php';
 		}
-		$scss = new scssc();
+		$scss = new Compiler();
 		$path = $this->configs['framework']['asset_dir'] . 'scss/';
 		$scss->setImportPaths( $path );
 

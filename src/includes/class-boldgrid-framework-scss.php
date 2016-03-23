@@ -291,7 +291,7 @@ class Boldgrid_Framework_SCSS {
 		$config_settings = $this->configs['customizer-options']['colors']['settings'];
 
 		if ( $config_settings['minify_output'] ) {
-			$scss->setFormatter( 'scss_formatter_compressed' );
+			$scss->setFormatter( 'Leafo\ScssPhp\Formatter\Compressed' );
 		}
 
 		// TODO: Make sure we arent over compiling.

@@ -92,6 +92,94 @@ class Boldgrid_Framework_Bootstrap_Compile {
 	}
 
 	/**
+	 * Converts a hex color into an array of RGB.
+	 *
+	 * @since 1.2
+	 * @param string $hex Hex color to conver to RGB.
+	 * @return array $rgb An array with rgb values of color.
+	 */
+	public function convert_hex_to_rgb( $hex ) {
+		$hex = str_replace( '#', '', $hex );
+
+		if ( strlen( $hex ) === 3 ) {
+			$r = hexdec( substr( $hex, 0, 1 ).substr( $hex, 0, 1 ) );
+			$g = hexdec( substr( $hex, 1, 1 ).substr( $hex, 1, 1 ) );
+			$b = hexdec( substr( $hex, 2, 1 ).substr( $hex, 2, 1 ) );
+		} else {
+			$r = hexdec( substr( $hex, 0, 2 ) );
+			$g = hexdec( substr( $hex, 2, 2 ) );
+			$b = hexdec( substr( $hex, 4, 2 ) );
+		}
+
+		$rgb = array( $r, $g, $b );
+
+		return $rgb;
+	}
+
+	/**
+	 * Calculate out the luminance of a given color.
+	 *
+	 * This can accept color in rgb or hexadecimal format to have it's
+	 * luminance calculated out.
+	 *
+	 * @since 1.2
+	 * @param string $color Color to get luminance of.
+	 * @return string $luminance the luminance value of color.
+	 */
+	public function get_luminance( $color ) {
+		// Check for RGB or hex first.
+		if ( false !== strpos( $color, '#' ) ) {
+			$rgb_arrays = self::convert_hex_to_rgb( $color );
+		} elseif ( false !== strpos( $color, 'rgb' ) ) {
+			$rgb_arrays = preg_replace( '/\D/', '', explode( ',', $color ) );
+		}
+
+		// Assign RGB.
+		$r = intval( $rgb_arrays[0] );
+		$g = intval( $rgb_arrays[1] );
+		$b = intval( $rgb_arrays[2] );
+
+		// Calculate Luminance.
+		$luminance = strval( ( ( ( $r * .299 ) + ( $g * .587 ) + ( $b * .114 ) ) / 255 ) * 100 );
+
+		return $luminance;
+	}
+
+	/**
+	 * Get the text contrast color for a color.
+	 *
+	 * This will generate the text contrast colors in PHP to pass to scss compiler.
+	 *
+	 * @since 1.2
+	 * @param array $colors Array of colors to get text contrast of.
+	 * @return array $text_contrast_colors Array of text contrast variables to pass.
+	 */
+	public function get_text_contrast( $colors ) {
+		$text_contrast_colors = array();
+		// Color Configs.
+		$configs = $this->configs['customizer-options']['colors'];
+		// Get the active color palette.
+		$colors = self::get_active_palette();
+		// Determine luminance values of light and dark text.
+		$light_text = self::get_luminance( $configs['light_text'] );
+		$dark_text = self::get_luminance( $configs['dark_text'] );
+
+		foreach ( $colors as $key => $color ) {
+			$color = self::get_luminance( $color );
+			$lightness = abs( $color - $light_text );
+			$darkness = abs( $color - $dark_text );
+
+			if ( $lightness > $darkness ) {
+				$text_contrast_colors[ 'text-contrast-' . $key ] = $configs['light_text'];
+			} else {
+				$text_contrast_colors[ 'text-contrast-' . $key ] = $configs['dark_text'];
+			}
+		}
+
+		return $text_contrast_colors;
+	}
+
+	/**
 	 * Compile Bootstrap SCSS to CSS.
 	 *
 	 * @since 1.1
@@ -106,7 +194,11 @@ class Boldgrid_Framework_Bootstrap_Compile {
 		$scss->setImportPaths( $path );
 
 		if ( $this->configs['bootstrap'] ) {
-			$variables = array_merge( $this->get_active_palette(), $this->configs['bootstrap'] );
+			// BoldGrid specific variables to have available during compile.
+			$boldgrid_variables = array_merge( $this->get_active_palette(), $this->get_text_contrast( $colors ) );
+			// Variables to assign before compile.
+			$variables = array_merge( $boldgrid_variables, $this->configs['bootstrap'] );
+			// Set the Variables.
 			$scss->setVariables( $variables );
 		}
 

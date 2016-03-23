@@ -20,8 +20,7 @@ var gulp     = require( 'gulp' ),
     clean    = require( 'gulp-clean' ),
     fs       = require( 'fs' ),
     changed  = require('gulp-changed'),
-    bower    = require( 'gulp-bower' ),
-    readme   = require( 'gulp-readme-to-markdown' );
+    bower    = require( 'gulp-bower' );
 
 // Configs
 var config = {
@@ -44,7 +43,7 @@ var config = {
 // Create a bower task to retrieve bower_components on build
 gulp.task( 'bower', function(  ) {
   return bower(  )
-     .pipe( gulp.dest( config.bower ) )
+    .pipe( gulp.dest( config.bower ) );
 } );
 
 // Create CSS file for font-family control based on webfonts.json.
@@ -103,7 +102,7 @@ gulp.task( 'jsDeps', function(  ) {
 gulp.task( 'fontDeps', function(  ) {
   // Font Awesome
   gulp.src( config.bower + '/font-awesome/fonts/**/*.{ttf,woff,woff2,eot,otf,svg}' )
-    .pipe( gulp.dest( config.fontsDest ) )
+    .pipe( gulp.dest( config.fontsDest ) );
    // .pipe( notify( { message: 'Font Dependencies Loaded', onLast: true } ) );
 } );
 
@@ -158,10 +157,9 @@ gulp.task( 'frameworkFiles', function(  ) {
 } );
 
 //Converto readme.txt to md
-gulp.task('readme', function() {
-  gulp.src([ config.src + '/readme.txt' ])
-  .pipe( readme() )
-  .pipe(gulp.dest('./'));
+gulp.task( 'readme', function() {
+  gulp.src( './README.md' )
+  .pipe(gulp.dest( config.dist ));
 });
 
 // Framework Images.  Pipe through newer images only!

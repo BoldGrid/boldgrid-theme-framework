@@ -111,10 +111,14 @@ gulp.task( 'fontDeps', function(  ) {
 gulp.task( 'phpDeps', function(  ) {
   // Leafo SCSSPHP Compiler
   gulp.src([
+	'!' + config.bower + '/scssphp/scss.inc.php',
     '!' + config.bower + '/scssphp/tests',
     '!' + config.bower + '/scssphp/tests/**',
     config.bower + '/scssphp/**/*.php'
   ])
+    .pipe( gulp.dest( config.dist + '/includes/scssphp' ) );
+  gulp.src( config.bower + '/scssphp/scss.inc.php')
+    .pipe( replace('5.4', '5.3', true ) )
     .pipe( gulp.dest( config.dist + '/includes/scssphp' ) );
   // Kirki Customizer Controls.
   gulp.src([

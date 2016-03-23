@@ -13,18 +13,20 @@ namespace Leafo\ScssPhp;
 
 use Leafo\ScssPhp\Block;
 use Leafo\ScssPhp\Compiler;
+use Leafo\ScssPhp\Exception\ParserException;
 use Leafo\ScssPhp\Node;
 use Leafo\ScssPhp\Type;
 
 /**
- * SCSS parser
+ * Parser
  *
  * @author Leaf Corcoran <leafot@gmail.com>
  */
 class Parser
 {
-    const SOURCE_INDEX    = -1;
-    const SOURCE_POSITION = -2;
+    const SOURCE_INDEX  = -1;
+    const SOURCE_LINE   = -2;
+    const SOURCE_COLUMN = -3;
 
     /**
      * @var array
@@ -53,6 +55,7 @@ class Parser
 
     private $sourceName;
     private $sourceIndex;
+    private $sourcePositions;
     private $charset;
     private $count;
     private $env;
@@ -99,46 +102,25 @@ class Parser
     }
 
     /**
-     * Get source line number (given character position in the buffer)
-     *
-     * @api
-     *
-     * @param integer $pos
-     *
-     * @return integer
-     */
-    public function getLineNo($pos)
-    {
-        return 1 + substr_count(substr($this->buffer, 0, $pos), "\n");
-    }
-
-    /**
      * Throw parser error
      *
      * @api
      *
-     * @param string  $msg
-     * @param integer $count
+     * @param string $msg
      *
-     * @throws \Exception
+     * @throws \Leafo\ScssPhp\Exception\ParserException
      */
-    public function throwParseError($msg = 'parse error', $count = null)
+    public function throwParseError($msg = 'parse error')
     {
-        $count = ! isset($count) ? $this->count : $count;
+        list($line, $column) = $this->getSourcePosition($this->count);
 
-        $line = $this->getLineNo($count);
+        $loc  = empty($this->sourceName) ? "line: $line" : "$this->sourceName on line $line";
 
-        if (! empty($this->sourceName)) {
-            $loc = "$this->sourceName on line $line";
-        } else {
-            $loc = "line: $line";
+        if ($this->peek("(.*?)(\n|$)", $m, $this->count)) {
+            throw new ParserException("$msg: failed at `$m[1]` $loc");
         }
 
-        if ($this->peek("(.*?)(\n|$)", $m, $count)) {
-            throw new \Exception("$msg: failed at `$m[1]` $loc");
-        }
-
-        throw new \Exception("$msg: $loc");
+        throw new ParserException("$msg: $loc");
     }
 
     /**
@@ -158,8 +140,9 @@ class Parser
         $this->eatWhiteDefault = true;
         $this->buffer          = rtrim($buffer, "\x00..\x1f");
 
-        $this->pushBlock(null); // root block
+        $this->extractLineNumbers($buffer);
 
+        $this->pushBlock(null); // root block
         $this->whitespace();
         $this->pushBlock(null);
         $this->popBlock();
@@ -332,6 +315,17 @@ class Parser
 
             $this->seek($s);
 
+            if ($this->literal('@scssphp-import-once') &&
+                $this->valueList($importPath) &&
+                $this->end()
+            ) {
+                $this->append(array(Type::T_SCSSPHP_IMPORT_ONCE, $importPath), $s);
+
+                return true;
+            }
+
+            $this->seek($s);
+
             if ($this->literal('@import') &&
                 $this->valueList($importPath) &&
                 $this->end()
@@ -355,10 +349,12 @@ class Parser
             $this->seek($s);
 
             if ($this->literal('@extend') &&
-                $this->selectors($selector) &&
+                $this->selectors($selectors) &&
                 $this->end()
             ) {
-                $this->append(array(Type::T_EXTEND, $selector), $s);
+                // check for '!flag'
+                $optional = $this->stripOptionalFlag($selectors);
+                $this->append(array(Type::T_EXTEND, $selectors, $optional), $s);
 
                 return true;
             }
@@ -538,8 +534,11 @@ class Parser
                 if (! isset($this->charset)) {
                     $statement = array(Type::T_CHARSET, $charset);
 
-                    $statement[self::SOURCE_POSITION] = $s;
-                    $statement[self::SOURCE_INDEX] = $this->sourceIndex;
+                    list($line, $column) = $this->getSourcePosition($s);
+
+                    $statement[self::SOURCE_LINE]   = $line;
+                    $statement[self::SOURCE_COLUMN] = $column;
+                    $statement[self::SOURCE_INDEX]  = $this->sourceIndex;
 
                     $this->charset = $statement;
                 }
@@ -679,12 +678,15 @@ class Parser
      */
     protected function pushBlock($selectors, $pos = 0)
     {
+        list($line, $column) = $this->getSourcePosition($pos);
+
         $b = new Block;
-        $b->parent         = $this->env;
-        $b->sourcePosition = $pos;
-        $b->sourceIndex    = $this->sourceIndex;
-        $b->selectors      = $selectors;
-        $b->comments       = array();
+        $b->sourceLine   = $line;
+        $b->sourceColumn = $column;
+        $b->sourceIndex  = $this->sourceIndex;
+        $b->selectors    = $selectors;
+        $b->comments     = array();
+        $b->parent       = $this->env;
 
         if (! $this->env) {
             $b->children = array();
@@ -931,8 +933,11 @@ class Parser
     protected function append($statement, $pos = null)
     {
         if ($pos !== null) {
-            $statement[self::SOURCE_POSITION] = $pos;
-            $statement[self::SOURCE_INDEX]    = $this->sourceIndex;
+            list($line, $column) = $this->getSourcePosition($pos);
+
+            $statement[self::SOURCE_LINE]   = $line;
+            $statement[self::SOURCE_COLUMN] = $column;
+            $statement[self::SOURCE_INDEX]  = $this->sourceIndex;
         }
 
         $this->env->children[] = $statement;
@@ -1665,8 +1670,8 @@ class Parser
 
         if ($this->literal('"', false)) {
             $delim = '"';
-        } elseif ($this->literal('\'', false)) {
-            $delim = '\'';
+        } elseif ($this->literal("'", false)) {
+            $delim = "'";
         } else {
             return false;
         }
@@ -1674,24 +1679,30 @@ class Parser
         $content = array();
         $oldWhite = $this->eatWhiteDefault;
         $this->eatWhiteDefault = false;
+        $hasInterpolation = false;
 
         while ($this->matchString($m, $delim)) {
-            $content[] = $m[1];
+            if ($m[1] !== '') {
+                $content[] = $m[1];
+            }
 
             if ($m[2] === '#{') {
                 $this->count -= strlen($m[2]);
 
                 if ($this->interpolation($inter, false)) {
                     $content[] = $inter;
+                    $hasInterpolation = true;
                 } else {
                     $this->count += strlen($m[2]);
                     $content[] = '#{'; // ignore it
                 }
             } elseif ($m[2] === '\\') {
-                $content[] = $m[2];
-
-                if ($this->literal($delim, false)) {
-                    $content[] = $delim;
+                if ($this->literal('"', false)) {
+                    $content[] = $m[2] . '"';
+                } elseif ($this->literal("'", false)) {
+                    $content[] = $m[2] . "'";
+                } else {
+                    $content[] = $m[2];
                 }
             } else {
                 $this->count -= strlen($delim);
@@ -1702,6 +1713,18 @@ class Parser
         $this->eatWhiteDefault = $oldWhite;
 
         if ($this->literal($delim)) {
+            if ($hasInterpolation) {
+                $delim = '"';
+
+                foreach ($content as &$string) {
+                    if ($string === "\\'") {
+                        $string = "'";
+                    } elseif ($string === '\\"') {
+                        $string = '"';
+                    }
+                }
+            }
+
             $out = array(Type::T_STRING, $delim, $content);
 
             return true;
@@ -1794,7 +1817,7 @@ class Parser
                 break;
             }
 
-            if (($tok === '\'' || $tok === '"') && $this->string($str)) {
+            if (($tok === "'" || $tok === '"') && $this->string($str)) {
                 $content[] = $str;
                 continue;
             }
@@ -2306,6 +2329,29 @@ class Parser
     }
 
     /**
+     * Strip optional flag from selector list
+     *
+     * @param array $selectors
+     *
+     * @return string
+     */
+    protected function stripOptionalFlag(&$selectors)
+    {
+        $optional = false;
+
+        $selector = end($selectors);
+        $part = end($selector);
+
+        if ($part === array('!optional')) {
+            array_pop($selectors[count($selectors) - 1]);
+
+            $optional = true;
+        }
+
+        return $optional;
+    }
+
+    /**
      * Turn list of length 1 into value type
      *
      * @param array $value
@@ -2373,5 +2419,58 @@ class Parser
     private function pregQuote($what)
     {
         return preg_quote($what, '/');
+    }
+
+    /**
+     * Extract line numbers from buffer
+     *
+     * @param string $buffer
+     */
+    private function extractLineNumbers($buffer)
+    {
+        $this->sourcePositions = array(0 => 0);
+        $prev = 0;
+
+        while (($pos = strpos($buffer, "\n", $prev)) !== false) {
+            $this->sourcePositions[] = $pos;
+            $prev = $pos + 1;
+        }
+
+        $this->sourcePositions[] = strlen($buffer);
+
+        if (substr($buffer, -1) !== "\n") {
+            $this->sourcePositions[] = strlen($buffer) + 1;
+        }
+    }
+
+    /**
+     * Get source line number and column (given character position in the buffer)
+     *
+     * @param integer $pos
+     *
+     * @return integer
+     */
+    private function getSourcePosition($pos)
+    {
+        $low = 0;
+        $high = count($this->sourcePositions);
+
+        while ($low < $high) {
+            $mid = (int) (($high + $low) / 2);
+
+            if ($pos < $this->sourcePositions[$mid]) {
+                $high = $mid - 1;
+                continue;
+            }
+
+            if ($pos >= $this->sourcePositions[$mid + 1]) {
+                $low = $mid + 1;
+                continue;
+            }
+
+            return array($mid + 1, $pos - $this->sourcePositions[$mid]);
+        }
+
+        return array($low + 1, $pos - $this->sourcePositions[$low]);
     }
 }

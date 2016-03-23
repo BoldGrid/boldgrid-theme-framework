@@ -2,12 +2,12 @@
 
 [![Build Status](https://travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE)
 
-**Contributors:** rramo012, timph
-**Tags:** inspiration,customization,build,create,design
-**Requires at least:** 4.3
-**Tested up to:** 4.4.2
-**License:** GPLv2 or later
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+* **Contributors:** rramo012, timph
+* **Tags:** inspiration,customization,build,create,design
+* **Requires at least:** 4.3
+* **Tested up to:** 4.4.2
+* **License:** GPLv2 or later
+* **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 ## Description ##
 
@@ -22,6 +22,9 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your function.php
 
 ## Changelog ##
+
+### 1.2 ###
+* Misc: Updated scssphp dependency to v.0.6.1.
 
 ### 1.1 ###
 * New Feature: Typography controls now have image previews.

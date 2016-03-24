@@ -24,7 +24,7 @@ return array(
 		'boldgrid_background_image_size' => 'cover',
 		'boldgrid_background_vertical_position' => '0',
 		'boldgrid_background_horizontal_position' => '0',
-		'background_image' => get_theme_mod( 'default_background_image', get_template_directory_uri() . '/images/background.jpg' ),
+		'background_image' => get_theme_mod( 'default_background_image', get_stylesheet_directory_uri() . '/images/background.jpg' ),
 		'background_repeat' => 'no-repeat',
 		'background_attachment' => 'fixed',
 		'recommended_image_width' => 1920,

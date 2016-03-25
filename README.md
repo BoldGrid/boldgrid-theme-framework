@@ -24,6 +24,7 @@ user guide for more information.
 ## Changelog ##
 
 ### 1.2 ###
+* Bug fix: Animate.css now can load properly.
 * Bug fix: Allow child themes to use their own background images.
 * Misc: Updated scssphp dependency to v.0.6.1.
 

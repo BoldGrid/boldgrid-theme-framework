@@ -139,7 +139,7 @@ class BoldGrid_Framework_Styles {
 		if ( true === $this->configs['scripts']['animate-css'] ) {
 			wp_enqueue_style(
 				'boldgrid-animate-css',
-				$this->configs['framework']['css_dir'] . 'animate-css/animate' . $suffix . 'css',
+				$this->configs['framework']['css_dir'] . 'animate-css/animate' . $suffix . '.css',
 				array(),
 				$this->configs['version']
 			);

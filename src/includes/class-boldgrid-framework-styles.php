@@ -125,11 +125,11 @@ class BoldGrid_Framework_Styles {
 		if ( is_child_theme( ) ) {
 			wp_enqueue_style(
 				'parent-style',
-				trailingslashit( get_template_directory_uri(  ) ) . 'style.css',
+				trailingslashit( get_template_directory_uri() ) . 'style.css',
 				array(
 					'bootstrap-styles',
 					'font-awesome',
-					'theme-slug-fonts'
+					'theme-slug-fonts',
 				),
 				null
 			);
@@ -148,11 +148,11 @@ class BoldGrid_Framework_Styles {
 		/* Always load active theme's style.css. */
 		wp_enqueue_style(
 			'style',
-			get_stylesheet_uri(  ),
+			get_stylesheet_uri(),
 			array(
 				'bootstrap-styles',
 				'font-awesome',
-				'boldgrid-google-fonts'
+				'boldgrid-google-fonts',
 			),
 			null
 		);

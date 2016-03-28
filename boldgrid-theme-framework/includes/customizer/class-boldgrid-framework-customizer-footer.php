@@ -264,7 +264,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			$theme_mods .= $this->attribution_link( );
 		} ?>
 
-		<span class="attribution-theme-mods"><p><?php echo $theme_mods ?></p></span>
+		<span class="attribution-theme-mods"><?php echo $theme_mods ?></span>
 		<?php
 	}
 

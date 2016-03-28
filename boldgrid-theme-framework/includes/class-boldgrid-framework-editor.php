@@ -60,7 +60,7 @@ class Boldgrid_Framework_Editor {
 	public function hide_page_title() {
 		global $post;
 		$inline_css = null;
-		if ( $post && ( is_page() || is_single () ) ) {
+		if ( $post && ( is_page() || is_single() ) ) {
 			$post_meta = get_post_meta( $post->ID );
 
 			// This was updated to invert logic, from hide page title to display page title

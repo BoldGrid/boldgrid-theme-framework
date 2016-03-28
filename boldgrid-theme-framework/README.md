@@ -19,11 +19,13 @@ Please see our reference guide for more information: https://www.boldgrid.com/do
 1. Create a configuration that overrides required fields. Please see the BoldGrid theme
 user guide for more information.
 
-1. Include boldgrid-theme-framework.php from your function.php
+1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
 
 ### 1.2 ###
+* Bug fix: Animate.css now can load properly.
+* Bug fix: Allow child themes to use their own background images.
 * Misc: Updated scssphp dependency to v.0.6.1.
 
 ### 1.1 ###

@@ -211,6 +211,7 @@ class BoldGrid {
 		$image_attributes = wp_get_attachment_image_src( absint( get_theme_mod( 'boldgrid_logo_setting' ) ), 'full' );
 		$alt_tag = get_post_meta( get_theme_mod( 'boldgrid_logo_setting' ), '_wp_attachment_image_alt', true );
 
+		$alt = '';
 		if ( ! empty( $alt_tag ) ) {
 			$alt = 'alt="' . $alt_tag . '"';
 		}

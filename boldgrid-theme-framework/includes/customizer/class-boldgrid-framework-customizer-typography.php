@@ -227,7 +227,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'choices'  => kirki_Fonts::get_font_choices(),
 				'output'   => array(
 					array(
-						'element'  => 'p',
+						'element'  => 'p, body',
 						'property' => 'font-family',
 					),
 				),
@@ -268,7 +268,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				),
 				'output' => array(
 					array(
-						'element'  => 'p',
+						'element'  => 'p, body',
 						'property' => 'line-height',
 						'units'    => '%',
 					),
@@ -541,7 +541,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				.mce-content-body h5,
 				.mce-content-body h6{ font-family: {$font_family}; }
 				h1.alt-font,h2.alt-font,h3.alt-font,h4.alt-font,h5.alt-font,h6.alt-font{ font-family: {$alt_font_family}; }
-				.mce-content-body, .mce-content-body p { font-family: {$body_font_family}; line-height: {$body_line_height}%; font-size: {$body_font_size}px; }";
+				.mce-content-body, body.mce-content-body, .mce-content-body p { font-family: {$body_font_family}; line-height: {$body_line_height}%; font-size: {$body_font_size}px; }";
 		$content .= "
 			.mce-content-body h1{ font-size: {$heading_h1}px; text-transform: {$heading_text_transform}; }
 			.mce-content-body h2{ font-size: {$heading_h2}px; text-transform: {$heading_text_transform};}

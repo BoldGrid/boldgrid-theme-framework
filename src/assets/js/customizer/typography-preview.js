@@ -5,10 +5,10 @@
  * customizer.typography.controls.js
  */
 ( function( $ ) {
-	
+
 	"use strict";
 
-	// Check each active nav menu location in customizer.	
+	// Check each active nav menu location in customizer.
 	var $menus = parent.wp.customize.section( 'menu_locations' ).controls();
 
 	// Loop through nav menus for live preview changes.
@@ -33,7 +33,7 @@
 	// Set font size on main body text live
 	wp.customize( 'body_font_size', function( value ) {
 		value.bind( function( to ) {
-			$( 'p:not( .site-title )' ).css( 'font-size', to + 'px' );
+			$( 'p:not( .site-title ), .site-content, .site-footer' ).css( 'font-size', to + 'px' );
 		});
 	});
 
@@ -86,11 +86,11 @@
 			$( ':header.alt-font' ).css( 'text-transform', to );
 		});
 	});
-	
+
 	// Set logo line height on site title text live
 	wp.customize( 'body_line_height', function( value ) {
 		value.bind( function( to ) {
-			$( 'p' ).css( 'line-height', to + '%' );
+			$( 'p:not( .site-title ), .site-content, .site-footer' ).css( 'line-height', to + '%' );
 		});
 	});
 

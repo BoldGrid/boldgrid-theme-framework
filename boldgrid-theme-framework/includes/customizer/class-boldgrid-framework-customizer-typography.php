@@ -425,10 +425,12 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @since 1.1
 	 */
 	public function headings_font_family_css() {
+		$headings_default = $this->configs['customizer-options']['typography']['defaults']['headings_font_family'];
+		$alt_headings_default = $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'];
 		?>
 			<style type="text/css">
-				h1,h2,h3,h4,h5,h6{ font-family: <?php print get_theme_mod( 'heading_font_family' );?>; }
-				h1.alt-font,h2.alt-font,h3.alt-font,h4.alt-font,h5.alt-font,h6.alt-font{ font-family: <?php print get_theme_mod( 'alternate_headings_font_family' );?>; }
+				h1,h2,h3,h4,h5,h6{ font-family: <?php print get_theme_mod( 'heading_font_family', $headings_default );?>; }
+				h1.alt-font,h2.alt-font,h3.alt-font,h4.alt-font,h5.alt-font,h6.alt-font{ font-family: <?php print get_theme_mod( 'alternate_headings_font_family', $alt_headings_default );?>; }
 			</style>
 		<?php
 	}
@@ -439,10 +441,16 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @since 1.0.0
 	 */
 	public function headings_font_size_css() {
-		$font_size_base = get_theme_mod( 'headings_font_size' );
-		$alt_font_size_base = get_theme_mod( 'alternate_headings_font_size' );
-		$heading_text_transform = get_theme_mod( 'headings_text_transform' );
-		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform' );
+
+		$font_size_base = get_theme_mod( 'headings_font_size',
+		$this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
+		$alt_font_size_base = get_theme_mod( 'alternate_headings_font_size',
+		$this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_size'] );
+		$heading_text_transform = get_theme_mod( 'heading_text_transform',
+		$this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
+		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform',
+		$this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'] );
+
 		$heading_h1 = floor( $font_size_base * 2.6 );
 		$heading_h2 = floor( $font_size_base * 2.15 );
 		$heading_h3 = ceil( $font_size_base * 1.7 );

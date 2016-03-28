@@ -442,10 +442,13 @@ class Boldgrid_Framework_Customizer_Typography {
 	 */
 	public function headings_font_size_css() {
 
+		// Font size.
 		$font_size_base = get_theme_mod( 'headings_font_size',
 		$this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
 		$alt_font_size_base = get_theme_mod( 'alternate_headings_font_size',
 		$this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_size'] );
+
+		// Text Transform.
 		$heading_text_transform = get_theme_mod( 'heading_text_transform',
 		$this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
 		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform',
@@ -465,18 +468,18 @@ class Boldgrid_Framework_Customizer_Typography {
 		$alt_heading_h6 = ceil( $alt_font_size_base * 0.85 );
 		?>
 		<style type="text/css">
-			h1{ font-size: <?php print $heading_h1;?>px;  }
-			h2{ font-size: <?php print $heading_h2;?>px; }
-			h3{ font-size: <?php print $heading_h3;?>px; }
-			h4{ font-size: <?php print $heading_h4;?>px; }
-			h5{ font-size: <?php print $heading_h5;?>px; }
-			h6{ font-size: <?php print $heading_h6;?>px; }
-			h1.alt-font{ font-size: <?php print $alt_heading_h1;?>px; }
-			h2.alt-font{ font-size: <?php print $alt_heading_h2;?>px; }
-			h3.alt-font{ font-size: <?php print $alt_heading_h3;?>px; }
-			h4.alt-font{ font-size: <?php print $alt_heading_h4;?>px; }
-			h5.alt-font{ font-size: <?php print $alt_heading_h5;?>px; }
-			h6.alt-font{ font-size: <?php print $alt_heading_h6;?>px; }
+			h1{ font-size: <?php print $heading_h1;?>px; text-transform: <?php print $heading_text_transform; ?>;}
+			h2{ font-size: <?php print $heading_h2;?>px; text-transform: <?php print $heading_text_transform; ?>;}
+			h3{ font-size: <?php print $heading_h3;?>px; text-transform: <?php print $heading_text_transform; ?>;}
+			h4{ font-size: <?php print $heading_h4;?>px; text-transform: <?php print $heading_text_transform; ?>;}
+			h5{ font-size: <?php print $heading_h5;?>px; text-transform: <?php print $heading_text_transform; ?>;}
+			h6{ font-size: <?php print $heading_h6;?>px; text-transform: <?php print $heading_text_transform; ?>;}
+			h1.alt-font{ font-size: <?php print $alt_heading_h1;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
+			h2.alt-font{ font-size: <?php print $alt_heading_h2;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
+			h3.alt-font{ font-size: <?php print $alt_heading_h3;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
+			h4.alt-font{ font-size: <?php print $alt_heading_h4;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
+			h5.alt-font{ font-size: <?php print $alt_heading_h5;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
+			h6.alt-font{ font-size: <?php print $alt_heading_h6;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
 		</style>
 		<?php
 	}
@@ -491,18 +494,25 @@ class Boldgrid_Framework_Customizer_Typography {
 	 */
 	public function headings_editor_styles( $content ) {
 
-		// Check theme mods and defaults.
+		// Font Size.
 		$font_size_base = get_theme_mod( 'headings_font_size',
 		$this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
 		$alt_font_size_base = get_theme_mod( 'alternate_headings_font_size',
 		$this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_size'] );
+
+		// Font Family.
 		$font_family    = get_theme_mod( 'heading_font_family',
 		$this->configs['customizer-options']['typography']['defaults']['headings_font_family'] );
 		$alt_font_family = get_theme_mod( 'alternate_headings_font_family',
 		$this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'] );
+
+		// Text Transform.
 		$heading_text_transform = get_theme_mod( 'heading_text_transform',
 		$this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
+		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform',
+		$this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'] );
 
+		// Main Text Size, Family, and Line Height.
 		$body_font_size = get_theme_mod( 'body_font_size',
 		$this->configs['customizer-options']['typography']['defaults']['body_font_size'] );
 		$body_font_family = get_theme_mod( 'body_font_family',
@@ -539,12 +549,12 @@ class Boldgrid_Framework_Customizer_Typography {
 			.mce-content-body h4{ font-size: {$heading_h4}px; text-transform: {$heading_text_transform};}
 			.mce-content-body h5{ font-size: {$heading_h5}px; text-transform: {$heading_text_transform};}
 			.mce-content-body h6{ font-size: {$heading_h6}px; text-transform: {$heading_text_transform};}
-			h1.alt-font{ font-size: {$alt_heading_h1}px; text-transform: {$heading_text_transform};}
-			h2.alt-font{ font-size: {$alt_heading_h2}px; text-transform: {$heading_text_transform};}
-			h3.alt-font{ font-size: {$alt_heading_h3}px; text-transform: {$heading_text_transform};}
-			h4.alt-font{ font-size: {$alt_heading_h4}px; text-transform: {$heading_text_transform};}
-			h5.alt-font{ font-size: {$alt_heading_h5}px; text-transform: {$heading_text_transform};}
-			h6.alt-font{ font-size: {$alt_heading_h6}px; text-transform: {$heading_text_transform};}";
+			h1.alt-font{ font-size: {$alt_heading_h1}px; text-transform: {$alt_heading_text_transform};}
+			h2.alt-font{ font-size: {$alt_heading_h2}px; text-transform: {$alt_heading_text_transform};}
+			h3.alt-font{ font-size: {$alt_heading_h3}px; text-transform: {$alt_heading_text_transform};}
+			h4.alt-font{ font-size: {$alt_heading_h4}px; text-transform: {$alt_heading_text_transform};}
+			h5.alt-font{ font-size: {$alt_heading_h5}px; text-transform: {$alt_heading_text_transform};}
+			h6.alt-font{ font-size: {$alt_heading_h6}px; text-transform: {$alt_heading_text_transform};}";
 		return $content;
 	}
 

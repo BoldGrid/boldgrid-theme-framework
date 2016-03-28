@@ -94,7 +94,7 @@ class Boldgrid_Framework_Bootstrap_Compile {
 	/**
 	 * Converts a hex color into an array of RGB.
 	 *
-	 * @since 1.2
+	 * @since 1.1
 	 * @param string $hex Hex color to conver to RGB.
 	 * @return array $rgb An array with rgb values of color.
 	 */
@@ -122,7 +122,7 @@ class Boldgrid_Framework_Bootstrap_Compile {
 	 * This can accept color in rgb or hexadecimal format to have it's
 	 * luminance calculated out.
 	 *
-	 * @since 1.2
+	 * @since 1.1
 	 * @param string $color Color to get luminance of.
 	 * @return string $luminance the luminance value of color.
 	 */
@@ -150,11 +150,11 @@ class Boldgrid_Framework_Bootstrap_Compile {
 	 *
 	 * This will generate the text contrast colors in PHP to pass to scss compiler.
 	 *
-	 * @since 1.2
+	 * @since 1.1
 	 * @param array $colors Array of colors to get text contrast of.
 	 * @return array $text_contrast_colors Array of text contrast variables to pass.
 	 */
-	public function get_text_contrast( $colors ) {
+	public function get_text_contrast() {
 		$text_contrast_colors = array();
 		// Color Configs.
 		$configs = $this->configs['customizer-options']['colors'];
@@ -195,7 +195,7 @@ class Boldgrid_Framework_Bootstrap_Compile {
 
 		if ( $this->configs['bootstrap'] ) {
 			// BoldGrid specific variables to have available during compile.
-			$boldgrid_variables = array_merge( $this->get_active_palette(), $this->get_text_contrast( $colors ) );
+			$boldgrid_variables = array_merge( $this->get_active_palette(), $this->get_text_contrast() );
 			// Variables to assign before compile.
 			$variables = array_merge( $boldgrid_variables, $this->configs['bootstrap'] );
 			// Set the Variables.

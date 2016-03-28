@@ -27,8 +27,6 @@ user guide for more information.
 * Bug fix: Animate.css now can load properly.
 * Bug fix: Allow child themes to use their own background images.
 * Misc: Updated scssphp dependency to v.0.6.1.
-
-### 1.1 ###
 * New Feature: Typography controls now have image previews.
 * Bug fix: Unique menu names not formatted correctly.
 * Bug fix: On start over, staging menus are not deleted.

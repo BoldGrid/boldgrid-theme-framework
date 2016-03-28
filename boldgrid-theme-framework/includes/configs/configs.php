@@ -17,6 +17,7 @@ return array(
 	'theme_name' => 'boldgrid-theme',
 	'version' => wp_get_theme()->Version,
 	'theme_id' => null,
+	'boldgrid-parent-theme' => false,
 	// End Required
 	'text_domain' => 'boldgrid-theme-framework',
 

@@ -156,7 +156,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'setting'  => 'heading_font_family',
 				'label'    => __( 'Font Family', 'bgtfw' ),
 				'section'  => 'headings_typography',
-				'default'  => 'Oswald',
+				'default'  => $this->configs['customizer-options']['typography']['defaults']['headings_font_family'],
 				'choices'  => kirki_Fonts::get_font_choices(),
 				'output'   => array(
 					array(
@@ -172,7 +172,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'transport' => 'postMessage',
 				'label'    => __( 'Font Size', 'bgtfw' ),
 				'section'  => 'headings_typography',
-				'default'  => 14,
+				'default'  => $this->configs['customizer-options']['typography']['defaults']['headings_font_size'],
 				'choices'  => array(
 					'min'  => 12,
 					'max'  => 50,
@@ -186,7 +186,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'transport' => 'postMessage',
 				'label'    => __( 'Capitalization', 'bgtfw' ),
 				'section'  => 'headings_typography',
-				'default'  => 'none',
+				'default'  => $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'],
 				'choices'  => array(
 					'capitalize' => 'Capitalize',
 					'lowercase' => 'Lowercase',

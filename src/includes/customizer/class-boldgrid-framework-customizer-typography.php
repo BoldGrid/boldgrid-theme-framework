@@ -471,12 +471,12 @@ class Boldgrid_Framework_Customizer_Typography {
 			h4{ font-size: <?php print $heading_h4;?>px; }
 			h5{ font-size: <?php print $heading_h5;?>px; }
 			h6{ font-size: <?php print $heading_h6;?>px; }
-			h1.alt-font{ font-size: <?php print $heading_h1;?>px; }
-			h2.alt-font{ font-size: <?php print $heading_h2;?>px; }
-			h3.alt-font{ font-size: <?php print $heading_h3;?>px; }
-			h4.alt-font{ font-size: <?php print $heading_h4;?>px; }
-			h5.alt-font{ font-size: <?php print $heading_h5;?>px; }
-			h6.alt-font{ font-size: <?php print $heading_h6;?>px; }
+			h1.alt-font{ font-size: <?php print $alt_heading_h1;?>px; }
+			h2.alt-font{ font-size: <?php print $alt_heading_h2;?>px; }
+			h3.alt-font{ font-size: <?php print $alt_heading_h3;?>px; }
+			h4.alt-font{ font-size: <?php print $alt_heading_h4;?>px; }
+			h5.alt-font{ font-size: <?php print $alt_heading_h5;?>px; }
+			h6.alt-font{ font-size: <?php print $alt_heading_h6;?>px; }
 		</style>
 		<?php
 	}
@@ -539,12 +539,12 @@ class Boldgrid_Framework_Customizer_Typography {
 			.mce-content-body h4{ font-size: {$heading_h4}px; text-transform: {$heading_text_transform};}
 			.mce-content-body h5{ font-size: {$heading_h5}px; text-transform: {$heading_text_transform};}
 			.mce-content-body h6{ font-size: {$heading_h6}px; text-transform: {$heading_text_transform};}
-			h1.alt-font{ font-size: {$heading_h1}px; text-transform: {$heading_text_transform};}
-			h2.alt-font{ font-size: {$heading_h2}px; text-transform: {$heading_text_transform};}
-			h3.alt-font{ font-size: {$heading_h3}px; text-transform: {$heading_text_transform};}
-			h4.alt-font{ font-size: {$heading_h4}px; text-transform: {$heading_text_transform};}
-			h5.alt-font{ font-size: {$heading_h5}px; text-transform: {$heading_text_transform};}
-			h6.alt-font{ font-size: {$heading_h6}px; text-transform: {$heading_text_transform};}";
+			h1.alt-font{ font-size: {$alt_heading_h1}px; text-transform: {$heading_text_transform};}
+			h2.alt-font{ font-size: {$alt_heading_h2}px; text-transform: {$heading_text_transform};}
+			h3.alt-font{ font-size: {$alt_heading_h3}px; text-transform: {$heading_text_transform};}
+			h4.alt-font{ font-size: {$alt_heading_h4}px; text-transform: {$heading_text_transform};}
+			h5.alt-font{ font-size: {$alt_heading_h5}px; text-transform: {$heading_text_transform};}
+			h6.alt-font{ font-size: {$alt_heading_h6}px; text-transform: {$heading_text_transform};}";
 		return $content;
 	}
 

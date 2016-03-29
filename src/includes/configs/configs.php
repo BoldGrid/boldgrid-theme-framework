@@ -18,6 +18,8 @@ return array(
 	'version' => wp_get_theme()->Version,
 	'theme_id' => null,
 	'boldgrid-parent-theme' => false,
+	'bootstrap' => false,
+
 	// End Required
 	'text_domain' => 'boldgrid-theme-framework',
 

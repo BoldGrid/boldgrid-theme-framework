@@ -72,7 +72,8 @@
 [id^="customize-control-"][id$="_font_family"] .selectize-input .item,
 [id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content .option {
   color: transparent;
-  background-image: url(../../img/web-fonts.png); }
+  background-image: url(../../img/web-fonts.png);
+  background-repeat: no-repeat; }
 
 [id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content [data-value="sans-serif"],
 [id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content [data-value="monospace"],

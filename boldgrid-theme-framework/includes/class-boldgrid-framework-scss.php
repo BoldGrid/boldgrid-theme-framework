@@ -72,7 +72,7 @@ class Boldgrid_Framework_SCSS {
 			$theme_root = get_theme_root( get_option( 'boldgrid_staging_template' ) );
 			$template_directory = "$theme_root/" . get_option( 'boldgrid_staging_template' );
 		} else {
-			$template_directory = get_template_directory();
+			$template_directory = get_stylesheet_directory();
 		}
 
 		return $template_directory;
@@ -177,7 +177,7 @@ class Boldgrid_Framework_SCSS {
 	 */
 	public function find_last_compile_time() {
 		$last_compile_time = 0;
-		$theme_dir = get_template_directory();
+		$theme_dir = get_stylesheet_directory();
 		$config_settings = $this->configs['customizer-options']['colors']['settings'];
 		if ( ! empty( $config_settings['output_css_name'] ) && file_exists( $theme_dir . $config_settings['output_css_name'] ) ) {
 			// Using general function for consistency use of filemtime.

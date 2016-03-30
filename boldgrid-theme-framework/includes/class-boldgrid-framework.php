@@ -120,6 +120,7 @@ class BoldGrid_Framework {
 	 * - Boldgrid_Framework_Activate             Contains hooks ran on theme activation.
 	 * - Boldgrid_Framework_Api                  Responsible for additional theme template hooks.
 	 * - Boldgrid_Framework_Comments             Contains the template and actions for custom Bootstrap comment forms.
+	 * - Boldgrid_Framework_Customizer_Edit      Description goes here.
 	 * - Boldgrid_Framework_Device_Preview       Adds the device previewer to the WP Customizer.
 	 * - Boldgrid_Framework_Il8n                 Defines internationalization functionality.
 	 * - Boldgrid_Framework_Loader               Orchestrates the hooks of the plugin.
@@ -155,6 +156,7 @@ class BoldGrid_Framework {
 			'api',
 			'bootstrap-compile',
 			'comments',
+			'customizer-edit',
 			'editor',
 			'i18n',
 			'loader',

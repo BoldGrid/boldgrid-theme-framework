@@ -10,31 +10,18 @@
  * @author BoldGrid <wpb@boldgrid.com>.
  */
 class Boldgrid_Framework_Customizer_Edit {
+
 	/**
-	 * Add hooks.
+	 * Enqueue scripts needed to add edit buttons to the customizer.
+	 *
+	 * Ideally, this method would hook into customize_preview_init. We need to get the page ID,
+	 * which is not avaialable in that hook. Instead, we hook into wp_enqueue_scripts and check to
+	 * see if we're in the is_customize_preview.
 	 *
 	 * @since 1.1
 	 */
-	public function add_hooks() {
-		add_action( 'wp_enqueue_scripts', array (
-			$this,
-			'wp_enqueue_scripts'
-		) );
-
-		add_action( 'wp_footer', array (
-			$this,
-			'wp_footer'
-		) );
-	}
-
-	/**
-	 * Add edit buttons to the customizer.
-	 *
-	 * @since 1.1
-	 */
-	public function wp_enqueue_scripts( $hook ) {
+	public function wp_enqueue_scripts() {
 		if ( is_customize_preview() ) {
-
 			wp_register_script( 'boldgrid-framework-customizer-edit-js',
 				'/wp-content/themes/boldgrid-pavilion/inc/boldgrid-theme-framework/assets/js/customizer/edit.js' );
 			$translation_array = array (
@@ -53,17 +40,13 @@ class Boldgrid_Framework_Customizer_Edit {
 
 			wp_enqueue_style( 'wp-jquery-ui-dialog' );
 			wp_enqueue_script( 'jquery-ui-dialog' );
+			wp_enqueue_script( 'jquery-effects-bounce' );
 		}
 	}
 
 	/**
 	 */
 	public function wp_footer() {
-		if ( is_customize_preview() ) {
-			include 'partials/customizer-edit.php';
-		}
+		include 'partials/customizer-edit.php';
 	}
 }
-
-$customizer_edit = new Boldgrid_Framework_Customizer_Edit();
-$customizer_edit->add_hooks();

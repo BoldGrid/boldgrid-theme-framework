@@ -1,11 +1,21 @@
-var IMHWPB = IMHWPB || {};
+/**
+ * This file adds the js necessary to add Edit buttons within the Customizer
+ * preview.
+ *
+ * @summary Add edit buttons to customizer.
+ *
+ * @since 1.1.2
+ * @requires jquery-ui-dialog
+ */
+
+var BOLDGRID = BOLDGRID || {};
 
 /**
- * Add BoldGrid Inspirations Customizer Features.
+ * Add edit buttons to customizer.
  *
- * @since 1.1
+ * @since 1.1.2
  */
-IMHWPB.Customizer = function( $ ) {
+BOLDGRID.Customizer_Edit = function( $ ) {
 	var self = this;
 
 	$( function() {
@@ -13,74 +23,80 @@ IMHWPB.Customizer = function( $ ) {
 	} );
 
 	/**
+	 * @summary Add edit buttons.
 	 *
+	 * @since 1.1.2
 	 */
 	this.addButtons = function() {
-		// General settings.
-		var settings = new Array();
-		settings = {
+		// General Settings.
+		var settings = {
 		    'blogname' : '.site-title',
 		    'blogdescription' : '.site-description',
 		    'boldgrid_logo_size' : '.logo-site-title',
 		    'boldgrid_enable_footer' : '.site-footer',
-		    'show_on_front' : '.entry-content',
-		    'blogdescription' : '.entry-title',
+		    'entry-content' : '.entry-content',
+		    'entry-title' : '.entry-title',
+		    'blogdescription' : '.site-description',
 		};
 
 		for ( var key in settings ) {
-			$( settings[ key ] ).prepend( '<button data-control="' + key + '">EDIT</button>' );
-
-			$( settings[ key ] ).hover( function() {
-				$( this ).toggleClass( 'show-edit' );
-			} );
+			self.addButton( null, key, $( settings[ key ] ) );
 		}
 
 		// Widgets.
 		$( 'aside[class^="widget_"' ).each( function() {
-			var widget = $( this );
-			var firstClass = widget.attr( 'class' ).split( ' ' )[ 0 ];
-			var spliteId = widget.attr( 'id' ).split( '-' );
-			var id = spliteId[ spliteId.length - 1 ];
-			var dataControl = firstClass + '[' + id + ']';
-			widget.prepend( '<button data-control="' + dataControl + '">EDIT</button>' );
-			widget.hover( function() {
-				$( this ).toggleClass( 'show-edit' );
-			} );
+			var widget = $( this ), widgetId, widgetType;
+
+			widgetType = widget.attr( 'class' ).split( ' ' )[ 0 ];
+
+			widgetId = widget.attr( 'id' );
+			widgetId = widgetId.substring( widgetId.lastIndexOf( '-' ) + 1 );
+
+			self.addButton( widgetType, widgetId, widget );
 		} );
 
 		// Black Studio TinyMCE.
 		$( 'aside[id^="black-studio-tinymce-"' ).each( function() {
-			var widget = $( this );
-			var id = widget.attr( 'id' ).replace( 'black-studio-tinymce-', '' ).trim();
-			var dataControl = 'widget_black-studio-tinymce' + '[' + id + ']';
-			widget.prepend( '<button data-control="' + dataControl + '">EDIT</button>' );
-			widget.hover( function() {
-				$( this ).addClass( 'show-edit' );
-			}, function() {
-				$( this ).removeClass( 'show-edit' );
-			} );
+			var widget = $( this ), widgetId;
+
+			widgetId = widget.attr( 'id' ).replace( 'black-studio-tinymce-', '' ).trim();
+
+			self.addButton( 'widget_black-studio-tinymce', widgetId, widget );
 		} );
 
 		// Menus.
-		$( 'li[id^="accordion-section-nav_menu"].assigned-to-menu-location', parent.document )
-		    .each(
-		        function() {
-			        var menu = $( this );
-			        // Create the widget control id.
-			        var id = menu.attr( 'id' ).match( /\[(\d+)\]/ );
-			        if ( id ) {
-				        id = id[ 1 ];
-				        var dataControl = 'nav_menu[' + id + ']';
-				        var positionHtml = menu.find( '.menu-in-location' ).html();
-				        var position = positionHtml.split( ':' )[ 1 ].replace( ')', '' ).trim();
-				        var previewMenu = $( '#menu-' + position );
-				        previewMenu.prepend( '<button data-control="' + dataControl
-				            + '">EDIT</button>' );
-				        previewMenu.hover( function() {
-					        $( this ).toggleClass( 'show-edit' );
-				        } );
-			        }
-		        } );
+		var id, location, $menu, settings = parent.wp.customize.settings.settings;
+		for ( var key in settings ) {
+			// If this is not a nav menu location, abort.
+			if ( !key.startsWith( 'nav_menu_locations[' ) ) {
+				continue;
+			}
+
+			// If there is not a menu id assigned, abort.
+			if ( 0 === settings[ key ].value ) {
+				continue;
+			}
+
+			id = settings[ key ].value;
+			location = key.substring( key.lastIndexOf( '[' ) + 1, key.lastIndexOf( ']' ) );
+
+			$menu = $( '#menu-' + location );
+
+			self.addButton( 'nav_menu', id, $menu );
+		}
+
+		// Move all buttons to the right of the page.
+		// This is experimental. Just comment out the timout below.
+		setTimeout( function() {
+			var windowWidth = $( window ).width();
+			$( '[data-control]' ).each( function() {
+				var $button = $( this );
+				var offset = $button.offset();
+				$button.css( 'right', '-=' + ( windowWidth - offset.left - 50 ) );
+			} );
+
+			self.fixOverlap();
+		}, 1000 );
 	}
 
 	/**
@@ -91,10 +107,14 @@ IMHWPB.Customizer = function( $ ) {
 		    .on(
 		        'click',
 		        function() {
-			        var dataControl = jQuery( this ).attr( 'data-control' );
+			        var dataControl = $( this ).attr( 'data-control' );
 
-			        if ( 'show_on_front' === dataControl ) {
-				        $( "#dialog" )
+			        /*
+					 * If the user is trying to edit the page title or content,
+					 * advise them they need to go to the page n post editor.
+					 */
+			        if ( 'entry-content' == dataControl || 'entry-title' == dataControl ) {
+				        $( '#' + dataControl )
 				            .dialog(
 				                {
 				                    resizable : false,
@@ -110,28 +130,25 @@ IMHWPB.Customizer = function( $ ) {
 				                } );
 				        return;
 			        }
+			        ;
 
 			        parent.wp.customize.control( dataControl ).focus();
 
 			        setTimeout( function() {
 				        var focused;
 
-				        // After the user clicks edit, we bounce the focused
-						// element
-				        // to bring it to the user's attention. Generally, the
-						// focus
-				        // should be on an input element, such as the site
-						// title.
-				        // Sometimes though, the wrong element is focused.
-						// Determine
-				        // which item should be bounced.
+				        /*
+						 * After the user clicks edit, we bounce the focused
+						 * element to bring it to the user's attention.
+						 * Generally, the focus should be on an input element,
+						 * such as the site title. Sometimes though, the wrong
+						 * element is focused. Determine which item should be
+						 * bounced.
+						 */
 				        switch ( dataControl ) {
 					        case 'boldgrid_enable_footer':
 						        focused = $( '#customize-control-boldgrid_enable_footer',
 						            parent.document );
-						        break;
-					        case 'show_on_front':
-						        focused = $( '#customize-control-show_on_front', parent.document );
 						        break;
 					        default:
 						        focused = $( ':focus', parent.document );
@@ -141,26 +158,18 @@ IMHWPB.Customizer = function( $ ) {
 					        focused = $( '.customize-control-nav_menu_name', parent.document );
 				        }
 
-				        focused.css( 'position', 'relative' );
+				        /*
+						 * Bounce the element in the customizer to bring it to
+						 * the user's attention. There's an issue with jquery-ui
+						 * effects changing padding / size of an element. Fix
+						 * this by setting a min width and height.
+						 */
+				        focused.css( 'min-height', focused.outerHeight() );
+				        focused.css( 'min-width', focused.outerWidth() );
+				        focused.effect( "bounce", {
+					        times : 3
+				        }, "slow" );
 
-				        focused.animate( {
-					        top : -30
-				        }, 100 );
-				        focused.animate( {
-					        top : 0
-				        }, 100 );
-				        focused.animate( {
-					        top : -10
-				        }, 100 );
-				        focused.animate( {
-					        top : 0
-				        }, 100 );
-				        focused.animate( {
-					        top : -5
-				        }, 30 );
-				        focused.animate( {
-					        top : 0
-				        }, 30 );
 			        }, 500 );
 		        } );
 
@@ -169,12 +178,14 @@ IMHWPB.Customizer = function( $ ) {
 		$( '[data-control]' ).parent().addClass( 'relative' );
 
 		// When a button is hovered, highlight its parent.
-		$( '[data-control]' ).hover( function() {
-			var parent = $( this ).parent();
-			parent.addClass( 'edit-highlight' )
-		}, function() {
-			var parent = $( this ).parent();
-			parent.removeClass( 'edit-highlight' );
+		$( '[data-control]' ).each( function() {
+			var $button = $( this ), $parent = $button.parent();
+
+			$button.hover( function() {
+				$parent.addClass( 'edit-highlight' )
+			}, function() {
+				$parent.removeClass( 'edit-highlight' )
+			} );
 		} );
 	}
 
@@ -192,11 +203,62 @@ IMHWPB.Customizer = function( $ ) {
 	/**
 	 *
 	 */
+	this.fixOverlap = function() {
+		// Make sure no buttons overlap.
+		$( '[data-control]' ).each( function() {
+			var firstButton = $( this );
+			var offset = firstButton.offset();
+			var firstTop = offset.top;
+			var firstBottom = firstButton.outerHeight() + offset.top;
+
+			$( '[data-control]' ).each( function() {
+				var secondButton = $( this );
+
+				if ( firstButton.is( secondButton ) ) {
+					return;
+				}
+
+				var offset = secondButton.offset();
+				var secondTop = offset.top;
+				var secondBottom = secondTop + secondButton.outerHeight();
+
+				// If there is overlap.
+				if ( secondTop >= firstTop && secondTop <= firstBottom ) {
+					if ( secondTop < firstTop ) {
+						var initial_shift = secondBottom - firstTop;
+						firstButton.css( 'top', '+=' + ( initial_shift + 2 ) );
+					} else {
+						var initial_shift = firstBottom - secondTop;
+						secondButton.css( 'top', '+=' + ( initial_shift + 2 ) );
+					}
+				}
+			} );
+		} );
+	}
+
+	/**
+	 *
+	 */
 	this.initEdit = function() {
 		self.addButtons();
 		self.bindEdit();
 		self.fadeOut();
 	}
+
+	/**
+	 *
+	 */
+	this.addButton = function( type, id, parent ) {
+		var button;
+
+		if ( null === type ) {
+			button = '<button data-control="' + id + '">EDIT</button>';
+		} else {
+			button = '<button data-control="' + type + '[' + id + ']">EDIT</button>';
+		}
+
+		parent.prepend( button );
+	}
 };
 
-new IMHWPB.Customizer( jQuery );
+new BOLDGRID.Customizer_Edit( jQuery );

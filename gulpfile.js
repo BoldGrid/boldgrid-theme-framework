@@ -314,3 +314,7 @@ gulp.task( 'css', function( cb ) {
 });
 
 gulp.task( 'prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ]);
+
+gulp.task('watch', function() {
+	  gulp.watch(config.src + '/**/*', ['frameworkFiles', 'frameworkJs', 'scssCompile']);
+});

@@ -16,7 +16,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	var self = color_palette;
 	
 	color_palette.palette_generator = BOLDGRID.COLOR_PALETTE.Generate;
-	color_palette.generated_color_palettes = 5;
+	color_palette.generated_color_palettes = 6;
 	color_palette.state = null;
 	color_palette.active_body_class = '';
 	color_palette.first_update = true;
@@ -34,7 +34,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		self.$palette_option_field = self.$palette_control_wrapper.find( '.palette-option-field' );
 		self.generated_palettes_container = self.$palette_control_wrapper.find( '.generated-palettes-container' );
 		self.$accoridon_section_colors = $( '#accordion-section-colors' );
-		self.$neutral_color_selection = self.$palette_control_wrapper.find( '.boldgrid-neutral-color' );
+		self.hasNeutral = self.$palette_control_wrapper.find( '.boldgrid-color-palette-wrapper' ).data( 'has-neutral' );
 		
 		//Create icon set variable
 		color_palette.duplicate_modification_icons();
@@ -60,8 +60,6 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 		//Wait 100ms before running this function because it expects WP color picker to be set up
 		setTimeout( color_palette.wp_picker_post_init, 100 );
-		
-		color_palette.set_neutral_color_text();
 		
 	} );
 	
@@ -173,13 +171,33 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	color_palette.bind_generate_palette_action = function () {
 		self.$palette_control_wrapper.find('.palette-generator-button').on('click', function (e) {
 	
-			var partial_palette = color_palette.create_partial_palette();
+			var partialPalette = color_palette.create_partial_palette(),
+				neutralColor;
 			
-			//Generate Palettes
-			var palettes = BOLDGRID.COLOR_PALETTE.Generate.generate_palette_collection( 
-				partial_palette, color_palette.generated_color_palettes );
+			// If this palette has a neutral color, generate that color independently.
+			if ( self.hasNeutral ) {
+				neutralColor = partialPalette.splice( -1, 1 );
+				neutralColor = neutralColor[0];
+			}
 			
-			color_palette.display_generated_palettes(palettes);
+			// Generate Palettes.
+			var palettes = BOLDGRID.COLOR_PALETTE.Generate.generate_palette_collection(
+				partialPalette, color_palette.generated_color_palettes );
+			
+			if ( self.hasNeutral ) {
+				$.each( palettes, function () {
+					
+					// Generate neutral color or pass through existing neutral. 
+					if ( ! neutralColor ) {
+						this.push( color_palette.palette_generator.generateNeutralColor() );
+					} else {
+						this.push( neutralColor );
+					}
+					
+				} );
+			}
+			
+			color_palette.display_generated_palettes( palettes );
 		});
 	};
 	
@@ -187,17 +205,20 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 * Given an array of palettes, display them in the generated palettes section.
 	 */
 	color_palette.display_generated_palettes = function ( palettes ) {
-		var $palette_container = self.generated_palettes_container.empty();
+		var $palette_container = self.generated_palettes_container.empty(), neutralColor = null;
 
-		//Currently activate neutral
-		var neutral_color = jQuery('.boldgrid-active-palette').attr('data-neutral-color');
-		
 		$.each( palettes, function () {
+			
+			// Currently activate neutral.
+			if ( self.hasNeutral ) {
+				neutralColor = this[ this.length -1 ];
+			}
+
 			var $wrapper = $('<div data-palette-wrapper="true"><ul><li class="boldgrid-palette-colors"></li></ul></div>');
 			var $new_ul = $wrapper.find('ul')
 				.addClass('boldgrid-inactive-palette')
 				.attr('data-auto-generated', "true" )
-				.attr('data-neutral-color', neutral_color )
+				.attr('data-neutral-color', neutralColor )
 				.attr('data-color-palette-format', color_palette.get_random_format() );
 			
 			var $new_li = $new_ul.find('li');
@@ -359,8 +380,6 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		
 		//Apply Sortable
 		color_palette.add_jquery_sortable( $ul );
-		self.$neutral_color_selection.css( 'background-color', $ul.attr( 'data-neutral-color' ) );
-		color_palette.set_neutral_color_text();
 		
 		$ul.sortable( 'enable' );
 		$ul.disableSelection();
@@ -370,7 +389,8 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		
 		var $lock_controls = $( '<div class="bg-lock-controls"></div>' );
 		$ul.find( 'li' ).each( function ( index ) {
-			$lock_controls.append( '<div class="color-lock" data-count="' + index + '"><div class="lock unlock"><div class="top"></div><div class="mid"></div><div class="bottom"><div class="keyhole-top"></div><div class="keyhole-bottom"></div></div></div>' );
+			$lock_controls.append( '<div class="color-lock" data-count="' + index +
+				'"><div class="lock unlock"><div class="top"></div><div class="mid"></div><div class="bottom"><div class="keyhole-top"></div><div class="keyhole-bottom"></div></div></div>' );
 		});
 		$ul.after($lock_controls);
 		color_palette.sync_locks();
@@ -405,7 +425,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 				color_palette.open_picker();
 				if ( ui.item ) {
 					var $to_element = ui.item;
-					if (!$to_element.find('span').length) {
+					if ( ! $to_element.find( 'span' ).length ) {
 						self.$palette_control_wrapper
 							.find('.active-palette-section')
 							.removeClass('active-palette-section');
@@ -416,15 +436,18 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 						$to_element.siblings().each( function () {
 							var $this = $( this );
 							$this.toggleClass( 'boldgrid-dashicon' );
+							
 							setTimeout( function () {
 								$this.toggleClass( 'boldgrid-dashicon' );
 							}, 15 );
 						});
 						
 						var $scope = $to_element.closest( '.boldgrid-color-palette-wrapper' );
-						//Change the color of the color picker to the active palette
+						
+						// Change the color of the color picker to the active palette.
 						color_palette.preselect_active_color( $scope );
 						color_palette.sync_locks();
+						color_palette.updateNeutralData();
 					}
 				}
 			}
@@ -558,7 +581,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
         if ( false === $this.hasClass( 'active-palette-section' ) ) {
         	
         	//If this is a neutral color set a different set of defaults
-        	if ( $this.hasClass('boldgrid-neutral-color') ) {
+        	if ( self.hasNeutral && $this.is( '.boldgrid-active-palette .boldgrid-palette-colors:last' ) ) {
         		self.$color_picker_input.iris({ palettes: default_neutrals });
         	} else {
         		self.$color_picker_input.iris({ palettes: true });
@@ -580,7 +603,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	color_palette.bind_color_activation = function () {
 		self.$palette_control_wrapper.on ( 
 			'click',
-			'.boldgrid-active-palette li, .boldgrid-neutral-color',
+			'.boldgrid-active-palette li',
 			color_palette.activate_color
 		);
 	};
@@ -598,13 +621,24 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		self.$color_picker_input.iris('color', background_color.toString());
 	};
 	
-	color_palette.set_neutral_color_text = function () {
-		var background_color = net.brehaut.Color( self.$neutral_color_selection.css('background-color') );
-		if ( background_color.getLuminance() > 0.5 ) {
-			self.$neutral_color_selection.css( 'color', '#333' );
-		} else {
-			self.$neutral_color_selection.css( 'color', 'white' );
-		}
+	/**
+	 * Update the neutral color data attributes that are used to generate css.
+	 * 
+	 * @since 1.1.1
+	 */
+	color_palette.updateNeutralData = function () {
+	    var hasNeutralColor, currentNeutralColor, $activePalette;
+		
+	    // If active palette has data-neutral-color.
+	    hasNeutralColor = !! self.$palette_control_wrapper
+			.find( '.boldgrid-active-palette' ).attr( 'data-neutral-color' );
+	    
+	    if ( hasNeutralColor ) {
+	    	// Find the last color in the palette and set its color as the data-neutral.
+	    	$activePalette = self.$palette_control_wrapper.find( '.boldgrid-active-palette' );
+	    	currentNeutralColor = $activePalette.find( '.boldgrid-palette-colors:last' ).css( 'background-color' );
+	    	$activePalette.attr( 'data-neutral-color', currentNeutralColor );
+	    }
 	};
 	
 	/**
@@ -618,27 +652,13 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			    defaultColor : false,
 			    change : function( event, ui ) {
 				    var color = ui.color.toString();
-				    var $active_list = self.$palette_control_wrapper
-				    	.find( '.active-palette-section' );
 				    
-				    $active_list.css( 'background-color', color );
+				    self.$palette_control_wrapper
+				    	.find( '.active-palette-section' )
+				    	.css( 'background-color', color );
 				    
-				    if ($active_list.hasClass('boldgrid-neutral-color')) {
-				    	var active_palette = self.$palette_control_wrapper
-				    		.find('.boldgrid-active-palette');
-				    		
-				    	if ( active_palette.attr('data-neutral-color') ) {
-				    		active_palette.attr('data-neutral-color', color);
-				    		
-				    		self.$palette_control_wrapper
-				    			.find('.generated-palettes-container .boldgrid-inactive-palette')
-				    			.each( function () {
-				    				$(this).attr('data-neutral-color', color);
-				    			});
-				    	}
-	
-				    	color_palette.set_neutral_color_text();
-				    }
+				    //Update the neutral color data elements.
+				    color_palette.updateNeutralData();
 				    
 				    //Make sure that we only trigger this event after a 500 ms delay
 				    color_palette.last_refresh_time = new Date().getTime();
@@ -664,7 +684,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			};
 
 			var $wp_color_picker = self.$color_picker_input.wpColorPicker( myOptions );
-			color_palette.$color_picker = self.$palette_control_wrapper.find('.wp-picker-container' ).hide();
+			color_palette.$color_picker = self.$palette_control_wrapper.find( '.wp-picker-container' ).hide();
 	};	
 	
 	/**

@@ -77,6 +77,10 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		return color;
 	};
 	
+	self.generateNeutralColor = function () {
+		return self.get_grey();
+	};
+	
 	/**
 	 * Calls generate palette X times.
 	 */

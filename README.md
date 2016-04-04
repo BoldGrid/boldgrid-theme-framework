@@ -23,6 +23,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.1.1 ###
+* New Feature: The neutral color of a palette can now be modified with drag and drop.
+
 ### 1.1 ###
 * Bug fix: Animate.css now can load properly.
 * Bug fix: Allow child themes to use their own background images.

@@ -16,636 +16,636 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
 
-#: src/includes/class-boldgrid-framework-404.php:58
+#: src\includes\class-boldgrid-framework-404.php:58
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-404.php:62
+#: src\includes\class-boldgrid-framework-404.php:62
 msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-404.php:70
+#: src\includes\class-boldgrid-framework-404.php:70
 msgid "Most Used Categories"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-404.php:87
+#: src\includes\class-boldgrid-framework-404.php:87
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-activate.php:345
+#: src\includes\class-boldgrid-framework-activate.php:345
 msgid "Visual Editor"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-activate.php:357
+#: src\includes\class-boldgrid-framework-activate.php:357
 msgid "Arbitrary text or HTML with visual editor"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:76
+#: src\includes\class-boldgrid-framework-api.php:76
 msgctxt "$font. font: on or off"
 msgid "$switch"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:320
+#: src\includes\class-boldgrid-framework-api.php:320
 msgid "Skip to content"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:51
+#: src\includes\class-boldgrid-framework-comments.php:51
 msgctxt "comments title"
 msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/includes/class-boldgrid-framework-comments.php:59, src/includes/class-boldgrid-framework-comments.php:84
+#: src\includes\class-boldgrid-framework-comments.php:59, src\includes\class-boldgrid-framework-comments.php:84
 msgid "Comment navigation"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:60, src/includes/class-boldgrid-framework-comments.php:85
+#: src\includes\class-boldgrid-framework-comments.php:60, src\includes\class-boldgrid-framework-comments.php:85
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:61, src/includes/class-boldgrid-framework-comments.php:86
+#: src\includes\class-boldgrid-framework-comments.php:61, src\includes\class-boldgrid-framework-comments.php:86
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:98
+#: src\includes\class-boldgrid-framework-comments.php:98
 msgid "Comments are closed."
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:104
+#: src\includes\class-boldgrid-framework-comments.php:104
 msgid "Leave a Reply"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:105
+#: src\includes\class-boldgrid-framework-comments.php:105
 msgid "Leave a Reply to %s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:106
+#: src\includes\class-boldgrid-framework-comments.php:106
 msgid "Cancel Reply"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:107
+#: src\includes\class-boldgrid-framework-comments.php:107
 msgid "Post Comment"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:110
+#: src\includes\class-boldgrid-framework-comments.php:110
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:133
+#: src\includes\class-boldgrid-framework-comments.php:133
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:133, src/includes/partials/template-tags.php:122
+#: src\includes\class-boldgrid-framework-comments.php:133, src\includes\partials\template-tags.php:122
 msgid "Edit"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:150
+#: src\includes\class-boldgrid-framework-comments.php:150
 msgid "%s <span class=\"says\">says:</span>"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:158
+#: src\includes\class-boldgrid-framework-comments.php:158
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:163
+#: src\includes\class-boldgrid-framework-comments.php:163
 msgid "<span style=\"margin-left: 5px;\" class=\"fa fa-edit\"></span> Edit"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:168
+#: src\includes\class-boldgrid-framework-comments.php:168
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:208
+#: src\includes\class-boldgrid-framework-comments.php:208
 msgid "Name"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:214
+#: src\includes\class-boldgrid-framework-comments.php:214
 msgid "Email"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:221
+#: src\includes\class-boldgrid-framework-comments.php:221
 msgid "Website"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:231
+#: src\includes\class-boldgrid-framework-comments.php:231
 msgctxt "noun"
 msgid "Comment"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:235
+#: src\includes\class-boldgrid-framework-comments.php:235
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-search-forms.php:53
+#: src\includes\class-boldgrid-framework-search-forms.php:53
 msgid "Search &hellip;"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-widgets.php:113
+#: src\includes\class-boldgrid-framework-widgets.php:113
 msgid "Sidebar #1"
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:5
+#: src\includes\configs\tooltips.config.php:5
 msgid "You can choose a background image or a Pattern/Color."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:9
+#: src\includes\configs\tooltips.config.php:9
 msgid "Use this control to move your image left and right. This can be used to adjust visible portion of your image."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:13
+#: src\includes\configs\tooltips.config.php:13
 msgid "Use this control to move your image up and down. This can be used to adjust visible portion of your image."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:17
+#: src\includes\configs\tooltips.config.php:17
 msgid "Change the color of your background. This can affect the color behind images including the patterns below. Click clear within the color selection tool if you would like your current color palette to determine the background color instead."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:21
+#: src\includes\configs\tooltips.config.php:21
 msgid "Select a pattern to use as your background image. These patterns can inherit the color of your chosen palette or use the color you chose above. You can also remove the selected pattern to use a flat color instead."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:25
+#: src\includes\configs\tooltips.config.php:25
 msgid "The BoldGrid Color Palette System allows you to create custom color palettes. Try changing the order of colors in a palette, or use \"Suggest Palettes\" to automatically generate new palettes."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:29
+#: src\includes\configs\tooltips.config.php:29
 msgid "You can either have your Site Title displayed or upload your Logo.  See our guide for best practices with Logos."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:33
+#: src\includes\configs\tooltips.config.php:33
 msgid "This theme’s footer supports up to 4 columns of Widget Areas.  You can place as many Widgets as you like in each area."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:37
+#: src\includes\configs\tooltips.config.php:37
 msgid "This theme’s header supports up to 4 columns of Widget Areas.  You can place as many Widgets as you like in each area."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:41
+#: src\includes\configs\tooltips.config.php:41
 msgid "You can add additional HTML that will appear at the bottom of your theme with this textbox."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:45, src/includes/configs/tooltips.config.php:57
+#: src\includes\configs\tooltips.config.php:45, src\includes\configs\tooltips.config.php:57
 msgid "You can add additional HTML that will appear at the top of your theme with this textbox."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:49
+#: src\includes\configs\tooltips.config.php:49
 msgid "The CSS you add to this textbox will be applied directly to your theme.  It will override CSS rules made by your theme creator."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:53
+#: src\includes\configs\tooltips.config.php:53
 msgid "The Javascript you add to this textbox will be appended to your themes existing Javascript.  In order to execute this code, you must refresh the page, or visit the site outside of the customizer."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:61
+#: src\includes\configs\tooltips.config.php:61
 msgid "The background size setting that best fits your theme, will vary based on your selected image. If the image does not appear to your liking, cycle through the options until you find a setting that best fits your needs."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:65
+#: src\includes\configs\tooltips.config.php:65
 msgid "Background Effects can be used to change the appearance of the background as you scroll down the page. The Parallax effect causes the image to move at a different speed from the scroll speed."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:69
+#: src\includes\configs\tooltips.config.php:69
 msgid "Background Repeat is commonly used with patterns and will give your image a tiled appearance."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:73
+#: src\includes\configs\tooltips.config.php:73
 msgid "To use a full size background image, we recommend a size of at least 1920 x 1080. The BoldGrid Connect Search, available when you select change image, will help you find large images that are suitable."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:121
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:121
 msgid "Vertical Background Position"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:138
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:138
 msgid "Horizontal Background Position"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:174
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:174
 msgid "Background Image Size"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:180
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:180
 msgid "Cover Page"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:181
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:181
 msgid "Scaled to Fit"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:182
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:182
 msgid "Full Width"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:183
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:183
 msgid "Full Height"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:184
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:184
 msgid "Default"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:185
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:185
 msgid "Do Not Resize"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:209
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:209
 msgid "Background Color"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:256
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:256
 msgid "Background Type"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:281
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:281
 msgid "Background Effects"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:288
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:288
 msgid "Background"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:333
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:333
 msgid "Subtle Patterns"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:525
+#: src\includes\customizer\class-boldgrid-framework-customizer-background.php:525
 msgid "Background Image"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-colors.php:180
+#: src\includes\customizer\class-boldgrid-framework-customizer-colors.php:180
 msgid "Color Palette"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-colors.php:183
+#: src\includes\customizer\class-boldgrid-framework-customizer-colors.php:183
 msgid "Drag a color to a new spot in the palette to change what parts of the website are that color. <a href=\"#\" data-action=\"open-color-picker\"><span class=\"dashicons dashicons-admin-customizer\"></span><strong>Click a color</strong></a> to change it.  Use \"Suggest Palettes\" to freeze colors you like and get suggestions of other colors that match."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-colors.php:487
+#: src\includes\customizer\class-boldgrid-framework-customizer-colors.php:487
 msgid "BoldGrid Color Palettes"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:70
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:70
 msgid "Footer Settings"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:73
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:73
 msgid "This section allows you to modify features that are not menus or widgets."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:94
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:94
 msgid "Footer Widget Columns"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:95
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:95
 msgid "Select the number of footer widget columns you wish to display."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:115
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:115
 msgid "Continue to Widgets Section"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:117
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:117
 msgid "You can add widgets to your footer from the widgets section."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:127
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:127
 msgid "Edit Footer Widgets"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:129
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:129
 msgid "You can edit your default footer widgets from the widget panel."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:157
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:157
 msgid "Custom Footer HTML"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:158
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:158
 msgid "Add your custom HTML for your footer here"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:186
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:186
 msgid "Attribution Control"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:197
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:197
 msgid "Hide BoldGrid Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:208
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:208
 msgid "Hide WordPress Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:219
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:219
 msgid "Hide Partner Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:242
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:242
 msgid "Built with %s | "
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:248
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:248
 msgid "Powered by %s | "
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:255
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:255
 msgid "Support from %s | "
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:286, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:288
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:286, src\includes\customizer\class-boldgrid-framework-customizer-footer.php:288
 msgid "Special Thanks"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:333
+#: src\includes\customizer\class-boldgrid-framework-customizer-footer.php:333
 msgid "Enable Footer"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:55, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:578
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:55, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:578
 msgid "Custom Font"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:66, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:157, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:224, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:298, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:588
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:66, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:157, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:224, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:298, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:588
 msgid "Font Family"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:81, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:173, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:240, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:308, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:603
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:81, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:173, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:240, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:308, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:603
 msgid "Font Size"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:104, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:187, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:322, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:626
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:104, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:187, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:322, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:626
 msgid "Capitalization"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:124, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:646
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:124, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:646
 msgid "Decoration"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:144, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:666
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:144, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:666
 msgid "Decoration Hover"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:171, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:692
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:171, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:692
 msgid "Position"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:182, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:703
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:182, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:703
 msgid "Top Margin"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:202, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:723
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:202, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:723
 msgid "Bottom Margin"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:222, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:743
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:222, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:743
 msgid "Horizontal Margin"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:242, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:261, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:763
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:242, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:261, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:763
 msgid "Line Height"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:262, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:783
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:262, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:783
 msgid "Letter Spacing"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:285, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:802
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:285, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:802
 msgid "Custom Shadow"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:293, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:809
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:293, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:809
 msgid "Horizontal Shadow"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:306, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:821
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:306, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:821
 msgid "Vertical Shadow"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:319, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:833
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:319, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:833
 msgid "Logo Size"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:339, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:852
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:339, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:852
 msgid "Shadow Blur"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-site-title.php:352, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:864
+#: src\includes\customizer\class-boldgrid-framework-customizer-site-title.php:352, src\includes\customizer\class-boldgrid-framework-customizer-typography.php:864
 msgid "Shadow Color"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:362
+#: src\includes\customizer\class-boldgrid-framework-customizer-typography.php:362
 msgid "$description. Font"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:378
+#: src\includes\customizer\class-boldgrid-framework-customizer-typography.php:378
 msgid "$description. Font Size"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:399
+#: src\includes\customizer\class-boldgrid-framework-customizer-typography.php:399
 msgid "$description. Capitalization"
 msgstr ""
 
-#: src/includes/partials/author-box.php:13, src/includes/partials/author-box.php:13
+#: src\includes\partials\author-box.php:13, src\includes\partials\author-box.php:13
 msgid "Hide Author Bio"
 msgstr ""
 
-#: src/includes/partials/author-box.php:24
+#: src\includes\partials\author-box.php:24
 msgid "About %s"
 msgstr ""
 
-#: src/includes/partials/author-box.php:34
+#: src\includes\partials\author-box.php:34
 msgid "One article and counting. "
 msgstr ""
 
-#: src/includes/partials/author-box.php:40
+#: src\includes\partials\author-box.php:40
 msgid "%s articles and counting. "
 msgstr ""
 
-#: src/includes/partials/author-box.php:51
+#: src\includes\partials\author-box.php:51
 msgid "Follow %s on social media: "
 msgstr ""
 
-#: src/includes/partials/author-box.php:53
+#: src\includes\partials\author-box.php:53
 msgid "Follow %s on Twitter"
 msgstr ""
 
-#: src/includes/partials/author-box.php:53
+#: src\includes\partials\author-box.php:53
 msgid "Twitter"
 msgstr ""
 
-#: src/includes/partials/author-box.php:56
+#: src\includes\partials\author-box.php:56
 msgid "Add %s to your Google+ circles"
 msgstr ""
 
-#: src/includes/partials/author-box.php:56
+#: src\includes\partials\author-box.php:56
 msgid "Google+"
 msgstr ""
 
-#: src/includes/partials/author-box.php:59
+#: src\includes\partials\author-box.php:59
 msgid "Like %s on Facebook"
 msgstr ""
 
-#: src/includes/partials/author-box.php:59
+#: src\includes\partials\author-box.php:59
 msgid "Facebook"
 msgstr ""
 
-#: src/includes/partials/author-box.php:72
+#: src\includes\partials\author-box.php:72
 msgid "All posts by %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:21
+#: src\includes\partials\template-tags.php:21
 msgid "Posts navigation"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:25
+#: src\includes\partials\template-tags.php:25
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:29
+#: src\includes\partials\template-tags.php:29
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:52
+#: src\includes\partials\template-tags.php:52
 msgid "Post navigation"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:55
+#: src\includes\partials\template-tags.php:55
 msgctxt "Previous post link"
 msgid "<span class=\"meta-nav\">&larr;</span>&nbsp;%title"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:56
+#: src\includes\partials\template-tags.php:56
 msgctxt "Next post link"
 msgid "%title&nbsp;<span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:82
+#: src\includes\partials\template-tags.php:82
 msgctxt "post date"
 msgid "Posted on %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:87
+#: src\includes\partials\template-tags.php:87
 msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:104, src/includes/partials/template-tags.php:110
+#: src\includes\partials\template-tags.php:104, src\includes\partials\template-tags.php:110
 msgid ", "
 msgstr ""
 
-#: src/includes/partials/template-tags.php:106
+#: src\includes\partials\template-tags.php:106
 msgid "Posted in %1$s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:112
+#: src\includes\partials\template-tags.php:112
 msgid "Tagged %1$s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:118
+#: src\includes\partials\template-tags.php:118
 msgid "Leave a comment"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:118
+#: src\includes\partials\template-tags.php:118
 msgid "1 Comment"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:118
+#: src\includes\partials\template-tags.php:118
 msgid "% Comments"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:139
+#: src\includes\partials\template-tags.php:139
 msgid "Category: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:141
+#: src\includes\partials\template-tags.php:141
 msgid "Tag: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:143
+#: src\includes\partials\template-tags.php:143
 msgid "Author: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:145
+#: src\includes\partials\template-tags.php:145
 msgid "Year: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:145
+#: src\includes\partials\template-tags.php:145
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:147
+#: src\includes\partials\template-tags.php:147
 msgid "Month: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:147
+#: src\includes\partials\template-tags.php:147
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:149
+#: src\includes\partials\template-tags.php:149
 msgid "Day: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:149
+#: src\includes\partials\template-tags.php:149
 msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:151
+#: src\includes\partials\template-tags.php:151
 msgctxt "post format archive title"
 msgid "Asides"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:153
+#: src\includes\partials\template-tags.php:153
 msgctxt "post format archive title"
 msgid "Galleries"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:155
+#: src\includes\partials\template-tags.php:155
 msgctxt "post format archive title"
 msgid "Images"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:157
+#: src\includes\partials\template-tags.php:157
 msgctxt "post format archive title"
 msgid "Videos"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:159
+#: src\includes\partials\template-tags.php:159
 msgctxt "post format archive title"
 msgid "Quotes"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:161
+#: src\includes\partials\template-tags.php:161
 msgctxt "post format archive title"
 msgid "Links"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:163
+#: src\includes\partials\template-tags.php:163
 msgctxt "post format archive title"
 msgid "Statuses"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:165
+#: src\includes\partials\template-tags.php:165
 msgctxt "post format archive title"
 msgid "Audio"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:167
+#: src\includes\partials\template-tags.php:167
 msgctxt "post format archive title"
 msgid "Chats"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:169
+#: src\includes\partials\template-tags.php:169
 msgid "Archives: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:173
+#: src\includes\partials\template-tags.php:173
 msgid "%1$s: %2$s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:175
+#: src\includes\partials\template-tags.php:175
 msgid "Archives"
 msgstr ""

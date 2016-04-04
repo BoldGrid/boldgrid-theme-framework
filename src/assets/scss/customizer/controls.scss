@@ -199,6 +199,11 @@
     }
 }
 
+.color-palette-columns-6 .bg-lock-controls > .color-lock,
+.color-palette-columns-6 .boldgrid-active-palette .boldgrid-palette-colors,
+.color-palette-columns-6 .boldgrid-palette-colors > span {
+	width: 16.666%; 
+}
 .color-palette-columns-5 .bg-lock-controls > .color-lock,
 .color-palette-columns-5 .boldgrid-active-palette .boldgrid-palette-colors,
 .color-palette-columns-5 .boldgrid-palette-colors > span  {

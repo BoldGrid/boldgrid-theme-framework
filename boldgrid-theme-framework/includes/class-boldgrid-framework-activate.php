@@ -72,11 +72,11 @@ class Boldgrid_Framework_Activate {
 	 *
 	 * @since 1.0.5
 	 *
-	 * @param bool $active Are we resetting an active installation?
+	 * @param bool $active Are we resetting an active installation.
 	 */
 	public function remove_saved_menus( $active ) {
 		// Get a list of all menus we've created.
-		if( $active ) {
+		if ( $active ) {
 			$menus_created = get_option( 'boldgrid_menus_created', array() );
 		} else {
 			$menus_created = get_option( 'boldgrid_staging_boldgrid_menus_created', array() );
@@ -156,7 +156,7 @@ class Boldgrid_Framework_Activate {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param bool $active Are we resetting an active installation?
+	 * @param bool $active Are we resetting an active installation.
 	 */
 	public function reset( $active = true ) {
 		$this->reset_nav_locations();
@@ -173,33 +173,11 @@ class Boldgrid_Framework_Activate {
 	}
 
 	/**
-	 * Copy over menu locations to child theme
-	 *
-	 * @param array  $old Old menus in theme.
-	 * @param string $new New menus in theme.
-	 * @since 1.0.0
-	 */
-	public function transfer_menus( $old, $new = null ) {
-		if ( is_child_theme() && $new ) {
-			$old_theme_mods = get_option( 'theme_mods_' . $new->get_stylesheet() );
-			$old_locations = ! empty( $old_theme_mods['nav_menu_locations'] ) ? $old_theme_mods['nav_menu_locations'] : null;
-
-			if ( $old_locations ) {
-				set_theme_mod( 'nav_menu_locations', $old_locations );
-			}
-		}
-	}
-
-	/**
 	 * Activate Boldgrid theme framework
 	 *
 	 * @since 1.0.0
 	 */
 	public function do_activate() {
-		if ( is_child_theme() ) {
-			return;
-		}
-
 		// Before running the activation, run deactivate just to be sure.
 		$this->reset();
 

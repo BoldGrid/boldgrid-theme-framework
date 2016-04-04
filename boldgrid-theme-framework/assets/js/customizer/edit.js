@@ -163,25 +163,26 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		// In order for the edit button to be positioned correctly with absolute
 		// positioning, its parent needs to have relative positioning.
-		$( '[data-control]' ).parent().addClass( 'relative' );
+		// $( '[data-control]' ).parent().addClass( 'relative' );
 
-		// When a button is hovered, highlight its parent.
-		$( '[data-control]' ).each( function() {
-			var $button = $( this ), $parent = $button.parent();
-
-			$button.hover( function() {
-				$parent.addClass( 'edit-highlight' )
-			}, function() {
-				$parent.removeClass( 'edit-highlight' )
-			} );
-
-			// When a parent is hovered, highlight it's edit button.
-			$parent.hover( function() {
-				$( this ).find( '> [data-control]' ).addClass( 'highlight-button' );
-			}, function() {
-				$( this ).find( '> [data-control]' ).removeClass( 'highlight-button' );
-			} );
-		} );
+		// // When a button is hovered, highlight its parent.
+		// $( '[data-control]' ).each( function() {
+		// var $button = $( this ), $parent = $button.parent();
+		//
+		// $button.hover( function() {
+		// $parent.addClass( 'edit-highlight' )
+		// }, function() {
+		// $parent.removeClass( 'edit-highlight' )
+		// } );
+		//
+		// // When a parent is hovered, highlight it's edit button.
+		// $parent.hover( function() {
+		// $( this ).find( '> [data-control]' ).addClass( 'highlight-button' );
+		// }, function() {
+		// $( this ).find( '> [data-control]' ).removeClass( 'highlight-button'
+		// );
+		// } );
+		// } );
 	}
 
 	/**
@@ -208,20 +209,66 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 *
 	 */
 	this.addButton = function( type, id, parent ) {
-		var button, overlayHeight, overlayWidth;
+		var $button, $buttonContainer, $overlay;
 
-		// Add the overlay as well.
-		overlayHeight = parent.outerHeight();
-		overlayWidth = parent.outerWidth();
-		parent.prepend( '<div class="parent-overlay"></div>' );
+		$button = $( '<button></button>' );
+
+		$buttonContainer = $( '<div class="edit-button"></div>' );
+
+		$overlay = $( '<div class="parent-overlay"></div>' );
+
+		$overlay.css( 'height', parent.outerHeight() );
+		$overlay.css( 'margin-left', parent.outerWidth() );
+
+		if ( 0 === parent.outerHeight() ) {
+			parent.find( 'div,p' ).each( function() {
+				var height = $( this ).height();
+				if ( height > 0 ) {
+					$overlay.css( 'height', $( this ).height() );
+					return false;
+				}
+			} );
+		}
+		;
+
+		// $overlay.zIndex( parent.zIndex() - 1 );
+
+		// $overlay = $( '<div class="parent-overlay" style="height:' +
+		// parent.outerHeight()
+		// + 'px;"></div>' );
 
 		if ( null === type ) {
-			button = '<button data-control="' + id + '"></button>';
+			$button.attr( 'data-control', id );
 		} else {
-			button = '<button data-control="' + type + '[' + id + ']"></button>';
+			$button.attr( 'data-control', type + '[' + id + ']' );
 		}
 
-		parent.prepend( button );
+		$buttonContainer.append( $button );
+		$buttonContainer.append( $overlay );
+
+		// $overlay.css( 'margin', parent.css( 'margin' ) );
+
+		// button = '<div class="edit-button">' + button + overlay + '</div>';
+
+		parent.before( $buttonContainer );
+
+		parent.hover( function() {
+			$button.addClass( 'highlight-button' );
+		}, function() {
+			$button.removeClass( 'highlight-button' );
+		} );
+
+		$overlay.hover( function() {
+			$button.addClass( 'highlight-button' );
+		}, function() {
+			$button.removeClass( 'highlight-button' );
+		} );
+
+		$button.hover( function() {
+			$overlay.css( 'margin-left', '0px' );
+		}, function() {
+			$overlay.css( 'margin-left', parent.outerWidth() );
+		} )
 	}
 };
 

@@ -84,19 +84,6 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 			self.addButton( 'nav_menu', id, $menu );
 		}
-
-		// Move all buttons to the right of the page.
-		// This is experimental. Just comment out the timout below.
-		setTimeout( function() {
-			var windowWidth = $( window ).width();
-			$( '[data-control]' ).each( function() {
-				var $button = $( this );
-				var offset = $button.offset();
-				$button.css( 'right', '-=' + ( windowWidth - offset.left - 50 ) );
-			} );
-
-			self.fixOverlap();
-		}, 1000 );
 	}
 
 	/**
@@ -117,6 +104,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				        $( '#' + dataControl )
 				            .dialog(
 				                {
+				                    width : 400,
 				                    resizable : false,
 				                    modal : true,
 				                    buttons : {
@@ -186,6 +174,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			}, function() {
 				$parent.removeClass( 'edit-highlight' )
 			} );
+
+			// When a parent is hovered, highlight it's edit button.
+			$parent.hover( function() {
+				$( this ).find( '> [data-control]' ).addClass( 'highlight-button' );
+			}, function() {
+				$( this ).find( '> [data-control]' ).removeClass( 'highlight-button' );
+			} );
 		} );
 	}
 
@@ -203,42 +198,6 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	/**
 	 *
 	 */
-	this.fixOverlap = function() {
-		// Make sure no buttons overlap.
-		$( '[data-control]' ).each( function() {
-			var firstButton = $( this );
-			var offset = firstButton.offset();
-			var firstTop = offset.top;
-			var firstBottom = firstButton.outerHeight() + offset.top;
-
-			$( '[data-control]' ).each( function() {
-				var secondButton = $( this );
-
-				if ( firstButton.is( secondButton ) ) {
-					return;
-				}
-
-				var offset = secondButton.offset();
-				var secondTop = offset.top;
-				var secondBottom = secondTop + secondButton.outerHeight();
-
-				// If there is overlap.
-				if ( secondTop >= firstTop && secondTop <= firstBottom ) {
-					if ( secondTop < firstTop ) {
-						var initial_shift = secondBottom - firstTop;
-						firstButton.css( 'top', '+=' + ( initial_shift + 2 ) );
-					} else {
-						var initial_shift = firstBottom - secondTop;
-						secondButton.css( 'top', '+=' + ( initial_shift + 2 ) );
-					}
-				}
-			} );
-		} );
-	}
-
-	/**
-	 *
-	 */
 	this.initEdit = function() {
 		self.addButtons();
 		self.bindEdit();
@@ -249,12 +208,17 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 *
 	 */
 	this.addButton = function( type, id, parent ) {
-		var button;
+		var button, overlayHeight, overlayWidth;
+
+		// Add the overlay as well.
+		overlayHeight = parent.outerHeight();
+		overlayWidth = parent.outerWidth();
+		parent.prepend( '<div class="parent-overlay"></div>' );
 
 		if ( null === type ) {
-			button = '<button data-control="' + id + '">EDIT</button>';
+			button = '<button data-control="' + id + '"></button>';
 		} else {
-			button = '<button data-control="' + type + '[' + id + ']">EDIT</button>';
+			button = '<button data-control="' + type + '[' + id + ']"></button>';
 		}
 
 		parent.prepend( button );

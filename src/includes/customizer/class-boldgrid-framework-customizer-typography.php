@@ -468,18 +468,41 @@ class Boldgrid_Framework_Customizer_Typography {
 		$alt_heading_h6 = ceil( $alt_font_size_base * 0.85 );
 		?>
 		<style type="text/css">
-			h1{ font-size: <?php print $heading_h1;?>px; text-transform: <?php print $heading_text_transform; ?>;}
-			h2{ font-size: <?php print $heading_h2;?>px; text-transform: <?php print $heading_text_transform; ?>;}
-			h3{ font-size: <?php print $heading_h3;?>px; text-transform: <?php print $heading_text_transform; ?>;}
-			h4{ font-size: <?php print $heading_h4;?>px; text-transform: <?php print $heading_text_transform; ?>;}
-			h5{ font-size: <?php print $heading_h5;?>px; text-transform: <?php print $heading_text_transform; ?>;}
-			h6{ font-size: <?php print $heading_h6;?>px; text-transform: <?php print $heading_text_transform; ?>;}
-			h1.alt-font{ font-size: <?php print $alt_heading_h1;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
-			h2.alt-font{ font-size: <?php print $alt_heading_h2;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
-			h3.alt-font{ font-size: <?php print $alt_heading_h3;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
-			h4.alt-font{ font-size: <?php print $alt_heading_h4;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
-			h5.alt-font{ font-size: <?php print $alt_heading_h5;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
-			h6.alt-font{ font-size: <?php print $alt_heading_h6;?>px; text-transform: <?php print $alt_heading_text_transform; ?>;}
+			h1, .h1{ font-size: <?php print $heading_h1;?>px;}
+			h1{text-transform: <?php print $heading_text_transform; ?>;}
+
+			h2, .h2{ font-size: <?php print $heading_h2;?>px;}
+			h2{text-transform: <?php print $heading_text_transform; ?>;}
+
+			h3, .h3{ font-size: <?php print $heading_h3;?>px;}
+			h3{text-transform: <?php print $heading_text_transform; ?>;}
+
+			h4, .h4{ font-size: <?php print $heading_h4;?>px;}
+			h4{text-transform: <?php print $heading_text_transform; ?>;}
+
+			h5, .h5{ font-size: <?php print $heading_h5;?>px;}
+			h5{text-transform: <?php print $heading_text_transform; ?>;}
+
+			h6, .h6{ font-size: <?php print $heading_h6;?>px;}
+			h6{text-transform: <?php print $heading_text_transform; ?>;}
+
+			h1.alt-font, .h1.alt-font{ font-size: <?php print $alt_heading_h1;?>px;}
+			h1.alt-font{text-transform: <?php print $alt_heading_text_transform; ?>;}
+
+			h2.alt-font, .h2.alt-font{ font-size: <?php print $alt_heading_h2;?>px;}
+			h2.alt-font{text-transform: <?php print $alt_heading_text_transform; ?>;}
+
+			h3.alt-font, .h3.alt-font{ font-size: <?php print $alt_heading_h3;?>px;}
+			h3.alt-font{text-transform: <?php print $alt_heading_text_transform; ?>;}
+
+			h4.alt-font, .h4.alt-font{ font-size: <?php print $alt_heading_h4;?>px;}
+			h4.alt-font{text-transform: <?php print $alt_heading_text_transform; ?>;}
+
+			h5.alt-font, .h5.alt-font{ font-size: <?php print $alt_heading_h5;?>px;}
+			h5.alt-font{text-transform: <?php print $alt_heading_text_transform; ?>;}
+
+			h6.alt-font, .h6.alt-font{ font-size: <?php print $alt_heading_h6;?>px;}
+			h6.alt-font{text-transform: <?php print $alt_heading_text_transform; ?>;}
 		</style>
 		<?php
 	}
@@ -540,21 +563,51 @@ class Boldgrid_Framework_Customizer_Typography {
 				.mce-content-body h4,
 				.mce-content-body h5,
 				.mce-content-body h6{ font-family: {$font_family}; }
-				h1.alt-font,h2.alt-font,h3.alt-font,h4.alt-font,h5.alt-font,h6.alt-font{ font-family: {$alt_font_family}; }
+				h1.alt-font,
+				h2.alt-font,
+				h3.alt-font,
+				h4.alt-font,
+				h5.alt-font,
+				h6.alt-font{ font-family: {$alt_font_family}; }
 				.mce-content-body, .mce-content-body p { font-family: {$body_font_family}; line-height: {$body_line_height}%; font-size: {$body_font_size}px; }";
+
 		$content .= "
-			.mce-content-body h1{ font-size: {$heading_h1}px; text-transform: {$heading_text_transform}; }
-			.mce-content-body h2{ font-size: {$heading_h2}px; text-transform: {$heading_text_transform};}
-			.mce-content-body h3{ font-size: {$heading_h3}px; text-transform: {$heading_text_transform};}
-			.mce-content-body h4{ font-size: {$heading_h4}px; text-transform: {$heading_text_transform};}
-			.mce-content-body h5{ font-size: {$heading_h5}px; text-transform: {$heading_text_transform};}
-			.mce-content-body h6{ font-size: {$heading_h6}px; text-transform: {$heading_text_transform};}
-			h1.alt-font{ font-size: {$alt_heading_h1}px; text-transform: {$alt_heading_text_transform};}
-			h2.alt-font{ font-size: {$alt_heading_h2}px; text-transform: {$alt_heading_text_transform};}
-			h3.alt-font{ font-size: {$alt_heading_h3}px; text-transform: {$alt_heading_text_transform};}
-			h4.alt-font{ font-size: {$alt_heading_h4}px; text-transform: {$alt_heading_text_transform};}
-			h5.alt-font{ font-size: {$alt_heading_h5}px; text-transform: {$alt_heading_text_transform};}
-			h6.alt-font{ font-size: {$alt_heading_h6}px; text-transform: {$alt_heading_text_transform};}";
+			.mce-content-body h1, .mce-content-body .h1{ font-size: {$heading_h1}px; }
+			.mce-content-body h1{ text-transform: {$heading_text_transform}; }
+
+			.mce-content-body h2, .mce-content-body .h2{ font-size: {$heading_h2}px;}
+			.mce-content-body h2{ text-transform: {$heading_text_transform}; }
+
+			.mce-content-body h3, .mce-content-body .h3{ font-size: {$heading_h3}px;}
+			.mce-content-body h3{ text-transform: {$heading_text_transform}; }
+
+			.mce-content-body h4, .mce-content-body .h4{ font-size: {$heading_h4}px; }
+			.mce-content-body h4{ text-transform: {$heading_text_transform}; }
+
+			.mce-content-body h5, .mce-content-body .h5{ font-size: {$heading_h5}px; }
+			.mce-content-body h5{ text-transform: {$heading_text_transform}; }
+
+			.mce-content-body h6, .mce-content-body .h6{ font-size: {$heading_h6}px; }
+			.mce-content-body h6{ text-transform: {$heading_text_transform}; }
+
+			h1.alt-font, .h1.alt-font{ font-size: {$alt_heading_h1}px;}
+			text-transform: {$alt_heading_text_transform};}
+
+			h2.alt-font, .h2.alt-font{ font-size: {$alt_heading_h2}px;}
+			text-transform: {$alt_heading_text_transform};}
+
+			h3.alt-font, .h3.alt-font{ font-size: {$alt_heading_h3}px;}
+			text-transform: {$alt_heading_text_transform};}
+
+			h4.alt-font, .h4.alt-font{ font-size: {$alt_heading_h4}px;}
+			text-transform: {$alt_heading_text_transform};}
+
+			h5.alt-font, .h5.alt-font{ font-size: {$alt_heading_h5}px;}
+			text-transform: {$alt_heading_text_transform};}
+
+			h6.alt-font, .h6.alt-font{ font-size: {$alt_heading_h6}px;}
+			text-transform: {$alt_heading_text_transform};}";
+
 		return $content;
 	}
 

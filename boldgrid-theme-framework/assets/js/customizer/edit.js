@@ -225,9 +225,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var $button, $buttonContainer;
 
 		$button = $( '<button></button>' );
-		if( parent.css('margin-top') != parent.css('margin-bottom') ) {
-			$button.css('top', parent.css('margin-top'));
-		}
+//		if( parent.css('margin-top') != parent.css('margin-bottom') ) {
+//			$button.css('top', parent.css('margin-top'));
+//		}
 
 
 
@@ -259,9 +259,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		parent.before( $buttonContainer );
 
-		if( $button.height() > parent.height() ) {
-			$button.css('top', '-=' + (parent.height() / 2 ));
-		}
+//		if( $button.height() > parent.outerHeight(true) ) {
+//			$button.css('top', '-=' + (parent.outerHeight(true) / 2 ));
+//		}
 
 		// Get the closest column.
 		var $col = parent.closest( 'div[class*=col-]' );

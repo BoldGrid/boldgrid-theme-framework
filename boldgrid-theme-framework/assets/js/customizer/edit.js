@@ -218,36 +218,33 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			return;
 		}
 
-		var $button, $buttonContainer, $overlay;
+		if( ! parent.is(':visible') ) {
+			return;
+		}
+
+		var $button, $buttonContainer;
 
 		$button = $( '<button></button>' );
+		if( parent.css('margin-top') != parent.css('margin-bottom') ) {
+			$button.css('top', parent.css('margin-top'));
+		}
+
+
+
 
 		$buttonContainer = $( '<div class="edit-button"></div>' );
 
-		$overlay = $( '<div class="parent-overlay"></div>' );
+//		if ( 0 === parent.outerHeight() ) {
+//			parent.find( 'div,p' ).each( function() {
+//				var height = $( this ).height();
+//				if ( height > 0 ) {
+//					$overlay.css( 'height', $( this ).height() );
+//					return false;
+//				}
+//			} );
+//		}
+//		;
 
-		// $overlay.css('margin-right', $col.css('margin-right'));
-		// $buttonContainer.css('margin-right', parent.css('padding-right'));
-
-		$overlay.css( 'height', parent.outerHeight() );
-		$overlay.css( 'margin-left', parent.outerWidth() );
-
-		if ( 0 === parent.outerHeight() ) {
-			parent.find( 'div,p' ).each( function() {
-				var height = $( this ).height();
-				if ( height > 0 ) {
-					$overlay.css( 'height', $( this ).height() );
-					return false;
-				}
-			} );
-		}
-		;
-
-		// $overlay.zIndex( parent.zIndex() - 1 );
-
-		// $overlay = $( '<div class="parent-overlay" style="height:' +
-		// parent.outerHeight()
-		// + 'px;"></div>' );
 
 		if ( null === type ) {
 			$button.attr( 'data-control', id );
@@ -256,13 +253,12 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}
 
 		$buttonContainer.append( $button );
-		$buttonContainer.append( $overlay );
-
-		// $overlay.css( 'margin', parent.css( 'margin' ) );
-
-		// button = '<div class="edit-button">' + button + overlay + '</div>';
 
 		parent.before( $buttonContainer );
+
+		if( $button.height() > parent.height() ) {
+			$button.css('top', '-=' + (parent.height() / 2 ));
+		}
 
 		// Get the closest column.
 		var $col = parent.closest( 'div[class*=col-]' );
@@ -311,9 +307,6 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			//$buttonContainer.css('margin-right', '-=' + (rightPadding));
 		}
 
-		// If the target element has a margin-top adjustment, apply it to the button and overlay as well.
-		$button.css('margin-top', parent.css('margin-top'));
-		$overlay.css('margin-top', parent.css('margin-top'));
 
 		parent.hover( function() {
 			$button.addClass( 'highlight-button' );
@@ -321,16 +314,18 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$button.removeClass( 'highlight-button' );
 		} );
 
-		$overlay.hover( function() {
-			$button.addClass( 'highlight-button' );
-		}, function() {
-			$button.removeClass( 'highlight-button' );
-		} );
+//		$overlay.hover( function() {
+//			$button.addClass( 'highlight-button' );
+//		}, function() {
+//			$button.removeClass( 'highlight-button' );
+//		} );
 
 		$button.hover( function() {
-			$overlay.css( 'margin-left', '0px' );
+			// $overlay.css( 'margin-left', '0px' );
+			parent.addClass('highlight-parent');
 		}, function() {
-			$overlay.css( 'margin-left', parent.outerWidth() );
+			// $overlay.css( 'margin-left', parent.outerWidth() );
+			parent.removeClass('highlight-parent');
 		} )
 	}
 };

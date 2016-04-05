@@ -33,7 +33,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		    'blogname' : '.site-title',
 		    'blogdescription' : '.site-description',
 		    'boldgrid_logo_size' : '.logo-site-title',
-		    'boldgrid_enable_footer' : '.site-footer',
+		    'boldgrid_enable_footer' : '.site-footer .attribution',
 		    'entry-content' : '.entry-content',
 		    'entry-title' : '.entry-title',
 		    'blogdescription' : '.site-description',

@@ -276,7 +276,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 */
 	self.findLockedIndexes = function ( partialPalette ) {
 		var lockedIndexes = [];
-		$.each( paletteData.partialPalette, function ( index ) {
+		$.each( partialPalette, function ( index ) {
 			if ( this ) {
 				lockedIndexes.push( index );
 			}
@@ -292,7 +292,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @return int number of palettes to return based on another palettes relationships.
 	 */
-	self.determineRelationalCount = function ( type ) {
+	self.determineRelationalCount = function ( type, size ) {
 		var relationalPercentage;
 
 		// Percentage of palettes that will be relational if possible.
@@ -301,7 +301,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			relationalPercentage = ( 1 / 3 );
 		}
 
-		return Math.floor( count * relationalPercentage );
+		return Math.floor( size * relationalPercentage );
 	};
 
 	/**
@@ -310,14 +310,14 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 * @since 1.0
 	 */
 	self.generate_palette_collection = function ( paletteData, count ) {
-		if (!count) {
+		if ( ! count ) {
 			count = 5;
 		}
 
 		// Determine Relationships.
 		var paletteRelationships = self.determineRelations( paletteData ),
 			lockedIndexes = self.findLockedIndexes( paletteData.partialPalette ),
-			relationalCount = self.determineRelationalCount( paletteRelationships.type );
+			relationalCount = self.determineRelationalCount( paletteRelationships.type, count );
 
 		var palettes = [];
 		for (var i = 0; i < count; i++) {

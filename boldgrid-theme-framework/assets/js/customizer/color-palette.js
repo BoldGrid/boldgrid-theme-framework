@@ -49,8 +49,8 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		color_palette.bind_color_activation();
 		color_palette.setup_color_picker();
 		color_palette.setup_close_color_picker();
-		color_palette.bind_generate_palette_action();
 		color_palette.setup_palette_generation();
+		color_palette.bind_generate_palette_action();
 		color_palette.bind_help_section_visibility();
 		color_palette.bind_help_link();
 		
@@ -128,11 +128,20 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 */
 	color_palette.setup_palette_generation = function () {
 
-		self.$magic_button = $('.palette-generator-button');
-		self.$magic_button.on('click', function (e) {
-			self.$magic_button
-				.closest('.boldgrid-color-palette-wrapper')
-				.addClass('palette-generate-mode');
+		self.$palette_control_wrapper.find('.palette-generator-button').on('click', function (e) {
+			
+			if ( false === self.$paletteWrapper.hasClass( 'palette-generate-mode' ) ) {
+				
+				if ( self.hasNeutral ) {
+					// Lock it.
+					self.$palette_control_wrapper.find( '.boldgrid-active-palette .boldgrid-palette-colors:last' )
+						.addClass( 'selected-for-generation' );
+					
+					color_palette.sync_locks();
+				}
+				
+				self.$paletteWrapper.addClass( 'palette-generate-mode' );
+			}
 		});
 
 		self.$palette_control_wrapper.on('click',
@@ -267,7 +276,9 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	};
 
 	/**
-	 * Grav the selected palettes from the active palette class and add them to an array
+	 * Grab the selected palettes from the active palette class and add them to an array.
+	 * 
+	 * @since 1.0
 	 */
 	color_palette.paletteData = function () {
 		var paletteData = {

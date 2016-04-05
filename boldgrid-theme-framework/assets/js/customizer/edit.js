@@ -268,6 +268,12 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var $col = parent.closest( 'div[class*=col-]' );
 		var colOffset = $col.offset();
 
+		if( undefined === colOffset ) {
+			console.log('here no col');
+			$col = parent.closest( 'div[class*=row]' );
+			colOffset = $col.offset();
+		}
+
 
 		var containerOffset = $buttonContainer.offset();
 
@@ -280,15 +286,15 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			var colWidth = $col.outerWidth(true);
 
 			var colRight = bodyWidth - (colLeft + colWidth);
-			console.log('colRight = ' + colRight);
-			console.log($col);
+			//console.log('colRight = ' + colRight);
+			//console.log($col);
 
 			var conLeft = containerOffset.left;
 			var conWidth = $buttonContainer.outerWidth(true);
 			var conRight = bodyWidth - (conLeft + conWidth);
 
-			console.log('conRight = ' + conRight);
-			console.log($buttonContainer);
+			//console.log('conRight = ' + conRight);
+			//console.log($buttonContainer);
 
 			$buttonContainer.css('margin-right', (colRight - conRight) );
 

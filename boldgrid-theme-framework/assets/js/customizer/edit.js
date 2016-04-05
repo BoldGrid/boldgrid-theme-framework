@@ -81,6 +81,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			location = key.substring( key.lastIndexOf( '[' ) + 1, key.lastIndexOf( ']' ) );
 
 			$menu = $( '#menu-' + location );
+			if ( !$menu.is( 'ul' ) ) {
+				$menu = $menu.find( 'ul' ).first();
+			}
 
 			self.addButton( 'nav_menu', id, $menu );
 		}
@@ -209,6 +212,12 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 *
 	 */
 	this.addButton = function( type, id, parent ) {
+		// If the target exists but is hidden, like wedge's site-description,
+		// abort.
+		if ( parent.hasClass( 'hidden' ) ) {
+			return;
+		}
+
 		var $button, $buttonContainer, $overlay;
 
 		$button = $( '<button></button>' );
@@ -216,6 +225,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		$buttonContainer = $( '<div class="edit-button"></div>' );
 
 		$overlay = $( '<div class="parent-overlay"></div>' );
+
+		// $overlay.css('margin-right', $col.css('margin-right'));
+		// $buttonContainer.css('margin-right', parent.css('padding-right'));
 
 		$overlay.css( 'height', parent.outerHeight() );
 		$overlay.css( 'margin-left', parent.outerWidth() );
@@ -251,6 +263,41 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		// button = '<div class="edit-button">' + button + overlay + '</div>';
 
 		parent.before( $buttonContainer );
+
+		// Get the closest column.
+		var $col = parent.closest( 'div[class*=col-]' );
+		var colOffset = $col.offset();
+
+
+		var containerOffset = $buttonContainer.offset();
+
+		// Make sure our buttonContainer is flush with the right side of the
+		// column.
+		if ( undefined !== colOffset ) {
+			var bodyWidth = $('body').width();
+
+			var colLeft = colOffset.left;
+			var colWidth = $col.outerWidth(true);
+
+			var colRight = bodyWidth - (colLeft + colWidth);
+			console.log('colRight = ' + colRight);
+			console.log($col);
+
+			var conLeft = containerOffset.left;
+			var conWidth = $buttonContainer.outerWidth(true);
+			var conRight = bodyWidth - (conLeft + conWidth);
+
+			console.log('conRight = ' + conRight);
+			console.log($buttonContainer);
+
+			$buttonContainer.css('margin-right', (colRight - conRight) );
+
+
+
+
+
+			//$buttonContainer.css('margin-right', '-=' + (rightPadding));
+		}
 
 		parent.hover( function() {
 			$button.addClass( 'highlight-button' );

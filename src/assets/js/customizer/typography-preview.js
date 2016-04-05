@@ -12,7 +12,7 @@
 	var $menus = parent.wp.customize.section( 'menu_locations' ).controls();
 
 	// Loop through nav menus for live preview changes.
-	$menus.forEach( function( id ) {
+	_.each( $menus, function( id ) {
 
 		// Set menu location font size's for live previews without refreshes
 		wp.customize( 'navigation_' + id.themeLocation +'_font_size', function( value ) {

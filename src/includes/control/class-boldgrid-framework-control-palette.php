@@ -52,6 +52,7 @@ class Boldgrid_Framework_Control_Palette extends WP_Customize_Control {
 <div class='boldgrid-color-palette-wrapper color-palette-columns-<?php echo $color_palatte_columns;?>'
 	 data-color-formats='<?php echo json_encode($color_palettes['palette_formats']); ?>'
 	 data-has-neutral='<?php echo esc_attr( $has_neutral_color ); ?>'
+	 data-num-colors='<?php echo esc_attr( $color_palatte_columns ); ?>'
 	 >
 	<?php
 	foreach ( $color_palettes['palettes'] as $palette_name => $color_palette ): ?>

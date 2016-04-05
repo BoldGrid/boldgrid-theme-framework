@@ -309,12 +309,12 @@ gulp.task( 'build', function( cb ) {
   );
 });
 
-gulp.task( 'css', function( cb ) {
-	sequence( 'frameworkFiles', 'scssDeps', 'scssCompile', 'fontFamilyCss', cb );
+gulp.task( 'css-js', function( cb ) {
+	sequence( 'frameworkFiles', 'frameworkJs', 'scssCompile', cb );
 });
 
 gulp.task( 'prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ]);
 
 gulp.task('watch', function() {
-	  gulp.watch(config.src + '/**/*', ['frameworkFiles', 'frameworkJs', 'scssCompile']);
-});
+	gulp.watch( config.src + '/**/*', ['css-js'] );
+} );

@@ -243,7 +243,6 @@
 	}
 	.wp-picker{
 		&-container{
-			width: 92%;
 			.button {
 				margin-left: 3px;
 			}
@@ -262,6 +261,9 @@
 		line-height: 23px;
 		height: 25px;
 		display: none;
+	}
+	.wp-picker-container {
+	    margin-bottom: 5px;
 	}
 }
 
@@ -462,6 +464,7 @@
 	border: 1px solid lightgrey;
 	padding: 5px;
 	background-color: white;
+	margin-top: 10px;
 }
 
 .palette-generate-mode .generate-palettes-selection-section h3{
@@ -487,10 +490,37 @@
     color: #f95b26;
 }
 /*****************************************************
+************Secondary Color Picker Colors****************
+******************************************************/
+ 
+.boldgrid-color-palette-wrapper .secondary-colors {
+    width: 20px;
+    height: 100%;
+    float: left;
+    margin-right: 6px;
+    margin-top: 20px;
+    
+    .iris-palette {
+	    margin-left: 0 !important;
+	    margin-bottom: 5px;
+	}
+}
+.boldgrid-color-palette-wrapper {
+	.iris-slider.iris-strip { 
+	    width: 17px !important;
+	}
+	.iris-picker .iris-square {
+	    margin-right: 9px;
+	} 
+	.iris-border .iris-palette-container {
+	    left: 32px;
+	}
+}
+/*****************************************************
 ************Color Palette Transparency Code****************
 ******************************************************/
 .pluto-alpha-container .transparency {
-	height:24px;
+	height:18px;
 	width:100%;
 	background-color:#FFF;
 	background-image:url(../../img/transparency-grid.png);
@@ -499,13 +529,14 @@
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	padding:0;
+    background-position: 0 -2px;
 }
 
 .pluto-alpha-container .ui-slider-handle {
 	color:#777;
 	background-color:#FFF;
 	text-shadow:0 1px 0 #FFF;
-	text-decoration:none;
+	text-decoration:none; 
 	position:absolute;
 	z-index:2;
 	box-shadow:0 1px 2px rgba(0,0,0,0.2);
@@ -515,7 +546,7 @@
 	border-radius: 4px;
 	opacity:0.9;
 	margin-top:-2px;
-	height:20px;
+	height: 15px;
 	cursor:ew-resize;
 	font-size:12px;
 	padding:3px;
@@ -537,7 +568,7 @@
 	border:1px solid #dfdfdf;
 	border-top:none;
 	background:#FFF;
-	padding:0 11px 6px;
+	padding:5px 11px 6px;
 }
 
 .customize-control-alphacolor .wp-picker-container .iris-picker {
@@ -821,11 +852,11 @@
 		}
 	}
 	.unlock {
-		> div.top, .div.mid {
+		> div.top, div.mid {
 			-webkit-transform: translate(0px,0px); /* Safari */
 			-moz-transform: translate(0px,0px); /* Firefox */
 			-ms-transform: translate(0px,0px); /* IE 9 */
-			transform: translate(0px,0px);			
+			transform: translate(0px,0px);
 		}
-	}	
+	}
 }

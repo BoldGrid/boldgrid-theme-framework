@@ -35,7 +35,9 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		self.$palette_option_field = self.$palette_control_wrapper.find( '.palette-option-field' );
 		self.generated_palettes_container = self.$palette_control_wrapper.find( '.generated-palettes-container' );
 		self.$accoridon_section_colors = $( '#accordion-section-colors' );
-		self.hasNeutral = self.$palette_control_wrapper.find( '.boldgrid-color-palette-wrapper' ).data( 'has-neutral' );
+		self.$paletteWrapper = self.$palette_control_wrapper.find( '.boldgrid-color-palette-wrapper' );
+		self.hasNeutral = self.$paletteWrapper.data( 'has-neutral' );
+		self.numColors = self.$paletteWrapper.data( 'num-colors' );
 
 		//Create icon set variable
 		color_palette.duplicate_modification_icons();
@@ -51,6 +53,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		color_palette.setup_palette_generation();
 		color_palette.bind_help_section_visibility();
 		color_palette.bind_help_link();
+		
 
 		//Hide Advanced Options
 		color_palette.setup_advanced_options();
@@ -695,6 +698,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 				    //Update the neutral color data elements.
 				    color_palette.updateNeutralData();
+				    color_palette.updateCustomPalettes();
 
 				    //Make sure that we only trigger this event after a 500 ms delay
 				    color_palette.last_refresh_time = new Date().getTime();
@@ -721,6 +725,56 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 			var $wp_color_picker = self.$color_picker_input.wpColorPicker( myOptions );
 			color_palette.$color_picker = self.$palette_control_wrapper.find( '.wp-picker-container' ).hide();
+			color_palette.createPickerPalettes();
+			color_palette.bindCustomPalettes();
+	};
+	
+	/**
+	 * Update the custom colors listed on the right side of your color picker.
+	 * 
+	 * @since 1.1.1
+	 */
+	color_palette.updateCustomPalettes = function ( index, color ) {
+		var $pickerPalettes = self.$palette_control_wrapper.find( '.secondary-colors .iris-palette' );
+		
+		if ( index && color ) {
+			// Single Update.
+			$pickerPalettes
+				.eq( index )
+				.css( 'background-color', color );
+		} else {
+			// Update All.
+			self.$palette_control_wrapper.find( '.boldgrid-active-palette .boldgrid-palette-colors' ).each( function ( index ) {
+				// Copy Color from active Palette.
+				$pickerPalettes.eq( index ).css( 'background-color', $( this ).css( 'background-color') );
+			} );
+		}
+	};
+	
+	/**
+	 * Create a set of squares to display the users current colors on the side of the color picker
+	 * 
+	 * @since 1.1.1
+	 */
+	color_palette.createPickerPalettes = function () {
+		var $paletteWrapper = $( '<div class="secondary-colors"></div>' );
+		
+		for ( var i = 0; i < self.numColors; i++ ) {
+			$paletteWrapper.append( '<a class="iris-palette" tabindex="0"></a>' );
+		}
+		
+		$paletteWrapper.prependTo( self.$palette_control_wrapper.find( '.iris-picker-inner' ) );
+	};
+	
+	/**
+	 * When the user click on a custom color, change the color of the picker.
+	 * 
+	 * @since 1.1.1
+	 */
+	color_palette.bindCustomPalettes = function () {
+		self.$palette_control_wrapper.find('.secondary-colors .iris-palette').on( 'click', function () {
+			color_palette.set_iris_color( $( this ).css( 'background-color' ) );
+		} );
 	};
 
 	/**

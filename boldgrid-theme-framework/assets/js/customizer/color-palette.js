@@ -20,6 +20,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	color_palette.state = null;
 	color_palette.active_body_class = '';
 	color_palette.first_update = true;
+	color_palette.themePalettes = [];
 	
 	var last_refresh_time = null;
 	
@@ -38,6 +39,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		
 		//Create icon set variable
 		color_palette.duplicate_modification_icons();
+		color_palette.themePalettes = color_palette.getThemePalettes();
 
 		//Bind the actions of the user clicking on one of the icons that removes or adds palettes
 		color_palette.bind_palette_duplicate_remove();
@@ -79,7 +81,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	};
 	
 	/**
-	 * Close COlor Picker
+	 * Close Color Picker
 	 */
 	color_palette.setup_close_color_picker = function () {
 		self.$close_palette_creator = $("<button type='button' class='button close-color-picker'>Done</button>");
@@ -90,6 +92,32 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		self.$close_palette_creator.on('click', function () {
 			$('body').click();
 		});
+	};
+	
+	/**
+	 * Create a list of theme palettes. These are the palettes that come with the theme.
+	 * 
+	 * @since 1.1.1
+	 * 
+	 * @return array list of palettes configured by theme dev.
+	 */
+	color_palette.getThemePalettes = function () {
+		var themePalettes = [];
+		self.$palette_control_wrapper.find( '.boldgrid-inactive-palette[data-copy-on-mod="1"]' ).each( function () {
+			var palette = [];
+			
+			$( this ).find('[data-color]').each( function () {
+				palette.push( $( this ).data('color') );
+			});
+
+			if ( self.hasNeutral ) {
+				palette.splice( -1 ,1 );
+			} 
+			
+			themePalettes.push( palette );
+		});
+
+		return themePalettes;
 	};
 	
 	/**
@@ -171,18 +199,18 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	color_palette.bind_generate_palette_action = function () {
 		self.$palette_control_wrapper.find('.palette-generator-button').on('click', function (e) {
 	
-			var partialPalette = color_palette.create_partial_palette(),
-				neutralColor;
+			var paletteData = color_palette.paletteData(), neutralColor;
 			
 			// If this palette has a neutral color, generate that color independently.
 			if ( self.hasNeutral ) {
-				neutralColor = partialPalette.splice( -1, 1 );
+				paletteData.samplePalette.splice( -1, 1 );
+				neutralColor = paletteData.partialPalette.splice( -1, 1 );
 				neutralColor = neutralColor[0];
 			}
 			
 			// Generate Palettes.
 			var palettes = BOLDGRID.COLOR_PALETTE.Generate.generate_palette_collection(
-				partialPalette, color_palette.generated_color_palettes );
+					paletteData, color_palette.generated_color_palettes );
 			
 			if ( self.hasNeutral ) {
 				$.each( palettes, function () {
@@ -238,18 +266,26 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	/**
 	 * Grav the selected palettes from the active palette class and add them to an array
 	 */
-	color_palette.create_partial_palette = function () { 
-		var partial_palette = [];
-		self.$palette_control_wrapper.find('.boldgrid-active-palette .boldgrid-palette-colors').each( function () {
-			var $this = $(this);
-			if ( $this.hasClass('selected-for-generation') ) {
-				partial_palette.push($this.css('background-color'));
+	color_palette.paletteData = function () { 
+		var paletteData = {
+			'samplePalette' : [],
+			'partialPalette' : [],
+			'additionalSamplePalattes' : color_palette.themePalettes
+		};
+		
+		self.$palette_control_wrapper.find( '.boldgrid-active-palette .boldgrid-palette-colors' ).each( function () {
+			var $this = $( this );
+			if ( $this.hasClass( 'selected-for-generation' ) ) {
+				paletteData.partialPalette.push( $this.css( 'background-color' ) );
 			} else {
-				partial_palette.push(null);
+				paletteData.partialPalette.push( null );
 			}
+			
+			// Create an array of current colors in the palette.
+			paletteData.samplePalette.push( $this.css( 'background-color' ) );
 		});
 		
-		return partial_palette;
+		return paletteData;
 	};
 	
 	/**
@@ -651,7 +687,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			    // or in the data-default-color attribute on the input
 			    defaultColor : false,
 			    change : function( event, ui ) {
-				    var color = ui.color.toString();
+			    	var color = ui.color.toString();
 				    
 				    self.$palette_control_wrapper
 				    	.find( '.active-palette-section' )

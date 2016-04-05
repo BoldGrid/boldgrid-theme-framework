@@ -308,10 +308,12 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 			$buttonContainer.css('margin-left', (colLeft - conLeft) );
 
-
-
 			//$buttonContainer.css('margin-right', '-=' + (rightPadding));
 		}
+
+		// If the target element has a margin-top adjustment, apply it to the button and overlay as well.
+		$button.css('margin-top', parent.css('margin-top'));
+		$overlay.css('margin-top', parent.css('margin-top'));
 
 		parent.hover( function() {
 			$button.addClass( 'highlight-button' );

@@ -234,16 +234,19 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		$buttonContainer = $( '<div class="edit-button"></div>' );
 
-//		if ( 0 === parent.outerHeight() ) {
-//			parent.find( 'div,p' ).each( function() {
-//				var height = $( this ).height();
-//				if ( height > 0 ) {
-//					$overlay.css( 'height', $( this ).height() );
-//					return false;
-//				}
-//			} );
-//		}
-//		;
+		// The phone number on pavilion has no height. Add height to it so we can highlight it.
+		if ( 0 === parent.outerHeight() ) {
+			var maxHeight = 0;
+			parent.find( 'div,p,a,span' ).each( function() {
+				var height = $( this ).height();
+				if ( height > 0 && height > maxHeight ) {
+					maxHeight = height;
+				}
+			} );
+
+			parent.height(maxHeight);
+		}
+		;
 
 
 		if ( null === type ) {

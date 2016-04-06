@@ -271,7 +271,6 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function define_theme_hooks() {
-
 		$boldgrid_styles  = new BoldGrid_Framework_Styles( $this->configs );
 		$boldgrid_scripts = new BoldGrid_Framework_Scripts( $this->configs );
 		$boldgrid_theme   = new BoldGrid( $this->configs );
@@ -327,6 +326,10 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'after_setup_theme', $boldgrid_framework_menu, 'register_navs' );
 		$this->loader->add_action( 'after_setup_theme', $boldgrid_framework_menu, 'add_dynamic_actions' );
 
+		if ( ! $this->doing_cron ) {
+			$this->loader->add_action( 'after_switch_theme', $boldgrid_framework_menu, 'disable_advanced_nav_options' );
+		}
+
 	}
 
 	/**
@@ -348,7 +351,6 @@ class BoldGrid_Framework {
 
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $boldgrid_framework_activate, 'do_activate' );
-			$this->loader->add_action( 'after_switch_theme', $boldgrid_framework_activate, 'disable_advanced_nav_options' );
 		}
 
 		$this->loader->add_action( 'mce_external_plugins', $boldgrid_framework_editor, 'add_tinymce_plugin' );
@@ -372,7 +374,7 @@ class BoldGrid_Framework {
 	 */
 	private function boldgrid_widget_areas() {
 
-		$boldgrid_widgets = new BoldGrid_Framework_Widgets( $this->configs );
+		$boldgrid_widgets = new Boldgrid_Framework_Widgets( $this->configs );
 
 		$this->loader->add_action( 'widgets_init', $boldgrid_widgets, 'create_config_widgets' );
 		$this->loader->add_action( 'widgets_init', $boldgrid_widgets, 'sidebar_widgets' );

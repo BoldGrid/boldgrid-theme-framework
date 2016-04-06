@@ -82,3 +82,7 @@ button[data-control]:hover+.parent-overlay {
 .dialog-hidden {
 	display: none;
 }
+
+.ui-dialog {
+	color:#000;
+}

@@ -648,7 +648,7 @@ class Boldgrid_Framework_Social_Media_Icons {
 					$item->classes[] = $network['class'];
 
 					if ( $this->hide_text ) {
-						$html = "<span class='screen-reader-text'>{$item->title}</span>";
+						$html = "<span class='sr-only'>{$item->title}</span>";
 						$item->title = apply_filters( 'boldgrid_icon_title_html', $html, $item->title );
 					}
 

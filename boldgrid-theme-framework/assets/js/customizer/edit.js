@@ -16,7 +16,8 @@ var BOLDGRID = BOLDGRID || {};
  * @since 1.1.2
  */
 BOLDGRID.Customizer_Edit = function( $ ) {
-	var self = this;
+	var self = this,
+		api  = parent.wp.customize;
 
 	$( function() {
 		self.initEdit();
@@ -30,29 +31,27 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	this.addButtons = function() {
 		// General Settings.
 		var settings = {
-		    'blogname' : '.site-title',
-		    'blogdescription' : '.site-description',
-		    'boldgrid_logo_size' : '.logo-site-title',
-		    'boldgrid_enable_footer' : '.site-footer .attribution',
-		    'entry-content' : '.entry-content',
-		    'entry-title' : '.entry-title',
-		    'blogdescription' : '.site-description',
+			'blogname' : '.site-title',
+			'blogdescription' : '.site-description',
+			'boldgrid_logo_size' : '.logo-site-title',
+			'boldgrid_enable_footer' : '.site-footer .attribution',
+			'entry-content' : '.entry-content',
+			'entry-title' : '.entry-title',
+			'blogdescription' : '.site-description',
 		};
 
-		for ( var key in settings ) {
+		var keys = _.keys( settings );
+
+		_( keys ).each( function( key ) {
 			self.addButton( null, key, $( settings[ key ] ) );
-		}
+		} );
+
 
 		// Widgets.
-		$( 'aside[class^="widget_"' ).each( function() {
-			var widget = $( this ), widgetId, widgetType;
-
-			widgetType = widget.attr( 'class' ).split( ' ' )[ 0 ];
-
-			widgetId = widget.attr( 'id' );
-			widgetId = widgetId.substring( widgetId.lastIndexOf( '-' ) + 1 );
-
-			self.addButton( widgetType, widgetId, widget );
+		$( 'aside.widget' ).each( function() {
+			var widget = $( this ),
+				widgetId = widget.attr( 'id' );
+			self.addButton( 'sidebar', widgetId, widget );
 		} );
 
 		// Black Studio TinyMCE.
@@ -64,129 +63,78 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			self.addButton( 'widget_black-studio-tinymce', widgetId, widget );
 		} );
 
+
 		// Menus.
-		var id, location, $menu, settings = parent.wp.customize.settings.settings;
-		for ( var key in settings ) {
-			// If this is not a nav menu location, abort.
-			if ( !key.startsWith( 'nav_menu_locations[' ) ) {
-				continue;
-			}
+		var $selector, settings = api.section( 'menu_locations' ).controls();
+	
+		_( settings ).each( function( menu ) {
+			$selector = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu' ).find( 'ul' ).first();
+			self.addButton( 'nav_menu', menu.setting._value, $selector );
+		} );
+	};
 
-			// If there is not a menu id assigned, abort.
-			if ( 0 === settings[ key ].value ) {
-				continue;
-			}
-
-			id = settings[ key ].value;
-			location = key.substring( key.lastIndexOf( '[' ) + 1, key.lastIndexOf( ']' ) );
-
-			$menu = $( '#menu-' + location );
-			if ( !$menu.is( 'ul' ) ) {
-				$menu = $menu.find( 'ul' ).first();
-			}
-
-			self.addButton( 'nav_menu', id, $menu );
-		}
-	}
 
 	/**
 	 *
 	 */
 	this.bindEdit = function() {
-		$( '[data-control]' )
-		    .on(
-		        'click',
-		        function() {
-			        var dataControl = $( this ).attr( 'data-control' );
+		$( '[data-control]' ).on( 'click', function() {
+			var dataControl = $( this ).attr( 'data-control' );
 
-			        /*
-					 * If the user is trying to edit the page title or content,
-					 * advise them they need to go to the page n post editor.
-					 */
-			        if ( 'entry-content' == dataControl || 'entry-title' == dataControl ) {
-				        $( '#' + dataControl )
-				            .dialog(
-				                {
-				                    width : 400,
-				                    resizable : false,
-				                    modal : true,
-				                    buttons : {
-				                        'Go there now' : function() {
-					                        parent.window.location = boldgridFrameworkCustomizerEdit.editPostLink;
-				                        },
-				                        Cancel : function() {
-					                        $( this ).dialog( "close" );
-				                        }
-				                    }
-				                } );
-				        return;
-			        }
-			        ;
+			/*
+			 * If the user is trying to edit the page title or content,
+			 * advise them they need to go to the page n post editor.
+			 */
+			if ( 'entry-content' == dataControl || 'entry-title' == dataControl ) {
+				$( '#' + dataControl )
+					.dialog(
+						{
+							width : 400,
+							resizable : false,
+							modal : true,
+							buttons : {
+								'Go there now' : function() {
+									parent.window.location = boldgridFrameworkCustomizerEdit.editPostLink;
+								},
+								Cancel : function() {
+									$( this ).dialog( 'close' );
+								}
+							}
+						} );
+				return;
+			} else if ( 0 === dataControl.lastIndexOf( 'sidebar', 0 ) ) {
+				var control = dataControl.match(/\[(.*?)\]/);
+				api.Widgets.focusWidgetFormControl( control[1] );
+			} else {
+				api.control( dataControl ).focus();
+			}
 
-			        parent.wp.customize.control( dataControl ).focus();
 
-			        setTimeout( function() {
-				        var focused;
+			setTimeout( function() {
+				var focused = $( ':focus', parent.document );
 
-				        /*
-						 * After the user clicks edit, we bounce the focused
-						 * element to bring it to the user's attention.
-						 * Generally, the focus should be on an input element,
-						 * such as the site title. Sometimes though, the wrong
-						 * element is focused. Determine which item should be
-						 * bounced.
-						 */
-				        switch ( dataControl ) {
-					        case 'boldgrid_enable_footer':
-						        focused = $( '#customize-control-boldgrid_enable_footer',
-						            parent.document );
-						        break;
-					        default:
-						        focused = $( ':focus', parent.document );
-				        }
+				if ( 'boldgrid_enable_footer' === dataControl ) {
+					focused = $( api.control( dataControl ).selector, parent.document );
+				}
 
-				        if ( dataControl.startsWith( 'nav_menu[' ) ) {
-					        focused = $( '.customize-control-nav_menu_name', parent.document );
-				        }
+				if ( 0 === dataControl.lastIndexOf( 'nav_menu', 0 ) ) {
+					focused = $( '.customize-control-nav_menu_name', parent.document );
+				}
 
-				        /*
-						 * Bounce the element in the customizer to bring it to
-						 * the user's attention. There's an issue with jquery-ui
-						 * effects changing padding / size of an element. Fix
-						 * this by setting a min width and height.
-						 */
-				        focused.css( 'min-height', focused.outerHeight() );
-				        focused.css( 'min-width', focused.outerWidth() );
-				        focused.effect( "bounce", {
-					        times : 3
-				        }, "slow" );
+				focused
+					.css({
+						'min-height' : focused.outerHeight(),
+						'min-width'  : focused.outerWidth(),
+					})
+					.effect( 'bounce', {
+						times : 3,
+						distance: 10
+					}, 'slow' );
 
-			        }, 500 );
-		        } );
+			}, 500 );
+		} );
 
-		// In order for the edit button to be positioned correctly with absolute
-		// positioning, its parent needs to have relative positioning.
-		// $( '[data-control]' ).parent().addClass( 'relative' );
-
-		// // When a button is hovered, highlight its parent.
-		// $( '[data-control]' ).each( function() {
-		// var $button = $( this ), $parent = $button.parent();
-		//
-		// $button.hover( function() {
-		// $parent.addClass( 'edit-highlight' )
-		// }, function() {
-		// $parent.removeClass( 'edit-highlight' )
-		// } );
-		//
-		// // When a parent is hovered, highlight it's edit button.
-		// $parent.hover( function() {
-		// $( this ).find( '> [data-control]' ).addClass( 'highlight-button' );
-		// }, function() {
-		// $( this ).find( '> [data-control]' ).removeClass( 'highlight-button'
-		// );
-		// } );
-		// } );
-	}
+	};
 
 	/**
 	 *
@@ -197,7 +145,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}, 2000, function() {
 			$( '[data-control]' ).css( 'opacity', '' )
 		} );
-	}
+	};
 
 	/**
 	 *
@@ -206,7 +154,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		self.addButtons();
 		self.bindEdit();
 		self.fadeOut();
-	}
+	};
 
 	/**
 	 *
@@ -216,11 +164,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		// abort.
 		if ( parent.hasClass( 'hidden' ) ) {
 			return;
-		}
+		};
 
 		if( ! parent.is(':visible') ) {
 			return;
-		}
+		};
 
 		var $button, $buttonContainer;
 

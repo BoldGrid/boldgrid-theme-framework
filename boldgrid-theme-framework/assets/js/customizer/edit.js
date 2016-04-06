@@ -66,7 +66,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		// Menus.
 		var $selector, settings = api.section( 'menu_locations' ).controls();
-	
+
 		_( settings ).each( function( menu ) {
 			$selector = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu' ).find( 'ul' ).first();
 			self.addButton( 'nav_menu', menu.setting._value, $selector );
@@ -274,9 +274,32 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		$button.hover( function() {
 			// $overlay.css( 'margin-left', '0px' );
 			parent.addClass('highlight-parent');
+
+			var parentOffset = parent.offset();
+
+			$('#target-highlight').css('left', parentOffset.left - $(window).scrollLeft());
+            $('#target-highlight').css('top', parentOffset.top - $(window).scrollTop());
+            $('#target-highlight').css('width', parent.outerWidth());
+            $('#target-highlight').css('height', parent.outerHeight());
+
+            var buttonOffset = $button.offset();
+            var targetHighlightOffset =$('#target-highlight').offset();
+
+            var targetHighlightRight = targetHighlightOffset.left + $('#target-highlight').outerWidth();
+            // var buttonRight = buttonOffset.left  + $button.outerWidth();
+
+
+
+            // Make sure our fixed #target-highligh does not overlap our edit button.
+            if( ( targetHighlightRight - 5 ) > buttonOffset.left) {
+            	$('#target-highlight').css('width', '-=' + (targetHighlightRight - buttonOffset.left) + 'px');
+            }
 		}, function() {
 			// $overlay.css( 'margin-left', parent.outerWidth() );
 			parent.removeClass('highlight-parent');
+
+			$('#target-highlight').css('width', '0px');
+            $('#target-highlight').css('height', '0px');
 		} )
 	}
 };

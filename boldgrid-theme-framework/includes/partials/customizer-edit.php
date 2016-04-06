@@ -10,3 +10,4 @@
 	<img
 		src='<?php echo bloginfo('stylesheet_directory'); ?>/inc/boldgrid-theme-framework/assets/img/display-page-title.jpg' />
 </div>
+<div id='target-highlight'></div>

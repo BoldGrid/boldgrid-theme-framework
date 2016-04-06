@@ -109,12 +109,12 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		self.$palette_control_wrapper.find( '.boldgrid-inactive-palette[data-copy-on-mod="1"]' ).each( function () {
 			var palette = [];
 
-			$( this ).find('[data-color]').each( function () {
-				palette.push( $( this ).data('color') );
+			$( this ).find( '[data-color]' ).each( function () {
+				palette.push( $( this ).data( 'color' ) );
 			});
 
 			if ( self.hasNeutral ) {
-				palette.splice( -1 ,1 );
+				palette.splice( -1, 1 );
 			}
 
 			themePalettes.push( palette );

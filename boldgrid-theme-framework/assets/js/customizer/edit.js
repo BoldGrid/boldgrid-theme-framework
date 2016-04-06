@@ -16,8 +16,7 @@ var BOLDGRID = BOLDGRID || {};
  * @since 1.1.2
  */
 BOLDGRID.Customizer_Edit = function( $ ) {
-	var self = this,
-		api  = parent.wp.customize;
+	var self = this, api = parent.wp.customize;
 
 	$( function() {
 		self.initEdit();
@@ -31,13 +30,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	this.addButtons = function() {
 		// General Settings.
 		var settings = {
-			'blogname' : '.site-title',
-			'blogdescription' : '.site-description',
-			'boldgrid_logo_size' : '.logo-site-title',
-			'boldgrid_enable_footer' : '.site-footer .attribution',
-			'entry-content' : '.entry-content',
-			'entry-title' : '.entry-title',
-			'blogdescription' : '.site-description',
+		    'blogname' : '.site-title',
+		    'blogdescription' : '.site-description',
+		    'boldgrid_logo_size' : '.logo-site-title',
+		    'boldgrid_enable_footer' : '.site-footer .attribution',
+		    'entry-content' : '.entry-content',
+		    'entry-title' : '.entry-title',
+		    'blogdescription' : '.site-description',
 		};
 
 		var keys = _.keys( settings );
@@ -46,11 +45,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			self.addButton( null, key, $( settings[ key ] ) );
 		} );
 
-
 		// Widgets.
 		$( 'aside.widget' ).each( function() {
-			var widget = $( this ),
-				widgetId = widget.attr( 'id' );
+			var widget = $( this ), widgetId = widget.attr( 'id' );
 			self.addButton( 'sidebar', widgetId, widget );
 		} );
 
@@ -63,16 +60,16 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			self.addButton( 'widget_black-studio-tinymce', widgetId, widget );
 		} );
 
-
 		// Menus.
 		var $selector, settings = api.section( 'menu_locations' ).controls();
 
-		_( settings ).each( function( menu ) {
-			$selector = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu' ).find( 'ul' ).first();
-			self.addButton( 'nav_menu', menu.setting._value, $selector );
-		} );
+		_( settings ).each(
+		    function( menu ) {
+			    $selector = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu' )
+			        .find( 'ul' ).first();
+			    self.addButton( 'nav_menu', menu.setting._value, $selector );
+		    } );
 	};
-
 
 	/**
 	 *
@@ -82,33 +79,30 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			var dataControl = $( this ).attr( 'data-control' );
 
 			/*
-			 * If the user is trying to edit the page title or content,
-			 * advise them they need to go to the page n post editor.
+			 * If the user is trying to edit the page title or content, advise
+			 * them they need to go to the page n post editor.
 			 */
 			if ( 'entry-content' == dataControl || 'entry-title' == dataControl ) {
-				$( '#' + dataControl )
-					.dialog(
-						{
-							width : 400,
-							resizable : false,
-							modal : true,
-							buttons : {
-								'Go there now' : function() {
-									parent.window.location = boldgridFrameworkCustomizerEdit.editPostLink;
-								},
-								Cancel : function() {
-									$( this ).dialog( 'close' );
-								}
-							}
-						} );
+				$( '#' + dataControl ).dialog( {
+				    width : 400,
+				    resizable : false,
+				    modal : true,
+				    buttons : {
+				        'Go there now' : function() {
+					        parent.window.location = boldgridFrameworkCustomizerEdit.editPostLink;
+				        },
+				        Cancel : function() {
+					        $( this ).dialog( 'close' );
+				        }
+				    }
+				} );
 				return;
 			} else if ( 0 === dataControl.lastIndexOf( 'sidebar', 0 ) ) {
-				var control = dataControl.match(/\[(.*?)\]/);
-				api.Widgets.focusWidgetFormControl( control[1] );
+				var control = dataControl.match( /\[(.*?)\]/ );
+				api.Widgets.focusWidgetFormControl( control[ 1 ] );
 			} else {
 				api.control( dataControl ).focus();
 			}
-
 
 			setTimeout( function() {
 				var focused = $( ':focus', parent.document );
@@ -121,15 +115,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 					focused = $( '.customize-control-nav_menu_name', parent.document );
 				}
 
-				focused
-					.css({
-						'min-height' : focused.outerHeight(),
-						'min-width'  : focused.outerWidth(),
-					})
-					.effect( 'bounce', {
-						times : 3,
-						distance: 10
-					}, 'slow' );
+				focused.css( {
+				    'min-height' : focused.outerHeight(),
+				    'min-width' : focused.outerWidth(),
+				} ).effect( 'bounce', {
+				    times : 3,
+				    distance : 10
+				}, 'slow' );
 
 			}, 500 );
 		} );
@@ -164,25 +156,25 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		// abort.
 		if ( parent.hasClass( 'hidden' ) ) {
 			return;
-		};
+		}
+		;
 
-		if( ! parent.is(':visible') ) {
+		if ( !parent.is( ':visible' ) ) {
 			return;
-		};
+		}
+		;
 
 		var $button, $buttonContainer;
 
 		$button = $( '<button></button>' );
-//		if( parent.css('margin-top') != parent.css('margin-bottom') ) {
-//			$button.css('top', parent.css('margin-top'));
-//		}
-
-
-
+		// if( parent.css('margin-top') != parent.css('margin-bottom') ) {
+		// $button.css('top', parent.css('margin-top'));
+		// }
 
 		$buttonContainer = $( '<div class="edit-button"></div>' );
 
-		// The phone number on pavilion has no height. Add height to it so we can highlight it.
+		// The phone number on pavilion has no height. Add height to it so we
+		// can highlight it.
 		if ( 0 === parent.outerHeight() ) {
 			var maxHeight = 0;
 			parent.find( 'div,p,a,span' ).each( function() {
@@ -192,10 +184,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				}
 			} );
 
-			parent.height(maxHeight);
+			parent.height( maxHeight );
 		}
 		;
-
 
 		if ( null === type ) {
 			$button.attr( 'data-control', id );
@@ -207,57 +198,60 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		parent.before( $buttonContainer );
 
-//		if( $button.height() > parent.outerHeight(true) ) {
-//			$button.css('top', '-=' + (parent.outerHeight(true) / 2 ));
-//		}
+		// if( $button.height() > parent.outerHeight(true) ) {
+		// $button.css('top', '-=' + (parent.outerHeight(true) / 2 ));
+		// }
 
 		// Get the closest column.
 		var $col = parent.closest( 'div[class*=col-]' );
 		var colOffset = $col.offset();
 
-		if( undefined === colOffset ) {
-			console.log('here no col');
-			console.log(parent);
+		if ( undefined === colOffset ) {
+			console.log( 'here no col' );
+			console.log( parent );
 			$col = parent.closest( 'div[class*=row]' );
-			console.log($col);
+			console.log( $col );
 			colOffset = $col.offset();
-			console.log(colOffset);
+			console.log( colOffset );
 		}
-
 
 		var containerOffset = $buttonContainer.offset();
 
 		// Make sure our buttonContainer is flush with the right side of the
 		// column.
 		if ( undefined !== colOffset ) {
-			var bodyWidth = $('body').width();
+			var bodyWidth = $( 'body' ).width();
 
 			var colLeft = colOffset.left;
 			var colWidth = $col.outerWidth();
 
-			var colRight = bodyWidth - (colLeft + colWidth);
-			//console.log('colRight = ' + colRight);
-			//console.log($col);
+			var colRight = bodyWidth - ( colLeft + colWidth );
+			// console.log('colRight = ' + colRight);
+			// console.log($col);
 
 			var conLeft = containerOffset.left;
 			var conWidth = $buttonContainer.outerWidth();
-			var conRight = bodyWidth - (conLeft + conWidth);
+			var conRight = bodyWidth - ( conLeft + conWidth );
 
-			//console.log('conRight = ' + conRight);
-			//console.log($buttonContainer);
+			// console.log('conRight = ' + conRight);
+			// console.log($buttonContainer);
 
-			var adjustment = (colRight - conRight);
-//			if( adjustment > 0 ) {
-//				adjustment = adjustment * -1;
-//			}
+			var adjustment = ( colRight - conRight );
+			// if( adjustment > 0 ) {
+			// adjustment = adjustment * -1;
+			// }
 
-			$buttonContainer.css('margin-right', adjustment );
+			$buttonContainer.css( 'margin-right', adjustment );
 
-			$buttonContainer.css('margin-left', (colLeft - conLeft) );
+			$buttonContainer.css( 'margin-left', ( colLeft - conLeft ) );
 
-			//$buttonContainer.css('margin-right', '-=' + (rightPadding));
+			// $buttonContainer.css('margin-right', '-=' + (rightPadding));
 		}
 
+		// If our parent has negative margin, adjust our button.
+		if ( 0 > parent.css( 'margin-top' ).replace( 'px', '' ) ) {
+			$button.css( 'top', '+=' + parent.css( 'margin-top' ) );
+		}
 
 		parent.hover( function() {
 			$button.addClass( 'highlight-button' );
@@ -265,41 +259,48 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$button.removeClass( 'highlight-button' );
 		} );
 
-//		$overlay.hover( function() {
-//			$button.addClass( 'highlight-button' );
-//		}, function() {
-//			$button.removeClass( 'highlight-button' );
-//		} );
+		// $overlay.hover( function() {
+		// $button.addClass( 'highlight-button' );
+		// }, function() {
+		// $button.removeClass( 'highlight-button' );
+		// } );
 
 		$button.hover( function() {
 			// $overlay.css( 'margin-left', '0px' );
-			parent.addClass('highlight-parent');
+			parent.addClass( 'highlight-parent' );
 
 			var parentOffset = parent.offset();
 
-			$('#target-highlight').css('left', parentOffset.left - $(window).scrollLeft());
-            $('#target-highlight').css('top', parentOffset.top - $(window).scrollTop());
-            $('#target-highlight').css('width', parent.outerWidth());
-            $('#target-highlight').css('height', parent.outerHeight());
+			$( '#target-highlight' ).css( 'left', parentOffset.left - $( window ).scrollLeft() );
+			$( '#target-highlight' ).css( 'top', parentOffset.top - $( window ).scrollTop() );
+			$( '#target-highlight' ).css( 'width', parent.outerWidth() );
+			$( '#target-highlight' ).css( 'height', parent.outerHeight() );
 
-            var buttonOffset = $button.offset();
-            var targetHighlightOffset =$('#target-highlight').offset();
+			// Show the orange box shadow.
+			$( '#target-highlight' ).addClass( 'target-highlight-shadow' );
 
-            var targetHighlightRight = targetHighlightOffset.left + $('#target-highlight').outerWidth();
-            // var buttonRight = buttonOffset.left  + $button.outerWidth();
+			var buttonOffset = $button.offset();
+			var targetHighlightOffset = $( '#target-highlight' ).offset();
 
+			var targetHighlightRight = targetHighlightOffset.left
+			    + $( '#target-highlight' ).outerWidth();
+			// var buttonRight = buttonOffset.left + $button.outerWidth();
 
-
-            // Make sure our fixed #target-highligh does not overlap our edit button.
-            if( ( targetHighlightRight - 5 ) > buttonOffset.left) {
-            	$('#target-highlight').css('width', '-=' + (targetHighlightRight - buttonOffset.left) + 'px');
-            }
+			// Make sure our fixed #target-highligh does not overlap our edit
+			// button.
+			if ( ( targetHighlightRight - 5 ) > buttonOffset.left ) {
+				$( '#target-highlight' ).css( 'width',
+				    '-=' + ( targetHighlightRight - buttonOffset.left ) + 'px' );
+			}
 		}, function() {
-			// $overlay.css( 'margin-left', parent.outerWidth() );
-			parent.removeClass('highlight-parent');
+			// Hide the orange box shadow.
+			$( '#target-highlight' ).removeClass( 'target-highlight-shadow' );
 
-			$('#target-highlight').css('width', '0px');
-            $('#target-highlight').css('height', '0px');
+			// $overlay.css( 'margin-left', parent.outerWidth() );
+			parent.removeClass( 'highlight-parent' );
+
+			$( '#target-highlight' ).css( 'width', '0px' );
+			$( '#target-highlight' ).css( 'height', '0px' );
 		} )
 	}
 };

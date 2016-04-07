@@ -1,0 +1,34 @@
+---
+engines:
+  csslint:
+    enabled: true
+  duplication:
+    enabled: false
+    config:
+      languages:
+      - javascript
+      - php
+  fixme:
+    enabled: true
+  phpmd:
+    enabled: true
+    checks:
+      Controversial/CamelCaseMethodName:
+        enabled: false
+      Controversial/CamelCaseClassName:
+        enabled: false
+      Controversial/CamelCaseVariableName:
+        enabled: false
+      Controversial/CamelCaseParameterName:
+        enabled: false
+      Naming/ShortVariable:
+        enabled: false
+ratings:
+  paths:
+  - "**.css"
+  - "**.js"
+  - "**.php"
+exclude_paths:
+- boldgrid-theme-framework/*
+- src/includes/black-studio-tinymce-widget/*
+- src/includes/partials/*

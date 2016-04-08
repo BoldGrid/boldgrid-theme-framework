@@ -169,6 +169,7 @@ class BoldGrid_Framework {
 			'social-media-icons',
 			'staging',
 			'styles',
+			'template-config',
 			'widgets',
 			'wrapper',
 		);
@@ -255,7 +256,6 @@ class BoldGrid_Framework {
 	 * @access   public
 	 */
 	public function load_theme_configs() {
-
 		// Apply filter to framework configs.
 		$this->configs = apply_filters( 'boldgrid_theme_framework_config', $this->configs );
 
@@ -274,11 +274,13 @@ class BoldGrid_Framework {
 		$boldgrid_styles  = new BoldGrid_Framework_Styles( $this->configs );
 		$boldgrid_scripts = new BoldGrid_Framework_Scripts( $this->configs );
 		$boldgrid_theme   = new BoldGrid( $this->configs );
-		$wrapper          = new Boldgrid_Framework_Wrapper();
 
 		// Load Theme Wrapper.
 		if ( true === $this->configs['boldgrid-parent-theme'] ) {
+			$wrapper  = new Boldgrid_Framework_Wrapper();
+			$template = new Boldgrid_Framework_Template_Config( $this->configs );
 			$this->loader->add_filter( 'template_include', $wrapper, 'wrap', 109 );
+			$this->configs['menu']['locations'] = $template->template_config();
 		}
 
 		// Add Theme Styles.

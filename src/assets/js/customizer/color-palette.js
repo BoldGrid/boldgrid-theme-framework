@@ -20,6 +20,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	color_palette.state = null;
 	color_palette.active_body_class = '';
 	color_palette.first_update = true;
+	color_palette.prelockNeutral = false;
 	color_palette.themePalettes = [];
 
 	var last_refresh_time = null;
@@ -53,7 +54,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		color_palette.bind_generate_palette_action();
 		color_palette.bind_help_section_visibility();
 		color_palette.bind_help_link();
-		
+
 
 		//Hide Advanced Options
 		color_palette.setup_advanced_options();
@@ -129,17 +130,17 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	color_palette.setup_palette_generation = function () {
 
 		self.$palette_control_wrapper.find('.palette-generator-button').on('click', function (e) {
-			
+
 			if ( false === self.$paletteWrapper.hasClass( 'palette-generate-mode' ) ) {
-				
-				if ( self.hasNeutral ) {
+
+				if ( self.hasNeutral && self.prelockNeutral ) {
 					// Lock it.
 					self.$palette_control_wrapper.find( '.boldgrid-active-palette .boldgrid-palette-colors:last' )
 						.addClass( 'selected-for-generation' );
-					
+
 					color_palette.sync_locks();
 				}
-				
+
 				self.$paletteWrapper.addClass( 'palette-generate-mode' );
 			}
 		});
@@ -229,7 +230,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 					// Generate neutral color or pass through existing neutral.
 					if ( ! neutralColor ) {
-						this.push( color_palette.palette_generator.generateNeutralColor() );
+						this.push( color_palette.palette_generator.generateNeutralColor( this ) );
 					} else {
 						this.push( neutralColor );
 					}
@@ -277,7 +278,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 	/**
 	 * Grab the selected palettes from the active palette class and add them to an array.
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	color_palette.paletteData = function () {
@@ -739,15 +740,15 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			color_palette.createPickerPalettes();
 			color_palette.bindCustomPalettes();
 	};
-	
+
 	/**
 	 * Update the custom colors listed on the right side of your color picker.
-	 * 
+	 *
 	 * @since 1.1.1
 	 */
 	color_palette.updateCustomPalettes = function ( index, color ) {
 		var $pickerPalettes = self.$palette_control_wrapper.find( '.secondary-colors .iris-palette' );
-		
+
 		if ( index && color ) {
 			// Single Update.
 			$pickerPalettes
@@ -761,25 +762,25 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			} );
 		}
 	};
-	
+
 	/**
 	 * Create a set of squares to display the users current colors on the side of the color picker
-	 * 
+	 *
 	 * @since 1.1.1
 	 */
 	color_palette.createPickerPalettes = function () {
 		var $paletteWrapper = $( '<div class="secondary-colors"></div>' );
-		
+
 		for ( var i = 0; i < self.numColors; i++ ) {
 			$paletteWrapper.append( '<a class="iris-palette" tabindex="0"></a>' );
 		}
-		
+
 		$paletteWrapper.prependTo( self.$palette_control_wrapper.find( '.iris-picker-inner' ) );
 	};
-	
+
 	/**
 	 * When the user click on a custom color, change the color of the picker.
-	 * 
+	 *
 	 * @since 1.1.1
 	 */
 	color_palette.bindCustomPalettes = function () {

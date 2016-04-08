@@ -106,14 +106,43 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	};
 
 	/**
+	 * Get a random element from an array.
+	 *
+	 * @since 1.1.1
+	 *
+	 * @return element.
+	 */
+	self.randomArrayElement = function ( array ) {
+		return array[ Math.floor( Math.random() * array.length ) ];
+	};
+
+	/**
 	 * Generates a neutral color.
 	 *
 	 * @since 1.1.1
 	 *
 	 * @return string css value of a color.
 	 */
-	self.generateNeutralColor = function () {
-		return neutralColors[ Math.floor( Math.random() * neutralColors.length ) ];
+	self.generateNeutralColor = function ( palette ) {
+
+		var random = Math.random(),
+			neutralColor = null,
+			randomLimit = 0.5,
+			neutralLightness = 0.9,
+			paletteColor,
+			brehautColor;
+
+		if ( random > randomLimit ) {
+
+			paletteColor = self.randomArrayElement( palette );
+			brehautColor = net.brehaut.Color( paletteColor );
+			neutralColor = brehautColor.setLightness( neutralLightness ).toCSS();
+
+		} else {
+			neutralColor = self.randomArrayElement( neutralColors );
+		}
+
+		return neutralColor;
 	};
 
 	/**
@@ -183,7 +212,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		 * If a relationship exists within this palette, no more testing will be done and
 		 * all relational generating will be based off of this relationship.
 		 */
-		var paletteRelationships, relationsData = [], relationships = self.findRelations( paletteData.samplePalette );
+		var paletteRelationships = {}, relationsData = [], relationships = self.findRelations( paletteData.samplePalette );
 
 		/*
 		 * If this relationship match involves a locked color skip matching

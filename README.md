@@ -1,8 +1,10 @@
 # BoldGrid Theme Framework #
 
-[![Build Status](https://travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE)
+[![Build Status](https://travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
+[![License](https://img.shields.io/badge/license-GPL--2.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE)
 [![PHP Version](https://img.shields.io/badge/PHP-5.3%2B-blue.svg)](https://php.net)
- 
+[![Code Climate](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework/badges/gpa.svg)](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework)
+
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.3
@@ -30,6 +32,13 @@ user guide for more information.
 * New Feature: Colors within a users color palette can now be selected from the color picker.
 * New Feature: Improved color palette suggestion algorithms.
 * Bug Fix: Removed duplicate entries of color palettes from saved palettes.
+
+### 1.1.1 ###
+* New Feature: Child themes can now be created and work properly.
+* Misc: Replaced Underscore's accessibility classes with Bootstrap's.
+* New Feature: Added support for using heading classes that work with typography controls.
+* Misc: Code refactor of activate class.
+* Misc: Added CodeClimate Configuration.
 
 ### 1.1 ###
 * Bug fix: Animate.css now can load properly.

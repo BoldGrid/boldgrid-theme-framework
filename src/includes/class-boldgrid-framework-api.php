@@ -317,7 +317,7 @@ class BoldGrid {
 	 */
 	public static function skip_link() {
 	?>
-			<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'bgtfw' ); ?></a>
+			<a class="skip-link sr-only" href="#content"><?php esc_html_e( 'Skip to content', 'bgtfw' ); ?></a>
 		<?php
 	}
 

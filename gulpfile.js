@@ -11,7 +11,6 @@ var gulp     = require( 'gulp' ),
  //   notify   = require( 'gulp-notify' ),
     replace  = require( 'gulp-replace' ),
     sequence = require( 'run-sequence' ),
-    uglify   = require( 'gulp-uglify' ),
     jshint   = require( 'gulp-jshint' ),
     phpcbf   = require( 'gulp-phpcbf' ),
     phpcs    = require( 'gulp-phpcs' ),
@@ -201,12 +200,15 @@ gulp.task( 'jsHint', function(  ) {
 
 // Minify & Copy JS
 gulp.task( 'frameworkJs', function(  ) {
+	// Minified Files.
   gulp.src([config.src + '/assets/js/**/*.js'])
-    .pipe( uglify() )
+    .pipe( uglify().on( 'error', gutil.log ) )
     .pipe( rename({
       suffix: '.min'
     }) )
     .pipe( gulp.dest( config.dist + '/assets/js' ) );
+  
+  // Unminified Files.
   gulp.src([config.src + '/assets/js/**/*.js'])
     .pipe( gulp.dest( config.dist + '/assets/js' ) );
 });

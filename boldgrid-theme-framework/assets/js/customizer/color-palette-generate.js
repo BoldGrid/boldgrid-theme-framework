@@ -3,6 +3,28 @@ BOLDGRID.COLOR_PALETTE = BOLDGRID.COLOR_PALETTE || {};
 BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 /**
+ * Move array key from 1 index to another.
+ * 
+ * Thanks: http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
+ * 
+ * @param int 
+ * @param int 
+ * @since 1.1.1
+ * 
+ * @return array
+ */
+Array.prototype.move = function( new_index, old_index ) {
+    if ( new_index >= this.length ) {
+        var k = new_index - this.length;
+        while ( ( k-- ) + 1 ) {
+            this.push( undefined );
+        }
+    }
+    this.splice( new_index, 0, this.splice( old_index, 1 )[0] );
+    return this;
+};
+
+/**
  * Generate Palettes for a user based on a partial palette.
  * @param $
  */
@@ -10,7 +32,8 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 	'use strict';
 
-	var self = BOLDGRID.COLOR_PALETTE.Generate;
+	var self = BOLDGRID.COLOR_PALETTE.Generate,
+		apiColorCount = {};
 
 	self.palette_collection = BOLDGRIDColorPalettes.palettes;
 
@@ -143,6 +166,36 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		}
 
 		return neutralColor;
+	};
+	
+	/**
+	 * Calculate differences between 2 colors.
+	 * 
+	 * @param colorA string
+	 * @param colorB string
+	 * @since 1.1.1
+	 * 
+	 * @return array
+	 */
+	self.colorDiff = function ( colorA, colorB ) {
+		
+		colorA = net.brehaut.Color( colorA ).toHSL();
+		colorB =  net.brehaut.Color( colorB ).toHSL();
+		
+		var hueDiff = colorA.hue - colorB.hue,
+			saturationDiff = colorA.saturation - colorB.saturation,
+			lightnessDiff = colorA.lightness - colorB.lightness,
+			huePercentageDiff = Math.abs( hueDiff ) / 360,
+			saturationPercentageDiff = Math.abs( saturationDiff ),
+			lightnessPercentageDiff = Math.abs( lightnessDiff ),
+			totalPercentageDiff = huePercentageDiff + saturationPercentageDiff + lightnessPercentageDiff;
+ 
+		return {
+			'hue' : hueDiff,
+			'saturationDiff' : saturationDiff,
+			'lightnessDiff' : lightnessDiff,
+			'totalPercentageDiff' : totalPercentageDiff
+		};
 	};
 
 	/**
@@ -332,6 +385,59 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 		return Math.floor( size * relationalPercentage );
 	};
+	
+
+	/**
+	 * For a given color, return a list of palettes that have a similar color. Sorted by similarity.
+	 *
+	 * @param string sampleColor
+	 * @since 1.1.1
+	 * 
+	 * @return array palettes.
+	 */
+	self.findPalettesByColor = function ( sampleColor ) {
+		var palettes = [], sort, getPalette;
+		
+		getPalette = function ( paletteIndex ) {
+			return self.palette_collection[ this.paletteIndex ].slice( 0 );
+		};
+		
+		$.each( self.palette_collection, function ( paletteIndex ) {
+			$.each( this, function ( colorIndex ) {
+				var colorDiff = self.colorDiff( this, sampleColor );
+
+				// Max Hue Diff 16%.
+				if ( colorDiff.hue > 16 ) {
+					return;
+				}
+				
+				var relationship = {
+					'paletteIndex' : paletteIndex,
+					'colorIndex' : colorIndex,
+					'distance' : colorDiff,
+					'getPalette' : getPalette
+				};
+				
+				palettes.push( relationship );
+			} );
+		} );
+		
+		// Sort by diff percentage sum.
+		sort = function (a, b) {
+			  if ( Math.abs( a.distance.totalPercentageDiff ) > Math.abs( b.distance.totalPercentageDiff ) ) {
+			    return 1;
+			  }
+			  if ( Math.abs( a.distance.totalPercentageDiff ) < Math.abs( b.distance.totalPercentageDiff ) ) {
+			    return -1;
+			  }
+
+			  return 0;
+		};
+		
+		palettes.sort( sort );
+		
+		return palettes;
+	};
 
 	/**
 	 * Calls generate palette X times.
@@ -342,7 +448,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		if ( ! count ) {
 			count = 5;
 		}
-
+		
 		// Determine Relationships.
 		var paletteRelationships = self.determineRelations( paletteData ),
 			lockedIndexes = self.findLockedIndexes( paletteData.partialPalette ),
@@ -350,70 +456,90 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 		var palettes = [];
 		for (var i = 0; i < count; i++) {
-			var new_palette = self.generate_palette( paletteData );
-			if ( typeof new_palette == 'object' && new_palette.length ) {
+			var newPalette = self.generate_palette( paletteData );
+			if ( typeof newPalette == 'object' && newPalette.length ) {
 				var shouldApplyRelationships =
 					'samplePalette' == paletteRelationships.type && i < relationalCount ||
 					'additionalSamplePalattes' == paletteRelationships.type && ( i >= ( count - relationalCount ) );
 
 				if ( shouldApplyRelationships ) {
-					new_palette = self.applyRelationships( new_palette, paletteRelationships, lockedIndexes );
+					newPalette = self.applyRelationships( newPalette, paletteRelationships, lockedIndexes );
 				}
 
-				palettes.push ( new_palette );
+				palettes.push ( newPalette );
 			}
 		}
-
+		
 		return palettes;
 	};
-
+	
 	/**
 	 * Generate a single palette based on a partial list of colors in a palette.
 	 *
 	 * @since 1.0
 	 */
 	self.generate_palette = function ( paletteData ) {
-		var new_palette = [],
+		var newPalette = [],
 			colorsPartialPalette = self.partial_palette_into_colors_palette( paletteData.partialPalette ),
 			bool_empty_palette = self.is_palette_empty( colorsPartialPalette.palette );
 
 		// If no colors are locked.
 		if ( bool_empty_palette ) {
-			new_palette = self.get_palette_from_static_list( colorsPartialPalette.palette );
+			newPalette = self.get_palette_from_static_list( colorsPartialPalette.palette );
 		} else {
 
 			// If the more than 1 color is locked.
-			if ( colorsPartialPalette.unchanged_keys.length > 1) {
+			if ( colorsPartialPalette.unchangedKeys.length > 1) {
 				var filled_palette = self.generate_palette_from_partial( colorsPartialPalette.palette );
-				new_palette = self.randomize_palette( filled_palette, colorsPartialPalette.unchanged_keys );
+				newPalette = self.randomize_palette( filled_palette, colorsPartialPalette.unchangedKeys );
 
 			// If only 1 color is locked.
 			} else {
-
-				var random = (Math.floor(Math.random() * 3) + 1);
-				if ( random == 1 ){
-					var internal_method = internal_palettes[Math.floor(Math.random()*internal_palettes.length)];
-					new_palette = self.color_palettes[internal_method](colorsPartialPalette.palette[colorsPartialPalette.unchanged_keys[0]]);
-
-				} else if ( random == 2 ) {
-					var colors_method = color_scheme_methods[Math.floor(Math.random()*color_scheme_methods.length)];
-					new_palette = colorsPartialPalette.palette[colorsPartialPalette.unchanged_keys[0]][colors_method]();
-
-				} else {
-					var degrees = self.random_array(4, 5);
-					degrees.unshift(0);
-					new_palette = colorsPartialPalette.palette[colorsPartialPalette.unchanged_keys[0]].schemeFromDegrees( degrees );
+				
+				var color = colorsPartialPalette.palette[ colorsPartialPalette.unchangedKeys[0] ];
+				
+				// Generate list of similar palettes if we don't have 1 saved already.
+				if ( color.toCSS() !== apiColorCount.color ) {
+					apiColorCount.color = color.toCSS();
+					apiColorCount.palettes = self.findPalettesByColor( apiColorCount.color );
+					apiColorCount.paletteCounter = 0;
 				}
-
-				new_palette = self.randomize_palette( new_palette, [0] );
-				new_palette = self.format_palette_to_unchanged( new_palette, colorsPartialPalette.unchanged_keys[0] );
-				new_palette = self.truncate_generated_palette( new_palette, colorsPartialPalette.palette );
+				
+				if ( apiColorCount.palettes[ apiColorCount.paletteCounter ] ) {
+					newPalette = apiColorCount.palettes[ apiColorCount.paletteCounter ].getPalette();
+					newPalette = newPalette.move( colorsPartialPalette.unchangedKeys[0], this.colorIndex );
+					apiColorCount.paletteCounter++;
+					
+				} else {
+					/*
+					 * Try to generate a palette based on the color api color scheme methods.
+					 * This is almost never used because it requires users to exhaust ~2500 color combinations.
+					 */
+					var random = (Math.floor(Math.random() * 3) + 1);
+					if ( random == 1 ){
+						var internal_method = internal_palettes[Math.floor(Math.random()*internal_palettes.length)];
+						newPalette = self.color_palettes[internal_method]( color );
+	
+					} else if ( random == 2 ) {
+						var colors_method = color_scheme_methods[Math.floor(Math.random()*color_scheme_methods.length)];
+						newPalette = color[colors_method]();
+	
+					} else {
+						var degrees = self.random_array(4, 5);
+						degrees.unshift(0);
+						newPalette = color.schemeFromDegrees( degrees );
+					}
+	
+					newPalette = self.randomize_palette( newPalette, [0] );
+					newPalette = self.format_palette_to_unchanged( newPalette, colorsPartialPalette.unchangedKeys[0] );
+					newPalette = self.truncate_generated_palette( newPalette, colorsPartialPalette.palette );
+				}
 			}
 		}
 
 		// Set unchanged keys.
-		var paletteClone = new_palette.slice( 0 );
-		$.each( colorsPartialPalette.unchanged_keys, function () {
+		var paletteClone = newPalette.slice( 0 );
+		$.each( colorsPartialPalette.unchangedKeys, function () {
 			paletteClone[this] = paletteData.partialPalette[this];
 		} );
 
@@ -436,13 +562,13 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	/***
 	 * Place the single color in the correct placement
 	 */
-	self.format_palette_to_unchanged = function ( new_palette, needed_key ) {
-		var selected_color = new_palette[0];
+	self.format_palette_to_unchanged = function ( newPalette, needed_key ) {
+		var selected_color = newPalette[0];
 		var formated_palette = {};
 		formated_palette[needed_key] = selected_color;
-		formated_palette[0] = new_palette[needed_key];
+		formated_palette[0] = newPalette[needed_key];
 
-		$.each( new_palette, function (key) {
+		$.each( newPalette, function (key) {
 			if ( key === 0 ) {
 				return;
 			}
@@ -464,7 +590,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 */
 	self.partial_palette_into_colors_palette = function ( partial_palette ) {
 		var color_palette = [];
-		var unchanged_keys = [];
+		var unchangedKeys = [];
 		$.each( partial_palette, function ( key ) {
 			if ( this ) {
 				var color = net.brehaut.Color( this );
@@ -476,7 +602,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 					color_palette.push( null );
 				}
 
-				unchanged_keys.push( key );
+				unchangedKeys.push( key );
 			} else {
 				color_palette.push( null );
 			}
@@ -484,7 +610,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 		return {
 			'palette' : color_palette,
-			'unchanged_keys' : unchanged_keys
+			'unchangedKeys' : unchangedKeys
 		};
 	};
 
@@ -492,7 +618,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 * Get a palette from the color lovers list of palettes or otherwise
 	 */
 	self.get_palette_from_static_list = function ( partial_palette ) {
-		var new_palette = [];
+		var newPalette = [];
 
 		//Try up to 2 times to find a palette
 		$.each( [1,2], function () {
@@ -500,20 +626,20 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			if ( found_palette.length >= partial_palette.length ) {
 				if ( found_palette.length > partial_palette.length ) {
 					for (var i = 0; i < partial_palette.length; i++) {
-						new_palette.push ( found_palette[i] );
+						newPalette.push ( found_palette[i] );
 					}
 				} else if ( found_palette.length === partial_palette.length ) {
-					new_palette = found_palette;
+					newPalette = found_palette;
 				}
 			}
 
-			if ( new_palette.length ) {
+			if ( newPalette.length ) {
 				//Break out of the loop if found
 				return false;
 			}
 		} );
 
-		return new_palette;
+		return newPalette;
 	};
 
 	/**
@@ -592,7 +718,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 * appearence of a completely new palette
 	 * This function essentially makes a palette lighter/darker, saturates and hue shifts
 	 */
-	self.randomize_palette = function ( palette, unchanged_keys ) {
+	self.randomize_palette = function ( palette, unchangedKeys ) {
 		var palette_colors = [];
 		$.each(palette, function ( key ) {
 
@@ -600,7 +726,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 				return false;
 			}
 
-			if ( unchanged_keys.indexOf( key ) != '-1' ) {
+			if ( unchangedKeys.indexOf( key ) != '-1' ) {
 				palette_colors.push( this.toCSS() );
 				return;
 			}

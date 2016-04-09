@@ -527,14 +527,14 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			var $this = $(this);
 
 			var $color_backgrounds = {};
-			if ( $this.hasClass('boldgrid-active-palette') ) {
-				$color_backgrounds = $this.find('li.boldgrid-palette-colors');
+			if ( $this.hasClass( 'boldgrid-active-palette' ) ) {
+				$color_backgrounds = $this.find( 'li.boldgrid-palette-colors' );
 			} else {
-				$color_backgrounds = $this.find('.boldgrid-palette-colors span');
+				$color_backgrounds = $this.find( '.boldgrid-palette-colors > span' );
 			}
 
 			var colors = [];
-			$color_backgrounds.not('.dashicons').each( function () {
+			$color_backgrounds.not( self.hasNeutral ? ':last-of-type' : '' ).each( function () {
 				colors.push( $(this).css('background-color') );
 			});
 
@@ -902,7 +902,6 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 */
 	color_palette.bind_compile_done = function () {
 		$window.on('boldgrid_sass_compile_done', function (event, data) {
-			//console.log( event, data );
 			color_palette.compiled_css = data.text;
 			color_palette.update_palette_settings( true );
 		});
@@ -912,9 +911,9 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 * Change the palette settings
 	 */
 	color_palette.update_palette_settings = function ( force_update ) {
-		color_palette.text_area_val = JSON.stringify({ 'state' : color_palette.state });
+		color_palette.text_area_val = JSON.stringify( { 'state' : color_palette.state } );
 		self.$palette_option_field.val( color_palette.text_area_val );
-		if ( force_update ) {
+		if ( force_update ) { 
 			self.$palette_option_field.change();
 		}
 	};

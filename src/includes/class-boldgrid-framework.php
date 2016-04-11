@@ -419,6 +419,7 @@ class BoldGrid_Framework {
 		$boldgrid_theme_customizer_footer = new BoldGrid_Framework_Customizer_Footer( $this->configs );
 		$boldgrid_theme_customizer_kirki = new Boldgrid_Framework_Customizer_Kirki( $this->configs );
 		$boldgrid_theme_customizer_typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
+		$boldgrid_theme_customizer_edit = new Boldgrid_Framework_Customizer_Edit();
 
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'site_logo' );
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'blog_name' );
@@ -431,6 +432,8 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $boldgrid_theme_customizer, 'custom_customize_enqueue' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $boldgrid_theme_customizer, 'enqueue_styles' );
 		$this->loader->add_action( 'customize_preview_init', $boldgrid_theme_customizer, 'add_help_overlay' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $boldgrid_theme_customizer_edit, 'wp_enqueue_scripts' );
+		$this->loader->add_action( 'wp_footer', $boldgrid_theme_customizer_edit, 'wp_footer' );
 
 		// Background Controls.
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer_background, 'add_patterns' );

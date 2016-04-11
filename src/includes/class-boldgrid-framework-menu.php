@@ -42,6 +42,78 @@ class Boldgrid_Framework_Menu {
 	}
 
 	/**
+	 * Delete menus created by framework.
+	 *
+	 * Menus created by the framework will be stored in the boldgrid_menus_created option. Simply
+	 * iterate through each menu and delete it.
+	 *
+	 * @since 1.0.5
+	 *
+	 * @param bool $active Are we resetting an active installation.
+	 */
+	public function remove_saved_menus( $active ) {
+		// Get a list of all menus we've created.
+		if ( $active ) {
+			$menus_created = get_option( 'boldgrid_menus_created', array() );
+		} else {
+			$menus_created = get_option( 'boldgrid_staging_boldgrid_menus_created', array() );
+		}
+
+		// If we haven't created any menus, abort.
+		if ( empty( $menus_created ) ) {
+			return;
+		}
+
+		// Delete each menu.
+		foreach ( $menus_created as $menu_name ) {
+			wp_delete_nav_menu( $menu_name );
+		}
+
+		// Reset the boldgrid_menus_created option.
+		update_option( 'boldgrid_menus_created', array() );
+	}
+
+	/**
+	 * Reset Menu Locations.
+	 *
+	 * @since 1.0.0
+	 */
+	public function reset_nav_locations() {
+		$locations = get_theme_mod( 'nav_menu_locations', array() );
+		foreach ( $locations as $location_name => $menu_id ) {
+			if ( 'primary' !== $location_name ) {
+				$locations[ $location_name ] = 0;
+			}
+		}
+		set_theme_mod( 'nav_menu_locations', $locations );
+	}
+
+	/**
+	 * Disable Advanced Nav Options.
+	 *
+	 * Disable advanced navigation options that are in the menu
+	 * section of the customizer.
+	 *
+	 * @since 1.0.0
+	 */
+	public function disable_advanced_nav_options() {
+		$user = wp_get_current_user();
+
+		update_user_option(
+			$user->ID,
+			'managenav-menuscolumnshidden',
+			array(
+				0 => 'link-target',
+				1 => 'css-classes',
+				2 => 'xfn',
+				3 => 'description',
+				4 => 'title-attr',
+			),
+			true
+		);
+	}
+
+	/**
 	 * This takes each menu location specified in the configs and allows it to be used
 	 * depending on if the configs have set a location for the menu.
 	 *

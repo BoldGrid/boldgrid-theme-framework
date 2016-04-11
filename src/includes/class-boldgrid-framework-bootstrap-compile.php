@@ -151,7 +151,6 @@ class Boldgrid_Framework_Bootstrap_Compile {
 	 * This will generate the text contrast colors in PHP to pass to scss compiler.
 	 *
 	 * @since 1.1
-	 * @param array $colors Array of colors to get text contrast of.
 	 * @return array $text_contrast_colors Array of text contrast variables to pass.
 	 */
 	public function get_text_contrast() {

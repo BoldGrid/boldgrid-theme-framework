@@ -3,28 +3,6 @@ BOLDGRID.COLOR_PALETTE = BOLDGRID.COLOR_PALETTE || {};
 BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 /**
- * Move array key from 1 index to another.
- * 
- * Thanks: http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
- * 
- * @param int 
- * @param int 
- * @since 1.1.1
- * 
- * @return array
- */
-Array.prototype.move = function( new_index, old_index ) {
-    if ( new_index >= this.length ) {
-        var k = new_index - this.length;
-        while ( ( k-- ) + 1 ) {
-            this.push( undefined );
-        }
-    }
-    this.splice( new_index, 0, this.splice( old_index, 1 )[0] );
-    return this;
-};
-
-/**
  * Generate Palettes for a user based on a partial palette.
  * @param $
  */
@@ -226,6 +204,28 @@ Array.prototype.move = function( new_index, old_index ) {
 		});
 
 		return matches;
+	};
+	
+	/**
+	 * Move array key from 1 index to another.
+	 * 
+	 * Thanks: http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
+	 * 
+	 * @param int 
+	 * @param int 
+	 * @since 1.1.1
+	 * 
+	 * @return array
+	 */
+	self.arrayMove = function( array, new_index, old_index ) {
+	    if ( new_index >= array.length ) {
+	        var k = new_index - array.length;
+	        while ( ( k-- ) + 1 ) {
+	        	array.push( undefined );
+	        }
+	    }
+	    array.splice( new_index, 0, array.splice( old_index, 1 )[0] );
+	    return array;
 	};
 
 	/**
@@ -507,7 +507,7 @@ Array.prototype.move = function( new_index, old_index ) {
 				
 				if ( apiColorCount.palettes[ apiColorCount.paletteCounter ] ) {
 					newPalette = apiColorCount.palettes[ apiColorCount.paletteCounter ].getPalette();
-					newPalette = newPalette.move( colorsPartialPalette.unchangedKeys[0], this.colorIndex );
+					newPalette = self.arrayMove( newPalette, colorsPartialPalette.unchangedKeys[0], this.colorIndex );
 					apiColorCount.paletteCounter++;
 					
 				} else {

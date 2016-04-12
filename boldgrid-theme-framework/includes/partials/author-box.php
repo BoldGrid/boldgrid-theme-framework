@@ -10,7 +10,7 @@ if ( ! defined( 'WPINC' ) ) {
 ?>
 
 <div class="reveal-bio">
-    <?php echo '<a href="#" class="fa fa-minus-circle" title="' . __( 'Hide Author Bio', 'bgtfw' ) . '"><span class="screen-reader-text">' . __( 'Hide Author Bio', 'bgtfw' ) . '</span></a>'; ?>
+    <?php echo '<a href="#" class="fa fa-minus-circle" title="' . __( 'Hide Author Bio', 'bgtfw' ) . '"><span class="sr-only">' . __( 'Hide Author Bio', 'bgtfw' ) . '</span></a>'; ?>
 </div>
 
 <div class="author-info">
@@ -27,19 +27,19 @@ if ( ! defined( 'WPINC' ) ) {
             // Change language depending on number of posts
             $posts_posted = get_the_author_posts(  );
 
-            if ( $posts_posted == 1 ) { 
+            if ( $posts_posted == 1 ) {
 
                 printf(
                         /* translators: May be followed by another sentence. There is a space after the punctuation mark.  */
-                        __( 'One article and counting. ', 'bgtfw' ) ); 
+                        __( 'One article and counting. ', 'bgtfw' ) );
             }
 
-            else { 
+            else {
                 printf(
                     /* translators: May be followed by another sentence. There is a space after the punctuation mark.  */
-                    __( '%s articles and counting. ', 'bgtfw' ), the_author_posts(  ) ); 
+                    __( '%s articles and counting. ', 'bgtfw' ), the_author_posts(  ) );
             }
-            
+
             $author_firstname = get_the_author_meta( 'first_name' );
             // Check if social media info is collected in user profile
             // Usually handled by a plugin like BoldGrid SEO or WordPress SEO by Yoast
@@ -50,13 +50,13 @@ if ( ! defined( 'WPINC' ) ) {
                 echo '<div class="author-social-media">';
                 printf(__( 'Follow %s on social media: ', 'bgtfw' ), get_the_author_meta( 'first_name' ) );
                 if ( $author_twitter ) {
-                	echo '<a href="https://twitter.com/' . esc_attr( $author_twitter ) . '" title="' . sprintf( __( 'Follow %s on Twitter', 'bgtfw' ), $author_firstname ) . '"  target="_blank"><i class="fa fa-twitter"></i><span class="screen-reader-text">' . __( 'Twitter', 'bgtfw' ) . '</span></a>';
+                	echo '<a href="https://twitter.com/' . esc_attr( $author_twitter ) . '" title="' . sprintf( __( 'Follow %s on Twitter', 'bgtfw' ), $author_firstname ) . '"  target="_blank"><i class="fa fa-twitter"></i><span class="sr-only">' . __( 'Twitter', 'bgtfw' ) . '</span></a>';
                 }
                 if ( $author_googleplus ) {
-                	echo '<a href="' . esc_url( $author_googleplus ) . '" title="' . sprintf( __( 'Add %s to your Google+ circles', 'bgtfw' ), $author_firstname ) . '"  rel="author" target="_blank"><i class="fa fa-google-plus"></i><span class="screen-reader-text">' . __( 'Google+', 'bgtfw' ) . '</span></a>';
+                	echo '<a href="' . esc_url( $author_googleplus ) . '" title="' . sprintf( __( 'Add %s to your Google+ circles', 'bgtfw' ), $author_firstname ) . '"  rel="author" target="_blank"><i class="fa fa-google-plus"></i><span class="sr-only">' . __( 'Google+', 'bgtfw' ) . '</span></a>';
                 }
                 if ( $author_facebook ) {
-                	echo '<a href="' . esc_url( $author_facebook ) . '" title="' .  sprintf( __( 'Like %s on Facebook', 'bgtfw' ), $author_firstname ) . '"  target="_blank"><i class="fa fa-facebook"></i><span class="screen-reader-text">' . __( 'Facebook', 'bgtfw' ) . '</span></a>';
+                	echo '<a href="' . esc_url( $author_facebook ) . '" title="' .  sprintf( __( 'Like %s on Facebook', 'bgtfw' ), $author_firstname ) . '"  target="_blank"><i class="fa fa-facebook"></i><span class="sr-only">' . __( 'Facebook', 'bgtfw' ) . '</span></a>';
                 }
                 echo '</div>';
             }

@@ -35,7 +35,7 @@
 	var hide_nav_controls = function () {
 		var $menus = wp.customize.section( 'menu_locations' ).controls();
 		// Check all registered menu locations.
-		$menus.forEach( function( id ) {
+		_.each( $menus, function( id ) {
 			// Deactivate all controls initially
 			wp.customize.control( 'navigation_' + id.themeLocation +'_font_size' ).deactivate({ duration: 0 });
 			wp.customize.control( 'navigation_' + id.themeLocation +'_font_family' ).deactivate({ duration: 0 });

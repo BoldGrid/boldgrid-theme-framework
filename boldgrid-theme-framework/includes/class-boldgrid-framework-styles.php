@@ -129,7 +129,6 @@ class BoldGrid_Framework_Styles {
 				array(
 					'bootstrap-styles',
 					'font-awesome',
-					'theme-slug-fonts',
 				),
 				null
 			);

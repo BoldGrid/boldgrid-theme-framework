@@ -551,7 +551,7 @@ class BoldGrid_Framework {
 	private function device_preview() {
 		$device_preview = new BoldGrid_Framework_Device_Preview( $this->configs );
 		// We don't need device previews if user is running on a mobile device or newer WP.
-		$wp_version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>=' );
+		$wp_version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>' );
 
 		if ( wp_is_mobile() || $wp_version ) {
 			return;

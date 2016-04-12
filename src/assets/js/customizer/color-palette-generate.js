@@ -530,7 +530,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 						newPalette = color.schemeFromDegrees( degrees );
 					}
 	
-					newPalette = self.randomize_palette( generateKeys, [0] );
+					newPalette = self.randomize_palette( newPalette, [0] );
 					newPalette = self.format_palette_to_unchanged( newPalette, colorsPartialPalette.generateKeys[0] );
 					newPalette = self.truncate_generated_palette( newPalette, colorsPartialPalette.palette );
 				}

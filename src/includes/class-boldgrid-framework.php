@@ -353,6 +353,8 @@ class BoldGrid_Framework {
 
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $boldgrid_framework_activate, 'do_activate' );
+			$this->loader->add_action( 'after_switch_theme', $boldgrid_framework_activate, 'transfer_menus', 10, 2 );
+			$this->loader->add_action( 'after_switch_theme', $boldgrid_framework_activate, 'disable_advanced_nav_options' );
 		}
 
 		$this->loader->add_action( 'mce_external_plugins', $boldgrid_framework_editor, 'add_tinymce_plugin' );

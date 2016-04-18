@@ -7,7 +7,7 @@
   position: relative; }
 
 button[data-control]:before {
-  content: "\f540";
+  content: "\f107";
   display: inline-block;
   -webkit-font-smoothing: antialiased;
   font: normal 20px/1 'dashicons';

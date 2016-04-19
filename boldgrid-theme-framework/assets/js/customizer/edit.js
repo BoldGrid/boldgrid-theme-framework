@@ -19,7 +19,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	var self = this, api = parent.wp.customize;
 
 	$( function() {
-		setTimeout( self.init, 200 );
+		setTimeout( self.init, 500 );
 	} );
 
 	/**
@@ -144,7 +144,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var parentOffset = $parent.offset(),
 			containerOffset,
 			$parentHighlight = $( '#target-highlight' ),
-			highlightHeight = $parent.outerHeight( true );
+			highlightHeight = $parent.outerHeight( );
 
 		containerOffset = $parentsContainer.offset();
 
@@ -153,14 +153,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		if( 0 === highlightHeight ) {
 			$parent.find('*').each( function() {
 				var $child = $( this ),
-					childHeight = $child.outerHeight( true );
+					childHeight = $child.outerHeight( );
 
 				if( childHeight > highlightHeight ) {
 					highlightHeight = childHeight;
 				}
 			})
 		}
-
 
 		$button.hover( function() {
 			$parentHighlight
@@ -205,7 +204,19 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		self.bindEdit();
 		self.fadeOut();
 
-		$( window ).resize( self.placeButtons );
+		//$( window ).resize( self.placeButtons );
+
+		$(window).resize(function() {
+		    clearTimeout($.data(this, 'resizeTimer'));
+		    $.data(this, 'resizeTimer', setTimeout(function() {
+		    	console.log('firing');
+		    	self.placeButtons();
+		    }, 400));
+		});
+
+		$( '.navbar-toggle' ).click( function() {
+			setTimeout( self.placeButtons, 400 );
+		});
 	};
 
 	/**
@@ -232,6 +243,14 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				parentOffset = $parent.offset(),
 				$parentsContainer = $parent.closest( 'div[class*=col-]' );
 
+			// If the $parent is not visible / hidden, like wedge's site-description, abort.
+			if ( $parent.hasClass( 'hidden' ) || ! $parent.is( ':visible' ) ) {
+				$button.fadeOut();
+				return;
+			} else {
+				$button.fadeIn();
+			}
+
 			// Some elements are not contained in a col, but instead in a row.
 			if( 0 === $parentsContainer.length ) {
 				$parentsContainer = $parent.closest( 'div[class=row]' );
@@ -241,7 +260,27 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				}
 			}
 
-			$button.css( 'top', parentOffset.top ).css( 'left', self.right( $parentsContainer ) );
+			var buttonLeft = self.right( $parentsContainer );
+
+			// Don't allow buttons to go off the screen.
+			if( self.right( $parentsContainer ) + $button.outerWidth( true ) > $('body').outerWidth(true) ) {
+				buttonLeft = $('body').outerWidth(true) - $button.outerWidth( true );
+			}
+
+			var moves = parseInt( $button.attr( 'data-moves' ) );
+
+			var duration = ( moves === 0 ? 0 : 400 );
+
+			moves++;
+
+			$button.attr( 'data-moves', moves );
+
+			$button.animate({
+				top: parentOffset.top,
+				left: buttonLeft
+			}, duration );
+
+
 
 			// On window resize, the previsouly hover functionality does not work as expected
 			// because it is tied to previous positions (those before the browser resize). Remove
@@ -270,7 +309,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		// If the selector is not visible / hidden, like wedge's site-description, abort.
 		if ( $parent.hasClass( 'hidden' ) || ! $parent.is( ':visible' ) ) {
-			return;
+			// return;
 		}
 
 		if ( null === type ) {
@@ -280,6 +319,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}
 
 		$button.attr( 'data-selector', selector );
+
+		$button.attr( 'data-moves', 0 );
 
 		$('body').append($button);
 

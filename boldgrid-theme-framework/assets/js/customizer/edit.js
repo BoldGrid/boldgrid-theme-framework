@@ -207,13 +207,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		$( selector ).each( function() {
 			var $button = $( this ), $parent = $( $button.attr( 'data-selector' ) );
 
-			if( self.topInView( $parent ) ) {
+
 				// Update the button's position so that when we place it below it has a nice transition.
 				$button.css( 'position', 'absolute' )
 					.css( 'top', $( window ).scrollTop() );
 
-				self.placeButtons( '[data-control=' + $button.attr( 'data-control' ) + ']' );
-			}
+				self.placeButtons( '[data-control="' + $button.attr( 'data-control' ) + '"]' );
+
 		});
 	};
 
@@ -404,9 +404,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$parent = $( selector ),
 			$parentsContainer = self.parentColumn( $parent );
 
-		// If the selector is not visible / hidden, like wedge's site-description, abort.
-		if ( $parent.hasClass( 'hidden' ) || ! $parent.is( ':visible' ) ) {
-			// return;
+		// If the button already exists, abort.
+		if( 0 !== $( 'body' ).find( '[data-selector="' + selector + '"]' ).length ) {
+			return;
 		}
 
 		if ( null === type ) {

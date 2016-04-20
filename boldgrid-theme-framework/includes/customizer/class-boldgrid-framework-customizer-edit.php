@@ -12,6 +12,25 @@
 class Boldgrid_Framework_Customizer_Edit {
 
 	/**
+	 * The BoldGrid Theme Framework configurations.
+	 *
+	 * @since     xxx
+	 * @access    protected
+	 * @var       string     $configs       The BoldGrid Theme Framework configurations.
+	 */
+	protected $configs;
+
+	/**
+	 * Initialize the class and set its properties.
+	 *
+	 * @param     string $configs       The BoldGrid Theme Framework configurations.
+	 * @since     xxx
+	 */
+	public function __construct( $configs ) {
+		$this->configs = $configs;
+	}
+
+	/**
 	 * Enqueue scripts needed to add edit buttons to the customizer.
 	 *
 	 * Ideally, this method would hook into customize_preview_init. We need to get the page ID,
@@ -22,26 +41,37 @@ class Boldgrid_Framework_Customizer_Edit {
 	 */
 	public function wp_enqueue_scripts() {
 		if ( is_customize_preview() ) {
+			// Minify if script debug is off.
+			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
 			$stylesheet = get_stylesheet();
 
-			wp_register_script( 'boldgrid-framework-customizer-edit-js',
-				'/wp-content/themes/' . $stylesheet .
-					 '/inc/boldgrid-theme-framework/assets/js/customizer/edit.js' );
-			$translation_array = array (
-				'editPostLink' => get_edit_post_link( get_the_ID() ),
-				'goThereNow' => __( 'Go there now', 'bgtfw' )
+			wp_register_script(
+				'boldgrid-framework-customizer-edit-js',
+				$this->configs['framework']['js_dir'] . 'customizer/edit' . $suffix . '.js',
+				array( 'jquery' ),
+				$this->configs['version']
 			);
-			wp_localize_script( 'boldgrid-framework-customizer-edit-js',
-				'boldgridFrameworkCustomizerEdit', $translation_array );
+
+			wp_localize_script(
+				'boldgrid-framework-customizer-edit-js',
+				'boldgridFrameworkCustomizerEdit',
+				array(
+					'editPostLink' => get_edit_post_link( get_the_ID() ),
+					'goThereNow' => __( 'Go there now', 'bgtfw' )
+				)
+			);
+
 			wp_enqueue_script( 'boldgrid-framework-customizer-edit-js' );
 
-			wp_register_style( 'boldgrid-theme-framework--customizer-edit-css',
-				'/wp-content/themes/' . $stylesheet .
-					 '/inc/boldgrid-theme-framework/assets/css/customizer/edit.css', array (),
-					BOLDGRID_INSPIRATIONS_VERSION );
-			wp_enqueue_style( 'boldgrid-theme-framework--customizer-edit-css' );
+			wp_register_style(
+				'boldgrid-theme-framework--customizer-edit-css',
+				$this->configs['framework']['css_dir'] . 'customizer/edit' . $suffix . '.css',
+				array (),
+				$this->configs['version']
+			);
 
-			// wp_enqueue_style( 'dashicons' );
+			wp_enqueue_style( 'boldgrid-theme-framework--customizer-edit-css' );
 
 			wp_enqueue_style( 'wp-jquery-ui-dialog' );
 			wp_enqueue_script( 'jquery-ui-dialog' );

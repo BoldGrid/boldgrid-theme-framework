@@ -422,7 +422,7 @@ class BoldGrid_Framework {
 		$boldgrid_theme_customizer_footer = new BoldGrid_Framework_Customizer_Footer( $this->configs );
 		$boldgrid_theme_customizer_kirki = new Boldgrid_Framework_Customizer_Kirki( $this->configs );
 		$boldgrid_theme_customizer_typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
-		$boldgrid_theme_customizer_edit = new Boldgrid_Framework_Customizer_Edit();
+		$boldgrid_theme_customizer_edit = new Boldgrid_Framework_Customizer_Edit( $this->configs );
 
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'site_logo' );
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'blog_name' );

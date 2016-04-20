@@ -292,12 +292,26 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				$button.fadeIn();
 			}
 
+			// TODO: This if statement needs some cleanup.
 			// Some elements are not contained in a col, but instead in a row.
 			if( 0 === $parentsContainer.length ) {
 				$parentsContainer = $parent.closest( 'div[class=row]' );
 
 				if( 0 === $parentsContainer.length ) {
-					console.log(' ERROR PARENT COL OR ROW NOT ROUND');
+
+					// Diced, the .site-title a, we have to be a bit tricky to find the closest column.
+					$parentsContainer = $parent.parent().parent().siblings('div[class*=col-]').first();
+
+					if( 0 === $parentsContainer.length ) {
+
+						// Diced, again... The div is 'row background-primary' not just 'row'.
+						$parentsContainer = $parent.closest('div[class^=row]');
+
+						if( 0 === $parentsContainer.length ) {
+							console.log(' ERROR PARENT COL OR ROW NOT ROUND');
+							console.log( 'selector: ' + $button.attr( 'data-selector' ) );
+						}
+					}
 				}
 			}
 

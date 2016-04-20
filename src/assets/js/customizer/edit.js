@@ -299,17 +299,22 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 				if( 0 === $parentsContainer.length ) {
 
-					// Diced, the .site-title a, we have to be a bit tricky to find the closest column.
-					$parentsContainer = $parent.parent().parent().siblings('div[class*=col-]').first();
+					// A fix for resolve.
+					$parentsContainer = $parent.closest( 'div[class^=container]' );
 
 					if( 0 === $parentsContainer.length ) {
-
-						// Diced, again... The div is 'row background-primary' not just 'row'.
-						$parentsContainer = $parent.closest('div[class^=row]');
+						// Diced, the .site-title a, we have to be a bit tricky to find the closest column.
+						$parentsContainer = $parent.parent().parent().siblings('div[class*=col-]').first();
 
 						if( 0 === $parentsContainer.length ) {
-							console.log(' ERROR PARENT COL OR ROW NOT ROUND');
-							console.log( 'selector: ' + $button.attr( 'data-selector' ) );
+
+							// Diced, again... The div is 'row background-primary' not just 'row'.
+							$parentsContainer = $parent.closest('div[class^=row]');
+
+							if( 0 === $parentsContainer.length ) {
+								console.log(' ERROR PARENT COL OR ROW NOT ROUND');
+								console.log( 'selector: ' + $button.attr( 'data-selector' ) );
+							}
 						}
 					}
 				}

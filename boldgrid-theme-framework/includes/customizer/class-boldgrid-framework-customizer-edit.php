@@ -42,7 +42,7 @@ class Boldgrid_Framework_Customizer_Edit {
 					BOLDGRID_INSPIRATIONS_VERSION );
 			wp_enqueue_style( 'boldgrid-theme-framework--customizer-edit-css' );
 
-			wp_enqueue_style( 'dashicons' );
+			// wp_enqueue_style( 'dashicons' );
 
 			wp_enqueue_style( 'wp-jquery-ui-dialog' );
 			wp_enqueue_script( 'jquery-ui-dialog' );

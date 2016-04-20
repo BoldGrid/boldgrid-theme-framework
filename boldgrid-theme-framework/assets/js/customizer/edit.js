@@ -179,6 +179,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		$parent.hover( function() {
 			$button.addClass( 'highlight-button' );
+
+			self.windowScroll();
 		}, function() {
 			$button.removeClass( 'highlight-button' );
 		} );
@@ -198,6 +200,26 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	/**
 	 *
 	 */
+	this.fixButtonPlacement = function() {
+		var selector = '[data-control][style*="position: fixed"]:not(.highlight-button)';
+
+		// If we scroll up to fast, we can mess things up. Fix buttons not positions correctly.
+		$( selector ).each( function() {
+			var $button = $( this ), $parent = $( $button.attr( 'data-selector' ) );
+
+			if( self.topInView( $parent ) ) {
+				// Update the button's position so that when we place it below it has a nice transition.
+				$button.css( 'position', 'absolute' )
+					.css( 'top', $( window ).scrollTop() );
+
+				self.placeButtons( '[data-control=' + $button.attr( 'data-control' ) + ']' );
+			}
+		});
+	}
+
+	/**
+	 *
+	 */
 	this.init = function() {
 		self.addButtons();
 		self.placeButtons();
@@ -209,13 +231,20 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		$(window).resize(function() {
 		    clearTimeout($.data(this, 'resizeTimer'));
 		    $.data(this, 'resizeTimer', setTimeout(function() {
-		    	console.log('firing');
 		    	self.placeButtons();
 		    }, 400));
 		});
 
 		$( '.navbar-toggle' ).click( function() {
 			setTimeout( self.placeButtons, 400 );
+		});
+
+		$(window).scroll(function() {
+		    clearTimeout($.data(this, 'scrollTimer'));
+		    $.data(this, 'scrollTimer', setTimeout(function() {
+		    	self.windowScroll();
+		    	self.fixButtonPlacement();
+		    }, 100));
 		});
 	};
 
@@ -236,16 +265,28 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	/**
 	 *
 	 */
-	this.placeButtons = function() {
-		$( '[data-control]' ).each( function() {
+	this.placeButtons = function( selector ) {
+		if( undefined === selector ) {
+			selector = '[data-control]';
+		}
+
+		$( selector ).each( function() {
 			var $button = $( this ),
 				$parent = $( $button.attr( 'data-selector' ) ),
 				parentOffset = $parent.offset(),
-				$parentsContainer = $parent.closest( 'div[class*=col-]' );
+				$parentsContainer = $parent.closest( 'div[class*=col-]' ),
+				moves = parseInt( $button.attr( 'data-moves' ) );
 
 			// If the $parent is not visible / hidden, like wedge's site-description, abort.
 			if ( $parent.hasClass( 'hidden' ) || ! $parent.is( ':visible' ) ) {
-				$button.fadeOut();
+
+				// If this is the first time we're showing this button and we don't actually want
+				// to show it, hide it immediately. Otherwise, give it a nice fade out.
+				if( moves === 0 ) {
+					$button.hide();
+				} else {
+					$button.fadeOut();
+				}
 				return;
 			} else {
 				$button.fadeIn();
@@ -267,20 +308,18 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				buttonLeft = $('body').outerWidth(true) - $button.outerWidth( true );
 			}
 
-			var moves = parseInt( $button.attr( 'data-moves' ) );
-
 			var duration = ( moves === 0 ? 0 : 400 );
 
 			moves++;
 
 			$button.attr( 'data-moves', moves );
 
+			$button.css( 'position', 'absolute' );
+
 			$button.animate({
 				top: parentOffset.top,
 				left: buttonLeft
 			}, duration );
-
-
 
 			// On window resize, the previsouly hover functionality does not work as expected
 			// because it is tied to previous positions (those before the browser resize). Remove
@@ -297,6 +336,50 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var offset = $element.offset();
 
 		return offset.left + $element.outerWidth();
+	}
+
+	/**
+	 *
+	 */
+	this.topInView = function( $element ) {
+	    var $window = $(window);
+	    var docViewTop = $window.scrollTop();
+	    var docViewBottom = docViewTop + $window.height();
+	    var elemTop = $element.offset().top;
+	    var elemBottom = elemTop + $element.height();
+	    return ( elemTop >= docViewTop && elemTop <= docViewBottom );
+	}
+
+	/**
+	 *
+	 */
+	this.windowScroll = function() {
+		$button = $( '.highlight-button' );
+
+		// If we don't have a highlighted button, abort.
+		if( 1 !== $button.length ) {
+			return;
+		}
+
+		$parent = $( $button.attr( 'data-selector' ) );
+
+		if( ! self.topInView( $parent ) ) {
+			if( 'absolute' === $button.css( 'position' ) ) {
+				$button.css( 'position', 'fixed' )
+					.css( 'top', -1 * $button.outerHeight() )
+					.animate({
+						top: '0px'
+					}, 400);
+			}
+		} else {
+			if( 'fixed' === $button.css( 'position' ) ) {
+				$button.css( 'position', 'absolute' )
+					.css( 'top', $( window ).scrollTop() )
+					.animate({
+						top: $parent.offset().top
+					}, 400 );
+			}
+		}
 	}
 
 	/**

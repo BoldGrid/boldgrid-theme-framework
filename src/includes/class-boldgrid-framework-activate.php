@@ -70,6 +70,10 @@ class Boldgrid_Framework_Activate {
 	 * @since 1.0.0
 	 */
 	public function do_activate() {
+		if ( is_child_theme() ) {
+			return;
+		}
+
 		// Before running the activation, run deactivate just to be sure.
 		$this->reset();
 

@@ -67,7 +67,7 @@ class Boldgrid_Framework_Wrapper {
 	 * @since 1.1
 	 */
 	public function __construct( $template = 'base.php' ) {
-		$this->slug = basename( $template, '.php' );
+		$this->slug = sanitize_title( basename( $template, '.php' ) );
 		$this->templates = array( $template );
 
 		if ( self::$base ) {

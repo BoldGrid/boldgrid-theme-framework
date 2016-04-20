@@ -330,6 +330,7 @@ class BoldGrid_Framework {
 
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $boldgrid_framework_menu, 'disable_advanced_nav_options' );
+			$this->loader->add_action( 'after_switch_theme', $boldgrid_framework_menu, 'transfer_menus', 10, 2 );
 		}
 
 	}
@@ -551,15 +552,16 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function device_preview() {
-
 		$device_preview = new BoldGrid_Framework_Device_Preview( $this->configs );
+		// We don't need device previews if user is running on a mobile device or newer WP.
+		$wp_version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>' );
 
-		// We don't need device previews if user is running on a mobile device.
-		if ( wp_is_mobile( ) ) { return; }
+		if ( wp_is_mobile() || $wp_version ) {
+			return;
+		}
 
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $device_preview, 'enqueue_scripts' );
 		$this->loader->add_action( 'customize_controls_print_footer_scripts', $device_preview, 'print_templates' );
-
 	}
 
 	/**

@@ -15,6 +15,7 @@ return array(
 
 	// Required From Theme - these are defaults
 	'theme_name' => 'boldgrid-theme',
+	'theme-parent-name' => 'prime',
 	'version' => wp_get_theme()->Version,
 	'theme_id' => null,
 	'boldgrid-parent-theme' => false,

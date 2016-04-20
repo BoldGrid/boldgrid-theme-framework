@@ -222,4 +222,39 @@ class Boldgrid_Framework_Menu {
 			}
 		}
 	}
+
+	/**
+	 * Check if theme is child of specified parent theme.
+	 *
+	 * This will check the configs to see if the specified parent
+	 * theme is the same as the theme's directory.
+	 *
+	 * @return boolean $is_child Returns true if theme is a child created by a user.
+	 * @since 1.1.3
+	 */
+	public function is_user_child() {
+		$parent_name = $this->configs['theme-parent-name'];
+		$stylesheet_name = strtolower( wp_get_theme()->Name );
+		$is_user_child = ( is_child_theme() && $stylesheet_name === $parent_name ? true : false );
+
+		return $is_user_child;
+	}
+
+	/**
+	 * Copy over menu locations to child theme
+	 *
+	 * @param array  $old Old menus in theme.
+	 * @param string $new New menus in theme.
+	 * @since 1.0.0
+	 */
+	public function transfer_menus( $old, $new = null ) {
+		if ( $this->is_user_child() && $new ) {
+			$old_theme_mods = get_option( 'theme_mods_' . $new->get_stylesheet() );
+			$old_locations = ! empty( $old_theme_mods['nav_menu_locations'] ) ? $old_theme_mods['nav_menu_locations'] : null;
+
+			if ( $old_locations ) {
+				set_theme_mod( 'nav_menu_locations', $old_locations );
+			}
+		}
+	}
 }

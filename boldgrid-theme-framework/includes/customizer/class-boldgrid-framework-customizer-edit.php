@@ -28,9 +28,8 @@ class Boldgrid_Framework_Customizer_Edit {
 				'/wp-content/themes/' . $stylesheet .
 					 '/inc/boldgrid-theme-framework/assets/js/customizer/edit.js' );
 			$translation_array = array (
-				'cancel' => 'Cancel',
 				'editPostLink' => get_edit_post_link( get_the_ID() ),
-				'goThereNow' => 'Go there now'
+				'goThereNow' => __( 'Go there now', 'bgtfw' )
 			);
 			wp_localize_script( 'boldgrid-framework-customizer-edit-js',
 				'boldgridFrameworkCustomizerEdit', $translation_array );

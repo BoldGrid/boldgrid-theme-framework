@@ -80,7 +80,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	this.bindEdit = function() {
 		$( '[data-control]' ).on( 'click', function() {
 			var dataControl = $( this ).attr( 'data-control' ),
-				cancel = boldgridFrameworkCustomizerEdit.cancel,
+				cancel = parent.window._wpCustomizeControlsL10n.cancel,
 				dialogSettings = {
 					width : 400,
 					resizable : false,

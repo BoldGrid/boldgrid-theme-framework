@@ -286,6 +286,10 @@ msgstr ""
 msgid "BoldGrid Color Palettes"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:61
+msgid "Go there now"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:70
 msgid "Footer Settings"
 msgstr ""

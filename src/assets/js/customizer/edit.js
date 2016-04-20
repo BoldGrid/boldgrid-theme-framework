@@ -19,7 +19,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	var self = this, api = parent.wp.customize;
 
 	$( function() {
-		self.initEdit();
+		setTimeout( self.init, 500 );
 	} );
 
 	/**
@@ -30,9 +30,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	this.addButtons = function() {
 		// General Settings.
 		var settings = {
-		    'blogname' : '.site-title',
+		    'blogname' : '.site-title a',
 		    'boldgrid_logo_size' : '.logo-site-title',
-		    'boldgrid_enable_footer' : '.site-footer .attribution',
+		    'boldgrid_enable_footer' : '.attribution',
 		    'entry-content' : '.entry-content',
 		    'entry-title' : '.entry-title',
 		    'blogdescription' : '.site-description',
@@ -41,34 +41,36 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var keys = _.keys( settings );
 
 		_( keys ).each( function( key ) {
-			self.addButton( null, key, $( settings[ key ] ) );
+			self.addButton( null, key, settings[ key ] );
 		} );
 
 		// Widgets.
 		$( 'aside.widget' ).each( function() {
-			var widget = $( this ), widgetId = widget.attr( 'id' );
-			self.addButton( 'sidebar', widgetId, widget );
+			var widget = $( this ),
+			widgetId = widget.attr( 'id' );
+
+			self.addButton( 'sidebar', widgetId, '#' + widgetId );
 		} );
 
 		// Black Studio TinyMCE.
 		$( 'aside[id^="black-studio-tinymce-"' ).each( function() {
-			var widget = $( this ), widgetId;
+			var widget = $( this ),
+				widgetId;
 
 			widgetId = widget.attr( 'id' ).replace( 'black-studio-tinymce-', '' ).trim();
-
-			self.addButton( 'widget_black-studio-tinymce', widgetId, widget );
+			self.addButton( 'widget_black-studio-tinymce', widgetId, '#' + widget.attr( 'id' ) );
 		} );
 
 		// Menus.
-		var $selector;
+		var menuId;
 
 		settings = api.section( 'menu_locations' ).controls();
 
 		_( settings ).each(
 		    function( menu ) {
-			    $selector = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu' )
-			        .find( 'ul' ).first();
-			    self.addButton( 'nav_menu', menu.setting._value, $selector );
+			    menuId = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu' )
+			        .find( 'ul' ).first().attr( 'id' );
+			    self.addButton( 'nav_menu', menu.setting._value, '#' + menuId );
 		    } );
 	};
 
@@ -78,7 +80,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	this.bindEdit = function() {
 		$( '[data-control]' ).on( 'click', function() {
 			var dataControl = $( this ).attr( 'data-control' ),
-				cancel = boldgridFrameworkCustomizerEdit.cancel,
+				cancel = parent.window._wpCustomizeControlsL10n.cancel,
 				dialogSettings = {
 					width : 400,
 					resizable : false,
@@ -133,7 +135,55 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 			}, 500 );
 		} );
+	};
 
+	/**
+	 *
+	 */
+	this.buttonHover = function( $button, $parent, $parentsContainer ) {
+		var parentOffset = $parent.offset(),
+			containerOffset,
+			$parentHighlight = $( '#target-highlight' ),
+			highlightHeight = $parent.outerHeight( );
+
+		containerOffset = $parentsContainer.offset();
+
+		// Sometimes the $parent itself does not have a height, but its decendents do.
+		// Find the tallest descendant and use that height for the hover effect.
+		if( 0 === highlightHeight ) {
+			$parent.find('*').each( function() {
+				var $child = $( this ),
+					childHeight = $child.outerHeight( );
+
+				if( childHeight > highlightHeight ) {
+					highlightHeight = childHeight;
+				}
+			});
+		}
+
+		$button.hover( function() {
+			$parentHighlight
+				// The highlight should we as wide as the col.
+				.css( 'width', $parentsContainer.outerWidth() )
+				// The highlight should be as tall as the parent element.
+				.css( 'height', highlightHeight )
+				// The highlight should be aligned top the same as the parent element.
+				.css( 'top', parentOffset.top )
+				// The highlight should be aligned left with the col.
+				.css( 'left', containerOffset.left );
+		}, function() {
+			$parentHighlight
+				.css( 'width', '0px' )
+				.css( 'height', '0px' );
+		});
+
+		$parent.hover( function() {
+			$button.addClass( 'highlight-button' );
+
+			self.windowScroll();
+		}, function() {
+			$button.removeClass( 'highlight-button' );
+		} );
 	};
 
 	/**
@@ -150,47 +200,213 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	/**
 	 *
 	 */
-	this.initEdit = function() {
-		self.addButtons();
-		self.bindEdit();
-		self.fadeOut();
+	this.fixButtonPlacement = function() {
+		var selector = '[data-control][style*="position: fixed"]:not(.highlight-button)';
+
+		// If we scroll up to fast, we can mess things up. Fix buttons not positions correctly.
+		$( selector ).each( function() {
+			var $button = $( this ), $parent = $( $button.attr( 'data-selector' ) );
+
+			if( self.topInView( $parent ) ) {
+				// Update the button's position so that when we place it below it has a nice transition.
+				$button.css( 'position', 'absolute' )
+					.css( 'top', $( window ).scrollTop() );
+
+				self.placeButtons( '[data-control=' + $button.attr( 'data-control' ) + ']' );
+			}
+		});
 	};
 
 	/**
 	 *
 	 */
-	this.addButton = function( type, id, parent ) {
-		// If the target exists but is hidden, like wedge's site-description,
-		// abort.
-		if ( parent.hasClass( 'hidden' ) ) {
-			return;
+	this.init = function() {
+		self.addButtons();
+		self.placeButtons();
+		self.bindEdit();
+		self.fadeOut();
+
+		//$( window ).resize( self.placeButtons );
+
+		$(window).resize(function() {
+		    clearTimeout($.data(this, 'resizeTimer'));
+		    $.data(this, 'resizeTimer', setTimeout(function() {
+		    	self.placeButtons();
+		    }, 400));
+		});
+
+		$( '.navbar-toggle' ).click( function() {
+			setTimeout( self.placeButtons, 400 );
+		});
+
+		$(window).scroll(function() {
+		    clearTimeout($.data(this, 'scrollTimer'));
+		    $.data(this, 'scrollTimer', setTimeout(function() {
+		    	self.windowScroll();
+		    	self.fixButtonPlacement();
+		    }, 100));
+		});
+	};
+
+	/**
+	 *
+	 */
+	this.parentColumn = function( $element ) {
+		$parentsContainer = $element.closest( 'div[class*=col-]' );
+
+		// Some elements are not contained in a col, but instead in a row.
+		if( 0 === $parentsContainer.length ) {
+			$parentsContainer = $element.closest( 'div[class=row]' );
 		}
 
-		if ( !parent.is( ':visible' ) ) {
-			return;
+		return $parentsContainer;
+	};
+
+	/**
+	 *
+	 */
+	this.placeButtons = function( selector ) {
+		if( undefined === selector ) {
+			selector = '[data-control]';
 		}
 
-		var $button, $buttonContainer;
+		$( selector ).each( function() {
+			var $button = $( this ),
+				$parent = $( $button.attr( 'data-selector' ) ),
+				parentOffset = $parent.offset(),
+				$parentsContainer = $parent.closest( 'div[class*=col-]' ),
+				moves = parseInt( $button.attr( 'data-moves' ) );
 
-		$button = $( '<button></button>' );
-		// if( parent.css('margin-top') != parent.css('margin-bottom') ) {
-		// $button.css('top', parent.css('margin-top'));
-		// }
+			// If the $parent is not visible / hidden, like wedge's site-description, abort.
+			if ( $parent.hasClass( 'hidden' ) || ! $parent.is( ':visible' ) ) {
 
-		$buttonContainer = $( '<div class="edit-button"></div>' );
-
-		// The phone number on pavilion has no height. Add height to it so we
-		// can highlight it.
-		if ( 0 === parent.outerHeight() ) {
-			var maxHeight = 0;
-			parent.find( 'div,p,a,span' ).each( function() {
-				var height = $( this ).height();
-				if ( height > 0 && height > maxHeight ) {
-					maxHeight = height;
+				// If this is the first time we're showing this button and we don't actually want
+				// to show it, hide it immediately. Otherwise, give it a nice fade out.
+				if( moves === 0 ) {
+					$button.hide();
+				} else {
+					$button.fadeOut();
 				}
-			} );
+				return;
+			} else {
+				$button.fadeIn();
+			}
 
-			parent.height( maxHeight );
+			// TODO: This if statement needs some cleanup.
+			// Some elements are not contained in a col, but instead in a row.
+			if( 0 === $parentsContainer.length ) {
+				$parentsContainer = $parent.closest( 'div[class=row]' );
+
+				if( 0 === $parentsContainer.length ) {
+
+					// Diced, the .site-title a, we have to be a bit tricky to find the closest column.
+					$parentsContainer = $parent.parent().parent().siblings('div[class*=col-]').first();
+
+					if( 0 === $parentsContainer.length ) {
+
+						// Diced, again... The div is 'row background-primary' not just 'row'.
+						$parentsContainer = $parent.closest('div[class^=row]');
+
+						if( 0 === $parentsContainer.length ) {
+							console.log(' ERROR PARENT COL OR ROW NOT ROUND');
+							console.log( 'selector: ' + $button.attr( 'data-selector' ) );
+						}
+					}
+				}
+			}
+
+			var buttonLeft = self.right( $parentsContainer );
+
+			// Don't allow buttons to go off the screen.
+			if( self.right( $parentsContainer ) + $button.outerWidth( true ) > $('body').outerWidth(true) ) {
+				buttonLeft = $('body').outerWidth(true) - $button.outerWidth( true );
+			}
+
+			var duration = ( moves === 0 ? 0 : 400 );
+
+			moves++;
+
+			$button.attr( 'data-moves', moves );
+
+			$button.css( 'position', 'absolute' );
+
+			$button.animate({
+				top: parentOffset.top,
+				left: buttonLeft
+			}, duration );
+
+			// On window resize, the previsouly hover functionality does not work as expected
+			// because it is tied to previous positions (those before the browser resize). Remove
+			// previous hover states and add them fresh.
+			$button.unbind( 'mouseenter mouseleave' );
+			self.buttonHover( $button, $parent, $parentsContainer );
+		});
+	};
+
+	/**
+	 *
+	 */
+	this.right = function( $element ) {
+		var offset = $element.offset();
+
+		return offset.left + $element.outerWidth();
+	};
+
+	/**
+	 *
+	 */
+	this.topInView = function( $element ) {
+	    var $window = $(window);
+	    var docViewTop = $window.scrollTop();
+	    var docViewBottom = docViewTop + $window.height();
+	    var elemTop = $element.offset().top;
+	    var elemBottom = elemTop + $element.height();
+	    return ( elemTop >= docViewTop && elemTop <= docViewBottom );
+	};
+
+	/**
+	 *
+	 */
+	this.windowScroll = function() {
+		$button = $( '.highlight-button' );
+
+		// If we don't have a highlighted button, abort.
+		if( 1 !== $button.length ) {
+			return;
+		}
+
+		$parent = $( $button.attr( 'data-selector' ) );
+
+		if( ! self.topInView( $parent ) ) {
+			if( 'absolute' === $button.css( 'position' ) ) {
+				$button.css( 'position', 'fixed' )
+					.css( 'top', -1 * $button.outerHeight() )
+					.animate({
+						top: '0px'
+					}, 400);
+			}
+		} else {
+			if( 'fixed' === $button.css( 'position' ) ) {
+				$button.css( 'position', 'absolute' )
+					.css( 'top', $( window ).scrollTop() )
+					.animate({
+						top: $parent.offset().top
+					}, 400 );
+			}
+		}
+	};
+
+	/**
+	 *
+	 */
+	this.addButton = function( type, id, selector ) {
+		var $button = $( '<button></button>' ),
+			$parent = $( selector ),
+			$parentsContainer = self.parentColumn( $parent );
+
+		// If the selector is not visible / hidden, like wedge's site-description, abort.
+		if ( $parent.hasClass( 'hidden' ) || ! $parent.is( ':visible' ) ) {
+			// return;
 		}
 
 		if ( null === type ) {
@@ -199,95 +415,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$button.attr( 'data-control', type + '[' + id + ']' );
 		}
 
-		$buttonContainer.append( $button );
+		$button.attr( 'data-selector', selector );
 
-		parent.before( $buttonContainer );
+		$button.attr( 'data-moves', 0 );
 
-		// Get the closest column.
-		var $col = parent.closest( 'div[class*=col-]' );
-		var colOffset = $col.offset();
+		$('body').append($button);
 
-		if ( undefined === colOffset ) {
-			$col = parent.closest( 'div[class*=row]' );
-			colOffset = $col.offset();
-		}
-
-		var containerOffset = $buttonContainer.offset();
-
-		// Make sure our buttonContainer is flush with the right side of the
-		// column.
-		if ( undefined !== colOffset ) {
-			var bodyWidth = $( 'body' ).width();
-
-			var colLeft = colOffset.left;
-			var colWidth = $col.outerWidth();
-
-			var colRight = bodyWidth - ( colLeft + colWidth );
-
-			var conLeft = containerOffset.left;
-			var conWidth = $buttonContainer.outerWidth();
-			var conRight = bodyWidth - ( conLeft + conWidth );
-
-			var adjustment = ( colRight - conRight );
-
-			$buttonContainer.css( 'margin-right', adjustment );
-
-			$buttonContainer.css( 'margin-left', ( colLeft - conLeft ) );
-		}
-
-		// If our parent has negative margin, adjust our button.
-		if ( 0 > parent.css( 'margin-top' ).replace( 'px', '' ) ) {
-			$button.css( 'top', '+=' + parent.css( 'margin-top' ) );
-		}
-
-		parent.hover( function() {
-			$button.addClass( 'highlight-button' );
-		}, function() {
-			$button.removeClass( 'highlight-button' );
-		} );
-
-		// $overlay.hover( function() {
-		// $button.addClass( 'highlight-button' );
-		// }, function() {
-		// $button.removeClass( 'highlight-button' );
-		// } );
-
-		$button.hover( function() {
-			// $overlay.css( 'margin-left', '0px' );
-			parent.addClass( 'highlight-parent' );
-
-			var parentOffset = parent.offset();
-
-			$( '#target-highlight' ).css( 'left', parentOffset.left - $( window ).scrollLeft() );
-			$( '#target-highlight' ).css( 'top', parentOffset.top - $( window ).scrollTop() );
-			$( '#target-highlight' ).css( 'width', parent.outerWidth() );
-			$( '#target-highlight' ).css( 'height', parent.outerHeight() );
-
-			// Show the orange box shadow.
-			$( '#target-highlight' ).addClass( 'target-highlight-shadow' );
-
-			var buttonOffset = $button.offset();
-			var targetHighlightOffset = $( '#target-highlight' ).offset();
-
-			var targetHighlightRight = targetHighlightOffset.left +
-				$( '#target-highlight' ).outerWidth();
-
-			// Make sure our fixed #target-highligh does not overlap our edit
-			// button.
-			if ( ( targetHighlightRight - 5 ) > buttonOffset.left ) {
-				$( '#target-highlight' ).css( 'width',
-				    '-=' + ( targetHighlightRight - buttonOffset.left ) + 'px' );
-			}
-		}, function() {
-			// Hide the orange box shadow.
-			$( '#target-highlight' ).removeClass( 'target-highlight-shadow' );
-
-			// $overlay.css( 'margin-left', parent.outerWidth() );
-			parent.removeClass( 'highlight-parent' );
-
-			$( '#target-highlight' ).css( 'width', '0px' );
-			$( '#target-highlight' ).css( 'height', '0px' );
-		} );
+		self.buttonHover( $button, $parent, $parentsContainer );
 	};
 };
 

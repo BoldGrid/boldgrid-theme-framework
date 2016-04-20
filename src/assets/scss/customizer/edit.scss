@@ -1,87 +1,70 @@
-.relative {
-	position: relative;
-}
-
-.edit-button {
-	height: 0px;
-	overflow: visible;
-	position: relative;
-}
-
 button[data-control]:before {
-	content: "\f540";
-	display: inline-block;
-	-webkit-font-smoothing: antialiased;
-	font: normal 20px/1 'dashicons';
-	vertical-align: top;
+  content: "\f107";
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  font: normal 20px/1 'dashicons';
+  vertical-align: top;
 }
 
 button[data-control] {
-	font-size: 14px;
-	font-family: monospace;
-	line-height: 16px;
-	margin: 0px;
-	padding: 5px;
-	text-decoration: none;
-	color: #000;
-	background: #ddd;
-	opacity: 0.5;
-	border-radius: 4px;
-	border: 0px;
-	z-index: 10;
-	position: absolute;
-	top: 0px;
-	right: 0px;
+  font-size: 14px;
+  font-family: monospace;
+  /* line-height: 16px; */
+  /* margin: 0px; */
+  padding: 5px;
+  text-decoration: none;
+  color: #000;
+  background: #ddd;
+  opacity: 0.5;
+  border-radius: 4px;
+  border: 0px;
+  z-index: 10;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 
 button[data-control]:hover,
 button[data-control].highlight-button {
-	opacity: 1;
-	background: #f95b26;
-	color: #fff;
-	-webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
-	box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
-}
-
-.parent-overlay {
-	background: #fff;
-	opacity: 0;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	-webkit-box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 0.5);
-	-moz-box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 0.5);
-	box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 1);
-	z-index: 0;
-	-webkit-box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 0.5)
-}
-
-button[data-control]:hover+.parent-overlay {
-	opacity: 0.5;
+  opacity: 1;
+  background: #f95b26;
+  color: #fff;
+  -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
 .dialog-hidden {
-	display: none;
+  display: none;
 }
 
 .ui-dialog {
-	color: #000;
+  color: #000;
+}
+
+/* Simulate wp-core-ui's button-primary */
+.ui-dialog-buttonset button:first-of-type {
+	background: #0085ba;
+	border-color: #0073aa #006799 #006799;
+	-webkit-box-shadow: 0 1px 0 #006799;
+	box-shadow: 0 1px 0 #006799;
+	color: #fff;
+	text-decoration: none;
+	text-shadow: 0 -1px 1px #006799,
+		1px 0 1px #006799,
+		0 1px 1px #006799,
+		-1px 0 1px #006799;
 }
 
 #target-highlight {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	width: 0px;
-	height: 0px;
-	background: rgba(255, 255, 255, 0.5);
-	z-index: 5;
-}
-
-.target-highlight-shadow {
-	-webkit-box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 0.5);
-	-moz-box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 0.5);
-	box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 1);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 0px;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 5;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 0.5);
+  -moz-box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 0.5);
+  box-shadow: 0px 0px 10px 2px #f95b26;
 }

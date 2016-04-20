@@ -158,7 +158,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				if( childHeight > highlightHeight ) {
 					highlightHeight = childHeight;
 				}
-			})
+			});
 		}
 
 		$button.hover( function() {
@@ -184,7 +184,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}, function() {
 			$button.removeClass( 'highlight-button' );
 		} );
-	}
+	};
 
 	/**
 	 *
@@ -215,7 +215,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				self.placeButtons( '[data-control=' + $button.attr( 'data-control' ) + ']' );
 			}
 		});
-	}
+	};
 
 	/**
 	 *
@@ -260,7 +260,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}
 
 		return $parentsContainer;
-	}
+	};
 
 	/**
 	 *
@@ -341,7 +341,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$button.unbind( 'mouseenter mouseleave' );
 			self.buttonHover( $button, $parent, $parentsContainer );
 		});
-	}
+	};
 
 	/**
 	 *
@@ -350,7 +350,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var offset = $element.offset();
 
 		return offset.left + $element.outerWidth();
-	}
+	};
 
 	/**
 	 *
@@ -362,7 +362,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	    var elemTop = $element.offset().top;
 	    var elemBottom = elemTop + $element.height();
 	    return ( elemTop >= docViewTop && elemTop <= docViewBottom );
-	}
+	};
 
 	/**
 	 *
@@ -394,7 +394,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 					}, 400 );
 			}
 		}
-	}
+	};
 
 	/**
 	 *
@@ -423,6 +423,6 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		self.buttonHover( $button, $parent, $parentsContainer );
 	};
-}
+};
 
 new BOLDGRID.Customizer_Edit( jQuery );

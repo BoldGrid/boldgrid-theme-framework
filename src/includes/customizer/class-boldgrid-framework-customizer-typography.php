@@ -299,6 +299,12 @@ class Boldgrid_Framework_Customizer_Typography {
 				'section'  => 'alternate_headings_typography',
 				'default'  => $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'],
 				'choices'  => kirki_Fonts::get_font_choices(),
+				'output'  => array(
+					array(
+						'element'  => 'h1.alt-font, h2.alt-font, h3.alt-font, h4.alt-font, h5.alt-font, h6.alt-font',
+						'property' => 'font-family',
+					),
+				),
 			);
 			// Alternate Headings Font Size Control.
 			$controls['alternate_headings_font_size'] = array(
@@ -415,24 +421,6 @@ class Boldgrid_Framework_Customizer_Typography {
 			}
 		}
 		return $controls;
-	}
-
-	/**
-	 * Headings Font Family CSS
-	 *
-	 * CSS to apply to the headings on the front end of the site.
-	 *
-	 * @since 1.1
-	 */
-	public function headings_font_family_css() {
-		$headings_default = $this->configs['customizer-options']['typography']['defaults']['headings_font_family'];
-		$alt_headings_default = $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'];
-		?>
-			<style type="text/css">
-				h1,h2,h3,h4,h5,h6{ font-family: <?php print get_theme_mod( 'heading_font_family', $headings_default );?>; }
-				h1.alt-font,h2.alt-font,h3.alt-font,h4.alt-font,h5.alt-font,h6.alt-font{ font-family: <?php print get_theme_mod( 'alternate_headings_font_family', $alt_headings_default );?>; }
-			</style>
-		<?php
 	}
 
 	/**

@@ -284,11 +284,11 @@
 
 .boldgrid-inactive-palette .boldgrid-palette-colors {
 	font-size: 0;
-	border: 3px solid;
+	border: 2px solid;
 	border-color: #E1E1E1;
 	height: 33px;
 	&:hover {
-		border: 3px solid;
+		border: 2px solid;
 		border-color: #fb5f14;	
 		cursor: pointer;
 	}
@@ -297,11 +297,11 @@
 /*****************************************************
 ************Active Color Palette Rules****************
 ******************************************************/
-.boldgrid-active-palette {
-	border: 3px solid;
-	border-color: #fb5f14;
+.boldgrid-active-palette { 
+	border: 2px solid;
+	border-color: #E1E1E1;
 	height: 84px;
-	margin-top: 15px;
+	margin-top: 15px; 
 	li {
 		margin-top: 0px;
 		margin-bottom: 0px;
@@ -318,7 +318,7 @@
 		position: relative;
 	}
 	.active-palette-section {
-		border: 2px solid orange;
+		border: 2px solid #fb5f14; 
 		box-sizing: border-box;
 	}
 }

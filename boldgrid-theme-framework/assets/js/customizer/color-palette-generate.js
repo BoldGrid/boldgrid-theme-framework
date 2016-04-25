@@ -508,6 +508,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 				if ( apiColorCount.palettes[ apiColorCount.paletteCounter ] ) {
 					newPalette = apiColorCount.palettes[ apiColorCount.paletteCounter ].getPalette();
 					newPalette = self.arrayMove( newPalette, colorsPartialPalette.generateKeys[0], this.colorIndex );
+					newPalette = self.truncate_generated_palette( newPalette, colorsPartialPalette.palette );
 					apiColorCount.paletteCounter++;
 					
 				} else {

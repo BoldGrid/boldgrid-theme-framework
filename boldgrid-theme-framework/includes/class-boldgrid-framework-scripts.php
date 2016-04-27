@@ -147,5 +147,18 @@ class BoldGrid_Framework_Scripts {
 			);
 		}
 
+		/**
+		 * Add offcanvas.js for offcanvas menus if a theme requests it.
+		 *
+		 * @since 1.0.0
+		 */
+		if ( true === $this->configs['scripts']['offcanvas-menu'] ) {
+			wp_enqueue_script(
+				'boldgrid-offcanvas-js',
+				$this->configs['framework']['js_dir'] . 'offcanvas' . $suffix . '.js',
+				array( 'jquery' ),
+				$this->configs['version']
+			);
+		}
 	}
 }

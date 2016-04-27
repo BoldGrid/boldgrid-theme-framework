@@ -97,21 +97,6 @@ class BoldGrid_Framework_Scripts {
 		);
 
 		/**
-		 * WARNING
-		 * This information will be passed outside of the admin interface
-		 * its important that only safe information is localized to this script.
-		 *
-		 * Only pass specific config values
-		 */
-		wp_localize_script(
-			'boldgrid-front-end-scripts',
-			'BOLDGRID_THEME_FRAMEWORK',
-			array(
-				'wow_js_enabled' => ! empty( $this->configs['scripts']['wow-js'] ),
-			)
-		);
-
-		/**
 		 * Hide/Show Author Box
 		 */
 		if ( is_single( ) || is_author( ) ) {

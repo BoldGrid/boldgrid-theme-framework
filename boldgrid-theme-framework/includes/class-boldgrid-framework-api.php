@@ -334,7 +334,7 @@ class BoldGrid {
 		if ( is_multi_author( ) ) {
 			$classes[] = 'group-blog';
 		}
-	
+
 		if ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) {
 			$classes[] = 'sticky-nav-enabled';
 		}

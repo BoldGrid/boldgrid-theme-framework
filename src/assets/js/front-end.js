@@ -187,6 +187,12 @@
 			}
 		},
 
+		// Offcanvas menu handling.
+		'offcanvas_menu_enabled' : {
+			init: function() {
+
+			},
+		},
 		// WOW.js enabled.
 		'wow_js_enabled' : {
 			init: function(){

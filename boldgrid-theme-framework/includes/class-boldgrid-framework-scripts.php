@@ -82,21 +82,6 @@ class BoldGrid_Framework_Scripts {
 		);
 
 		/**
-		 * Skip-Link Focus Fix
-		 *
-		 * This provides a skip link for screen readers and brings focus to the element if screen reading.
-		 *
-		 * @since 1.0.0
-		 */
-		wp_enqueue_script(
-			'boldgrid-skip-link-focus-fix',
-			$this->configs['framework']['js_dir'] . 'skip-link-focus-fix' . $suffix . '.js',
-			array(),
-			$this->configs['version'],
-			true
-		);
-
-		/**
 		 * General Boldgrid scripts
 		 *
 		 * Used for small snippets of code that should always be applied

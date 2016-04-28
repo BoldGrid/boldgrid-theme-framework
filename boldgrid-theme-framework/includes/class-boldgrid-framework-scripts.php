@@ -155,7 +155,7 @@ class BoldGrid_Framework_Scripts {
 		if ( true === $this->configs['scripts']['offcanvas-menu'] ) {
 			wp_enqueue_script(
 				'boldgrid-offcanvas-js',
-				$this->configs['framework']['js_dir'] . 'offcanvas' . $suffix . '.js',
+				$this->configs['framework']['js_dir'] . 'offcanvas/offcanvas' . $suffix . '.js',
 				array( 'jquery' ),
 				$this->configs['version']
 			);

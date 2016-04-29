@@ -70,7 +70,7 @@ class Boldgrid_Framework_Activate {
 	 * @since 1.0.0
 	 */
 	public function do_activate() {
-		if ( is_child_theme() ) {
+		if ( $this->menus->is_user_child() ) {
 			return;
 		}
 

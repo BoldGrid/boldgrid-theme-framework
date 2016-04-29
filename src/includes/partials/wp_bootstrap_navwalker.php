@@ -20,8 +20,14 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 	 * @param int $depth Depth of page. Used for padding.
 	 */
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
+		global $boldgrid_theme_framework;
 		$indent = str_repeat( "\t", $depth );
-		$output .= "\n$indent<ul role=\"menu\" class=\" dropdown-menu\">\n";
+		$configs = $boldgrid_theme_framework->get_configs();
+		$class = '';
+		if ( true === $configs['scripts']['offcanvas-menu'] ) {
+			$class = 'navmenu-nav';
+		}
+		$output .= "\n$indent<ul role=\"menu\" class=\"$class dropdown-menu\">\n";
 	}
 
 	/**
@@ -98,7 +104,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 					if ( 'title' == $attr &&  $value != strip_tags( $value ) ) {
 						continue;
 					}
-					
+
 					$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
 					$attributes .= ' ' . $attr . '="' . $value . '"';
 				}

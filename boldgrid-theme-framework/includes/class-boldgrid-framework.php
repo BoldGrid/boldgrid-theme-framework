@@ -529,7 +529,6 @@ class BoldGrid_Framework {
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'navigation_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'body_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'site_identity_controls' );
-			$this->loader->add_action( 'wp_head', $boldgrid_theme_customizer_typography, 'headings_font_family_css' );
 			$this->loader->add_action( 'wp_head', $boldgrid_theme_customizer_typography, 'headings_font_size_css' );
 			$this->loader->add_action( 'wp_head', $boldgrid_theme_customizer_typography, 'title_text_shadow' );
 			$this->loader->add_filter( 'boldgrid_mce_inline_styles', $boldgrid_theme_customizer_typography, 'headings_editor_styles' );

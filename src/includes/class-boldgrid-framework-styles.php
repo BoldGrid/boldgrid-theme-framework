@@ -65,7 +65,7 @@ class BoldGrid_Framework_Styles {
 		return array(
 			'style.css',
 			'editor-style.css',
-			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap' . $suffix . '.css',
+			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap.min.css',
 			$this->configs['framework']['css_dir'] . 'boldgrid-theme-framework' . $suffix . '.css',
 			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
 			$this->configs['customizer-options']['colors']['settings']['output_css_name'],
@@ -108,7 +108,7 @@ class BoldGrid_Framework_Styles {
 		/* Bootstrap */
 		wp_enqueue_style(
 			'bootstrap-styles',
-			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap' . $suffix . '.css',
+			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap.min.css',
 			array(),
 			'3.3.1'
 		);
@@ -139,6 +139,16 @@ class BoldGrid_Framework_Styles {
 			wp_enqueue_style(
 				'boldgrid-animate-css',
 				$this->configs['framework']['css_dir'] . 'animate-css/animate' . $suffix . '.css',
+				array(),
+				$this->configs['version']
+			);
+		}
+
+		// Add offcanvas styles.
+		if ( true === $this->configs['scripts']['offcanvas-menu'] ) {
+			wp_enqueue_style(
+				'boldgrid-offcanvas-css',
+				$this->configs['framework']['css_dir'] . 'offcanvas' . $suffix . '.css',
 				array(),
 				$this->configs['version']
 			);

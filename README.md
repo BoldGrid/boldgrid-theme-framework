@@ -1,6 +1,9 @@
 # BoldGrid Theme Framework #
 
-[![Build Status](https://travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE) [![Code Climate](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework/badges/gpa.svg)](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework)
+[![Build Status](https://travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=dev)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
+[![License](https://img.shields.io/badge/license-GPL--2.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE)
+[![PHP Version](https://img.shields.io/badge/PHP-5.3%2B-blue.svg)](https://php.net)
+[![Code Climate](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework/badges/gpa.svg)](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework)
 
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
@@ -22,6 +25,15 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 1.1.3 ###
+* Bug fix: Addressed issue where subheadings weren't having font-family property set.
+* Bug fix: Inline Links in Visual Editor in Customizer now are working for WP 4.5+.
+* Misc: Bootstrap-compile now works with SCRIPT_DEBUG set to true.
+* New Feature: Child theme's will transfer menus from parent on activation.
+
+### 1.1.2 ###
+* Hotfix: Disable responsive device previews, and use WP's new responsive previews in WP 4.5+.
 
 ### 1.1.1 ###
 * New Feature: Child themes can now be created and work properly.

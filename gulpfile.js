@@ -83,6 +83,13 @@ gulp.task( 'jsDeps', function(  ) {
   // Bootstrap
   gulp.src( config.bower + '/bootstrap-sass/assets/javascripts/bootstrap.*' )
     .pipe( gulp.dest( config.jsDest + '/bootstrap' ) );
+  // Jasny Bootstrap
+  gulp.src( config.bower + '/jasny-bootstrap/js/offcanvas.js' )
+    .pipe( gulp.dest( config.jsDest + '/offcanvas' ) );
+  gulp.src( config.bower + '/jasny-bootstrap/js/offcanvas.js' )
+	.pipe( uglify(  ) )
+    .pipe( rename({ suffix: '.min' }) )
+    .pipe( gulp.dest( config.jsDest + '/offcanvas' ) );
   // sass.js - Check
   gulp.src( config.bower + '/sass.js/dist/**/*' )
     .pipe( gulp.dest( config.jsDest + '/sass-js' ) );

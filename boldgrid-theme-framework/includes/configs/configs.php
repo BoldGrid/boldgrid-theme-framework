@@ -70,6 +70,7 @@ return array(
 		'boldgrid-sticky-footer'  => false,
 		'wow-js'                  => false,
 		'animate-css'             => false,
+		'offcanvas-menu'          => false,
 	),
 
 	/**

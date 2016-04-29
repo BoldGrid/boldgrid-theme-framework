@@ -82,21 +82,6 @@ class BoldGrid_Framework_Scripts {
 		);
 
 		/**
-		 * Skip-Link Focus Fix
-		 *
-		 * This provides a skip link for screen readers and brings focus to the element if screen reading.
-		 *
-		 * @since 1.0.0
-		 */
-		wp_enqueue_script(
-			'boldgrid-skip-link-focus-fix',
-			$this->configs['framework']['js_dir'] . 'skip-link-focus-fix' . $suffix . '.js',
-			array(),
-			$this->configs['version'],
-			true
-		);
-
-		/**
 		 * General Boldgrid scripts
 		 *
 		 * Used for small snippets of code that should always be applied
@@ -109,21 +94,6 @@ class BoldGrid_Framework_Scripts {
 			array( 'jquery' ),
 			$this->configs['version'],
 			true
-		);
-
-		/**
-		 * WARNING
-		 * This information will be passed outside of the admin interface
-		 * its important that only safe information is localized to this script.
-		 *
-		 * Only pass specific config values
-		 */
-		wp_localize_script(
-			'boldgrid-front-end-scripts',
-			'BOLDGRID_THEME_FRAMEWORK',
-			array(
-				'wow_js_enabled' => ! empty( $this->configs['scripts']['wow-js'] ),
-			)
 		);
 
 		/**
@@ -177,5 +147,18 @@ class BoldGrid_Framework_Scripts {
 			);
 		}
 
+		/**
+		 * Add offcanvas.js for offcanvas menus if a theme requests it.
+		 *
+		 * @since 1.0.0
+		 */
+		if ( true === $this->configs['scripts']['offcanvas-menu'] ) {
+			wp_enqueue_script(
+				'boldgrid-offcanvas-js',
+				$this->configs['framework']['js_dir'] . 'offcanvas/offcanvas' . $suffix . '.js',
+				array( 'jquery' ),
+				$this->configs['version']
+			);
+		}
 	}
 }

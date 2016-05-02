@@ -200,7 +200,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			// The highlight should be aligned top the same as the parent element.
 			.css( 'top', top )
 			// The highlight should be aligned left with the col.
-			.css( 'left', containerOffset.left );
+			.css( 'left', containerOffset.left )
+			.css( 'visibility', 'visible' );
 	};
 
 	/**
@@ -209,9 +210,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @since 1.1.2
 	 */
 	this.buttonMouseLeave = function( $parentsContainer ) {
-		self.$targetHighlight
-				.css( 'width', '0px' )
-				.css( 'height', '0px' );
+		self.$targetHighlight.css( 'visibility', 'hidden' );
 	};
 
 	/**

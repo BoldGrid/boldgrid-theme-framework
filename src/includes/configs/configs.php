@@ -6,6 +6,10 @@ $theme_framework_dir = get_template_directory()
 $theme_framework_uri = get_template_directory_uri()
 	. '/inc/boldgrid-theme-framework';
 
+if ( defined( 'BGTFW_PATH' ) ) {
+	$theme_framework_uri = get_site_url() . BGTFW_PATH;
+}
+
 return array(
 
 	// temp configs rolling out to themes

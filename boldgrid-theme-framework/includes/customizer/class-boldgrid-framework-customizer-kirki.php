@@ -51,6 +51,8 @@ class Boldgrid_Framework_Customizer_Kirki {
 		$url  = $this->configs['framework']['root_uri'] . 'includes/kirki/';
 		$logo = $this->configs['framework']['admin_asset_dir'] . 'img/boldgrid-logo.png';
 
+		Kirki::$url = $url;
+
 		/**
 		 * If you need to include Kirki in your theme,
 		 * then you may want to consider adding the translations here

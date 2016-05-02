@@ -9,6 +9,8 @@
  *
  * @return   array   An array of color palette configs.
  */
+global $boldgrid_theme_framework;
+$configs = $boldgrid_theme_framework->get_configs();
 
 return array(
 	'enabled' => true,
@@ -18,7 +20,7 @@ return array(
 	'settings' => array(
 		// Directory that contains SCSS files to be compiled.
 		'scss_directory' => array(
-			'framework_dir' => '/inc/boldgrid-theme-framework/assets/scss/custom-color',
+			'framework_dir' => $configs['framework']['asset_dir'] . '/scss/custom-color',
 			'default' => '/inc/boldgrid-theme-framework-config/scss',
 		),
 

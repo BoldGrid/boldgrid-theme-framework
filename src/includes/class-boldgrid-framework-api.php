@@ -335,6 +335,28 @@ class BoldGrid {
 			$classes[] = 'group-blog';
 		}
 
+		if ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) {
+			$classes[] = 'sticky-nav-enabled';
+		}
+
+		if ( true === $this->configs['scripts']['boldgrid-sticky-footer'] ) {
+			$classes[] = 'sticky-footer-enabled';
+		}
+
+		if ( true === $this->configs['scripts']['wow-js'] ) {
+			$classes[] = 'wow-js-enabled';
+		}
+
+		if ( true === $this->configs['scripts']['animate-css'] ) {
+			$classes[] = 'animate-css-enabled';
+		}
+
+		if ( true === $this->configs['scripts']['offcanvas-menu'] ) {
+			$classes[] = 'offcanvas-menu-enabled';
+		} else {
+			$classes[] = 'standard-menu-enabled';
+		}
+
 		return $classes;
 	}
 

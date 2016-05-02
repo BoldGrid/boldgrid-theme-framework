@@ -1,10 +1,12 @@
 <?php
-$theme_framework_dir = get_template_directory()
-	. DIRECTORY_SEPARATOR . 'inc'
-	. DIRECTORY_SEPARATOR . 'boldgrid-theme-framework';
+$theme_framework_dir = realpath( plugin_dir_path ( __FILE__ ) . '../..' );
 
 $theme_framework_uri = get_template_directory_uri()
 	. '/inc/boldgrid-theme-framework';
+
+if ( defined( 'BGTFW_PATH' ) ) {
+	$theme_framework_uri = get_site_url() . BGTFW_PATH;
+}
 
 return array(
 
@@ -15,6 +17,7 @@ return array(
 
 	// Required From Theme - these are defaults
 	'theme_name' => 'boldgrid-theme',
+	'theme-parent-name' => 'prime',
 	'version' => wp_get_theme()->Version,
 	'theme_id' => null,
 	'boldgrid-parent-theme' => false,
@@ -69,6 +72,7 @@ return array(
 		'boldgrid-sticky-footer'  => false,
 		'wow-js'                  => false,
 		'animate-css'             => false,
+		'offcanvas-menu'          => false,
 	),
 
 	/**

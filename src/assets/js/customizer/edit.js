@@ -37,7 +37,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		    	'blogdescription' : '.site-description', },
 		    keys = _.keys( settings ),
 		    menus = api.section( 'menu_locations' ).controls(),
-			menuId;
+			menuId,
+			$emptyMenu = $( '.empty-menu' ),
+			$emptyWidgetAreas = $( '[data-empty-area="\'true\'"]' );
 
 		// General Settings.
 		_( keys ).each( function( key ) {
@@ -73,6 +75,25 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 			    self.addButton( 'nav_menu', menu.setting._value, '#' + menuId );
 		    } );
+
+		// Empty menu locations.
+		_( $emptyMenu ).each(
+			function( menu ) {
+				self.addButton( null, 'new_menu_name', '#' + $( menu ).attr( 'id' ) );
+			} );
+
+		// Empty widget areas.
+		_( $emptyWidgetAreas ).each(
+			function( widgetArea ) {
+				// This is temporary.
+				$( widgetArea ).append('<p style="color:#fff;background-color:blue;">Add a widget</p>');
+
+				var dataWidgetArea = $( widgetArea ).attr( 'data-widget-area' );
+				var widgetAreaId = dataWidgetArea.replace( 'accordion-section-sidebar-widgets-' , '' );
+				var selector = "[data-widget-area='" + dataWidgetArea + "']";
+
+				self.addButton( 'sidebars_widgets', widgetAreaId, selector );
+			} );
 	};
 
 	/**
@@ -116,12 +137,17 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		 * If the user is clicked on the page content or page title, open the dialog described
 		 * above. Otherwise, use api to open the appropriate pane in the Customizer controls.
 		 */
-		if ( 'entry-content' == dataControl || 'entry-title' == dataControl ) {
+		if ( 'entry-content' === dataControl || 'entry-title' === dataControl ) {
 			$( '#' + dataControl ).dialog( dialogSettings );
 			return;
+		} else if ( 0 === dataControl.lastIndexOf( 'sidebars_widgets', 0 ) ) {
+			api.control( dataControl ).focus();
 		} else if ( 0 === dataControl.lastIndexOf( 'sidebar', 0 ) ) {
 			var control = dataControl.match( /\[(.*?)\]/ );
 			api.Widgets.focusWidgetFormControl( control[ 1 ] );
+		} else if ( 'new_menu_name' === dataControl ) {
+			// Open the "Menus" panel.
+			api.panel( 'nav_menus' ).expand();
 		} else {
 			api.control( dataControl ).focus();
 		}
@@ -133,7 +159,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		 * The timeout allows 0.5 seconds for the pane to actually open and become ready.
 		 */
 		setTimeout( function() {
-			var focused = $( ':focus', parent.document );
+			var focused = $( ':focus', parent.document ), initialTransition;
 
 			if ( 'boldgrid_enable_footer' === dataControl ) {
 				focused = $( api.control( dataControl ).selector, parent.document );
@@ -147,13 +173,28 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				focused = focused.closest( '.widget' );
 			}
 
+			if ( 'new_menu_name' === dataControl ) {
+				focused = $( '.add-menu-toggle', parent.document );
+			}
+
+			/*
+			 * Elements with a transition do not bounce correctly. Below, take note of the initial
+			 * transition effect. We'll remove the transition, and restore the initial after the
+			 * element has been bounced.
+			 */
+			initialTransition = focused.css( 'transition' );
+
 			focused.css( {
 			    'min-height' : focused.outerHeight(),
 			    'min-width' : focused.outerWidth(),
-			} ).effect( 'bounce', {
-			    times : 3,
-			    distance : 10
-			}, 'slow' );
+			    'transition' : 'all 0s'
+				} )
+			.effect( 'bounce', {
+				times : 3,
+				distance : 10
+				}, 'slow', function() {
+					$( this ).css( 'transition', initialTransition );
+			} );
 		}, 500 );
 	};
 

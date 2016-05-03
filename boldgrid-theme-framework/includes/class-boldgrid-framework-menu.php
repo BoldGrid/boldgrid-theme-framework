@@ -124,8 +124,6 @@ class Boldgrid_Framework_Menu {
 			$action = function () use ( $menu ) {
 				if ( has_nav_menu( $menu['theme_location'] ) ) {
 					wp_nav_menu( $menu );
-				} else {
-					Boldgrid_Framework_Customizer_Edit::fallback_cb( $menu );
 				}
 			};
 

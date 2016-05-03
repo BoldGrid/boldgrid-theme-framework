@@ -31,6 +31,19 @@ class Boldgrid_Framework_Customizer_Edit {
 	}
 
 	/**
+	 *
+	 */
+	public static function fallback_cb( $menu ) {
+		$temporary_inline_style = 'background-color:blue;color:#fff;min-height:30px;';
+
+		printf( "<%s id='%s' class='empty-menu' style='$temporary_inline_style'>Add a menu</%s>",
+			$menu['container'],
+			$menu['container_id'],
+			$menu['container']
+		);
+	}
+
+	/**
 	 * Enqueue scripts needed to add edit buttons to the customizer.
 	 *
 	 * Ideally, this method would hook into customize_preview_init. We need to get the page ID,

@@ -286,7 +286,7 @@ msgstr ""
 msgid "BoldGrid Color Palettes"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:61
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:74
 msgid "Go there now"
 msgstr ""
 

@@ -160,7 +160,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'choices'  => kirki_Fonts::get_font_choices(),
 				'output'   => array(
 					array(
-						'element'  => 'h1, h2, h3, h4, h5, h6',
+						'element'  => 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6',
 						'property' => 'font-family',
 					),
 				),
@@ -301,7 +301,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'choices'  => kirki_Fonts::get_font_choices(),
 				'output'  => array(
 					array(
-						'element'  => 'h1.alt-font, h2.alt-font, h3.alt-font, h4.alt-font, h5.alt-font, h6.alt-font',
+						'element'  => 'h1.alt-font, h2.alt-font, h3.alt-font, h4.alt-font, h5.alt-font, h6.alt-font, .h1.alt-font, .h2.alt-font, .h3.alt-font, .h4.alt-font, .h5.alt-font, .h6.alt-font',
 						'property' => 'font-family',
 					),
 				),
@@ -545,6 +545,12 @@ class Boldgrid_Framework_Customizer_Typography {
 		$alt_heading_h5 = $alt_font_size_base;
 		$alt_heading_h6 = ceil( $alt_font_size_base * 0.85 );
 		$content = "
+				.mce-content-body .h1,
+				.mce-content-body .h2,
+				.mce-content-body .h3,
+				.mce-content-body .h4,
+				.mce-content-body .h5,
+				.mce-content-body .h6,
 				.mce-content-body h1,
 				.mce-content-body h2,
 				.mce-content-body h3,
@@ -556,7 +562,13 @@ class Boldgrid_Framework_Customizer_Typography {
 				h3.alt-font,
 				h4.alt-font,
 				h5.alt-font,
-				h6.alt-font{ font-family: {$alt_font_family}; }
+				h6.alt-font,
+				.h1.alt-font,
+				.h2.alt-font,
+				.h3.alt-font,
+				.h4.alt-font,
+				.h5.alt-font,
+				.h6.alt-font{ font-family: {$alt_font_family}; }
 				.mce-content-body, .mce-content-body p { font-family: {$body_font_family}; line-height: {$body_line_height}%; font-size: {$body_font_size}px; }";
 
 		$content .= "

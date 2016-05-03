@@ -18,7 +18,7 @@ var gulp     = require( 'gulp' ),
     del      = require( 'del' ),
     clean    = require( 'gulp-clean' ),
     fs       = require( 'fs' ),
-    changed  = require('gulp-changed'),
+    changed  = require( 'gulp-changed' ),
     bower    = require( 'gulp-bower' );
 
 // Configs
@@ -214,7 +214,7 @@ gulp.task( 'frameworkJs', function(  ) {
       suffix: '.min'
     }) )
     .pipe( gulp.dest( config.dist + '/assets/js' ) );
-  
+
   // Unminified Files.
   gulp.src([config.src + '/assets/js/**/*.js'])
     .pipe( gulp.dest( config.dist + '/assets/js' ) );
@@ -248,7 +248,7 @@ gulp.task( 'scssCompile', function(  ) {
         config.dist + 'assets/scss/',
         config.dist + 'assets/scss/bootstrap',
       ]
-    } ) )
+    } ).on( 'error', sass.logError ) )
     .pipe( sass.sync(  ).on( 'error', sass.logError ) )
     .pipe( gulp.dest( config.dist + '/assets/css' ) )
     .pipe( cssnano({

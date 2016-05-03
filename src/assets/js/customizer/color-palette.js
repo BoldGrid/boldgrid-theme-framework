@@ -465,6 +465,9 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 				originalIndex = null;
 
 				if ( ui.item ) {
+					self.$palette_control_wrapper
+						.find( '.active-palette-section' )
+						.removeClass( 'active-palette-section' );
 
 					if ( ! ui.item.find( 'span' ).length ) {
 						color_palette.modify_palette_action( ui.item.closest( '[data-palette-wrapper="true"]' ) );

@@ -10,7 +10,6 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 	'use strict';
 
-	var $document = $( document );
 	var $window = $( window );
 	var color_palette = BOLDGRID.COLOR_PALETTE.Modify;
 	var self = color_palette;
@@ -22,8 +21,6 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	color_palette.first_update = true;
 	color_palette.prelockNeutral = false;
 	color_palette.themePalettes = [];
-
-	var last_refresh_time = null;
 
 	var default_neutrals =  ['#232323', '#FFFFFF', '#FF5F5F', '#FFDBB8', '#FFFFB2' , '#bad6b1', '#99acbf', '#cdb5e2'];
 
@@ -212,7 +209,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	color_palette.bind_generate_palette_action = function () {
 		self.$palette_control_wrapper.find('.palette-generator-button').on('click', function (e) {
 
-			var paletteData = color_palette.paletteData(), neutralColor;
+			var paletteData = color_palette.paletteData(), neutralColor = null;
 
 			// If this palette has a neutral color, generate that color independently.
 			if ( self.hasNeutral ) {
@@ -314,7 +311,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 		if ( typeof color_palette.body_classes == 'object') {
 			color_palette.body_classes = $.map(color_palette.body_classes, function(value, index) {
-			    return [value];
+				return [value];
 			});
 		}
 	};
@@ -403,10 +400,10 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 				selected_class = 'selected-for-generation';
 			}
 
-		    $ul.append (
-		    	'<li class="boldgrid-palette-colors ' + selected_class + ' boldgrid-dashicon" style="background-color: ' + background_color + '"></li>'
-    		);
-	    } );
+			$ul.append (
+				'<li class="boldgrid-palette-colors ' + selected_class + ' boldgrid-dashicon" style="background-color: ' + background_color + '"></li>'
+			);
+		} );
 
 
 		$ul.append ( color_palette.$icon_set.clone() );
@@ -457,17 +454,53 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 * Apply jQuery sortable
 	 */
 	color_palette.add_jquery_sortable = function ( $ul ) {
+		var originalOrder = [],
+			originalIndex = null;
+
 		$ul.sortable( {
-
+			items: '.boldgrid-palette-colors',
+			axis: 'x',
 			start: function ( event,ui ) {
-				if ( ui.item ) {
-					var $to_element = ui.item;
+				originalOrder = [];
+				originalIndex = null;
 
-					if (!$to_element.find('span').length) {
-						color_palette.modify_palette_action( $to_element.closest('[data-palette-wrapper="true"]') );
+				if ( ui.item ) {
+
+					if ( ! ui.item.find( 'span' ).length ) {
+						color_palette.modify_palette_action( ui.item.closest( '[data-palette-wrapper="true"]' ) );
 					}
 
+					// Color the placeholder the same as the current drag color.
+					ui.placeholder
+						.css( 'background-color', ui.item.css( 'background-color' ) )
+						.css( 'visibility', 'visible' );
+
+					// Store the original order of colors.
+					$ul.find( 'li' ).not( ui.helper ).not( ui.placeholder ).each( function ( index ) {
+						var $this = $( this );
+						originalOrder.push( $this.css( 'background-color' ) );
+						if ( $this.is( ui.item ) ) {
+							originalIndex = index;
+						}
+					} );
 				}
+			},
+			// On change, instead of sorting colors. Only swap the placeholder with displaced color.
+			change: function( event, ui ) {
+				var $listItems = $ul.find( 'li' ).not( ui.helper ).not( ui.item );
+
+				$listItems.each( function ( key ) {
+					var $this = $( this ),
+						bg_color = originalOrder[ key ];
+
+					if ( $this.is( ui.placeholder ) ) {
+						// Set the original slot to the displaced color.
+						$listItems.eq( originalIndex ).css( 'background-color', bg_color );
+					} else if ( originalIndex !== key ){
+						// The other colors should be unmodified.
+						$listItems.eq( key ).css( 'background-color', bg_color );
+					}
+				} );
 			},
 			helper: 'clone',
 			stop: function ( event, ui ) {
@@ -629,23 +662,23 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			e.stopPropagation();
 		}
 
-        if ( false === $this.hasClass( 'active-palette-section' ) ) {
+		if ( false === $this.hasClass( 'active-palette-section' ) ) {
 
-        	//If this is a neutral color set a different set of defaults
-        	if ( self.hasNeutral && $this.is( '.boldgrid-active-palette .boldgrid-palette-colors:last' ) ) {
-        		self.$color_picker_input.iris({ palettes: default_neutrals });
-        	} else {
-        		self.$color_picker_input.iris({ palettes: true });
-        	}
+			//If this is a neutral color set a different set of defaults
+			if ( self.hasNeutral && $this.is( '.boldgrid-active-palette .boldgrid-palette-colors:last' ) ) {
+				self.$color_picker_input.iris({ palettes: default_neutrals });
+			} else {
+				self.$color_picker_input.iris({ palettes: true });
+			}
 
-        	color_palette.modify_palette_action( $this.closest('[data-palette-wrapper="true"]') );
+			color_palette.modify_palette_action( $this.closest('[data-palette-wrapper="true"]') );
 
 			self.$palette_control_wrapper.find('.active-palette-section').removeClass('active-palette-section');
-	        $this.addClass( 'active-palette-section' );
-	        color_palette.open_picker();
+			$this.addClass( 'active-palette-section' );
+			color_palette.open_picker();
 
 			color_palette.set_iris_color( $this.css( 'background-color' ) );
-        }
+		}
 	};
 
 	/**
@@ -678,18 +711,18 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 * @since 1.1.1
 	 */
 	color_palette.updateNeutralData = function () {
-	    var hasNeutralColor, currentNeutralColor, $activePalette;
+		var hasNeutralColor, currentNeutralColor, $activePalette;
 
-	    // If active palette has data-neutral-color.
-	    hasNeutralColor = !! self.$palette_control_wrapper
+		// If active palette has data-neutral-color.
+		hasNeutralColor = !! self.$palette_control_wrapper
 			.find( '.boldgrid-active-palette' ).attr( 'data-neutral-color' );
 
-	    if ( hasNeutralColor ) {
-	    	// Find the last color in the palette and set its color as the data-neutral.
-	    	$activePalette = self.$palette_control_wrapper.find( '.boldgrid-active-palette' );
-	    	currentNeutralColor = $activePalette.find( '.boldgrid-palette-colors:last' ).css( 'background-color' );
-	    	$activePalette.attr( 'data-neutral-color', currentNeutralColor );
-	    }
+		if ( hasNeutralColor ) {
+			// Find the last color in the palette and set its color as the data-neutral.
+			$activePalette = self.$palette_control_wrapper.find( '.boldgrid-active-palette' );
+			currentNeutralColor = $activePalette.find( '.boldgrid-palette-colors:last' ).css( 'background-color' );
+			$activePalette.attr( 'data-neutral-color', currentNeutralColor );
+		}
 	};
 
 	/**
@@ -698,44 +731,44 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	color_palette.setup_color_picker = function () {
 
 		var myOptions = {
-			    // you can declare a default color here,
-			    // or in the data-default-color attribute on the input
-			    defaultColor : false,
-			    change : function( event, ui ) {
-			    	var color = ui.color.toString();
+				// you can declare a default color here,
+				// or in the data-default-color attribute on the input
+				defaultColor : false,
+				change : function( event, ui ) {
+					var color = ui.color.toString();
 
-				    self.$palette_control_wrapper
-				    	.find( '.active-palette-section' )
-				    	.css( 'background-color', color );
+					self.$palette_control_wrapper
+						.find( '.active-palette-section' )
+						.css( 'background-color', color );
 
-				    //Update the neutral color data elements.
-				    color_palette.updateNeutralData();
-				    color_palette.updateCustomPalettes();
+					//Update the neutral color data elements.
+					color_palette.updateNeutralData();
+					color_palette.updateCustomPalettes();
 
-				    //Make sure that we only trigger this event after a 500 ms delay
-				    color_palette.last_refresh_time = new Date().getTime();
-				    var current_refreshtime = color_palette.last_refresh_time;
-			    	setTimeout ( function () {
-			    		//If this is the last event after 50 ms
-			    		//TODO: Change this based on device
-			    		if ( ! BOLDGRID.Sass.processing &&
-			    			( current_refreshtime == color_palette.last_refresh_time ||
-			    				self.most_recent_update + 100 < new Date().getTime() ) ) {
+					//Make sure that we only trigger this event after a 500 ms delay
+					color_palette.last_refresh_time = new Date().getTime();
+					var current_refreshtime = color_palette.last_refresh_time;
+					setTimeout ( function () {
+						//If this is the last event after 50 ms
+						//TODO: Change this based on device
+						if ( ! BOLDGRID.Sass.processing &&
+							( current_refreshtime == color_palette.last_refresh_time ||
+								self.most_recent_update + 100 < new Date().getTime() ) ) {
 
-			    			color_palette.update_theme_option();
-				    		self.most_recent_update = new Date().getTime();
-			    		}
-			    	}, 200, current_refreshtime );
+							color_palette.update_theme_option();
+							self.most_recent_update = new Date().getTime();
+						}
+					}, 200, current_refreshtime );
 
-			    },
-			    // hide the color picker controls on load
-			    hide : true,
-			    // show a group of common colors beneath the square
-			    // or, supply an array of colors to customize further
-			    palettes : true,
+				},
+				// hide the color picker controls on load
+				hide : true,
+				// show a group of common colors beneath the square
+				// or, supply an array of colors to customize further
+				palettes : true,
 			};
 
-			var $wp_color_picker = self.$color_picker_input.wpColorPicker( myOptions );
+			self.$color_picker_input.wpColorPicker( myOptions );
 			color_palette.$color_picker = self.$palette_control_wrapper.find( '.wp-picker-container' ).hide();
 			color_palette.createPickerPalettes();
 			color_palette.bindCustomPalettes();
@@ -913,7 +946,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	color_palette.update_palette_settings = function ( force_update ) {
 		color_palette.text_area_val = JSON.stringify( { 'state' : color_palette.state } );
 		self.$palette_option_field.val( color_palette.text_area_val );
-		if ( force_update ) { 
+		if ( force_update ) {
 			self.$palette_option_field.change();
 		}
 	};

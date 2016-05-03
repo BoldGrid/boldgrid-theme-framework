@@ -27,6 +27,7 @@ user guide for more information.
 ## Changelog ##
 
 ### 1.1.4 ###
+* New Feature: Updated drag behavior to swap colors.
 * New Feature: The neutral color of a palette can now be modified with drag and drop.
 * New Feature: The UI of color palettes has been improved.
 * New Feature: Colors within a users color palette can now be selected from the color picker.

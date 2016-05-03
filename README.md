@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.1.4 ###
+* New Feature: The frameworks root path can now be overwritten with BGTFW_PATH constant.
+
 ### 1.1.3 ###
 * Bug fix: Addressed issue where subheadings weren't having font-family property set.
 * Bug fix: Inline Links in Visual Editor in Customizer now are working for WP 4.5+.

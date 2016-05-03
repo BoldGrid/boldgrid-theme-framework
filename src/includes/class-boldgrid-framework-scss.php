@@ -92,9 +92,15 @@ class Boldgrid_Framework_SCSS {
 		$config_settings = $this->configs['customizer-options']['colors']['settings'];
 		if ( ! empty( $config_settings['scss_directory'] ) ) {
 			foreach ( $config_settings['scss_directory'] as $directory ) {
-				if ( file_exists( $template_directory . $directory ) ) {
+				$scss_full_path = $template_directory . $directory;
 
-					$scss_full_path = $template_directory . $directory;
+				// If dir path not relative or doesnt exist, check abspath.
+				if ( ! file_exists( $scss_full_path ) ) {
+					$scss_full_path = $directory;
+				}
+
+				if ( file_exists( $scss_full_path ) ) {
+
 					$dir_files = scandir( $scss_full_path );
 					$dir_files = array_diff( $dir_files, array( '..', '.' ) );
 

@@ -109,7 +109,7 @@ class Boldgrid_Framework_Customizer_Footer {
 					'',
 					array(
 						'type'        => 'custom',
-						'setting'     => 'boldgrid_footer_widget_help',
+						'settings'     => 'boldgrid_footer_widget_help',
 						'section'     => 'boldgrid_footer_panel',
 						'default'     => '<a class="button button-primary open-widgets-section">' .
 							__( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
@@ -121,7 +121,7 @@ class Boldgrid_Framework_Customizer_Footer {
 					'',
 					array(
 						'type'        => 'custom',
-						'setting'     => 'boldgrid_edit_footer_widget_help',
+						'settings'     => 'boldgrid_edit_footer_widget_help',
 						'section'     => 'boldgrid_footer_panel',
 						'default'     => '<a data-focus-section="sidebar-widgets-boldgrid-widget-3" class="button button-primary" href="#">' .
 							__( 'Edit Footer Widgets', 'bgtfw' ) . '</a>',
@@ -129,7 +129,7 @@ class Boldgrid_Framework_Customizer_Footer {
 						'description' => __( 'You can edit your default footer widgets from the widget panel.', 'bgtfw' ),
 						'required' => array(
 							array(
-								'setting' => 'boldgrid_enable_footer',
+								'settings' => 'boldgrid_enable_footer',
 								'operator' => '==',
 								'value' => true,
 							),
@@ -182,7 +182,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			'',
 			array(
 				'type'        => 'custom',
-				'setting'     => 'boldgrid_attribution_heading',
+				'settings'     => 'boldgrid_attribution_heading',
 				'label'       => __( 'Attribution Control', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => '',
@@ -193,7 +193,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			'',
 			array(
 				'type'        => 'checkbox',
-				'setting'     => 'hide_boldgrid_attribution',
+				'settings'     => 'hide_boldgrid_attribution',
 				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
@@ -204,7 +204,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			'',
 			array(
 				'type'        => 'checkbox',
-				'setting'     => 'hide_wordpress_attribution',
+				'settings'     => 'hide_wordpress_attribution',
 				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
@@ -215,7 +215,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			'',
 			array(
 				'type'        => 'checkbox',
-				'setting'     => 'hide_partner_attribution',
+				'settings'     => 'hide_partner_attribution',
 				'label'       => __( 'Hide Partner Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
@@ -329,7 +329,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			'',
 			array(
 				'type' => 'switch',
-				'setting' => 'boldgrid_enable_footer',
+				'settings' => 'boldgrid_enable_footer',
 				'label' => __( 'Enable Footer', 'bgtfw' ),
 				'section' => 'boldgrid_footer_panel',
 				'default' => true,

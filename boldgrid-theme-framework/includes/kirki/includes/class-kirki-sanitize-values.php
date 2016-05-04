@@ -6,63 +6,36 @@
  * @package     Kirki
  * @category    Core
  * @author      Aristeides Stathopoulos
- * @copyright   Copyright (c) 2016, Aristeides Stathopoulos
- * @license     http://opensource.org/licenses/https://opensource.org/licenses/MIT
+ * @copyright   Copyright (c) 2015, Aristeides Stathopoulos
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
 
-// Exit if accessed directly.
+// Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ! class_exists( 'Kirki_Sanitize_Values' ) ) {
-
-	/**
-	 * A simple wrapper class for static methods.
-	 */
-	class Kirki_Sanitize_Values {
-
-		/**
-		 * Fallback for non-existing methods.
-		 *
-		 * @static
-		 * @access public
-		 * @param string $name The method we're trying to access.
-		 * @param mixed  $arguments The arguments the method we're trying to call accepts.
-		 * @return mixed The $arguments provided.
-		 */
-		public static function __callStatic( $name, $arguments ) {
-			error_log( "Kirki_Sanitize_Values::$name does not exist" );
-			return $arguments;
-		}
+	class Kirki_Sanitize_Values extends Kirki_Sanitize {
 
 		/**
 		 * Checkbox sanitization callback.
 		 *
-		 * Sanitization callback for 'checkbox' type controls.
-		 * This callback sanitizes `$value` as a boolean value, either TRUE or FALSE.
+		 * Sanitization callback for 'checkbox' type controls. This callback sanitizes `$checked`
+		 * as a boolean value, either TRUE or FALSE.
 		 *
-		 * Deprecated. Use Kirki_Field_Checkbox::sanitize() instead.
-		 *
-		 * @static
-		 * @access public
-		 * @see Kirki_Field_Checkbox::sanitize()
-		 * @param bool|string $value Whether the checkbox is checked.
+		 * @param bool|string $checked Whether the checkbox is checked.
 		 * @return bool Whether the checkbox is checked.
 		 */
-		public static function checkbox( $value ) {
-			return Kirki_Field_Checkbox::sanitize( $value );
+		public static function checkbox( $checked ) {
+			return ( ( isset( $checked ) && ( true == $checked || 'on' == $checked ) ) ? true : false );
 		}
 
 		/**
-		 * Sanitize number options.
+		 * Sanitize number options
 		 *
-		 * @static
-		 * @access public
 		 * @since 0.5
-		 * @param int|float|double|string $value The value to be sanitized.
-		 * @return int|float|double
 		 */
 		public static function number( $value ) {
 			return ( is_numeric( $value ) ) ? $value : intval( $value );
@@ -89,88 +62,17 @@ if ( ! class_exists( 'Kirki_Sanitize_Values' ) ) {
 			$page_id = absint( $page_id );
 
 			// If $page_id is an ID of a published page, return it; otherwise, return the default.
-			return ( 'publish' === get_post_status( $page_id ) ? $page_id : $setting->default );
-		}
-
-		/**
-		 * Sanitizes css dimensions.
-		 *
-		 * @static
-		 * @access public
-		 * @since 2.2.0
-		 * @param string $value The value to be sanitized.
-		 * @return string
-		 */
-		public static function css_dimension( $value ) {
-
-			// Trim it.
-			$value = trim( $value );
-
-			// If the value is round, then return 50%.
-			if ( 'round' === $value ) {
-				$value = '50%';
-			}
-
-			// If the value is empty, return empty.
-			if ( '' === $value ) {
-				return '';
-			}
-
-			// If auto, return auto.
-			if ( 'auto' === $value ) {
-				return 'auto';
-			}
-
-			// Return empty if there are no numbers in the value.
-			if ( ! preg_match( '#[0-9]#' , $value ) ) {
-				return '';
-			}
-
-			// If we're using calc() then return the value.
-			if ( false !== strpos( $value, 'calc(' ) ) {
-				return $value;
-			}
-
-			// The raw value without the units.
-			$raw_value = self::filter_number( $value );
-			$unit_used = '';
-
-			// An array of all valid CSS units. Their order was carefully chosen for this evaluation, don't mix it up!!!
-			$units = array( 'rem', 'em', 'ex', '%', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ch', 'vh', 'vw', 'vmin', 'vmax' );
-			foreach ( $units as $unit ) {
-				if ( false !== strpos( $value, $unit ) ) {
-					$unit_used = $unit;
-				}
-			}
-
-			// Hack for rem values.
-			if ( 'em' === $unit_used && false !== strpos( $value, 'rem' ) ) {
-				$unit_used = 'rem';
-			}
-
-			return $raw_value . $unit_used;
-		}
-
-		/**
-		 * Filters numeric values.
-		 *
-		 * @static
-		 * @access public
-		 * @param string $value The value to be sanitized.
-		 * @return int|float
-		 */
-		public static function filter_number( $value ) {
-			return filter_var( $value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+			return ( 'publish' == get_post_status( $page_id ) ? $page_id : $setting->default );
 		}
 
 		/**
 		 * Sanitize sortable controls
 		 *
-		 * @static
 		 * @since 0.8.3
-		 * @param string|array $value The value to be sanitized.
-		 * @return string
+		 *
+		 * @return mixed
 		 */
+
 		public static function sortable( $value ) {
 			if ( is_serialized( $value ) ) {
 				return $value;
@@ -182,49 +84,70 @@ if ( ! class_exists( 'Kirki_Sanitize_Values' ) ) {
 		/**
 		 * Sanitize RGBA colors
 		 *
-		 * @static
 		 * @since 0.8.5
-		 * @param string $value The value to be sanitized.
+		 *
 		 * @return string
 		 */
 		public static function rgba( $value ) {
-			$color = ariColor::newColor( $value );
-			return $color->toCSS( 'rgba' );
+
+			// If empty or an array return transparent
+			if ( empty( $value ) || is_array( $value ) ) {
+				return 'rgba(0,0,0,0)';
+			}
+
+			// If string does not start with 'rgba', then treat as hex
+			// sanitize the hex color and finally convert hex to rgba
+			if ( false === strpos( $value, 'rgba' ) ) {
+				return Kirki_Color::get_rgba( Kirki_Color::sanitize_hex( $value ) );
+			}
+
+			// By now we know the string is formatted as an rgba color so we need to further sanitize it.
+			$value = str_replace( ' ', '', $value );
+			sscanf( $value, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
+			return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
+
 		}
 
 		/**
 		 * Sanitize colors.
+		 * Determine if the current value is a hex or an rgba color and call the appropriate method.
 		 *
-		 * @static
 		 * @since 0.8.5
-		 * @param string $value The value to be sanitized.
 		 * @return string
 		 */
 		public static function color( $value ) {
-			// If the value is empty, then return empty.
-			if ( '' === $value ) {
-				return '';
+
+			// Is this an rgba color or a hex?
+			$mode = ( false === strpos( $value, 'rgba' ) ) ? 'rgba' : 'hex';
+
+			if ( 'rgba' == $mode ) {
+				return Kirki_Color::sanitize_hex( $value );
+			} else {
+				return self::rgba( $value );
 			}
-			// If transparent, then return 'transparent'.
-			if ( is_string( $value ) && 'transparent' === trim( $value ) ) {
-				return 'transparent';
-			}
-			// Instantiate the object.
-			$color = ariColor::newColor( $value );
-			// Return a CSS value, using the auto-detected mode.
-			return $color->toCSS( $color->mode );
+
+		}
+
+		/**
+		 * multicheck callback
+		 */
+		public static function multicheck( $values ) {
+
+			$multi_values = ( ! is_array( $values ) ) ? explode( ',', $values ) : $values;
+			return ( ! empty( $multi_values ) ) ? array_map( 'sanitize_text_field', $multi_values ) : array();
+
 		}
 
 		/**
 		 * DOES NOT SANITIZE ANYTHING.
 		 *
-		 * @static
 		 * @since 0.5
-		 * @param int|string|array $value The value to be sanitized.
-		 * @return int|string|array
+		 *
+		 * @return mixed
 		 */
 		public static function unfiltered( $value ) {
 			return $value;
 		}
+
 	}
 }

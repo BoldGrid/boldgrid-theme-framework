@@ -1,30 +1,22 @@
-wp.customize.controlConstructor['kirki-multicheck'] = wp.customize.Control.extend({
-
-	// When we're finished loading continue processing.
+/**
+ * KIRKI CONTROL: MULTICHECK
+ */
+wp.customize.controlConstructor['multicheck'] = wp.customize.Control.extend( {
 	ready: function() {
-
-		'use strict';
-
 		var control = this;
 
-		// Save the value
+		// Modified values
 		control.container.on( 'change', 'input', function() {
-			var value = [],
-			    i = 0;
-
-			// Build the value as an object using the sub-values from individual checkboxes.
-			jQuery.each( control.params.choices, function( key, subValue ) {
+			var compiled_value = [];
+			var i = 0;
+			jQuery.each( control.params.choices, function( key, value ) {
 				if ( control.container.find( 'input[value="' + key + '"]' ).is( ':checked' ) ) {
-					value[ i ] = key;
+					compiled_value[i] = key;
 					i++;
 				}
 			});
-
-			// Update the value in the customizer.
-			control.setting.set( value );
-
+			control.setting.set( compiled_value );
+			wp.customize.previewer.refresh();
 		});
-
 	}
-
 });

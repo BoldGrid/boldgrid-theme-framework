@@ -1,45 +1,33 @@
-wp.customize.controlConstructor['kirki-number'] = wp.customize.Control.extend({
-
+/**
+ * KIRKI CONTROL: NUMBER
+ */
+wp.customize.controlConstructor['number'] = wp.customize.Control.extend( {
 	ready: function() {
+		var control = this;
+		var element = this.container.find( 'input' );
 
-		'use strict';
-
-		var control = this,
-		    element = this.container.find( 'input' ),
-		    min     = -99999,
-		    max     = 99999,
-		    step    = 1;
-
-		// Set minimum value.
-		if ( 'undefined' !== typeof control.params.choices && 'undefined' !== typeof control.params.choices.min ) {
-			min = control.params.choices.min;
+		jQuery( element ).spinner();
+		if ( control.params.choices.min ) {
+			jQuery( element ).spinner( 'option', 'min', control.params.choices.min );
 		}
-
-		// Set maximum value.
-		if ( 'undefined' !== typeof control.params.choices && 'undefined' !== typeof control.params.choices.max ) {
-			max = control.params.choices.max;
+		if ( control.params.choices.min ) {
+			jQuery( element ).spinner( 'option', 'max', control.params.choices.max );
 		}
-
-		// Set step value.
-		if ( 'undefined' !== typeof control.params.choices && 'undefined' !== typeof control.params.choices.step ) {
-			step = control.params.choices.step;
-			if ( 'any' === control.params.choices.step ) {
-				step = '0.001';
-			}
+		if ( control.params.choices.min ) {
+			var control_step = ( 'any' == control.params.choises.step ) ? '0.001' : control.params.choices.step;
+			jQuery( element ).spinner( 'option', 'step', control_step );
 		}
-
-		// Init the spinner
-		jQuery( element ).spinner({
-			min: min,
-			max: max,
-			step: step
-		});
-
 		// On change
-		this.container.on( 'change click keyup paste', 'input', function() {
+		this.container.on( 'change', 'input', function() {
 			control.setting.set( jQuery( this ).val() );
 		});
-
+		// On click
+		this.container.on( 'click', 'input', function() {
+			control.setting.set( jQuery( this ).val() );
+		});
+		// On keyup
+		this.container.on( 'keyup', 'input', function() {
+			control.setting.set( jQuery( this ).val() );
+		});
 	}
-
 });

@@ -1,18 +1,16 @@
-wp.customize.controlConstructor['kirki-toggle'] = wp.customize.Control.extend({
-
+/**
+ * KIRKI CONTROL: TOGGLE
+ */
+wp.customize.controlConstructor['toggle'] = wp.customize.Control.extend( {
 	ready: function() {
+		var control = this;
 
-		'use strict';
+		// Get the initial value
+		var checkbox_value = control.setting._value;
 
-		var control = this,
-		    checkboxValue = control.setting._value;
-
-		// Save the value
 		this.container.on( 'change', 'input', function() {
-			checkboxValue = ( jQuery( this ).is( ':checked' ) ) ? true : false;
-			control.setting.set( checkboxValue );
+			checkbox_value = ( jQuery( this ).is( ':checked' ) ) ? true : false;
+			control.setting.set( checkbox_value );
 		});
-
 	}
-
 });

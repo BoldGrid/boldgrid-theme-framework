@@ -1,57 +1,35 @@
 <?php
 /**
- * Customizer Control: number.
+ * number Customizer Control.
  *
  * @package     Kirki
  * @subpackage  Controls
  * @copyright   Copyright (c) 2015, Aristeides Stathopoulos
- * @license     http://opensource.org/licenses/https://opensource.org/licenses/MIT
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
 
-// Exit if accessed directly.
+// Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ! class_exists( 'Kirki_Controls_Number_Control' ) ) {
-
 	/**
 	 * Create a simple number control
 	 */
 	class Kirki_Controls_Number_Control extends Kirki_Customize_Control {
 
-		/**
-		 * The control type.
-		 *
-		 * @access public
-		 * @var string
-		 */
-		public $type = 'kirki-number';
+		public $type = 'number';
 
-		/**
-		 * Enqueue control related scripts/styles.
-		 *
-		 * @access public
-		 */
 		public function enqueue() {
-			wp_enqueue_script( 'kirki-number' );
+			Kirki_Styles_Customizer::enqueue_customizer_control_script( 'jquery-ui-spinner', 'vendor/jquery-ui-spinner', array( 'jquery', 'jquery-ui-core', 'jquery-ui-button' ) );
+			Kirki_Styles_Customizer::enqueue_customizer_control_script( 'kirki-number', 'controls/number', array( 'jquery', 'formstone', 'formstone-number' ) );
 		}
 
-		/**
-		 * An Underscore (JS) template for this control's content (but not its container).
-		 *
-		 * Class variables for this control class are available in the `data` JS object;
-		 * export custom variables by overriding {@see Kirki_Customize_Control::to_json()}.
-		 *
-		 * @see WP_Customize_Control::print_template()
-		 *
-		 * @access protected
-		 */
-		protected function content_template() {
-			?>
-			<# if ( data.tooltip ) { #>
-				<a href="#" class="tooltip hint--left" data-hint="{{ data.tooltip }}"><span class='dashicons dashicons-info'></span></a>
+		protected function content_template() { ?>
+			<# if ( data.help ) { #>
+				<a href="#" class="tooltip hint--left" data-hint="{{ data.help }}"><span class='dashicons dashicons-info'></span></a>
 			<# } #>
 			<label>
 				<# if ( data.label ) { #>
@@ -61,10 +39,21 @@ if ( ! class_exists( 'Kirki_Controls_Number_Control' ) ) {
 					<span class="description customize-control-description">{{{ data.description }}}</span>
 				<# } #>
 				<div class="customize-control-content">
-					<input type="text" {{{ data.link }}} value="{{ data.value }}" />
+					<input type="text" {{{ data.link }}} value="{{ data.value }}"
+						<# if ( data.choices['min'] ) { #>
+							min="{{ data.choices['min'] }}"
+						<# } #>
+						<# if ( data.choices['max'] ) { #>
+							max="{{ data.choices['max'] }}"
+						<# } #>
+						<# if ( data.choices['step'] ) { #>
+							step="{{ data.choices['step'] }}"
+						<# } #>
+					/>
 				</div>
 			</label>
 			<?php
 		}
+
 	}
 }

@@ -1,24 +1,16 @@
-wp.customize.controlConstructor['kirki-checkbox'] = wp.customize.Control.extend({
-
-	// When we're finished loading continue processing
+/**
+ * KIRKI CONTROL: CHECKBOX
+ */
+wp.customize.controlConstructor['kirki-checkbox'] = wp.customize.Control.extend( {
 	ready: function() {
+		var control = this;
 
-		'use strict';
+		// Get the initial value
+		var checkbox_value = control.setting._value;
 
-		var control = this,
-		    value   = control.setting._value;
-
-		// Change the value
 		this.container.on( 'change', 'input', function() {
-
-			// Get the checkbox status
-			value = ( jQuery( this ).is( ':checked' ) ) ? true : false;
-
-			// Set the value in the WordPress API
-			control.setting.set( value );
-
+			checkbox_value = ( jQuery( this ).is( ':checked' ) ) ? true : false;
+			control.setting.set( checkbox_value );
 		});
-
 	}
-
 });

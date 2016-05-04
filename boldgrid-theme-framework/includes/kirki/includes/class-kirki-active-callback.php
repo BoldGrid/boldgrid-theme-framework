@@ -1,17 +1,30 @@
 <?php
+/**
+ * Active callback used with the "required" argument in fields
+ *
+ * @package     Kirki
+ * @category    Core
+ * @author      Aristeides Stathopoulos
+ * @copyright   Copyright (c) 2016, Aristeides Stathopoulos
+ * @license     http://opensource.org/licenses/https://opensource.org/licenses/MIT
+ */
 
 if ( ! class_exists( 'Kirki_Active_Callback' ) ) {
-	class Kirki_Active_Callback extends Kirki_Customizer {
+
+	/**
+	 * Callback class for use with the "required" argument
+	 */
+	class Kirki_Active_Callback {
 
 		/**
 		 * Figure out whether the current object should be displayed or not.
 		 *
-		 * @param $object 	the current field
+		 * @param  WP_Customize_Setting $object The current field.
 		 * @return boolean
 		 */
 		public static function evaluate( $object ) {
 
-			// Get all fields
+			// Get all fields.
 			$fields = Kirki::$fields;
 
 			// Make sure the current object matches a registered field.
@@ -28,7 +41,7 @@ if ( ! class_exists( 'Kirki_Active_Callback' ) ) {
 						return true;
 					}
 
-					if ( isset( $current_object['option_name'] ) && '' != $current_object['option_name'] ) {
+					if ( isset( $current_object['option_name'] ) && '' !== $current_object['option_name'] ) {
 						if ( false === strpos( $requirement['setting'], '[' ) ) {
 							$requirement['setting'] = $current_object['option_name'] . '[' . $requirement['setting'] . ']';
 						}
@@ -65,9 +78,7 @@ if ( ! class_exists( 'Kirki_Active_Callback' ) ) {
 						$current_setting->value(),
 						$requirement['operator']
 					);
-
 				}
-
 			}
 
 			return ( isset( $show ) && ( false === $show ) ) ? false : true;
@@ -75,10 +86,12 @@ if ( ! class_exists( 'Kirki_Active_Callback' ) ) {
 		}
 
 		/**
-		 * @param mixed $value1 the 1st value in the comparison
-		 * @param mixed $value2 the 2nd value in the comparison
-		 * @param string $operator the operator we'll use for the comparison.
-		 * @return boolean whether the comparison has succeded (true) or failed (false).
+		 * Compares the 2 values given the condition
+		 *
+		 * @param mixed  $value1   The 1st value in the comparison.
+		 * @param mixed  $value2   The 2nd value in the comparison.
+		 * @param string $operator The operator we'll use for the comparison.
+		 * @return boolean whether The comparison has succeded (true) or failed (false).
 		 */
 		public static function compare( $value1, $value2, $operator ) {
 			switch ( $operator ) {
@@ -86,25 +99,54 @@ if ( ! class_exists( 'Kirki_Active_Callback' ) ) {
 					$show = ( $value1 === $value2 ) ? true : false;
 					break;
 				case '==':
+				case '=':
+				case 'equals':
+				case 'equal':
 					$show = ( $value1 == $value2 ) ? true : false;
 					break;
 				case '!==':
 					$show = ( $value1 !== $value2 ) ? true : false;
 					break;
 				case '!=':
+				case 'not equal':
 					$show = ( $value1 != $value2 ) ? true : false;
 					break;
 				case '>=':
+				case 'greater or equal':
+				case 'equal or greater':
 					$show = ( $value1 >= $value2 ) ? true : false;
 					break;
 				case '<=':
+				case 'smaller or equal':
+				case 'equal or smaller':
 					$show = ( $value1 <= $value2 ) ? true : false;
 					break;
 				case '>':
+				case 'greater':
 					$show = ( $value1 > $value2 ) ? true : false;
 					break;
 				case '<':
+				case 'smaller':
 					$show = ( $value1 < $value2 ) ? true : false;
+					break;
+				case 'contains':
+				case 'in':
+					if ( is_array( $value1 ) && ! is_array( $value2 ) ) {
+						$array  = $value1;
+						$string = $value2;
+					} elseif ( is_array( $value2 ) && ! is_array( $value1 ) ) {
+						$array  = $value2;
+						$string = $value1;
+					}
+					if ( isset( $array ) && isset( $string ) ) {
+						if ( ! in_array( $string, $array ) ) {
+							$show = false;
+						}
+					} else {
+						if ( false === strrpos( $value1, $value2 ) && false === strpos( $value2, $value1 ) ) {
+							$show = false;
+						}
+					}
 					break;
 				default:
 					$show = ( $value1 == $value2 ) ? true : false;
@@ -117,6 +159,5 @@ if ( ! class_exists( 'Kirki_Active_Callback' ) ) {
 
 			return true;
 		}
-
 	}
 }

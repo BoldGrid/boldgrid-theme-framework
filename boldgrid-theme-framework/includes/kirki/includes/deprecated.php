@@ -6,12 +6,12 @@
  * @package     Kirki
  * @category    Core
  * @author      Aristeides Stathopoulos
- * @copyright   Copyright (c) 2015, Aristeides Stathopoulos
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @copyright   Copyright (c) 2016, Aristeides Stathopoulos
+ * @license     http://opensource.org/licenses/https://opensource.org/licenses/MIT
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -54,60 +54,18 @@ if ( ! function_exists( 'kirki_get_brightness' ) ) {
 	}
 }
 
-if ( ! class_exists( 'Kirki_Fonts' ) ) {
-
-	class Kirki_Fonts {
-
-		public static function get_all_fonts() {
-			$font_registry = Kirki_Toolkit::fonts();
-			return $font_registry->get_all_fonts();
+/**
+ * Class was deprecated in 2.2.7
+ *
+ * @see https://github.com/aristath/kirki/commit/101805fd689fa8828920b789347f13efc378b4a7
+ */
+if ( ! class_exists( 'Kirki_Colourlovers' ) ) {
+	/**
+	 * Deprecated.
+	 */
+	class Kirki_Colourlovers {
+		public static function get_palettes( $palettes_nr = 5 ) {
+			return array();
 		}
-
-		public static function get_font_choices() {
-			$font_registry = Kirki_Toolkit::fonts();
-			return $font_registry->get_font_choices();
-		}
-
-		public static function is_google_font( $font ) {
-			$font_registry = Kirki_Toolkit::fonts();
-			return $font_registry->is_google_font( $font );
-		}
-
-		public static function get_google_font_uri( $fonts, $weight = 400, $subset = 'all' ) {
-			$font_registry = Kirki_Toolkit::fonts();
-			return $font_registry->get_google_font_uri( $fonts, $weight, $subset );
-		}
-
-		public static function get_google_font_subsets() {
-			$font_registry = Kirki_Toolkit::fonts();
-			return $font_registry->get_google_font_subsets();
-		}
-
-		public static function choose_google_font_variants( $font, $variants = array() ) {
-			$font_registry = Kirki_Toolkit::fonts();
-			return $font_registry->choose_google_font_variants( $font, $variants );
-		}
-
-		public static function get_standard_fonts() {
-			$font_registry = Kirki_Toolkit::fonts();
-			return $font_registry->get_standard_fonts();
-		}
-
-		public static function get_font_stack( $font ) {
-			$font_registry = Kirki_Toolkit::fonts();
-			return $font_registry->get_font_stack( $font );
-		}
-
-		public static function sanitize_font_choice( $value ) {
-			$font_registry = Kirki_Toolkit::fonts();
-			return $font_registry->sanitize_font_choice( $value );
-		}
-
-		public static function get_google_fonts() {
-			$font_registry = Kirki_Toolkit::fonts();
-			return $font_registry->get_google_fonts();
-		}
-
 	}
-
 }

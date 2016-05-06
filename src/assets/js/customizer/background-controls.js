@@ -7,39 +7,39 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 
 	 BOLDGRID.CUSTOMIZER.Background = {};
 	var self = BOLDGRID.CUSTOMIZER.Background;
-	
+
 	var $window = $( window );
 
 	$( function() {
 		$window.on( 'boldgrid_customizer_refresh',  onload_procedure  );
 	} );
-	
+
 	var onload_procedure = function () {
 		bind_all();
 		validate_selection_set();
-		
+
 		var $flat_color_background = $('#customize-control-boldgrid_background_color');
 		var $pattern_background = $('#customize-control-boldgrid_background_pattern');
 		var $background_type = $('#customize-control-boldgrid-background-type');
-		
+
 		var $image_mods = $('#accordion-section-background_image .customize-control')
 			.not($pattern_background)
 			.not($background_type)
 			.not($flat_color_background);
-		
+
 		var $verticle_pos = $('#customize-control-boldgrid_background_vertical_position');
 		var $horizontal_pos = $('#customize-control-boldgrid_background_horizontal_position');
 		var $image_background = $('#customize-control-background_image');
 		var $repeat_background = $('#customize-control-background_repeat');
 		var $pos_x_background = $('#customize-control-background_position_x');
 		var $attachment_background = $('#customize-control-background_attachment');
-		
+
 		self.$background_color_picker_color = $flat_color_background.find('.wp-color-result');
 		var $background_color_picker = $flat_color_background.find('.wp-color-picker');
 		var $pattern_input = $pattern_background.find( "#boldgrid_background_pattern input" );
 		var $boldgrid_pattern_wrapper = $pattern_background.find( ".boldgrid-pattern-wrapper" );
 		var $remove_selected_pattern = $pattern_background.find( ".remove-selected-pattern" );
-		
+
 		$flat_color_background.find('.wp-picker-clear').on('click', function () {
 			wp.customize.control( 'boldgrid_background_color' ).setting( '' );
 			validate_background_color_setting();
@@ -48,7 +48,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		validate_background_color_setting();
 		append_head_styles();
 		bind_background_color_change();
-		
+
 		$remove_selected_pattern.on( 'click', function() {
 			var $this =  $( this );
 			$boldgrid_pattern_wrapper.removeAttr('data-pattern-selected');
@@ -56,7 +56,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			$('#boldgrid_background_pattern .active-pattern').removeClass('active-pattern');
 			$pattern_input.val('').change();
 		} );
-		
+
 		$( '.patternpreview' ).on( 'click', function() {
 			var $this =  $( this );
 			$( '.pattern-wrapper .active-pattern' ).removeClass( 'active-pattern' );
@@ -79,7 +79,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 				$this.removeClass( 'boldgrid-sticky-customizer' );
 			}
 		} );
-		
+
 		$background_type.on( 'change', 'input', function () {
 			var $this = $( this );
 			if ( $this.val() == 'image' ) {
@@ -89,13 +89,13 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 				$( '#customize-control-boldgrid_background_color' ).show();
 				$( '#customize-control-boldgrid_background_pattern' ).show();
 			}
-			
+
 		});
-		
+
 		$background_type.find( 'input:checked' ).change();
-		
+
 	};
-	
+
 	var validate_background_color_setting = function () {
 		var $container = jQuery( wp.customize.previewer.container );
 		var to = wp.customize( 'boldgrid_background_color' )();
@@ -108,25 +108,25 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			}, 100);
 		}
 	};
-	
+
 	var append_head_styles = function ( to ) {
 		if ( ! to ) {
 			to = wp.customize( 'boldgrid_background_color' )();
 		}
-		
+
 		$( '#customizer_boldgrid_background_color' ).remove();
 		if ( to ) {
 			var style = '';
 			style += '<style id="customizer_boldgrid_background_color">';
 			style += '#customize-control-boldgrid_background_pattern .patternpreview{background-color:' + to + ';}';
 			style += '</style>';
-					
+
 			$( 'head' ).append( $( style ) );
 		}
 	};
-	
+
 	/**
-	 * When the user changes the background color using the color picker, 
+	 * When the user changes the background color using the color picker,
 	 * update the preview patterns
 	 */
 	var bind_background_color_change = function () {
@@ -136,7 +136,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			} );
 		} );
 	};
-	
+
 	var validate_selection_set = function () {
 		var bg_image = wp.customize( 'background_image' )();
 		var bg_attach = wp.customize( 'background_attachment' )();
@@ -146,7 +146,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var bg_type = wp.customize( 'boldgrid_background_type' )();
 
 		if ( bg_type == 'pattern') {
-			
+
 			//Activate Pattern
 			wp.customize.control( 'boldgrid_background_pattern' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_background_color' ).activate( { duration: 0 } );
@@ -158,8 +158,8 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'background_image' ).deactivate( { duration: 0 } );
 			wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
 			wp.customize.control( 'background_attachment' ).deactivate( { duration: 0 } );
-			
-			
+
+
 		} else {
 			//Activate Image
 			wp.customize.control( 'boldgrid_background_image_size' ).activate( { duration: 0 } );
@@ -168,7 +168,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'background_image' ).activate( { duration: 0 } );
 			wp.customize.control( 'background_attachment' ).activate( { duration: 0 } );
 			wp.customize.control( 'background_repeat' ).activate( { duration: 0 } );
-			
+
 			if ( !bg_image ) {
 				wp.customize.control( 'boldgrid_background_horizontal_position' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_vertical_position' ).deactivate( { duration: 0 } );
@@ -182,16 +182,16 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 				wp.customize.control( 'background_attachment' ).activate( { duration: 0 } );
 				wp.customize.control( 'background_repeat' ).activate( { duration: 0 } );
 			}
-			
+
 			if ( bg_attach == 'parallax' ) {
 				wp.customize.control( 'boldgrid_background_horizontal_position' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_vertical_position' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
 			}
 		}
-		
+
 	};
-	
+
 	var bind_all = function () {
 		var background_control_refresh = [
 		     'background_image',
@@ -203,18 +203,24 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		     'boldgrid_background_vertical_position'];
 
 		$.each(background_control_refresh, function () {
-			
+
 			wp.customize( this, function( value ) {
 				value.bind( validate_selection_set );
 			});
 		});
-		
+
 	};
 
-	
+
 })( jQuery );
 
 ( function( $ ) {
+
+	wp.customize( 'logo_shadow_switch', function( value ) {
+		value.bind( function( to ) {
+			_shadow_toggle();
+		});
+	});
 
 	var _shadow_toggle = function (  ) {
 
@@ -231,6 +237,11 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			color.deactivate( { duration: 0 } );
 			blur.deactivate( { duration: 0 } );
 
+		} else {
+			vertical.activate( { duration: 0 } );
+			horizontal.activate( { duration: 0 } );
+			color.activate( { duration: 0 } );
+			blur.activate( { duration: 0 } );
 		}
 
 	};
@@ -241,10 +252,6 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	var _logo_toggle = function (  ) {
 
 		var logo      =  wp.customize( 'boldgrid_logo_setting' ).get(  );
-		var vertical    =  wp.customize.control( 'logo_shadow_vertical' );
-		var horizontal  =  wp.customize.control( 'logo_shadow_horizontal' );
-		var color       =  wp.customize.control( 'logo_shadow_color' );
-		var blur        =  wp.customize.control( 'logo_shadow_blur' );
 
 		if ( logo !== '' ) {
 			_.each( wp.customize.section( 'title_tagline' ).controls(), function ( control ) {
@@ -258,7 +265,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'logo_margin_top' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_logo_size' ).activate( { duration: 0 } );
 
-			//Enable Position Controls & reorganize 
+			//Enable Position Controls & reorganize
 			wp.customize.control( 'boldgrid_position_toggle' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_position_toggle' ).priority( 55 );
 			wp.customize.control( 'logo_margin_left' ).priority( 55 );

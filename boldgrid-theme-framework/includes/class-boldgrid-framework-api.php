@@ -252,7 +252,7 @@ class BoldGrid {
 		if ( $blog_info && ! absint( get_theme_mod( 'boldgrid_logo_setting' ) ) ) {
 			printf( $this->configs['template']['tagline'], $this->configs['template']['tagline-classes'], $blog_info );
 		} else {
-			printf( $this->configs['template']['tagline'], 'site-description hidden', $blog_info );
+			printf( $this->configs['template']['tagline'], 'site-description invisible', $blog_info );
 		}
 	}
 

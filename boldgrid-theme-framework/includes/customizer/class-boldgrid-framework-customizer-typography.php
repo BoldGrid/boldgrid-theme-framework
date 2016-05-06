@@ -98,15 +98,9 @@ class Boldgrid_Framework_Customizer_Typography {
 
 			// Add the Typography Panel to main customizer view.
 			$wp_customize->add_panel( 'boldgrid_typography', array(
-				'title'       => __( 'Typography', 'boldgrid' ),
+				'title'       => __( 'Fonts', 'boldgrid' ),
 				'description' => 'Manage your site typography settings.',
 				'priority'    => 99,
-			) );
-
-			// Add Site Title to Typography Panel.
-			$wp_customize->add_section( 'site_title_typography', array(
-				'title'    => 'Site Title',
-				'panel' => 'boldgrid_typography',
 			) );
 
 			// Add Navigation to Typography Panel.
@@ -622,6 +616,9 @@ class Boldgrid_Framework_Customizer_Typography {
 
 		$site_title_customizer = $this->configs['customizer-options']['site-title']['site-title'];
 		if ( true === $site_title_customizer ) {
+
+			$site_indentity_section = 'title_tagline';
+
 			/**
 			* Font Toggle
 			*/
@@ -629,7 +626,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'type'        => 'toggle',
 				'settings'     => 'boldgrid_font_toggle',
 				'label'       => __( 'Custom Font', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'     => false,
 			);
 			/**
@@ -639,7 +636,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'type'     => 'select',
 				'settings'  => 'logo_font_family',
 				'label'    => __( 'Font Family', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 'Oswald',
 				'choices'  => kirki_Fonts::get_font_choices(),
 				'output'   => array(
@@ -654,7 +651,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'settings'  => 'logo_font_size',
 				'transport' => 'postMessage',
 				'label'    => __( 'Font Size', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 55,
 				'choices'  => array(
 					'min'  => 1,
@@ -677,7 +674,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'settings'  => 'logo_text_transform',
 				'transport' => 'postMessage',
 				'label'    => __( 'Capitalization', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 'uppercase',
 				'choices'  => array(
 					'capitalize' => 'Capitalize',
@@ -697,7 +694,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'settings'  => 'logo_text_decoration',
 				'transport' => 'postMessage',
 				'label'    => __( 'Decoration', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 'none',
 				'choices'  => array(
 					'none' => 'Normal',
@@ -717,7 +714,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'settings'  => 'logo_text_decoration_hover',
 				'transport' => 'postMessage',
 				'label'    => __( 'Decoration Hover', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 'underline',
 				'choices'  => array(
 					'none' => 'Normal',
@@ -743,7 +740,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'type'        => 'toggle',
 				'settings'     => 'boldgrid_position_toggle',
 				'label'       => __( 'Position', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'     => false,
 			);
 			/**
@@ -754,7 +751,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'settings'  => 'logo_margin_top',
 				'transport' => 'postMessage',
 				'label'    => __( 'Top Margin', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 10,
 				'choices'  => array(
 					'min'  => -20,
@@ -774,7 +771,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'settings'  => 'logo_margin_bottom',
 				'transport' => 'postMessage',
 				'label'    => __( 'Bottom Margin', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 20,
 				'choices'  => array(
 					'min'  => -20,
@@ -794,7 +791,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'settings'  => 'logo_margin_left',
 				'transport' => 'postMessage',
 				'label'    => __( 'Horizontal Margin', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 0,
 				'choices'  => array(
 					'min'  => -50,
@@ -803,7 +800,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				),
 				'output' => array(
 					array(
-						'element'  => '.site-title',
+						'element'  => '.site-branding',
 						'property' => 'margin-left',
 						'units'    => 'px',
 					),
@@ -814,7 +811,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'settings'  => 'logo_line_height',
 				'transport' => 'postMessage',
 				'label'    => __( 'Line Height', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 150,
 				'choices'  => array(
 					'min'  => 50,
@@ -834,7 +831,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'settings'  => 'logo_letter_spacing',
 				'transport' => 'postMessage',
 				'label'    => __( 'Letter Spacing', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 1,
 				'choices'  => array(
 					'min'  => 1,
@@ -851,16 +848,18 @@ class Boldgrid_Framework_Customizer_Typography {
 			);
 			$controls['logo_shadow_switch'] = array(
 				'type'        => 'toggle',
+				'transport' => 'postMessage',
 				'settings'     => 'logo_shadow_switch',
 				'label'       => __( 'Custom Shadow', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'     => 0,
 			);
 			$controls['logo_shadow_horizontal'] = array(
 				'type'     => 'slider',
+				'transport' => 'postMessage',
 				'settings'  => 'logo_shadow_horizontal',
 				'label'    => __( 'Horizontal Shadow', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 5,
 				'choices'  => array(
 					'min'  => -25,
@@ -871,8 +870,9 @@ class Boldgrid_Framework_Customizer_Typography {
 			$controls['logo_shadow_vertical'] = array(
 				'type'     => 'slider',
 				'settings'  => 'logo_shadow_vertical',
+				'transport' => 'postMessage',
 				'label'    => __( 'Vertical Shadow', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 5,
 				'choices'  => array(
 					'min'  => -25,
@@ -884,7 +884,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'type'     => 'slider',
 				'settings'  => 'boldgrid_logo_size',
 				'label'    => __( 'Logo Size', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 260,
 				'choices'  => array(
 					'min'  => 120,
@@ -901,9 +901,10 @@ class Boldgrid_Framework_Customizer_Typography {
 			);
 			$controls['logo_shadow_blur'] = array(
 				'type'     => 'slider',
+				'transport' => 'postMessage',
 				'settings'  => 'logo_shadow_blur',
 				'label'    => __( 'Shadow Blur', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => 5,
 				'choices'  => array(
 					'min'  => 1,
@@ -913,15 +914,15 @@ class Boldgrid_Framework_Customizer_Typography {
 			);
 			$controls['logo_shadow_color'] = array(
 				'type'     => 'color-alpha',
+				'transport' => 'postMessage',
 				'settings'  => 'logo_shadow_color',
 				'label'    => __( 'Shadow Color', 'bgtfw' ),
-				'section'  => 'site_title_typography',
+				'section'  => $site_indentity_section,
 				'default'  => '#000',
 			);
 		}
 		return $controls;
 	}
-
 
 	/**
 	 * Adds text shadow based on logo shadow selection
@@ -929,9 +930,9 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @since     1.0.0
 	 */
 	public function title_text_shadow() {
-		if ( '1' === get_theme_mod( 'logo_shadow_switch' ) ) : ?>
-			<style type="text/css">
-				.site-title { text-shadow:<?php esc_attr( get_theme_mod( 'logo_shadow_horizontal', '5' ) ); ?>px <?php esc_attr( get_theme_mod( 'logo_shadow_vertical', '5' ) ); ?>px <?php esc_attr( get_theme_mod( 'logo_shadow_blur', '5' ) ); ?>px <?php esc_attr( get_theme_mod( 'logo_shadow_color', '#000000' ) ); ?>; }
+		if ( true === get_theme_mod( 'logo_shadow_switch' ) ) : ?>
+		<style type="text/css">
+				.site-title { text-shadow:<?php echo esc_attr( get_theme_mod( 'logo_shadow_horizontal', '5' ) ); ?>px <?php echo esc_attr( get_theme_mod( 'logo_shadow_vertical', '5' ) ); ?>px <?php echo esc_attr( get_theme_mod( 'logo_shadow_blur', '5' ) ); ?>px <?php echo esc_attr( get_theme_mod( 'logo_shadow_color', '#000000' ) ); ?>; }
 			</style>
 		<?php endif;
 	}

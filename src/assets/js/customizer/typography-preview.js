@@ -9,7 +9,15 @@
 	"use strict";
 
 	// Check each active nav menu location in customizer.
-	var $menus = parent.wp.customize.section( 'menu_locations' ).controls();
+	var $menus = parent.wp.customize.section( 'menu_locations' ).controls(),
+		$window = $( window ),
+		shadowControls = [
+		    'logo_shadow_color',
+		    'logo_shadow_blur',
+		    'logo_shadow_vertical',
+		    'logo_shadow_horizontal',
+		    'logo_shadow_switch'
+		];
 
 	// Loop through nav menus for live preview changes.
 	_.each( $menus, function( id ) {
@@ -27,8 +35,16 @@
 				$( '.' + id.themeLocation.replace( /_/g, '-' ) + '-menu ul li a' ).css( 'text-transform', to );
 			});
 		});
-
 	});
+
+	$( function () {
+		wp.customize.preview.bind( 'setting', function( args ) {
+			if ( 'boldgrid_color_palette' !== args[0] ) {
+				$window.trigger( 'resize' );
+			}
+		} );
+		updateShadowControls();
+	} );
 
 	// Set font size on main body text live
 	wp.customize( 'body_font_size', function( value ) {
@@ -151,14 +167,14 @@
 	// Set logo margin bottom on site title text live
 	wp.customize( 'logo_margin_bottom', function( value ) {
 		value.bind( function( to ) {
-			$( '.site-title' ).css( 'margin-bottom', to + 'px' );
+			$( '.site-description' ).css( 'margin-bottom', to + 'px' );
 		});
 	});
 
 	// Set logo horizontal margin on site title text live
 	wp.customize( 'logo_margin_left', function( value ) {
 		value.bind( function( to ) {
-			$( '.site-title' ).css( 'margin-left', to + 'px' );
+			$( '.site-title, .site-description' ).css( 'margin-left', to + 'px' );
 		});
 	});
 
@@ -175,5 +191,34 @@
 			$( '.site-title' ).css( 'letter-spacing', to + 'px' );
 		});
 	});
+
+	// Set shadow contols.
+	var updateShadowControls = function () {
+		var logoShadowColor = wp.customize( 'logo_shadow_color')(),
+		    logoShadowBlur = wp.customize( 'logo_shadow_blur')() + "px ",
+		    logoShadowVertical = wp.customize( 'logo_shadow_vertical')() + "px ",
+		    logoShadowHorizontal = wp.customize( 'logo_shadow_horizontal')() + "px ",
+		    logoShadowSwitch = wp.customize( 'logo_shadow_switch')(),
+		    cssString = 'none';
+
+		if ( logoShadowSwitch ) {
+			cssString =
+				logoShadowHorizontal +
+				logoShadowVertical +
+				logoShadowBlur +
+				logoShadowColor;
+		}
+
+		$( '.site-title' ).css( 'text-shadow', cssString );
+	};
+
+	// Bind the change of shadow controls.
+	$.each( shadowControls, function () {
+		wp.customize( this, function( value ) {
+			value.bind( function( to ) {
+				updateShadowControls();
+			});
+		});
+	} );
 
 })( jQuery );

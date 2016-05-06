@@ -165,6 +165,46 @@ class BoldGrid_Framework_Template_Config {
 	}
 
 	/**
+	 * Header Template 4 Configuration
+	 *
+	 * This will set the default configuration options for
+	 * header template 4 if it's in use.
+	 *
+	 * @return array array An array containing menu locations.
+	 *
+	 * @since 1.1.1
+	 */
+	private function header_4_config() {
+		// Menu Locations.
+		return array(
+			'primary' => 'Primary Menu',
+			'secondary' => 'Above Header',
+			'tertiary'  => 'Above Primary',
+			'social'    => 'Above Primary',
+		);
+	}
+
+	/**
+	 * Header Template 5 Configuration
+	 *
+	 * This will set the default configuration options for
+	 * header template 5 if it's in use.
+	 *
+	 * @return array array An array containing menu locations.
+	 *
+	 * @since 1.1.1
+	 */
+	private function header_5_config() {
+		// Menu Locations.
+		return array(
+			'primary' => 'Primary Menu',
+			'secondary' => 'Above Header',
+			'tertiary'  => 'Above Primary',
+			'social'    => 'Above Primary',
+		);
+	}
+
+	/**
 	 * Default Footer Template Configuration
 	 *
 	 * This will set the default configuration options for the

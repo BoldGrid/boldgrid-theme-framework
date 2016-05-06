@@ -395,6 +395,10 @@
 .navmenu {
   z-index: 1; }
 
+.navmenu-fixed-left .navbar-form,
+.navmenu-fixed-right .navbar-form {
+  padding: 0 6px; }
+
 .admin-bar.offcanvas-menu-enabled .navbar-fixed-top {
   top: 32px; }
 

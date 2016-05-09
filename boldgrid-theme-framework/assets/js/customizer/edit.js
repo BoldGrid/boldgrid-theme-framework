@@ -85,8 +85,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		// Empty widget areas.
 		_( $emptyWidgetAreas ).each(
 			function( widgetArea ) {
-				// This is temporary.
-				$( widgetArea ).append('<p style="color:#fff;background-color:blue;">Add a widget</p>');
+				$( widgetArea ).append( '<div class="empty-area"></div>' );
 
 				var dataWidgetArea = $( widgetArea ).attr( 'data-widget-area' );
 				var widgetAreaId = dataWidgetArea.replace( 'accordion-section-sidebar-widgets-' , '' );
@@ -577,11 +576,29 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$parentsContainer = self.parentColumn( $parent ),
 			dataControl = ( null === type ? id : type + '[' + id + ']' ),
 			$fixedAncestors = self.getFixedAncestors( $parent ),
-			dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' );
+			dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' ),
+			isEmptyWidget = ( "'true'" === $parent.attr( 'data-empty-area' ) ),
+			isEmptyNav = $parent.hasClass( 'empty-menu' );
 
 		// If the button already exists, abort.
 		if( 0 !== $( 'body' ).find( '[data-selector="' + selector + '"]' ).length ) {
 			return;
+		}
+
+		/*
+		 * If this button is for an empty widget area or an empty nav area, add a 'new' class to use
+		 * a plus sign instead of a pencil icon.
+		 */
+		if( isEmptyNav ) {
+			$button
+				.addClass( 'new' )
+				.attr( 'title', boldgridFrameworkCustomizerEdit.addAMenu );
+		}
+
+		if( isEmptyWidget ) {
+			$button
+				.addClass( 'new' )
+				.attr( 'title', boldgridFrameworkCustomizerEdit.addAWidget );
 		}
 
 		$button

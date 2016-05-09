@@ -34,9 +34,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	 *
 	 */
 	public static function fallback_cb( $menu ) {
-		$temporary_inline_style = 'background-color:blue;color:#fff;min-height:30px;';
-
-		printf( "<%s id='%s' class='empty-menu' style='$temporary_inline_style'>Add a menu</%s>",
+		printf( "<%s id='%s' class='empty-menu'></%s>",
 			$menu['container'],
 			$menu['container_id'],
 			$menu['container']
@@ -70,8 +68,10 @@ class Boldgrid_Framework_Customizer_Edit {
 				'boldgrid-framework-customizer-edit-js',
 				'boldgridFrameworkCustomizerEdit',
 				array(
-					'editPostLink' => get_edit_post_link( get_the_ID() ),
-					'goThereNow' => __( 'Go there now', 'bgtfw' )
+					'editPostLink'	=> get_edit_post_link( get_the_ID() ),
+					'goThereNow'	=> __( 'Go there now', 'bgtfw' ),
+					'addAMenu'		=> __( 'Add a Menu', 'bgtfw' ),
+					'addAWidget'	=> __( 'Add a Widget', 'bgtfw' ),
 				)
 			);
 

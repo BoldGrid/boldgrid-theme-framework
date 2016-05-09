@@ -28,6 +28,8 @@ user guide for more information.
 
 ### 1.1.4 ###
 * New Feature: The frameworks root path can now be overwritten with BGTFW_PATH constant.
+* New Feature: Text shadow controls are now postMessage.
+* New Feature: Tagline will now inherit margin controls from site title.
 
 ### 1.1.3 ###
 * Bug fix: Addressed issue where subheadings weren't having font-family property set.

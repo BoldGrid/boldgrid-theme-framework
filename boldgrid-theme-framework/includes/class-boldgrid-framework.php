@@ -419,7 +419,6 @@ class BoldGrid_Framework {
 		$boldgrid_theme_customizer = new BoldGrid_Framework_Customizer( $this->configs );
 		$boldgrid_theme_color_palette = new Boldgrid_Framework_Customizer_Colors( $this->configs );
 		$boldgrid_theme_customizer_background = new BoldGrid_Framework_Customizer_Background( $this->configs );
-		$boldgrid_theme_customizer_site_title = new BoldGrid_Framework_Customizer_Site_Title( $this->configs );
 		$boldgrid_theme_customizer_footer = new BoldGrid_Framework_Customizer_Footer( $this->configs );
 		$boldgrid_theme_customizer_kirki = new Boldgrid_Framework_Customizer_Kirki( $this->configs );
 		$boldgrid_theme_customizer_typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
@@ -522,21 +521,19 @@ class BoldGrid_Framework {
 		// Add Typography Controls.
 		if ( true === $this->configs['customizer-options']['typography']['enabled'] ) {
 			$this->loader->add_action( 'customize_controls_enqueue_scripts', $boldgrid_theme_customizer_typography, 'enqueue_scripts' );
-			$this->loader->add_action( 'customize_preview_init', $boldgrid_theme_customizer_typography, 'live_preview' );
 			$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer_typography, 'typography_panel' );
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'headings_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'alternate_headings_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'navigation_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'body_typography_controls' );
-			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'site_identity_controls' );
 			$this->loader->add_action( 'wp_head', $boldgrid_theme_customizer_typography, 'headings_font_size_css' );
-			$this->loader->add_action( 'wp_head', $boldgrid_theme_customizer_typography, 'title_text_shadow' );
 			$this->loader->add_filter( 'boldgrid_mce_inline_styles', $boldgrid_theme_customizer_typography, 'headings_editor_styles' );
-		} else {
-			// Use the old Site Title Customizer Stuff.
-			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_site_title, 'site_identity_controls' );
-			$this->loader->add_action( 'wp_head', 	     $boldgrid_theme_customizer_site_title, 'title_text_shadow' );
 		}
+
+		// Add Site title typography controls.
+		$this->loader->add_action( 'customize_preview_init', $boldgrid_theme_customizer_typography, 'live_preview' );
+		$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'site_identity_controls' );
+		$this->loader->add_action( 'wp_head', 	     $boldgrid_theme_customizer_typography, 'title_text_shadow' );
 	}
 
 	/**

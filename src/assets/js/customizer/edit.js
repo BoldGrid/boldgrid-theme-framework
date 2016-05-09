@@ -406,7 +406,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		duration = ( moves === 0 ? 0 : 400 ),
 		buttonLeft,
 		$fixedAncestors = self.getFixedAncestors( $parent ),
-		dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' );
+		dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' ),
+		zIndex;
 
 		/*
 		 * The button's data-fixed-ancestor has already been set. Because this function is ran
@@ -414,6 +415,23 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		 * reset the data attribute now.
 		 */
 		$button.attr( 'data-fixed-ancestor', dataFixedAncestor );
+
+		/*
+		 * Fix z-index issues.
+		 *
+		 * This generally only happens when dealing with 'fixed' ancestors. Sometimes the button's
+		 * z-index places it below the fixed ancestor, which results in being unable to click the button.
+		 *
+		 * IF we have fixed ancestors AND they have a z-index set,
+		 * THEN update the button's z-index to be one higher.
+		 */
+		if( $fixedAncestors.length ) {
+			zIndex = parseInt( $fixedAncestors.last().css( 'z-index' ) );
+
+			if( Number.isInteger( zIndex ) ) {
+				$button.css( 'z-index', zIndex + 1 );
+			}
+		}
 
 		/*
 		 * Based on the parent's visibility and whether we're showing this button for the first

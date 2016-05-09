@@ -505,10 +505,10 @@ HTML;
 	public function enqueue_front_end_styles() {
 		$config_settings = $this->configs['customizer-options']['colors'];
 
-		if ( ! empty( $config_settings['enabled'] ) && file_exists( get_stylesheet_directory() . $config_settings['settings']['output_css_name'] ) ) {
+		if ( ! empty( $config_settings['enabled'] ) && file_exists( $config_settings['settings']['output_css_name'] ) ) {
 
 			$version = '';
-			$last_mod = filemtime( get_stylesheet_directory() . $config_settings['settings']['output_css_name'] );
+			$last_mod = filemtime( $config_settings['settings']['output_css_name'] );
 			if ( $last_mod ) {
 				$version = $last_mod;
 			}
@@ -516,7 +516,7 @@ HTML;
 			if ( false === $this->configs['framework']['inline_styles'] ) {
 				// Add BoldGrid Theme Helper stylesheet.
 				wp_enqueue_style( 'boldgrid-theme-helper-color-palette-compiled',
-					get_stylesheet_directory_uri( ) . $config_settings['settings']['output_css_name'],
+					$config_settings['settings']['output_css_uri'],
 				array(),  $last_mod );
 			} else {
 				// Add inline styles.
@@ -553,14 +553,14 @@ HTML;
 			false
 		);
 
-		$output_css_file = $this->configs['customizer-options']['colors']['settings']['output_css_name'];
+		$output_css_file = $this->configs['customizer-options']['colors']['settings']['output_css_uri'];
 		wp_localize_script(
 			'boldgird-theme-helper-sass-implementation',
 			'BOLDGRIDSass',
 			array(
 				'WorkerUrl' => $this->configs['framework']['js_dir'] . 'sass-js/sass.worker.js',
 				'ScssFormatFileContents' => $scss->get_precompile_content(),
-				'output_css_filename' => get_template_directory_uri() . $output_css_file,
+				'output_css_filename' => $output_css_file,
 			)
 		);
 

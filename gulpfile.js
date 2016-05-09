@@ -11,7 +11,6 @@ var gulp     = require( 'gulp' ),
  //   notify   = require( 'gulp-notify' ),
     replace  = require( 'gulp-replace' ),
     sequence = require( 'run-sequence' ),
-    uglify   = require( 'gulp-uglify' ),
     jshint   = require( 'gulp-jshint' ),
     phpcbf   = require( 'gulp-phpcbf' ),
     phpcs    = require( 'gulp-phpcs' ),
@@ -19,7 +18,7 @@ var gulp     = require( 'gulp' ),
     del      = require( 'del' ),
     clean    = require( 'gulp-clean' ),
     fs       = require( 'fs' ),
-    changed  = require('gulp-changed'),
+    changed  = require( 'gulp-changed' ),
     bower    = require( 'gulp-bower' );
 
 // Configs
@@ -208,12 +207,15 @@ gulp.task( 'jsHint', function(  ) {
 
 // Minify & Copy JS
 gulp.task( 'frameworkJs', function(  ) {
+	// Minified Files.
   gulp.src([config.src + '/assets/js/**/*.js'])
-    .pipe( uglify() )
+    .pipe( uglify().on( 'error', gutil.log ) )
     .pipe( rename({
       suffix: '.min'
     }) )
     .pipe( gulp.dest( config.dist + '/assets/js' ) );
+
+  // Unminified Files.
   gulp.src([config.src + '/assets/js/**/*.js'])
     .pipe( gulp.dest( config.dist + '/assets/js' ) );
 });
@@ -246,7 +248,7 @@ gulp.task( 'scssCompile', function(  ) {
         config.dist + 'assets/scss/',
         config.dist + 'assets/scss/bootstrap',
       ]
-    } ) )
+    } ).on( 'error', sass.logError ) )
     .pipe( sass.sync(  ).on( 'error', sass.logError ) )
     .pipe( gulp.dest( config.dist + '/assets/css' ) )
     .pipe( cssnano({
@@ -316,8 +318,12 @@ gulp.task( 'build', function( cb ) {
   );
 });
 
-gulp.task( 'css', function( cb ) {
-	sequence( 'frameworkFiles', 'scssDeps', 'scssCompile', 'fontFamilyCss', cb );
+gulp.task( 'css-js', function( cb ) {
+	sequence( 'frameworkFiles', 'frameworkJs', 'scssCompile', cb );
 });
 
 gulp.task( 'prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ]);
+
+gulp.task('watch', function() {
+	gulp.watch( config.src + '/**/*', ['css-js'] );
+} );

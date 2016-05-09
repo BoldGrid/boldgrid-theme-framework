@@ -236,7 +236,6 @@ class Boldgrid_Framework_Menu {
 		$parent_name = $this->configs['theme-parent-name'];
 		$parent_stylesheet_name = strtolower( wp_get_theme( basename( get_template_directory() ) )->Name );
 		$is_user_child = is_child_theme() && $parent_stylesheet_name !== $parent_name;
-
 		return $is_user_child;
 	}
 

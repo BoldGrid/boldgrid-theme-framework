@@ -26,7 +26,6 @@ return array(
 
 		// After the helper compiles the css, where should the css be stored?
 		'output_css_name' => $this->configs['framework']['config_directory']['template'] . '/css/color-palettes.css',
-		'output_css_uri' => $this->configs['framework']['config_directory']['uri'] . '/css/color-palettes.css',
 
 		// Should the output be minified?
 		'minify_output' => true,

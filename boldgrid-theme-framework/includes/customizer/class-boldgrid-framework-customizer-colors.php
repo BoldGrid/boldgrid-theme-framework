@@ -206,6 +206,24 @@ class Boldgrid_Framework_Customizer_Colors {
 	}
 
 	/**
+	 * Get the uri of the color palettes.css output file.
+	 *
+	 * @since 1.1.4
+	 *
+	 * @param array $configs.
+	 * @return string color palettes uri
+	 */
+	public static function get_colors_uri( $configs ) {
+		$output_css_name = $configs['customizer-options']['colors']['settings']['output_css_name'];
+
+		return str_replace(
+			$configs['framework']['config_directory']['template'],
+			$configs['framework']['config_directory']['uri'],
+			$output_css_name
+		);
+	}
+
+	/**
 	 * On change of a theme mod, update the color palette
 	 *
 	 * @since 0.1
@@ -511,10 +529,10 @@ HTML;
 	public function enqueue_front_end_styles() {
 		$config_settings = $this->configs['customizer-options']['colors'];
 
-		if ( ! empty( $config_settings['enabled'] ) && file_exists( get_stylesheet_directory() . $config_settings['settings']['output_css_name'] ) ) {
+		if ( ! empty( $config_settings['enabled'] ) && file_exists( $config_settings['settings']['output_css_name'] ) ) {
 
 			$version = '';
-			$last_mod = filemtime( get_stylesheet_directory() . $config_settings['settings']['output_css_name'] );
+			$last_mod = filemtime( $config_settings['settings']['output_css_name'] );
 			if ( $last_mod ) {
 				$version = $last_mod;
 			}
@@ -522,7 +540,7 @@ HTML;
 			if ( false === $this->configs['framework']['inline_styles'] ) {
 				// Add BoldGrid Theme Helper stylesheet.
 				wp_enqueue_style( 'boldgrid-theme-helper-color-palette-compiled',
-					get_stylesheet_directory_uri( ) . $config_settings['settings']['output_css_name'],
+					self::get_colors_uri( $this->configs ),
 				array(),  $last_mod );
 			} else {
 				// Add inline styles.
@@ -559,14 +577,13 @@ HTML;
 			false
 		);
 
-		$output_css_file = $this->configs['customizer-options']['colors']['settings']['output_css_name'];
 		wp_localize_script(
 			'boldgird-theme-helper-sass-implementation',
 			'BOLDGRIDSass',
 			array(
 				'WorkerUrl' => $this->configs['framework']['js_dir'] . 'sass-js/sass.worker.js',
 				'ScssFormatFileContents' => $scss->get_precompile_content(),
-				'output_css_filename' => get_template_directory_uri() . $output_css_file,
+				'output_css_filename' => self::get_colors_uri( $this->configs ),
 			)
 		);
 

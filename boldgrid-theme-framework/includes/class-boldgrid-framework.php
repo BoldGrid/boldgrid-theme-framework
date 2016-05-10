@@ -221,6 +221,10 @@ class BoldGrid_Framework {
 	public function assign_configurations() {
 
 		$this->configs = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/configs.php';
+
+		// Based on the configs already assigned, set config values to help assign later values.
+		$this->assign_dynamic_configs();
+
 		$this->configs['tooltips'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/tooltips.config.php';
 		$this->configs['menu'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/menu.config.php';
 		$this->configs['action'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/action.config.php';
@@ -228,6 +232,29 @@ class BoldGrid_Framework {
 		$this->configs['widget'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/widget.config.php';
 
 		$this->assign_customizer_configs();
+	}
+
+
+	/**
+	 * Set configs that will be used to create other configs.
+	 *
+	 * @since    1.1.4
+	 * @access   protected.
+	 */
+	protected function assign_dynamic_configs() {
+
+		$theme_directory = get_template_directory();
+		$theme_directory_uri = get_template_directory_uri();
+
+		// If we are using an authors child theme, paths need to be changed to look at the child.
+		$menu = new Boldgrid_Framework_Menu( $this->configs );
+		if ( is_child_theme() && false === $menu->is_user_child() ) {
+			$theme_directory = get_stylesheet_directory();
+			$theme_directory_uri = get_stylesheet_directory_uri();
+		}
+
+		$this->configs['framework']['config_directory']['template'] = $theme_directory;
+		$this->configs['framework']['config_directory']['uri'] = $theme_directory_uri;
 	}
 
 	/**
@@ -419,7 +446,6 @@ class BoldGrid_Framework {
 		$boldgrid_theme_customizer = new BoldGrid_Framework_Customizer( $this->configs );
 		$boldgrid_theme_color_palette = new Boldgrid_Framework_Customizer_Colors( $this->configs );
 		$boldgrid_theme_customizer_background = new BoldGrid_Framework_Customizer_Background( $this->configs );
-		$boldgrid_theme_customizer_site_title = new BoldGrid_Framework_Customizer_Site_Title( $this->configs );
 		$boldgrid_theme_customizer_footer = new BoldGrid_Framework_Customizer_Footer( $this->configs );
 		$boldgrid_theme_customizer_kirki = new Boldgrid_Framework_Customizer_Kirki( $this->configs );
 		$boldgrid_theme_customizer_typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
@@ -519,21 +545,19 @@ class BoldGrid_Framework {
 		// Add Typography Controls.
 		if ( true === $this->configs['customizer-options']['typography']['enabled'] ) {
 			$this->loader->add_action( 'customize_controls_enqueue_scripts', $boldgrid_theme_customizer_typography, 'enqueue_scripts' );
-			$this->loader->add_action( 'customize_preview_init', $boldgrid_theme_customizer_typography, 'live_preview' );
 			$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer_typography, 'typography_panel' );
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'headings_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'alternate_headings_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'navigation_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'body_typography_controls' );
-			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'site_identity_controls' );
 			$this->loader->add_action( 'wp_head', $boldgrid_theme_customizer_typography, 'headings_font_size_css' );
-			$this->loader->add_action( 'wp_head', $boldgrid_theme_customizer_typography, 'title_text_shadow' );
 			$this->loader->add_filter( 'boldgrid_mce_inline_styles', $boldgrid_theme_customizer_typography, 'headings_editor_styles' );
-		} else {
-			// Use the old Site Title Customizer Stuff.
-			$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_site_title, 'site_identity_controls' );
-			$this->loader->add_action( 'wp_head', 	     $boldgrid_theme_customizer_site_title, 'title_text_shadow' );
 		}
+
+		// Add Site title typography controls.
+		$this->loader->add_action( 'customize_preview_init', $boldgrid_theme_customizer_typography, 'live_preview' );
+		$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'site_identity_controls' );
+		$this->loader->add_action( 'wp_head', 	     $boldgrid_theme_customizer_typography, 'title_text_shadow' );
 	}
 
 	/**

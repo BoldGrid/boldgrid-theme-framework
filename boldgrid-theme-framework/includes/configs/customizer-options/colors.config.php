@@ -20,12 +20,12 @@ return array(
 	'settings' => array(
 		// Directory that contains SCSS files to be compiled.
 		'scss_directory' => array(
-			'framework_dir' => $configs['framework']['asset_dir'] . '/scss/custom-color',
+			'framework_dir' => $configs['framework']['asset_dir'] . 'scss/custom-color',
 			'default' => '/inc/boldgrid-theme-framework-config/scss',
 		),
 
 		// After the helper compiles the css, where should the css be stored?
-		'output_css_name' => '/css/color-palettes.css',
+		'output_css_name' => $this->configs['framework']['config_directory']['template'] . '/css/color-palettes.css',
 
 		// Should the output be minified?
 		'minify_output' => true,

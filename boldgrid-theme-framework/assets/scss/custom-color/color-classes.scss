@@ -7,10 +7,10 @@
    		@return null;
   	}
   	@else {
-    	$color-brightness: brightness($color);  
+    	$color-brightness: brightness($color);
     	$light-text-brightness: brightness($light_text);
     	$dark-text-brightness: brightness($dark_text);
-  
+
     	@if (abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness)) {
         	@return $light_text;
     	} @else {
@@ -48,7 +48,7 @@
 }
 
 /*create single css classes to apply palettes on universal elements*/
-$names: color background border;
+$names: color background background-color border;
 @for $i from 1 through length( $names ) {
 	@each $color in $colors {
 		$which-color: index( $colors, $color );

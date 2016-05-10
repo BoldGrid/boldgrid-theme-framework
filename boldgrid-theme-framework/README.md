@@ -26,14 +26,19 @@ user guide for more information.
 
 ## Changelog ##
 
-### 1.1.4 ###
+### 1.1.5 ###
 * New Feature: Updated drag behavior to swap colors.
 * New Feature: The neutral color of a palette can now be modified with drag and drop.
 * New Feature: The UI of color palettes has been improved.
 * New Feature: Colors within a users color palette can now be selected from the color picker.
 * New Feature: Improved color palette suggestion algorithms.
 * Bug Fix: Removed duplicate entries of color palettes from saved palettes.
+
+### 1.1.4 ###
+* Bug Fix: Issue causing color palette customizer to fail on child themes. 
 * New Feature: The frameworks root path can now be overwritten with BGTFW_PATH constant.
+* New Feature: Text shadow controls are now postMessage.
+* New Feature: Tagline will now inherit margin controls from site title.
 
 ### 1.1.3 ###
 * Bug fix: Addressed issue where subheadings weren't having font-family property set.

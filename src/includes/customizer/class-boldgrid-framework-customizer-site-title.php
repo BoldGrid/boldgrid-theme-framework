@@ -51,7 +51,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 			*/
 			$controls['boldgrid_font_toggle'] = array(
 			    'type'        => 'toggle',
-			    'setting'     => 'boldgrid_font_toggle',
+			    'settings'     => 'boldgrid_font_toggle',
 			    'label'       => __( 'Custom Font', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'     => false,
@@ -62,7 +62,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 			*/
 			$controls['logo_font_family'] = array(
 			    'type'     => 'select',
-			    'setting'  => 'logo_font_family',
+			    'settings'  => 'logo_font_family',
 			    'label'    => __( 'Font Family', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 'Oswald',
@@ -77,7 +77,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_font_size'] = array(
 			    'type'     => 'slider',
-			    'setting'  => 'logo_font_size',
+			    'settings'  => 'logo_font_size',
 			    'label'    => __( 'Font Size', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 55,
@@ -100,7 +100,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 			*/
 			$controls['logo_text_transform'] = array(
 			    'type'     => 'select',
-			    'setting'  => 'logo_text_transform',
+			    'settings'  => 'logo_text_transform',
 			    'label'    => __( 'Capitalization', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 'uppercase',
@@ -120,7 +120,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_text_decoration'] = array(
 			    'type'     => 'select',
-			    'setting'  => 'logo_text_decoration',
+			    'settings'  => 'logo_text_decoration',
 			    'label'    => __( 'Decoration', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 'none',
@@ -140,7 +140,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_text_decoration_hover'] = array(
 			    'type'     => 'select',
-			    'setting'  => 'logo_text_decoration_hover',
+			    'settings'  => 'logo_text_decoration_hover',
 			    'label'    => __( 'Decoration Hover', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 'underline',
@@ -167,7 +167,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 			*/
 			$controls['boldgrid_position_toggle'] = array(
 			    'type'        => 'toggle',
-			    'setting'     => 'boldgrid_position_toggle',
+			    'settings'     => 'boldgrid_position_toggle',
 			    'label'       => __( 'Position', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'     => false,
@@ -178,7 +178,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 			*/
 			$controls['logo_margin_top'] = array(
 			    'type'     => 'slider',
-			    'setting'  => 'logo_margin_top',
+			    'settings'  => 'logo_margin_top',
 			    'label'    => __( 'Top Margin', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 10,
@@ -198,7 +198,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_margin_bottom'] = array(
 			    'type'     => 'slider',
-			    'setting'  => 'logo_margin_bottom',
+			    'settings'  => 'logo_margin_bottom',
 			    'label'    => __( 'Bottom Margin', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 20,
@@ -218,7 +218,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_margin_left'] = array(
 			    'type'     => 'slider',
-			    'setting'  => 'logo_margin_left',
+			    'settings'  => 'logo_margin_left',
 			    'label'    => __( 'Horizontal Margin', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 0,
@@ -238,7 +238,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_line_height'] = array(
 			    'type'     => 'slider',
-			    'setting'  => 'logo_line_height',
+			    'settings'  => 'logo_line_height',
 			    'label'    => __( 'Line Height', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 150,
@@ -258,7 +258,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_letter_spacing'] = array(
 			    'type'     => 'slider',
-			    'setting'  => 'logo_letter_spacing',
+			    'settings'  => 'logo_letter_spacing',
 			    'label'    => __( 'Letter Spacing', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 1,
@@ -281,7 +281,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 			*/
 			$controls['logo_shadow_switch'] = array(
 			    'type'        => 'toggle',
-			    'setting'     => 'logo_shadow_switch',
+			    'settings'     => 'logo_shadow_switch',
 			    'label'       => __( 'Custom Shadow', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'     => 0,
@@ -289,7 +289,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_shadow_horizontal'] = array(
 			    'type'     => 'slider',
-			    'setting'  => 'logo_shadow_horizontal',
+			    'settings'  => 'logo_shadow_horizontal',
 			    'label'    => __( 'Horizontal Shadow', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 5,
@@ -302,7 +302,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_shadow_vertical'] = array(
 			    'type'     => 'slider',
-			    'setting'  => 'logo_shadow_vertical',
+			    'settings'  => 'logo_shadow_vertical',
 			    'label'    => __( 'Vertical Shadow', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 5,
@@ -315,7 +315,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['boldgrid_logo_size'] = array(
 			    'type'     => 'slider',
-			    'setting'  => 'boldgrid_logo_size',
+			    'settings'  => 'boldgrid_logo_size',
 			    'label'    => __( 'Logo Size', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 260,
@@ -335,7 +335,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_shadow_blur'] = array(
 			    'type'     => 'slider',
-			    'setting'  => 'logo_shadow_blur',
+			    'settings'  => 'logo_shadow_blur',
 			    'label'    => __( 'Shadow Blur', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => 5,
@@ -348,7 +348,7 @@ class Boldgrid_Framework_Customizer_Site_Title {
 
 			$controls['logo_shadow_color'] = array(
 			    'type'     => 'color-alpha',
-			    'setting'  => 'logo_shadow_color',
+			    'settings'  => 'logo_shadow_color',
 			    'label'    => __( 'Shadow Color', 'bgtfw' ),
 			    'section'  => 'title_tagline',
 			    'default'  => '#000',

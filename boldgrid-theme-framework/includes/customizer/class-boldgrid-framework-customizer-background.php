@@ -117,7 +117,7 @@ class Boldgrid_Framework_Customizer_Background {
 		// Add Background Vertical Position Control.
 		Kirki::add_field( '', array(
 				'type' => 'slider',
-				'setting' => 'boldgrid_background_vertical_position',
+				'settings' => 'boldgrid_background_vertical_position',
 				'label' => __( 'Vertical Background Position', 'bgtfw' ),
 				'section' => 'background_image',
 				'transport' => 'postMessage',
@@ -134,7 +134,7 @@ class Boldgrid_Framework_Customizer_Background {
 		// Add Background Horizontal Position Control.
 		Kirki::add_field( '', array(
 				'type' => 'slider',
-				'setting' => 'boldgrid_background_horizontal_position',
+				'settings' => 'boldgrid_background_horizontal_position',
 				'label' => __( 'Horizontal Background Position', 'bgtfw' ),
 				'section' => 'background_image',
 				'transport' => 'postMessage',

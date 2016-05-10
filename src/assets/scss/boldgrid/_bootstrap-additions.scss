@@ -16,6 +16,10 @@
     min-height: 15px;
 }
 
+ .entry-content .row > * {
+ 	max-width: 100%;
+ }
+
 // Bootstrap Nav Dropdown on Hover
 @media (min-width: 992px) {
     .dropdown:hover .dropdown-menu {

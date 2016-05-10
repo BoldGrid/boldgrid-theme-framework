@@ -236,9 +236,8 @@ class Boldgrid_Framework_Menu {
 	 */
 	public function is_user_child() {
 		$parent_name = $this->configs['theme-parent-name'];
-		$stylesheet_name = strtolower( wp_get_theme()->Name );
-		$is_user_child = ( is_child_theme() && $stylesheet_name === $parent_name ? true : false );
-
+		$parent_stylesheet_name = strtolower( wp_get_theme( basename( get_template_directory() ) )->Name );
+		$is_user_child = is_child_theme() && $parent_stylesheet_name !== $parent_name;
 		return $is_user_child;
 	}
 

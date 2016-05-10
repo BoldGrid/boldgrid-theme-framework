@@ -221,6 +221,10 @@ class BoldGrid_Framework {
 	public function assign_configurations() {
 
 		$this->configs = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/configs.php';
+
+		// Based on the configs already assigned, set config values to help assign later values.
+		$this->assign_dynamic_configs();
+
 		$this->configs['tooltips'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/tooltips.config.php';
 		$this->configs['menu'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/menu.config.php';
 		$this->configs['action'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/action.config.php';
@@ -228,6 +232,29 @@ class BoldGrid_Framework {
 		$this->configs['widget'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/widget.config.php';
 
 		$this->assign_customizer_configs();
+	}
+
+
+	/**
+	 * Set configs that will be used to create other configs.
+	 *
+	 * @since    1.1.4
+	 * @access   protected.
+	 */
+	protected function assign_dynamic_configs() {
+
+		$theme_directory = get_template_directory();
+		$theme_directory_uri = get_template_directory_uri();
+
+		// If we are using an authors child theme, paths need to be changed to look at the child.
+		$menu = new Boldgrid_Framework_Menu( $this->configs );
+		if ( is_child_theme() && false === $menu->is_user_child() ) {
+			$theme_directory = get_stylesheet_directory();
+			$theme_directory_uri = get_stylesheet_directory_uri();
+		}
+
+		$this->configs['framework']['config_directory']['template'] = $theme_directory;
+		$this->configs['framework']['config_directory']['uri'] = $theme_directory_uri;
 	}
 
 	/**

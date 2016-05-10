@@ -27,6 +27,7 @@ user guide for more information.
 ## Changelog ##
 
 ### 1.1.4 ###
+* Bug Fix: Issue causing color palette customizer to fail on child themes. 
 * New Feature: The frameworks root path can now be overwritten with BGTFW_PATH constant.
 * New Feature: Text shadow controls are now postMessage.
 * New Feature: Tagline will now inherit margin controls from site title.

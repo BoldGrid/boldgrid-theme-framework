@@ -39,6 +39,9 @@
 .entry-content .row .row [class*="col-lg"] {
   min-height: 15px; }
 
+.entry-content .row > * {
+  max-width: 100%; }
+
 @media (min-width: 992px) {
   .dropdown:hover .dropdown-menu {
     display: block; } }

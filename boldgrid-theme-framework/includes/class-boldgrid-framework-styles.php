@@ -68,7 +68,7 @@ class BoldGrid_Framework_Styles {
 			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap.min.css',
 			$this->configs['framework']['css_dir'] . 'boldgrid-theme-framework' . $suffix . '.css',
 			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
-			$this->configs['customizer-options']['colors']['settings']['output_css_name'],
+			Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
 		);
 	}
 

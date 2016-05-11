@@ -286,15 +286,15 @@ msgstr ""
 msgid "BoldGrid Color Palettes"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:72
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:77
 msgid "Go there now"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:73
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:78
 msgid "Add a Menu"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:74
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:79
 msgid "Add a Widget"
 msgstr ""
 

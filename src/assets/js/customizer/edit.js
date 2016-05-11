@@ -17,10 +17,12 @@ var BOLDGRID = BOLDGRID || {};
 BOLDGRID.Customizer_Edit = function( $ ) {
 	var self = this, api = parent.wp.customize;
 
-	$( function() {
-		// After the page has fully load, init the buttons 0.5 seconds later.
-		setTimeout( self.init, 500 );
-	} );
+	/**
+	 * Take note when the window is done loading.
+	 *
+	 * @since 1.1.5
+	 */
+	self.windowLoaded = false;
 
 	/**
 	 * @summary Add all edit buttons to the DOM.
@@ -300,16 +302,26 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		self.$targetHighlight = $( '#target-highlight' );
 
 		self.addButtons();
+
 		self.placeButtons();
 
 		/*
-		 * The footer button always gives us trouble. This usually is due to content on the page
-		 * rendering / animating after the page has loaded. Wait 1 second, and then fix the
-		 * placement of only the footer button.
+		 * Our edit buttons are initially added when the document is 'ready'.
+		 *
+		 * At this point, several things can happen that will cause content on the page to get
+		 * pushed down, which will result in buttons not being placed properly:
+		 * # Animations
+		 * # Image downloads
+		 *
+		 * Until the window is fully loaded, every 2 seconds refresh the placement of the buttons.
 		 */
-		setTimeout( function() {
-			self.placeButton( $('button[data-control=boldgrid_enable_footer]') );
-		}, 1000 );
+		var untilLoaded = setInterval( function() {
+				if( false === self.windowLoaded ) {
+					self.placeButtons();
+				} else {
+					clearInterval( untilLoaded );
+				}
+			}, 2000 );
 
 		// When the window is resized, wait 0.4 seconds and readjust the placement of our buttons.
 		$( window ).resize(function() {
@@ -644,6 +656,14 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				$button.removeClass( 'highlight-button' );
 			} );
 	};
+
+	window.onload = function() {
+		self.windowLoaded = true;
+	};
+
+	$( function() {
+		self.init();
+	} );
 };
 
 new BOLDGRID.Customizer_Edit( jQuery );

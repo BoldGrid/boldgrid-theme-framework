@@ -18,13 +18,6 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	var self = this, api = parent.wp.customize;
 
 	/**
-	 * Take note when the window is done loading.
-	 *
-	 * @since 1.1.5
-	 */
-	self.windowLoaded = false;
-
-	/**
 	 * @summary Add all edit buttons to the DOM.
 	 *
 	 * @since 1.1.2
@@ -302,26 +295,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		self.$targetHighlight = $( '#target-highlight' );
 
 		self.addButtons();
-
 		self.placeButtons();
-
-		/*
-		 * Our edit buttons are initially added when the document is 'ready'.
-		 *
-		 * At this point, several things can happen that will cause content on the page to get
-		 * pushed down, which will result in buttons not being placed properly:
-		 * # Animations
-		 * # Image downloads
-		 *
-		 * Until the window is fully loaded, every 2 seconds refresh the placement of the buttons.
-		 */
-		var untilLoaded = setInterval( function() {
-				if( false === self.windowLoaded ) {
-					self.placeButtons();
-				} else {
-					clearInterval( untilLoaded );
-				}
-			}, 2000 );
 
 		// When the window is resized, wait 0.4 seconds and readjust the placement of our buttons.
 		$( window ).resize(function() {
@@ -658,12 +632,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	};
 
 	window.onload = function() {
-		self.windowLoaded = true;
-	};
-
-	$( function() {
 		self.init();
-	} );
+	};
 };
 
 new BOLDGRID.Customizer_Edit( jQuery );

@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.1.4.1 ###
+* Bug Fix: Issue causing Visual Editor widget areas to fail on firefox. 
+
 ### 1.1.4 ###
 * Bug Fix: Issue causing color palette customizer to fail on child themes. 
 * New Feature: The frameworks root path can now be overwritten with BGTFW_PATH constant.

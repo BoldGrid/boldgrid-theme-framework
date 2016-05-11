@@ -154,7 +154,7 @@ gulp.task( 'phpDeps', function(  ) {
 
 // Copy Framework Files.
 gulp.task( 'frameworkFiles', function(  ) {
-  gulp.src([
+  return gulp.src([
     '!' + config.src + '/includes/black-studio-tinymce-widget',
     '!' + config.src + '/includes/black-studio-tinymce-widget/**',
     config.src + '/**/*.{php,txt,json,css,scss}',

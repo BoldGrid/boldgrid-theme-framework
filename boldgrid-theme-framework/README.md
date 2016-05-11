@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.1.5 ###
+* Update: Changed customizer tablet view width to 768px. 
+
 ### 1.1.4 ###
 * Bug Fix: Issue causing color palette customizer to fail on child themes. 
 * New Feature: The frameworks root path can now be overwritten with BGTFW_PATH constant.

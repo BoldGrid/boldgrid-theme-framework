@@ -31,12 +31,17 @@ class Boldgrid_Framework_Customizer_Edit {
 	}
 
 	/**
+	 * Print an empty container for an empty nav.
 	 *
+	 * @since xxx
+	 *
+	 * @param array $menu An array of menu settings.
 	 */
 	public static function fallback_cb( $menu ) {
-		printf( "<%s id='%s' class='empty-menu'></%s>",
+		printf( "<%s id='%s' class='empty-menu' data-theme-location='%s'></%s>",
 			$menu['container'],
 			$menu['container_id'],
+			$menu['theme_location'],
 			$menu['container']
 		);
 	}

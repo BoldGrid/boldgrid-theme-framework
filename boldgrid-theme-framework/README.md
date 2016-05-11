@@ -27,6 +27,7 @@ user guide for more information.
 ## Changelog ##
 
 ### 1.1.5 ###
+* Update: Kirki from v2.1.0.1 to v2.3.2. 
 * Update: Changed customizer tablet view width to 768px. 
 
 ### 1.1.4 ###

@@ -1,44 +1,91 @@
 <?php
 /**
- * switch Customizer Control.
+ * Customizer Control: switch.
  *
  * @package     Kirki
  * @subpackage  Controls
- * @copyright   Copyright (c) 2015, Aristeides Stathopoulos
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @copyright   Copyright (c) 2016, Aristeides Stathopoulos
+ * @license     http://opensource.org/licenses/https://opensource.org/licenses/MIT
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ! class_exists( 'Kirki_Controls_Switch_Control' ) ) {
-	class Kirki_Controls_Switch_Control extends Kirki_Customize_Control {
 
-		public $type = 'switch';
+	/**
+	 * Switch control (modified checkbox).
+	 */
+	class Kirki_Controls_Switch_Control extends Kirki_Controls_Checkbox_Control {
 
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @var string
+		 */
+		public $type = 'kirki-switch';
+
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @access public
+		 */
 		public function to_json() {
 			parent::to_json();
-			$i18n = Kirki_Toolkit::i18n();
+			$i18n = Kirki_l10n::get_strings();
 			$this->json['choices'] = ( empty( $this->choices ) || ! is_array( $this->choices ) ) ? array() : $this->choices;
 			$this->json['choices']['on']    = ( isset( $this->choices['on'] ) ) ? $this->choices['on'] : $i18n['on'];
 			$this->json['choices']['off']   = ( isset( $this->choices['off'] ) ) ? $this->choices['off'] : $i18n['off'];
 			$this->json['choices']['round'] = ( isset( $this->choices['round'] ) ) ? $this->choices['round'] : false;
 		}
 
-		protected function content_template() { ?>
-			<# if ( data.help ) { #>
-				<a href="#" class="tooltip hint--left" data-hint="{{ data.help }}"><span class='dashicons dashicons-info'></span></a>
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 */
+		public function enqueue() {
+			wp_enqueue_script( 'kirki-switch' );
+		}
+
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see Kirki_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 */
+		protected function content_template() {
+			?>
+			<# if ( data.tooltip ) { #>
+				<a href="#" class="tooltip hint--left" data-hint="{{ data.tooltip }}"><span class='dashicons dashicons-info'></span></a>
 			<# } #>
+			<style>
+			#customize-control-{{ data.id }} .switch label {
+				width: calc({{ data.choices['on'].length }}ch + {{ data.choices['off'].length }}ch + 40px);
+			}
+			#customize-control-{{ data.id }} .switch label:after {
+				width: calc({{ data.choices['on'].length }}ch + 10px);
+			}
+			#customize-control-{{ data.id }} .switch input:checked + label:after {
+				left: calc({{ data.choices['on'].length }}ch + 25px);
+				width: calc({{ data.choices['off'].length }}ch + 10px);
+			}
+			</style>
 			<div class="switch<# if ( data.choices['round'] ) { #> round<# } #>">
 				<span class="customize-control-title">
 					{{{ data.label }}}
-					<# if ( data.description ) { #>
-						<span class="description customize-control-description">{{{ data.description }}}</span>
-					<# } #>
 				</span>
+				<# if ( data.description ) { #>
+					<span class="description customize-control-description">{{{ data.description }}}</span>
+				<# } #>
 				<input name="switch_{{ data.id }}" id="switch_{{ data.id }}" type="checkbox" value="{{ data.value }}" {{{ data.link }}}<# if ( '1' == data.value ) { #> checked<# } #> />
 				<label class="switch-label" for="switch_{{ data.id }}">
 					<span class="switch-on">{{ data.choices['on'] }}</span>

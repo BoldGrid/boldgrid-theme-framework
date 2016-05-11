@@ -108,7 +108,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			resizable : false,
 			modal : true,
 		},
-		goThereNow = boldgridFrameworkCustomizerEdit.goThereNow;
+		goThereNow = boldgridFrameworkCustomizerEdit.goThereNow,
+		$parent = $( $button.attr( 'data-selector' ) ),
+		navMenuLocation, control;
 
 		/*
 		 * When clicking on the page title or the page content, the user will be prompted to
@@ -130,23 +132,22 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	        $( this ).dialog( 'close' );
 	    };
 
-		/*
-		 * Take action based upon which edit button is clicked.
-		 *
-		 * If the user is clicked on the page content or page title, open the dialog described
-		 * above. Otherwise, use api to open the appropriate pane in the Customizer controls.
-		 */
+	    // Page title or page content.
 		if ( 'entry-content' === dataControl || 'entry-title' === dataControl ) {
 			$( '#' + dataControl ).dialog( dialogSettings );
 			return;
+		// Empty widget locations.
 		} else if ( 0 === dataControl.lastIndexOf( 'sidebars_widgets', 0 ) ) {
 			api.control( dataControl ).focus();
+		// Widgets.
 		} else if ( 0 === dataControl.lastIndexOf( 'sidebar', 0 ) ) {
-			var control = dataControl.match( /\[(.*?)\]/ );
+			control = dataControl.match( /\[(.*?)\]/ );
 			api.Widgets.focusWidgetFormControl( control[ 1 ] );
+		// Empty menu locations.
 		} else if ( 'new_menu_name' === dataControl ) {
-			// Open the "Menus" panel.
-			api.panel( 'nav_menus' ).expand();
+			navMenuLocation = $parent.attr( 'data-theme-location' );
+			api.control( 'nav_menu_locations[' + navMenuLocation + ']' ).focus();
+		// Default.
 		} else {
 			api.control( dataControl ).focus();
 		}
@@ -170,10 +171,6 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 			if( dataControl.startsWith( 'sidebar[' ) ) {
 				focused = focused.closest( '.widget' );
-			}
-
-			if ( 'new_menu_name' === dataControl ) {
-				focused = $( '.add-menu-toggle', parent.document );
 			}
 
 			/*

@@ -238,19 +238,19 @@ class Boldgrid_Framework_Customizer_Footer {
 		if ( get_theme_mod( 'boldgrid_enable_footer', true ) ) {
 
 			// BoldGrid.com Link.
-			if ( false === get_theme_mod( 'hide_boldgrid_attribution' ) ) {
+			if ( ! get_theme_mod( 'hide_boldgrid_attribution' ) ) {
 				$theme_mods .= sprintf( __( 'Built with %s | ', 'bgtfw' ),
 				'<a href="http://www.boldgrid.com/" rel="nofollow" target="_blank">BoldGrid</a>' );
 			}
 
 			// WordPress.org Link.
-			if ( false === get_theme_mod( 'hide_wordpress_attribution' ) ) {
+			if ( ! get_theme_mod( 'hide_wordpress_attribution' ) ) {
 				$theme_mods .= sprintf( __( 'Powered by %s | ', 'bgtfw' ),
 				'<a href="https://wordpress.org/" rel="nofollow" target="_blank">WordPress</a>' );
 			}
 
 			// Authorized Reseller/Partner Link.
-			if ( false === get_theme_mod( 'hide_partner_attribution' ) ) {
+			if ( ! get_theme_mod( 'hide_partner_attribution' ) ) {
 				if ( ! empty( $reseller_data['reseller_title'] ) ) {
 					$theme_mods .= sprintf( __( 'Support from %s | ', 'bgtfw' ),
 						'<a href="' . $reseller_data['reseller_website_url'] .

@@ -160,5 +160,20 @@ class BoldGrid_Framework_Scripts {
 				$this->configs['version']
 			);
 		}
+
+		/**
+		 * Enqueue theme specific javascript if the file exists.
+		 *
+		 * @since 1.1.5
+		 */
+		$file = get_stylesheet_directory() . '/js/theme.js';
+		if ( file_exists( $file ) ) {
+			wp_enqueue_script(
+				'theme-js',
+				$file,
+				array( 'jquery' ),
+				$this->configs['version']
+			);
+		}
 	}
 }

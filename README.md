@@ -26,8 +26,12 @@ user guide for more information.
 
 ## Changelog ##
 
-### 1.1.5 In progress ###
-* Update: Empty menu buttons - open to menu locations.
+### 1.1.5 ###
+* Update: Kirki from v2.1.0.1 to v2.3.2. 
+* Update: Changed customizer tablet view width to 768px. 
+
+### 1.1.4.1 ###
+* Bug Fix: Issue causing Visual Editor widget areas to fail on firefox. 
 
 ### 1.1.4 ###
 * Bug Fix: Issue causing color palette customizer to fail on child themes. 

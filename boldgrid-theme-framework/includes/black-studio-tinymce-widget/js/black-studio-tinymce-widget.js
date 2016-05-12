@@ -72,7 +72,7 @@ var bstw;
 					} else {
 						$( '#' + id ).addClass( 'active' ).removeClass( 'activating' );
 					}
-						
+
 				}
 
 				//Boldgrid Added
@@ -82,7 +82,7 @@ var bstw;
 					.contents().find('body')
 					.addClass( BOLDGRID.COLOR_PALETTE.Modify.active_body_class  );
 				}
-				
+
 				return this;
 			},
 
@@ -194,9 +194,9 @@ var bstw;
 						this.get_widget_inside().prepend( '<div class="error"><strong>' + bstw_data.error_duplicate_id + '</strong></div>' );
 					}
 				}
-				// Fix CSS
-				this.get_widget().css( 'position', 'relative' ).css( 'z-index', '100000' ); // needed for small screens and for fullscreen mode
-				$( '#wpbody-content' ).css( 'overflow', 'visible' ); // needed for small screens
+				// BoldGrid: Commented out for FireFox Issue.
+				//this.get_widget().css( 'position', 'relative' ).css( 'z-index', '100000' ); // needed for small screens and for fullscreen mode
+				//$( '#wpbody-content' ).css( 'overflow', 'visible' ); // needed for small screens
 				return this;
 			},
 
@@ -249,7 +249,7 @@ var bstw;
 				bstw( $widget ).activate();
 			}
 		});
-		
+
 		// Event handler for widget updated
 		$( document ).on( 'widget-updated', function( event, $widget ) {
 			if ( $widget.is( '[id*=black-studio-tinymce]' ) ) {
@@ -328,7 +328,7 @@ var bstw;
 				$( 'body' ).removeClass( 'wait' );
 			}, 1000 );
 		});
-		
+
 		// Support for moving widgets in Customizer without drag & drop
 		$( document ).on( 'click', 'body.wp-customizer div[id*=black-studio-tinymce].widget .move-widget-btn', function(){
 			$( 'body' ).addClass( 'wait' );
@@ -353,7 +353,7 @@ var bstw;
 				bstw( $( event.target ) ).deactivate();
 			});
 		}
-		
+
 		// Event handler for window resize (needed for responsive behavior)
 		$( window ).resize(function() {
 			$( 'textarea[id^=widget-black-studio-tinymce]' ).each(function() {
@@ -363,19 +363,18 @@ var bstw;
 
 		// Deactivate quicktags toolbar on hidden base instance
 		$( '#qt_widget-black-studio-tinymce-__i__-text_toolbar' ).remove();
-		
+
 		// Plugin links toggle behavior
 		$( document ).on( 'click', '.bstw-links-icon', function( event ) {
 			event.preventDefault();
 			$( this ).closest( '.bstw-links' ).children( '.bstw-links-list' ).toggle();
 		});
-		
+
 		// Populate dummy post ID for embed preview
 		if ( typeof( wp.media.view.settings.post.id ) !== 'undefined' && wp.media.view.settings.post.id === 0 ) {
 			wp.media.view.settings.post.id = bstw_data.dummy_post_id;
 		}
-		
+
 	});
 
 })( jQuery ); // end self-invoked wrapper function
-

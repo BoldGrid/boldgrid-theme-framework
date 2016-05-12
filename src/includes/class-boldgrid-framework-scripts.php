@@ -170,11 +170,12 @@ class BoldGrid_Framework_Scripts {
 		 *
 		 * @since 1.1.5
 		 */
-		$file = get_stylesheet_directory_uri() . '/js/theme.js';
-		if ( file_exists( $file ) ) {
+		$file = '/js/theme.js';
+
+		if ( file_exists( get_stylesheet_directory() . $file ) ) {
 			wp_enqueue_script(
 				'theme-js',
-				$file,
+				get_stylesheet_directory_uri() . $file,
 				array( 'jquery' ),
 				$this->configs['version']
 			);

@@ -506,6 +506,22 @@ msgstr ""
 msgid "All posts by %s"
 msgstr ""
 
+#: src/includes/partials/customizer-edit.php:3
+msgid "Edit this page"
+msgstr ""
+
+#: src/includes/partials/customizer-edit.php:4
+msgid "This section is part of an individual page of your site. The Customizer (where you are now) is for editing the header and footer or an overall setting of your site like colors and fonts. To edit this section, you'll need to leave the Customizer and go to the Page Editor."
+msgstr ""
+
+#: src/includes/partials/customizer-edit.php:5
+msgid "Hide page title"
+msgstr ""
+
+#: src/includes/partials/customizer-edit.php:6
+msgid "To hide the title on this page, you'll need to leave the Customizer and go to the Page Editor."
+msgstr ""
+
 #: src/includes/partials/template-tags.php:21
 msgid "Posts navigation"
 msgstr ""

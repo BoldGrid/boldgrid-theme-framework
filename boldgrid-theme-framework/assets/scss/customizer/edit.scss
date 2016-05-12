@@ -6,7 +6,7 @@ button[data-control]:before {
   vertical-align: top; }
 
 button[data-control].new:before {
-	content: "\f132"; }
+  content: "\f132"; }
 
 button[data-control] {
   font-size: 14px;
@@ -15,7 +15,7 @@ button[data-control] {
   text-decoration: none;
   color: #000;
   background: #ddd;
-  opacity: 0.5;
+  opacity: 0.75;
   border-radius: 4px;
   border: 0px;
   z-index: 210;
@@ -62,4 +62,4 @@ button[data-control].highlight-button {
 
 /* Container for empty widget / nav area. */
 [data-empty-area], .empty-menu {
-	min-height: 30px; }
+  min-height: 30px; }

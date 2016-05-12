@@ -73,6 +73,16 @@ return array(
 		'wow-js'                  => false,
 		'animate-css'             => false,
 		'offcanvas-menu'          => false,
+		'options' => array(
+			'wow-js' => array(
+				'enabled'      => false,
+				'boxClass'     => 'wow',
+				'animateClass' => 'animated',
+				'offset'       => 0,
+				'mobile'       => true,
+				'live'         => true,
+			),
+		),
 	),
 
 	/**

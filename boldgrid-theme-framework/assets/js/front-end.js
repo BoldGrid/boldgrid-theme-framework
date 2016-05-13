@@ -195,7 +195,12 @@
 		},
 		// WOW.js enabled.
 		'wow_js_enabled' : {
-			init: function(){
+			init: function() {
+				// Trigger event when WOW is enabled.
+				$( document ).trigger( 'wowEnabled' );
+				this.loadWow();
+			},
+			loadWow: function() {
 				var wow = new WOW({
 					boxClass     : _wowJsOptions.boxClass,
 					animateClass : _wowJsOptions.animateClass,

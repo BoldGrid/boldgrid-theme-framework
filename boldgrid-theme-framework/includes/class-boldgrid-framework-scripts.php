@@ -122,13 +122,17 @@ class BoldGrid_Framework_Scripts {
 		 *
 		 * @since 1.0.0
 		 */
-		if ( true === $this->configs['scripts']['wow-js'] ) {
+	 	if ( true === $this->configs['scripts']['wow-js'] ) {
+			$handle = 'boldgrid-wow-js';
 			wp_enqueue_script(
-				'boldgrid-wow-js',
+				$handle,
 				$this->configs['framework']['js_dir'] . 'wow/wow' . $suffix . '.js',
 				array( 'jquery' ),
 				$this->configs['version']
 			);
+			$wp_scripts = wp_scripts();
+			$wow_configs = $this->configs['scripts']['options']['wow-js'];
+			$wp_scripts->add_data( $handle, 'data', sprintf( 'var _wowJsOptions = %s;', wp_json_encode( $wow_configs ) ) );
 		}
 
 		/**
@@ -166,11 +170,12 @@ class BoldGrid_Framework_Scripts {
 		 *
 		 * @since 1.1.5
 		 */
-		$file = get_stylesheet_directory() . '/js/theme.js';
-		if ( file_exists( $file ) ) {
+		$file = '/js/theme.js';
+
+		if ( file_exists( get_stylesheet_directory() . $file ) ) {
 			wp_enqueue_script(
 				'theme-js',
-				$file,
+				get_stylesheet_directory_uri() . $file,
 				array( 'jquery' ),
 				$this->configs['version']
 			);

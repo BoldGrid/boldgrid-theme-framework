@@ -328,7 +328,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		var buttons = [], initialWindowHeight = $( document ).height();
 
-		initialWindowHeight = $('#attribution').offset().top + $('#attribution').outerHeight( true );
+		var $lastDiv = $('div:visible').not('#target-highlight').last()
+
+		initialWindowHeight = $lastDiv.offset().top + $lastDiv.outerHeight( true );
 
 
 
@@ -337,20 +339,25 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		});
 
 
-
-
 		buttons.sort( self.sortButtons );
 
 
-
-		_( buttons ).each( function( button, key ) {
+		$.each( buttons, function( index, buttonA ) {
 			// If this is not the last button.
-			if( key < ( buttons.length - 1 ) ) {
-				$buttonA = buttons[ key ];
-				$buttonB = buttons[ key + 1 ];
-				if( self.collide( $buttonA, $buttonB ) ) {
-					self.fixCollision( $buttonA, $buttonB );
-				}
+			if( index < ( buttons.length - 1 ) ) {
+				$buttonA = $( buttonA );
+
+				$.each( buttons, function( indexB, buttonB ) {
+					$buttonB = $( buttonB );
+
+					if( $buttonA.is( $buttonB ) ) {
+						return;
+					}
+
+					if( self.collide( $buttonA, $buttonB ) ) {
+						self.fixCollision( $buttonA, $buttonB );
+					}
+				} )
 			}
 		});
 
@@ -415,16 +422,21 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var aOffset = $buttonA.offset(), bOffset = $buttonB.offset(), newTop, buttonHeight = 30;
 
 
+		var $lowerButton = ( aOffset.top > bOffset.top ? $buttonA : $buttonB );
+		var $higherButton = ( $buttonA.is( $lowerButton ) ? $buttonB : $buttonA );
 
-		$buttonB.css( 'top', aOffset.top + buttonHeight );
 
-		var collisionSet = $buttonA.attr( 'data-collision-set' );
+
+		$lowerButton.css( 'top', $higherButton.offset().top + buttonHeight );
+		//$lowerButton.animate({top : $higherButton.offset().top + buttonHeight},10 );
+
+		var collisionSet = $higherButton.attr( 'data-collision-set' );
 		if( 'undefined' === typeof collisionSet ) {
 			collisionSet = self.buttonCollisionSet;
 			self.buttonCollisionSet++;
 		}
-		$buttonA.attr( 'data-collision-set', collisionSet );
-		$buttonB.attr( 'data-collision-set', collisionSet );
+		$lowerButton.attr( 'data-collision-set', collisionSet );
+		$higherButton.attr( 'data-collision-set', collisionSet );
 
 	}
 

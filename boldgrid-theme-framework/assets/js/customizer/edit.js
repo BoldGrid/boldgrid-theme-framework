@@ -403,6 +403,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$button.css( 'position', 'absolute' ).css( 'top', $( window ).scrollTop() );
 
 			self.placeButton( $button );
+			self.findCollision();
 		});
 	};
 
@@ -576,6 +577,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		 *
 		 * IF we have fixed ancestors AND they have a z-index set,
 		 * THEN update the button's z-index to be one higher.
+		 * ELSE we may have previously altered the z-index, reset it.
 		 */
 		if( $fixedAncestors.length ) {
 			zIndex = parseInt( $fixedAncestors.last().css( 'z-index' ) );
@@ -583,6 +585,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			if( Number.isInteger( zIndex ) ) {
 				$button.css( 'z-index', zIndex + 1 );
 			}
+		} else {
+			$button.css( 'z-index', '' );
 		}
 
 		/*
@@ -776,7 +780,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 					.css( 'top', -1 * $button.outerHeight() )
 					.animate({
 						top: '0px'
-					}, 400);
+					}, 400, function() {
+						self.findCollision();
+					});
 			}
 		} else {
 			if( 'fixed' === $button.css( 'position' ) ) {
@@ -784,7 +790,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 					.css( 'top', $( window ).scrollTop() )
 					.animate({
 						top: $parent.offset().top
-					}, 400 );
+					}, 400, function() {
+						self.findCollision();
+					} );
 			}
 		}
 	};

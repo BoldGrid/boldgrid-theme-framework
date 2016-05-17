@@ -62,4 +62,7 @@ button[data-control].highlight-button {
 
 /* Container for empty widget / nav area. */
 [data-empty-area], .empty-menu {
-  min-height: 30px; }
+  height: 0px; }
+
+[data-empty-area].expanded, .empty-menu.expanded {
+  height: 30px; }

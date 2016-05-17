@@ -17,6 +17,12 @@ var BOLDGRID = BOLDGRID || {};
 BOLDGRID.Customizer_Edit = function( $ ) {
 	var self = this, api = parent.wp.customize;
 
+	self.buttonCollisionSet = 1;
+
+	self.animatingEmptyParent = false;
+
+	self.targetHighlightTop;
+
 	/**
 	 * @summary Add all edit buttons to the DOM.
 	 *
@@ -225,6 +231,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}
 
 		self.$targetHighlight
+			// Stop any existing animations.
+			.stop( true )
 			// The highlight should be as wide as the col.
 			.css( 'width', $parentsContainer.outerWidth() )
 			// The highlight should be as tall as the parent element.
@@ -234,6 +242,35 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			// The highlight should be aligned left with the col.
 			.css( 'left', containerOffset.left )
 			.css( 'visibility', 'visible' );
+
+		// An empty area my be animating to 0px. In this case, the current $parent may move position
+		// on the page wile the previous animation is rendering.
+		var count = 0;
+		self.targetHighlightTop = setInterval( function(){
+			count += 10;
+			// console.log( $parent.offset().top - $( window ).scrollTop() );
+			self.$targetHighlight.css( 'top', $parent.offset().top  );
+
+			if( count >= 400 ) {
+				clearInterval( self.targetHighlightTop );
+			}
+
+		}, 10);
+
+		if( self.isParentEmpty( $parent ) ) {
+
+
+			$parent.stop( true ).animate({height:'30px'},400 );
+
+			 self.$targetHighlight
+			 	.stop( true )
+			 	.css( 'visibility', 'visible' )
+			 	.animate({height:'30px'},400);
+			// $parent.css( 'height', '30px' );
+//			self.$targetHighlight
+//				.css( 'height', '30px' )
+//				.css( 'top', '-=15px' );
+		}
 	};
 
 	/**
@@ -241,9 +278,107 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 *
 	 * @since 1.1.2
 	 */
-	this.buttonMouseLeave = function( $parentsContainer ) {
-		self.$targetHighlight.css( 'visibility', 'hidden' );
+	this.buttonMouseLeave = function( $parent ) {
+
+		clearInterval( self.targetHighlightTop );
+
+		if( self.isParentEmpty( $parent ) ) {
+			$parent.stop(true).animate({height:'0px'},500);
+
+			// Avoid animating height from 2px to 0px for half a second.
+			if( self.$targetHighlight.height() <= 2 ) {
+				self.$targetHighlight.css( 'visibility', 'hidden' );
+			} else {
+				self.$targetHighlight.stop(true).animate({height:'0px'},400,function() {
+					self.$targetHighlight.css( 'visibility', 'hidden' );
+				});
+			}
+		} else {
+
+			self.$targetHighlight.css( 'visibility', 'hidden' );
+		}
 	};
+
+	/**
+	 *
+	 */
+	this.collide = function ($div1, $div2) {
+	      var x1 = $div1.offset().left;
+	      var y1 = $div1.offset().top;
+	      var h1 = $div1.outerHeight(true);
+	      var w1 = $div1.outerWidth(true);
+	      var b1 = y1 + h1;
+	      var r1 = x1 + w1;
+	      var x2 = $div2.offset().left;
+	      var y2 = $div2.offset().top;
+	      var h2 = $div2.outerHeight(true);
+	      var w2 = $div2.outerWidth(true);
+	      var b2 = y2 + h2;
+	      var r2 = x2 + w2;
+
+	      if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+	      return true;
+	}
+
+	/*
+	 *
+	 */
+	this.findCollision = function() {
+
+
+		var buttons = [], initialWindowHeight = $( document ).height();
+
+		initialWindowHeight = $('#attribution').offset().top + $('#attribution').outerHeight( true );
+
+
+
+		$( 'button[data-control]:visible' ).each( function() {
+			buttons.push( $( this ) );
+		});
+
+
+
+
+		buttons.sort( self.sortButtons );
+
+
+
+		_( buttons ).each( function( button, key ) {
+			// If this is not the last button.
+			if( key < ( buttons.length - 1 ) ) {
+				$buttonA = buttons[ key ];
+				$buttonB = buttons[ key + 1 ];
+				if( self.collide( $buttonA, $buttonB ) ) {
+					self.fixCollision( $buttonA, $buttonB );
+				}
+			}
+		});
+
+
+
+		buttons.sort( self.sortButtonsDesc );
+
+
+
+		_( buttons ).each( function( button, key ) {
+				$button = $( button );
+
+				var bottom = parseInt( $button.css( 'top' ).replace( 'px', '' ) ) + $button.outerHeight( true );
+
+
+				if( bottom > initialWindowHeight ) {
+					var topAdjustment = bottom - initialWindowHeight;
+
+					var collisionSet = $(button).attr('data-collision-set');
+					if( 'undefined' !== typeof collisionSet ) {
+						$('[data-collision-set=' + collisionSet + ']').css( 'top', '-=' + topAdjustment );
+					}
+				}
+
+		});
+
+
+	}
 
 	/**
 	 * @summary Adjust button placement for those 'fixed' that shouldn't be.
@@ -270,6 +405,27 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			self.placeButton( $button );
 		});
 	};
+
+	/**
+	 *
+	 */
+	this.fixCollision = function( $buttonA, $buttonB ){
+		// The button towards the bottom will be moved lower. Figure out which button is higher.
+		var aOffset = $buttonA.offset(), bOffset = $buttonB.offset(), newTop, buttonHeight = 30;
+
+
+
+		$buttonB.css( 'top', aOffset.top + buttonHeight );
+
+		var collisionSet = $buttonA.attr( 'data-collision-set' );
+		if( 'undefined' === typeof collisionSet ) {
+			collisionSet = self.buttonCollisionSet;
+			self.buttonCollisionSet++;
+		}
+		$buttonA.attr( 'data-collision-set', collisionSet );
+		$buttonB.attr( 'data-collision-set', collisionSet );
+
+	}
 
 	/**
 	 * @summary Get a jQuery collection of $element's parents that have a fixed position.
@@ -342,6 +498,19 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		    }, 400 ) );
 		} );
 	};
+
+	/**
+	 * Is the parent element an empty widget / nav area.
+	 *
+	 * @since xxx
+	 *
+	 * @param object $parent a jQuery element.
+	 *
+	 * @return bool
+	 */
+	this.isParentEmpty = function( $parent ) {
+		return ( $parent.hasClass( 'empty-menu' ) || "'true'" === $parent.attr( 'data-empty-area' ) );
+	}
 
 	/**
 	 * @summary Get the parent '.col' of an element.
@@ -462,7 +631,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			.animate( {
 				top: top,
 				left: buttonLeft
-			}, duration );
+			}, duration )
+			.removeAttr( 'data-collision-set' );
 	};
 
 	/**
@@ -475,6 +645,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$button = $( this );
 			self.placeButton( $button );
 		});
+
+		setTimeout( self.findCollision, 400 );
 	};
 
 	/**
@@ -489,6 +661,57 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	this.right = function( $element ) {
 		return $element.offset().left + $element.outerWidth();
 	};
+
+	/**
+	 * @link http://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
+	 */
+	this.sortButtons = function (a,b) {
+		aTop = a.offset().top;
+		bTop = b.offset().top;
+
+		if( aTop === bTop ) {
+			console.log('the same');
+
+			$parentA = $( a.attr( 'data-selector' ) );
+			var parentATop = $parentA.offset().top;
+			if( self.isParentEmpty( $parentA ) ) {
+				parentATop -= 1;
+			}
+			aTop = parentATop;
+
+			$parentB = $( b.attr( 'data-selector' ) );
+			var parentBTop = $parentB.offset().top;
+			if( self.isParentEmpty( $parentB ) ) {
+				parentBTop -= 1;
+			}
+			bTop = parentBTop;
+
+		}
+
+		if (aTop < bTop)
+		    return -1;
+		  else if (aTop > bTop)
+		    return 1;
+		  else {
+
+		    return 0;
+		  }
+	}
+
+	/**
+	 * @link http://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
+	 */
+	this.sortButtonsDesc = function (a,b) {
+		aTop = a.offset().top;
+		bTop = b.offset().top;
+
+		if (bTop < aTop)
+		    return -1;
+		  else if (bTop > aTop)
+		    return 1;
+		  else
+		    return 0;
+	}
 
 	/**
 	 * @summary Determine if the top of an element is in view.
@@ -614,7 +837,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		$button.hover( function() {
 			self.buttonMouseEnter( $button, $parent, $parentsContainer );
 			}, function() {
-				self.buttonMouseLeave( $parentsContainer );
+				self.buttonMouseLeave( $parent );
 			} );
 
 		// Bind actions to the button's click.
@@ -631,9 +854,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			} );
 	};
 
-	window.onload = function() {
-		self.init();
-	};
+	$( window ).load( self.init );
 };
 
 new BOLDGRID.Customizer_Edit( jQuery );

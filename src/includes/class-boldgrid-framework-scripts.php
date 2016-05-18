@@ -166,6 +166,21 @@ class BoldGrid_Framework_Scripts {
 		}
 
 		/**
+		 * Add slimscroll support if specified by configs.
+		 *
+		 * @since 1.0.0
+		 */
+		if ( true === $this->configs['scripts']['slimscroll']['enabled'] ) {
+			wp_enqueue_script(
+				'boldgrid-slimscroll-js',
+				$this->configs['framework']['js_dir'] . 'slimScroll/jquery.slimscroll' . $suffix . '.js',
+				array( 'jquery' ),
+				$this->configs['version']
+			);
+		}
+
+
+		/**
 		 * Enqueue theme specific javascript if the file exists.
 		 *
 		 * @since 1.1.5

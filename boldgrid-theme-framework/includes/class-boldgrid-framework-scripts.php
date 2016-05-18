@@ -170,7 +170,7 @@ class BoldGrid_Framework_Scripts {
 		 *
 		 * @since 1.0.0
 		 */
-		if ( true === $this->configs['scripts']['slimscroll']['enabled'] ) {
+		if ( true === $this->configs['scripts']['options']['slimscroll']['enabled'] ) {
 			wp_enqueue_script(
 				'boldgrid-slimscroll-js',
 				$this->configs['framework']['js_dir'] . 'slimScroll/jquery.slimscroll' . $suffix . '.js',

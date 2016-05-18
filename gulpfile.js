@@ -89,6 +89,9 @@ gulp.task( 'jsDeps', function(  ) {
 	.pipe( uglify(  ) )
     .pipe( rename({ suffix: '.min' }) )
     .pipe( gulp.dest( config.jsDest + '/offcanvas' ) );
+  // slimscroll
+  gulp.src( config.bower + '/slimScroll/*.js' )
+    .pipe( gulp.dest( config.jsDest + '/slimScroll' ) );
   // sass.js - Check
   gulp.src( config.bower + '/sass.js/dist/**/*' )
     .pipe( gulp.dest( config.jsDest + '/sass-js' ) );

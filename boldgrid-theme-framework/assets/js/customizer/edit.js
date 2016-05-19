@@ -355,6 +355,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		var initialWindowHeight = $lastDiv.offset().top + $lastDiv.outerHeight( true );
 
+		self.buttonCollisionSet = 1;
 
 
 		$( 'button[data-control]:visible' ).each( function() {
@@ -393,15 +394,30 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		_( buttons ).each( function( button, key ) {
 				$button = $( button );
 
-				var bottom = parseInt( $button.css( 'top' ).replace( 'px', '' ) ) + $button.outerHeight( true );
+				var bottom = parseInt( $button.attr( 'data-top' ) ) + $button.outerHeight( true );
+				console.log( 'bottom = ' + bottom);
+				console.log( 'initialWindowHeight = ' + initialWindowHeight);
 
 
 				if( bottom > initialWindowHeight ) {
 					var topAdjustment = bottom - initialWindowHeight;
 
 					var collisionSet = $(button).attr('data-collision-set');
+
 					if( 'undefined' !== typeof collisionSet ) {
-						$('[data-collision-set=' + collisionSet + ']').css( 'top', '-=' + topAdjustment );
+
+						$.each( $('[data-collision-set=' + collisionSet + ']'), function() {
+							$buttonInSet = $( this );
+
+							var newTop = parseInt( $buttonInSet.attr( 'data-top' ) - topAdjustment );
+
+							$buttonInSet.attr( 'data-top', newTop );
+						} );
+
+//						$('[data-collision-set=' + collisionSet + ']')
+//							.attr( 'data-top', ( parseInt( $(this).attr( 'data-top' ) ) - topAdjustment ) );
+//							//.css( 'top', '-=' + topAdjustment );
+//						console.log( 'new top = ' + ( parseInt( $button.attr( 'data-top' ) ) - topAdjustment ) );
 					}
 				}
 
@@ -443,7 +459,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	this.fixCollision = function( $buttonA, $buttonB ){
 		// The button towards the bottom will be moved lower. Figure out which button is higher.
 		// var aOffset = $buttonA.offset(), bOffset = $buttonB.offset(), newTop, buttonHeight = 30;
-		var aTop = $buttonA.attr( 'data-top' ), bTop = $buttonB.attr( 'data-top' ), buttonHeight = 30;
+		var aTop = parseInt( $buttonA.attr( 'data-top' ) ),
+			bTop = parseInt( $buttonB.attr( 'data-top' ) ),
+			buttonHeight = 30;
 
 
 		var $lowerButton = ( aTop > bTop ? $buttonA : $buttonB );
@@ -537,6 +555,23 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		    	self.placeButtons();
 		    }, 400 ) );
 		} );
+	};
+
+	/**
+	 * @summary Determine if the top of an element is in view.
+	 *
+	 * @since xxx
+	 *
+	 * return bool
+	 */
+	this.inView = function( $element ) {
+	    var $window = $(window),
+	    	docViewTop = $window.scrollTop(),
+	    	docViewBottom = docViewTop + $window.height(),
+	    	elemTop = $element.offset().top,
+	    	elemBottom = elemTop + $element.height();
+
+	    return ( elemTop <= docViewBottom && elemBottom >= docViewTop );
 	};
 
 	/**
@@ -749,7 +784,6 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}
 
 		if( ! self.topInView( $parent ) && 'fixed' !== $button.css( 'position' )) {
-			console.log('in fix, fix to top');
 			$button
 				.css( 'position', 'fixed' )
 				.css( 'top', -1 * $button.outerHeight() )
@@ -931,8 +965,6 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		// Get the highlighted edit button.
 		var $button = $( '.highlight-button[data-control][data-fixed-ancestor="0"]' ), $parent, isFixed;
 
-		console.log( $button.length );
-
 		if( 1 === $button.length ) {
 			$parent = $( $button.attr( 'data-selector' ) );
 
@@ -1039,8 +1071,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				return;
 			}
 
-			if( ! self.topInView( $parent ) && ! self.bottomInView( $parent ) && buttonIsFixed ) {
-				console.log( 'elem NOT in view');
+			if( ! self.inView( $parent ) && buttonIsFixed ) {
 				$button
 				.animate({
 					top: '-=30'

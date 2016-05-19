@@ -256,6 +256,45 @@ class BoldGrid {
 		}
 	}
 
+	/**
+	 * Print the sites title and tagline together.
+	 *
+	 * @since   1.0.0
+	 */
+	public function print_title_tagline() { ?>
+		<div class="site-branding">
+			<?php do_action( 'boldgrid_site_title' ); ?>
+			<?php do_action( 'boldgrid_print_tagline' ); ?>
+		</div><!-- .site-branding -->
+		<?php
+	}
+
+	/**
+	 * Print the sites primary navigation.
+	 *
+	 * @since   1.0.0
+	 */
+	public function print_primary_navigation() {
+		if ( has_nav_menu( 'primary' ) ) { ?>
+			<nav id="site-navigation" class="navbar navbar-default" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div><!-- .navbar-header -->
+					<?php do_action( 'boldgrid_menu_primary' ); ?>
+					<?php if ( true === $this->configs['template']['navbar-search-form'] ) : ?>
+						<?php get_template_part( 'templates/header/search' ); ?>
+					<?php endif; ?>
+				</div>
+			</nav><!-- #site-navigation -->
+			<?php
+		}
+	}
 
 	/**
 	 * Call to Action

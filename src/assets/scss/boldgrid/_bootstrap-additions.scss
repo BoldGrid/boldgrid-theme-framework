@@ -35,3 +35,23 @@
 	  width: 0;
 	}
 }
+
+.full-width-column {
+	padding: 0px;
+}
+
+.row {
+	margin: auto;
+}
+
+.container .row,
+.container-fluid .row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.container .container {
+	width: auto !important;
+	padding-left: 0px;
+    padding-right: 0px;
+}

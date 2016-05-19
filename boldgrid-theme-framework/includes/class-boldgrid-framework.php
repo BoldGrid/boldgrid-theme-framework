@@ -301,14 +301,17 @@ class BoldGrid_Framework {
 		$boldgrid_styles  = new BoldGrid_Framework_Styles( $this->configs );
 		$boldgrid_scripts = new BoldGrid_Framework_Scripts( $this->configs );
 		$boldgrid_theme   = new BoldGrid( $this->configs );
+		$template         = new Boldgrid_Framework_Template_Config( $this->configs );
 
 		// Load Theme Wrapper.
 		if ( true === $this->configs['boldgrid-parent-theme'] ) {
 			$wrapper  = new Boldgrid_Framework_Wrapper();
-			$template = new Boldgrid_Framework_Template_Config( $this->configs );
 			$this->loader->add_filter( 'template_include', $wrapper, 'wrap', 109 );
 			$this->configs['menu']['locations'] = $template->template_config();
 		}
+
+		// Register Locations.
+		$this->loader->add_action( 'boldgrid-theme-location', $template, 'do_location_action', 10, 2 );
 
 		// Add Theme Styles.
 		$this->loader->add_action( 'wp_enqueue_scripts', $boldgrid_styles, 'boldgrid_enqueue_styles' );
@@ -338,6 +341,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bolgrid_call_to_action_button', $boldgrid_theme,   'cta_button' );
 		$this->loader->add_filter( 'boldgrid_contact_phone',        $boldgrid_theme,   'contact_phone' );
 		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_logo_or_title' );
+		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
+		$this->loader->add_filter( 'boldgrid_primary_navigation',   $boldgrid_theme,   'print_primary_navigation' );
 
 	}
 

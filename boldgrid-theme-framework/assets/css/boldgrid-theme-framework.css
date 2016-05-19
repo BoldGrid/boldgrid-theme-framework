@@ -53,6 +53,22 @@
 .entry-content .row:before, .entry-content .row:after {
   width: 0; }
 
+.full-width-column {
+  padding: 0px; }
+
+.row {
+  margin: auto; }
+
+.container .row,
+.container-fluid .row {
+  margin-right: -15px;
+  margin-left: -15px; }
+
+.container .container {
+  width: auto !important;
+  padding-left: 0px;
+  padding-right: 0px; }
+
 /*--------------------------------------------------------------
 # Customizer Styles
 --------------------------------------------------------------*/
@@ -235,6 +251,12 @@ select[name="archive-dropdown"] {
 --------------------------------------------------------------*/
 .ninja-forms-response-msg:empty {
   display: none; }
+
+/*--------------------------------------------------------------
+# Page & Post Defaults
+--------------------------------------------------------------*/
+.post-edit-link {
+  padding-right: 5px; }
 
 /*--------------------------------------------------------------
 # Comments

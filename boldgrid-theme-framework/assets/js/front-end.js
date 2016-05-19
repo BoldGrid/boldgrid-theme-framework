@@ -195,8 +195,20 @@
 		},
 		// WOW.js enabled.
 		'wow_js_enabled' : {
-			init: function(){
-				new WOW().init();
+			init: function() {
+				// Trigger event when WOW is enabled.
+				$( document ).trigger( 'wowEnabled' );
+				this.loadWow();
+			},
+			loadWow: function() {
+				var wow = new WOW({
+					boxClass     : _wowJsOptions.boxClass,
+					animateClass : _wowJsOptions.animateClass,
+					offset       : _wowJsOptions.offset,
+					mobile       : _wowJsOptions.mobile,
+					live         : _wowJsOptions.live,
+				});
+				wow.init();
 			}
 		},
 	};

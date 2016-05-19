@@ -194,6 +194,9 @@ var bstw;
 						this.get_widget_inside().prepend( '<div class="error"><strong>' + bstw_data.error_duplicate_id + '</strong></div>' );
 					}
 				}
+				// BoldGrid: Commented out for FireFox Issue.
+				//this.get_widget().css( 'position', 'relative' ).css( 'z-index', '100000' ); // needed for small screens and for fullscreen mode
+				//$( '#wpbody-content' ).css( 'overflow', 'visible' ); // needed for small screens
 				return this;
 			},
 

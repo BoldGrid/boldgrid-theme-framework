@@ -122,13 +122,17 @@ class BoldGrid_Framework_Scripts {
 		 *
 		 * @since 1.0.0
 		 */
-		if ( true === $this->configs['scripts']['wow-js'] ) {
+	 	if ( true === $this->configs['scripts']['wow-js'] ) {
+			$handle = 'boldgrid-wow-js';
 			wp_enqueue_script(
-				'boldgrid-wow-js',
+				$handle,
 				$this->configs['framework']['js_dir'] . 'wow/wow' . $suffix . '.js',
 				array( 'jquery' ),
 				$this->configs['version']
 			);
+			$wp_scripts = wp_scripts();
+			$wow_configs = $this->configs['scripts']['options']['wow-js'];
+			$wp_scripts->add_data( $handle, 'data', sprintf( 'var _wowJsOptions = %s;', wp_json_encode( $wow_configs ) ) );
 		}
 
 		/**
@@ -156,6 +160,37 @@ class BoldGrid_Framework_Scripts {
 			wp_enqueue_script(
 				'boldgrid-offcanvas-js',
 				$this->configs['framework']['js_dir'] . 'offcanvas/offcanvas' . $suffix . '.js',
+				array( 'jquery' ),
+				$this->configs['version']
+			);
+		}
+
+		/**
+		 * Add slimscroll support if specified by configs.
+		 *
+		 * @since 1.0.0
+		 */
+		if ( true === $this->configs['scripts']['options']['slimscroll']['enabled'] ) {
+			wp_enqueue_script(
+				'boldgrid-slimscroll-js',
+				$this->configs['framework']['js_dir'] . 'slimScroll/jquery.slimscroll' . $suffix . '.js',
+				array( 'jquery' ),
+				$this->configs['version']
+			);
+		}
+
+
+		/**
+		 * Enqueue theme specific javascript if the file exists.
+		 *
+		 * @since 1.1.5
+		 */
+		$file = '/js/theme.js';
+
+		if ( file_exists( get_stylesheet_directory() . $file ) ) {
+			wp_enqueue_script(
+				'theme-js',
+				get_stylesheet_directory_uri() . $file,
 				array( 'jquery' ),
 				$this->configs['version']
 			);

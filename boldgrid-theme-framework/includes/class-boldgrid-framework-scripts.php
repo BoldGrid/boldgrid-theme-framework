@@ -184,24 +184,6 @@ class BoldGrid_Framework_Scripts {
 		}
 
 		/**
-		 * Add jQuery Goup Scroll To Top Plugin.
-		 *
-		 * @since 1.0.0
-		 */
-		if ( true === $this->configs['scripts']['options']['goup']['enabled'] ) {
-			wp_enqueue_script(
-				'boldgrid-goup-js',
-				$this->configs['framework']['js_dir'] . 'goup/jquery.goup' . $suffix . '.js',
-				array( 'jquery' ),
-				$this->configs['version']
-			);
-
-			$wp_scripts = wp_scripts();
-			$goup_configs = $this->configs['scripts']['options']['goup'];
-			$wp_scripts->add_data( 'boldgrid-goup-js', 'data', sprintf( 'var _goupOptions = %s;', wp_json_encode( $goup_configs ) ) );
-		}
-
-		/**
 		 * Enqueue theme specific javascript if the file exists.
 		 *
 		 * @since 1.1.5

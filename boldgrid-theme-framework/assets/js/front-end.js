@@ -268,6 +268,30 @@
 				});
 			},
 		},
+		'goup_enabled' : {
+			init: function() {
+				$.goup({
+					location: _goupOptions.location,
+					locationOffset: _goupOptions.locationOffset,
+					bottomOffset: _goupOptions.bottomOffset,
+					containerSize: _goupOptions.containerSize,
+					containerRadius: _goupOptions.containerRadius,
+					containerClass: _goupOptions.containerClass,
+					arrowClass: _goupOptions.arrowClass,
+					containerColor: _goupOptions.containerColor,
+					arrowColor: _goupOptions.arrowColor,
+					trigger: _goupOptions.trigger,
+					entryAnimation: _goupOptions.entryAnimation,
+					alwaysVisible: _goupOptions.alwaysVisible,
+					goupSpeed: _goupOptions.goupSpeed,
+					hideUnderWidth: _goupOptions.hideUnderWidth,
+					title: _goupOptions.title,
+					titleAsText: _goupOptions.titleAsText,
+					titleAsTextClass: _goupOptions.titleAsTextClass,
+					zIndex: _goupOptions.zIndex,
+				});
+			},
+		},
 	};
 
 	// The routing fires all common scripts, followed by the DOM specific scripts.

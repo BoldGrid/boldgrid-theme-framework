@@ -64,6 +64,14 @@
   margin-right: -15px;
   margin-left: -15px; }
 
+.container-fluid .boldgrid-section,
+.container-fluid .boldgrid-section-group {
+  margin-left: -15px;
+  margin-right: -15px; }
+
+.container-fluid .boldgrid-section-group .boldgrid-section {
+  margin: auto; }
+
 .container .container {
   width: auto !important;
   padding-left: 0px;

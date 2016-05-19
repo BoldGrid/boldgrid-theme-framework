@@ -177,6 +177,10 @@ class BoldGrid_Framework_Scripts {
 				array( 'jquery' ),
 				$this->configs['version']
 			);
+
+			$wp_scripts = wp_scripts();
+			$nice_configs = $this->configs['scripts']['options']['nicescroll'];
+			$wp_scripts->add_data( 'boldgrid-nicescroll-js', 'data', sprintf( 'var _niceScrollOptions = %s;', wp_json_encode( $nice_configs ) ) );
 		}
 
 		/**

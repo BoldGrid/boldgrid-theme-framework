@@ -130,6 +130,27 @@ return array(
 				'preventmultitouchscrolling' => true, // Prevent scrolling on multitouch events
 				'disablemutationobserver'    => false, // Force MutationObserver disabled.
 			),
+			'goup' => array(
+				'enabled'          => false, // Enable jQuery Go Up Plugin ( Scroll To Top ).
+				'location'         => 'right', // On which side the button will be shown ("left" or "right").
+				'locationOffset'   => 20, // Pixels from the button is distant from the edge of the screen, based on set location..
+				'bottomOffset'     => 10, // Pixels from the bottom edge of screen.
+				'containerSize'    => 40, // The width and height of the button (minimum is 20).
+				'containerRadius'  => 10, // Let you transform a square in a circle.
+				'containerClass'   => 'goup-container', // The class name given to the button container.
+				'arrowClass'       => 'goup-arrow', // The class name given to the arrow container
+				'containerColor'   => '#000', // The color of the container (in hex format).
+				'arrowColor'       => '#fff', // The color of the container (in hex format).
+				'trigger'          => 500, // After how many scrolled down pixels the button must be shown (bypassed by alwaysVisible).
+				'entryAnimation'   => 'fade', // The animation of the show and hide events of the button ("slide" or "fade").
+				'alwaysVisible'    => false, // Set to true if u want the button to be always visible (bypass trigger).
+				'goupSpeed'        => 'slow', // The speed at which the user will be brought back to the top ("slow", "normal" or "fast").
+				'hideUnderWidth'   => 500, // The threshold of window width under which the button is permanently hidden.
+				'title'            => '', // A text to show on the button mouse hover.
+				'titleAsText'      => false, // If true the hover title becomes a true text under the button.
+				'titleAsTextClass' => 'goup-text', // The class name given to the title text.
+				'zIndex'           => 1, // Set the z-index.
+			),
 		),
 	),
 

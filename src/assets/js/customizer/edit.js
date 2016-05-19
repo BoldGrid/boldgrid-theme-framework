@@ -25,6 +25,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 	self.userIsScrolling = false;
 
+	self.buttonHeight = 0;
+
 	/**
 	 * @summary Add all edit buttons to the DOM.
 	 *
@@ -279,12 +281,12 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		if( self.isParentEmpty( $parent ) ) {
 
 
-			$parent.stop( true ).animate({height:'30px'},400 );
+			$parent.stop( true ).animate({height:self.buttonHeight},400 );
 
 			 self.$targetHighlight
 			 	.stop( true )
 			 	.css( 'visibility', 'visible' )
-			 	.animate({height:'30px'},400);
+			 	.animate({height:self.buttonHeight},400);
 			// $parent.css( 'height', '30px' );
 //			self.$targetHighlight
 //				.css( 'height', '30px' )
@@ -460,15 +462,14 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		// The button towards the bottom will be moved lower. Figure out which button is higher.
 		// var aOffset = $buttonA.offset(), bOffset = $buttonB.offset(), newTop, buttonHeight = 30;
 		var aTop = parseInt( $buttonA.attr( 'data-top' ) ),
-			bTop = parseInt( $buttonB.attr( 'data-top' ) ),
-			buttonHeight = 30;
+			bTop = parseInt( $buttonB.attr( 'data-top' ) );
 
 
 		var $lowerButton = ( aTop > bTop ? $buttonA : $buttonB );
 		var $higherButton = ( $buttonA.is( $lowerButton ) ? $buttonB : $buttonA );
 
 		// $lowerButton.css( 'top', $higherButton.offset().top + buttonHeight );
-		$lowerButton.attr( 'data-top', parseInt( $higherButton.attr( 'data-top' ) ) + buttonHeight );
+		$lowerButton.attr( 'data-top', parseInt( $higherButton.attr( 'data-top' ) ) + self.buttonHeight );
 		//$lowerButton.animate({top : $higherButton.offset().top + buttonHeight},10 );
 
 
@@ -506,6 +507,10 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		self.$targetHighlight = $( '#target-highlight' );
 
 		self.addButtons();
+
+		// After we have placed all our buttons, take note of the button's outerHeight.
+		self.buttonHeight = $( 'button[data-control]:visible' ).first().outerHeight();
+
 		self.placeButtons();
 
 		// When the window is resized, wait 0.4 seconds and readjust the placement of our buttons.
@@ -953,7 +958,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				$button
 				.attr( 'data-last-animation', 'animation-c' )
 					.animate({
-						top: '-=30'
+						top: '-=' + self.buttonHeight
 					}, 400, function() {
 						self.placeButton( $button );
 						self.findCollision();
@@ -1074,7 +1079,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			if( ! self.inView( $parent ) && buttonIsFixed ) {
 				$button
 				.animate({
-					top: '-=30'
+					top: '-=' + self.buttonHeight
 				}, 400, function() {
 					self.placeButton( $button );
 					self.findCollision();

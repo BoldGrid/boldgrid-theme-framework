@@ -390,6 +390,10 @@ class BoldGrid {
 			$classes[] = 'animate-css-enabled';
 		}
 
+		if ( true === $this->configs['scripts']['options']['nicescroll']['enabled'] ) {
+			$classes[] = 'nicescroll-enabled';
+		}
+
 		if ( true === $this->configs['scripts']['offcanvas-menu'] ) {
 			$classes[] = 'offcanvas-menu-enabled';
 		} else {

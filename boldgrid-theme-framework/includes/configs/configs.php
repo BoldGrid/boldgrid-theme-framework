@@ -82,7 +82,7 @@ return array(
 				'mobile'       => true,
 				'live'         => true,
 			),
-			'slimscroll' => array(
+			'nicescroll' => array(
 				'enabled' => false,
 			),
 		),

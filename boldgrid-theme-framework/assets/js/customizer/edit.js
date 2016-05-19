@@ -23,6 +23,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 	self.targetHighlightTop;
 
+	self.userIsScrolling = false;
+
 	/**
 	 * @summary Add all edit buttons to the DOM.
 	 *
@@ -94,6 +96,23 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 				self.addButton( 'sidebars_widgets', widgetAreaId, selector );
 			} );
+	};
+
+	/**
+	 * @summary Determine if the top of an element is in view.
+	 *
+	 * @since xxx
+	 *
+	 * return bool
+	 */
+	this.bottomInView = function( $element ) {
+	    var $window = $(window),
+	    	docViewTop = $window.scrollTop(),
+	    	docViewBottom = docViewTop + $window.height(),
+	    	elemTop = $element.offset().top,
+	    	elemBottom = elemTop + $element.height();
+
+	    return ( elemBottom > docViewTop && elemBottom < docViewBottom );
 	};
 
 	/**
@@ -303,14 +322,18 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 *
 	 */
 	this.collide = function ($div1, $div2) {
-	      var x1 = $div1.offset().left;
-	      var y1 = $div1.offset().top;
+	      // var x1 = $div1.offset().left;
+		var x1 = parseInt( $div1.attr( 'data-left' ) );
+	      // var y1 = $div1.offset().top;
+		var y1 = parseInt( $div1.attr( 'data-top' ) );
 	      var h1 = $div1.outerHeight(true);
 	      var w1 = $div1.outerWidth(true);
 	      var b1 = y1 + h1;
 	      var r1 = x1 + w1;
-	      var x2 = $div2.offset().left;
-	      var y2 = $div2.offset().top;
+	      // var x2 = $div2.offset().left;
+	      var x2 = parseInt( $div2.attr( 'data-left' ) );
+	      // var y2 = $div2.offset().top;
+	      var y2 = parseInt( $div2.attr( 'data-top' ) );
 	      var h2 = $div2.outerHeight(true);
 	      var w2 = $div2.outerWidth(true);
 	      var b2 = y2 + h2;
@@ -326,11 +349,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	this.findCollision = function() {
 
 
-		var buttons = [], initialWindowHeight = $( document ).height();
+		var buttons = [];
 
 		var $lastDiv = $('div:visible').not('#target-highlight').last()
 
-		initialWindowHeight = $lastDiv.offset().top + $lastDiv.outerHeight( true );
+		var initialWindowHeight = $lastDiv.offset().top + $lastDiv.outerHeight( true );
 
 
 
@@ -419,16 +442,17 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 */
 	this.fixCollision = function( $buttonA, $buttonB ){
 		// The button towards the bottom will be moved lower. Figure out which button is higher.
-		var aOffset = $buttonA.offset(), bOffset = $buttonB.offset(), newTop, buttonHeight = 30;
+		// var aOffset = $buttonA.offset(), bOffset = $buttonB.offset(), newTop, buttonHeight = 30;
+		var aTop = $buttonA.attr( 'data-top' ), bTop = $buttonB.attr( 'data-top' ), buttonHeight = 30;
 
 
-		var $lowerButton = ( aOffset.top > bOffset.top ? $buttonA : $buttonB );
+		var $lowerButton = ( aTop > bTop ? $buttonA : $buttonB );
 		var $higherButton = ( $buttonA.is( $lowerButton ) ? $buttonB : $buttonA );
 
-
-
-		$lowerButton.css( 'top', $higherButton.offset().top + buttonHeight );
+		// $lowerButton.css( 'top', $higherButton.offset().top + buttonHeight );
+		$lowerButton.attr( 'data-top', parseInt( $higherButton.attr( 'data-top' ) ) + buttonHeight );
 		//$lowerButton.animate({top : $higherButton.offset().top + buttonHeight},10 );
+
 
 		var collisionSet = $higherButton.attr( 'data-collision-set' );
 		if( 'undefined' === typeof collisionSet ) {
@@ -491,11 +515,14 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		 * so it's easily accessible.
 		 */
 		$( window ).scroll(function() {
+			self.userIsScrolling = true;
+
 		    clearTimeout( $.data( this, 'scrollTimer' ) );
 
 		    $.data( this, 'scrollTimer', setTimeout( function() {
+		    	self.userIsScrolling = false;
 		    	self.windowScroll();
-		    	self.fixButtonPlacement();
+		    	// self.fixButtonPlacement();
 		    }, 100 ) );
 		});
 
@@ -642,12 +669,16 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		moves++;
 
 		$button
+			.attr( 'data-last-animation', 'placeButton')
 			.attr( 'data-moves', moves )
 			.css( 'position', position )
-			.animate( {
-				top: top,
-				left: buttonLeft
-			}, duration )
+			.attr( 'data-top', top )
+			.attr( 'data-left', buttonLeft)
+			.attr( 'data-duration', duration)
+//			.animate( {
+//				top: top,
+//				left: buttonLeft
+//			}, duration )
 			.removeAttr( 'data-collision-set' );
 	};
 
@@ -662,8 +693,71 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			self.placeButton( $button );
 		});
 
-		setTimeout( self.findCollision, 400 );
+		// setTimeout( self.findCollision, 400 );
+		self.findCollision();
+
+		self.positionByData();
+
+//		$( 'button[data-control]' ).each( function() {
+//			$button = $( this );
+//			var top = parseInt( $button.attr( 'data-top' ) );
+//			var left = parseInt( $button.attr( 'data-left' ) );
+//			var duration = parseInt( $button.attr( 'data-duration' ) );
+//
+//			$button
+//				.attr( 'data-top', top )
+//				.attr( 'data-left', left )
+//				.animate({
+//					top : top,
+//					left : left },duration);
+//			//self.placeButton( $button );
+//		});
 	};
+
+	/**
+	 *
+	 */
+	self.positionByData = function() {
+		$( 'button[data-control]' ).each( function() {
+			$button = $( this );
+
+			// If the button is fixed and is highlighted, don't touch it.
+			if( $button.hasClass( 'highlight-button') && 'fixed' === $button.css( 'position' ) ) {
+				return;
+			}
+
+			$button
+				.attr( 'data-last-animation', 'positionByData')
+				.animate({
+					top  : parseInt( $button.attr( 'data-top' ) ),
+					left : parseInt( $button.attr( 'data-left' ) ) }
+				, parseInt( $button.attr( 'data-duration' ) ) );
+		});
+	}
+
+	/**
+	 * If we have a highlighted button and it's parent's top is not in view, fix the button to the
+	 * top of the page.
+	 */
+	self.positionHighlighted = function( $button, $parent ) {
+		// If we don't pass in a button, get the highlighted button.
+		$button = ( null === $button ? $( '.highlight-button' ) : $button );
+
+		// If we don't have a highlighted button, abort.
+		if( 1 !== $button.length ) {
+			return;
+		}
+
+		if( ! self.topInView( $parent ) && 'fixed' !== $button.css( 'position' )) {
+			console.log('in fix, fix to top');
+			$button
+				.css( 'position', 'fixed' )
+				.css( 'top', -1 * $button.outerHeight() )
+				.animate({
+					top: '0px'
+				}, 400 );
+		}
+	}
 
 	/**
 	 * @summary Calculate the 'right' of an element.
@@ -686,8 +780,6 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		bTop = b.offset().top;
 
 		if( aTop === bTop ) {
-			console.log('the same');
-
 			$parentA = $( a.attr( 'data-selector' ) );
 			var parentATop = $parentA.offset().top;
 			if( self.isParentEmpty( $parentA ) ) {
@@ -763,48 +855,202 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @since 1.1.2
 	 */
 	this.windowScroll = function() {
-		var $button = $( '.highlight-button' ), $parent;
-
-		// If we don't have a highlighted button, abort.
-		if( 1 !== $button.length ) {
-			return;
-		}
-
-		// If this button has a fixed element, then we'ved 'fixed' the button. No need to move the
-		// button.
-		if( '1' === $button.attr( 'data-fixed-ancestor' ) ) {
-			return;
-		}
-
-		$parent = $( $button.attr( 'data-selector' ) );
 
 		/*
-		 * If the top of the parent IS NOT in view and the button has the standard 'absolute'
-		 * positioning, fix the button to the top of the page.
-		 *
-		 * If the top of the parent IS in view and the button has the non-standard 'fixed'
-		 * positioning, set it back to the standard 'absolute' positioning.
+		 * Adjust the position of fixed buttons that are NOT highlighted and need to be snapped back
+		 * into place.
 		 */
-		if( ! self.topInView( $parent ) ) {
-			if( 'absolute' === $button.css( 'position' ) ) {
+		var selector = '[data-control][style*="position: fixed"][data-fixed-ancestor="0"]:not(.highlight-button)';
+
+		$( selector ).each( function() {
+			var $button = $( this ),
+				$parent = $( $button.attr( 'data-selector' ) ),
+				dataControl = $button.attr( 'data-control' );
+
+			/*
+			 * IF the parent's top is in view, move the button DOWN to it.
+			 *
+			 * ==================================
+			 * ==                  (BTN-FIXED) ==
+			 * ==       ☝                                     ▼                   ==
+			 * ==                      ▼       ==
+			 * ==  --------------- (BTN-ABS)   ==
+			 * ==  - PARENT      -             ==
+			 * ==  -             -             ==
+			 * ==  -             -             ==
+			 * ==  -             -             ==
+			 * ==  ---------------             ==
+			 * ==================================
+			 *
+			 * ELSE, move the button UP to it.
+			 *
+			 *     --------------- (BTN-ABS)
+			 *     - PARENT      -      ▲
+			 *     -             -      ▲
+			 * =========================▲========
+			 * ==  -             - (BTN-FIXED) ==
+			 * ==  -             -             ==
+			 * ==  -             -             ==
+			 * ==  ---------------             ==
+			 * ==                              ==
+			 * ==                              ==
+			 * ==       ☝                                                           ==
+			 * ==                              ==
+			 * ==                              ==
+			 * ==================================
+			 */
+
+			$button
+				.css( 'position', 'absolute' )
+				.css( 'top', $( window ).scrollTop() );
+
+			if( self.topInView( $parent ) ) {
+				self.placeButton( $button );
+				self.findCollision();
+				self.positionByData();
+			} else {
+				/*
+				 * Before resetting the button's placement on the page, adjust its position so that the
+				 * placeButton call below has a smooth transition.
+				 *
+				 * We will animate it twice. The first animation is to slowly move it off the screen.
+				 * The next animation is to place it correctly.
+				 */
 				$button
+				.attr( 'data-last-animation', 'animation-c' )
+					.animate({
+						top: '-=30'
+					}, 400, function() {
+						self.placeButton( $button );
+						self.findCollision();
+						self.positionByData();
+					});
+			}
+		});
+
+		// Get the highlighted edit button.
+		var $button = $( '.highlight-button[data-control][data-fixed-ancestor="0"]' ), $parent, isFixed;
+
+		console.log( $button.length );
+
+		if( 1 === $button.length ) {
+			$parent = $( $button.attr( 'data-selector' ) );
+
+			// Check if the button has fixed positioning.
+			buttonIsFixed = ( 'fixed' === $button.css( 'position' ) );
+
+			/*
+			 * If the button is fixed and its parent's top is in view, put the button at absolute positioning
+			 * and place it.
+			 *
+			 *           BEFORE SCROLL                        AFTER SCROLL
+			 *
+			 *     ---------------
+			 *     - PARENT      -
+			 *     -             -
+			 * ================================     ====================================
+			 * ==  -           ☀(BTN-FIXED)☀  ==     ==                 ☀(BTN-FIXED)☀  ==
+			 * ==  -             -           ==     ==                    ▼          ==
+			 * ==  -             -           ==     ==                    ▼          ==
+			 * ==  -             -           ==     ==  --------------- (BTN-ABS)    ==
+			 * ==  -             -           ==     ==  - PARENT      -              ==
+			 * ==  -     ☝                   -           ==     ==  -      ☝                 -              ==
+			 * ==  -             -           ==     ==  -             -              ==
+			 * ==  ---------------           ==     ==  -             -              ==
+			 * ==                            ==     ==  ---------------              ==
+			 * ================================     ===================================
+			 */
+			if( self.topInView( $parent ) && buttonIsFixed ) {
+				$button
+					.attr( 'data-last-animation', 'animation-b' )
+					.css( 'position', 'absolute' )
+					.css( 'top', $( window ).scrollTop() )
+					//.attr( 'data-top', $parent.offset().top );
+
+				self.placeButton( $button );
+				self.findCollision();
+				self.positionByData();
+
+				return;
+			}
+
+//			/*
+//			 * If the button is fixed and its parent's top is in view, put the button at absolute positioning
+//			 * and place it.
+//			 *
+//			 *           BEFORE SCROLL                        AFTER SCROLL
+//			 *
+//			 *     --------------- (BTN-ABS)           ---------------     ▼
+//			 *     - PARENT      -                     - PARENT      -     ▼
+//			 *     -             -                     -             -     ▼
+//			 * ================================     =================================
+//			 * ==  -             -           ==     == -             - (BTN-FIXED) ==
+//			 * ==  -             -           ==     == -      ☝                 -             ==
+//			 * ==  -             -           ==     == -             -             ==
+//			 * ==  ---------------           ==     == ---------------             ==
+//			 * ==                            ==     ==                             ==
+//			 * ==                ☝                              ==     ==                             ==
+//			 * ==                            ==     ==                             ==
+//			 * ==                            ==     ==                             ==
+//			 * ==                            ==     ==                             ==
+//			 * ================================     =================================
+//			 */
+//			if( ! self.topInView( $parent ) && 'fixed' !== $button.css( 'position') && $button.hasClass( 'highlight-button' ) ) {
+//				$button
+//					.css( 'position', 'fixed' )
+//					.css( 'top', -1 * $button.outerHeight() )
+//					.animate({
+//						top: '0px'
+//					}, 400 );
+//			}
+
+
+			/*
+			 * If we have a highlighted button but the button has gone out of view, fix it to the top
+			 * of the page.
+			 *
+			 *           BEFORE SCROLL                        AFTER SCROLL
+			 *
+			 *                                           --------------- ☀(BTN-ABS)☀
+			 *                                           - PARENT      -      ▼
+			 *                                           -             -      ▼
+			 * ==================================    =========================▼==========
+			 * ==                              ==    ==  -             - ☀(BTN-FIXED)☀  ==
+			 * ==  --------------- ☀(BTN-ABS)☀  ==    ==  -             -               ==
+			 * ==  - PARENT      -             ==    ==  -             -               ==
+			 * ==  -         ☝        -             ==    ==  -        ☝           -               ==
+			 * ==  -             -             ==    ==  -             -               ==
+			 * ==  -             -             ==    ==  ---------------               ==
+			 * ==  -             -             ==    ==                                ==
+			 * ==  -             -             ==    ==                                ==
+			 * ==  ---------------             ==    ==                                ==
+			 * ==================================    ====================================
+			 */
+			if( ! self.topInView( $parent ) && ! buttonIsFixed ) {
+				$button
+					.stop( true )
+					.attr( 'data-last-animation', 'animation-a' )
 					.css( 'position', 'fixed' )
 					.css( 'top', -1 * $button.outerHeight() )
 					.animate({
 						top: '0px'
-					}, 400, function() {
-						self.findCollision();
-					});
+					}, 400 );
+
+				return;
 			}
-		} else {
-			if( 'fixed' === $button.css( 'position' ) ) {
-				$button.css( 'position', 'absolute' )
-					.css( 'top', $( window ).scrollTop() )
-					.animate({
-						top: $parent.offset().top
-					}, 400, function() {
-						self.findCollision();
-					} );
+
+			if( ! self.topInView( $parent ) && ! self.bottomInView( $parent ) && buttonIsFixed ) {
+				console.log( 'elem NOT in view');
+				$button
+				.animate({
+					top: '-=30'
+				}, 400, function() {
+					self.placeButton( $button );
+					self.findCollision();
+					self.positionByData();
+				});
+
+				return;
 			}
 		}
 	};
@@ -866,10 +1112,26 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		});
 
 		// Bind actions the parent's hover.
-		$parent.hover( function() {
-			$button.addClass( 'highlight-button' );
-			self.windowScroll();
-			}, function() {
+		$parent.hover(
+			// Mouse over parent.
+			function() {
+				$button.addClass( 'highlight-button' );
+
+				// We just hovered over a parent. If its top is not in view, fix the button to the
+				// top of the page.
+				// If the user is scrolling, skip this action because the on scroll method will handle the button placement.
+				if( ! self.topInView( $parent ) && 'fixed' !== $button.css( 'position' ) && false === self.userIsScrolling ) {
+					$button
+						.attr( 'data-last-animation', 'ancar')
+						.css( 'position', 'fixed' )
+						.css( 'top', -1 * $button.outerHeight() )
+						.animate({
+							top: '0px'
+						}, 400 )
+				};
+			},
+			// Moust out parent.
+			function() {
 				$button.removeClass( 'highlight-button' );
 			} );
 	};

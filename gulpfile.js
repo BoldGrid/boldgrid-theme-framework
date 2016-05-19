@@ -92,6 +92,11 @@ gulp.task( 'jsDeps', function(  ) {
   // Nicescroll.
   gulp.src( config.bower + '/jquery.nicescroll/dist/*.{js,png}' )
     .pipe( gulp.dest( config.jsDest + '/niceScroll' ) );
+  // jQuery goup.
+  gulp.src([
+	config.bower + '/jquery-goup/src/*.js',
+	config.bower + '/jquery-goup/*.js' ])
+    .pipe( gulp.dest( config.jsDest + '/goup' ) );
   // sass.js - Check
   gulp.src( config.bower + '/sass.js/dist/**/*' )
     .pipe( gulp.dest( config.jsDest + '/sass-js' ) );

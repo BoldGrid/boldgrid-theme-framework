@@ -21,7 +21,8 @@ button[data-control] {
   z-index: 210;
   position: absolute;
   top: 0px;
-  right: 0px; }
+  right: 0px;
+  line-height: 20px; }
 
 button[data-control]:hover,
 button[data-control].highlight-button {
@@ -62,4 +63,7 @@ button[data-control].highlight-button {
 
 /* Container for empty widget / nav area. */
 [data-empty-area], .empty-menu {
-  min-height: 30px; }
+  height: 0px; }
+
+[data-empty-area].expanded, .empty-menu.expanded {
+  height: 30px; }

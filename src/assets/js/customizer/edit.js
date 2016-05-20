@@ -21,7 +21,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 	self.animatingEmptyParent = false;
 
-	self.targetHighlightTop;
+	self.targetHighlightTop = true;
 
 	self.userIsScrolling = false;
 
@@ -343,7 +343,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 	      if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
 	      return true;
-	}
+	};
 
 	/*
 	 *
@@ -353,7 +353,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		var buttons = [];
 
-		var $lastDiv = $('div:visible').not('#target-highlight').last()
+		var $lastDiv = $('div:visible').not('#target-highlight').last();
 
 		var initialWindowHeight = $lastDiv.offset().top + $lastDiv.outerHeight( true );
 
@@ -383,7 +383,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 					if( self.collide( $buttonA, $buttonB ) ) {
 						self.fixCollision( $buttonA, $buttonB );
 					}
-				} )
+				} );
 			}
 		});
 
@@ -426,7 +426,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		});
 
 
-	}
+	};
 
 	/**
 	 * @summary Adjust button placement for those 'fixed' that shouldn't be.
@@ -481,7 +481,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		$lowerButton.attr( 'data-collision-set', collisionSet );
 		$higherButton.attr( 'data-collision-set', collisionSet );
 
-	}
+	};
 
 	/**
 	 * @summary Get a jQuery collection of $element's parents that have a fixed position.
@@ -590,7 +590,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 */
 	this.isParentEmpty = function( $parent ) {
 		return ( $parent.hasClass( 'empty-menu' ) || "'true'" === $parent.attr( 'data-empty-area' ) );
-	}
+	};
 
 	/**
 	 * @summary Get the parent '.col' of an element.
@@ -770,10 +770,10 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				.attr( 'data-last-animation', 'positionByData')
 				.animate({
 					top  : parseInt( $button.attr( 'data-top' ) ),
-					left : parseInt( $button.attr( 'data-left' ) ) }
-				, parseInt( $button.attr( 'data-duration' ) ) );
+					left : parseInt( $button.attr( 'data-left' ) )
+					}, parseInt( $button.attr( 'data-duration' ) ) );
 		});
-	}
+	};
 
 	/**
 	 * If we have a highlighted button and it's parent's top is not in view, fix the button to the
@@ -796,7 +796,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 					top: '0px'
 				}, 400 );
 		}
-	}
+	};
 
 	/**
 	 * @summary Calculate the 'right' of an element.
@@ -843,7 +843,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		    return 0;
 		  }
-	}
+	};
 
 	/**
 	 * @link http://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
@@ -858,7 +858,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		    return 1;
 		  else
 		    return 0;
-	}
+	};
 
 	/**
 	 * @summary Determine if the top of an element is in view.
@@ -1001,7 +1001,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				$button
 					.attr( 'data-last-animation', 'animation-b' )
 					.css( 'position', 'absolute' )
-					.css( 'top', $( window ).scrollTop() )
+					.css( 'top', $( window ).scrollTop() );
 					//.attr( 'data-top', $parent.offset().top );
 
 				self.placeButton( $button );
@@ -1163,8 +1163,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 						.css( 'top', -1 * $button.outerHeight() )
 						.animate({
 							top: '0px'
-						}, 400 )
-				};
+						}, 400 );
+				}
 			},
 			// Moust out parent.
 			function() {

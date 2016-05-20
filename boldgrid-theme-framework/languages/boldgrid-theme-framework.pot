@@ -286,6 +286,14 @@ msgstr ""
 msgid "BoldGrid Color Palettes"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-effects.php:40
+msgid "Page Effects"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-effects.php:48
+msgid "Slim Scroll Bars"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:70
 msgid "Footer Settings"
 msgstr ""

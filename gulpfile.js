@@ -89,9 +89,14 @@ gulp.task( 'jsDeps', function(  ) {
 	.pipe( uglify(  ) )
     .pipe( rename({ suffix: '.min' }) )
     .pipe( gulp.dest( config.jsDest + '/offcanvas' ) );
-  // slimscroll
-  gulp.src( config.bower + '/slimScroll/*.js' )
-    .pipe( gulp.dest( config.jsDest + '/slimScroll' ) );
+  // Nicescroll.
+  gulp.src( config.bower + '/jquery.nicescroll/dist/*.{js,png}' )
+    .pipe( gulp.dest( config.jsDest + '/niceScroll' ) );
+  // jQuery goup.
+  gulp.src([
+	config.bower + '/jquery-goup/src/*.js',
+	config.bower + '/jquery-goup/*.js' ])
+    .pipe( gulp.dest( config.jsDest + '/goup' ) );
   // sass.js - Check
   gulp.src( config.bower + '/sass.js/dist/**/*' )
     .pipe( gulp.dest( config.jsDest + '/sass-js' ) );

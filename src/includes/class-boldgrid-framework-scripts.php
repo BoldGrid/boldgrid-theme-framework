@@ -170,15 +170,36 @@ class BoldGrid_Framework_Scripts {
 		 *
 		 * @since 1.0.0
 		 */
-		if ( true === $this->configs['scripts']['options']['slimscroll']['enabled'] ) {
+		if ( true === $this->configs['scripts']['options']['nicescroll']['enabled'] ) {
 			wp_enqueue_script(
-				'boldgrid-slimscroll-js',
-				$this->configs['framework']['js_dir'] . 'slimScroll/jquery.slimscroll' . $suffix . '.js',
+				'boldgrid-nicescroll-js',
+				$this->configs['framework']['js_dir'] . 'niceScroll/jquery.nicescroll.min.js',
 				array( 'jquery' ),
 				$this->configs['version']
 			);
+
+			$wp_scripts = wp_scripts();
+			$nice_configs = $this->configs['scripts']['options']['nicescroll'];
+			$wp_scripts->add_data( 'boldgrid-nicescroll-js', 'data', sprintf( 'var _niceScrollOptions = %s;', wp_json_encode( $nice_configs ) ) );
 		}
 
+		/**
+		 * Add jQuery Goup Scroll To Top Plugin.
+		 *
+		 * @since 1.0.0
+		 */
+		if ( true === $this->configs['scripts']['options']['goup']['enabled'] ) {
+			wp_enqueue_script(
+				'boldgrid-goup-js',
+				$this->configs['framework']['js_dir'] . 'goup/jquery.goup' . $suffix . '.js',
+				array( 'jquery' ),
+				$this->configs['version']
+			);
+
+			$wp_scripts = wp_scripts();
+			$goup_configs = $this->configs['scripts']['options']['goup'];
+			$wp_scripts->add_data( 'boldgrid-goup-js', 'data', sprintf( 'var _goupOptions = %s;', wp_json_encode( $goup_configs ) ) );
+		}
 
 		/**
 		 * Enqueue theme specific javascript if the file exists.

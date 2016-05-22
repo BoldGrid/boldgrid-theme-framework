@@ -33,5 +33,67 @@ return array(
 		'navigation_text_transform' => 'uppercase',
 		'navigation_font_family' => 'Oswald',
 	),
+	'selectors' = array(
+		'h1:not( .site-title, .alt-font ), .h1' => array(
+			'type' => 'headings',
+			'round' => 'floor',
+			'amount' => 2.6,
+		),
+		'h2:not( .alt-font ), .h2' => array(
+			'type' => 'headings',
+			'round' => 'floor',
+			'amount' => 2.15,
+		),
+		'h3:not( .alt-font, .site-description ), .h3' => array(
+			'type' => 'headings',
+			'round' => 'ceil',
+			'amount' => 1.7,
+		),
+		'h4:not( .alt-font ), .h4' => array(
+			'type' => 'headings',
+			'round' => 'ceil',
+			'amount' => 1.25,
+		),
+		'h5:not( .alt-font ), .h5' => array(
+			'type' => 'headings',
+			'round' => 'floor',
+			'amount' => 1,
+		),
+		'h6:not( .alt-font ), .h6' => array(
+			'type' => 'headings',
+			'round' => 'ceil',
+			'amount' => 0.85,
+		),
+		'h1.alt-font, .h1.alt-font' => array(
+			'type' => 'subheadings',
+			'round' => 'floor',
+			'amount' => 2.6,
+		),
+		'h2.alt-font, .h2.alt-font' => array(
+			'type' => 'subheadings',
+			'round' => 'floor',
+			'amount' => 2.15,
+		),
+		'h3.alt-font, .h3.alt-font' => array(
+			'type' => 'subheadings',
+			'round' => 'ceil',
+			'amount' => 1.7,
+		),
+		'h4.alt-font, .h4.alt-font' => array(
+			'type' => 'subheadings',
+			'round' => 'ceil',
+			'amount' => 1.25,
+		),
+		'h5.alt-font, .h5.alt-font' => array(
+			'type' => 'subheadings',
+			'round' => 'floor',
+			'amount' => 1,
+		),
+		'h6.alt-font, .h6.alt-font' => array(
+			'type' => 'subheadings',
+			'round' => 'ceil',
+			'amount' => 0.85,
+		),
+	);
 );
 ?>

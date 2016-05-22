@@ -50,6 +50,7 @@
 	wp.customize( 'body_font_size', function( value ) {
 		value.bind( function( to ) {
 			$( 'p:not( .site-title ), .site-content, .site-footer' ).css( 'font-size', to + 'px' );
+			$( 'blockquote, .mod-blockquote' ).css( 'font-size', to * 1.25 + 'px' );
 		});
 	});
 

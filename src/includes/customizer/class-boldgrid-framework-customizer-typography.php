@@ -440,23 +440,25 @@ class Boldgrid_Framework_Customizer_Typography {
 		$this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
 		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform',
 		$this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'] );
+		$blockquote = $body_font_size * 1.25;
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 		?>
 		<style type="text/css">
 		<?php
-			foreach( $selectors as $selector => $options ) {
-				$base = $font_size_base;
-				if ( 'subheadings' === $options['type'] ) {
-					$base = $alt_font_size_base;
-				}
-				if ( 'floor' === $options['round'] ) {
-					print $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; }';
-				}
-				if ( 'ceil' === $options['round'] ) {
-					print $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; }';
-				}
+		foreach ( $selectors as $selector => $options ) {
+			$base = $font_size_base;
+			if ( 'subheadings' === $options['type'] ) {
+				$base = $alt_font_size_base;
 			}
+			if ( 'floor' === $options['round'] ) {
+				print $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; }';
+			}
+			if ( 'ceil' === $options['round'] ) {
+				print $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; }';
+			}
+		}
 		?>
+			blockquote, .mod-blockquote { font-size: <?php print $blockquote; ?>px; }
 			h1, h2, h3, h4, h5, h6 { text-transform: <?php print $heading_text_transform; ?>; }
 			h1.alt-font, h2.alt-font, h3.alt-font, h4.alt-font, h5.alt-font, h6.alt-font{ text-transform: <?php print $alt_heading_text_transform; ?>; }
 		</style>
@@ -485,6 +487,8 @@ class Boldgrid_Framework_Customizer_Typography {
 		$body_font_size = get_theme_mod( 'body_font_size', $this->configs['customizer-options']['typography']['defaults']['body_font_size'] );
 		$body_font_family = get_theme_mod( 'body_font_family', $this->configs['customizer-options']['typography']['defaults']['body_font_family'] );
 		$body_line_height = get_theme_mod( 'body_line_height', $this->configs['customizer-options']['typography']['defaults']['body_line_height'] );
+		// Blockquotes.
+		$blockquote = $body_font_size * 1.25;
 		// CSS To apply to editor.
 		$content = "
 			.mce-content-body .h1, .mce-content-body .h2, .mce-content-body .h3, .mce-content-body .h4,
@@ -494,6 +498,7 @@ class Boldgrid_Framework_Customizer_Typography {
 			h4.alt-font, h5.alt-font, h6.alt-font,
 			.h1.alt-font, .h2.alt-font, .h3.alt-font,
 			.h4.alt-font, .h5.alt-font, .h6.alt-font{ font-family: {$alt_font_family}; }
+			.mce-content-body blockquote, .mce-content-body .mod-blockquote { font-size: {$blockquote}px; }
 			.mce-content-body, .mce-content-body p { font-family: {$body_font_family}; line-height: {$body_line_height}%; font-size: {$body_font_size}px; }";
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 		foreach ( $selectors as $selector => $options ) {

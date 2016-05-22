@@ -370,6 +370,14 @@ msgstr ""
 msgid "Enable Footer"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:107
+msgid "Fonts"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:114
+msgid "Menus"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:157, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:224, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:298, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:550
 msgid "Font Family"
 msgstr ""

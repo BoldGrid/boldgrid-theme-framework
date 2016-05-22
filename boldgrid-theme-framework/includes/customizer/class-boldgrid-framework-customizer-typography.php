@@ -104,14 +104,14 @@ class Boldgrid_Framework_Customizer_Typography {
 
 			// Add the Typography Panel to main customizer view.
 			$wp_customize->add_panel( 'boldgrid_typography', array(
-				'title'       => __( 'Fonts', 'boldgrid' ),
+				'title'       => __( 'Fonts', 'bgtfw' ),
 				'description' => 'Manage your site typography settings.',
 				'priority'    => 99,
 			) );
 
 			// Add Navigation to Typography Panel.
 			$wp_customize->add_section( 'navigation_typography', array(
-				'title'    => 'Navigation',
+				'title'    => __( 'Menus', 'bgtfw' ),
 				'panel' => 'boldgrid_typography',
 			) );
 

@@ -72,13 +72,19 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @since 1.0.0
 	 */
 	public function live_preview() {
-		wp_register_script( 'boldgrid-framework-customizer-typography-preview',
+		$handle = 'boldgrid-framework-customizer-typography-preview';
+		wp_register_script(
+			$handle,
 			$this->configs['framework']['js_dir'] . 'customizer/typography-preview.js',
 			array( 'jquery', 'customize-preview' ),
 			$this->configs['version'],
 			true
 		);
-		wp_enqueue_script( 'boldgrid-framework-customizer-typography-preview' );
+		wp_enqueue_script( $handle );
+		// Add data for script.
+		$wp_scripts = wp_scripts();
+		$font_configs = $this->configs['customizer-options']['typography']['selectors'];
+		$wp_scripts->add_data( $handle, 'data', sprintf( 'var _typographyOptions = %s;', wp_json_encode( $font_configs ) ) );
 	}
 
 	/**

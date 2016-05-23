@@ -117,19 +117,19 @@ class Boldgrid_Framework_Customizer_Typography {
 
 			// Add Headings to Typography Panel.
 			$wp_customize->add_section( 'headings_typography', array(
-				'title'    => 'Headings',
+				'title' => __( 'Headings', 'bgtfw' ),
 				'panel' => 'boldgrid_typography',
 			) );
 
 			// Add Subheadings to Typography Panel.
 			$wp_customize->add_section( 'alternate_headings_typography', array(
-				'title'    => 'Subheadings',
+				'title'    => __( 'Subheadings', 'bgtfw' ),
 				'panel' => 'boldgrid_typography',
 			) );
 
 			// Add Body to Typography Panel.
 			$wp_customize->add_section( 'body_typography', array(
-				'title'    => 'Main Text',
+				'title'    => __( 'Main Text', 'bgtfw' ),
 				'panel' => 'boldgrid_typography',
 			) );
 
@@ -189,9 +189,9 @@ class Boldgrid_Framework_Customizer_Typography {
 				'default'  => $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'],
 				'choices'  => array(
 					'capitalize' => 'Capitalize',
-					'lowercase' => 'Lowercase',
-					'uppercase' => 'Uppercase',
-					'none' => 'Unmodified',
+					'lowercase' => __( 'Lowercase', 'bgtfw' ),
+					'uppercase' => __( 'Uppercase', 'bgtfw' ),
+					'none' => __( 'Unmodified', 'bgtfw' ),
 				),
 				'output'   => array(
 					array(
@@ -610,10 +610,10 @@ class Boldgrid_Framework_Customizer_Typography {
 				'section'  => $site_indentity_section,
 				'default'  => 'none',
 				'choices'  => array(
-					'none' => 'Normal',
-					'overline' => 'Overline',
-					'underline' => 'Underline',
-					'line-through' => 'Strikethrough',
+					'none' => __( 'Normal', 'bgtfw' ),
+					'overline' => __( 'Overline', 'bgtfw' ),
+					'underline' => __( 'Underline', 'bgtfw' ),
+					'line-through' => __( 'Strikethrough', 'bgtfw' ),
 				),
 				'output' => array(
 					array(
@@ -630,10 +630,10 @@ class Boldgrid_Framework_Customizer_Typography {
 				'section'  => $site_indentity_section,
 				'default'  => 'underline',
 				'choices'  => array(
-					'none' => 'Normal',
-					'overline' => 'Overline',
-					'underline' => 'Underline',
-					'line-through' => 'Strikethrough',
+					'none' => __( 'Normal', 'bgtfw' ),
+					'overline' => __( 'Overline', 'bgtfw' ),
+					'underline' => __( 'Underline', 'bgtfw' ),
+					'line-through' => __( 'Strikethrough', 'bgtfw' ),
 				),
 				'output' => array(
 					array(

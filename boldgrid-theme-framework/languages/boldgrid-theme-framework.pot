@@ -378,6 +378,18 @@ msgstr ""
 msgid "Menus"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:120
+msgid "Headings"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:126
+msgid "Subheadings"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:132
+msgid "Main Text"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:157, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:224, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:298, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:551
 msgid "Font Family"
 msgstr ""
@@ -388,6 +400,18 @@ msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:187, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:328, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:589
 msgid "Capitalization"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:192
+msgid "Lowercase"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:193
+msgid "Uppercase"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:194
+msgid "Unmodified"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:261, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:726
@@ -412,6 +436,22 @@ msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:609
 msgid "Decoration"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:613, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:633
+msgid "Normal"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:614, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:634
+msgid "Overline"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:615, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:635
+msgid "Underline"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:616, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:636
+msgid "Strikethrough"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:629

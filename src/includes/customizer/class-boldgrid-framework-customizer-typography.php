@@ -443,20 +443,20 @@ class Boldgrid_Framework_Customizer_Typography {
 		<?php
 		foreach ( $selectors as $selector => $options ) {
 			$base = $font_size_base;
+			$transform = $heading_text_transform;
 			if ( 'subheadings' === $options['type'] ) {
 				$base = $alt_font_size_base;
+				$transform = $alt_heading_text_transform;
 			}
 			if ( 'floor' === $options['round'] ) {
-				print $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; }';
+				print $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; text-transform:' . $transform . ';}';
 			}
 			if ( 'ceil' === $options['round'] ) {
-				print $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; }';
+				print $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; text-transform:' . $transform . ';}';
 			}
 		}
 		?>
 			blockquote, .mod-blockquote { font-size: <?php print $blockquote; ?>px; }
-			h1, h2, h3, h4, h5, h6 { text-transform: <?php print $heading_text_transform; ?>; }
-			h1.alt-font, h2.alt-font, h3.alt-font, h4.alt-font, h5.alt-font, h6.alt-font{ text-transform: <?php print $alt_heading_text_transform; ?>; }
 		</style>
 		<?php
 	}
@@ -499,22 +499,21 @@ class Boldgrid_Framework_Customizer_Typography {
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 		foreach ( $selectors as $selector => $options ) {
 			$base = $font_size_base;
+			$transform = $heading_text_transform;
+			$pre_selector = '.mce-content-body ';
 			if ( 'subheadings' === $options['type'] ) {
 				$base = $alt_font_size_base;
+				$transform = $alt_heading_text_transform;
+				$pre_selector = '';
 			}
 			if ( 'floor' === $options['round'] ) {
-				$content .= '.mce-content-body ' . $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; }';
+				$content .= $pre_selector . $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; }';
 			}
 			if ( 'ceil' === $options['round'] ) {
-				$content .= $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; }';
+				$content .= $pre_selector . $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; }';
 			}
 		}
-		$content .= "
-			.mce-content-body h1, .mce-content-body h2, .mce-content-body h3,
-			.mce-content-body h4, .mce-content-body h5, .mce-content-body h6{ text-transform: {$heading_text_transform}; }
-			h1.alt-font, .h1.alt-font, h2.alt-font, .h2.alt-font,
-			h3.alt-font, .h3.alt-font, h4.alt-font, .h4.alt-font,
-			h5.alt-font, .h5.alt-font, h6.alt-font, .h6.alt-font{ text-transform: {$alt_heading_text_transform};}";
+
 		return $content;
 	}
 

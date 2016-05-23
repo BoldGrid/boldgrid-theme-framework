@@ -50,24 +50,30 @@
 	wp.customize( 'body_font_size', function( value ) {
 		value.bind( function( to ) {
 			$( 'p:not( .site-title ), .site-content, .site-footer' ).css( 'font-size', to + 'px' );
+			$( 'blockquote, .mod-blockquote' ).css( 'font-size', to * 1.25 + 'px' );
 		});
 	});
 
-	// Set font-size of headings live
-	wp.customize( 'headings_font_size', function( value ) {
-		value.bind( function( to ) {
-			$( 'h1:not( .site-title, .alt-font ), .h1' )
-				.css( 'font-size', Math.floor( to * 2.6 ) + 'px' );
-			$( 'h2:not( .alt-font ), .h2' )
-				.css( 'font-size', Math.floor( to * 2.15 ) + 'px' );
-			$( 'h3:not( .alt-font, .site-description ), .h3' )
-				.css( 'font-size', Math.ceil( to * 1.7 ) + 'px' );
-			$( 'h4:not( .alt-font ), .h4' )
-				.css( 'font-size', Math.ceil( to * 1.25 ) + 'px' );
-			$( 'h5:not( .alt-font ), .h5' )
-				.css( 'font-size', to + 'px' );
-			$( 'h6:not( .alt-font ), .h6' )
-				.css( 'font-size', Math.ceil( to * 0.85 ) + 'px' );
+	// Set font-size of headings/subheadings live
+	_.each( _typographyOptions, function( selector ) {
+		var fontSizeType;
+		if ( 'subheadings' === selector.type ) {
+			fontSizeType = 'alternate_headings_font_size';
+		}
+		if ( 'headings' === selector.type ) {
+			fontSizeType = 'headings_font_size';
+		}
+		wp.customize( fontSizeType, function( value ) {
+			value.bind( function( to ) {
+				if ( 'ceil' === selector.round ) {
+					$( _.findKey( _typographyOptions, selector ) )
+						.css( 'font-size', Math.ceil( to * selector.amount ) + 'px' );
+				}
+				if ( 'floor' === selector.round ) {
+					$( _.findKey( _typographyOptions, selector ) )
+						.css( 'font-size', Math.floor( to * selector.amount ) + 'px' );
+				}
+			});
 		});
 	});
 
@@ -75,24 +81,6 @@
 	wp.customize( 'headings_text_transform', function( value ) {
 		value.bind( function( to ) {
 			$( ':header:not( .site-title, .alt-font, .site-description )' ).css( 'text-transform', to );
-		});
-	});
-
-	// Set font-size of headings live
-	wp.customize( 'alternate_headings_font_size', function( value ) {
-		value.bind( function( to ) {
-			$( 'h1.alt-font, .h1.alt-font' )
-				.css( 'font-size', Math.floor( to * 2.6 ) + 'px' );
-			$( 'h2.alt-font, .h2.alt-font' )
-				.css( 'font-size', Math.floor( to * 2.15 ) + 'px' );
-			$( 'h3.alt-font, .h3.alt-font' )
-				.css( 'font-size', Math.ceil( to * 1.7 ) + 'px' );
-			$( 'h4.alt-font, .h4.alt-font' )
-				.css( 'font-size', Math.ceil( to * 1.25 ) + 'px' );
-			$( 'h5.alt-font, .h5.alt-font' )
-				.css( 'font-size', to + 'px' );
-			$( 'h6.alt-font, .h6.alt-font' )
-				.css( 'font-size', Math.ceil( to * 0.85 ) + 'px' );
 		});
 	});
 

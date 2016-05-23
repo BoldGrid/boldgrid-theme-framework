@@ -437,6 +437,9 @@ class Boldgrid_Framework_Customizer_Typography {
 		// Text Transform.
 		$heading_text_transform = get_theme_mod( 'headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
 		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'] );
+		// Font Family.
+		$heading_font_family = get_theme_mod( 'heading_font_family', $this->configs['customizer-options']['typography']['defaults']['headings_font_family'] );
+		$alt_font_family = get_theme_mod( 'alternate_headings_font_family', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'] );
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 		?>
 		<style type="text/css">
@@ -444,15 +447,18 @@ class Boldgrid_Framework_Customizer_Typography {
 		foreach ( $selectors as $selector => $options ) {
 			$base = $font_size_base;
 			$transform = $heading_text_transform;
+			$family = $heading_font_family;
 			if ( 'subheadings' === $options['type'] ) {
 				$base = $alt_font_size_base;
 				$transform = $alt_heading_text_transform;
+				$family = $alt_font_family;
 			}
 			if ( 'floor' === $options['round'] ) {
-				print $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; text-transform:' . $transform . ';}';
+				print $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; font-family:' . $family . ';}';
+
 			}
 			if ( 'ceil' === $options['round'] ) {
-				print $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; text-transform:' . $transform . ';}';
+				print $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; font-family:' . $family . ';}';
 			}
 		}
 		?>
@@ -487,13 +493,6 @@ class Boldgrid_Framework_Customizer_Typography {
 		$blockquote = $body_font_size * 1.25;
 		// CSS To apply to editor.
 		$content = "
-			.mce-content-body .h1, .mce-content-body .h2, .mce-content-body .h3, .mce-content-body .h4,
-			.mce-content-body .h5, .mce-content-body .h6, .mce-content-body h1, .mce-content-body h2,
-			.mce-content-body h3, .mce-content-body h4, .mce-content-body h5, .mce-content-body h6{ font-family: {$font_family}; }
-			h1.alt-font, h2.alt-font, h3.alt-font,
-			h4.alt-font, h5.alt-font, h6.alt-font,
-			.h1.alt-font, .h2.alt-font, .h3.alt-font,
-			.h4.alt-font, .h5.alt-font, .h6.alt-font{ font-family: {$alt_font_family}; }
 			.mce-content-body blockquote, .mce-content-body .mod-blockquote { font-size: {$blockquote}px; }
 			.mce-content-body, .mce-content-body p { font-family: {$body_font_family}; line-height: {$body_line_height}%; font-size: {$body_font_size}px; }";
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
@@ -501,16 +500,18 @@ class Boldgrid_Framework_Customizer_Typography {
 			$base = $font_size_base;
 			$transform = $heading_text_transform;
 			$pre_selector = '.mce-content-body ';
+			$family = $font_family;
 			if ( 'subheadings' === $options['type'] ) {
 				$base = $alt_font_size_base;
 				$transform = $alt_heading_text_transform;
 				$pre_selector = '';
+				$family = $alt_font_family;
 			}
 			if ( 'floor' === $options['round'] ) {
-				$content .= $pre_selector . $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; }';
+				$content .= $pre_selector . $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; font-family:' . $family . '; }';
 			}
 			if ( 'ceil' === $options['round'] ) {
-				$content .= $pre_selector . $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; }';
+				$content .= $pre_selector . $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; font-family:' . $family . '; }';
 			}
 		}
 

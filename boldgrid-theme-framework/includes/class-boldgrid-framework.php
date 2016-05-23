@@ -69,6 +69,7 @@ class BoldGrid_Framework {
 		$this->load_dependencies( );
 
 		$this->assign_configurations();
+		$this->assign_theme_mod_configs();
 		$this->load_theme_configs();
 		$this->set_doing_cron();
 
@@ -234,6 +235,16 @@ class BoldGrid_Framework {
 		$this->assign_customizer_configs();
 	}
 
+	/**
+	 * Assign theme mod configs.
+	 *
+	 * @since    1.1.5
+	 * @access   protected.
+	 */
+	public function assign_theme_mod_configs() {
+		$boldgrid_theme_customizer_effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
+		add_filter( 'boldgrid_theme_framework_config', array( $boldgrid_theme_customizer_effects, 'enable_configs'), 20 );
+	}
 
 	/**
 	 * Set configs that will be used to create other configs.
@@ -284,8 +295,8 @@ class BoldGrid_Framework {
 	 */
 	public function load_theme_configs() {
 		// Apply filter to framework configs.
-		$this->configs = apply_filters( 'boldgrid_theme_framework_config', $this->configs );
 
+		$this->configs = apply_filters( 'boldgrid_theme_framework_config', $this->configs );
 		// Backwards Compatibility.
 		$this->configs['directories']['BOLDGRID_THEME_NAME'] = $this->configs['version'];
 		$this->configs['directories']['BOLDGRID_THEME_VER'] = $this->configs['theme_name'];
@@ -392,7 +403,7 @@ class BoldGrid_Framework {
 
 		// Add Kirki Fonts to WordPress Page/Post Editor.
 		if ( true === $this->configs['customizer-options']['typography']['enabled'] && ! is_customize_preview() ) {
-			$this->loader->add_action( 'after_setup_theme', $boldgrid_framework_editor, 'add_google_fonts' );
+			$this->loader->add_action( 'wp_loaded', $boldgrid_framework_editor, 'add_google_fonts' );
 		}
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $boldgrid_framework_editor, 'hide_page_title', 999 );
@@ -455,6 +466,7 @@ class BoldGrid_Framework {
 		$boldgrid_theme_customizer_kirki = new Boldgrid_Framework_Customizer_Kirki( $this->configs );
 		$boldgrid_theme_customizer_typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
 		$boldgrid_theme_customizer_edit = new Boldgrid_Framework_Customizer_Edit( $this->configs );
+		$boldgrid_theme_customizer_effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'site_logo' );
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'blog_name' );
@@ -566,6 +578,9 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_preview_init', $boldgrid_theme_customizer_typography, 'live_preview' );
 		$this->loader->add_filter( 'kirki/controls', $boldgrid_theme_customizer_typography, 'site_identity_controls' );
 		$this->loader->add_action( 'wp_head', 	     $boldgrid_theme_customizer_typography, 'title_text_shadow' );
+
+		// Add Page Effects Controls.
+		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer_effects, 'add_controls' );
 	}
 
 	/**

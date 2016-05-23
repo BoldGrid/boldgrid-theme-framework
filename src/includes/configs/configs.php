@@ -187,5 +187,6 @@ return array(
 			'css_editor' => true,
 			'js_editor'  => true,
 		),
+		'effects_panel' => false,
 	),
 );

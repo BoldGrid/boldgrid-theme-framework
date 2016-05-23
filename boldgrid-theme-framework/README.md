@@ -35,6 +35,7 @@ user guide for more information.
 * New Feature: Allow child theme to auto-enqueue it's own js file.
 * New Feature: Updated wow.js to support framework configs.
 * New Feature: Added blockquote calculations to Main Text font sizes.
+* Bug Fix: Headings Text Transform property not saving.
 
 ### 1.1.4.1 ###
 * Bug Fix: Issue causing Visual Editor widget areas to fail on firefox.

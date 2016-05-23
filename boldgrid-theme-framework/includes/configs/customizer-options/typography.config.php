@@ -33,7 +33,7 @@ return array(
 		'navigation_text_transform' => 'uppercase',
 		'navigation_font_family' => 'Oswald',
 	),
-	'selectors' = array(
+	'selectors' => array(
 		'h1:not( .site-title, .alt-font ), .h1' => array(
 			'type' => 'headings',
 			'round' => 'floor',

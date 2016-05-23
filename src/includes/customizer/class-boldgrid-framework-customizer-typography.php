@@ -435,7 +435,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		$body_font_size = get_theme_mod( 'body_font_size', $this->configs['customizer-options']['typography']['defaults']['body_font_size'] );
 		$blockquote = $body_font_size * 1.25;
 		// Text Transform.
-		$heading_text_transform = get_theme_mod( 'heading_text_transform', $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
+		$heading_text_transform = get_theme_mod( 'headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
 		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'] );
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 		?>
@@ -477,7 +477,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		$font_family    = get_theme_mod( 'heading_font_family', $this->configs['customizer-options']['typography']['defaults']['headings_font_family'] );
 		$alt_font_family = get_theme_mod( 'alternate_headings_font_family', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'] );
 		// Text Transform.
-		$heading_text_transform = get_theme_mod( 'heading_text_transform', $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
+		$heading_text_transform = get_theme_mod( 'headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
 		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'] );
 		// Main Text Size, Family, and Line Height.
 		$body_font_size = get_theme_mod( 'body_font_size', $this->configs['customizer-options']['typography']['defaults']['body_font_size'] );

@@ -930,7 +930,7 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @since     1.0.0
 	 */
 	public function title_text_shadow() {
-		if ( true === get_theme_mod( 'logo_shadow_switch' ) ) : ?>
+		if ( get_theme_mod( 'logo_shadow_switch' ) ) : ?>
 		<style type="text/css">
 				.site-title { text-shadow:<?php echo esc_attr( get_theme_mod( 'logo_shadow_horizontal', '5' ) ); ?>px <?php echo esc_attr( get_theme_mod( 'logo_shadow_vertical', '5' ) ); ?>px <?php echo esc_attr( get_theme_mod( 'logo_shadow_blur', '5' ) ); ?>px <?php echo esc_attr( get_theme_mod( 'logo_shadow_color', '#000000' ) ); ?>; }
 			</style>

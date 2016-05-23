@@ -406,10 +406,10 @@ class Boldgrid_Framework_Customizer_Typography {
 					'section'  => 'navigation_typography',
 					'default'  => $this->configs['customizer-options']['typography']['defaults']['navigation_text_transform'],
 					'choices'  => array(
-						'capitalize' => 'Capitalize',
-						'lowercase' => 'Lowercase',
-						'uppercase' => 'Uppercase',
-						'none' => 'Unmodified',
+						'capitalize' => __( 'Capitalize', 'bgtfw' ),
+						'lowercase' => __( 'Lowercase', 'bgtfw' ),
+						'uppercase' => __( 'Uppercase', 'bgtfw' ),
+						'none' => __( 'Unmodified', 'bgtfw' ),
 					),
 					'output' => array(
 						array(
@@ -590,10 +590,10 @@ class Boldgrid_Framework_Customizer_Typography {
 				'section'  => $site_indentity_section,
 				'default'  => 'uppercase',
 				'choices'  => array(
-					'capitalize' => 'Capitalize',
-					'lowercase' => 'Lowercase',
-					'uppercase' => 'Uppercase',
-					'none' => 'Unmodified',
+					'capitalize' => __( 'Capitalize', 'bgtfw' ),
+					'lowercase' => __( 'Lowercase', 'bgtfw' ),
+					'uppercase' => __( 'Uppercase', 'bgtfw' ),
+					'none' => __( 'Unmodified', 'bgtfw' ),
 				),
 				'output'   => array(
 					array(

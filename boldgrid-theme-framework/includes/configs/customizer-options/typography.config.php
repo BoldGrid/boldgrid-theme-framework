@@ -94,6 +94,6 @@ return array(
 			'round' => 'ceil',
 			'amount' => 0.85,
 		),
-	);
+	),
 );
 ?>

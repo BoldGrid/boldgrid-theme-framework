@@ -430,17 +430,13 @@ class Boldgrid_Framework_Customizer_Typography {
 	 */
 	public function headings_font_size_css() {
 		// Font size.
-		$font_size_base = get_theme_mod( 'headings_font_size',
-		$this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
-		$alt_font_size_base = get_theme_mod( 'alternate_headings_font_size',
-		$this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_size'] );
-
-		// Text Transform.
-		$heading_text_transform = get_theme_mod( 'heading_text_transform',
-		$this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
-		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform',
-		$this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'] );
+		$font_size_base = get_theme_mod( 'headings_font_size', $this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
+		$alt_font_size_base = get_theme_mod( 'alternate_headings_font_size', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_size'] );
+		$body_font_size = get_theme_mod( 'body_font_size', $this->configs['customizer-options']['typography']['defaults']['body_font_size'] );
 		$blockquote = $body_font_size * 1.25;
+		// Text Transform.
+		$heading_text_transform = get_theme_mod( 'heading_text_transform', $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
+		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'] );
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 		?>
 		<style type="text/css">

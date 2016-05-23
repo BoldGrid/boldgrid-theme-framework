@@ -402,15 +402,15 @@ msgstr ""
 msgid "Capitalization"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:192
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:192, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:410, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:594
 msgid "Lowercase"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:193
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:193, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:411, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:595
 msgid "Uppercase"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:194
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:194, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:412, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:596
 msgid "Unmodified"
 msgstr ""
 
@@ -428,6 +428,10 @@ msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:405
 msgid "$description. Capitalization"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:409, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:593
+msgid "Capitalize"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:541

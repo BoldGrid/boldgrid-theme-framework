@@ -397,8 +397,6 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				$button = $( button );
 
 				var bottom = parseInt( $button.attr( 'data-top' ) ) + $button.outerHeight( true );
-				console.log( 'bottom = ' + bottom);
-				console.log( 'initialWindowHeight = ' + initialWindowHeight);
 
 
 				if( bottom > initialWindowHeight ) {
@@ -1172,7 +1170,19 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			} );
 	};
 
-	$( window ).load( self.init );
+	// After the window has loaded, initialize the edit buttons.
+	$( window ).load( function() {
+		self.init();
+
+		/*
+		 * Sometimes, animations on the page can cause buttons to become misaligned. After
+		 * the buttons have been initialized (immediately above), wait 3 seconds and realign
+		 * them once more.
+		 */
+		setTimeout( function() {
+			self.placeButtons();
+		}, 3000 );
+	});
 };
 
 new BOLDGRID.Customizer_Edit( jQuery );

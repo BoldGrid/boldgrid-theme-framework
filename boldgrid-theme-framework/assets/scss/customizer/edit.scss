@@ -37,7 +37,8 @@ button[data-control].highlight-button {
   display: none; }
 
 .ui-dialog {
-  color: #000; }
+  color: #000;
+  max-width: 95%; }
 
 /* Simulate wp-core-ui's button-primary */
 .ui-dialog-buttonset button:first-of-type {

@@ -38,7 +38,12 @@ button[data-control].highlight-button {
 
 .ui-dialog {
   color: #000;
-  max-width: 95%; }
+  max-width: 95%;
+  font-family: Helvetica;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
 
 /* Simulate wp-core-ui's button-primary */
 .ui-dialog-buttonset button:first-of-type {

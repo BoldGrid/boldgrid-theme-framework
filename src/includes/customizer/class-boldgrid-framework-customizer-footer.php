@@ -300,7 +300,7 @@ class Boldgrid_Framework_Customizer_Footer {
 	 *  @since     1.0.0
 	 */
 	public function maybe_remove_all_footer_actions() {
-		if ( false === get_theme_mod( 'boldgrid_enable_footer', true ) ) {
+		if ( ! get_theme_mod( 'boldgrid_enable_footer', true ) ) {
 			$footer_actions = $this->configs['action']['inside_footer'];
 
 			// This is the boldgrid_menu_footer_center section.
@@ -349,7 +349,7 @@ class Boldgrid_Framework_Customizer_Footer {
 	 */
 	public function collapse_body_margin( $body_classes ) {
 
-		if ( false === get_theme_mod( 'boldgrid_enable_footer', true ) ) {
+		if ( ! get_theme_mod( 'boldgrid_enable_footer', true ) ) {
 			$body_classes[] = 'disabled-footer';
 		}
 

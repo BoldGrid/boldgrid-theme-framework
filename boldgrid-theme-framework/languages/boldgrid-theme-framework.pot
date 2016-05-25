@@ -291,11 +291,11 @@ msgid "Go there now"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:78
-msgid "Add a Menu"
+msgid "Widget"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:79
-msgid "Add a Widget"
+msgid "Menu"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-effects.php:40

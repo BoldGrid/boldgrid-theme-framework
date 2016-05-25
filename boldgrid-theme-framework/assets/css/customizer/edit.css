@@ -5,6 +5,11 @@ button[data-control]:before {
   font: normal 20px/1 'dashicons';
   vertical-align: top; }
 
+button[data-control].new {
+  overflow: hidden;
+  max-width: 30px;
+  white-space: nowrap; }
+
 button[data-control].new:before {
   content: "\f132"; }
 

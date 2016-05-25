@@ -228,7 +228,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	this.buttonMouseEnter = function( $button, $parent, $parentsContainer ) {
 		var top = $parent.offset().top,
 			containerOffset = $parentsContainer.offset(),
-			highlightHeight = $parent.outerHeight( );
+			highlightHeight = $parent.outerHeight( ),
+			withTitleWidth;
 
 		/*
 		 * Sometimes the $parent itself does not have a height, but its descendants do. Find the
@@ -278,6 +279,19 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		}, 10);
 
+		// If this button is for adding a new menu / widget, add contextual help.
+		if( $button.hasClass( 'new' ) ) {
+			withTitleWidth = parseInt( $button.attr( 'data-with-title-width' ) );
+
+			$button
+				.stop( true )
+				.html( ' ' + $button.attr( 'data-title' ) )
+				.animate({
+					'max-width': withTitleWidth + 'px',
+					left: self.right( $button ) - withTitleWidth
+				}, 400 );
+		}
+
 		if( self.isParentEmpty( $parent ) ) {
 
 
@@ -299,7 +313,19 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 *
 	 * @since 1.1.2
 	 */
-	this.buttonMouseLeave = function( $parent ) {
+	this.buttonMouseLeave = function( $button, $parent ) {
+
+		// If this button is for adding a new menu / widget, remove contextual help on mouse out.
+		if( $button.hasClass( 'new' ) ) {
+			$button
+				.stop( true )
+				.animate({
+					'max-width': 30,
+					left: $button.attr( 'data-left' )
+				}, 400, function() {
+					$button.html( '' );
+				} );
+		}
 
 		clearInterval( self.targetHighlightTop );
 
@@ -764,6 +790,14 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				return;
 			}
 
+			/*
+			 * If the button is for an empty nav / widget area and is currently being animated,
+			 * don't touch it.
+			 */
+			if( $button.hasClass( 'new' ) && $button.is( ':animated' ) ) {
+				return;
+			}
+
 			$button
 				.attr( 'data-last-animation', 'positionByData')
 				.animate({
@@ -1116,13 +1150,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		if( isEmptyNav ) {
 			$button
 				.addClass( 'new' )
-				.attr( 'title', boldgridFrameworkCustomizerEdit.addAMenu );
+				.attr( 'data-title', boldgridFrameworkCustomizerEdit.menu );
 		}
 
 		if( isEmptyWidget ) {
 			$button
 				.addClass( 'new' )
-				.attr( 'title', boldgridFrameworkCustomizerEdit.addAWidget );
+				.attr( 'data-title', boldgridFrameworkCustomizerEdit.widget );
 		}
 
 		$button
@@ -1133,11 +1167,31 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		$('body').append( $button );
 
+		/*
+		 * If a button has contextual help, like "New Widget" or "New Menu", we need to calculate
+		 * the width of those buttons when the help text is added.
+		 *
+		 * Essentially, we'll add the text, measure the width, then remove the text.
+		 */
+		if( isEmptyNav || isEmptyWidget ) {
+			$button
+				// Allow the button to expand to full width.
+				.css( 'max-width', '100%' )
+				// Add the help text.
+				.html( ' ' + $button.attr( 'data-title' ) )
+				// Save the width to 'data-with-title-width'.
+				.attr( 'data-with-title-width', $button.outerWidth( true ) )
+				// Reset the max width.
+				.css( 'max-width', '' )
+				// Remove the help text.
+				.html( '' );
+		}
+
 		// Bind actions to the button's hover.
 		$button.hover( function() {
 			self.buttonMouseEnter( $button, $parent, $parentsContainer );
 			}, function() {
-				self.buttonMouseLeave( $parent );
+				self.buttonMouseLeave( $button, $parent );
 			} );
 
 		// Bind actions to the button's click.

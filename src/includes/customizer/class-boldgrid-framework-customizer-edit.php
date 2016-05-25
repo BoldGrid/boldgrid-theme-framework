@@ -75,8 +75,8 @@ class Boldgrid_Framework_Customizer_Edit {
 				array(
 					'editPostLink'	=> get_edit_post_link( get_the_ID() ),
 					'goThereNow'	=> __( 'Go there now', 'bgtfw' ),
-					'addAMenu'		=> __( 'Add a Menu', 'bgtfw' ),
-					'addAWidget'	=> __( 'Add a Widget', 'bgtfw' ),
+					'widget'		=> __( 'Widget', 'bgtfw' ),
+					'menu'			=> __( 'Menu', 'bgtfw' ),
 				)
 			);
 

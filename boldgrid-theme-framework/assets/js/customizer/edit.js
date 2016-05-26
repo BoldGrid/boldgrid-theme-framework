@@ -52,6 +52,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @property int
 	 */
 	self.buttonHeight = 0;
+	self.buttonWidth = 0;
 
 	/**
 	 * @summary Add all edit buttons to the DOM.
@@ -89,7 +90,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		} );
 
 		// Black Studio TinyMCE.
-		$( 'aside[id^="black-studio-tinymce-"' ).each( function() {
+		$( 'aside[id^="black-studio-tinymce-"]' ).each( function() {
 			var $widget = $( this ),
 				widgetId = $widget.attr( 'id' ),
 				blackStudioId = widgetId.replace( 'black-studio-tinymce-', '' ).trim();
@@ -540,6 +541,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		// After we have placed all our buttons, take note of the button's outerHeight.
 		self.buttonHeight = $( 'button[data-control]:visible' ).first().outerHeight();
+		self.buttonWidth = $( 'button[data-control]:visible' ).first().outerWidth();
 
 		self.placeButtons();
 
@@ -672,6 +674,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' ),
 			position = 'absolute',
 			buttonLeft = self.right( $parentsContainer ),
+			bodyWidth = $( 'body' ).outerWidth( true ),
 			zindex,
 			top;
 
@@ -726,8 +729,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}
 
 		// Don't allow buttons to go off the screen.
-		if( self.right( $parentsContainer ) + $button.outerWidth( true ) > $('body').outerWidth(true) ) {
-			buttonLeft = $('body').outerWidth( true ) - $button.outerWidth( true );
+		if( buttonLeft + self.buttonWidth > bodyWidth ) {
+			buttonLeft = bodyWidth - self.buttonWidth;
 		}
 
 		/*
@@ -808,10 +811,14 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @since 1.1.2
 	 *
 	 * @param object $element A jQuery object.
+	 * @param bool includeMargin A bool to determine if outerWidth calculation should include margin.
 	 * @return string The calculated 'right' of an element.
 	 */
-	this.right = function( $element ) {
-		return $element.offset().left + $element.outerWidth();
+	this.right = function( $element, includeMargin ) {
+		// If includeMargin is undefined, set it to false by default.
+		includeMargin = ( includeMargin === undefined ) ? false : includeMargin;
+
+		return $element.offset().left + $element.outerWidth( includeMargin );
 	};
 
 	/**

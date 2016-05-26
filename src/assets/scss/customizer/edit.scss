@@ -4,12 +4,10 @@ button[data-control]:before {
   -webkit-font-smoothing: antialiased;
   font: normal 20px/1 'dashicons';
   vertical-align: top; }
-  
+
 button[data-control].new {
-	overflow:		hidden;
-	max-width:		30px;
-	white-space:	nowrap;
-}
+  overflow: hidden;
+  white-space: nowrap; }
 
 button[data-control].new:before {
   content: "\f132"; }
@@ -28,7 +26,8 @@ button[data-control] {
   position: absolute;
   top: 0px;
   right: 0px;
-  line-height: 20px; }
+  line-height: 20px;
+  max-width: 30px; }
 
 button[data-control]:hover,
 button[data-control].highlight-button {
@@ -59,6 +58,10 @@ button[data-control].highlight-button {
   color: #fff;
   text-decoration: none;
   text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799; }
+
+#entry-title img {
+	margin: 10px 0px;
+}
 
 #target-highlight {
   position: absolute;

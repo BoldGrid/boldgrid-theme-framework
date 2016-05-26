@@ -62,7 +62,7 @@ class BoldGrid_Framework_Template_Config {
 		}
 
 		if ( false === is_callable( array( $this, $footer ) ) ) {
-			$header = 'footer_config';
+			$footer = 'footer_config';
 		}
 
 		$configs = array_merge( self::$header(), self::$footer() );

@@ -148,6 +148,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			},
 			goThereNow = boldgridFrameworkCustomizerEdit.goThereNow,
 			$parent = $( $button.attr( 'data-selector' ) ),
+			$collapseSidebar = $( '.collapse-sidebar', parent.document ),
 			navMenuLocation, control;
 
 		/*
@@ -169,6 +170,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	    dialogSettings.buttons[cancel] = function() {
 	        $( this ).dialog( 'close' );
 	    };
+
+		// If the Customizer sidebar is collapsed, expand it.
+	    if( 'false' === $collapseSidebar.attr( 'aria-expanded' ) ) {
+	    	$collapseSidebar.click();
+	    }
 
 	    // Page title or page content.
 		if ( 'entry-content' === dataControl || 'entry-title' === dataControl ) {

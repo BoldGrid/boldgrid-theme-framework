@@ -230,7 +230,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var color       =  wp.customize.control( 'logo_shadow_color' );
 		var blur        =  wp.customize.control( 'logo_shadow_blur' );
 
-		if ( shadow !== true ) {
+		if ( 1 != shadow ) {
 
 			vertical.deactivate( { duration: 0 } );
 			horizontal.deactivate( { duration: 0 } );
@@ -293,7 +293,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var text_decoration_hover		=  wp.customize.control( 'logo_text_decoration_hover' );
 		var text_transform				=  wp.customize.control( 'logo_text_transform' );
 
-		if ( font !== true ) {
+		if ( 1 != font )  {
 
 			font_family.deactivate( { duration: 0 } );
 			font_size.deactivate( { duration: 0 } );
@@ -314,7 +314,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var margin_top				=  wp.customize.control( 'logo_margin_top' );
 		var margin_left				=  wp.customize.control( 'logo_margin_left' );
 
-		if ( position !== true ) {
+		if ( 1 != position ) {
 
 			letter_spacing.deactivate( { duration: 0 } );
 			line_height.deactivate( { duration: 0 } );

@@ -403,7 +403,7 @@ class BoldGrid_Framework {
 
 		// Add Kirki Fonts to WordPress Page/Post Editor.
 		if ( true === $this->configs['customizer-options']['typography']['enabled'] && ! is_customize_preview() ) {
-			$this->loader->add_action( 'after_setup_theme', $boldgrid_framework_editor, 'add_google_fonts' );
+			$this->loader->add_action( 'wp_loaded', $boldgrid_framework_editor, 'add_google_fonts' );
 		}
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $boldgrid_framework_editor, 'hide_page_title', 999 );

@@ -189,7 +189,7 @@
 		    logoShadowSwitch = wp.customize( 'logo_shadow_switch')(),
 		    cssString = 'none';
 
-		if ( logoShadowSwitch ) {
+		if ( '0' != logoShadowSwitch ) {
 			cssString =
 				logoShadowHorizontal +
 				logoShadowVertical +

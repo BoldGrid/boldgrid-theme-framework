@@ -68,7 +68,7 @@
 				$( window ).on( 'resize', this.stickyFooter );
 			},
 			stickyFooter: function() {
-				var footer = $( 'footer#colophon' );
+				var footer = $( '.site-footer' );
 				if ( ! footer.length ) {
 					return;
 				}

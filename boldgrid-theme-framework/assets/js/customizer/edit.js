@@ -149,6 +149,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			goThereNow = boldgridFrameworkCustomizerEdit.goThereNow,
 			$parent = $( $button.attr( 'data-selector' ) ),
 			$collapseSidebar = $( '.collapse-sidebar', parent.document ),
+			$previewToggleControls = $( '.customize-controls-preview-toggle .controls', parent.document ),
+			$overlay = $( '.wp-full-overlay', parent.document ),
 			navMenuLocation, control;
 
 		/*
@@ -174,6 +176,14 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		// If the Customizer sidebar is collapsed, expand it.
 	    if( 'false' === $collapseSidebar.attr( 'aria-expanded' ) ) {
 	    	$collapseSidebar.click();
+	    }
+
+	    /*
+	     * If we are in mobile / zoomed in to where only the customizer panel or the preview shows,
+	     * show the customizer panel.
+	     */
+	    if( $previewToggleControls.is( ':visible' ) ) {
+	    	$overlay.toggleClass( 'preview-only' );
 	    }
 
 	    // Page title or page content.

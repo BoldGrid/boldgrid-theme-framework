@@ -305,17 +305,26 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			.css( 'left', containerOffset.left )
 			.css( 'visibility', 'visible' );
 
-		// An empty area my be animating to 0px. In this case, the current $parent may move position
-		// on the page wile the previous animation is rendering.
+		/*
+		 * An empty widget area may be animating back to 0px. In this case, the current $parent may
+		 * move position on the page wile the previous animation is rendering.
+		 */
 		var count = 0;
 		self.targetHighlightTop = setInterval( function(){
 			count += 10;
-			self.$targetHighlight.css( 'top', $parent.offset().top  );
+
+			// Calculate the appropriate top.
+			if( '1' === $button.attr( 'data-fixed-ancestor' ) ) {
+				top = $parent.offset().top - $( window ).scrollTop();
+			} else {
+				top = $parent.offset().top;
+			}
+
+			self.$targetHighlight.css( 'top', top  );
 
 			if( count >= 400 ) {
 				clearInterval( self.targetHighlightTop );
 			}
-
 		}, 10);
 
 		// If this button is for adding a new menu / widget, add contextual help.

@@ -418,8 +418,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 */
 	this.findCollision = function() {
 		var buttons = [],
-			$lastDiv = $( 'div:visible' ).not( '#target-highlight' ).last(),
-			initialWindowHeight = $lastDiv.offset().top + $lastDiv.outerHeight( true );
+			/*
+			 * There are inconsistencies when getting the height of the document. Assume that our
+			 * .site-footer is the last element on the page and use it to calculate the height of
+			 * the document.
+			 */
+			$footer = $( '.site-footer' ).last(),
+			initialWindowHeight = $footer.offset().top + $footer.outerHeight( true );
 
 		// Reset the collision set back to 1.
 		self.buttonCollisionSet = 1;

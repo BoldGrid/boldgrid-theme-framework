@@ -50,7 +50,6 @@ user guide for more information.
 
 ### 1.1.4.1 ###
 * Bug Fix: Issue causing Visual Editor widget areas to fail on firefox.
->>>>>>> 613cd45bd7f71f049d9b589b934c0c91f06ece38
 
 ### 1.1.4 ###
 * Bug Fix: Issue causing color palette customizer to fail on child themes.

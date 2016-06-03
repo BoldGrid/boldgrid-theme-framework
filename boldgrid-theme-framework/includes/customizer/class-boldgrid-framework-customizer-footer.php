@@ -238,19 +238,19 @@ class Boldgrid_Framework_Customizer_Footer {
 		if ( get_theme_mod( 'boldgrid_enable_footer', true ) ) {
 
 			// BoldGrid.com Link.
-			if ( false === get_theme_mod( 'hide_boldgrid_attribution' ) ) {
+			if ( ! get_theme_mod( 'hide_boldgrid_attribution' ) ) {
 				$theme_mods .= sprintf( __( 'Built with %s | ', 'bgtfw' ),
 				'<a href="http://www.boldgrid.com/" rel="nofollow" target="_blank">BoldGrid</a>' );
 			}
 
 			// WordPress.org Link.
-			if ( false === get_theme_mod( 'hide_wordpress_attribution' ) ) {
+			if ( ! get_theme_mod( 'hide_wordpress_attribution' ) ) {
 				$theme_mods .= sprintf( __( 'Powered by %s | ', 'bgtfw' ),
 				'<a href="https://wordpress.org/" rel="nofollow" target="_blank">WordPress</a>' );
 			}
 
 			// Authorized Reseller/Partner Link.
-			if ( false === get_theme_mod( 'hide_partner_attribution' ) ) {
+			if ( ! get_theme_mod( 'hide_partner_attribution' ) ) {
 				if ( ! empty( $reseller_data['reseller_title'] ) ) {
 					$theme_mods .= sprintf( __( 'Support from %s | ', 'bgtfw' ),
 						'<a href="' . $reseller_data['reseller_website_url'] .
@@ -300,7 +300,7 @@ class Boldgrid_Framework_Customizer_Footer {
 	 *  @since     1.0.0
 	 */
 	public function maybe_remove_all_footer_actions() {
-		if ( false === get_theme_mod( 'boldgrid_enable_footer', true ) ) {
+		if ( ! get_theme_mod( 'boldgrid_enable_footer', true ) ) {
 			$footer_actions = $this->configs['action']['inside_footer'];
 
 			// This is the boldgrid_menu_footer_center section.
@@ -349,7 +349,7 @@ class Boldgrid_Framework_Customizer_Footer {
 	 */
 	public function collapse_body_margin( $body_classes ) {
 
-		if ( false === get_theme_mod( 'boldgrid_enable_footer', true ) ) {
+		if ( ! get_theme_mod( 'boldgrid_enable_footer', true ) ) {
 			$body_classes[] = 'disabled-footer';
 		}
 

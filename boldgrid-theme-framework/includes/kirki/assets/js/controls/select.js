@@ -1,23 +1,18 @@
-/**
- * KIRKI CONTROL: KIRKI-SELECT
- */
-function kirkiArrayToObject( arr ) {
-	var rv = {};
-	if ( null !== arr ) {
-		for ( var i = 0; i < arr.length; ++i ) {
-			if ( arr[i] !== undefined ) rv[i] = arr[i];
-		}
-	}
-	return rv;
-}
+/*jshint -W065 */
+wp.customize.controlConstructor['kirki-select'] = wp.customize.Control.extend({
 
-wp.customize.controlConstructor['kirki-select'] = wp.customize.Control.extend( {
 	ready: function() {
-		var control = this;
 
-		var element  = this.container.find( 'select' );
-		var multiple = parseInt( element.data( 'multiple' ) );
+		'use strict';
 
+		var control  = this,
+		    element  = this.container.find( 'select' ),
+		    multiple = parseInt( element.data( 'multiple' ) ),
+		    selectValue;
+
+		// If this is a multi-select control,
+		// then we'll need to initialize selectize using the appropriate arguments.
+		// If this is a single-select, then we can initialize selectize without any arguments.
 		if ( multiple > 1 ) {
 			jQuery( element ).selectize({
 				maxItems: multiple,
@@ -27,13 +22,20 @@ wp.customize.controlConstructor['kirki-select'] = wp.customize.Control.extend( {
 			jQuery( element ).selectize();
 		}
 
+		// Change value
 		this.container.on( 'change', 'select', function() {
+
+			selectValue = jQuery( this ).val();
+
+			// If this is a multi-select, then we need to convert the value to an object.
 			if ( multiple > 1 ) {
-				var select_value = kirkiArrayToObject( jQuery( this ).val() );
-			} else {
-				var select_value = jQuery( this ).val();
+				selectValue = _.extend( {}, jQuery( this ).val() );
 			}
-			control.setting.set( select_value );
+
+			control.setting.set( selectValue );
+
 		});
+
 	}
+
 });

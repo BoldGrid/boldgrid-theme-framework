@@ -89,6 +89,14 @@ gulp.task( 'jsDeps', function(  ) {
 	.pipe( uglify(  ) )
     .pipe( rename({ suffix: '.min' }) )
     .pipe( gulp.dest( config.jsDest + '/offcanvas' ) );
+  // Nicescroll.
+  gulp.src( config.bower + '/jquery.nicescroll/dist/*.{js,png}' )
+    .pipe( gulp.dest( config.jsDest + '/niceScroll' ) );
+  // jQuery goup.
+  gulp.src([
+	config.bower + '/jquery-goup/src/*.js',
+	config.bower + '/jquery-goup/*.js' ])
+    .pipe( gulp.dest( config.jsDest + '/goup' ) );
   // sass.js - Check
   gulp.src( config.bower + '/sass.js/dist/**/*' )
     .pipe( gulp.dest( config.jsDest + '/sass-js' ) );
@@ -154,7 +162,7 @@ gulp.task( 'phpDeps', function(  ) {
 
 // Copy Framework Files.
 gulp.task( 'frameworkFiles', function(  ) {
-  gulp.src([
+  return gulp.src([
     '!' + config.src + '/includes/black-studio-tinymce-widget',
     '!' + config.src + '/includes/black-studio-tinymce-widget/**',
     config.src + '/**/*.{php,txt,json,css,scss}',

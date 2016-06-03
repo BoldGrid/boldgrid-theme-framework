@@ -68,7 +68,7 @@
 				$( window ).on( 'resize', this.stickyFooter );
 			},
 			stickyFooter: function() {
-				var footer = $( 'footer#colophon' );
+				var footer = $( '.site-footer' );
 				if ( ! footer.length ) {
 					return;
 				}
@@ -195,9 +195,102 @@
 		},
 		// WOW.js enabled.
 		'wow_js_enabled' : {
-			init: function(){
-				new WOW().init();
+			init: function() {
+				// Trigger event when WOW is enabled.
+				$( document ).trigger( 'wowEnabled' );
+				this.loadWow();
+			},
+			loadWow: function() {
+				var wow = new WOW({
+					boxClass     : _wowJsOptions.boxClass,
+					animateClass : _wowJsOptions.animateClass,
+					offset       : _wowJsOptions.offset,
+					mobile       : _wowJsOptions.mobile,
+					live         : _wowJsOptions.live,
+				});
+				wow.init();
 			}
+		},
+		'nicescroll_enabled' : {
+			init: function() {
+				$( _niceScrollOptions.selector ).niceScroll({
+					cursorcolor: _niceScrollOptions.cursorcolor,
+					cursoropacitymin: _niceScrollOptions.cursoropacitymin,
+					cursoropacitymax: _niceScrollOptions.cursoropacitymax,
+					cursorwidth: _niceScrollOptions.cursorwidth,
+					cursorborder: _niceScrollOptions.cursorborder,
+					cursorborderradius: _niceScrollOptions.cursorborderradius,
+					zindex: _niceScrollOptions.zindex,
+					scrollspeed: _niceScrollOptions.scrollspeed,
+					mousescrollstep: _niceScrollOptions.mousescrollstep,
+					touchbehavior: _niceScrollOptions.touchbehavior,
+					hwacceleration: _niceScrollOptions.hwacceleration,
+					boxzoom: _niceScrollOptions.boxzoom,
+					dblclickzoom: _niceScrollOptions.dblclickzoom,
+					gesturezoom: _niceScrollOptions.gesturezoom,
+					grabcursorenabled: _niceScrollOptions.grabcursorenabled,
+					autohidemode: _niceScrollOptions.autohidemode,
+					background: _niceScrollOptions.background,
+					iframeautoresize: _niceScrollOptions.iframeautoresize,
+					cursorminheight: _niceScrollOptions.cursorminheight,
+					preservenativescrolling: _niceScrollOptions.preservenativescrolling,
+					railoffset: _niceScrollOptions.railoffset,
+					bouncescroll: _niceScrollOptions.bouncescroll,
+					spacebarenabled: _niceScrollOptions.spacebarenabled,
+					railpadding: {
+						top: _niceScrollOptions.railpadding.top,
+						right: _niceScrollOptions.railpadding.right,
+						left: _niceScrollOptions.railpadding.left,
+						bottom: _niceScrollOptions.railpadding.bottom,
+					},
+					disableoutline: _niceScrollOptions.disableoutline,
+					horizrailenabled: _niceScrollOptions.horizrailenabled,
+					railalign: _niceScrollOptions.railalign,
+					railvalign: _niceScrollOptions.railvalign,
+					enabletranslate3d: _niceScrollOptions.enabletranslate3d,
+					enablemousewheel: _niceScrollOptions.enablemousewheel,
+					enablekeyboard: _niceScrollOptions.enablekeyboard,
+					smoothscroll: _niceScrollOptions.smoothscroll,
+					sensitiverail: _niceScrollOptions.sensitiverail,
+					enablemouselockapi: _niceScrollOptions.enablemouselockapi,
+					cursorfixedheight: _niceScrollOptions.cursorfixedheight,
+					hidecursordelay: _niceScrollOptions.hidecursordelay,
+					directionlockdeadzone: _niceScrollOptions.directionlockdeadzone,
+					nativeparentscrolling: _niceScrollOptions.nativeparentscrolling,
+					enablescrollonselection: _niceScrollOptions.enablescrollonselection,
+					cursordragspeed: _niceScrollOptions.cursordragspeed,
+					rtlmode: _niceScrollOptions.rtlmode,
+					cursordragontouch: _niceScrollOptions.cursordragontouch,
+					oneaxismousemode: _niceScrollOptions.oneaxismousemode,
+					scriptpath: _niceScrollOptions.scriptpath,
+					preventmultitouchscrolling: _niceScrollOptions.preventmultitouchscrolling,
+					disablemutationobserver: _niceScrollOptions.disablemutationobserver,
+				});
+			},
+		},
+		'goup_enabled' : {
+			init: function() {
+				$.goup({
+					location: _goupOptions.location,
+					locationOffset: _goupOptions.locationOffset,
+					bottomOffset: _goupOptions.bottomOffset,
+					containerSize: _goupOptions.containerSize,
+					containerRadius: _goupOptions.containerRadius,
+					containerClass: _goupOptions.containerClass,
+					arrowClass: _goupOptions.arrowClass,
+					containerColor: _goupOptions.containerColor,
+					arrowColor: _goupOptions.arrowColor,
+					trigger: _goupOptions.trigger,
+					entryAnimation: _goupOptions.entryAnimation,
+					alwaysVisible: _goupOptions.alwaysVisible,
+					goupSpeed: _goupOptions.goupSpeed,
+					hideUnderWidth: _goupOptions.hideUnderWidth,
+					title: _goupOptions.title,
+					titleAsText: _goupOptions.titleAsText,
+					titleAsTextClass: _goupOptions.titleAsTextClass,
+					zIndex: _goupOptions.zIndex,
+				});
+			},
 		},
 	};
 

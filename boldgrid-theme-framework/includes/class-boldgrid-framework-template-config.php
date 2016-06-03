@@ -56,9 +56,16 @@ class BoldGrid_Framework_Template_Config {
 		$header = self::get_active_template( 'header' ) . '_config';
 		$footer = self::get_active_template( 'footer' ) . '_config';
 		$configs = array();
-		if ( is_callable( array( $this, $header ) ) && is_callable( array( $this, $footer ) ) ) {
-			$configs = array_merge( self::$header(), self::$footer() );
+
+		if ( false === is_callable( array( $this, $header ) ) ) {
+			$header = 'header_config';
 		}
+
+		if ( false === is_callable( array( $this, $footer ) ) ) {
+			$footer = 'footer_config';
+		}
+
+		$configs = array_merge( self::$header(), self::$footer() );
 
 		return $configs;
 	}
@@ -271,5 +278,46 @@ class BoldGrid_Framework_Template_Config {
 			'footer_social'    => 'Footer Right',
 			'footer_center' => 'Footer Left',
 		);
+	}
+
+	/**
+	 * Setup the ability to use action configs.
+	 *
+	 * @since 1.1.1
+	 *
+	 * @return array An array containing menu locations.
+	 */
+	public function do_location_action( $template_type, $location_id  ) {
+		$template_config = $this->configs['template']['locations'][ $template_type ];
+
+		if ( ! empty ( $template_config[ $location_id ] ) ) {
+			$location_items = $template_config[ $location_id ];
+
+			// Wrap in array if non existant.
+			if ( false === is_array( $location_items ) ) {
+				$location_items = array( $location_items );
+			}
+
+			foreach( $location_items as $action ) {
+
+				//Split [action]action-name to [action] and action-name
+				preg_match ( '/^\[.*\]/', $action, $matches );
+				$type = ! empty( $matches[0] ) ? $matches[0] : null;
+				$name = str_ireplace( $type, '', $action );
+
+				switch ( $type ) {
+					case '[menu]':
+						do_action( 'boldgrid_menu_' . $name );
+						break;
+					case '[widget]':
+						dynamic_sidebar( $name );
+						break;
+					default:
+					case '[action]':
+						do_action( $name );
+						break;
+				}
+			}
+		}
 	}
 }

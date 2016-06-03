@@ -715,7 +715,6 @@ HTML;
 						</p>
 					</div>
 					<img src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] ); ?>img/boldgrid-overlay.jpg">
-					<button class='button-primary button dismiss-overlay-help'>Dismiss</button>
 				</div>
 			</div>
 			<?php };

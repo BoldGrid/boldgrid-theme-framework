@@ -26,7 +26,7 @@ user guide for more information.
 
 ## Changelog ##
 
-### 1.1.5 ###
+### 1.1.6 ###
 * New Feature: Updated drag behavior to swap colors.
 * New Feature: The neutral color of a palette can now be modified with drag and drop.
 * New Feature: The UI of color palettes has been improved.
@@ -34,8 +34,26 @@ user guide for more information.
 * New Feature: Improved color palette suggestion algorithms.
 * Bug Fix: Removed duplicate entries of color palettes from saved palettes.
 
+### 1.1.5.1 ###
+* Bug Fix: Enable footer switch not fully triggering.
+
+### 1.1.5 ###
+* Update: Kirki from v2.1.0.1 to v2.3.2.
+* Update: Changed customizer tablet view width to 768px.
+* New Feature: Added slim scrollbar support via configs.
+* New Feature: Added scroll to top support via configs.
+* New Feature: Added support for additional font relationships via configs.
+* New Feature: Allow child theme to auto-enqueue it's own js file.
+* New Feature: Updated wow.js to support framework configs.
+* New Feature: Added blockquote calculations to Main Text font sizes.
+* Bug Fix: Headings Text Transform property not saving.
+
+### 1.1.4.1 ###
+* Bug Fix: Issue causing Visual Editor widget areas to fail on firefox.
+>>>>>>> 613cd45bd7f71f049d9b589b934c0c91f06ece38
+
 ### 1.1.4 ###
-* Bug Fix: Issue causing color palette customizer to fail on child themes. 
+* Bug Fix: Issue causing color palette customizer to fail on child themes.
 * New Feature: The frameworks root path can now be overwritten with BGTFW_PATH constant.
 * New Feature: Text shadow controls are now postMessage.
 * New Feature: Tagline will now inherit margin controls from site title.

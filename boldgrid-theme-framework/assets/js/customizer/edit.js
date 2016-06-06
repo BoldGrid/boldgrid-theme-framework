@@ -55,6 +55,15 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	self.buttonWidth = 0;
 
 	/**
+	 * Default z-index of our edit buttons, as defined in edit.css.
+	 *
+	 * @since 1.1.6
+	 * @access public
+	 * @property int
+	 */
+	self.defaultZindex = 210;
+
+	/**
 	 * @summary Add all edit buttons to the DOM.
 	 *
 	 * @since 1.1.6
@@ -719,7 +728,12 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		if( $fixedAncestors.length ) {
 			zIndex = parseInt( $fixedAncestors.last().css( 'z-index' ) );
 
-			if( Number.isInteger( zIndex ) ) {
+			/*
+			 * The edit button must remain atop the #target-highlight, and its default z-index is
+			 * setup to do this. Do not adjust the button's z-index if it will be make it lower than
+			 * its default z-index.
+			 */
+			if( Number.isInteger( zIndex ) && zIndex > self.defaultZindex ) {
 				$button.css( 'z-index', zIndex + 1 );
 			}
 		} else {

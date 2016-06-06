@@ -21,7 +21,7 @@ button[data-control].new {
   overflow: hidden;
   white-space: nowrap; }
 
-/* Default settings for all buttons. */
+/* Default settings for all buttons. If updating z-index, update in edit.js as well. */
 button[data-control] {
   font-size: 14px;
   font-family: monospace;

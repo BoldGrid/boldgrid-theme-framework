@@ -88,6 +88,7 @@ class Boldgrid_Framework_Customizer_Edit {
 					'goThereNow'	=> __( 'Go there now', 'bgtfw' ),
 					'widget'		=> __( 'Widget', 'bgtfw' ),
 					'menu'			=> __( 'Menu', 'bgtfw' ),
+					'buttons'		=> $this->configs['customizer-options']['edit']['buttons'],
 				)
 			);
 

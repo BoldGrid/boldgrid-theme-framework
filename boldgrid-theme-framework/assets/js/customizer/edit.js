@@ -60,25 +60,16 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @since 1.1.6
 	 */
 	this.addButtons = function() {
-		var	settings = {
-		    	'blogname'					: '.site-title a',
-		    	'boldgrid_logo_setting'		: '.logo-site-title',
-		    	'boldgrid_enable_footer'	: '.attribution',
-		    	'entry-content'				: '.entry-content',
-		    	'entry-title'				: '.entry-title',
-		    	'blogdescription'			: '.site-description',
-		    },
-		    keys = _.keys( settings ),
-		    menus = api.section( 'menu_locations' ).controls(),
+		var	menus = api.section( 'menu_locations' ).controls(),
 			menuId,
 			$emptyMenu = $( '.empty-menu' ),
 			$emptyWidgetAreas = $( '[data-empty-area="\'true\'"]' );
 
-		// General Settings.
-		_( keys ).each( function( key ) {
-			// Only add the button if the element exists.
-			if( 1 === $( settings[ key ] ).length ) {
-				self.addButton( null, key, settings[ key ] );
+		// Add our general buttons.
+		_( boldgridFrameworkCustomizerEdit.buttons.general ).each( function( button ) {
+			// Ensure the element exists before adding a button for it.
+			if( 1 === $( button.selector ).length ) {
+				self.addButton( null, button.control, button.selector, button.icon );
 			}
 		} );
 
@@ -86,7 +77,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		$( 'aside.widget' ).each( function() {
 			var widgetId = $( this ).attr( 'id' );
 
-			self.addButton( 'sidebar', widgetId, '#' + widgetId );
+			self.addButton( 'sidebar', widgetId, '#' + widgetId, 'pencil' );
 		} );
 
 		// Black Studio TinyMCE.
@@ -95,7 +86,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				widgetId = $widget.attr( 'id' ),
 				blackStudioId = widgetId.replace( 'black-studio-tinymce-', '' ).trim();
 
-			self.addButton( 'widget_black-studio-tinymce', blackStudioId, '#' + widgetId );
+			self.addButton( 'widget_black-studio-tinymce', blackStudioId, '#' + widgetId, 'pencil' );
 		} );
 
 		// Menus.
@@ -109,13 +100,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			    	return;
 			    }
 
-			    self.addButton( 'nav_menu', menu.setting._value, '#' + menuId );
+			    self.addButton( 'nav_menu', menu.setting._value, '#' + menuId, 'pencil' );
 		    } );
 
 		// Empty menu locations.
 		_( $emptyMenu ).each(
 			function( menu ) {
-				self.addButton( null, 'new_menu_name', '#' + $( menu ).attr( 'id' ) );
+				self.addButton( null, 'new_menu_name', '#' + $( menu ).attr( 'id' ), 'plus' );
 			} );
 
 		// Empty widget areas.
@@ -127,7 +118,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				var widgetAreaId = dataWidgetArea.replace( 'accordion-section-sidebar-widgets-' , '' );
 				var selector = "[data-widget-area='" + dataWidgetArea + "']";
 
-				self.addButton( 'sidebars_widgets', widgetAreaId, selector );
+				self.addButton( 'sidebars_widgets', widgetAreaId, selector, 'plus' );
 			} );
 	};
 
@@ -1131,7 +1122,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @param string id The id of an element to control.
 	 * @param string selector A selector that points to an element this button controls.
 	 */
-	this.addButton = function( type, id, selector ) {
+	this.addButton = function( type, id, selector, icon ) {
 		var $button = $( '<button></button>' ),
 			$parent = $( selector ),
 			$parentsContainer = self.parentColumn( $parent ),
@@ -1145,6 +1136,10 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		if( 0 !== $( 'body' ).find( '[data-selector="' + selector + '"]' ).length ) {
 			return;
 		}
+
+		// Allow for custom icons per button. By default, each edit buttion will be a pencil icon.
+		icon = ( icon === undefined ? 'pencil' : icon );
+		$button.addClass( 'icon-' + icon );
 
 		/*
 		 * If this button is for an empty widget area or an empty nav area, add a 'new' class to use

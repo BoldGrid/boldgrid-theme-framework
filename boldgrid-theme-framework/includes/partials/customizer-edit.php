@@ -10,6 +10,6 @@
 </div>
 <div id='entry-title' title='<?php echo $edit_title_header; ?>' class='dialog-hidden'>
 	<?php echo $edit_title_content; ?><br />
-	<img src='<?php echo bloginfo('stylesheet_directory'); ?>/inc/boldgrid-theme-framework/assets/img/display-page-title.jpg' />
+	<img src='<?php echo $this->configs['framework']['admin_asset_dir']; ?>img/display-page-title.jpg' />
 </div>
 <div id='target-highlight'></div>

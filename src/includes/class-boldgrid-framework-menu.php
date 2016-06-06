@@ -120,11 +120,13 @@ class Boldgrid_Framework_Menu {
 	 * @since     1.0.0
 	 */
 	public function add_dynamic_actions() {
+		$edit_enabled = $this->configs['customizer-options']['edit']['enabled'];
+
 		foreach ( $this->configs['menu']['prototype'] as $menu ) {
-			$action = function () use ( $menu ) {
+			$action = function () use ( $menu, $edit_enabled ) {
 				if ( has_nav_menu( $menu['theme_location'] ) ) {
 					wp_nav_menu( $menu );
-				} else {
+				} elseif( true === $edit_enabled ) {
 					Boldgrid_Framework_Customizer_Edit::fallback_cb( $menu );
 				}
 			};

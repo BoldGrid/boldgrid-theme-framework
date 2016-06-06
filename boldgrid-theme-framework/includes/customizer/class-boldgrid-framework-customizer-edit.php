@@ -21,6 +21,15 @@ class Boldgrid_Framework_Customizer_Edit {
 	protected $configs;
 
 	/**
+	 * Feature switch.
+	 *
+	 * @since	1.1.6
+	 * @access	public
+	 * @var		bool
+	 */
+	public $enabled = false;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param     string $configs       The BoldGrid Theme Framework configurations.
@@ -28,6 +37,8 @@ class Boldgrid_Framework_Customizer_Edit {
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
+
+		$this->enabled = $configs['customizer-options']['edit']['enabled'];
 	}
 
 	/**
@@ -56,7 +67,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	 * @since 1.1
 	 */
 	public function wp_enqueue_scripts() {
-		if ( is_customize_preview() ) {
+		if ( is_customize_preview() && true === $this->enabled ) {
 			// Minify if script debug is off.
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
@@ -100,7 +111,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	/**
 	 */
 	public function wp_footer() {
-		if ( is_customize_preview() ) {
+		if ( is_customize_preview() && true === $this->enabled ) {
 			include dirname( dirname( __FILE__ ) ) . '/partials/customizer-edit.php';
 		}
 	}

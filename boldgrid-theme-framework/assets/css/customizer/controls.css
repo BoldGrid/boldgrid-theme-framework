@@ -183,6 +183,11 @@
   left: 2px;
   position: relative !important; }
 
+.color-palette-columns-6 .bg-lock-controls > .color-lock,
+.color-palette-columns-6 .boldgrid-active-palette .boldgrid-palette-colors,
+.color-palette-columns-6 .boldgrid-palette-colors > span {
+  width: 16.666%; }
+
 .color-palette-columns-5 .bg-lock-controls > .color-lock,
 .color-palette-columns-5 .boldgrid-active-palette .boldgrid-palette-colors,
 .color-palette-columns-5 .boldgrid-palette-colors > span {
@@ -218,9 +223,6 @@
   line-height: 28px;
   font-size: 13px; }
 
-.boldgrid-color-palette-wrapper .wp-picker-container {
-  width: 92%; }
-
 .boldgrid-color-palette-wrapper .wp-picker-container .button {
   margin-left: 3px; }
 
@@ -238,6 +240,13 @@
   height: 25px;
   display: none; }
 
+.boldgrid-color-palette-wrapper .wp-picker-container {
+  margin-bottom: 5px; }
+
+@media (min-width: 641px) {
+  #customize-control-boldgrid-color-palette .customize-control-description {
+    width: 260px; } }
+
 /*****************************************************
 ************Inactive Color Palette Rules****************
 ******************************************************/
@@ -253,12 +262,12 @@
 
 .boldgrid-inactive-palette .boldgrid-palette-colors {
   font-size: 0;
-  border: 3px solid;
-  border-color: transparent;
+  border: 2px solid;
+  border-color: #E1E1E1;
   height: 33px; }
 
 .boldgrid-inactive-palette .boldgrid-palette-colors:hover {
-  border: 3px solid;
+  border: 2px solid;
   border-color: #fb5f14;
   cursor: pointer; }
 
@@ -266,8 +275,8 @@
 ************Active Color Palette Rules****************
 ******************************************************/
 .boldgrid-active-palette {
-  border: 3px solid;
-  border-color: #fb5f14;
+  border: 2px solid;
+  border-color: #E1E1E1;
   height: 84px;
   margin-top: 15px; }
 
@@ -286,8 +295,9 @@
   height: 100%;
   position: relative; }
 
-.boldgrid-active-palette .active-palette-section {
-  border: 2px solid orange;
+.boldgrid-active-palette .ui-sortable-helper,
+.boldgrid-active-palette .active-palette-section:not(.ui-sortable-placeholder) {
+  border: 2px solid #fb5f14;
   box-sizing: border-box; }
 
 /*****************************************************
@@ -324,10 +334,12 @@
   vertical-align: top;
   color: #555;
   width: 20px;
-  left: 29%;
-  top: -25px; }
+  left: 50%;
+  top: -25px;
+  transform: translateX(-50%); }
 
-.boldgrid-active-palette .active-palette-section.boldgrid-palette-colors:before {
+.boldgrid-active-palette .boldgrid-palette-colors.ui-sortable-helper:before,
+.boldgrid-active-palette .active-palette-section:not(.ui-sortable-placeholder).boldgrid-palette-colors:before {
   display: inline-block; }
 
 .boldgrid-neutral-color.active-palette-section:before {
@@ -337,12 +349,12 @@
   right: -17px;
   top: 2px; }
 
+.boldgrid-active-palette .boldgrid-palette-colors.ui-sortable-helper:before,
 .boldgrid-active-palette .boldgrid-palette-colors:hover:before {
   content: "↔";
   display: inline-block;
-  font-size: 28px;
-  top: -32px;
-  left: 18%; }
+  font-size: 24px;
+  top: -29px; }
 
 .boldgrid-copy-palette:hover {
   color: #f95b26; }
@@ -366,6 +378,9 @@
 [data-copy-on-mod="1"] .dashicons.boldgrid-remove-palette,
 .boldgrid-active-palette .boldgrid-duplicate-dashicons .dashicons.boldgrid-remove-palette {
   width: 0;
+  display: none; }
+
+.boldgrid-active-palette .ui-sortable-placeholder ~ .boldgrid-duplicate-dashicons {
   display: none; }
 
 .boldgrid-duplicate-dashicons {
@@ -412,7 +427,8 @@
 .palette-generate-mode .generate-palettes-selection-section {
   border: 1px solid lightgrey;
   padding: 5px;
-  background-color: white; }
+  background-color: white;
+  margin-top: 10px; }
 
 .palette-generate-mode .generate-palettes-selection-section h3 {
   margin-top: 5px;
@@ -433,10 +449,33 @@
   color: #f95b26; }
 
 /*****************************************************
+************Secondary Color Picker Colors****************
+******************************************************/
+.boldgrid-color-palette-wrapper .secondary-colors {
+  width: 20px;
+  height: 100%;
+  float: left;
+  margin-right: 6px;
+  margin-top: 20px; }
+
+.boldgrid-color-palette-wrapper .secondary-colors .iris-palette {
+  margin-left: 0 !important;
+  margin-bottom: 5px; }
+
+.boldgrid-color-palette-wrapper .iris-slider.iris-strip {
+  width: 17px !important; }
+
+.boldgrid-color-palette-wrapper .iris-picker .iris-square {
+  margin-right: 9px; }
+
+.boldgrid-color-palette-wrapper .iris-border .iris-palette-container {
+  left: 32px; }
+
+/*****************************************************
 ************Color Palette Transparency Code****************
 ******************************************************/
 .pluto-alpha-container .transparency {
-  height: 24px;
+  height: 18px;
   width: 100%;
   background-color: #FFF;
   background-image: url(../../img/transparency-grid.png);
@@ -444,7 +483,8 @@
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  padding: 0; }
+  padding: 0;
+  background-position: 0 -2px; }
 
 .pluto-alpha-container .ui-slider-handle {
   color: #777;
@@ -460,7 +500,7 @@
   border-radius: 4px;
   opacity: 0.9;
   margin-top: -2px;
-  height: 20px;
+  height: 15px;
   cursor: ew-resize;
   font-size: 12px;
   padding: 3px; }
@@ -479,7 +519,7 @@
   border: 1px solid #dfdfdf;
   border-top: none;
   background: #FFF;
-  padding: 0 11px 6px; }
+  padding: 5px 11px 6px; }
 
 .customize-control-alphacolor .wp-picker-container .iris-picker {
   border-bottom: none; }
@@ -723,7 +763,7 @@
 .selected-for-generation .lock .bottom {
   background: #f95b26; }
 
-.selected-for-generation .unlock > div.top, .selected-for-generation .unlock .div.mid {
+.selected-for-generation .unlock > div.top, .selected-for-generation .unlock div.mid {
   -webkit-transform: translate(0px, 0px);
   /* Safari */
   -moz-transform: translate(0px, 0px);

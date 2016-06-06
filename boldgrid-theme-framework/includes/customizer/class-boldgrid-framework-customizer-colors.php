@@ -474,8 +474,14 @@ class Boldgrid_Framework_Customizer_Colors {
 				$palette_settings['active_class'] = $active_class;
 				$palette_settings['neutral-color'] = $neutral_color;
 				$palette_settings['all'] = $palette_data['state']['saved_palettes'];
-				$palette_settings['active-id'] = ! empty( $palette_data['state']['active-palette-id'] ) ?
-					$palette_data['state']['active-palette-id'] : null;
+
+				$palette_settings['active-id'] = null;
+				if ( ! empty( $palette_data['state']['active-palette-id'] ) ) {
+					$palette_settings['active-id'] = $palette_data['state']['active-palette-id'];
+				} else {
+					$palette_settings['active-id'] = $this->create_palette_id( $palette_data['state']['palettes'][ $active_class ] );
+				}
+
 			}
 		}
 		return $palette_settings;

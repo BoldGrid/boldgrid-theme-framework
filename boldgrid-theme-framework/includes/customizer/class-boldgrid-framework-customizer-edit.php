@@ -110,10 +110,33 @@ class Boldgrid_Framework_Customizer_Edit {
 	}
 
 	/**
+	 * Include our partial template file.
+	 *
+	 * @since 1.1.6
 	 */
 	public function wp_footer() {
 		if ( is_customize_preview() && true === $this->enabled ) {
 			include dirname( dirname( __FILE__ ) ) . '/partials/customizer-edit.php';
 		}
+	}
+
+	/**
+	 * Ensure each menu location has a unique class.
+	 *
+	 * That unique classname will be LOCATION-menu-location.
+	 *
+	 * @since 1.1.6
+	 *
+	 * @param array $args Array of wp_nav_menu() arguments.
+	 * @return array.
+	 */
+	public function wp_nav_menu_args( $args ) {
+		if ( is_customize_preview() && true === $this->enabled && ! empty( $args['theme_location'] ) ) {
+			$class = str_replace( '_', '-', $args['theme_location'] ) . '-menu-location';
+
+			$args['container_class'] .= ' ' . $class;
+		}
+
+		return $args;
 	}
 }

@@ -479,8 +479,11 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $boldgrid_theme_customizer, 'custom_customize_enqueue' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $boldgrid_theme_customizer, 'enqueue_styles' );
 		$this->loader->add_action( 'customize_preview_init', $boldgrid_theme_customizer, 'add_help_overlay' );
+
+		// Customizer Edit Buttons.
 		$this->loader->add_action( 'wp_enqueue_scripts', $boldgrid_theme_customizer_edit, 'wp_enqueue_scripts' );
 		$this->loader->add_action( 'wp_footer', $boldgrid_theme_customizer_edit, 'wp_footer' );
+		$this->loader->add_action( 'wp_nav_menu_args', $boldgrid_theme_customizer_edit, 'wp_nav_menu_args' );
 
 		// Background Controls.
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer_background, 'add_patterns' );

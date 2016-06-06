@@ -101,7 +101,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		// Menus.
 		_( menus ).each(
 		    function( menu ) {
-			    menuId = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu' )
+		    	// Define the menuId. It will be used as the selector for our call to addButton.
+		    	menuId = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu-location' )
 			        .find( 'ul' ).first().attr( 'id' );
 
 			    // If we don't have a menuId, continue.

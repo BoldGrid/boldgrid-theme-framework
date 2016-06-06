@@ -1121,6 +1121,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @param string type The type of element this button controls.
 	 * @param string id The id of an element to control.
 	 * @param string selector A selector that points to an element this button controls.
+	 * @param string icon The icon for the button, added as a class.
 	 */
 	this.addButton = function( type, id, selector, icon ) {
 		var $button = $( '<button></button>' ),

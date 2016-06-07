@@ -32,6 +32,7 @@ user guide for more information.
 * New Feature: The UI of color palettes has been improved.
 * New Feature: Colors within a users color palette can now be selected from the color picker.
 * New Feature: Improved color palette suggestion algorithms.
+* New Feature: Enabling customizer edit buttons.
 * Bug Fix: Removed duplicate entries of color palettes from saved palettes.
 
 ### 1.1.5.1 ###

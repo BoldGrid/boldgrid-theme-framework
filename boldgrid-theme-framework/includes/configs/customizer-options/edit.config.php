@@ -11,7 +11,7 @@
  */
 
 return array(
-	'enabled' => false,
+	'enabled' => true,
 	'buttons' => array(
 		/*
 		 * An array of general edit buttons.

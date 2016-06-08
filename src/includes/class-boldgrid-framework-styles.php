@@ -63,8 +63,9 @@ class BoldGrid_Framework_Styles {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		return array(
-			'style.css',
-			'editor-style.css',
+			// get_stylesheet_directory_uri() is required to enforce order.
+			get_stylesheet_directory_uri() . '/style.css',
+			get_stylesheet_directory_uri() . '/editor-style.css',
 			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap.min.css',
 			$this->configs['framework']['css_dir'] . 'boldgrid-theme-framework' . $suffix . '.css',
 			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',

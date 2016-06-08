@@ -468,4 +468,42 @@ class BoldGrid {
 			</div><!-- End of #boldgrid-sticky-wrap -->
 		<?php }
 	}
+
+	/**
+	 *  Get the subcategory installed by inspiration.
+	 *
+	 *  @since 1.1.7
+	 *
+	 *  @return string $installed_subcategory_key
+	 */
+	public static function get_inspiration_configs( $configs ) {
+
+		// Read installed option values.
+		$boldgrid_install_options = get_option( 'boldgrid_install_options', array() );
+		$installed_subcategory_key = ( ! empty( $boldgrid_install_options['subcategory_key'] ) ) ?
+			$boldgrid_install_options['subcategory_key'] : null;
+
+		$installed_subcategory_id = ( ! empty( $boldgrid_install_options['subcategory_id'] ) ) ?
+			$boldgrid_install_options['subcategory_id'] : null;
+
+		// Load Configs.
+		$category_key_configs = array();
+		$config_path = realpath( plugin_dir_path ( __FILE__ ) . '/configs/category.config.php' );
+		if ( ! $installed_subcategory_key && $config_path ) {
+			$category_key_configs = include $config_path;
+		}
+
+		// If no key found but the id matches, set the key from configs.
+		if ( ! $installed_subcategory_key && ! empty( $category_key_configs[ $installed_subcategory_id ] ) ) {
+			$installed_subcategory_key = $category_key_configs[ $installed_subcategory_id ];
+		}
+
+		// Assign the subcategory lookup key to a config.
+		$boldgrid_install_options['subcategory_key'] = $installed_subcategory_key;
+
+		// Assign the resr of the install options to a config.
+		$configs['inspiration'] = $boldgrid_install_options;
+
+		return $configs;
+	}
 }

@@ -231,6 +231,7 @@ class BoldGrid_Framework {
 		$this->configs['action'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/action.config.php';
 		$this->configs['template'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/template.config.php';
 		$this->configs['widget'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/widget.config.php';
+		$this->configs['category'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/category.config.php';
 
 		$this->assign_customizer_configs();
 	}
@@ -244,6 +245,7 @@ class BoldGrid_Framework {
 	public function assign_theme_mod_configs() {
 		$boldgrid_theme_customizer_effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		add_filter( 'boldgrid_theme_framework_config', array( $boldgrid_theme_customizer_effects, 'enable_configs'), 20 );
+		add_filter( 'boldgrid_theme_framework_config', 'BoldGrid::get_inspiration_configs', 5 );
 	}
 
 	/**

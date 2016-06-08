@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.1.7 ###
+* Update: Added helper method for Inspirations category lookups.
+
 ### 1.1.6 ###
 * New Feature: Updated drag behavior to swap colors.
 * New Feature: The neutral color of a palette can now be modified with drag and drop.

@@ -119,8 +119,7 @@ class Boldgrid_Framework_Activate {
 			update_option( 'theme_mods_' . get_stylesheet(), $theme_mods );
 
 			// Compile All SCSS again!
-			$boldgrid_theme_helper_scss = new Boldgrid_Framework_SCSS( $this->configs );
-			$boldgrid_theme_helper_scss->force_update_css();
+			$this->scss->force_update_css();
 		} else {
 			// If accepted, reset the array of theme mods.
 			set_theme_mod( 'transferred_theme_mods', array() );

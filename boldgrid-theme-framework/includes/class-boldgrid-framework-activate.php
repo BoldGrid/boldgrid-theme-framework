@@ -41,6 +41,8 @@ class Boldgrid_Framework_Activate {
 		$this->configs = $configs;
 		$this->widgets = new Boldgrid_Framework_Widgets( $this->configs );
 		$this->menus   = new Boldgrid_Framework_Menu( $this->configs );
+		$this->scss    = new Boldgrid_Framework_SCSS( $this->configs );
+		$this->color   = new Boldgrid_Framework_Customizer_Colors( $this->configs );
 	}
 
 	/**
@@ -86,6 +88,9 @@ class Boldgrid_Framework_Activate {
 		// Then update the menu_check option to make sure this code only runs once.
 		update_option( 'boldgrid_framework_init', true );
 
+		//Set Color Palettes.
+		$this->set_palette();
+
 		// Do action for 3rd party.
 		do_action( 'boldgrid_theme_activate' );
 	}
@@ -114,13 +119,52 @@ class Boldgrid_Framework_Activate {
 			update_option( 'theme_mods_' . get_stylesheet(), $theme_mods );
 
 			// Compile All SCSS again!
-			$boldgrid_theme_helper_scss = new Boldgrid_Framework_SCSS( $this->configs );
-			$boldgrid_theme_helper_scss->force_update_css();
+			$this->scss->force_update_css();
 		} else {
 			// If accepted, reset the array of theme mods.
 			set_theme_mod( 'transferred_theme_mods', array() );
 		}
 
 		wp_die();
+	}
+
+	/**
+	 * Check & set the default palette theme mod and compile the css
+	 * for a user that has not selected a new palette and uses
+	 * the theme's defined default palette.
+	 *
+	 * @since 1.1.7
+	 */
+	public function set_palette() {
+		// Theme mod to check if a palette has been set yet.
+		$palettes = get_theme_mod( 'boldgrid_color_palette' );
+		// If there's not a palette set by user, then set it and compile.
+		if ( ! $palettes ) {
+			// Check Configs For Default Palettes.
+			$palette = $this->configs['customizer-options']['colors']['defaults'];
+			// Initizalize $theme_mod array.
+			$theme_mod = array();
+			// Get assigned default palette for category/theme.
+			$default_palette = $this->color->get_simplified_external_palettes( $palette );
+			// Reset to access without specifying palette format as it can change.
+			$active_palette = reset( $default_palette );
+			// Find acitve palette format.
+			$format = $active_palette['format'];
+			// Set the theme mod array values.
+			$theme_mod['state'] = array(
+				'active-palette' => $format,
+				'active-palette-id' => $this->color->create_palette_id( $active_palette ),
+				'palettes' => $default_palette,
+				'saved_palettes' => array(),
+			);
+			// This is not needed for theme mod.
+			unset( $theme_mod['state']['palettes'][$format]['default'] );
+			// Encode to pass to JS.
+			$encoded_theme_mod = wp_json_encode( $theme_mod );
+			// Set the theme mod.
+			set_theme_mod( 'boldgrid_color_palette', $encoded_theme_mod );
+			// Update the CSS.
+			$this->scss->force_update_css();
+		}
 	}
 }

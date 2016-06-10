@@ -44,14 +44,13 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		//Bind the actions of the user clicking on one of the icons that removes or adds palettes
 		color_palette.bind_palette_duplicate_remove();
 		color_palette.bind_palette_activation();
-		color_palette.bind_color_activation();
 		color_palette.setup_color_picker();
 		color_palette.setup_close_color_picker();
 		color_palette.setup_palette_generation();
 		color_palette.bind_generate_palette_action();
 		color_palette.bind_help_section_visibility();
 		color_palette.bind_help_link();
-
+		color_palette.bindActiveColorClick();
 
 		//Hide Advanced Options
 		color_palette.setup_advanced_options();
@@ -63,7 +62,6 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 		//Wait 100ms before running this function because it expects WP color picker to be set up
 		setTimeout( color_palette.wp_picker_post_init, 100 );
-
 	} );
 
 	/**
@@ -79,6 +77,115 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 				$bg_help.hide();
 			}
 		});
+	};
+
+
+	color_palette.get_previewer_body = function () {
+		// Get the previewer frame.
+		return $( wp.customize.previewer.container )
+			.find( 'iframe' ).last().contents().find( 'body' );
+	};
+
+	/**
+	 * Try to show and hide the boldgrid color palette pointer depending on if the color the palette
+	 * selector is visible
+	 */
+	color_palette.bindActiveColorClick = function () {
+		self.$palette_control_wrapper.on( 'click', '.boldgrid-active-palette li', function ( e ) {
+			console.log('click');
+			var $this = $( this ),
+				originalColor = $this.css( 'background-color' ),
+				isNeutral = false,
+				transitionColor, background_color, $previewerBody;
+
+			e.stopPropagation();
+			color_palette.activate_color( null, $( this ), true );
+
+			if ( self.fadeEffectInProgress ) {
+				return;
+			}
+
+			// Get the previewer frame.
+			$previewerBody = color_palette.get_previewer_body();
+
+			if ( self.hasNeutral && $this.is( ':last-of-type' ) ) {
+				isNeutral = true;
+			}
+			//TODO: a quick drag drop cancels drag.
+			// Lets do the queue thing in this file.
+
+			background_color = net.brehaut.Color( originalColor );
+			if ( background_color.getLuminance() > 0.5 ) {
+				transitionColor = '#3a3a3a';
+				transitionColor = background_color.darkenByAmount( 0.4 );
+				transitionColor = transitionColor.toCSS();
+			} else {
+				transitionColor = '#FFF';
+				transitionColor = background_color.lightenByAmount( 0.4 );
+				transitionColor = transitionColor.toCSS();
+			}
+
+			// Set color to transition to.
+			$this.css( 'background-color', transitionColor );
+			if ( isNeutral ) {
+				$this.closest( '.boldgrid-active-palette' ).attr( 'data-neutral-color', transitionColor );
+			}
+
+			// Create palette Data.
+			color_palette.state = color_palette.format_current_palette_state();
+
+			// Reset Color.
+			$this.css( 'background-color', originalColor );
+			if ( isNeutral ) {
+				$this.closest( '.boldgrid-active-palette' ).attr( 'data-neutral-color', originalColor );
+			}
+
+			$previewerBody.addClass('color-palette-transitions');
+			var scss_file = color_palette.create_color_scss_file( color_palette.state );
+			BOLDGRID.Sass.compile( scss_file + BOLDGRIDSass.ScssFormatFileContents );
+			var timeFadeIn = new Date().getTime();
+			var desiredDelay = 350;
+			self.fadeEffectInProgress = true;
+
+			$window.one( 'boldgrid_sass_compile_done', function () {
+				var timeout = 0;
+				var timeFinishedCompile = new Date().getTime();
+				var duration = timeFinishedCompile - timeFadeIn;
+				if ( duration < desiredDelay ) {
+					timeout = desiredDelay;
+				}
+				// Fade Back in.
+				$window.one( 'boldgrid_sass_compile_done', function ( event, data ) {
+					setTimeout( function () {
+						color_palette.update_iframe( data );
+						setTimeout( function () {
+							$previewerBody.removeClass( 'color-palette-transitions' );
+							self.fadeEffectInProgress = false;
+						}, 250 );
+					}, timeout );
+				} );
+
+				color_palette.state = color_palette.format_current_palette_state();
+				var scss_file = color_palette.create_color_scss_file( color_palette.state );
+				BOLDGRID.Sass.compile( scss_file + BOLDGRIDSass.ScssFormatFileContents, { source: 'color_palette_focus' } );
+			} );
+
+		} );
+	};
+
+	color_palette.addColorTransition = function () {
+		// Get the previewer frame.
+		var timeout = 600,
+			$previewerBody = color_palette.get_previewer_body();
+
+		$previewerBody.addClass( 'color-palette-transitions duration-long' );
+		var curTime = new Date().getTime();
+		self.lastTransitionTime = curTime;
+		setTimeout( function () {
+			if ( self.lastTransitionTime == curTime ) {
+				$previewerBody.removeClass( 'color-palette-transitions duration-long' );
+			}
+		}, timeout );
 	};
 
 	/**
@@ -373,6 +480,8 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 */
 	color_palette.activate_palette = function( $ul ) {
 
+		color_palette.addColorTransition();
+
 		self.$palette_control_wrapper.find('.wp-color-result' ).addClass('expanded-wp-colorpicker');
 
 		if ( $ul.attr('data-auto-generated') ) {
@@ -507,6 +616,8 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			},
 			helper: 'clone',
 			stop: function ( event, ui ) {
+
+				color_palette.addColorTransition();
 
 				color_palette.update_theme_option();
 				color_palette.open_picker();
@@ -654,9 +765,8 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		} );
 	};
 
-	color_palette.activate_color = function ( e, $element ) {
+	color_palette.activate_color = function ( e, $element, ignoreColorChange ) {
 		var $this;
-
 		if ( ! e ) {
 			$this = $element;
 		} else {
@@ -680,19 +790,21 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			$this.addClass( 'active-palette-section' );
 			color_palette.open_picker();
 
+			if ( ignoreColorChange ) {
+				self.pause_color_changes();
+			}
+
 			color_palette.set_iris_color( $this.css( 'background-color' ) );
 		}
 	};
 
-	/**
-	 * When the user clicks on a color in an active palette open the color picker.
-	 */
-	color_palette.bind_color_activation = function () {
-		self.$palette_control_wrapper.on (
-			'click',
-			'.boldgrid-active-palette li',
-			color_palette.activate_color
-		);
+
+
+	color_palette.pause_color_changes = function () {
+		self.ignoreColorChange = true;
+		setTimeout( function () {
+			self.ignoreColorChange = false;
+		} );
 	};
 
 	color_palette.open_picker = function () {
@@ -738,6 +850,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 				// or in the data-default-color attribute on the input
 				defaultColor : false,
 				change : function( event, ui ) {
+
 					var color = ui.color.toString();
 
 					self.$palette_control_wrapper
@@ -747,6 +860,10 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 					//Update the neutral color data elements.
 					color_palette.updateNeutralData();
 					color_palette.updateCustomPalettes();
+
+					if ( self.ignoreColorChange ) {
+						return;
+					}
 
 					//Make sure that we only trigger this event after a 500 ms delay
 					color_palette.last_refresh_time = new Date().getTime();
@@ -938,9 +1055,15 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 */
 	color_palette.bind_compile_done = function () {
 		$window.on('boldgrid_sass_compile_done', function (event, data) {
-			color_palette.compiled_css = data.text;
-			color_palette.update_palette_settings( true );
+			if ( 'color_palette_focus' !== data.source ) {
+				color_palette.update_iframe( data );
+			}
 		});
+	};
+
+	color_palette.update_iframe = function ( data ) {
+		color_palette.compiled_css = data.result.text;
+		color_palette.update_palette_settings( true );
 	};
 
 	/**
@@ -1000,7 +1123,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 				var $this = $( this );
 				var picker_visible = $this.parent().find('.iris-picker').is(':visible');
-
+console.log( picker_visible );
 				if ( picker_visible ) {
 					//$this.hide();
 					var $palette_wrapper = $this.closest('.boldgrid-color-palette-wrapper');

@@ -29,6 +29,7 @@ user guide for more information.
 ### 1.1.7 ###
 * Update: Added helper method for Inspirations category lookups.
 * Bug Fix: On theme activation set default color palette theme_mod.
+* New Feature: Colors in the active palette now have animations to upon focusing the control.
 
 ### 1.1.6 ###
 * New Feature: Updated drag behavior to swap colors.

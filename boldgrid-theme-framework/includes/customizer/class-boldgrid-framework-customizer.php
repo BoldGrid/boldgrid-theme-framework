@@ -99,6 +99,7 @@ class BoldGrid_Framework_Customizer {
 
 		wp_enqueue_script( 'boldgrid-customizer-required-helper' );
 		wp_enqueue_script( 'boldgrid-customizer-widget-preview' );
+
 	}
 
 	public function live_preview() {
@@ -110,6 +111,13 @@ class BoldGrid_Framework_Customizer {
 		$this->configs['version'], true );
 
 		wp_enqueue_script( 'boldgrid-theme-customizer' );
+
+		wp_enqueue_style(
+			'boldgrid-theme-framework-customizer-css',
+			$this->configs['framework']['css_dir'] . 'customizer' . $suffix . '.css',
+			array (),
+			$this->configs['version']
+		);
 	}
 
 	/**

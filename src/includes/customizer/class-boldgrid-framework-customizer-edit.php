@@ -94,15 +94,6 @@ class Boldgrid_Framework_Customizer_Edit {
 
 			wp_enqueue_script( 'boldgrid-framework-customizer-edit-js' );
 
-			wp_register_style(
-				'boldgrid-theme-framework--customizer-edit-css',
-				$this->configs['framework']['css_dir'] . 'customizer/edit' . $suffix . '.css',
-				array (),
-				$this->configs['version']
-			);
-
-			wp_enqueue_style( 'boldgrid-theme-framework--customizer-edit-css' );
-
 			wp_enqueue_style( 'wp-jquery-ui-dialog' );
 			wp_enqueue_script( 'jquery-ui-dialog' );
 			wp_enqueue_script( 'jquery-effects-bounce' );

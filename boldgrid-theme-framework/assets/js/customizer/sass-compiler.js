@@ -18,6 +18,7 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 	 */
 	self.compile = function  ( scss, options ) {
 		var options = options || {};
+		
 		self.processing = true;
 
 		count++;

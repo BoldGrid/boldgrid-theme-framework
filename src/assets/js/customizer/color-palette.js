@@ -11,10 +11,11 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	'use strict';
 
 	var $window = $( window );
-	var color_palette = BOLDGRID.COLOR_PALETTE.Modify;
-	var self = color_palette;
+	var colorPalette = BOLDGRID.COLOR_PALETTE.Modify;
+	var self = colorPalette;
 
-	colorPalette.compileQueue = [];
+	colorPalette.pendingCompile = false;
+	colorPalette.currentlyCompiling = false;
 	colorPalette.palette_generator = BOLDGRID.COLOR_PALETTE.Generate;
 	colorPalette.generated_color_palettes = 6;
 	colorPalette.state = null;
@@ -80,7 +81,13 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		});
 	};
 
-
+	/**
+	 * Get the body of the previewer iframe.
+	 * 
+	 * @since 1.1.7
+	 * 
+	 * @return jQuery Body of iframe. 
+	 */
 	colorPalette.get_previewer_body = function () {
 		// Get the previewer frame.
 		return $( wp.customize.previewer.container )
@@ -88,93 +95,13 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	};
 
 	/**
-	 * Try to show and hide the boldgrid color palette pointer depending on if the color the palette
-	 * selector is visible
+	 * Add the color palette transitions class to the body of the iframe.
+	 * This allows transitions to affect all elements, class is removed after the direation 
+	 * of the transition.
+	 * 
+	 * @since 1.1.7
 	 */
-	colorPalette.bindActiveColorClick = function () {
-		self.$palette_control_wrapper.on( 'click', '.boldgrid-active-palette li', function ( e ) {
-			var $this = $( this ),
-				originalColor = $this.css( 'background-color' ),
-				isNeutral = false,
-				transitionColor, background_color, $previewerBody;
-
-			e.stopPropagation();
-			colorPalette.activate_color( null, $( this ), true );
-
-			if ( self.fadeEffectInProgress ) {
-				return;
-			}
-
-			// Get the previewer frame.
-			$previewerBody = colorPalette.get_previewer_body();
-
-			if ( self.hasNeutral && $this.is( ':last-of-type' ) ) {
-				isNeutral = true;
-			}
-			//TODO: a quick drag drop cancels drag.
-			// Lets do the queue thing in this file.
-
-			background_color = net.brehaut.Color( originalColor );
-			if ( background_color.getLuminance() > 0.5 ) {
-				transitionColor = '#3a3a3a';
-				transitionColor = background_color.darkenByAmount( 0.4 );
-				transitionColor = transitionColor.toCSS();
-			} else {
-				transitionColor = '#FFF';
-				transitionColor = background_color.lightenByAmount( 0.4 );
-				transitionColor = transitionColor.toCSS();
-			}
-
-			// Set color to transition to.
-			$this.css( 'background-color', transitionColor );
-			if ( isNeutral ) {
-				$this.closest( '.boldgrid-active-palette' ).attr( 'data-neutral-color', transitionColor );
-			}
-
-			// Create palette Data.
-			colorPalette.state = colorPalette.format_current_palette_state();
-
-			// Reset Color.
-			$this.css( 'background-color', originalColor );
-			if ( isNeutral ) {
-				$this.closest( '.boldgrid-active-palette' ).attr( 'data-neutral-color', originalColor );
-			}
-
-			$previewerBody.addClass('color-palette-transitions');
-			var scss_file = colorPalette.create_color_scss_file( colorPalette.state );
-			BOLDGRID.Sass.compile( scss_file + BOLDGRIDSass.ScssFormatFileContents );
-			var timeFadeIn = new Date().getTime();
-			var desiredDelay = 350;
-			self.fadeEffectInProgress = true;
-
-			$window.one( 'boldgrid_sass_compile_done', function () {
-				var timeout = 0;
-				var timeFinishedCompile = new Date().getTime();
-				var duration = timeFinishedCompile - timeFadeIn;
-				if ( duration < desiredDelay ) {
-					timeout = desiredDelay;
-				}
-				// Fade Back in.
-				$window.one( 'boldgrid_sass_compile_done', function ( event, data ) {
-					setTimeout( function () {
-						colorPalette.update_iframe( data );
-						setTimeout( function () {
-							$previewerBody.removeClass( 'color-palette-transitions' );
-							self.fadeEffectInProgress = false;
-						}, 250 );
-					}, timeout );
-				} );
-
-				colorPalette.state = colorPalette.format_current_palette_state();
-				var scss_file = colorPalette.create_color_scss_file( colorPalette.state );
-				BOLDGRID.Sass.compile( scss_file + BOLDGRIDSass.ScssFormatFileContents, { source: 'color_palette_focus' } );
-			} );
-
-		} );
-	};
-
 	colorPalette.addColorTransition = function () {
-		// Get the previewer frame.
 		var timeout = 600,
 			$previewerBody = colorPalette.get_previewer_body();
 
@@ -750,27 +677,39 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	/**
 	 * Update the theme option
 	 */
-	colorPalette.update_theme_option = function() {
+	colorPalette.update_theme_option = function( options ) {
+		options = options || {};
 		colorPalette.state = colorPalette.format_current_palette_state();
 		var scss_file = colorPalette.create_color_scss_file( colorPalette.state );
-		BOLDGRID.Sass.compile( scss_file + BOLDGRIDSass.ScssFormatFileContents );
+		colorPalette.compile( scss_file + BOLDGRIDSass.ScssFormatFileContents, options );
 	};
 	
-	colorPalette.compile = function ( options ) {
-		colorPalette.compileQueue.push( options );
+	/**
+	 * A wrapper for the compile action. Sets the upcoming compile info, overwriting the
+	 * most recent request.
+	 * 
+	 * @since 1.1.7
+	 */
+	colorPalette.compile = function ( content, options ) {
+		self.pendingCompile = { 'content' : content, options: options };
 		colorPalette.doCompile();
-		
-		var currentItem = colorPalette.compileQueue[ colorPalette.compileQueue.length - 1];
-		
-		
-		BOLDGRID.Sass.compile( options.contents, options.send );
-		
 	};
 	
-	colorPalette.do_compile = function () {
+	/**
+	 * Grabs the most recent request for a compile and processes it if we are not currently 
+	 * compiling.
+	 * 
+	 * @since 1.1.7
+	 */
+	colorPalette.doCompile = function () {
+		var currentCompile = self.pendingCompile;
 		
+		if ( currentCompile && ! BOLDGRID.Sass.processing ) {
+			BOLDGRID.Sass.compile( currentCompile.content, currentCompile.options );
+			self.pendingCompile = false;
+		}
 	};
-
+	
 	/**
 	 * When the user clicks on a plattte active it
 	 */
@@ -813,13 +752,16 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		}
 	};
 
-
-
+	/**
+	 * Stop compiling colors and allow all events to catch up.
+	 * 
+	 * @since 1.1.7
+	 */
 	colorPalette.pause_color_changes = function () {
 		self.ignoreColorChange = true;
 		setTimeout( function () {
 			self.ignoreColorChange = false;
-		}, 100 );
+		} );
 	};
 
 	colorPalette.open_picker = function () {
@@ -865,6 +807,10 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 				// or in the data-default-color attribute on the input
 				defaultColor : false,
 				change : function( event, ui ) {
+					
+					if ( self.fadeEffectInProgress ) {
+						return false;
+					}
 
 					var color = ui.color.toString();
 
@@ -880,20 +826,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 						return;
 					}
 
-					//Make sure that we only trigger this event after a 500 ms delay
-					colorPalette.last_refresh_time = new Date().getTime();
-					var current_refreshtime = colorPalette.last_refresh_time;
-					setTimeout ( function () {
-						//If this is the last event after 50 ms
-						//TODO: Change this based on device
-						if ( ! BOLDGRID.Sass.processing &&
-							( current_refreshtime == colorPalette.last_refresh_time ||
-								self.most_recent_update + 100 < new Date().getTime() ) ) {
-
-							colorPalette.update_theme_option();
-							self.most_recent_update = new Date().getTime();
-						}
-					}, 200, current_refreshtime );
+					colorPalette.update_theme_option();
 
 				},
 				// hide the color picker controls on load
@@ -995,7 +928,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		if ( $palette.find('.boldgrid-inactive-palette').length ) {
 			$palette.remove();
 			colorPalette.state = colorPalette.format_current_palette_state();
-			colorPalette.update_palette_settings( true );
+			colorPalette.update_palette_settings();
 		}
 	};
 
@@ -1042,7 +975,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		}
 
 		colorPalette.state = colorPalette.format_current_palette_state();
-		colorPalette.update_palette_settings( true );
+		colorPalette.update_palette_settings();
 
 	};
 
@@ -1070,6 +1003,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 */
 	colorPalette.bind_compile_done = function () {
 		$window.on('boldgrid_sass_compile_done', function (event, data) {
+			colorPalette.doCompile();
 			if ( 'color_palette_focus' !== data.source ) {
 				colorPalette.update_iframe( data );
 			}
@@ -1078,18 +1012,15 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 	colorPalette.update_iframe = function ( data ) {
 		colorPalette.compiled_css = data.result.text;
-		colorPalette.update_palette_settings( true );
+		colorPalette.update_palette_settings();
 	};
 
 	/**
 	 * Change the palette settings
 	 */
-	colorPalette.update_palette_settings = function ( force_update ) {
+	colorPalette.update_palette_settings = function () {
 		colorPalette.text_area_val = JSON.stringify( { 'state' : colorPalette.state } );
-		self.$palette_option_field.val( colorPalette.text_area_val );
-		if ( force_update ) {
-			self.$palette_option_field.change();
-		}
+		wp.customize( 'boldgrid_color_palette' ).set( '' ).set( colorPalette.text_area_val );
 	};
 
 	/**
@@ -1163,6 +1094,95 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		.find('.boldgrid-active-palette')
 		.first()
 		.attr('data-color-palette-format');
+	};
+	
+
+	/**
+	 * Upon clicking a color in the active palette, fade in and out the color on the iframe.
+	 * 
+	 * @since 1.1.7
+	 */
+	colorPalette.bindActiveColorClick = function () {
+		self.$palette_control_wrapper.on( 'click', '.boldgrid-active-palette li', function ( e ) {
+			var transitionColor, background_color, $previewerBody, scss_file, timeStartedCompile,
+				$this = $( this ),
+				originalColor = $this.css( 'background-color' ),
+				isNeutral = false,
+				desiredDelay = 350,
+				transitionDistance = 0.4,
+				darknessThreshold = 0.5;
+
+			e.stopPropagation();
+			colorPalette.activate_color( null, $( this ), true );
+
+			if ( self.fadeEffectInProgress ) {
+				return;
+			}
+
+			// Get the previewer frame.
+			$previewerBody = colorPalette.get_previewer_body();
+
+			if ( self.hasNeutral && $this.is( ':last-of-type' ) ) {
+				isNeutral = true;
+			}
+
+			// Calculate the color to transition to.
+			background_color = net.brehaut.Color( originalColor );
+			if ( background_color.getLuminance() > darknessThreshold ) {
+				transitionColor = background_color.darkenByAmount( transitionDistance );
+				transitionColor = transitionColor.toCSS();
+			} else {
+				transitionColor = background_color.lightenByAmount( transitionDistance );
+				transitionColor = transitionColor.toCSS();
+			}
+
+			// Set color to transition to.
+			$this.css( 'background-color', transitionColor );
+			if ( isNeutral ) {
+				$this.closest( '.boldgrid-active-palette' ).attr( 'data-neutral-color', transitionColor );
+			}
+
+			// Enable transitions for the colors. 
+			$previewerBody.addClass( 'color-palette-transitions' );
+
+			// Compile.
+			colorPalette.update_theme_option();
+
+			// Reset Color.
+			$this.css( 'background-color', originalColor );
+			if ( isNeutral ) {
+				$this.closest( '.boldgrid-active-palette' ).attr( 'data-neutral-color', originalColor );
+			}
+			
+			timeStartedCompile = new Date().getTime();
+			self.fadeEffectInProgress = true;
+
+			$window.one( 'boldgrid_sass_compile_done', function () {
+				var timeout = 0,
+					duration = new Date().getTime() - timeStartedCompile;
+				
+				// The compile to fade back in should trigger at a minimum time of desiredDelay.
+				// If the compile time exceeds the min than the the timeout will be 0.
+				if ( duration < desiredDelay ) {
+					timeout = desiredDelay;
+				}
+				
+				// Wait for compile to finish then fade back in.
+				$window.one( 'boldgrid_sass_compile_done', function ( event, data ) {
+					setTimeout( function () {
+						colorPalette.update_iframe( data );
+						setTimeout( function () {
+							$previewerBody.removeClass( 'color-palette-transitions' );
+							self.fadeEffectInProgress = false;
+							self.pause_color_changes();
+							colorPalette.set_iris_color( originalColor );
+						}, 250 );
+					}, timeout );
+				} );
+
+				colorPalette.update_theme_option( { source: 'color_palette_focus' } );
+			} );
+		} );
 	};
 
 })( jQuery );

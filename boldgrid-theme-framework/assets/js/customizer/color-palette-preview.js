@@ -28,6 +28,10 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 	 * This function attaches a new css file to the DOM 
 	 */
 	self.update_css = function( to ) {
+		if ( ! to ) {
+			return;
+		}
+		
 		var new_palette_data = JSON.parse(to);
 		var $body = $('body');
 

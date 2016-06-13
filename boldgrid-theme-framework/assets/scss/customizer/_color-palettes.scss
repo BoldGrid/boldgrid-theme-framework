@@ -1,0 +1,14 @@
+.color-palette-transitions.duration-long * {
+    transition-duration: .5s;
+}
+.color-palette-transitions * {
+	transition-property: background-color, color, border-color;
+    transition-duration: .3s;
+    transition-delay: 0s;
+    transition-timing-function: linear;
+}
+
+.color-palette-transitions .menu-social a,
+.color-palette-transitions .fa-stack {
+    transition: none;
+}

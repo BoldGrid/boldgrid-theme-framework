@@ -774,7 +774,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			$this = $( this );
 			e.stopPropagation();
 		}
-
+ 
 		if ( false === $this.hasClass( 'active-palette-section' ) ) {
 
 			//If this is a neutral color set a different set of defaults
@@ -804,7 +804,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		self.ignoreColorChange = true;
 		setTimeout( function () {
 			self.ignoreColorChange = false;
-		} );
+		}, 100 );
 	};
 
 	color_palette.open_picker = function () {
@@ -1123,7 +1123,6 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 				var $this = $( this );
 				var picker_visible = $this.parent().find('.iris-picker').is(':visible');
-console.log( picker_visible );
 				if ( picker_visible ) {
 					//$this.hide();
 					var $palette_wrapper = $this.closest('.boldgrid-color-palette-wrapper');
@@ -1133,13 +1132,6 @@ console.log( picker_visible );
 					if ( !self.$palette_control_wrapper.find('.active-palette-section').length ) {
 						self.$palette_control_wrapper.find('.boldgrid-active-palette li:first').click();
 					}
-
-					//Show advanced Options DropDown
-					$palette_wrapper.find('.boldgrid-advanced-options')
-						.removeClass('hidden');
-
-					//Change the color of the color picker to the active palette
-					color_palette.preselect_active_color( $palette_wrapper );
 
 				} else {
 					//Remove advanced Options DropDown

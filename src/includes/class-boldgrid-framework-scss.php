@@ -325,11 +325,15 @@ class Boldgrid_Framework_SCSS {
 			$config_settings = $this->configs['customizer-options']['colors']['settings'];
 
 			if ( $this->is_currently_updating_staging_mods() ) {
+
 				// Update the name of the css file.
 				$basename = basename( $config_settings['output_css_name'], '.css' );
-				$config_settings['output_css_name'] = str_ireplace( $basename, 'boldgrid-staging-colors', $config_settings['output_css_name'] );
+				$config_settings['output_css_name'] = str_ireplace(
+					$basename,
+					'boldgrid-staging-colors',
+					$config_settings['output_css_name']
+				);
 			}
-
 
 			// Update CSS file.
 			$wp_filesystem->put_contents(
@@ -437,6 +441,33 @@ class Boldgrid_Framework_SCSS {
 	}
 
 	/**
+	 * Defer an update until a later time.
+	 *
+	 * @since      1.1.7
+	 *
+	 * @return boolean Whether or not the update was deferred.
+	 */
+	public function maybe_defer_update() {
+		$is_update_deferred = false;
+
+		$currently_updating_staging = $this->is_currently_updating_staging_mods();
+		$staging = get_option( 'boldgrid_staging_stylesheet', '' );
+		$staging_registered = get_stylesheet() == $staging;
+
+		// If the current stylesheet is not the staging stylesheet, but your updating staging.
+		// Then postpone the update until later because the staging theme needs its hooks to run.
+		if ( $currently_updating_staging && false === $staging_registered ) {
+			$theme_mod_option = 'boldgrid_staging_theme_mods_' . $staging;
+			$options = get_option( $theme_mod_option );
+			$options['force_scss_recompile']['staging'] = true;
+			update_option( $theme_mod_option, $options );
+			$is_update_deferred = true;
+		}
+
+		return $is_update_deferred;
+	}
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since  1.0.0
@@ -445,12 +476,14 @@ class Boldgrid_Framework_SCSS {
 	 * @return string     @success     boolean
 	 */
 	public function update_css( $force_update = false ) {
-		$files 				= $this->find_scss_files();
+		$files              = $this->find_scss_files();
 		$last_modified_time = $this->find_last_modified_time( $files );
-		$last_compile_time 	= $this->find_last_compile_time();
+		$last_compile_time  = $this->find_last_compile_time();
+		$is_update_deferred = $this->maybe_defer_update();
+		$is_expired_file = ( $last_modified_time && $last_modified_time ) && $last_modified_time > $last_compile_time;
 
 		$success = false;
-		if ( $force_update || ( ( $last_modified_time && $last_modified_time ) && $last_modified_time > $last_compile_time ) ) {
+		if ( ( $force_update || $is_expired_file ) && ! $is_update_deferred ) {
 			$file_contents 		= $this->get_scss_file_contents( $files );
 			$merged_contents 	= $this->get_additional_variables( ) . $file_contents;
 			$compiled_content 	= $this->compile( $merged_contents );

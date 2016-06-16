@@ -36,7 +36,7 @@ class Boldgrid_Framework_Editor {
 	public function update_page_title_toggle( $post_id, $post ) {
 		$post_id = ! empty( $post_id ) ? $post_id : null;
 
-		// If this is a revision, get real post ID
+		// If this is a revision, get real post ID.
 		if ( $parent_id = wp_is_post_revision( $post_id ) ) {
 			$post_id = $parent_id;
 		}
@@ -45,7 +45,7 @@ class Boldgrid_Framework_Editor {
 		if ( $post_id && false == is_null( $status ) ) {
 			$post_meta = get_post_meta( $post_id );
 			if ( ! empty( $post_meta ) ) {
-				// save post meta
+				// Save post meta.
 				update_post_meta( $post_id, 'boldgrid_hide_page_title', $status );
 			}
 		}
@@ -63,9 +63,9 @@ class Boldgrid_Framework_Editor {
 		if ( $post && ( is_page() || is_single() ) ) {
 			$post_meta = get_post_meta( $post->ID );
 
-			// This was updated to invert logic, from hide page title to display page title
+			// This was updated to invert logic, from hide page title to display page title.
 			if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) && isset( $post_meta['boldgrid_hide_page_title'] ) ) {
-				// apply some inline styles.
+				// Apply some inline styles.
 				$inline_css = '#post-' . $post->ID . ' .entry-title { display: none; }' . '#page-id-' .
 					 $post->ID . ' .entry-title { display: none; }';
 

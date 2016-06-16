@@ -74,7 +74,7 @@ class Boldgrid_Framework_Editor {
 					function ( $classes ) {
 						$classes[] = 'post-title-hidden';
 						return $classes;
-                } );
+				} );
 			}
 		}
 

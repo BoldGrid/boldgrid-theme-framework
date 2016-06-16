@@ -63,9 +63,9 @@ class Boldgrid_Framework_Editor {
 		if ( $post && ( is_page() || is_single() ) ) {
 			$post_meta = get_post_meta( $post->ID );
 
-			// This was updated to invert logic, from hide page title to display page title
+			// This was updated to invert logic, from hide page title to display page title.
 			if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) && isset( $post_meta['boldgrid_hide_page_title'] ) ) {
-				// apply some inline styles.
+				// Apply some inline styles.
 				$inline_css = '#post-' . $post->ID . ' .entry-title { display: none; }' . '#page-id-' .
 					 $post->ID . ' .entry-title { display: none; }';
 

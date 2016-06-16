@@ -111,7 +111,7 @@ class Boldgrid_Framework_Editor {
 				$display_page_title = ! empty( $post_meta['boldgrid_hide_page_title'][0] ) || ! isset( $post_meta['boldgrid_hide_page_title'] );
 				$template_file = get_post_meta( $post->ID, '_wp_page_template', true );
 
-				// Dont allow modification on home page.
+				// Don't allow modification on home page.
 				$disabled = '';
 				if ( 'page_home.php' == $template_file ) {
 					$display_page_title = false;
@@ -224,7 +224,8 @@ HTML;
 
 		$valid_pages = array (
 			'post.php',
-			'post-new.php'
+			'post-new.php',
+			'customize.php',
 		);
 
 		if ( false === in_array( $pagenow, $valid_pages ) ) {

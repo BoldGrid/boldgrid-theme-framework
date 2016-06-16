@@ -36,7 +36,7 @@ class Boldgrid_Framework_Editor {
 	public function update_page_title_toggle( $post_id, $post ) {
 		$post_id = ! empty( $post_id ) ? $post_id : null;
 
-		// If this is a revision, get real post ID
+		// If this is a revision, get real post ID.
 		if ( $parent_id = wp_is_post_revision( $post_id ) ) {
 			$post_id = $parent_id;
 		}

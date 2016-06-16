@@ -58,6 +58,28 @@ class Boldgrid_Framework_Customizer_Edit {
 	}
 
 	/**
+	 * Return true for ALL has_nav_menu() calls.
+	 *
+	 * This is done however ONLY if we're in the customizer and edit_buttons are enabled.
+	 *
+	 * For further details as to why we're doing this, please see:
+	 * Boldgrid_Framework_Menu::add_dynamic_actions
+	 *
+	 * @since 1.1.7
+	 *
+	 * @param  bool   $has_nav_menu Whether there is a menu assigned to a location.
+	 * @param  string $location     Menu location.
+	 * @return bool   $has_nav_menu
+	 */
+	public function has_nav_menu( $has_nav_menu, $location ) {
+		if ( is_customize_preview() && true === $this->enabled ) {
+			return true;
+		} else {
+			return $has_nav_menu;
+		}
+	}
+
+	/**
 	 * Enqueue scripts needed to add edit buttons to the customizer.
 	 *
 	 * Ideally, this method would hook into customize_preview_init. We need to get the page ID,

@@ -124,10 +124,20 @@ class Boldgrid_Framework_Menu {
 
 		foreach ( $this->configs['menu']['prototype'] as $menu ) {
 			$action = function () use ( $menu, $edit_enabled ) {
-				if ( has_nav_menu( $menu['theme_location'] ) ) {
+
+				/*
+				 * IF we're in the customizer and edit buttons are enabled:
+				 * # Modify 'fallback_cb' and force the "edit button's fallback_cb".
+				 * # Print the nav menu.
+				 *
+				 * ELSE:
+				 * # Follow standard practice and print the nav menu if it's configured.
+				 */
+				if( is_customize_preview() && true === $edit_enabled ) {
+					$menu[ 'fallback_cb' ] = 'Boldgrid_Framework_Customizer_Edit::fallback_cb';
 					wp_nav_menu( $menu );
-				} elseif( true === $edit_enabled ) {
-					Boldgrid_Framework_Customizer_Edit::fallback_cb( $menu );
+				} elseif ( has_nav_menu( $menu['theme_location'] ) ) {
+					wp_nav_menu( $menu );
 				}
 			};
 

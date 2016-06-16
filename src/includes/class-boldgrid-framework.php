@@ -486,6 +486,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $boldgrid_theme_customizer_edit, 'wp_enqueue_scripts' );
 		$this->loader->add_action( 'wp_footer', $boldgrid_theme_customizer_edit, 'wp_footer' );
 		$this->loader->add_action( 'wp_nav_menu_args', $boldgrid_theme_customizer_edit, 'wp_nav_menu_args' );
+		$this->loader->add_filter( 'has_nav_menu', $boldgrid_theme_customizer_edit, 'has_nav_menu', 10, 2 );
 
 		// Background Controls.
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer_background, 'add_patterns' );

@@ -224,7 +224,8 @@ HTML;
 
 		$valid_pages = array (
 			'post.php',
-			'post-new.php'
+			'post-new.php',
+			'customize.php',
 		);
 
 		if ( false === in_array( $pagenow, $valid_pages ) ) {

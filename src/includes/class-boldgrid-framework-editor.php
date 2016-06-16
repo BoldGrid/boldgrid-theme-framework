@@ -45,7 +45,7 @@ class Boldgrid_Framework_Editor {
 		if ( $post_id && false == is_null( $status ) ) {
 			$post_meta = get_post_meta( $post_id );
 			if ( ! empty( $post_meta ) ) {
-				// save post meta
+				// Save post meta.
 				update_post_meta( $post_id, 'boldgrid_hide_page_title', $status );
 			}
 		}

@@ -152,7 +152,7 @@ class Boldgrid_Framework_Editor {
 							</div>
 						</div>
 HTML;
-            } );
+			} );
 		}
 	}
 

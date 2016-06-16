@@ -74,7 +74,7 @@ class Boldgrid_Framework_Editor {
 					function ( $classes ) {
 						$classes[] = 'post-title-hidden';
 						return $classes;
-                } );
+				} );
 			}
 		}
 
@@ -224,8 +224,7 @@ HTML;
 
 		$valid_pages = array (
 			'post.php',
-			'post-new.php',
-			'customize.php',
+			'post-new.php'
 		);
 
 		if ( false === in_array( $pagenow, $valid_pages ) ) {

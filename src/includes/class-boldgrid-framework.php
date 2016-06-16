@@ -404,7 +404,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'mce_external_plugins', $boldgrid_framework_editor, 'add_tinymce_plugin' );
 
 		// Add Kirki Fonts to WordPress Page/Post Editor.
-		if ( true === $this->configs['customizer-options']['typography']['enabled'] && ! is_customize_preview() ) {
+		if ( true === $this->configs['customizer-options']['typography']['enabled'] ) {
 			$this->loader->add_action( 'wp_loaded', $boldgrid_framework_editor, 'add_google_fonts' );
 		}
 

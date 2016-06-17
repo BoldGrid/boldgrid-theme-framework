@@ -180,7 +180,7 @@ class Boldgrid_Framework_Customizer_Colors {
 					'label' => __( 'Color Palette', 'bgtfw' ),
 					'section' => 'colors',
 					'settings' => 'boldgrid_color_palette',
-					'description' => __( 'Drag a color to a new spot in the palette to change what parts of the website are that color. <a href="#" data-action="open-color-picker"><span class="dashicons dashicons-admin-customizer"></span><strong>Click a color</strong></a> to change it.  Use "Suggest Palettes" to freeze colors you like and get suggestions of other colors that match.', 'bgtfw' ),
+					'description' => __( 'Drag a color to a new spot to change what parts of the website are that color.<a href="#" data-action="open-color-picker"><span class="dashicons dashicons-admin-customizer"></span><strong>Click a color</strong></a> to change it. Click a color to change it. Use the "Suggest Palettes" button to get new color suggestions, and press the lock icons to freeze colors in place.', 'bgtfw' ),
 					'priority' => 1,
 					'choices' => array(
 						'palettes' => $this->color_palettes,

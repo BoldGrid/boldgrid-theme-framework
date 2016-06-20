@@ -16,8 +16,9 @@ return array(
 		/*
 		 * An array of general edit buttons.
 		 *
-		 * By default, all icons will use the pencil dashicon. If adding a new icon below, ensure
-		 * the icon if configured it edit.css (refer to the existing icons as example).
+		 * Settings:
+		 * # icon - A css class that will be added to the button. The default edit button is the
+		 *          pencil icon, 'dashicons-edit'.
 		 */
 		'general' => array(
 			array(

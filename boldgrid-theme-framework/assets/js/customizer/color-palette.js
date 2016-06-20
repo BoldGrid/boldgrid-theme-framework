@@ -11,8 +11,8 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	'use strict';
 
 	var $window = $( window ),
-		colorPalette = BOLDGRID.COLOR_PALETTE.Modify,
-		self = colorPalette;
+	    colorPalette = BOLDGRID.COLOR_PALETTE.Modify,
+	    self = colorPalette;
 
 	colorPalette.pickerCompileDelay = 100;
 	colorPalette.pendingCompile = false;

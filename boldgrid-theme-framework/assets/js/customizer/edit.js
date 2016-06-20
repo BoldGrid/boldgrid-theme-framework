@@ -86,7 +86,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		$( 'aside.widget' ).each( function() {
 			var widgetId = $( this ).attr( 'id' );
 
-			self.addButton( 'sidebar', widgetId, '#' + widgetId, 'pencil' );
+			self.addButton( 'sidebar', widgetId, '#' + widgetId, 'dashicons-edit' );
 		} );
 
 		// Black Studio TinyMCE.
@@ -95,7 +95,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				widgetId = $widget.attr( 'id' ),
 				blackStudioId = widgetId.replace( 'black-studio-tinymce-', '' ).trim();
 
-			self.addButton( 'widget_black-studio-tinymce', blackStudioId, '#' + widgetId, 'pencil' );
+			self.addButton( 'widget_black-studio-tinymce', blackStudioId, '#' + widgetId, 'dashicons-edit' );
 		} );
 
 		// Menus.
@@ -110,13 +110,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			    	return;
 			    }
 
-			    self.addButton( 'nav_menu', menu.setting._value, '#' + menuId, 'pencil' );
+			    self.addButton( 'nav_menu', menu.setting._value, '#' + menuId, 'dashicons-edit' );
 		    } );
 
 		// Empty menu locations.
 		_( $emptyMenu ).each(
 			function( menu ) {
-				self.addButton( null, 'new_menu_name', '#' + $( menu ).attr( 'id' ), 'plus' );
+				self.addButton( null, 'new_menu_name', '#' + $( menu ).attr( 'id' ), 'dashicons-plus' );
 			} );
 
 		// Empty widget areas.
@@ -128,7 +128,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				var widgetAreaId = dataWidgetArea.replace( 'accordion-section-sidebar-widgets-' , '' );
 				var selector = "[data-widget-area='" + dataWidgetArea + "']";
 
-				self.addButton( 'sidebars_widgets', widgetAreaId, selector, 'plus' );
+				self.addButton( 'sidebars_widgets', widgetAreaId, selector, 'dashicons-plus' );
 			} );
 	};
 
@@ -1154,8 +1154,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}
 
 		// Allow for custom icons per button. By default, each edit buttion will be a pencil icon.
-		icon = ( icon === undefined ? 'pencil' : icon );
-		$button.addClass( 'icon-' + icon );
+		icon = ( icon === undefined ? 'dashicons-edit' : icon );
+		$button.addClass( icon );
 
 		/*
 		 * If this button is for an empty widget area or an empty nav area, add a 'new' class to use

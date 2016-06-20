@@ -23,32 +23,32 @@ return array(
 			array(
 				'control' => 'blogname',
 				'selector' => '.site-title a',
-				'icon' => 'pencil',
+				'icon' => 'dashicons-edit',
 			),
 			array(
 				'control' => 'boldgrid_logo_setting',
 				'selector' => '.logo-site-title',
-				'icon' => 'pencil',
+				'icon' => 'dashicons-edit',
 			),
 			array(
 				'control' => 'boldgrid_enable_footer',
 				'selector' => '.attribution',
-				'icon' => 'pencil',
+				'icon' => 'dashicons-edit',
 			),
 			array(
 				'control' => 'entry-content',
 				'selector' => '.entry-content',
-				'icon' => 'pencil',
+				'icon' => 'dashicons-edit',
 			),
 			array(
 				'control' => 'entry-title',
 				'selector' => '.entry-title',
-				'icon' => 'pencil',
+				'icon' => 'dashicons-edit',
 			),
 			array(
 				'control' => 'blogdescription',
 				'selector' => '.site-description',
-				'icon' => 'pencil',
+				'icon' => 'dashicons-edit',
 			),
 		)
 	)

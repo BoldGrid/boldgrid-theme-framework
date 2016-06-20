@@ -88,8 +88,9 @@ class Boldgrid_Framework_Activate {
 		// Then update the menu_check option to make sure this code only runs once.
 		update_option( 'boldgrid_framework_init', true );
 
-		//Set Color Palettes.
-		$this->set_palette();
+		// Set Color Palettes.
+		// @TODO: Currently doesnt work with staging.
+		//$this->set_palette();
 
 		// Do action for 3rd party.
 		do_action( 'boldgrid_theme_activate' );
@@ -138,7 +139,7 @@ class Boldgrid_Framework_Activate {
 	public function set_palette() {
 		// Theme mod to check if a palette has been set yet.
 		$palettes = get_theme_mod( 'boldgrid_color_palette' );
-		// If there's not a palette set by user, then set it and compile.
+		// If there's not a palette set by user, then set it.
 		if ( ! $palettes ) {
 			// Check Configs For Default Palettes.
 			$palette = $this->configs['customizer-options']['colors']['defaults'];
@@ -158,13 +159,12 @@ class Boldgrid_Framework_Activate {
 				'saved_palettes' => array(),
 			);
 			// This is not needed for theme mod.
-			unset( $theme_mod['state']['palettes'][$format]['default'] );
+			unset( $theme_mod['state']['palettes'][ $format ]['default'] );
 			// Encode to pass to JS.
 			$encoded_theme_mod = wp_json_encode( $theme_mod );
 			// Set the theme mod.
 			set_theme_mod( 'boldgrid_color_palette', $encoded_theme_mod );
-			// Update the CSS.
-			$this->scss->force_update_css();
+			set_theme_mod( 'boldgrid_palette_class', $format );
 		}
 	}
 }

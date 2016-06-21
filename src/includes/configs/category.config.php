@@ -1,4 +1,3 @@
-
 <?php
 /*
  * This is a map of ids to subcategories keys. It is meant to serve as a look up for old

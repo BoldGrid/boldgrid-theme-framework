@@ -1,20 +1,24 @@
 /**
 * #.# Edit buttons.
+*
+* Buttons are identified using "button[data-control]". Sometimes ".palette-primary button" styles
+* override the button settings below, so "body" has been prepended below for specificity.
 */
+
 /* Generic dashicon settings for all buttons */
-button[data-control]:before {
+body button[data-control]:before {
   display: inline-block;
   -webkit-font-smoothing: antialiased;
   font: normal 20px/1 'dashicons';
   vertical-align: top; }
 
 /* "New" buttons will have text added on hover */
-button[data-control].new {
+body button[data-control].new {
   overflow: hidden;
   white-space: nowrap; }
 
 /* Default settings for all buttons. If updating z-index, update in edit.js as well. */
-button[data-control] {
+body button[data-control] {
   font-size: 14px;
   font-family: monospace;
   padding: 5px;
@@ -32,8 +36,8 @@ button[data-control] {
   max-width: 30px; }
 
 /* Orange / orange shadow for button hover. */
-button[data-control]:hover,
-button[data-control].highlight-button {
+body button[data-control]:hover,
+body button[data-control].highlight-button {
   opacity: 1;
   background: #f95b26;
   color: #fff;

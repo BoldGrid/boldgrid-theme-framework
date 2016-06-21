@@ -26,6 +26,11 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.1.8 ###
+* Bug Fix: Edit buttons no longer pull in color from themes.
+* Bug Fix: Typography in the editor is no longer prefixed with .mce-content-body.
+* Bug Fix: Removed php closing tag from category.config.php.
+
 ### 1.1.7 ###
 * Update: Added helper method for Inspirations category lookups.
 * Bug Fix: On theme activation set default color palette theme_mod.

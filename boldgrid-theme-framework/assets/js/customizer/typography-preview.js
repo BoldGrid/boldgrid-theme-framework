@@ -59,6 +59,8 @@
 		var fontSizeType;
 		if ( 'subheadings' === selector.type ) {
 			fontSizeType = 'alternate_headings_font_size';
+			// Add alt-font class to subheading elements for live preview.
+			$( _.findKey( _typographyOptions, selector ) ).addClass( 'alt-font' );
 		}
 		if ( 'headings' === selector.type ) {
 			fontSizeType = 'headings_font_size';

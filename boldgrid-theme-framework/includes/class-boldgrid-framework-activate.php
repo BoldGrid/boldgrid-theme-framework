@@ -89,8 +89,7 @@ class Boldgrid_Framework_Activate {
 		update_option( 'boldgrid_framework_init', true );
 
 		// Set Color Palettes.
-		// @TODO: Currently doesnt work with staging.
-		//$this->set_palette();
+		$this->set_palette();
 
 		// Do action for 3rd party.
 		do_action( 'boldgrid_theme_activate' );

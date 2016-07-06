@@ -26,6 +26,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.1.9 ###
+* Bug Fix: Typography - additional selectors should be read for showing/hiding menu item.
+* Bug Fix: Typography - headings/subheadings from configs override each other.
+
 ### 1.1.8 ###
 * Bug Fix: Edit buttons no longer pull in color from themes.
 * Bug Fix: Typography in the editor is no longer prefixed with .mce-content-body.

@@ -17,7 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "font-awesome": "fontawesome#~4.5.0",
+    "font-awesome": "fontawesome#~4.6.0",
     "bootstrap-sass": "~3.3.6",
     "color-js": "https://github.com/brehaut/color-js.git",
     "scssphp": "https://github.com/leafo/scssphp.git#0.6.1",

@@ -28,14 +28,23 @@ class BoldGrid_Framework_Template_Config {
 	 *
 	 * @since     1.1.1
 	 * @access    protected
-	 * @var       string     $configs       The BoldGrid Theme Framework configurations.
+	 * @var       array     $configs       The BoldGrid Theme Framework configurations.
 	 */
 	protected $configs;
 
 	/**
+	 * Locations thats have been registered for use by the theme.
+	 *
+	 * @since     1.2
+	 * @access    protected
+	 * @var       array     $enabled_locations       List of registered locations.
+	 */
+	protected $enabled_locations = array();
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @param     string $configs       The BoldGrid Theme Framework configurations.
+	 * @param     array $configs       The BoldGrid Theme Framework configurations.
 	 * @since     1.1.1
 	 */
 	public function __construct( $configs ) {
@@ -281,6 +290,30 @@ class BoldGrid_Framework_Template_Config {
 	}
 
 	/**
+	 * Hide all of the location rows that are not in use.
+	 *
+	 * @since 1.2
+	 */
+	public function print_styles() {
+		$css = array();
+		foreach( $this->configs['template']['generic-location-rows'] as $area_name => $location_area ) {
+			foreach( $location_area as $location_row ) {
+				$intersect = array_intersect( $location_row, $this->enabled_locations[ $area_name ] );
+
+				// Create CSS array.
+				if ( empty( $intersect ) ) {
+					$classname = ".row.{$area_name}-{$location_row[0]}";
+					$css[ $classname ] = array(
+						'display' => 'none'
+					);
+				}
+			}
+		}
+
+		print BoldGrid_Framework_Styles::convert_array_to_css( $css, 'boldgrid-locations' );
+	}
+
+	/**
 	 * Setup the ability to use action configs.
 	 *
 	 * @since 1.1.1
@@ -297,6 +330,9 @@ class BoldGrid_Framework_Template_Config {
 			if ( false === is_array( $location_items ) ) {
 				$location_items = array( $location_items );
 			}
+
+			// Add to the list of enabled locations.
+			$this->enabled_locations[ $template_type ][] = $location_id;
 
 			foreach( $location_items as $action ) {
 

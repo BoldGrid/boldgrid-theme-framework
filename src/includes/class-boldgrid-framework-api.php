@@ -200,6 +200,22 @@ class BoldGrid {
 	}
 
 	/**
+	 * Print the container class.
+	 *
+	 * @since 1.2
+	 */
+	public static function print_container_class() {
+		global $boldgrid_theme_framework;
+		$configs = $boldgrid_theme_framework->get_configs();
+		$template = basename( get_page_template() );
+		$template = ( $template ) ? $template : 'default';
+		$class = isset( $configs[ 'template' ][ 'pages' ][ $template ][ 'container_class' ] ) ?
+			$configs[ 'template' ][ 'pages' ][ $template ][ 'container_class' ] : 'container';
+
+		print $class;
+	}
+
+	/**
 	 * Site Logo.
 	 *
 	 * This will return a logo from the WordPress customizer that is stored

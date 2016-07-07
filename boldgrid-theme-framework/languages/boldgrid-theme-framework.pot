@@ -37,7 +37,7 @@ msgctxt "$font. font: on or off"
 msgid "$switch"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:359
+#: src/includes/class-boldgrid-framework-api.php:375
 msgid "Skip to content"
 msgstr ""
 

@@ -26,6 +26,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.1.10 ###
+* New Feature: Adding container configuration classes.
+* Bug Fix: Hiding generic locations that are not in use.
+
 ### 1.1.9 ###
 * Bug Fix: Typography - additional selectors should be read for showing/hiding menu item.
 * Bug Fix: Typography - headings/subheadings from configs override each other.

@@ -325,6 +325,7 @@ class BoldGrid_Framework {
 
 		// Register Locations.
 		$this->loader->add_action( 'boldgrid-theme-location', $template, 'do_location_action', 10, 2 );
+		$this->loader->add_action( 'wp_footer', $template, 'print_styles', 10, 2 );
 
 		// Add Theme Styles.
 		$this->loader->add_action( 'wp_enqueue_scripts', $boldgrid_styles, 'boldgrid_enqueue_styles' );

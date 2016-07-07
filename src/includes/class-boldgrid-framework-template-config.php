@@ -298,7 +298,10 @@ class BoldGrid_Framework_Template_Config {
 		$css = array();
 		foreach( $this->configs['template']['generic-location-rows'] as $area_name => $location_area ) {
 			foreach( $location_area as $location_row ) {
-				$intersect = array_intersect( $location_row, $this->enabled_locations[ $area_name ] );
+
+				$area_locations = ! empty ( $this->enabled_locations[ $area_name ] ) ?
+					$this->enabled_locations[ $area_name ] : array();
+				$intersect = array_intersect( $location_row, $area_locations );
 
 				// Create CSS array.
 				if ( empty( $intersect ) ) {

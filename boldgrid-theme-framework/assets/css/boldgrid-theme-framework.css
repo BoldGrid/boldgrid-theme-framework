@@ -15,6 +15,7 @@
 	# Editor Styles
 	# Footer
 		## Disabled Footer Defaults
+# Modules
 # Utility Classes & Helpers
 	## BoldGrid Color Utilities
 	## Bootstrap Utilities
@@ -424,3 +425,47 @@ span.author.vcard {
 
 .disabled-footer .content-area {
   margin-bottom: 15px; }
+
+/*--------------------------------------------------------------
+# Modules
+--------------------------------------------------------------*/
+/* Mod Spacer */
+.mod-space {
+  background: none;
+  height: 15px; }
+
+.mod-space-1x {
+  background: none;
+  height: 15px; }
+
+.mod-space-2x {
+  background: none;
+  height: 30px; }
+
+.mod-space-3x {
+  background: none;
+  height: 45px; }
+
+.mod-space-4x {
+  background: none;
+  height: 60px; }
+
+.mod-space-5x {
+  background: none;
+  height: 75px; }
+
+/* Mod Reset */
+.mod-reset {
+  margin: 0 !important;
+  padding: 0 !important; }
+
+/* Images */
+.mod-img,
+.mod-img-circle,
+.image-gallery img,
+.video-gallery img,
+.slideshow-gallery img {
+  margin-bottom: 15px; }
+
+.mod-img-circle img {
+  border-radius: 50%; }

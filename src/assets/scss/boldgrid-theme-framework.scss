@@ -1,6 +1,7 @@
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
+# Base Elements
 # BoldGrid Bootstrap Additions
 # Customizer Styles
 	## Widget Overlays
@@ -25,6 +26,11 @@
 
 // Core Variables and Mixins.
 @import "boldgrid/variables";
+
+/*--------------------------------------------------------------
+# Base Elements
+--------------------------------------------------------------*/
+@import "boldgrid/elements";
 
 /*--------------------------------------------------------------
 # BoldGrid Bootstrap Additions

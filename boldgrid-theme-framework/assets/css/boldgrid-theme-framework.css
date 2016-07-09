@@ -15,6 +15,7 @@
 	# Editor Styles
 	# Footer
 		## Disabled Footer Defaults
+# GridBlocks
 # Modules
 # Utility Classes & Helpers
 	## BoldGrid Color Utilities
@@ -425,6 +426,12 @@ span.author.vcard {
 
 .disabled-footer .content-area {
   margin-bottom: 15px; }
+
+/*--------------------------------------------------------------
+# GridBlocks
+--------------------------------------------------------------*/
+.gridblock h1, .gridblock h2, .gridblock h3, .gridblock h4, .gridblock h5, .gridblock h6, .gridblock ol, .gridblock ul, .gridblock li, .gridblock p {
+  margin: 10px 0; }
 
 /*--------------------------------------------------------------
 # Modules

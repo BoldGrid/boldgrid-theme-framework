@@ -6,18 +6,18 @@
 		display: table;
 	}
 	.form-group:after {
-    	clear: both;
-    }
-    // Comment Form Styling
-    .radio, .checkbox, .radio-inline, .checkbox-inline {
+		clear: both;
+	}
+	// Comment Form Styling
+	.radio, .checkbox, .radio-inline, .checkbox-inline {
 		margin-top: 0;
 		margin-bottom: 0;
-		padding-top: 7px;    
-    }
-    .radio, .checkbox {
-    	min-height: 27px;
-    }
-    .form-group {
+		padding-top: 7px;
+	}
+	.radio, .checkbox {
+		min-height: 27px;
+	}
+	.form-group {
 		margin-left: -15px;
 		margin-right: -15px;
 	}
@@ -25,8 +25,8 @@
 		right: 15px;
 	}
 	code {
-	    display: block;
-	    white-space: normal;
+		display: block;
+		white-space: normal;
 	}
 	p.form-submit {
 		position: relative;
@@ -76,15 +76,15 @@
 #commentform #submit.disabled,
 #commentform #submit[disabled],
 fieldset[disabled] #commentform #submit {
-    cursor: not-allowed;
-    opacity: 0.65;
-    filter: alpha(opacity=65);
-    -webkit-box-shadow: none;
-    box-shadow: none;
+	cursor: not-allowed;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 a#commentform #submit.disabled,
 fieldset[disabled] a#commentform #submit {
-    pointer-events: none;
+	pointer-events: none;
 }
 
 @media (min-width: 768px) {
@@ -114,34 +114,34 @@ fieldset[disabled] a#commentform #submit {
 
 // Link Spacing
 span.comments-link > a:before {
-    content: "\f075";
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
-    display: inline-block;
-    text-decoration: none;
-    margin-right: .5em;
+	content: "\f075";
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+	text-decoration: none;
+	margin-right: .5em;
 }
 span.cat-links:after {
-    content: "\2022";
-    margin: 0em .6em;
+	content: "\2022";
+	margin: 0em .6em;
 }
 .single span.cat-links:after {
-    content: "";
-    margin: 0;
+	content: "";
+	margin: 0;
 }
 time.entry-date.published:before,
 time.entry-date.updated:before {
-    content: "\f073";
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
-    display: inline-block;
-    text-decoration: none;
-    margin-right: .5em;
-    margin-left: .3em;
+	content: "\f073";
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+	text-decoration: none;
+	margin-right: .5em;
+	margin-left: .3em;
 }
 .group-blog .byline,
 span.author.vcard {
-    margin-left: .3em;
+	margin-left: .3em;
 }

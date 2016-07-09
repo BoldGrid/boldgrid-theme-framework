@@ -1,6 +1,7 @@
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
+# Base Elements
 # BoldGrid Bootstrap Additions
 # Customizer Styles
 	## Widget Overlays
@@ -22,6 +23,13 @@
 	## Bootstrap Utilities
 	## Bootstrap Responsive Utilities
 */
+/*--------------------------------------------------------------
+# Base Elements
+--------------------------------------------------------------*/
+/* Removes Blue Box in Chrome */
+*:focus {
+  outline: 0; }
+
 /*--------------------------------------------------------------
 # BoldGrid Bootstrap Additions
 --------------------------------------------------------------*/

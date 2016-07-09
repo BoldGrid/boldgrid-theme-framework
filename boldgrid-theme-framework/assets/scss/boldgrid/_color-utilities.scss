@@ -1,17 +1,17 @@
 // Compares contrast of a given color to the light/dark arguments and returns whichever is most "contrasty"
 @function text-contrast( $color ) {
-  	@if $color == null {
-   		@return null;
-  	}
-  	@else {
-    	$color-brightness: brightness($color);  
-    	$light-text-brightness: brightness($light_text);
-    	$dark-text-brightness: brightness($dark_text);
-  
-    	@if (abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness)) {
-        	@return $light_text;
-    	} @else {
-        	@return $dark_text;
+	@if $color == null {
+		@return null;
+	}
+	@else {
+		$color-brightness: brightness($color);
+		$light-text-brightness: brightness($light_text);
+		$dark-text-brightness: brightness($dark_text);
+
+		@if (abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness)) {
+			@return $light_text;
+		} @else {
+			@return $dark_text;
 		}
 	}
 }
@@ -23,22 +23,22 @@
 
 // Return text-contrast variables for defined palette variables.
 @if variable-exists( palette-primary_1 ) {
-  $text-contrast-palette-primary_1: text-contrast( $palette-primary_1 ) !default;
+	$text-contrast-palette-primary_1: text-contrast( $palette-primary_1 ) !default;
 }
 @if variable-exists( palette-primary_2 ) {
-  $text-contrast-palette-primary_2: text-contrast( $palette-primary_2 ) !default;
+	$text-contrast-palette-primary_2: text-contrast( $palette-primary_2 ) !default;
 }
 @if variable-exists( palette-primary_3 ) {
-  $text-contrast-palette-primary_3: text-contrast( $palette-primary_3 ) !default;
+	$text-contrast-palette-primary_3: text-contrast( $palette-primary_3 ) !default;
 }
 @if variable-exists( palette-primary_4 ) {
-  $text-contrast-palette-primary_4: text-contrast( $palette-primary_4 ) !default;
+	$text-contrast-palette-primary_4: text-contrast( $palette-primary_4 ) !default;
 }
 @if variable-exists( palette-primary_5 ) {
-  $text-contrast-palette-primary_5: text-contrast( $palette-primary_5 ) !default;
+	$text-contrast-palette-primary_5: text-contrast( $palette-primary_5 ) !default;
 }
 @if variable-exists( palette-primary-neutral-color ) {
-  $text-contrast-palette-primary-neutral-color: text-contrast( $palette-primary-neutral-color ) !default;
+	$text-contrast-palette-primary-neutral-color: text-contrast( $palette-primary-neutral-color ) !default;
 }
 
 // Create single CSS classes to apply palettes on universal elements.

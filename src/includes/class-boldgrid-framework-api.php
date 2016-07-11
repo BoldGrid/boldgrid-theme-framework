@@ -546,9 +546,11 @@ class BoldGrid {
 	 * @link https://codex.wordpress.org/Conditional_Tags
 	 */
 	public static function display_sidebar() {
+		global $boldgrid_theme_framework;
+		$configs = $boldgrid_theme_framework->get_configs();
 		static $display;
-		// The sidebar will NOT be displayed if ANY of the following return true.
-		$conditions = array();
+		// The sidebar will NOT be displayed if ANY conditions return true.
+		$conditions = $configs['template']['sidebar'];
 		isset( $display ) || $display = ! in_array( true, $conditions, true );
 		return apply_filters( 'boldgrid/display_sidebar', $display );
 	}

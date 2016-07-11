@@ -18,10 +18,10 @@ return array(
 	'entry-footer' => '',
 	'pages' => array(
 		'default' => array(
-			'container_class' => 'container'
+			'container_class' => 'container',
 		),
 		'page_home.php' => array(
-			'container_class' => 'container'
+			'container_class' => 'container',
 		),
 	),
 	'generic-location-rows' => array(
@@ -33,7 +33,7 @@ return array(
 			array( '8' ),
 			array( '6', '7' ),
 			array( '9', '10' ),
-			array( '11' )
+			array( '11' ),
 		),
 		'footer' => array(
 			array( '2', '3', '4' ),
@@ -41,7 +41,13 @@ return array(
 			array( '6', '7' ),
 			array( '8' ),
 			array( '9', '10' ),
-			array( '11' )
-		)
-	)
+			array( '11' ),
+		),
+	),
+	'sidebar' => array(
+		is_404(),
+		is_front_page(),
+		is_page() && ! is_page_template(),
+		is_page_template( 'page_home' ),
+	),
 );

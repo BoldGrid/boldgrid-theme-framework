@@ -389,6 +389,10 @@ class BoldGrid {
 		if ( is_multi_author( ) ) {
 			$classes[] = 'group-blog';
 		}
+		// Add class if sidebar is active.
+		if ( $this->display_sidebar() ) {
+			$classes[] = 'sidebar-primary';
+		}
 
 		if ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) {
 			$classes[] = 'sticky-nav-enabled';
@@ -521,5 +525,31 @@ class BoldGrid {
 		$configs['inspiration'] = $boldgrid_install_options;
 
 		return $configs;
+	}
+
+	/**
+	 * Sidebar path helper.
+	 *
+	 * Just a helper function to load sidebar template.
+	 *
+	 * @since 1.1.10
+	 * @return Wrapped instance with sidebar.
+	 */
+	public static function boldgrid_sidebar_path() {
+		return new Boldgrid_Framework_Wrapper( 'templates/sidebar.php' );
+	}
+
+	/**
+	 * Determine which pages should NOT display the sidebar
+	 *
+	 * @since 1.1.10
+	 * @link https://codex.wordpress.org/Conditional_Tags
+	 */
+	public static function display_sidebar() {
+		static $display;
+		// The sidebar will NOT be displayed if ANY of the following return true.
+		$conditions = array();
+		isset( $display ) || $display = ! in_array( true, $conditions, true );
+		return apply_filters( 'boldgrid/display_sidebar', $display );
 	}
 }

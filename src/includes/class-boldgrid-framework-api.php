@@ -547,10 +547,34 @@ class BoldGrid {
 	 */
 	public static function display_sidebar() {
 		global $boldgrid_theme_framework;
-		$configs = $boldgrid_theme_framework->get_configs();
 		static $display;
-		// The sidebar will NOT be displayed if ANY conditions return true.
+		$configs = $boldgrid_theme_framework->get_configs();
+
+		// The sidebar will NOT be displayed if ANY of the following return true.
 		$conditions = $configs['template']['sidebar'];
+
+		foreach ( $conditions as $condition ) {
+			// Check for specific page templates being provided.
+			if ( strpos( $condition, 'is_page_template' ) !== false ) {
+				// Split [page_template]is_page_template to useable strings.
+				preg_match( '/^\[.*\]/', $condition, $matches );
+				$type = ! empty( $matches[0] ) ? $matches[0] : null;
+				$name = str_ireplace( $type, '', $condition );
+				$param = str_replace( array( '[', ']' ), '', $type );
+				switch ( $param ) {
+					case 'default' :
+						// Test for default page template.
+						$conditions[] = is_page() && ! is_page_template();
+					default :
+						// Otherwise use the param provided.
+						$conditions[] = is_page_template( $param );
+				}
+			} else {
+				// Run the conditional provided.
+				call_user_func( $condition );
+			}
+		}
+
 		isset( $display ) || $display = ! in_array( true, $conditions, true );
 		return apply_filters( 'boldgrid/display_sidebar', $display );
 	}

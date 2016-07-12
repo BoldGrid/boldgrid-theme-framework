@@ -320,7 +320,6 @@ class BoldGrid_Framework {
 		if ( true === $this->configs['boldgrid-parent-theme'] ) {
 			$wrapper  = new Boldgrid_Framework_Wrapper();
 			$this->loader->add_filter( 'template_include', $wrapper, 'wrap', 109 );
-			$this->configs['menu']['locations'] = $template->template_config();
 		}
 
 		// Register Locations.

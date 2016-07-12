@@ -45,9 +45,9 @@ return array(
 		),
 	),
 	'sidebar' => array(
-		is_404(),
-		is_front_page(),
-		is_page() && ! is_page_template(),
-		is_page_template( 'page_home' ),
+		'is_404',
+		'is_front_page',
+		'[default]is_page_template',
+		'[page_home.php]is_page_template',
 	),
 );

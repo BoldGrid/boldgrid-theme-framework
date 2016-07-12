@@ -571,7 +571,7 @@ class BoldGrid {
 				}
 			} else {
 				// Run the conditional provided.
-				call_user_func( $condition );
+				$conditions[] = $condition();
 			}
 		}
 

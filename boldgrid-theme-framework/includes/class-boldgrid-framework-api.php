@@ -391,7 +391,7 @@ class BoldGrid {
 		}
 		// Add class if sidebar is active.
 		if ( $this->display_sidebar() ) {
-			$classes[] = 'sidebar-primary';
+			$classes[] = 'sidebar-1';
 		}
 
 		if ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) {

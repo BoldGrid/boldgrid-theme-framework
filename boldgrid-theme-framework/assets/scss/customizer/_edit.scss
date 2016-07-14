@@ -78,6 +78,12 @@ body button[data-control].highlight-button {
 #entry-title img {
   margin: 10px 0px; }
 
+/* By defualt, a .ui-button color is #555. The ".palette-primary button" class may override this,
+causing undesired effects. Below, override color settings set by ".palette-primary button". */ 
+.ui-dialog .ui-button {
+	color: #555;
+}
+
 /**
 * #.# Other
 */

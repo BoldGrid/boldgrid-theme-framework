@@ -177,7 +177,7 @@ class BoldGrid {
 	 * @since 1.0.0
 	 */
 	public function boldgrid_link_pingback() { ?>
-		<link rel="pingback" href="<?php bloginfo( 'piAboutngback_url' ) ?>">
+		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ) ?>">
 	<?php
 	}
 

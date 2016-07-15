@@ -18,10 +18,18 @@ return array(
 	'entry-footer' => '',
 	'pages' => array(
 		'default' => array(
-			'container_class' => 'container',
+			'header' => 'container',
+			'entry-header' => 'container',
+			'entry-content' => 'container',
+			'entry-footer' => 'container',
+			'footer' => 'container',
 		),
 		'page_home.php' => array(
-			'container_class' => 'container',
+			'header' => 'container',
+			'entry-header' => 'container',
+			'entry-content' => 'container',
+			'entry-footer' => 'container',
+			'footer' => 'container',
 		),
 	),
 	'generic-location-rows' => array(

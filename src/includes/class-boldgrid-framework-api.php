@@ -176,10 +176,8 @@ class BoldGrid {
 	 *
 	 * @since 1.0.0
 	 */
-	public function boldgrid_link_pingback() {
-	?>
-
-		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ) ?>">
+	public function boldgrid_link_pingback() { ?>
+		<link rel="pingback" href="<?php bloginfo( 'piAboutngback_url' ) ?>">
 	<?php
 	}
 
@@ -204,13 +202,13 @@ class BoldGrid {
 	 *
 	 * @since 1.2
 	 */
-	public static function print_container_class() {
+	public static function print_container_class( $location ) {
 		global $boldgrid_theme_framework;
 		$configs = $boldgrid_theme_framework->get_configs();
 		$template = basename( get_page_template() );
 		$template = ( $template ) ? $template : 'default';
-		$class = isset( $configs[ 'template' ][ 'pages' ][ $template ][ 'container_class' ] ) ?
-			$configs[ 'template' ][ 'pages' ][ $template ][ 'container_class' ] : 'container';
+		$class = isset( $configs[ 'template' ][ 'pages' ][ $template ][ $location ] ) ?
+			$configs[ 'template' ][ 'pages' ][ $template ][ $location ] : 'container';
 
 		print $class;
 	}

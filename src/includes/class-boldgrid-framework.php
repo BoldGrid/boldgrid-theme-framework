@@ -401,6 +401,9 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'after_switch_theme', $boldgrid_framework_activate, 'do_activate' );
 		}
 
+		// Stop Wordpress from assigning widgets to our areas.
+		remove_action( 'after_switch_theme', '_wp_sidebars_changed' );
+
 		$this->loader->add_action( 'mce_external_plugins', $boldgrid_framework_editor, 'add_tinymce_plugin' );
 
 		// Add Kirki Fonts to WordPress Page/Post Editor.

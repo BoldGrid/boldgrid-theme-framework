@@ -30,6 +30,7 @@ user guide for more information.
 * New Feature: Adding container configuration classes.
 * Bug Fix: Hiding generic locations that are not in use.
 * Bug Fix: Customizer dialog inheriting styles with undesired effects.
+* Bug Fix: Stop Wordpress from assigning widgets to our areas on theme switch.
 
 ### 1.1.9 ###
 * Bug Fix: Typography - additional selectors should be read for showing/hiding menu item.

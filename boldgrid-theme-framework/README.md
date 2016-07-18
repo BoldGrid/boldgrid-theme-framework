@@ -27,6 +27,7 @@ user guide for more information.
 ## Changelog ##
 
 ### 1.1.10 ###
+* New Feature: Add tutorials link to each section in the menus panel.
 * New Feature: Adding container configuration classes.
 * Bug Fix: Hiding generic locations that are not in use.
 * Bug Fix: Customizer dialog inheriting styles with undesired effects.

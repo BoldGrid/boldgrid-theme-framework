@@ -6,7 +6,8 @@
   background: url(../../img/icon-newpage.png) no-repeat right center;
   display: inline;
   margin-right: 2px;
-  padding-right: 14px; }
+  padding-right: 14px;
+  background-position: 100% 4px; }
 
 .overlay-prompt {
   position: absolute;
@@ -45,6 +46,9 @@
 
 .preview-tablet .wp-full-overlay-main {
   width: 768px; }
+
+.accordion-section-content.menu .customize-section-description {
+  text-align: right; }
 
 /*****************************************************
 ************Kirki Control Rules****************

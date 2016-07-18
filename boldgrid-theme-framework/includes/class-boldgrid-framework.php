@@ -415,6 +415,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'init',  $boldgrid_framework_editor, 'add_post_title_toggle' );
 		$this->loader->add_action( 'save_post',  $boldgrid_framework_editor, 'update_page_title_toggle', 10, 2 );
 		$this->loader->add_action( 'admin_enqueue_scripts',  $boldgrid_framework_admin, 'admin_enqueue_scripts' );
+
 	}
 
 	/**
@@ -481,6 +482,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'init_help' );
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'customizer_reorganization' );
 		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'set_text_contrast' );
+		$this->loader->add_action( 'customize_register', $boldgrid_theme_customizer, 'add_menu_description', 20 );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $boldgrid_theme_customizer, 'custom_customize_enqueue' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $boldgrid_theme_customizer, 'enqueue_styles' );
 		$this->loader->add_action( 'customize_preview_init', $boldgrid_theme_customizer, 'add_help_overlay' );

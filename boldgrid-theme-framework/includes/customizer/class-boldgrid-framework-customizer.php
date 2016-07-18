@@ -459,6 +459,28 @@ HTML;
 	}
 
 	/**
+	 * Add tutorials link to each section in the menus panel.
+	 *
+	 * @since 1.2
+	 *
+	 * @param string $wp_customize WP Customize.
+	 */
+	public function add_menu_description( $wp_customize ) {
+		$menus = wp_get_nav_menus();
+		foreach ( $menus as $menu ) {
+			$menu_id = $menu->term_id;
+			$section_id = 'nav_menu[' . $menu_id . ']';
+			$section = $wp_customize->get_section( $section_id );
+
+			if ( $section ) {
+				$section->description =
+					'<a target="_blank" class="boldgrid-icon-newtab" href="https://boldgrid.com/support/">' .
+					__( 'Menu Tutorial' ) . '</a>';
+			}
+		}
+	}
+
+	/**
 	 * Render the custom CSS.
 	 *
 	 * @since 1.0.0
@@ -492,7 +514,7 @@ HTML;
 	 */
 	public function footer_widget_html( $columns = null ) {
 
-			$columns = get_theme_mod( 'boldgrid_footer_widgets' );
+		$columns = get_theme_mod( 'boldgrid_footer_widgets' );
 
 		switch ( $columns ) :
 

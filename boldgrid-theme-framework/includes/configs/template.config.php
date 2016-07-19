@@ -18,6 +18,10 @@ return array(
 	'entry-footer' => '',
 	'pages' => array(
 		'blog' => 'container',
+		'global' => array(
+			'header' => 'container',
+			'footer' => 'container',
+		),
 		'default' => array(
 			'header' => 'container',
 			'entry-header' => 'container',

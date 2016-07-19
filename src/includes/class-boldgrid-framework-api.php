@@ -210,7 +210,7 @@ class BoldGrid {
 		$class = isset( $configs[ 'template' ][ 'pages' ][ $template ][ $location ] ) ?
 			$configs[ 'template' ][ 'pages' ][ $template ][ $location ] : 'container';
 
-		if ( 'blog' == $location ) {
+		if ( 'blog' == $location && ( is_single() || is_archive() ) ) {
 			$class = $configs[ 'template' ][ 'pages' ][ 'blog' ];
 		}
 

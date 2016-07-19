@@ -17,6 +17,7 @@ return array(
 	'entry-header' => '',
 	'entry-footer' => '',
 	'pages' => array(
+		'blog' => 'container',
 		'default' => array(
 			'header' => 'container',
 			'entry-header' => 'container',

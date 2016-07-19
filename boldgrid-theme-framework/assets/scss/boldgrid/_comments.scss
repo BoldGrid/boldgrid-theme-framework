@@ -126,10 +126,11 @@ span.cat-links:after {
 	content: "\2022";
 	margin: 0em .6em;
 }
-.single span.cat-links:after {
-	content: "";
-	margin: 0;
+
+.post .post-edit-link{
+	margin-left: .6em;
 }
+
 time.entry-date.published:before,
 time.entry-date.updated:before {
 	content: "\f073";

@@ -65,7 +65,6 @@ class BoldGrid_Framework_Styles {
 		return array(
 			// uri() is required to enforce order.
 			$this->configs['framework']['config_directory']['uri'] . '/style.css',
-			$this->configs['framework']['config_directory']['uri'] . '/editor-style.css',
 			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap.min.css',
 			$this->configs['framework']['css_dir'] . 'boldgrid-theme-framework' . $suffix . '.css',
 			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',

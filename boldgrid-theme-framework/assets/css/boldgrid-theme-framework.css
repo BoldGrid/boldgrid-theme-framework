@@ -276,6 +276,9 @@ select[name="archive-dropdown"] {
 .post-edit-link {
   padding-right: 5px; }
 
+.post-navigation {
+  margin-top: 1.5em; }
+
 /*--------------------------------------------------------------
 # Comments
 --------------------------------------------------------------*/

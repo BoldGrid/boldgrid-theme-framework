@@ -474,7 +474,7 @@ HTML;
 
 			if ( $section ) {
 				$section->description =
-					'<a target="_blank" class="boldgrid-icon-newtab" href="https://boldgrid.com/support/">' .
+					'<a target="_blank" class="boldgrid-icon-newtab" href="https://www.boldgrid.com/support/working-with-menus-in-boldgrid/">' .
 					__( 'Menu Tutorial' ) . '</a>';
 			}
 		}

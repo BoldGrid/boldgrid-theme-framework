@@ -29,6 +29,7 @@ user guide for more information.
 ### 1.1.10 ###
 * New Feature: Add tutorials link to each section in the menus panel.
 * New Feature: Adding container configuration classes.
+* Bug Fix: Fixing 4.6 bug causing background image previews to not display.
 * Bug Fix: Hiding generic locations that are not in use.
 * Bug Fix: Customizer dialog inheriting styles with undesired effects.
 * Bug Fix: Stop Wordpress from assigning widgets to our areas on theme switch.

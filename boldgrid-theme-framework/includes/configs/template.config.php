@@ -20,6 +20,7 @@ return array(
 		'blog' => 'container',
 		'global' => array(
 			'header' => 'container',
+			'call-to-action' => '',
 			'footer' => 'container',
 		),
 		'default' => array(

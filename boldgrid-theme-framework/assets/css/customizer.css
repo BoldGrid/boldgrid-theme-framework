@@ -130,3 +130,7 @@ causing undesired effects. Below, override color settings set by ".palette-prima
 [data-empty-area].expanded,
 .empty-menu.expanded {
   height: 30px; }
+
+/* We don't want empty navbars to take up space. Adjust their min-height (usually 50px) to hide them. */
+.navbar.empty-navbar {
+  min-height: 0px; }

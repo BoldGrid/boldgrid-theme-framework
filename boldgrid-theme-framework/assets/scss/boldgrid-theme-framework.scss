@@ -13,6 +13,7 @@
 		## Default Widget Styles
 	# Ninja Forms
 	# Comments
+	# 404 Pages
 	# Editor Styles
 	# Footer
 		## Disabled Footer Defaults
@@ -85,6 +86,11 @@
 # Comments
 --------------------------------------------------------------*/
 @import "boldgrid/comments";
+
+/*--------------------------------------------------------------
+# Comments
+--------------------------------------------------------------*/
+@import "boldgrid/error404";
 
 /*--------------------------------------------------------------
 # Editor Styles

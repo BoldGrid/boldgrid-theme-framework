@@ -13,6 +13,7 @@
 		## Default Widget Styles
 	# Ninja Forms
 	# Comments
+	# 404 Pages
 	# Editor Styles
 	# Footer
 		## Disabled Footer Defaults
@@ -412,6 +413,13 @@ time.entry-date.updated:before {
 .group-blog .byline,
 span.author.vcard {
   margin-left: .3em; }
+
+/*--------------------------------------------------------------
+# Comments
+--------------------------------------------------------------*/
+/* 404 page */
+.error404 .jumbotron {
+  background-color: transparent; }
 
 /*--------------------------------------------------------------
 # Editor Styles

@@ -133,6 +133,25 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	};
 
 	/**
+	 * @summary Ensure empty navbars don't take up space.
+	 *
+	 * Printing a menu within a nav tag is one approach that several BoldGrid Themes take to print
+	 * a navigation menu.
+	 *
+	 * When taking this approach, an empty menu area should be empty, but it's not. This is because
+	 * the nav tag has a navbar class with a min-height of 50px.
+	 *
+	 * To ensure the empty navbar does not affect the display of the page, override it's min-height
+	 * value by adding an 'empty-navbar' class.
+	 *
+	 * @since 1.1.10
+	 */
+	this.adjustEmptyMenus = function() {
+		// For all empty menus, find their parent nav container and add .empty-navbar.
+		$( '.empty-menu' ).parent( '.navbar' ).addClass( 'empty-navbar' );
+	};
+
+	/**
 	 * @summary Handle the click of each edit button.
 	 *
 	 * @since 1.1.6
@@ -1246,6 +1265,10 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				$button.removeClass( 'highlight-button' );
 			} );
 	};
+
+	$( function() {
+	    self.adjustEmptyMenus();
+	} );
 
 	// After the window has loaded, initialize the edit buttons.
 	$( window ).load( function() {

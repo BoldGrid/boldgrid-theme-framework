@@ -60,6 +60,7 @@ return array(
 	),
 	'sidebar' => array(
 		'is_404',
+		'is_search',
 		'is_front_page',
 		'[default]is_page_template',
 		'[page_home.php]is_page_template',

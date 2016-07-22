@@ -212,7 +212,7 @@ class BoldGrid {
 
 		if ( 'blog' == $location ) {
 			$class = '';
-			if ( is_single() || is_archive() ) {
+			if ( is_single() || is_archive() || is_search() ) {
 				$class = $configs[ 'template' ][ 'pages' ][ 'blog' ];
 			}
 		}
@@ -298,20 +298,18 @@ class BoldGrid {
 	public function print_primary_navigation() {
 		if ( has_nav_menu( 'primary' ) ) { ?>
 			<nav id="site-navigation" class="navbar navbar-default" role="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-navbar">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div><!-- .navbar-header -->
-					<?php do_action( 'boldgrid_menu_primary' ); ?>
-					<?php if ( true === $this->configs['template']['navbar-search-form'] ) : ?>
-						<?php get_template_part( 'templates/header/search' ); ?>
-					<?php endif; ?>
-				</div>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div><!-- .navbar-header -->
+				<?php do_action( 'boldgrid_menu_primary' ); ?>
+				<?php if ( true === $this->configs['template']['navbar-search-form'] ) : ?>
+					<?php get_template_part( 'templates/header/search' ); ?>
+				<?php endif; ?>
 			</nav><!-- #site-navigation -->
 			<?php
 		}

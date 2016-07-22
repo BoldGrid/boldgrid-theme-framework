@@ -26,9 +26,11 @@ user guide for more information.
 
 ## Changelog ##
 
-### 1.1.10 ###
+### 1.2 ###
 * New Feature: Add tutorials link to each section in the menus panel.
 * New Feature: Adding container configuration classes.
+* Update: Font Awesome updated to 4.6.3.
+* Bug Fix: Fixing issue with typography controls 4.4 compatibility.
 * Bug Fix: Fixing 4.6 bug causing background image previews to not display.
 * Bug Fix: Hiding generic locations that are not in use.
 * Bug Fix: Customizer dialog inheriting styles with undesired effects.

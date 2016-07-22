@@ -55,12 +55,12 @@
 	});
 
 	// Set font-size of headings/subheadings live
-	_.each( _typographyOptions, function( selector ) {
+	_.each( _typographyOptions, function( selector, rule ) {
 		var fontSizeType;
 		if ( 'subheadings' === selector.type ) {
 			fontSizeType = 'alternate_headings_font_size';
 			// Add alt-font class to subheading elements for live preview.
-			$( _.findKey( _typographyOptions, selector ) ).addClass( 'alt-font' );
+			$( rule ).addClass( 'alt-font' );
 		}
 		if ( 'headings' === selector.type ) {
 			fontSizeType = 'headings_font_size';
@@ -68,11 +68,11 @@
 		wp.customize( fontSizeType, function( value ) {
 			value.bind( function( to ) {
 				if ( 'ceil' === selector.round ) {
-					$( _.findKey( _typographyOptions, selector ) )
+					$( rule )
 						.css( 'font-size', Math.ceil( to * selector.amount ) + 'px' );
 				}
 				if ( 'floor' === selector.round ) {
-					$( _.findKey( _typographyOptions, selector ) )
+					$( rule )
 						.css( 'font-size', Math.floor( to * selector.amount ) + 'px' );
 				}
 			});

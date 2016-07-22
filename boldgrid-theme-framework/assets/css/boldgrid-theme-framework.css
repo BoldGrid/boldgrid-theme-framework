@@ -271,6 +271,9 @@ select[name="archive-dropdown"] {
 .ninja-forms-response-msg:empty {
   display: none; }
 
+.ninja-forms-response-msg .alert-success {
+  color: #3c763d; }
+
 /*--------------------------------------------------------------
 # Page & Post Defaults
 --------------------------------------------------------------*/

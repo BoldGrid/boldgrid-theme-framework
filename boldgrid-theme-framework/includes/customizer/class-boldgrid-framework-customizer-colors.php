@@ -499,7 +499,7 @@ class Boldgrid_Framework_Customizer_Colors {
 		$content = <<<HTML
 The BoldGrid Color Palette System allows you to create custom color palettes. Try changing
 the order of colors in a palette, or use the Palette Creator to automatically generate new palettes.
- For more information about using this tool, view our <a class='boldgrid-icon-newtab' href='//www.boldgrid.com/support'
+ For more information about using this tool, view our <a class='boldgrid-icon-newtab' href='https://www.boldgrid.com/support/customizer-how-to-use-the-colors-tab/'
 target='_blank'>customizer tutorials</a>.
 HTML;
 

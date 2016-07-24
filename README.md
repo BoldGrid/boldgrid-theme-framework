@@ -35,6 +35,7 @@ user guide for more information.
 * Bug Fix: Hiding generic locations that are not in use.
 * Bug Fix: Customizer dialog inheriting styles with undesired effects.
 * Bug Fix: Stop Wordpress from assigning widgets to our areas on theme switch.
+* Bug Fix: Updating the load order of styles into the editor.
 * Bug Fix: Edit buttons display primary menu background even if no menu is present.
 
 ### 1.1.9 ###

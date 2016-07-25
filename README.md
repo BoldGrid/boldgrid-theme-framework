@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.3
-* **Tested up to:** 4.4.2
+* **Tested up to:** 4.5.3
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,6 +26,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.2.1 ###
+* Update: Updating color palettes tutorial link.
+* Bug Fix: Updating the load order of styles into the editor.
+
 ### 1.2 ###
 * New Feature: Add tutorials link to each section in the menus panel.
 * New Feature: Adding container configuration classes.
@@ -35,7 +39,6 @@ user guide for more information.
 * Bug Fix: Hiding generic locations that are not in use.
 * Bug Fix: Customizer dialog inheriting styles with undesired effects.
 * Bug Fix: Stop Wordpress from assigning widgets to our areas on theme switch.
-* Bug Fix: Updating the load order of styles into the editor.
 * Bug Fix: Edit buttons display primary menu background even if no menu is present.
 
 ### 1.1.9 ###

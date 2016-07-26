@@ -3,7 +3,7 @@
 	&:empty {
 		display: none;
 	}
-	&.alert-success {
+	&.alert-success p {
 		color: #3c763d;
 	}
 }

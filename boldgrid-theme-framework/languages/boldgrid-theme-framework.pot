@@ -270,7 +270,7 @@ msgstr ""
 msgid "Subtle Patterns"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:525
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:519
 msgid "Background Image"
 msgstr ""
 

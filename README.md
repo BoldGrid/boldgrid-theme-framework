@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.2.2 ###
+* Bug Fix: Background size not being applied to parallax backgrounds.
+
 ### 1.2.1 ###
 * Update: Updating color palettes tutorial link.
 * Bug Fix: Updating the load order of styles into the editor.

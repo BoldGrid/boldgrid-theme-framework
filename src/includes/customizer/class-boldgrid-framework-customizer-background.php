@@ -390,12 +390,6 @@ class Boldgrid_Framework_Customizer_Background {
 			}
 		}
 
-		if ( ! $bg_image_size ) {
-			if ( ! empty( $background_options['defaults']['boldgrid_background_image_size'] ) ) {
-				$bg_image_size = $background_options['defaults']['boldgrid_background_image_size'];
-			}
-		}
-
 		if ( ! $bg_y_pos ) {
 			if ( ! empty( $background_options['defaults']['boldgrid_background_vertical_position'] ) ) {
 				$bg_y_pos = $background_options['defaults']['boldgrid_background_vertical_position'];
@@ -453,10 +447,6 @@ class Boldgrid_Framework_Customizer_Background {
 				$css_rules['body.custom-background']['background-color'] = esc_attr( $bg_color );
 			}
 
-			if ( $bg_image_size ) {
-				$css_rules['body.custom-background']['background-size'] = esc_attr( $bg_image_size );
-			}
-
 			if ( 'parallax' === $bg_attach ) {
 
 				$css_rules = array(
@@ -473,6 +463,10 @@ class Boldgrid_Framework_Customizer_Background {
 				// Add the body class and enqueue the script library.
 				add_filter( 'body_class', $boldgrid_filter_body_class );
 				wp_enqueue_script( 'boldgrid-stellar-parallax' );
+			}
+
+			if ( $bg_image_size ) {
+				$css_rules['body.custom-background']['background-size'] = esc_attr( $bg_image_size );
 			}
 		}
 

@@ -267,6 +267,18 @@ class Boldgrid_Framework_Social_Media_Icons {
 			'icon-circle' => 'fa fa-reddit fa-stack-1x',
 		),
 
+		'snapchat.com' => array(
+			'name' => 'Snapchat',
+			'class' => 'snapchat',
+			'icon' => 'fa fa-snapchat-ghost',
+			'icon-sign' => 'fa fa-snapchat-square',
+			'icon-square-open' => 'fa fa-snapchat-ghost fa-stack-1x',
+			'icon-square' => 'fa fa-snapchat-ghost fa-stack-1x',
+			'icon-circle-open-thin' => 'fa fa-snapchat-ghost fa-stack-1x',
+			'icon-circle-open' => 'fa fa-snapchat-ghost fa-stack-1x',
+			'icon-circle' => 'fa fa-snapchat-ghost fa-stack-1x',
+		),
+
 		'trello.com' => array(
 			'name' => 'Trello',
 			'class' => 'trello',

@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.2.3 ###
+* New Feature: Added SnapChat social media icons.
+
 ### 1.2.2 ###
 * Bug Fix: Background size not being applied to parallax backgrounds.
 

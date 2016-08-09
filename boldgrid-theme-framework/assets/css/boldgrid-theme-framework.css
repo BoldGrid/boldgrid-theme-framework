@@ -265,6 +265,9 @@ select[name="archive-dropdown"] {
 .boldgrid-widget.widget {
   margin: 0; }
 
+.empty-sidebar-message {
+  padding-top: 25%; }
+
 /*--------------------------------------------------------------
 # Ninja Forms
 --------------------------------------------------------------*/
@@ -421,6 +424,7 @@ span.author.vcard {
 # Comments
 --------------------------------------------------------------*/
 /* 404 page */
+.no-results.not-found .jumbotron,
 .error404 .jumbotron {
   background-color: transparent; }
 

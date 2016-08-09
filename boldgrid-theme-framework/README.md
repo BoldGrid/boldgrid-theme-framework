@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.2.3 ###
 * New Feature: Added SnapChat social media icons.
+* Update: Added some default styles to BGTFW components.
 
 ### 1.2.2 ###
 * Bug Fix: Background size not being applied to parallax backgrounds.

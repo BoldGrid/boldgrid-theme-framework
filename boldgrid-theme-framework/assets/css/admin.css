@@ -64,3 +64,6 @@
   width: 0;
   height: 0;
   line-height: 0; }
+
+#tgmpa-plugins .tablenav.bottom small {
+  display: none; }

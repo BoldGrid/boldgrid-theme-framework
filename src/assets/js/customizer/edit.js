@@ -1271,7 +1271,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	} );
 
 	// After the window has loaded, initialize the edit buttons.
-	$( window ).load( function() {
+	$( window ).on( 'load', function() {
 		self.init();
 
 		/*

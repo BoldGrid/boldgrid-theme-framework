@@ -30,6 +30,7 @@ user guide for more information.
 * New Feature: Added SnapChat social media icons.
 * Update: Added some default styles to BGTFW components.
 * Bug Fix: Addressed jQuery Migrate deprecated notice for .load() in edit buttons.
+* Bug Fix: Add blog container class if user sets front page to display their blog posts.
 
 ### 1.2.2 ###
 * Bug Fix: Background size not being applied to parallax backgrounds.

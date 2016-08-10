@@ -212,7 +212,7 @@ class BoldGrid {
 
 		if ( 'blog' == $location ) {
 			$class = '';
-			if ( is_single() || is_archive() || is_search() ) {
+			if ( is_single() || is_archive() || is_search() || ( is_front_page() && is_home() ) ) {
 				$class = $configs[ 'template' ][ 'pages' ][ 'blog' ];
 			}
 		}

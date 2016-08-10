@@ -1267,7 +1267,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	};
 
 	$( function() {
-	    self.adjustEmptyMenus();
+		self.adjustEmptyMenus();
 	} );
 
 	// After the window has loaded, initialize the edit buttons.

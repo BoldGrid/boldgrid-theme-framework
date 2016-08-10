@@ -1267,11 +1267,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	};
 
 	$( function() {
-	    self.adjustEmptyMenus();
+		self.adjustEmptyMenus();
 	} );
 
 	// After the window has loaded, initialize the edit buttons.
-	$( window ).load( function() {
+	$( window ).on( 'load', function() {
 		self.init();
 
 		/*

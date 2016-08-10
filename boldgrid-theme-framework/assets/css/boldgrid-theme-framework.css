@@ -265,8 +265,9 @@ select[name="archive-dropdown"] {
 .boldgrid-widget.widget {
   margin: 0; }
 
-.empty-sidebar-message {
-  padding-top: 25%; }
+@media only screen and (min-width: 992px) {
+  .empty-sidebar-message {
+    padding-top: 25%; } }
 
 /*--------------------------------------------------------------
 # Ninja Forms

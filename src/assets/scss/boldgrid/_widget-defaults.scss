@@ -22,6 +22,8 @@ select[name="archive-dropdown"] {
 }
 
 // Default Sidebar Message
-.empty-sidebar-message {
-	padding-top: 25%;
+@media only screen and (min-width : 992px) {
+	.empty-sidebar-message {
+		padding-top: 25%;
+	}
 }

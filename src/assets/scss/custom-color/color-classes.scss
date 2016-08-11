@@ -50,9 +50,9 @@
 /*create single css classes to apply palettes on universal elements*/
 $names: color background background-color border;
 @for $i from 1 through length( $names ) {
-	@each $color in $colors {
-		$which-color: index( $colors, $color );
-		.color#{$which-color}-#{nth( $names, $i )} { #{nth( $names, $i )}: $color ! important; }
-		.color#{$which-color}-#{nth($names, $i)}-hover:hover { #{nth( $names, $i )}: $color ! important; }
+	@for $color from 1 through length( $colors ) {
+		$which-color: nth( $color, $i );
+		.color#{$which-color}-#{nth( $names, $i )} { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
+		.color#{$which-color}-#{nth($names, $i)}-hover:hover { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
 	}
 }

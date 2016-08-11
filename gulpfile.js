@@ -165,7 +165,7 @@ gulp.task( 'frameworkFiles', function(  ) {
   return gulp.src([
     '!' + config.src + '/includes/black-studio-tinymce-widget',
     '!' + config.src + '/includes/black-studio-tinymce-widget/**',
-    config.src + '/**/*.{php,txt,json,css,scss}',
+    config.src + '/**/*.{php,txt,json,css,scss,mo,po,pot}',
    ])
     .pipe( gulp.dest( config.dist ) );
 } );

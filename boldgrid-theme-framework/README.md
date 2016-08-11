@@ -32,6 +32,7 @@ user guide for more information.
 * Bug Fix: Addressed jQuery Migrate deprecated notice for .load() in edit buttons.
 * Bug Fix: Add blog container class if user sets front page to display their blog posts.
 * New Feature: Allow theme activation to trigger recommended/required plugins.
+* Bug Fix: Palettes with two of same color didn't get unique color class assigned.
 
 ### 1.2.2 ###
 * Bug Fix: Background size not being applied to parallax backgrounds.

@@ -190,6 +190,11 @@ class BoldGrid_Framework {
 		 */
 		require_once trailingslashit( __DIR__ ) . 'partials/wp_bootstrap_navwalker.php';
 
+		/**
+		 * Include the TGM_Plugin_Activation class.
+		 */
+		require_once trailingslashit( __DIR__ ) . 'tgm/class-tgm-plugin-activation.php';
+
 		// Loader instance.
 		$this->loader = new Boldgrid_Framework_Loader( );
 	}

@@ -396,7 +396,10 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'boldgrid_activate_framework', $boldgrid_framework_activate, 'do_activate' );
 		$this->loader->add_action( 'boldgrid_framework_reset', $boldgrid_framework_activate, 'reset' );
 		$this->loader->add_action( 'wp_ajax_boldgrid_reset_theme_mods', $boldgrid_framework_activate, 'undo_theme_mod_transfer' );
-		$this->loader->add_action( 'tgmpa_register', $boldgrid_framework_activate, 'register_required_plugins' );
+
+		if ( true === $this->configs['framework']['tgm_activation'] ) {
+			$this->loader->add_action( 'tgmpa_register', $boldgrid_framework_activate, 'register_required_plugins' );
+		}
 
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $boldgrid_framework_activate, 'do_activate' );

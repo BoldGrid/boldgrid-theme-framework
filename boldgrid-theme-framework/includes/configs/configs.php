@@ -42,6 +42,7 @@ return array(
 		'js_dir'          => $theme_framework_uri . '/assets/js/',
 		'css_dir'         => $theme_framework_uri . '/assets/css/',
 		'inline_styles'   => false,
+		'tgm_activation'  => false,
 	),
 
 	/**

@@ -85,6 +85,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		$wp_scripts = wp_scripts();
 		$font_configs = $this->configs['customizer-options']['typography']['selectors'];
 		$wp_scripts->add_data( $handle, 'data', sprintf( 'var _typographyOptions = %s;', wp_json_encode( $font_configs ) ) );
+		wp_localize_script( $handle, '_typographyClasses', $this->configs['template']['tagline-classes'] );
 	}
 
 	/**

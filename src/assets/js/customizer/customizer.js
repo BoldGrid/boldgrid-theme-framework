@@ -11,9 +11,9 @@
 
 	$(function () {
 		init_values();
-
 		setup_post_edit_link();
 		setup_help();
+		$( '.site-description' ).addClass( _typographyClasses );
 	});
 
 	// Site title and description.

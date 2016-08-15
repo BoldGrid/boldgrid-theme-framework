@@ -243,6 +243,9 @@ gulp.task( 'scssDeps', function(  ) {
   // Animate.css
   gulp.src( config.bower + '/animate.css/animate.*' )
     .pipe( gulp.dest( config.dist + '/assets/css/animate-css' ) );
+	// Underscores
+  gulp.src( config.bower + '/Buttons/scss/**/*.scss' )
+    .pipe( gulp.dest( config.dist + '/assets/scss/buttons' ) );
 } );
 
 // Compile SCSS
@@ -320,6 +323,18 @@ gulp.task( 'build', function( cb ) {
     ['jsHint', 'frameworkJs'],
     ['scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
     'images',
+    ['scssCompile', 'bootstrapCompile'],
+    'fontFamilyCss',
+    cb
+  );
+});
+
+// Tasks
+gulp.task( 'qbuild', function( cb ) {
+  sequence(
+    'readme',
+    ['jsHint', 'frameworkJs'],
+    ['scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
     cb

@@ -284,7 +284,7 @@ class BoldGrid_Framework {
 	 * @since    1.1
 	 * @access   private
 	 */
-	private function assign_configs() {
+	private function assign_configs( $folder ) {
 		$path = __DIR__ . '/configs/'. $folder;
 
 		foreach ( glob( $path . '/*.config.php' ) as $filename ) {

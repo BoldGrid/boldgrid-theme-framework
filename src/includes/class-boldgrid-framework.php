@@ -463,8 +463,8 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'after_setup_theme', $boldgrid_theme_setup, 'boldgrid_setup' );
 
 		if ( ! empty( $this->configs['bootstrap-compile'] ) ) {
-			$this->loader->add_action( 'customize_save_after', $bootstrap_compile, 'bootstrap_build' );
-			$this->loader->add_action( 'after_switch_theme', $bootstrap_compile, 'bootstrap_build' );
+			$this->loader->add_action( 'customize_save_after', $bootstrap_compile, 'build' );
+			$this->loader->add_action( 'after_switch_theme', $bootstrap_compile, 'build' );
 		}
 
 		// TODO: Merge these standalone files into classes and our existing structure.
@@ -728,7 +728,7 @@ class BoldGrid_Framework {
 
 		// If the user has access, and your configuration flag is set to on.
 		if ( $auto_compile_enabled ) {
-			$this->loader->add_action( 'wp_loaded', $bootstrap_compile, 'bootstrap_build' );
+			$this->loader->add_action( 'wp_loaded', $bootstrap_compile, 'build' );
 			$this->loader->add_action( 'wp_loaded', $boldgrid_theme_helper_scss, 'update_css' );
 		}
 

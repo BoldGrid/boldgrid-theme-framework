@@ -238,7 +238,7 @@ class BoldGrid_Framework {
 		$this->configs['widget'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/widget.config.php';
 		$this->configs['category'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/category.config.php';
 
-		$this->assign_customizer_configs();
+		$this->assign_configs( 'customizer-options' );
 	}
 
 	/**
@@ -284,8 +284,7 @@ class BoldGrid_Framework {
 	 * @since    1.1
 	 * @access   private
 	 */
-	private function assign_customizer_configs() {
-		$folder = 'customizer-options';
+	private function assign_configs() {
 		$path = __DIR__ . '/configs/'. $folder;
 
 		foreach ( glob( $path . '/*.config.php' ) as $filename ) {

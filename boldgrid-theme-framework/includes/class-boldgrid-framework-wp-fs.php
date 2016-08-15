@@ -44,7 +44,7 @@ class Boldgrid_Framework_Wp_Fs {
 	 */
 	public function save( $content, $file ) {
 		global $wp_filesystem;
-		$this->init_filesystem();
+		self::init();
 		// Write output to CSS file.
 		$wp_filesystem->put_contents( $file, $content, FS_CHMOD_FILE );
 	}

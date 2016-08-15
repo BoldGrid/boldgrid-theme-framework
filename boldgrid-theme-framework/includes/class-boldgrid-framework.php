@@ -156,6 +156,7 @@ class BoldGrid_Framework {
 			'admin',
 			'activate',
 			'api',
+			'bgtfw-compile',
 			'bootstrap-compile',
 			'comments',
 			'compile-colors',
@@ -725,10 +726,12 @@ class BoldGrid_Framework {
 		$boldgrid_theme_helper_scss = new Boldgrid_Framework_SCSS( $this->configs );
 		$boldgrid_theme_helper_staging = new Boldgrid_Framework_Staging( $this->configs );
 		$bootstrap_compile = new Boldgrid_Framework_Bootstrap_Compile( $this->configs );
+		$bgtfw_compile = new Boldgrid_Framework_Bgtfw_Compile( $this->configs );
 
 		// If the user has access, and your configuration flag is set to on.
 		if ( $auto_compile_enabled ) {
-			$this->loader->add_action( 'wp_loaded', $bootstrap_compile, 'build' );
+			$this->loader->add_action( 'wp_loaded', $bgtfw_compile, 'build' );
+			//$this->loader->add_action( 'wp_loaded', $bootstrap_compile, 'build' );
 			$this->loader->add_action( 'wp_loaded', $boldgrid_theme_helper_scss, 'update_css' );
 		}
 

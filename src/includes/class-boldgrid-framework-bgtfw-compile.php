@@ -20,7 +20,7 @@ use Leafo\ScssPhp\Compiler;
  *
  * @since      1.0.0
  */
-class Boldgrid_Framework_Bootstrap_Compile implements Boldgrid_Framework_Compile {
+class Boldgrid_Framework_Bgtfw_Compile implements Boldgrid_Framework_Compile {
 
 	/**
 	 * The BoldGrid Theme Framework configurations.
@@ -52,7 +52,7 @@ class Boldgrid_Framework_Bootstrap_Compile implements Boldgrid_Framework_Compile
 	 */
 	public function build() {
 		$css = $this->compile();
-		$this->save( $css, $this->configs['framework']['asset_dir'] . 'css/bootstrap/bootstrap.min.css' );
+		$this->wpfs->save( $css, $this->configs['framework']['asset_dir'] . 'css/bootstrap/bgtfw.min.css' );
 	}
 
 	/**
@@ -71,9 +71,9 @@ class Boldgrid_Framework_Bootstrap_Compile implements Boldgrid_Framework_Compile
 
 		if ( $this->configs['bootstrap'] ) {
 			// BoldGrid specific variables to have available during compile.
-			$boldgrid_variables = array_merge( $this->colors->get_active_palette(), $this->colors->get_text_contrast() );
+			$color_variables = array_merge( $this->colors->get_active_palette(), $this->colors->get_text_contrast() );
 			// Variables to assign before compile.
-			$variables = array_merge( $boldgrid_variables, $this->configs['bootstrap'] );
+			$variables = array_merge( $color_variables, $this->configs['components']['buttons']['variables'] );
 			// Set the Variables.
 			$scss->setVariables( $variables );
 		}

@@ -82,14 +82,4 @@ class Boldgrid_Framework_Bootstrap_Compile implements Boldgrid_Framework_Compile
 
 		return $compiled_scss;
 	}
-
-	/**
-	 * Save Compiled SCSS.
-	 *
-	 * @since 1.1
-	 * @param string $compiled_scss Contains the compiled Bootstrap SCSS to save.
-	 */
-	public function save( $compiled_scss, $file ) {
-		$this->wpfs->save( $compiled_scss, $file );
-	}
 }

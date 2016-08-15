@@ -24,8 +24,4 @@ interface Boldgrid_Framework_Compile {
 	 * Compiles the SCSS.
 	 */
 	public function compile();
-	/**
-	 * Saves the SCSS.
-	 */
-	public function save( $compiled_scss, $file );
 }

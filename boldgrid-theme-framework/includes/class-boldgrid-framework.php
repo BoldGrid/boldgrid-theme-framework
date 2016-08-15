@@ -148,6 +148,8 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function load_dependencies() {
+		// Load Compile Interface.
+		require_once( trailingslashit( __DIR__ ) . 'interface-boldgrid-framework-compile.php' );
 		// Include utility classes.
 		$library_files = array(
 			'404',
@@ -156,6 +158,7 @@ class BoldGrid_Framework {
 			'api',
 			'bootstrap-compile',
 			'comments',
+			'compile-colors',
 			'editor',
 			'i18n',
 			'loader',
@@ -194,6 +197,8 @@ class BoldGrid_Framework {
 		 * Include the TGM_Plugin_Activation class.
 		 */
 		require_once trailingslashit( __DIR__ ) . 'tgm/class-tgm-plugin-activation.php';
+
+
 
 		// Loader instance.
 		$this->loader = new Boldgrid_Framework_Loader( );

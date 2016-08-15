@@ -1,10 +1,10 @@
 <?php
 /**
- * Class: Boldgrid_Framework_SCSS
+ * Class: Boldgrid_Framework_Wp_Fs
  *
- * Functions for interfacing with Leafo\ScssPhp\Compiler
+ * Functions for interacting with WordPress Filesystem.
  *
- * @since      1.0.0
+ * @since      1.2.3
  * @package    Boldgrid_Framework
  * @subpackage Boldgrid_Framework_SCSS
  * @author     BoldGrid <support@boldgrid.com>
@@ -14,18 +14,18 @@
 use Leafo\ScssPhp\Compiler;
 
 /**
- * Class: Boldgrid_Framework_Bootstrap_Compile
+ * Class: Boldgrid_Framework_Wp_Fs
  *
- * Functions for interfacing with Leafo\ScssPhp\Compiler
+ * Functions for interacting with WordPress Filesystem.
  *
- * @since      1.0.0
+ * @since      1.2.3
  */
 class Boldgrid_Framework_Wp_Fs {
 
 	/**
 	 * Initialize the WP_Filesystem.
 	 *
-	 * @since 1.1
+	 * @since 1.2.3
 	 * @global $wp_filesystem WordPress Filesystem global.
 	 */
 	public function init() {
@@ -39,7 +39,7 @@ class Boldgrid_Framework_Wp_Fs {
 	/**
 	 * Save Compiled SCSS.
 	 *
-	 * @since 1.1
+	 * @since 1.2.3
 	 * @param string $compiled_scss Contains the compiled Bootstrap SCSS to save.
 	 */
 	public function save( $content, $file ) {

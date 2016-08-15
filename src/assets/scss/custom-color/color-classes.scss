@@ -51,8 +51,7 @@
 $names: color background background-color border;
 @for $i from 1 through length( $names ) {
 	@for $color from 1 through length( $colors ) {
-		$which-color: nth( $color, $i );
-		.color#{$which-color}-#{nth( $names, $i )} { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
-		.color#{$which-color}-#{nth($names, $i)}-hover:hover { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
+		.color#{$color}-#{nth( $names, $i )} { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
+		.color#{$color}-#{nth($names, $i)}-hover:hover { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
 	}
 }

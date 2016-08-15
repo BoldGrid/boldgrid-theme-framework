@@ -40,6 +40,7 @@ class Boldgrid_Framework_Bootstrap_Compile implements Boldgrid_Framework_Compile
 	public function __construct( $configs ) {
 		$this->configs = $configs;
 		$this->colors  = new Boldgrid_Framework_Compile_Colors( $this->configs );
+		$this->wpfs    = new Boldgrid_Framework_Wp_Fs();
 	}
 
 	/**
@@ -52,20 +53,6 @@ class Boldgrid_Framework_Bootstrap_Compile implements Boldgrid_Framework_Compile
 	public function build() {
 		$css = $this->compile();
 		$this->save( $css, $this->configs['framework']['asset_dir'] . 'css/bootstrap/bootstrap.min.css' );
-	}
-
-	/**
-	 * Initialize the WP_Filesystem.
-	 *
-	 * @since 1.1
-	 * @global $wp_filesystem WordPress Filesystem global.
-	 */
-	public function init_filesystem() {
-		global $wp_filesystem;
-		if ( empty( $wp_filesystem ) ) {
-			require_once ABSPATH . '/wp-admin/includes/file.php';
-			WP_Filesystem();
-		}
 	}
 
 	/**
@@ -103,9 +90,6 @@ class Boldgrid_Framework_Bootstrap_Compile implements Boldgrid_Framework_Compile
 	 * @param string $compiled_scss Contains the compiled Bootstrap SCSS to save.
 	 */
 	public function save( $compiled_scss, $file ) {
-		global $wp_filesystem;
-		$this->init_filesystem();
-		// Write output to CSS file.
-		$wp_filesystem->put_contents( $file, $compiled_scss, FS_CHMOD_FILE );
+		$this->wpfs( $compiled_scss, $file );
 	}
 }

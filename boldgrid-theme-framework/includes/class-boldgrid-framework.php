@@ -175,6 +175,7 @@ class BoldGrid_Framework {
 			'styles',
 			'template-config',
 			'widgets',
+			'wp-fs',
 			'wrapper',
 		);
 

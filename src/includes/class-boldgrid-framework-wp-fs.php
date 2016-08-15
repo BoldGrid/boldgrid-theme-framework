@@ -21,6 +21,7 @@ use Leafo\ScssPhp\Compiler;
  * @since      1.0.0
  */
 class Boldgrid_Framework_Wp_Fs {
+
 	/**
 	 * Initialize the WP_Filesystem.
 	 *
@@ -33,5 +34,18 @@ class Boldgrid_Framework_Wp_Fs {
 			require_once ABSPATH . '/wp-admin/includes/file.php';
 			WP_Filesystem();
 		}
+	}
+
+	/**
+	 * Save Compiled SCSS.
+	 *
+	 * @since 1.1
+	 * @param string $compiled_scss Contains the compiled Bootstrap SCSS to save.
+	 */
+	public function save( $content, $file ) {
+		global $wp_filesystem;
+		self::init();
+		// Write output to CSS file.
+		$wp_filesystem->put_contents( $file, $content, FS_CHMOD_FILE );
 	}
 }

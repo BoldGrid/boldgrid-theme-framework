@@ -13,8 +13,8 @@
 return array(
 	'enabled' => true,
 	'variables' => array(
-		'ubtn' => '.bgtfw',
-		'ubtn-namespace' => '.bgtfw',
+		'ubtn' => '.bgtfw-btn',
+		'ubtn-namespace' => '.bgtfw-btn',
 		'ubtn-glow-namespace' => '.glow',
 		//'ubtn-colors' => ,
 		'ubtn-glow-color' => '#2c9adb, light blue',

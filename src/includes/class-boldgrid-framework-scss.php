@@ -40,6 +40,7 @@ class Boldgrid_Framework_SCSS {
 	public function __construct( $configs ) {
 		$this->configs = $configs;
 		$this->wpfs    = new Boldgrid_Framework_Wp_Fs();
+		$this->colors  = new Boldgrid_Framework_Compile_Colors( $this->configs );
 	}
 
 	/**
@@ -200,75 +201,6 @@ class Boldgrid_Framework_SCSS {
 	}
 
 	/**
-	 * Get any additional variables from the configs that are needed.
-	 *
-	 * @since    1.0.0
-	 * @return   string     $sass_file     SCSS file containing configuration data.
-	 */
-	public function get_additional_variables() {
-		if ( false === empty( $this->configs['forced_color_palette_decoded'] ) ) {
-			$palette_configs = $this->configs['forced_color_palette_decoded'];
-		} else {
-			$palette_configs = Boldgrid_Framework_Customizer_Colors::get_palette_configs();
-		}
-
-		$sass_file = '';
-		if ( ! empty( $palette_configs ) ) {
-			// Take a set of configurations and turn theme into scss.
-			$theme_palettes = $palette_configs['state']['palettes'];
-		} else {
-			$palettes = $this->configs['customizer-options']['colors']['defaults'];
-			$theme_palettes = Boldgrid_Framework_Customizer_Colors::get_simplified_external_palettes( $palettes );
-		}
-
-		$sass_file = $this->convert_palette_configs_to_scss( $theme_palettes );
-
-		return $sass_file;
-	}
-
-	/**
-	 * Convert an array of configurations into a string of SCSS
-	 *
-	 * @since  1.0.0
-	 * @param  array $palette_configs Array containing color palette configs.
-	 * @return string $sass_file       Contains preset configs as scss rules to compile.
-	 */
-	public function convert_palette_configs_to_scss( $palette_configs ) {
-		$sass_file = '';
-
-		// Create A sass file.
-		$class_colors_prefix = '$colors: ';
-		foreach ( $palette_configs as $palette_config ) {
-			if ( ! empty( $palette_config['colors'] ) ) {
-
-				$class_colors = $class_colors_prefix;
-				foreach ( $palette_config['colors'] as $color_order => $color ) {
-					$actual_order = $color_order + 1;
-					$sass_file .= '$' . $palette_config['format'] . "_{$actual_order}:" . $color . ';';
-					// Add text contrast variable for each color.
-					$class_colors .= '$' . $palette_config['format']  . "_{$actual_order} ";
-				}
-
-				// Add Class Colors.
-				if ( $class_colors !== $class_colors_prefix ) {
-					$sass_file .= $class_colors . ';';
-				}
-			}
-
-			if ( ! empty( $palette_config['neutral-color'] ) ) {
-				$sass_file .= '$' . $palette_config['format'] . '-neutral-color:' . $palette_config['neutral-color'] . ';';
-			}
-
-			// Dark text and light text variables.
-			$sass_file .= '$light_text:' . $this->configs['customizer-options']['colors']['light_text'] . ';';
-			$sass_file .= '$dark_text:' . $this->configs['customizer-options']['colors']['dark_text'] . ';';
-		}
-
-		return $sass_file;
-
-	}
-
-	/**
 	 * Compile the SCSS files using the Leafo compiler.
 	 *
 	 * @since      1.0.0
@@ -287,8 +219,12 @@ class Boldgrid_Framework_SCSS {
 			$scss->setFormatter( 'Leafo\ScssPhp\Formatter\Compressed' );
 		}
 
+		$scss->setVariables( $this->colors->get_scss_variables() );
+
 		// TODO: Make sure we arent over compiling.
 		try {
+			// BoldGrid specific variables to have available during compile.
+
 			$compiled = $scss->compile( $content );
 		} catch ( \Exception $e ) {
 			error_log( 'Failed SCSS Compile: ' . $e->getMessage() );
@@ -410,13 +346,10 @@ class Boldgrid_Framework_SCSS {
 			// If color palette is set for staging theme, delete the theme mods and then save them again.
 			// This is a hack to force hooks to run and recompile the sass files.
 			if ( ! empty( $staging_theme_mods['boldgrid_color_palette'] ) ) {
-
 				update_option( 'boldgrid_staging_theme_mods_' . $staging_stylesheet, array() );
 				update_option( 'boldgrid_staging_theme_mods_' . $staging_stylesheet, $staging_theme_mods );
-
 			}
 		}
-
 	}
 
 	/**
@@ -473,8 +406,7 @@ class Boldgrid_Framework_SCSS {
 		$success = false;
 		if ( ( $force_update || $is_expired_file ) && ! $is_update_deferred ) {
 			$file_contents 		= $this->get_scss_file_contents( $files );
-			$merged_contents 	= $this->get_additional_variables( ) . $file_contents;
-			$compiled_content 	= $this->compile( $merged_contents );
+			$compiled_content 	= $this->compile( $file_contents );
 			$success 			= $this->save_compiled_content( $compiled_content );
 
 			set_theme_mod( 'boldgrid_compiled_css', $compiled_content );

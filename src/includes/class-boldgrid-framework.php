@@ -308,7 +308,6 @@ class BoldGrid_Framework {
 	 */
 	public function load_theme_configs() {
 		// Apply filter to framework configs.
-
 		$this->configs = apply_filters( 'boldgrid_theme_framework_config', $this->configs );
 		// Backwards Compatibility.
 		$this->configs['directories']['BOLDGRID_THEME_NAME'] = $this->configs['version'];

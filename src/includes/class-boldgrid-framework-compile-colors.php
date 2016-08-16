@@ -64,6 +64,46 @@ class Boldgrid_Framework_Compile_Colors {
 	}
 
 	/**
+	 * Get SCSS list for $colors variable.
+	 *
+	 * @since 1.2.3
+	 * @return array $boldgrid_colors Array containing SCSS variable name.
+	 */
+	public function get_color_list() {
+		$boldgrid_colors = '';
+		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
+
+		if ( null !== $palettes ) {
+			$current_palette = $palettes['state']['active-palette'];
+			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
+			foreach ( $colors as $color ) {
+				$boldgrid_colors .= $color;
+			}
+		}
+
+		return $boldgrid_colors;
+	}
+
+	/**
+	 * Get all color variables for compiling.
+	 *
+	 * @since 1.2.3
+	 * @return array $color_variables Array containing SCSS variables and values.
+	 */
+	public function get_scss_variables() {
+		$color_variables = array();
+		$text_colors = array(
+			'light_text' => $this->configs['customizer-options']['colors']['light_text'],
+			'dark_text' => $this->configs['customizer-options']['colors']['dark_text'],
+		);
+		$active_palette = array(
+			'colors' => self::get_color_list(),
+		);
+		$color_variables = array_merge( $active_palette, $text_colors, self::get_active_palette(), self::get_text_contrast() );
+		return $color_variables;
+	}
+
+	/**
 	 * Converts a hex color into an array of RGB.
 	 *
 	 * @since 1.1

@@ -15,11 +15,7 @@ jQuery( document ).ready( function(  ) {
 		.addClass( 'btn button-primary color1-text-contrast' )
 		.css( 'transition' , 'all .5s' );
 
-	// here for the submit button of the comment reply form
-	jQuery( '#commentsubmit' ).addClass( 'btn button-primary' );
-
 	// The WordPress Default Widgets
-
 	jQuery( '.widget_rss ul' ).addClass( 'media-list' );
 
 	jQuery( '.widget_meta ul, .widget_recent_entries ul, .widget_archive ul, .widget_categories ul, .widget_nav_menu ul, .widget_pages ul' ).addClass( 'nav' );

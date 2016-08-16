@@ -34,6 +34,7 @@ user guide for more information.
 * New Feature: Allow theme activation to trigger recommended/required plugins.
 * Bug Fix: Palettes with two of same color didn't get unique color class assigned.
 * Bug Fix: Custom classes push via configs to tagline weren't applied for live preview in customizer.
+* Bug Fix: Apply comment submit classes via PHP instead of jQuery.
 
 ### 1.2.2 ###
 * Bug Fix: Background size not being applied to parallax backgrounds.

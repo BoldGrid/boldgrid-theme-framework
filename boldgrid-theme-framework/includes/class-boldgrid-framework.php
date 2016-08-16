@@ -308,10 +308,14 @@ class BoldGrid_Framework {
 	 */
 	public function load_theme_configs() {
 		// Apply filter to framework configs.
+
 		$this->configs = apply_filters( 'boldgrid_theme_framework_config', $this->configs );
 		// Backwards Compatibility.
 		$this->configs['directories']['BOLDGRID_THEME_NAME'] = $this->configs['version'];
 		$this->configs['directories']['BOLDGRID_THEME_VER'] = $this->configs['theme_name'];
+		$this->colors = new Boldgrid_Framework_Compile_Colors($this->configs);
+
+		var_dump($this->colors->get_scss_variables() );die;
 	}
 
 	/**

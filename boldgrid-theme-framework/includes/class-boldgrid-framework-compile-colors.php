@@ -59,7 +59,9 @@ class Boldgrid_Framework_Compile_Colors {
 				$boldgrid_colors[ $current_palette.'_'.$i ] = $color;
 			}
 		}
-
+		if ( false !== self::get_neutral_color() ) {
+			$boldgrid_colors = array_merge( $boldgrid_colors, self::get_neutral_color() );
+		}
 		return $boldgrid_colors;
 	}
 
@@ -82,6 +84,24 @@ class Boldgrid_Framework_Compile_Colors {
 		}
 
 		return $boldgrid_colors;
+	}
+
+	/**
+	 * Get the neutral color if it exists.
+	 *
+	 * @since 1.2.3
+	 * @return array $color_variables Array containing SCSS variables and values.
+	 */
+	public function get_neutral_color() {
+		$neutral_color = false;
+		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
+		if ( null !== $palettes ) {
+			$current_palette = $palettes['state']['active-palette'];
+			$neutral_color = array(
+				$palettes['state']['active-palette'] . '-neutral-color' => $palettes['state']['palettes'][ $current_palette ]['neutral-color'],
+			);
+		}
+		return $neutral_color;
 	}
 
 	/**

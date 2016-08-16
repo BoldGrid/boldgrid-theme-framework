@@ -241,15 +241,11 @@ class Boldgrid_Framework_SCSS {
 	 * @return string $success  boolean
 	 */
 	public function save_compiled_content( $compiled ) {
-		$this->wpfs->init();
-		global $wp_filesystem;
-
 		$success = false;
 		if ( $compiled ) {
 			$config_settings = $this->configs['customizer-options']['colors']['settings'];
 
 			if ( $this->is_currently_updating_staging_mods() ) {
-
 				// Update the name of the css file.
 				$basename = basename( $config_settings['output_css_name'], '.css' );
 				$config_settings['output_css_name'] = str_ireplace(
@@ -258,14 +254,7 @@ class Boldgrid_Framework_SCSS {
 					$config_settings['output_css_name']
 				);
 			}
-
-			// Update CSS file.
-			$wp_filesystem->put_contents(
-				$config_settings['output_css_name'],
-				$compiled,
-				FS_CHMOD_FILE
-			);
-
+			$this->wpfs->save( $compiled, $config_settings['output_css_name'] );
 			$success = true;
 		}
 

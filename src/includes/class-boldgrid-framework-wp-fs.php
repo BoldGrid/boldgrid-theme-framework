@@ -43,8 +43,8 @@ class Boldgrid_Framework_Wp_Fs {
 	 * @param string $compiled_scss Contains the compiled Bootstrap SCSS to save.
 	 */
 	public function save( $content, $file ) {
-		global $wp_filesystem;
 		self::init();
+		global $wp_filesystem;
 		// Write output to CSS file.
 		$wp_filesystem->put_contents( $file, $content, FS_CHMOD_FILE );
 	}

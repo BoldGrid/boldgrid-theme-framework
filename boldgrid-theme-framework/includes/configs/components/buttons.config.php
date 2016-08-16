@@ -22,9 +22,11 @@ return array(
 		//'ubtn-sizes' => ,
 		//'ubtn-bgcolor' => ,
 		//'ubtn-height' => ,
-		//'ubtn-font-family' => ,
+		'ubtn-font-family' => get_theme_mod( 'body_font_family', $this->configs['customizer-options']['typography']['defaults']['body_font_family'] ),
 		//'ubtn-font-color' => ,
 		//'ubtn-font-weight' => ,
 		//'ubtn-font-size' => ,
+		'button-primary-classes' => 'button button-glow button-rounded button-raised button-primary',
+		'button-secondary-classes' => 'button button-glow button-rounded button-raised button-secondary',
 	),
 );

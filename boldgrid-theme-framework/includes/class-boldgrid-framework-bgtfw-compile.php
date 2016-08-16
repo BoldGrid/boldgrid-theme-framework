@@ -52,7 +52,7 @@ class Boldgrid_Framework_Bgtfw_Compile implements Boldgrid_Framework_Compile {
 	 */
 	public function build() {
 		$css = $this->compile();
-		$this->wpfs->save( $css, $this->configs['framework']['asset_dir'] . 'css/buttons/buttons.min.css' );
+		$this->wpfs->save( $css, $this->configs['framework']['asset_dir'] . 'css/boldgrid/boldgrid-theme-framework.css' );
 	}
 
 	/**
@@ -76,7 +76,7 @@ class Boldgrid_Framework_Bgtfw_Compile implements Boldgrid_Framework_Compile {
 		// Set the Variables.
 		$scss->setVariables( $variables );
 
-		$compiled_scss = $scss->compile( '@import "buttons/buttons";' );
+		$compiled_scss = $scss->compile( '@import "boldgrid-theme-framework";' );
 
 		return $compiled_scss;
 	}

@@ -39,6 +39,7 @@ class Boldgrid_Framework_SCSS {
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
+		$this->wpfs    = new Boldgrid_Framework_Wp_Fs();
 	}
 
 	/**
@@ -121,19 +122,6 @@ class Boldgrid_Framework_SCSS {
 	}
 
 	/**
-	 * Initialize the WP_Filesystem
-	 *
-	 * @since 1.1
-	 */
-	public function init_filesystem() {
-		global $wp_filesystem;
-		if ( empty( $wp_filesystem ) ) {
-			require_once ABSPATH . '/wp-admin/includes/file.php';
-			WP_Filesystem();
-		}
-	}
-
-	/**
 	 * Get the SCSS files content that need to be compiled
 	 *
 	 * @since     1.0.0
@@ -141,7 +129,7 @@ class Boldgrid_Framework_SCSS {
 	 */
 	public function get_precompile_content() {
 		// Initialize WP_Filesystem.
-		$this->init_filesystem();
+		$this->wpfs->init();
 		global $wp_filesystem;
 
 		$scss_files = $this->find_scss_files();
@@ -200,7 +188,7 @@ class Boldgrid_Framework_SCSS {
 	 * @return string $precompile_string  Contents of all specified scss files.
 	 */
 	public function get_scss_file_contents( $files ) {
-		$this->init_filesystem();
+		$this->wpfs->init();
 		global $wp_filesystem;
 
 		$precompile_string = '';
@@ -317,7 +305,7 @@ class Boldgrid_Framework_SCSS {
 	 * @return string $success  boolean
 	 */
 	public function save_compiled_content( $compiled ) {
-		$this->init_filesystem();
+		$this->wpfs->init();
 		global $wp_filesystem;
 
 		$success = false;

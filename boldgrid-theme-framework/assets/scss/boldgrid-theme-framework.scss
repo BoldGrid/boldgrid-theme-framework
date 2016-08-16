@@ -116,3 +116,9 @@
 # Buttons
 --------------------------------------------------------------*/
 @import "buttons/buttons";
+
+@if variable-exists( button-primary-classes ) {
+	.button-primary {
+		@extend #{$button-primary-classes};
+	}
+}

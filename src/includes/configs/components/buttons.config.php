@@ -26,7 +26,7 @@ return array(
 		//'ubtn-font-color' => ,
 		//'ubtn-font-weight' => ,
 		//'ubtn-font-size' => ,
-		'button-primary-classes' => 'button button-glow button-rounded button-raised button-primary',
+		'button-primary-classes' => '.bgtfw-btn-raised',
 		'button-secondary-classes' => 'button button-glow button-rounded button-raised button-secondary',
 	),
 );

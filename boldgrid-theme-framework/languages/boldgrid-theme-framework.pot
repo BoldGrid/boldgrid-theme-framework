@@ -80,53 +80,53 @@ msgstr ""
 msgid "Post Comment"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:110
+#: src/includes/class-boldgrid-framework-comments.php:111
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:133
+#: src/includes/class-boldgrid-framework-comments.php:134
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:133, src/includes/partials/template-tags.php:122
+#: src/includes/class-boldgrid-framework-comments.php:134, src/includes/partials/template-tags.php:122
 msgid "Edit"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:150
+#: src/includes/class-boldgrid-framework-comments.php:151
 msgid "%s <span class=\"says\">says:</span>"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:158
+#: src/includes/class-boldgrid-framework-comments.php:159
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:163
+#: src/includes/class-boldgrid-framework-comments.php:164
 msgid "<span style=\"margin-left: 5px;\" class=\"fa fa-edit\"></span> Edit"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:168
+#: src/includes/class-boldgrid-framework-comments.php:169
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:208
+#: src/includes/class-boldgrid-framework-comments.php:209
 msgid "Name"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:214
+#: src/includes/class-boldgrid-framework-comments.php:215
 msgid "Email"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:221
+#: src/includes/class-boldgrid-framework-comments.php:222
 msgid "Website"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:231
+#: src/includes/class-boldgrid-framework-comments.php:232
 msgctxt "noun"
 msgid "Comment"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:235
+#: src/includes/class-boldgrid-framework-comments.php:236
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
 msgstr ""
 

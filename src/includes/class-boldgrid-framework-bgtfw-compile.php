@@ -52,7 +52,7 @@ class Boldgrid_Framework_Bgtfw_Compile implements Boldgrid_Framework_Compile {
 	 */
 	public function build() {
 		$css = $this->compile();
-		$this->wpfs->save( $css, $this->configs['framework']['asset_dir'] . 'css/boldgrid/boldgrid-theme-framework.css' );
+		$this->wpfs->save( $css, $this->configs['framework']['asset_dir'] . 'css/boldgrid-theme-framework.css' );
 	}
 
 	/**

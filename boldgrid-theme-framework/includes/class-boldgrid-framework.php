@@ -315,7 +315,6 @@ class BoldGrid_Framework {
 		$this->configs['directories']['BOLDGRID_THEME_VER'] = $this->configs['theme_name'];
 		$this->colors = new Boldgrid_Framework_Compile_Colors($this->configs);
 
-		var_dump($this->colors->get_scss_variables() );die;
 	}
 
 	/**

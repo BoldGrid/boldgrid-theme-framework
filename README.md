@@ -35,6 +35,7 @@ user guide for more information.
 * Bug Fix: Palettes with two of same color didn't get unique color class assigned.
 * Bug Fix: Custom classes push via configs to tagline weren't applied for live preview in customizer.
 * Bug Fix: Apply comment submit classes via PHP instead of jQuery.
+* Update: Sass.js updated to v0.9.12.
 
 ### 1.2.2 ###
 * Bug Fix: Background size not being applied to parallax backgrounds.

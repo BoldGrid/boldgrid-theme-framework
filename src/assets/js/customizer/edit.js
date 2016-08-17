@@ -243,8 +243,10 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		setTimeout( function() {
 			var focused = $( ':focus', parent.document ), initialTransition;
 
-			if ( 'boldgrid_enable_footer' === dataControl ) {
-				focused = $( api.control( dataControl ).selector, parent.document );
+			if ( 'hide_boldgrid_attribution' === dataControl ) {
+				focused = $( api.control( 'hide_boldgrid_attribution' ).selector, parent.document )
+					.add( api.control( 'hide_wordpress_attribution' ).selector, parent.document )
+					.add( api.control( 'hide_partner_attribution' ).selector, parent.document );
 			}
 
 			if ( 0 === dataControl.lastIndexOf( 'nav_menu', 0 ) ) {

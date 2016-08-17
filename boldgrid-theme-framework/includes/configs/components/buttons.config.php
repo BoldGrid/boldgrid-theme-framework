@@ -24,8 +24,8 @@ return array(
 		'ubtn-font-family' => get_theme_mod( 'body_font_family', $this->configs['customizer-options']['typography']['defaults']['body_font_family'] ),
 		//'ubtn-font-color' => ,
 		//'ubtn-font-weight' => ,
-		'ubtn-font-size' => get_theme_mod( 'body_font_family', $this->configs['customizer-options']['typography']['defaults']['body_font_family'] ),
+		'ubtn-font-size' => get_theme_mod( 'body_font_size', $this->configs['customizer-options']['typography']['defaults']['body_font_size'] ) . 'px',
 		'button-primary-classes' => '.btn, .btn-3d, .btn-primary, .btn-rounded',
-		'button-secondary-classes' => '.btn, .btn-border',
+		'button-secondary-classes' => '.btn, .btn-border, .btn-pill',
 	),
 );

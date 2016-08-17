@@ -155,8 +155,6 @@ class BoldGrid_Framework {
 			'admin',
 			'activate',
 			'api',
-			'bgtfw-compile',
-			'bootstrap-compile',
 			'comments',
 			'compile-colors',
 			'editor',
@@ -168,6 +166,7 @@ class BoldGrid_Framework {
 			'schema-markup',
 			'scripts',
 			'scss',
+			'scss-compile',
 			'search-forms',
 			'setup',
 			'social-media-icons',
@@ -445,13 +444,13 @@ class BoldGrid_Framework {
 	 */
 	private function boldgrid_theme_setup() {
 		$theme_setup = new BoldGrid_Framework_Setup( $this->configs );
-		$bootstrap_compile = new Boldgrid_Framework_Bootstrap_Compile( $this->configs );
+		$compile = new Boldgrid_Framework_Scss_Compile( $this->configs );
 
 		$this->loader->add_action( 'after_setup_theme', $theme_setup, 'boldgrid_setup' );
 
 		if ( ! empty( $this->configs['bootstrap-compile'] ) ) {
-			$this->loader->add_action( 'customize_save_after', $bootstrap_compile, 'build' );
-			$this->loader->add_action( 'after_switch_theme', $bootstrap_compile, 'build' );
+			$this->loader->add_action( 'customize_save_after', $compile, 'build' );
+			$this->loader->add_action( 'after_switch_theme', $compile, 'build' );
 		}
 
 		// TODO: Merge these standalone files into classes and our existing structure.
@@ -752,12 +751,11 @@ class BoldGrid_Framework {
 
 		$scss = new Boldgrid_Framework_SCSS( $this->configs );
 		$staging = new Boldgrid_Framework_Staging( $this->configs );
-		$bootstrap_compile = new Boldgrid_Framework_Bootstrap_Compile( $this->configs );
-		$bgtfw_compile = new Boldgrid_Framework_Bgtfw_Compile( $this->configs );
+		$compile = new Boldgrid_Framework_Scss_Compile( $this->configs );
 
 		// If the user has access, and your configuration flag is set to on.
 		if ( $auto_compile_enabled ) {
-			$this->loader->add_action( 'wp_loaded', $bgtfw_compile, 'build' );
+			$this->loader->add_action( 'wp_loaded', $compile, 'build' );
 			//$this->loader->add_action( 'wp_loaded', $bootstrap_compile, 'build' );
 			$this->loader->add_action( 'wp_loaded', $scss, 'update_css' );
 		}

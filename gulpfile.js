@@ -232,6 +232,8 @@ gulp.task( 'frameworkJs', function(  ) {
 gulp.task( 'scssDeps', function(  ) {
   // Bootstrap
   gulp.src( config.bower + '/bootstrap-sass/assets/stylesheets/**/*' )
+    .pipe( replace( /@import "bootstrap\/buttons";/, '//@import "bootstrap/buttons";' ) )
+    .pipe( replace( /@import "bootstrap\/button-groups";/, '//@import "bootstrap/button-groups";' ) )
     .pipe( gulp.dest( config.dist + '/assets/scss/bootstrap' ) );
   // Font-Awesome
   gulp.src( config.bower + '/font-awesome/scss/**/*.scss' )

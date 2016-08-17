@@ -32,8 +32,8 @@ return array(
 				'icon' => 'dashicons-edit',
 			),
 			array(
-				'control' => 'boldgrid_enable_footer',
-				'selector' => '.attribution',
+				'control' => 'hide_boldgrid_attribution',
+				'selector' => '.attribution-theme-mods',
 				'icon' => 'dashicons-edit',
 			),
 			array(

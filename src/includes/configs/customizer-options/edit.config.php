@@ -33,7 +33,7 @@ return array(
 			),
 			array(
 				'control' => 'boldgrid_enable_footer',
-				'selector' => '.attribution',
+				'selector' => '.attribution-theme-mods',
 				'icon' => 'dashicons-edit',
 			),
 			array(

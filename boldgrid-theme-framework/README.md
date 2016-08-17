@@ -36,6 +36,8 @@ user guide for more information.
 * Bug Fix: Custom classes push via configs to tagline weren't applied for live preview in customizer.
 * Bug Fix: Apply comment submit classes via PHP instead of jQuery.
 * Update: Sass.js updated to v0.9.12.
+* Bug Fix: Some themes don't have an edit button for footer attribution links.
+* Bug Fix: Let attribution links bounce on focus with customizer edit buttons.
 
 ### 1.2.2 ###
 * Bug Fix: Background size not being applied to parallax backgrounds.

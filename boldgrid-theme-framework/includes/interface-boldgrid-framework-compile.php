@@ -17,11 +17,11 @@
  */
 interface Boldgrid_Framework_Compile {
 	/**
-	 * Calls compile and save processes.
+	 * Calls compile and saves output.
 	 */
 	public function build();
 	/**
-	 * Compiles the SCSS.
+	 * Compiles the uncompiled code.
 	 */
-	public function compile();
+	public function compile( $path, $content, $variables );
 }

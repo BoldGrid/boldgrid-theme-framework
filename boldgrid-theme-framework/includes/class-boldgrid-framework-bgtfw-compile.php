@@ -51,7 +51,7 @@ class Boldgrid_Framework_Bgtfw_Compile implements Boldgrid_Framework_Compile {
 	 * @since 1.1
 	 */
 	public function build() {
-		$css = $this->compile();
+		$css = $this->compile( '@import "boldgrid-theme-framework";' );
 		$this->wpfs->save( $css, $this->configs['framework']['asset_dir'] . 'css/boldgrid-theme-framework.css' );
 	}
 
@@ -61,7 +61,7 @@ class Boldgrid_Framework_Bgtfw_Compile implements Boldgrid_Framework_Compile {
 	 * @since 1.1
 	 * @return string $compiled_scss Contains compiled SCSS code.
 	 */
-	public function compile() {
+	public function compile( $path, $content, $variables ) {
 		if ( ! class_exists( '\Leafo\ScssPhp\Compiler' ) ) {
 			require_once $this->configs['framework']['includes_dir'] . '/scssphp/scss.inc.php';
 		}
@@ -76,7 +76,7 @@ class Boldgrid_Framework_Bgtfw_Compile implements Boldgrid_Framework_Compile {
 		// Set the Variables.
 		$scss->setVariables( $variables );
 
-		$compiled_scss = $scss->compile( '@import "boldgrid-theme-framework";' );
+		$compiled_scss = $scss->compile( $content );
 
 		return $compiled_scss;
 	}

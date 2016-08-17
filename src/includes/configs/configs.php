@@ -46,17 +46,6 @@ return array(
 	),
 
 	/**
-	 * Social Media Icons as Menu Items preferences.
-	 *
-	 * @since 1.0.0
-	 */
-	'social-icons' => array(
-		'hide-text'   => true,
-		'size'        => '2x',
-		'type'        => 'icon',
-	),
-
-	/**
 	 * No Post Format Styles are required by default
 	 * Theme authors can add post formats here. Eventually post formats will be required
 	 * and can be added here

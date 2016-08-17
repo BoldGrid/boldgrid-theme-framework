@@ -13,8 +13,7 @@
 return array(
 	'enabled' => true,
 	'variables' => array(
-		'ubtn' => '.bgtfw-btn',
-		'ubtn-namespace' => '.bgtfw-btn',
+		'ubtn-namespace' => '.btn',
 		'ubtn-glow-namespace' => '.glow',
 		//'ubtn-colors' => ,
 		'ubtn-glow-color' => '#2c9adb, light blue',
@@ -26,7 +25,7 @@ return array(
 		//'ubtn-font-color' => ,
 		//'ubtn-font-weight' => ,
 		//'ubtn-font-size' => ,
-		'button-primary-classes' => '.bgtfw-btn-raised',
-		'button-secondary-classes' => 'button button-glow button-rounded button-raised button-secondary',
+		'button-primary-classes' => '.btn .btn-border',
+		'button-secondary-classes' => '.btn .btn-border',
 	),
 );

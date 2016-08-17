@@ -71,12 +71,10 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 	public function build_bgtfw() {
 		$dir = $this->configs['framework']['asset_dir'];
 		$variables = array();
-		if ( $this->configs['bootstrap'] ) {
-			// BoldGrid specific variables to have available during compile.
-			$color_variables = $this->colors->get_scss_variables();
-			// Variables to assign before compile.
-			$variables = array_merge( $color_variables, $this->configs['components']['buttons']['variables'] );
-		}
+		// BoldGrid specific variables to have available during compile.
+		$color_variables = $this->colors->get_scss_variables();
+		// Variables to assign before compile.
+		$variables = array_merge( $color_variables, $this->configs['components']['buttons']['variables'] );
 		// Compile.
 		$css = $this->compile( $dir . 'scss/', '@import "boldgrid-theme-framework";', $variables );
 		// Save.

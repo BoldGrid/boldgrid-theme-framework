@@ -95,8 +95,8 @@ class Boldgrid_Framework_Compile_Colors {
 	public function get_neutral_color() {
 		$neutral_color = false;
 		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
-		if ( null !== $palettes ) {
-			$current_palette = $palettes['state']['active-palette'];
+		$current_palette = $palettes['state']['active-palette'];
+		if ( null !== $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) {
 			$neutral_color = array(
 				$palettes['state']['active-palette'] . '-neutral-color' => $palettes['state']['palettes'][ $current_palette ]['neutral-color'],
 			);
@@ -208,5 +208,31 @@ class Boldgrid_Framework_Compile_Colors {
 		}
 
 		return $text_contrast_colors;
+	}
+
+	/**
+	 * Get Button Colors to Compile.
+	 *
+	 * @since 1.1
+	 * @return array $boldgrid_colors Array containing SCSS variable name.
+	 */
+	public static function get_button_colors() {
+		$boldgrid_colors = '';
+		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
+
+		if ( null !== $palettes ) {
+			$current_palette = $palettes['state']['active-palette'];
+			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
+			$i = 0;
+
+			foreach ( $colors as $color ) {
+				$i++;
+				$boldgrid_colors .= '("color-' . $i . '" $' . $current_palette . '_' . $i . ' $text-contrast-' . $current_palette . '_' . $i . ')';
+			}
+		}
+		if ( null !== $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) {
+			$boldgrid_colors .= '("neutral-color" $' . $current_palette . '-neutral-color $text-contrast-' . $current_palette . '-neutral-color)';
+		}
+		return $boldgrid_colors;
 	}
 }

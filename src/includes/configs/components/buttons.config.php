@@ -15,7 +15,7 @@ return array(
 	'variables' => array(
 		'ubtn-namespace' => '.btn',
 		'ubtn-glow-namespace' => '.glow',
-		//'ubtn-colors' => ,
+		'ubtn-colors' => Boldgrid_Framework_Compile_Colors::get_button_colors(),
 		'ubtn-glow-color' => '#2c9adb, light blue',
 		//'ubtn-shapes' =>,
 		//'ubtn-sizes' => ,
@@ -23,9 +23,9 @@ return array(
 		//'ubtn-height' => ,
 		'ubtn-font-family' => 'inherit',
 		//'ubtn-font-color' => ,
-		//'ubtn-font-weight' => ,
+		'ubtn-font-weight' => 'inherit',
 		'ubtn-font-size' => 'inherit',
-		'button-primary-classes' => '.btn, .btn-3d, .btn-primary, .btn-rounded',
+		'button-primary-classes' => '.btn, .btn-3d, .btn-color-1, .btn-rounded',
 		'button-secondary-classes' => '.btn, .btn-border, .btn-pill',
 	),
 );

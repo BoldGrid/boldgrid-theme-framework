@@ -228,7 +228,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'choices'  => kirki_Fonts::get_font_choices(),
 				'output'   => array(
 					array(
-						'element'  => 'p, .site-content, .site-footer',
+						'element'  => 'body, p, .site-content, .site-footer',
 						'property' => 'font-family',
 					),
 				),
@@ -248,7 +248,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				),
 				'output' => array(
 					array(
-						'element'  => 'p, .site-content, .site-footer',
+						'element'  => 'body, p, .site-content, .site-footer',
 						'property' => 'font-size',
 						'units'    => 'px',
 					),
@@ -269,7 +269,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				),
 				'output' => array(
 					array(
-						'element'  => 'p, .site-content, .site-footer',
+						'element'  => 'body, p, .site-content, .site-footer',
 						'property' => 'line-height',
 						'units'    => '%',
 					),

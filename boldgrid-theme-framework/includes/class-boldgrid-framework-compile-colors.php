@@ -232,10 +232,11 @@ class Boldgrid_Framework_Compile_Colors {
 				$i++;
 				$boldgrid_colors .= '("color-' . $i . '" $' . $current_palette . '_' . $i . ' $text-contrast-' . $current_palette . '_' . $i . ')';
 			}
+			if ( null !== $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) {
+				$boldgrid_colors .= '("neutral-color" $' . $current_palette . '-neutral-color $text-contrast-' . $current_palette . '-neutral-color)';
+			}
 		}
-		if ( null !== $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) {
-			$boldgrid_colors .= '("neutral-color" $' . $current_palette . '-neutral-color $text-contrast-' . $current_palette . '-neutral-color)';
-		}
+
 		return $boldgrid_colors;
 	}
 }

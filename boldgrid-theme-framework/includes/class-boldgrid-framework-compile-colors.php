@@ -119,7 +119,10 @@ class Boldgrid_Framework_Compile_Colors {
 		$active_palette = array(
 			'colors' => self::get_color_list(),
 		);
-		$color_variables = array_merge( $active_palette, $text_colors, self::get_active_palette(), self::get_text_contrast() );
+		$btn_variables = array(
+			'ubtn-colors' => self::get_button_colors(),
+		);
+		$color_variables = array_merge( $active_palette, $text_colors, self::get_active_palette(), self::get_text_contrast(), $btn_variables );
 		return $color_variables;
 	}
 

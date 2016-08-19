@@ -59,6 +59,7 @@ class Boldgrid_Framework_Customizer_Colors {
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
+		$this->colors = new Boldgrid_Framework_Compile_Colors( $this->configs );
 	}
 
 	/**
@@ -583,6 +584,11 @@ HTML;
 			array(
 				'WorkerUrl' => $this->configs['framework']['js_dir'] . 'sass-js/sass.worker.js',
 				'ScssFormatFileContents' => $scss->get_precompile_content(),
+				'ButtonVariables' => $this->colors->get_scss_variables(),
+				'ButtonExtends' => array(
+					'primary' => $this->configs['components']['buttons']['variables']['button-primary-classes'],
+					'secondary' => $this->configs['components']['buttons']['variables']['button-secondary-classes'],
+				),
 				'output_css_filename' => self::get_colors_uri( $this->configs ),
 			)
 		);

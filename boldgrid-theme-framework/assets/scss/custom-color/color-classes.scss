@@ -55,3 +55,78 @@ $names: color background background-color border;
 		.color#{$color}-#{nth($names, $i)}-hover:hover { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
 	}
 }
+/*
+* Base Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+@each $ubtn-color in $ubtn-colors {
+  $ubtn-name: nth($ubtn-color, 1);
+  $ubtn-background: nth($ubtn-color, 2);
+  $ubtn-color: nth($ubtn-color, 3);
+
+  // Crete class for .button-primary
+  // and legacy flat .button-primary-flat
+  .btn-#{$ubtn-name},
+  .btn-#{$ubtn-name}-flat {
+    background-color: $ubtn-background;
+    border-color: $ubtn-background;
+    color: $ubtn-color;
+
+    &:visited {
+      color: $ubtn-color;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: lighten($ubtn-background, 10%);
+      border-color: lighten($ubtn-background, 10%);
+      color: $ubtn-color;
+    }
+
+    &:active,
+    &.active,
+    &.is-active {
+      background-color: desaturate($ubtn-background, 10%);
+      border-color: desaturate($ubtn-background, 10%);
+      color: darken($ubtn-background, 10%);
+    }
+  }
+}
+/*
+* 3D Button Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.btn-3d {
+	@each $ubtn-color in $ubtn-colors {
+		$ubtn-name: nth($ubtn-color, 1);
+		$ubtn-background: nth($ubtn-color, 2);
+		$ubtn-color: nth($ubtn-color, 3);
+		$ubtn-color-namespace: '.btn-' + $ubtn-name;
+		// .button-border-primary .button-border-action etc.
+		&#{$ubtn-color-namespace} {
+			box-shadow: 0 7px 0 darken($ubtn-background, 10%), 0 8px 3px rgba(0, 0, 0, .30);
+			&:hover, &:focus {
+				box-shadow: 0 7px 0 darken($ubtn-background, 12%), 0 8px 3px rgba(0, 0, 0, .30);
+			}
+			&:active, &.active, &.is-active {
+				box-shadow: 0 2px 0 darken($ubtn-background, 20%), 0 3px 3px rgba(0, 0, 0, .2);
+			}
+		}
+	}
+}
+
+@if variable-exists( button-primary-classes ) {
+	.button-primary {
+		@extend #{$button-primary-classes} !optional;
+	}
+}
+
+@if variable-exists( button-secondary-classes ) {
+	.button-secondary {
+		@extend #{$button-secondary-classes} !optional;
+	}
+}

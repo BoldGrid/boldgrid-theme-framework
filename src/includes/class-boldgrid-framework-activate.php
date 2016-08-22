@@ -192,6 +192,6 @@ class Boldgrid_Framework_Activate {
 	 * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
 	 */
 	public function register_required_plugins() {
-		tgmpa( $plugins, $tgm_configs );
+		tgmpa( $this->configs['tgm']['plugins'], $this->configs['tgm']['configs'] );
 	}
 }

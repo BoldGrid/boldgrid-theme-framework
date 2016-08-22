@@ -10,31 +10,31 @@ return array(
 		array(
 			'name'      => 'BoldGrid Inspirations',
 			'slug'      => 'boldgrid-inspirations',
-			'source'    => 'https://github.com/BoldGrid/boldgrid-inspirations/archive/master.zip',
+			'source'    => 'https://repo.boldgrid.com/boldgrid-inspirations.zip',
 			'required'  => true, // If false, the plugin is only 'recommended' instead of required.
 		),
 		array(
 			'name'      => 'BoldGrid Editor',
 			'slug'      => 'boldgrid-editor',
-			'source'    => 'https://github.com/BoldGrid/boldgrid-editor/archive/master.zip',
+			'source'    => 'https://repo.boldgrid.com/boldgrid-editor.zip',
 			'required'  => true, // If false, the plugin is only 'recommended' instead of required.
 		),
 		array(
 			'name'      => 'BoldGrid Gallery',
 			'slug'      => 'boldgrid-gallery',
-			'source'    => 'https://github.com/BoldGrid/boldgrid-gallery/archive/master.zip',
+			'source'    => 'https://repo.boldgrid.com/boldgrid-gallery.zip',
 			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
 		),
 		array(
 			'name'      => 'BoldGrid SEO',
 			'slug'      => 'boldgrid-seo',
-			'source'    => 'https://github.com/BoldGrid/boldgrid-seo/archive/master.zip',
+			'source'    => 'https://repo.boldgrid.com/prettyview/boldgrid-seo.zip',
 			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
 		),
 		array(
 			'name'      => 'BoldGrid Staging',
 			'slug'      => 'boldgrid-staging',
-			'source'    => 'https://github.com/BoldGrid/boldgrid-staging/archive/master.zip',
+			'source'    => 'https://repo.boldgrid.com/boldgrid-staging.zip',
 			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
 		),
 	),

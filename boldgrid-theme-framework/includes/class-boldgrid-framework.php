@@ -231,9 +231,7 @@ class BoldGrid_Framework {
 	 * @access   public
 	 */
 	public function assign_configurations() {
-
 		$this->configs = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/configs.php';
-
 		// Based on the configs already assigned, set config values to help assign later values.
 		$this->assign_dynamic_configs();
 		// Assign configs.
@@ -398,7 +396,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'boldgrid_framework_reset', $activate, 'reset' );
 		$this->loader->add_action( 'wp_ajax_boldgrid_reset_theme_mods', $activate, 'undo_theme_mod_transfer' );
 
-		if ( true === $this->configs['framework']['tgm_activation'] ) {
+		if ( true === $this->configs['tgm']['enabled'] ) {
 			$this->loader->add_action( 'tgmpa_register', $activate, 'register_required_plugins' );
 		}
 

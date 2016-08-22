@@ -233,6 +233,7 @@ class BoldGrid_Framework {
 
 		$this->configs['tooltips'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/tooltips.config.php';
 		$this->configs['menu'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/menu.config.php';
+		$this->configs['tgm'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/tgm.config.php';
 		$this->configs['action'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/action.config.php';
 		$this->configs['template'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/template.config.php';
 		$this->configs['widget'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/widget.config.php';

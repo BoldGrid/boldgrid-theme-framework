@@ -233,6 +233,7 @@ class BoldGrid_Framework {
 
 		$this->configs['tooltips'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/tooltips.config.php';
 		$this->configs['menu'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/menu.config.php';
+		$this->configs['tgm'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/tgm.config.php';
 		$this->configs['action'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/action.config.php';
 		$this->configs['template'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/template.config.php';
 		$this->configs['widget'] = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/widget.config.php';
@@ -402,7 +403,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'boldgrid_framework_reset', $boldgrid_framework_activate, 'reset' );
 		$this->loader->add_action( 'wp_ajax_boldgrid_reset_theme_mods', $boldgrid_framework_activate, 'undo_theme_mod_transfer' );
 
-		if ( true === $this->configs['framework']['tgm_activation'] ) {
+		if ( true === $this->configs['tgm']['enabled'] ) {
 			$this->loader->add_action( 'tgmpa_register', $boldgrid_framework_activate, 'register_required_plugins' );
 		}
 

@@ -402,7 +402,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'boldgrid_framework_reset', $boldgrid_framework_activate, 'reset' );
 		$this->loader->add_action( 'wp_ajax_boldgrid_reset_theme_mods', $boldgrid_framework_activate, 'undo_theme_mod_transfer' );
 
-		if ( true === $this->configs['framework']['tgm_activation'] ) {
+		if ( true === $this->configs['tgm']['enabled'] ) {
 			$this->loader->add_action( 'tgmpa_register', $boldgrid_framework_activate, 'register_required_plugins' );
 		}
 

@@ -28,7 +28,7 @@ return array(
 		array(
 			'name'      => 'BoldGrid SEO',
 			'slug'      => 'boldgrid-seo',
-			'source'    => 'https://repo.boldgrid.com/prettyview/boldgrid-seo.zip',
+			'source'    => 'https://repo.boldgrid.com/boldgrid-seo.zip',
 			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
 		),
 		array(

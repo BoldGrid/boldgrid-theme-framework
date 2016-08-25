@@ -577,7 +577,7 @@ class BoldGrid {
 				}
 			} else {
 				// Run the conditional provided.
-				$conditions[] = $condition();
+				$conditions[] = ! function_exists( $condition ) ? : $condition();
 			}
 		}
 

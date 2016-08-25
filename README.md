@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.2.4 ###
+* Bug Fix: Allow page templates to define the <main> element's container classes.
+
 ### 1.2.3 ###
 * New Feature: Added SnapChat social media icons.
 * Update: Added some default styles to BGTFW components.

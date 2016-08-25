@@ -48,7 +48,7 @@
 }
 
 /*create single css classes to apply palettes on universal elements*/
-$names: color background background-color border;
+$names: color background background-color border-color;
 @for $i from 1 through length( $names ) {
 	@for $color from 1 through length( $colors ) {
 		.color#{$color}-#{nth( $names, $i )} { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }

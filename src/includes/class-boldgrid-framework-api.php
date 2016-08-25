@@ -215,6 +215,9 @@ class BoldGrid {
 			if ( is_single() || is_archive() || is_search() || ( is_front_page() && is_home() ) ) {
 				$class = $configs[ 'template' ][ 'pages' ][ 'blog' ];
 			}
+			if ( ! empty( $configs['template']['pages'][ $template ]['main'] ) ) {
+				$class .= $configs['template']['pages'][ $template ]['main'];
+			}
 		}
 
 		print $class;

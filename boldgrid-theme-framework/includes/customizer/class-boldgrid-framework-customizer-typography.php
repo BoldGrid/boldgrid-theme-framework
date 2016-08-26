@@ -139,6 +139,29 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
+	 * Set the typography configs to the theme mods.
+	 *
+	 * @since 1.2.4
+	 *
+	 * @param array $framework_configs.
+	 *
+	 * @return array $framework_configs.
+	 */
+	public function set_configs( $framework_configs ) {
+		$configs = $framework_configs['customizer-options']['typography']['defaults'];
+
+		$heading_font_family = get_theme_mod( 'heading_font_family', $configs['headings_font_family'] );
+		$alt_font_family = get_theme_mod( 'alternate_headings_font_family', $configs['alternate_headings_font_family'] );
+		$body_font_family = get_theme_mod( 'body_font_family', $configs['body_font_family'] );
+
+		$framework_configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'] = $alt_font_family;
+		$framework_configs['customizer-options']['typography']['defaults']['body_font_family'] = $body_font_family;
+		$framework_configs['customizer-options']['typography']['defaults']['headings_font_family'] = $heading_font_family;
+
+		return $framework_configs;
+	}
+
+	/**
 	 * Add the Headings Typography Controls to the WordPress Customizer.
 	 *
 	 * @since     1.0.0

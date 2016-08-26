@@ -148,7 +148,7 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @return array $framework_configs.
 	 */
 	public function set_configs( $framework_configs ) {
-		$configs = $this->configs['customizer-options']['typography']['defaults'];
+		$configs = $framework_configs['customizer-options']['typography']['defaults'];
 
 		$heading_font_family = get_theme_mod( 'heading_font_family', $configs['headings_font_family'] );
 		$alt_font_family = get_theme_mod( 'alternate_headings_font_family', $configs['alternate_headings_font_family'] );

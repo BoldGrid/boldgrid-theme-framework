@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.2.4 ###
 * Bug Fix: Allow page templates to define the <main> element's container classes.
+* Bug Fix: Add font family classes to framework.
 
 ### 1.2.3 ###
 * New Feature: Added SnapChat social media icons.

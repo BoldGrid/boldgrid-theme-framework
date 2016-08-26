@@ -425,6 +425,29 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
+	 * Classes that represent the font families chosen for theme.
+	 *
+	 * @since 1.2.4
+	 *
+	 * @return string css.
+	 */
+	public function create_font_classes() {
+		$configs = $this->configs['customizer-options']['typography']['defaults'];
+		$heading_font_family = get_theme_mod( 'heading_font_family', $configs['headings_font_family'] );
+		$alt_font_family = get_theme_mod( 'alternate_headings_font_family', $configs['alternate_headings_font_family'] );
+		$menu_font_family = get_theme_mod( 'navigation_primary_font_family', $configs['navigation_font_family'] );
+		$body_font_family = get_theme_mod( 'body_font_family', $configs['body_font_family'] );
+
+		$css = '';
+		$css .= ".bg-font-family-menu { font-family: $menu_font_family !important }";
+		$css .= ".bg-font-family-body { font-family: $body_font_family !important }";
+		$css .= ".bg-font-family-alt { font-family: $alt_font_family !important }";
+		$css .= ".bg-font-family-heading { font-family: $heading_font_family !important }";
+
+		return $css;
+	}
+
+	/**
 	 * Heading size based on Bootstrap's LESS implementation.
 	 *
 	 * @since 1.0.0
@@ -443,7 +466,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		$alt_font_family = get_theme_mod( 'alternate_headings_font_family', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'] );
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 		?>
-		<style type="text/css">
+		<style id="boldgrid-custom-fonts" type="text/css">
 		<?php
 		foreach ( $selectors as $selector => $options ) {
 			$base = $font_size_base;
@@ -462,6 +485,9 @@ class Boldgrid_Framework_Customizer_Typography {
 				print $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; font-family:' . $family . ';}';
 			}
 		}
+
+		print $this->create_font_classes();
+
 		?>
 			blockquote, blockquote p, .mod-blockquote { font-size: <?php print $blockquote; ?>px; }
 		</style>
@@ -513,6 +539,9 @@ class Boldgrid_Framework_Customizer_Typography {
 				$content .= $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; font-family:' . $family . '; }';
 			}
 		}
+
+		$content .= $this->create_font_classes();
+
 
 		return $content;
 	}

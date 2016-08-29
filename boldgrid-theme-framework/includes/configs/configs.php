@@ -45,6 +45,20 @@ return array(
 	),
 
 	/**
+	 * Features that are required for other plugins features.
+	 *
+	 * Example: The BoldGrid Editor Plugin checks for theme-fonts-classes feature before
+	 * allowing a user to select a theme font.
+	 *
+	 * @since 1.2.4
+	 */
+	'supported-features' => array(
+		'border-color-classes',
+		'theme-fonts-classes',
+		'variable-containers'
+	),
+
+	/**
 	 * Social Media Icons as Menu Items preferences.
 	 *
 	 * @since 1.0.0

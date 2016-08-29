@@ -30,6 +30,7 @@ user guide for more information.
 * Bug Fix: Allow page templates to define the <main> element's container classes.
 * Bug Fix: Add font family classes to framework.
 * Bug Fix: Check if function exists before display_sidebar fires.
+* New Feature: Allow all WordPress conditionals to be used in display_sidebar.
 
 ### 1.2.3 ###
 * New Feature: Added SnapChat social media icons.

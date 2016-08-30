@@ -228,10 +228,6 @@ HTML;
 		if ( $wp_customize->get_section( 'static_front_page' ) ) {
 			$wp_customize->get_section( 'static_front_page' )->panel    = 'boldgrid_other';
 		}
-		// Move Static Front page to the Other Section.
-		if ( $wp_customize->get_panel( 'widgets' ) ) {
-			$wp_customize->get_panel( 'widgets' )->title    = 'Header/Footer Widgets';
-		}
 
 		// Rename Site Identity to Site Title & Logo.
 		$wp_customize->get_section( 'title_tagline' )->title    = 'Site Title & Logo';

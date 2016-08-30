@@ -215,6 +215,9 @@ class BoldGrid {
 			if ( is_single() || is_archive() || is_search() || ( is_front_page() && is_home() ) ) {
 				$class = $configs[ 'template' ][ 'pages' ][ 'blog' ];
 			}
+			if ( ! empty( $configs['template']['pages'][ $template ]['main'] ) ) {
+				$class .= $configs['template']['pages'][ $template ]['main'];
+			}
 		}
 
 		print $class;
@@ -557,24 +560,28 @@ class BoldGrid {
 		$conditions = $configs['template']['sidebar'];
 
 		foreach ( $conditions as $condition ) {
-			// Check for specific page templates being provided.
-			if ( strpos( $condition, 'is_page_template' ) !== false ) {
-				// Split [page_template]is_page_template to useable strings.
-				preg_match( '/^\[.*\]/', $condition, $matches );
-				$type = ! empty( $matches[0] ) ? $matches[0] : null;
-				$name = str_ireplace( $type, '', $condition );
-				$param = str_replace( array( '[', ']' ), '', $type );
-				switch ( $param ) {
-					case 'default' :
-						// Test for default page template.
-						$conditions[] = is_page() && ! is_page_template();
-					default :
-						// Otherwise use the param provided.
-						$conditions[] = is_page_template( $param );
-				}
-			} else {
-				// Run the conditional provided.
-				$conditions[] = $condition();
+			// Split [params]method to useable strings.
+			preg_match( '/^\[.*\]/', $condition, $matches );
+			$type = ! empty( $matches[0] ) ? $matches[0] : null;
+			$name = str_ireplace( $type, '', $condition );
+			$param = str_replace( array( '[', ']' ), '', $type );
+			$is_page_template = ( strpos( $condition, 'is_page_template' ) !== false );
+			switch ( $param ) {
+				// Use [parameter]condition as condition( 'parameter' ).
+				case( preg_match( '/^\[.*\]/', $condition ) && ! $is_page_template ) :
+					$conditions[] = ! function_exists( $condition ) ? : $condition( $param );
+					break;
+				// Use [default]is_page_template as is_page() && ! is_page_template().
+				case ( $is_page_template && 'default' ) :
+					$conditions[] = is_page() && ! is_page_template();
+					break;
+				// Use [specific-template.php]is_page_template as is_page_template('specific-template.php').
+				case ( $is_page_template ) :
+					$conditions[] = is_page_template( $param );
+					break;
+				// No params found, so run a basic conditional.
+				default :
+					$conditions[] = ! function_exists( $condition ) ? : $condition();
 			}
 		}
 

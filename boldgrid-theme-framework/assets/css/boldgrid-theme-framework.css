@@ -1,42 +1,53 @@
 /*--------------------------------------------------------------
- >>> TABLE OF CONTENTS:
- ----------------------------------------------------------------
- # Base Elements
- # BoldGrid Bootstrap Additions
- # Customizer Styles
- ## Widget Overlays
- ## Help Panel Overlay
- # BoldGrid Core Styles
- # Site Title
- # BoldGrid Navigation
- # Widgets
- ## Default Widget Styles
- # Ninja Forms
- # Comments
- # 404 Pages
- # Editor Styles
- # Footer
- ## Disabled Footer Defaults
- # GridBlocks
- # Modules
- # Utility Classes & Helpers
- ## BoldGrid Color Utilities
- ## Bootstrap Utilities
- ## Bootstrap Responsive Utilities
- */
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Base Elements
+# BoldGrid Bootstrap Additions
+# Customizer Styles
+	## Widget Overlays
+	## Help Panel Overlay
+# BoldGrid Core Styles
+	# Site Title
+	# BoldGrid Navigation
+	# Widgets
+		## Default Widget Styles
+	# Ninja Forms
+	# Comments
+	# 404 Pages
+	# Editor Styles
+	# Footer
+		## Disabled Footer Defaults
+# GridBlocks
+# Modules
+# Utility Classes & Helpers
+	## BoldGrid Color Utilities
+	## Bootstrap Utilities
+	## Bootstrap Responsive Utilities
+*/
 /*--------------------------------------------------------------
- # Base Elements
- --------------------------------------------------------------*/
+# Base Elements
+--------------------------------------------------------------*/
 /* Removes Blue Box in Chrome */
 *:focus {
   outline: 0; }
+
 /*--------------------------------------------------------------
- # BoldGrid Bootstrap Additions
- --------------------------------------------------------------*/
-.entry-content .row, .entry-content .col-xs-1, .entry-content .col-xs-2, .entry-content .col-xs-3, .entry-content .col-xs-4, .entry-content .col-xs-5, .entry-content .col-xs-6, .entry-content .col-xs-7, .entry-content .col-xs-8, .entry-content .col-xs-9, .entry-content .col-xs-10, .entry-content .col-xs-11, .entry-content .col-xs-12, .entry-content .col-sm-1, .entry-content .col-sm-2, .entry-content .col-sm-3, .entry-content .col-sm-4, .entry-content .col-sm-5, .entry-content .col-sm-6, .entry-content .col-sm-7, .entry-content .col-sm-8, .entry-content .col-sm-9, .entry-content .col-sm-10, .entry-content .col-sm-11, .entry-content .col-sm-12, .entry-content .col-md-1, .entry-content .col-md-2, .entry-content .col-md-3, .entry-content .col-md-4, .entry-content .col-md-5, .entry-content .col-md-6, .entry-content .col-md-7, .entry-content .col-md-8, .entry-content .col-md-9, .entry-content .col-md-10, .entry-content .col-md-11, .entry-content .col-md-12 {
+# BoldGrid Bootstrap Additions
+--------------------------------------------------------------*/
+.entry-content .row,
+.entry-content .col-xs-1, .entry-content .col-xs-2, .entry-content .col-xs-3, .entry-content .col-xs-4, .entry-content .col-xs-5, .entry-content .col-xs-6,
+.entry-content .col-xs-7, .entry-content .col-xs-8, .entry-content .col-xs-9, .entry-content .col-xs-10, .entry-content .col-xs-11, .entry-content .col-xs-12,
+.entry-content .col-sm-1, .entry-content .col-sm-2, .entry-content .col-sm-3, .entry-content .col-sm-4, .entry-content .col-sm-5, .entry-content .col-sm-6,
+.entry-content .col-sm-7, .entry-content .col-sm-8, .entry-content .col-sm-9, .entry-content .col-sm-10, .entry-content .col-sm-11,
+.entry-content .col-sm-12, .entry-content .col-md-1, .entry-content .col-md-2, .entry-content .col-md-3, .entry-content .col-md-4, .entry-content .col-md-5,
+.entry-content .col-md-6, .entry-content .col-md-7, .entry-content .col-md-8, .entry-content .col-md-9, .entry-content .col-md-10, .entry-content .col-md-11, .entry-content .col-md-12 {
   min-height: 30px; }
 
-.entry-content .row .row, .entry-content .row .row [class*="col-xs"], .entry-content .row .row [class*="col-sm"], .entry-content .row .row [class*="col-md"], .entry-content .row .row [class*="col-lg"] {
+.entry-content .row .row,
+.entry-content .row .row [class*="col-xs"],
+.entry-content .row .row [class*="col-sm"],
+.entry-content .row .row [class*="col-md"],
+.entry-content .row .row [class*="col-lg"] {
   min-height: 15px; }
 
 .entry-content .row > * {
@@ -49,8 +60,9 @@
 .entry-content .row {
   display: flex;
   flex-wrap: wrap; }
-  .entry-content .row:before, .entry-content .row:after {
-    width: 0; }
+
+.entry-content .row:before, .entry-content .row:after {
+  width: 0; }
 
 .full-width-column {
   padding: 0px; }
@@ -58,11 +70,13 @@
 .row {
   margin: auto; }
 
-.container .row, .container-fluid .row {
+.container .row,
+.container-fluid .row {
   margin-right: -15px;
   margin-left: -15px; }
 
-.container-fluid .boldgrid-section, .container-fluid .boldgrid-section-group {
+.container-fluid .boldgrid-section,
+.container-fluid .boldgrid-section-group {
   margin-left: -15px;
   margin-right: -15px; }
 
@@ -73,12 +87,13 @@
   width: auto !important;
   padding-left: 0px;
   padding-right: 0px; }
+
 /*--------------------------------------------------------------
- # Customizer Styles
- --------------------------------------------------------------*/
+# Customizer Styles
+--------------------------------------------------------------*/
 /*--------------------------------------------------------------
- # Widget Overlays
- --------------------------------------------------------------*/
+# Widget Overlays
+--------------------------------------------------------------*/
 #boldgrid-widget-area-overlay {
   display: table;
   vertical-align: middle;
@@ -90,30 +105,34 @@
   padding: 5px;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 5px;
-  box-shadow: 0 0 15px 5px rgba(33, 117, 155, 1);
+  box-shadow: 0 0 15px 5px #21759b;
   position: absolute; }
-  #boldgrid-widget-area-overlay:before {
-    content: "";
-    height: 25%; }
-  #boldgrid-widget-area-overlay h2 {
-    display: table-cell;
-    vertical-align: middle;
-    font-family: "Arial Black", Gadget, sans-serif !important;
-    font-size: 24px;
-    color: #333 !important; }
-  #boldgrid-widget-area-overlay.empty-widget-area {
-    box-shadow: 0 0 15px 5px #d54e21;
-    background-color: rgba(255, 166, 166, 0.7); }
+
+#boldgrid-widget-area-overlay:before {
+  content: "";
+  height: 25%; }
+
+#boldgrid-widget-area-overlay h2 {
+  display: table-cell;
+  vertical-align: middle;
+  font-family: "Arial Black", Gadget, sans-serif !important;
+  font-size: 24px;
+  color: #333 !important; }
+
+#boldgrid-widget-area-overlay.empty-widget-area {
+  box-shadow: 0 0 15px 5px #d54e21;
+  background-color: rgba(255, 166, 166, 0.7); }
+
 /*--------------------------------------------------------------
- # Help Panel Overlay
- --------------------------------------------------------------*/
+# Help Panel Overlay
+--------------------------------------------------------------*/
 .overlay-help {
   position: fixed;
   top: 0px;
   left: 0px;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 9999;
   min-width: 900px; }
 
@@ -124,41 +143,48 @@
   max-width: 1700px;
   left: 0;
   right: 0; }
-  .overlay-help-inside img {
-    margin: 0 auto;
-    display: block; }
-  .overlay-help-inside .button {
-    margin: 10px;
-    display: none; }
+
+.overlay-help-inside img {
+  margin: 0 auto;
+  display: block; }
+
+.overlay-help-inside .button {
+  margin: 10px;
+  display: none; }
 
 #boldgrid-customizer-overlay-help {
   display: none; }
-  #boldgrid-customizer-overlay-help .overlay-help-text {
-    font-family: "Open Sans", sans-serif !important;
-    color: black !important; }
-  #boldgrid-customizer-overlay-help .overlay-help-text h2 {
-    font-family: "Open Sans", sans-serif !important;
-    color: black !important;
-    padding: 0px;
-    margin: 10px 0;
-    font-size: 24px; }
+
+#boldgrid-customizer-overlay-help .overlay-help-text {
+  font-family: "Open Sans",sans-serif !important;
+  color: black !important; }
+
+#boldgrid-customizer-overlay-help .overlay-help-text h2 {
+  font-family: "Open Sans",sans-serif !important;
+  color: black !important;
+  padding: 0px;
+  margin: 10px 0;
+  font-size: 24px; }
 
 .overlay-help-text {
   padding: 5px;
   padding-left: 40px;
   background-color: #ddd; }
-  .overlay-help-text #close-help-popup {
-    cursor: pointer;
-    color: #dd4b39;
-    opacity: 0.8;
-    margin-top: 5px;
-    margin-right: 15px; }
-  .overlay-help-text #close-help-popup:hover {
-    opacity: 1; }
-  .overlay-help-text p {
-    max-width: 660px;
-    font-size: 14px;
-    color: #000 !important; }
+
+.overlay-help-text #close-help-popup {
+  cursor: pointer;
+  color: #dd4b39;
+  opacity: .8;
+  margin-top: 5px;
+  margin-right: 15px; }
+
+.overlay-help-text #close-help-popup:hover {
+  opacity: 1; }
+
+.overlay-help-text p {
+  max-width: 660px;
+  font-size: 14px;
+  color: #000000 !important; }
 
 @media (min-width: 900px) {
   .overlay-help-inside {
@@ -167,7 +193,6 @@
     margin-right: 120px;
     left: 0;
     right: 0; }
-
   .overlay-help-inside .button {
     display: inline; } }
 
@@ -178,29 +203,33 @@
     margin-right: 0px;
     left: 0;
     right: 0; } }
+
 /*--------------------------------------------------------------
- # BoldGrid Core Styles
- --------------------------------------------------------------*/
+# BoldGrid Core Styles
+--------------------------------------------------------------*/
 /*--------------------------------------------------------------
- ## Site Title
- --------------------------------------------------------------*/
+## Site Title
+--------------------------------------------------------------*/
 .site-title a.logo-site-title {
   background: none !important;
   padding: 0px; }
+
 /*--------------------------------------------------------------
- # BoldGrid Navigation
- --------------------------------------------------------------*/
+# BoldGrid Navigation
+--------------------------------------------------------------*/
 .boldgrid-framework-menu {
   background-color: white;
   padding: 5px; }
-  .boldgrid-framework-menu ul {
-    padding: 0px 10px;
-    margin-top: 12px; }
+
+.boldgrid-framework-menu ul {
+  padding: 0px 10px;
+  margin-top: 12px; }
 
 .footer-center-items li:after, .boldgrid-framework-menu li:after {
   content: " | "; }
-  .footer-center-items li:last-of-type:after, .boldgrid-framework-menu li:last-of-type:after {
-    content: ""; }
+
+.footer-center-items li:last-of-type:after, .boldgrid-framework-menu li:last-of-type:after {
+  content: ""; }
 
 .footer-center-menu li, .boldgrid-framework-menu li {
   list-style: none;
@@ -210,12 +239,13 @@
 .footer-center-items li a[href="#"]:hover, .footer-center-items li a[href="#"], .footer-center-items li a:not([href]) {
   text-decoration: none;
   cursor: text; }
+
 /*--------------------------------------------------------------
- # Widgets
- --------------------------------------------------------------*/
+# Widgets
+--------------------------------------------------------------*/
 /*--------------------------------------------------------------
- # Default Widget Styles
- --------------------------------------------------------------*/
+# Default Widget Styles
+--------------------------------------------------------------*/
 select[name="archive-dropdown"] {
   width: auto; }
 
@@ -225,13 +255,15 @@ select[name="archive-dropdown"] {
 
 .widget.well {
   color: #333; }
-  .widget.well a, .widget.well .site-info a {
-    color: #333; }
+
+.widget.well a, .widget.well .site-info a {
+  color: #333; }
 
 .boldgrid-widget .widget-title {
   display: none; }
-  .boldgrid-widget.widget {
-    margin: 0; }
+
+.boldgrid-widget.widget {
+  margin: 0; }
 
 .empty-sidebar-message {
   display: inline-block; }
@@ -239,86 +271,107 @@ select[name="archive-dropdown"] {
 @media only screen and (min-width: 992px) {
   .empty-sidebar-message {
     padding-top: 25%; } }
+
 /*--------------------------------------------------------------
- # Ninja Forms
- --------------------------------------------------------------*/
+# Ninja Forms
+--------------------------------------------------------------*/
 .ninja-forms-response-msg:empty {
   display: none; }
-  .ninja-forms-response-msg.alert-success p {
-    color: #3c763d; }
+
+.ninja-forms-response-msg.alert-success p {
+  color: #3c763d; }
+
 /*--------------------------------------------------------------
- # Page & Post Defaults
- --------------------------------------------------------------*/
+# Page & Post Defaults
+--------------------------------------------------------------*/
 .post-edit-link {
   padding-right: 5px; }
 
 .post-navigation {
   margin-top: 1.5em; }
+
 /*--------------------------------------------------------------
- # Comments
- --------------------------------------------------------------*/
-#commentform .form-group:before, #commentform .form-group:after {
+# Comments
+--------------------------------------------------------------*/
+#commentform .form-group:before,
+#commentform .form-group:after {
   content: " ";
   display: table; }
-  #commentform .form-group:after {
-    clear: both; }
-  #commentform .radio, #commentform .checkbox, #commentform .radio-inline, #commentform .checkbox-inline {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 7px; }
-  #commentform .radio, #commentform .checkbox {
-    min-height: 27px; }
-  #commentform .form-group {
-    margin-left: -15px;
-    margin-right: -15px; }
-  #commentform .has-feedback .form-control-feedback {
-    right: 15px; }
-  #commentform code {
-    display: block;
-    white-space: normal; }
-  #commentform p.form-submit {
-    position: relative;
-    min-height: 1px; }
-  #commentform #submit {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-  #commentform #submit:focus, #commentform #submit:active:focus, #commentform #submit.active:focus, #commentform #submit.focus, #commentform #submit:active.focus, #commentform #submit.active.focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px; }
-  #commentform #submit:hover, #commentform #submit:focus, #commentform #submit.focus {
-    color: #333;
-    text-decoration: none; }
-  #commentform #submit:active, #commentform #submit.active {
-    outline: 0;
-    background-image: none;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
 
-#commentform #submit.disabled, #commentform #submit[disabled], fieldset[disabled] #commentform #submit {
+#commentform .form-group:after {
+  clear: both; }
+
+#commentform .radio, #commentform .checkbox, #commentform .radio-inline, #commentform .checkbox-inline {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 7px; }
+
+#commentform .radio, #commentform .checkbox {
+  min-height: 27px; }
+
+#commentform .form-group {
+  margin-left: -15px;
+  margin-right: -15px; }
+
+#commentform .has-feedback .form-control-feedback {
+  right: 15px; }
+
+#commentform code {
+  display: block;
+  white-space: normal; }
+
+#commentform p.form-submit {
+  position: relative;
+  min-height: 1px; }
+
+#commentform #submit {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+#commentform #submit:focus, #commentform #submit:active:focus,
+#commentform #submit.active:focus, #commentform #submit.focus,
+#commentform #submit:active.focus, #commentform #submit.active.focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px; }
+
+#commentform #submit:hover, #commentform #submit:focus, #commentform #submit.focus {
+  color: #333333;
+  text-decoration: none; }
+
+#commentform #submit:active, #commentform #submit.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
+
+#commentform #submit.disabled,
+#commentform #submit[disabled],
+fieldset[disabled] #commentform #submit {
   cursor: not-allowed;
   opacity: 0.65;
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
   box-shadow: none; }
 
-a#commentform #submit.disabled, fieldset[disabled] a#commentform #submit {
+a#commentform #submit.disabled,
+fieldset[disabled] a#commentform #submit {
   pointer-events: none; }
 
 @media (min-width: 768px) {
@@ -326,17 +379,17 @@ a#commentform #submit.disabled, fieldset[disabled] a#commentform #submit {
     text-align: left;
     margin-bottom: 0;
     padding-top: 7px; }
-    #commentform .form-group-lg .control-label {
-      padding-top: 14.33333px;
-      font-size: 18px; }
-    #commentform .form-group-sm .control-label {
-      padding-top: 6px;
-      font-size: 12px; }
-    #commentform p.form-submit {
-      float: left;
-      width: 75%; }
-    #commentform p.form-submit {
-      margin: 0; } }
+  #commentform .form-group-lg .control-label {
+    padding-top: 14.333333px;
+    font-size: 18px; }
+  #commentform .form-group-sm .control-label {
+    padding-top: 6px;
+    font-size: 12px; }
+  #commentform p.form-submit {
+    float: left;
+    width: 75%; }
+  #commentform p.form-submit {
+    margin: 0; } }
 
 span.comments-link > a:before {
   content: "\f075";
@@ -345,51 +398,60 @@ span.comments-link > a:before {
   font-style: normal;
   display: inline-block;
   text-decoration: none;
-  margin-right: 0.5em; }
+  margin-right: .5em; }
 
 span.cat-links:after {
   content: "\2022";
-  margin: 0em 0.6em; }
+  margin: 0em .6em; }
 
 .post .post-edit-link {
-  margin-left: 0.6em; }
+  margin-left: .6em; }
 
-time.entry-date.published:before, time.entry-date.updated:before {
+time.entry-date.published:before,
+time.entry-date.updated:before {
   content: "\f073";
   font-family: FontAwesome;
   font-weight: normal;
   font-style: normal;
   display: inline-block;
   text-decoration: none;
-  margin-right: 0.5em;
-  margin-left: 0.3em; }
+  margin-right: .5em;
+  margin-left: .3em; }
 
-.group-blog .byline, span.author.vcard {
-  margin-left: 0.3em; }
+.group-blog .byline,
+span.author.vcard {
+  margin-left: .3em; }
+
 /*--------------------------------------------------------------
- # Comments
- --------------------------------------------------------------*/
+# Comments
+--------------------------------------------------------------*/
 /* 404 page */
-.no-results.not-found .jumbotron, .error404 .jumbotron {
+.no-results.not-found .jumbotron,
+.error404 .jumbotron {
   background-color: transparent; }
+
 /*--------------------------------------------------------------
- # Editor Styles
- --------------------------------------------------------------*/
+# Editor Styles
+--------------------------------------------------------------*/
 #tinymce.mce-content-body {
   height: auto; }
+
 /*--------------------------------------------------------------
- # Footer
- --------------------------------------------------------------*/
+# Footer
+--------------------------------------------------------------*/
 /* Disabled Footer */
 .disabled-footer {
   margin-bottom: 50px; }
-  .disabled-footer .site-footer {
-    padding: 0;
-    background-color: white;
-    border-top: none;
-    height: 50px; }
-  .disabled-footer .content-area {
-    margin-bottom: 15px; }
+
+.disabled-footer .site-footer {
+  padding: 0;
+  background-color: white;
+  border-top: none;
+  height: 50px; }
+
+.disabled-footer .content-area {
+  margin-bottom: 15px; }
+
 /* Sticky Footer */
 html, body, .site, .site-content {
   height: 100%; }
@@ -398,14 +460,16 @@ html, body, .site, .site-content {
   min-height: 100%;
   height: auto !important;
   height: 100%; }
+
 /*--------------------------------------------------------------
- # GridBlocks
- --------------------------------------------------------------*/
+# GridBlocks
+--------------------------------------------------------------*/
 .gridblock h1, .gridblock h2, .gridblock h3, .gridblock h4, .gridblock h5, .gridblock h6, .gridblock ol, .gridblock ul, .gridblock li, .gridblock p {
   margin: 10px 0; }
+
 /*--------------------------------------------------------------
- # Modules
- --------------------------------------------------------------*/
+# Modules
+--------------------------------------------------------------*/
 /* Mod Spacer */
 .mod-space {
   background: none;
@@ -430,125 +494,132 @@ html, body, .site, .site-content {
 .mod-space-5x {
   background: none;
   height: 75px; }
+
 /* Mod Reset */
 .mod-reset {
   margin: 0 !important;
   padding: 0 !important; }
+
 /* Images */
-.mod-img, .mod-img-circle, .image-gallery img, .video-gallery img, .slideshow-gallery img {
+.mod-img,
+.mod-img-circle,
+.image-gallery img,
+.video-gallery img,
+.slideshow-gallery img {
   margin-bottom: 15px; }
 
 .mod-img-circle img {
   border-radius: 50%; }
+
 /*--------------------------------------------------------------
- # Buttons
- --------------------------------------------------------------*/
+# Buttons
+--------------------------------------------------------------*/
 /*! @license
- *
- * Buttons
- * Copyright 2012-2014 Alex Wolfe and Rob Levin
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+*
+* Buttons
+* Copyright 2012-2014 Alex Wolfe and Rob Levin
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*        http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 /*
- * Compass (optional)
- *
- * We recommend the use of autoprefixer instead of Compass
- * when using buttons. However, buttons does support Compass.
- * simply change $ubtn-use-compass to true and uncomment the
- * @import 'compass' code below to use Compass.
- */
+* Compass (optional)
+*
+* We recommend the use of autoprefixer instead of Compass
+* when using buttons. However, buttons does support Compass.
+* simply change $ubtn-use-compass to true and uncomment the
+* @import 'compass' code below to use Compass.
+*/
 /*
- * Required Files
- *
- * These files include the variables and options
- * and base css styles that are required to generate buttons.
- */
+* Required Files
+*
+* These files include the variables and options
+* and base css styles that are required to generate buttons.
+*/
 /*
- * $ubtn prefix (reserved)
- *
- * This prefix stands for Unicorn Button - ubtn
- * We provide a prefix to the Sass Variables to
- * prevent namespace collisions that could occur if
- * you import buttons as part of your Sass build process.
- * We kindly ask you not to use the prefix $ubtn in your project
- * in order to avoid possilbe name conflicts. Thanks!
- */
+* $ubtn prefix (reserved)
+*
+* This prefix stands for Unicorn Button - ubtn
+* We provide a prefix to the Sass Variables to
+* prevent namespace collisions that could occur if
+* you import buttons as part of your Sass build process.
+* We kindly ask you not to use the prefix $ubtn in your project
+* in order to avoid possilbe name conflicts. Thanks!
+*/
 /*
- * Button Namespace (ex .button or .btn)
- *
- */
+* Button Namespace (ex .button or .btn)
+*
+*/
 /*
- * Button Defaults
- *
- * Some default settings that are used throughout the button library.
- * Changes to these settings will be picked up by all of the other modules.
- * The colors used here are the default colors for the base button (gray).
- * The font size and height are used to set the base size for the buttons.
- * The size values will be used to calculate the larger and smaller button sizes.
- */
+* Button Defaults
+*
+* Some default settings that are used throughout the button library.
+* Changes to these settings will be picked up by all of the other modules.
+* The colors used here are the default colors for the base button (gray).
+* The font size and height are used to set the base size for the buttons.
+* The size values will be used to calculate the larger and smaller button sizes.
+*/
 /*
- * Button Colors
- *
- * $ubtn-colors is used to generate the different button colors.
- * Edit or add colors to the list below and recompile.
- * Each block contains the (name, background, color)
- * The class is generated using the name: (ex .button-primary)
- */
+* Button Colors
+*
+* $ubtn-colors is used to generate the different button colors.
+* Edit or add colors to the list below and recompile.
+* Each block contains the (name, background, color)
+* The class is generated using the name: (ex .button-primary)
+*/
 /*
- * Button Shapes
- *
- * $ubtn-shapes is used to generate the different button shapes.
- * Edit or add shapes to the list below and recompile.
- * Each block contains the (name, border-radius).
- * The class is generated using the name: (ex .button-square).
- */
+* Button Shapes
+*
+* $ubtn-shapes is used to generate the different button shapes.
+* Edit or add shapes to the list below and recompile.
+* Each block contains the (name, border-radius).
+* The class is generated using the name: (ex .button-square).
+*/
 /*
- * Button Sizes
- *
- * $ubtn-sizes is used to generate the different button sizes.
- * Edit or add colors to the list below and recompile.
- * Each block contains the (name, size multiplier).
- * The class is generated using the name: (ex .button-giant).
- */
+* Button Sizes
+*
+* $ubtn-sizes is used to generate the different button sizes.
+* Edit or add colors to the list below and recompile.
+* Each block contains the (name, size multiplier).
+* The class is generated using the name: (ex .button-giant).
+*/
 /*
- * Color Mixin
- *
- * Iterates through the list of colors and creates
- *
- */
+* Color Mixin
+*
+* Iterates through the list of colors and creates
+*
+*/
 /*
- * No Animation
- *
- * Sets animation property to none
- */
+* No Animation
+*
+* Sets animation property to none
+*/
 /*
- * Clearfix
- *
- * Clears floats inside the container
- */
+* Clearfix
+*
+* Clears floats inside the container
+*/
 /*
- * Base Button Style
- *
- * The default values for the .button class
- */
-.btn, .button-primary, .button-secondary {
+* Base Button Style
+*
+* The default values for the .button class
+*/
+.button {
   color: #666;
-  background-color: #eee;
-  border-color: #eee;
-  font-weight: inherit;
-  font-size: inherit;
-  font-family: inherit;
+  background-color: #EEE;
+  border-color: #EEE;
+  font-weight: 300;
+  font-size: 16px;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   text-decoration: none;
   text-align: center;
   line-height: 40px;
@@ -561,571 +632,1002 @@ html, body, .site, .site-content {
   border: none;
   box-sizing: border-box;
   transition-property: all;
-  transition-duration: 0.3s;
+  transition-duration: .3s;
   /*
-   * Disabled State
-   *
-   * The disabled state uses the class .disabled, is-disabled,
-   * and the form attribute disabled="disabled".
-   * The use of !important is only added because this is a state
-   * that must be applied to all buttons when in a disabled state.
-   */ }
-  .btn:visited, .button-primary:visited, .button-secondary:visited {
-    color: #666; }
-  .btn:hover, .button-primary:hover, .button-secondary:hover, .btn:focus, .button-primary:focus, .button-secondary:focus {
-    background-color: #f6f6f6;
-    text-decoration: none;
-    outline: none; }
-  .btn:active, .button-primary:active, .button-secondary:active, .btn.active, .button-primary.active, .button-secondary.active, .btn.is-active, .button-primary.is-active, .button-secondary.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .3);
-    text-decoration: none;
-    background-color: #eee;
-    border-color: #cfcfcf;
-    color: #d5d5d5;
-    transition-duration: 0s;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2); }
-  .btn.disabled, .button-primary.disabled, .button-secondary.disabled, .btn.is-disabled, .button-primary.is-disabled, .button-secondary.is-disabled, .btn:disabled, .button-primary:disabled, .button-secondary:disabled {
-    top: 0 !important;
-    background: #eee !important;
-    border: 1px solid #ddd !important;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 1) !important;
-    color: #ccc !important;
-    cursor: default !important;
-    appearance: none !important; }
-    .btn.disabled else, .button-primary.disabled else, .button-secondary.disabled else, .btn.is-disabled else, .button-primary.is-disabled else, .button-secondary.is-disabled else, .btn:disabled else, .button-primary:disabled else, .button-secondary:disabled else {
-      box-shadow: none !important;
-      opacity: 0.8 !important; }
+  * Disabled State
+  *
+  * The disabled state uses the class .disabled, is-disabled,
+  * and the form attribute disabled="disabled".
+  * The use of !important is only added because this is a state
+  * that must be applied to all buttons when in a disabled state.
+  */ }
+
+.button:visited {
+  color: #666; }
+
+.button:hover, .button:focus {
+  background-color: #f6f6f6;
+  text-decoration: none;
+  outline: none; }
+
+.button:active, .button.active, .button.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  background-color: #eeeeee;
+  border-color: #cfcfcf;
+  color: #d5d5d5;
+  transition-duration: 0s;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); }
+
+.button.disabled, .button.is-disabled, .button:disabled {
+  top: 0 !important;
+  background: #EEE !important;
+  border: 1px solid #DDD !important;
+  text-shadow: 0 1px 1px white !important;
+  color: #CCC !important;
+  cursor: default !important;
+  appearance: none !important; }
+
+.button.disabled else, .button.is-disabled else, .button:disabled else {
+  box-shadow: none !important;
+  opacity: .8 !important; }
+
 /*
- * Base Button Tyography
- *
- */
-.btn-uppercase {
+* Base Button Tyography
+*
+*/
+.button-uppercase {
   text-transform: uppercase; }
 
-.btn-lowercase {
+.button-lowercase {
   text-transform: lowercase; }
 
-.btn-capitalize {
+.button-capitalize {
   text-transform: capitalize; }
 
-.btn-small-caps {
+.button-small-caps {
   font-variant: small-caps; }
 
-.btn-icon-txt-large {
+.button-icon-txt-large {
   font-size: 36px !important; }
+
 /*
- * Base padding
- *
- */
-.btn-width-small {
+* Base padding
+*
+*/
+.button-width-small {
   padding: 0 10px !important; }
+
 /*
- * Base Colors
- *
- * Create colors for buttons
- * (.button-primary, .button-secondary, etc.)
- */
-.btn-color-1, .btn-color-1-flat {
-  background-color: #172c3c;
-  border-color: #172c3c;
-  color: #fff; }
-  .btn-color-1:visited, .btn-color-1-flat:visited {
-    color: #fff; }
-  .btn-color-1:hover, .btn-color-1-flat:hover, .btn-color-1:focus, .btn-color-1-flat:focus {
-    background-color: #254761;
-    border-color: #254761;
-    color: #fff; }
-  .btn-color-1:active, .btn-color-1-flat:active, .btn-color-1.active, .btn-color-1-flat.active, .btn-color-1.is-active, .btn-color-1-flat.is-active {
-    background-color: #1b2b38;
-    border-color: #1b2b38;
-    color: #091117; }
+* Base Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.button-primary,
+.button-primary-flat {
+  background-color: #1B9AF7;
+  border-color: #1B9AF7;
+  color: #FFF; }
 
-.btn-color-2, .btn-color-2-flat {
-  background-color: #274862;
-  border-color: #274862;
-  color: #fff; }
-  .btn-color-2:visited, .btn-color-2-flat:visited {
-    color: #fff; }
-  .btn-color-2:hover, .btn-color-2-flat:hover, .btn-color-2:focus, .btn-color-2-flat:focus {
-    background-color: #366386;
-    border-color: #366386;
-    color: #fff; }
-  .btn-color-2:active, .btn-color-2-flat:active, .btn-color-2.active, .btn-color-2-flat.active, .btn-color-2.is-active, .btn-color-2-flat.is-active {
-    background-color: #2e475b;
-    border-color: #2e475b;
-    color: #182d3e; }
+.button-primary:visited,
+.button-primary-flat:visited {
+  color: #FFF; }
 
-.btn-color-3, .button-secondary, .btn-color-3-flat {
-  background-color: #995052;
-  border-color: #995052;
-  color: #fff; }
-  .btn-color-3:visited, .button-secondary:visited, .btn-color-3-flat:visited {
-    color: #fff; }
-  .btn-color-3:hover, .button-secondary:hover, .btn-color-3-flat:hover, .btn-color-3:focus, .button-secondary:focus, .btn-color-3-flat:focus {
-    background-color: #b16b6d;
-    border-color: #b16b6d;
-    color: #fff; }
-  .btn-color-3:active, .button-secondary:active, .btn-color-3-flat:active, .btn-color-3.active, .button-secondary.active, .btn-color-3-flat.active, .btn-color-3.is-active, .button-secondary.is-active, .btn-color-3-flat.is-active {
-    background-color: #8d5c5d;
-    border-color: #8d5c5d;
-    color: #783e40; }
+.button-primary:hover, .button-primary:focus,
+.button-primary-flat:hover,
+.button-primary-flat:focus {
+  background-color: #4cb0f9;
+  border-color: #4cb0f9;
+  color: #FFF; }
 
-.btn-neutral-color, .btn-neutral-color-flat {
-  background-color: #dbe7f0;
-  border-color: #dbe7f0;
-  color: #4d4d4d; }
-  .btn-neutral-color:visited, .btn-neutral-color-flat:visited {
-    color: #4d4d4d; }
-  .btn-neutral-color:hover, .btn-neutral-color-flat:hover, .btn-neutral-color:focus, .btn-neutral-color-flat:focus {
-    background-color: #fff;
-    border-color: #fff;
-    color: #4d4d4d; }
-  .btn-neutral-color:active, .btn-neutral-color-flat:active, .btn-neutral-color.active, .btn-neutral-color-flat.active, .btn-neutral-color.is-active, .btn-neutral-color-flat.is-active {
-    background-color: #dee7ed;
-    border-color: #dee7ed;
-    color: #b7cfe1; }
+.button-primary:active, .button-primary.active, .button-primary.is-active,
+.button-primary-flat:active,
+.button-primary-flat.active,
+.button-primary-flat.is-active {
+  background-color: #2798eb;
+  border-color: #2798eb;
+  color: #0880d7; }
+
+.button-plain,
+.button-plain-flat {
+  background-color: #FFF;
+  border-color: #FFF;
+  color: #1B9AF7; }
+
+.button-plain:visited,
+.button-plain-flat:visited {
+  color: #1B9AF7; }
+
+.button-plain:hover, .button-plain:focus,
+.button-plain-flat:hover,
+.button-plain-flat:focus {
+  background-color: white;
+  border-color: white;
+  color: #1B9AF7; }
+
+.button-plain:active, .button-plain.active, .button-plain.is-active,
+.button-plain-flat:active,
+.button-plain-flat.active,
+.button-plain-flat.is-active {
+  background-color: white;
+  border-color: white;
+  color: #e6e6e6; }
+
+.button-inverse,
+.button-inverse-flat {
+  background-color: #222;
+  border-color: #222;
+  color: #EEE; }
+
+.button-inverse:visited,
+.button-inverse-flat:visited {
+  color: #EEE; }
+
+.button-inverse:hover, .button-inverse:focus,
+.button-inverse-flat:hover,
+.button-inverse-flat:focus {
+  background-color: #3c3c3c;
+  border-color: #3c3c3c;
+  color: #EEE; }
+
+.button-inverse:active, .button-inverse.active, .button-inverse.is-active,
+.button-inverse-flat:active,
+.button-inverse-flat.active,
+.button-inverse-flat.is-active {
+  background-color: #222222;
+  border-color: #222222;
+  color: #090909; }
+
+.button-action,
+.button-action-flat {
+  background-color: #A5DE37;
+  border-color: #A5DE37;
+  color: #FFF; }
+
+.button-action:visited,
+.button-action-flat:visited {
+  color: #FFF; }
+
+.button-action:hover, .button-action:focus,
+.button-action-flat:hover,
+.button-action-flat:focus {
+  background-color: #b9e563;
+  border-color: #b9e563;
+  color: #FFF; }
+
+.button-action:active, .button-action.active, .button-action.is-active,
+.button-action-flat:active,
+.button-action-flat.active,
+.button-action-flat.is-active {
+  background-color: #a1d243;
+  border-color: #a1d243;
+  color: #8bc220; }
+
+.button-highlight,
+.button-highlight-flat {
+  background-color: #FEAE1B;
+  border-color: #FEAE1B;
+  color: #FFF; }
+
+.button-highlight:visited,
+.button-highlight-flat:visited {
+  color: #FFF; }
+
+.button-highlight:hover, .button-highlight:focus,
+.button-highlight-flat:hover,
+.button-highlight-flat:focus {
+  background-color: #fec04e;
+  border-color: #fec04e;
+  color: #FFF; }
+
+.button-highlight:active, .button-highlight.active, .button-highlight.is-active,
+.button-highlight-flat:active,
+.button-highlight-flat.active,
+.button-highlight-flat.is-active {
+  background-color: #f3ab26;
+  border-color: #f3ab26;
+  color: #e59501; }
+
+.button-caution,
+.button-caution-flat {
+  background-color: #FF4351;
+  border-color: #FF4351;
+  color: #FFF; }
+
+.button-caution:visited,
+.button-caution-flat:visited {
+  color: #FFF; }
+
+.button-caution:hover, .button-caution:focus,
+.button-caution-flat:hover,
+.button-caution-flat:focus {
+  background-color: #ff7680;
+  border-color: #ff7680;
+  color: #FFF; }
+
+.button-caution:active, .button-caution.active, .button-caution.is-active,
+.button-caution-flat:active,
+.button-caution-flat.active,
+.button-caution-flat.is-active {
+  background-color: #f64c59;
+  border-color: #f64c59;
+  color: #ff1022; }
+
+.button-royal,
+.button-royal-flat {
+  background-color: #7B72E9;
+  border-color: #7B72E9;
+  color: #FFF; }
+
+.button-royal:visited,
+.button-royal-flat:visited {
+  color: #FFF; }
+
+.button-royal:hover, .button-royal:focus,
+.button-royal-flat:hover,
+.button-royal-flat:focus {
+  background-color: #a49ef0;
+  border-color: #a49ef0;
+  color: #FFF; }
+
+.button-royal:active, .button-royal.active, .button-royal.is-active,
+.button-royal-flat:active,
+.button-royal-flat.active,
+.button-royal-flat.is-active {
+  background-color: #827ae1;
+  border-color: #827ae1;
+  color: #5246e2; }
+
 /*
- * Base Layout Styles
- *
- * Very Miminal Layout Styles
- */
-.btn-block, .btn-stacked {
+* Base Layout Styles
+*
+* Very Miminal Layout Styles
+*/
+.button-block,
+.button-stacked {
   display: block; }
+
 /*
- * Button Types (optional)
- *
- * All of the files below represent the various button
- * types (including shapes & sizes). None of these files
- * are required. Simple remove the uneeded type below and
- * the button type will be excluded from the final build
- */
+* Button Types (optional)
+*
+* All of the files below represent the various button
+* types (including shapes & sizes). None of these files
+* are required. Simple remove the uneeded type below and
+* the button type will be excluded from the final build
+*/
 /*
- * Button Shapes
- *
- * This file creates the various button shapes
- * (ex. Circle, Rounded, Pill)
- */
-.btn-square {
+* Button Shapes
+*
+* This file creates the various button shapes
+* (ex. Circle, Rounded, Pill)
+*/
+.button-square {
   border-radius: 0; }
 
-.btn-box {
+.button-box {
   border-radius: 10px; }
 
-.btn-rounded {
+.button-rounded {
   border-radius: 4px; }
 
-.btn-pill, .button-primary, .button-secondary {
+.button-pill {
   border-radius: 200px; }
 
-.btn-circle {
+.button-circle {
   border-radius: 100%; }
+
 /*
- * Size Adjustment for equal height & widht buttons
- *
- * Remove padding and set a fixed width.
- */
-.btn-circle, .btn-box, .btn-square {
+* Size Adjustment for equal height & widht buttons
+*
+* Remove padding and set a fixed width.
+*/
+.button-circle,
+.button-box,
+.button-square {
   padding: 0 !important;
   width: 40px; }
-  .btn-circle.btn-giant, .btn-box.btn-giant, .btn-square.btn-giant {
-    width: 70px; }
-  .btn-circle.btn-jumbo, .btn-box.btn-jumbo, .btn-square.btn-jumbo {
-    width: 60px; }
-  .btn-circle.btn-large, .btn-box.btn-large, .btn-square.btn-large {
-    width: 50px; }
-  .btn-circle.btn-normal, .btn-box.btn-normal, .btn-square.btn-normal {
-    width: 40px; }
-  .btn-circle.btn-small, .btn-box.btn-small, .btn-square.btn-small {
-    width: 30px; }
-  .btn-circle.btn-tiny, .btn-box.btn-tiny, .btn-square.btn-tiny {
-    width: 24px; }
+
+.button-circle.button-giant,
+.button-box.button-giant,
+.button-square.button-giant {
+  width: 70px; }
+
+.button-circle.button-jumbo,
+.button-box.button-jumbo,
+.button-square.button-jumbo {
+  width: 60px; }
+
+.button-circle.button-large,
+.button-box.button-large,
+.button-square.button-large {
+  width: 50px; }
+
+.button-circle.button-normal,
+.button-box.button-normal,
+.button-square.button-normal {
+  width: 40px; }
+
+.button-circle.button-small,
+.button-box.button-small,
+.button-square.button-small {
+  width: 30px; }
+
+.button-circle.button-tiny,
+.button-box.button-tiny,
+.button-square.button-tiny {
+  width: 24px; }
+
 /*
- * Border Buttons
- *
- * These buttons have no fill they only have a
- * border to define their hit target.
- */
-.btn-border, .btn-border-thin, .btn-border-thick, .button-primary, .button-secondary {
+* Border Buttons
+*
+* These buttons have no fill they only have a
+* border to define their hit target.
+*/
+.button-border, .button-border-thin, .button-border-thick {
   background: none;
   border-width: 2px;
   border-style: solid;
   line-height: 36px; }
 
-.btn-border:hover, .btn-border-thin:hover, .btn-border-thick:hover, .button-primary:hover, .button-secondary:hover {
-  background-color: rgba(255, 255, 255, .9); }
+.button-border:hover, .button-border-thin:hover, .button-border-thick:hover {
+  background-color: rgba(255, 255, 255, 0.9); }
 
-.btn-border:active, .btn-border-thin:active, .btn-border-thick:active, .button-primary:active, .button-secondary:active, .btn-border.active, .btn-border-thin.active, .btn-border-thick.active, .button-primary.active, .button-secondary.active, .btn-border.is-active, .btn-border-thin.is-active, .btn-border-thick.is-active, .button-primary.is-active, .button-secondary.is-active {
+.button-border:active, .button-border-thin:active, .button-border-thick:active, .button-border.active, .active.button-border-thin, .active.button-border-thick, .button-border.is-active, .is-active.button-border-thin, .is-active.button-border-thick {
   box-shadow: none;
   text-shadow: none;
   transition-property: all;
-  transition-duration: 0.3s; }
+  transition-duration: .3s; }
+
 /*
- * Border Optional Sizes
- *
- * A slight variation in border thickness
- */
-.btn-border-thin {
+* Border Optional Sizes
+*
+* A slight variation in border thickness
+*/
+.button-border-thin {
   border-width: 1px; }
 
-.btn-border-thick {
+.button-border-thick {
   border-width: 3px; }
+
 /*
- * Border Button Colors
- *
- * Create colors for buttons
- * (.button-primary, .button-secondary, etc.)
- */
-.btn-border, .btn-border-thin, .btn-border-thick, .button-primary, .button-secondary {
+* Border Button Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.button-border, .button-border-thin, .button-border-thick,
+.button-border-thin,
+.button-border-thick {
   /*
-   * Border Button Size Adjustment
-   *
-   * The line-height must be adjusted to compinsate for
-   * the width of the border.
-   */ }
-  .btn-border.btn-color-1, .btn-border-thin.btn-color-1, .btn-border-thick.btn-color-1, .button-primary.btn-color-1, .button-secondary.btn-color-1 {
-    color: #172c3c; }
-    .btn-border.btn-color-1:hover, .btn-border-thin.btn-color-1:hover, .btn-border-thick.btn-color-1:hover, .button-primary.btn-color-1:hover, .button-secondary.btn-color-1:hover, .btn-border.btn-color-1:focus, .btn-border-thin.btn-color-1:focus, .btn-border-thick.btn-color-1:focus, .button-primary.btn-color-1:focus, .button-secondary.btn-color-1:focus {
-      background-color: rgba(37, 71, 97, .9);
-      color: rgba(255, 255, 255, .9); }
-    .btn-border.btn-color-1:active, .btn-border-thin.btn-color-1:active, .btn-border-thick.btn-color-1:active, .button-primary.btn-color-1:active, .button-secondary.btn-color-1:active, .btn-border.btn-color-1.active, .btn-border-thin.btn-color-1.active, .btn-border-thick.btn-color-1.active, .button-primary.btn-color-1.active, .button-secondary.btn-color-1.active, .btn-border.btn-color-1.is-active, .btn-border-thin.btn-color-1.is-active, .btn-border-thick.btn-color-1.is-active, .button-primary.btn-color-1.is-active, .button-secondary.btn-color-1.is-active {
-      background-color: rgba(27, 43, 56, .7);
-      color: rgba(255, 255, 255, .5);
-      opacity: 0.3; }
-  .btn-border.btn-color-2, .btn-border-thin.btn-color-2, .btn-border-thick.btn-color-2, .button-primary.btn-color-2, .button-secondary.btn-color-2 {
-    color: #274862; }
-    .btn-border.btn-color-2:hover, .btn-border-thin.btn-color-2:hover, .btn-border-thick.btn-color-2:hover, .button-primary.btn-color-2:hover, .button-secondary.btn-color-2:hover, .btn-border.btn-color-2:focus, .btn-border-thin.btn-color-2:focus, .btn-border-thick.btn-color-2:focus, .button-primary.btn-color-2:focus, .button-secondary.btn-color-2:focus {
-      background-color: rgba(54, 99, 134, .9);
-      color: rgba(255, 255, 255, .9); }
-    .btn-border.btn-color-2:active, .btn-border-thin.btn-color-2:active, .btn-border-thick.btn-color-2:active, .button-primary.btn-color-2:active, .button-secondary.btn-color-2:active, .btn-border.btn-color-2.active, .btn-border-thin.btn-color-2.active, .btn-border-thick.btn-color-2.active, .button-primary.btn-color-2.active, .button-secondary.btn-color-2.active, .btn-border.btn-color-2.is-active, .btn-border-thin.btn-color-2.is-active, .btn-border-thick.btn-color-2.is-active, .button-primary.btn-color-2.is-active, .button-secondary.btn-color-2.is-active {
-      background-color: rgba(46, 71, 91, .7);
-      color: rgba(255, 255, 255, .5);
-      opacity: 0.3; }
-  .btn-border.btn-color-3, .btn-border-thin.btn-color-3, .button-secondary.btn-border-thin, .btn-border-thick.btn-color-3, .button-secondary.btn-border-thick, .button-primary.btn-color-3, .button-secondary.button-primary, .button-secondary.btn-color-3, .button-secondary, .button-secondary.btn-border, .btn-border-thin.button-secondary, .btn-border-thick.button-secondary, .button-primary.button-secondary {
-    color: #995052; }
-    .btn-border.btn-color-3:hover, .btn-border-thin.btn-color-3:hover, .button-secondary.btn-border-thin:hover, .btn-border-thick.btn-color-3:hover, .button-secondary.btn-border-thick:hover, .button-primary.btn-color-3:hover, .button-secondary.button-primary:hover, .button-secondary.btn-color-3:hover, .button-secondary.button-secondary:hover, .button-secondary.btn-border:hover, .btn-border-thin.button-secondary:hover, .btn-border-thick.button-secondary:hover, .button-primary.button-secondary:hover, .btn-border.btn-color-3:focus, .btn-border-thin.btn-color-3:focus, .button-secondary.btn-border-thin:focus, .btn-border-thick.btn-color-3:focus, .button-secondary.btn-border-thick:focus, .button-primary.btn-color-3:focus, .button-secondary.button-primary:focus, .button-secondary.btn-color-3:focus, .button-secondary.button-secondary:focus, .button-secondary.btn-border:focus, .btn-border-thin.button-secondary:focus, .btn-border-thick.button-secondary:focus, .button-primary.button-secondary:focus {
-      background-color: rgba(177, 107, 109, .9);
-      color: rgba(255, 255, 255, .9); }
-    .btn-border.btn-color-3:active, .btn-border-thin.btn-color-3:active, .button-secondary.btn-border-thin:active, .btn-border-thick.btn-color-3:active, .button-secondary.btn-border-thick:active, .button-primary.btn-color-3:active, .button-secondary.button-primary:active, .button-secondary.btn-color-3:active, .button-secondary.button-secondary:active, .button-secondary.btn-border:active, .btn-border-thin.button-secondary:active, .btn-border-thick.button-secondary:active, .button-primary.button-secondary:active, .btn-border.btn-color-3.active, .btn-border-thin.btn-color-3.active, .button-secondary.btn-border-thin.active, .btn-border-thick.btn-color-3.active, .button-secondary.btn-border-thick.active, .button-primary.btn-color-3.active, .button-secondary.button-primary.active, .button-secondary.btn-color-3.active, .button-secondary.button-secondary.active, .button-secondary.btn-border.active, .btn-border-thin.button-secondary.active, .btn-border-thick.button-secondary.active, .button-primary.button-secondary.active, .btn-border.btn-color-3.is-active, .btn-border-thin.btn-color-3.is-active, .button-secondary.btn-border-thin.is-active, .btn-border-thick.btn-color-3.is-active, .button-secondary.btn-border-thick.is-active, .button-primary.btn-color-3.is-active, .button-secondary.button-primary.is-active, .button-secondary.btn-color-3.is-active, .button-secondary.button-secondary.is-active, .button-secondary.btn-border.is-active, .btn-border-thin.button-secondary.is-active, .btn-border-thick.button-secondary.is-active, .button-primary.button-secondary.is-active {
-      background-color: rgba(141, 92, 93, .7);
-      color: rgba(255, 255, 255, .5);
-      opacity: 0.3; }
-  .btn-border.btn-neutral-color, .btn-border-thin.btn-neutral-color, .btn-border-thick.btn-neutral-color, .button-primary.btn-neutral-color, .button-secondary.btn-neutral-color {
-    color: #dbe7f0; }
-    .btn-border.btn-neutral-color:hover, .btn-border-thin.btn-neutral-color:hover, .btn-border-thick.btn-neutral-color:hover, .button-primary.btn-neutral-color:hover, .button-secondary.btn-neutral-color:hover, .btn-border.btn-neutral-color:focus, .btn-border-thin.btn-neutral-color:focus, .btn-border-thick.btn-neutral-color:focus, .button-primary.btn-neutral-color:focus, .button-secondary.btn-neutral-color:focus {
-      background-color: rgba(255, 255, 255, .9);
-      color: rgba(77, 77, 77, .9); }
-    .btn-border.btn-neutral-color:active, .btn-border-thin.btn-neutral-color:active, .btn-border-thick.btn-neutral-color:active, .button-primary.btn-neutral-color:active, .button-secondary.btn-neutral-color:active, .btn-border.btn-neutral-color.active, .btn-border-thin.btn-neutral-color.active, .btn-border-thick.btn-neutral-color.active, .button-primary.btn-neutral-color.active, .button-secondary.btn-neutral-color.active, .btn-border.btn-neutral-color.is-active, .btn-border-thin.btn-neutral-color.is-active, .btn-border-thick.btn-neutral-color.is-active, .button-primary.btn-neutral-color.is-active, .button-secondary.btn-neutral-color.is-active {
-      background-color: rgba(222, 231, 237, .7);
-      color: rgba(77, 77, 77, .5);
-      opacity: 0.3; }
-  .btn-border.btn-giant, .btn-border-thin.btn-giant, .btn-border-thick.btn-giant, .button-primary.btn-giant, .button-secondary.btn-giant {
-    line-height: 66px; }
-  .btn-border.btn-jumbo, .btn-border-thin.btn-jumbo, .btn-border-thick.btn-jumbo, .button-primary.btn-jumbo, .button-secondary.btn-jumbo {
-    line-height: 56px; }
-  .btn-border.btn-large, .btn-border-thin.btn-large, .btn-border-thick.btn-large, .button-primary.btn-large, .button-secondary.btn-large {
-    line-height: 46px; }
-  .btn-border.btn-normal, .btn-border-thin.btn-normal, .btn-border-thick.btn-normal, .button-primary.btn-normal, .button-secondary.btn-normal {
-    line-height: 36px; }
-  .btn-border.btn-small, .btn-border-thin.btn-small, .btn-border-thick.btn-small, .button-primary.btn-small, .button-secondary.btn-small {
-    line-height: 26px; }
-  .btn-border.btn-tiny, .btn-border-thin.btn-tiny, .btn-border-thick.btn-tiny, .button-primary.btn-tiny, .button-secondary.btn-tiny {
-    line-height: 20px; }
+  * Border Button Size Adjustment
+  *
+  * The line-height must be adjusted to compinsate for
+  * the width of the border.
+  */ }
+
+.button-border.button-primary, .button-primary.button-border-thin, .button-primary.button-border-thick,
+.button-border-thin.button-primary,
+.button-border-thick.button-primary {
+  color: #1B9AF7; }
+
+.button-border.button-primary:hover, .button-primary.button-border-thin:hover, .button-primary.button-border-thick:hover, .button-border.button-primary:focus, .button-primary.button-border-thin:focus, .button-primary.button-border-thick:focus,
+.button-border-thin.button-primary:hover,
+.button-border-thin.button-primary:focus,
+.button-border-thick.button-primary:hover,
+.button-border-thick.button-primary:focus {
+  background-color: rgba(76, 176, 249, 0.9);
+  color: rgba(255, 255, 255, 0.9); }
+
+.button-border.button-primary:active, .button-primary.button-border-thin:active, .button-primary.button-border-thick:active, .button-border.button-primary.active, .button-primary.active.button-border-thin, .button-primary.active.button-border-thick, .button-border.button-primary.is-active, .button-primary.is-active.button-border-thin, .button-primary.is-active.button-border-thick,
+.button-border-thin.button-primary:active,
+.button-border-thin.button-primary.active,
+.button-border-thin.button-primary.is-active,
+.button-border-thick.button-primary:active,
+.button-border-thick.button-primary.active,
+.button-border-thick.button-primary.is-active {
+  background-color: rgba(39, 152, 235, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: .3; }
+
+.button-border.button-plain, .button-plain.button-border-thin, .button-plain.button-border-thick,
+.button-border-thin.button-plain,
+.button-border-thick.button-plain {
+  color: #FFF; }
+
+.button-border.button-plain:hover, .button-plain.button-border-thin:hover, .button-plain.button-border-thick:hover, .button-border.button-plain:focus, .button-plain.button-border-thin:focus, .button-plain.button-border-thick:focus,
+.button-border-thin.button-plain:hover,
+.button-border-thin.button-plain:focus,
+.button-border-thick.button-plain:hover,
+.button-border-thick.button-plain:focus {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgba(27, 154, 247, 0.9); }
+
+.button-border.button-plain:active, .button-plain.button-border-thin:active, .button-plain.button-border-thick:active, .button-border.button-plain.active, .button-plain.active.button-border-thin, .button-plain.active.button-border-thick, .button-border.button-plain.is-active, .button-plain.is-active.button-border-thin, .button-plain.is-active.button-border-thick,
+.button-border-thin.button-plain:active,
+.button-border-thin.button-plain.active,
+.button-border-thin.button-plain.is-active,
+.button-border-thick.button-plain:active,
+.button-border-thick.button-plain.active,
+.button-border-thick.button-plain.is-active {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgba(27, 154, 247, 0.5);
+  opacity: .3; }
+
+.button-border.button-inverse, .button-inverse.button-border-thin, .button-inverse.button-border-thick,
+.button-border-thin.button-inverse,
+.button-border-thick.button-inverse {
+  color: #222; }
+
+.button-border.button-inverse:hover, .button-inverse.button-border-thin:hover, .button-inverse.button-border-thick:hover, .button-border.button-inverse:focus, .button-inverse.button-border-thin:focus, .button-inverse.button-border-thick:focus,
+.button-border-thin.button-inverse:hover,
+.button-border-thin.button-inverse:focus,
+.button-border-thick.button-inverse:hover,
+.button-border-thick.button-inverse:focus {
+  background-color: rgba(60, 60, 60, 0.9);
+  color: rgba(238, 238, 238, 0.9); }
+
+.button-border.button-inverse:active, .button-inverse.button-border-thin:active, .button-inverse.button-border-thick:active, .button-border.button-inverse.active, .button-inverse.active.button-border-thin, .button-inverse.active.button-border-thick, .button-border.button-inverse.is-active, .button-inverse.is-active.button-border-thin, .button-inverse.is-active.button-border-thick,
+.button-border-thin.button-inverse:active,
+.button-border-thin.button-inverse.active,
+.button-border-thin.button-inverse.is-active,
+.button-border-thick.button-inverse:active,
+.button-border-thick.button-inverse.active,
+.button-border-thick.button-inverse.is-active {
+  background-color: rgba(34, 34, 34, 0.7);
+  color: rgba(238, 238, 238, 0.5);
+  opacity: .3; }
+
+.button-border.button-action, .button-action.button-border-thin, .button-action.button-border-thick,
+.button-border-thin.button-action,
+.button-border-thick.button-action {
+  color: #A5DE37; }
+
+.button-border.button-action:hover, .button-action.button-border-thin:hover, .button-action.button-border-thick:hover, .button-border.button-action:focus, .button-action.button-border-thin:focus, .button-action.button-border-thick:focus,
+.button-border-thin.button-action:hover,
+.button-border-thin.button-action:focus,
+.button-border-thick.button-action:hover,
+.button-border-thick.button-action:focus {
+  background-color: rgba(185, 229, 99, 0.9);
+  color: rgba(255, 255, 255, 0.9); }
+
+.button-border.button-action:active, .button-action.button-border-thin:active, .button-action.button-border-thick:active, .button-border.button-action.active, .button-action.active.button-border-thin, .button-action.active.button-border-thick, .button-border.button-action.is-active, .button-action.is-active.button-border-thin, .button-action.is-active.button-border-thick,
+.button-border-thin.button-action:active,
+.button-border-thin.button-action.active,
+.button-border-thin.button-action.is-active,
+.button-border-thick.button-action:active,
+.button-border-thick.button-action.active,
+.button-border-thick.button-action.is-active {
+  background-color: rgba(161, 210, 67, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: .3; }
+
+.button-border.button-highlight, .button-highlight.button-border-thin, .button-highlight.button-border-thick,
+.button-border-thin.button-highlight,
+.button-border-thick.button-highlight {
+  color: #FEAE1B; }
+
+.button-border.button-highlight:hover, .button-highlight.button-border-thin:hover, .button-highlight.button-border-thick:hover, .button-border.button-highlight:focus, .button-highlight.button-border-thin:focus, .button-highlight.button-border-thick:focus,
+.button-border-thin.button-highlight:hover,
+.button-border-thin.button-highlight:focus,
+.button-border-thick.button-highlight:hover,
+.button-border-thick.button-highlight:focus {
+  background-color: rgba(254, 192, 78, 0.9);
+  color: rgba(255, 255, 255, 0.9); }
+
+.button-border.button-highlight:active, .button-highlight.button-border-thin:active, .button-highlight.button-border-thick:active, .button-border.button-highlight.active, .button-highlight.active.button-border-thin, .button-highlight.active.button-border-thick, .button-border.button-highlight.is-active, .button-highlight.is-active.button-border-thin, .button-highlight.is-active.button-border-thick,
+.button-border-thin.button-highlight:active,
+.button-border-thin.button-highlight.active,
+.button-border-thin.button-highlight.is-active,
+.button-border-thick.button-highlight:active,
+.button-border-thick.button-highlight.active,
+.button-border-thick.button-highlight.is-active {
+  background-color: rgba(243, 171, 38, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: .3; }
+
+.button-border.button-caution, .button-caution.button-border-thin, .button-caution.button-border-thick,
+.button-border-thin.button-caution,
+.button-border-thick.button-caution {
+  color: #FF4351; }
+
+.button-border.button-caution:hover, .button-caution.button-border-thin:hover, .button-caution.button-border-thick:hover, .button-border.button-caution:focus, .button-caution.button-border-thin:focus, .button-caution.button-border-thick:focus,
+.button-border-thin.button-caution:hover,
+.button-border-thin.button-caution:focus,
+.button-border-thick.button-caution:hover,
+.button-border-thick.button-caution:focus {
+  background-color: rgba(255, 118, 128, 0.9);
+  color: rgba(255, 255, 255, 0.9); }
+
+.button-border.button-caution:active, .button-caution.button-border-thin:active, .button-caution.button-border-thick:active, .button-border.button-caution.active, .button-caution.active.button-border-thin, .button-caution.active.button-border-thick, .button-border.button-caution.is-active, .button-caution.is-active.button-border-thin, .button-caution.is-active.button-border-thick,
+.button-border-thin.button-caution:active,
+.button-border-thin.button-caution.active,
+.button-border-thin.button-caution.is-active,
+.button-border-thick.button-caution:active,
+.button-border-thick.button-caution.active,
+.button-border-thick.button-caution.is-active {
+  background-color: rgba(246, 76, 89, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: .3; }
+
+.button-border.button-royal, .button-royal.button-border-thin, .button-royal.button-border-thick,
+.button-border-thin.button-royal,
+.button-border-thick.button-royal {
+  color: #7B72E9; }
+
+.button-border.button-royal:hover, .button-royal.button-border-thin:hover, .button-royal.button-border-thick:hover, .button-border.button-royal:focus, .button-royal.button-border-thin:focus, .button-royal.button-border-thick:focus,
+.button-border-thin.button-royal:hover,
+.button-border-thin.button-royal:focus,
+.button-border-thick.button-royal:hover,
+.button-border-thick.button-royal:focus {
+  background-color: rgba(164, 158, 240, 0.9);
+  color: rgba(255, 255, 255, 0.9); }
+
+.button-border.button-royal:active, .button-royal.button-border-thin:active, .button-royal.button-border-thick:active, .button-border.button-royal.active, .button-royal.active.button-border-thin, .button-royal.active.button-border-thick, .button-border.button-royal.is-active, .button-royal.is-active.button-border-thin, .button-royal.is-active.button-border-thick,
+.button-border-thin.button-royal:active,
+.button-border-thin.button-royal.active,
+.button-border-thin.button-royal.is-active,
+.button-border-thick.button-royal:active,
+.button-border-thick.button-royal.active,
+.button-border-thick.button-royal.is-active {
+  background-color: rgba(130, 122, 225, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: .3; }
+
+.button-border.button-giant, .button-giant.button-border-thin, .button-giant.button-border-thick,
+.button-border-thin.button-giant,
+.button-border-thick.button-giant {
+  line-height: 66px; }
+
+.button-border.button-jumbo, .button-jumbo.button-border-thin, .button-jumbo.button-border-thick,
+.button-border-thin.button-jumbo,
+.button-border-thick.button-jumbo {
+  line-height: 56px; }
+
+.button-border.button-large, .button-large.button-border-thin, .button-large.button-border-thick,
+.button-border-thin.button-large,
+.button-border-thick.button-large {
+  line-height: 46px; }
+
+.button-border.button-normal, .button-normal.button-border-thin, .button-normal.button-border-thick,
+.button-border-thin.button-normal,
+.button-border-thick.button-normal {
+  line-height: 36px; }
+
+.button-border.button-small, .button-small.button-border-thin, .button-small.button-border-thick,
+.button-border-thin.button-small,
+.button-border-thick.button-small {
+  line-height: 26px; }
+
+.button-border.button-tiny, .button-tiny.button-border-thin, .button-tiny.button-border-thick,
+.button-border-thin.button-tiny,
+.button-border-thick.button-tiny {
+  line-height: 20px; }
+
 /*
- * Border Buttons
- *
- * These buttons have no fill they only have a
- * border to define their hit target.
- */
-.btn-borderless {
+* Border Buttons
+*
+* These buttons have no fill they only have a
+* border to define their hit target.
+*/
+.button-borderless {
   background: none;
   border: none;
   padding: 0 8px !important;
-  color: #eee;
-  font-size: inherit * 1.3;
+  color: #EEE;
+  font-size: 20.8px;
   font-weight: 200;
   /*
-   * Borderless Button Colors
-   *
-   * Create colors for buttons
-   * (.button-primary, .button-secondary, etc.)
-   */
+  * Borderless Button Colors
+  *
+  * Create colors for buttons
+  * (.button-primary, .button-secondary, etc.)
+  */
   /*
-   * Borderles Size Adjustment
-   *
-   * The font-size must be large to compinsate for
-   * the lack of a hit target.
-   */ }
+  * Borderles Size Adjustment
+  *
+  * The font-size must be large to compinsate for
+  * the lack of a hit target.
+  */ }
 
-.btn-borderless:hover, .btn-borderless:focus {
+.button-borderless:hover, .button-borderless:focus {
   background: none; }
 
-.btn-borderless:active, .btn-borderless.active, .btn-borderless.is-active {
+.button-borderless:active, .button-borderless.active, .button-borderless.is-active {
   box-shadow: none;
   text-shadow: none;
   transition-property: all;
-  transition-duration: 0.3s;
-  opacity: 0.3; }
-  .btn-borderless.btn-color-1 {
-    color: #172c3c; }
-  .btn-borderless.btn-color-2 {
-    color: #274862; }
-  .btn-borderless.btn-color-3, .button-secondary.btn-borderless {
-    color: #995052; }
-  .btn-borderless.btn-neutral-color {
-    color: #dbe7f0; }
-  .btn-borderless.btn-giant {
-    font-size: inherit * 1.75 * 1.3;
-    height: inherit * 1.75 * 1.316;
-    line-height: inherit * 1.75 * 1.316; }
-  .btn-borderless.btn-jumbo {
-    font-size: inherit * 1.5 * 1.3;
-    height: inherit * 1.5 * 1.316;
-    line-height: inherit * 1.5 * 1.316; }
-  .btn-borderless.btn-large {
-    font-size: inherit * 1.25 * 1.3;
-    height: inherit * 1.25 * 1.316;
-    line-height: inherit * 1.25 * 1.316; }
-  .btn-borderless.btn-normal {
-    font-size: inherit * 1 * 1.3;
-    height: inherit * 1 * 1.316;
-    line-height: inherit * 1 * 1.316; }
-  .btn-borderless.btn-small {
-    font-size: inherit * 0.75 * 1.3;
-    height: inherit * 0.75 * 1.316;
-    line-height: inherit * 0.75 * 1.316; }
-  .btn-borderless.btn-tiny {
-    font-size: inherit * 0.6 * 1.3;
-    height: inherit * 0.6 * 1.316;
-    line-height: inherit * 0.6 * 1.316; }
+  transition-duration: .3s;
+  opacity: .3; }
+
+.button-borderless.button-primary {
+  color: #1B9AF7; }
+
+.button-borderless.button-plain {
+  color: #FFF; }
+
+.button-borderless.button-inverse {
+  color: #222; }
+
+.button-borderless.button-action {
+  color: #A5DE37; }
+
+.button-borderless.button-highlight {
+  color: #FEAE1B; }
+
+.button-borderless.button-caution {
+  color: #FF4351; }
+
+.button-borderless.button-royal {
+  color: #7B72E9; }
+
+.button-borderless.button-giant {
+  font-size: 36.4px;
+  height: 52.4px;
+  line-height: 52.4px; }
+
+.button-borderless.button-jumbo {
+  font-size: 31.2px;
+  height: 47.2px;
+  line-height: 47.2px; }
+
+.button-borderless.button-large {
+  font-size: 26px;
+  height: 42px;
+  line-height: 42px; }
+
+.button-borderless.button-normal {
+  font-size: 20.8px;
+  height: 36.8px;
+  line-height: 36.8px; }
+
+.button-borderless.button-small {
+  font-size: 15.6px;
+  height: 31.6px;
+  line-height: 31.6px; }
+
+.button-borderless.button-tiny {
+  font-size: 12.48px;
+  height: 28.48px;
+  line-height: 28.48px; }
+
 /*
- * Raised Buttons
- *
- * A classic looking button that offers
- * great depth and affordance.
- */
-.btn-raised {
+* Raised Buttons
+*
+* A classic looking button that offers
+* great depth and affordance.
+*/
+.button-raised {
   border-color: #e1e1e1;
   border-style: solid;
   border-width: 1px;
   line-height: 38px;
   background: linear-gradient(#f6f6f6, #e1e1e1);
-  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, .3), 0 1px 2px rgba(0, 0, 0, .15); }
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15); }
 
-.btn-raised:hover, .btn-raised:focus {
-  background: linear-gradient(top, #fff, #dcdcdc); }
+.button-raised:hover, .button-raised:focus {
+  background: linear-gradient(top, white, gainsboro); }
 
-.btn-raised:active, .btn-raised.active, .btn-raised.is-active {
-  background: #eee;
-  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, .2), 0px 1px 0px rgba(255, 255, 255, 1); }
+.button-raised:active, .button-raised.active, .button-raised.is-active {
+  background: #eeeeee;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 0px white; }
+
 /*
- * Raised Button Colors
- *
- * Create colors for raised buttons
- */
-.btn-raised.btn-color-1 {
-  border-color: #101e2a;
-  background: linear-gradient(#1e3a4e, #101e2a); }
-  .btn-raised.btn-color-1:hover, .btn-raised.btn-color-1:focus {
-    background: linear-gradient(top, #224259, #0d1922); }
-  .btn-raised.btn-color-1:active, .btn-raised.btn-color-1.active, .btn-raised.btn-color-1.is-active {
-    border-color: #091117;
-    background: #1b2b38; }
-  .btn-raised.btn-color-2 {
-    border-color: #203b50;
-    background: linear-gradient(#2e5574, #203b50); }
-  .btn-raised.btn-color-2:hover, .btn-raised.btn-color-2:focus {
-    background: linear-gradient(top, #335d7f, #1d3548); }
-  .btn-raised.btn-color-2:active, .btn-raised.btn-color-2.active, .btn-raised.btn-color-2.is-active {
-    border-color: #182d3e;
-    background: #2e475b; }
-  .btn-raised.btn-color-3, .button-secondary.btn-raised {
-    border-color: #884749;
-    background: linear-gradient(#a95a5c, #884749); }
-  .btn-raised.btn-color-3:hover, .button-secondary.btn-raised:hover, .btn-raised.btn-color-3:focus, .button-secondary.btn-raised:focus {
-    background: linear-gradient(top, #ae6466, #824445); }
-  .btn-raised.btn-color-3:active, .button-secondary.btn-raised:active, .btn-raised.btn-color-3.active, .button-secondary.btn-raised.active, .btn-raised.btn-color-3.is-active, .button-secondary.btn-raised.is-active {
-    border-color: #783e40;
-    background: #8d5c5d; }
-  .btn-raised.btn-neutral-color {
-    border-color: #c9dbe9;
-    background: linear-gradient(#edf3f8, #c9dbe9); }
-  .btn-raised.btn-neutral-color:hover, .btn-raised.btn-neutral-color:focus {
-    background: linear-gradient(top, #f8fafc, #c2d6e6); }
-  .btn-raised.btn-neutral-color:active, .btn-raised.btn-neutral-color.active, .btn-raised.btn-neutral-color.is-active {
-    border-color: #b7cfe1;
-    background: #dee7ed; }
+* Raised Button Colors
+*
+* Create colors for raised buttons
+*/
+.button-raised.button-primary {
+  border-color: #088ef0;
+  background: linear-gradient(#34a5f8, #088ef0); }
+
+.button-raised.button-primary:hover, .button-raised.button-primary:focus {
+  background: linear-gradient(top, #42abf8, #0888e6); }
+
+.button-raised.button-primary:active, .button-raised.button-primary.active, .button-raised.button-primary.is-active {
+  border-color: #0880d7;
+  background: #2798eb; }
+
+.button-raised.button-plain {
+  border-color: #f2f2f2;
+  background: linear-gradient(white, #f2f2f2); }
+
+.button-raised.button-plain:hover, .button-raised.button-plain:focus {
+  background: linear-gradient(top, white, #ededed); }
+
+.button-raised.button-plain:active, .button-raised.button-plain.active, .button-raised.button-plain.is-active {
+  border-color: #e6e6e6;
+  background: white; }
+
+.button-raised.button-inverse {
+  border-color: #151515;
+  background: linear-gradient(#2f2f2f, #151515); }
+
+.button-raised.button-inverse:hover, .button-raised.button-inverse:focus {
+  background: linear-gradient(top, #363636, #101010); }
+
+.button-raised.button-inverse:active, .button-raised.button-inverse.active, .button-raised.button-inverse.is-active {
+  border-color: #090909;
+  background: #222222; }
+
+.button-raised.button-action {
+  border-color: #9ad824;
+  background: linear-gradient(#afe24d, #9ad824); }
+
+.button-raised.button-action:hover, .button-raised.button-action:focus {
+  background: linear-gradient(top, #b5e45a, #94cf22); }
+
+.button-raised.button-action:active, .button-raised.button-action.active, .button-raised.button-action.is-active {
+  border-color: #8bc220;
+  background: #a1d243; }
+
+.button-raised.button-highlight {
+  border-color: #fea502;
+  background: linear-gradient(#feb734, #fea502); }
+
+.button-raised.button-highlight:hover, .button-raised.button-highlight:focus {
+  background: linear-gradient(top, #febc44, #f49f01); }
+
+.button-raised.button-highlight:active, .button-raised.button-highlight.active, .button-raised.button-highlight.is-active {
+  border-color: #e59501;
+  background: #f3ab26; }
+
+.button-raised.button-caution {
+  border-color: #ff2a39;
+  background: linear-gradient(#ff5d69, #ff2a39); }
+
+.button-raised.button-caution:hover, .button-raised.button-caution:focus {
+  background: linear-gradient(top, #ff6c77, #ff1f30); }
+
+.button-raised.button-caution:active, .button-raised.button-caution.active, .button-raised.button-caution.is-active {
+  border-color: #ff1022;
+  background: #f64c59; }
+
+.button-raised.button-royal {
+  border-color: #665ce6;
+  background: linear-gradient(#9088ec, #665ce6); }
+
+.button-raised.button-royal:hover, .button-raised.button-royal:focus {
+  background: linear-gradient(top, #9c95ef, #5e53e4); }
+
+.button-raised.button-royal:active, .button-raised.button-royal.active, .button-raised.button-royal.is-active {
+  border-color: #5246e2;
+  background: #827ae1; }
+
 /*
- * 3D Buttons
- *
- * These buttons have a heavy three dimensional
- * style that mimics the visual appearance of a
- * real life button.
- */
-.btn-3d {
+* 3D Buttons
+*
+* These buttons have a heavy three dimensional
+* style that mimics the visual appearance of a
+* real life button.
+*/
+.button-3d {
   position: relative;
   top: 0;
-  box-shadow: 0 7px 0 #bbb, 0 8px 3px rgba(0, 0, 0, .2); }
+  box-shadow: 0 7px 0 #bbbbbb, 0 8px 3px rgba(0, 0, 0, 0.2); }
 
-.btn-3d:hover, .btn-3d:focus {
-  box-shadow: 0 7px 0 #bbb, 0 8px 3px rgba(0, 0, 0, .2); }
+.button-3d:hover, .button-3d:focus {
+  box-shadow: 0 7px 0 #bbbbbb, 0 8px 3px rgba(0, 0, 0, 0.2); }
 
-.btn-3d:active, .btn-3d.active, .btn-3d.is-active {
+.button-3d:active, .button-3d.active, .button-3d.is-active {
   top: 5px;
   transition-property: all;
-  transition-duration: 0.15s;
-  box-shadow: 0 2px 0 #bbb, 0 3px 3px rgba(0, 0, 0, .2); }
+  transition-duration: .15s;
+  box-shadow: 0 2px 0 #bbbbbb, 0 3px 3px rgba(0, 0, 0, 0.2); }
+
 /*
- * 3D Button Colors
- *
- * Create colors for buttons
- * (.button-primary, .button-secondary, etc.)
- */
-.btn-3d.btn-color-1 {
-  box-shadow: 0 7px 0 #091117, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-1:hover, .btn-3d.btn-color-1:focus {
-    box-shadow: 0 7px 0 #060c10, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-1:active, .btn-3d.btn-color-1.active, .btn-3d.btn-color-1.is-active {
-    box-shadow: 0 2px 0 #000, 0 3px 3px rgba(0, 0, 0, .2); }
-  .btn-3d.btn-color-2 {
-    box-shadow: 0 7px 0 #182d3e, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-2:hover, .btn-3d.btn-color-2:focus {
-    box-shadow: 0 7px 0 #162836, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-2:active, .btn-3d.btn-color-2.active, .btn-3d.btn-color-2.is-active {
-    box-shadow: 0 2px 0 #0a1219, 0 3px 3px rgba(0, 0, 0, .2); }
-  .btn-3d.btn-color-3, .button-secondary.btn-3d {
-    box-shadow: 0 7px 0 #783e40, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-3:hover, .button-secondary.btn-3d:hover, .btn-3d.btn-color-3:focus, .button-secondary.btn-3d:focus {
-    box-shadow: 0 7px 0 #713b3c, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-3:active, .button-secondary.btn-3d:active, .btn-3d.btn-color-3.active, .button-secondary.btn-3d.active, .btn-3d.btn-color-3.is-active, .button-secondary.btn-3d.is-active {
-    box-shadow: 0 2px 0 #562d2e, 0 3px 3px rgba(0, 0, 0, .2); }
-  .btn-3d.btn-neutral-color {
-    box-shadow: 0 7px 0 #b7cfe1, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-neutral-color:hover, .btn-3d.btn-neutral-color:focus {
-    box-shadow: 0 7px 0 #b0cade, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-neutral-color:active, .btn-3d.btn-neutral-color.active, .btn-3d.btn-neutral-color.is-active {
-    box-shadow: 0 2px 0 #93b7d2, 0 3px 3px rgba(0, 0, 0, .2); }
+* 3D Button Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.button-3d.button-primary {
+  box-shadow: 0 7px 0 #0880d7, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-primary:hover, .button-3d.button-primary:focus {
+  box-shadow: 0 7px 0 #077ace, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-primary:active, .button-3d.button-primary.active, .button-3d.button-primary.is-active {
+  box-shadow: 0 2px 0 #0662a6, 0 3px 3px rgba(0, 0, 0, 0.2); }
+
+.button-3d.button-plain {
+  box-shadow: 0 7px 0 #e6e6e6, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-plain:hover, .button-3d.button-plain:focus {
+  box-shadow: 0 7px 0 #e0e0e0, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-plain:active, .button-3d.button-plain.active, .button-3d.button-plain.is-active {
+  box-shadow: 0 2px 0 #cccccc, 0 3px 3px rgba(0, 0, 0, 0.2); }
+
+.button-3d.button-inverse {
+  box-shadow: 0 7px 0 #090909, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-inverse:hover, .button-3d.button-inverse:focus {
+  box-shadow: 0 7px 0 #030303, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-inverse:active, .button-3d.button-inverse.active, .button-3d.button-inverse.is-active {
+  box-shadow: 0 2px 0 black, 0 3px 3px rgba(0, 0, 0, 0.2); }
+
+.button-3d.button-action {
+  box-shadow: 0 7px 0 #8bc220, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-action:hover, .button-3d.button-action:focus {
+  box-shadow: 0 7px 0 #84b91f, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-action:active, .button-3d.button-action.active, .button-3d.button-action.is-active {
+  box-shadow: 0 2px 0 #6b9619, 0 3px 3px rgba(0, 0, 0, 0.2); }
+
+.button-3d.button-highlight {
+  box-shadow: 0 7px 0 #e59501, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-highlight:hover, .button-3d.button-highlight:focus {
+  box-shadow: 0 7px 0 #db8e01, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-highlight:active, .button-3d.button-highlight.active, .button-3d.button-highlight.is-active {
+  box-shadow: 0 2px 0 #b27401, 0 3px 3px rgba(0, 0, 0, 0.2); }
+
+.button-3d.button-caution {
+  box-shadow: 0 7px 0 #ff1022, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-caution:hover, .button-3d.button-caution:focus {
+  box-shadow: 0 7px 0 #ff0618, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-caution:active, .button-3d.button-caution.active, .button-3d.button-caution.is-active {
+  box-shadow: 0 2px 0 #dc0010, 0 3px 3px rgba(0, 0, 0, 0.2); }
+
+.button-3d.button-royal {
+  box-shadow: 0 7px 0 #5246e2, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-royal:hover, .button-3d.button-royal:focus {
+  box-shadow: 0 7px 0 #493de1, 0 8px 3px rgba(0, 0, 0, 0.3); }
+
+.button-3d.button-royal:active, .button-3d.button-royal.active, .button-3d.button-royal.is-active {
+  box-shadow: 0 2px 0 #2f21d4, 0 3px 3px rgba(0, 0, 0, 0.2); }
+
 /*
- * Glowing Buttons
- *
- * A pulse like glow that appears
- * rythmically around the edges of
- * a button.
- */
+* Glowing Buttons
+*
+* A pulse like glow that appears
+* rythmically around the edges of
+* a button.
+*/
 /*
- * Glow animation mixin for Compass users
- *
- */
+* Glow animation mixin for Compass users
+*
+*/
 /*
- * Glowing Keyframes
- *
- */
+* Glowing Keyframes
+*
+*/
 @keyframes glowing {
   from {
     box-shadow: 0 0 0 rgba(44, 154, 219, 0.3); }
-
   50% {
     box-shadow: 0 0 20px rgba(44, 154, 219, 0.8); }
-
   to {
     box-shadow: 0 0 0 rgba(44, 154, 219, 0.3); } }
 
 /*
- * Glowing Keyframes for various colors
- *
- */
+* Glowing Keyframes for various colors
+*
+*/
+@keyframes glowing-primary {
+  from {
+    box-shadow: 0 0 0 rgba(27, 154, 247, 0.3); }
+  50% {
+    box-shadow: 0 0 20px rgba(27, 154, 247, 0.8); }
+  to {
+    box-shadow: 0 0 0 rgba(27, 154, 247, 0.3); } }
 
-@keyframes glowing-color-1 {
-    from {
-      box-shadow: 0 0 0 rgba(23, 44, 60, 0.3); }
-    50% {
-      box-shadow: 0 0 20px rgba(23, 44, 60, 0.8); }
-    to {
-      box-shadow: 0 0 0 rgba(23, 44, 60, 0.3); } }
+@keyframes glowing-plain {
+  from {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.3); }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+  to {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.3); } }
+
+@keyframes glowing-inverse {
+  from {
+    box-shadow: 0 0 0 rgba(34, 34, 34, 0.3); }
+  50% {
+    box-shadow: 0 0 20px rgba(34, 34, 34, 0.8); }
+  to {
+    box-shadow: 0 0 0 rgba(34, 34, 34, 0.3); } }
+
+@keyframes glowing-action {
+  from {
+    box-shadow: 0 0 0 rgba(165, 222, 55, 0.3); }
+  50% {
+    box-shadow: 0 0 20px rgba(165, 222, 55, 0.8); }
+  to {
+    box-shadow: 0 0 0 rgba(165, 222, 55, 0.3); } }
+
+@keyframes glowing-highlight {
+  from {
+    box-shadow: 0 0 0 rgba(254, 174, 27, 0.3); }
+  50% {
+    box-shadow: 0 0 20px rgba(254, 174, 27, 0.8); }
+  to {
+    box-shadow: 0 0 0 rgba(254, 174, 27, 0.3); } }
+
+@keyframes glowing-caution {
+  from {
+    box-shadow: 0 0 0 rgba(255, 67, 81, 0.3); }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 67, 81, 0.8); }
+  to {
+    box-shadow: 0 0 0 rgba(255, 67, 81, 0.3); } }
+
+@keyframes glowing-royal {
+  from {
+    box-shadow: 0 0 0 rgba(123, 114, 233, 0.3); }
+  50% {
+    box-shadow: 0 0 20px rgba(123, 114, 233, 0.8); }
+  to {
+    box-shadow: 0 0 0 rgba(123, 114, 233, 0.3); } }
 
 /*
- * Glowing Keyframes for various colors
- *
- */
-
-@keyframes glowing-color-2 {
-    from {
-      box-shadow: 0 0 0 rgba(39, 72, 98, 0.3); }
-    50% {
-      box-shadow: 0 0 20px rgba(39, 72, 98, 0.8); }
-    to {
-      box-shadow: 0 0 0 rgba(39, 72, 98, 0.3); } }
-
-/*
- * Glowing Keyframes for various colors
- *
- */
-
-@keyframes glowing-color-3 {
-    from {
-      box-shadow: 0 0 0 rgba(153, 80, 82, 0.3); }
-    50% {
-      box-shadow: 0 0 20px rgba(153, 80, 82, 0.8); }
-    to {
-      box-shadow: 0 0 0 rgba(153, 80, 82, 0.3); } }
-
-/*
- * Glowing Keyframes for various colors
- *
- */
-
-@keyframes glowing-neutral-color {
-    from {
-      box-shadow: 0 0 0 rgba(219, 231, 240, 0.3); }
-    50% {
-      box-shadow: 0 0 20px rgba(219, 231, 240, 0.8); }
-    to {
-      box-shadow: 0 0 0 rgba(219, 231, 240, 0.3); } }
-/*
- * Glowing Buttons Base Styes
- *
- * A pulse like glow that appears
- * rythmically around the edges of
- * a button.
- */
-.btn-glow {
+* Glowing Buttons Base Styes
+*
+* A pulse like glow that appears
+* rythmically around the edges of
+* a button.
+*/
+.button-glow {
   animation-duration: 3s;
   animation-iteration-count: infinite;
   animation-name: glowing; }
 
-.btn-glow:active, .btn-glow.active, .btn-glow.is-active {
+.button-glow:active, .button-glow.active, .button-glow.is-active {
   animation-name: none; }
+
 /*
- * Glowing Button Colors
- *
- * Create colors for glowing buttons
- */
-.btn-glow.btn-color-1 {
-  animation-name: glowing-color-1; }
-  .btn-glow.btn-color-2 {
-    animation-name: glowing-color-2; }
-  .btn-glow.btn-color-3, .button-secondary.btn-glow {
-    animation-name: glowing-color-3; }
-  .btn-glow.btn-neutral-color {
-    animation-name: glowing-neutral-color; }
+* Glowing Button Colors
+*
+* Create colors for glowing buttons
+*/
+.button-glow.button-primary {
+  animation-name: glowing-primary; }
+
+.button-glow.button-plain {
+  animation-name: glowing-plain; }
+
+.button-glow.button-inverse {
+  animation-name: glowing-inverse; }
+
+.button-glow.button-action {
+  animation-name: glowing-action; }
+
+.button-glow.button-highlight {
+  animation-name: glowing-highlight; }
+
+.button-glow.button-caution {
+  animation-name: glowing-caution; }
+
+.button-glow.button-royal {
+  animation-name: glowing-royal; }
+
 /*
- * Dropdown menu buttons
- *
- * A dropdown menu appears
- * when a button is pressed
- */
+* Dropdown menu buttons
+*
+* A dropdown menu appears
+* when a button is pressed
+*/
 /*
- * Dropdown Container
- *
- */
-.btn-dropdown {
+* Dropdown Container
+*
+*/
+.button-dropdown {
   position: relative;
   overflow: visible;
   display: inline-block; }
+
 /*
- * Dropdown List Style
- *
- */
-.btn-dropdown-list {
+* Dropdown List Style
+*
+*/
+.button-dropdown-list {
   display: none;
   position: absolute;
   padding: 0;
@@ -1135,116 +1637,177 @@ html, body, .site, .site-content {
   z-index: 1000;
   min-width: 100%;
   list-style-type: none;
-  background: rgba(255, 255, 255, .95);
+  background: rgba(255, 255, 255, 0.95);
   border-style: solid;
   border-width: 1px;
   border-color: #d5d5d5;
-  font-family: inherit;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   box-sizing: border-box;
   /*
-   * Dropdown Above
-   *
-   */ }
-
-.btn-dropdown-list.is-below {
+  * Dropdown Below
+  *
+  */
   /*
-   * Dropdown Below
-   *
-   */
+  * Dropdown Above
+  *
+  */ }
+
+.button-dropdown-list.is-below {
   top: 100%;
   border-top: none;
   border-radius: 0 0 3px 3px; }
 
-.btn-dropdown-list.is-above {
+.button-dropdown-list.is-above {
   bottom: 100%;
   top: auto;
   border-bottom: none;
   border-radius: 3px 3px 0 0;
   box-shadow: 0 -2px 7px rgba(0, 0, 0, 0.2); }
+
 /*
- * Dropdown Buttons
- *
- */
-.btn-dropdown-list > li {
+* Dropdown Buttons
+*
+*/
+.button-dropdown-list > li {
   padding: 0;
   margin: 0;
   display: block; }
 
-.btn-dropdown-list > li > a {
+.button-dropdown-list > li > a {
   display: block;
   line-height: 40px;
-  font-size: inherit * 0.8;
+  font-size: 12.8px;
   padding: 5px 10px;
   float: none;
   color: #666;
   text-decoration: none; }
-  .btn-dropdown-list > li > a:hover {
-    color: #5e5e5e;
-    background: #f6f6f6;
-    text-decoration: none; }
 
-.btn-dropdown-divider {
+.button-dropdown-list > li > a:hover {
+  color: #5e5e5e;
+  background: #f6f6f6;
+  text-decoration: none; }
+
+.button-dropdown-divider {
   border-top: 1px solid #e6e6e6; }
+
 /*
- * Dropdown Colors
- *
- * Create colors for buttons
- * (.button-primary, .button-secondary, etc.)
- */
-.btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list {
-  background: rgba(23, 44, 60, .95);
-  border-color: #091117; }
-  .btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list .btn-dropdown-divider {
-    border-color: #0d1922; }
-  .btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list > li > a {
-    color: #fff; }
-    .btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list > li > a:hover {
-      color: #f2f2f2;
-      background: #101e2a; }
-  .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list {
-    background: rgba(39, 72, 98, .95);
-    border-color: #182d3e; }
-  .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list .btn-dropdown-divider {
-    border-color: #1d3548; }
-  .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list > li > a {
-    color: #fff; }
-    .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list > li > a:hover {
-      color: #f2f2f2;
-      background: #203b50; }
-  .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list {
-    background: rgba(153, 80, 82, .95);
-    border-color: #783e40; }
-  .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list .btn-dropdown-divider {
-    border-color: #824445; }
-  .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list > li > a {
-    color: #fff; }
-    .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list > li > a:hover {
-      color: #f2f2f2;
-      background: #884749; }
-  .btn-dropdown.btn-dropdown-neutral-color .btn-dropdown-list {
-    background: rgba(219, 231, 240, .95);
-    border-color: #b7cfe1; }
-  .btn-dropdown.btn-dropdown-neutral-color .btn-dropdown-list .btn-dropdown-divider {
-    border-color: #c2d6e6; }
-  .btn-dropdown.btn-dropdown-neutral-color .btn-dropdown-list > li > a {
-    color: #4d4d4d; }
-    .btn-dropdown.btn-dropdown-neutral-color .btn-dropdown-list > li > a:hover {
-      color: #404040;
-      background: #c9dbe9; }
+* Dropdown Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.button-dropdown.button-dropdown-primary .button-dropdown-list {
+  background: rgba(27, 154, 247, 0.95);
+  border-color: #0880d7; }
+
+.button-dropdown.button-dropdown-primary .button-dropdown-list .button-dropdown-divider {
+  border-color: #0888e6; }
+
+.button-dropdown.button-dropdown-primary .button-dropdown-list > li > a {
+  color: #FFF; }
+
+.button-dropdown.button-dropdown-primary .button-dropdown-list > li > a:hover {
+  color: #f2f2f2;
+  background: #088ef0; }
+
+.button-dropdown.button-dropdown-plain .button-dropdown-list {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #e6e6e6; }
+
+.button-dropdown.button-dropdown-plain .button-dropdown-list .button-dropdown-divider {
+  border-color: #ededed; }
+
+.button-dropdown.button-dropdown-plain .button-dropdown-list > li > a {
+  color: #1B9AF7; }
+
+.button-dropdown.button-dropdown-plain .button-dropdown-list > li > a:hover {
+  color: #088ef0;
+  background: #f2f2f2; }
+
+.button-dropdown.button-dropdown-inverse .button-dropdown-list {
+  background: rgba(34, 34, 34, 0.95);
+  border-color: #090909; }
+
+.button-dropdown.button-dropdown-inverse .button-dropdown-list .button-dropdown-divider {
+  border-color: #101010; }
+
+.button-dropdown.button-dropdown-inverse .button-dropdown-list > li > a {
+  color: #EEE; }
+
+.button-dropdown.button-dropdown-inverse .button-dropdown-list > li > a:hover {
+  color: #e1e1e1;
+  background: #151515; }
+
+.button-dropdown.button-dropdown-action .button-dropdown-list {
+  background: rgba(165, 222, 55, 0.95);
+  border-color: #8bc220; }
+
+.button-dropdown.button-dropdown-action .button-dropdown-list .button-dropdown-divider {
+  border-color: #94cf22; }
+
+.button-dropdown.button-dropdown-action .button-dropdown-list > li > a {
+  color: #FFF; }
+
+.button-dropdown.button-dropdown-action .button-dropdown-list > li > a:hover {
+  color: #f2f2f2;
+  background: #9ad824; }
+
+.button-dropdown.button-dropdown-highlight .button-dropdown-list {
+  background: rgba(254, 174, 27, 0.95);
+  border-color: #e59501; }
+
+.button-dropdown.button-dropdown-highlight .button-dropdown-list .button-dropdown-divider {
+  border-color: #f49f01; }
+
+.button-dropdown.button-dropdown-highlight .button-dropdown-list > li > a {
+  color: #FFF; }
+
+.button-dropdown.button-dropdown-highlight .button-dropdown-list > li > a:hover {
+  color: #f2f2f2;
+  background: #fea502; }
+
+.button-dropdown.button-dropdown-caution .button-dropdown-list {
+  background: rgba(255, 67, 81, 0.95);
+  border-color: #ff1022; }
+
+.button-dropdown.button-dropdown-caution .button-dropdown-list .button-dropdown-divider {
+  border-color: #ff1f30; }
+
+.button-dropdown.button-dropdown-caution .button-dropdown-list > li > a {
+  color: #FFF; }
+
+.button-dropdown.button-dropdown-caution .button-dropdown-list > li > a:hover {
+  color: #f2f2f2;
+  background: #ff2a39; }
+
+.button-dropdown.button-dropdown-royal .button-dropdown-list {
+  background: rgba(123, 114, 233, 0.95);
+  border-color: #5246e2; }
+
+.button-dropdown.button-dropdown-royal .button-dropdown-list .button-dropdown-divider {
+  border-color: #5e53e4; }
+
+.button-dropdown.button-dropdown-royal .button-dropdown-list > li > a {
+  color: #FFF; }
+
+.button-dropdown.button-dropdown-royal .button-dropdown-list > li > a:hover {
+  color: #f2f2f2;
+  background: #665ce6; }
+
 /*
- * Buton Groups
- *
- * A group of related buttons
- * displayed edge to edge
- */
-.btn-group {
+* Buton Groups
+*
+* A group of related buttons
+* displayed edge to edge
+*/
+.button-group {
   *zoom: 1;
   position: relative;
   display: inline-block; }
 
-.btn-group:after, .btn-group:before {
+.button-group:after, .button-group:before {
   content: '.';
   clear: both;
   display: block;
@@ -1255,128 +1818,220 @@ html, body, .site, .site-content {
   width: 0;
   height: 0; }
 
-.btn-group .btn, .btn-group .button-primary, .btn-group .button-secondary, .btn-group .btn-dropdown {
+.button-group .button,
+.button-group .button-dropdown {
   float: left; }
-  .btn-group .btn:not(:first-child):not(:last-child), .btn-group .button-primary:not(:first-child):not(:last-child), .btn-group .button-secondary:not(:first-child):not(:last-child), .btn-group .btn-dropdown:not(:first-child):not(:last-child) {
-    border-radius: 0;
-    border-right: none; }
-  .btn-group .btn:first-child, .btn-group .button-primary:first-child, .btn-group .button-secondary:first-child, .btn-group .btn-dropdown:first-child {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right: none; }
-  .btn-group .btn:last-child, .btn-group .button-primary:last-child, .btn-group .button-secondary:last-child, .btn-group .btn-dropdown:last-child {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0; }
+
+.button-group .button:not(:first-child):not(:last-child),
+.button-group .button-dropdown:not(:first-child):not(:last-child) {
+  border-radius: 0;
+  border-right: none; }
+
+.button-group .button:first-child,
+.button-group .button-dropdown:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none; }
+
+.button-group .button:last-child,
+.button-group .button-dropdown:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0; }
+
 /*
- * Button Wrapper
- *
- * A wrap around effect to highlight
- * the shape of the button and offer
- * a subtle visual effect.
- */
-.btn-wrap {
+* Button Wrapper
+*
+* A wrap around effect to highlight
+* the shape of the button and offer
+* a subtle visual effect.
+*/
+.button-wrap {
   border: 1px solid #e3e3e3;
   display: inline-block;
   padding: 9px;
-  background: linear-gradient(#f2f2f2, #fff);
+  background: linear-gradient(#f2f2f2, #FFF);
   border-radius: 200px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04); }
+
 /*
- * Long Shadow Buttons
- *
- * A visual effect adding a flat shadow to the text of a button
- */
+* Long Shadow Buttons
+*
+* A visual effect adding a flat shadow to the text of a button
+*/
 /*
- * Long Shadow Function
- *
- * Loops $length times building a long shadow. Defaults downward right
- */
+* Long Shadow Function
+*
+* Loops $length times building a long shadow. Defaults downward right
+*/
 /*
- * LONG SHADOW MIXIN
- *
- */
+* LONG SHADOW MIXIN
+*
+*/
 /*
- * Shadow Right
- *
- */
-.btn-longshadow, .btn-longshadow-right {
+* Shadow Right
+*
+*/
+.button-longshadow,
+.button-longshadow-right {
   overflow: hidden; }
-  .btn-longshadow.btn-color-1, .btn-longshadow-right.btn-color-1 {
-    text-shadow: 0px 0px #0911171px 1px #0911172px 2px #0911173px 3px #0911174px 4px #0911175px 5px #0911176px 6px #0911177px 7px #0911178px 8px #0911179px 9px #09111710px 10px #09111711px 11px #09111712px 12px #09111713px 13px #09111714px 14px #09111715px 15px #09111716px 16px #09111717px 17px #09111718px 18px #09111719px 19px #09111720px 20px #09111721px 21px #09111722px 22px #09111723px 23px #09111724px 24px #09111725px 25px #09111726px 26px #09111727px 27px #09111728px 28px #09111729px 29px #09111730px 30px #09111731px 31px #09111732px 32px #09111733px 33px #09111734px 34px #09111735px 35px #09111736px 36px #09111737px 37px #09111738px 38px #09111739px 39px #09111740px 40px #09111741px 41px #09111742px 42px #09111743px 43px #09111744px 44px #09111745px 45px #09111746px 46px #09111747px 47px #09111748px 48px #09111749px 49px #09111750px 50px #09111751px 51px #09111752px 52px #09111753px 53px #09111754px 54px #09111755px 55px #09111756px 56px #09111757px 57px #09111758px 58px #09111759px 59px #09111760px 60px #09111761px 61px #09111762px 62px #09111763px 63px #09111764px 64px #09111765px 65px #09111766px 66px #09111767px 67px #09111768px 68px #09111769px 69px #09111770px 70px #09111771px 71px #09111772px 72px #09111773px 73px #09111774px 74px #09111775px 75px #09111776px 76px #09111777px 77px #09111778px 78px #09111779px 79px #09111780px 80px #09111781px 81px #09111782px 82px #09111783px 83px #09111784px 84px #09111785px 85px #091117; }
-  .btn-longshadow.btn-color-1:active, .btn-longshadow-right.btn-color-1:active, .btn-longshadow.btn-color-1.active, .btn-longshadow-right.btn-color-1.active, .btn-longshadow.btn-color-1.is-active, .btn-longshadow-right.btn-color-1.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow.btn-color-2, .btn-longshadow-right.btn-color-2 {
-    text-shadow: 0px 0px #182d3e1px 1px #182d3e2px 2px #182d3e3px 3px #182d3e4px 4px #182d3e5px 5px #182d3e6px 6px #182d3e7px 7px #182d3e8px 8px #182d3e9px 9px #182d3e10px 10px #182d3e11px 11px #182d3e12px 12px #182d3e13px 13px #182d3e14px 14px #182d3e15px 15px #182d3e16px 16px #182d3e17px 17px #182d3e18px 18px #182d3e19px 19px #182d3e20px 20px #182d3e21px 21px #182d3e22px 22px #182d3e23px 23px #182d3e24px 24px #182d3e25px 25px #182d3e26px 26px #182d3e27px 27px #182d3e28px 28px #182d3e29px 29px #182d3e30px 30px #182d3e31px 31px #182d3e32px 32px #182d3e33px 33px #182d3e34px 34px #182d3e35px 35px #182d3e36px 36px #182d3e37px 37px #182d3e38px 38px #182d3e39px 39px #182d3e40px 40px #182d3e41px 41px #182d3e42px 42px #182d3e43px 43px #182d3e44px 44px #182d3e45px 45px #182d3e46px 46px #182d3e47px 47px #182d3e48px 48px #182d3e49px 49px #182d3e50px 50px #182d3e51px 51px #182d3e52px 52px #182d3e53px 53px #182d3e54px 54px #182d3e55px 55px #182d3e56px 56px #182d3e57px 57px #182d3e58px 58px #182d3e59px 59px #182d3e60px 60px #182d3e61px 61px #182d3e62px 62px #182d3e63px 63px #182d3e64px 64px #182d3e65px 65px #182d3e66px 66px #182d3e67px 67px #182d3e68px 68px #182d3e69px 69px #182d3e70px 70px #182d3e71px 71px #182d3e72px 72px #182d3e73px 73px #182d3e74px 74px #182d3e75px 75px #182d3e76px 76px #182d3e77px 77px #182d3e78px 78px #182d3e79px 79px #182d3e80px 80px #182d3e81px 81px #182d3e82px 82px #182d3e83px 83px #182d3e84px 84px #182d3e85px 85px #182d3e; }
-  .btn-longshadow.btn-color-2:active, .btn-longshadow-right.btn-color-2:active, .btn-longshadow.btn-color-2.active, .btn-longshadow-right.btn-color-2.active, .btn-longshadow.btn-color-2.is-active, .btn-longshadow-right.btn-color-2.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow.btn-color-3, .button-secondary.btn-longshadow, .btn-longshadow-right.btn-color-3, .button-secondary.btn-longshadow-right {
-    text-shadow: 0px 0px #783e401px 1px #783e402px 2px #783e403px 3px #783e404px 4px #783e405px 5px #783e406px 6px #783e407px 7px #783e408px 8px #783e409px 9px #783e4010px 10px #783e4011px 11px #783e4012px 12px #783e4013px 13px #783e4014px 14px #783e4015px 15px #783e4016px 16px #783e4017px 17px #783e4018px 18px #783e4019px 19px #783e4020px 20px #783e4021px 21px #783e4022px 22px #783e4023px 23px #783e4024px 24px #783e4025px 25px #783e4026px 26px #783e4027px 27px #783e4028px 28px #783e4029px 29px #783e4030px 30px #783e4031px 31px #783e4032px 32px #783e4033px 33px #783e4034px 34px #783e4035px 35px #783e4036px 36px #783e4037px 37px #783e4038px 38px #783e4039px 39px #783e4040px 40px #783e4041px 41px #783e4042px 42px #783e4043px 43px #783e4044px 44px #783e4045px 45px #783e4046px 46px #783e4047px 47px #783e4048px 48px #783e4049px 49px #783e4050px 50px #783e4051px 51px #783e4052px 52px #783e4053px 53px #783e4054px 54px #783e4055px 55px #783e4056px 56px #783e4057px 57px #783e4058px 58px #783e4059px 59px #783e4060px 60px #783e4061px 61px #783e4062px 62px #783e4063px 63px #783e4064px 64px #783e4065px 65px #783e4066px 66px #783e4067px 67px #783e4068px 68px #783e4069px 69px #783e4070px 70px #783e4071px 71px #783e4072px 72px #783e4073px 73px #783e4074px 74px #783e4075px 75px #783e4076px 76px #783e4077px 77px #783e4078px 78px #783e4079px 79px #783e4080px 80px #783e4081px 81px #783e4082px 82px #783e4083px 83px #783e4084px 84px #783e4085px 85px #783e40; }
-  .btn-longshadow.btn-color-3:active, .button-secondary.btn-longshadow:active, .btn-longshadow-right.btn-color-3:active, .button-secondary.btn-longshadow-right:active, .btn-longshadow.btn-color-3.active, .button-secondary.btn-longshadow.active, .btn-longshadow-right.btn-color-3.active, .button-secondary.btn-longshadow-right.active, .btn-longshadow.btn-color-3.is-active, .button-secondary.btn-longshadow.is-active, .btn-longshadow-right.btn-color-3.is-active, .button-secondary.btn-longshadow-right.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow.btn-neutral-color, .btn-longshadow-right.btn-neutral-color {
-    text-shadow: 0px 0px #b7cfe11px 1px #b7cfe12px 2px #b7cfe13px 3px #b7cfe14px 4px #b7cfe15px 5px #b7cfe16px 6px #b7cfe17px 7px #b7cfe18px 8px #b7cfe19px 9px #b7cfe110px 10px #b7cfe111px 11px #b7cfe112px 12px #b7cfe113px 13px #b7cfe114px 14px #b7cfe115px 15px #b7cfe116px 16px #b7cfe117px 17px #b7cfe118px 18px #b7cfe119px 19px #b7cfe120px 20px #b7cfe121px 21px #b7cfe122px 22px #b7cfe123px 23px #b7cfe124px 24px #b7cfe125px 25px #b7cfe126px 26px #b7cfe127px 27px #b7cfe128px 28px #b7cfe129px 29px #b7cfe130px 30px #b7cfe131px 31px #b7cfe132px 32px #b7cfe133px 33px #b7cfe134px 34px #b7cfe135px 35px #b7cfe136px 36px #b7cfe137px 37px #b7cfe138px 38px #b7cfe139px 39px #b7cfe140px 40px #b7cfe141px 41px #b7cfe142px 42px #b7cfe143px 43px #b7cfe144px 44px #b7cfe145px 45px #b7cfe146px 46px #b7cfe147px 47px #b7cfe148px 48px #b7cfe149px 49px #b7cfe150px 50px #b7cfe151px 51px #b7cfe152px 52px #b7cfe153px 53px #b7cfe154px 54px #b7cfe155px 55px #b7cfe156px 56px #b7cfe157px 57px #b7cfe158px 58px #b7cfe159px 59px #b7cfe160px 60px #b7cfe161px 61px #b7cfe162px 62px #b7cfe163px 63px #b7cfe164px 64px #b7cfe165px 65px #b7cfe166px 66px #b7cfe167px 67px #b7cfe168px 68px #b7cfe169px 69px #b7cfe170px 70px #b7cfe171px 71px #b7cfe172px 72px #b7cfe173px 73px #b7cfe174px 74px #b7cfe175px 75px #b7cfe176px 76px #b7cfe177px 77px #b7cfe178px 78px #b7cfe179px 79px #b7cfe180px 80px #b7cfe181px 81px #b7cfe182px 82px #b7cfe183px 83px #b7cfe184px 84px #b7cfe185px 85px #b7cfe1; }
-  .btn-longshadow.btn-neutral-color:active, .btn-longshadow-right.btn-neutral-color:active, .btn-longshadow.btn-neutral-color.active, .btn-longshadow-right.btn-neutral-color.active, .btn-longshadow.btn-neutral-color.is-active, .btn-longshadow-right.btn-neutral-color.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
+
+.button-longshadow.button-primary,
+.button-longshadow-right.button-primary {
+  text-shadow: 0px 0px #0880d7, 1px 1px #0880d7, 2px 2px #0880d7, 3px 3px #0880d7, 4px 4px #0880d7, 5px 5px #0880d7, 6px 6px #0880d7, 7px 7px #0880d7, 8px 8px #0880d7, 9px 9px #0880d7, 10px 10px #0880d7, 11px 11px #0880d7, 12px 12px #0880d7, 13px 13px #0880d7, 14px 14px #0880d7, 15px 15px #0880d7, 16px 16px #0880d7, 17px 17px #0880d7, 18px 18px #0880d7, 19px 19px #0880d7, 20px 20px #0880d7, 21px 21px #0880d7, 22px 22px #0880d7, 23px 23px #0880d7, 24px 24px #0880d7, 25px 25px #0880d7, 26px 26px #0880d7, 27px 27px #0880d7, 28px 28px #0880d7, 29px 29px #0880d7, 30px 30px #0880d7, 31px 31px #0880d7, 32px 32px #0880d7, 33px 33px #0880d7, 34px 34px #0880d7, 35px 35px #0880d7, 36px 36px #0880d7, 37px 37px #0880d7, 38px 38px #0880d7, 39px 39px #0880d7, 40px 40px #0880d7, 41px 41px #0880d7, 42px 42px #0880d7, 43px 43px #0880d7, 44px 44px #0880d7, 45px 45px #0880d7, 46px 46px #0880d7, 47px 47px #0880d7, 48px 48px #0880d7, 49px 49px #0880d7, 50px 50px #0880d7, 51px 51px #0880d7, 52px 52px #0880d7, 53px 53px #0880d7, 54px 54px #0880d7, 55px 55px #0880d7, 56px 56px #0880d7, 57px 57px #0880d7, 58px 58px #0880d7, 59px 59px #0880d7, 60px 60px #0880d7, 61px 61px #0880d7, 62px 62px #0880d7, 63px 63px #0880d7, 64px 64px #0880d7, 65px 65px #0880d7, 66px 66px #0880d7, 67px 67px #0880d7, 68px 68px #0880d7, 69px 69px #0880d7, 70px 70px #0880d7, 71px 71px #0880d7, 72px 72px #0880d7, 73px 73px #0880d7, 74px 74px #0880d7, 75px 75px #0880d7, 76px 76px #0880d7, 77px 77px #0880d7, 78px 78px #0880d7, 79px 79px #0880d7, 80px 80px #0880d7, 81px 81px #0880d7, 82px 82px #0880d7, 83px 83px #0880d7, 84px 84px #0880d7, 85px 85px #0880d7; }
+
+.button-longshadow.button-primary:active, .button-longshadow.button-primary.active, .button-longshadow.button-primary.is-active,
+.button-longshadow-right.button-primary:active,
+.button-longshadow-right.button-primary.active,
+.button-longshadow-right.button-primary.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow.button-plain,
+.button-longshadow-right.button-plain {
+  text-shadow: 0px 0px #e6e6e6, 1px 1px #e6e6e6, 2px 2px #e6e6e6, 3px 3px #e6e6e6, 4px 4px #e6e6e6, 5px 5px #e6e6e6, 6px 6px #e6e6e6, 7px 7px #e6e6e6, 8px 8px #e6e6e6, 9px 9px #e6e6e6, 10px 10px #e6e6e6, 11px 11px #e6e6e6, 12px 12px #e6e6e6, 13px 13px #e6e6e6, 14px 14px #e6e6e6, 15px 15px #e6e6e6, 16px 16px #e6e6e6, 17px 17px #e6e6e6, 18px 18px #e6e6e6, 19px 19px #e6e6e6, 20px 20px #e6e6e6, 21px 21px #e6e6e6, 22px 22px #e6e6e6, 23px 23px #e6e6e6, 24px 24px #e6e6e6, 25px 25px #e6e6e6, 26px 26px #e6e6e6, 27px 27px #e6e6e6, 28px 28px #e6e6e6, 29px 29px #e6e6e6, 30px 30px #e6e6e6, 31px 31px #e6e6e6, 32px 32px #e6e6e6, 33px 33px #e6e6e6, 34px 34px #e6e6e6, 35px 35px #e6e6e6, 36px 36px #e6e6e6, 37px 37px #e6e6e6, 38px 38px #e6e6e6, 39px 39px #e6e6e6, 40px 40px #e6e6e6, 41px 41px #e6e6e6, 42px 42px #e6e6e6, 43px 43px #e6e6e6, 44px 44px #e6e6e6, 45px 45px #e6e6e6, 46px 46px #e6e6e6, 47px 47px #e6e6e6, 48px 48px #e6e6e6, 49px 49px #e6e6e6, 50px 50px #e6e6e6, 51px 51px #e6e6e6, 52px 52px #e6e6e6, 53px 53px #e6e6e6, 54px 54px #e6e6e6, 55px 55px #e6e6e6, 56px 56px #e6e6e6, 57px 57px #e6e6e6, 58px 58px #e6e6e6, 59px 59px #e6e6e6, 60px 60px #e6e6e6, 61px 61px #e6e6e6, 62px 62px #e6e6e6, 63px 63px #e6e6e6, 64px 64px #e6e6e6, 65px 65px #e6e6e6, 66px 66px #e6e6e6, 67px 67px #e6e6e6, 68px 68px #e6e6e6, 69px 69px #e6e6e6, 70px 70px #e6e6e6, 71px 71px #e6e6e6, 72px 72px #e6e6e6, 73px 73px #e6e6e6, 74px 74px #e6e6e6, 75px 75px #e6e6e6, 76px 76px #e6e6e6, 77px 77px #e6e6e6, 78px 78px #e6e6e6, 79px 79px #e6e6e6, 80px 80px #e6e6e6, 81px 81px #e6e6e6, 82px 82px #e6e6e6, 83px 83px #e6e6e6, 84px 84px #e6e6e6, 85px 85px #e6e6e6; }
+
+.button-longshadow.button-plain:active, .button-longshadow.button-plain.active, .button-longshadow.button-plain.is-active,
+.button-longshadow-right.button-plain:active,
+.button-longshadow-right.button-plain.active,
+.button-longshadow-right.button-plain.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow.button-inverse,
+.button-longshadow-right.button-inverse {
+  text-shadow: 0px 0px #090909, 1px 1px #090909, 2px 2px #090909, 3px 3px #090909, 4px 4px #090909, 5px 5px #090909, 6px 6px #090909, 7px 7px #090909, 8px 8px #090909, 9px 9px #090909, 10px 10px #090909, 11px 11px #090909, 12px 12px #090909, 13px 13px #090909, 14px 14px #090909, 15px 15px #090909, 16px 16px #090909, 17px 17px #090909, 18px 18px #090909, 19px 19px #090909, 20px 20px #090909, 21px 21px #090909, 22px 22px #090909, 23px 23px #090909, 24px 24px #090909, 25px 25px #090909, 26px 26px #090909, 27px 27px #090909, 28px 28px #090909, 29px 29px #090909, 30px 30px #090909, 31px 31px #090909, 32px 32px #090909, 33px 33px #090909, 34px 34px #090909, 35px 35px #090909, 36px 36px #090909, 37px 37px #090909, 38px 38px #090909, 39px 39px #090909, 40px 40px #090909, 41px 41px #090909, 42px 42px #090909, 43px 43px #090909, 44px 44px #090909, 45px 45px #090909, 46px 46px #090909, 47px 47px #090909, 48px 48px #090909, 49px 49px #090909, 50px 50px #090909, 51px 51px #090909, 52px 52px #090909, 53px 53px #090909, 54px 54px #090909, 55px 55px #090909, 56px 56px #090909, 57px 57px #090909, 58px 58px #090909, 59px 59px #090909, 60px 60px #090909, 61px 61px #090909, 62px 62px #090909, 63px 63px #090909, 64px 64px #090909, 65px 65px #090909, 66px 66px #090909, 67px 67px #090909, 68px 68px #090909, 69px 69px #090909, 70px 70px #090909, 71px 71px #090909, 72px 72px #090909, 73px 73px #090909, 74px 74px #090909, 75px 75px #090909, 76px 76px #090909, 77px 77px #090909, 78px 78px #090909, 79px 79px #090909, 80px 80px #090909, 81px 81px #090909, 82px 82px #090909, 83px 83px #090909, 84px 84px #090909, 85px 85px #090909; }
+
+.button-longshadow.button-inverse:active, .button-longshadow.button-inverse.active, .button-longshadow.button-inverse.is-active,
+.button-longshadow-right.button-inverse:active,
+.button-longshadow-right.button-inverse.active,
+.button-longshadow-right.button-inverse.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow.button-action,
+.button-longshadow-right.button-action {
+  text-shadow: 0px 0px #8bc220, 1px 1px #8bc220, 2px 2px #8bc220, 3px 3px #8bc220, 4px 4px #8bc220, 5px 5px #8bc220, 6px 6px #8bc220, 7px 7px #8bc220, 8px 8px #8bc220, 9px 9px #8bc220, 10px 10px #8bc220, 11px 11px #8bc220, 12px 12px #8bc220, 13px 13px #8bc220, 14px 14px #8bc220, 15px 15px #8bc220, 16px 16px #8bc220, 17px 17px #8bc220, 18px 18px #8bc220, 19px 19px #8bc220, 20px 20px #8bc220, 21px 21px #8bc220, 22px 22px #8bc220, 23px 23px #8bc220, 24px 24px #8bc220, 25px 25px #8bc220, 26px 26px #8bc220, 27px 27px #8bc220, 28px 28px #8bc220, 29px 29px #8bc220, 30px 30px #8bc220, 31px 31px #8bc220, 32px 32px #8bc220, 33px 33px #8bc220, 34px 34px #8bc220, 35px 35px #8bc220, 36px 36px #8bc220, 37px 37px #8bc220, 38px 38px #8bc220, 39px 39px #8bc220, 40px 40px #8bc220, 41px 41px #8bc220, 42px 42px #8bc220, 43px 43px #8bc220, 44px 44px #8bc220, 45px 45px #8bc220, 46px 46px #8bc220, 47px 47px #8bc220, 48px 48px #8bc220, 49px 49px #8bc220, 50px 50px #8bc220, 51px 51px #8bc220, 52px 52px #8bc220, 53px 53px #8bc220, 54px 54px #8bc220, 55px 55px #8bc220, 56px 56px #8bc220, 57px 57px #8bc220, 58px 58px #8bc220, 59px 59px #8bc220, 60px 60px #8bc220, 61px 61px #8bc220, 62px 62px #8bc220, 63px 63px #8bc220, 64px 64px #8bc220, 65px 65px #8bc220, 66px 66px #8bc220, 67px 67px #8bc220, 68px 68px #8bc220, 69px 69px #8bc220, 70px 70px #8bc220, 71px 71px #8bc220, 72px 72px #8bc220, 73px 73px #8bc220, 74px 74px #8bc220, 75px 75px #8bc220, 76px 76px #8bc220, 77px 77px #8bc220, 78px 78px #8bc220, 79px 79px #8bc220, 80px 80px #8bc220, 81px 81px #8bc220, 82px 82px #8bc220, 83px 83px #8bc220, 84px 84px #8bc220, 85px 85px #8bc220; }
+
+.button-longshadow.button-action:active, .button-longshadow.button-action.active, .button-longshadow.button-action.is-active,
+.button-longshadow-right.button-action:active,
+.button-longshadow-right.button-action.active,
+.button-longshadow-right.button-action.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow.button-highlight,
+.button-longshadow-right.button-highlight {
+  text-shadow: 0px 0px #e59501, 1px 1px #e59501, 2px 2px #e59501, 3px 3px #e59501, 4px 4px #e59501, 5px 5px #e59501, 6px 6px #e59501, 7px 7px #e59501, 8px 8px #e59501, 9px 9px #e59501, 10px 10px #e59501, 11px 11px #e59501, 12px 12px #e59501, 13px 13px #e59501, 14px 14px #e59501, 15px 15px #e59501, 16px 16px #e59501, 17px 17px #e59501, 18px 18px #e59501, 19px 19px #e59501, 20px 20px #e59501, 21px 21px #e59501, 22px 22px #e59501, 23px 23px #e59501, 24px 24px #e59501, 25px 25px #e59501, 26px 26px #e59501, 27px 27px #e59501, 28px 28px #e59501, 29px 29px #e59501, 30px 30px #e59501, 31px 31px #e59501, 32px 32px #e59501, 33px 33px #e59501, 34px 34px #e59501, 35px 35px #e59501, 36px 36px #e59501, 37px 37px #e59501, 38px 38px #e59501, 39px 39px #e59501, 40px 40px #e59501, 41px 41px #e59501, 42px 42px #e59501, 43px 43px #e59501, 44px 44px #e59501, 45px 45px #e59501, 46px 46px #e59501, 47px 47px #e59501, 48px 48px #e59501, 49px 49px #e59501, 50px 50px #e59501, 51px 51px #e59501, 52px 52px #e59501, 53px 53px #e59501, 54px 54px #e59501, 55px 55px #e59501, 56px 56px #e59501, 57px 57px #e59501, 58px 58px #e59501, 59px 59px #e59501, 60px 60px #e59501, 61px 61px #e59501, 62px 62px #e59501, 63px 63px #e59501, 64px 64px #e59501, 65px 65px #e59501, 66px 66px #e59501, 67px 67px #e59501, 68px 68px #e59501, 69px 69px #e59501, 70px 70px #e59501, 71px 71px #e59501, 72px 72px #e59501, 73px 73px #e59501, 74px 74px #e59501, 75px 75px #e59501, 76px 76px #e59501, 77px 77px #e59501, 78px 78px #e59501, 79px 79px #e59501, 80px 80px #e59501, 81px 81px #e59501, 82px 82px #e59501, 83px 83px #e59501, 84px 84px #e59501, 85px 85px #e59501; }
+
+.button-longshadow.button-highlight:active, .button-longshadow.button-highlight.active, .button-longshadow.button-highlight.is-active,
+.button-longshadow-right.button-highlight:active,
+.button-longshadow-right.button-highlight.active,
+.button-longshadow-right.button-highlight.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow.button-caution,
+.button-longshadow-right.button-caution {
+  text-shadow: 0px 0px #ff1022, 1px 1px #ff1022, 2px 2px #ff1022, 3px 3px #ff1022, 4px 4px #ff1022, 5px 5px #ff1022, 6px 6px #ff1022, 7px 7px #ff1022, 8px 8px #ff1022, 9px 9px #ff1022, 10px 10px #ff1022, 11px 11px #ff1022, 12px 12px #ff1022, 13px 13px #ff1022, 14px 14px #ff1022, 15px 15px #ff1022, 16px 16px #ff1022, 17px 17px #ff1022, 18px 18px #ff1022, 19px 19px #ff1022, 20px 20px #ff1022, 21px 21px #ff1022, 22px 22px #ff1022, 23px 23px #ff1022, 24px 24px #ff1022, 25px 25px #ff1022, 26px 26px #ff1022, 27px 27px #ff1022, 28px 28px #ff1022, 29px 29px #ff1022, 30px 30px #ff1022, 31px 31px #ff1022, 32px 32px #ff1022, 33px 33px #ff1022, 34px 34px #ff1022, 35px 35px #ff1022, 36px 36px #ff1022, 37px 37px #ff1022, 38px 38px #ff1022, 39px 39px #ff1022, 40px 40px #ff1022, 41px 41px #ff1022, 42px 42px #ff1022, 43px 43px #ff1022, 44px 44px #ff1022, 45px 45px #ff1022, 46px 46px #ff1022, 47px 47px #ff1022, 48px 48px #ff1022, 49px 49px #ff1022, 50px 50px #ff1022, 51px 51px #ff1022, 52px 52px #ff1022, 53px 53px #ff1022, 54px 54px #ff1022, 55px 55px #ff1022, 56px 56px #ff1022, 57px 57px #ff1022, 58px 58px #ff1022, 59px 59px #ff1022, 60px 60px #ff1022, 61px 61px #ff1022, 62px 62px #ff1022, 63px 63px #ff1022, 64px 64px #ff1022, 65px 65px #ff1022, 66px 66px #ff1022, 67px 67px #ff1022, 68px 68px #ff1022, 69px 69px #ff1022, 70px 70px #ff1022, 71px 71px #ff1022, 72px 72px #ff1022, 73px 73px #ff1022, 74px 74px #ff1022, 75px 75px #ff1022, 76px 76px #ff1022, 77px 77px #ff1022, 78px 78px #ff1022, 79px 79px #ff1022, 80px 80px #ff1022, 81px 81px #ff1022, 82px 82px #ff1022, 83px 83px #ff1022, 84px 84px #ff1022, 85px 85px #ff1022; }
+
+.button-longshadow.button-caution:active, .button-longshadow.button-caution.active, .button-longshadow.button-caution.is-active,
+.button-longshadow-right.button-caution:active,
+.button-longshadow-right.button-caution.active,
+.button-longshadow-right.button-caution.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow.button-royal,
+.button-longshadow-right.button-royal {
+  text-shadow: 0px 0px #5246e2, 1px 1px #5246e2, 2px 2px #5246e2, 3px 3px #5246e2, 4px 4px #5246e2, 5px 5px #5246e2, 6px 6px #5246e2, 7px 7px #5246e2, 8px 8px #5246e2, 9px 9px #5246e2, 10px 10px #5246e2, 11px 11px #5246e2, 12px 12px #5246e2, 13px 13px #5246e2, 14px 14px #5246e2, 15px 15px #5246e2, 16px 16px #5246e2, 17px 17px #5246e2, 18px 18px #5246e2, 19px 19px #5246e2, 20px 20px #5246e2, 21px 21px #5246e2, 22px 22px #5246e2, 23px 23px #5246e2, 24px 24px #5246e2, 25px 25px #5246e2, 26px 26px #5246e2, 27px 27px #5246e2, 28px 28px #5246e2, 29px 29px #5246e2, 30px 30px #5246e2, 31px 31px #5246e2, 32px 32px #5246e2, 33px 33px #5246e2, 34px 34px #5246e2, 35px 35px #5246e2, 36px 36px #5246e2, 37px 37px #5246e2, 38px 38px #5246e2, 39px 39px #5246e2, 40px 40px #5246e2, 41px 41px #5246e2, 42px 42px #5246e2, 43px 43px #5246e2, 44px 44px #5246e2, 45px 45px #5246e2, 46px 46px #5246e2, 47px 47px #5246e2, 48px 48px #5246e2, 49px 49px #5246e2, 50px 50px #5246e2, 51px 51px #5246e2, 52px 52px #5246e2, 53px 53px #5246e2, 54px 54px #5246e2, 55px 55px #5246e2, 56px 56px #5246e2, 57px 57px #5246e2, 58px 58px #5246e2, 59px 59px #5246e2, 60px 60px #5246e2, 61px 61px #5246e2, 62px 62px #5246e2, 63px 63px #5246e2, 64px 64px #5246e2, 65px 65px #5246e2, 66px 66px #5246e2, 67px 67px #5246e2, 68px 68px #5246e2, 69px 69px #5246e2, 70px 70px #5246e2, 71px 71px #5246e2, 72px 72px #5246e2, 73px 73px #5246e2, 74px 74px #5246e2, 75px 75px #5246e2, 76px 76px #5246e2, 77px 77px #5246e2, 78px 78px #5246e2, 79px 79px #5246e2, 80px 80px #5246e2, 81px 81px #5246e2, 82px 82px #5246e2, 83px 83px #5246e2, 84px 84px #5246e2, 85px 85px #5246e2; }
+
+.button-longshadow.button-royal:active, .button-longshadow.button-royal.active, .button-longshadow.button-royal.is-active,
+.button-longshadow-right.button-royal:active,
+.button-longshadow-right.button-royal.active,
+.button-longshadow-right.button-royal.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
 /*
- * Shadow Left
- *
- */
-.btn-longshadow-left {
+* Shadow Left
+*
+*/
+.button-longshadow-left {
   overflow: hidden; }
-  .btn-longshadow-left.btn-color-1 {
-    text-shadow: 0px 0px #091117-1px 1px #091117-2px 2px #091117-3px 3px #091117-4px 4px #091117-5px 5px #091117-6px 6px #091117-7px 7px #091117-8px 8px #091117-9px 9px #091117-10px 10px #091117-11px 11px #091117-12px 12px #091117-13px 13px #091117-14px 14px #091117-15px 15px #091117-16px 16px #091117-17px 17px #091117-18px 18px #091117-19px 19px #091117-20px 20px #091117-21px 21px #091117-22px 22px #091117-23px 23px #091117-24px 24px #091117-25px 25px #091117-26px 26px #091117-27px 27px #091117-28px 28px #091117-29px 29px #091117-30px 30px #091117-31px 31px #091117-32px 32px #091117-33px 33px #091117-34px 34px #091117-35px 35px #091117-36px 36px #091117-37px 37px #091117-38px 38px #091117-39px 39px #091117-40px 40px #091117-41px 41px #091117-42px 42px #091117-43px 43px #091117-44px 44px #091117-45px 45px #091117-46px 46px #091117-47px 47px #091117-48px 48px #091117-49px 49px #091117-50px 50px #091117-51px 51px #091117-52px 52px #091117-53px 53px #091117-54px 54px #091117-55px 55px #091117-56px 56px #091117-57px 57px #091117-58px 58px #091117-59px 59px #091117-60px 60px #091117-61px 61px #091117-62px 62px #091117-63px 63px #091117-64px 64px #091117-65px 65px #091117-66px 66px #091117-67px 67px #091117-68px 68px #091117-69px 69px #091117-70px 70px #091117-71px 71px #091117-72px 72px #091117-73px 73px #091117-74px 74px #091117-75px 75px #091117-76px 76px #091117-77px 77px #091117-78px 78px #091117-79px 79px #091117-80px 80px #091117-81px 81px #091117-82px 82px #091117-83px 83px #091117-84px 84px #091117-85px 85px #091117; }
-  .btn-longshadow-left.btn-color-1:active, .btn-longshadow-left.btn-color-1.active, .btn-longshadow-left.btn-color-1.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow-left.btn-color-2 {
-    text-shadow: 0px 0px #182d3e-1px 1px #182d3e-2px 2px #182d3e-3px 3px #182d3e-4px 4px #182d3e-5px 5px #182d3e-6px 6px #182d3e-7px 7px #182d3e-8px 8px #182d3e-9px 9px #182d3e-10px 10px #182d3e-11px 11px #182d3e-12px 12px #182d3e-13px 13px #182d3e-14px 14px #182d3e-15px 15px #182d3e-16px 16px #182d3e-17px 17px #182d3e-18px 18px #182d3e-19px 19px #182d3e-20px 20px #182d3e-21px 21px #182d3e-22px 22px #182d3e-23px 23px #182d3e-24px 24px #182d3e-25px 25px #182d3e-26px 26px #182d3e-27px 27px #182d3e-28px 28px #182d3e-29px 29px #182d3e-30px 30px #182d3e-31px 31px #182d3e-32px 32px #182d3e-33px 33px #182d3e-34px 34px #182d3e-35px 35px #182d3e-36px 36px #182d3e-37px 37px #182d3e-38px 38px #182d3e-39px 39px #182d3e-40px 40px #182d3e-41px 41px #182d3e-42px 42px #182d3e-43px 43px #182d3e-44px 44px #182d3e-45px 45px #182d3e-46px 46px #182d3e-47px 47px #182d3e-48px 48px #182d3e-49px 49px #182d3e-50px 50px #182d3e-51px 51px #182d3e-52px 52px #182d3e-53px 53px #182d3e-54px 54px #182d3e-55px 55px #182d3e-56px 56px #182d3e-57px 57px #182d3e-58px 58px #182d3e-59px 59px #182d3e-60px 60px #182d3e-61px 61px #182d3e-62px 62px #182d3e-63px 63px #182d3e-64px 64px #182d3e-65px 65px #182d3e-66px 66px #182d3e-67px 67px #182d3e-68px 68px #182d3e-69px 69px #182d3e-70px 70px #182d3e-71px 71px #182d3e-72px 72px #182d3e-73px 73px #182d3e-74px 74px #182d3e-75px 75px #182d3e-76px 76px #182d3e-77px 77px #182d3e-78px 78px #182d3e-79px 79px #182d3e-80px 80px #182d3e-81px 81px #182d3e-82px 82px #182d3e-83px 83px #182d3e-84px 84px #182d3e-85px 85px #182d3e; }
-  .btn-longshadow-left.btn-color-2:active, .btn-longshadow-left.btn-color-2.active, .btn-longshadow-left.btn-color-2.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow-left.btn-color-3, .button-secondary.btn-longshadow-left {
-    text-shadow: 0px 0px #783e40-1px 1px #783e40-2px 2px #783e40-3px 3px #783e40-4px 4px #783e40-5px 5px #783e40-6px 6px #783e40-7px 7px #783e40-8px 8px #783e40-9px 9px #783e40-10px 10px #783e40-11px 11px #783e40-12px 12px #783e40-13px 13px #783e40-14px 14px #783e40-15px 15px #783e40-16px 16px #783e40-17px 17px #783e40-18px 18px #783e40-19px 19px #783e40-20px 20px #783e40-21px 21px #783e40-22px 22px #783e40-23px 23px #783e40-24px 24px #783e40-25px 25px #783e40-26px 26px #783e40-27px 27px #783e40-28px 28px #783e40-29px 29px #783e40-30px 30px #783e40-31px 31px #783e40-32px 32px #783e40-33px 33px #783e40-34px 34px #783e40-35px 35px #783e40-36px 36px #783e40-37px 37px #783e40-38px 38px #783e40-39px 39px #783e40-40px 40px #783e40-41px 41px #783e40-42px 42px #783e40-43px 43px #783e40-44px 44px #783e40-45px 45px #783e40-46px 46px #783e40-47px 47px #783e40-48px 48px #783e40-49px 49px #783e40-50px 50px #783e40-51px 51px #783e40-52px 52px #783e40-53px 53px #783e40-54px 54px #783e40-55px 55px #783e40-56px 56px #783e40-57px 57px #783e40-58px 58px #783e40-59px 59px #783e40-60px 60px #783e40-61px 61px #783e40-62px 62px #783e40-63px 63px #783e40-64px 64px #783e40-65px 65px #783e40-66px 66px #783e40-67px 67px #783e40-68px 68px #783e40-69px 69px #783e40-70px 70px #783e40-71px 71px #783e40-72px 72px #783e40-73px 73px #783e40-74px 74px #783e40-75px 75px #783e40-76px 76px #783e40-77px 77px #783e40-78px 78px #783e40-79px 79px #783e40-80px 80px #783e40-81px 81px #783e40-82px 82px #783e40-83px 83px #783e40-84px 84px #783e40-85px 85px #783e40; }
-  .btn-longshadow-left.btn-color-3:active, .button-secondary.btn-longshadow-left:active, .btn-longshadow-left.btn-color-3.active, .button-secondary.btn-longshadow-left.active, .btn-longshadow-left.btn-color-3.is-active, .button-secondary.btn-longshadow-left.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow-left.btn-neutral-color {
-    text-shadow: 0px 0px #b7cfe1-1px 1px #b7cfe1-2px 2px #b7cfe1-3px 3px #b7cfe1-4px 4px #b7cfe1-5px 5px #b7cfe1-6px 6px #b7cfe1-7px 7px #b7cfe1-8px 8px #b7cfe1-9px 9px #b7cfe1-10px 10px #b7cfe1-11px 11px #b7cfe1-12px 12px #b7cfe1-13px 13px #b7cfe1-14px 14px #b7cfe1-15px 15px #b7cfe1-16px 16px #b7cfe1-17px 17px #b7cfe1-18px 18px #b7cfe1-19px 19px #b7cfe1-20px 20px #b7cfe1-21px 21px #b7cfe1-22px 22px #b7cfe1-23px 23px #b7cfe1-24px 24px #b7cfe1-25px 25px #b7cfe1-26px 26px #b7cfe1-27px 27px #b7cfe1-28px 28px #b7cfe1-29px 29px #b7cfe1-30px 30px #b7cfe1-31px 31px #b7cfe1-32px 32px #b7cfe1-33px 33px #b7cfe1-34px 34px #b7cfe1-35px 35px #b7cfe1-36px 36px #b7cfe1-37px 37px #b7cfe1-38px 38px #b7cfe1-39px 39px #b7cfe1-40px 40px #b7cfe1-41px 41px #b7cfe1-42px 42px #b7cfe1-43px 43px #b7cfe1-44px 44px #b7cfe1-45px 45px #b7cfe1-46px 46px #b7cfe1-47px 47px #b7cfe1-48px 48px #b7cfe1-49px 49px #b7cfe1-50px 50px #b7cfe1-51px 51px #b7cfe1-52px 52px #b7cfe1-53px 53px #b7cfe1-54px 54px #b7cfe1-55px 55px #b7cfe1-56px 56px #b7cfe1-57px 57px #b7cfe1-58px 58px #b7cfe1-59px 59px #b7cfe1-60px 60px #b7cfe1-61px 61px #b7cfe1-62px 62px #b7cfe1-63px 63px #b7cfe1-64px 64px #b7cfe1-65px 65px #b7cfe1-66px 66px #b7cfe1-67px 67px #b7cfe1-68px 68px #b7cfe1-69px 69px #b7cfe1-70px 70px #b7cfe1-71px 71px #b7cfe1-72px 72px #b7cfe1-73px 73px #b7cfe1-74px 74px #b7cfe1-75px 75px #b7cfe1-76px 76px #b7cfe1-77px 77px #b7cfe1-78px 78px #b7cfe1-79px 79px #b7cfe1-80px 80px #b7cfe1-81px 81px #b7cfe1-82px 82px #b7cfe1-83px 83px #b7cfe1-84px 84px #b7cfe1-85px 85px #b7cfe1; }
-  .btn-longshadow-left.btn-neutral-color:active, .btn-longshadow-left.btn-neutral-color.active, .btn-longshadow-left.btn-neutral-color.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
+
+.button-longshadow-left.button-primary {
+  text-shadow: 0px 0px #0880d7, -1px 1px #0880d7, -2px 2px #0880d7, -3px 3px #0880d7, -4px 4px #0880d7, -5px 5px #0880d7, -6px 6px #0880d7, -7px 7px #0880d7, -8px 8px #0880d7, -9px 9px #0880d7, -10px 10px #0880d7, -11px 11px #0880d7, -12px 12px #0880d7, -13px 13px #0880d7, -14px 14px #0880d7, -15px 15px #0880d7, -16px 16px #0880d7, -17px 17px #0880d7, -18px 18px #0880d7, -19px 19px #0880d7, -20px 20px #0880d7, -21px 21px #0880d7, -22px 22px #0880d7, -23px 23px #0880d7, -24px 24px #0880d7, -25px 25px #0880d7, -26px 26px #0880d7, -27px 27px #0880d7, -28px 28px #0880d7, -29px 29px #0880d7, -30px 30px #0880d7, -31px 31px #0880d7, -32px 32px #0880d7, -33px 33px #0880d7, -34px 34px #0880d7, -35px 35px #0880d7, -36px 36px #0880d7, -37px 37px #0880d7, -38px 38px #0880d7, -39px 39px #0880d7, -40px 40px #0880d7, -41px 41px #0880d7, -42px 42px #0880d7, -43px 43px #0880d7, -44px 44px #0880d7, -45px 45px #0880d7, -46px 46px #0880d7, -47px 47px #0880d7, -48px 48px #0880d7, -49px 49px #0880d7, -50px 50px #0880d7, -51px 51px #0880d7, -52px 52px #0880d7, -53px 53px #0880d7, -54px 54px #0880d7, -55px 55px #0880d7, -56px 56px #0880d7, -57px 57px #0880d7, -58px 58px #0880d7, -59px 59px #0880d7, -60px 60px #0880d7, -61px 61px #0880d7, -62px 62px #0880d7, -63px 63px #0880d7, -64px 64px #0880d7, -65px 65px #0880d7, -66px 66px #0880d7, -67px 67px #0880d7, -68px 68px #0880d7, -69px 69px #0880d7, -70px 70px #0880d7, -71px 71px #0880d7, -72px 72px #0880d7, -73px 73px #0880d7, -74px 74px #0880d7, -75px 75px #0880d7, -76px 76px #0880d7, -77px 77px #0880d7, -78px 78px #0880d7, -79px 79px #0880d7, -80px 80px #0880d7, -81px 81px #0880d7, -82px 82px #0880d7, -83px 83px #0880d7, -84px 84px #0880d7, -85px 85px #0880d7; }
+
+.button-longshadow-left.button-primary:active, .button-longshadow-left.button-primary.active, .button-longshadow-left.button-primary.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow-left.button-plain {
+  text-shadow: 0px 0px #e6e6e6, -1px 1px #e6e6e6, -2px 2px #e6e6e6, -3px 3px #e6e6e6, -4px 4px #e6e6e6, -5px 5px #e6e6e6, -6px 6px #e6e6e6, -7px 7px #e6e6e6, -8px 8px #e6e6e6, -9px 9px #e6e6e6, -10px 10px #e6e6e6, -11px 11px #e6e6e6, -12px 12px #e6e6e6, -13px 13px #e6e6e6, -14px 14px #e6e6e6, -15px 15px #e6e6e6, -16px 16px #e6e6e6, -17px 17px #e6e6e6, -18px 18px #e6e6e6, -19px 19px #e6e6e6, -20px 20px #e6e6e6, -21px 21px #e6e6e6, -22px 22px #e6e6e6, -23px 23px #e6e6e6, -24px 24px #e6e6e6, -25px 25px #e6e6e6, -26px 26px #e6e6e6, -27px 27px #e6e6e6, -28px 28px #e6e6e6, -29px 29px #e6e6e6, -30px 30px #e6e6e6, -31px 31px #e6e6e6, -32px 32px #e6e6e6, -33px 33px #e6e6e6, -34px 34px #e6e6e6, -35px 35px #e6e6e6, -36px 36px #e6e6e6, -37px 37px #e6e6e6, -38px 38px #e6e6e6, -39px 39px #e6e6e6, -40px 40px #e6e6e6, -41px 41px #e6e6e6, -42px 42px #e6e6e6, -43px 43px #e6e6e6, -44px 44px #e6e6e6, -45px 45px #e6e6e6, -46px 46px #e6e6e6, -47px 47px #e6e6e6, -48px 48px #e6e6e6, -49px 49px #e6e6e6, -50px 50px #e6e6e6, -51px 51px #e6e6e6, -52px 52px #e6e6e6, -53px 53px #e6e6e6, -54px 54px #e6e6e6, -55px 55px #e6e6e6, -56px 56px #e6e6e6, -57px 57px #e6e6e6, -58px 58px #e6e6e6, -59px 59px #e6e6e6, -60px 60px #e6e6e6, -61px 61px #e6e6e6, -62px 62px #e6e6e6, -63px 63px #e6e6e6, -64px 64px #e6e6e6, -65px 65px #e6e6e6, -66px 66px #e6e6e6, -67px 67px #e6e6e6, -68px 68px #e6e6e6, -69px 69px #e6e6e6, -70px 70px #e6e6e6, -71px 71px #e6e6e6, -72px 72px #e6e6e6, -73px 73px #e6e6e6, -74px 74px #e6e6e6, -75px 75px #e6e6e6, -76px 76px #e6e6e6, -77px 77px #e6e6e6, -78px 78px #e6e6e6, -79px 79px #e6e6e6, -80px 80px #e6e6e6, -81px 81px #e6e6e6, -82px 82px #e6e6e6, -83px 83px #e6e6e6, -84px 84px #e6e6e6, -85px 85px #e6e6e6; }
+
+.button-longshadow-left.button-plain:active, .button-longshadow-left.button-plain.active, .button-longshadow-left.button-plain.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow-left.button-inverse {
+  text-shadow: 0px 0px #090909, -1px 1px #090909, -2px 2px #090909, -3px 3px #090909, -4px 4px #090909, -5px 5px #090909, -6px 6px #090909, -7px 7px #090909, -8px 8px #090909, -9px 9px #090909, -10px 10px #090909, -11px 11px #090909, -12px 12px #090909, -13px 13px #090909, -14px 14px #090909, -15px 15px #090909, -16px 16px #090909, -17px 17px #090909, -18px 18px #090909, -19px 19px #090909, -20px 20px #090909, -21px 21px #090909, -22px 22px #090909, -23px 23px #090909, -24px 24px #090909, -25px 25px #090909, -26px 26px #090909, -27px 27px #090909, -28px 28px #090909, -29px 29px #090909, -30px 30px #090909, -31px 31px #090909, -32px 32px #090909, -33px 33px #090909, -34px 34px #090909, -35px 35px #090909, -36px 36px #090909, -37px 37px #090909, -38px 38px #090909, -39px 39px #090909, -40px 40px #090909, -41px 41px #090909, -42px 42px #090909, -43px 43px #090909, -44px 44px #090909, -45px 45px #090909, -46px 46px #090909, -47px 47px #090909, -48px 48px #090909, -49px 49px #090909, -50px 50px #090909, -51px 51px #090909, -52px 52px #090909, -53px 53px #090909, -54px 54px #090909, -55px 55px #090909, -56px 56px #090909, -57px 57px #090909, -58px 58px #090909, -59px 59px #090909, -60px 60px #090909, -61px 61px #090909, -62px 62px #090909, -63px 63px #090909, -64px 64px #090909, -65px 65px #090909, -66px 66px #090909, -67px 67px #090909, -68px 68px #090909, -69px 69px #090909, -70px 70px #090909, -71px 71px #090909, -72px 72px #090909, -73px 73px #090909, -74px 74px #090909, -75px 75px #090909, -76px 76px #090909, -77px 77px #090909, -78px 78px #090909, -79px 79px #090909, -80px 80px #090909, -81px 81px #090909, -82px 82px #090909, -83px 83px #090909, -84px 84px #090909, -85px 85px #090909; }
+
+.button-longshadow-left.button-inverse:active, .button-longshadow-left.button-inverse.active, .button-longshadow-left.button-inverse.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow-left.button-action {
+  text-shadow: 0px 0px #8bc220, -1px 1px #8bc220, -2px 2px #8bc220, -3px 3px #8bc220, -4px 4px #8bc220, -5px 5px #8bc220, -6px 6px #8bc220, -7px 7px #8bc220, -8px 8px #8bc220, -9px 9px #8bc220, -10px 10px #8bc220, -11px 11px #8bc220, -12px 12px #8bc220, -13px 13px #8bc220, -14px 14px #8bc220, -15px 15px #8bc220, -16px 16px #8bc220, -17px 17px #8bc220, -18px 18px #8bc220, -19px 19px #8bc220, -20px 20px #8bc220, -21px 21px #8bc220, -22px 22px #8bc220, -23px 23px #8bc220, -24px 24px #8bc220, -25px 25px #8bc220, -26px 26px #8bc220, -27px 27px #8bc220, -28px 28px #8bc220, -29px 29px #8bc220, -30px 30px #8bc220, -31px 31px #8bc220, -32px 32px #8bc220, -33px 33px #8bc220, -34px 34px #8bc220, -35px 35px #8bc220, -36px 36px #8bc220, -37px 37px #8bc220, -38px 38px #8bc220, -39px 39px #8bc220, -40px 40px #8bc220, -41px 41px #8bc220, -42px 42px #8bc220, -43px 43px #8bc220, -44px 44px #8bc220, -45px 45px #8bc220, -46px 46px #8bc220, -47px 47px #8bc220, -48px 48px #8bc220, -49px 49px #8bc220, -50px 50px #8bc220, -51px 51px #8bc220, -52px 52px #8bc220, -53px 53px #8bc220, -54px 54px #8bc220, -55px 55px #8bc220, -56px 56px #8bc220, -57px 57px #8bc220, -58px 58px #8bc220, -59px 59px #8bc220, -60px 60px #8bc220, -61px 61px #8bc220, -62px 62px #8bc220, -63px 63px #8bc220, -64px 64px #8bc220, -65px 65px #8bc220, -66px 66px #8bc220, -67px 67px #8bc220, -68px 68px #8bc220, -69px 69px #8bc220, -70px 70px #8bc220, -71px 71px #8bc220, -72px 72px #8bc220, -73px 73px #8bc220, -74px 74px #8bc220, -75px 75px #8bc220, -76px 76px #8bc220, -77px 77px #8bc220, -78px 78px #8bc220, -79px 79px #8bc220, -80px 80px #8bc220, -81px 81px #8bc220, -82px 82px #8bc220, -83px 83px #8bc220, -84px 84px #8bc220, -85px 85px #8bc220; }
+
+.button-longshadow-left.button-action:active, .button-longshadow-left.button-action.active, .button-longshadow-left.button-action.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow-left.button-highlight {
+  text-shadow: 0px 0px #e59501, -1px 1px #e59501, -2px 2px #e59501, -3px 3px #e59501, -4px 4px #e59501, -5px 5px #e59501, -6px 6px #e59501, -7px 7px #e59501, -8px 8px #e59501, -9px 9px #e59501, -10px 10px #e59501, -11px 11px #e59501, -12px 12px #e59501, -13px 13px #e59501, -14px 14px #e59501, -15px 15px #e59501, -16px 16px #e59501, -17px 17px #e59501, -18px 18px #e59501, -19px 19px #e59501, -20px 20px #e59501, -21px 21px #e59501, -22px 22px #e59501, -23px 23px #e59501, -24px 24px #e59501, -25px 25px #e59501, -26px 26px #e59501, -27px 27px #e59501, -28px 28px #e59501, -29px 29px #e59501, -30px 30px #e59501, -31px 31px #e59501, -32px 32px #e59501, -33px 33px #e59501, -34px 34px #e59501, -35px 35px #e59501, -36px 36px #e59501, -37px 37px #e59501, -38px 38px #e59501, -39px 39px #e59501, -40px 40px #e59501, -41px 41px #e59501, -42px 42px #e59501, -43px 43px #e59501, -44px 44px #e59501, -45px 45px #e59501, -46px 46px #e59501, -47px 47px #e59501, -48px 48px #e59501, -49px 49px #e59501, -50px 50px #e59501, -51px 51px #e59501, -52px 52px #e59501, -53px 53px #e59501, -54px 54px #e59501, -55px 55px #e59501, -56px 56px #e59501, -57px 57px #e59501, -58px 58px #e59501, -59px 59px #e59501, -60px 60px #e59501, -61px 61px #e59501, -62px 62px #e59501, -63px 63px #e59501, -64px 64px #e59501, -65px 65px #e59501, -66px 66px #e59501, -67px 67px #e59501, -68px 68px #e59501, -69px 69px #e59501, -70px 70px #e59501, -71px 71px #e59501, -72px 72px #e59501, -73px 73px #e59501, -74px 74px #e59501, -75px 75px #e59501, -76px 76px #e59501, -77px 77px #e59501, -78px 78px #e59501, -79px 79px #e59501, -80px 80px #e59501, -81px 81px #e59501, -82px 82px #e59501, -83px 83px #e59501, -84px 84px #e59501, -85px 85px #e59501; }
+
+.button-longshadow-left.button-highlight:active, .button-longshadow-left.button-highlight.active, .button-longshadow-left.button-highlight.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow-left.button-caution {
+  text-shadow: 0px 0px #ff1022, -1px 1px #ff1022, -2px 2px #ff1022, -3px 3px #ff1022, -4px 4px #ff1022, -5px 5px #ff1022, -6px 6px #ff1022, -7px 7px #ff1022, -8px 8px #ff1022, -9px 9px #ff1022, -10px 10px #ff1022, -11px 11px #ff1022, -12px 12px #ff1022, -13px 13px #ff1022, -14px 14px #ff1022, -15px 15px #ff1022, -16px 16px #ff1022, -17px 17px #ff1022, -18px 18px #ff1022, -19px 19px #ff1022, -20px 20px #ff1022, -21px 21px #ff1022, -22px 22px #ff1022, -23px 23px #ff1022, -24px 24px #ff1022, -25px 25px #ff1022, -26px 26px #ff1022, -27px 27px #ff1022, -28px 28px #ff1022, -29px 29px #ff1022, -30px 30px #ff1022, -31px 31px #ff1022, -32px 32px #ff1022, -33px 33px #ff1022, -34px 34px #ff1022, -35px 35px #ff1022, -36px 36px #ff1022, -37px 37px #ff1022, -38px 38px #ff1022, -39px 39px #ff1022, -40px 40px #ff1022, -41px 41px #ff1022, -42px 42px #ff1022, -43px 43px #ff1022, -44px 44px #ff1022, -45px 45px #ff1022, -46px 46px #ff1022, -47px 47px #ff1022, -48px 48px #ff1022, -49px 49px #ff1022, -50px 50px #ff1022, -51px 51px #ff1022, -52px 52px #ff1022, -53px 53px #ff1022, -54px 54px #ff1022, -55px 55px #ff1022, -56px 56px #ff1022, -57px 57px #ff1022, -58px 58px #ff1022, -59px 59px #ff1022, -60px 60px #ff1022, -61px 61px #ff1022, -62px 62px #ff1022, -63px 63px #ff1022, -64px 64px #ff1022, -65px 65px #ff1022, -66px 66px #ff1022, -67px 67px #ff1022, -68px 68px #ff1022, -69px 69px #ff1022, -70px 70px #ff1022, -71px 71px #ff1022, -72px 72px #ff1022, -73px 73px #ff1022, -74px 74px #ff1022, -75px 75px #ff1022, -76px 76px #ff1022, -77px 77px #ff1022, -78px 78px #ff1022, -79px 79px #ff1022, -80px 80px #ff1022, -81px 81px #ff1022, -82px 82px #ff1022, -83px 83px #ff1022, -84px 84px #ff1022, -85px 85px #ff1022; }
+
+.button-longshadow-left.button-caution:active, .button-longshadow-left.button-caution.active, .button-longshadow-left.button-caution.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+.button-longshadow-left.button-royal {
+  text-shadow: 0px 0px #5246e2, -1px 1px #5246e2, -2px 2px #5246e2, -3px 3px #5246e2, -4px 4px #5246e2, -5px 5px #5246e2, -6px 6px #5246e2, -7px 7px #5246e2, -8px 8px #5246e2, -9px 9px #5246e2, -10px 10px #5246e2, -11px 11px #5246e2, -12px 12px #5246e2, -13px 13px #5246e2, -14px 14px #5246e2, -15px 15px #5246e2, -16px 16px #5246e2, -17px 17px #5246e2, -18px 18px #5246e2, -19px 19px #5246e2, -20px 20px #5246e2, -21px 21px #5246e2, -22px 22px #5246e2, -23px 23px #5246e2, -24px 24px #5246e2, -25px 25px #5246e2, -26px 26px #5246e2, -27px 27px #5246e2, -28px 28px #5246e2, -29px 29px #5246e2, -30px 30px #5246e2, -31px 31px #5246e2, -32px 32px #5246e2, -33px 33px #5246e2, -34px 34px #5246e2, -35px 35px #5246e2, -36px 36px #5246e2, -37px 37px #5246e2, -38px 38px #5246e2, -39px 39px #5246e2, -40px 40px #5246e2, -41px 41px #5246e2, -42px 42px #5246e2, -43px 43px #5246e2, -44px 44px #5246e2, -45px 45px #5246e2, -46px 46px #5246e2, -47px 47px #5246e2, -48px 48px #5246e2, -49px 49px #5246e2, -50px 50px #5246e2, -51px 51px #5246e2, -52px 52px #5246e2, -53px 53px #5246e2, -54px 54px #5246e2, -55px 55px #5246e2, -56px 56px #5246e2, -57px 57px #5246e2, -58px 58px #5246e2, -59px 59px #5246e2, -60px 60px #5246e2, -61px 61px #5246e2, -62px 62px #5246e2, -63px 63px #5246e2, -64px 64px #5246e2, -65px 65px #5246e2, -66px 66px #5246e2, -67px 67px #5246e2, -68px 68px #5246e2, -69px 69px #5246e2, -70px 70px #5246e2, -71px 71px #5246e2, -72px 72px #5246e2, -73px 73px #5246e2, -74px 74px #5246e2, -75px 75px #5246e2, -76px 76px #5246e2, -77px 77px #5246e2, -78px 78px #5246e2, -79px 79px #5246e2, -80px 80px #5246e2, -81px 81px #5246e2, -82px 82px #5246e2, -83px 83px #5246e2, -84px 84px #5246e2, -85px 85px #5246e2; }
+
+.button-longshadow-left.button-royal:active, .button-longshadow-left.button-royal.active, .button-longshadow-left.button-royal.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); }
+
 /*
- * Button Sizes
- *
- * This file creates the various button sizes
- * (ex. .button-large, .button-small, etc.)
- */
-.btn-giant {
-  font-size: inherit * 1.75;
+* Button Sizes
+*
+* This file creates the various button sizes
+* (ex. .button-large, .button-small, etc.)
+*/
+.button-giant {
+  font-size: 28px;
   height: 70px;
   line-height: 70px;
   padding: 0 70px; }
 
-.btn-jumbo {
-  font-size: inherit * 1.5;
+.button-jumbo {
+  font-size: 24px;
   height: 60px;
   line-height: 60px;
   padding: 0 60px; }
 
-.btn-large {
-  font-size: inherit * 1.25;
+.button-large {
+  font-size: 20px;
   height: 50px;
   line-height: 50px;
   padding: 0 50px; }
 
-.btn-normal {
-  font-size: inherit * 1;
+.button-normal {
+  font-size: 16px;
   height: 40px;
   line-height: 40px;
   padding: 0 40px; }
 
-.btn-small {
-  font-size: inherit * 0.75;
+.button-small {
+  font-size: 12px;
   height: 30px;
   line-height: 30px;
   padding: 0 30px; }
 
-.btn-tiny {
-  font-size: inherit * 0.6;
+.button-tiny {
+  font-size: 9.6px;
   height: 24px;
   line-height: 24px;
   padding: 0 24px; }

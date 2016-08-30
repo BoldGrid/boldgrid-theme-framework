@@ -45,6 +45,10 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 				source : options.source
 			};
 
+			if ( result.status !== 0 ) {
+				console.error( result.formatted );
+			}
+
 			self.$window.trigger ( self.compile_done, data );
 
 			//var d = new Date();

@@ -321,7 +321,7 @@ msgstr ""
 msgid "Select the number of footer widget columns you wish to display."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:115
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:115, src/includes/customizer/class-boldgrid-framework-customizer.php:332
 msgid "Continue to Widgets Section"
 msgstr ""
 
@@ -515,6 +515,72 @@ msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:883
 msgid "Shadow Color"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:233
+msgid "Site Title & Logo"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:294
+msgid "Header Settings"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:311
+msgid "Header Widgets"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:312
+msgid "Select the number of widget areas you wish to display"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:334
+msgid "You can add widgets to your header from the widgets section."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:354
+msgid "Custom Header HTML"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:355
+msgid "Add your custom HTML for your header here"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:402
+msgid "Custom JS & CSS"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:416
+msgid "Custom Theme CSS"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:417
+msgid "This adds live CSS to your website."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:418
+msgid "Add custom CSS for this theme."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:439
+msgid "This adds live JavaScript to your website."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:440
+msgid "Add custom javascript for this theme."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:473
+msgid "Menu Tutorial"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:736
+msgid "Using the Customizer"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:738
+msgid ""
+"BoldGrid sites are highly customizable. Each of the menu items to the left correspond with an area\n"
+"						of your site. Become familiar with everything's location to make full use of your site's features."
 msgstr ""
 
 #: src/includes/partials/author-box.php:13, src/includes/partials/author-box.php:13

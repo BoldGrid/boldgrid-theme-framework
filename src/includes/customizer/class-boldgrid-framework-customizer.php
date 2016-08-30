@@ -230,7 +230,7 @@ HTML;
 		}
 
 		// Rename Site Identity to Site Title & Logo.
-		$wp_customize->get_section( 'title_tagline' )->title    = 'Site Title & Logo';
+		$wp_customize->get_section( 'title_tagline' )->title    = __( 'Site Title & Logo', 'bgtfw' );
 
 		// Remove Addition Control that conflict with site title.
 		$wp_customize->remove_control( 'header_textcolor' );
@@ -291,7 +291,7 @@ HTML;
 
 			// It really doesn't matter if another plugin or the theme adds the same section; they will merge.
 			$wp_customize->add_section( 'boldgrid_header_panel', array(
-				'title'    => 'Header Settings',
+				'title'    => __( 'Header Settings', 'bgtfw' ),
 				'panel' => 'boldgrid_other',
 				'priority' => 120, // After all core sections.
 			) );
@@ -308,8 +308,8 @@ HTML;
 
 				// Uses the 'radio' type in WordPress.
 				$wp_customize->add_control( 'boldgrid_header_widgets', array(
-					'label'       => 'Header Widgets',
-					'description' => 'Select the number of widget areas you wish to display:',
+					'label'       => __( 'Header Widgets', 'bgtfw' ),
+					'description' => __( 'Select the number of widget areas you wish to display', 'bgtfw' ) . ':',
 					'type'        => 'radio',
 					'priority'    => 10,
 					'choices'     => array(
@@ -329,10 +329,9 @@ HTML;
 						'type'        => 'custom',
 						'setting'     => 'boldgrid_header_widget_help',
 						'section'     => 'boldgrid_header_panel',
-						'default'     => '<a class="button button-primary open-widgets-section">Continue to Widgets Section</a>',
+						'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
 						'priority'    => 15,
-						'description' => __( 'You can add widgets to your header from the widgets section.',
-						'boldgrid-theme-framework' ),
+						'description' => __( 'You can add widgets to your header from the widgets section.', 'bgtfw' ),
 					);
 
 					return $controls;
@@ -352,8 +351,8 @@ HTML;
 
 				// Uses the `textarea` type added in WordPress 4.0.
 				$wp_customize->add_control( 'boldgrid_header_html', array(
-					'label'       => 'Custom Header HTML',
-					'description' => 'Add your custom HTML for your header here:',
+					'label'       => __( 'Custom Header HTML', 'bgtfw' ),
+					'description' => __( 'Add your custom HTML for your header here', 'bgtfw' ) . ':',
 					'type'        => 'textarea',
 					'priority'    => 20,
 					'section'     => 'boldgrid_header_panel',
@@ -400,7 +399,7 @@ HTML;
 		if ( true === $panel ) {
 
 			$wp_customize->add_section( 'advanced_edit', array(
-				'title'    => 'Custom JS & CSS',
+				'title'    => __( 'Custom JS & CSS', 'bgtfw' ),
 				'panel' => 'boldgrid_other',
 				'priority' => 250, // After all core sections.
 			) );
@@ -414,9 +413,9 @@ HTML;
 					'type'        => 'code',
 					'transport' => 'postMessage',
 					'settings'    => 'custom_theme_css',
-					'label'       => __( 'Custom Theme CSS' ),
-					'help'        => __( 'This adds live CSS to your website.' ),
-					'description' => __( 'Add custom CSS for this theme here:' ),
+					'label'       => __( 'Custom Theme CSS', 'bgtfw' ),
+					'help'        => __( 'This adds live CSS to your website.', 'bgtfw' ),
+					'description' => __( 'Add custom CSS for this theme.', 'bgtfw' ),
 					'section'     => 'advanced_edit',
 					'default'     => '.boldgrid-css{ background: white; }',
 					'priority'    => 10,
@@ -437,8 +436,8 @@ HTML;
 					'type'        => 'code',
 					'settings'    => 'custom_theme_js',
 					'label'       => __( 'Custom Theme JS' ),
-					'help'        => __( 'This adds live JavaScript to your website.' ),
-					'description' => __( 'Add custom javascript for this theme here:' ),
+					'help'        => __( 'This adds live JavaScript to your website.', 'bgtfw' ),
+					'description' => __( 'Add custom javascript for this theme.', 'bgtfw' ),
 					'section'     => 'advanced_edit',
 					'default'     => "// jQuery('body');",
 					'priority'    => 10,
@@ -471,7 +470,7 @@ HTML;
 			if ( $section ) {
 				$section->description =
 					'<a target="_blank" class="boldgrid-icon-newtab" href="https://www.boldgrid.com/support/working-with-menus-in-boldgrid/">' .
-					__( 'Menu Tutorial' ) . '</a>';
+					__( 'Menu Tutorial', 'bgtfw' ) . '</a>';
 			}
 		}
 	}
@@ -734,10 +733,10 @@ HTML;
 				<div class='overlay-help-inside'>
 					<div class='overlay-help-text'>
 						<i id='close-help-popup' class="fa fa-times-circle fa-2x pull-right"></i>
-						<h2>Using the Customizer</h2>
+						<h2><?php _e( 'Using the Customizer', 'bgtfw' ); ?></h2>
 						<p>
-						BoldGrid sites are highly customizable. Each of the menu items to the left correspond with an area
-						of your site. Become familiar with everything's location to make full use of your site's features.
+						<?php _e( 'BoldGrid sites are highly customizable. Each of the menu items to the left correspond with an area
+						of your site. Become familiar with everything\'s location to make full use of your site\'s features.', 'bgtfw' ); ?>
 						</p>
 					</div>
 					<img src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] ); ?>img/boldgrid-overlay.jpg">

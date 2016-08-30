@@ -1,0 +1,12 @@
+// Load after all button classes have been added.
+@if variable-exists( button-primary-classes ) {
+	.button-primary {
+		@extend #{$button-primary-classes} !optional;
+	}
+}
+
+@if variable-exists( button-secondary-classes ) {
+	.button-secondary {
+		@extend #{$button-secondary-classes} !optional;
+	}
+}

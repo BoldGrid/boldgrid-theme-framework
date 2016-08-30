@@ -239,4 +239,48 @@ class Boldgrid_Framework_Compile_Colors {
 
 		return $boldgrid_colors;
 	}
+
+	/**
+	 * Grabs the appropriate files for default button configs to compile.
+	 *
+	 * This will see what files are needed based on the configs for
+	 * button-primary and button-secondary button classes.
+	 *
+	 * @since 1.2.4
+	 * @return array $files An array of files to use in color compile.
+	 */
+	public function get_button_color_files( $files ) {
+		$s = $this->configs['components']['buttons']['variables'];
+		$configs = array( $s['button-primary-classes'], $s['button-secondary-classes'] );
+		$path = $this->configs['customizer-options']['colors']['settings']['scss_directory']['framework_dir'] . '/buttons/';
+
+		foreach( $configs as $config ) {
+			// Remove whitespace out of strings
+			$config = str_replace( ' ', '', $config );
+			// Make an array to filter.
+			$config = explode( ',', str_replace( '.btn-', '', $config ) );
+			// We don't need the base class.
+			if ( ( $key = array_search( '.btn', $config ) ) !== false ) {
+				unset( $config[$key] );
+			}
+			// Remove any color classes that are defined since we don't need them.
+			$config = array_filter( $config, function( $classes ) {
+				return strpos( $classes, 'color' ) === false;
+			});
+			// Translate configs to file path.
+			foreach( $config as $file ) {
+				$file = $file .'.scss';
+				if ( file_exists( $path . $file ) ) {
+					$files[] = $path . $file;
+				}
+			}
+		}
+		// Add base file after the rest.
+		$base = $path . 'base.scss';
+		if ( file_exists( $base ) ) {
+			$files[] = $base;
+		}
+		var_dump( $files ); die;
+		return $files;
+	}
 }

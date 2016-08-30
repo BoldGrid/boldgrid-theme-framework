@@ -1,0 +1,24 @@
+/*
+* 3D Button Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.btn-3d {
+	@each $ubtn-color in $ubtn-colors {
+		$ubtn-name: nth($ubtn-color, 1);
+		$ubtn-background: nth($ubtn-color, 2);
+		$ubtn-color: nth($ubtn-color, 3);
+		$ubtn-color-namespace: '.btn-' + $ubtn-name;
+		// .button-border-primary .button-border-action etc.
+		&#{$ubtn-color-namespace} {
+			box-shadow: 0 7px 0 darken($ubtn-background, 10%), 0 8px 3px rgba(0, 0, 0, .30);
+			&:hover, &:focus {
+				box-shadow: 0 7px 0 darken($ubtn-background, 12%), 0 8px 3px rgba(0, 0, 0, .30);
+			}
+			&:active, &.active, &.is-active {
+				box-shadow: 0 2px 0 darken($ubtn-background, 20%), 0 3px 3px rgba(0, 0, 0, .2);
+			}
+		}
+	}
+}

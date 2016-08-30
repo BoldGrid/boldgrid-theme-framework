@@ -445,7 +445,9 @@ class BoldGrid_Framework {
 	private function boldgrid_theme_setup() {
 		$theme_setup = new BoldGrid_Framework_Setup( $this->configs );
 		$compile = new Boldgrid_Framework_Scss_Compile( $this->configs );
+		$color_compile = new Boldgrid_Framework_Compile_Colors( $this->configs );
 
+		$this->loader->add_filter( 'boldgrid_theme_helper_scss_files', $color_compile, 'get_button_color_files' );
 		$this->loader->add_action( 'after_setup_theme', $theme_setup, 'boldgrid_setup' );
 
 		if ( ! empty( $this->configs['bootstrap-compile'] ) ) {

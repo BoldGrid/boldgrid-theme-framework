@@ -31,6 +31,7 @@ user guide for more information.
 * Bug Fix: Add font family classes to framework.
 * Bug Fix: Check if function exists before display_sidebar fires.
 * New Feature: Allow all WordPress conditionals to be used in display_sidebar.
+* Update: No longer renaming Widgets to Header/Footer Widgets in the customizer.
 
 ### 1.2.3 ###
 * New Feature: Added SnapChat social media icons.

@@ -280,7 +280,9 @@ class Boldgrid_Framework_Compile_Colors {
 		if ( file_exists( $base ) ) {
 			$files[] = $base;
 		}
-		var_dump( $files ); die;
+		// Remove any duplicates from array.
+		$files = array_unique( $files );
+
 		return $files;
 	}
 }

@@ -49,7 +49,7 @@ class Boldgrid_Framework_Compile_Colors {
 		$boldgrid_colors = array();
 		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
 
-		if ( null !== $palettes ) {
+		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];
 			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
 			$i = 0;
@@ -75,7 +75,7 @@ class Boldgrid_Framework_Compile_Colors {
 		$boldgrid_colors = '';
 		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
 
-		if ( null !== $palettes ) {
+		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];
 			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
 			foreach ( $colors as $color ) {
@@ -96,7 +96,7 @@ class Boldgrid_Framework_Compile_Colors {
 		$neutral_color = false;
 		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
 		$current_palette = $palettes['state']['active-palette'];
-		if ( null !== $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) {
+		if ( ! empty( $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) ) {
 			$neutral_color = array(
 				$palettes['state']['active-palette'] . '-neutral-color' => $palettes['state']['palettes'][ $current_palette ]['neutral-color'],
 			);
@@ -223,7 +223,7 @@ class Boldgrid_Framework_Compile_Colors {
 		$boldgrid_colors = '';
 		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
 
-		if ( null !== $palettes ) {
+		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];
 			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
 			$i = 0;
@@ -232,7 +232,7 @@ class Boldgrid_Framework_Compile_Colors {
 				$i++;
 				$boldgrid_colors .= '("color-' . $i . '" $' . $current_palette . '_' . $i . ' $text-contrast-' . $current_palette . '_' . $i . ')';
 			}
-			if ( null !== $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) {
+			if ( ! empty( $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) ) {
 				$boldgrid_colors .= '("neutral-color" $' . $current_palette . '-neutral-color $text-contrast-' . $current_palette . '-neutral-color)';
 			}
 		}

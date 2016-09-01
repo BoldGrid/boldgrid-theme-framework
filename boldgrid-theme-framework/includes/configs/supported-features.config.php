@@ -9,9 +9,7 @@
  */
 
 return array(
-	'supported-features' => array(
-		'border-color-classes',
-		'theme-fonts-classes',
-		'variable-containers'
-	),
+	'border-color-classes',
+	'theme-fonts-classes',
+	'variable-containers'
 );

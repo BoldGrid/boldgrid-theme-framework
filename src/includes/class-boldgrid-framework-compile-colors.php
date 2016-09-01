@@ -254,30 +254,42 @@ class Boldgrid_Framework_Compile_Colors {
 	 */
 	public function get_button_color_files( $files ) {
 		$s = $this->configs['components']['buttons']['variables'];
-		$configs = array( $s['button-primary-classes'], $s['button-secondary-classes'] );
 		$path = $this->configs['customizer-options']['colors']['settings']['scss_directory']['framework_dir'] . '/buttons/';
+		$configs = array();
 
-		foreach( $configs as $config ) {
-			// Remove whitespace out of strings
-			$config = str_replace( ' ', '', $config );
-			// Make an array to filter.
-			$config = explode( ',', str_replace( '.btn-', '', $config ) );
-			// We don't need the base class.
-			if ( ( $key = array_search( '.btn', $config ) ) !== false ) {
-				unset( $config[$key] );
-			}
-			// Remove any color classes that are defined since we don't need them.
-			$config = array_filter( $config, function( $classes ) {
-				return strpos( $classes, 'color' ) === false;
-			});
-			// Translate configs to file path.
-			foreach( $config as $file ) {
-				$file = $file .'.scss';
-				if ( file_exists( $path . $file ) ) {
-					$files[] = $path . $file;
+		// Build an array of button-classes that are needed.
+		if ( ! empty( $s['button-primary-classes'] ) ) {
+			$configs[] = $s['button-primary-classes'];
+		}
+
+		if ( ! empty( $s['button-secondary-classes'] ) ) {
+			$configs[] = $s['button-secondary-classes'];
+		}
+
+		if ( ! empty( $configs ) ) {
+			foreach( $configs as $config ) {
+				// Remove whitespace out of strings
+				$config = str_replace( ' ', '', $config );
+				// Make an array to filter.
+				$config = explode( ',', str_replace( '.btn-', '', $config ) );
+				// We don't need the base class.
+				if ( ( $key = array_search( '.btn', $config ) ) !== false ) {
+					unset( $config[$key] );
+				}
+				// Remove any color classes that are defined since we don't need them.
+				$config = array_filter( $config, function( $classes ) {
+					return strpos( $classes, 'color' ) === false;
+				});
+				// Translate configs to file path.
+				foreach( $config as $file ) {
+					$file = $file .'.scss';
+					if ( file_exists( $path . $file ) ) {
+						$files[] = $path . $file;
+					}
 				}
 			}
 		}
+
 		// Add base file after the rest.
 		$base = $path . 'base.scss';
 		if ( file_exists( $base ) ) {

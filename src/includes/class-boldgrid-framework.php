@@ -447,12 +447,18 @@ class BoldGrid_Framework {
 		$compile = new Boldgrid_Framework_Scss_Compile( $this->configs );
 		$color_compile = new Boldgrid_Framework_Compile_Colors( $this->configs );
 
-		$this->loader->add_filter( 'boldgrid_theme_helper_scss_files', $color_compile, 'get_button_color_files' );
 		$this->loader->add_action( 'after_setup_theme', $theme_setup, 'boldgrid_setup' );
 
-		if ( ! empty( $this->configs['bootstrap-compile'] ) ) {
-			$this->loader->add_action( 'customize_save_after', $compile, 'build' );
-			$this->loader->add_action( 'after_switch_theme', $compile, 'build' );
+		// Add the active button styles from configs to the compiler file array if active.
+		if ( true === $this->configs['components']['buttons']['enabled'] ) {
+			$this->loader->add_filter( 'boldgrid_theme_helper_scss_files', $color_compile, 'get_button_color_files' );
+		}
+
+		// Save the compiled CSS when themes are activated and after they save customizer settings.
+		if ( true === $this->configs['components']['bootstrap']['enabled'] ||
+			 true === $this->configs['components']['buttons']['enabled'] ) {
+				$this->loader->add_action( 'customize_save_after', $compile, 'build' );
+				$this->loader->add_action( 'after_switch_theme', $compile, 'build' );
 		}
 
 		// TODO: Merge these standalone files into classes and our existing structure.
@@ -756,10 +762,11 @@ class BoldGrid_Framework {
 		$compile = new Boldgrid_Framework_Scss_Compile( $this->configs );
 
 		// If the user has access, and your configuration flag is set to on.
-		if ( $auto_compile_enabled ) {
-			$this->loader->add_action( 'wp_loaded', $compile, 'build' );
-			//$this->loader->add_action( 'wp_loaded', $bootstrap_compile, 'build' );
-			$this->loader->add_action( 'wp_loaded', $scss, 'update_css' );
+		if ( ( true === $this->configs['components']['bootstrap']['enabled'] ||
+			true === $this->configs['components']['buttons']['enabled'] ) &&
+			$auto_compile_enabled ) {
+				$this->loader->add_action( 'wp_loaded', $compile, 'build' );
+				$this->loader->add_action( 'wp_loaded', $scss, 'update_css' );
 		}
 
 		$this->loader->add_action( 'init', $staging, 'launch_staging_process', 998 );

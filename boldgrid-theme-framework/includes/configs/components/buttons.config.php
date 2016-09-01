@@ -25,7 +25,5 @@ return array(
 		//'ubtn-font-color' => ,
 		'ubtn-font-weight' => 'inherit',
 		'ubtn-font-size' => 'inherit',
-		'button-primary-classes' => '.btn, .btn-3d, .btn-color-2, .btn-rounded',
-		'button-secondary-classes' => '.btn, .btn-border, .btn-color-3, .btn-pill',
 	),
 );

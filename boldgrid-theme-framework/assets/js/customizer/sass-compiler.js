@@ -54,7 +54,7 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 			//var d = new Date();
 			//var difference  = d.getTime() - start_time;
 			//console.log( difference, " milliseconds" );
-			//console.log( result );
+			console.log( result );
 			//console.log( scss );
 		} );
 	};

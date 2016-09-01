@@ -670,14 +670,14 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		scss_file += '$light-text:' + text_light + ';';
 		scss_file += '$dark-text:' + text_dark + ';';
 
-		if ( BOLDGRIDSass.ButtonVariables.length ) {
+		if ( BOLDGRIDSass.ButtonVariables &&  BOLDGRIDSass.ButtonVariables.length ) {
 			scss_file += '$ubtn-colors: ' + BOLDGRIDSass.ButtonVariables['ubtn-colors'] + ';';
 		}
-		if ( BOLDGRIDSass.ButtonExtends.length ) {
-			if ( BOLDGRIDSass.ButtonExtends.primary.length ) {
+		if ( BOLDGRIDSass.ButtonExtends && BOLDGRIDSass.ButtonExtends.length  ) {
+			if ( BOLDGRIDSass.ButtonExtends.primary && BOLDGRIDSass.ButtonExtends.primary.length ) {
 				scss_file += '$button-primary-classes: "' + BOLDGRIDSass.ButtonExtends.primary + '";';
 			}
-			if ( BOLDGRIDSass.ButtonExtends.secondary.length ) {
+			if ( BOLDGRIDSass.ButtonExtends.secondary && BOLDGRIDSass.ButtonExtends.secondary.length ) {
 				scss_file += '$button-secondary-classes: "' + BOLDGRIDSass.ButtonExtends.secondary + '";';
 			}
 		}

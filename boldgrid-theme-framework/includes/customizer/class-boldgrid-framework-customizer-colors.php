@@ -553,6 +553,41 @@ HTML;
 	}
 
 	/**
+	 * Gets the required variables for use in Javascript.
+	 *
+	 * @since 1.2.4
+	 *
+	 * @return array $vars An array of variables to localize to JS.
+	 */
+	public function get_js_vars() {
+		$vars = array(
+			'WorkerUrl' => $this->configs['framework']['js_dir'] . 'sass-js/sass.worker.js',
+			'ScssFormatFileContents' => '',
+			'output_css_filename' => self::get_colors_uri( $this->configs ),
+		);
+
+		if ( true === $this->configs['components']['buttons']['enabled'] ) {
+			$vars['ButtonVariables'] = $this->colors->get_scss_variables();
+			$s = $this->configs['components']['buttons']['variables'];
+			$buttons = array();
+
+			if ( ! empty( $s['button-primary-classes'] ) ) {
+				$buttons['primary'] = $s['button-primary-classes'];
+			}
+
+			if ( ! empty( $s['button-secondary-classes'] ) ) {
+				$buttons['secondary'] = $s['button-secondary-classes'];
+			}
+
+			if ( ! empty( $buttons ) ) {
+				$vars['ButtonExtends'] = $buttons;
+			}
+		}
+
+		return $vars;
+	}
+
+	/**
 	 * Register the JavaScript for the admin area.
 	 *
 	 * @since 1.0.0
@@ -578,47 +613,11 @@ HTML;
 			false
 		);
 
-		$bgtfw_js_configs = array(
-			'WorkerUrl' => $this->configs['framework']['js_dir'] . 'sass-js/sass.worker.js',
-			'ScssFormatFileContents' => $scss->get_precompile_content(),
-			'ButtonVariables' => $this->colors->get_scss_variables(),
-			'ButtonExtends' => array(
-				'primary' => $this->configs['components']['buttons']['variables']['button-primary-classes'],
-				'secondary' => $this->configs['components']['buttons']['variables']['button-secondary-classes'],
-			),
-			'output_css_filename' => self::get_colors_uri( $this->configs ),
-		);
 
-		$buttons = $this->configs['components']['buttons']['variables'];
-
-		$add_buttons = array();
-
-		if ( ! empty( $buttons['button-primary-classes'] ) ) {
-			$add_buttons['primary'] = $this->configs['components']['buttons']['variables']['button-primary-classes'];
-		}
-
-		if ( ! empty( $buttons['button-secondary-classes'] ) ) {
-			$add_buttons['secondary'] = $this->configs['components']['buttons']['variables']['button-secondary-classes'];
-		}
-
-		if ( !empty( $add_buttons ) ) {
-			$bgtfw_js_configs['ButtonExtends'] = $add_buttons;
-		}
-
-		var_dump( $bgtfw_js_configs ); die;
 		wp_localize_script(
 			'boldgird-theme-helper-sass-implementation',
 			'BOLDGRIDSass',
-			array(
-				'WorkerUrl' => $this->configs['framework']['js_dir'] . 'sass-js/sass.worker.js',
-				'ScssFormatFileContents' => $scss->get_precompile_content(),
-				'ButtonVariables' => $this->colors->get_scss_variables(),
-				'ButtonExtends' => array(
-					'primary' => $this->configs['components']['buttons']['variables']['button-primary-classes'],
-					'secondary' => $this->configs['components']['buttons']['variables']['button-secondary-classes'],
-				),
-				'output_css_filename' => self::get_colors_uri( $this->configs ),
-			)
+			$this->get_js_vars()
 		);
 
 		wp_register_script(

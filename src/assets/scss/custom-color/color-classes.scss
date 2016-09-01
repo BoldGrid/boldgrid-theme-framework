@@ -61,36 +61,38 @@ $names: color background background-color border-color;
 * Create colors for buttons
 * (.button-primary, .button-secondary, etc.)
 */
-@each $ubtn-color in $ubtn-colors {
-  $ubtn-name: nth($ubtn-color, 1);
-  $ubtn-background: nth($ubtn-color, 2);
-  $ubtn-color: nth($ubtn-color, 3);
+@if variable-exists( button-primary-classes ) {
+	@each $ubtn-color in $ubtn-colors {
+		$ubtn-name: nth($ubtn-color, 1);
+		$ubtn-background: nth($ubtn-color, 2);
+		$ubtn-color: nth($ubtn-color, 3);
 
-  // Crete class for .button-primary
-  // and legacy flat .button-primary-flat
-  .btn-#{$ubtn-name},
-  .btn-#{$ubtn-name}-flat {
-    background-color: $ubtn-background;
-    border-color: $ubtn-background;
-    color: $ubtn-color;
+		// Crete class for .button-primary
+		// and legacy flat .button-primary-flat
+		.btn-#{$ubtn-name},
+		.btn-#{$ubtn-name}-flat {
+			background-color: $ubtn-background;
+			border-color: $ubtn-background;
+			color: $ubtn-color;
 
-    &:visited {
-      color: $ubtn-color;
-    }
+			&:visited {
+				color: $ubtn-color;
+			}
 
-    &:hover,
-    &:focus {
-      background-color: lighten($ubtn-background, 10%);
-      border-color: lighten($ubtn-background, 10%);
-      color: $ubtn-color;
-    }
+			&:hover,
+			&:focus {
+				background-color: lighten($ubtn-background, 10%);
+				border-color: lighten($ubtn-background, 10%);
+				color: $ubtn-color;
+			}
 
-    &:active,
-    &.active,
-    &.is-active {
-      background-color: desaturate($ubtn-background, 10%);
-      border-color: desaturate($ubtn-background, 10%);
-      color: darken($ubtn-background, 10%);
-    }
-  }
+			&:active,
+			&.active,
+			&.is-active {
+				background-color: desaturate($ubtn-background, 10%);
+				border-color: desaturate($ubtn-background, 10%);
+				color: darken($ubtn-background, 10%);
+			}
+		}
+	}
 }

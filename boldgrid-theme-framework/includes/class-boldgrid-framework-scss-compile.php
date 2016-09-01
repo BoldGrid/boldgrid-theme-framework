@@ -51,30 +51,35 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 	 * @since 1.1
 	 */
 	public function build() {
-		$this->build_bootstrap();
-		$this->build_bgtfw();
+		if ( true === $this->configs['components']['bootstrap']['enabled'] ) {
+			$this->build_bootstrap();
+		}
+		if ( true === $this->configs['components']['buttons']['enabled'] ) {
+			$this->build_bgtfw();
+		}
 	}
 
 	public function build_bootstrap() {
 		$dir = $this->configs['framework']['asset_dir'];
-		$variables = array();
-		if ( $this->configs['bootstrap'] ) {
-			// BoldGrid specific variables to have available during compile.
-			$color_variables = $this->colors->get_scss_variables();
-			// Variables to assign before compile.
-			$variables = array_merge( $color_variables, $this->configs['bootstrap'] );
+		// BoldGrid specific color variables to have available during compile.
+		$variables = $this->colors->get_scss_variables();
+		// Bootstrap variables to assign before compile.
+		$bootstrap_variables = $this->configs['components']['bootstrap']['variables'];
+		if ( ! empty ( $bootstrap_variables ) ) {
+			// Merge the arrays.
+			$variables = array_merge( $variables, $this->configs['components']['bootstrap']['variables'] );
 		}
+
 		$css = $this->compile( $dir . 'scss/', '@import "bootstrap";', $variables );
 		$this->wpfs->save( $css, $dir . 'css/bootstrap/bootstrap.min.css' );
 	}
 
 	public function build_bgtfw() {
 		$dir = $this->configs['framework']['asset_dir'];
-		$variables = array();
 		// BoldGrid specific variables to have available during compile.
-		$color_variables = $this->colors->get_scss_variables();
+		$variables = $this->colors->get_scss_variables();
 		// Variables to assign before compile.
-		$variables = array_merge( $color_variables, $this->configs['components']['buttons']['variables'] );
+		$variables = array_merge( $variables, $this->configs['components']['buttons']['variables'] );
 		// Compile.
 		$css = $this->compile( $dir . 'scss/', '@import "boldgrid-theme-framework";', $variables );
 		// Save.

@@ -560,9 +560,10 @@ HTML;
 	 * @return array $vars An array of variables to localize to JS.
 	 */
 	public function get_js_vars() {
+		$scss = new Boldgrid_Framework_SCSS( $this->configs );
 		$vars = array(
 			'WorkerUrl' => $this->configs['framework']['js_dir'] . 'sass-js/sass.worker.js',
-			'ScssFormatFileContents' => '',
+			'ScssFormatFileContents' => $scss->get_precompile_content(),
 			'output_css_filename' => self::get_colors_uri( $this->configs ),
 		);
 
@@ -594,7 +595,7 @@ HTML;
 	 */
 	public function register_scripts() {
 
-		$scss = new Boldgrid_Framework_SCSS( $this->configs );
+
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_script(

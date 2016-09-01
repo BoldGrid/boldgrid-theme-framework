@@ -613,7 +613,6 @@ HTML;
 			false
 		);
 
-
 		wp_localize_script(
 			'boldgird-theme-helper-sass-implementation',
 			'BOLDGRIDSass',

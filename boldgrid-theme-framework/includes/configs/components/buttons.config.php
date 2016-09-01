@@ -11,7 +11,7 @@
  */
 
 return array(
-	'enabled' => false,
+	'enabled' => true,
 	'variables' => array(
 		'ubtn-namespace' => '.btn',
 		'ubtn-glow-namespace' => '.glow',

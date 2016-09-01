@@ -578,6 +578,34 @@ HTML;
 			false
 		);
 
+		$bgtfw_js_configs = array(
+			'WorkerUrl' => $this->configs['framework']['js_dir'] . 'sass-js/sass.worker.js',
+			'ScssFormatFileContents' => $scss->get_precompile_content(),
+			'ButtonVariables' => $this->colors->get_scss_variables(),
+			'ButtonExtends' => array(
+				'primary' => $this->configs['components']['buttons']['variables']['button-primary-classes'],
+				'secondary' => $this->configs['components']['buttons']['variables']['button-secondary-classes'],
+			),
+			'output_css_filename' => self::get_colors_uri( $this->configs ),
+		);
+
+		$buttons = $this->configs['components']['buttons']['variables'];
+
+		$add_buttons = array();
+
+		if ( ! empty( $buttons['button-primary-classes'] ) ) {
+			$add_buttons['primary'] = $this->configs['components']['buttons']['variables']['button-primary-classes'];
+		}
+
+		if ( ! empty( $buttons['button-secondary-classes'] ) ) {
+			$add_buttons['secondary'] = $this->configs['components']['buttons']['variables']['button-secondary-classes'];
+		}
+
+		if ( !empty( $add_buttons ) ) {
+			$bgtfw_js_configs['ButtonExtends'] = $add_buttons;
+		}
+
+		var_dump( $bgtfw_js_configs ); die;
 		wp_localize_script(
 			'boldgird-theme-helper-sass-implementation',
 			'BOLDGRIDSass',

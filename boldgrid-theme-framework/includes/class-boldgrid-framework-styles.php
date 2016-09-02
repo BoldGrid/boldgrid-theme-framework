@@ -121,6 +121,16 @@ class BoldGrid_Framework_Styles {
 			$this->configs['version']
 		);
 
+		// Framework Button Styles.
+		if ( true === $this->configs['components']['buttons']['enabled'] ) {
+			wp_enqueue_style(
+				'boldgrid-buttons',
+				$this->configs['framework']['css_dir'] . 'buttons.min.css',
+				array(),
+				$this->configs['version']
+			);
+		}
+
 		/* If using a child theme, auto-load the parent theme style. */
 		if ( is_child_theme( ) ) {
 			wp_enqueue_style(

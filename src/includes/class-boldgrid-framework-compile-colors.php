@@ -267,13 +267,14 @@ class Boldgrid_Framework_Compile_Colors {
 		}
 
 		if ( ! empty( $configs ) ) {
+			$palette_class = get_theme_mod( 'boldgrid_palette_class', 'palette-primary' );
 			foreach( $configs as $config ) {
 				// Remove whitespace out of strings
 				$config = str_replace( ' ', '', $config );
 				// Make an array to filter.
-				$config = explode( ',', str_replace( '.btn-', '', $config ) );
+				$config = explode( ',', str_replace( $palette_class . ' .btn-', '', $config ) );
 				// We don't need the base class.
-				if ( ( $key = array_search( '.btn', $config ) ) !== false ) {
+				if ( ( $key = array_search( $palette_class . ' .btn', $config ) ) !== false ) {
 					unset( $config[$key] );
 				}
 				// Remove any color classes that are defined since we don't need them.

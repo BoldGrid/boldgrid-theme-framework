@@ -39,6 +39,9 @@
 .row {
 	margin: auto;
 }
+.row > .wc-gallery { 
+	width: 100%;
+}
 .container .row,
 .container-fluid .row {
 	margin-right: -15px;

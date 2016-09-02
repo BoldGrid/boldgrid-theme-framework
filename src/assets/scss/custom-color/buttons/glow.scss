@@ -4,12 +4,12 @@
 * Create colors for glowing buttons
 */
 
-.btn-glow {
+#{$ubtn-namespace}-glow {
   @each $ubtn-color in $ubtn-colors {
     $ubtn-name: nth($ubtn-color, 1);
     $ubtn-background: nth($ubtn-color, 2);
     $ubtn-color: nth($ubtn-color, 3);
-    $ubtn-color-namespace: '.btn-' + $ubtn-name;
+    $ubtn-color-namespace: #{$ubtn-namespace} + '-' + $ubtn-name;
 
     &#{$ubtn-color-namespace} {
       animation-name: glowing-#{$ubtn-name};

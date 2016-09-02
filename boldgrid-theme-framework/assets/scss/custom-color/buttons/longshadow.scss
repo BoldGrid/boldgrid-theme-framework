@@ -47,7 +47,7 @@
     $ubtn-name: nth($ubtn-color, 1);
     $ubtn-background: nth($ubtn-color, 2);
     $ubtn-color: nth($ubtn-color, 3);
-    $ubtn-color-namespace: '.btn-' + $ubtn-name;
+    $ubtn-color-namespace: #{$ubtn-namespace} + '-' + $ubtn-name;
 
     &#{$ubtn-color-namespace} {
       text-shadow: longshadowFunc(text, darken($ubtn-background, 10%), 85, $direction);
@@ -67,8 +67,8 @@
 *
 */
 
-.btn-longshadow,
-.btn-longshadow-right {
+#{$ubtn-namespace}-longshadow,
+#{$ubtn-namespace}-longshadow-right {
 	@include longshadow(right);
 }
 
@@ -78,6 +78,6 @@
 *
 */
 
-.btn-longshadow-left {
+#{$ubtn-namespace}-longshadow-left {
 	@include longshadow(left);
 }

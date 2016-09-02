@@ -32,6 +32,8 @@ user guide for more information.
 * Bug Fix: Check if function exists before display_sidebar fires.
 * New Feature: Allow all WordPress conditionals to be used in display_sidebar.
 * Update: No longer renaming Widgets to Header/Footer Widgets in the customizer.
+* Bug Fix: Default h1 and h3 font sizes not rendering correctly (not in use on current themes).
+* New Feature: Adding buttons library for editor.
 
 ### 1.2.3 ###
 * New Feature: Added SnapChat social media icons.

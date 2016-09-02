@@ -62,7 +62,7 @@ class BoldGrid_Framework_Styles {
 	public function get_local_editor_styles() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		return array(
+		$files = array(
 			// uri() is required to enforce order.
 			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap.min.css',
 			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
@@ -70,6 +70,9 @@ class BoldGrid_Framework_Styles {
 			$this->configs['framework']['config_directory']['uri'] . '/style.css',
 			Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
 		);
+
+		$files = apply_filters( 'local_editor_styles', $files );
+		return $files;
 	}
 
 	/**
@@ -106,9 +109,15 @@ class BoldGrid_Framework_Styles {
 		);
 
 		/* Bootstrap */
+		$bootstrap = get_stylesheet_directory_uri() . '/css/bootstrap.css';
+		if ( ! file_exists( get_stylesheet_directory() . '/css/bootstrap.css' ) ||
+			false === $this->configs['components']['bootstrap']['enabled'] ) {
+				$bootstrap = $this->configs['framework']['css_dir'] . 'bootstrap/bootstrap' . $suffix . '.css';
+		}
+
 		wp_enqueue_style(
 			'bootstrap-styles',
-			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap.min.css',
+			$bootstrap,
 			array(),
 			'3.3.1'
 		);
@@ -121,14 +130,14 @@ class BoldGrid_Framework_Styles {
 			$this->configs['version']
 		);
 
-		// Framework Button Styles.
-		if ( true === $this->configs['components']['buttons']['enabled'] ) {
-			wp_enqueue_style(
-				'boldgrid-buttons',
-				$this->configs['framework']['css_dir'] . 'buttons.min.css',
-				array(),
-				$this->configs['version']
-			);
+		if ( true === $this->configs['components']['buttons']['enabled'] &&
+			file_exists( get_stylesheet_directory() . '/css/buttons.css' ) ) {
+				wp_enqueue_style(
+					'boldgrid-buttons',
+					get_stylesheet_directory_uri() . '/css/buttons.css',
+					array(),
+					$this->configs['version']
+				);
 		}
 
 		/* If using a child theme, auto-load the parent theme style. */
@@ -137,8 +146,9 @@ class BoldGrid_Framework_Styles {
 				'parent-style',
 				trailingslashit( get_template_directory_uri() ) . 'style.css',
 				array(
-					'bootstrap-styles',
 					'font-awesome',
+					'bootstrap-styles',
+					'boldgrid-theme-framework'
 				),
 				null
 			);
@@ -175,6 +185,22 @@ class BoldGrid_Framework_Styles {
 			),
 			null
 		);
+	}
+
+	/**
+	 * Adds the buttons.css to TinyMCE Editor.
+	 *
+	 * @since 1.2.4
+	 *
+	 * @return array $files An array of file uris to enqueue to TinyMCE.
+	 */
+	public function enqueue_editor_buttons( $files ) {
+		if ( true === $this->configs['components']['buttons']['enabled'] &&
+			file_exists( get_stylesheet_directory() . '/css/buttons.css' ) ) {
+				$files[] = get_stylesheet_directory_uri() . '/css/buttons.css';
+		}
+
+		return $files;
 	}
 
 	/**

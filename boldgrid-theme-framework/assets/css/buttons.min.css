@@ -100,7 +100,7 @@
  *
  * The default values for the .button class
  */
-.btn {
+.palette-primary .btn {
   color: #666;
   background-color: #eee;
   border-color: #eee;
@@ -128,13 +128,13 @@
    * The use of !important is only added because this is a state
    * that must be applied to all buttons when in a disabled state.
    */ }
-  .btn:visited {
+  .palette-primary .btn:visited {
     color: #666; }
-  .btn:hover, .btn:focus {
+  .palette-primary .btn:hover, .palette-primary .btn:focus {
     background-color: #f6f6f6;
     text-decoration: none;
     outline: none; }
-  .btn:active, .btn.active, .btn.is-active {
+  .palette-primary .btn:active, .palette-primary .btn.active, .palette-primary .btn.is-active {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .3);
     text-decoration: none;
     background-color: #eee;
@@ -142,7 +142,7 @@
     color: #d5d5d5;
     transition-duration: 0s;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2); }
-  .btn.disabled, .btn.is-disabled, .btn:disabled {
+  .palette-primary .btn.disabled, .palette-primary .btn.is-disabled, .palette-primary .btn:disabled {
     top: 0 !important;
     background: #eee !important;
     border: 1px solid #ddd !important;
@@ -150,32 +150,32 @@
     color: #ccc !important;
     cursor: default !important;
     appearance: none !important; }
-    .btn.disabled else, .btn.is-disabled else, .btn:disabled else {
+    .palette-primary .btn.disabled else, .palette-primary .btn.is-disabled else, .palette-primary .btn:disabled else {
       box-shadow: none !important;
       opacity: 0.8 !important; }
 /*
  * Base Button Tyography
  *
  */
-.btn-uppercase {
+.palette-primary .btn-uppercase {
   text-transform: uppercase; }
 
-.btn-lowercase {
+.palette-primary .btn-lowercase {
   text-transform: lowercase; }
 
-.btn-capitalize {
+.palette-primary .btn-capitalize {
   text-transform: capitalize; }
 
-.btn-small-caps {
+.palette-primary .btn-small-caps {
   font-variant: small-caps; }
 
-.btn-icon-txt-large {
+.palette-primary .btn-icon-txt-large {
   font-size: 36px !important; }
 /*
  * Base padding
  *
  */
-.btn-width-small {
+.palette-primary .btn-width-small {
   padding: 0 10px !important; }
 /*
  * Base Colors
@@ -183,62 +183,62 @@
  * Create colors for buttons
  * (.button-primary, .button-secondary, etc.)
  */
-.btn-color-1, .btn-color-1-flat {
+.palette-primary .btn-color-1, .palette-primary .btn-color-1-flat {
   background-color: #000;
   border-color: #000;
   color: #fff; }
-  .btn-color-1:visited, .btn-color-1-flat:visited {
+  .palette-primary .btn-color-1:visited, .palette-primary .btn-color-1-flat:visited {
     color: #fff; }
-  .btn-color-1:hover, .btn-color-1-flat:hover, .btn-color-1:focus, .btn-color-1-flat:focus {
+  .palette-primary .btn-color-1:hover, .palette-primary .btn-color-1-flat:hover, .palette-primary .btn-color-1:focus, .palette-primary .btn-color-1-flat:focus {
     background-color: #1a1a1a;
     border-color: #1a1a1a;
     color: #fff; }
-  .btn-color-1:active, .btn-color-1-flat:active, .btn-color-1.active, .btn-color-1-flat.active, .btn-color-1.is-active, .btn-color-1-flat.is-active {
+  .palette-primary .btn-color-1:active, .palette-primary .btn-color-1-flat:active, .palette-primary .btn-color-1.active, .palette-primary .btn-color-1-flat.active, .palette-primary .btn-color-1.is-active, .palette-primary .btn-color-1-flat.is-active {
     background-color: #000;
     border-color: #000;
     color: #000; }
 
-.btn-color-2, .btn-color-2-flat {
+.palette-primary .btn-color-2, .palette-primary .btn-color-2-flat {
   background-color: #000;
   border-color: #000;
   color: #fff; }
-  .btn-color-2:visited, .btn-color-2-flat:visited {
+  .palette-primary .btn-color-2:visited, .palette-primary .btn-color-2-flat:visited {
     color: #fff; }
-  .btn-color-2:hover, .btn-color-2-flat:hover, .btn-color-2:focus, .btn-color-2-flat:focus {
+  .palette-primary .btn-color-2:hover, .palette-primary .btn-color-2-flat:hover, .palette-primary .btn-color-2:focus, .palette-primary .btn-color-2-flat:focus {
     background-color: #1a1a1a;
     border-color: #1a1a1a;
     color: #fff; }
-  .btn-color-2:active, .btn-color-2-flat:active, .btn-color-2.active, .btn-color-2-flat.active, .btn-color-2.is-active, .btn-color-2-flat.is-active {
+  .palette-primary .btn-color-2:active, .palette-primary .btn-color-2-flat:active, .palette-primary .btn-color-2.active, .palette-primary .btn-color-2-flat.active, .palette-primary .btn-color-2.is-active, .palette-primary .btn-color-2-flat.is-active {
     background-color: #000;
     border-color: #000;
     color: #000; }
 
-.btn-color-3, .btn-color-3-flat {
+.palette-primary .btn-color-3, .palette-primary .btn-color-3-flat {
   background-color: #fff;
   border-color: #fff;
   color: #4d4d4d; }
-  .btn-color-3:visited, .btn-color-3-flat:visited {
+  .palette-primary .btn-color-3:visited, .palette-primary .btn-color-3-flat:visited {
     color: #4d4d4d; }
-  .btn-color-3:hover, .btn-color-3-flat:hover, .btn-color-3:focus, .btn-color-3-flat:focus {
+  .palette-primary .btn-color-3:hover, .palette-primary .btn-color-3-flat:hover, .palette-primary .btn-color-3:focus, .palette-primary .btn-color-3-flat:focus {
     background-color: #fff;
     border-color: #fff;
     color: #4d4d4d; }
-  .btn-color-3:active, .btn-color-3-flat:active, .btn-color-3.active, .btn-color-3-flat.active, .btn-color-3.is-active, .btn-color-3-flat.is-active {
+  .palette-primary .btn-color-3:active, .palette-primary .btn-color-3-flat:active, .palette-primary .btn-color-3.active, .palette-primary .btn-color-3-flat.active, .palette-primary .btn-color-3.is-active, .palette-primary .btn-color-3-flat.is-active {
     background-color: #fff;
     border-color: #fff;
     color: #e6e6e6; }
 
-.btn-neutral-color, .btn-neutral-color-flat {
+.palette-primary .btn-neutral-color, .palette-primary .btn-neutral-color-flat {
   background-color: #fff;
   border-color: #fff;
   color: #4d4d4d; }
-  .btn-neutral-color:visited, .btn-neutral-color-flat:visited {
+  .palette-primary .btn-neutral-color:visited, .palette-primary .btn-neutral-color-flat:visited {
     color: #4d4d4d; }
-  .btn-neutral-color:hover, .btn-neutral-color-flat:hover, .btn-neutral-color:focus, .btn-neutral-color-flat:focus {
+  .palette-primary .btn-neutral-color:hover, .palette-primary .btn-neutral-color-flat:hover, .palette-primary .btn-neutral-color:focus, .palette-primary .btn-neutral-color-flat:focus {
     background-color: #fff;
     border-color: #fff;
     color: #4d4d4d; }
-  .btn-neutral-color:active, .btn-neutral-color-flat:active, .btn-neutral-color.active, .btn-neutral-color-flat.active, .btn-neutral-color.is-active, .btn-neutral-color-flat.is-active {
+  .palette-primary .btn-neutral-color:active, .palette-primary .btn-neutral-color-flat:active, .palette-primary .btn-neutral-color.active, .palette-primary .btn-neutral-color-flat.active, .palette-primary .btn-neutral-color.is-active, .palette-primary .btn-neutral-color-flat.is-active {
     background-color: #fff;
     border-color: #fff;
     color: #e6e6e6; }
@@ -247,7 +247,7 @@
  *
  * Very Miminal Layout Styles
  */
-.btn-block, .btn-stacked {
+.palette-primary .btn-block, .palette-primary .btn-stacked {
   display: block; }
 /*
  * Button Types (optional)
@@ -263,39 +263,39 @@
  * This file creates the various button shapes
  * (ex. Circle, Rounded, Pill)
  */
-.btn-square {
+.palette-primary .btn-square {
   border-radius: 0; }
 
-.btn-box {
+.palette-primary .btn-box {
   border-radius: 10px; }
 
-.btn-rounded {
+.palette-primary .btn-rounded {
   border-radius: 4px; }
 
-.btn-pill {
+.palette-primary .btn-pill {
   border-radius: 200px; }
 
-.btn-circle {
+.palette-primary .btn-circle {
   border-radius: 100%; }
 /*
  * Size Adjustment for equal height & widht buttons
  *
  * Remove padding and set a fixed width.
  */
-.btn-circle, .btn-box, .btn-square {
+.palette-primary .btn-circle, .palette-primary .btn-box, .palette-primary .btn-square {
   padding: 0 !important;
   width: 40px; }
-  .btn-circle.btn-giant, .btn-box.btn-giant, .btn-square.btn-giant {
+  .palette-primary .btn-circle.palette-primary .btn-giant, .palette-primary .btn-box.palette-primary .btn-giant, .palette-primary .btn-square.palette-primary .btn-giant {
     width: 70px; }
-  .btn-circle.btn-jumbo, .btn-box.btn-jumbo, .btn-square.btn-jumbo {
+  .palette-primary .btn-circle.palette-primary .btn-jumbo, .palette-primary .btn-box.palette-primary .btn-jumbo, .palette-primary .btn-square.palette-primary .btn-jumbo {
     width: 60px; }
-  .btn-circle.btn-large, .btn-box.btn-large, .btn-square.btn-large {
+  .palette-primary .btn-circle.palette-primary .btn-large, .palette-primary .btn-box.palette-primary .btn-large, .palette-primary .btn-square.palette-primary .btn-large {
     width: 50px; }
-  .btn-circle.btn-normal, .btn-box.btn-normal, .btn-square.btn-normal {
+  .palette-primary .btn-circle.palette-primary .btn-normal, .palette-primary .btn-box.palette-primary .btn-normal, .palette-primary .btn-square.palette-primary .btn-normal {
     width: 40px; }
-  .btn-circle.btn-small, .btn-box.btn-small, .btn-square.btn-small {
+  .palette-primary .btn-circle.palette-primary .btn-small, .palette-primary .btn-box.palette-primary .btn-small, .palette-primary .btn-square.palette-primary .btn-small {
     width: 30px; }
-  .btn-circle.btn-tiny, .btn-box.btn-tiny, .btn-square.btn-tiny {
+  .palette-primary .btn-circle.palette-primary .btn-tiny, .palette-primary .btn-box.palette-primary .btn-tiny, .palette-primary .btn-square.palette-primary .btn-tiny {
     width: 24px; }
 /*
  * Border Buttons
@@ -303,16 +303,16 @@
  * These buttons have no fill they only have a
  * border to define their hit target.
  */
-.btn-border, .btn-border-thin, .btn-border-thick {
+.palette-primary .btn-border, .palette-primary .btn-border-thin, .palette-primary .btn-border-thick {
   background: none;
   border-width: 2px;
   border-style: solid;
   line-height: 36px; }
 
-.btn-border:hover, .btn-border-thin:hover, .btn-border-thick:hover {
+.palette-primary .btn-border:hover, .palette-primary .btn-border-thin:hover, .palette-primary .btn-border-thick:hover {
   background-color: rgba(255, 255, 255, .9); }
 
-.btn-border:active, .btn-border-thin:active, .btn-border-thick:active, .btn-border.active, .btn-border-thin.active, .btn-border-thick.active, .btn-border.is-active, .btn-border-thin.is-active, .btn-border-thick.is-active {
+.palette-primary .btn-border:active, .palette-primary .btn-border-thin:active, .palette-primary .btn-border-thick:active, .palette-primary .btn-border.active, .palette-primary .btn-border-thin.active, .palette-primary .btn-border-thick.active, .palette-primary .btn-border.is-active, .palette-primary .btn-border-thin.is-active, .palette-primary .btn-border-thick.is-active {
   box-shadow: none;
   text-shadow: none;
   transition-property: all;
@@ -322,10 +322,10 @@
  *
  * A slight variation in border thickness
  */
-.btn-border-thin {
+.palette-primary .btn-border-thin {
   border-width: 1px; }
 
-.btn-border-thick {
+.palette-primary .btn-border-thick {
   border-width: 3px; }
 /*
  * Border Button Colors
@@ -333,60 +333,60 @@
  * Create colors for buttons
  * (.button-primary, .button-secondary, etc.)
  */
-.btn-border, .btn-border-thin, .btn-border-thick {
+.palette-primary .btn-border, .palette-primary .btn-border-thin, .palette-primary .btn-border-thick {
   /*
    * Border Button Size Adjustment
    *
    * The line-height must be adjusted to compinsate for
    * the width of the border.
    */ }
-  .btn-border.btn-color-1, .btn-border-thin.btn-color-1, .btn-border-thick.btn-color-1 {
+  .palette-primary .btn-border.palette-primary .btn-color-1, .palette-primary .btn-border-thin.palette-primary .btn-color-1, .palette-primary .btn-border-thick.palette-primary .btn-color-1 {
     color: #000; }
-    .btn-border.btn-color-1:hover, .btn-border-thin.btn-color-1:hover, .btn-border-thick.btn-color-1:hover, .btn-border.btn-color-1:focus, .btn-border-thin.btn-color-1:focus, .btn-border-thick.btn-color-1:focus {
+    .palette-primary .btn-border.palette-primary .btn-color-1:hover, .palette-primary .btn-border-thin.palette-primary .btn-color-1:hover, .palette-primary .btn-border-thick.palette-primary .btn-color-1:hover, .palette-primary .btn-border.palette-primary .btn-color-1:focus, .palette-primary .btn-border-thin.palette-primary .btn-color-1:focus, .palette-primary .btn-border-thick.palette-primary .btn-color-1:focus {
       background-color: rgba(26, 26, 26, .9);
       color: rgba(255, 255, 255, .9); }
-    .btn-border.btn-color-1:active, .btn-border-thin.btn-color-1:active, .btn-border-thick.btn-color-1:active, .btn-border.btn-color-1.active, .btn-border-thin.btn-color-1.active, .btn-border-thick.btn-color-1.active, .btn-border.btn-color-1.is-active, .btn-border-thin.btn-color-1.is-active, .btn-border-thick.btn-color-1.is-active {
+    .palette-primary .btn-border.palette-primary .btn-color-1:active, .palette-primary .btn-border-thin.palette-primary .btn-color-1:active, .palette-primary .btn-border-thick.palette-primary .btn-color-1:active, .palette-primary .btn-border.palette-primary .btn-color-1.active, .palette-primary .btn-border-thin.palette-primary .btn-color-1.active, .palette-primary .btn-border-thick.palette-primary .btn-color-1.active, .palette-primary .btn-border.palette-primary .btn-color-1.is-active, .palette-primary .btn-border-thin.palette-primary .btn-color-1.is-active, .palette-primary .btn-border-thick.palette-primary .btn-color-1.is-active {
       background-color: rgba(0, 0, 0, .7);
       color: rgba(255, 255, 255, .5);
       opacity: 0.3; }
-  .btn-border.btn-color-2, .btn-border-thin.btn-color-2, .btn-border-thick.btn-color-2 {
+  .palette-primary .btn-border.palette-primary .btn-color-2, .palette-primary .btn-border-thin.palette-primary .btn-color-2, .palette-primary .btn-border-thick.palette-primary .btn-color-2 {
     color: #000; }
-    .btn-border.btn-color-2:hover, .btn-border-thin.btn-color-2:hover, .btn-border-thick.btn-color-2:hover, .btn-border.btn-color-2:focus, .btn-border-thin.btn-color-2:focus, .btn-border-thick.btn-color-2:focus {
+    .palette-primary .btn-border.palette-primary .btn-color-2:hover, .palette-primary .btn-border-thin.palette-primary .btn-color-2:hover, .palette-primary .btn-border-thick.palette-primary .btn-color-2:hover, .palette-primary .btn-border.palette-primary .btn-color-2:focus, .palette-primary .btn-border-thin.palette-primary .btn-color-2:focus, .palette-primary .btn-border-thick.palette-primary .btn-color-2:focus {
       background-color: rgba(26, 26, 26, .9);
       color: rgba(255, 255, 255, .9); }
-    .btn-border.btn-color-2:active, .btn-border-thin.btn-color-2:active, .btn-border-thick.btn-color-2:active, .btn-border.btn-color-2.active, .btn-border-thin.btn-color-2.active, .btn-border-thick.btn-color-2.active, .btn-border.btn-color-2.is-active, .btn-border-thin.btn-color-2.is-active, .btn-border-thick.btn-color-2.is-active {
+    .palette-primary .btn-border.palette-primary .btn-color-2:active, .palette-primary .btn-border-thin.palette-primary .btn-color-2:active, .palette-primary .btn-border-thick.palette-primary .btn-color-2:active, .palette-primary .btn-border.palette-primary .btn-color-2.active, .palette-primary .btn-border-thin.palette-primary .btn-color-2.active, .palette-primary .btn-border-thick.palette-primary .btn-color-2.active, .palette-primary .btn-border.palette-primary .btn-color-2.is-active, .palette-primary .btn-border-thin.palette-primary .btn-color-2.is-active, .palette-primary .btn-border-thick.palette-primary .btn-color-2.is-active {
       background-color: rgba(0, 0, 0, .7);
       color: rgba(255, 255, 255, .5);
       opacity: 0.3; }
-  .btn-border.btn-color-3, .btn-border-thin.btn-color-3, .btn-border-thick.btn-color-3 {
+  .palette-primary .btn-border.palette-primary .btn-color-3, .palette-primary .btn-border-thin.palette-primary .btn-color-3, .palette-primary .btn-border-thick.palette-primary .btn-color-3 {
     color: #fff; }
-    .btn-border.btn-color-3:hover, .btn-border-thin.btn-color-3:hover, .btn-border-thick.btn-color-3:hover, .btn-border.btn-color-3:focus, .btn-border-thin.btn-color-3:focus, .btn-border-thick.btn-color-3:focus {
+    .palette-primary .btn-border.palette-primary .btn-color-3:hover, .palette-primary .btn-border-thin.palette-primary .btn-color-3:hover, .palette-primary .btn-border-thick.palette-primary .btn-color-3:hover, .palette-primary .btn-border.palette-primary .btn-color-3:focus, .palette-primary .btn-border-thin.palette-primary .btn-color-3:focus, .palette-primary .btn-border-thick.palette-primary .btn-color-3:focus {
       background-color: rgba(255, 255, 255, .9);
       color: rgba(77, 77, 77, .9); }
-    .btn-border.btn-color-3:active, .btn-border-thin.btn-color-3:active, .btn-border-thick.btn-color-3:active, .btn-border.btn-color-3.active, .btn-border-thin.btn-color-3.active, .btn-border-thick.btn-color-3.active, .btn-border.btn-color-3.is-active, .btn-border-thin.btn-color-3.is-active, .btn-border-thick.btn-color-3.is-active {
+    .palette-primary .btn-border.palette-primary .btn-color-3:active, .palette-primary .btn-border-thin.palette-primary .btn-color-3:active, .palette-primary .btn-border-thick.palette-primary .btn-color-3:active, .palette-primary .btn-border.palette-primary .btn-color-3.active, .palette-primary .btn-border-thin.palette-primary .btn-color-3.active, .palette-primary .btn-border-thick.palette-primary .btn-color-3.active, .palette-primary .btn-border.palette-primary .btn-color-3.is-active, .palette-primary .btn-border-thin.palette-primary .btn-color-3.is-active, .palette-primary .btn-border-thick.palette-primary .btn-color-3.is-active {
       background-color: rgba(255, 255, 255, .7);
       color: rgba(77, 77, 77, .5);
       opacity: 0.3; }
-  .btn-border.btn-neutral-color, .btn-border-thin.btn-neutral-color, .btn-border-thick.btn-neutral-color {
+  .palette-primary .btn-border.palette-primary .btn-neutral-color, .palette-primary .btn-border-thin.palette-primary .btn-neutral-color, .palette-primary .btn-border-thick.palette-primary .btn-neutral-color {
     color: #fff; }
-    .btn-border.btn-neutral-color:hover, .btn-border-thin.btn-neutral-color:hover, .btn-border-thick.btn-neutral-color:hover, .btn-border.btn-neutral-color:focus, .btn-border-thin.btn-neutral-color:focus, .btn-border-thick.btn-neutral-color:focus {
+    .palette-primary .btn-border.palette-primary .btn-neutral-color:hover, .palette-primary .btn-border-thin.palette-primary .btn-neutral-color:hover, .palette-primary .btn-border-thick.palette-primary .btn-neutral-color:hover, .palette-primary .btn-border.palette-primary .btn-neutral-color:focus, .palette-primary .btn-border-thin.palette-primary .btn-neutral-color:focus, .palette-primary .btn-border-thick.palette-primary .btn-neutral-color:focus {
       background-color: rgba(255, 255, 255, .9);
       color: rgba(77, 77, 77, .9); }
-    .btn-border.btn-neutral-color:active, .btn-border-thin.btn-neutral-color:active, .btn-border-thick.btn-neutral-color:active, .btn-border.btn-neutral-color.active, .btn-border-thin.btn-neutral-color.active, .btn-border-thick.btn-neutral-color.active, .btn-border.btn-neutral-color.is-active, .btn-border-thin.btn-neutral-color.is-active, .btn-border-thick.btn-neutral-color.is-active {
+    .palette-primary .btn-border.palette-primary .btn-neutral-color:active, .palette-primary .btn-border-thin.palette-primary .btn-neutral-color:active, .palette-primary .btn-border-thick.palette-primary .btn-neutral-color:active, .palette-primary .btn-border.palette-primary .btn-neutral-color.active, .palette-primary .btn-border-thin.palette-primary .btn-neutral-color.active, .palette-primary .btn-border-thick.palette-primary .btn-neutral-color.active, .palette-primary .btn-border.palette-primary .btn-neutral-color.is-active, .palette-primary .btn-border-thin.palette-primary .btn-neutral-color.is-active, .palette-primary .btn-border-thick.palette-primary .btn-neutral-color.is-active {
       background-color: rgba(255, 255, 255, .7);
       color: rgba(77, 77, 77, .5);
       opacity: 0.3; }
-  .btn-border.btn-giant, .btn-border-thin.btn-giant, .btn-border-thick.btn-giant {
+  .palette-primary .btn-border.palette-primary .btn-giant, .palette-primary .btn-border-thin.palette-primary .btn-giant, .palette-primary .btn-border-thick.palette-primary .btn-giant {
     line-height: 66px; }
-  .btn-border.btn-jumbo, .btn-border-thin.btn-jumbo, .btn-border-thick.btn-jumbo {
+  .palette-primary .btn-border.palette-primary .btn-jumbo, .palette-primary .btn-border-thin.palette-primary .btn-jumbo, .palette-primary .btn-border-thick.palette-primary .btn-jumbo {
     line-height: 56px; }
-  .btn-border.btn-large, .btn-border-thin.btn-large, .btn-border-thick.btn-large {
+  .palette-primary .btn-border.palette-primary .btn-large, .palette-primary .btn-border-thin.palette-primary .btn-large, .palette-primary .btn-border-thick.palette-primary .btn-large {
     line-height: 46px; }
-  .btn-border.btn-normal, .btn-border-thin.btn-normal, .btn-border-thick.btn-normal {
+  .palette-primary .btn-border.palette-primary .btn-normal, .palette-primary .btn-border-thin.palette-primary .btn-normal, .palette-primary .btn-border-thick.palette-primary .btn-normal {
     line-height: 36px; }
-  .btn-border.btn-small, .btn-border-thin.btn-small, .btn-border-thick.btn-small {
+  .palette-primary .btn-border.palette-primary .btn-small, .palette-primary .btn-border-thin.palette-primary .btn-small, .palette-primary .btn-border-thick.palette-primary .btn-small {
     line-height: 26px; }
-  .btn-border.btn-tiny, .btn-border-thin.btn-tiny, .btn-border-thick.btn-tiny {
+  .palette-primary .btn-border.palette-primary .btn-tiny, .palette-primary .btn-border-thin.palette-primary .btn-tiny, .palette-primary .btn-border-thick.palette-primary .btn-tiny {
     line-height: 20px; }
 /*
  * Border Buttons
@@ -394,7 +394,7 @@
  * These buttons have no fill they only have a
  * border to define their hit target.
  */
-.btn-borderless {
+.palette-primary .btn-borderless {
   background: none;
   border: none;
   padding: 0 8px !important;
@@ -414,44 +414,44 @@
    * the lack of a hit target.
    */ }
 
-.btn-borderless:hover, .btn-borderless:focus {
+.palette-primary .btn-borderless:hover, .palette-primary .btn-borderless:focus {
   background: none; }
 
-.btn-borderless:active, .btn-borderless.active, .btn-borderless.is-active {
+.palette-primary .btn-borderless:active, .palette-primary .btn-borderless.active, .palette-primary .btn-borderless.is-active {
   box-shadow: none;
   text-shadow: none;
   transition-property: all;
   transition-duration: 0.3s;
   opacity: 0.3; }
-  .btn-borderless.btn-color-1 {
+  .palette-primary .btn-borderless.palette-primary .btn-color-1 {
     color: #000; }
-  .btn-borderless.btn-color-2 {
+  .palette-primary .btn-borderless.palette-primary .btn-color-2 {
     color: #000; }
-  .btn-borderless.btn-color-3 {
+  .palette-primary .btn-borderless.palette-primary .btn-color-3 {
     color: #fff; }
-  .btn-borderless.btn-neutral-color {
+  .palette-primary .btn-borderless.palette-primary .btn-neutral-color {
     color: #fff; }
-  .btn-borderless.btn-giant {
+  .palette-primary .btn-borderless.palette-primary .btn-giant {
     font-size: inherit * 1.75 * 1.3;
     height: inherit * 1.75 * 1.316;
     line-height: inherit * 1.75 * 1.316; }
-  .btn-borderless.btn-jumbo {
+  .palette-primary .btn-borderless.palette-primary .btn-jumbo {
     font-size: inherit * 1.5 * 1.3;
     height: inherit * 1.5 * 1.316;
     line-height: inherit * 1.5 * 1.316; }
-  .btn-borderless.btn-large {
+  .palette-primary .btn-borderless.palette-primary .btn-large {
     font-size: inherit * 1.25 * 1.3;
     height: inherit * 1.25 * 1.316;
     line-height: inherit * 1.25 * 1.316; }
-  .btn-borderless.btn-normal {
+  .palette-primary .btn-borderless.palette-primary .btn-normal {
     font-size: inherit * 1 * 1.3;
     height: inherit * 1 * 1.316;
     line-height: inherit * 1 * 1.316; }
-  .btn-borderless.btn-small {
+  .palette-primary .btn-borderless.palette-primary .btn-small {
     font-size: inherit * 0.75 * 1.3;
     height: inherit * 0.75 * 1.316;
     line-height: inherit * 0.75 * 1.316; }
-  .btn-borderless.btn-tiny {
+  .palette-primary .btn-borderless.palette-primary .btn-tiny {
     font-size: inherit * 0.6 * 1.3;
     height: inherit * 0.6 * 1.316;
     line-height: inherit * 0.6 * 1.316; }
@@ -461,7 +461,7 @@
  * A classic looking button that offers
  * great depth and affordance.
  */
-.btn-raised {
+.palette-primary .btn-raised {
   border-color: #e1e1e1;
   border-style: solid;
   border-width: 1px;
@@ -469,10 +469,10 @@
   background: linear-gradient(#f6f6f6, #e1e1e1);
   box-shadow: inset 0px 1px 0px rgba(255, 255, 255, .3), 0 1px 2px rgba(0, 0, 0, .15); }
 
-.btn-raised:hover, .btn-raised:focus {
+.palette-primary .btn-raised:hover, .palette-primary .btn-raised:focus {
   background: linear-gradient(top, #fff, #dcdcdc); }
 
-.btn-raised:active, .btn-raised.active, .btn-raised.is-active {
+.palette-primary .btn-raised:active, .palette-primary .btn-raised.active, .palette-primary .btn-raised.is-active {
   background: #eee;
   box-shadow: inset 0px 1px 3px rgba(0, 0, 0, .2), 0px 1px 0px rgba(255, 255, 255, 1); }
 /*
@@ -480,36 +480,36 @@
  *
  * Create colors for raised buttons
  */
-.btn-raised.btn-color-1 {
+.palette-primary .btn-raised.palette-primary .btn-color-1 {
   border-color: #000;
   background: linear-gradient(#0d0d0d, #000); }
-  .btn-raised.btn-color-1:hover, .btn-raised.btn-color-1:focus {
+  .palette-primary .btn-raised.palette-primary .btn-color-1:hover, .palette-primary .btn-raised.palette-primary .btn-color-1:focus {
     background: linear-gradient(top, #141414, #000); }
-  .btn-raised.btn-color-1:active, .btn-raised.btn-color-1.active, .btn-raised.btn-color-1.is-active {
+  .palette-primary .btn-raised.palette-primary .btn-color-1:active, .palette-primary .btn-raised.palette-primary .btn-color-1.active, .palette-primary .btn-raised.palette-primary .btn-color-1.is-active {
     border-color: #000;
     background: #000; }
-  .btn-raised.btn-color-2 {
+  .palette-primary .btn-raised.palette-primary .btn-color-2 {
     border-color: #000;
     background: linear-gradient(#0d0d0d, #000); }
-  .btn-raised.btn-color-2:hover, .btn-raised.btn-color-2:focus {
+  .palette-primary .btn-raised.palette-primary .btn-color-2:hover, .palette-primary .btn-raised.palette-primary .btn-color-2:focus {
     background: linear-gradient(top, #141414, #000); }
-  .btn-raised.btn-color-2:active, .btn-raised.btn-color-2.active, .btn-raised.btn-color-2.is-active {
+  .palette-primary .btn-raised.palette-primary .btn-color-2:active, .palette-primary .btn-raised.palette-primary .btn-color-2.active, .palette-primary .btn-raised.palette-primary .btn-color-2.is-active {
     border-color: #000;
     background: #000; }
-  .btn-raised.btn-color-3 {
+  .palette-primary .btn-raised.palette-primary .btn-color-3 {
     border-color: #f2f2f2;
     background: linear-gradient(#fff, #f2f2f2); }
-  .btn-raised.btn-color-3:hover, .btn-raised.btn-color-3:focus {
+  .palette-primary .btn-raised.palette-primary .btn-color-3:hover, .palette-primary .btn-raised.palette-primary .btn-color-3:focus {
     background: linear-gradient(top, #fff, #ededed); }
-  .btn-raised.btn-color-3:active, .btn-raised.btn-color-3.active, .btn-raised.btn-color-3.is-active {
+  .palette-primary .btn-raised.palette-primary .btn-color-3:active, .palette-primary .btn-raised.palette-primary .btn-color-3.active, .palette-primary .btn-raised.palette-primary .btn-color-3.is-active {
     border-color: #e6e6e6;
     background: #fff; }
-  .btn-raised.btn-neutral-color {
+  .palette-primary .btn-raised.palette-primary .btn-neutral-color {
     border-color: #f2f2f2;
     background: linear-gradient(#fff, #f2f2f2); }
-  .btn-raised.btn-neutral-color:hover, .btn-raised.btn-neutral-color:focus {
+  .palette-primary .btn-raised.palette-primary .btn-neutral-color:hover, .palette-primary .btn-raised.palette-primary .btn-neutral-color:focus {
     background: linear-gradient(top, #fff, #ededed); }
-  .btn-raised.btn-neutral-color:active, .btn-raised.btn-neutral-color.active, .btn-raised.btn-neutral-color.is-active {
+  .palette-primary .btn-raised.palette-primary .btn-neutral-color:active, .palette-primary .btn-raised.palette-primary .btn-neutral-color.active, .palette-primary .btn-raised.palette-primary .btn-neutral-color.is-active {
     border-color: #e6e6e6;
     background: #fff; }
 /*
@@ -519,15 +519,15 @@
  * style that mimics the visual appearance of a
  * real life button.
  */
-.btn-3d {
+.palette-primary .btn-3d {
   position: relative;
   top: 0;
   box-shadow: 0 7px 0 #bbb, 0 8px 3px rgba(0, 0, 0, .2); }
 
-.btn-3d:hover, .btn-3d:focus {
+.palette-primary .btn-3d:hover, .palette-primary .btn-3d:focus {
   box-shadow: 0 7px 0 #bbb, 0 8px 3px rgba(0, 0, 0, .2); }
 
-.btn-3d:active, .btn-3d.active, .btn-3d.is-active {
+.palette-primary .btn-3d:active, .palette-primary .btn-3d.active, .palette-primary .btn-3d.is-active {
   top: 5px;
   transition-property: all;
   transition-duration: 0.15s;
@@ -538,29 +538,29 @@
  * Create colors for buttons
  * (.button-primary, .button-secondary, etc.)
  */
-.btn-3d.btn-color-1 {
+.palette-primary .btn-3d.palette-primary .btn-color-1 {
   box-shadow: 0 7px 0 #000, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-1:hover, .btn-3d.btn-color-1:focus {
+  .palette-primary .btn-3d.palette-primary .btn-color-1:hover, .palette-primary .btn-3d.palette-primary .btn-color-1:focus {
     box-shadow: 0 7px 0 #000, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-1:active, .btn-3d.btn-color-1.active, .btn-3d.btn-color-1.is-active {
+  .palette-primary .btn-3d.palette-primary .btn-color-1:active, .palette-primary .btn-3d.palette-primary .btn-color-1.active, .palette-primary .btn-3d.palette-primary .btn-color-1.is-active {
     box-shadow: 0 2px 0 #000, 0 3px 3px rgba(0, 0, 0, .2); }
-  .btn-3d.btn-color-2 {
+  .palette-primary .btn-3d.palette-primary .btn-color-2 {
     box-shadow: 0 7px 0 #000, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-2:hover, .btn-3d.btn-color-2:focus {
+  .palette-primary .btn-3d.palette-primary .btn-color-2:hover, .palette-primary .btn-3d.palette-primary .btn-color-2:focus {
     box-shadow: 0 7px 0 #000, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-2:active, .btn-3d.btn-color-2.active, .btn-3d.btn-color-2.is-active {
+  .palette-primary .btn-3d.palette-primary .btn-color-2:active, .palette-primary .btn-3d.palette-primary .btn-color-2.active, .palette-primary .btn-3d.palette-primary .btn-color-2.is-active {
     box-shadow: 0 2px 0 #000, 0 3px 3px rgba(0, 0, 0, .2); }
-  .btn-3d.btn-color-3 {
+  .palette-primary .btn-3d.palette-primary .btn-color-3 {
     box-shadow: 0 7px 0 #e6e6e6, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-3:hover, .btn-3d.btn-color-3:focus {
+  .palette-primary .btn-3d.palette-primary .btn-color-3:hover, .palette-primary .btn-3d.palette-primary .btn-color-3:focus {
     box-shadow: 0 7px 0 #e0e0e0, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-3:active, .btn-3d.btn-color-3.active, .btn-3d.btn-color-3.is-active {
+  .palette-primary .btn-3d.palette-primary .btn-color-3:active, .palette-primary .btn-3d.palette-primary .btn-color-3.active, .palette-primary .btn-3d.palette-primary .btn-color-3.is-active {
     box-shadow: 0 2px 0 #ccc, 0 3px 3px rgba(0, 0, 0, .2); }
-  .btn-3d.btn-neutral-color {
+  .palette-primary .btn-3d.palette-primary .btn-neutral-color {
     box-shadow: 0 7px 0 #e6e6e6, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-neutral-color:hover, .btn-3d.btn-neutral-color:focus {
+  .palette-primary .btn-3d.palette-primary .btn-neutral-color:hover, .palette-primary .btn-3d.palette-primary .btn-neutral-color:focus {
     box-shadow: 0 7px 0 #e0e0e0, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-neutral-color:active, .btn-3d.btn-neutral-color.active, .btn-3d.btn-neutral-color.is-active {
+  .palette-primary .btn-3d.palette-primary .btn-neutral-color:active, .palette-primary .btn-3d.palette-primary .btn-neutral-color.active, .palette-primary .btn-3d.palette-primary .btn-neutral-color.is-active {
     box-shadow: 0 2px 0 #ccc, 0 3px 3px rgba(0, 0, 0, .2); }
 /*
  * Glowing Buttons
@@ -645,25 +645,25 @@
  * rythmically around the edges of
  * a button.
  */
-.btn-glow {
+.palette-primary .btn-glow {
   animation-duration: 3s;
   animation-iteration-count: infinite;
   animation-name: glowing; }
 
-.btn-glow:active, .btn-glow.active, .btn-glow.is-active {
+.palette-primary .btn-glow:active, .palette-primary .btn-glow.active, .palette-primary .btn-glow.is-active {
   animation-name: none; }
 /*
  * Glowing Button Colors
  *
  * Create colors for glowing buttons
  */
-.btn-glow.btn-color-1 {
+.palette-primary .btn-glow.palette-primary .btn-color-1 {
   animation-name: glowing-color-1; }
-  .btn-glow.btn-color-2 {
+  .palette-primary .btn-glow.palette-primary .btn-color-2 {
     animation-name: glowing-color-2; }
-  .btn-glow.btn-color-3 {
+  .palette-primary .btn-glow.palette-primary .btn-color-3 {
     animation-name: glowing-color-3; }
-  .btn-glow.btn-neutral-color {
+  .palette-primary .btn-glow.palette-primary .btn-neutral-color {
     animation-name: glowing-neutral-color; }
 /*
  * Dropdown menu buttons
@@ -675,7 +675,7 @@
  * Dropdown Container
  *
  */
-.btn-dropdown {
+.palette-primary .btn-dropdown {
   position: relative;
   overflow: visible;
   display: inline-block; }
@@ -683,7 +683,7 @@
  * Dropdown List Style
  *
  */
-.btn-dropdown-list {
+.palette-primary .btn-dropdown-list {
   display: none;
   position: absolute;
   padding: 0;
@@ -706,7 +706,7 @@
    *
    */ }
 
-.btn-dropdown-list.is-below {
+.palette-primary .btn-dropdown-list.is-below {
   /*
    * Dropdown Below
    *
@@ -715,7 +715,7 @@
   border-top: none;
   border-radius: 0 0 3px 3px; }
 
-.btn-dropdown-list.is-above {
+.palette-primary .btn-dropdown-list.is-above {
   bottom: 100%;
   top: auto;
   border-bottom: none;
@@ -725,12 +725,12 @@
  * Dropdown Buttons
  *
  */
-.btn-dropdown-list > li {
+.palette-primary .btn-dropdown-list > li {
   padding: 0;
   margin: 0;
   display: block; }
 
-.btn-dropdown-list > li > a {
+.palette-primary .btn-dropdown-list > li > a {
   display: block;
   line-height: 40px;
   font-size: inherit * 0.8;
@@ -738,12 +738,12 @@
   float: none;
   color: #666;
   text-decoration: none; }
-  .btn-dropdown-list > li > a:hover {
+  .palette-primary .btn-dropdown-list > li > a:hover {
     color: #5e5e5e;
     background: #f6f6f6;
     text-decoration: none; }
 
-.btn-dropdown-divider {
+.palette-primary .btn-dropdown-divider {
   border-top: 1px solid #e6e6e6; }
 /*
  * Dropdown Colors
@@ -751,44 +751,44 @@
  * Create colors for buttons
  * (.button-primary, .button-secondary, etc.)
  */
-.btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list {
+.palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-1 .palette-primary .btn-dropdown-list {
   background: rgba(0, 0, 0, .95);
   border-color: #000; }
-  .btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list .btn-dropdown-divider {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-1 .palette-primary .btn-dropdown-list .palette-primary .btn-dropdown-divider {
     border-color: #000; }
-  .btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list > li > a {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-1 .palette-primary .btn-dropdown-list > li > a {
     color: #fff; }
-    .btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list > li > a:hover {
+    .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-1 .palette-primary .btn-dropdown-list > li > a:hover {
       color: #f2f2f2;
       background: #000; }
-  .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-2 .palette-primary .btn-dropdown-list {
     background: rgba(0, 0, 0, .95);
     border-color: #000; }
-  .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list .btn-dropdown-divider {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-2 .palette-primary .btn-dropdown-list .palette-primary .btn-dropdown-divider {
     border-color: #000; }
-  .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list > li > a {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-2 .palette-primary .btn-dropdown-list > li > a {
     color: #fff; }
-    .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list > li > a:hover {
+    .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-2 .palette-primary .btn-dropdown-list > li > a:hover {
       color: #f2f2f2;
       background: #000; }
-  .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-3 .palette-primary .btn-dropdown-list {
     background: rgba(255, 255, 255, .95);
     border-color: #e6e6e6; }
-  .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list .btn-dropdown-divider {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-3 .palette-primary .btn-dropdown-list .palette-primary .btn-dropdown-divider {
     border-color: #ededed; }
-  .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list > li > a {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-3 .palette-primary .btn-dropdown-list > li > a {
     color: #4d4d4d; }
-    .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list > li > a:hover {
+    .palette-primary .btn-dropdown.palette-primary .btn-dropdown-color-3 .palette-primary .btn-dropdown-list > li > a:hover {
       color: #404040;
       background: #f2f2f2; }
-  .btn-dropdown.btn-dropdown-neutral-color .btn-dropdown-list {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-neutral-color .palette-primary .btn-dropdown-list {
     background: rgba(255, 255, 255, .95);
     border-color: #e6e6e6; }
-  .btn-dropdown.btn-dropdown-neutral-color .btn-dropdown-list .btn-dropdown-divider {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-neutral-color .palette-primary .btn-dropdown-list .palette-primary .btn-dropdown-divider {
     border-color: #ededed; }
-  .btn-dropdown.btn-dropdown-neutral-color .btn-dropdown-list > li > a {
+  .palette-primary .btn-dropdown.palette-primary .btn-dropdown-neutral-color .palette-primary .btn-dropdown-list > li > a {
     color: #4d4d4d; }
-    .btn-dropdown.btn-dropdown-neutral-color .btn-dropdown-list > li > a:hover {
+    .palette-primary .btn-dropdown.palette-primary .btn-dropdown-neutral-color .palette-primary .btn-dropdown-list > li > a:hover {
       color: #404040;
       background: #f2f2f2; }
 /*
@@ -797,12 +797,12 @@
  * A group of related buttons
  * displayed edge to edge
  */
-.btn-group {
+.palette-primary .btn-group {
   *zoom: 1;
   position: relative;
   display: inline-block; }
 
-.btn-group:after, .btn-group:before {
+.palette-primary .btn-group:after, .palette-primary .btn-group:before {
   content: '.';
   clear: both;
   display: block;
@@ -813,16 +813,16 @@
   width: 0;
   height: 0; }
 
-.btn-group .btn, .btn-group .btn-dropdown {
+.palette-primary .btn-group .palette-primary .btn, .palette-primary .btn-group .palette-primary .btn-dropdown {
   float: left; }
-  .btn-group .btn:not(:first-child):not(:last-child), .btn-group .btn-dropdown:not(:first-child):not(:last-child) {
+  .palette-primary .btn-group .palette-primary .btn:not(:first-child):not(:last-child), .palette-primary .btn-group .palette-primary .btn-dropdown:not(:first-child):not(:last-child) {
     border-radius: 0;
     border-right: none; }
-  .btn-group .btn:first-child, .btn-group .btn-dropdown:first-child {
+  .palette-primary .btn-group .palette-primary .btn:first-child, .palette-primary .btn-group .palette-primary .btn-dropdown:first-child {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-right: none; }
-  .btn-group .btn:last-child, .btn-group .btn-dropdown:last-child {
+  .palette-primary .btn-group .palette-primary .btn:last-child, .palette-primary .btn-group .palette-primary .btn-dropdown:last-child {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0; }
 /*
@@ -832,7 +832,7 @@
  * the shape of the button and offer
  * a subtle visual effect.
  */
-.btn-wrap {
+.palette-primary .btn-wrap {
   border: 1px solid #e3e3e3;
   display: inline-block;
   padding: 9px;
@@ -857,45 +857,45 @@
  * Shadow Right
  *
  */
-.btn-longshadow, .btn-longshadow-right {
+.palette-primary .btn-longshadow, .palette-primary .btn-longshadow-right {
   overflow: hidden; }
-  .btn-longshadow.btn-color-1, .btn-longshadow-right.btn-color-1 {
+  .palette-primary .btn-longshadow.palette-primary .btn-color-1, .palette-primary .btn-longshadow-right.palette-primary .btn-color-1 {
     text-shadow: 0px 0px #0001px 1px #0002px 2px #0003px 3px #0004px 4px #0005px 5px #0006px 6px #0007px 7px #0008px 8px #0009px 9px #00010px 10px #00011px 11px #00012px 12px #00013px 13px #00014px 14px #00015px 15px #00016px 16px #00017px 17px #00018px 18px #00019px 19px #00020px 20px #00021px 21px #00022px 22px #00023px 23px #00024px 24px #00025px 25px #00026px 26px #00027px 27px #00028px 28px #00029px 29px #00030px 30px #00031px 31px #00032px 32px #00033px 33px #00034px 34px #00035px 35px #00036px 36px #00037px 37px #00038px 38px #00039px 39px #00040px 40px #00041px 41px #00042px 42px #00043px 43px #00044px 44px #00045px 45px #00046px 46px #00047px 47px #00048px 48px #00049px 49px #00050px 50px #00051px 51px #00052px 52px #00053px 53px #00054px 54px #00055px 55px #00056px 56px #00057px 57px #00058px 58px #00059px 59px #00060px 60px #00061px 61px #00062px 62px #00063px 63px #00064px 64px #00065px 65px #00066px 66px #00067px 67px #00068px 68px #00069px 69px #00070px 70px #00071px 71px #00072px 72px #00073px 73px #00074px 74px #00075px 75px #00076px 76px #00077px 77px #00078px 78px #00079px 79px #00080px 80px #00081px 81px #00082px 82px #00083px 83px #00084px 84px #00085px 85px #000; }
-  .btn-longshadow.btn-color-1:active, .btn-longshadow-right.btn-color-1:active, .btn-longshadow.btn-color-1.active, .btn-longshadow-right.btn-color-1.active, .btn-longshadow.btn-color-1.is-active, .btn-longshadow-right.btn-color-1.is-active {
+  .palette-primary .btn-longshadow.palette-primary .btn-color-1:active, .palette-primary .btn-longshadow-right.palette-primary .btn-color-1:active, .palette-primary .btn-longshadow.palette-primary .btn-color-1.active, .palette-primary .btn-longshadow-right.palette-primary .btn-color-1.active, .palette-primary .btn-longshadow.palette-primary .btn-color-1.is-active, .palette-primary .btn-longshadow-right.palette-primary .btn-color-1.is-active {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow.btn-color-2, .btn-longshadow-right.btn-color-2 {
+  .palette-primary .btn-longshadow.palette-primary .btn-color-2, .palette-primary .btn-longshadow-right.palette-primary .btn-color-2 {
     text-shadow: 0px 0px #0001px 1px #0002px 2px #0003px 3px #0004px 4px #0005px 5px #0006px 6px #0007px 7px #0008px 8px #0009px 9px #00010px 10px #00011px 11px #00012px 12px #00013px 13px #00014px 14px #00015px 15px #00016px 16px #00017px 17px #00018px 18px #00019px 19px #00020px 20px #00021px 21px #00022px 22px #00023px 23px #00024px 24px #00025px 25px #00026px 26px #00027px 27px #00028px 28px #00029px 29px #00030px 30px #00031px 31px #00032px 32px #00033px 33px #00034px 34px #00035px 35px #00036px 36px #00037px 37px #00038px 38px #00039px 39px #00040px 40px #00041px 41px #00042px 42px #00043px 43px #00044px 44px #00045px 45px #00046px 46px #00047px 47px #00048px 48px #00049px 49px #00050px 50px #00051px 51px #00052px 52px #00053px 53px #00054px 54px #00055px 55px #00056px 56px #00057px 57px #00058px 58px #00059px 59px #00060px 60px #00061px 61px #00062px 62px #00063px 63px #00064px 64px #00065px 65px #00066px 66px #00067px 67px #00068px 68px #00069px 69px #00070px 70px #00071px 71px #00072px 72px #00073px 73px #00074px 74px #00075px 75px #00076px 76px #00077px 77px #00078px 78px #00079px 79px #00080px 80px #00081px 81px #00082px 82px #00083px 83px #00084px 84px #00085px 85px #000; }
-  .btn-longshadow.btn-color-2:active, .btn-longshadow-right.btn-color-2:active, .btn-longshadow.btn-color-2.active, .btn-longshadow-right.btn-color-2.active, .btn-longshadow.btn-color-2.is-active, .btn-longshadow-right.btn-color-2.is-active {
+  .palette-primary .btn-longshadow.palette-primary .btn-color-2:active, .palette-primary .btn-longshadow-right.palette-primary .btn-color-2:active, .palette-primary .btn-longshadow.palette-primary .btn-color-2.active, .palette-primary .btn-longshadow-right.palette-primary .btn-color-2.active, .palette-primary .btn-longshadow.palette-primary .btn-color-2.is-active, .palette-primary .btn-longshadow-right.palette-primary .btn-color-2.is-active {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow.btn-color-3, .btn-longshadow-right.btn-color-3 {
+  .palette-primary .btn-longshadow.palette-primary .btn-color-3, .palette-primary .btn-longshadow-right.palette-primary .btn-color-3 {
     text-shadow: 0px 0px #e6e6e61px 1px #e6e6e62px 2px #e6e6e63px 3px #e6e6e64px 4px #e6e6e65px 5px #e6e6e66px 6px #e6e6e67px 7px #e6e6e68px 8px #e6e6e69px 9px #e6e6e610px 10px #e6e6e611px 11px #e6e6e612px 12px #e6e6e613px 13px #e6e6e614px 14px #e6e6e615px 15px #e6e6e616px 16px #e6e6e617px 17px #e6e6e618px 18px #e6e6e619px 19px #e6e6e620px 20px #e6e6e621px 21px #e6e6e622px 22px #e6e6e623px 23px #e6e6e624px 24px #e6e6e625px 25px #e6e6e626px 26px #e6e6e627px 27px #e6e6e628px 28px #e6e6e629px 29px #e6e6e630px 30px #e6e6e631px 31px #e6e6e632px 32px #e6e6e633px 33px #e6e6e634px 34px #e6e6e635px 35px #e6e6e636px 36px #e6e6e637px 37px #e6e6e638px 38px #e6e6e639px 39px #e6e6e640px 40px #e6e6e641px 41px #e6e6e642px 42px #e6e6e643px 43px #e6e6e644px 44px #e6e6e645px 45px #e6e6e646px 46px #e6e6e647px 47px #e6e6e648px 48px #e6e6e649px 49px #e6e6e650px 50px #e6e6e651px 51px #e6e6e652px 52px #e6e6e653px 53px #e6e6e654px 54px #e6e6e655px 55px #e6e6e656px 56px #e6e6e657px 57px #e6e6e658px 58px #e6e6e659px 59px #e6e6e660px 60px #e6e6e661px 61px #e6e6e662px 62px #e6e6e663px 63px #e6e6e664px 64px #e6e6e665px 65px #e6e6e666px 66px #e6e6e667px 67px #e6e6e668px 68px #e6e6e669px 69px #e6e6e670px 70px #e6e6e671px 71px #e6e6e672px 72px #e6e6e673px 73px #e6e6e674px 74px #e6e6e675px 75px #e6e6e676px 76px #e6e6e677px 77px #e6e6e678px 78px #e6e6e679px 79px #e6e6e680px 80px #e6e6e681px 81px #e6e6e682px 82px #e6e6e683px 83px #e6e6e684px 84px #e6e6e685px 85px #e6e6e6; }
-  .btn-longshadow.btn-color-3:active, .btn-longshadow-right.btn-color-3:active, .btn-longshadow.btn-color-3.active, .btn-longshadow-right.btn-color-3.active, .btn-longshadow.btn-color-3.is-active, .btn-longshadow-right.btn-color-3.is-active {
+  .palette-primary .btn-longshadow.palette-primary .btn-color-3:active, .palette-primary .btn-longshadow-right.palette-primary .btn-color-3:active, .palette-primary .btn-longshadow.palette-primary .btn-color-3.active, .palette-primary .btn-longshadow-right.palette-primary .btn-color-3.active, .palette-primary .btn-longshadow.palette-primary .btn-color-3.is-active, .palette-primary .btn-longshadow-right.palette-primary .btn-color-3.is-active {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow.btn-neutral-color, .btn-longshadow-right.btn-neutral-color {
+  .palette-primary .btn-longshadow.palette-primary .btn-neutral-color, .palette-primary .btn-longshadow-right.palette-primary .btn-neutral-color {
     text-shadow: 0px 0px #e6e6e61px 1px #e6e6e62px 2px #e6e6e63px 3px #e6e6e64px 4px #e6e6e65px 5px #e6e6e66px 6px #e6e6e67px 7px #e6e6e68px 8px #e6e6e69px 9px #e6e6e610px 10px #e6e6e611px 11px #e6e6e612px 12px #e6e6e613px 13px #e6e6e614px 14px #e6e6e615px 15px #e6e6e616px 16px #e6e6e617px 17px #e6e6e618px 18px #e6e6e619px 19px #e6e6e620px 20px #e6e6e621px 21px #e6e6e622px 22px #e6e6e623px 23px #e6e6e624px 24px #e6e6e625px 25px #e6e6e626px 26px #e6e6e627px 27px #e6e6e628px 28px #e6e6e629px 29px #e6e6e630px 30px #e6e6e631px 31px #e6e6e632px 32px #e6e6e633px 33px #e6e6e634px 34px #e6e6e635px 35px #e6e6e636px 36px #e6e6e637px 37px #e6e6e638px 38px #e6e6e639px 39px #e6e6e640px 40px #e6e6e641px 41px #e6e6e642px 42px #e6e6e643px 43px #e6e6e644px 44px #e6e6e645px 45px #e6e6e646px 46px #e6e6e647px 47px #e6e6e648px 48px #e6e6e649px 49px #e6e6e650px 50px #e6e6e651px 51px #e6e6e652px 52px #e6e6e653px 53px #e6e6e654px 54px #e6e6e655px 55px #e6e6e656px 56px #e6e6e657px 57px #e6e6e658px 58px #e6e6e659px 59px #e6e6e660px 60px #e6e6e661px 61px #e6e6e662px 62px #e6e6e663px 63px #e6e6e664px 64px #e6e6e665px 65px #e6e6e666px 66px #e6e6e667px 67px #e6e6e668px 68px #e6e6e669px 69px #e6e6e670px 70px #e6e6e671px 71px #e6e6e672px 72px #e6e6e673px 73px #e6e6e674px 74px #e6e6e675px 75px #e6e6e676px 76px #e6e6e677px 77px #e6e6e678px 78px #e6e6e679px 79px #e6e6e680px 80px #e6e6e681px 81px #e6e6e682px 82px #e6e6e683px 83px #e6e6e684px 84px #e6e6e685px 85px #e6e6e6; }
-  .btn-longshadow.btn-neutral-color:active, .btn-longshadow-right.btn-neutral-color:active, .btn-longshadow.btn-neutral-color.active, .btn-longshadow-right.btn-neutral-color.active, .btn-longshadow.btn-neutral-color.is-active, .btn-longshadow-right.btn-neutral-color.is-active {
+  .palette-primary .btn-longshadow.palette-primary .btn-neutral-color:active, .palette-primary .btn-longshadow-right.palette-primary .btn-neutral-color:active, .palette-primary .btn-longshadow.palette-primary .btn-neutral-color.active, .palette-primary .btn-longshadow-right.palette-primary .btn-neutral-color.active, .palette-primary .btn-longshadow.palette-primary .btn-neutral-color.is-active, .palette-primary .btn-longshadow-right.palette-primary .btn-neutral-color.is-active {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
 /*
  * Shadow Left
  *
  */
-.btn-longshadow-left {
+.palette-primary .btn-longshadow-left {
   overflow: hidden; }
-  .btn-longshadow-left.btn-color-1 {
+  .palette-primary .btn-longshadow-left.palette-primary .btn-color-1 {
     text-shadow: 0px 0px #000-1px 1px #000-2px 2px #000-3px 3px #000-4px 4px #000-5px 5px #000-6px 6px #000-7px 7px #000-8px 8px #000-9px 9px #000-10px 10px #000-11px 11px #000-12px 12px #000-13px 13px #000-14px 14px #000-15px 15px #000-16px 16px #000-17px 17px #000-18px 18px #000-19px 19px #000-20px 20px #000-21px 21px #000-22px 22px #000-23px 23px #000-24px 24px #000-25px 25px #000-26px 26px #000-27px 27px #000-28px 28px #000-29px 29px #000-30px 30px #000-31px 31px #000-32px 32px #000-33px 33px #000-34px 34px #000-35px 35px #000-36px 36px #000-37px 37px #000-38px 38px #000-39px 39px #000-40px 40px #000-41px 41px #000-42px 42px #000-43px 43px #000-44px 44px #000-45px 45px #000-46px 46px #000-47px 47px #000-48px 48px #000-49px 49px #000-50px 50px #000-51px 51px #000-52px 52px #000-53px 53px #000-54px 54px #000-55px 55px #000-56px 56px #000-57px 57px #000-58px 58px #000-59px 59px #000-60px 60px #000-61px 61px #000-62px 62px #000-63px 63px #000-64px 64px #000-65px 65px #000-66px 66px #000-67px 67px #000-68px 68px #000-69px 69px #000-70px 70px #000-71px 71px #000-72px 72px #000-73px 73px #000-74px 74px #000-75px 75px #000-76px 76px #000-77px 77px #000-78px 78px #000-79px 79px #000-80px 80px #000-81px 81px #000-82px 82px #000-83px 83px #000-84px 84px #000-85px 85px #000; }
-  .btn-longshadow-left.btn-color-1:active, .btn-longshadow-left.btn-color-1.active, .btn-longshadow-left.btn-color-1.is-active {
+  .palette-primary .btn-longshadow-left.palette-primary .btn-color-1:active, .palette-primary .btn-longshadow-left.palette-primary .btn-color-1.active, .palette-primary .btn-longshadow-left.palette-primary .btn-color-1.is-active {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow-left.btn-color-2 {
+  .palette-primary .btn-longshadow-left.palette-primary .btn-color-2 {
     text-shadow: 0px 0px #000-1px 1px #000-2px 2px #000-3px 3px #000-4px 4px #000-5px 5px #000-6px 6px #000-7px 7px #000-8px 8px #000-9px 9px #000-10px 10px #000-11px 11px #000-12px 12px #000-13px 13px #000-14px 14px #000-15px 15px #000-16px 16px #000-17px 17px #000-18px 18px #000-19px 19px #000-20px 20px #000-21px 21px #000-22px 22px #000-23px 23px #000-24px 24px #000-25px 25px #000-26px 26px #000-27px 27px #000-28px 28px #000-29px 29px #000-30px 30px #000-31px 31px #000-32px 32px #000-33px 33px #000-34px 34px #000-35px 35px #000-36px 36px #000-37px 37px #000-38px 38px #000-39px 39px #000-40px 40px #000-41px 41px #000-42px 42px #000-43px 43px #000-44px 44px #000-45px 45px #000-46px 46px #000-47px 47px #000-48px 48px #000-49px 49px #000-50px 50px #000-51px 51px #000-52px 52px #000-53px 53px #000-54px 54px #000-55px 55px #000-56px 56px #000-57px 57px #000-58px 58px #000-59px 59px #000-60px 60px #000-61px 61px #000-62px 62px #000-63px 63px #000-64px 64px #000-65px 65px #000-66px 66px #000-67px 67px #000-68px 68px #000-69px 69px #000-70px 70px #000-71px 71px #000-72px 72px #000-73px 73px #000-74px 74px #000-75px 75px #000-76px 76px #000-77px 77px #000-78px 78px #000-79px 79px #000-80px 80px #000-81px 81px #000-82px 82px #000-83px 83px #000-84px 84px #000-85px 85px #000; }
-  .btn-longshadow-left.btn-color-2:active, .btn-longshadow-left.btn-color-2.active, .btn-longshadow-left.btn-color-2.is-active {
+  .palette-primary .btn-longshadow-left.palette-primary .btn-color-2:active, .palette-primary .btn-longshadow-left.palette-primary .btn-color-2.active, .palette-primary .btn-longshadow-left.palette-primary .btn-color-2.is-active {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow-left.btn-color-3 {
+  .palette-primary .btn-longshadow-left.palette-primary .btn-color-3 {
     text-shadow: 0px 0px #e6e6e6-1px 1px #e6e6e6-2px 2px #e6e6e6-3px 3px #e6e6e6-4px 4px #e6e6e6-5px 5px #e6e6e6-6px 6px #e6e6e6-7px 7px #e6e6e6-8px 8px #e6e6e6-9px 9px #e6e6e6-10px 10px #e6e6e6-11px 11px #e6e6e6-12px 12px #e6e6e6-13px 13px #e6e6e6-14px 14px #e6e6e6-15px 15px #e6e6e6-16px 16px #e6e6e6-17px 17px #e6e6e6-18px 18px #e6e6e6-19px 19px #e6e6e6-20px 20px #e6e6e6-21px 21px #e6e6e6-22px 22px #e6e6e6-23px 23px #e6e6e6-24px 24px #e6e6e6-25px 25px #e6e6e6-26px 26px #e6e6e6-27px 27px #e6e6e6-28px 28px #e6e6e6-29px 29px #e6e6e6-30px 30px #e6e6e6-31px 31px #e6e6e6-32px 32px #e6e6e6-33px 33px #e6e6e6-34px 34px #e6e6e6-35px 35px #e6e6e6-36px 36px #e6e6e6-37px 37px #e6e6e6-38px 38px #e6e6e6-39px 39px #e6e6e6-40px 40px #e6e6e6-41px 41px #e6e6e6-42px 42px #e6e6e6-43px 43px #e6e6e6-44px 44px #e6e6e6-45px 45px #e6e6e6-46px 46px #e6e6e6-47px 47px #e6e6e6-48px 48px #e6e6e6-49px 49px #e6e6e6-50px 50px #e6e6e6-51px 51px #e6e6e6-52px 52px #e6e6e6-53px 53px #e6e6e6-54px 54px #e6e6e6-55px 55px #e6e6e6-56px 56px #e6e6e6-57px 57px #e6e6e6-58px 58px #e6e6e6-59px 59px #e6e6e6-60px 60px #e6e6e6-61px 61px #e6e6e6-62px 62px #e6e6e6-63px 63px #e6e6e6-64px 64px #e6e6e6-65px 65px #e6e6e6-66px 66px #e6e6e6-67px 67px #e6e6e6-68px 68px #e6e6e6-69px 69px #e6e6e6-70px 70px #e6e6e6-71px 71px #e6e6e6-72px 72px #e6e6e6-73px 73px #e6e6e6-74px 74px #e6e6e6-75px 75px #e6e6e6-76px 76px #e6e6e6-77px 77px #e6e6e6-78px 78px #e6e6e6-79px 79px #e6e6e6-80px 80px #e6e6e6-81px 81px #e6e6e6-82px 82px #e6e6e6-83px 83px #e6e6e6-84px 84px #e6e6e6-85px 85px #e6e6e6; }
-  .btn-longshadow-left.btn-color-3:active, .btn-longshadow-left.btn-color-3.active, .btn-longshadow-left.btn-color-3.is-active {
+  .palette-primary .btn-longshadow-left.palette-primary .btn-color-3:active, .palette-primary .btn-longshadow-left.palette-primary .btn-color-3.active, .palette-primary .btn-longshadow-left.palette-primary .btn-color-3.is-active {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow-left.btn-neutral-color {
+  .palette-primary .btn-longshadow-left.palette-primary .btn-neutral-color {
     text-shadow: 0px 0px #e6e6e6-1px 1px #e6e6e6-2px 2px #e6e6e6-3px 3px #e6e6e6-4px 4px #e6e6e6-5px 5px #e6e6e6-6px 6px #e6e6e6-7px 7px #e6e6e6-8px 8px #e6e6e6-9px 9px #e6e6e6-10px 10px #e6e6e6-11px 11px #e6e6e6-12px 12px #e6e6e6-13px 13px #e6e6e6-14px 14px #e6e6e6-15px 15px #e6e6e6-16px 16px #e6e6e6-17px 17px #e6e6e6-18px 18px #e6e6e6-19px 19px #e6e6e6-20px 20px #e6e6e6-21px 21px #e6e6e6-22px 22px #e6e6e6-23px 23px #e6e6e6-24px 24px #e6e6e6-25px 25px #e6e6e6-26px 26px #e6e6e6-27px 27px #e6e6e6-28px 28px #e6e6e6-29px 29px #e6e6e6-30px 30px #e6e6e6-31px 31px #e6e6e6-32px 32px #e6e6e6-33px 33px #e6e6e6-34px 34px #e6e6e6-35px 35px #e6e6e6-36px 36px #e6e6e6-37px 37px #e6e6e6-38px 38px #e6e6e6-39px 39px #e6e6e6-40px 40px #e6e6e6-41px 41px #e6e6e6-42px 42px #e6e6e6-43px 43px #e6e6e6-44px 44px #e6e6e6-45px 45px #e6e6e6-46px 46px #e6e6e6-47px 47px #e6e6e6-48px 48px #e6e6e6-49px 49px #e6e6e6-50px 50px #e6e6e6-51px 51px #e6e6e6-52px 52px #e6e6e6-53px 53px #e6e6e6-54px 54px #e6e6e6-55px 55px #e6e6e6-56px 56px #e6e6e6-57px 57px #e6e6e6-58px 58px #e6e6e6-59px 59px #e6e6e6-60px 60px #e6e6e6-61px 61px #e6e6e6-62px 62px #e6e6e6-63px 63px #e6e6e6-64px 64px #e6e6e6-65px 65px #e6e6e6-66px 66px #e6e6e6-67px 67px #e6e6e6-68px 68px #e6e6e6-69px 69px #e6e6e6-70px 70px #e6e6e6-71px 71px #e6e6e6-72px 72px #e6e6e6-73px 73px #e6e6e6-74px 74px #e6e6e6-75px 75px #e6e6e6-76px 76px #e6e6e6-77px 77px #e6e6e6-78px 78px #e6e6e6-79px 79px #e6e6e6-80px 80px #e6e6e6-81px 81px #e6e6e6-82px 82px #e6e6e6-83px 83px #e6e6e6-84px 84px #e6e6e6-85px 85px #e6e6e6; }
-  .btn-longshadow-left.btn-neutral-color:active, .btn-longshadow-left.btn-neutral-color.active, .btn-longshadow-left.btn-neutral-color.is-active {
+  .palette-primary .btn-longshadow-left.palette-primary .btn-neutral-color:active, .palette-primary .btn-longshadow-left.palette-primary .btn-neutral-color.active, .palette-primary .btn-longshadow-left.palette-primary .btn-neutral-color.is-active {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
 /*
  * Button Sizes
@@ -903,37 +903,37 @@
  * This file creates the various button sizes
  * (ex. .button-large, .button-small, etc.)
  */
-.btn-giant {
+.palette-primary .btn-giant {
   font-size: inherit * 1.75;
   height: 70px;
   line-height: 70px;
   padding: 0 70px; }
 
-.btn-jumbo {
+.palette-primary .btn-jumbo {
   font-size: inherit * 1.5;
   height: 60px;
   line-height: 60px;
   padding: 0 60px; }
 
-.btn-large {
+.palette-primary .btn-large {
   font-size: inherit * 1.25;
   height: 50px;
   line-height: 50px;
   padding: 0 50px; }
 
-.btn-normal {
+.palette-primary .btn-normal {
   font-size: inherit * 1;
   height: 40px;
   line-height: 40px;
   padding: 0 40px; }
 
-.btn-small {
+.palette-primary .btn-small {
   font-size: inherit * 0.75;
   height: 30px;
   line-height: 30px;
   padding: 0 30px; }
 
-.btn-tiny {
+.palette-primary .btn-tiny {
   font-size: inherit * 0.6;
   height: 24px;
   line-height: 24px;

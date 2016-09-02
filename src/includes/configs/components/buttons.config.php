@@ -13,7 +13,7 @@
 return array(
 	'enabled' => true,
 	'variables' => array(
-		'ubtn-namespace' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .btn',
+		'ubtn-namespace' => '.btn',
 		'ubtn-glow-namespace' => '.glow',
 		'ubtn-colors' => Boldgrid_Framework_Compile_Colors::get_button_colors(),
 		'ubtn-glow-color' => '#2c9adb, light blue',

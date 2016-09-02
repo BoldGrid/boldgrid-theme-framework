@@ -1,11 +1,15 @@
 @if variable-exists( button-primary-classes ) {
 	.button-primary {
-		@extend #{$button-primary-classes};
+		.palette-primary & {
+			@extend #{$button-primary-classes};
+		}
 	}
 }
 
 @if variable-exists( button-secondary-classes ) {
 	.button-secondary {
-		@extend #{$button-secondary-classes};
+		.palette-primary & {
+			@extend #{$button-secondary-classes};
+		}
 	}
 }

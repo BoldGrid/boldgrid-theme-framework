@@ -583,6 +583,9 @@ HTML;
 			if ( ! empty( $buttons ) ) {
 				$vars['ButtonExtends'] = $buttons;
 			}
+			if ( ! empty( $s['ubtn-namespace'] ) ) {
+				$vars['ButtonNamespace'] = $s['ubtn-namespace'];
+			}
 		}
 
 		return $vars;

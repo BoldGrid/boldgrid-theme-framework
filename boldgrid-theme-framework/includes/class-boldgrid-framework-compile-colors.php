@@ -79,10 +79,9 @@ class Boldgrid_Framework_Compile_Colors {
 			$current_palette = $palettes['state']['active-palette'];
 			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
 			foreach ( $colors as $color ) {
-				$boldgrid_colors .= $color;
+				$boldgrid_colors .= "{$color} ";
 			}
 		}
-
 		return $boldgrid_colors;
 	}
 
@@ -121,9 +120,7 @@ class Boldgrid_Framework_Compile_Colors {
 		);
 		$color_variables = array_merge( $active_palette, $text_colors, self::get_active_palette(), self::get_text_contrast() );
 		if ( true === $this->configs['components']['buttons']['enabled'] ) {
-			$btn_variables = array(
-				'ubtn-colors' => self::get_button_colors(),
-			);
+			$btn_variables = $this->configs['components']['buttons']['variables'];
 			$color_variables = array_merge( $color_variables, $btn_variables );
 		}
 		return $color_variables;

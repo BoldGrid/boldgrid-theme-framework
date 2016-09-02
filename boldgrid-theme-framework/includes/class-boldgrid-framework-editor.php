@@ -164,6 +164,18 @@ HTML;
 	 * @since 1.0.6
 	 */
 	public function add_tinymce_plugin( $plugin_array ) {
+		global $pagenow;
+
+		$valid_pages = [
+			'customize.php',
+			'post.php',
+			'post-new.php'
+		];
+
+		if ( ! empty( $pagenow ) && ! in_array( $pagenow, $valid_pages ) ) {
+			return;
+		}
+
 		$mce_inline_styles = '';
 		$mce_inline_styles = apply_filters( 'boldgrid_mce_inline_styles', $mce_inline_styles );
 
@@ -175,11 +187,11 @@ HTML;
 				'post_id' => ! empty( $_REQUEST['post'] ) ? $_REQUEST['post'] : null,
 			) );
 
-			$editor_js_file = $this->configs['framework']['admin_asset_dir'] . 'js/editor.js';
+		$editor_js_file = $this->configs['framework']['admin_asset_dir'] . 'js/editor.js';
 
-			$plugin_array['boldgrid_theme_framework'] = $editor_js_file;
+		$plugin_array['boldgrid_theme_framework'] = $editor_js_file;
 
-			return $plugin_array;
+		return $plugin_array;
 	}
 
 	/**

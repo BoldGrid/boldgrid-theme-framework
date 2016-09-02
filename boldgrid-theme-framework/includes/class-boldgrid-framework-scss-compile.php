@@ -71,7 +71,7 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		}
 
 		$css = $this->compile( $dir . 'scss/', '@import "bootstrap";', $variables );
-		$this->wpfs->save( $css, $dir . 'css/bootstrap/bootstrap.min.css' );
+		$this->wpfs->save( $css, get_stylesheet_directory() . '/css/bootstrap/bootstrap.css' );
 	}
 
 	public function build_bgtfw() {
@@ -83,7 +83,11 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		// Compile.
 		$css = $this->compile( $dir . 'scss/', '@import "buttons";', $variables );
 		// Save.
-		$this->wpfs->save( $css, $dir . 'css/buttons.min.css' );
+		$this->wpfs->save( $css, get_stylesheet_directory() . '/css/buttons.css' );
+		// Compile for Editor.
+		$variables['ubtn-namespace'] = '.editor-panel .btn';
+		$css = $this->compile( $dir . 'scss/', '@import "buttons";', $variables );
+		$this->wpfs->save( $css, get_stylesheet_directory() . '/css/editor-buttons.css' );
 	}
 
 	/**

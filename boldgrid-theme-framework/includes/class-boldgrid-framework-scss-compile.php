@@ -84,10 +84,6 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		$css = $this->compile( $dir . 'scss/', '@import "buttons";', $variables );
 		// Save.
 		$this->wpfs->save( $css, get_stylesheet_directory() . '/css/buttons.css' );
-		// Compile for Editor.
-		$variables['ubtn-namespace'] = '.editor-panel .btn';
-		$css = $this->compile( $dir . 'scss/', '@import "buttons";', $variables );
-		$this->wpfs->save( $css, get_stylesheet_directory() . '/css/editor-buttons.css' );
 	}
 
 	/**

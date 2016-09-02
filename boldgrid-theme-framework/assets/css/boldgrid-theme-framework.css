@@ -1,42 +1,53 @@
 /*--------------------------------------------------------------
- >>> TABLE OF CONTENTS:
- ----------------------------------------------------------------
- # Base Elements
- # BoldGrid Bootstrap Additions
- # Customizer Styles
- ## Widget Overlays
- ## Help Panel Overlay
- # BoldGrid Core Styles
- # Site Title
- # BoldGrid Navigation
- # Widgets
- ## Default Widget Styles
- # Ninja Forms
- # Comments
- # 404 Pages
- # Editor Styles
- # Footer
- ## Disabled Footer Defaults
- # GridBlocks
- # Modules
- # Utility Classes & Helpers
- ## BoldGrid Color Utilities
- ## Bootstrap Utilities
- ## Bootstrap Responsive Utilities
- */
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Base Elements
+# BoldGrid Bootstrap Additions
+# Customizer Styles
+	## Widget Overlays
+	## Help Panel Overlay
+# BoldGrid Core Styles
+	# Site Title
+	# BoldGrid Navigation
+	# Widgets
+		## Default Widget Styles
+	# Ninja Forms
+	# Comments
+	# 404 Pages
+	# Editor Styles
+	# Footer
+		## Disabled Footer Defaults
+# GridBlocks
+# Modules
+# Utility Classes & Helpers
+	## BoldGrid Color Utilities
+	## Bootstrap Utilities
+	## Bootstrap Responsive Utilities
+*/
 /*--------------------------------------------------------------
- # Base Elements
- --------------------------------------------------------------*/
+# Base Elements
+--------------------------------------------------------------*/
 /* Removes Blue Box in Chrome */
 *:focus {
   outline: 0; }
+
 /*--------------------------------------------------------------
- # BoldGrid Bootstrap Additions
- --------------------------------------------------------------*/
-.entry-content .row, .entry-content .col-xs-1, .entry-content .col-xs-2, .entry-content .col-xs-3, .entry-content .col-xs-4, .entry-content .col-xs-5, .entry-content .col-xs-6, .entry-content .col-xs-7, .entry-content .col-xs-8, .entry-content .col-xs-9, .entry-content .col-xs-10, .entry-content .col-xs-11, .entry-content .col-xs-12, .entry-content .col-sm-1, .entry-content .col-sm-2, .entry-content .col-sm-3, .entry-content .col-sm-4, .entry-content .col-sm-5, .entry-content .col-sm-6, .entry-content .col-sm-7, .entry-content .col-sm-8, .entry-content .col-sm-9, .entry-content .col-sm-10, .entry-content .col-sm-11, .entry-content .col-sm-12, .entry-content .col-md-1, .entry-content .col-md-2, .entry-content .col-md-3, .entry-content .col-md-4, .entry-content .col-md-5, .entry-content .col-md-6, .entry-content .col-md-7, .entry-content .col-md-8, .entry-content .col-md-9, .entry-content .col-md-10, .entry-content .col-md-11, .entry-content .col-md-12 {
+# BoldGrid Bootstrap Additions
+--------------------------------------------------------------*/
+.entry-content .row,
+.entry-content .col-xs-1, .entry-content .col-xs-2, .entry-content .col-xs-3, .entry-content .col-xs-4, .entry-content .col-xs-5, .entry-content .col-xs-6,
+.entry-content .col-xs-7, .entry-content .col-xs-8, .entry-content .col-xs-9, .entry-content .col-xs-10, .entry-content .col-xs-11, .entry-content .col-xs-12,
+.entry-content .col-sm-1, .entry-content .col-sm-2, .entry-content .col-sm-3, .entry-content .col-sm-4, .entry-content .col-sm-5, .entry-content .col-sm-6,
+.entry-content .col-sm-7, .entry-content .col-sm-8, .entry-content .col-sm-9, .entry-content .col-sm-10, .entry-content .col-sm-11,
+.entry-content .col-sm-12, .entry-content .col-md-1, .entry-content .col-md-2, .entry-content .col-md-3, .entry-content .col-md-4, .entry-content .col-md-5,
+.entry-content .col-md-6, .entry-content .col-md-7, .entry-content .col-md-8, .entry-content .col-md-9, .entry-content .col-md-10, .entry-content .col-md-11, .entry-content .col-md-12 {
   min-height: 30px; }
 
-.entry-content .row .row, .entry-content .row .row [class*="col-xs"], .entry-content .row .row [class*="col-sm"], .entry-content .row .row [class*="col-md"], .entry-content .row .row [class*="col-lg"] {
+.entry-content .row .row,
+.entry-content .row .row [class*="col-xs"],
+.entry-content .row .row [class*="col-sm"],
+.entry-content .row .row [class*="col-md"],
+.entry-content .row .row [class*="col-lg"] {
   min-height: 15px; }
 
 .entry-content .row > * {
@@ -49,8 +60,9 @@
 .entry-content .row {
   display: flex;
   flex-wrap: wrap; }
-  .entry-content .row:before, .entry-content .row:after {
-    width: 0; }
+
+.entry-content .row:before, .entry-content .row:after {
+  width: 0; }
 
 .full-width-column {
   padding: 0px; }
@@ -58,11 +70,13 @@
 .row {
   margin: auto; }
 
-.container .row, .container-fluid .row {
+.container .row,
+.container-fluid .row {
   margin-right: -15px;
   margin-left: -15px; }
 
-.container-fluid .boldgrid-section, .container-fluid .boldgrid-section-group {
+.container-fluid .boldgrid-section,
+.container-fluid .boldgrid-section-group {
   margin-left: -15px;
   margin-right: -15px; }
 
@@ -73,12 +87,13 @@
   width: auto !important;
   padding-left: 0px;
   padding-right: 0px; }
+
 /*--------------------------------------------------------------
- # Customizer Styles
- --------------------------------------------------------------*/
+# Customizer Styles
+--------------------------------------------------------------*/
 /*--------------------------------------------------------------
- # Widget Overlays
- --------------------------------------------------------------*/
+# Widget Overlays
+--------------------------------------------------------------*/
 #boldgrid-widget-area-overlay {
   display: table;
   vertical-align: middle;
@@ -90,30 +105,34 @@
   padding: 5px;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 5px;
-  box-shadow: 0 0 15px 5px rgba(33, 117, 155, 1);
+  box-shadow: 0 0 15px 5px #21759b;
   position: absolute; }
-  #boldgrid-widget-area-overlay:before {
-    content: "";
-    height: 25%; }
-  #boldgrid-widget-area-overlay h2 {
-    display: table-cell;
-    vertical-align: middle;
-    font-family: "Arial Black", Gadget, sans-serif !important;
-    font-size: 24px;
-    color: #333 !important; }
-  #boldgrid-widget-area-overlay.empty-widget-area {
-    box-shadow: 0 0 15px 5px #d54e21;
-    background-color: rgba(255, 166, 166, 0.7); }
+
+#boldgrid-widget-area-overlay:before {
+  content: "";
+  height: 25%; }
+
+#boldgrid-widget-area-overlay h2 {
+  display: table-cell;
+  vertical-align: middle;
+  font-family: "Arial Black", Gadget, sans-serif !important;
+  font-size: 24px;
+  color: #333 !important; }
+
+#boldgrid-widget-area-overlay.empty-widget-area {
+  box-shadow: 0 0 15px 5px #d54e21;
+  background-color: rgba(255, 166, 166, 0.7); }
+
 /*--------------------------------------------------------------
- # Help Panel Overlay
- --------------------------------------------------------------*/
+# Help Panel Overlay
+--------------------------------------------------------------*/
 .overlay-help {
   position: fixed;
   top: 0px;
   left: 0px;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 9999;
   min-width: 900px; }
 
@@ -124,41 +143,48 @@
   max-width: 1700px;
   left: 0;
   right: 0; }
-  .overlay-help-inside img {
-    margin: 0 auto;
-    display: block; }
-  .overlay-help-inside .button {
-    margin: 10px;
-    display: none; }
+
+.overlay-help-inside img {
+  margin: 0 auto;
+  display: block; }
+
+.overlay-help-inside .button {
+  margin: 10px;
+  display: none; }
 
 #boldgrid-customizer-overlay-help {
   display: none; }
-  #boldgrid-customizer-overlay-help .overlay-help-text {
-    font-family: "Open Sans", sans-serif !important;
-    color: black !important; }
-  #boldgrid-customizer-overlay-help .overlay-help-text h2 {
-    font-family: "Open Sans", sans-serif !important;
-    color: black !important;
-    padding: 0px;
-    margin: 10px 0;
-    font-size: 24px; }
+
+#boldgrid-customizer-overlay-help .overlay-help-text {
+  font-family: "Open Sans",sans-serif !important;
+  color: black !important; }
+
+#boldgrid-customizer-overlay-help .overlay-help-text h2 {
+  font-family: "Open Sans",sans-serif !important;
+  color: black !important;
+  padding: 0px;
+  margin: 10px 0;
+  font-size: 24px; }
 
 .overlay-help-text {
   padding: 5px;
   padding-left: 40px;
   background-color: #ddd; }
-  .overlay-help-text #close-help-popup {
-    cursor: pointer;
-    color: #dd4b39;
-    opacity: 0.8;
-    margin-top: 5px;
-    margin-right: 15px; }
-  .overlay-help-text #close-help-popup:hover {
-    opacity: 1; }
-  .overlay-help-text p {
-    max-width: 660px;
-    font-size: 14px;
-    color: #000 !important; }
+
+.overlay-help-text #close-help-popup {
+  cursor: pointer;
+  color: #dd4b39;
+  opacity: .8;
+  margin-top: 5px;
+  margin-right: 15px; }
+
+.overlay-help-text #close-help-popup:hover {
+  opacity: 1; }
+
+.overlay-help-text p {
+  max-width: 660px;
+  font-size: 14px;
+  color: #000000 !important; }
 
 @media (min-width: 900px) {
   .overlay-help-inside {
@@ -167,7 +193,6 @@
     margin-right: 120px;
     left: 0;
     right: 0; }
-
   .overlay-help-inside .button {
     display: inline; } }
 
@@ -178,29 +203,33 @@
     margin-right: 0px;
     left: 0;
     right: 0; } }
+
 /*--------------------------------------------------------------
- # BoldGrid Core Styles
- --------------------------------------------------------------*/
+# BoldGrid Core Styles
+--------------------------------------------------------------*/
 /*--------------------------------------------------------------
- ## Site Title
- --------------------------------------------------------------*/
+## Site Title
+--------------------------------------------------------------*/
 .site-title a.logo-site-title {
   background: none !important;
   padding: 0px; }
+
 /*--------------------------------------------------------------
- # BoldGrid Navigation
- --------------------------------------------------------------*/
+# BoldGrid Navigation
+--------------------------------------------------------------*/
 .boldgrid-framework-menu {
   background-color: white;
   padding: 5px; }
-  .boldgrid-framework-menu ul {
-    padding: 0px 10px;
-    margin-top: 12px; }
+
+.boldgrid-framework-menu ul {
+  padding: 0px 10px;
+  margin-top: 12px; }
 
 .footer-center-items li:after, .boldgrid-framework-menu li:after {
   content: " | "; }
-  .footer-center-items li:last-of-type:after, .boldgrid-framework-menu li:last-of-type:after {
-    content: ""; }
+
+.footer-center-items li:last-of-type:after, .boldgrid-framework-menu li:last-of-type:after {
+  content: ""; }
 
 .footer-center-menu li, .boldgrid-framework-menu li {
   list-style: none;
@@ -210,12 +239,13 @@
 .footer-center-items li a[href="#"]:hover, .footer-center-items li a[href="#"], .footer-center-items li a:not([href]) {
   text-decoration: none;
   cursor: text; }
+
 /*--------------------------------------------------------------
- # Widgets
- --------------------------------------------------------------*/
+# Widgets
+--------------------------------------------------------------*/
 /*--------------------------------------------------------------
- # Default Widget Styles
- --------------------------------------------------------------*/
+# Default Widget Styles
+--------------------------------------------------------------*/
 select[name="archive-dropdown"] {
   width: auto; }
 
@@ -225,13 +255,15 @@ select[name="archive-dropdown"] {
 
 .widget.well {
   color: #333; }
-  .widget.well a, .widget.well .site-info a {
-    color: #333; }
+
+.widget.well a, .widget.well .site-info a {
+  color: #333; }
 
 .boldgrid-widget .widget-title {
   display: none; }
-  .boldgrid-widget.widget {
-    margin: 0; }
+
+.boldgrid-widget.widget {
+  margin: 0; }
 
 .empty-sidebar-message {
   display: inline-block; }
@@ -239,86 +271,107 @@ select[name="archive-dropdown"] {
 @media only screen and (min-width: 992px) {
   .empty-sidebar-message {
     padding-top: 25%; } }
+
 /*--------------------------------------------------------------
- # Ninja Forms
- --------------------------------------------------------------*/
+# Ninja Forms
+--------------------------------------------------------------*/
 .ninja-forms-response-msg:empty {
   display: none; }
-  .ninja-forms-response-msg.alert-success p {
-    color: #3c763d; }
+
+.ninja-forms-response-msg.alert-success p {
+  color: #3c763d; }
+
 /*--------------------------------------------------------------
- # Page & Post Defaults
- --------------------------------------------------------------*/
+# Page & Post Defaults
+--------------------------------------------------------------*/
 .post-edit-link {
   padding-right: 5px; }
 
 .post-navigation {
   margin-top: 1.5em; }
+
 /*--------------------------------------------------------------
- # Comments
- --------------------------------------------------------------*/
-#commentform .form-group:before, #commentform .form-group:after {
+# Comments
+--------------------------------------------------------------*/
+#commentform .form-group:before,
+#commentform .form-group:after {
   content: " ";
   display: table; }
-  #commentform .form-group:after {
-    clear: both; }
-  #commentform .radio, #commentform .checkbox, #commentform .radio-inline, #commentform .checkbox-inline {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 7px; }
-  #commentform .radio, #commentform .checkbox {
-    min-height: 27px; }
-  #commentform .form-group {
-    margin-left: -15px;
-    margin-right: -15px; }
-  #commentform .has-feedback .form-control-feedback {
-    right: 15px; }
-  #commentform code {
-    display: block;
-    white-space: normal; }
-  #commentform p.form-submit {
-    position: relative;
-    min-height: 1px; }
-  #commentform #submit {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-  #commentform #submit:focus, #commentform #submit:active:focus, #commentform #submit.active:focus, #commentform #submit.focus, #commentform #submit:active.focus, #commentform #submit.active.focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px; }
-  #commentform #submit:hover, #commentform #submit:focus, #commentform #submit.focus {
-    color: #333;
-    text-decoration: none; }
-  #commentform #submit:active, #commentform #submit.active {
-    outline: 0;
-    background-image: none;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
 
-#commentform #submit.disabled, #commentform #submit[disabled], fieldset[disabled] #commentform #submit {
+#commentform .form-group:after {
+  clear: both; }
+
+#commentform .radio, #commentform .checkbox, #commentform .radio-inline, #commentform .checkbox-inline {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 7px; }
+
+#commentform .radio, #commentform .checkbox {
+  min-height: 27px; }
+
+#commentform .form-group {
+  margin-left: -15px;
+  margin-right: -15px; }
+
+#commentform .has-feedback .form-control-feedback {
+  right: 15px; }
+
+#commentform code {
+  display: block;
+  white-space: normal; }
+
+#commentform p.form-submit {
+  position: relative;
+  min-height: 1px; }
+
+#commentform #submit {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+#commentform #submit:focus, #commentform #submit:active:focus,
+#commentform #submit.active:focus, #commentform #submit.focus,
+#commentform #submit:active.focus, #commentform #submit.active.focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px; }
+
+#commentform #submit:hover, #commentform #submit:focus, #commentform #submit.focus {
+  color: #333333;
+  text-decoration: none; }
+
+#commentform #submit:active, #commentform #submit.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
+
+#commentform #submit.disabled,
+#commentform #submit[disabled],
+fieldset[disabled] #commentform #submit {
   cursor: not-allowed;
   opacity: 0.65;
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
   box-shadow: none; }
 
-a#commentform #submit.disabled, fieldset[disabled] a#commentform #submit {
+a#commentform #submit.disabled,
+fieldset[disabled] a#commentform #submit {
   pointer-events: none; }
 
 @media (min-width: 768px) {
@@ -326,17 +379,17 @@ a#commentform #submit.disabled, fieldset[disabled] a#commentform #submit {
     text-align: left;
     margin-bottom: 0;
     padding-top: 7px; }
-    #commentform .form-group-lg .control-label {
-      padding-top: 14.33333px;
-      font-size: 18px; }
-    #commentform .form-group-sm .control-label {
-      padding-top: 6px;
-      font-size: 12px; }
-    #commentform p.form-submit {
-      float: left;
-      width: 75%; }
-    #commentform p.form-submit {
-      margin: 0; } }
+  #commentform .form-group-lg .control-label {
+    padding-top: 14.333333px;
+    font-size: 18px; }
+  #commentform .form-group-sm .control-label {
+    padding-top: 6px;
+    font-size: 12px; }
+  #commentform p.form-submit {
+    float: left;
+    width: 75%; }
+  #commentform p.form-submit {
+    margin: 0; } }
 
 span.comments-link > a:before {
   content: "\f075";
@@ -345,51 +398,60 @@ span.comments-link > a:before {
   font-style: normal;
   display: inline-block;
   text-decoration: none;
-  margin-right: 0.5em; }
+  margin-right: .5em; }
 
 span.cat-links:after {
   content: "\2022";
-  margin: 0em 0.6em; }
+  margin: 0em .6em; }
 
 .post .post-edit-link {
-  margin-left: 0.6em; }
+  margin-left: .6em; }
 
-time.entry-date.published:before, time.entry-date.updated:before {
+time.entry-date.published:before,
+time.entry-date.updated:before {
   content: "\f073";
   font-family: FontAwesome;
   font-weight: normal;
   font-style: normal;
   display: inline-block;
   text-decoration: none;
-  margin-right: 0.5em;
-  margin-left: 0.3em; }
+  margin-right: .5em;
+  margin-left: .3em; }
 
-.group-blog .byline, span.author.vcard {
-  margin-left: 0.3em; }
+.group-blog .byline,
+span.author.vcard {
+  margin-left: .3em; }
+
 /*--------------------------------------------------------------
- # Comments
- --------------------------------------------------------------*/
+# Comments
+--------------------------------------------------------------*/
 /* 404 page */
-.no-results.not-found .jumbotron, .error404 .jumbotron {
+.no-results.not-found .jumbotron,
+.error404 .jumbotron {
   background-color: transparent; }
+
 /*--------------------------------------------------------------
- # Editor Styles
- --------------------------------------------------------------*/
+# Editor Styles
+--------------------------------------------------------------*/
 #tinymce.mce-content-body {
   height: auto; }
+
 /*--------------------------------------------------------------
- # Footer
- --------------------------------------------------------------*/
+# Footer
+--------------------------------------------------------------*/
 /* Disabled Footer */
 .disabled-footer {
   margin-bottom: 50px; }
-  .disabled-footer .site-footer {
-    padding: 0;
-    background-color: white;
-    border-top: none;
-    height: 50px; }
-  .disabled-footer .content-area {
-    margin-bottom: 15px; }
+
+.disabled-footer .site-footer {
+  padding: 0;
+  background-color: white;
+  border-top: none;
+  height: 50px; }
+
+.disabled-footer .content-area {
+  margin-bottom: 15px; }
+
 /* Sticky Footer */
 html, body, .site, .site-content {
   height: 100%; }
@@ -398,14 +460,16 @@ html, body, .site, .site-content {
   min-height: 100%;
   height: auto !important;
   height: 100%; }
+
 /*--------------------------------------------------------------
- # GridBlocks
- --------------------------------------------------------------*/
+# GridBlocks
+--------------------------------------------------------------*/
 .gridblock h1, .gridblock h2, .gridblock h3, .gridblock h4, .gridblock h5, .gridblock h6, .gridblock ol, .gridblock ul, .gridblock li, .gridblock p {
   margin: 10px 0; }
+
 /*--------------------------------------------------------------
- # Modules
- --------------------------------------------------------------*/
+# Modules
+--------------------------------------------------------------*/
 /* Mod Spacer */
 .mod-space {
   background: none;
@@ -430,1026 +494,19 @@ html, body, .site, .site-content {
 .mod-space-5x {
   background: none;
   height: 75px; }
+
 /* Mod Reset */
 .mod-reset {
   margin: 0 !important;
   padding: 0 !important; }
+
 /* Images */
-.mod-img, .mod-img-circle, .image-gallery img, .video-gallery img, .slideshow-gallery img {
+.mod-img,
+.mod-img-circle,
+.image-gallery img,
+.video-gallery img,
+.slideshow-gallery img {
   margin-bottom: 15px; }
 
 .mod-img-circle img {
   border-radius: 50%; }
-/*--------------------------------------------------------------
- # Buttons
- --------------------------------------------------------------*/
-/*! @license
- *
- * Buttons
- * Copyright 2012-2014 Alex Wolfe and Rob Levin
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/*
- * Compass (optional)
- *
- * We recommend the use of autoprefixer instead of Compass
- * when using buttons. However, buttons does support Compass.
- * simply change $ubtn-use-compass to true and uncomment the
- * @import 'compass' code below to use Compass.
- */
-/*
- * Required Files
- *
- * These files include the variables and options
- * and base css styles that are required to generate buttons.
- */
-/*
- * $ubtn prefix (reserved)
- *
- * This prefix stands for Unicorn Button - ubtn
- * We provide a prefix to the Sass Variables to
- * prevent namespace collisions that could occur if
- * you import buttons as part of your Sass build process.
- * We kindly ask you not to use the prefix $ubtn in your project
- * in order to avoid possilbe name conflicts. Thanks!
- */
-/*
- * Button Namespace (ex .button or .btn)
- *
- */
-/*
- * Button Defaults
- *
- * Some default settings that are used throughout the button library.
- * Changes to these settings will be picked up by all of the other modules.
- * The colors used here are the default colors for the base button (gray).
- * The font size and height are used to set the base size for the buttons.
- * The size values will be used to calculate the larger and smaller button sizes.
- */
-/*
- * Button Colors
- *
- * $ubtn-colors is used to generate the different button colors.
- * Edit or add colors to the list below and recompile.
- * Each block contains the (name, background, color)
- * The class is generated using the name: (ex .button-primary)
- */
-/*
- * Button Shapes
- *
- * $ubtn-shapes is used to generate the different button shapes.
- * Edit or add shapes to the list below and recompile.
- * Each block contains the (name, border-radius).
- * The class is generated using the name: (ex .button-square).
- */
-/*
- * Button Sizes
- *
- * $ubtn-sizes is used to generate the different button sizes.
- * Edit or add colors to the list below and recompile.
- * Each block contains the (name, size multiplier).
- * The class is generated using the name: (ex .button-giant).
- */
-/*
- * Color Mixin
- *
- * Iterates through the list of colors and creates
- *
- */
-/*
- * No Animation
- *
- * Sets animation property to none
- */
-/*
- * Clearfix
- *
- * Clears floats inside the container
- */
-/*
- * Base Button Style
- *
- * The default values for the .button class
- */
-.btn {
-  color: #666;
-  background-color: #eee;
-  border-color: #eee;
-  font-weight: inherit;
-  font-size: inherit;
-  font-family: inherit;
-  text-decoration: none;
-  text-align: center;
-  line-height: 40px;
-  height: 40px;
-  padding: 0 40px;
-  margin: 0;
-  display: inline-block;
-  appearance: none;
-  cursor: pointer;
-  border: none;
-  box-sizing: border-box;
-  transition-property: all;
-  transition-duration: 0.3s;
-  /*
-   * Disabled State
-   *
-   * The disabled state uses the class .disabled, is-disabled,
-   * and the form attribute disabled="disabled".
-   * The use of !important is only added because this is a state
-   * that must be applied to all buttons when in a disabled state.
-   */ }
-  .btn:visited {
-    color: #666; }
-  .btn:hover, .btn:focus {
-    background-color: #f6f6f6;
-    text-decoration: none;
-    outline: none; }
-  .btn:active, .btn.active, .btn.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .3);
-    text-decoration: none;
-    background-color: #eee;
-    border-color: #cfcfcf;
-    color: #d5d5d5;
-    transition-duration: 0s;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2); }
-  .btn.disabled, .btn.is-disabled, .btn:disabled {
-    top: 0 !important;
-    background: #eee !important;
-    border: 1px solid #ddd !important;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 1) !important;
-    color: #ccc !important;
-    cursor: default !important;
-    appearance: none !important; }
-    .btn.disabled else, .btn.is-disabled else, .btn:disabled else {
-      box-shadow: none !important;
-      opacity: 0.8 !important; }
-/*
- * Base Button Tyography
- *
- */
-.btn-uppercase {
-  text-transform: uppercase; }
-
-.btn-lowercase {
-  text-transform: lowercase; }
-
-.btn-capitalize {
-  text-transform: capitalize; }
-
-.btn-small-caps {
-  font-variant: small-caps; }
-
-.btn-icon-txt-large {
-  font-size: 36px !important; }
-/*
- * Base padding
- *
- */
-.btn-width-small {
-  padding: 0 10px !important; }
-/*
- * Base Colors
- *
- * Create colors for buttons
- * (.button-primary, .button-secondary, etc.)
- */
-.btn-color-1, .btn-color-1-flat {
-  background-color: #585e6b;
-  border-color: #585e6b;
-  color: #fff; }
-  .btn-color-1:visited, .btn-color-1-flat:visited {
-    color: #fff; }
-  .btn-color-1:hover, .btn-color-1-flat:hover, .btn-color-1:focus, .btn-color-1-flat:focus {
-    background-color: #6f7787;
-    border-color: #6f7787;
-    color: #fff; }
-  .btn-color-1:active, .btn-color-1-flat:active, .btn-color-1.active, .btn-color-1-flat.active, .btn-color-1.is-active, .btn-color-1-flat.is-active {
-    background-color: #626262;
-    border-color: #626262;
-    color: #41454f; }
-
-.btn-color-2, .btn-color-2-flat {
-  background-color: #2d3037;
-  border-color: #2d3037;
-  color: #fff; }
-  .btn-color-2:visited, .btn-color-2-flat:visited {
-    color: #fff; }
-  .btn-color-2:hover, .btn-color-2-flat:hover, .btn-color-2:focus, .btn-color-2-flat:focus {
-    background-color: #444853;
-    border-color: #444853;
-    color: #fff; }
-  .btn-color-2:active, .btn-color-2-flat:active, .btn-color-2.active, .btn-color-2-flat.active, .btn-color-2.is-active, .btn-color-2-flat.is-active {
-    background-color: #323232;
-    border-color: #323232;
-    color: #16181b; }
-
-.btn-color-3, .btn-color-3-flat {
-  background-color: #18191a;
-  border-color: #18191a;
-  color: #fff; }
-  .btn-color-3:visited, .btn-color-3-flat:visited {
-    color: #fff; }
-  .btn-color-3:hover, .btn-color-3-flat:hover, .btn-color-3:focus, .btn-color-3-flat:focus {
-    background-color: #303335;
-    border-color: #303335;
-    color: #fff; }
-  .btn-color-3:active, .btn-color-3-flat:active, .btn-color-3.active, .btn-color-3-flat.active, .btn-color-3.is-active, .btn-color-3-flat.is-active {
-    background-color: #191919;
-    border-color: #191919;
-    color: #000; }
-
-.btn-color-4, .btn-color-4-flat {
-  background-color: #ff000a;
-  border-color: #ff000a;
-  color: #fff; }
-  .btn-color-4:visited, .btn-color-4-flat:visited {
-    color: #fff; }
-  .btn-color-4:hover, .btn-color-4-flat:hover, .btn-color-4:focus, .btn-color-4-flat:focus {
-    background-color: #ff333b;
-    border-color: #ff333b;
-    color: #fff; }
-  .btn-color-4:active, .btn-color-4-flat:active, .btn-color-4.active, .btn-color-4-flat.active, .btn-color-4.is-active, .btn-color-4-flat.is-active {
-    background-color: #f20d16;
-    border-color: #f20d16;
-    color: #cc0008; }
-
-.btn-color-5, .btn-color-5-flat {
-  background-color: #fff;
-  border-color: #fff;
-  color: #333; }
-  .btn-color-5:visited, .btn-color-5-flat:visited {
-    color: #333; }
-  .btn-color-5:hover, .btn-color-5-flat:hover, .btn-color-5:focus, .btn-color-5-flat:focus {
-    background-color: #fff;
-    border-color: #fff;
-    color: #333; }
-  .btn-color-5:active, .btn-color-5-flat:active, .btn-color-5.active, .btn-color-5-flat.active, .btn-color-5.is-active, .btn-color-5-flat.is-active {
-    background-color: #fff;
-    border-color: #fff;
-    color: #e6e6e6; }
-/*
- * Base Layout Styles
- *
- * Very Miminal Layout Styles
- */
-.btn-block, .btn-stacked {
-  display: block; }
-/*
- * Button Types (optional)
- *
- * All of the files below represent the various button
- * types (including shapes & sizes). None of these files
- * are required. Simple remove the uneeded type below and
- * the button type will be excluded from the final build
- */
-/*
- * Button Shapes
- *
- * This file creates the various button shapes
- * (ex. Circle, Rounded, Pill)
- */
-.btn-square {
-  border-radius: 0; }
-
-.btn-box {
-  border-radius: 10px; }
-
-.btn-rounded {
-  border-radius: 4px; }
-
-.btn-pill {
-  border-radius: 200px; }
-
-.btn-circle {
-  border-radius: 100%; }
-/*
- * Size Adjustment for equal height & widht buttons
- *
- * Remove padding and set a fixed width.
- */
-.btn-circle, .btn-box, .btn-square {
-  padding: 0 !important;
-  width: 40px; }
-  .btn-circle.btn-giant, .btn-box.btn-giant, .btn-square.btn-giant {
-    width: 70px; }
-  .btn-circle.btn-jumbo, .btn-box.btn-jumbo, .btn-square.btn-jumbo {
-    width: 60px; }
-  .btn-circle.btn-large, .btn-box.btn-large, .btn-square.btn-large {
-    width: 50px; }
-  .btn-circle.btn-normal, .btn-box.btn-normal, .btn-square.btn-normal {
-    width: 40px; }
-  .btn-circle.btn-small, .btn-box.btn-small, .btn-square.btn-small {
-    width: 30px; }
-  .btn-circle.btn-tiny, .btn-box.btn-tiny, .btn-square.btn-tiny {
-    width: 24px; }
-/*
- * Border Buttons
- *
- * These buttons have no fill they only have a
- * border to define their hit target.
- */
-.btn-border, .btn-border-thin, .btn-border-thick {
-  background: none;
-  border-width: 2px;
-  border-style: solid;
-  line-height: 36px; }
-
-.btn-border:hover, .btn-border-thin:hover, .btn-border-thick:hover {
-  background-color: rgba(255, 255, 255, .9); }
-
-.btn-border:active, .btn-border-thin:active, .btn-border-thick:active, .btn-border.active, .btn-border-thin.active, .btn-border-thick.active, .btn-border.is-active, .btn-border-thin.is-active, .btn-border-thick.is-active {
-  box-shadow: none;
-  text-shadow: none;
-  transition-property: all;
-  transition-duration: 0.3s; }
-/*
- * Border Optional Sizes
- *
- * A slight variation in border thickness
- */
-.btn-border-thin {
-  border-width: 1px; }
-
-.btn-border-thick {
-  border-width: 3px; }
-/*
- * Border Button Colors
- *
- * Create colors for buttons
- * (.button-primary, .button-secondary, etc.)
- */
-.btn-border, .btn-border-thin, .btn-border-thick {
-  /*
-   * Border Button Size Adjustment
-   *
-   * The line-height must be adjusted to compinsate for
-   * the width of the border.
-   */ }
-  .btn-border.btn-color-1, .btn-border-thin.btn-color-1, .btn-border-thick.btn-color-1 {
-    color: #585e6b; }
-    .btn-border.btn-color-1:hover, .btn-border-thin.btn-color-1:hover, .btn-border-thick.btn-color-1:hover, .btn-border.btn-color-1:focus, .btn-border-thin.btn-color-1:focus, .btn-border-thick.btn-color-1:focus {
-      background-color: rgba(111, 119, 135, .9);
-      color: rgba(255, 255, 255, .9); }
-    .btn-border.btn-color-1:active, .btn-border-thin.btn-color-1:active, .btn-border-thick.btn-color-1:active, .btn-border.btn-color-1.active, .btn-border-thin.btn-color-1.active, .btn-border-thick.btn-color-1.active, .btn-border.btn-color-1.is-active, .btn-border-thin.btn-color-1.is-active, .btn-border-thick.btn-color-1.is-active {
-      background-color: rgba(98, 98, 98, .7);
-      color: rgba(255, 255, 255, .5);
-      opacity: 0.3; }
-  .btn-border.btn-color-2, .btn-border-thin.btn-color-2, .btn-border-thick.btn-color-2 {
-    color: #2d3037; }
-    .btn-border.btn-color-2:hover, .btn-border-thin.btn-color-2:hover, .btn-border-thick.btn-color-2:hover, .btn-border.btn-color-2:focus, .btn-border-thin.btn-color-2:focus, .btn-border-thick.btn-color-2:focus {
-      background-color: rgba(68, 72, 83, .9);
-      color: rgba(255, 255, 255, .9); }
-    .btn-border.btn-color-2:active, .btn-border-thin.btn-color-2:active, .btn-border-thick.btn-color-2:active, .btn-border.btn-color-2.active, .btn-border-thin.btn-color-2.active, .btn-border-thick.btn-color-2.active, .btn-border.btn-color-2.is-active, .btn-border-thin.btn-color-2.is-active, .btn-border-thick.btn-color-2.is-active {
-      background-color: rgba(50, 50, 50, .7);
-      color: rgba(255, 255, 255, .5);
-      opacity: 0.3; }
-  .btn-border.btn-color-3, .btn-border-thin.btn-color-3, .btn-border-thick.btn-color-3 {
-    color: #18191a; }
-    .btn-border.btn-color-3:hover, .btn-border-thin.btn-color-3:hover, .btn-border-thick.btn-color-3:hover, .btn-border.btn-color-3:focus, .btn-border-thin.btn-color-3:focus, .btn-border-thick.btn-color-3:focus {
-      background-color: rgba(48, 51, 53, .9);
-      color: rgba(255, 255, 255, .9); }
-    .btn-border.btn-color-3:active, .btn-border-thin.btn-color-3:active, .btn-border-thick.btn-color-3:active, .btn-border.btn-color-3.active, .btn-border-thin.btn-color-3.active, .btn-border-thick.btn-color-3.active, .btn-border.btn-color-3.is-active, .btn-border-thin.btn-color-3.is-active, .btn-border-thick.btn-color-3.is-active {
-      background-color: rgba(25, 25, 25, .7);
-      color: rgba(255, 255, 255, .5);
-      opacity: 0.3; }
-  .btn-border.btn-color-4, .btn-border-thin.btn-color-4, .btn-border-thick.btn-color-4 {
-    color: #ff000a; }
-    .btn-border.btn-color-4:hover, .btn-border-thin.btn-color-4:hover, .btn-border-thick.btn-color-4:hover, .btn-border.btn-color-4:focus, .btn-border-thin.btn-color-4:focus, .btn-border-thick.btn-color-4:focus {
-      background-color: rgba(255, 51, 59, .9);
-      color: rgba(255, 255, 255, .9); }
-    .btn-border.btn-color-4:active, .btn-border-thin.btn-color-4:active, .btn-border-thick.btn-color-4:active, .btn-border.btn-color-4.active, .btn-border-thin.btn-color-4.active, .btn-border-thick.btn-color-4.active, .btn-border.btn-color-4.is-active, .btn-border-thin.btn-color-4.is-active, .btn-border-thick.btn-color-4.is-active {
-      background-color: rgba(242, 13, 22, .7);
-      color: rgba(255, 255, 255, .5);
-      opacity: 0.3; }
-  .btn-border.btn-color-5, .btn-border-thin.btn-color-5, .btn-border-thick.btn-color-5 {
-    color: #fff; }
-    .btn-border.btn-color-5:hover, .btn-border-thin.btn-color-5:hover, .btn-border-thick.btn-color-5:hover, .btn-border.btn-color-5:focus, .btn-border-thin.btn-color-5:focus, .btn-border-thick.btn-color-5:focus {
-      background-color: rgba(255, 255, 255, .9);
-      color: rgba(51, 51, 51, .9); }
-    .btn-border.btn-color-5:active, .btn-border-thin.btn-color-5:active, .btn-border-thick.btn-color-5:active, .btn-border.btn-color-5.active, .btn-border-thin.btn-color-5.active, .btn-border-thick.btn-color-5.active, .btn-border.btn-color-5.is-active, .btn-border-thin.btn-color-5.is-active, .btn-border-thick.btn-color-5.is-active {
-      background-color: rgba(255, 255, 255, .7);
-      color: rgba(51, 51, 51, .5);
-      opacity: 0.3; }
-  .btn-border.btn-giant, .btn-border-thin.btn-giant, .btn-border-thick.btn-giant {
-    line-height: 66px; }
-  .btn-border.btn-jumbo, .btn-border-thin.btn-jumbo, .btn-border-thick.btn-jumbo {
-    line-height: 56px; }
-  .btn-border.btn-large, .btn-border-thin.btn-large, .btn-border-thick.btn-large {
-    line-height: 46px; }
-  .btn-border.btn-normal, .btn-border-thin.btn-normal, .btn-border-thick.btn-normal {
-    line-height: 36px; }
-  .btn-border.btn-small, .btn-border-thin.btn-small, .btn-border-thick.btn-small {
-    line-height: 26px; }
-  .btn-border.btn-tiny, .btn-border-thin.btn-tiny, .btn-border-thick.btn-tiny {
-    line-height: 20px; }
-/*
- * Border Buttons
- *
- * These buttons have no fill they only have a
- * border to define their hit target.
- */
-.btn-borderless {
-  background: none;
-  border: none;
-  padding: 0 8px !important;
-  color: #eee;
-  font-size: inherit * 1.3;
-  font-weight: 200;
-  /*
-   * Borderless Button Colors
-   *
-   * Create colors for buttons
-   * (.button-primary, .button-secondary, etc.)
-   */
-  /*
-   * Borderles Size Adjustment
-   *
-   * The font-size must be large to compinsate for
-   * the lack of a hit target.
-   */ }
-
-.btn-borderless:hover, .btn-borderless:focus {
-  background: none; }
-
-.btn-borderless:active, .btn-borderless.active, .btn-borderless.is-active {
-  box-shadow: none;
-  text-shadow: none;
-  transition-property: all;
-  transition-duration: 0.3s;
-  opacity: 0.3; }
-  .btn-borderless.btn-color-1 {
-    color: #585e6b; }
-  .btn-borderless.btn-color-2 {
-    color: #2d3037; }
-  .btn-borderless.btn-color-3 {
-    color: #18191a; }
-  .btn-borderless.btn-color-4 {
-    color: #ff000a; }
-  .btn-borderless.btn-color-5 {
-    color: #fff; }
-  .btn-borderless.btn-giant {
-    font-size: inherit * 1.75 * 1.3;
-    height: inherit * 1.75 * 1.316;
-    line-height: inherit * 1.75 * 1.316; }
-  .btn-borderless.btn-jumbo {
-    font-size: inherit * 1.5 * 1.3;
-    height: inherit * 1.5 * 1.316;
-    line-height: inherit * 1.5 * 1.316; }
-  .btn-borderless.btn-large {
-    font-size: inherit * 1.25 * 1.3;
-    height: inherit * 1.25 * 1.316;
-    line-height: inherit * 1.25 * 1.316; }
-  .btn-borderless.btn-normal {
-    font-size: inherit * 1 * 1.3;
-    height: inherit * 1 * 1.316;
-    line-height: inherit * 1 * 1.316; }
-  .btn-borderless.btn-small {
-    font-size: inherit * 0.75 * 1.3;
-    height: inherit * 0.75 * 1.316;
-    line-height: inherit * 0.75 * 1.316; }
-  .btn-borderless.btn-tiny {
-    font-size: inherit * 0.6 * 1.3;
-    height: inherit * 0.6 * 1.316;
-    line-height: inherit * 0.6 * 1.316; }
-/*
- * Raised Buttons
- *
- * A classic looking button that offers
- * great depth and affordance.
- */
-.btn-raised {
-  border-color: #e1e1e1;
-  border-style: solid;
-  border-width: 1px;
-  line-height: 38px;
-  background: linear-gradient(#f6f6f6, #e1e1e1);
-  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, .3), 0 1px 2px rgba(0, 0, 0, .15); }
-
-.btn-raised:hover, .btn-raised:focus {
-  background: linear-gradient(top, #fff, #dcdcdc); }
-
-.btn-raised:active, .btn-raised.active, .btn-raised.is-active {
-  background: #eee;
-  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, .2), 0px 1px 0px rgba(255, 255, 255, 1); }
-/*
- * Raised Button Colors
- *
- * Create colors for raised buttons
- */
-.btn-raised.btn-color-1 {
-  border-color: #4c525d;
-  background: linear-gradient(#646a79, #4c525d); }
-  .btn-raised.btn-color-1:hover, .btn-raised.btn-color-1:focus {
-    background: linear-gradient(top, #6a7281, #484d57); }
-  .btn-raised.btn-color-1:active, .btn-raised.btn-color-1.active, .btn-raised.btn-color-1.is-active {
-    border-color: #41454f;
-    background: #626262; }
-  .btn-raised.btn-color-2 {
-    border-color: #222429;
-    background: linear-gradient(#383c45, #222429); }
-  .btn-raised.btn-color-2:hover, .btn-raised.btn-color-2:focus {
-    background: linear-gradient(top, #3f444d, #1d1f23); }
-  .btn-raised.btn-color-2:active, .btn-raised.btn-color-2.active, .btn-raised.btn-color-2.is-active {
-    border-color: #16181b;
-    background: #323232; }
-  .btn-raised.btn-color-3 {
-    border-color: #0c0c0d;
-    background: linear-gradient(#242627, #0c0c0d); }
-  .btn-raised.btn-color-3:hover, .btn-raised.btn-color-3:focus {
-    background: linear-gradient(top, #2c2d2f, #070707); }
-  .btn-raised.btn-color-3:active, .btn-raised.btn-color-3.active, .btn-raised.btn-color-3.is-active {
-    border-color: #000;
-    background: #191919; }
-  .btn-raised.btn-color-4 {
-    border-color: #e60009;
-    background: linear-gradient(#ff1a23, #e60009); }
-  .btn-raised.btn-color-4:hover, .btn-raised.btn-color-4:focus {
-    background: linear-gradient(top, #ff2931, #db0009); }
-  .btn-raised.btn-color-4:active, .btn-raised.btn-color-4.active, .btn-raised.btn-color-4.is-active {
-    border-color: #cc0008;
-    background: #f20d16; }
-  .btn-raised.btn-color-5 {
-    border-color: #f2f2f2;
-    background: linear-gradient(#fff, #f2f2f2); }
-  .btn-raised.btn-color-5:hover, .btn-raised.btn-color-5:focus {
-    background: linear-gradient(top, #fff, #ededed); }
-  .btn-raised.btn-color-5:active, .btn-raised.btn-color-5.active, .btn-raised.btn-color-5.is-active {
-    border-color: #e6e6e6;
-    background: #fff; }
-/*
- * 3D Buttons
- *
- * These buttons have a heavy three dimensional
- * style that mimics the visual appearance of a
- * real life button.
- */
-.btn-3d {
-  position: relative;
-  top: 0;
-  box-shadow: 0 7px 0 #bbb, 0 8px 3px rgba(0, 0, 0, .2); }
-
-.btn-3d:hover, .btn-3d:focus {
-  box-shadow: 0 7px 0 #bbb, 0 8px 3px rgba(0, 0, 0, .2); }
-
-.btn-3d:active, .btn-3d.active, .btn-3d.is-active {
-  top: 5px;
-  transition-property: all;
-  transition-duration: 0.15s;
-  box-shadow: 0 2px 0 #bbb, 0 3px 3px rgba(0, 0, 0, .2); }
-/*
- * 3D Button Colors
- *
- * Create colors for buttons
- * (.button-primary, .button-secondary, etc.)
- */
-.btn-3d.btn-color-1 {
-  box-shadow: 0 7px 0 #41454f, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-1:hover, .btn-3d.btn-color-1:focus {
-    box-shadow: 0 7px 0 #3c4049, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-1:active, .btn-3d.btn-color-1.active, .btn-3d.btn-color-1.is-active {
-    box-shadow: 0 2px 0 #2a2d33, 0 3px 3px rgba(0, 0, 0, .2); }
-  .btn-3d.btn-color-2 {
-    box-shadow: 0 7px 0 #16181b, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-2:hover, .btn-3d.btn-color-2:focus {
-    box-shadow: 0 7px 0 #111315, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-2:active, .btn-3d.btn-color-2.active, .btn-3d.btn-color-2.is-active {
-    box-shadow: 0 2px 0 #000, 0 3px 3px rgba(0, 0, 0, .2); }
-  .btn-3d.btn-color-3 {
-    box-shadow: 0 7px 0 #000, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-3:hover, .btn-3d.btn-color-3:focus {
-    box-shadow: 0 7px 0 #000, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-3:active, .btn-3d.btn-color-3.active, .btn-3d.btn-color-3.is-active {
-    box-shadow: 0 2px 0 #000, 0 3px 3px rgba(0, 0, 0, .2); }
-  .btn-3d.btn-color-4 {
-    box-shadow: 0 7px 0 #cc0008, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-4:hover, .btn-3d.btn-color-4:focus {
-    box-shadow: 0 7px 0 #c20008, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-4:active, .btn-3d.btn-color-4.active, .btn-3d.btn-color-4.is-active {
-    box-shadow: 0 2px 0 #990006, 0 3px 3px rgba(0, 0, 0, .2); }
-  .btn-3d.btn-color-5 {
-    box-shadow: 0 7px 0 #e6e6e6, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-5:hover, .btn-3d.btn-color-5:focus {
-    box-shadow: 0 7px 0 #e0e0e0, 0 8px 3px rgba(0, 0, 0, .30); }
-  .btn-3d.btn-color-5:active, .btn-3d.btn-color-5.active, .btn-3d.btn-color-5.is-active {
-    box-shadow: 0 2px 0 #ccc, 0 3px 3px rgba(0, 0, 0, .2); }
-/*
- * Glowing Buttons
- *
- * A pulse like glow that appears
- * rythmically around the edges of
- * a button.
- */
-/*
- * Glow animation mixin for Compass users
- *
- */
-/*
- * Glowing Keyframes
- *
- */
-@keyframes glowing {
-  from {
-    box-shadow: 0 0 0 rgba(44, 154, 219, 0.3); }
-
-  50% {
-    box-shadow: 0 0 20px rgba(44, 154, 219, 0.8); }
-
-  to {
-    box-shadow: 0 0 0 rgba(44, 154, 219, 0.3); } }
-
-/*
- * Glowing Keyframes for various colors
- *
- */
-
-@keyframes glowing-color-1 {
-    from {
-      box-shadow: 0 0 0 rgba(88, 94, 107, 0.3); }
-    50% {
-      box-shadow: 0 0 20px rgba(88, 94, 107, 0.8); }
-    to {
-      box-shadow: 0 0 0 rgba(88, 94, 107, 0.3); } }
-
-/*
- * Glowing Keyframes for various colors
- *
- */
-
-@keyframes glowing-color-2 {
-    from {
-      box-shadow: 0 0 0 rgba(45, 48, 55, 0.3); }
-    50% {
-      box-shadow: 0 0 20px rgba(45, 48, 55, 0.8); }
-    to {
-      box-shadow: 0 0 0 rgba(45, 48, 55, 0.3); } }
-
-/*
- * Glowing Keyframes for various colors
- *
- */
-
-@keyframes glowing-color-3 {
-    from {
-      box-shadow: 0 0 0 rgba(24, 25, 26, 0.3); }
-    50% {
-      box-shadow: 0 0 20px rgba(24, 25, 26, 0.8); }
-    to {
-      box-shadow: 0 0 0 rgba(24, 25, 26, 0.3); } }
-
-/*
- * Glowing Keyframes for various colors
- *
- */
-
-@keyframes glowing-color-4 {
-    from {
-      box-shadow: 0 0 0 rgba(255, 0, 10, 0.3); }
-    50% {
-      box-shadow: 0 0 20px rgba(255, 0, 10, 0.8); }
-    to {
-      box-shadow: 0 0 0 rgba(255, 0, 10, 0.3); } }
-
-/*
- * Glowing Keyframes for various colors
- *
- */
-
-@keyframes glowing-color-5 {
-    from {
-      box-shadow: 0 0 0 rgba(255, 255, 255, 0.3); }
-    50% {
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
-    to {
-      box-shadow: 0 0 0 rgba(255, 255, 255, 0.3); } }
-/*
- * Glowing Buttons Base Styes
- *
- * A pulse like glow that appears
- * rythmically around the edges of
- * a button.
- */
-.btn-glow {
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-name: glowing; }
-
-.btn-glow:active, .btn-glow.active, .btn-glow.is-active {
-  animation-name: none; }
-/*
- * Glowing Button Colors
- *
- * Create colors for glowing buttons
- */
-.btn-glow.btn-color-1 {
-  animation-name: glowing-color-1; }
-  .btn-glow.btn-color-2 {
-    animation-name: glowing-color-2; }
-  .btn-glow.btn-color-3 {
-    animation-name: glowing-color-3; }
-  .btn-glow.btn-color-4 {
-    animation-name: glowing-color-4; }
-  .btn-glow.btn-color-5 {
-    animation-name: glowing-color-5; }
-/*
- * Dropdown menu buttons
- *
- * A dropdown menu appears
- * when a button is pressed
- */
-/*
- * Dropdown Container
- *
- */
-.btn-dropdown {
-  position: relative;
-  overflow: visible;
-  display: inline-block; }
-/*
- * Dropdown List Style
- *
- */
-.btn-dropdown-list {
-  display: none;
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  min-width: 100%;
-  list-style-type: none;
-  background: rgba(255, 255, 255, .95);
-  border-style: solid;
-  border-width: 1px;
-  border-color: #d5d5d5;
-  font-family: inherit;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  box-sizing: border-box;
-  /*
-   * Dropdown Above
-   *
-   */ }
-
-.btn-dropdown-list.is-below {
-  /*
-   * Dropdown Below
-   *
-   */
-  top: 100%;
-  border-top: none;
-  border-radius: 0 0 3px 3px; }
-
-.btn-dropdown-list.is-above {
-  bottom: 100%;
-  top: auto;
-  border-bottom: none;
-  border-radius: 3px 3px 0 0;
-  box-shadow: 0 -2px 7px rgba(0, 0, 0, 0.2); }
-/*
- * Dropdown Buttons
- *
- */
-.btn-dropdown-list > li {
-  padding: 0;
-  margin: 0;
-  display: block; }
-
-.btn-dropdown-list > li > a {
-  display: block;
-  line-height: 40px;
-  font-size: inherit * 0.8;
-  padding: 5px 10px;
-  float: none;
-  color: #666;
-  text-decoration: none; }
-  .btn-dropdown-list > li > a:hover {
-    color: #5e5e5e;
-    background: #f6f6f6;
-    text-decoration: none; }
-
-.btn-dropdown-divider {
-  border-top: 1px solid #e6e6e6; }
-/*
- * Dropdown Colors
- *
- * Create colors for buttons
- * (.button-primary, .button-secondary, etc.)
- */
-.btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list {
-  background: rgba(88, 94, 107, .95);
-  border-color: #41454f; }
-  .btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list .btn-dropdown-divider {
-    border-color: #484d57; }
-  .btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list > li > a {
-    color: #fff; }
-    .btn-dropdown.btn-dropdown-color-1 .btn-dropdown-list > li > a:hover {
-      color: #f2f2f2;
-      background: #4c525d; }
-  .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list {
-    background: rgba(45, 48, 55, .95);
-    border-color: #16181b; }
-  .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list .btn-dropdown-divider {
-    border-color: #1d1f23; }
-  .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list > li > a {
-    color: #fff; }
-    .btn-dropdown.btn-dropdown-color-2 .btn-dropdown-list > li > a:hover {
-      color: #f2f2f2;
-      background: #222429; }
-  .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list {
-    background: rgba(24, 25, 26, .95);
-    border-color: #000; }
-  .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list .btn-dropdown-divider {
-    border-color: #070707; }
-  .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list > li > a {
-    color: #fff; }
-    .btn-dropdown.btn-dropdown-color-3 .btn-dropdown-list > li > a:hover {
-      color: #f2f2f2;
-      background: #0c0c0d; }
-  .btn-dropdown.btn-dropdown-color-4 .btn-dropdown-list {
-    background: rgba(255, 0, 10, .95);
-    border-color: #cc0008; }
-  .btn-dropdown.btn-dropdown-color-4 .btn-dropdown-list .btn-dropdown-divider {
-    border-color: #db0009; }
-  .btn-dropdown.btn-dropdown-color-4 .btn-dropdown-list > li > a {
-    color: #fff; }
-    .btn-dropdown.btn-dropdown-color-4 .btn-dropdown-list > li > a:hover {
-      color: #f2f2f2;
-      background: #e60009; }
-  .btn-dropdown.btn-dropdown-color-5 .btn-dropdown-list {
-    background: rgba(255, 255, 255, .95);
-    border-color: #e6e6e6; }
-  .btn-dropdown.btn-dropdown-color-5 .btn-dropdown-list .btn-dropdown-divider {
-    border-color: #ededed; }
-  .btn-dropdown.btn-dropdown-color-5 .btn-dropdown-list > li > a {
-    color: #333; }
-    .btn-dropdown.btn-dropdown-color-5 .btn-dropdown-list > li > a:hover {
-      color: #262626;
-      background: #f2f2f2; }
-/*
- * Buton Groups
- *
- * A group of related buttons
- * displayed edge to edge
- */
-.btn-group {
-  *zoom: 1;
-  position: relative;
-  display: inline-block; }
-
-.btn-group:after, .btn-group:before {
-  content: '.';
-  clear: both;
-  display: block;
-  overflow: hidden;
-  visibility: hidden;
-  font-size: 0;
-  line-height: 0;
-  width: 0;
-  height: 0; }
-
-.btn-group .btn, .btn-group .btn-dropdown {
-  float: left; }
-  .btn-group .btn:not(:first-child):not(:last-child), .btn-group .btn-dropdown:not(:first-child):not(:last-child) {
-    border-radius: 0;
-    border-right: none; }
-  .btn-group .btn:first-child, .btn-group .btn-dropdown:first-child {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right: none; }
-  .btn-group .btn:last-child, .btn-group .btn-dropdown:last-child {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0; }
-/*
- * Button Wrapper
- *
- * A wrap around effect to highlight
- * the shape of the button and offer
- * a subtle visual effect.
- */
-.btn-wrap {
-  border: 1px solid #e3e3e3;
-  display: inline-block;
-  padding: 9px;
-  background: linear-gradient(#f2f2f2, #fff);
-  border-radius: 200px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04); }
-/*
- * Long Shadow Buttons
- *
- * A visual effect adding a flat shadow to the text of a button
- */
-/*
- * Long Shadow Function
- *
- * Loops $length times building a long shadow. Defaults downward right
- */
-/*
- * LONG SHADOW MIXIN
- *
- */
-/*
- * Shadow Right
- *
- */
-.btn-longshadow, .btn-longshadow-right {
-  overflow: hidden; }
-  .btn-longshadow.btn-color-1, .btn-longshadow-right.btn-color-1 {
-    text-shadow: 0px 0px #41454f1px 1px #41454f2px 2px #41454f3px 3px #41454f4px 4px #41454f5px 5px #41454f6px 6px #41454f7px 7px #41454f8px 8px #41454f9px 9px #41454f10px 10px #41454f11px 11px #41454f12px 12px #41454f13px 13px #41454f14px 14px #41454f15px 15px #41454f16px 16px #41454f17px 17px #41454f18px 18px #41454f19px 19px #41454f20px 20px #41454f21px 21px #41454f22px 22px #41454f23px 23px #41454f24px 24px #41454f25px 25px #41454f26px 26px #41454f27px 27px #41454f28px 28px #41454f29px 29px #41454f30px 30px #41454f31px 31px #41454f32px 32px #41454f33px 33px #41454f34px 34px #41454f35px 35px #41454f36px 36px #41454f37px 37px #41454f38px 38px #41454f39px 39px #41454f40px 40px #41454f41px 41px #41454f42px 42px #41454f43px 43px #41454f44px 44px #41454f45px 45px #41454f46px 46px #41454f47px 47px #41454f48px 48px #41454f49px 49px #41454f50px 50px #41454f51px 51px #41454f52px 52px #41454f53px 53px #41454f54px 54px #41454f55px 55px #41454f56px 56px #41454f57px 57px #41454f58px 58px #41454f59px 59px #41454f60px 60px #41454f61px 61px #41454f62px 62px #41454f63px 63px #41454f64px 64px #41454f65px 65px #41454f66px 66px #41454f67px 67px #41454f68px 68px #41454f69px 69px #41454f70px 70px #41454f71px 71px #41454f72px 72px #41454f73px 73px #41454f74px 74px #41454f75px 75px #41454f76px 76px #41454f77px 77px #41454f78px 78px #41454f79px 79px #41454f80px 80px #41454f81px 81px #41454f82px 82px #41454f83px 83px #41454f84px 84px #41454f85px 85px #41454f; }
-  .btn-longshadow.btn-color-1:active, .btn-longshadow-right.btn-color-1:active, .btn-longshadow.btn-color-1.active, .btn-longshadow-right.btn-color-1.active, .btn-longshadow.btn-color-1.is-active, .btn-longshadow-right.btn-color-1.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow.btn-color-2, .btn-longshadow-right.btn-color-2 {
-    text-shadow: 0px 0px #16181b1px 1px #16181b2px 2px #16181b3px 3px #16181b4px 4px #16181b5px 5px #16181b6px 6px #16181b7px 7px #16181b8px 8px #16181b9px 9px #16181b10px 10px #16181b11px 11px #16181b12px 12px #16181b13px 13px #16181b14px 14px #16181b15px 15px #16181b16px 16px #16181b17px 17px #16181b18px 18px #16181b19px 19px #16181b20px 20px #16181b21px 21px #16181b22px 22px #16181b23px 23px #16181b24px 24px #16181b25px 25px #16181b26px 26px #16181b27px 27px #16181b28px 28px #16181b29px 29px #16181b30px 30px #16181b31px 31px #16181b32px 32px #16181b33px 33px #16181b34px 34px #16181b35px 35px #16181b36px 36px #16181b37px 37px #16181b38px 38px #16181b39px 39px #16181b40px 40px #16181b41px 41px #16181b42px 42px #16181b43px 43px #16181b44px 44px #16181b45px 45px #16181b46px 46px #16181b47px 47px #16181b48px 48px #16181b49px 49px #16181b50px 50px #16181b51px 51px #16181b52px 52px #16181b53px 53px #16181b54px 54px #16181b55px 55px #16181b56px 56px #16181b57px 57px #16181b58px 58px #16181b59px 59px #16181b60px 60px #16181b61px 61px #16181b62px 62px #16181b63px 63px #16181b64px 64px #16181b65px 65px #16181b66px 66px #16181b67px 67px #16181b68px 68px #16181b69px 69px #16181b70px 70px #16181b71px 71px #16181b72px 72px #16181b73px 73px #16181b74px 74px #16181b75px 75px #16181b76px 76px #16181b77px 77px #16181b78px 78px #16181b79px 79px #16181b80px 80px #16181b81px 81px #16181b82px 82px #16181b83px 83px #16181b84px 84px #16181b85px 85px #16181b; }
-  .btn-longshadow.btn-color-2:active, .btn-longshadow-right.btn-color-2:active, .btn-longshadow.btn-color-2.active, .btn-longshadow-right.btn-color-2.active, .btn-longshadow.btn-color-2.is-active, .btn-longshadow-right.btn-color-2.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow.btn-color-3, .btn-longshadow-right.btn-color-3 {
-    text-shadow: 0px 0px #0001px 1px #0002px 2px #0003px 3px #0004px 4px #0005px 5px #0006px 6px #0007px 7px #0008px 8px #0009px 9px #00010px 10px #00011px 11px #00012px 12px #00013px 13px #00014px 14px #00015px 15px #00016px 16px #00017px 17px #00018px 18px #00019px 19px #00020px 20px #00021px 21px #00022px 22px #00023px 23px #00024px 24px #00025px 25px #00026px 26px #00027px 27px #00028px 28px #00029px 29px #00030px 30px #00031px 31px #00032px 32px #00033px 33px #00034px 34px #00035px 35px #00036px 36px #00037px 37px #00038px 38px #00039px 39px #00040px 40px #00041px 41px #00042px 42px #00043px 43px #00044px 44px #00045px 45px #00046px 46px #00047px 47px #00048px 48px #00049px 49px #00050px 50px #00051px 51px #00052px 52px #00053px 53px #00054px 54px #00055px 55px #00056px 56px #00057px 57px #00058px 58px #00059px 59px #00060px 60px #00061px 61px #00062px 62px #00063px 63px #00064px 64px #00065px 65px #00066px 66px #00067px 67px #00068px 68px #00069px 69px #00070px 70px #00071px 71px #00072px 72px #00073px 73px #00074px 74px #00075px 75px #00076px 76px #00077px 77px #00078px 78px #00079px 79px #00080px 80px #00081px 81px #00082px 82px #00083px 83px #00084px 84px #00085px 85px #000; }
-  .btn-longshadow.btn-color-3:active, .btn-longshadow-right.btn-color-3:active, .btn-longshadow.btn-color-3.active, .btn-longshadow-right.btn-color-3.active, .btn-longshadow.btn-color-3.is-active, .btn-longshadow-right.btn-color-3.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow.btn-color-4, .btn-longshadow-right.btn-color-4 {
-    text-shadow: 0px 0px #cc00081px 1px #cc00082px 2px #cc00083px 3px #cc00084px 4px #cc00085px 5px #cc00086px 6px #cc00087px 7px #cc00088px 8px #cc00089px 9px #cc000810px 10px #cc000811px 11px #cc000812px 12px #cc000813px 13px #cc000814px 14px #cc000815px 15px #cc000816px 16px #cc000817px 17px #cc000818px 18px #cc000819px 19px #cc000820px 20px #cc000821px 21px #cc000822px 22px #cc000823px 23px #cc000824px 24px #cc000825px 25px #cc000826px 26px #cc000827px 27px #cc000828px 28px #cc000829px 29px #cc000830px 30px #cc000831px 31px #cc000832px 32px #cc000833px 33px #cc000834px 34px #cc000835px 35px #cc000836px 36px #cc000837px 37px #cc000838px 38px #cc000839px 39px #cc000840px 40px #cc000841px 41px #cc000842px 42px #cc000843px 43px #cc000844px 44px #cc000845px 45px #cc000846px 46px #cc000847px 47px #cc000848px 48px #cc000849px 49px #cc000850px 50px #cc000851px 51px #cc000852px 52px #cc000853px 53px #cc000854px 54px #cc000855px 55px #cc000856px 56px #cc000857px 57px #cc000858px 58px #cc000859px 59px #cc000860px 60px #cc000861px 61px #cc000862px 62px #cc000863px 63px #cc000864px 64px #cc000865px 65px #cc000866px 66px #cc000867px 67px #cc000868px 68px #cc000869px 69px #cc000870px 70px #cc000871px 71px #cc000872px 72px #cc000873px 73px #cc000874px 74px #cc000875px 75px #cc000876px 76px #cc000877px 77px #cc000878px 78px #cc000879px 79px #cc000880px 80px #cc000881px 81px #cc000882px 82px #cc000883px 83px #cc000884px 84px #cc000885px 85px #cc0008; }
-  .btn-longshadow.btn-color-4:active, .btn-longshadow-right.btn-color-4:active, .btn-longshadow.btn-color-4.active, .btn-longshadow-right.btn-color-4.active, .btn-longshadow.btn-color-4.is-active, .btn-longshadow-right.btn-color-4.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow.btn-color-5, .btn-longshadow-right.btn-color-5 {
-    text-shadow: 0px 0px #e6e6e61px 1px #e6e6e62px 2px #e6e6e63px 3px #e6e6e64px 4px #e6e6e65px 5px #e6e6e66px 6px #e6e6e67px 7px #e6e6e68px 8px #e6e6e69px 9px #e6e6e610px 10px #e6e6e611px 11px #e6e6e612px 12px #e6e6e613px 13px #e6e6e614px 14px #e6e6e615px 15px #e6e6e616px 16px #e6e6e617px 17px #e6e6e618px 18px #e6e6e619px 19px #e6e6e620px 20px #e6e6e621px 21px #e6e6e622px 22px #e6e6e623px 23px #e6e6e624px 24px #e6e6e625px 25px #e6e6e626px 26px #e6e6e627px 27px #e6e6e628px 28px #e6e6e629px 29px #e6e6e630px 30px #e6e6e631px 31px #e6e6e632px 32px #e6e6e633px 33px #e6e6e634px 34px #e6e6e635px 35px #e6e6e636px 36px #e6e6e637px 37px #e6e6e638px 38px #e6e6e639px 39px #e6e6e640px 40px #e6e6e641px 41px #e6e6e642px 42px #e6e6e643px 43px #e6e6e644px 44px #e6e6e645px 45px #e6e6e646px 46px #e6e6e647px 47px #e6e6e648px 48px #e6e6e649px 49px #e6e6e650px 50px #e6e6e651px 51px #e6e6e652px 52px #e6e6e653px 53px #e6e6e654px 54px #e6e6e655px 55px #e6e6e656px 56px #e6e6e657px 57px #e6e6e658px 58px #e6e6e659px 59px #e6e6e660px 60px #e6e6e661px 61px #e6e6e662px 62px #e6e6e663px 63px #e6e6e664px 64px #e6e6e665px 65px #e6e6e666px 66px #e6e6e667px 67px #e6e6e668px 68px #e6e6e669px 69px #e6e6e670px 70px #e6e6e671px 71px #e6e6e672px 72px #e6e6e673px 73px #e6e6e674px 74px #e6e6e675px 75px #e6e6e676px 76px #e6e6e677px 77px #e6e6e678px 78px #e6e6e679px 79px #e6e6e680px 80px #e6e6e681px 81px #e6e6e682px 82px #e6e6e683px 83px #e6e6e684px 84px #e6e6e685px 85px #e6e6e6; }
-  .btn-longshadow.btn-color-5:active, .btn-longshadow-right.btn-color-5:active, .btn-longshadow.btn-color-5.active, .btn-longshadow-right.btn-color-5.active, .btn-longshadow.btn-color-5.is-active, .btn-longshadow-right.btn-color-5.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-/*
- * Shadow Left
- *
- */
-.btn-longshadow-left {
-  overflow: hidden; }
-  .btn-longshadow-left.btn-color-1 {
-    text-shadow: 0px 0px #41454f-1px 1px #41454f-2px 2px #41454f-3px 3px #41454f-4px 4px #41454f-5px 5px #41454f-6px 6px #41454f-7px 7px #41454f-8px 8px #41454f-9px 9px #41454f-10px 10px #41454f-11px 11px #41454f-12px 12px #41454f-13px 13px #41454f-14px 14px #41454f-15px 15px #41454f-16px 16px #41454f-17px 17px #41454f-18px 18px #41454f-19px 19px #41454f-20px 20px #41454f-21px 21px #41454f-22px 22px #41454f-23px 23px #41454f-24px 24px #41454f-25px 25px #41454f-26px 26px #41454f-27px 27px #41454f-28px 28px #41454f-29px 29px #41454f-30px 30px #41454f-31px 31px #41454f-32px 32px #41454f-33px 33px #41454f-34px 34px #41454f-35px 35px #41454f-36px 36px #41454f-37px 37px #41454f-38px 38px #41454f-39px 39px #41454f-40px 40px #41454f-41px 41px #41454f-42px 42px #41454f-43px 43px #41454f-44px 44px #41454f-45px 45px #41454f-46px 46px #41454f-47px 47px #41454f-48px 48px #41454f-49px 49px #41454f-50px 50px #41454f-51px 51px #41454f-52px 52px #41454f-53px 53px #41454f-54px 54px #41454f-55px 55px #41454f-56px 56px #41454f-57px 57px #41454f-58px 58px #41454f-59px 59px #41454f-60px 60px #41454f-61px 61px #41454f-62px 62px #41454f-63px 63px #41454f-64px 64px #41454f-65px 65px #41454f-66px 66px #41454f-67px 67px #41454f-68px 68px #41454f-69px 69px #41454f-70px 70px #41454f-71px 71px #41454f-72px 72px #41454f-73px 73px #41454f-74px 74px #41454f-75px 75px #41454f-76px 76px #41454f-77px 77px #41454f-78px 78px #41454f-79px 79px #41454f-80px 80px #41454f-81px 81px #41454f-82px 82px #41454f-83px 83px #41454f-84px 84px #41454f-85px 85px #41454f; }
-  .btn-longshadow-left.btn-color-1:active, .btn-longshadow-left.btn-color-1.active, .btn-longshadow-left.btn-color-1.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow-left.btn-color-2 {
-    text-shadow: 0px 0px #16181b-1px 1px #16181b-2px 2px #16181b-3px 3px #16181b-4px 4px #16181b-5px 5px #16181b-6px 6px #16181b-7px 7px #16181b-8px 8px #16181b-9px 9px #16181b-10px 10px #16181b-11px 11px #16181b-12px 12px #16181b-13px 13px #16181b-14px 14px #16181b-15px 15px #16181b-16px 16px #16181b-17px 17px #16181b-18px 18px #16181b-19px 19px #16181b-20px 20px #16181b-21px 21px #16181b-22px 22px #16181b-23px 23px #16181b-24px 24px #16181b-25px 25px #16181b-26px 26px #16181b-27px 27px #16181b-28px 28px #16181b-29px 29px #16181b-30px 30px #16181b-31px 31px #16181b-32px 32px #16181b-33px 33px #16181b-34px 34px #16181b-35px 35px #16181b-36px 36px #16181b-37px 37px #16181b-38px 38px #16181b-39px 39px #16181b-40px 40px #16181b-41px 41px #16181b-42px 42px #16181b-43px 43px #16181b-44px 44px #16181b-45px 45px #16181b-46px 46px #16181b-47px 47px #16181b-48px 48px #16181b-49px 49px #16181b-50px 50px #16181b-51px 51px #16181b-52px 52px #16181b-53px 53px #16181b-54px 54px #16181b-55px 55px #16181b-56px 56px #16181b-57px 57px #16181b-58px 58px #16181b-59px 59px #16181b-60px 60px #16181b-61px 61px #16181b-62px 62px #16181b-63px 63px #16181b-64px 64px #16181b-65px 65px #16181b-66px 66px #16181b-67px 67px #16181b-68px 68px #16181b-69px 69px #16181b-70px 70px #16181b-71px 71px #16181b-72px 72px #16181b-73px 73px #16181b-74px 74px #16181b-75px 75px #16181b-76px 76px #16181b-77px 77px #16181b-78px 78px #16181b-79px 79px #16181b-80px 80px #16181b-81px 81px #16181b-82px 82px #16181b-83px 83px #16181b-84px 84px #16181b-85px 85px #16181b; }
-  .btn-longshadow-left.btn-color-2:active, .btn-longshadow-left.btn-color-2.active, .btn-longshadow-left.btn-color-2.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow-left.btn-color-3 {
-    text-shadow: 0px 0px #000-1px 1px #000-2px 2px #000-3px 3px #000-4px 4px #000-5px 5px #000-6px 6px #000-7px 7px #000-8px 8px #000-9px 9px #000-10px 10px #000-11px 11px #000-12px 12px #000-13px 13px #000-14px 14px #000-15px 15px #000-16px 16px #000-17px 17px #000-18px 18px #000-19px 19px #000-20px 20px #000-21px 21px #000-22px 22px #000-23px 23px #000-24px 24px #000-25px 25px #000-26px 26px #000-27px 27px #000-28px 28px #000-29px 29px #000-30px 30px #000-31px 31px #000-32px 32px #000-33px 33px #000-34px 34px #000-35px 35px #000-36px 36px #000-37px 37px #000-38px 38px #000-39px 39px #000-40px 40px #000-41px 41px #000-42px 42px #000-43px 43px #000-44px 44px #000-45px 45px #000-46px 46px #000-47px 47px #000-48px 48px #000-49px 49px #000-50px 50px #000-51px 51px #000-52px 52px #000-53px 53px #000-54px 54px #000-55px 55px #000-56px 56px #000-57px 57px #000-58px 58px #000-59px 59px #000-60px 60px #000-61px 61px #000-62px 62px #000-63px 63px #000-64px 64px #000-65px 65px #000-66px 66px #000-67px 67px #000-68px 68px #000-69px 69px #000-70px 70px #000-71px 71px #000-72px 72px #000-73px 73px #000-74px 74px #000-75px 75px #000-76px 76px #000-77px 77px #000-78px 78px #000-79px 79px #000-80px 80px #000-81px 81px #000-82px 82px #000-83px 83px #000-84px 84px #000-85px 85px #000; }
-  .btn-longshadow-left.btn-color-3:active, .btn-longshadow-left.btn-color-3.active, .btn-longshadow-left.btn-color-3.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow-left.btn-color-4 {
-    text-shadow: 0px 0px #cc0008-1px 1px #cc0008-2px 2px #cc0008-3px 3px #cc0008-4px 4px #cc0008-5px 5px #cc0008-6px 6px #cc0008-7px 7px #cc0008-8px 8px #cc0008-9px 9px #cc0008-10px 10px #cc0008-11px 11px #cc0008-12px 12px #cc0008-13px 13px #cc0008-14px 14px #cc0008-15px 15px #cc0008-16px 16px #cc0008-17px 17px #cc0008-18px 18px #cc0008-19px 19px #cc0008-20px 20px #cc0008-21px 21px #cc0008-22px 22px #cc0008-23px 23px #cc0008-24px 24px #cc0008-25px 25px #cc0008-26px 26px #cc0008-27px 27px #cc0008-28px 28px #cc0008-29px 29px #cc0008-30px 30px #cc0008-31px 31px #cc0008-32px 32px #cc0008-33px 33px #cc0008-34px 34px #cc0008-35px 35px #cc0008-36px 36px #cc0008-37px 37px #cc0008-38px 38px #cc0008-39px 39px #cc0008-40px 40px #cc0008-41px 41px #cc0008-42px 42px #cc0008-43px 43px #cc0008-44px 44px #cc0008-45px 45px #cc0008-46px 46px #cc0008-47px 47px #cc0008-48px 48px #cc0008-49px 49px #cc0008-50px 50px #cc0008-51px 51px #cc0008-52px 52px #cc0008-53px 53px #cc0008-54px 54px #cc0008-55px 55px #cc0008-56px 56px #cc0008-57px 57px #cc0008-58px 58px #cc0008-59px 59px #cc0008-60px 60px #cc0008-61px 61px #cc0008-62px 62px #cc0008-63px 63px #cc0008-64px 64px #cc0008-65px 65px #cc0008-66px 66px #cc0008-67px 67px #cc0008-68px 68px #cc0008-69px 69px #cc0008-70px 70px #cc0008-71px 71px #cc0008-72px 72px #cc0008-73px 73px #cc0008-74px 74px #cc0008-75px 75px #cc0008-76px 76px #cc0008-77px 77px #cc0008-78px 78px #cc0008-79px 79px #cc0008-80px 80px #cc0008-81px 81px #cc0008-82px 82px #cc0008-83px 83px #cc0008-84px 84px #cc0008-85px 85px #cc0008; }
-  .btn-longshadow-left.btn-color-4:active, .btn-longshadow-left.btn-color-4.active, .btn-longshadow-left.btn-color-4.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-  .btn-longshadow-left.btn-color-5 {
-    text-shadow: 0px 0px #e6e6e6-1px 1px #e6e6e6-2px 2px #e6e6e6-3px 3px #e6e6e6-4px 4px #e6e6e6-5px 5px #e6e6e6-6px 6px #e6e6e6-7px 7px #e6e6e6-8px 8px #e6e6e6-9px 9px #e6e6e6-10px 10px #e6e6e6-11px 11px #e6e6e6-12px 12px #e6e6e6-13px 13px #e6e6e6-14px 14px #e6e6e6-15px 15px #e6e6e6-16px 16px #e6e6e6-17px 17px #e6e6e6-18px 18px #e6e6e6-19px 19px #e6e6e6-20px 20px #e6e6e6-21px 21px #e6e6e6-22px 22px #e6e6e6-23px 23px #e6e6e6-24px 24px #e6e6e6-25px 25px #e6e6e6-26px 26px #e6e6e6-27px 27px #e6e6e6-28px 28px #e6e6e6-29px 29px #e6e6e6-30px 30px #e6e6e6-31px 31px #e6e6e6-32px 32px #e6e6e6-33px 33px #e6e6e6-34px 34px #e6e6e6-35px 35px #e6e6e6-36px 36px #e6e6e6-37px 37px #e6e6e6-38px 38px #e6e6e6-39px 39px #e6e6e6-40px 40px #e6e6e6-41px 41px #e6e6e6-42px 42px #e6e6e6-43px 43px #e6e6e6-44px 44px #e6e6e6-45px 45px #e6e6e6-46px 46px #e6e6e6-47px 47px #e6e6e6-48px 48px #e6e6e6-49px 49px #e6e6e6-50px 50px #e6e6e6-51px 51px #e6e6e6-52px 52px #e6e6e6-53px 53px #e6e6e6-54px 54px #e6e6e6-55px 55px #e6e6e6-56px 56px #e6e6e6-57px 57px #e6e6e6-58px 58px #e6e6e6-59px 59px #e6e6e6-60px 60px #e6e6e6-61px 61px #e6e6e6-62px 62px #e6e6e6-63px 63px #e6e6e6-64px 64px #e6e6e6-65px 65px #e6e6e6-66px 66px #e6e6e6-67px 67px #e6e6e6-68px 68px #e6e6e6-69px 69px #e6e6e6-70px 70px #e6e6e6-71px 71px #e6e6e6-72px 72px #e6e6e6-73px 73px #e6e6e6-74px 74px #e6e6e6-75px 75px #e6e6e6-76px 76px #e6e6e6-77px 77px #e6e6e6-78px 78px #e6e6e6-79px 79px #e6e6e6-80px 80px #e6e6e6-81px 81px #e6e6e6-82px 82px #e6e6e6-83px 83px #e6e6e6-84px 84px #e6e6e6-85px 85px #e6e6e6; }
-  .btn-longshadow-left.btn-color-5:active, .btn-longshadow-left.btn-color-5.active, .btn-longshadow-left.btn-color-5.is-active {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .4); }
-/*
- * Button Sizes
- *
- * This file creates the various button sizes
- * (ex. .button-large, .button-small, etc.)
- */
-.btn-giant {
-  font-size: inherit * 1.75;
-  height: 70px;
-  line-height: 70px;
-  padding: 0 70px; }
-
-.btn-jumbo {
-  font-size: inherit * 1.5;
-  height: 60px;
-  line-height: 60px;
-  padding: 0 60px; }
-
-.btn-large {
-  font-size: inherit * 1.25;
-  height: 50px;
-  line-height: 50px;
-  padding: 0 50px; }
-
-.btn-normal {
-  font-size: inherit * 1;
-  height: 40px;
-  line-height: 40px;
-  padding: 0 40px; }
-
-.btn-small {
-  font-size: inherit * 0.75;
-  height: 30px;
-  line-height: 30px;
-  padding: 0 30px; }
-
-.btn-tiny {
-  font-size: inherit * 0.6;
-  height: 24px;
-  line-height: 24px;
-  padding: 0 24px; }

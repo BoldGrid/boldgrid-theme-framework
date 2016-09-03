@@ -586,6 +586,9 @@ HTML;
 			if ( ! empty( $s['ubtn-namespace'] ) ) {
 				$vars['ButtonNamespace'] = $s['ubtn-namespace'];
 			}
+			$vars['ButtonDefaultColor'] = '$' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '_' . $this->colors->get_button_default_color() . ';';
+			$vars['ButtonDefaultFontColor'] = '$text-contrast-' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '_' . $this->colors->get_button_default_color() . ';';
+					// Compile.
 		}
 
 		return $vars;

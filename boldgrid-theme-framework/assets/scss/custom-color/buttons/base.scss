@@ -1,4 +1,3 @@
-// Load after all button classes have been added.
 @if variable-exists( button-primary-classes ) {
 	.button-primary {
 		.palette-primary & {

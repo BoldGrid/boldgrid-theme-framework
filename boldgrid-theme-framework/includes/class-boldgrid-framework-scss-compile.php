@@ -80,6 +80,8 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		$variables = $this->colors->get_scss_variables();
 		// Variables to assign before compile.
 		$variables = array_merge( $variables, $this->configs['components']['buttons']['variables'] );
+		$variables['ubtn-bgcolor'] = '$' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '_' . $this->colors->get_button_default_color() . ';';
+		$variables['ubtn-font-color'] = '$text-contrast-' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '_' . $this->colors->get_button_default_color() . ';';
 		// Compile.
 		$css = $this->compile( $dir . 'scss/', '@import "buttons";', $variables );
 		// Save.

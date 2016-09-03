@@ -240,6 +240,30 @@ class Boldgrid_Framework_Compile_Colors {
 		return $boldgrid_colors;
 	}
 
+	public function get_button_default_color() {
+		$s = $this->configs['components']['buttons']['variables'];
+		$classes = $s['button-primary-classes'];
+		$class = array();
+		if ( ! empty( $classes ) ) {
+			$classes = str_replace( ' ', '', $classes );
+			$classes = explode( ',', str_replace( '.btn-', '', $classes ) );
+			// Get the default color class if it's defined.
+			$class = array_filter( $classes, function( $c ) {
+				return strpos( $c, 'color' ) !== false;
+			});
+		}
+
+		// Use the class found if one is located or use the first color from palette.
+		if ( empty( $class ) ) {
+			$class[] = '1';
+		}
+
+		$class = reset( $class );
+		$class = str_replace( 'color-', '', $class );
+
+		return $class;
+	}
+
 	/**
 	 * Grabs the appropriate files for default button configs to compile.
 	 *
@@ -253,7 +277,6 @@ class Boldgrid_Framework_Compile_Colors {
 		$s = $this->configs['components']['buttons']['variables'];
 		$path = $this->configs['customizer-options']['colors']['settings']['scss_directory']['framework_dir'] . '/buttons/';
 		$configs = array();
-
 		// Build an array of button-classes that are needed.
 		if ( ! empty( $s['button-primary-classes'] ) ) {
 			$configs[] = $s['button-primary-classes'];

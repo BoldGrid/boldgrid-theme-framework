@@ -672,7 +672,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 		if ( typeof BOLDGRIDSass.ButtonVariables !== 'undefined' ) {
 			scss_file += '$ubtn-colors: ' + BOLDGRIDSass.ButtonVariables['ubtn-colors'] + ';';
-			scss_file += '$ubtn-namespace: ' + BOLDGRIDSass.ButtonVariables['ubtn-namespace'] + ';';
+			scss_file += '$ubtn-namespace: "' + BOLDGRIDSass.ButtonVariables['ubtn-namespace'] + '";';
 		}
 
 		if ( typeof BOLDGRIDSass.ButtonExtends !== 'undefined' ) {

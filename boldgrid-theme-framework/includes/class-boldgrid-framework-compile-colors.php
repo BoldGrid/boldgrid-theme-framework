@@ -122,6 +122,9 @@ class Boldgrid_Framework_Compile_Colors {
 		if ( true === $this->configs['components']['buttons']['enabled'] ) {
 			$btn_variables = $this->configs['components']['buttons']['variables'];
 			$color_variables = array_merge( $color_variables, $btn_variables );
+			$color_variables['ubtn-colors'] = self::get_button_colors();
+			$color_variables['ubtn-bgcolor'] = '$' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '_' . $this->get_button_default_color() . ';';
+			$color_variables['ubtn-font-color'] = '$text-contrast-' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '_' . $this->get_button_default_color() . ';';
 		}
 		return $color_variables;
 	}

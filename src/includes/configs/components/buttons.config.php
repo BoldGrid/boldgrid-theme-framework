@@ -15,7 +15,7 @@ return array(
 	'variables' => array(
 		'ubtn-namespace' => '.btn',
 		'ubtn-glow-namespace' => '.glow',
-		'ubtn-colors' => Boldgrid_Framework_Compile_Colors::get_button_colors(),
+		//'ubtn-colors' => Boldgrid_Framework_Compile_Colors::get_button_colors(),
 		'ubtn-glow-color' => '#2c9adb, light blue',
 		//'ubtn-shapes' =>,
 		//'ubtn-sizes' => ,

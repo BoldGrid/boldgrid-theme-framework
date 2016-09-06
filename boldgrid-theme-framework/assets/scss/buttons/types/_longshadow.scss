@@ -18,7 +18,7 @@
   @if $direction == right {
     @for $i from 1 through $length {
       $kolor: $color;
-      $values: #{$values}, #{$i}px #{$i}px #{$kolor};
+      $values: unquote(#{$values}+', '+#{$i}+'px '+#{$i}+'px '+#{$kolor});
     }
   }
 
@@ -26,7 +26,7 @@
   @if $direction == left {
     @for $i from 1 through $length {
       $kolor: $color;
-      $values: #{$values}, unquote($i * -1 + 'px') #{$i}px #{$kolor};
+      $values: unquote(#{$values}+', '+#{$i * -1}+'px '+#{$i}+'px '+#{$kolor});
     }
   }
 

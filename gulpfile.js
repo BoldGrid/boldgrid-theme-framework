@@ -247,6 +247,10 @@ gulp.task( 'scssDeps', function(  ) {
     .pipe( gulp.dest( config.dist + '/assets/css/animate-css' ) );
 	// Underscores
   gulp.src( config.bower + '/Buttons/scss/**/*.scss' )
+    .pipe( replace( '$values: #{$values}, #{$i}px #{$i}px #{$kolor};', "$values: unquote(#{$values}+', '+#{$i}+'px '+#{$i}+'px '+#{$kolor});" ) )
+	.pipe( replace( "$values: #{$values}, unquote($i * -1 + 'px') #{$i}px #{$kolor};", "$values: unquote(#{$values}+', '+#{$i * -1}+'px '+#{$i}+'px '+#{$kolor});" ) )
+
+
     .pipe( gulp.dest( config.dist + '/assets/scss/buttons' ) );
 } );
 

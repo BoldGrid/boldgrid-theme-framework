@@ -43,10 +43,12 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_3 ) {
 	$text-contrast-palette-primary_3: text-contrast( $palette-primary_3 );
 	.color-3-text-contrast { color: $text-contrast-palette-primary_3 ! important; }
-	$ubtn-colors: append($ubtn-colors,('color-3' $palette-primary_3 $text-contrast-palette-primary_3));
-	@if $ubtn-theme-color == 'palette-primary_3' {
-		$ubtn-bgcolor: $palette-primary_3;
-		$ubtn-font-color: $text-contrast-palette-primary_3;
+	@if $text-contrast-palette-primary_3 != null {
+		$ubtn-colors: append($ubtn-colors,('color-3' $palette-primary_3 $text-contrast-palette-primary_3));
+		@if $ubtn-theme-color == 'palette-primary_3' {
+			$ubtn-bgcolor: $palette-primary_3;
+			$ubtn-font-color: $text-contrast-palette-primary_3;
+		}
 	}
 }
 @if variable-exists( palette-primary_4 ) {
@@ -63,7 +65,7 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_5 ) {
 	$text-contrast-palette-primary_5: text-contrast( $palette-primary_5 );
 	.color-5-text-contrast { color: $text-contrast-palette-primary_5 ! important; }
-	@if $text-contrast-palette-primary_4 != null {
+	@if $text-contrast-palette-primary_5 != null {
 		$ubtn-colors: append($ubtn-colors,('color-5' $palette-primary_5 $text-contrast-palette-primary_5));
 		@if $ubtn-theme-color == 'palette-primary_5' {
 			$ubtn-bgcolor: $palette-primary_5;

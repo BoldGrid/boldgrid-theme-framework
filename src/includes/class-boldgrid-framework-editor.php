@@ -166,11 +166,11 @@ HTML;
 	public function add_tinymce_plugin( $plugin_array ) {
 		global $pagenow;
 
-		$valid_pages = [
+		$valid_pages = array(
 			'customize.php',
 			'post.php',
 			'post-new.php'
-		];
+		);
 
 		if ( ! empty( $pagenow ) && ! in_array( $pagenow, $valid_pages ) ) {
 			return;

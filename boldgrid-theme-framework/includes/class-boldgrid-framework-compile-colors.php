@@ -242,7 +242,7 @@ class Boldgrid_Framework_Compile_Colors {
 
 	public function get_button_default_color() {
 		$s = $this->configs['components']['buttons']['variables'];
-		$classes = $s['button-primary-classes'];
+		$classes = ! empty( $s['button-primary-classes'] ) ? $s['button-primary-classes'] : null;
 		$class = array();
 		if ( ! empty( $classes ) ) {
 			$classes = str_replace( ' ', '', $classes );

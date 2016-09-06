@@ -197,7 +197,9 @@ class BoldGrid_Framework_Styles {
 	public function enqueue_editor_buttons( $files ) {
 		if ( true === $this->configs['components']['buttons']['enabled'] &&
 			file_exists( get_stylesheet_directory() . '/css/buttons.css' ) ) {
+				$colors = array_pop( $files );
 				$files[] = get_stylesheet_directory_uri() . '/css/buttons.css';
+				$files[] = $colors;
 		}
 
 		return $files;

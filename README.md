@@ -35,6 +35,7 @@ user guide for more information.
 * Update: No longer renaming Widgets to Header/Footer Widgets in the customizer.
 * Bug Fix: Default h1 and h3 font sizes not rendering correctly (not in use on current themes).
 * New Feature: Adding buttons library for editor.
+* Bug Fix: TinyMCE triggered by a Ninja Forms hook while editing a form.
 
 ### 1.2.3 ###
 * New Feature: Added SnapChat social media icons.

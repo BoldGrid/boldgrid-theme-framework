@@ -24,7 +24,7 @@
       @include background(linear-gradient(top,  lighten($ubtn-bgcolor, 8%), darken($ubtn-bgcolor, 7%)));
     }
     @else {
-      background: linear-gradient(top,  lighten($ubtn-bgcolor, 8%), darken($ubtn-bgcolor, 7%));
+      background: linear-gradient(  lighten($ubtn-bgcolor, 8%), darken($ubtn-bgcolor, 7%));
     }
   }
 
@@ -71,7 +71,7 @@
           @include background(linear-gradient(top,  lighten($ubtn-background, 8%), darken($ubtn-background, 7%)));
         }
         @else {
-          background: linear-gradient(top,  lighten($ubtn-background, 8%), darken($ubtn-background, 7%));
+          background: linear-gradient(  lighten($ubtn-background, 8%), darken($ubtn-background, 7%));
         }
       }
       &:active,

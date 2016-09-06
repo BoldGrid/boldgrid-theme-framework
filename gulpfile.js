@@ -249,8 +249,7 @@ gulp.task( 'scssDeps', function(  ) {
   gulp.src( config.bower + '/Buttons/scss/**/*.scss' )
     .pipe( replace( '$values: #{$values}, #{$i}px #{$i}px #{$kolor};', "$values: unquote(#{$values}+', '+#{$i}+'px '+#{$i}+'px '+#{$kolor});" ) )
 	.pipe( replace( "$values: #{$values}, unquote($i * -1 + 'px') #{$i}px #{$kolor};", "$values: unquote(#{$values}+', '+#{$i * -1}+'px '+#{$i}+'px '+#{$kolor});" ) )
-
-
+    .pipe( replace( "background: linear-gradient(top,", "background: linear-gradient(" ) )
     .pipe( gulp.dest( config.dist + '/assets/scss/buttons' ) );
 } );
 

@@ -12,17 +12,10 @@
 
     &#{$ubtn-color-namespace} {
       border-color: darken($ubtn-background, 5%);
-
-      @if($ubtn-use-compass) {
-        @include background(linear-gradient(top,  lighten($ubtn-background, 5%), darken($ubtn-background, 5%)));
-      }
-      @else {
-        background: linear-gradient(lighten($ubtn-background, 5%), darken($ubtn-background, 5%));
-      }
-
+      background: linear-gradient(lighten($ubtn-background, 5%), darken($ubtn-background, 5%));
       &:hover,
       &:focus {
-        background: linear-gradient(top,  lighten($ubtn-background, 8%), darken($ubtn-background, 7%));
+        background: linear-gradient(lighten($ubtn-background, 8%), darken($ubtn-background, 7%));
       }
       &:active,
       &.active,

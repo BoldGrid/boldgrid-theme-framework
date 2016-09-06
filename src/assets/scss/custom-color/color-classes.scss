@@ -111,7 +111,7 @@ $names: color background background-color border-color;
 		.btn-#{$ubtn-name}-flat {
 			background-color: $ubtn-background;
 			border-color: $ubtn-background;
-			color: $ubtn-color;
+			color: $ubtn-color !important;
 
 			&:visited {
 				color: $ubtn-color;
@@ -121,7 +121,7 @@ $names: color background background-color border-color;
 			&:focus {
 				background-color: lighten($ubtn-background, 10%);
 				border-color: lighten($ubtn-background, 10%);
-				color: $ubtn-color;
+				color: $ubtn-color !important;
 			}
 
 			&:active,
@@ -129,7 +129,7 @@ $names: color background background-color border-color;
 			&.is-active {
 				background-color: desaturate($ubtn-background, 10%);
 				border-color: desaturate($ubtn-background, 10%);
-				color: darken($ubtn-background, 10%);
+				color: darken($ubtn-background, 10%) !important;
 			}
 		}
 	}

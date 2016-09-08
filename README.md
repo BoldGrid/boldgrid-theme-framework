@@ -26,6 +26,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.2.5 ###
+
+* Bug Fix: Sidebar widgets should have h2 tags for titles instead of h1.
+
 ### 1.2.4 ###
 * Bug Fix: Fixing issue causing masonry galleries to not display.
 * Bug Fix: Allow page templates to define the <main> element's container classes.

@@ -137,7 +137,7 @@ class BoldGrid_Framework_Ninja_Forms {
 		}
 
 		if ( '_submit' === $settings['type'] ) {
-			$data['class'] .= ' btn btn-primary button-primary';
+			$data['class'] .= ' button-primary';
 		}
 
 		return $data;

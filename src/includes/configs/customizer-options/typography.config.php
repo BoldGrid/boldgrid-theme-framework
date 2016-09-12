@@ -44,7 +44,7 @@ return array(
 			'round' => 'floor',
 			'amount' => 2.15,
 		),
-		'h3:not( .alt-font ), h3:not( .site-description ), .h3' => array(
+		'h3:not( .alt-font ):not( .site-description ), .h3' => array(
 			'type' => 'headings',
 			'round' => 'ceil',
 			'amount' => 1.7,

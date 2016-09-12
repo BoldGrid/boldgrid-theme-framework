@@ -34,7 +34,7 @@ return array(
 		'navigation_font_family' => 'Oswald',
 	),
 	'selectors' => array(
-		'h1:not( .site-title ), h1:not( .alt-font ), .h1' => array(
+		'h1:not( .site-title ):not( .alt-font ), .h1' => array(
 			'type' => 'headings',
 			'round' => 'floor',
 			'amount' => 2.6,

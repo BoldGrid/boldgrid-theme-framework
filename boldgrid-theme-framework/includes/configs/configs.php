@@ -19,7 +19,7 @@ return array(
 	'theme_name' => 'boldgrid-theme',
 	'theme-parent-name' => 'prime',
 	'version' => wp_get_theme()->Version,
-	'framework-version' => get_file_data( $theme_framework_dir . '/boldgrid-theme-framework.php', array( 'Version' ), 'plugin')[0],
+	'framework-version' => implode( get_file_data( $theme_framework_dir . '/boldgrid-theme-framework.php', array( 'Version' ), 'plugin' ), '' ),
 	'theme_id' => null,
 	'boldgrid-parent-theme' => false,
 	'bootstrap' => false,

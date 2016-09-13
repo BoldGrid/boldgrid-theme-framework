@@ -1,5 +1,17 @@
 <?php
 /**
+ * Plugin Name: BoldGrid Theme Framework
+ * Plugin URI: http://www.boldgrid.com
+ * Description: BoldGrid Theme Framework is a library that allows you to easily make BoldGrid themes. Please see our reference guide for more information: https://www.boldgrid.com/docs/configuration-file
+ * Version: 1.2.5
+ * Author: BoldGrid.com <wpb@boldgrid.com>
+ * Author URI: http://www.boldgrid.com
+ * Text Domain: bgtfw
+ * Domain Path: /languages
+ * License: GPLv2 or later
+ */
+
+/**
  * Load the BoldGrid Framework Into Our Themes.
  *
  * @since 1.0.0

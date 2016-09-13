@@ -30,6 +30,7 @@ user guide for more information.
 
 * Bug Fix: Sidebar widgets should have h2 tags for titles instead of h1.
 * Bug Fix: Removed Bootstrap button classes from theme buttons.
+* Update: Removed staging from recommended plugin install list.
 
 ### 1.2.4 ###
 * Bug Fix: Fixing issue causing masonry galleries to not display.

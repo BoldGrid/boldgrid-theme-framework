@@ -31,12 +31,6 @@ return array(
 			'source'    => 'https://repo.boldgrid.com/boldgrid-seo.zip',
 			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
 		),
-		array(
-			'name'      => 'BoldGrid Staging',
-			'slug'      => 'boldgrid-staging',
-			'source'    => 'https://repo.boldgrid.com/boldgrid-staging.zip',
-			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
-		),
 	),
 
 	/*

@@ -1,0 +1,122 @@
+.#{$text-fx-ns} { 
+	&.#{$text-fx-ns}-inset-text {
+		text-shadow: 1px 1px 0 rgba(140, 140, 140, 0.6), -1px -1px 1px rgba(0, 0, 0, 0.67);
+	}
+	&.#{$text-fx-ns}-anaglyph {
+		letter-spacing: 3px;
+		text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
+	}
+	&.#{$text-fx-ns}-neon {
+		color: rgba(255, 255, 255, 1);
+		text-decoration: normal;
+		text-align: center;
+		text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px
+						rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1), 0 0
+						40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px
+						#ff00de;
+		transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	}
+	&.#{$text-fx-ns}-neon:hover {
+		text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px
+			rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1), 0 0
+			40px #00ffff, 0 0 70px #00ffff, 0 0 80px #00ffff, 0 0 100px
+			#00ffff;
+	}
+	&.#{$text-fx-ns}-simple-shadow {
+		text-shadow: #969696 1px 3px 0, #aba8a8 1px 8px 5px;
+	}
+	&.#{$text-fx-ns}-neon-text {
+		box-sizing: content-box;
+		border: none;
+		color: rgb(64, 126, 196);
+		text-align: center;
+		text-overflow: clip;
+		text-shadow: 1px 1px 0 rgb(77, 162, 252), -1px -1px 0 rgb(77, 162, 252),
+						1px -1px 0 rgb(77, 162, 252), -1px 1px 0 rgb(77, 162, 252), 4px
+						4px 8px rgb(44, 88, 137), -4px 4px 8px rgb(44, 88, 137), 4px
+						-4px 8px rgb(44, 88, 137), -4px -4px 8px rgb(44, 88, 137);
+		transition: all 500ms cubic-bezier(0.42, 0, 0.58, 1);
+	}
+	&.#{$text-fx-ns}-neon-text:hover {
+		text-shadow: 1px 1px 0 rgb(77, 162, 252), -1px -1px 0 rgb(77, 162, 252),
+						1px -1px 0 rgb(77, 162, 252), -1px 1px 0 rgb(77, 162, 252);
+		transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+	}
+	&.#{$text-fx-ns}-enjoy-css {
+		text-shadow: 0 1px 0 #808d93, -1px 0 0 #cdd2d5, -1px 2px 0 #808d93,
+		 -2px 1px 0 #cdd2d5, -2px 3px 0 #808d93, -3px 2px 0 #cdd2d5,
+		  -3px 4px 0 #808d93, -4px 3px 0 #cdd2d5, -4px 5px 0 #808d93;
+	}
+	&.#{$text-fx-ns}-long-shadow {
+		text-shadow: 3px 3px 0 #0199d9, 4px 4px 0 #0199d9, 5px 5px 0 #0199d9,
+						6px 6px 0 #0199d9, 7px 7px 0 #0199d9, 8px 8px 0 #0199d9, 9px 9px
+						0 #0199d9, 10px 10px 0 #0199d9, 11px 11px 0 #0199d9, 12px 12px 0
+						#0199d9, 13px 13px 0 #0199d9, 14px 14px 0 #0199d9, 15px 15px 0
+						#0199d9, 16px 16px 0 #0199d9, 17px 17px 0 #0199d9, 18px 18px 0
+						#0199d9, 19px 19px 0 #0199d9, 20px 20px 0 #0199d9;
+	}
+	&.#{$text-fx-ns}-rainbow {
+		color: rgba(0, 0, 0, 0);
+		text-shadow: 3px 0 0 rgb(217, 31, 38), 6px 0 0 rgb(226, 91, 14), 9px 0 0
+						rgb(245, 221, 8), 12px 0 0 rgb(5, 148, 68), 15px 0 0
+						rgb(2, 135, 206), 18px 0 0 rgb(4, 77, 145), 21px 0 0
+						rgb(42, 21, 113);
+		transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	}
+	&.#{$text-fx-ns}-rainbow:hover {
+		text-shadow: -3px 0 0 rgb(217, 31, 38), -6px 0 0 rgb(226, 91, 14), -9px
+						0 0 rgb(245, 221, 8), -12px 0 0 rgb(5, 148, 68), -15px 0 0
+						rgb(2, 135, 206), -18px 0 0 rgb(4, 77, 145), -21px 0 0
+						rgb(42, 21, 113);
+		transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	}
+	&.#{$text-fx-ns}-board-game {
+		text-shadow: 5px 5px 0 rgb(255, 210, 23), 10px 10px 0 rgb(90, 199, 255),
+						15px 14px 0 rgb(255, 210, 23), 20px 20px 0 rgb(90, 199, 255);
+	}
+	&.#{$text-fx-ns}-retro {
+		text-shadow: 2px 2px 0 #eeeeee, 3px 3px 0 #707070
+	}
+	&.#{$text-fx-ns}-elegantshadow {
+		color: #131313;
+		letter-spacing: .15em;
+			text-shadow: 1px -1px 0 #767676, -1px 2px 1px #737272,
+			 -2px 4px 1px #767474, -3px 6px 1px #787777, -4px 8px 1px #7b7a7a,
+			  -5px 10px 1px #7f7d7d, -6px 12px 1px #828181, -7px 14px 1px #868585,
+			   -8px 16px 1px #8b8a89, -9px 18px 1px #8f8e8d, -10px 20px 1px #949392;
+	}
+	&.#{$text-fx-ns}-deepshadow {
+		text-shadow: 0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0
+						#2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0
+						7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c,
+						0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0
+						#141414, 0 15px 0 #121212, 0 22px 30px rgba(0, 0, 0, 0.9);
+	}
+	&.#{$text-fx-ns}-gradient {
+		background: -webkit-linear-gradient(#eee, #333);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+	&.#{$text-fx-ns}-shadows {
+		text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0
+						#b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px
+						rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px
+						rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px
+						rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+	}
+	&.#{$text-fx-ns}-closeheavy {
+		text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+	}
+	&.#{$text-fx-ns}-glow {
+		text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.72);
+	}
+	&.#{$text-fx-ns}-stroke {
+	    text-shadow:
+		-1px -1px 0 #bdbdbd,
+	    1px -1px 0 #bdbdbd,
+	    -1px 1px 0 #bdbdbd,
+	    1px 1px 0 #bdbdbd;
+	}
+}

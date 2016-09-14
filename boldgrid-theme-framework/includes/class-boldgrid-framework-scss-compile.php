@@ -80,10 +80,23 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		$variables = $this->colors->get_scss_variables();
 		// Variables to assign before compile.
 		$variables = array_merge( $variables, $this->configs['components']['buttons']['variables'] );
-		// Compile.
-		$css = $this->compile( $dir . 'scss/', '@import "buttons";', $variables );
-		// Save.
-		$this->wpfs->save( $css, get_stylesheet_directory() . '/css/buttons.css' );
+
+		// Check the variables passed in to make sure they aren't empty for compile.
+		$empty = false;
+
+		foreach( $variables as $variable ) {
+			if ( empty( $variable ) ) {
+				$empty = true;
+				break;
+			}
+		}
+
+		if ( false === $empty ) {
+			// Compile.
+			$css = $this->compile( $dir . 'scss/', '@import "buttons";', $variables );
+			// Save.
+			$this->wpfs->save( $css, get_stylesheet_directory() . '/css/buttons.css' );
+		}
 	}
 
 	/**

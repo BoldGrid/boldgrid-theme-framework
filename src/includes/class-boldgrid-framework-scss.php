@@ -219,15 +219,29 @@ class Boldgrid_Framework_SCSS {
 			$scss->setFormatter( 'Leafo\ScssPhp\Formatter\Compressed' );
 		}
 
-		$scss->setVariables( $this->colors->get_scss_variables() );
+		$variables = $this->colors->get_scss_variables();
 
-		// TODO: Make sure we arent over compiling.
-		try {
-			// BoldGrid specific variables to have available during compile.
+		// Check the variables passed in to make sure they aren't empty for compile.
+		$empty = false;
 
-			$compiled = $scss->compile( $content );
-		} catch ( \Exception $e ) {
-			error_log( 'Failed SCSS Compile: ' . $e->getMessage() );
+		foreach( $variables as $variable ) {
+			if ( empty( $variable ) ) {
+				$empty = true;
+				break;
+			}
+		}
+
+		if ( false === $empty ) {
+			$scss->setVariables( $variables );
+
+			// TODO: Make sure we arent over compiling.
+			try {
+				// BoldGrid specific variables to have available during compile.
+
+				$compiled = $scss->compile( $content );
+			} catch ( \Exception $e ) {
+				error_log( 'Failed SCSS Compile: ' . $e->getMessage() );
+			}
 		}
 
 		return ! empty( $compiled ) ? $compiled : null;

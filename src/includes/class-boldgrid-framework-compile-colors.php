@@ -166,21 +166,23 @@ class Boldgrid_Framework_Compile_Colors {
 	 * @return string $luminance the luminance value of color.
 	 */
 	public function get_luminance( $color ) {
-		// Check for RGB or hex first.
-		if ( false !== strpos( $color, '#' ) ) {
-			$rgb_arrays = self::convert_hex_to_rgb( $color );
-		} elseif ( false !== strpos( $color, 'rgb' ) ) {
-			$rgb_arrays = preg_replace( '/\D/', '', explode( ',', $color ) );
+		$luminance = null;
+		if ( ! empty( $color ) ) {
+			// Check for RGB or hex first.
+			if ( false !== strpos( $color, '#' ) ) {
+				$rgb_arrays = self::convert_hex_to_rgb( $color );
+			} elseif ( false !== strpos( $color, 'rgb' ) ) {
+				$rgb_arrays = preg_replace( '/\D/', '', explode( ',', $color ) );
+			}
+
+			// Assign RGB.
+			$r = intval( $rgb_arrays[0] );
+			$g = intval( $rgb_arrays[1] );
+			$b = intval( $rgb_arrays[2] );
+
+			// Calculate Luminance.
+			$luminance = strval( ( ( ( $r * .299 ) + ( $g * .587 ) + ( $b * .114 ) ) / 255 ) * 100 );
 		}
-
-		// Assign RGB.
-		$r = intval( $rgb_arrays[0] );
-		$g = intval( $rgb_arrays[1] );
-		$b = intval( $rgb_arrays[2] );
-
-		// Calculate Luminance.
-		$luminance = strval( ( ( ( $r * .299 ) + ( $g * .587 ) + ( $b * .114 ) ) / 255 ) * 100 );
-
 		return $luminance;
 	}
 

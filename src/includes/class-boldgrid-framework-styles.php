@@ -67,6 +67,7 @@ class BoldGrid_Framework_Styles {
 			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap.min.css',
 			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
 			$this->configs['framework']['css_dir'] . 'boldgrid-theme-framework' . $suffix . '.css',
+			$this->configs['framework']['css_dir'] . 'components' . $suffix . '.css',
 			$this->configs['framework']['config_directory']['uri'] . '/style.css',
 			Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
 		);
@@ -126,6 +127,14 @@ class BoldGrid_Framework_Styles {
 		wp_enqueue_style(
 			'boldgrid-theme-framework',
 			$this->configs['framework']['css_dir'] . 'boldgrid-theme-framework' . $suffix . '.css',
+			array(),
+			$this->configs['version']
+		);
+
+		/* Component Styles */
+		wp_enqueue_style(
+			'boldgrid-components',
+			$this->configs['framework']['css_dir'] . 'components' . $suffix . '.css',
 			array(),
 			$this->configs['version']
 		);

@@ -1,0 +1,113 @@
+.#{$box-ns} {
+	padding: 1em;
+	
+	&.#{$box-ns}-circle,
+	&.#{$box-ns}-pill {
+       padding: 4em;
+	}
+}
+
+@each $ns in $shape-namespaces {
+
+	&.#{$ns}-square {
+	   border-radius: 0;
+	}
+	&.#{$ns}-pill {
+	   border-radius: $shape-pill-radius;
+	}
+	&.#{$ns}-circle {
+	   border-radius: 50%;
+	}
+	&.#{$ns}-rounded {
+	   border-radius: $shape-rounded;
+	}
+	&.#{$ns}-edged {
+	   border-radius: 5px;
+	}
+	&.#{$ns}-pad-sm {
+		padding: 3px;
+	}
+	&.#{$ns}-pad-lg {
+		padding: 7px;
+	}
+	&.#{$ns}-rounded-top-left {
+       border-top-left-radius: $shape-rounded;
+	}
+	&.#{$ns}-rounded-top-right {
+        border-top-right-radius: $shape-rounded;
+	}
+	&.#{$ns}-rounded-bottom-right {
+        border-bottom-right-radius: $shape-rounded;
+	}
+	&.#{$ns}-rounded-bottom-left {
+        border-bottom-left-radius: $shape-rounded;
+	}
+	&.#{$ns}-shadow-bottom-right {
+		box-shadow: 3px 3px 0px 0 grey;
+	}
+	&.#{$ns}-shadow-bottom-left {
+		box-shadow: -3px 3px 0px 0 grey;
+	}
+	&.#{$ns}-border-thin {
+		border: 1px solid black;
+	}
+	&.#{$ns}-border-normal {
+		border: 2px solid black;
+	}
+	&.#{$ns}-border-thick {
+        border: 3px solid black;
+	}
+	&.#{$ns}-border-dashed {
+		border: 2px dashed black;
+	}
+	&.#{$ns}-border-dashed-thick {
+		border: 3px dashed black;
+	}
+	&.#{$ns}-border-double {
+		border: 2px solid black;
+        box-shadow: 0px 0px 0px 2px white inset, 0px 0px 0px 3px black inset;
+	}
+	&.#{$ns}-border-double-thick {
+		border: 2px solid black;
+        box-shadow: 0px 0px 0px 5px white inset, 0px 0px 0px 7px black inset;
+	}
+	&.#{$ns}-pointer {
+        position: relative;
+    
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: #f3961c transparent;
+            display: block;
+            width: 0;
+        }
+        &.#{$ns}-pointer-left:after {
+            top: calc(50% - 16px);
+            left: -20px;
+            bottom: auto;
+            border-width: 12px 20px 13px 0px;
+            border-color: transparent #f3961c;
+        }
+        &.#{$ns}-pointer-right:after {
+            top: calc(50% - 16px);
+            right: -20px;
+            bottom: auto;
+            left: auto;
+            border-width: 12px 0 13px 20px;
+            border-color: transparent #f3961c;
+        }
+        &.#{$ns}-pointer-bottom:after {
+            left: calc(50% - 16px);
+        }
+        &.#{$ns}-pointer-top:after {
+            top: -15px;
+            bottom: auto;
+            border-width: 0 15px 15px;
+            left: calc(50% - 16px);
+        }
+    }
+}

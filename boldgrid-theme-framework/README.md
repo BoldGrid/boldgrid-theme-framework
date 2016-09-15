@@ -33,6 +33,7 @@ user guide for more information.
 * Update: Removed staging from recommended plugin install list.
 * New Feature: Added config for BGTFW Version.
 * Update: If any colors aren't found before compile, don't attempt to compile the scss.
+* Bug Fix: Attachment pages need container classes.
 
 ### 1.2.4 ###
 * Bug Fix: Fixing issue causing masonry galleries to not display.

@@ -11,24 +11,12 @@ return array(
 			'name'      => 'BoldGrid Inspirations',
 			'slug'      => 'boldgrid-inspirations',
 			'source'    => 'https://repo.boldgrid.com/boldgrid-inspirations.zip',
-			'required'  => true, // If false, the plugin is only 'recommended' instead of required.
+			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
 		),
 		array(
 			'name'      => 'BoldGrid Editor',
 			'slug'      => 'boldgrid-editor',
 			'source'    => 'https://repo.boldgrid.com/boldgrid-editor.zip',
-			'required'  => true, // If false, the plugin is only 'recommended' instead of required.
-		),
-		array(
-			'name'      => 'BoldGrid Gallery',
-			'slug'      => 'boldgrid-gallery',
-			'source'    => 'https://repo.boldgrid.com/boldgrid-gallery.zip',
-			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
-		),
-		array(
-			'name'      => 'BoldGrid SEO',
-			'slug'      => 'boldgrid-seo',
-			'source'    => 'https://repo.boldgrid.com/boldgrid-seo.zip',
 			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
 		),
 	),

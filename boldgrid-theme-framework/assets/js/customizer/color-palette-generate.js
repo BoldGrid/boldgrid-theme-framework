@@ -321,7 +321,8 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		var newPalette = palette.slice(0);
 
 		$.each( paletteRelationships.relationsData, function () {
-			var relationship = this, copyColorIndex;
+			var relationship = this,
+				copyColorIndex = false;
 
 			if ( 'match' == relationship.type ) {
 
@@ -336,7 +337,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 				 * If three of colors should match, grab a random color from one of those slots and
 				 * copy it across to the rest of the slots.
 				 */
-				if ( ! copyColorIndex ) {
+				if ( copyColorIndex === false ) {
 					copyColorIndex = relationship.values[ Math.floor( Math.random() * relationship.values.length ) ];
 				}
 
@@ -465,12 +466,31 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 				if ( shouldApplyRelationships ) {
 					newPalette = self.applyRelationships( newPalette, paletteRelationships, lockedIndexes );
 				}
+				
+				// Make sure that any locked colors are still locked in suggestions.
+				newPalette = self.fixLockedIndex( newPalette, paletteData.partialPalette );
 
 				palettes.push ( newPalette );
 			}
 		}
 		
 		return palettes;
+	};
+	
+	/**
+	 * Make sure that any locked colors are still locked in suggestions.
+	 *
+	 * @since 1.2.7
+	 */
+	self.fixLockedIndex = function ( newPalette, partialPalette ) {
+		
+		$.each( partialPalette, function ( index ) {
+			if ( this ) {
+				newPalette[ index ] = this;
+			}
+		} );
+		
+		return newPalette;
 	};
 	
 	/**

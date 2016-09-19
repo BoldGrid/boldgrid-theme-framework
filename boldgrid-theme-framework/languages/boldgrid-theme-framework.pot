@@ -145,6 +145,14 @@ msgstr ""
 msgid "Sidebar #1"
 msgstr ""
 
+#: src/includes/configs/tgm.config.php:45
+msgid "Recommended Plugins"
+msgstr ""
+
+#: src/includes/configs/tgm.config.php:46
+msgid "Install Recommended Plugins"
+msgstr ""
+
 #: src/includes/configs/tooltips.config.php:5
 msgid "You can choose a background image or a Pattern/Color."
 msgstr ""

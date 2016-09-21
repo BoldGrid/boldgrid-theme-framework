@@ -399,11 +399,8 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'boldgrid_framework_reset', $activate, 'reset' );
 		$this->loader->add_action( 'wp_ajax_boldgrid_reset_theme_mods', $activate, 'undo_theme_mod_transfer' );
 
-		if ( is_admin() ) {
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			if ( true === $this->configs['tgm']['enabled'] && ! is_plugin_active( 'boldgrid-inspirations/boldgrid-inspirations.php' ) ) {
-				$this->loader->add_action( 'tgmpa_register', $activate, 'register_required_plugins' );
-			}
+		if ( true === $this->configs['tgm']['enabled'] ) {
+			$this->loader->add_action( 'tgmpa_register', $activate, 'register_required_plugins' );
 		}
 
 		if ( ! $this->doing_cron ) {

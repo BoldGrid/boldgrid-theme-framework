@@ -29,6 +29,7 @@ user guide for more information.
 ### 1.2.6 ###
 
 * Bug Fix: Fixing issue with sidebar displaying on specific page templates.
+* Bug Fix: Detect if inspirations is handling plugin recommendations before recommending.
 
 ### 1.2.5 ###
 

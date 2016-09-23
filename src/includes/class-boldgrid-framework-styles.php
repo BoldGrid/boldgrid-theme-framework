@@ -262,9 +262,14 @@ class BoldGrid_Framework_Styles {
 	 */
 	public function add_cache_busting( $css ) {
 		$color_palette_css_name = $this->configs['customizer-options']['colors']['settings']['output_css_name'];
-		$color_palette_css_path = get_stylesheet_directory() . DIRECTORY_SEPARATOR . $color_palette_css_name;
 
-		if ( empty( $css ) || ! $color_palette_css_name || ! file_exists( $color_palette_css_path ) ) {
+		// Files to add cache busting.
+		$files = array(
+			'color-palettes' => $color_palette_css_name,
+			'buttons.css' => $this->configs['framework']['config_directory']['template'] . '/css/buttons.css'
+		);
+
+		if ( empty( $css ) ) {
 			return $css;
 		}
 
@@ -273,12 +278,21 @@ class BoldGrid_Framework_Styles {
 		$mce_css = array();
 		foreach ( $styles as $style ) {
 
-			if ( false !== strpos( $style, $color_palette_css_name ) ) {
+			foreach ( $files as $search => $file ) {
 
-				$added_query_arg = add_query_arg( 'framework-time', filemtime( $color_palette_css_path ), $style );
-				if ( $added_query_arg ) {
-					$style = $added_query_arg;
+				if ( false !== strpos( $style, $search ) ) {
+
+					$time = time();
+					if ( file_exists( $file ) ) {
+						$time = filemtime( $file );
+					}
+
+					$added_query_arg = add_query_arg( 'framework-time', $time, $style );
+					if ( $added_query_arg ) {
+						$style = $added_query_arg;
+					}
 				}
+
 			}
 
 			$mce_css[] = $style;

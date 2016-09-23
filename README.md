@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.2.6 ###
+* Bug Fix: Fixing issue with tinymce cache busting.
+
 ### 1.2.5 ###
 
 * Bug Fix: Fixing issue were suggested palettes did not respect the locked color.

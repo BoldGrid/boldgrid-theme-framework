@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.3
-* **Tested up to:** 4.6
+* **Tested up to:** 4.6.1
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,8 +26,11 @@ user guide for more information.
 
 ## Changelog ##
 
-### 1.2.6 ###
+### 1.2.7 ###
 * Bug Fix: Fixing issue with tinymce cache busting.
+
+### 1.2.6 ###
+* Bug Fix: Fixing issue with sidebar displaying on specific page templates.
 
 ### 1.2.5 ###
 

@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.2.7 ###
 * Bug Fix: Fixing issue with tinymce cache busting.
+* Bug Fix: Blog page not getting proper containers if set to a static page.
 
 ### 1.2.6 ###
 * Bug Fix: Fixing issue with sidebar displaying on specific page templates.

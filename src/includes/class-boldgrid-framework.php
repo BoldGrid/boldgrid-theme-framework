@@ -69,7 +69,7 @@ class BoldGrid_Framework {
 		$this->load_dependencies( );
 
 		$this->assign_configurations();
-		$this->assign_theme_mod_configs();
+		$this->add_config_filters();
 		$this->load_theme_configs();
 		$this->set_doing_cron();
 
@@ -246,12 +246,14 @@ class BoldGrid_Framework {
 	 * @since    1.1.5
 	 * @access   protected.
 	 */
-	public function assign_theme_mod_configs() {
+	public function add_config_filters() {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
+		$template_config = new Boldgrid_Framework_Template_Config( $this->configs );
 		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs'), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs'), 20 );
 		add_filter( 'boldgrid_theme_framework_config', 'BoldGrid::get_inspiration_configs', 5 );
+		add_filter( 'boldgrid_theme_framework_config', array( $template_config, 'remove_theme_container' ), 50 );
 	}
 
 	/**

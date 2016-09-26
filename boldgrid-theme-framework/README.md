@@ -27,6 +27,7 @@ user guide for more information.
 ## Changelog ##
 
 ### 1.2.7 ###
+* Update: Framework now handles filtering for full width pages.
 * Bug Fix: Fixing issue with tinymce cache busting.
 * Bug Fix: Blog page not getting proper containers if set to a static page.
 

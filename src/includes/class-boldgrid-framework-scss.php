@@ -45,24 +45,6 @@ class Boldgrid_Framework_SCSS {
 	}
 
 	/**
-	 * Get the template directory conditionally based on if we are currently updating staging theme mods
-	 *
-	 * @since     1.0.0
-	 * @return    string    $template_directory    path of theme's template directory
-	 */
-	public function get_template_dir() {
-		if ( $this->staging->is_updating_staging() ) {
-
-			$theme_root = get_theme_root( get_option( 'boldgrid_staging_template' ) );
-			$template_directory = "$theme_root/" . get_option( 'boldgrid_staging_template' );
-		} else {
-			$template_directory = $this->configs['framework']['config_directory']['template'];
-		}
-
-		return $template_directory;
-	}
-
-	/**
 	 * Look in the directory defined by the configs which holds the css files and return array
 	 *
 	 * @since     1.0.0
@@ -71,7 +53,7 @@ class Boldgrid_Framework_SCSS {
 	public function find_scss_files() {
 		$files = array();
 
-		$template_directory = $this->get_template_dir();
+		$template_directory = $this->staging->get_template_dir();
 
 		$config_settings = $this->configs['customizer-options']['colors']['settings'];
 		if ( ! empty( $config_settings['scss_directory'] ) ) {

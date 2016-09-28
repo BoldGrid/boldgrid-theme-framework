@@ -81,4 +81,22 @@ class BoldGrid_Framework_Staging {
 
 		return $is_updating_staging;
 	}
+
+	/**
+	 * Get the template directory conditionally based on if we are currently updating staging theme mods
+	 *
+	 * @since     1.0.0
+	 * @return    string    $template_directory    path of theme's template directory
+	 */
+	public function get_template_dir() {
+		if ( $this->is_updating_staging() ) {
+
+			$theme_root = get_theme_root( get_option( 'boldgrid_staging_template' ) );
+			$template_directory = "$theme_root/" . get_option( 'boldgrid_staging_template' );
+		} else {
+			$template_directory = $this->configs['framework']['config_directory']['template'];
+		}
+
+		return $template_directory;
+	}
 }

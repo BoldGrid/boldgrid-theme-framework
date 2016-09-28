@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3 ###
+* Update: Adding additional text contrast classes.
+
 ### 1.2.7 ###
 * Update: Framework now handles filtering for full width pages.
 * Bug Fix: Fixing issue with tinymce cache busting.

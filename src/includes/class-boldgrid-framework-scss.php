@@ -41,25 +41,7 @@ class Boldgrid_Framework_SCSS {
 		$this->configs = $configs;
 		$this->wpfs    = new Boldgrid_Framework_Wp_Fs();
 		$this->colors  = new Boldgrid_Framework_Compile_Colors( $this->configs );
-	}
-
-	/**
-	 * Check to see if we are currently updating staging theme mods
-	 *
-	 * @since     1.0.0
-	 * @return    string     $is_currently_updating_staging_mods     boolean
-	 */
-	public function is_currently_updating_staging_mods() {
-
-		$is_currently_updating_staging_mods = false;
-		if ( strpos( current_filter(), 'update_option_boldgrid_staging_theme_mods' ) !== false ||
-				strpos( current_filter(), 'add_option_boldgrid_staging_theme_mods' ) !== false ) {
-
-				$is_currently_updating_staging_mods = true;
-
-		}
-
-		return $is_currently_updating_staging_mods;
+		$this->staging = new Boldgrid_Framework_Staging( $this->configs );
 	}
 
 	/**
@@ -69,7 +51,7 @@ class Boldgrid_Framework_SCSS {
 	 * @return    string    $template_directory    path of theme's template directory
 	 */
 	public function get_template_dir() {
-		if ( $this->is_currently_updating_staging_mods() ) {
+		if ( $this->staging->is_updating_staging() ) {
 
 			$theme_root = get_theme_root( get_option( 'boldgrid_staging_template' ) );
 			$template_directory = "$theme_root/" . get_option( 'boldgrid_staging_template' );
@@ -259,7 +241,7 @@ class Boldgrid_Framework_SCSS {
 		if ( $compiled ) {
 			$config_settings = $this->configs['customizer-options']['colors']['settings'];
 
-			if ( $this->is_currently_updating_staging_mods() ) {
+			if ( $this->staging->is_updating_staging() ) {
 				// Update the name of the css file.
 				$basename = basename( $config_settings['output_css_name'], '.css' );
 				$config_settings['output_css_name'] = str_ireplace(
@@ -374,7 +356,7 @@ class Boldgrid_Framework_SCSS {
 	public function maybe_defer_update() {
 		$is_update_deferred = false;
 
-		$currently_updating_staging = $this->is_currently_updating_staging_mods();
+		$currently_updating_staging = $this->staging->is_updating_staging();
 		$staging = get_option( 'boldgrid_staging_stylesheet', '' );
 		$staging_registered = get_stylesheet() == $staging;
 

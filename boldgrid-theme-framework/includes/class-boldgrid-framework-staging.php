@@ -65,6 +65,20 @@ class BoldGrid_Framework_Staging {
 
 		set_theme_mod( 'force_scss_recompile', $force_recompile );
 	}
+
+	/**
+	 * Check to see if we are currently updating staging theme mods
+	 *
+	 * @since     1.0.0
+	 * @return    string     $is_updating_staging     boolean
+	 */
+	public function is_updating_staging() {
+		$is_updating_staging = false;
+		if ( strpos( current_filter(), 'update_option_boldgrid_staging_theme_mods' ) !== false ||
+				strpos( current_filter(), 'add_option_boldgrid_staging_theme_mods' ) !== false ) {
+					$is_updating_staging = true;
+		}
+
+		return $is_updating_staging;
+	}
 }
-
-

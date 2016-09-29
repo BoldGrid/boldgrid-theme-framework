@@ -262,11 +262,12 @@ class BoldGrid_Framework_Styles {
 	 */
 	public function add_cache_busting( $css ) {
 		$color_palette_css_name = $this->configs['customizer-options']['colors']['settings']['output_css_name'];
+		$buttons_file = $this->configs['components']['buttons']['css_file'];
 
 		// Files to add cache busting.
 		$files = array(
 			'color-palettes' => $color_palette_css_name,
-			'buttons.css' => $this->configs['framework']['config_directory']['template'] . '/css/buttons.css'
+			'buttons.css' => $buttons_file,
 		);
 
 		if ( empty( $css ) ) {

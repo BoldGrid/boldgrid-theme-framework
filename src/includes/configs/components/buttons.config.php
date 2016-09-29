@@ -12,6 +12,7 @@
 
 return array(
 	'enabled' => true,
+	'css_file' => $this->configs['framework']['config_directory']['template'] . '/css/buttons.css',
 	'variables' => array(
 		'ubtn-namespace' => '.btn',
 		'ubtn-glow-namespace' => '.glow',

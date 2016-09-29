@@ -98,8 +98,6 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 			$config_settings = $this->configs['components']['buttons'];
 
 			if ( $this->staging->is_updating_staging() ) {
-				error_log(print_r($config_settings, 1) );
-
 				// Update the name of the css file.
 				$basename = basename( $config_settings['css_file'], '.css' );
 				$config_settings['css_file'] = str_ireplace(
@@ -108,8 +106,6 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 					$config_settings['css_file']
 				);
 			}
-
-			error_log('snonfdso' );
 
 			// Save.
 			$this->wpfs->save( $css, $config_settings['css_file'] );

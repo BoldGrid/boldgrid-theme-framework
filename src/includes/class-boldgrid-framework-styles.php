@@ -139,13 +139,19 @@ class BoldGrid_Framework_Styles {
 			$this->configs['version']
 		);
 
+		$version = '';
+		$last_mod = filemtime( $this->configs['components']['buttons']['css_file'] );
+		if ( $last_mod ) {
+			$version = $last_mod;
+		}
+
 		if ( true === $this->configs['components']['buttons']['enabled'] &&
-			file_exists( get_stylesheet_directory() . '/css/buttons.css' ) ) {
+			file_exists( $this->configs['components']['buttons']['css_file'] ) ) {
 				wp_enqueue_style(
 					'boldgrid-buttons',
-					get_stylesheet_directory_uri() . '/css/buttons.css',
+					$this->configs['components']['buttons']['css_uri'],
 					array(),
-					$this->configs['version']
+					$last_mod
 				);
 		}
 
@@ -205,9 +211,9 @@ class BoldGrid_Framework_Styles {
 	 */
 	public function enqueue_editor_buttons( $files ) {
 		if ( true === $this->configs['components']['buttons']['enabled'] &&
-			file_exists( get_stylesheet_directory() . '/css/buttons.css' ) ) {
+			file_exists( $this->configs['components']['buttons']['css_file'] ) ) {
 				$colors = array_pop( $files );
-				$files[] = get_stylesheet_directory_uri() . '/css/buttons.css';
+				$files[] = $this->configs['components']['buttons']['css_uri'];
 				$files[] = $colors;
 		}
 
@@ -267,7 +273,7 @@ class BoldGrid_Framework_Styles {
 		// Files to add cache busting.
 		$files = array(
 			'color-palettes' => $color_palette_css_name,
-			'buttons.css' => $buttons_file,
+			'boldgrid-buttons-css' => $buttons_file,
 		);
 
 		if ( empty( $css ) ) {

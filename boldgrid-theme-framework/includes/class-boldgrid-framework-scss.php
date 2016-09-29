@@ -42,6 +42,7 @@ class Boldgrid_Framework_SCSS {
 		$this->wpfs    = new Boldgrid_Framework_Wp_Fs();
 		$this->colors  = new Boldgrid_Framework_Compile_Colors( $this->configs );
 		$this->staging = new Boldgrid_Framework_Staging( $this->configs );
+		$this->buttons = new Boldgrid_Framework_Scss_Compile( $this->configs );
 	}
 
 	/**
@@ -233,6 +234,7 @@ class Boldgrid_Framework_SCSS {
 				);
 			}
 			$this->wpfs->save( $compiled, $config_settings['output_css_name'] );
+
 			$success = true;
 		}
 
@@ -375,6 +377,7 @@ class Boldgrid_Framework_SCSS {
 			$file_contents 		= $this->get_scss_file_contents( $files );
 			$compiled_content 	= $this->compile( $file_contents );
 			$success 			= $this->save_compiled_content( $compiled_content );
+			$this->buttons->build_bgtfw();
 
 			set_theme_mod( 'boldgrid_compiled_css', $compiled_content );
 		}

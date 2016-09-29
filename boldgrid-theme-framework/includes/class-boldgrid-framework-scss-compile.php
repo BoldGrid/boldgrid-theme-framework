@@ -41,6 +41,7 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		$this->configs = $configs;
 		$this->colors  = new Boldgrid_Framework_Compile_Colors( $this->configs );
 		$this->wpfs    = new Boldgrid_Framework_Wp_Fs();
+		$this->staging = new Boldgrid_Framework_Staging( $this->configs );
 	}
 
 	/**
@@ -75,12 +76,11 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 	}
 
 	public function build_bgtfw() {
-		$dir = $this->configs['framework']['asset_dir'];
+		$dir = $this->staging->get_template_dir();
 		// BoldGrid specific variables to have available during compile.
 		$variables = $this->colors->get_scss_variables();
 		// Variables to assign before compile.
 		$variables = array_merge( $variables, $this->configs['components']['buttons']['variables'] );
-
 		// Check the variables passed in to make sure they aren't empty for compile.
 		$empty = false;
 
@@ -94,8 +94,25 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		if ( false === $empty ) {
 			// Compile.
 			$css = $this->compile( $dir . 'scss/', '@import "buttons";', $variables );
+
+			$config_settings = $this->configs['components']['buttons'];
+
+			if ( $this->staging->is_updating_staging() ) {
+				error_log(print_r($config_settings, 1) );
+
+				// Update the name of the css file.
+				$basename = basename( $config_settings['css_file'], '.css' );
+				$config_settings['css_file'] = str_ireplace(
+					$basename,
+					'staging-buttons',
+					$config_settings['css_file']
+				);
+			}
+
+			error_log('snonfdso' );
+
 			// Save.
-			$this->wpfs->save( $css, get_stylesheet_directory() . '/css/buttons.css' );
+			$this->wpfs->save( $css, $config_settings['css_file'] );
 		}
 	}
 

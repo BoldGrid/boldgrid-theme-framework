@@ -463,8 +463,7 @@ class BoldGrid_Framework {
 		// Save the compiled CSS when themes are activated and after they save customizer settings.
 		if ( true === $this->configs['components']['bootstrap']['enabled'] ||
 			 true === $this->configs['components']['buttons']['enabled'] ) {
-				$this->loader->add_action( 'customize_save_after', $compile, 'build' );
-				$this->loader->add_action( 'after_switch_theme', $compile, 'build' );
+				//$this->loader->add_action( 'customize_save_after', $compile, 'build' );
 		}
 
 		// TODO: Merge these standalone files into classes and our existing structure.

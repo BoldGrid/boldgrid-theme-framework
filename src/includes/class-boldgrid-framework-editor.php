@@ -53,37 +53,6 @@ class Boldgrid_Framework_Editor {
 	}
 
 	/**
-	 * Add CSS to hide page title.
-	 *
-	 * @since 1.0.7
-	 */
-	public function hide_page_title() {
-		global $post;
-		$inline_css = null;
-		if ( $post && ( is_page() || is_single() ) ) {
-			$post_meta = get_post_meta( $post->ID );
-
-			// This was updated to invert logic, from hide page title to display page title.
-			if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) && isset( $post_meta['boldgrid_hide_page_title'] ) ) {
-				// Apply some inline styles.
-				$inline_css = '#post-' . $post->ID . ' .entry-title { display: none; }' . '#page-id-' .
-					 $post->ID . ' .entry-title { display: none; }';
-
-				// Add body class .post-title-hidden.
-				add_filter( 'body_class',
-					function ( $classes ) {
-						$classes[] = 'post-title-hidden';
-						return $classes;
-				} );
-			}
-		}
-
-		if ( $inline_css ) {
-			wp_add_inline_style( 'style', $inline_css );
-		}
-	}
-
-	/**
 	 * Display a post title display control on the page and post editor.
 	 *
 	 * @since 1.0.7

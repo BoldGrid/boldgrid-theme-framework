@@ -422,7 +422,6 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'wp_loaded', $editor, 'add_google_fonts' );
 		}
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $editor, 'hide_page_title', 999 );
 		$this->loader->add_action( 'init', $editor, 'add_post_title_toggle' );
 		$this->loader->add_action( 'save_post', $editor, 'update_page_title_toggle', 10, 2 );
 		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'admin_enqueue_scripts' );

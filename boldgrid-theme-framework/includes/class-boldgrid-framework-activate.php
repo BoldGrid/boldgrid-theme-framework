@@ -143,10 +143,13 @@ class Boldgrid_Framework_Activate {
 		if ( false === $option ) {
 			return;
 		}
+
+		// Check that colors are enabled and defaults exist.
+		$enabled = $this->configs['customizer-options']['colors']['enabled'];
+		$palette =  $this->configs['customizer-options']['colors']['defaults'];
+
 		// If there's not a palette set by user, then set it.
-		if ( ! array_key_exists( 'boldgrid_color_palette', $option ) ) {
-			// Check Configs For Default Palettes.
-			$palette = $this->configs['customizer-options']['colors']['defaults'];
+		if ( ! array_key_exists( 'boldgrid_color_palette', $option ) && $enabled && $palette ) {
 			// Initizalize $theme_mod array.
 			$theme_mod = array();
 			// Get assigned default palette for category/theme.

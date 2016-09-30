@@ -48,8 +48,7 @@ class Boldgrid_Framework_Compile_Colors {
 	public function get_active_palette() {
 		$boldgrid_colors = array();
 		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
-
-		if ( ! empty( $palettes ) ) {
+		if ( ! empty( $palettes['state']['active-palette'] ) ) {
 			$current_palette = $palettes['state']['active-palette'];
 			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
 			$i = 0;

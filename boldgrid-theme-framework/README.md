@@ -29,6 +29,7 @@ user guide for more information.
 ### 1.3 ###
 * Update: Adding additional text contrast classes.
 * Bug fix: Check colors are enabled and default palette exists before attempting to set palette.
+* Bug Fix: Home page title causes duplicate H1 tags.
 
 ### 1.2.7 ###
 * Update: Framework now handles filtering for full width pages.

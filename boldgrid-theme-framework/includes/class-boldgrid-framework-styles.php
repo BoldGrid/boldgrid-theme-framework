@@ -139,10 +139,9 @@ class BoldGrid_Framework_Styles {
 			$this->configs['version']
 		);
 
-		$version = '';
-		$last_mod = filemtime( $this->configs['components']['buttons']['css_file'] );
-		if ( $last_mod ) {
-			$version = $last_mod;
+		$last_mod = time();
+		if ( file_exists( $this->configs['components']['buttons']['css_file'] ) ) {
+			$last_mod = filemtime( $this->configs['components']['buttons']['css_file'] );
 		}
 
 		if ( true === $this->configs['components']['buttons']['enabled'] &&

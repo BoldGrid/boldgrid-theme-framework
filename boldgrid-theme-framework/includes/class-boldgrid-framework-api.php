@@ -390,6 +390,7 @@ class BoldGrid {
 	 * @since     1.0.0
 	 */
 	public function body_classes( $classes ) {
+		global $post;
 
 		// Adds a class of group-blog to blogs with more than 1 published author.
 		if ( is_multi_author( ) ) {
@@ -398,6 +399,14 @@ class BoldGrid {
 		// Add class if sidebar is active.
 		if ( $this->display_sidebar() ) {
 			$classes[] = 'sidebar-1';
+		}
+
+		// Add class if post title is hidden.
+		if ( $post && ( is_page() || is_single() ) ) {
+			$post_meta = get_post_meta( $post->ID );
+			if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) && isset( $post_meta['boldgrid_hide_page_title'] ) ) {
+				$classes[] = 'post-title-hidden';
+			}
 		}
 
 		if ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) {

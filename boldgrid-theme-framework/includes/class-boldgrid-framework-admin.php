@@ -67,8 +67,36 @@ class Boldgrid_Framework_Admin {
 	 */
 	public function admin_enqueue_scripts() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.css' : '.min.css';
+
 		wp_enqueue_style( 'boldgrid-theme-framework-admin',
 			$this->configs['framework']['css_dir'] . 'admin' . $suffix,
 		array(), $this->configs['version'] );
+
+		$this->enqueue_editor_styles();
+	}
+
+	/**
+	 * Enqueue Color Palettes file And Buttons file to the Wordpress Admin Screen.
+	 *
+	 * Note: This does not enqueue into the editor, just the admin screen. This is needed for the editor controls.
+	 *
+	 * @global $pagenow Current page.
+	 *
+	 * @since 1.3
+	 */
+	public function enqueue_editor_styles() {
+		global $pagenow;
+
+		$valid_pages = array( 'post-new.php', 'post.php' );
+
+		// Only Enqueue on these pages.
+		if ( ! in_array( $pagenow, $valid_pages ) ) {
+			return;
+		}
+
+		$bgtfw_styles = new BoldGrid_Framework_Styles( $this->configs );
+		$bgtfw_styles->enqueue_buttons( array('editor-css-imhwpb') );
+		$bgtfw_styles->enqueue_colors( array('editor-css-imhwpb') );
+
 	}
 }

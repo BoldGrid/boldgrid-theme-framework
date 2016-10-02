@@ -528,27 +528,9 @@ HTML;
 	 * @since    1.0.0
 	 */
 	public function enqueue_front_end_styles() {
-		$config_settings = $this->configs['customizer-options']['colors'];
 
-		if ( ! empty( $config_settings['enabled'] ) && file_exists( $config_settings['settings']['output_css_name'] ) ) {
-
-			$version = '';
-			$last_mod = filemtime( $config_settings['settings']['output_css_name'] );
-			if ( $last_mod ) {
-				$version = $last_mod;
-			}
-
-			if ( false === $this->configs['framework']['inline_styles'] ) {
-				// Add BoldGrid Theme Helper stylesheet.
-				wp_enqueue_style( 'boldgrid-theme-helper-color-palette-compiled',
-					self::get_colors_uri( $this->configs ),
-				array(),  $last_mod );
-			} else {
-				// Add inline styles.
-				$inline_css = get_theme_mod( 'boldgrid_compiled_css' );
-				wp_add_inline_style( 'style', $inline_css );
-			}
-		}
+		$bgtfw_styles = new BoldGrid_Framework_Styles( $this->configs );
+		$bgtfw_styles->enqueue_colors();
 
 	}
 

@@ -77,6 +77,51 @@ class BoldGrid_Framework_Styles {
 	}
 
 	/**
+	 * Enqueue the button styles for our BoldGrid Theme.
+	 *
+	 * @since     1.3
+	 */
+	public function enqueue_buttons ( $deps = array() ) {
+		$button_configs = $this->configs['components']['buttons'];
+
+		if ( true === $button_configs['enabled'] && file_exists( $button_configs['css_file'] ) ) {
+			$last_mod = filemtime( $button_configs['css_file'] );
+			wp_enqueue_style( 'boldgrid-buttons', $button_configs['css_uri'], $deps, $last_mod );
+		}
+
+	}
+
+	/**
+	 * Enqueue the color buttons for our BoldGrid Theme.
+	 *
+	 * @since     1.3
+	 */
+	public function enqueue_colors ( $deps = array() ) {
+
+		$config_settings = $this->configs['customizer-options']['colors'];
+		if ( ! empty( $config_settings['enabled'] ) && file_exists( $config_settings['settings']['output_css_name'] ) ) {
+
+			$version = '';
+			$last_mod = filemtime( $config_settings['settings']['output_css_name'] );
+			if ( $last_mod ) {
+				$version = $last_mod;
+			}
+
+			if ( false === $this->configs['framework']['inline_styles'] ) {
+				// Add BoldGrid Theme Helper stylesheet.
+				wp_enqueue_style( 'boldgrid-color-palettes',
+					Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
+					$deps,  $last_mod );
+			} else {
+				// Add inline styles.
+				$inline_css = get_theme_mod( 'boldgrid_compiled_css' );
+				wp_add_inline_style( 'style', $inline_css );
+			}
+		}
+
+	}
+
+	/**
 	 * Enqueue the styles for our BoldGrid Theme.
 	 *
 	 * @since     1.0.0
@@ -139,20 +184,8 @@ class BoldGrid_Framework_Styles {
 			$this->configs['version']
 		);
 
-		$last_mod = time();
-		if ( file_exists( $this->configs['components']['buttons']['css_file'] ) ) {
-			$last_mod = filemtime( $this->configs['components']['buttons']['css_file'] );
-		}
-
-		if ( true === $this->configs['components']['buttons']['enabled'] &&
-			file_exists( $this->configs['components']['buttons']['css_file'] ) ) {
-				wp_enqueue_style(
-					'boldgrid-buttons',
-					$this->configs['components']['buttons']['css_uri'],
-					array(),
-					$last_mod
-				);
-		}
+		/* Button Styles */
+		$this->enqueue_buttons();
 
 		/* If using a child theme, auto-load the parent theme style. */
 		if ( is_child_theme( ) ) {

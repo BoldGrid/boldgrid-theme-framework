@@ -43,6 +43,7 @@ class Boldgrid_Framework_Activate {
 		$this->menus   = new Boldgrid_Framework_Menu( $this->configs );
 		$this->scss    = new Boldgrid_Framework_SCSS( $this->configs );
 		$this->color   = new Boldgrid_Framework_Customizer_Colors( $this->configs );
+		$this->staging = new Boldgrid_Framework_Staging( $this->configs );
 	}
 
 	/**
@@ -139,6 +140,11 @@ class Boldgrid_Framework_Activate {
 		// Check if staging and active.
 		// Theme mod to check if a palette has been set yet.
 		$option = get_option( 'theme_mods_' . get_stylesheet() );
+
+		if ( $this->staging->is_updating_staging() ) {
+			$staging_template = get_option( 'boldgrid_staging_template' );
+			$option = get_option( 'boldgrid_staging_theme_mods_' . $staging_template );
+		}
 		// Check that options exist.
 		if ( false === $option ) {
 			return;

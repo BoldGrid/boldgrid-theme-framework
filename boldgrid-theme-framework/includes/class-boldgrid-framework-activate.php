@@ -43,7 +43,6 @@ class Boldgrid_Framework_Activate {
 		$this->menus   = new Boldgrid_Framework_Menu( $this->configs );
 		$this->scss    = new Boldgrid_Framework_SCSS( $this->configs );
 		$this->color   = new Boldgrid_Framework_Customizer_Colors( $this->configs );
-		$this->staging = new Boldgrid_Framework_Staging( $this->configs );
 	}
 
 	/**
@@ -90,10 +89,25 @@ class Boldgrid_Framework_Activate {
 		update_option( 'boldgrid_framework_init', true );
 
 		// Set Color Palettes.
-		$this->set_palette();
+		$option = 'theme_mods_' . get_stylesheet();
+		$this->set_palette( $option );
 
 		// Do action for 3rd party.
 		do_action( 'boldgrid_theme_activate' );
+	}
+
+	public function do_staging_activate( $old, $new ) {
+		$option = 'boldgrid_staging_theme_mods_' . $new;
+		// Set the color palettes for staging.
+		$this->set_palette( $option );
+		// Force Recompile On Staging.
+		$staging_theme_mods = get_option( $option );
+		// If color palette is set for staging theme, delete the theme mods and then save them again.
+		if ( ! empty( $staging_theme_mods['boldgrid_color_palette'] ) ) {
+			update_option( $option, array() );
+			update_option( $option, $staging_theme_mods );
+		}
+		return $new;
 	}
 
 	/**
@@ -136,17 +150,10 @@ class Boldgrid_Framework_Activate {
 	 *
 	 * @since 1.1.7
 	 */
-	public function set_palette() {
-		// Check if staging and active.
-		// Theme mod to check if a palette has been set yet.
-		$option = get_option( 'theme_mods_' . get_stylesheet() );
-
-		if ( $this->staging->is_updating_staging() ) {
-			$staging_template = get_option( 'boldgrid_staging_template' );
-			$option = get_option( 'boldgrid_staging_theme_mods_' . $staging_template );
-		}
+	public function set_palette( $option ) {
+		$options = get_option( $option );
 		// Check that options exist.
-		if ( false === $option ) {
+		if ( false === $options ) {
 			return;
 		}
 
@@ -155,7 +162,7 @@ class Boldgrid_Framework_Activate {
 		$palette =  $this->configs['customizer-options']['colors']['defaults'];
 
 		// If there's not a palette set by user, then set it.
-		if ( ! array_key_exists( 'boldgrid_color_palette', $option ) && $enabled && $palette ) {
+		if ( ! array_key_exists( 'boldgrid_color_palette', $options ) && $enabled && $palette ) {
 			// Initizalize $theme_mod array.
 			$theme_mod = array();
 			// Get assigned default palette for category/theme.
@@ -177,10 +184,10 @@ class Boldgrid_Framework_Activate {
 			$encoded_theme_mod = wp_json_encode( $theme_mod );
 
 			// Set the theme mods.
-			$option['boldgrid_color_palette'] = $encoded_theme_mod;
-			$option['boldgrid_palette_class'] = $format;
+			$options['boldgrid_color_palette'] = $encoded_theme_mod;
+			$options['boldgrid_palette_class'] = $format;
 			// Update the theme mods.
-			update_option( 'theme_mods_' . get_stylesheet(), $option );
+			update_option( $option, $options );
 		}
 	}
 	/**

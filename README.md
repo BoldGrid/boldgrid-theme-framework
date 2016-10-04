@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.2.9 ###
+* Bug fix: Fixing issue compiling staging colors.
+
 ### 1.2.8 ###
 * Update: Adding additional text contrast classes.
 * Bug fix: Check colors are enabled and default palette exists before attempting to set palette.

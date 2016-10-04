@@ -47,7 +47,8 @@ class Boldgrid_Framework_Compile_Colors {
 	 */
 	public function get_active_palette() {
 		$boldgrid_colors = array();
-		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
+		$palettes = $this->get_palette();
+
 		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];
 			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
@@ -65,6 +66,27 @@ class Boldgrid_Framework_Compile_Colors {
 	}
 
 	/**
+	 * Get current palette colors.
+	 *
+	 * @since 1.2.8
+	 * @return array Current Active Palette.
+	 */
+	public function get_palette() {
+		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
+
+		if ( empty( $palettes ) ) {
+			$defaults = $this->configs['customizer-options']['colors']['defaults'];
+			$active_palette = Boldgrid_Framework_Customizer_Colors::get_simplified_external_palettes( $defaults );
+			$palette_class = key( $active_palette );
+			$state['active-palette'] = $active_palette[ $palette_class ]['format'];
+			$state['palettes'] = $active_palette;
+			$palettes['state'] = $state;
+		}
+
+		return $palettes;
+	}
+
+	/**
 	 * Get SCSS list for $colors variable.
 	 *
 	 * @since 1.2.3
@@ -72,7 +94,7 @@ class Boldgrid_Framework_Compile_Colors {
 	 */
 	public function get_color_list() {
 		$boldgrid_colors = '';
-		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
+		$palettes = $this->get_palette();
 
 		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];
@@ -92,7 +114,8 @@ class Boldgrid_Framework_Compile_Colors {
 	 */
 	public function get_neutral_color() {
 		$neutral_color = false;
-		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
+		$palettes = $this->get_palette();
+
 		$current_palette = $palettes['state']['active-palette'];
 		if ( ! empty( $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) ) {
 			$neutral_color = array(
@@ -121,7 +144,7 @@ class Boldgrid_Framework_Compile_Colors {
 		if ( true === $this->configs['components']['buttons']['enabled'] ) {
 			$btn_variables = $this->configs['components']['buttons']['variables'];
 			$color_variables = array_merge( $color_variables, $btn_variables );
-			$color_variables['ubtn-colors'] = self::get_button_colors();
+			$color_variables['ubtn-colors'] = $this->get_button_colors();
 			$color_variables['ubtn-bgcolor'] = '$' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '_' . $this->get_button_default_color() . ';';
 			$color_variables['ubtn-font-color'] = '$text-contrast-' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '_' . $this->get_button_default_color() . ';';
 			$color_variables['ubtn-theme-color'] = get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '_' . $this->get_button_default_color() . ';';
@@ -224,9 +247,9 @@ class Boldgrid_Framework_Compile_Colors {
 	 * @since 1.1
 	 * @return array $boldgrid_colors Array containing SCSS variable name.
 	 */
-	public static function get_button_colors() {
+	public function get_button_colors() {
 		$boldgrid_colors = '';
-		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
+		$palettes = $this->get_palette();
 
 		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];

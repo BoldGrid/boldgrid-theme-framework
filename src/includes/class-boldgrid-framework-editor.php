@@ -64,6 +64,8 @@ class Boldgrid_Framework_Editor {
 
 		if ( in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) ) {
 
+			$template_file = null;
+
 			if ( false == empty( $post_id ) ) {
 				$post = get_post( $post_id );
 

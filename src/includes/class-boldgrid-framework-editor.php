@@ -102,8 +102,12 @@ class Boldgrid_Framework_Editor {
 			}
 
 			add_action( 'edit_form_after_title',
-				function () use ( $post_type, $display_page_title, $disabled ) {
+				function () use ( $post_type, $display_page_title, $disabled, $template_file ) {
 					$checked = checked( $display_page_title, true, false );
+					$message = "The {$post_type} title displays as a heading at the top of your {$post_type}. Your BoldGrid theme supports this feature.";
+					if ( 'page_home.php' === $template_file ) {
+						$message = "The Home template does not support adding a page title.  You can change the template from the dropdown box in the Page Attributes section.";
+					}
 					echo <<<HTML
 						<div id="boldgrid-hide-post-title">
 							<input style='display:none' type='checkbox' value='0' checked='checked' name='boldgrid-display-post-title'>
@@ -115,8 +119,7 @@ class Boldgrid_Framework_Editor {
 								<div class="boldgrid-tooltip-arrow">
 								</div>
 								<div class="boldgrid-tooltip-inner">
-									The {$post_type} title displays as a heading at the top of your {$post_type}.
-									Your BoldGrid theme supports this feature.
+									{$message}
 								</div>
 							</div>
 						</div>

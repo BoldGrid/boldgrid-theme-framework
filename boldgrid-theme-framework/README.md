@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3 ###
+* Update: Boldgrid sections now have a min-height of 30px inside site content.
+
 ### 1.2.9 ###
 * Bug fix: Fixing issue compiling staging colors.
 

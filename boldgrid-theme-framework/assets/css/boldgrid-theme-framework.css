@@ -438,6 +438,9 @@ span.author.vcard {
 #tinymce.mce-content-body {
   height: auto; }
 
+.mce-content-body .boldgrid-section {
+  min-height: 30px; }
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -466,6 +469,9 @@ html, body, .site, .site-content {
 /*--------------------------------------------------------------
 # GridBlocks
 --------------------------------------------------------------*/
+.site-content .boldgrid-section {
+  min-height: 30px; }
+
 .gridblock h1, .gridblock h2, .gridblock h3, .gridblock h4, .gridblock h5, .gridblock h6, .gridblock ol, .gridblock ul, .gridblock li, .gridblock p {
   margin: 10px 0; }
 

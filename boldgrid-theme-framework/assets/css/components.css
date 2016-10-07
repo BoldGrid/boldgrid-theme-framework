@@ -344,3 +344,10 @@
 .site-header .boldgrid-section,
 .site-footer .boldgrid-section {
   min-height: 0; }
+
+/*--------------------------------------------------------------
+# Maps
+--------------------------------------------------------------*/
+iframe.boldgrid-google-maps,
+.boldgrid-google-maps iframe {
+  max-width: 100%; }

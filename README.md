@@ -26,7 +26,7 @@ user guide for more information.
 
 ## Changelog ##
 
-### 1.3 ###
+### 1.2.10 ###
 * Update: Boldgrid sections now have a min-height of 30px inside site content.
 * Update: When Home template is used, update disabled page title tooltip message.
 

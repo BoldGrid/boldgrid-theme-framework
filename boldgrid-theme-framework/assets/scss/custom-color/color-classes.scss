@@ -98,6 +98,9 @@ $names: color background background-color border-color;
 		.color#{$color}-#{nth( $names, $i )} { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
 		.color#{$color}-#{nth($names, $i)}-hover:hover { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
 	}
+	@if variable-exists( palette-primary-neutral-color ) {
+		.color-neutral-#{nth($names, $i)} { #{nth( $names, $i )}: $palette-primary-neutral-color !important; }
+	}
 }
 /*
 * Base Colors

@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3 ###
+* Update: Prevent Buttons from wrapping.
+
 ### 1.2.11 ###
 * Update: Added neutral color color classes.
 

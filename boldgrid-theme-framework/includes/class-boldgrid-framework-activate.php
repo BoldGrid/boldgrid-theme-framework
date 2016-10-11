@@ -151,11 +151,7 @@ class Boldgrid_Framework_Activate {
 	 * @since 1.1.7
 	 */
 	public function set_palette( $option ) {
-		$options = get_option( $option );
-		// Check that options exist.
-		if ( false === $options ) {
-			return;
-		}
+		$options = get_option( $option, array() );
 
 		// Check that colors are enabled and defaults exist.
 		$enabled = $this->configs['customizer-options']['colors']['enabled'];

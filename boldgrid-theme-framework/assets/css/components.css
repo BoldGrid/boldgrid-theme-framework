@@ -351,3 +351,11 @@
 iframe.boldgrid-google-maps,
 .boldgrid-google-maps iframe {
   max-width: 100%; }
+
+/*--------------------------------------------------------------
+# Buttons
+--------------------------------------------------------------*/
+.btn,
+.button-primary,
+.button-secondary {
+  white-space: nowrap; }

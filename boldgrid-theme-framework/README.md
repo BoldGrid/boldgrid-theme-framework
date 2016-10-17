@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3.1 ###
+* Update: Changing post navigation links from H1s to H2s.
+
 ### 1.3 ###
 * Update: Prevent Buttons from wrapping.
 

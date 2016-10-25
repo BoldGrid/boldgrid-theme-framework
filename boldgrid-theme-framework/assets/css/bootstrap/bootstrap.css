@@ -5660,3 +5660,7 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+
+@media (min-width: 768px) {
+  .text-sm-left {
+    text-align: left; } }

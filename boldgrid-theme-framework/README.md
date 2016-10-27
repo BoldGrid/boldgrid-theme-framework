@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.3.1 ###
 * Update: Changing post navigation links from H1s to H2s.
+* Update: Changing format of boldgrid_menus_created option.
 
 ### 1.3 ###
 * Update: Prevent Buttons from wrapping.

@@ -64,9 +64,24 @@ class Boldgrid_Framework_Menu {
 			return;
 		}
 
-		// Delete each menu.
-		foreach ( $menus_created as $menu_name ) {
-			wp_delete_nav_menu( $menu_name );
+		/*
+		 * Delete our menus.
+		 *
+		 * The boldgrid_menus_created option may be saved in 1 of 2 formats. The if conditional
+		 * matchs the new format, the else matches the original format.
+		 *
+		 * Please see doc block of create_default_menus method for more info.
+		 */
+		if( isset( $menus_created['option_version'] ) ) {
+			unset( $menus_created['option_version'] );
+
+			foreach ( $menus_created as $menu_id => $menu_key ) {
+				wp_delete_nav_menu( $menu_id );
+			}
+		} else {
+			foreach ( $menus_created as $menu_name ) {
+				wp_delete_nav_menu( $menu_name );
+			}
 		}
 
 		// Reset the boldgrid_menus_created option.
@@ -163,13 +178,24 @@ class Boldgrid_Framework_Menu {
 	 * automatically, so this will grab the menu items specified in the
 	 * configs and set it to the corresponding menu locations.
 	 *
+	 * As of version 1.3.1:
+	 *
+	 * The boldgrid_menus_created option is being saved in this format:
+	 * [ menu id ] = [default-menus][key]   Example: [2984]='social'
+	 * ... instead of this format:
+	 * [ incrementing key ] = Menu name     Example: [0]='Social Media'
+	 *
+	 * This will make it easier to identify which menus we created and the id of those menu. Before
+	 * making this change, if the user renamed the 'Social Media' menu, we would never be able to
+	 * find it. Now we can find it by id.
+	 *
 	 * @since     1.0.0
 	 */
 	public function create_default_menus() {
 		// Keep track of any menus we create.
 		$boldgrid_menus_created = array();
 
-		foreach ( $this->configs['menu']['default-menus'] as $menu_configs ) {
+		foreach ( $this->configs['menu']['default-menus'] as $key => $menu_configs ) {
 
 			// Menu name.
 			$name = $menu_configs['label'];
@@ -184,7 +210,7 @@ class Boldgrid_Framework_Menu {
 			// Make sure the menu was created successfully.
 			if ( ! is_wp_error( $menu_id ) ) {
 				// Add this menu to our array of menus created.
-				$boldgrid_menus_created[] = $name;
+				$boldgrid_menus_created[ $menu_id ] = $key;
 
 				// Get the menu object by its name.
 				$menu = get_term_by( 'name', $name, 'nav_menu' );
@@ -200,6 +226,12 @@ class Boldgrid_Framework_Menu {
 				set_theme_mod( 'nav_menu_locations', $locations );
 			}
 		}
+
+		/*
+		 * Set a flag to show we're saving this data in a different format. Please see comment in
+		 * this method's doc block regarding "As of version 1.3.1".
+		 */
+		$boldgrid_menus_created[ 'option_version' ] = 2;
 
 		// Save the menus we created as an option.
 		update_option( 'boldgrid_menus_created', $boldgrid_menus_created );

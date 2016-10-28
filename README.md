@@ -29,6 +29,7 @@ user guide for more information.
 ### 1.3.1 ###
 * Update: Changing post navigation links from H1s to H2s.
 * Update: Changing format of boldgrid_menus_created option.
+* Update: Using meaningful keys in boldgrid_widgets_created option.
 * Bug fix: Fixing issue with bad data in boldgrid_widgets_created.
 
 ### 1.3 ###

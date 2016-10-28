@@ -142,7 +142,7 @@ class Boldgrid_Framework_Widgets {
 			}
 
 			foreach ( $widget_single as $widget_data ) {
-				if ( empty( $widget_data['label'] ) ) {
+				if ( ! is_array( $widget_data ) || empty( $widget_data['label'] ) ) {
 					continue;
 				}
 

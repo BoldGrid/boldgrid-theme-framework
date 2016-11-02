@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3.2 ###
+* Bug fix: Hide inline link editor when closing black-studio panel.
+
 ### 1.3.1 ###
 * Update: Changing post navigation links from H1s to H2s.
 * Update: Changing format of boldgrid_menus_created option.

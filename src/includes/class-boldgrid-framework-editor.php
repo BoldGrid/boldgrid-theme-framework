@@ -146,8 +146,20 @@ HTML;
 			'post-new.php'
 		);
 
+		$valid_post_types = array(
+			'page',
+			'post',
+		);
+
 		if ( ! empty( $pagenow ) && ! in_array( $pagenow, $valid_pages ) ) {
 			return;
+		}
+
+		// Currently only pages and posts are supported. @since 1.3.1
+		if( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
+			if( ! in_array( $this->get_post_type(), $valid_post_types ) ) {
+				return;
+			}
 		}
 
 		$mce_inline_styles = '';
@@ -166,6 +178,35 @@ HTML;
 		$plugin_array['boldgrid_theme_framework'] = $editor_js_file;
 
 		return $plugin_array;
+	}
+
+	/**
+	 * Get the current post type.
+	 *
+	 * This method is meant to be ran from either 'post.php' or 'post-new.php'. Ran from anywhere
+	 * else, and you may get unexpected results.
+	 *
+	 * @since 1.3.2
+	 */
+	public function get_post_type() {
+		$current_post_id = ! empty( $_REQUEST['post'] ) ? $_REQUEST['post'] : null;
+		$current_post = get_post( $current_post_id );
+
+		/*
+		 * Determine the current post type.
+		 *
+		 * The post type is "post", unless specified by $current_post->post_type or
+		 * $_GET['post_type'].
+		*/
+		if( ! empty( $current_post->post_type ) ) {
+			$current_post_type = $current_post->post_type;
+		} elseif( isset( $_GET['post_type'] ) ) {
+			$current_post_type = $_GET['post_type'];
+		} else {
+			$current_post_type = 'post';
+		}
+
+		return $current_post_type;
 	}
 
 	/**

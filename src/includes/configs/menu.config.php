@@ -75,6 +75,7 @@ return array(
 					'menu-item-url' => '//facebook.com',
 					'menu-item-status' => 'publish',
 					'menu-item-attr-title' => __( 'Facebook' ),
+					'menu-item-target' => '_blank',
 				),
 				array(
 					'menu-item-title' => __( 'Twitter' ),
@@ -82,6 +83,7 @@ return array(
 					'menu-item-url' => '//twitter.com',
 					'menu-item-status' => 'publish',
 					'menu-item-attr-title' => __( 'Twitter' ),
+					'menu-item-target' => '_blank',
 				),
 				array(
 					'menu-item-title' => __( 'Google Plus' ),
@@ -89,6 +91,7 @@ return array(
 					'menu-item-url' => '//plus.google.com',
 					'menu-item-status' => 'publish',
 					'menu-item-attr-title' => __( 'Google Plus' ),
+					'menu-item-target' => '_blank',
 				),
 				array(
 					'menu-item-title' => __( 'LinkedIn' ),
@@ -96,6 +99,7 @@ return array(
 					'menu-item-url' => '//linkedin.com',
 					'menu-item-status' => 'publish',
 					'menu-item-attr-title' => __( 'LinkedIn' ),
+					'menu-item-target' => '_blank',
 				),
 				array(
 					'menu-item-title' => __( 'Youtube' ),
@@ -103,6 +107,7 @@ return array(
 					'menu-item-url' => '//youtube.com',
 					'menu-item-status' => 'publish',
 					'menu-item-attr-title' => __( 'Youtube' ),
+					'menu-item-target' => '_blank',
 				),
 			),
 		),

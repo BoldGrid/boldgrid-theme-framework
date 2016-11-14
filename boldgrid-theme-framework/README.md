@@ -29,6 +29,7 @@ user guide for more information.
 ### 1.3.2 ###
 * Bug fix: Hide inline link editor when closing black-studio panel.
 * Bug fix: Load theme styles only for pages and posts.
+* Update: Open social media icons in new tab.
 
 ### 1.3.1 ###
 * Update: Changing post navigation links from H1s to H2s.

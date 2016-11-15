@@ -240,6 +240,18 @@ var bstw;
 					bstw( $( this ) ).update_content();
 				});
 			}
+
+			/*
+			 * BoldGrid.
+			 *
+			 * Let's say you're in the Customizer editing your call to action. If you click on the
+			 * button, WordPress' "Inline Link Editing" (added in version 4.5, see their release
+			 * notes) will open up. If you then immediately close the black-studio widget panel,
+			 * you'll notice the inline link editor still shows.
+			 *
+			 * When closing the black-studio panel, remove any inline link editors.
+			 */
+			$( '.wp-link-preview:visible' ).closest( '.mce-toolbar-grp' ).remove();
 		});
 
 		// Event handler for widget added

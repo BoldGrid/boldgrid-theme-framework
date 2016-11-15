@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3.3 ###
+* Bug fix: Merging standard and minified js files.
+
 ### 1.3.2 ###
 * Bug fix: Hide inline link editor when closing black-studio panel.
 * Bug fix: Load theme styles only for pages and posts.

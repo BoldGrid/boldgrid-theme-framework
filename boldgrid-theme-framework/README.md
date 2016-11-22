@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3.4 ###
+* Bug fix: Ensure starting over staging does not affect active site.
+
 ### 1.3.3 ###
 * Bug fix: Merging standard and minified js files.
 

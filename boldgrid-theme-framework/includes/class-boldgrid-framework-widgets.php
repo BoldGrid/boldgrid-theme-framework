@@ -71,14 +71,33 @@ class Boldgrid_Framework_Widgets {
 	 * Delete all widgets that were created automatically
 	 *
 	 * @since 1.0.0
+	 *
+	 * @param bool $active Delete widgets from active site.
 	 */
-	public function remove_saved_widgets() {
+	public function remove_saved_widgets( $active = true ) {
+
+		/*
+		 * Determine proper option names to work with.
+		 *
+		 * This method may be called twice in the same browser request, once for active site and
+		 * once for staging. Because of this, we cannot rely on the BoldGrid Staging plugin to grab
+		 * the correct widget data because you can't pass a staging=1 flag in the url and expect
+		 * both calls to behave differently.
+		 */
+		if( $active ) {
+			$option_widgets_created = 'boldgrid_widgets_created';
+			$option_sidebars = 'sidebars_widgets';
+		} else {
+			$option_widgets_created = 'boldgrid_staging_boldgrid_widgets_created';
+			$option_sidebars = 'boldgrid_staging_sidebars_widgets';
+		}
+
 		// Remove only created widgets.
 		// Grab all widget data and update in a temp array.
 		$widgets = array();
-		$sidebar_widgets = get_option( 'sidebars_widgets', array() );
+		$sidebar_widgets = get_option( $option_sidebars, array() );
 
-		foreach ( get_option( 'boldgrid_widgets_created', array() ) as $widget_id ) {
+		foreach ( get_option( $option_widgets_created, array() ) as $widget_id ) {
 			// Example: black-studio-tinymce-102.
 			$widget_name = $this->get_widget_id_base( $widget_id );
 			// Example: black-studio-tinymce.
@@ -114,11 +133,11 @@ class Boldgrid_Framework_Widgets {
 		foreach ( $widgets as $widget_name => $widget_update_data ) {
 			update_option( 'widget_' . $widget_name, $widget_update_data );
 		}
-		update_option( 'sidebars_widgets', $sidebar_widgets );
-		$sidebar_widgets = get_option( 'sidebars_widgets', array() );
+		update_option( $option_sidebars, $sidebar_widgets );
+		$sidebar_widgets = get_option( $option_sidebars, array() );
 
 		// Clear cleanup storage.
-		update_option( 'boldgrid_widgets_created', array() );
+		update_option( $option_widgets_created, array() );
 	}
 
 	/**

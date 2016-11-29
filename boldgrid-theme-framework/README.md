@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.3.4 ###
 * Bug fix: Ensure starting over staging does not affect active site.
+* Update: Removing custom CSS panel added in WordPress 4.7 Core update.
 
 ### 1.3.3 ###
 * Bug fix: Merging standard and minified js files.

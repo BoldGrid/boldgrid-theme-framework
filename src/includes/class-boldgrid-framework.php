@@ -649,6 +649,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'boldgrid_footer_bottom', $base, 'display_footer_html' );
 		// Enqueue live preview javascript in Theme Customizer admin screen.
 		$this->loader->add_action( 'customize_preview_init', $base, 'live_preview' );
+		$this->loader->add_action( 'customize_register', $base, 'remove_css_section', 15 );
 	}
 
 	/**

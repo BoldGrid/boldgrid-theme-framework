@@ -40,6 +40,15 @@ class Boldgrid_Framework_Customizer_Background {
 	protected $configs;
 
 	/**
+	 * Value of the sanitized background attachment field.
+	 *
+	 * @since     1.3.1
+	 * @access    protected
+	 * @var       string     $sanitized_attachment_value      Value of the sanitized background attachment field.
+	 */
+	protected $sanitized_attachment_value;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param     string $configs       The BoldGrid Theme Framework configurations.
@@ -263,31 +272,48 @@ class Boldgrid_Framework_Customizer_Background {
 			);
 	}
 
-	public function overwrite_background_attachment( $wp_customize ) {
-		$wp_version = get_bloginfo( 'version' );
-		if ( version_compare( $wp_version, '4.6.2', '<=' ) ) {
-			return;
+	/**
+	 * Validate the attachment value. Set class prop to be used on later filter.
+	 *
+	 * @param string $value Value of background attachment field.
+	 *
+	 * @since 1.3.1
+	 */
+	public function pre_sanitize_attachment( $value ) {
+		if ( in_array( $value, array( 'scroll', 'fixed', 'parallax' ) ) ) {
+			$this->sanitized_attachment_value = $value;
 		}
+	}
 
+	/**
+	 * Overwrite the santization callback result, if we have already validated the value.
+	 *
+	 * @param string $result Result of the santize callback.
+	 *
+	 * @since 1.3.1
+	 */
+	public function post_sanitize_attachment( $result ) {
+		if ( ! empty( $this->sanitized_attachment_value ) ) {
+			$result = $this->sanitized_attachment_value;
+		}
+		return $result;
+	}
+
+	/**
+	 * Add Boldgrid background attachment.
+	 *
+	 * This relicates the control as we dislayed it pre-4.7. Only loads on later versions.
+	 *
+	 * @param array $wp_customize WP_Customize object.
+	 *
+	 * @since 1.3.1
+	 */
+	public function boldgrid_background_attachment( $wp_customize ) {
 		$wp_customize->remove_control( 'background_size' );
 		$wp_customize->remove_control( 'background_position' );
 		$wp_customize->remove_control( 'background_preset' );
-		//$wp_customize->remove_control( 'background_attachment' );
+		$wp_customize->remove_control( 'background_attachment' );
 
-		// Add paralax to valid attachment types: https://core.trac.wordpress.org/changeset/38948
-		$sanitize_callback = $wp_customize->get_setting( 'background_attachment' )->sanitize_callback;
-		$wp_customize->get_setting( 'background_attachment' )->sanitize_callback = null;
-		/*
-		$wp_customize->get_setting( 'background_attachment' )->sanitize_callback = function ( $value, $setting ) use ( $sanitize_callback ){
-			$sanitize_result = call_user_func ( $sanitize_callback, $value, $setting );
-			if ( 'parallax' === $value ) {
-				$sanitize_result = $value;
-			}
-			return $sanitize_result;
-		};*/
-
-		// Add controllers for settings.
-		/*
 		$wp_customize->add_control(
 			'boldgrid_background_attachment',
 			array(
@@ -302,7 +328,7 @@ class Boldgrid_Framework_Customizer_Background {
 					'fixed' => __( 'Fixed', 'bgtfw' )
 				)
 			)
-		);*/
+		);
 	}
 
 	/**
@@ -324,11 +350,9 @@ class Boldgrid_Framework_Customizer_Background {
 		$wp_customize->get_control( 'background_attachment' )->choices = $new_choices;
 		$wp_customize->get_control( 'background_attachment' )->priority = 14;
 		$wp_customize->get_control( 'boldgrid_background_image_size' )->priority = 15;
-		$wp_customize->get_control( 'background_repeat' )->priority = 17;
+		$wp_customize->get_control( 'background_repeat' )->priority = 18;
 		$wp_customize->get_section( 'background_image' )->title = __( 'Background', 'bgtfw' );
 		$wp_customize->remove_control( 'background_color' );
-
-		$this->overwrite_background_attachment( $wp_customize );
 
 		return $wp_customize;
 	}

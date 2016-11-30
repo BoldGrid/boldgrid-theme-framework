@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3.1 ###
+* Update: Removing custom CSS panel added in WordPress 4.7 Core update.
+
 ### 1.3 ###
 * Update: Prevent Buttons from wrapping.
 

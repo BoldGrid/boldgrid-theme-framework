@@ -276,6 +276,10 @@
 	}
 }
 
+#customize-control-boldgrid-color-palette .customize-control-description a {
+	text-decoration: none;
+}
+
 @media (min-width: 641px) {
 	#customize-control-boldgrid-color-palette .customize-control-description {
 		width: 260px;
@@ -352,6 +356,18 @@
 			float: right;
 		}
 	}
+}
+
+/*****************************************************
+*******************Help Icons************************
+******************************************************/
+#customize-control-background_repeat [data-hint]:after {
+    top: -50px;
+}
+
+.hint,
+[data-hint] {
+    text-decoration: none;
 }
 
 /*****************************************************

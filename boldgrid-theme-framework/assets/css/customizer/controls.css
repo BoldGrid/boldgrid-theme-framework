@@ -247,6 +247,9 @@
 .boldgrid-color-palette-wrapper .wp-picker-container {
   margin-bottom: 5px; }
 
+#customize-control-boldgrid-color-palette .customize-control-description a {
+  text-decoration: none; }
+
 @media (min-width: 641px) {
   #customize-control-boldgrid-color-palette .customize-control-description {
     width: 260px; } }
@@ -318,6 +321,16 @@
 
 .boldgrid-advanced-options-label .dashicons-arrow-down {
   float: right; }
+
+/*****************************************************
+*******************Help Icons************************
+******************************************************/
+#customize-control-background_repeat [data-hint]:after {
+  top: -50px; }
+
+.hint,
+[data-hint] {
+  text-decoration: none; }
 
 /*****************************************************
 ************Palette Dashicons Generate Mode****************

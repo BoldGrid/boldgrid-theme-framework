@@ -69,7 +69,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		//Init Button Set
 	    $( "#boldgrid-background-type" ).buttonset();
 
-		$( '.accordion-section-content' ).on( 'scroll', function( e ) {
+		$( '.accordion-section-content, .wp-full-overlay-sidebar-content' ).on( 'scroll', function( e ) {
 			var $this = $(this);
 			var top = $this.scrollTop();
 			if ( top > 75 && wp.customize( 'boldgrid_background_type')() == 'pattern' ) {

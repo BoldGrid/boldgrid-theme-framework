@@ -29,7 +29,8 @@ user guide for more information.
 ### 1.3.1 ###
 * Update: Removing custom CSS panel added in WordPress 4.7 Core update.
 * Update: Removing visible edit buttons added in WordPress 4.7 Core update.
-* Update: Fixing issue causing fatal Javascript issues in background controls after 4.7 Core update.
+* Bug fix: Fixing issue causing fatal Javascript issues in background controls after 4.7 Core update.
+* Bug fix: Fixing issue with stacked display controls in background section.
 
 ### 1.3 ###
 * Update: Prevent Buttons from wrapping.

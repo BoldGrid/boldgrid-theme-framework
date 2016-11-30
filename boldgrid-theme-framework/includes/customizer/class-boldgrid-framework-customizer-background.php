@@ -264,6 +264,10 @@ class Boldgrid_Framework_Customizer_Background {
 	}
 
 	public function overwrite_background_attachment( $wp_customize ) {
+		$wp_version = get_bloginfo( 'version' );
+		if ( version_compare( $wp_version, '4.6.2', '<=' ) ) {
+			return;
+		}
 
 		$wp_customize->remove_control( 'background_size' );
 		$wp_customize->remove_control( 'background_position' );

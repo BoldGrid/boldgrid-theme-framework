@@ -247,9 +247,6 @@
 .boldgrid-color-palette-wrapper .wp-picker-container {
   margin-bottom: 5px; }
 
-#customize-control-boldgrid-color-palette .customize-control-description a {
-  text-decoration: none; }
-
 @media (min-width: 641px) {
   #customize-control-boldgrid-color-palette .customize-control-description {
     width: 260px; } }
@@ -327,10 +324,6 @@
 ******************************************************/
 #customize-control-background_repeat [data-hint]:after {
   top: -50px; }
-
-.hint,
-[data-hint] {
-  text-decoration: none; }
 
 /*****************************************************
 ************Palette Dashicons Generate Mode****************
@@ -788,3 +781,16 @@
   -ms-transform: translate(0px, 0px);
   /* IE 9 */
   transform: translate(0px, 0px); }
+
+#customize-controls .dashicons,
+#customize-controls .dashicons-before:before,
+#customize-controls .customize-control-dropdown-pages .add-new-toggle,
+#customize-controls [data-hint] {
+  text-decoration: none; }
+
+#customize-controls [data-action="open-color-picker"] {
+  white-space: nowrap;
+  text-decoration: none; }
+
+#customize-controls [data-action="open-color-picker"] .dashicons, #customize-controls [data-action="open-color-picker"] .dashicons-before:before {
+  font-size: 1.4em; }

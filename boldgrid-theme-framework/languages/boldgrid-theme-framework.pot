@@ -266,19 +266,31 @@ msgstr ""
 msgid "Background Type"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:281
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:294, src/includes/customizer/class-boldgrid-framework-customizer-background.php:323
 msgid "Background Effects"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:288
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:300
+msgid "Parallax"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:301
+msgid "Scroll"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:302
+msgid "Fixed"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:328
 msgid "Background"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:333
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:375
 msgid "Subtle Patterns"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:519
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:562
 msgid "Background Image"
 msgstr ""
 

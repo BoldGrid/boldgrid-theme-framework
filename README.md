@@ -32,6 +32,7 @@ user guide for more information.
 * Bug fix: Fixing issue causing fatal Javascript issues in background controls after 4.7 Core update.
 * Bug fix: Fixing issue with stacked display controls in background section, 4.7.
 * Bug fix: Fixed issue where help text in menu and widget customizer not visible 4.7.
+* Bug fix: Fixed errors when viewing a changeset id on the front end: 4.7.
 
 ### 1.3 ###
 * Update: Prevent Buttons from wrapping.

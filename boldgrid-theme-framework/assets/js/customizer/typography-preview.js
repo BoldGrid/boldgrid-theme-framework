@@ -9,7 +9,7 @@
 	"use strict";
 
 	// Check each active nav menu location in customizer.
-	var $menus = parent.wp.customize.section( 'menu_locations' ).controls(),
+	var $menus = [],
 		$window = $( window ),
 		shadowControls = [
 		    'logo_shadow_color',
@@ -18,6 +18,8 @@
 		    'logo_shadow_horizontal',
 		    'logo_shadow_switch'
 		];
+
+	$menus = parent.wp.customize.section ? parent.wp.customize.section( 'menu_locations' ).controls() : [];
 
 	// Loop through nav menus for live preview changes.
 	_.each( $menus, function( id ) {

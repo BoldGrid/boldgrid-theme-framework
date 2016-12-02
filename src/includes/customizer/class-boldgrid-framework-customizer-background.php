@@ -40,6 +40,15 @@ class Boldgrid_Framework_Customizer_Background {
 	protected $configs;
 
 	/**
+	 * Value of the sanitized background attachment field.
+	 *
+	 * @since     1.3.1
+	 * @access    protected
+	 * @var       string     $sanitized_attachment_value      Value of the sanitized background attachment field.
+	 */
+	protected $sanitized_attachment_value;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param     string $configs       The BoldGrid Theme Framework configurations.
@@ -122,7 +131,7 @@ class Boldgrid_Framework_Customizer_Background {
 				'section' => 'background_image',
 				'transport' => 'postMessage',
 				'default' => $configs['customizer-options']['background']['defaults']['boldgrid_background_vertical_position'],
-				'priority' => 50,
+				'priority' => 16,
 				'choices' => array(
 					'min' => - 100,
 					'max' => 100,
@@ -139,7 +148,7 @@ class Boldgrid_Framework_Customizer_Background {
 				'section' => 'background_image',
 				'transport' => 'postMessage',
 				'default' => $configs['customizer-options']['background']['defaults']['boldgrid_background_horizontal_position'],
-				'priority' => 50,
+				'priority' => 17,
 				'choices' => array(
 					'min' => - 100,
 					'max' => 100,
@@ -264,6 +273,65 @@ class Boldgrid_Framework_Customizer_Background {
 	}
 
 	/**
+	 * Validate the attachment value. Set class prop to be used on later filter.
+	 *
+	 * @param string $value Value of background attachment field.
+	 *
+	 * @since 1.3.1
+	 */
+	public function pre_sanitize_attachment( $value ) {
+		if ( in_array( $value, array( 'scroll', 'fixed', 'parallax' ) ) ) {
+			$this->sanitized_attachment_value = $value;
+		}
+	}
+
+	/**
+	 * Overwrite the santization callback result, if we have already validated the value.
+	 *
+	 * @param string $result Result of the santize callback.
+	 *
+	 * @since 1.3.1
+	 */
+	public function post_sanitize_attachment( $result ) {
+		if ( ! empty( $this->sanitized_attachment_value ) ) {
+			$result = $this->sanitized_attachment_value;
+		}
+		return $result;
+	}
+
+	/**
+	 * Add Boldgrid background attachment.
+	 *
+	 * This relicates the control as we dislayed it pre-4.7. Only loads on later versions.
+	 *
+	 * @param array $wp_customize WP_Customize object.
+	 *
+	 * @since 1.3.1
+	 */
+	public function boldgrid_background_attachment( $wp_customize ) {
+		$wp_customize->remove_control( 'background_size' );
+		$wp_customize->remove_control( 'background_position' );
+		$wp_customize->remove_control( 'background_preset' );
+		$wp_customize->remove_control( 'background_attachment' );
+
+		$wp_customize->add_control(
+			'boldgrid_background_attachment',
+			array(
+				'label' => __( 'Background Effects', 'bgtfw' ),
+				'section' => 'background_image',
+				'settings' => 'background_attachment',
+				'priority' => 14,
+				'type' => 'radio',
+				'choices' => array(
+					'parallax' => __( 'Parallax', 'bgtfw' ),
+					'scroll' => __( 'Scroll', 'bgtfw' ),
+					'fixed' => __( 'Fixed', 'bgtfw' )
+				)
+			)
+		);
+	}
+
+	/**
 	 * Rearrange general controls and sections in the customizer menu.
 	 *
 	 * @param array $wp_customize WP_Customize object.
@@ -282,9 +350,7 @@ class Boldgrid_Framework_Customizer_Background {
 		$wp_customize->get_control( 'background_attachment' )->choices = $new_choices;
 		$wp_customize->get_control( 'background_attachment' )->priority = 14;
 		$wp_customize->get_control( 'boldgrid_background_image_size' )->priority = 15;
-		$wp_customize->get_control( 'boldgrid_background_horizontal_position' )->priority = 15;
-		$wp_customize->get_control( 'boldgrid_background_vertical_position' )->priority = 16;
-		$wp_customize->get_control( 'background_repeat' )->priority = 17;
+		$wp_customize->get_control( 'background_repeat' )->priority = 18;
 		$wp_customize->get_section( 'background_image' )->title = __( 'Background', 'bgtfw' );
 		$wp_customize->remove_control( 'background_color' );
 
@@ -514,10 +580,11 @@ class Boldgrid_Framework_Customizer_Background {
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Background_Crop' );
 
 		$wp_customize->remove_control( 'background_image' );
+
 		$wp_customize->add_control( new Boldgrid_Framework_Background_Crop( $wp_customize, 'background_image', array(
 			'section'     => 'background_image',
 			'label'       => __( 'Background Image', 'bgtfw' ),
-			'priority'    => 10,
+			'priority'    => 9,
 			'flex_width'  => true,
 			'flex_height' => true,
 			'width'       => $this->configs['customizer-options']['background']['defaults']['recommended_image_width'],

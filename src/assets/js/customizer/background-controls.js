@@ -32,7 +32,6 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var $image_background = $('#customize-control-background_image');
 		var $repeat_background = $('#customize-control-background_repeat');
 		var $pos_x_background = $('#customize-control-background_position_x');
-		var $attachment_background = $('#customize-control-background_attachment');
 
 		self.$background_color_picker_color = $flat_color_background.find('.wp-color-result');
 		var $background_color_picker = $flat_color_background.find('.wp-color-picker');
@@ -70,7 +69,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		//Init Button Set
 	    $( "#boldgrid-background-type" ).buttonset();
 
-		$( '.accordion-section-content' ).on( 'scroll', function( e ) {
+		$( '.accordion-section-content, .wp-full-overlay-sidebar-content' ).on( 'scroll', function( e ) {
 			var $this = $(this);
 			var top = $this.scrollTop();
 			if ( top > 75 && wp.customize( 'boldgrid_background_type')() == 'pattern' ) {
@@ -157,7 +156,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'boldgrid_background_image_size' ).deactivate( { duration: 0 } );
 			wp.customize.control( 'background_image' ).deactivate( { duration: 0 } );
 			wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
-			wp.customize.control( 'background_attachment' ).deactivate( { duration: 0 } );
+			getAttachmentControl().deactivate( { duration: 0 } );
 
 
 		} else {
@@ -166,20 +165,20 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'boldgrid_background_horizontal_position' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_background_vertical_position' ).activate( { duration: 0 } );
 			wp.customize.control( 'background_image' ).activate( { duration: 0 } );
-			wp.customize.control( 'background_attachment' ).activate( { duration: 0 } );
+			getAttachmentControl().activate( { duration: 0 } );
 			wp.customize.control( 'background_repeat' ).activate( { duration: 0 } );
 
 			if ( !bg_image ) {
 				wp.customize.control( 'boldgrid_background_horizontal_position' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_vertical_position' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_image_size' ).deactivate( { duration: 0 } );
-				wp.customize.control( 'background_attachment' ).deactivate( { duration: 0 } );
+				getAttachmentControl().deactivate( { duration: 0 } );
 				wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
 			} else {
 				wp.customize.control( 'boldgrid_background_horizontal_position' ).activate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_vertical_position' ).activate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_image_size' ).activate( { duration: 0 } );
-				wp.customize.control( 'background_attachment' ).activate( { duration: 0 } );
+				getAttachmentControl().activate( { duration: 0 } );
 				wp.customize.control( 'background_repeat' ).activate( { duration: 0 } );
 			}
 
@@ -190,6 +189,14 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			}
 		}
 
+	};
+
+	var getAttachmentControl = function () {
+		if ( wp.customize.control( 'background_attachment' ) ) {
+			return wp.customize.control( 'background_attachment' );
+		} else {
+			return wp.customize.control( 'boldgrid_background_attachment' );
+		}
 	};
 
 	var bind_all = function () {

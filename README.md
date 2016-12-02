@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.3
-* **Tested up to:** 4.6.1
+* **Tested up to:** 4.7
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,14 @@ user guide for more information.
 * Update: Changing format of boldgrid_menus_created option.
 * Update: Using meaningful keys in boldgrid_widgets_created option.
 * Bug fix: Fixing issue with bad data in boldgrid_widgets_created.
+
+### 1.3.0.1 ###
+* Update: Removing custom CSS panel added in WordPress 4.7 Core update.
+* Update: Removing visible edit buttons added in WordPress 4.7 Core update.
+* Bug fix: Fixing issue causing fatal Javascript issues in background controls after 4.7 Core update.
+* Bug fix: Fixing issue with stacked display controls in background section, 4.7.
+* Bug fix: Fixed issue where help text in menu and widget customizer not visible 4.7.
+* Bug fix: Fixed errors when viewing a changeset id on the front end: 4.7.
 
 ### 1.3 ###
 * Update: Prevent Buttons from wrapping.

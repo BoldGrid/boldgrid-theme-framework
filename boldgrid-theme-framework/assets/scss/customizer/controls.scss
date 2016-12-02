@@ -3,7 +3,7 @@
 ******************************************************/
 .boldgrid-icon-newtab {
 	background: url(../../img/icon-newpage.png) no-repeat right center;
-	display: inline; 
+	display: inline;
 	margin-right: 2px;
 	padding-right: 14px;
 	background-position: 100% 4px;
@@ -18,7 +18,7 @@
 		width: 100%;
 		height: 100%;
 		z-index: 99999;
-	}	
+	}
 	&-content{
 		margin: 20px 0px;
 		margin-top: 0px;
@@ -26,7 +26,7 @@
 		background-color: #FFFFFF;
 		padding: 10px;
 		.buttony-primary {
-			margin-right: 5px;	
+			margin-right: 5px;
 		}
 	}
 }
@@ -73,7 +73,7 @@
 		font-weight: 600;
 		line-height: 24px;
 		margin-bottom: 5px;
-	}	
+	}
 }
 
 #customize-controls .description {
@@ -91,14 +91,14 @@
             color: transparent;
         }
     }
-    
+
     .selectize-input .item,
     .selectize-dropdown-content .option {
         color: transparent;
         background-image: url(../../img/web-fonts.png);
         background-repeat: no-repeat;
     }
-    
+
     .selectize-dropdown-content,
     .selectize-input {
         [data-value="sans-serif"],
@@ -123,12 +123,12 @@
         	font-family: serif;
         }
     }
-    
+
     .selectize-dropdown-content .highlight {
     	background-color: transparent;
     	color: transparent;
     }
-    
+
     .selectize-control.single .selectize-input {
         height:44px;
         .item {
@@ -189,7 +189,7 @@
 
 .bg-lock-controls,
 .boldgrid-neutral-color,
-.boldgrid-active-palette,   
+.boldgrid-active-palette,
 .boldgrid-inactive-palette .boldgrid-palette-colors {
 	width: 92%;
 	position: relative;
@@ -197,10 +197,10 @@
 
 .generated-palettes-container .boldgrid-inactive-palette .boldgrid-palette-colors {
 	width: 97%;
-} 
+}
 
 .color-lock {
-    display: inline-block;	
+    display: inline-block;
     text-align: center;
     > span {
 		left: 2px;
@@ -211,7 +211,7 @@
 .color-palette-columns-6 .bg-lock-controls > .color-lock,
 .color-palette-columns-6 .boldgrid-active-palette .boldgrid-palette-colors,
 .color-palette-columns-6 .boldgrid-palette-colors > span {
-	width: 16.666%; 
+	width: 16.666%;
 }
 .color-palette-columns-5 .bg-lock-controls > .color-lock,
 .color-palette-columns-5 .boldgrid-active-palette .boldgrid-palette-colors,
@@ -303,7 +303,7 @@
 	height: 33px;
 	&:hover {
 		border: 2px solid;
-		border-color: #fb5f14;	
+		border-color: #fb5f14;
 		cursor: pointer;
 	}
 }
@@ -311,11 +311,11 @@
 /*****************************************************
 ************Active Color Palette Rules****************
 ******************************************************/
-.boldgrid-active-palette { 
+.boldgrid-active-palette {
 	border: 2px solid;
 	border-color: #E1E1E1;
 	height: 84px;
-	margin-top: 15px; 
+	margin-top: 15px;
 	li {
 		margin-top: 0px;
 		margin-bottom: 0px;
@@ -331,10 +331,10 @@
 		height: 100%;
 		position: relative;
 	}
-	.ui-sortable-helper, 
+	.ui-sortable-helper,
 	.active-palette-section:not(.ui-sortable-placeholder) {
-		border: 2px solid #fb5f14; 
-		box-sizing: border-box; 
+		border: 2px solid #fb5f14;
+		box-sizing: border-box;
 	}
 }
 
@@ -352,6 +352,13 @@
 			float: right;
 		}
 	}
+}
+
+/*****************************************************
+*******************Help Icons************************
+******************************************************/
+#customize-control-background_repeat [data-hint]:after {
+    top: -50px;
 }
 
 /*****************************************************
@@ -384,12 +391,12 @@
 
 .boldgrid-neutral-color.active-palette-section:before {
 	content: "\f141";
-	display: inline-block; 
+	display: inline-block;
 	left: auto;
     right: -17px;
-    top: 2px; 
+    top: 2px;
 }
- 
+
 .boldgrid-active-palette .boldgrid-palette-colors.ui-sortable-helper:before,
 .boldgrid-active-palette .boldgrid-palette-colors:hover:before {
 	content: "↔";
@@ -429,7 +436,7 @@
 
 .boldgrid-active-palette .ui-sortable-placeholder ~ .boldgrid-duplicate-dashicons {
 	display: none;
-} 
+}
 
 .boldgrid-duplicate-dashicons {
 	display: inline;
@@ -444,7 +451,7 @@
 .boldgrid-copy-palette.dashicons-admin-post {
 	-webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
 	    -ms-transform: rotate(-45deg); /* IE 9 */
-		transform: rotate(-45deg);	
+		transform: rotate(-45deg);
 }
 
 .boldgrid-remove-palette {
@@ -487,9 +494,9 @@
 }
 
 .palette-generate-mode .generate-palettes-selection-section h3{
-	margin-top: 5px;	
-	margin-bottom: 5px;	
-}	 
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
 
 .wp-core-ui .palette-generate-mode .button.palette-creator-button {
 	margin-bottom: 5px;
@@ -511,26 +518,26 @@
 /*****************************************************
 ************Secondary Color Picker Colors****************
 ******************************************************/
- 
+
 .boldgrid-color-palette-wrapper .secondary-colors {
     width: 20px;
     height: 100%;
     float: left;
     margin-right: 6px;
     margin-top: 20px;
-    
+
     .iris-palette {
 	    margin-left: 0 !important;
 	    margin-bottom: 5px;
 	}
 }
 .boldgrid-color-palette-wrapper {
-	.iris-slider.iris-strip { 
+	.iris-slider.iris-strip {
 	    width: 17px !important;
 	}
 	.iris-picker .iris-square {
 	    margin-right: 9px;
-	} 
+	}
 	.iris-border .iris-palette-container {
 	    left: 32px;
 	}
@@ -555,7 +562,7 @@
 	color:#777;
 	background-color:#FFF;
 	text-shadow:0 1px 0 #FFF;
-	text-decoration:none; 
+	text-decoration:none;
 	position:absolute;
 	z-index:2;
 	box-shadow:0 1px 2px rgba(0,0,0,0.2);
@@ -618,7 +625,7 @@
 			margin: 6px auto 0 auto;
 			label {
 				margin: -3px;
-			}		
+			}
 		}
 		&.ui-state-active {
 			background-color: lightgrey;
@@ -633,7 +640,7 @@
 			border-top-right-radius: 0px;
 			border-bottom-right-radius: 0px;
 			border-top-left-radius: 5px;
-			border-bottom-left-radius: 5px;		
+			border-bottom-left-radius: 5px;
 		}
 	}
 }
@@ -679,11 +686,11 @@
 	.expanded .boldgrid-sticky-customizer .boldgrid-pattern-selection-heading {
     	width: 100%;
   	}
-  
+
   	#customize-theme-controls #accordion-section-boldgrid_customizer_help_panel {
   		display: none;
   	}
-  
+
 }
 
 /*****************************************************
@@ -698,7 +705,7 @@
 ************Background Pattern Controls****************
 ******************************************************/
 
-.pattern-wrapper { 
+.pattern-wrapper {
 	margin: 0 auto;
 	width: 235px;
 	.patternpreview {
@@ -725,7 +732,7 @@
     user-select: none;
 }
 
-.boldgrid-pattern-selection-heading { 
+.boldgrid-pattern-selection-heading {
 	margin-bottom:5px;
 }
 
@@ -758,7 +765,7 @@
     height: 23px;
 }
 #accordion-section-title_tagline > ul > li > label > span {
-    display: inline-block;	
+    display: inline-block;
 }
 
 .customize-control-radio-image .image.ui-buttonset label.ui-state-active {
@@ -773,7 +780,7 @@
 	}
 	&.edit-in-admin {
 		margin-top: 58px;
-		border-top: 1px solid rgba(0, 0, 0, 0.1);	
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
 	}
 	.button {
 		margin: 5px;
@@ -789,7 +796,7 @@
 	cursor: pointer;
 	div {
 		margin: 0px auto;
-		position: relative; 
+		position: relative;
 	}
 	.top {
 		width: 4px;
@@ -839,7 +846,7 @@
 			height: 6px;
 			border-radius: 0;
 			background: #eee;
-			margin: -3px auto 0;		
+			margin: -3px auto 0;
 		}
 	}
 }
@@ -864,6 +871,23 @@
 			-moz-transform: translate(0px,0px); /* Firefox */
 			-ms-transform: translate(0px,0px); /* IE 9 */
 			transform: translate(0px,0px);
+		}
+	}
+}
+
+// WP 4.6 Compat - Add override to dashicons inherit value on text-decoration prop.
+#customize-controls {
+	.dashicons,
+	.dashicons-before:before,
+	.customize-control-dropdown-pages .add-new-toggle,
+	[data-hint] {
+		text-decoration: none;
+	}
+	[data-action="open-color-picker"] {
+		white-space: nowrap;
+		text-decoration: none;
+		.dashicons, .dashicons-before:before {
+			font-size: 1.4em;
 		}
 	}
 }

@@ -69,7 +69,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @since 1.1.6
 	 */
 	this.addButtons = function() {
-		var	menus = api.section( 'menu_locations' ).controls(),
+		var	menus = typeof 'function' === api.section ? api.section( 'menu_locations' ).controls() : [],
 			menuId,
 			$emptyMenu = $( '.empty-menu' ),
 			$emptyWidgetAreas = $( '[data-empty-area="\'true\'"]' );

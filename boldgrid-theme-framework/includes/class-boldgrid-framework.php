@@ -506,6 +506,13 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'admin_enqueue_scripts', $background, 'register_control_scripts' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $background, 'register_front_end_scripts' );
 		$this->loader->add_filter( 'boldgrid_add_head_styles', $background, 'add_head_styles_filter' );
+
+		// Only do this on 4.7 and above.
+		if ( version_compare( get_bloginfo( 'version' ), '4.6.2', '>=' ) ) {
+			$this->loader->add_action( 'customize_register', $background, 'boldgrid_background_attachment', 999 );
+			$this->loader->add_action( "customize_sanitize_background_attachment", $background, 'pre_sanitize_attachment', 5 );
+			$this->loader->add_filter( "customize_sanitize_background_attachment", $background, 'post_sanitize_attachment', 20 );
+		}
 	}
 
 	/**

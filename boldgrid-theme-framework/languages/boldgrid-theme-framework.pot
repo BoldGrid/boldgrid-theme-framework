@@ -222,63 +222,75 @@ msgstr ""
 msgid "To use a full size background image, we recommend a size of at least 1920 x 1080. The BoldGrid Connect Search, available when you select change image, will help you find large images that are suitable."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:121
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:130
 msgid "Vertical Background Position"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:138
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:147
 msgid "Horizontal Background Position"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:174
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:183
 msgid "Background Image Size"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:180
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:189
 msgid "Cover Page"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:181
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:190
 msgid "Scaled to Fit"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:182
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:191
 msgid "Full Width"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:183
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:192
 msgid "Full Height"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:184
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:193
 msgid "Default"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:185
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:194
 msgid "Do Not Resize"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:209
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:218
 msgid "Background Color"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:256
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:265
 msgid "Background Type"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:281
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:320, src/includes/customizer/class-boldgrid-framework-customizer-background.php:349
 msgid "Background Effects"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:288
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:326
+msgid "Parallax"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:327
+msgid "Scroll"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:328
+msgid "Fixed"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:354
 msgid "Background"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:333
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:399
 msgid "Subtle Patterns"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:519
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:586
 msgid "Background Image"
 msgstr ""
 

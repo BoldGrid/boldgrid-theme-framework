@@ -4,4 +4,8 @@
 
 .post-navigation {
 	margin-top: 1.5em;
-} 
+	.nav-links {
+		display: flex;
+		justify-content: space-between;
+	}
+}

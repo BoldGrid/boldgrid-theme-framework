@@ -293,6 +293,10 @@ select[name="archive-dropdown"] {
 .post-navigation {
   margin-top: 1.5em; }
 
+.post-navigation .nav-links {
+  display: flex;
+  justify-content: space-between; }
+
 /*--------------------------------------------------------------
 # Comments
 --------------------------------------------------------------*/

@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.3.4 ###
 * Bug fix: Ensure starting over staging does not affect active site.
+* Update: Setting JS compiler instance limit to 50 to accommodate larger sass sheets.
 
 ### 1.3.3 ###
 * Bug fix: Merging standard and minified js files.

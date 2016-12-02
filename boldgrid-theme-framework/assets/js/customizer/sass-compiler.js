@@ -24,7 +24,7 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 		count++;
 		//After about 100 compiles error thrown on compiles
 		//Hackfix to create new instance at 75
-		if ( count > 75 ) {
+		if ( count > 50 ) {
 			count = 0;
 			Sass.setWorkerUrl( BOLDGRIDSass.WorkerUrl );
 			if ( instance_compiler ) {

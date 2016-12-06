@@ -27,7 +27,6 @@ user guide for more information.
 ## Changelog ##
 
 ### 1.3.4 ###
-* Bug fix: Ensure starting over staging does not affect active site.
 * Update: Setting JS compiler instance limit to 50 to accommodate larger sass sheets.
 * Bug fix: Aligning post navigation links to left and right for older vs newer.
 * Update: Adding padding to search results.

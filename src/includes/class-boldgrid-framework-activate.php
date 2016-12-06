@@ -55,8 +55,8 @@ class Boldgrid_Framework_Activate {
 	 */
 	public function reset( $active = true ) {
 
-		$this->widgets->remove_saved_widgets( $active );
-		$this->menus->reset_nav_locations( $active );
+		$this->widgets->remove_saved_widgets();
+		$this->menus->reset_nav_locations();
 		$this->menus->remove_saved_menus( $active );
 
 		// Delete Option indicating that the framework needs to be setup.

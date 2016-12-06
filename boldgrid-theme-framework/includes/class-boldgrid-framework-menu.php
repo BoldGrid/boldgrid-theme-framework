@@ -92,56 +92,15 @@ class Boldgrid_Framework_Menu {
 	 * Reset Menu Locations.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param bool $active Reset menu locations for active site.
 	 */
-	public function reset_nav_locations( $active = true ) {
-
-		// Set some default vars.
-		$mod = 'nav_menu_locations';
-		$default = array();
-
-		// Get our nav_menu_locations.
-		if( $active ) {
-			$locations = get_theme_mod( $mod, $default );
-		} else {
-			$locations = $default;
-
-			/**
-			 * Allow other plugins to modify value of the nav_menu_locations theme mod.
-			 *
-			 * @since 1.3.4
-			 *
-			 * @param  string $mod     The theme mod name.
-			 * @param  mixed  $default The default value to return.
-			 */
-			$locations = apply_filters( 'get_staging_theme_mod', $mod, $default );
-		}
-
-		// If our locations is not an array as expected, abort.
-		if( ! is_array( $locations ) ) {
-			return;
-		}
-
+	public function reset_nav_locations() {
+		$locations = get_theme_mod( 'nav_menu_locations', array() );
 		foreach ( $locations as $location_name => $menu_id ) {
 			if ( 'primary' !== $location_name ) {
 				$locations[ $location_name ] = 0;
 			}
 		}
-
-		if( $active ) {
-			set_theme_mod( $mod, $locations );
-		} else {
-			/**
-			 * Allow other plugins to set this theme mod.
-			 *
-			 * @since 1.3.4
-			 *
-			 * @param string $mod       The theme mod name.
-			 * @param array  $locations Our updated nav_menu_locations.
-			 */
-			do_action( 'set_staging_theme_mod', $mod, $locations );
-		}
+		set_theme_mod( 'nav_menu_locations', $locations );
 	}
 
 	/**

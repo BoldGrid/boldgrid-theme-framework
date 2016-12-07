@@ -596,5 +596,14 @@ class BoldGrid {
 
 		isset( $display ) || $display = ! in_array( true, $conditions, true );
 		return apply_filters( 'boldgrid/display_sidebar', $display );
+
+	}
+	/**
+	 * Framework version check.
+	 *
+	 * @since 1.3.5
+	 */
+	public function framework_version( $version ) {
+		return version_compare( $this->configs['framework-version'], $version, '>=' );
 	}
 }

@@ -72,6 +72,7 @@ class BoldGrid_Framework {
 		$this->add_config_filters();
 		$this->load_theme_configs();
 		$this->set_doing_cron();
+		$this->cta();
 
 		$this->define_theme_hooks( );
 		$this->define_admin_hooks( );
@@ -86,9 +87,6 @@ class BoldGrid_Framework {
 		$this->error_404( );
 		$this->search_forms( );
 		$this->ninja_forms( );
-
-		// TODO: find place for TEMP.
-		require_once( trailingslashit( __DIR__ ) . 'black-studio-tinymce-widget/black-studio-tinymce-widget.php' );
 	}
 
 	/**
@@ -197,8 +195,6 @@ class BoldGrid_Framework {
 		 * Include the TGM_Plugin_Activation class.
 		 */
 		require_once trailingslashit( __DIR__ ) . 'tgm/class-tgm-plugin-activation.php';
-
-
 
 		// Loader instance.
 		$this->loader = new Boldgrid_Framework_Loader( );
@@ -314,6 +310,16 @@ class BoldGrid_Framework {
 		// Backwards Compatibility.
 		$this->configs['directories']['BOLDGRID_THEME_NAME'] = $this->configs['version'];
 		$this->configs['directories']['BOLDGRID_THEME_VER'] = $this->configs['theme_name'];
+	}
+
+	/**
+	 *
+	 *
+	 */
+	public function cta() {
+		$cta = new Boldgrid_Framework_Customizer_Cta( $this->configs );
+		$this->loader->add_action( 'after_setup_theme', $cta, 'init' );
+
 	}
 
 	/**

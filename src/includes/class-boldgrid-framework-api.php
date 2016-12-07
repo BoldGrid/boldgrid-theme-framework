@@ -319,56 +319,6 @@ class BoldGrid {
 	}
 
 	/**
-	 * Call to Action
-	 *
-	 * This will add the Call To Action section if not selected to be hidden
-	 * from within the WordPress customizer.
-	 *
-	 * @since 1.0.0
-	 */
-	public function call_to_action() {
-		if ( false === get_theme_mod( 'hide_cta' ) && false === get_theme_mod( 'hide_cta_slogan' ) ) {
-			printf( $this->configs['template']['call-to-action'],
-			get_theme_mod( 'cta_slogan', 'NOW FEATURING OUR NEW AND IMPROVED MODULAR SYSTEM.' ) );
-		}
-	}
-
-	/**
-	 * Call to Action Button
-	 *
-	 * This will add the call to action button link to the header section.
-	 *
-	 * @since   1.0.0
-	 */
-	public function cta_button() {
-		if ( false === get_theme_mod( 'hide_cta' ) && false === get_theme_mod( 'hide_cta_button' ) ) {
-			printf( $this->configs['template']['call-to-action-button'],
-			get_theme_mod( 'cta_button_link', 'about-us' ), get_theme_mod( 'cta_button_text', 'LEARN MORE' ) . ' ');
-		}
-	}
-
-	/**
-	 * BoldGrid::contact_phone( $icon );
-	 *
-	 * This adds the markup for a "Contact Us" section. Currently,
-	 * this will accept $icon, which can be used to replace the icon
-	 * displayed.
-	 *
-	 * @todo  check for empty
-	 * @todo  set a default icon if this stays the same from theme to theme.
-	 *
-	 * @var     $icon   string   Icon to be used for Social Phone section of site.
-	 * @since   1.0.0
-	 */
-	public function contact_phone() {
-		$contact_num = get_theme_mod( 'social_phone', '777-765-4321' );
-
-		if ( get_theme_mod( 'hide_social_phone' ) == '' && $contact_num ) {
-			printf( $this->configs['template']['contact-number'], $contact_num );
-		}
-	}
-
-	/**
 	 * BoldGrid::skip_link(  );
 	 *
 	 * This is the markup that will render for screen reader users to skip to

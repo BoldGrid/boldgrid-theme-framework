@@ -598,10 +598,15 @@ class BoldGrid {
 		return apply_filters( 'boldgrid/display_sidebar', $display );
 
 	}
+
 	/**
 	 * Framework version check.
 	 *
 	 * @since 1.3.5
+	 *
+	 * @param String $version Minimum required version to check against.
+	 *
+	 * @return Boolean Version is greater than or equal to passed in $version.
 	 */
 	public function framework_version( $version ) {
 		return version_compare( $this->configs['framework-version'], $version, '>=' );

@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3.5 ###
+* Update: Allow widget data to be filtered before widgets are created.
+
 ### 1.3.4 ###
 * Update: Setting JS compiler instance limit to 50 to accommodate larger sass sheets.
 * Bug fix: Aligning post navigation links to left and right for older vs newer.

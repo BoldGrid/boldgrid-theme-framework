@@ -146,17 +146,6 @@ class Boldgrid_Framework_Widgets {
 					continue;
 				}
 
-				/**
-				 * Filter $widget_data.
-				 *
-				 * Allow other plugins to change this widget's data.
-				 *
-				 * @since 1.3.5
-				 *
-				 * @param array $widget_data
-				 */
-				$widget_data = apply_filters( 'bgtfw_widget_data', $widget_data );
-
 				// Create a "boldgrid_widgets_created" key for this widget based on widget title.
 				$widget_key = ( isset( $widget_data['title'] ) ? $widget_data['title'] : 'unknown' );
 				$widget_key = trim( strtolower( $widget_key ) );

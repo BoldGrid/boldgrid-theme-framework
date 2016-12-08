@@ -71,8 +71,6 @@ class Boldgrid_Framework_Upgrade {
 	 * @since 1.3.1
 	 */
 	public function upgrade_db_check() {
-		$this->set_option( '1.0.0' );
-
 		// Set the default version in db if no version is set.
 		if ( ! $this->get_option() ) $this->set_option( '1.0.0' );
 		// Get current version from configs.

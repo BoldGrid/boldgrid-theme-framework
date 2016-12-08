@@ -134,15 +134,15 @@ msgstr ""
 msgid "Search &hellip;"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-widgets.php:193
+#: src/includes/class-boldgrid-framework-widgets.php:195
 msgid "Visual Editor"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-widgets.php:205
+#: src/includes/class-boldgrid-framework-widgets.php:207
 msgid "Arbitrary text or HTML with visual editor"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-widgets.php:307
+#: src/includes/class-boldgrid-framework-widgets.php:310
 msgid "Sidebar #1"
 msgstr ""
 

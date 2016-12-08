@@ -72,6 +72,7 @@ class BoldGrid_Framework {
 		$this->add_config_filters();
 		$this->load_theme_configs();
 		$this->set_doing_cron();
+		$this->upgrade();
 		$this->cta();
 
 		$this->define_theme_hooks( );
@@ -171,6 +172,7 @@ class BoldGrid_Framework {
 			'staging',
 			'styles',
 			'template-config',
+			'upgrade',
 			'widgets',
 			'wp-fs',
 			'wrapper',
@@ -312,12 +314,17 @@ class BoldGrid_Framework {
 		$this->configs['directories']['BOLDGRID_THEME_VER'] = $this->configs['theme_name'];
 	}
 
+	public function upgrade() {
+		$upgrade = new Boldgrid_Framework_Upgrade( $this->configs );
+		$this->loader->add_action( 'after_setup_theme', $upgrade, 'upgrade_db_check' );
+	}
+
 	/**
 	 *
 	 *
 	 */
 	public function cta() {
-		$cta = new Boldgrid_Framework_Customizer_Cta( $this->configs );
+		$cta = new Boldgrid_Framework_Customizer_Bstw( $this->configs );
 		$this->loader->add_action( 'after_setup_theme', $cta, 'init' );
 
 	}

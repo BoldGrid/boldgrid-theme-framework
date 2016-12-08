@@ -42,6 +42,7 @@ class Boldgrid_Framework_Widgets {
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
+		$this->bstw = new Boldgrid_Framework_Customizer_Bstw( $this->configs );
 	}
 
 	/**
@@ -185,29 +186,31 @@ class Boldgrid_Framework_Widgets {
 		 *
 		 * @since 1.0.0
 		 */
-		foreach ( $ids_created as $id ) {
-			$black_studio = new WP_Widget_Black_Studio_TinyMCE();
-			$black_studio->id = 'black-studio-tinymce-' . $id;
-			$black_studio->number = $id;
-			$wp_registered_widgets[ "black-studio-tinymce-{$id}" ] = array(
-				'name' => __( 'Visual Editor', 'bgtfw' ),
-				'id' => 'black-studio-tinymce-' . $id,
-				'callback' => array(
-					$black_studio,
-					'display_callback',
-				),
-				'params' => array(
-					array(
-						'number' => $id,
+		if ( $this->bstw->theme_mod() ) {
+			foreach ( $ids_created as $id ) {
+				$black_studio = new WP_Widget_Black_Studio_TinyMCE();
+				$black_studio->id = 'black-studio-tinymce-' . $id;
+				$black_studio->number = $id;
+				$wp_registered_widgets[ "black-studio-tinymce-{$id}" ] = array(
+					'name' => __( 'Visual Editor', 'bgtfw' ),
+					'id' => 'black-studio-tinymce-' . $id,
+					'callback' => array(
+						$black_studio,
+						'display_callback',
 					),
-				),
-				'classname' => 'widget_black_studio_tinymce',
-				'description' => __( 'Arbitrary text or HTML with visual editor', 'bgtfw' ),
-			);
-		}
+					'params' => array(
+						array(
+							'number' => $id,
+						),
+					),
+					'classname' => 'widget_black_studio_tinymce',
+					'description' => __( 'Arbitrary text or HTML with visual editor', 'bgtfw' ),
+				);
+			}
 
-		$widgets_created = get_option( 'boldgrid_widgets_created', array() );
-		update_option( 'boldgrid_widgets_created', array_merge( $widgets_created, $auto_created_widget_ids ) );
+			$widgets_created = get_option( 'boldgrid_widgets_created', array() );
+			update_option( 'boldgrid_widgets_created', array_merge( $widgets_created, $auto_created_widget_ids ) );
+		}
 	}
 
 	/**

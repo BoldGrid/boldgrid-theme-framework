@@ -12,7 +12,7 @@
 $year = date( 'Y' );
 $blogname = get_bloginfo( 'name' );
 $custom_widgets['footer-company-details'] = <<<HTML
-	&copy; $year $blogname | 202 Grid Blvd. Agloe, NY 12776 | 777-765-4321 | <a href="mailto:">info@example.com</a>
+	&copy; $year $blogname | 202 Grid Blvd. Agloe, NY 12776 | <span class="phone-number">777-765-4321</span> | <a href="mailto:">info@example.com</a>
 HTML;
 
 return array(

@@ -259,4 +259,50 @@
 
 	};
 
+	wp.customize.bind( 'ready',
+		_.defer(
+			function() {
+				if ( !! parseInt( wp.customize( 'hide_partner_attribution' )() ) ? true : false ) {
+					$( '.reseller-attribution-link' ).addClass( 'hidden' );
+				}
+				if ( !! parseInt( wp.customize( 'hide_boldgrid_attribution' )() ) ? true : false ) {
+					$( '.boldgrid-attribution-link' ).addClass( 'hidden' );
+				}
+				if ( !! parseInt( wp.customize( 'hide_wordpress_attribution' )() ) ? true : false ) {
+					$( '.wordpress-attribution-link' ).addClass( 'hidden' );
+				}
+			}
+		)
+	);
+
+	wp.customize( 'hide_boldgrid_attribution', function( value ) {
+		value.bind( function( to ) {
+			if ( ! to ) {
+				$( '.boldgrid-attribution-link' ).removeClass( 'hidden' );
+			} else {
+				$( '.boldgrid-attribution-link' ).addClass( 'hidden' );
+			}
+		} );
+	} );
+
+	wp.customize( 'hide_wordpress_attribution', function( value ) {
+		value.bind( function( to ) {
+			if ( ! to ) {
+				$( '.wordpress-attribution-link' ).removeClass( 'hidden' );
+			} else {
+				$( '.wordpress-attribution-link' ).addClass( 'hidden' );
+			}
+		} );
+	} );
+
+	wp.customize( 'hide_partner_attribution', function( value ) {
+		value.bind( function( to ) {
+			if ( ! to ) {
+				$( '.reseller-attribution-link' ).removeClass( 'hidden' );
+			} else {
+				$( '.reseller-attribution-link' ).addClass( 'hidden' );
+			}
+		} );
+	} );
+
 } )( jQuery );

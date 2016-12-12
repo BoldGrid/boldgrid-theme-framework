@@ -111,8 +111,7 @@ class Boldgrid_Framework_Customizer_Footer {
 						'type'        => 'custom',
 						'settings'     => 'boldgrid_footer_widget_help',
 						'section'     => 'boldgrid_footer_panel',
-						'default'     => '<a class="button button-primary open-widgets-section">' .
-							__( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
+						'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
 						'priority'    => 80,
 						'description' => __( 'You can add widgets to your footer from the widgets section.', 'bgtfw' ),
 					)
@@ -194,6 +193,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			array(
 				'type'        => 'checkbox',
 				'settings'     => 'hide_boldgrid_attribution',
+				'transport'   => 'postMessage',
 				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
@@ -205,6 +205,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			array(
 				'type'        => 'checkbox',
 				'settings'     => 'hide_wordpress_attribution',
+				'transport'   => 'postMessage',
 				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
@@ -216,6 +217,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			array(
 				'type'        => 'checkbox',
 				'settings'     => 'hide_partner_attribution',
+				'transport'   => 'postMessage',
 				'label'       => __( 'Hide Partner Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
@@ -238,30 +240,41 @@ class Boldgrid_Framework_Customizer_Footer {
 		if ( get_theme_mod( 'boldgrid_enable_footer', true ) ) {
 
 			// BoldGrid.com Link.
-			if ( ! get_theme_mod( 'hide_boldgrid_attribution' ) ) {
-				$theme_mods .= sprintf( __( 'Built with %s | ', 'bgtfw' ),
-				'<a href="http://www.boldgrid.com/" rel="nofollow" target="_blank">BoldGrid</a>' );
+			if ( ! get_theme_mod( 'hide_boldgrid_attribution' ) || is_customize_preview() ) {
+				$theme_mods .= sprintf(
+					'<span class="link boldgrid-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a> | </span>',
+					__( 'Built with', 'bgtfw' ),
+					'http://boldgrid.com/',
+					__( 'BoldGrid', 'bgtfw' )
+				);
 			}
 
 			// WordPress.org Link.
-			if ( ! get_theme_mod( 'hide_wordpress_attribution' ) ) {
-				$theme_mods .= sprintf( __( 'Powered by %s | ', 'bgtfw' ),
-				'<a href="https://wordpress.org/" rel="nofollow" target="_blank">WordPress</a>' );
+			if ( ! get_theme_mod( 'hide_wordpress_attribution' ) || is_customize_preview() ) {
+				$theme_mods .= sprintf(
+					'<span class="link wordpress-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a> | </span>',
+					__( 'Powered by', 'bgtfw' ),
+					'https://wordpress.org/',
+					__( 'WordPress', 'bgtfw' )
+				);
 			}
 
 			// Authorized Reseller/Partner Link.
-			if ( ! get_theme_mod( 'hide_partner_attribution' ) ) {
+			if ( ! get_theme_mod( 'hide_partner_attribution' ) || is_customize_preview() ) {
 				if ( ! empty( $reseller_data['reseller_title'] ) ) {
-					$theme_mods .= sprintf( __( 'Support from %s | ', 'bgtfw' ),
-						'<a href="' . $reseller_data['reseller_website_url'] .
-					'" rel="nofollow" target="_blank">' . $reseller_data['reseller_title'] . '</a>' );
+					$theme_mods .= sprintf(
+						'<span class="link reseller-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a> | </span>',
+						__( 'Support from', 'bgtfw' ),
+						$reseller_data['reseller_website_url'],
+						$reseller_data['reseller_title']
+					);
 				}
 			}
 		}
 
 		// If theme configs have attribution_links declared, add the link.
 		if ( ! empty( $this->configs['temp']['attribution_links'] ) ) {
-			$theme_mods .= $this->attribution_link( );
+			$theme_mods .= $this->attribution_link();
 		} ?>
 
 		<span class="attribution-theme-mods"><?php echo $theme_mods ?></span>

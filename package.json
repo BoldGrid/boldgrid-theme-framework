@@ -25,6 +25,7 @@
     "gulp-cssnano": "^2.1.1",
     "gulp-imagemin": "^2.4.0",
     "gulp-jshint": "^2.0.0",
+    "gulp-modernizr": "^1.0.0-alpha",
     "gulp-newer": "^1.1.0",
     "gulp-phpcbf": "^0.1.2",
     "gulp-phpcs": "^1.0.0",

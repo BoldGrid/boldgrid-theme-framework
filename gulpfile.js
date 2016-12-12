@@ -19,6 +19,7 @@ var gulp     = require( 'gulp' ),
     clean    = require( 'gulp-clean' ),
     fs       = require( 'fs' ),
     changed  = require( 'gulp-changed' ),
+    modernizr = require( 'gulp-modernizr' ),
     bower    = require( 'gulp-bower' );
 
 // Configs
@@ -225,6 +226,7 @@ gulp.task( 'frameworkJs', function(  ) {
 
   // Unminified Files.
   gulp.src([config.src + '/assets/js/**/*.js'])
+    .pipe(modernizr( require( './modernizr-config.json' ) ) )
     .pipe( gulp.dest( config.dist + '/assets/js' ) );
 });
 

@@ -218,6 +218,7 @@ gulp.task( 'jsHint', function(  ) {
 gulp.task( 'frameworkJs', function(  ) {
 	// Minified Files.
   gulp.src([config.src + '/assets/js/**/*.js'])
+    .pipe(modernizr( require( './modernizr-config.json' ) ) )
     .pipe( uglify().on( 'error', gutil.log ) )
     .pipe( rename({
       suffix: '.min'
@@ -226,7 +227,7 @@ gulp.task( 'frameworkJs', function(  ) {
 
   // Unminified Files.
   gulp.src([config.src + '/assets/js/**/*.js'])
-    .pipe(modernizr( require( './modernizr-config.json' ) ) )
+  .pipe(modernizr( require( './modernizr-config.json' ) ) )
     .pipe( gulp.dest( config.dist + '/assets/js' ) );
 });
 

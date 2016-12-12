@@ -359,6 +359,7 @@ class BoldGrid_Framework {
 
 		// Add Theme Scripts.
 		$this->loader->add_action( 'wp_enqueue_scripts', $scripts, 'boldgrid_enqueue_scripts' );
+		$this->loader->add_filter( 'language_attributes', $scripts, 'modernizr' );
 
 		// Setup Header Metadata.
 		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_meta_charset',  105 );

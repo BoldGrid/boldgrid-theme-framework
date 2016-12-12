@@ -216,5 +216,19 @@ class BoldGrid_Framework_Scripts {
 				$this->configs['version']
 			);
 		}
+
+		// Customized Modernizr Tests.
+		wp_enqueue_script(
+			'bgtfw-modernizr',
+			$this->configs['framework']['js_dir'] . 'modernizr' . $suffix . '.js',
+			array(),
+			$this->configs['version'],
+			true
+		);
+	}
+
+	// Add to lang attributes tag.
+	public function modernizr( $output ) {
+		return $output . ' class="no-js"';
 	}
 }

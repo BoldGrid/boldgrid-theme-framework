@@ -35,7 +35,7 @@ if ( ! class_exists( 'Kirki_Controls_Date_Control' ) ) {
 		 * @access public
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'kirki-dashicons' );
+			wp_enqueue_script( 'kirki-date' );
 		}
 
 		/**
@@ -61,7 +61,7 @@ if ( ! class_exists( 'Kirki_Controls_Date_Control' ) ) {
 					<span class="description customize-control-description">{{{ data.description }}}</span>
 				<# } #>
 				<div class="customize-control-content">
-					<input class="datepicker" type="text" id="{{ data.id }}" value="{{ data.value }}" {{{ data.link }}} />
+					<input {{{ data.inputAttrs }}} class="datepicker" type="text" id="{{ data.id }}" value="{{ data.value }}" {{{ data.link }}} />
 				</div>
 			</label>
 			<?php

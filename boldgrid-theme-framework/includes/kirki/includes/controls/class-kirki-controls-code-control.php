@@ -33,25 +33,6 @@ if ( ! class_exists( 'Kirki_Controls_Code_Control' ) ) {
 		public $type = 'kirki-code';
 
 		/**
-		 * Refresh the parameters passed to the JavaScript via JSON.
-		 *
-		 * @access public
-		 */
-		public function to_json() {
-			$l10n = Kirki_l10n::get_strings( $this->kirki_config );
-			if ( ! isset( $this->choices['language'] ) ) {
-				$this->choices['language'] = 'css';
-			}
-			if ( ! isset( $this->choices['theme'] ) ) {
-				$this->choices['theme'] = 'monokai';
-			}
-			if ( ! isset( $this->choices['label'] ) ) {
-				$this->choices['label'] = $l10n['open-editor'];
-			}
-			parent::to_json();
-		}
-
-		/**
 		 * Enqueue control related scripts/styles.
 		 *
 		 * @access public
@@ -71,6 +52,9 @@ if ( ! class_exists( 'Kirki_Controls_Code_Control' ) ) {
 				wp_enqueue_script( 'codemirror-language-javascript', trailingslashit( Kirki::$url ) . 'assets/js/vendor/codemirror/mode/javascript/javascript.js', array( 'jquery', 'codemirror' ) );
 				wp_enqueue_script( 'codemirror-language-css', trailingslashit( Kirki::$url ) . 'assets/js/vendor/codemirror/mode/css/css.js', array( 'jquery', 'codemirror' ) );
 				wp_enqueue_script( 'codemirror-language-htmlmixed', trailingslashit( Kirki::$url ) . 'assets/js/vendor/codemirror/mode/htmlmixed/htmlmixed.js', array( 'jquery', 'codemirror', 'codemirror-multiplex', 'codemirror-language-xml', 'codemirror-language-javascript', 'codemirror-language-css' ) );
+			} elseif ( 'php' === $this->choices['language'] ) {
+				wp_enqueue_script( 'codemirror-language-xml', trailingslashit( Kirki::$url ) . 'assets/js/vendor/codemirror/mode/xml/xml.js', array( 'jquery', 'codemirror' ) );
+				wp_enqueue_script( 'codemirror-language-php', trailingslashit( Kirki::$url ) . 'assets/js/vendor/codemirror/mode/php/php.js', array( 'jquery', 'codemirror' ) );
 			} else {
 				// Add language script.
 				wp_enqueue_script( 'codemirror-language-' . $this->choices['language'], trailingslashit( Kirki::$url ) . 'assets/js/vendor/codemirror/mode/' . $this->choices['language'] . '/' . $this->choices['language'] . '.js', array( 'jquery', 'codemirror' ) );
@@ -104,10 +88,10 @@ if ( ! class_exists( 'Kirki_Controls_Code_Control' ) ) {
 					<span class="description customize-control-description">{{{ data.description }}}</span>
 				<# } #>
 				<a href="#" class="button edit button-primary">{{ data.choices.label }}</a>
-				<textarea class="kirki-codemirror-editor collapsed">{{{ data.value }}}</textarea>
+				<textarea {{{ data.inputAttrs }}} class="kirki-codemirror-editor collapsed">{{{ data.value }}}</textarea>
 				<a href="#" class="close">
 					<span class="dashicons dashicons-no"></span>
-					<span class="screen-reader-text">{{ data.i18n['close-editor'] }}</span>
+					<span class="screen-reader-text">{{ data.l10n['close-editor'] }}</span>
 				</a>
 			</label>
 			<?php

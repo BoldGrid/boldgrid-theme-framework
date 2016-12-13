@@ -46,6 +46,14 @@ if ( ! class_exists( 'Kirki_Field' ) ) {
 		protected $option_name = '';
 
 		/**
+		 * Vustom input attributes (defined as an array).
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $input_attrs = array();
+
+		/**
 		 * Use "theme_mod" or "option".
 		 *
 		 * @access protected
@@ -260,6 +268,14 @@ if ( ! class_exists( 'Kirki_Field' ) ) {
 		protected $row_label = array();
 
 		/**
+		 * Partial Refreshes array.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $partial_refresh = array();
+
+		/**
 		 * Use only on image, cropped_image, upload controls.
 		 * Limit the Media library to a specific mime type
 		 *
@@ -436,7 +452,6 @@ if ( ! class_exists( 'Kirki_Field' ) ) {
 
 		}
 
-
 		/**
 		 * Escape the $section.
 		 *
@@ -445,6 +460,19 @@ if ( ! class_exists( 'Kirki_Field' ) ) {
 		protected function set_section() {
 
 			$this->section = sanitize_key( $this->section );
+
+		}
+
+		/**
+		 * Escape the $section.
+		 *
+		 * @access protected
+		 */
+		protected function set_input_attrs() {
+
+			if ( ! is_array( $this->input_attrs ) ) {
+				$this->input_attrs = array();
+			}
 
 		}
 
@@ -470,10 +498,6 @@ if ( ! class_exists( 'Kirki_Field' ) ) {
 		 */
 		protected function set_option_type() {
 
-			// If we have an option_name then make sure we're using options and not theme_mods.
-			if ( '' !== $this->option_name ) {
-				$this->option_type = 'option';
-			}
 			// Take care of common typos.
 			if ( 'options' === $this->option_type ) {
 				$this->option_type = 'option';
@@ -481,6 +505,26 @@ if ( ! class_exists( 'Kirki_Field' ) ) {
 			// Take care of common typos.
 			if ( 'theme_mods' === $this->option_type ) {
 				$this->option_type = 'theme_mod';
+			}
+		}
+
+		/**
+		 * Modifications for partial refreshes.
+		 *
+		 * @access protected
+		 */
+		protected function set_partial_refresh() {
+			if ( ! is_array( $this->partial_refresh ) ) {
+				$this->partial_refresh = array();
+			}
+			foreach ( $this->partial_refresh as $id => $args ) {
+				if ( ! is_array( $args ) || ! isset( $args['selector'] ) || ! isset( $args['render_callback'] ) || ! is_callable( $args['render_callback'] ) ) {
+					unset( $this->partial_refresh[ $id ] );
+					continue;
+				}
+			}
+			if ( ! empty( $this->partial_refresh ) ) {
+				$this->transport = 'postMessage';
 			}
 		}
 
@@ -504,7 +548,7 @@ if ( ! class_exists( 'Kirki_Field' ) ) {
 				$settings[ sanitize_key( $setting_key ) ] = esc_attr( $setting_value );
 				// If we're using serialized options then we need to spice this up.
 				if ( 'option' === $this->option_type && '' !== $this->option_name && ( false === strpos( $setting_key, '[' ) ) ) {
-					$settings[ sanitize_key( $setting_key ) ] = esc_attr( $this->option_name ) . '[' . esc_attr( $setting_value ).']';
+					$settings[ sanitize_key( $setting_key ) ] = esc_attr( $this->option_name ) . '[' . esc_attr( $setting_value ) . ']';
 				}
 			}
 			$this->settings = $settings;
@@ -538,7 +582,7 @@ if ( ! class_exists( 'Kirki_Field' ) ) {
 		protected function set_active_callback() {
 
 			if ( is_array( $this->active_callback ) && ! is_callable( $this->active_callback ) ) {
-				if ( isset( $this->active_callback[0] ) && is_array( $this->active_callback[0] ) ) {
+				if ( isset( $this->active_callback[0] ) ) {
 					$this->required = $this->active_callback;
 				}
 			}
@@ -750,11 +794,14 @@ if ( ! class_exists( 'Kirki_Field' ) ) {
 		 * @access protected
 		 */
 		protected function set_variables() {
-
+			$variable = '';
 			if ( ! is_array( $this->variables ) ) {
+				$variable = ( is_string( $this->variables ) && ! empty( $this->variables ) ) ? $this->variables : false;
 				$this->variables = array();
+				if ( $variable && empty( $this->variables ) ) {
+					$this->variables[0]['name'] = $variable;
+				}
 			}
-
 		}
 
 		/**

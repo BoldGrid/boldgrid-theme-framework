@@ -14,7 +14,7 @@ if ( ! class_exists( 'Kirki_Sections_Expanded_Section' ) ) {
 	/**
 	 * Expanded Section.
 	 */
-	class Kirki_Sections_Expanded_Section extends WP_Customize_Section {
+	class Kirki_Sections_Expanded_Section extends Kirki_Sections_Default_Section {
 
 		/**
 		 * The section type.
@@ -39,7 +39,7 @@ if ( ! class_exists( 'Kirki_Sections_Expanded_Section' ) ) {
 					<li class="customize-section-description-container">
 						<div class="customize-section-title">
 							<h3>
-								{{ data.title }}
+								{{{ data.title }}}
 							</h3>
 						</div>
 						<# if ( data.description ) { #>

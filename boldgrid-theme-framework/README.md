@@ -29,6 +29,8 @@ user guide for more information.
 ### 1.3.5 ###
 * Update: Allow widget data to be filtered before widgets are created.
 * Update: Attribution links are now using postMessage to avoid customizer refreshes.
+* New Feature: Custom Modernizr builds are now added to theme framework.
+* Update: Sticky Footer is now handled with flexbox if browser supports it.
 
 ### 1.3.4 ###
 * Update: Setting JS compiler instance limit to 50 to accommodate larger sass sheets.

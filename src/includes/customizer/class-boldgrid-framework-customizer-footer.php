@@ -166,6 +166,51 @@ class Boldgrid_Framework_Customizer_Footer {
 	}
 
 	/**
+	 * Adds the Contact Details section
+	 *
+	 * @since 1.3.5
+	 */
+	public function add_contact_control( $wp_customize ) {
+		$year = date( 'Y' );
+		$blogname = get_bloginfo( 'name' );
+
+		Kirki::add_field( 'boldgrid_contact_details', array(
+			'type'        => 'repeater',
+			'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
+			'section'     => 'boldgrid_footer_panel',
+			'priority'    => 10,
+			'row_label' => array(
+					'type' => 'text',
+					'value' => esc_attr__( 'Contact Block', 'bgtfw' ),
+					'field' => 'text',
+			),
+			'settings'    => 'boldgrid_contact_details_setting',
+			'default'     => array(
+				array(
+					'text' => esc_attr( "&copy;{$year} {$blogname}" ),
+				),
+				array(
+					'text' => esc_attr( '202 Grid Blvd. Agloe, NY 12776' ),
+				),
+				array(
+					'text' => esc_attr( '777-765-4321' ),
+				),
+				array(
+					'text' => esc_attr( 'info@example.com' ),
+				),
+			),
+			'fields' => array(
+				'text' => array(
+					'type'        => 'text',
+					'label'       => esc_attr__( 'Text', 'bgtfw' ),
+					'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
+					'default'     => '',
+				),
+			)
+		) );
+	}
+
+	/**
 	 * This adds the group of controls in the customizer that are
 	 * responsible for showing/hiding/editing the footer attribution
 	 * links at the bottom of a user's page.

@@ -618,6 +618,7 @@ class BoldGrid_Framework {
 		$footer = new BoldGrid_Framework_Customizer_Footer( $this->configs );
 		$this->loader->add_action( 'customize_register', $footer, 'footer_panel' );
 		$this->loader->add_action( 'customize_register', $footer, 'add_enable_control' );
+		$this->loader->add_action( 'customize_register', $footer, 'add_contact_control' );
 		$this->loader->add_action( 'customize_register', $footer, 'add_attrbution_control' );
 		$this->loader->add_action( 'body_class', $footer, 'collapse_body_margin' );
 		$this->loader->add_action( 'boldgrid_display_attribution_links', $footer, 'attribution_display_action' );

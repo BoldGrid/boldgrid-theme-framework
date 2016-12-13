@@ -16,7 +16,7 @@ $custom_widgets['footer-company-details'] = <<<HTML
 HTML;
 
 return array(
-	'force_enable_bstw' => false,
+	'force_enable_bstw' => true,
 	'footer_widgets' => array(
 		// When the footer is disabled, these widgets will be removed.
 		'boldgrid-widget-3'

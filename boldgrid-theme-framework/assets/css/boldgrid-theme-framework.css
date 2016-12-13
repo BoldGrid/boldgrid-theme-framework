@@ -497,6 +497,15 @@ html {
 .flexbox #boldgrid-sticky-filler {
   flex: 1 0 auto; }
 
+/* Contact Blocks */
+.bgtfw.contact-block span {
+  white-space: nowrap;
+  display: inline-block; }
+
+.bgtfw.contact-block span:not(:last-child):after {
+  margin: 0 5px;
+  content: '|'; }
+
 /*--------------------------------------------------------------
 # GridBlocks
 --------------------------------------------------------------*/

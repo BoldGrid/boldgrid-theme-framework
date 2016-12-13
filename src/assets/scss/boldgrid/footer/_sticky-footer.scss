@@ -1,8 +1,34 @@
-html, body, .site, .site-content {
-	height: 100%;
+/* Adjust for standard admin bar displayed */
+html {
+	height: calc( 100% - 32px );
 }
-#boldgrid-sticky-wrap {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
+/* Adjust for mobile admin bar displayed */
+@media screen and ( max-width: 782px ) {
+	html {
+		height: calc( 100% - 46px );
+	}
+}
+
+.no-flexbox {
+	body.sticky-footer-enabled,
+	.sticky-footer-enabled .site,
+	.sticky-footer-enabled .site-content {
+		height: 100%;
+	}
+	#boldgrid-sticky-wrap {
+		min-height: 100%;
+		height: auto !important;
+		height: 100%;
+	}
+}
+
+.flexbox {
+	body.sticky-footer-enabled {
+		display: flex;
+		min-height: 100%;
+		flex-direction: column;
+	}
+	#boldgrid-sticky-wrap {
+		flex: 1 0 auto; // Could be flex: 1, but looks bad on IE
+	}
 }

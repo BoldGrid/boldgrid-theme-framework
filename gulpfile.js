@@ -218,7 +218,6 @@ gulp.task( 'jsHint', function(  ) {
 gulp.task( 'frameworkJs', function(  ) {
 	// Minified Files.
   gulp.src([config.src + '/assets/js/**/*.js'])
-    .pipe(modernizr( require( './modernizr-config.json' ) ) )
     .pipe( uglify().on( 'error', gutil.log ) )
     .pipe( rename({
       suffix: '.min'
@@ -227,9 +226,27 @@ gulp.task( 'frameworkJs', function(  ) {
 
   // Unminified Files.
   gulp.src([config.src + '/assets/js/**/*.js'])
-  .pipe(modernizr( require( './modernizr-config.json' ) ) )
     .pipe( gulp.dest( config.dist + '/assets/js' ) );
 });
+
+// Modernizr
+// Minify & Copy JS
+gulp.task( 'modernizr', function(  ) {
+	// Minified Files.
+  gulp.src([config.src + '/assets/js/**/*.js'])
+    .pipe( modernizr( require( './modernizr-config.json' ) ) )
+    .pipe( uglify().on( 'error', gutil.log ) )
+    .pipe( rename({
+      suffix: '.min'
+    }) )
+    .pipe( gulp.dest( config.dist + '/assets/js' ) );
+
+  // Unminified Files.
+  gulp.src([config.src + '/assets/js/**/*.js'])
+  .pipe( modernizr( require( './modernizr-config.json' ) ) )
+    .pipe( gulp.dest( config.dist + '/assets/js' ) );
+});
+
 
 // Copy SCSS & CSS deps.
 gulp.task( 'scssDeps', function(  ) {
@@ -329,7 +346,7 @@ gulp.task( 'build', function( cb ) {
     'bower',
     'readme',
     ['jsHint', 'frameworkJs'],
-    ['scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
+    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
     'images',
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
@@ -342,7 +359,7 @@ gulp.task( 'qbuild', function( cb ) {
   sequence(
     'readme',
     ['jsHint', 'frameworkJs'],
-    ['scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
+    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
     cb

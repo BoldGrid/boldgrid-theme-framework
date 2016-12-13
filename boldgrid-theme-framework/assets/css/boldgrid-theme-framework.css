@@ -490,6 +490,11 @@ html {
   flex-direction: column; }
 
 .flexbox #boldgrid-sticky-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto; }
+
+.flexbox #boldgrid-sticky-filler {
   flex: 1 0 auto; }
 
 /*--------------------------------------------------------------

@@ -61,11 +61,14 @@
 		'sticky_footer_enabled' : {
 			init: function() {
 				// JavaScript to be fired on all pages.
-				this.stickyFooter();
+				this.flexSupport();
 			},
 			finalize: function() {
 				// JavaScript to be fired on all pages, after page specific JS is fired.
-				$( window ).on( 'resize', this.stickyFooter );
+				if ( ! Modernizr.flexbox ) $( window ).on( 'resize', this.stickyFooter );
+			},
+			flexSupport : function() {
+				if ( ! Modernizr.flexbox ) this.stickyFooter();
 			},
 			stickyFooter: function() {
 				var footer = $( '.site-footer' );

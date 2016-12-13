@@ -1,6 +1,6 @@
 /*!
  * modernizr v3.3.1
- * Build http://modernizr.com/download?-flexbox-flexwrap-inlinesvg-svg-touchevents-setclasses-dontmin
+ * Build http://modernizr.com/download?-flexbox-flexwrap-inlinesvg-svg-target-touchevents-setclasses-dontmin
  *
  * Copyright (c)
  *  Faruk Ates
@@ -1002,6 +1002,39 @@ Detects support for inline SVG in HTML (not within XHTML).
     var div = createElement('div');
     div.innerHTML = '<svg/>';
     return (typeof SVGRect != 'undefined' && div.firstChild && div.firstChild.namespaceURI) == 'http://www.w3.org/2000/svg';
+  });
+
+/*!
+{
+  "name": "CSS :target pseudo-class",
+  "caniuse": "css-sel3",
+  "property": "target",
+  "tags": ["css"],
+  "notes": [{
+    "name": "MDN documentation",
+    "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/:target"
+  }],
+  "authors": ["@zachleat"],
+  "warnings": ["Opera Mini supports :target but doesn't update the hash for anchor links."]
+}
+!*/
+/* DOC
+Detects support for the ':target' CSS pseudo-class.
+*/
+
+  // querySelector
+  Modernizr.addTest('target', function() {
+    var doc = window.document;
+    if (!('querySelectorAll' in doc)) {
+      return false;
+    }
+
+    try {
+      doc.querySelectorAll(':target');
+      return true;
+    } catch (e) {
+      return false;
+    }
   });
 
 

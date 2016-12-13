@@ -174,40 +174,43 @@ class Boldgrid_Framework_Customizer_Footer {
 		$year = date( 'Y' );
 		$blogname = get_bloginfo( 'name' );
 
-		Kirki::add_field( 'boldgrid_contact_details', array(
-			'type'        => 'repeater',
-			'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
-			'section'     => 'boldgrid_footer_panel',
-			'priority'    => 10,
-			'row_label' => array(
-					'type' => 'text',
+		Kirki::add_field(
+			'boldgrid_contact_details',
+			array(
+				'type'        => 'repeater',
+				'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'priority'    => 10,
+				'row_label' => array(
+					'field' => 'contact_block',
+					'type' => 'field',
 					'value' => esc_attr__( 'Contact Block', 'bgtfw' ),
-					'field' => 'text',
-			),
-			'settings'    => 'boldgrid_contact_details_setting',
-			'default'     => array(
-				array(
-					'text' => esc_attr( "&copy;{$year} {$blogname}" ),
 				),
-				array(
-					'text' => esc_attr( '202 Grid Blvd. Agloe, NY 12776' ),
+				'settings'    => 'boldgrid_contact_details_setting',
+				'default'     => array(
+					array(
+						'contact_block' => "&copy; {$year} {$blogname}",
+					),
+					array(
+						'contact_block' => esc_attr( '202 Grid Blvd. Agloe, NY 12776' ),
+					),
+					array(
+						'contact_block' => esc_attr( '777-765-4321' ),
+					),
+					array(
+						'contact_block' => esc_attr( 'info@example.com' ),
+					),
 				),
-				array(
-					'text' => esc_attr( '777-765-4321' ),
-				),
-				array(
-					'text' => esc_attr( 'info@example.com' ),
-				),
-			),
-			'fields' => array(
-				'text' => array(
-					'type'        => 'text',
-					'label'       => esc_attr__( 'Text', 'bgtfw' ),
-					'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
-					'default'     => '',
-				),
+				'fields' => array(
+					'contact_block' => array(
+						'type'        => 'text',
+						'label'       => esc_attr__( 'Text', 'bgtfw' ),
+						'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
+						'default'     => '',
+					),
+				)
 			)
-		) );
+		);
 	}
 
 	/**
@@ -269,6 +272,46 @@ class Boldgrid_Framework_Customizer_Footer {
 				'priority'    => 50,
 			)
 		);
+	}
+
+	/**
+	 * Generates the HTML for the contact_block theme mod.
+	 *
+	 * @since 1.3.5
+	 *
+	 * @return String $html Contains the markup for displaying contact block in footer.
+	 */
+	public function contact_block_html() {
+		$theme_mod = get_theme_mod( 'boldgrid_contact_details_setting' );
+
+		$counter = 1;
+
+		// HTML to print.
+		$html = '<div class="bgtfw contact-block">';
+
+		foreach( $theme_mod as $key => $value ) {
+			$value = $value['contact_block'];
+			$arr = explode( ' ', $value );
+			$email = '';
+			foreach ( $arr as $word ) {
+				if ( is_email( $word ) ) {
+					$email = $word;
+				}
+			}
+
+			if ( '' !== $email ) {
+				$formatted = "<a href='mailto:{$email}'>{$email}</a>";
+				$value = str_replace( $email, $formatted, $value );
+			}
+
+			$html .= "<span class='contact-block-{$counter}'>{$value}</span>";
+
+			$counter++;
+		}
+
+		$html .= '</div>';
+
+		echo trim( $html );
 	}
 
 	/**

@@ -366,63 +366,63 @@ msgstr ""
 msgid "Add your custom HTML for your footer here"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:179
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:181
 msgid "Contact Details"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:184
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:187
 msgid "Contact Block"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:205
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:207
 msgid "Text"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:206
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:208
 msgid "Enter the text to display in your contact details"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:230
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:233
 msgid "Attribution Control"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:242
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:245
 msgid "Hide BoldGrid Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:254
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:257
 msgid "Hide WordPress Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:266
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:269
 msgid "Hide Partner Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:291
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:334
 msgid "Built with"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:293
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:336
 msgid "BoldGrid"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:301
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:344
 msgid "Powered by"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:303
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:346
 msgid "WordPress"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:312
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:355
 msgid "Support from"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:344, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:346
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:387, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:389
 msgid "Special Thanks"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:391
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:434
 msgid "Enable Footer"
 msgstr ""
 

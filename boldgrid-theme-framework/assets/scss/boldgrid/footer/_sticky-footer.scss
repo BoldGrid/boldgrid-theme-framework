@@ -1,10 +1,10 @@
 /* Adjust for standard admin bar displayed */
-html {
+html.admin-bar {
 	height: calc( 100% - 32px );
 }
 /* Adjust for mobile admin bar displayed */
 @media screen and ( max-width: 782px ) {
-	html {
+	html.admin-bar {
 		height: calc( 100% - 46px );
 	}
 }

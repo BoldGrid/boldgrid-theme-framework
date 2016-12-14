@@ -229,6 +229,7 @@ class BoldGrid_Framework_Scripts {
 
 	// Add to lang attributes tag.
 	public function modernizr( $output ) {
-		return $output . ' class="no-js"';
+		$admin_bar = is_admin_bar_showing() ? ' admin-bar' : '';
+		return "$output class='no-js{$admin_bar}'";
 	}
 }

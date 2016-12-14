@@ -276,7 +276,14 @@ class Boldgrid_Framework_Customizer_Footer {
 
 			foreach( $theme_mod as $key => $value ) {
 				$value = $value['contact_block'];
-				$value = $this->check_for_email( $value );
+
+				// Check if an email was entered in.
+				$email = $this->check_for_email( $value );
+
+				// If we don't have an email check if there's a URL entered.
+				$value = $email['is_email'] ? $email['value'] : $this->check_for_url( $value );
+
+				// Generate markup for the contact block.
 				$html .= "<span class='contact-block-{$counter}'>{$value}</span>";
 				// Increment counter.
 				$counter++;
@@ -296,27 +303,44 @@ class Boldgrid_Framework_Customizer_Footer {
 	 *
 	 * @param String $value String to search for email in.
 	 *
-	 * @return String $html Contains the markup for displaying contact block in footer.
+	 * @return Array $email Contains the markup for displaying contact block in footer and if email was found.
 	 */
 	public function check_for_email( $value ) {
 		// Split string into an array.
 		$arr = explode( ' ', $value );
-		$email = false;
+
+		$email = array(
+			'is_email' => false,
+			'value' => $value,
+		);
 
 		// Check if any of these are emails.
 		foreach ( $arr as $word ) {
 			if ( is_email( $word ) ) {
-				$email = $word;
+				$email['is_email'] = $word;
 			}
 		}
 
 		// If an email is found create a link for it.
-		if ( $email ) {
-			$formatted = "<a href='mailto:{$email}'>{$email}</a>";
-			$value = str_replace( $email, $formatted, $value );
+		if ( $email['is_email'] ) {
+			$formatted = "<a href='mailto:{$email['is_email']}'>{$email['is_email']}</a>";
+			$email['value'] = str_replace( $email['is_email'], $formatted, $email['value'] );
 		}
 
-		return $value;
+		return $email;
+	}
+
+	/**
+	 * Checks string for any URLs.
+	 *
+	 * @since 1.3.5
+	 *
+	 * @param String $value String to search for email in.
+	 *
+	 * @return String Contains the markup for displaying contact block in footer.
+	 */
+	public function check_for_url( $value ) {
+		return preg_replace( '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@', '<a href="http$2://$4" rel="nofollow">$1$2$3$4</a>', $value );
 	}
 
 	/**

@@ -21,5 +21,6 @@ return array(
 		'hide_wordpress_attribution',
 		'hide_partner_attribution',
 		'boldgrid_footer_widget_help',
+		'boldgrid_contact_details_setting',
 	),
 );

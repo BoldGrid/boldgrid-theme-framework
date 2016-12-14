@@ -17,7 +17,7 @@ return array(
 	'enabled'  => false,
 	'defaults' => array(
 		array(
-			'contact_block' => "&copy; {$year} {$blogname}",
+			'contact_block' => "© {$year} {$blogname}",
 		),
 		array(
 			'contact_block' => esc_attr( '202 Grid Blvd. Agloe, NY 12776' ),

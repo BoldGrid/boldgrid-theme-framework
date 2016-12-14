@@ -418,11 +418,11 @@ msgstr ""
 msgid "Support from"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:392, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:394
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:389
 msgid "Special Thanks"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:439
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:440
 msgid "Enable Footer"
 msgstr ""
 

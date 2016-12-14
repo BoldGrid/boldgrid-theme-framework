@@ -386,12 +386,13 @@ class Boldgrid_Framework_Customizer_Footer {
 		$option = apply_filters( 'boldgrid_attribution_filter', $option );
 		$attribution_data = get_option( $option );
 		$attribution_page = get_page_by_title( 'Attribution' );
+		$special_thanks = __( 'Special Thanks', 'bgtfw' );
 
 		// If option is available use that or try to find the page by slug name.
 		if ( ! empty( $attribution_data['page']['id'] ) ) {
-			$link = '<a href="' . get_permalink( $attribution_data['page']['id'] ) . '">' . __( 'Special Thanks', 'bgtfw' ) . '</a>';
+			$link = '<a href="' . get_permalink( $attribution_data['page']['id'] ) . '">' . $special_thanks . '</a>';
 		} elseif ( $attribution_page ) {
-			$link = '<a href="' . get_site_url( null, 'attribution' ) . '">' . __( 'Special Thanks', 'bgtfw' ) . '</a>';
+			$link = '<a href="' . get_site_url( null, 'attribution' ) . '">' . $special_thanks . '</a>';
 		} else {
 			$link = '';
 		}

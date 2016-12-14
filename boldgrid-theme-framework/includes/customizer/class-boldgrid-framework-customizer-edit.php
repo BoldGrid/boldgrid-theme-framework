@@ -43,14 +43,14 @@ class Boldgrid_Framework_Customizer_Edit {
 		/*
 		 * Disable edit icons based on $_GET['customize_messenger_channel'].
 		 *
-		 * According to remove_frameless_preview_messenger_channel(),
-		 * $_GET['customize_messenger_channel'] is removed from the preview window when it is not
-		 * in an iframe.
+		 * According to remove_frameless_preview_messenger_channel(), that parameter is removed from
+		 * the preview window when it is not in an iframe. So if we don't have this url parameter
+		 * set, then we're not in the Customizer's iframe, so disable edit icons.
 		 *
-		 * If we don't have this url parameter set, then we're not in the Customizer's iframe, so
-		 * disable edit icons.
+		 * In order to be compatible with both WP 4.6 and WP 4.7, we need to also take into
+		 * consideration that $_GET['customize_changeset_uuid'] was not introduced until 4.7.
 		 */
-		if( empty( $_GET['customize_messenger_channel'] ) ) {
+		if( ! empty( $_GET['customize_changeset_uuid'] ) && empty( $_GET['customize_messenger_channel'] ) ) {
 			$this->enabled = false;
 		}
 	}

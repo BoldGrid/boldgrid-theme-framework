@@ -465,6 +465,9 @@ span.author.vcard {
   margin-bottom: 15px; }
 
 /* Sticky Footer */
+html {
+  height: 100%; }
+
 /* Adjust for standard admin bar displayed */
 html.admin-bar {
   height: calc( 100% - 32px); }

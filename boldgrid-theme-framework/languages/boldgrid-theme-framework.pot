@@ -398,31 +398,31 @@ msgstr ""
 msgid "Hide Partner Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:337
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:339
 msgid "Built with"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:339
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:341
 msgid "BoldGrid"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:347
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:349
 msgid "Powered by"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:349
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:351
 msgid "WordPress"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:358
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:360
 msgid "Support from"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:390, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:392
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:392, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:394
 msgid "Special Thanks"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:437
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:439
 msgid "Enable Footer"
 msgstr ""
 

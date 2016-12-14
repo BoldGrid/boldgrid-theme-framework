@@ -266,25 +266,27 @@ class Boldgrid_Framework_Customizer_Footer {
 	 * @return String $html Contains the markup for displaying contact block in footer.
 	 */
 	public function contact_block_html() {
-		// Theme mod to check.
-		$theme_mod = get_theme_mod( 'boldgrid_contact_details_setting', $this->configs['customizer-options']['contact-blocks']['defaults'] );
-		// Increment css classes if people need to target an individual section.
-		$counter = 1;
-		// HTML to print.
-		$html = '<div class="bgtfw contact-block">';
+		if ( get_theme_mod( 'boldgrid_enable_footer', true ) ) {
+			// Theme mod to check.
+			$theme_mod = get_theme_mod( 'boldgrid_contact_details_setting', $this->configs['customizer-options']['contact-blocks']['defaults'] );
+			// Increment css classes if people need to target an individual section.
+			$counter = 1;
+			// HTML to print.
+			$html = '<div class="bgtfw contact-block">';
 
-		foreach( $theme_mod as $key => $value ) {
-			$value = $value['contact_block'];
-			$value = $this->check_for_email( $value );
-			$html .= "<span class='contact-block-{$counter}'>{$value}</span>";
-			// Increment counter.
-			$counter++;
+			foreach( $theme_mod as $key => $value ) {
+				$value = $value['contact_block'];
+				$value = $this->check_for_email( $value );
+				$html .= "<span class='contact-block-{$counter}'>{$value}</span>";
+				// Increment counter.
+				$counter++;
+			}
+
+			// Close the div.
+			$html .= '</div>';
+			// Output our string.
+			echo trim( $html );
 		}
-
-		// Close the div.
-		$html .= '</div>';
-		// Output our string.
-		echo trim( $html );
 	}
 
 	/**

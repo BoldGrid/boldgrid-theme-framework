@@ -134,15 +134,15 @@ msgstr ""
 msgid "Search &hellip;"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-widgets.php:204
+#: src/includes/class-boldgrid-framework-widgets.php:193
 msgid "Visual Editor"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-widgets.php:216
+#: src/includes/class-boldgrid-framework-widgets.php:205
 msgid "Arbitrary text or HTML with visual editor"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-widgets.php:318
+#: src/includes/class-boldgrid-framework-widgets.php:307
 msgid "Sidebar #1"
 msgstr ""
 
@@ -306,15 +306,15 @@ msgstr ""
 msgid "BoldGrid Color Palettes"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:110
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:124
 msgid "Go there now"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:111
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:125
 msgid "Widget"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:112
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:126
 msgid "Menu"
 msgstr ""
 

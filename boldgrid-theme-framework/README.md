@@ -48,6 +48,10 @@ user guide for more information.
 * Update: Using meaningful keys in boldgrid_widgets_created option.
 * Bug fix: Fixing issue with bad data in boldgrid_widgets_created.
 
+### 1.3.0.2 ###
+* Bug fix: Customizer edit buttons not appearing for menus.
+* Bug fix: Edit buttons appearing when not in Customizer.
+
 ### 1.3.0.1 ###
 * Update: Removing custom CSS panel added in WordPress 4.7 Core update.
 * Update: Removing visible edit buttons added in WordPress 4.7 Core update.

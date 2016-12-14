@@ -171,9 +171,6 @@ class Boldgrid_Framework_Customizer_Footer {
 	 * @since 1.3.5
 	 */
 	public function add_contact_control( $wp_customize ) {
-		$year = date( 'Y' );
-		$blogname = get_bloginfo( 'name' );
-
 		Kirki::add_field(
 			'boldgrid_contact_details',
 			array(
@@ -187,20 +184,7 @@ class Boldgrid_Framework_Customizer_Footer {
 					'value' => esc_attr__( 'Contact Block', 'bgtfw' ),
 				),
 				'settings'    => 'boldgrid_contact_details_setting',
-				'default'     => array(
-					array(
-						'contact_block' => "&copy; {$year} {$blogname}",
-					),
-					array(
-						'contact_block' => esc_attr( '202 Grid Blvd. Agloe, NY 12776' ),
-					),
-					array(
-						'contact_block' => esc_attr( '777-765-4321' ),
-					),
-					array(
-						'contact_block' => esc_attr( 'info@example.com' ),
-					),
-				),
+				'default'     => $this->configs['customizer-options']['contact-blocks']['defaults'],
 				'fields' => array(
 					'contact_block' => array(
 						'type'        => 'text',
@@ -282,36 +266,55 @@ class Boldgrid_Framework_Customizer_Footer {
 	 * @return String $html Contains the markup for displaying contact block in footer.
 	 */
 	public function contact_block_html() {
-		$theme_mod = get_theme_mod( 'boldgrid_contact_details_setting' );
-
+		// Theme mod to check.
+		$theme_mod = get_theme_mod( 'boldgrid_contact_details_setting', $this->configs['customizer-options']['contact-blocks']['defaults'] );
+		// Increment css classes if people need to target an individual section.
 		$counter = 1;
-
 		// HTML to print.
 		$html = '<div class="bgtfw contact-block">';
 
 		foreach( $theme_mod as $key => $value ) {
 			$value = $value['contact_block'];
-			$arr = explode( ' ', $value );
-			$email = '';
-			foreach ( $arr as $word ) {
-				if ( is_email( $word ) ) {
-					$email = $word;
-				}
-			}
-
-			if ( '' !== $email ) {
-				$formatted = "<a href='mailto:{$email}'>{$email}</a>";
-				$value = str_replace( $email, $formatted, $value );
-			}
-
+			$value = $this->check_for_email( $value );
 			$html .= "<span class='contact-block-{$counter}'>{$value}</span>";
-
+			// Increment counter.
 			$counter++;
 		}
 
+		// Close the div.
 		$html .= '</div>';
-
+		// Output our string.
 		echo trim( $html );
+	}
+
+	/**
+	 * Checks string for any valid email addresses.
+	 *
+	 * @since 1.3.5
+	 *
+	 * @param String $value String to search for email in.
+	 *
+	 * @return String $html Contains the markup for displaying contact block in footer.
+	 */
+	public function check_for_email( $value ) {
+		// Split string into an array.
+		$arr = explode( ' ', $value );
+		$email = false;
+
+		// Check if any of these are emails.
+		foreach ( $arr as $word ) {
+			if ( is_email( $word ) ) {
+				$email = $word;
+			}
+		}
+
+		// If an email is found create a link for it.
+		if ( $email ) {
+			$formatted = "<a href='mailto:{$email}'>{$email}</a>";
+			$value = str_replace( $email, $formatted, $value );
+		}
+
+		return $value;
 	}
 
 	/**

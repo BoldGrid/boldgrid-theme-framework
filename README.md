@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.3.0.2 ###
 * Bug fix: Customizer edit buttons not appearing for menus.
+* Bug fix: Edit buttons appearing when not in Customizer.
 
 ### 1.3.0.1 ###
 * Update: Removing custom CSS panel added in WordPress 4.7 Core update.

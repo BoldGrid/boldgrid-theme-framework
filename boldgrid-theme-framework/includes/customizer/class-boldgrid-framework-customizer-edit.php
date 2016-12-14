@@ -39,6 +39,20 @@ class Boldgrid_Framework_Customizer_Edit {
 		$this->configs = $configs;
 
 		$this->enabled = $configs['customizer-options']['edit']['enabled'];
+
+		/*
+		 * Disable edit icons based on $_GET['customize_messenger_channel'].
+		 *
+		 * According to remove_frameless_preview_messenger_channel(),
+		 * $_GET['customize_messenger_channel'] is removed from the preview window when it is not
+		 * in an iframe.
+		 *
+		 * If we don't have this url parameter set, then we're not in the Customizer's iframe, so
+		 * disable edit icons.
+		 */
+		if( empty( $_GET['customize_messenger_channel'] ) ) {
+			$this->enabled = false;
+		}
 	}
 
 	/**

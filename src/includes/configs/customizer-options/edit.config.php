@@ -32,6 +32,11 @@ return array(
 				'icon' => 'dashicons-edit',
 			),
 			array(
+				'control' => 'boldgrid_contact_details_setting',
+				'selector' => '.bgtfw.contact-block',
+				'icon' => 'dashicons-edit',
+			),
+			array(
 				'control' => 'hide_boldgrid_attribution',
 				'selector' => '.attribution-theme-mods',
 				'icon' => 'dashicons-edit',

@@ -186,7 +186,11 @@ class Boldgrid_Framework_Widgets {
 		 *
 		 * @since 1.0.0
 		 */
-		if ( $this->bstw->theme_mod() || $this->configs['widget']['force_enable_bstw'] ) {
+		$theme_mod = $this->bstw->theme_mod();
+		$enabled = $this->configs['widget']['force_enable_bstw'];
+		$disabled = $this->configs['widget']['force_disable_bstw'];
+
+		if ( $theme_mod || $enabled || ! $disabled ) {
 			foreach ( $ids_created as $id ) {
 				$black_studio = new WP_Widget_Black_Studio_TinyMCE();
 				$black_studio->id = 'black-studio-tinymce-' . $id;

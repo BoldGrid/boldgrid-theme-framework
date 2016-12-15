@@ -17,6 +17,7 @@ HTML;
 
 return array(
 	'force_enable_bstw' => true,
+	'force_disable_bstw' => false,
 	'footer_widgets' => array(
 		// When the footer is disabled, these widgets will be removed.
 		'boldgrid-widget-3'

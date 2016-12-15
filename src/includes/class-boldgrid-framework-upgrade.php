@@ -168,12 +168,14 @@ class Boldgrid_Framework_Upgrade {
 			$checks = array(
 				! $this->bstw->widgets_created(),
 				! $this->bstw->sidebars_widgets(),
-
 				$this->configs['template']['call-to-action'] === 'none',
+				! $this->configs['widget']['force_enable_bstw'],
+				$this->configs['widget']['force_disable_bstw'],
 			);
 
 			if ( in_array( true, $checks, true ) ) $load = false;
 		}
+
 		// This keeps it persistent so we don't have to filter configs every load.
 		set_theme_mod( 'bstw_enabled', $load );
 	}

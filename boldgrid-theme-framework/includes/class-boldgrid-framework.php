@@ -623,11 +623,18 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'body_class', $footer, 'collapse_body_margin' );
 		$this->loader->add_action( 'boldgrid_display_attribution_links', $footer, 'attribution_display_action' );
 		$this->loader->add_action( 'boldgrid_footer_before', $footer, 'maybe_remove_all_footer_actions' );
-
-		$contact_blocks = new Boldgrid_Framework_Customizer_Contact_Blocks( $this->configs );
-		$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
+		self::contact_blocks();
 	}
 
+	private function contact_blocks() {
+		$contact_blocks = new Boldgrid_Framework_Customizer_Contact_Blocks( $this->configs );
+		$enabled = $this->configs['customizer-options']['contact-blocks']['enabled'];
+		$bstw = get_theme_mod( 'bstw_enabled' );
+		// If contact blocks is enabled and BSTW widget is disabled add contact blocks.
+		if ( $enabled && ! $bstw ) {
+			$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
+		}
+	}
 	/**
 	 * This defines the core functionality of the framework's customizer Kirki implementation.
 	 *

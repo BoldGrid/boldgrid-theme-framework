@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.3.5 ###
 * Update: Allow widget data to be filtered before widgets are created.
+* Bug fix: weibo icon.
 
 ### 1.3.4 ###
 * Update: Setting JS compiler instance limit to 50 to accommodate larger sass sheets.

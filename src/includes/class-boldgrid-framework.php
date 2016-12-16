@@ -326,7 +326,6 @@ class BoldGrid_Framework {
 	public function cta() {
 		$cta = new Boldgrid_Framework_Customizer_Bstw( $this->configs );
 		$this->loader->add_action( 'after_setup_theme', $cta, 'init' );
-
 	}
 
 	/**
@@ -498,6 +497,7 @@ class BoldGrid_Framework {
 		self::customizer_typography();
 		self::customizer_colors();
 		self::customizer_footer();
+		self::contact_blocks();
 		self::customizer_kirki();
 		self::customizer_effects();
 	}
@@ -623,30 +623,26 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'body_class', $footer, 'collapse_body_margin' );
 		$this->loader->add_action( 'boldgrid_display_attribution_links', $footer, 'attribution_display_action' );
 		$this->loader->add_action( 'boldgrid_footer_before', $footer, 'maybe_remove_all_footer_actions' );
-		self::contact_blocks();
 	}
 
+	/**
+	 * This defines the core functionality of the framework's contact blocks.
+	 *
+	 * @since    1.3.5
+	 * @access   private
+	 */
 	private function contact_blocks() {
 		$contact_blocks = new Boldgrid_Framework_Customizer_Contact_Blocks( $this->configs );
-
-		// If force enabled, then set theme mod to true.
-		$bstw_enabled = $this->configs['widget']['force_enable_bstw'];
-		if ( $bstw_enabled ) set_theme_mod( 'bstw_enabled', $bstw_enabled );
-
-		// If force disabled, then set theme mod to false.
-		$bstw_disabled = $this->configs['widget']['force_disable_bstw'];
-		if ( $bstw_disabled ) set_theme_mod( 'bstw_enabled', false );
-
 		// If bstw is disabled, then turn on contact blocks in framework.
 		$enabled = $this->configs['customizer-options']['contact-blocks']['enabled'];
 		$bstw = get_theme_mod( 'bstw_enabled' );
 		if ( ! $bstw ) $enabled = true;
-
 		// If contact blocks is enabled and BSTW widget is disabled add contact blocks.
 		if ( $enabled ) {
 			$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
 		}
 	}
+
 	/**
 	 * This defines the core functionality of the framework's customizer Kirki implementation.
 	 *

@@ -51,7 +51,6 @@ class Boldgrid_Framework_Upgrade {
 	public function __construct( $configs ) {
 		$this->configs = $configs;
 		$this->prefix = 'bgtfw';
-		$this->bstw = new Boldgrid_Framework_Customizer_Bstw( $this->configs );
 	}
 
 	/**

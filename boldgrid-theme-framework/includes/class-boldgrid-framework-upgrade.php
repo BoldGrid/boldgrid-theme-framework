@@ -145,38 +145,4 @@ class Boldgrid_Framework_Upgrade {
 	public function set_option( $version ) {
 		set_theme_mod( "{$this->prefix}_version", $version );
 	}
-
-	/**
-	 * Upgrade to version 1.3.x
-	 *
-	 * This will perform upgrade tasks for 1.3 as a minor version as a whole. This
-	 * updates old postmeta meta_key naming to fit in with the new naming
-	 * convention used in the plugin.
-	 *
-	 * @link https://codex.wordpress.org/Class_Reference/wpdb#UPDATE_rows
-	 *
-	 * @access public
-	 *
-	 * @since 1.3.1
-	 */
-	public function upgrade_to_1_3_x() {
-		// Default call-to-action state is to load.
-		$load = true;
-
-		if ( ! $this->configs['widget']['force_enable_bstw'] ) {
-			// Checks to run to determine if BSTW should be loaded for this user.
-			$checks = array(
-				! $this->bstw->widgets_created(),
-				! $this->bstw->sidebars_widgets(),
-				$this->configs['template']['call-to-action'] === 'none',
-				! $this->configs['widget']['force_enable_bstw'],
-				$this->configs['widget']['force_disable_bstw'],
-			);
-
-			if ( in_array( true, $checks, true ) ) $load = false;
-		}
-
-		// This keeps it persistent so we don't have to filter configs every load.
-		set_theme_mod( 'bstw_enabled', $load );
-	}
 }

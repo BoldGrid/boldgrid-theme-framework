@@ -716,7 +716,7 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function device_preview() {
-		$device_preview = new BoldGrid_Framework_Device_Preview( $this->configs );
+		$device_preview = new Boldgrid_Framework_Device_Preview( $this->configs );
 		// We don't need device previews if user is running on a mobile device or newer WP.
 		$wp_version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>' );
 

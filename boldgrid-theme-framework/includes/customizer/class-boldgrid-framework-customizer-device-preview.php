@@ -1,12 +1,12 @@
 <?php
 /**
- * Class: BoldGrid_Framework_Device_Preview
+ * Class: Boldgrid_Framework_Device_Preview
  *
  * This is used to add the device previewer to the WordPress customizer.
  *
  * @since      1.0.0
  * @package    Boldgrid_Framework
- * @subpackage BoldGrid_Framework_Device_Preview
+ * @subpackage Boldgrid_Framework_Device_Preview
  * @author     BoldGrid <support@boldgrid.com>
  * @link       https://boldgrid.com
  */
@@ -15,14 +15,14 @@
 defined( 'WPINC' ) ? : die;
 
 /**
- * BoldGrid_Framework_Device_Preview Class
+ * Boldgrid_Framework_Device_Preview Class
  *
  * Responsible for the device preview/resize buttons in the
  * customizer.
  *
  * @since 1.0.0
  */
-class BoldGrid_Framework_Device_Preview {
+class Boldgrid_Framework_Device_Preview {
 
 	/**
 	 * The BoldGrid Theme Framework configurations.
@@ -90,6 +90,3 @@ class BoldGrid_Framework_Device_Preview {
 		<?php
 	}
 }
-
-
-

@@ -68,9 +68,20 @@ class Boldgrid_Framework_Customizer_Contact_Blocks {
 						'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
 						'default'     => '',
 					),
-				)
+				),
 			)
 		);
+	}
+
+	/**
+	 * Generates the HTML for the contact_block theme mod.
+	 *
+	 * @since 1.3.5
+	 */
+	public function contact_block_html() {
+		if ( get_theme_mod( 'boldgrid_enable_footer', true ) ) {
+			echo $this->generate_html();
+		}
 	}
 
 	/**
@@ -80,32 +91,30 @@ class Boldgrid_Framework_Customizer_Contact_Blocks {
 	 *
 	 * @return String $html Contains the markup for displaying contact block in footer.
 	 */
-	public function contact_block_html() {
-		if ( get_theme_mod( 'boldgrid_enable_footer', true ) ) {
-			// Theme mod to check.
-			$theme_mod = get_theme_mod( 'boldgrid_contact_details_setting', $this->configs['customizer-options']['contact-blocks']['defaults'] );
-			// Increment css classes if people need to target an individual section.
-			$counter = 1;
-			// HTML to print.
-			$html = '<div class="bgtfw contact-block">';
+	public function generate_html() {
+		// Theme mod to check.
+		$theme_mod = get_theme_mod( 'boldgrid_contact_details_setting', $this->configs['customizer-options']['contact-blocks']['defaults'] );
+		// Increment css classes if people need to target an individual section.
+		$counter = 1;
+		// HTML to print.
+		$html = '<div class="bgtfw contact-block">';
 
-			foreach( $theme_mod as $key => $value ) {
-				$value = $value['contact_block'];
-				// Check if an email was entered in.
-				$email = $this->check_for_email( $value );
-				// If we don't have an email check if there's a URL entered.
-				$value = $email['is_email'] ? $email['value'] : $this->check_for_url( $value );
-				// Generate markup for the contact block.
-				$html .= "<span class='contact-block-{$counter}'>{$value}</span>";
-				// Increment counter.
-				$counter++;
-			}
-
-			// Close the div.
-			$html .= '</div>';
-			// Output our string.
-			echo trim( $html );
+		foreach( $theme_mod as $key => $value ) {
+			$value = $value['contact_block'];
+			// Check if an email was entered in.
+			$email = $this->check_for_email( $value );
+			// If we don't have an email check if there's a URL entered.
+			$value = $email['is_email'] ? $email['value'] : $this->check_for_url( $value );
+			// Generate markup for the contact block.
+			$html .= "<span class='contact-block-{$counter}'>{$value}</span>";
+			// Increment counter.
+			$counter++;
 		}
+
+		// Close the div.
+		$html .= '</div>';
+		// Output our string.
+		return trim( $html );
 	}
 
 	/**

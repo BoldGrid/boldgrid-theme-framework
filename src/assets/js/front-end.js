@@ -59,18 +59,17 @@
 		 *  height from the filler, so it doesn't overflow.
 		 */
 		'sticky_footer_enabled' : {
-			flexbox : Modernizr.flexbox,
 			init: function() {
 				// JavaScript to be fired on all pages.
 				this.flexSupport();
 			},
 			finalize: function() {
-				if ( ! this.flexbox ) {
+				if ( ! Modernizr.flexbox ) {
 					$( window ).on( 'resize', this.stickyFooter );
 				}
 			},
 			flexSupport : function() {
-				if ( ! this.flexbox ) {
+				if ( ! Modernizr.flexbox ) {
 					this.stickyFooter();
 				}
 			},

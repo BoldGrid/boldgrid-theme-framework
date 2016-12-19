@@ -892,6 +892,11 @@
 	}
 }
 
-#customize-control-boldgrid_contact_details_setting .repeater-row-label {
-	text-transform: none;
+#customize-control-boldgrid_contact_details_setting {
+	.repeater-row-label {
+		text-transform: none;
+	}
+	button.repeater-add {
+		float: right;
+	}
 }

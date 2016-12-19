@@ -797,3 +797,6 @@
 
 #customize-control-boldgrid_contact_details_setting .repeater-row-label {
   text-transform: none; }
+
+#customize-control-boldgrid_contact_details_setting button.repeater-add {
+  float: right; }

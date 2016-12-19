@@ -794,3 +794,6 @@
 
 #customize-controls [data-action="open-color-picker"] .dashicons, #customize-controls [data-action="open-color-picker"] .dashicons-before:before {
   font-size: 1.4em; }
+
+#customize-control-boldgrid_contact_details_setting .repeater-row-label {
+  text-transform: none; }

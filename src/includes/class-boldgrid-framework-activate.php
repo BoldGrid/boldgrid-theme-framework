@@ -96,6 +96,11 @@ class Boldgrid_Framework_Activate {
 		do_action( 'boldgrid_theme_activate' );
 	}
 
+	/**
+	 * Activate Boldgrid theme framework if staging.
+	 *
+	 * @since 1.0.0
+	 */
 	public function do_staging_activate( $old, $new ) {
 		$option = 'boldgrid_staging_theme_mods_' . $new;
 		// Set the color palettes for staging.

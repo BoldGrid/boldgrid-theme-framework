@@ -8,6 +8,14 @@
  * @author BoldGrid <support@boldgrid.com>
  * @link https://boldgrid.com
  */
+
+/**
+ * Class: Boldgrid_Framework_Editor
+ *
+ * Responsible for Editor functionality.
+ *
+ * @since 1.0.6
+ */
 class Boldgrid_Framework_Editor {
 
 	/**
@@ -21,7 +29,7 @@ class Boldgrid_Framework_Editor {
 	/**
 	 * Pass in configs
 	 *
-	 * @param array $configs
+	 * @param array $configs Array of bgtfw configuration options.
 	 * @since 1.0.6
 	 */
 	public function __construct( $configs ) {
@@ -90,12 +98,12 @@ class Boldgrid_Framework_Editor {
 				}
 
 				$post_type = 'page';
-				if ( $post->post_type == 'post' ) {
+				if ( 'post' == $post->post_type ) {
 					$post_type = 'post';
 				}
 			} else {
 				$post_type = ! empty( $_REQUEST['post_type'] ) ? $_REQUEST['post_type'] : null;
-				if ( $post_type != 'page' ) {
+				if ( 'page' != $post_type ) {
 					$post_type = 'post';
 				}
 
@@ -133,7 +141,7 @@ HTML;
 	/**
 	 * Theme framework mce plugin responsible for adding inline styles to editor.
 	 *
-	 * @param array $plugin_array.
+	 * @param array $plugin_array Array of tinymce plugins.
 	 * @return string
 	 * @since 1.0.6
 	 */

@@ -13,6 +13,7 @@
 return array(
 	'enabled' => true,
 	'buttons' => array(
+
 		/*
 		 * An array of general edit buttons.
 		 *
@@ -54,4 +55,3 @@ return array(
 		),
 	),
 );
-

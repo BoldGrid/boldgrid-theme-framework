@@ -1,4 +1,15 @@
 <?php
+/**
+ * The tooltip configuration options for bgtfw.
+ *
+ * @package Boldgrid_Theme_Framework
+ * @subpackage Boldgrid_Theme_Framework\Configs
+ *
+ * @since    1.1
+ *
+ * @return   array   An array of tooltip configs used in bgtfw.
+ */
+
 return array(
 	array(
 		'settings' => 'boldgrid-background-type',
@@ -73,5 +84,3 @@ return array(
 		'help' => __( 'To use a full size background image, we recommend a size of at least 1920 x 1080. The BoldGrid Connect Search, available when you select change image, will help you find large images that are suitable.', 'bgtfw' ),
 	),
 );
-
-

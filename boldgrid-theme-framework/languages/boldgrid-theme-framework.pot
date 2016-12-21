@@ -146,79 +146,79 @@ msgstr ""
 msgid "Sidebar #1"
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:45
+#: src/includes/configs/tgm.config.php:57
 msgid "Recommended Plugins"
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:46
+#: src/includes/configs/tgm.config.php:58
 msgid "Install Recommended Plugins"
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:5
+#: src/includes/configs/tooltips.config.php:16
 msgid "You can choose a background image or a Pattern/Color."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:9
+#: src/includes/configs/tooltips.config.php:20
 msgid "Use this control to move your image left and right. This can be used to adjust visible portion of your image."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:13
+#: src/includes/configs/tooltips.config.php:24
 msgid "Use this control to move your image up and down. This can be used to adjust visible portion of your image."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:17
+#: src/includes/configs/tooltips.config.php:28
 msgid "Change the color of your background. This can affect the color behind images including the patterns below. Click clear within the color selection tool if you would like your current color palette to determine the background color instead."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:21
+#: src/includes/configs/tooltips.config.php:32
 msgid "Select a pattern to use as your background image. These patterns can inherit the color of your chosen palette or use the color you chose above. You can also remove the selected pattern to use a flat color instead."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:25
+#: src/includes/configs/tooltips.config.php:36
 msgid "The BoldGrid Color Palette System allows you to create custom color palettes. Try changing the order of colors in a palette, or use \"Suggest Palettes\" to automatically generate new palettes."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:29
+#: src/includes/configs/tooltips.config.php:40
 msgid "You can either have your Site Title displayed or upload your Logo.  See our guide for best practices with Logos."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:33
+#: src/includes/configs/tooltips.config.php:44
 msgid "This theme’s footer supports up to 4 columns of Widget Areas.  You can place as many Widgets as you like in each area."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:37
+#: src/includes/configs/tooltips.config.php:48
 msgid "This theme’s header supports up to 4 columns of Widget Areas.  You can place as many Widgets as you like in each area."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:41
+#: src/includes/configs/tooltips.config.php:52
 msgid "You can add additional HTML that will appear at the bottom of your theme with this textbox."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:45, src/includes/configs/tooltips.config.php:57
+#: src/includes/configs/tooltips.config.php:56, src/includes/configs/tooltips.config.php:68
 msgid "You can add additional HTML that will appear at the top of your theme with this textbox."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:49
+#: src/includes/configs/tooltips.config.php:60
 msgid "The CSS you add to this textbox will be applied directly to your theme.  It will override CSS rules made by your theme creator."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:53
+#: src/includes/configs/tooltips.config.php:64
 msgid "The Javascript you add to this textbox will be appended to your themes existing Javascript.  In order to execute this code, you must refresh the page, or visit the site outside of the customizer."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:61
+#: src/includes/configs/tooltips.config.php:72
 msgid "The background size setting that best fits your theme, will vary based on your selected image. If the image does not appear to your liking, cycle through the options until you find a setting that best fits your needs."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:65
+#: src/includes/configs/tooltips.config.php:76
 msgid "Background Effects can be used to change the appearance of the background as you scroll down the page. The Parallax effect causes the image to move at a different speed from the scroll speed."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:69
+#: src/includes/configs/tooltips.config.php:80
 msgid "Background Repeat is commonly used with patterns and will give your image a tiled appearance."
 msgstr ""
 
-#: src/includes/configs/tooltips.config.php:73
+#: src/includes/configs/tooltips.config.php:84
 msgid "To use a full size background image, we recommend a size of at least 1920 x 1080. The BoldGrid Connect Search, available when you select change image, will help you find large images that are suitable."
 msgstr ""
 
@@ -604,67 +604,67 @@ msgid ""
 "						of your site. Become familiar with everything's location to make full use of your site's features."
 msgstr ""
 
-#: src/includes/partials/author-box.php:12, src/includes/partials/author-box.php:12
+#: src/includes/partials/author-box.php:14, src/includes/partials/author-box.php:14
 msgid "Hide Author Bio"
 msgstr ""
 
-#: src/includes/partials/author-box.php:23
+#: src/includes/partials/author-box.php:25
 msgid "About %s"
 msgstr ""
 
-#: src/includes/partials/author-box.php:33
+#: src/includes/partials/author-box.php:35
 msgid "One article and counting. "
 msgstr ""
 
-#: src/includes/partials/author-box.php:37
+#: src/includes/partials/author-box.php:39
 msgid "%s articles and counting. "
 msgstr ""
 
-#: src/includes/partials/author-box.php:48
+#: src/includes/partials/author-box.php:50
 msgid "Follow %s on social media: "
 msgstr ""
 
-#: src/includes/partials/author-box.php:50
+#: src/includes/partials/author-box.php:52
 msgid "Follow %s on Twitter"
 msgstr ""
 
-#: src/includes/partials/author-box.php:50
+#: src/includes/partials/author-box.php:52
 msgid "Twitter"
 msgstr ""
 
-#: src/includes/partials/author-box.php:53
+#: src/includes/partials/author-box.php:55
 msgid "Add %s to your Google+ circles"
 msgstr ""
 
-#: src/includes/partials/author-box.php:53
+#: src/includes/partials/author-box.php:55
 msgid "Google+"
 msgstr ""
 
-#: src/includes/partials/author-box.php:56
+#: src/includes/partials/author-box.php:58
 msgid "Like %s on Facebook"
 msgstr ""
 
-#: src/includes/partials/author-box.php:56
+#: src/includes/partials/author-box.php:58
 msgid "Facebook"
 msgstr ""
 
-#: src/includes/partials/author-box.php:69
+#: src/includes/partials/author-box.php:71
 msgid "All posts by %s"
 msgstr ""
 
-#: src/includes/partials/customizer-edit.php:3
+#: src/includes/partials/customizer-edit.php:9
 msgid "Edit this page"
 msgstr ""
 
-#: src/includes/partials/customizer-edit.php:4
+#: src/includes/partials/customizer-edit.php:10
 msgid "This section is part of an individual page of your site. The Customizer (where you are now) is for editing the header and footer or an overall setting of your site like colors and fonts. To edit this section, you'll need to leave the Customizer and go to the Page Editor."
 msgstr ""
 
-#: src/includes/partials/customizer-edit.php:5
+#: src/includes/partials/customizer-edit.php:11
 msgid "Hide page title"
 msgstr ""
 
-#: src/includes/partials/customizer-edit.php:6
+#: src/includes/partials/customizer-edit.php:12
 msgid "To hide the title on this page, you'll need to leave the Customizer and go to the Page Editor."
 msgstr ""
 

@@ -2,6 +2,8 @@
 /**
  * Dispay author bio and other information on single posts and author index page.
  * Dependent on bio being available for current author.
+ *
+ * @package Boldgrid_Theme_Framework
  */
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -9,20 +11,20 @@ if ( ! defined( 'WPINC' ) ) {
 ?>
 
 <div class="reveal-bio">
-    <?php echo '<a href="#" class="fa fa-minus-circle" title="' . __( 'Hide Author Bio', 'bgtfw' ) . '"><span class="sr-only">' . __( 'Hide Author Bio', 'bgtfw' ) . '</span></a>'; ?>
+	<?php echo '<a href="#" class="fa fa-minus-circle" title="' . __( 'Hide Author Bio', 'bgtfw' ) . '"><span class="sr-only">' . __( 'Hide Author Bio', 'bgtfw' ) . '</span></a>'; ?>
 </div>
 
 <div class="author-info">
 
-    <div class="author-avatar">
-            <?php
+	<div class="author-avatar">
+			<?php
 			echo get_avatar( get_the_author_meta( 'user_email' ), 96 );
 			?>
-    </div><!-- .author-avatar -->
-    <div class="author-meta">
-        <h2 class="author-title"><?php printf( __( 'About %s', 'bgtfw' ), get_the_author( ) ); ?></h2>
-        <div class="share-and-more">
-            <?php
+	</div><!-- .author-avatar -->
+	<div class="author-meta">
+		<h2 class="author-title"><?php printf( __( 'About %s', 'bgtfw' ), get_the_author( ) ); ?></h2>
+		<div class="share-and-more">
+			<?php
 			// Change language depending on number of posts
 			$posts_posted = get_the_author_posts( );
 
@@ -58,15 +60,15 @@ if ( ! defined( 'WPINC' ) ) {
 				echo '</div>';
 			}
 			?>
-        </div>
-    </div>
-    <div class="author-description">
+		</div>
+	</div>
+	<div class="author-description">
 
-            <p class="author-bio">
-                <?php the_author_meta( 'description' )  ?>
-            </p>
-            <a class="author-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-            <?php printf( __( 'All posts by %s', 'bgtfw' ), get_the_author_meta( 'first_name' ) . ' <i class="fa fa-arrow-circle-o-right"></i>' ); ?>
-        </a>
-    </div><!-- .author-description -->
+			<p class="author-bio">
+				<?php the_author_meta( 'description' )  ?>
+			</p>
+			<a class="author-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
+			<?php printf( __( 'All posts by %s', 'bgtfw' ), get_the_author_meta( 'first_name' ) . ' <i class="fa fa-arrow-circle-o-right"></i>' ); ?>
+		</a>
+	</div><!-- .author-description -->
 </div><!-- .author-info -->

@@ -28,7 +28,7 @@ if ( ! defined( 'WPINC' ) ) {
 			// Change language depending on number of posts
 			$posts_posted = get_the_author_posts( );
 
-			if ( $posts_posted == 1 ) {
+			if ( 1 == $posts_posted ) {
 
 				printf(
 						/* translators: May be followed by another sentence. There is a space after the punctuation mark.  */

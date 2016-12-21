@@ -9,6 +9,8 @@
  * Text Domain: bgtfw
  * Domain Path: /languages
  * License: GPLv2 or later
+ *
+ * @package Boldgrid_Theme_Framework
  */
 
 /**
@@ -32,4 +34,3 @@ if ( file_exists( $theme_framework_class ) ) {
 	$boldgrid_theme_framework = new Boldgrid_Framework();
 	$boldgrid_theme_framework->run();
 }
-

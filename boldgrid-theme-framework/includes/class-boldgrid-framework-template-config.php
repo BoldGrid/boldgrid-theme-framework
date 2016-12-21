@@ -359,8 +359,6 @@ class BoldGrid_Framework_Template_Config {
 	 * Setup the ability to use action configs.
 	 *
 	 * @since 1.1.1
-	 *
-	 * @return array An array containing menu locations.
 	 */
 	public function do_location_action( $template_type, $location_id  ) {
 		$template_config = $this->configs['template']['locations'][ $template_type ];

@@ -211,7 +211,8 @@ class Boldgrid_Framework_Customizer_Colors {
 	 *
 	 * @since 1.1.4
 	 *
-	 * @param array $configs.
+	 * @param array $configs Array of BGTFW configurations.
+	 *
 	 * @return string color palettes uri
 	 */
 	public static function get_colors_uri( $configs ) {

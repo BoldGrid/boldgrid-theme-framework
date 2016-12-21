@@ -268,6 +268,13 @@ class Boldgrid_Framework_Compile_Colors {
 		return $boldgrid_colors;
 	}
 
+	/**
+	 * Gets default button color class.
+	 *
+	 * @since 1.1
+	 *
+	 * @return string $class The class of the default button color found.
+	 */
 	public function get_button_default_color() {
 		$s = $this->configs['components']['buttons']['variables'];
 		$classes = ! empty( $s['button-primary-classes'] ) ? $s['button-primary-classes'] : null;

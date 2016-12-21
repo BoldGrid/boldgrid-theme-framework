@@ -15,6 +15,14 @@
 // If this file is called directly, abort.
 defined( 'WPINC' ) ? : die;
 
+/**
+ * Class: BoldGrid_Framework_Schema
+ *
+ * This contains code that BoldGrid themes use to present
+ * schema.org microdata in the markup.
+ *
+ * @since      1.0.0
+ */
 class BoldGrid_Framework_Schema {
 
 	/**

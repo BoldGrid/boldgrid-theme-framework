@@ -60,6 +60,13 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		}
 	}
 
+	/**
+	 * Build Bootstrap from SCSS.
+	 *
+	 * Calls to compile bootstrap, and then save it.
+	 *
+	 * @since 1.1
+	 */
 	public function build_bootstrap() {
 		$dir = $this->configs['framework']['asset_dir'];
 		// BoldGrid specific color variables to have available during compile.
@@ -75,6 +82,13 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		$this->wpfs->save( $css, get_stylesheet_directory() . '/css/bootstrap/bootstrap.css' );
 	}
 
+	/**
+	 * Build BGTFW from SCSS.
+	 *
+	 * Calls to compile bgtfw, and then save it.
+	 *
+	 * @since 1.1
+	 */
 	public function build_bgtfw() {
 		$dir = $this->staging->get_template_dir();
 		// BoldGrid specific variables to have available during compile.

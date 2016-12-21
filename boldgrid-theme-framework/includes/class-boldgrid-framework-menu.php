@@ -139,7 +139,6 @@ class Boldgrid_Framework_Menu {
 
 		foreach ( $this->configs['menu']['prototype'] as $menu ) {
 			$action = function () use ( $menu, $edit_enabled ) {
-
 				/*
 				 * IF we're in the customizer and edit buttons are enabled:
 				 * # Modify 'fallback_cb' and force the "edit button's fallback_cb".

@@ -297,7 +297,7 @@ msgstr ""
 msgid "Drag a color to a new spot to change what parts of the website are that color.<a href=\"#\" data-action=\"open-color-picker\"><span class=\"dashicons dashicons-admin-customizer\"></span><strong>Click a color</strong></a> to change it. Click a color to change it. Use the \"Suggest Palettes\" button to get new color suggestions, and press the lock icons to freeze colors in place."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-colors.php:511
+#: src/includes/customizer/class-boldgrid-framework-customizer-colors.php:512
 msgid "BoldGrid Color Palettes"
 msgstr ""
 

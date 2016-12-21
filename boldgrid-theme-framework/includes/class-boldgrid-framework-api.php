@@ -538,7 +538,7 @@ class BoldGrid {
 					$conditions[] = ! function_exists( $condition ) ? : $condition( $param );
 					break;
 				// Use [default]is_page_template as is_page() && ! is_page_template().
-				case ( $is_page_template && $param === 'default' ) :
+				case ( $is_page_template && 'default' === $param ) :
 					$conditions[] = is_page() && ! is_page_template();
 					break;
 				// Use [specific-template.php]is_page_template as is_page_template('specific-template.php').

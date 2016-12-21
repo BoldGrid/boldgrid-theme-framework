@@ -1,8 +1,8 @@
 # Travis CI configuration file.
 # @link https://travis-ci.org/
 
-# For use with the Twenty Seventeen WordPress theme
-# @link https://github.com/WordPress/twentyseventeen/
+# For use with the BoldGrid Theme Framework.
+# @link https://boldgrid.com/docs/
 
 # Declare project language and PHP versions to test against.
 # @link http://about.travis-ci.org/docs/user/languages/php/

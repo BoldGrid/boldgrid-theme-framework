@@ -149,7 +149,7 @@ class Boldgrid_Framework_Widgets {
 				// Create a "boldgrid_widgets_created" key for this widget based on widget title.
 				$widget_key = ( isset( $widget_data['title'] ) ? $widget_data['title'] : 'unknown' );
 				$widget_key = trim( strtolower( $widget_key ) );
-				$widget_key = preg_replace( "/[^A-Za-z0-9]/", '_', $widget_key );
+				$widget_key = preg_replace( '/[^A-Za-z0-9]/', '_', $widget_key );
 
 				$widget_label = $widget_data['label'];
 
@@ -164,7 +164,7 @@ class Boldgrid_Framework_Widgets {
 				$ids_created[] = $counter;
 				$new_widget_id = "$widget_label-$counter";
 				$sidebar_widgets[ $location ][] = $new_widget_id;
-				$auto_created_widget_ids[$widget_key] = $new_widget_id;
+				$auto_created_widget_ids[ $widget_key ] = $new_widget_id;
 
 				update_option( 'sidebars_widgets', $sidebar_widgets );
 
@@ -286,7 +286,7 @@ class Boldgrid_Framework_Widgets {
 			}
 
 			echo '<div data-widget-area="accordion-section-sidebar-widgets-' .
-				esc_attr( $index ) . '" ' .  esc_attr( $filled_data ) . '>';
+				esc_attr( $index ) . '" ' . esc_attr( $filled_data ) . '>';
 		};
 
 		$after_function = function ( $index, $filled = false ) {

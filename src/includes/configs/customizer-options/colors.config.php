@@ -31,4 +31,4 @@ return array(
 		'minify_output' => true,
 	),
 );
-?>
+

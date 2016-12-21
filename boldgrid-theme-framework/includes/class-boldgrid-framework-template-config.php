@@ -296,10 +296,10 @@ class BoldGrid_Framework_Template_Config {
 	 */
 	public function print_styles() {
 		$css = array();
-		foreach( $this->configs['template']['generic-location-rows'] as $area_name => $location_area ) {
-			foreach( $location_area as $location_row ) {
+		foreach ( $this->configs['template']['generic-location-rows'] as $area_name => $location_area ) {
+			foreach ( $location_area as $location_row ) {
 
-				$area_locations = ! empty ( $this->enabled_locations[ $area_name ] ) ?
+				$area_locations = ! empty( $this->enabled_locations[ $area_name ] ) ?
 					$this->enabled_locations[ $area_name ] : array();
 				$intersect = array_intersect( $location_row, $area_locations );
 
@@ -307,7 +307,7 @@ class BoldGrid_Framework_Template_Config {
 				if ( empty( $intersect ) ) {
 					$classname = ".row.{$area_name}-{$location_row[0]}";
 					$css[ $classname ] = array(
-						'display' => 'none'
+						'display' => 'none',
 					);
 				}
 			}
@@ -335,7 +335,7 @@ class BoldGrid_Framework_Template_Config {
 		$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 		$the_id = url_to_postid( $actual_link );
-		if( 0 === $the_id ) {
+		if ( 0 === $the_id ) {
 			$the_id = get_option( 'page_on_front' );
 		}
 
@@ -348,8 +348,8 @@ class BoldGrid_Framework_Template_Config {
 
 		// If boldgrid_in_page_containers is true, remove container.
 		if ( $in_page_containers ) {
-			$configs['template']['pages'][ 'page_home.php' ]['entry-content'] = '';
-			$configs['template']['pages'][ 'default' ]['entry-content'] = '';
+			$configs['template']['pages']['page_home.php']['entry-content'] = '';
+			$configs['template']['pages']['default']['entry-content'] = '';
 		}
 
 		return $configs;
@@ -359,13 +359,11 @@ class BoldGrid_Framework_Template_Config {
 	 * Setup the ability to use action configs.
 	 *
 	 * @since 1.1.1
-	 *
-	 * @return array An array containing menu locations.
 	 */
 	public function do_location_action( $template_type, $location_id  ) {
 		$template_config = $this->configs['template']['locations'][ $template_type ];
 
-		if ( ! empty ( $template_config[ $location_id ] ) ) {
+		if ( ! empty( $template_config[ $location_id ] ) ) {
 			$location_items = $template_config[ $location_id ];
 
 			// Wrap in array if non existant.
@@ -376,10 +374,10 @@ class BoldGrid_Framework_Template_Config {
 			// Add to the list of enabled locations.
 			$this->enabled_locations[ $template_type ][] = $location_id;
 
-			foreach( $location_items as $action ) {
+			foreach ( $location_items as $action ) {
 
-				//Split [action]action-name to [action] and action-name
-				preg_match ( '/^\[.*\]/', $action, $matches );
+				// Split [action]action-name to [action] and action-name
+				preg_match( '/^\[.*\]/', $action, $matches );
 				$type = ! empty( $matches[0] ) ? $matches[0] : null;
 				$name = str_ireplace( $type, '', $action );
 

@@ -189,7 +189,7 @@ class Boldgrid_Framework_SCSS {
 		// Check the variables passed in to make sure they aren't empty for compile.
 		$empty = false;
 
-		foreach( $variables as $variable ) {
+		foreach ( $variables as $variable ) {
 			if ( empty( $variable ) ) {
 				$empty = true;
 				break;
@@ -202,7 +202,6 @@ class Boldgrid_Framework_SCSS {
 			// TODO: Make sure we arent over compiling.
 			try {
 				// BoldGrid specific variables to have available during compile.
-
 				$compiled = $scss->compile( $content );
 			} catch ( \Exception $e ) {
 				error_log( 'Failed SCSS Compile: ' . $e->getMessage() );

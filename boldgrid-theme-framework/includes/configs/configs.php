@@ -1,5 +1,16 @@
 <?php
-$theme_framework_dir = realpath( plugin_dir_path ( __FILE__ ) . '../..' );
+/**
+ * The base configuration options for bgtfw.
+ *
+ * @package Boldgrid_Theme_Framework
+ * @subpackage Boldgrid_Theme_Framework\Configs
+ *
+ * @since    1.1
+ *
+ * @return   array   An array of base configs used in bgtfw.
+ */
+
+$theme_framework_dir = realpath( plugin_dir_path( __FILE__ ) . '../..' );
 
 $theme_framework_uri = get_template_directory_uri()
 	. '/inc/boldgrid-theme-framework';

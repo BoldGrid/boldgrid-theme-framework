@@ -40,7 +40,9 @@ class Boldgrid_Framework_Wp_Fs {
 	 * Save Compiled SCSS.
 	 *
 	 * @since 1.2.3
-	 * @param string $compiled_scss Contains the compiled Bootstrap SCSS to save.
+	 *
+	 * @param string $content Content to save.
+	 * @param string $file File to write to.
 	 */
 	public function save( $content, $file ) {
 		self::init();

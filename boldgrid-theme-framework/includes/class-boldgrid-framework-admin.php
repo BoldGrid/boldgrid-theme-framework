@@ -10,6 +10,12 @@
  * @author     BoldGrid <support@boldgrid.com>
  * @link       https://boldgrid.com
  */
+
+/**
+ * Responsible for Admin specific functionality.
+ *
+ * @since     1.0.0
+ */
 class Boldgrid_Framework_Admin {
 
 	/**
@@ -95,8 +101,8 @@ class Boldgrid_Framework_Admin {
 		}
 
 		$bgtfw_styles = new BoldGrid_Framework_Styles( $this->configs );
-		$bgtfw_styles->enqueue_buttons( array('editor-css-imhwpb') );
-		$bgtfw_styles->enqueue_colors( array('editor-css-imhwpb') );
+		$bgtfw_styles->enqueue_buttons( array( 'editor-css-imhwpb' ) );
+		$bgtfw_styles->enqueue_colors( array( 'editor-css-imhwpb' ) );
 
 	}
 }

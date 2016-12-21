@@ -56,7 +56,7 @@ class Boldgrid_Framework_Compile_Colors {
 
 			foreach ( $colors as $color ) {
 				$i++;
-				$boldgrid_colors[ $current_palette.'_'.$i ] = $color;
+				$boldgrid_colors[ $current_palette . '_' . $i ] = $color;
 			}
 		}
 		if ( false !== self::get_neutral_color() ) {
@@ -163,9 +163,9 @@ class Boldgrid_Framework_Compile_Colors {
 		$hex = str_replace( '#', '', $hex );
 
 		if ( strlen( $hex ) === 3 ) {
-			$r = hexdec( substr( $hex, 0, 1 ).substr( $hex, 0, 1 ) );
-			$g = hexdec( substr( $hex, 1, 1 ).substr( $hex, 1, 1 ) );
-			$b = hexdec( substr( $hex, 2, 1 ).substr( $hex, 2, 1 ) );
+			$r = hexdec( substr( $hex, 0, 1 ) . substr( $hex, 0, 1 ) );
+			$g = hexdec( substr( $hex, 1, 1 ) . substr( $hex, 1, 1 ) );
+			$b = hexdec( substr( $hex, 2, 1 ) . substr( $hex, 2, 1 ) );
 		} else {
 			$r = hexdec( substr( $hex, 0, 2 ) );
 			$g = hexdec( substr( $hex, 2, 2 ) );
@@ -268,6 +268,13 @@ class Boldgrid_Framework_Compile_Colors {
 		return $boldgrid_colors;
 	}
 
+	/**
+	 * Gets default button color class.
+	 *
+	 * @since 1.1
+	 *
+	 * @return string $class The class of the default button color found.
+	 */
 	public function get_button_default_color() {
 		$s = $this->configs['components']['buttons']['variables'];
 		$classes = ! empty( $s['button-primary-classes'] ) ? $s['button-primary-classes'] : null;
@@ -315,22 +322,22 @@ class Boldgrid_Framework_Compile_Colors {
 		}
 
 		if ( ! empty( $configs ) ) {
-			foreach( $configs as $config ) {
+			foreach ( $configs as $config ) {
 				// Remove whitespace out of strings
 				$config = str_replace( ' ', '', $config );
 				// Make an array to filter.
 				$config = explode( ',', str_replace( '.btn-', '', $config ) );
 				// We don't need the base class.
 				if ( ( $key = array_search( '.btn', $config ) ) !== false ) {
-					unset( $config[$key] );
+					unset( $config[ $key ] );
 				}
 				// Remove any color classes that are defined since we don't need them.
 				$config = array_filter( $config, function( $classes ) {
 					return strpos( $classes, 'color' ) === false;
 				});
 				// Translate configs to file path.
-				foreach( $config as $file ) {
-					$file = $file .'.scss';
+				foreach ( $config as $file ) {
+					$file = $file . '.scss';
 					if ( file_exists( $path . $file ) ) {
 						$files[] = $path . $file;
 					}

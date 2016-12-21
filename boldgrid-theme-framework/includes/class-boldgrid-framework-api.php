@@ -51,51 +51,6 @@ class BoldGrid {
 	}
 
 	/**
-	 * BoldGrid::add_fonts( $fonts, $switch );
-	 *
-	 * Add custom Google Fonts to BoldGrid Theme From Array,
-	 * and provide translators a way to disable the font if
-	 * a character set is not available in their language.
-	 *
-	 * @param array  $fonts Fonts to add.
-	 * @param string $switch Accepts 'on' or 'off'.
-	 *
-	 * @since 1.0.0
-	 */
-	public static function add_fonts( $fonts, $switch ) {
-
-		if ( ! empty( $fonts ) ) {
-
-			foreach ( $fonts as $font ) {
-
-				$fonts_url = '';
-				/** Translators: If there are characters in your language that are not
-				 * supported by the included fonts, translate this to 'off'. Do not translate
-				 * into your own language.
-				 */
-				$font_name = _x( $switch, $font . ' font: on or off', 'bgtfw' );
-
-				$font_families = array();
-				if ( 'off' !== $font_name ) {
-					// Decode the url before encoding it to prevent double encode.
-					$font = urldecode( $font );
-					$font_families[] = $font;
-				}
-
-				$query_args = array(
-				    'family' => urlencode( implode( '|', $font_families ) ),
-				    'subset' => urlencode( 'latin,latin-ext' ),
-				);
-
-				$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-				return esc_url_raw( $fonts_url );
-
-			}
-		}
-
-	}
-
-	/**
 	 * Header.
 	 *
 	 * This will output main <header> components
@@ -176,7 +131,8 @@ class BoldGrid {
 	 *
 	 * @since 1.0.0
 	 */
-	public function boldgrid_link_pingback() { ?>
+	public function boldgrid_link_pingback() {
+	?>
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ) ?>">
 	<?php
 	}
@@ -207,8 +163,8 @@ class BoldGrid {
 		$configs = $boldgrid_theme_framework->get_configs();
 		$template = basename( get_page_template() );
 		$template = ( $template ) ? $template : 'default';
-		$class = isset( $configs[ 'template' ][ 'pages' ][ $template ][ $location ] ) ?
-			$configs[ 'template' ][ 'pages' ][ $template ][ $location ] : 'container';
+		$class = isset( $configs['template']['pages'][ $template ][ $location ] ) ?
+			$configs['template']['pages'][ $template ][ $location ] : 'container';
 
 		if ( 'blog' == $location ) {
 			$class = '';
@@ -285,7 +241,8 @@ class BoldGrid {
 	 *
 	 * @since   1.0.0
 	 */
-	public function print_title_tagline() { ?>
+	public function print_title_tagline() {
+	?>
 		<div class="site-branding">
 			<?php do_action( 'boldgrid_site_title' ); ?>
 			<?php do_action( 'boldgrid_print_tagline' ); ?>
@@ -523,7 +480,7 @@ class BoldGrid {
 
 		// Load Configs.
 		$category_key_configs = array();
-		$config_path = realpath( plugin_dir_path ( __FILE__ ) . '/configs/category.config.php' );
+		$config_path = realpath( plugin_dir_path( __FILE__ ) . '/configs/category.config.php' );
 		if ( ! $installed_subcategory_key && $config_path ) {
 			$category_key_configs = include $config_path;
 		}
@@ -581,7 +538,7 @@ class BoldGrid {
 					$conditions[] = ! function_exists( $condition ) ? : $condition( $param );
 					break;
 				// Use [default]is_page_template as is_page() && ! is_page_template().
-				case ( $is_page_template && $param === 'default' ) :
+				case ( $is_page_template && 'default' === $param ) :
 					$conditions[] = is_page() && ! is_page_template();
 					break;
 				// Use [specific-template.php]is_page_template as is_page_template('specific-template.php').

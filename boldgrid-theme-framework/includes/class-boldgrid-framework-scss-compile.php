@@ -60,13 +60,20 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		}
 	}
 
+	/**
+	 * Build Bootstrap from SCSS.
+	 *
+	 * Calls to compile bootstrap, and then save it.
+	 *
+	 * @since 1.1
+	 */
 	public function build_bootstrap() {
 		$dir = $this->configs['framework']['asset_dir'];
 		// BoldGrid specific color variables to have available during compile.
 		$variables = $this->colors->get_scss_variables();
 		// Bootstrap variables to assign before compile.
 		$bootstrap_variables = $this->configs['components']['bootstrap']['variables'];
-		if ( ! empty ( $bootstrap_variables ) ) {
+		if ( ! empty( $bootstrap_variables ) ) {
 			// Merge the arrays.
 			$variables = array_merge( $variables, $this->configs['components']['bootstrap']['variables'] );
 		}
@@ -75,6 +82,13 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		$this->wpfs->save( $css, get_stylesheet_directory() . '/css/bootstrap/bootstrap.css' );
 	}
 
+	/**
+	 * Build BGTFW from SCSS.
+	 *
+	 * Calls to compile bgtfw, and then save it.
+	 *
+	 * @since 1.1
+	 */
 	public function build_bgtfw() {
 		$dir = $this->staging->get_template_dir();
 		// BoldGrid specific variables to have available during compile.
@@ -84,7 +98,7 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		// Check the variables passed in to make sure they aren't empty for compile.
 		$empty = false;
 
-		foreach( $variables as $variable ) {
+		foreach ( $variables as $variable ) {
 			if ( empty( $variable ) ) {
 				$empty = true;
 				break;

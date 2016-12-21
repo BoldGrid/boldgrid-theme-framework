@@ -32,12 +32,7 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:76
-msgctxt "$font. font: on or off"
-msgid "$switch"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-api.php:383
+#: src/includes/class-boldgrid-framework-api.php:338
 msgid "Skip to content"
 msgstr ""
 

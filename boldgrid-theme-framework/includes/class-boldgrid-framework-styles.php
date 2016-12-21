@@ -41,18 +41,6 @@ class BoldGrid_Framework_Styles {
 	}
 
 	/**
-	 * Get the google fonts url
-	 *
-	 * @since     1.0.0
-	 */
-	public function get_fonts_url() {
-		return BoldGrid::add_fonts(
-			$this->configs['font']['types'],
-			$this->configs['font']['translators']
-		);
-	}
-
-	/**
 	 * Return a list of the editor styles that will be applied that are actually contained
 	 * with the theme
 	 *
@@ -129,14 +117,6 @@ class BoldGrid_Framework_Styles {
 	public function boldgrid_enqueue_styles() {
 		$configs = $this->configs;
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-		/* Load Custom Google Fonts */
-		wp_enqueue_style(
-			'boldgrid-google-fonts',
-			$this->get_fonts_url(),
-			array(),
-			null
-		);
 
 		/* Font Awesome */
 		wp_enqueue_style(
@@ -284,7 +264,6 @@ class BoldGrid_Framework_Styles {
 	 */
 	public function add_editor_styling() {
 		$local_files = $this->get_local_editor_styles();
-		$local_files[] = $this->get_fonts_url();
 
 		apply_filters( 'boldgrid_theme_framework_editor_styles', $local_files );
 		add_editor_style( $local_files );

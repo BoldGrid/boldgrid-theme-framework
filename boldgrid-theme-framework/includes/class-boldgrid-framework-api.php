@@ -51,51 +51,6 @@ class BoldGrid {
 	}
 
 	/**
-	 * BoldGrid::add_fonts( $fonts, $switch );
-	 *
-	 * Add custom Google Fonts to BoldGrid Theme From Array,
-	 * and provide translators a way to disable the font if
-	 * a character set is not available in their language.
-	 *
-	 * @param array  $fonts Fonts to add.
-	 * @param string $switch Accepts 'on' or 'off'.
-	 *
-	 * @since 1.0.0
-	 */
-	public static function add_fonts( $fonts, $switch ) {
-
-		if ( ! empty( $fonts ) ) {
-
-			foreach ( $fonts as $font ) {
-
-				$fonts_url = '';
-				/** Translators: If there are characters in your language that are not
-				 * supported by the included fonts, translate this to 'off'. Do not translate
-				 * into your own language.
-				 */
-				$font_name = _x( $switch, $font . ' font: on or off', 'bgtfw' );
-
-				$font_families = array();
-				if ( 'off' !== $font_name ) {
-					// Decode the url before encoding it to prevent double encode.
-					$font = urldecode( $font );
-					$font_families[] = $font;
-				}
-
-				$query_args = array(
-				    'family' => urlencode( implode( '|', $font_families ) ),
-				    'subset' => urlencode( 'latin,latin-ext' ),
-				);
-
-				$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-				return esc_url_raw( $fonts_url );
-
-			}
-		}
-
-	}
-
-	/**
 	 * Header.
 	 *
 	 * This will output main <header> components

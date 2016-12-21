@@ -318,13 +318,13 @@ class Boldgrid_Framework_Social_Media_Icons {
 		'weibo.com' => array(
 			'name' => 'Weibo',
 			'class' => 'weibo',
-			'icon' => 'fa fa-eibo',
+			'icon' => 'fa fa-weibo',
 			'icon-sign' => 'fa fa-weibo',
-			'icon-square-open' => 'fa fa-eibo fa-stack-1x',
-			'icon-square' => 'fa fa-eibo fa-stack-1x',
-			'icon-circle-open-thin' => 'fa fa-eibo fa-stack-1x',
-			'icon-circle-open' => 'fa fa-eibo fa-stack-1x',
-			'icon-circle' => 'fa fa-eibo fa-stack-1x',
+			'icon-square-open' => 'fa fa-weibo fa-stack-1x',
+			'icon-square' => 'fa fa-weibo fa-stack-1x',
+			'icon-circle-open-thin' => 'fa fa-weibo fa-stack-1x',
+			'icon-circle-open' => 'fa fa-weibo fa-stack-1x',
+			'icon-circle' => 'fa fa-weibo fa-stack-1x',
 		),
 
 		'wordpress.com' => array(

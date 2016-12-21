@@ -1,7 +1,19 @@
 <?php
+/**
+ * The TGMPA configs used for Boldgrid Theme Framework..
+ *
+ * @package Boldgrid_Theme_Framework
+ * @subpackage Boldgrid_Theme_Framework\Configs
+ *
+ * @since    1.1
+ *
+ * @return   array   An array of tgm plugin activation configs.
+ */
+
 return array(
 	// Enable the plugin activation or not.
 	'enabled' => true,
+
 	/*
 	 * Array of plugin arrays. Required keys are name and slug.
 	 * If the source is NOT from the .org repo, then source is also required.

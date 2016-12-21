@@ -1,4 +1,15 @@
 <?php
+/**
+ * The menu configuration options for bgtfw.
+ *
+ * @package Boldgrid_Theme_Framework
+ * @subpackage Boldgrid_Theme_Framework\Configs
+ *
+ * @since    1.1
+ *
+ * @return   array   An array of menu configs used in bgtfw.
+ */
+
 return array(
 	'action_prefix' => 'boldgrid_menu_',
 	'footer_menus' => array(

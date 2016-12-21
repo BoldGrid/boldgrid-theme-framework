@@ -72,7 +72,7 @@ class Boldgrid_Framework_Menu {
 		 *
 		 * Please see doc block of create_default_menus method for more info.
 		 */
-		if( isset( $menus_created['option_version'] ) ) {
+		if ( isset( $menus_created['option_version'] ) ) {
 			unset( $menus_created['option_version'] );
 
 			foreach ( $menus_created as $menu_id => $menu_key ) {
@@ -139,7 +139,6 @@ class Boldgrid_Framework_Menu {
 
 		foreach ( $this->configs['menu']['prototype'] as $menu ) {
 			$action = function () use ( $menu, $edit_enabled ) {
-
 				/*
 				 * IF we're in the customizer and edit buttons are enabled:
 				 * # Modify 'fallback_cb' and force the "edit button's fallback_cb".
@@ -148,8 +147,8 @@ class Boldgrid_Framework_Menu {
 				 * ELSE:
 				 * # Follow standard practice and print the nav menu if it's configured.
 				 */
-				if( is_customize_preview() && true === $edit_enabled ) {
-					$menu[ 'fallback_cb' ] = 'Boldgrid_Framework_Customizer_Edit::fallback_cb';
+				if ( is_customize_preview() && true === $edit_enabled ) {
+					$menu['fallback_cb'] = 'Boldgrid_Framework_Customizer_Edit::fallback_cb';
 					wp_nav_menu( $menu );
 				} elseif ( has_nav_menu( $menu['theme_location'] ) ) {
 					wp_nav_menu( $menu );
@@ -231,7 +230,7 @@ class Boldgrid_Framework_Menu {
 		 * Set a flag to show we're saving this data in a different format. Please see comment in
 		 * this method's doc block regarding "As of version 1.3.1".
 		 */
-		$boldgrid_menus_created[ 'option_version' ] = 2;
+		$boldgrid_menus_created['option_version'] = 2;
 
 		// Save the menus we created as an option.
 		update_option( 'boldgrid_menus_created', $boldgrid_menus_created );

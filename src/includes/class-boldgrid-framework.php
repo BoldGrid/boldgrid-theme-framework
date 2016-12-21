@@ -81,7 +81,6 @@ class BoldGrid_Framework {
 		$this->boldgrid_theme_setup( );
 		$this->setup_menus( );
 		$this->boldgrid_widget_areas( );
-		$this->boldgrid_theme_developer_tools( );
 		$this->theme_customizer( );
 		$this->social_icons( );
 		$this->comments( );
@@ -248,8 +247,8 @@ class BoldGrid_Framework {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
 		$template_config = new Boldgrid_Framework_Template_Config( $this->configs );
-		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs'), 20 );
-		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs'), 20 );
+		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs' ), 20 );
+		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', 'BoldGrid::get_inspiration_configs', 5 );
 
 		if ( ! is_admin() ) {
@@ -289,7 +288,7 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function assign_configs( $folder = '' ) {
-		$path = __DIR__ . '/configs/'. $folder;
+		$path = __DIR__ . '/configs/' . $folder;
 		foreach ( glob( $path . '/*.config.php' ) as $filename ) {
 			$option = basename( str_replace( '.config.php', '', $filename ) );
 			if ( ! empty( $folder ) ) {
@@ -476,7 +475,7 @@ class BoldGrid_Framework {
 		// Save the compiled CSS when themes are activated and after they save customizer settings.
 		if ( true === $this->configs['components']['bootstrap']['enabled'] ||
 			 true === $this->configs['components']['buttons']['enabled'] ) {
-				//$this->loader->add_action( 'customize_save_after', $compile, 'build' );
+				// $this->loader->add_action( 'customize_save_after', $compile, 'build' );
 		}
 
 		// TODO: Merge these standalone files into classes and our existing structure.
@@ -524,8 +523,8 @@ class BoldGrid_Framework {
 		// Only do this on 4.7 and above.
 		if ( version_compare( get_bloginfo( 'version' ), '4.6.2', '>=' ) ) {
 			$this->loader->add_action( 'customize_register', $background, 'boldgrid_background_attachment', 999 );
-			$this->loader->add_action( "customize_sanitize_background_attachment", $background, 'pre_sanitize_attachment', 5 );
-			$this->loader->add_filter( "customize_sanitize_background_attachment", $background, 'post_sanitize_attachment', 20 );
+			$this->loader->add_action( 'customize_sanitize_background_attachment', $background, 'pre_sanitize_attachment', 5 );
+			$this->loader->add_filter( 'customize_sanitize_background_attachment', $background, 'post_sanitize_attachment', 20 );
 		}
 	}
 
@@ -822,26 +821,6 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'after_switch_theme', $scss, 'force_update_css', 999 );
 		}
 		$this->loader->add_action( 'upgrader_process_complete', $scss , 'theme_upgrader_process', 10, 3 );
-	}
-
-
-	/**
-	 * This is responsible for loading the BoldGrid Theme Framework
-	 * developer tools and experimental features.  Use at your own risk :)
-	 *
-	 * @since    1.0.0
-	 */
-	private function boldgrid_theme_developer_tools() {
-		if ( defined( 'BOLDGRID_THEME_DEV' ) && BOLDGRID_THEME_DEV === true ) {
-
-			require_once BOLDGRID_LIB_INC_DEV . 'developer-tools.php';
-			require_once BOLDGRID_LIB_INC_DEV . 'boldgrid-theme-builder.php';
-
-			$boldgrid_dev = new BoldGrid_Theme_Developer_Tools( );
-
-			$this->loader->add_action( 'admin_bar_menu', $boldgrid_dev, 'boldgrid_tools', 99 );
-
-		}
 	}
 
 	/**

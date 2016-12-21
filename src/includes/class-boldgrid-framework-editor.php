@@ -8,6 +8,14 @@
  * @author BoldGrid <support@boldgrid.com>
  * @link https://boldgrid.com
  */
+
+/**
+ * Class: Boldgrid_Framework_Editor
+ *
+ * Responsible for Editor functionality.
+ *
+ * @since 1.0.6
+ */
 class Boldgrid_Framework_Editor {
 
 	/**
@@ -21,7 +29,7 @@ class Boldgrid_Framework_Editor {
 	/**
 	 * Pass in configs
 	 *
-	 * @param array $configs
+	 * @param array $configs Array of bgtfw configuration options.
 	 * @since 1.0.6
 	 */
 	public function __construct( $configs ) {
@@ -90,12 +98,12 @@ class Boldgrid_Framework_Editor {
 				}
 
 				$post_type = 'page';
-				if ( $post->post_type == 'post' ) {
+				if ( 'post' == $post->post_type ) {
 					$post_type = 'post';
 				}
 			} else {
 				$post_type = ! empty( $_REQUEST['post_type'] ) ? $_REQUEST['post_type'] : null;
-				if ( $post_type != 'page' ) {
+				if ( 'page' != $post_type ) {
 					$post_type = 'post';
 				}
 
@@ -108,7 +116,7 @@ class Boldgrid_Framework_Editor {
 					$checked = checked( $display_page_title, true, false );
 					$message = "The {$post_type} title displays as a heading at the top of your {$post_type}. Your BoldGrid theme supports this feature.";
 					if ( 'page_home.php' === $template_file ) {
-						$message = "The Home template does not support adding a page title.  You can change the template from the dropdown box in the Page Attributes section.";
+						$message = 'The Home template does not support adding a page title.  You can change the template from the dropdown box in the Page Attributes section.';
 					}
 					echo <<<HTML
 						<div id="boldgrid-hide-post-title">
@@ -133,7 +141,7 @@ HTML;
 	/**
 	 * Theme framework mce plugin responsible for adding inline styles to editor.
 	 *
-	 * @param array $plugin_array.
+	 * @param array $plugin_array Array of tinymce plugins.
 	 * @return string
 	 * @since 1.0.6
 	 */
@@ -143,7 +151,7 @@ HTML;
 		$valid_pages = array(
 			'customize.php',
 			'post.php',
-			'post-new.php'
+			'post-new.php',
 		);
 
 		$valid_post_types = array(
@@ -156,8 +164,8 @@ HTML;
 		}
 
 		// Currently only pages and posts are supported. @since 1.3.1
-		if( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
-			if( ! in_array( $this->get_post_type(), $valid_post_types ) ) {
+		if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
+			if ( ! in_array( $this->get_post_type(), $valid_post_types ) ) {
 				return;
 			}
 		}
@@ -198,9 +206,9 @@ HTML;
 		 * The post type is "post", unless specified by $current_post->post_type or
 		 * $_GET['post_type'].
 		*/
-		if( ! empty( $current_post->post_type ) ) {
+		if ( ! empty( $current_post->post_type ) ) {
 			$current_post_type = $current_post->post_type;
-		} elseif( isset( $_GET['post_type'] ) ) {
+		} elseif ( isset( $_GET['post_type'] ) ) {
 			$current_post_type = $_GET['post_type'];
 		} else {
 			$current_post_type = 'post';
@@ -235,7 +243,7 @@ HTML;
 		}
 
 		// Deregister the style.
-		wp_dequeue_style ( $kirki_handle );
+		wp_dequeue_style( $kirki_handle );
 
 		return $link;
 	}
@@ -249,7 +257,7 @@ HTML;
 
 		global $pagenow;
 
-		$valid_pages = array (
+		$valid_pages = array(
 			'post.php',
 			'post-new.php',
 			'customize.php',

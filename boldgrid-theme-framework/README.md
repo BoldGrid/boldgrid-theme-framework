@@ -26,11 +26,14 @@ user guide for more information.
 
 ## Changelog ##
 
-### 1.3.5 ###
+### 1.3.6 ###
 * Update: Allow widget data to be filtered before widgets are created.
 * Update: Attribution links are now using postMessage to avoid customizer refreshes.
 * New Feature: Custom Modernizr builds are now added to theme framework.
 * Update: Sticky Footer is now handled with flexbox if browser supports it.
+
+### 1.3.5 ###
+* Bug fix: weibo icon.
 
 ### 1.3.4 ###
 * Update: Setting JS compiler instance limit to 50 to accommodate larger sass sheets.
@@ -50,6 +53,10 @@ user guide for more information.
 * Update: Changing format of boldgrid_menus_created option.
 * Update: Using meaningful keys in boldgrid_widgets_created option.
 * Bug fix: Fixing issue with bad data in boldgrid_widgets_created.
+
+### 1.3.0.2 ###
+* Bug fix: Customizer edit buttons not appearing for menus.
+* Bug fix: Edit buttons appearing when not in Customizer.
 
 ### 1.3.0.1 ###
 * Update: Removing custom CSS panel added in WordPress 4.7 Core update.

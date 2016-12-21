@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3.6 ###
+* Bug fix: Adding .page-template-default to editor if default template is in use.
+
 ### 1.3.5 ###
 * Update: Allow widget data to be filtered before widgets are created.
 * Bug fix: weibo icon.

@@ -10,6 +10,12 @@
  * @author     BoldGrid <support@boldgrid.com>
  * @link       https://boldgrid.com
  */
+
+/**
+ * Responsible for Admin specific functionality.
+ *
+ * @since     1.0.0
+ */
 class Boldgrid_Framework_Admin {
 
 	/**

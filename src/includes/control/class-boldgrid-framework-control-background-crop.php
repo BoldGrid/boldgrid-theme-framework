@@ -1,10 +1,29 @@
 <?php
 /**
  * Functionality From: https://wordpress.org/plugins/background-image-cropper/
+ *
+ * @package Boldgrid_Theme_Framework
+ */
+
+/**
+ * Class responsible for the background crop control in customizer.
+ *
+ * @since 1.2
  */
 class Boldgrid_Framework_Background_Crop extends WP_Customize_Cropped_Image_Control {
+	/**
+	 * Configuration array from the main plugin file
+	 *
+	 * @var string $type The type of control.
+	 * @access public
+	 */
 	public $type = 'background';
 
+	/**
+	 * Scripts to enqueue in customizer.
+	 *
+	 * @since 3.4.0
+	 */
 	public function enqueue() {
 		wp_enqueue_script( 'boldgrid-background-image-cropper' );
 	}

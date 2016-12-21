@@ -451,15 +451,15 @@ msgid "Line Height"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:392
-msgid "$description. Font"
+msgid " Font"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:408
-msgid "$description. Font Size"
+msgid " Font Size"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:429
-msgid "$description. Capitalization"
+msgid " Capitalization"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:433, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:643

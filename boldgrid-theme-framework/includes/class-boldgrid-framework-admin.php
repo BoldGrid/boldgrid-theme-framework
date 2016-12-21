@@ -95,8 +95,8 @@ class Boldgrid_Framework_Admin {
 		}
 
 		$bgtfw_styles = new BoldGrid_Framework_Styles( $this->configs );
-		$bgtfw_styles->enqueue_buttons( array('editor-css-imhwpb') );
-		$bgtfw_styles->enqueue_colors( array('editor-css-imhwpb') );
+		$bgtfw_styles->enqueue_buttons( array( 'editor-css-imhwpb' ) );
+		$bgtfw_styles->enqueue_colors( array( 'editor-css-imhwpb' ) );
 
 	}
 }

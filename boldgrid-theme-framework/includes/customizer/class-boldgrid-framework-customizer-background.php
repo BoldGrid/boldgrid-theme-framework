@@ -325,8 +325,8 @@ class Boldgrid_Framework_Customizer_Background {
 				'choices' => array(
 					'parallax' => __( 'Parallax', 'bgtfw' ),
 					'scroll' => __( 'Scroll', 'bgtfw' ),
-					'fixed' => __( 'Fixed', 'bgtfw' )
-				)
+					'fixed' => __( 'Fixed', 'bgtfw' ),
+				),
 			)
 		);
 	}
@@ -367,7 +367,7 @@ class Boldgrid_Framework_Customizer_Background {
 	 */
 	public static function get_default_pattern_mod( $configs ) {
 		return 'url(' . $configs['framework']['admin_asset_dir'] . 'img/patterns/'
-			. $configs['customizer-options']['background']['defaults']['boldgrid_background_pattern'] .')';
+			. $configs['customizer-options']['background']['defaults']['boldgrid_background_pattern'] . ')';
 	}
 
 	/**

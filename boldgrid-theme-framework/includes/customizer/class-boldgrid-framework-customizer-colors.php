@@ -482,8 +482,7 @@ class Boldgrid_Framework_Customizer_Colors {
 				} else {
 					$palette_settings['active-id'] = $this->create_palette_id( $palette_data['state']['palettes'][ $active_class ] );
 				}
-
-			}
+}
 		}
 		return $palette_settings;
 	}
@@ -579,7 +578,6 @@ HTML;
 	 * @since 1.0.0
 	 */
 	public function register_scripts() {
-
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 

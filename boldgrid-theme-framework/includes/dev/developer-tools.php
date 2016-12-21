@@ -31,13 +31,13 @@ class BoldGrid_Theme_Developer_Tools {
 
 	private function transient_flusher( $wp_admin_bar ) {
 
-		if( ! is_admin(  ) || ! current_user_can( 'manage_options' ) )
+		if ( ! is_admin( ) || ! current_user_can( 'manage_options' ) ) {
 
-			return;
+			return; }
 
 		global $wpdb;
 
-		if( isset( $_GET['clear-transients'] ) && 1 == $_GET['clear-transients'] ) {
+		if ( isset( $_GET['clear-transients'] ) && 1 == $_GET['clear-transients'] ) {
 
 			$wpdb->query( "DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('_transient_%') OR `option_name` LIKE ('_transient_timeout_%')" );
 
@@ -50,7 +50,7 @@ class BoldGrid_Theme_Developer_Tools {
 			'id' => 'clear-transients',
 			'title' => 'Clear Transients (' . $count . ')',
 			'parent' => 'site-name',
-			'href' => get_admin_url(  ) . '?clear-transients=1'
+			'href' => get_admin_url( ) . '?clear-transients=1',
 
 		);
 

@@ -386,9 +386,9 @@ class Boldgrid_Framework_Customizer_Typography {
 			$boldgrid_menus = get_registered_nav_menus();
 			foreach ( $boldgrid_menus as $location => $description ) {
 				// Navigation Font Family Controls.
-				$controls[ 'navigation_'. $location .'_font_family' ] = array(
+				$controls[ 'navigation_' . $location . '_font_family' ] = array(
 					'type'     => 'select',
-					'settings'  => 'navigation_'. $location .'_font_family',
+					'settings'  => 'navigation_' . $location . '_font_family',
 					'label'    => __( $description . ' Font', 'bgtfw' ),
 					'section'  => 'navigation_typography',
 					'default'  => $this->configs['customizer-options']['typography']['defaults']['navigation_font_family'],
@@ -405,7 +405,7 @@ class Boldgrid_Framework_Customizer_Typography {
 					'type'     => 'slider',
 					'settings'  => 'navigation_' . $location . '_font_size',
 					'transport' => 'postMessage',
-					'label'    => __( $description. ' Font Size', 'bgtfw' ),
+					'label'    => __( $description . ' Font Size', 'bgtfw' ),
 					'section'  => 'navigation_typography',
 					'default'  => $this->configs['customizer-options']['typography']['defaults']['navigation_font_size'],
 					'choices'  => array(
@@ -426,7 +426,7 @@ class Boldgrid_Framework_Customizer_Typography {
 					'type'     => 'select',
 					'settings'  => 'navigation_' . $location . '_text_transform',
 					'transport' => 'postMessage',
-					'label'    => __( $description. ' Capitalization', 'bgtfw' ),
+					'label'    => __( $description . ' Capitalization', 'bgtfw' ),
 					'section'  => 'navigation_typography',
 					'default'  => $this->configs['customizer-options']['typography']['defaults']['navigation_text_transform'],
 					'choices'  => array(
@@ -564,7 +564,6 @@ class Boldgrid_Framework_Customizer_Typography {
 		}
 
 		$content .= $this->create_font_classes();
-
 
 		return $content;
 	}

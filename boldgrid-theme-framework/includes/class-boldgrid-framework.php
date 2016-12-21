@@ -198,8 +198,6 @@ class BoldGrid_Framework {
 		 */
 		require_once trailingslashit( __DIR__ ) . 'tgm/class-tgm-plugin-activation.php';
 
-
-
 		// Loader instance.
 		$this->loader = new Boldgrid_Framework_Loader( );
 	}
@@ -250,8 +248,8 @@ class BoldGrid_Framework {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
 		$template_config = new Boldgrid_Framework_Template_Config( $this->configs );
-		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs'), 20 );
-		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs'), 20 );
+		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs' ), 20 );
+		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', 'BoldGrid::get_inspiration_configs', 5 );
 
 		if ( ! is_admin() ) {
@@ -291,7 +289,7 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function assign_configs( $folder = '' ) {
-		$path = __DIR__ . '/configs/'. $folder;
+		$path = __DIR__ . '/configs/' . $folder;
 		foreach ( glob( $path . '/*.config.php' ) as $filename ) {
 			$option = basename( str_replace( '.config.php', '', $filename ) );
 			if ( ! empty( $folder ) ) {
@@ -463,7 +461,7 @@ class BoldGrid_Framework {
 		// Save the compiled CSS when themes are activated and after they save customizer settings.
 		if ( true === $this->configs['components']['bootstrap']['enabled'] ||
 			 true === $this->configs['components']['buttons']['enabled'] ) {
-				//$this->loader->add_action( 'customize_save_after', $compile, 'build' );
+				// $this->loader->add_action( 'customize_save_after', $compile, 'build' );
 		}
 
 		// TODO: Merge these standalone files into classes and our existing structure.
@@ -510,8 +508,8 @@ class BoldGrid_Framework {
 		// Only do this on 4.7 and above.
 		if ( version_compare( get_bloginfo( 'version' ), '4.6.2', '>=' ) ) {
 			$this->loader->add_action( 'customize_register', $background, 'boldgrid_background_attachment', 999 );
-			$this->loader->add_action( "customize_sanitize_background_attachment", $background, 'pre_sanitize_attachment', 5 );
-			$this->loader->add_filter( "customize_sanitize_background_attachment", $background, 'post_sanitize_attachment', 20 );
+			$this->loader->add_action( 'customize_sanitize_background_attachment', $background, 'pre_sanitize_attachment', 5 );
+			$this->loader->add_filter( 'customize_sanitize_background_attachment', $background, 'post_sanitize_attachment', 20 );
 		}
 	}
 

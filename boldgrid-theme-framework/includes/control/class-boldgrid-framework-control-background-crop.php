@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Functionality From: https://wordpress.org/plugins/background-image-cropper/
  */

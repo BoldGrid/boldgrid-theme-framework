@@ -50,7 +50,7 @@ class Boldgrid_Framework_Customizer_Edit {
 		 * In order to be compatible with both WP 4.6 and WP 4.7, we need to also take into
 		 * consideration that $_GET['customize_changeset_uuid'] was not introduced until 4.7.
 		 */
-		if( ! empty( $_GET['customize_changeset_uuid'] ) && empty( $_GET['customize_messenger_channel'] ) ) {
+		if ( ! empty( $_GET['customize_changeset_uuid'] ) && empty( $_GET['customize_messenger_channel'] ) ) {
 			$this->enabled = false;
 		}
 	}

@@ -81,7 +81,7 @@ class BoldGrid_Framework_Styles {
 	 *
 	 * @since     1.3
 	 */
-	public function enqueue_buttons ( $deps = array() ) {
+	public function enqueue_buttons( $deps = array() ) {
 		$button_configs = $this->configs['components']['buttons'];
 
 		if ( true === $button_configs['enabled'] && file_exists( $button_configs['css_file'] ) ) {
@@ -96,7 +96,7 @@ class BoldGrid_Framework_Styles {
 	 *
 	 * @since     1.3
 	 */
-	public function enqueue_colors ( $deps = array() ) {
+	public function enqueue_colors( $deps = array() ) {
 
 		$config_settings = $this->configs['customizer-options']['colors'];
 		if ( ! empty( $config_settings['enabled'] ) && file_exists( $config_settings['settings']['output_css_name'] ) ) {
@@ -195,7 +195,7 @@ class BoldGrid_Framework_Styles {
 				array(
 					'font-awesome',
 					'bootstrap-styles',
-					'boldgrid-theme-framework'
+					'boldgrid-theme-framework',
 				),
 				null
 			);
@@ -331,8 +331,7 @@ class BoldGrid_Framework_Styles {
 						$style = $added_query_arg;
 					}
 				}
-
-			}
+}
 
 			$mce_css[] = $style;
 		}

@@ -4,4 +4,4 @@
 		'boldgrid_footer_top',
 		'boldgrid_footer_bottom',
 		),
-);?>
+);

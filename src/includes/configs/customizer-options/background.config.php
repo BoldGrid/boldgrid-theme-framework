@@ -34,4 +34,4 @@ return array(
 		'recommended_image_height' => 1080,
 	),
 );
-?>
+

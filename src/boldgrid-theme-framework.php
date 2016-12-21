@@ -32,4 +32,4 @@ if ( file_exists( $theme_framework_class ) ) {
 	$boldgrid_theme_framework = new Boldgrid_Framework();
 	$boldgrid_theme_framework->run();
 }
-?>
+

@@ -19,4 +19,4 @@ return array(
 		'default-image' => get_theme_mod( 'default_header_image', get_template_directory_uri() . '/images/header.png' ),
 	),
 );
-?>
+

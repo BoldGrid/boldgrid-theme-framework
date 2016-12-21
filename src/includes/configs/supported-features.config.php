@@ -12,5 +12,5 @@ return array(
 	'border-color-classes',
 	'theme-fonts-classes',
 	'button-lib',
-	'variable-containers'
+	'variable-containers',
 );

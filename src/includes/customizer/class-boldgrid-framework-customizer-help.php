@@ -14,7 +14,7 @@
  * @uses       Kirki\Scripts\EnqueueScript
  */
 
-class Boldgrid_Framework_Customizer_Help  {
+class Boldgrid_Framework_Customizer_Help {
 
 	public function __construct() {
 		add_action( 'customize_controls_print_scripts', array( $this, 'customize_controls_print_footer_scripts' ) );

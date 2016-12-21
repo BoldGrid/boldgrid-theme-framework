@@ -51,7 +51,7 @@ return array(
 				'selector' => '.site-description',
 				'icon' => 'dashicons-edit',
 			),
-		)
-	)
+		),
+	),
 );
-?>
+

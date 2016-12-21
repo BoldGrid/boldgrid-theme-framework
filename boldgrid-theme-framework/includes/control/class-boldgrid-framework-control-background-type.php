@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Color Palette Customizer Control
  *
@@ -19,11 +19,11 @@
 class Boldgrid_Framework_Control_Background_Type extends WP_Customize_Control {
 
 		public function enqueue() {
-			wp_enqueue_script('boldgrid-framework-customizer-background');
-			wp_enqueue_style('boldgird-theme-helper-color-palette');
+			wp_enqueue_script( 'boldgrid-framework-customizer-background' );
+			wp_enqueue_style( 'boldgird-theme-helper-color-palette' );
 		}
-		
-		public function render_content() { 
+
+		public function render_content() {
 			?>
 		<div class='background-type-controls'>
 			<div id="<?php echo $this->id ?>">

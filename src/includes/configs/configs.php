@@ -1,5 +1,5 @@
 <?php
-$theme_framework_dir = realpath( plugin_dir_path ( __FILE__ ) . '../..' );
+$theme_framework_dir = realpath( plugin_dir_path( __FILE__ ) . '../..' );
 
 $theme_framework_uri = get_template_directory_uri()
 	. '/inc/boldgrid-theme-framework';

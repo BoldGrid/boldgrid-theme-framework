@@ -176,7 +176,8 @@ class BoldGrid {
 	 *
 	 * @since 1.0.0
 	 */
-	public function boldgrid_link_pingback() { ?>
+	public function boldgrid_link_pingback() {
+	?>
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ) ?>">
 	<?php
 	}
@@ -207,8 +208,8 @@ class BoldGrid {
 		$configs = $boldgrid_theme_framework->get_configs();
 		$template = basename( get_page_template() );
 		$template = ( $template ) ? $template : 'default';
-		$class = isset( $configs[ 'template' ][ 'pages' ][ $template ][ $location ] ) ?
-			$configs[ 'template' ][ 'pages' ][ $template ][ $location ] : 'container';
+		$class = isset( $configs['template']['pages'][ $template ][ $location ] ) ?
+			$configs['template']['pages'][ $template ][ $location ] : 'container';
 
 		if ( 'blog' == $location ) {
 			$class = '';
@@ -285,7 +286,8 @@ class BoldGrid {
 	 *
 	 * @since   1.0.0
 	 */
-	public function print_title_tagline() { ?>
+	public function print_title_tagline() {
+	?>
 		<div class="site-branding">
 			<?php do_action( 'boldgrid_site_title' ); ?>
 			<?php do_action( 'boldgrid_print_tagline' ); ?>
@@ -523,7 +525,7 @@ class BoldGrid {
 
 		// Load Configs.
 		$category_key_configs = array();
-		$config_path = realpath( plugin_dir_path ( __FILE__ ) . '/configs/category.config.php' );
+		$config_path = realpath( plugin_dir_path( __FILE__ ) . '/configs/category.config.php' );
 		if ( ! $installed_subcategory_key && $config_path ) {
 			$category_key_configs = include $config_path;
 		}

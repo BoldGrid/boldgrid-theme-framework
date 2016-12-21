@@ -115,7 +115,7 @@ class BoldGrid_Framework_Customizer {
 		wp_enqueue_style(
 			'boldgrid-theme-framework-customizer-css',
 			$this->configs['framework']['css_dir'] . 'customizer' . $suffix . '.css',
-			array (),
+			array(),
 			$this->configs['version']
 		);
 	}

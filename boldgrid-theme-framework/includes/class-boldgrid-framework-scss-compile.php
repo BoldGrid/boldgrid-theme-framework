@@ -66,7 +66,7 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		$variables = $this->colors->get_scss_variables();
 		// Bootstrap variables to assign before compile.
 		$bootstrap_variables = $this->configs['components']['bootstrap']['variables'];
-		if ( ! empty ( $bootstrap_variables ) ) {
+		if ( ! empty( $bootstrap_variables ) ) {
 			// Merge the arrays.
 			$variables = array_merge( $variables, $this->configs['components']['bootstrap']['variables'] );
 		}
@@ -84,7 +84,7 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		// Check the variables passed in to make sure they aren't empty for compile.
 		$empty = false;
 
-		foreach( $variables as $variable ) {
+		foreach ( $variables as $variable ) {
 			if ( empty( $variable ) ) {
 				$empty = true;
 				break;

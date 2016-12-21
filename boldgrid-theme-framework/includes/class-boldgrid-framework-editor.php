@@ -299,7 +299,7 @@ HTML;
 				$template = get_page_template_slug();
 				// If not the default template generate class.
 				if ( '' === $template ) {
-					$mce['body_class'] .= " page-template-default";
+					$mce['body_class'] .= ' page-template-default';
 				}
 			}
 		}

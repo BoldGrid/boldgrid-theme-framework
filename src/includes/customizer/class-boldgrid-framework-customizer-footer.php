@@ -192,7 +192,7 @@ class Boldgrid_Framework_Customizer_Footer {
 						'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
 						'default'     => '',
 					),
-				)
+				),
 			)
 		);
 	}

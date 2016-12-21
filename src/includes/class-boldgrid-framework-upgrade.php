@@ -1,5 +1,4 @@
 <?php
-
 /**
  * BoldGrid Source Code
  *
@@ -71,24 +70,28 @@ class Boldgrid_Framework_Upgrade {
 	 */
 	public function upgrade_db_check() {
 		// Set the default version in db if no version is set.
-		if ( ! $this->get_option() ) $this->set_option( '1.0.0' );
+		if ( ! $this->get_option() ) {
+			$this->set_option( '1.0.0' );
+		}
 		// Get current version from configs.
 		$version = $this->configs['framework-version'];
 		// If the db version doesn't match the config version then run upgrade methods.
 		if ( $this->get_option() !== $version ) {
 			$methods = $this->get_upgrade_methods();
 			// Format found methods to versions.
-			foreach( $methods as $method ) {
+			foreach ( $methods as $method ) {
 				$ver = substr( $method, 11 );
 				$ver = str_replace( '_', '.', $ver );
 				// Gives precedence to minor version specific upgrades over subminors.
-				$verHigh = str_replace( 'x', '9999', $ver );
-				$verLow = str_replace( 'x', '0', $ver );
+				$ver_high = str_replace( 'x', '9999', $ver );
+				$ver_low = str_replace( 'x', '0', $ver );
 				// If upgrade method version is greater than stored DB version.
-				if ( version_compare( $verHigh, $this->get_option(), 'gt' )  &&
+				if ( version_compare( $ver_high, $this->get_option(), 'gt' )  &&
 					// The config version is less than or equal to upgrade method versions.
-					version_compare( $verLow, $version, 'le' ) ) {
-						if ( is_callable( array( $this, $method ) ) ) $this->$method();
+					version_compare( $ver_low, $version, 'le' ) ) {
+						if ( is_callable( array( $this, $method ) ) ) {
+							$this->$method();
+						}
 				}
 			}
 			// Once done with method calls, update the version number.

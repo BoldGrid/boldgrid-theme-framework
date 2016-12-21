@@ -313,14 +313,22 @@ class BoldGrid_Framework {
 		$this->configs['directories']['BOLDGRID_THEME_VER'] = $this->configs['theme_name'];
 	}
 
+	/**
+	 * Run upgrade checks based on framework version.
+	 *
+	 * @since    1.3.6
+	 * @access   public
+	 */
 	public function upgrade() {
 		$upgrade = new Boldgrid_Framework_Upgrade( $this->configs );
 		$this->loader->add_action( 'after_setup_theme', $upgrade, 'upgrade_db_check' );
 	}
 
 	/**
+	 * Call to Action Functionality from BSTW.
 	 *
-	 *
+	 * @since    1.3.6
+	 * @access   public
 	 */
 	public function cta() {
 		$cta = new Boldgrid_Framework_Customizer_Bstw( $this->configs );
@@ -635,7 +643,11 @@ class BoldGrid_Framework {
 		// If bstw is disabled, then turn on contact blocks in framework.
 		$enabled = $this->configs['customizer-options']['contact-blocks']['enabled'];
 		$bstw = get_theme_mod( 'bstw_enabled' );
-		if ( ! $bstw ) $enabled = true;
+
+		if ( ! $bstw ) {
+			$enabled = true;
+		}
+
 		// If contact blocks is enabled and BSTW widget is disabled add contact blocks.
 		if ( $enabled ) {
 			$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );

@@ -99,7 +99,7 @@ class Boldgrid_Framework_Customizer_Contact_Blocks {
 		// HTML to print.
 		$html = '<div class="bgtfw contact-block">';
 
-		foreach( $theme_mod as $key => $value ) {
+		foreach ( $theme_mod as $key => $value ) {
 			$value = $value['contact_block'];
 			// Check if an email was entered in.
 			$email = $this->check_for_email( $value );

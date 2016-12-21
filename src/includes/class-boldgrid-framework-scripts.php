@@ -227,7 +227,15 @@ class BoldGrid_Framework_Scripts {
 		);
 	}
 
-	// Add to lang attributes tag.
+	/**
+	 * Add to lang attributes tag.
+	 *
+	 * This will filter the lang attribute tag in the <html> tag.  This is used
+	 * to add the js/no-js support for Modernizr so it can add all the classes
+	 * it needs from the automated testing.
+	 *
+	 * @since 1.3.6
+	 */
 	public function modernizr( $output ) {
 		$admin_bar = is_admin_bar_showing() ? ' admin-bar' : '';
 		return "$output class='no-js{$admin_bar}'";

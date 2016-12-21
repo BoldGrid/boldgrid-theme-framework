@@ -14,14 +14,26 @@
  * @uses       Kirki\Scripts\EnqueueScript
  */
 
+/**
+ * Class responsible for the customizer help bubbles.
+ *
+ * @since 1.0
+ */
 class Boldgrid_Framework_Customizer_Help {
 
+	/**
+	 * Constructor
+	 *
+	 * @since 1.0
+	 */
 	public function __construct() {
 		add_action( 'customize_controls_print_scripts', array( $this, 'customize_controls_print_footer_scripts' ) );
 	}
 
 	/**
-	 * Add the help bubble
+	 * Add the help bubble.
+	 *
+	 * @since 1.0
 	 */
 	public function customize_controls_print_footer_scripts() {
 
@@ -37,8 +49,6 @@ class Boldgrid_Framework_Customizer_Help {
 
 			if ( ! empty( $field['help'] ) ) {
 				// Boldgrid.
-				$field['help'] = __( $field['help'], $configs['text_domain'] );
-
 				$bubble_content = $field['help'];
 				$content = "<a href='#' class='tooltip hint--left' data-hint='" . strip_tags( esc_html( $bubble_content ) ) . "'><span class='dashicons dashicons-info'></span></a>";
 				$scripts[] = '$( "' . $content . '" ).prependTo( "#customize-control-' . $field['settings'] . '" );';
@@ -57,5 +67,4 @@ class Boldgrid_Framework_Customizer_Help {
 
 		echo Kirki_Scripts_Registry::prepare( $script );
 	}
-
 }

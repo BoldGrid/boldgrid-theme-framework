@@ -318,11 +318,11 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-effects.php:40
+#: src/includes/customizer/class-boldgrid-framework-customizer-effects.php:63
 msgid "Page Effects"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-effects.php:48
+#: src/includes/customizer/class-boldgrid-framework-customizer-effects.php:70
 msgid "Slim Scroll Bars"
 msgstr ""
 
@@ -342,7 +342,7 @@ msgstr ""
 msgid "Select the number of footer widget columns you wish to display."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:115, src/includes/customizer/class-boldgrid-framework-customizer.php:332
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:115, src/includes/customizer/class-boldgrid-framework-customizer.php:345
 msgid "Continue to Widgets Section"
 msgstr ""
 
@@ -538,67 +538,67 @@ msgstr ""
 msgid "Shadow Color"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:233
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:246
 msgid "Site Title & Logo"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:294
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:307
 msgid "Header Settings"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:311
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:324
 msgid "Header Widgets"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:312
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:325
 msgid "Select the number of widget areas you wish to display"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:334
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:347
 msgid "You can add widgets to your header from the widgets section."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:354
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:367
 msgid "Custom Header HTML"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:355
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:368
 msgid "Add your custom HTML for your header here"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:402
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:415
 msgid "Custom JS & CSS"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:416
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:429
 msgid "Custom Theme CSS"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:417
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:430
 msgid "This adds live CSS to your website."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:418
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:431
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:439
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:452
 msgid "This adds live JavaScript to your website."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:440
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:453
 msgid "Add custom javascript for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:473
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:486
 msgid "Menu Tutorial"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:736
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:749
 msgid "Using the Customizer"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:738
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:751
 msgid ""
 "BoldGrid sites are highly customizable. Each of the menu items to the left correspond with an area\n"
 "						of your site. Become familiar with everything's location to make full use of your site's features."

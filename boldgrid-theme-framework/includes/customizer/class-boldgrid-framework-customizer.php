@@ -102,6 +102,11 @@ class BoldGrid_Framework_Customizer {
 
 	}
 
+	/**
+	 * Enqueues scripts/styles for the live preview in customizer.
+	 *
+	 * @since  1.0.0
+	 */
 	public function live_preview() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
@@ -171,15 +176,15 @@ HTML;
 				'width'       => 520,
 				'height'      => 160,
 			) ) );
-
 		}
-
 	}
 
 	/**
 	 * Not in use
-	 * This code was created to change the crop size to twice the recommended to allow for
-	 * unpixelated resizing
+	 * This code was created to change the crop size to twice the recommended to
+	 * allow for unpixelated resizing.
+	 *
+	 * @since 1.0
 	 */
 	public function change_logo_crop_size() {
 		$callback = function ( $payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop ) {
@@ -203,6 +208,14 @@ HTML;
 		add_filter( 'image_resize_dimensions', $callback, 10, 6 );
 	}
 
+	/**
+	 * Add widget help.
+	 *
+	 * Let widgets tell the user to go to header and footer to change number of
+	 * columns.
+	 *
+	 * @since  1.0.0
+	 */
 	public function add_widget_help( $wp_customize ) {
 		// Todo Add Description to widgets to tell the user to go to header and footer to change columns.
 	}
@@ -211,7 +224,7 @@ HTML;
 	 * Customizer_reorganization
 	 * Remove control, Rename Panels
 	 *
-	 * @param WP_Customize $wp_customize
+	 * @param Object $wp_customize The WP_Customize object.
 	 */
 	public function customizer_reorganization( $wp_customize ) {
 
@@ -281,7 +294,7 @@ HTML;
 	 * textareas.
 	 *
 	 * @since 1.0.0
-	 * @param array $wp_customize
+	 * @param Object $wp_customize The WP_Customize object.
 	 */
 	public function header_panel( $wp_customize ) {
 
@@ -750,7 +763,7 @@ HTML;
 	/**
 	 * Remove the additional CSS section, introduced in 4.7, from the Customizer.
 	 *
-	 * @param $wp_customize WP_Customize_Manager
+	 * @param Object $wp_customize The WP_Customize_Manager object.
 	 *
 	 * @since 1.3.3
 	 */

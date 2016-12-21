@@ -18,12 +18,22 @@
  */
 class Boldgrid_Framework_Control_Pattern extends WP_Customize_Control {
 
-		public function enqueue() {
-			wp_enqueue_script( 'boldgrid-framework-customizer-background' );
-			wp_enqueue_style( 'boldgird-theme-helper-color-palette' );
-		}
+	/**
+	 * Scripts/styles to enqueue in customizer.
+	 *
+	 * @since 1.0
+	 */
+	public function enqueue() {
+		wp_enqueue_script( 'boldgrid-framework-customizer-background' );
+		wp_enqueue_style( 'boldgird-theme-helper-color-palette' );
+	}
 
-		public function render_content() {
+	/**
+	 * Render the pattern control in customizer.
+	 *
+	 * @since 1.0
+	 */
+	public function render_content() {
 	?>
 		<div class='boldgrid-pattern-wrapper' data-pattern-selected="<?php echo (bool) $this->value(); ?>">
 			<div class='boldgrid-pattern-selection-heading'>
@@ -44,12 +54,12 @@ class Boldgrid_Framework_Control_Pattern extends WP_Customize_Control {
 					?>
 					<div class="patternpreview <?php echo $active_class; ?>" style='background-image:url("<?php echo esc_attr( $pattern['uri'] )?>")'></div>
 				<?php } ?>
-				
+
 				</div>
 				<input type="text" val='<?php echo esc_attr( $this->value() ); ?>' class='hidden' <?php echo  esc_attr( $this->link() ); ?>>
 			</div>
 		</div>
 	<?php
-	 }
+	}
 }
 ?>

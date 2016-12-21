@@ -264,13 +264,13 @@
 		wp.customize.bind( 'ready',
 			_.defer(
 				function() {
-					if ( !! parseInt( wp.customize( 'hide_partner_attribution' )() ) ? true : false ) {
+					if ( !! parseInt( wp.customize( 'hide_partner_attribution' )() ) ) {
 						$( '.reseller-attribution-link' ).addClass( 'hidden' );
 					}
-					if ( !! parseInt( wp.customize( 'hide_boldgrid_attribution' )() ) ? true : false ) {
+					if ( !! parseInt( wp.customize( 'hide_boldgrid_attribution' )() ) ) {
 						$( '.boldgrid-attribution-link' ).addClass( 'hidden' );
 					}
-					if ( !! parseInt( wp.customize( 'hide_wordpress_attribution' )() ) ? true : false ) {
+					if ( !! parseInt( wp.customize( 'hide_wordpress_attribution' )() ) ) {
 						$( '.wordpress-attribution-link' ).addClass( 'hidden' );
 					}
 				}

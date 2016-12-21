@@ -10,6 +10,14 @@
  * @author     BoldGrid <support@boldgrid.com>
  * @link       https://boldgrid.com
  */
+
+/**
+ * Class: BoldGrid Comments
+ *
+ * The class responsible for the comments display in a bgtfw theme.
+ *
+ * @since 1.0.0
+ */
 class BoldGrid_Framework_Comments {
 
 	/**
@@ -48,13 +56,13 @@ class BoldGrid_Framework_Comments {
 				<header>
 					<h2 class="comments-title">
 						<?php
-							printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number( ), 'comments title', 'bgtfw' ),
-							number_format_i18n( get_comments_number( ) ), '<span>' . get_the_title( ) . '</span>' );
+							printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'bgtfw' ),
+							number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
 						?>
 					</h2>
 				</header>
 
-				<?php if ( get_comment_pages_count( ) > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 				<nav id="comment-nav-above" class="comment-navigation" role="navigation">
 					<h1 class="sr-only"><?php _e( 'Comment navigation', 'bgtfw' ); ?></h1>
 					<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'bgtfw' ) ); ?></div>
@@ -79,7 +87,7 @@ class BoldGrid_Framework_Comments {
 					?>
 				</ol><!-- .comment-list -->
 
-				<?php if ( get_comment_pages_count( ) > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 				<nav id="comment-nav-below" class="comment-navigation" role="navigation">
 					<h1 class="sr-only"><?php _e( 'Comment navigation', 'bgtfw' ); ?></h1>
 					<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'bgtfw' ) ); ?></div>
@@ -91,9 +99,9 @@ class BoldGrid_Framework_Comments {
 
 			<?php
 				// If comments are closed and there are comments
-			if ( ! comments_open( )
-					&& '0' != get_comments_number( )
-					&& post_type_supports( get_post_type( ), 'comments' ) ) :
+			if ( ! comments_open()
+					&& '0' != get_comments_number()
+					&& post_type_supports( get_post_type(), 'comments' ) ) :
 			?>
 			<p class="no-comments"><?php _e( 'Comments are closed.', 'bgtfw' ); ?></p>
 		<?php endif; ?>
@@ -109,13 +117,13 @@ class BoldGrid_Framework_Comments {
 			'comment_field' => '<p><textarea placeholder="Start typing..." id="comment" class="form-control" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
 			'comment_notes_after' => '<p class="form-allowed-tags">' .
 			__( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:', 'bgtfw' ) .
-			'</p><div class="alert alert-info">' . allowed_tags( ) . '</div>',
+			'</p><div class="alert alert-info">' . allowed_tags() . '</div>',
 		) );
 
 	}
 
 	/**
-	 * boldgrid_bootstrap_comment(  );
+	 * Get bootstrap formatted comment
 	 *
 	 * This is the BoldGrid Bootstrap template for comments and pingbacks.
 	 *
@@ -129,14 +137,14 @@ class BoldGrid_Framework_Comments {
 
 		if ( 'pingback' == $comment->comment_type || 'trackback' == $comment->comment_type ) : ?>
 
-		<li id="comment-<?php comment_ID( ); ?>" <?php comment_class( 'media' ); ?>>
+		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( 'media' ); ?>>
 			<div class="comment-body">
 				<?php _e( 'Pingback:', 'bgtfw' ); ?> <?php comment_author_link( ); ?> <?php edit_comment_link( __( 'Edit', 'bgtfw' ), '<span class="edit-link">', '</span>' ); ?>
 			</div>
 
 		<?php else : ?>
 
-		<li id="comment-<?php comment_ID( ); ?>"
+		<li id="comment-<?php comment_ID(); ?>"
 			<?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
 			<article id="div-comment-<?php comment_ID( ); ?>" class="comment-body media">
 
@@ -195,6 +203,8 @@ class BoldGrid_Framework_Comments {
 
 	/**
 	 * Bootstrap styled Comment form.
+	 *
+	 * @since 1.0.0
 	 */
 	public function bootstrap_comment_form_defaults( $defaults ) {
 
@@ -242,8 +252,13 @@ class BoldGrid_Framework_Comments {
 		return $defaults;
 	}
 
+	/**
+	 * Close the div for the comment form if there are comments.
+	 *
+	 * @since 1.0.0
+	 */
 	public function bootstrap_comment_form( $post_id ) {
-		if ( have_comments( ) ) {
+		if ( have_comments() ) {
 			// Closing tag for 'comment_notes_after'.
 			echo '</div><!-- .form-group .comment-form-submit -->';
 		}

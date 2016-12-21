@@ -36,92 +36,92 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:51
+#: src/includes/class-boldgrid-framework-comments.php:59
 msgctxt "comments title"
 msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/includes/class-boldgrid-framework-comments.php:59, src/includes/class-boldgrid-framework-comments.php:84
+#: src/includes/class-boldgrid-framework-comments.php:67, src/includes/class-boldgrid-framework-comments.php:92
 msgid "Comment navigation"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:60, src/includes/class-boldgrid-framework-comments.php:85
+#: src/includes/class-boldgrid-framework-comments.php:68, src/includes/class-boldgrid-framework-comments.php:93
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:61, src/includes/class-boldgrid-framework-comments.php:86
+#: src/includes/class-boldgrid-framework-comments.php:69, src/includes/class-boldgrid-framework-comments.php:94
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:98
+#: src/includes/class-boldgrid-framework-comments.php:106
 msgid "Comments are closed."
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:104
+#: src/includes/class-boldgrid-framework-comments.php:112
 msgid "Leave a Reply"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:105
+#: src/includes/class-boldgrid-framework-comments.php:113
 msgid "Leave a Reply to %s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:106
+#: src/includes/class-boldgrid-framework-comments.php:114
 msgid "Cancel Reply"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:107
+#: src/includes/class-boldgrid-framework-comments.php:115
 msgid "Post Comment"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:111
+#: src/includes/class-boldgrid-framework-comments.php:119
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:134
+#: src/includes/class-boldgrid-framework-comments.php:142
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:134, src/includes/partials/template-tags.php:122
+#: src/includes/class-boldgrid-framework-comments.php:142, src/includes/partials/template-tags.php:122
 msgid "Edit"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:151
+#: src/includes/class-boldgrid-framework-comments.php:159
 msgid "%s <span class=\"says\">says:</span>"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:159
+#: src/includes/class-boldgrid-framework-comments.php:167
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:164
+#: src/includes/class-boldgrid-framework-comments.php:172
 msgid "<span style=\"margin-left: 5px;\" class=\"fa fa-edit\"></span> Edit"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:169
+#: src/includes/class-boldgrid-framework-comments.php:177
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:209
+#: src/includes/class-boldgrid-framework-comments.php:219
 msgid "Name"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:215
+#: src/includes/class-boldgrid-framework-comments.php:225
 msgid "Email"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:222
+#: src/includes/class-boldgrid-framework-comments.php:232
 msgid "Website"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:232
+#: src/includes/class-boldgrid-framework-comments.php:242
 msgctxt "noun"
 msgid "Comment"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:236
+#: src/includes/class-boldgrid-framework-comments.php:246
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
 msgstr ""
 

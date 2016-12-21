@@ -1,13 +1,20 @@
 <?php
-
 /**
- * Functionality used within Customizer.
+ * Class: Boldgrid_Framework_Customizer_Edit
  *
- * @since 1.1
+ * Responsible for the edit button functionality in customizer.
+ *
+ * @since 1.3
  * @link http://www.boldgrid.com.
  * @package Boldgrid_Inspiration.
  * @subpackage Boldgrid_Inspiration/includes.
  * @author BoldGrid <wpb@boldgrid.com>.
+ */
+
+/**
+ * Class responsible for edit buttons in customizer.
+ *
+ * @since 1.3
  */
 class Boldgrid_Framework_Customizer_Edit {
 
@@ -33,7 +40,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	 * Initialize the class and set its properties.
 	 *
 	 * @param     string $configs       The BoldGrid Theme Framework configurations.
-	 * @since     xxx
+	 * @since     1.3
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
@@ -58,7 +65,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	/**
 	 * Print an empty container for an empty nav.
 	 *
-	 * @since xxx
+	 * @since 1.3
 	 *
 	 * @param array $menu An array of menu settings.
 	 */
@@ -100,7 +107,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	 * which is not avaialable in that hook. Instead, we hook into wp_enqueue_scripts and check to
 	 * see if we're in the is_customize_preview.
 	 *
-	 * @since 1.1
+	 * @since 1.3
 	 */
 	public function wp_enqueue_scripts() {
 		if ( is_customize_preview() && true === $this->enabled ) {

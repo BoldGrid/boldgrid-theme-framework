@@ -301,15 +301,15 @@ msgstr ""
 msgid "BoldGrid Color Palettes"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:124
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:131
 msgid "Go there now"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:125
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:132
 msgid "Widget"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:126
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:133
 msgid "Menu"
 msgstr ""
 

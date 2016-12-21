@@ -79,7 +79,6 @@ class BoldGrid_Framework {
 		$this->boldgrid_theme_setup( );
 		$this->setup_menus( );
 		$this->boldgrid_widget_areas( );
-		$this->boldgrid_theme_developer_tools( );
 		$this->theme_customizer( );
 		$this->social_icons( );
 		$this->comments( );
@@ -787,26 +786,6 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'after_switch_theme', $scss, 'force_update_css', 999 );
 		}
 		$this->loader->add_action( 'upgrader_process_complete', $scss , 'theme_upgrader_process', 10, 3 );
-	}
-
-
-	/**
-	 * This is responsible for loading the BoldGrid Theme Framework
-	 * developer tools and experimental features.  Use at your own risk :)
-	 *
-	 * @since    1.0.0
-	 */
-	private function boldgrid_theme_developer_tools() {
-		if ( defined( 'BOLDGRID_THEME_DEV' ) && BOLDGRID_THEME_DEV === true ) {
-
-			require_once BOLDGRID_LIB_INC_DEV . 'developer-tools.php';
-			require_once BOLDGRID_LIB_INC_DEV . 'boldgrid-theme-builder.php';
-
-			$boldgrid_dev = new BoldGrid_Theme_Developer_Tools( );
-
-			$this->loader->add_action( 'admin_bar_menu', $boldgrid_dev, 'boldgrid_tools', 99 );
-
-		}
 	}
 
 	/**

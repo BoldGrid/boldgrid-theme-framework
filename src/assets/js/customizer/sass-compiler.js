@@ -16,7 +16,7 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 	/**
 	 * Setup a compile function
 	 */
-	self.compile = function  ( scss, options ) {
+	self.compile = function( scss, options ) {
 		options = options || {};
 
 		self.processing = true;
@@ -36,23 +36,23 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 			instance_compiler = new Sass( BOLDGRIDSass.WorkerUrl );
 		}
 
-		//var d = new Date();
+		//Var d = new Date();
 		//var start_time  = d.getTime();
 
 		instance_compiler.compile( scss, function( result ) {
 			self.processing = false;
 			var data = {
-				result : result,
-				source : options.source
+				result: result,
+				source: options.source
 			};
 
 			if ( result.status !== 0 ) {
 				console.error( result.formatted );
 			}
 
-			self.$window.trigger ( self.compile_done, data );
+			self.$window.trigger( self.compile_done, data );
 
-			//var d = new Date();
+			//Var d = new Date();
 			//var difference  = d.getTime() - start_time;
 			//console.log( difference, " milliseconds" );
 			//console.log( result );

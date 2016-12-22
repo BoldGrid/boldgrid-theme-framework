@@ -25,21 +25,21 @@
 	_.each( $menus, function( id ) {
 
 		// Set menu location font size's for live previews without refreshes
-		wp.customize( 'navigation_' + id.themeLocation +'_font_size', function( value ) {
+		wp.customize( 'navigation_' + id.themeLocation + '_font_size', function( value ) {
 			value.bind( function( to ) {
 				$( '.' + id.themeLocation.replace( /_/g, '-' ) + '-menu ul li a' ).css( 'font-size', to + 'px' );
 			});
 		});
 
 		// Set menu location's text transform for live previews without refreshes
-		wp.customize( 'navigation_' + id.themeLocation +'_text_transform', function( value ) {
+		wp.customize( 'navigation_' + id.themeLocation + '_text_transform', function( value ) {
 			value.bind( function( to ) {
 				$( '.' + id.themeLocation.replace( /_/g, '-' ) + '-menu ul li a' ).css( 'text-transform', to );
 			});
 		});
 	});
 
-	$( function () {
+	$( function() {
 		wp.customize.preview.bind( 'setting', function( args ) {
 			if ( 'boldgrid_color_palette' !== args[0] ) {
 				$window.trigger( 'resize' );
@@ -143,7 +143,7 @@
 			$( '.site-title a' ).hover( function(  ) {
 				$( this ).css( 'text-decoration', to );
 			},
-			function(  ){
+			function(  ) {
 				$( this ).css( 'text-decoration', parent.wp.customize( 'logo_text_decoration' ).get() );
 			});
 		});
@@ -185,12 +185,12 @@
 	});
 
 	// Set shadow contols.
-	var updateShadowControls = function () {
-		var logoShadowColor = wp.customize( 'logo_shadow_color')(),
-		    logoShadowBlur = wp.customize( 'logo_shadow_blur')() + 'px ',
-		    logoShadowVertical = wp.customize( 'logo_shadow_vertical')() + 'px ',
-		    logoShadowHorizontal = wp.customize( 'logo_shadow_horizontal')() + 'px ',
-		    logoShadowSwitch = wp.customize( 'logo_shadow_switch')(),
+	var updateShadowControls = function() {
+		var logoShadowColor = wp.customize( 'logo_shadow_color' )(),
+		    logoShadowBlur = wp.customize( 'logo_shadow_blur' )() + 'px ',
+		    logoShadowVertical = wp.customize( 'logo_shadow_vertical' )() + 'px ',
+		    logoShadowHorizontal = wp.customize( 'logo_shadow_horizontal' )() + 'px ',
+		    logoShadowSwitch = wp.customize( 'logo_shadow_switch' )(),
 		    cssString = 'none';
 		/*jshint eqeqeq:false */
 		if ( '0' != logoShadowSwitch ) {
@@ -205,7 +205,7 @@
 	};
 
 	// Bind the change of shadow controls.
-	$.each( shadowControls, function () {
+	$.each( shadowControls, function() {
 		wp.customize( this, function( value ) {
 			value.bind( function() {
 				updateShadowControls();

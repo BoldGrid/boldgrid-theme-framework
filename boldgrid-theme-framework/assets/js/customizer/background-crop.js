@@ -1,19 +1,21 @@
-(function( wp, $ ){
+(function( wp, $ ) {
 	'use strict';
 
-	if ( ! wp || ! wp.customize ) { return; }
+	if ( ! wp || ! wp.customize ) {
+ return;
+ }
 
 	// Set up our namespace.
 	var api = wp.customize;
 
 	api.croppingBackgroundImageControl = api.CroppedImageControl.extend({
 
-		ready: function () {
+		ready: function() {
 
 			var control = this,
 				loadedAttachment;
 
-			var setAttachmentDataAndRenderContent = function () {
+			var setAttachmentDataAndRenderContent = function() {
 				// Reattach data to object.
 				control.params.attachment = loadedAttachment;
 				control.renderContent();
@@ -21,7 +23,7 @@
 
 			// Store the attachment data.
 			loadedAttachment = this.params.attachment;
-			this.setting.bind( function () {
+			this.setting.bind( function() {
 				loadedAttachment = control.params.attachment;
 			} );
 

@@ -96,11 +96,11 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 * Get a random color
 	 * Not Used ATM
 	 */
-	self.get_random_color = function () {
-		var letters = '0123456789ABCDEF'.split('');
+	self.get_random_color = function() {
+		var letters = '0123456789ABCDEF'.split( '' );
 		var color = '#';
-		for (var i = 0; i < 6; i++ ) {
-			color += letters[Math.floor(Math.random() * 16)];
+		for ( var i = 0; i < 6; i++ ) {
+			color += letters[Math.floor( Math.random() * 16 )];
 		}
 		return color;
 	};
@@ -112,7 +112,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @return element.
 	 */
-	self.randomArrayElement = function ( array ) {
+	self.randomArrayElement = function( array ) {
 		return array[ Math.floor( Math.random() * array.length ) ];
 	};
 
@@ -123,7 +123,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @return string css value of a color.
 	 */
-	self.generateNeutralColor = function ( palette ) {
+	self.generateNeutralColor = function( palette ) {
 
 		var random = Math.random(),
 			neutralColor = null,
@@ -154,7 +154,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @return array
 	 */
-	self.colorDiff = function ( colorA, colorB ) {
+	self.colorDiff = function( colorA, colorB ) {
 
 		colorA = net.brehaut.Color( colorA ).toHSL();
 		colorB =  net.brehaut.Color( colorB ).toHSL();
@@ -168,10 +168,10 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			totalPercentageDiff = huePercentageDiff + saturationPercentageDiff + lightnessPercentageDiff;
 
 		return {
-			'hue' : hueDiff,
-			'saturationDiff' : saturationDiff,
-			'lightnessDiff' : lightnessDiff,
-			'totalPercentageDiff' : totalPercentageDiff
+			'hue': hueDiff,
+			'saturationDiff': saturationDiff,
+			'lightnessDiff': lightnessDiff,
+			'totalPercentageDiff': totalPercentageDiff
 		};
 	};
 
@@ -182,11 +182,11 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @return object key value pairs of colors and keys that should have the same color.
 	 */
-	self.findMatches = function ( palette ) {
+	self.findMatches = function( palette ) {
 		// Test for matches.
 		var matches = {};
-		$.each( palette, function ( testIndex, testColor ) {
-			$.each( palette, function ( index, color ) {
+		$.each( palette, function( testIndex, testColor ) {
+			$.each( palette, function( index, color ) {
 				if ( color === testColor && index !== testIndex ) {
 					if ( ! matches[color] ) {
 						matches[color] = [];
@@ -234,15 +234,15 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @return array An array of relationships from a palette.
 	 */
-	self.findRelations = function ( palette ) {
+	self.findRelations = function( palette ) {
 		var matches, relations = [];
 
 		matches = self.findMatches( palette );
 		if ( false === $.isEmptyObject( matches ) ) {
-			$.each( matches, function () {
+			$.each( matches, function() {
 				relations.push( {
-					'type' : 'match',
-					'values' : this
+					'type': 'match',
+					'values': this
 				} );
 			} );
 		}
@@ -257,7 +257,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @return array relationships that exists within a palette.
 	 */
-	self.determineRelations = function ( paletteData ) {
+	self.determineRelations = function( paletteData ) {
 
 		/*
 		 * Test the Sample Palette.
@@ -273,7 +273,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		$.each( relationships, function() {
 			var validRelationship = true;
 
-			$.each( this.values, function () {
+			$.each( this.values, function() {
 				 if ( paletteData.partialPalette[ this ] ) {
 					 validRelationship = false;
 					 return false;
@@ -291,20 +291,20 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		 * for all relationship suggestions.
 		 */
 		if ( ! relationsData.length ) {
-			$.each( paletteData.additionalSamplePalattes, function () {
+			$.each( paletteData.additionalSamplePalattes, function() {
 				relationsData = self.findRelations( this );
 				if ( relationsData.length ) {
 					paletteRelationships = {
-						'type' : 'additionalSamplePalattes',
-						'relationsData' : relationsData
+						'type': 'additionalSamplePalattes',
+						'relationsData': relationsData
 					};
 					return false;
 				}
 			} );
 		} else {
 			paletteRelationships = {
-				'type' : 'samplePalette',
-				'relationsData' : relationsData
+				'type': 'samplePalette',
+				'relationsData': relationsData
 			};
 		}
 
@@ -316,16 +316,16 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @since 1.1.1
 	 */
-	self.applyRelationships = function ( palette, paletteRelationships, lockedIndexes ) {
-		var newPalette = palette.slice(0);
+	self.applyRelationships = function( palette, paletteRelationships, lockedIndexes ) {
+		var newPalette = palette.slice( 0 );
 
-		$.each( paletteRelationships.relationsData, function () {
+		$.each( paletteRelationships.relationsData, function() {
 			var relationship = this,
 				copyColorIndex = false;
 
 			if ( 'match' === relationship.type ) {
 
-				$.each( relationship.values, function () {
+				$.each( relationship.values, function() {
 					var lockedColorIndex = lockedIndexes.indexOf( this );
 					if ( lockedColorIndex !== -1 ) {
 						copyColorIndex = this;
@@ -340,7 +340,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 					copyColorIndex = relationship.values[ Math.floor( Math.random() * relationship.values.length ) ];
 				}
 
-				$.each( relationship.values, function () {
+				$.each( relationship.values, function() {
 					newPalette[this] = newPalette[copyColorIndex];
 				} );
 			}
@@ -356,9 +356,9 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @return array indexes of array that should not be changed.
 	 */
-	self.findLockedIndexes = function ( partialPalette ) {
+	self.findLockedIndexes = function( partialPalette ) {
 		var lockedIndexes = [];
-		$.each( partialPalette, function ( index ) {
+		$.each( partialPalette, function( index ) {
 			if ( this ) {
 				lockedIndexes.push( index );
 			}
@@ -374,7 +374,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @return int number of palettes to return based on another palettes relationships.
 	 */
-	self.determineRelationalCount = function ( type, size ) {
+	self.determineRelationalCount = function( type, size ) {
 		var relationalPercentage;
 
 		// Percentage of palettes that will be relational if possible.
@@ -395,15 +395,15 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @return array palettes.
 	 */
-	self.findPalettesByColor = function ( sampleColor ) {
+	self.findPalettesByColor = function( sampleColor ) {
 		var palettes = [], sort, getPalette;
 
 		getPalette = function() {
 			return self.palette_collection[ this.paletteIndex ].slice( 0 );
 		};
 
-		$.each( self.palette_collection, function ( paletteIndex ) {
-			$.each( this, function ( colorIndex ) {
+		$.each( self.palette_collection, function( paletteIndex ) {
+			$.each( this, function( colorIndex ) {
 				var colorDiff = self.colorDiff( this, sampleColor );
 
 				// Max Hue Diff 16%.
@@ -412,10 +412,10 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 				}
 
 				var relationship = {
-					'paletteIndex' : paletteIndex,
-					'colorIndex' : colorIndex,
-					'distance' : colorDiff,
-					'getPalette' : getPalette
+					'paletteIndex': paletteIndex,
+					'colorIndex': colorIndex,
+					'distance': colorDiff,
+					'getPalette': getPalette
 				};
 
 				palettes.push( relationship );
@@ -423,7 +423,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		} );
 
 		// Sort by diff percentage sum.
-		sort = function (a, b) {
+		sort = function( a, b ) {
 			  if ( Math.abs( a.distance.totalPercentageDiff ) > Math.abs( b.distance.totalPercentageDiff ) ) {
 			    return 1;
 			  }
@@ -444,7 +444,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @since 1.0
 	 */
-	self.generate_palette_collection = function ( paletteData, count ) {
+	self.generate_palette_collection = function( paletteData, count ) {
 		if ( ! count ) {
 			count = 5;
 		}
@@ -455,7 +455,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			relationalCount = self.determineRelationalCount( paletteRelationships.type, count );
 
 		var palettes = [];
-		for (var i = 0; i < count; i++) {
+		for ( var i = 0; i < count; i++ ) {
 			var newPalette = self.generate_palette( paletteData );
 			if ( typeof newPalette === 'object' && newPalette.length ) {
 				var shouldApplyRelationships =
@@ -469,7 +469,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 				// Make sure that any locked colors are still locked in suggestions.
 				newPalette = self.fixLockedIndex( newPalette, paletteData.partialPalette );
 
-				palettes.push ( newPalette );
+				palettes.push( newPalette );
 			}
 		}
 
@@ -481,9 +481,9 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @since 1.2.7
 	 */
-	self.fixLockedIndex = function ( newPalette, partialPalette ) {
+	self.fixLockedIndex = function( newPalette, partialPalette ) {
 
-		$.each( partialPalette, function ( index ) {
+		$.each( partialPalette, function( index ) {
 			if ( this ) {
 				newPalette[ index ] = this;
 			}
@@ -497,7 +497,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 *
 	 * @since 1.0
 	 */
-	self.generate_palette = function ( paletteData ) {
+	self.generate_palette = function( paletteData ) {
 		var newPalette = [],
 			colorsPartialPalette = self.partial_palette_into_colors_palette( paletteData.partialPalette ),
 			bool_empty_palette = self.is_palette_empty( colorsPartialPalette.palette );
@@ -536,7 +536,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 					 * This is almost never used because it requires users to exhaust ~2500 color combinations.
 					 */
 					var random = ( Math.floor( Math.random() * 3 ) + 1 );
-					if ( random === 1 ){
+					if ( random === 1 ) {
 						var internal_method = internal_palettes[ Math.floor( Math.random() * internal_palettes.length ) ];
 						newPalette = self.color_palettes[ internal_method ]( color );
 
@@ -545,8 +545,8 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 						newPalette = color[colors_method]();
 
 					} else {
-						var degrees = self.random_array(4, 5);
-						degrees.unshift(0);
+						var degrees = self.random_array( 4, 5 );
+						degrees.unshift( 0 );
 						newPalette = color.schemeFromDegrees( degrees );
 					}
 
@@ -559,7 +559,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 		// Set unchanged keys.
 		var paletteClone = newPalette.slice( 0 );
-		$.each( colorsPartialPalette.unchangedKeys, function () {
+		$.each( colorsPartialPalette.unchangedKeys, function() {
 			paletteClone[this] = paletteData.partialPalette[this];
 		} );
 
@@ -570,9 +570,9 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 * If the user requests a 3 color palette and we generate a 5 color palette. trim the
 	 * last 2 color in a palette
 	 */
-	self.truncate_generated_palette = function ( generated_palette, given_partial_palette ) {
+	self.truncate_generated_palette = function( generated_palette, given_partial_palette ) {
 		var truncated_palette = [];
-		for( var i = 0; i < given_partial_palette.length; i++ ) {
+		for ( var i = 0; i < given_partial_palette.length; i++ ) {
 			truncated_palette.push( generated_palette[i] );
 		}
 
@@ -582,7 +582,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	/***
 	 * Place the single color in the correct placement
 	 */
-	self.format_palette_to_unchanged = function ( newPalette, needed_key ) {
+	self.format_palette_to_unchanged = function( newPalette, needed_key ) {
 		var selected_color = newPalette[0];
 		var formated_palette = {};
 		formated_palette[needed_key] = selected_color;
@@ -609,16 +609,16 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	/**
 	 * Take a partial palette and convert the color values from css to Color objects
 	 */
-	self.partial_palette_into_colors_palette = function ( partial_palette ) {
+	self.partial_palette_into_colors_palette = function( partial_palette ) {
 		var color_palette = [];
 		var unchangedKeys = [];
 		var generateKeys = [];
-		$.each( partial_palette, function ( key ) {
+		$.each( partial_palette, function( key ) {
 			if ( this ) {
 				var color = net.brehaut.Color( this );
 
 				// Colors that are to dark, light, or not saturated enough, should not be used for color calculations.
-				if ( color.getLightness() < (0.90) && color.getLightness() > (0.10) && color.getSaturation() > (0.15) ) {
+				if ( color.getLightness() < ( 0.90 ) && color.getLightness() > ( 0.10 ) && color.getSaturation() > ( 0.15 ) ) {
 					color_palette.push( color );
 					generateKeys.push( key );
 				} else {
@@ -632,25 +632,25 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		} );
 
 		return {
-			'palette' : color_palette,
-			'unchangedKeys' : unchangedKeys,
-			'generateKeys' : generateKeys
+			'palette': color_palette,
+			'unchangedKeys': unchangedKeys,
+			'generateKeys': generateKeys
 		};
 	};
 
 	/**
 	 * Get a palette from the color lovers list of palettes or otherwise
 	 */
-	self.get_palette_from_static_list = function ( partial_palette ) {
+	self.get_palette_from_static_list = function( partial_palette ) {
 		var newPalette = [];
 
 		//Try up to 2 times to find a palette
-		$.each( [1,2], function () {
-			var found_palette = self.palette_collection [ Math.floor( Math.random() * self.palette_collection.length) ];
+		$.each( [1, 2], function() {
+			var found_palette = self.palette_collection [ Math.floor( Math.random() * self.palette_collection.length ) ];
 			if ( found_palette.length >= partial_palette.length ) {
 				if ( found_palette.length > partial_palette.length ) {
-					for (var i = 0; i < partial_palette.length; i++) {
-						newPalette.push ( found_palette[i] );
+					for ( var i = 0; i < partial_palette.length; i++ ) {
+						newPalette.push( found_palette[i] );
 					}
 				} else if ( found_palette.length === partial_palette.length ) {
 					newPalette = found_palette;
@@ -669,7 +669,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	/**
 	 * Check if an array has no color definitions.
 	 */
-	self.is_palette_empty = function ( partial_palette ) {
+	self.is_palette_empty = function( partial_palette ) {
 		var empty_palette = true;
 		$.each( partial_palette, function() {
 			if ( this ) {
@@ -684,17 +684,17 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	/**
 	 * Get a random shade of grey
 	 */
-	self.get_grey = function () {
+	self.get_grey = function() {
 		var Color = net.brehaut.Color( '#FFFFFF' );
-		return Color.setBlue(0).setRed(0).setGreen(0).setLightness(Math.random()).toCSS();
+		return Color.setBlue( 0 ).setRed( 0 ).setGreen( 0 ).setLightness( Math.random() ).toCSS();
 	};
 
 	/**
 	 * Covert an array of color objects to an array of css color definitions
 	 */
-	self.color_array_to_css = function ( colors ) {
+	self.color_array_to_css = function( colors ) {
 		var css_colors = [];
-		$.each( colors, function ( key ) {
+		$.each( colors, function( key ) {
 			if ( key < 5 ) {
 				css_colors.push( this.toCSS() );
 			}
@@ -706,20 +706,20 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	/**
 	 * This function is used to create the rest of a palette if more than 1 color is given
 	 */
-	self.generate_palette_from_partial = function ( colors ) {
+	self.generate_palette_from_partial = function( colors ) {
 		var actual_colors = [];
-		$.each(colors, function ( key, this_value ) {
+		$.each( colors, function( key, this_value ) {
 			if ( this_value ) {
 				actual_colors.push( this_value );
 			}
 		});
 
 		var palette_colors = [];
-		$.each( colors, function (key, this_value ) {
-			if (!this_value) {
-				var action = fill_palette_actions[Math.floor( Math.random()*fill_palette_actions.length )];
-				var palette_color = actual_colors[Math.floor( Math.random()*actual_colors.length )];
-				var palette_color2 = actual_colors[Math.floor( Math.random()*actual_colors.length )];
+		$.each( colors, function( key, this_value ) {
+			if ( ! this_value ) {
+				var action = fill_palette_actions[Math.floor( Math.random() * fill_palette_actions.length )];
+				var palette_color = actual_colors[Math.floor( Math.random() * actual_colors.length )];
+				var palette_color2 = actual_colors[Math.floor( Math.random() * actual_colors.length )];
 				var new_color;
 				if ( action === 'compliment' ) {
 					new_color = palette_color.shiftHue( 180 );
@@ -742,9 +742,9 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 * appearence of a completely new palette
 	 * This function essentially makes a palette lighter/darker, saturates and hue shifts
 	 */
-	self.randomize_palette = function ( palette, unchangedKeys ) {
+	self.randomize_palette = function( palette, unchangedKeys ) {
 		var palette_colors = [];
-		$.each(palette, function ( key ) {
+		$.each( palette, function( key ) {
 
 			if ( key >= 5 ) {
 				return false;
@@ -757,12 +757,12 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 			var color = this;
 			for ( var i = 0; i < 2; i++ ) {
-				var method = methods[Math.floor( Math.random()*methods.length )];
+				var method = methods[Math.floor( Math.random() * methods.length )];
 				var value;
 				if ( method === 'shiftHue' ) {
 					value = ( Math.floor( Math.random() * 45 ) + 1 ) - 23;
 				} else {
-					value = ( Math.floor( Math.random() * 20) + 1 ) / 100;
+					value = ( Math.floor( Math.random() * 20 ) + 1 ) / 100;
 				}
 
 				color = color[method]( value );
@@ -778,7 +778,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	/**
 	 * Create an array with random variance values
 	 */
-	self.random_array = function ( size, variance_scale ) {
+	self.random_array = function( size, variance_scale ) {
 		var degrees = [];
 
 		var range = 45 * variance_scale;
@@ -795,7 +795,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 */
 	self.color_palettes = {
 
-		monochromatic : function ( color ) {
+		monochromatic: function( color ) {
 			var palette_colors = [];
 			palette_colors.push( color );
 			palette_colors.push( color.lightenByAmount( 0.3 ) );
@@ -805,7 +805,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			return palette_colors;
 		},
 		//Tims Palette
-		intesity_and_hue : function ( color ) {
+		intesity_and_hue: function( color ) {
 			var palette_colors = [];
 			palette_colors.push( color );
 
@@ -817,7 +817,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			return palette_colors;
 		},
 
-		complementaryScheme : function ( color ) {
+		complementaryScheme: function( color ) {
 			var palette_colors = [];
 			palette_colors.push( color );
 			palette_colors.push( color.shiftHue( 180 ) );
@@ -828,7 +828,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			return palette_colors;
 		},
 
-		splitComplementaryScheme : function ( color ) {
+		splitComplementaryScheme: function( color ) {
 			var palette_colors = [];
 			palette_colors.push( color );
 			palette_colors.push( color.shiftHue( 150 ) );
@@ -839,7 +839,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			return palette_colors;
 		},
 
-		splitComplementaryCWScheme : function ( color ) {
+		splitComplementaryCWScheme: function( color ) {
 			var palette_colors = [];
 			palette_colors.push( color );
 			palette_colors.push( color.shiftHue( 60 ) );
@@ -850,7 +850,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			return palette_colors;
 		},
 
-		triadicScheme : function ( color ) {
+		triadicScheme: function( color ) {
 			var palette_colors = [];
 			palette_colors.push( color );
 			palette_colors.push( color.shiftHue( 60 ) );
@@ -861,7 +861,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			return palette_colors;
 		},
 
-		tetradicScheme : function ( color ) {
+		tetradicScheme: function( color ) {
 			var palette_colors = [];
 			palette_colors.push( color );
 			palette_colors.push( color.shiftHue( 90 ) );

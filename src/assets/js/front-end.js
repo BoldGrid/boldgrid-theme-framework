@@ -14,15 +14,15 @@
 	var BoldGrid = {
 
 		// Scripts to fire on all pages.
-		'common' : {
-			init : function() {
+		'common': {
+			init: function() {
 				// JavaScript to be fired on all pages
 				this.skipLink();
 			},
-			finalize : function() {
+			finalize: function() {
 				// JavaScript to be fired on all pages, after page specific JS is fired
 			},
-			skipLink : function() {
+			skipLink: function() {
 				var isWebkit  =  navigator.userAgent.toLowerCase(  ).indexOf( 'webkit' ) > -1,
 				    isOpera   =  navigator.userAgent.toLowerCase(  ).indexOf( 'opera' )  > -1,
 				    isIE      =  navigator.userAgent.toLowerCase(  ).indexOf( 'msie' )   > -1;
@@ -58,22 +58,22 @@
 		 *  If the footer does meet our content, then we need to remove the
 		 *  height from the filler, so it doesn't overflow.
 		 */
-		'sticky_footer_enabled' : {
-			init : function() {
+		'sticky_footer_enabled': {
+			init: function() {
 				// JavaScript to be fired on all pages.
 				this.flexSupport();
 			},
-			finalize : function() {
+			finalize: function() {
 				if ( ! Modernizr.flexbox ) {
 					$( window ).on( 'resize', this.stickyFooter );
 				}
 			},
-			flexSupport : function() {
+			flexSupport: function() {
 				if ( ! Modernizr.flexbox ) {
 					this.stickyFooter();
 				}
 			},
-			stickyFooter : function() {
+			stickyFooter: function() {
 				var footer = $( '.site-footer' );
 				if ( ! footer.length ) {
 					return;
@@ -91,7 +91,7 @@
 					// Check if the top of footer meets our site content's end.
 					if ( !! ( sticky_filler ) ) {
 						// Set negative margin to the wrapper's bottom
-						sticky_wrapper.css({ 'marginBottom': ~footer_height + 1 + 'px'});
+						sticky_wrapper.css({ 'marginBottom': ~footer_height + 1 + 'px' });
 						// Give the filler div a height for the remaining distance inbetween.
 						$( '#boldgrid-sticky-filler' ).css({ 'height': sticky_filler - footer_height });
 						// If in admin keep WYSIWYG and caluculate adminbar height
@@ -110,8 +110,8 @@
 		},
 
 		// Parallax enabled pages.
-		'boldgrid_customizer_parallax' : {
-			init : function() {
+		'boldgrid_customizer_parallax': {
+			init: function() {
 				var $body = $( 'body.boldgrid-customizer-parallax' );
 				if ( $body.stellar ) {
 					$body.attr( 'data-stellar-background-ratio', '0.2' );
@@ -121,11 +121,11 @@
 		},
 
 		// Default bootstrap menu handling.
-		'standard_menu_enabled' : {
-			init : function() {
+		'standard_menu_enabled': {
+			init: function() {
 				this.dropdowns();
 			},
-			dropdowns : function() {
+			dropdowns: function() {
 				var dropdown    = $( 'ul.nav li.dropdown' ),
 					breakpoint  = 768;
 				dropdown
@@ -136,7 +136,7 @@
 						$( e.currentTarget ).addClass( 'open' );
 							// Prevent clicking on the dropdown's parent link
 							$( e.currentTarget ).on( 'click', function( e ) {
-								// only do this if window is mobile size
+								// Only do this if window is mobile size
 								if ( window.innerWidth <= breakpoint ) {
 									if ( e.target === this || e.target.parentNode === this ) {
 										e.preventDefault(  );
@@ -191,25 +191,25 @@
 		},
 
 		// WOW.js enabled.
-		'wow_js_enabled' : {
-			init : function() {
+		'wow_js_enabled': {
+			init: function() {
 				// Trigger event when WOW is enabled.
 				$( document ).trigger( 'wowEnabled' );
 				this.loadWow();
 			},
-			loadWow : function() {
+			loadWow: function() {
 				var wow = new WOW({
-					boxClass     : _wowJsOptions.boxClass,
-					animateClass : _wowJsOptions.animateClass,
-					offset       : _wowJsOptions.offset,
-					mobile       : _wowJsOptions.mobile,
-					live         : _wowJsOptions.live
+					boxClass: _wowJsOptions.boxClass,
+					animateClass: _wowJsOptions.animateClass,
+					offset: _wowJsOptions.offset,
+					mobile: _wowJsOptions.mobile,
+					live: _wowJsOptions.live
 				});
 				wow.init();
 			}
 		},
-		'nicescroll_enabled' : {
-			init : function() {
+		'nicescroll_enabled': {
+			init: function() {
 				$( _niceScrollOptions.selector ).niceScroll({
 					cursorcolor: _niceScrollOptions.cursorcolor,
 					cursoropacitymin: _niceScrollOptions.cursoropacitymin,
@@ -265,7 +265,7 @@
 				});
 			}
 		},
-		'goup_enabled' : {
+		'goup_enabled': {
 			init: function() {
 				$.goup({
 					location: _goupOptions.location,
@@ -294,7 +294,7 @@
 	// The routing fires all common scripts, followed by the DOM specific scripts.
 	// Additional events can be added for more control over timing.
 	var UTIL = {
-		fire: function(func, funcname, args) {
+		fire: function( func, funcname, args ) {
 			var fire, namespace = BoldGrid;
 			funcname = ( funcname === undefined ) ? 'init' : funcname;
 			fire = func !== '';

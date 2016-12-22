@@ -14,7 +14,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		$window.on( 'boldgrid_customizer_refresh', onload_procedure );
 	} );
 
-	var onload_procedure = function () {
+	var onload_procedure = function() {
 		bind_all();
 		validate_selection_set();
 
@@ -26,7 +26,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var $boldgrid_pattern_wrapper = $pattern_background.find( '.boldgrid-pattern-wrapper' );
 		var $remove_selected_pattern = $pattern_background.find( '.remove-selected-pattern' );
 
-		$flat_color_background.find( '.wp-picker-clear' ).on( 'click', function () {
+		$flat_color_background.find( '.wp-picker-clear' ).on( 'click', function() {
 			wp.customize.control( 'boldgrid_background_color' ).setting( '' );
 			validate_background_color_setting();
 		});
@@ -64,7 +64,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			}
 		} );
 
-		$background_type.on( 'change', 'input', function () {
+		$background_type.on( 'change', 'input', function() {
 			var $this = $( this );
 			if ( $this.val() === 'image' ) {
 				$( '#customize-control-boldgrid_background_color' ).hide();
@@ -79,20 +79,20 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		$background_type.find( 'input:checked' ).change();
 	};
 
-	var validate_background_color_setting = function () {
+	var validate_background_color_setting = function() {
 		var $container = $( wp.customize.previewer.container );
 		var to = wp.customize( 'boldgrid_background_color' )();
 		if ( to === '' ) {
-			setTimeout( function () {
+			setTimeout( function() {
 				var $iframe = $container.find( 'iframe' ).contents();
 				var color = $iframe.find( 'body' ).css( 'background-color' );
 				self.$background_color_picker_color.css( 'background-color', color );
 				append_head_styles( color );
-			}, 100);
+			}, 100 );
 		}
 	};
 
-	var append_head_styles = function ( to ) {
+	var append_head_styles = function( to ) {
 		if ( ! to ) {
 			to = wp.customize( 'boldgrid_background_color' )();
 		}
@@ -112,7 +112,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	 * When the user changes the background color using the color picker,
 	 * update the preview patterns
 	 */
-	var bind_background_color_change = function () {
+	var bind_background_color_change = function() {
 		wp.customize( 'boldgrid_background_color', function( value ) {
 			value.bind( function() {
 				append_head_styles();
@@ -120,12 +120,12 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		} );
 	};
 
-	var validate_selection_set = function () {
+	var validate_selection_set = function() {
 		var bg_image = wp.customize( 'background_image' )();
 		var bg_attach = wp.customize( 'background_attachment' )();
 		var bg_type = wp.customize( 'boldgrid_background_type' )();
 
-		if ( bg_type === 'pattern') {
+		if ( bg_type === 'pattern' ) {
 
 			//Activate Pattern
 			wp.customize.control( 'boldgrid_background_pattern' ).activate( { duration: 0 } );
@@ -138,7 +138,6 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'background_image' ).deactivate( { duration: 0 } );
 			wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
 			getAttachmentControl().deactivate( { duration: 0 } );
-
 
 		} else {
 			//Activate Image
@@ -172,7 +171,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 
 	};
 
-	var getAttachmentControl = function () {
+	var getAttachmentControl = function() {
 		if ( wp.customize.control( 'background_attachment' ) ) {
 			return wp.customize.control( 'background_attachment' );
 		} else {
@@ -180,7 +179,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		}
 	};
 
-	var bind_all = function () {
+	var bind_all = function() {
 		var background_control_refresh = [
 		    'background_image',
 		    'background_attachment',
@@ -191,7 +190,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		    'boldgrid_background_vertical_position'
 		];
 
-		$.each( background_control_refresh, function () {
+		$.each( background_control_refresh, function() {
 			wp.customize( this, function( value ) {
 				value.bind( validate_selection_set );
 			});
@@ -205,7 +204,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			_shadow_toggle();
 		});
 	});
-	var _shadow_toggle = function (  ) {
+	var _shadow_toggle = function(  ) {
 		var shadow      =  wp.customize( 'logo_shadow_switch' ).get(  );
 		var vertical    =  wp.customize.control( 'logo_shadow_vertical' );
 		var horizontal  =  wp.customize.control( 'logo_shadow_horizontal' );
@@ -228,10 +227,10 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	/**
 	 *  Don't display site logo text modifications if a user has a logo uploaded to replace it.
 	 */
-	var _logo_toggle = function (  ) {
+	var _logo_toggle = function(  ) {
 		var logo = wp.customize( 'boldgrid_logo_setting' ).get(  );
 		if ( logo !== '' ) {
-			_.each( wp.customize.section( 'title_tagline' ).controls(), function ( control ) {
+			_.each( wp.customize.section( 'title_tagline' ).controls(), function( control ) {
 				control.deactivate( { duration:  0 } );
 			});
 			wp.customize.control( 'boldgrid_logo_setting' ).activate( { duration: 0 } );
@@ -258,7 +257,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		}
 	};
 
-	var _font_toggle = function (  ) {
+	var _font_toggle = function(  ) {
 		var font     				 	=  wp.customize( 'boldgrid_font_toggle' ).get(  );
 		var font_family					=  wp.customize.control( 'logo_font_family' );
 		var font_size					=  wp.customize.control( 'logo_font_size' );
@@ -275,7 +274,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		}
 	};
 
-	var _position_toggle = function (  ) {
+	var _position_toggle = function(  ) {
 		var position     			=  wp.customize( 'boldgrid_position_toggle' ).get(  );
 		var letter_spacing			=  wp.customize.control( 'logo_letter_spacing' );
 		var line_height				=  wp.customize.control( 'logo_line_height' );
@@ -293,9 +292,9 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	};
 
 	/**
-	 * refresh msg
+	 * Refresh msg
 	 */
-	$( window ).on( 'message', function ( e ) {
+	$( window ).on( 'message', function( e ) {
 		var event = e.originalEvent;
 		// Ensure we have a string that's JSON.parse-able
 		if ( typeof event.data !== 'string' || event.data[0] !== '{' ) {

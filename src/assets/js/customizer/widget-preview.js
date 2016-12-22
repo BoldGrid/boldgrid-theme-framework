@@ -16,7 +16,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		add_widget_description();
 	} );
 
-	onload = function () {
+	onload = function() {
 		self.section_selector = create_sections_selector();
 		self.$previewer = $( wp.customize.previewer.container ).find( 'iframe' ).last().contents();
 		bind_section_hover();
@@ -28,23 +28,23 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			.append( self.$widget_overlay );
 	};
 
-	var bind_force_mouse_leave = function () {
+	var bind_force_mouse_leave = function() {
 		if ( true === self.section_click_bound ) {
 			return;
 		}
-		$( self.section_selector ).on( 'click', function () {
+		$( self.section_selector ).on( 'click', function() {
 			reset_overlay();
 			self.$previewer.find( '[data-widget-area][data-empty-area]' ).css({
-				'width' : '',
-				'height' : ''
+				'width': '',
+				'height': ''
 			});
 		});
 
 		self.section_click_bound = true;
 	};
 
-	var bind_section_hover = function () {
-		var mouseenter = function () {
+	var bind_section_hover = function() {
+		var mouseenter = function() {
 			//Ensure 1 mouse enter for 1 mouseleave
 			self.complete_event = true;
 			if ( $( this ).hasClass( 'open' ) ) {
@@ -55,8 +55,8 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			if ( $matching_area.is( ':visible' ) && $matching_area.length ) {
 				if ( $matching_area.attr( 'data-empty-area' ) ) {
 					$matching_area.css({
-						'width' : '100%',
-						'height' : '50px'
+						'width': '100%',
+						'height': '50px'
 					});
 
 					self.$widget_overlay.find( 'h2' )
@@ -68,8 +68,8 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			}
 		};
 
-		var mouseleave = function () {
-			if ( false === self.complete_event ){
+		var mouseleave = function() {
+			if ( false === self.complete_event ) {
 				return;
 			}
 
@@ -78,8 +78,8 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			if ( $matching_area.is( ':visible' ) && $matching_area.length ) {
 				if ( $matching_area.attr( 'data-empty-area' ) ) {
 					$matching_area.css({
-						'width' : '',
-						'height' : ''
+						'width': '',
+						'height': ''
 					});
 				}
 				reset_overlay();
@@ -92,18 +92,18 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		}
 	};
 
-	var reset_overlay = function () {
+	var reset_overlay = function() {
 		self.$widget_overlay.find( '.empty-phrase-heading' ).remove();
 		self.$widget_overlay
 			.addClass( 'hidden' )
 			.removeClass( 'empty-widget-area' );
 	};
 
-	var highlight_widget_area = function ( $matching_area ) {
+	var highlight_widget_area = function( $matching_area ) {
 		var position = $matching_area[0].getBoundingClientRect();
 		var largest_height = $matching_area.outerHeight( true );
 		var largest_width = $matching_area.outerWidth( true );
-		$matching_area.find( '*' ).each( function () {
+		$matching_area.find( '*' ).each( function() {
 			var $this = $( this );
 			var outer_height = $this.outerHeight( true );
 			var outer_width = $this.outerWidth( true );
@@ -127,12 +127,12 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		}, 750 );
 	};
 
-	var create_sections_selector = function () {
+	var create_sections_selector = function() {
 		var sections = wp.customize.panel( 'widgets' ).sections();
 
 		var section_selector = '';
 		var first = true;
-		$.each( sections, function () {
+		$.each( sections, function() {
 			if ( false === first ) {
 				section_selector += ',';
 			}
@@ -144,7 +144,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		return section_selector;
 	};
 
-	var add_widget_description = function () {
+	var add_widget_description = function() {
 		var $widgetAreaBottom = $( '#sub-accordion-panel-widgets, #accordion-panel-widgets .accordion-sub-container' ),
 			$navMenuBottom = $( '#sub-accordion-panel-nav_menus, #accordion-panel-nav_menus .accordion-sub-container' );
 
@@ -155,7 +155,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 				'You can hover over the Widget Areas below to see where they are located on the page.</p>'
 			);
 
-		// if no header or footer widgets, change wording to add more widgets.
+		// If no header or footer widgets, change wording to add more widgets.
 		if ( wp.customize( 'boldgrid_footer_widgets' ).get(  ) &&
 			 wp.customize( 'boldgrid_header_widgets' ).get(  ) !== '0' ) {
 			$widgetAreaBottom

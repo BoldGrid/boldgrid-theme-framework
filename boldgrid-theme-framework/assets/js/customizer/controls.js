@@ -25,18 +25,18 @@
 		}
 	} );
 
-	$( function () {
-		$( document ).on( 'click', '.open-widgets-section', function () {
+	$( function() {
+		$( document ).on( 'click', '.open-widgets-section', function() {
 			wp.customize.panel( 'widgets' ).focus();
 		});
-		$( document ).on( 'click', '[data-focus-control]', function () {
+		$( document ).on( 'click', '[data-focus-control]', function() {
 			var control = $( this ).data( 'focus-control' );
 			var customizer_control = wp.customize.control( control );
 			if ( customizer_control ) {
 				customizer_control.focus();
 			}
 		});
-		$( document ).on( 'click', '[data-focus-section]', function () {
+		$( document ).on( 'click', '[data-focus-section]', function() {
 			var control = $( this ).data( 'focus-section' );
 			var customizer_control = wp.customize.section( control );
 			if ( customizer_control ) {
@@ -47,13 +47,13 @@
 		//Add the markup and display the warning if needed
 		setup_transferred_theme_mod_warning();
 
-		$( '#accept-theme-mod-changes' ).on( 'click', function () {
-			var success = function () {};
+		$( '#accept-theme-mod-changes' ).on( 'click', function() {
+			var success = function() {};
 
 			ajax_reset_theme_mods( true, success );
 		});
-		$( '#undo-theme-mod-changes' ).on( 'click', function () {
-			var success = function () {
+		$( '#undo-theme-mod-changes' ).on( 'click', function() {
+			var success = function() {
 				location.reload();
 			};
 
@@ -62,14 +62,14 @@
 
 	});
 
-	var setup_customizer_diagram = function () {
+	var setup_customizer_diagram = function() {
 		if ( ! help_overlay_bound ) {
 			help_overlay_bound = true;
 		} else {
 			$( '#customize-theme-controls' ).append( $( '#accordion-section-boldgrid_customizer_help_panel' ) );
 			return;
 		}
-		setTimeout( function () {
+		setTimeout( function() {
 				$( '#customize-theme-controls' )
 					.append( '<li id="accordion-section-boldgrid_customizer_help_panel"' +
 						' class="accordion-section control-section" style="">' +
@@ -78,7 +78,7 @@
 
 			var $help_panel = $( '#accordion-section-boldgrid_customizer_help_panel' );
 
-			var set_highlighting = function ( toggle ) {
+			var set_highlighting = function( toggle ) {
 				var $overlay_help = wp.customize.previewer.container.find( 'iframe' ).contents().find( '.overlay-help' );
 
 				if ( toggle ) {
@@ -101,15 +101,15 @@
 			};
 
 			set_highlighting();
-			$help_panel.on( 'click', function () {
+			$help_panel.on( 'click', function() {
 				set_highlighting( true );
 			});
 
 		}, 100 );
 	};
 
-	var ajax_reset_theme_mods = function ( accept, success_cb ) {
-		var always = function () {
+	var ajax_reset_theme_mods = function( accept, success_cb ) {
+		var always = function() {
 			$( '.overlay-prompt' ).remove();
 		};
 
@@ -122,14 +122,13 @@
 			{
 				'action': 'boldgrid_reset_theme_mods',
 				'data':   {
-					'accept' : accept
+					'accept': accept
 				}
 			}
 		).done( success_cb ).always( always );
 	};
 
-
-	var setup_transferred_theme_mod_warning = function () {
+	var setup_transferred_theme_mod_warning = function() {
 		if ( Boldgrid_Thememod_Markup.transferred_theme_mods.length ) {
 			$( '#customize-theme-controls' ).append( Boldgrid_Thememod_Markup.html );
 		}

@@ -10,10 +10,10 @@ jQuery( document ).ready( function(  ) {
 	 * @since 1.0.0
 	 **/
 
-	// comment reply link
+	// Comment reply link
 	jQuery( '.comment-reply-link' )
 		.addClass( 'btn button-primary color1-text-contrast' )
-		.css( 'transition' , 'all .5s' );
+		.css( 'transition', 'all .5s' );
 
 	// The WordPress Default Widgets
 	jQuery( '.widget_rss ul' ).addClass( 'media-list' );
@@ -21,11 +21,11 @@ jQuery( document ).ready( function(  ) {
 	jQuery( '.widget_meta ul, .widget_recent_entries ul, .widget_archive ul, .widget_categories ul, .widget_nav_menu ul, .widget_pages ul' ).addClass( 'nav' );
 
 	jQuery( '.widget_recent_comments ul#recentcomments' )
-		.css({ 'list-style' : 'none', 'padding-left' : '0' });
+		.css({ 'list-style': 'none', 'padding-left': '0' });
 
-	jQuery( '.widget_recent_comments ul#recentcomments li' ).css( 'padding', '5px 15px');
+	jQuery( '.widget_recent_comments ul#recentcomments li' ).css( 'padding', '5px 15px' );
 
-	jQuery( 'table#wp-calendar' ).addClass( 'table table-striped');
+	jQuery( 'table#wp-calendar' ).addClass( 'table table-striped' );
 
 	jQuery( 'select[name="archive-dropdown"]' ).addClass( 'form-control' );
 

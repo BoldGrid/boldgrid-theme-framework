@@ -30,7 +30,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		'neutralScheme',
 		'analogousScheme', //Listed multiple times to increase probability of occurrence
 		'analogousScheme',
-		'analogousScheme',
+		'analogousScheme'
 	];
 
 	/**
@@ -44,7 +44,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		'splitComplementaryScheme',
 		'splitComplementaryCWScheme',
 		'triadicScheme',
-		'tetradicScheme',
+		'tetradicScheme'
 	];
 
 	/**
@@ -86,11 +86,10 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		'#FEF1E9',
 		'#FEF6E4',
 		'#EEF3E2',
-
 		// Dark.
 		'#292929',
 		'#4d4d4d',
-		'#1a1a1a',
+		'#1a1a1a'
 	];
 
 	/**
@@ -188,7 +187,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		var matches = {};
 		$.each( palette, function ( testIndex, testColor ) {
 			$.each( palette, function ( index, color ) {
-				if ( color == testColor && index !== testIndex ) {
+				if ( color === testColor && index !== testIndex ) {
 					if ( ! matches[color] ) {
 						matches[color] = [];
 					}
@@ -218,14 +217,14 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 * @return array
 	 */
 	self.arrayMove = function( array, new_index, old_index ) {
-	    if ( new_index >= array.length ) {
-	        var k = new_index - array.length;
-	        while ( ( k-- ) + 1 ) {
-	        	array.push( undefined );
-	        }
-	    }
-	    array.splice( new_index, 0, array.splice( old_index, 1 )[0] );
-	    return array;
+	if ( new_index >= array.length ) {
+			var k = new_index - array.length;
+			while ( ( k-- ) + 1 ) {
+				array.push( undefined );
+			}
+		}
+		array.splice( new_index, 0, array.splice( old_index, 1 )[0] );
+		return array;
 	};
 
 	/**
@@ -324,11 +323,11 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			var relationship = this,
 				copyColorIndex = false;
 
-			if ( 'match' == relationship.type ) {
+			if ( 'match' === relationship.type ) {
 
 				$.each( relationship.values, function () {
 					var lockedColorIndex = lockedIndexes.indexOf( this );
-					if ( -1 !== lockedColorIndex ) {
+					if ( lockedColorIndex !== -1 ) {
 						copyColorIndex = this;
 					}
 				} );
@@ -380,7 +379,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 		// Percentage of palettes that will be relational if possible.
 		relationalPercentage = ( 2 / 3 );
-		if ( 'additionalSamplePalattes' == type ) {
+		if ( 'additionalSamplePalattes' === type ) {
 			relationalPercentage = ( 1 / 3 );
 		}
 
@@ -458,10 +457,10 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		var palettes = [];
 		for (var i = 0; i < count; i++) {
 			var newPalette = self.generate_palette( paletteData );
-			if ( typeof newPalette == 'object' && newPalette.length ) {
+			if ( typeof newPalette === 'object' && newPalette.length ) {
 				var shouldApplyRelationships =
-					'samplePalette' == paletteRelationships.type && i < relationalCount ||
-					'additionalSamplePalattes' == paletteRelationships.type && ( i >= ( count - relationalCount ) );
+					'samplePalette' === paletteRelationships.type && i < relationalCount ||
+					'additionalSamplePalattes' === paletteRelationships.type && ( i >= ( count - relationalCount ) );
 
 				if ( shouldApplyRelationships ) {
 					newPalette = self.applyRelationships( newPalette, paletteRelationships, lockedIndexes );
@@ -536,13 +535,13 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 					 * Try to generate a palette based on the color api color scheme methods.
 					 * This is almost never used because it requires users to exhaust ~2500 color combinations.
 					 */
-					var random = (Math.floor(Math.random() * 3) + 1);
-					if ( random == 1 ){
-						var internal_method = internal_palettes[Math.floor(Math.random()*internal_palettes.length)];
-						newPalette = self.color_palettes[internal_method]( color );
+					var random = ( Math.floor( Math.random() * 3 ) + 1 );
+					if ( random === 1 ){
+						var internal_method = internal_palettes[ Math.floor( Math.random() * internal_palettes.length ) ];
+						newPalette = self.color_palettes[ internal_method ]( color );
 
-					} else if ( random == 2 ) {
-						var colors_method = color_scheme_methods[Math.floor(Math.random()*color_scheme_methods.length)];
+					} else if ( random === 2 ) {
+						var colors_method = color_scheme_methods[ Math.floor( Math.random() * color_scheme_methods.length ) ];
 						newPalette = color[colors_method]();
 
 					} else {
@@ -722,9 +721,9 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 				var palette_color = actual_colors[Math.floor( Math.random()*actual_colors.length )];
 				var palette_color2 = actual_colors[Math.floor( Math.random()*actual_colors.length )];
 				var new_color;
-				if ( action == 'compliment' ) {
+				if ( action === 'compliment' ) {
 					new_color = palette_color.shiftHue( 180 );
-				} else if (  action == 'blend' ) {
+				} else if (  action === 'blend' ) {
 					new_color = palette_color.blend( palette_color2, 0.5 );
 				} else {
 					new_color = palette_color;
@@ -747,11 +746,11 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		var palette_colors = [];
 		$.each(palette, function ( key ) {
 
-			if (key >= 5) {
+			if ( key >= 5 ) {
 				return false;
 			}
 
-			if ( unchangedKeys.indexOf( key ) != '-1' ) {
+			if ( unchangedKeys.indexOf( key ) !== -1 ) {
 				palette_colors.push( this.toCSS() );
 				return;
 			}
@@ -760,14 +759,14 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			for ( var i = 0; i < 2; i++ ) {
 				var method = methods[Math.floor( Math.random()*methods.length )];
 				var value;
-				if ( method == 'shiftHue' ) {
+				if ( method === 'shiftHue' ) {
 					value = ( Math.floor( Math.random() * 45 ) + 1 ) - 23;
 				} else {
 					value = ( Math.floor( Math.random() * 20) + 1 ) / 100;
 				}
 
 				color = color[method]( value );
-				if ( i == 1 ) {
+				if ( i === 1 ) {
 					palette_colors.push( color.toCSS() );
 				}
 			}

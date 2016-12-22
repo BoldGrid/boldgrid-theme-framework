@@ -133,7 +133,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$( widgetArea ).append( '<div class="empty-area"></div>' );
 			dataWidgetArea = $( widgetArea ).attr( 'data-widget-area' );
 			widgetAreaId = dataWidgetArea.replace( 'accordion-section-sidebar-widgets-', '' );
-			selector = '[data-widget-area="' + dataWidgetArea + '"]';
+			selector = '[data-widget-area=\'' + dataWidgetArea + '\']';
 
 			self.addButton( 'sidebars_widgets', widgetAreaId, selector, 'dashicons-plus' );
 		} );
@@ -690,7 +690,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @return bool
 	 */
 	this.isParentEmpty = function( $parent ) {
-		return ( $parent.hasClass( 'empty-menu' ) || 'true' === $parent.attr( 'data-empty-area' ) );
+		return ( $parent.hasClass( 'empty-menu' ) || $parent.attr( 'data-empty-area' ) );
 	};
 
 	/**
@@ -1183,7 +1183,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			dataControl = ( null === type ? id : type + '[' + id + ']' ),
 			$fixedAncestors = self.getFixedAncestors( $parent ),
 			dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' ),
-			isEmptyWidget = ( 'true' === $parent.attr( 'data-empty-area' ) ),
+			isEmptyWidget = $parent.attr( 'data-empty-area' ),
 			isEmptyNav = $parent.hasClass( 'empty-menu' );
 
 		// If the button already exists, abort.

@@ -142,7 +142,7 @@ msgstr ""
 msgid "Arbitrary text or HTML with visual editor"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-widgets.php:312
+#: src/includes/class-boldgrid-framework-widgets.php:311
 msgid "Sidebar #1"
 msgstr ""
 

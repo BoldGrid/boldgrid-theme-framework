@@ -287,11 +287,10 @@ class Boldgrid_Framework_Widgets {
 		$before_function = function ( $index, $filled = false ) {
 			$filled_data = '';
 			if ( false === $filled ) {
-				$filled_data = "data-empty-area='true'";
+				$filled_data = 'data-empty-area="true"';
 			}
 
-			echo '<div data-widget-area="accordion-section-sidebar-widgets-' .
-				esc_attr( $index ) . '" ' . esc_attr( $filled_data ) . '>';
+			echo '<div data-widget-area="accordion-section-sidebar-widgets-' . esc_attr( $index ) . '" ' . $filled_data . '>';
 		};
 
 		$after_function = function ( $index, $filled = false ) {

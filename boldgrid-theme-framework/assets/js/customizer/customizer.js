@@ -119,14 +119,14 @@
 
 	var background_type_update = function ( to ) {
 
-			if ( to == 'pattern' ) {
+			if ( to === 'pattern' ) {
 				update_color_and_patterns();
 			} else {
 				$body.css( {
 					'background-image' : '',
 					'background-size' : '',
 					'background-repeat' : '',
-					'background-attachment' : '',
+					'background-attachment' : ''
 				} );
 
 				init_values();
@@ -134,7 +134,6 @@
 
 			//Remove these styles that should only overwrite on the front end
 			$custom_styles.remove();
-
 	};
 
 	var background_size_update = function ( to ) {
@@ -142,13 +141,13 @@
 	};
 
 	var background_attachment_update = function ( to ) {
-		if ( to == 'parallax' ) {
+		if ( to === 'parallax' ) {
 			$body.addClass('boldgrid-customizer-parallax-effect');
 			$body.css('background-attachment', 'fixed');
 
 			$body.css( {
 				'background-position' : '0px 0px',
-				'background-attachment' : 'fixed',
+				'background-attachment' : 'fixed'
 			} );
 
 			$body.data('stellar-background-ratio', '0.2');
@@ -166,7 +165,7 @@
 			background_size_update( wp.customize('boldgrid_background_image_size')() );
 
 			$body.css( {
-				'background-attachment': to,
+				'background-attachment': to
 			});
 			set_background_vertical_position();
 			set_background_horizontal_position();
@@ -180,10 +179,10 @@
 	 * Set the theme background_vertical_position on the preview frame
 	 */
 	var set_background_vertical_position = function () {
-		var to = wp.customize('boldgrid_background_vertical_position')();
-		var cur_background_pos = $body.css('background-position');
-		var background_pos = cur_background_pos.split(' ')[0] + ' ' + (to) * 5 +'px';
-		$body.css('background-position', background_pos );
+		var to = wp.customize( 'boldgrid_background_vertical_position' )();
+		var cur_background_pos = $body.css( 'background-position' );
+		var background_pos = cur_background_pos.split(' ')[0] + ' ' + ( to ) * 5 + 'px';
+		$body.css( 'background-position', background_pos );
 	};
 
 	/**
@@ -203,7 +202,7 @@
 		var background_color = wp.customize('boldgrid_background_color')();
 		var background_pattern = wp.customize('boldgrid_background_pattern')();
 
-		if ( !background_color || background_color == 'none') {
+		if ( !background_color || background_color === 'none') {
 			background_color = '';
 		}
 
@@ -229,7 +228,7 @@
 		}
 
 		$body.css( {
-			'background-image' : to,
+			'background-image' : to
 		});
 	};
 
@@ -246,12 +245,12 @@
 			bg_type = wp.customize( 'boldgrid_background_type')();
 
 		update_color_and_patterns();
-		if ( bg_type != 'pattern' ) {
+		if ( bg_type !== 'pattern' ) {
 			background_attachment_update( bg_attach );
 			background_size_update( bg_img_size );
 			var bg_image = wp.customize( 'background_image')();
 			background_image_update( bg_image );
-			if ( bg_attach != 'parallax' ) {
+			if ( bg_attach !== 'parallax' ) {
 				set_background_vertical_position();
 				set_background_horizontal_position();
 				background_repeat_update();

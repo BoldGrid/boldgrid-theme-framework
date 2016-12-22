@@ -15,7 +15,12 @@ var BOLDGRID = BOLDGRID || {};
  * @since 1.1.6
  */
 BOLDGRID.Customizer_Edit = function( $ ) {
+
+	'use strict';
+
 	var self = this, api = parent.wp.customize;
+
+	self.i18n = window.boldgridFrameworkCustomizerEdit || {};
 
 	/**
 	 * Keep track of a button's collision set.
@@ -69,15 +74,16 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @since 1.1.6
 	 */
 	this.addButtons = function() {
-		var	menus = typeof api.section === 'function' ? api.section( 'menu_locations' ).controls() : [],
+		var	menus = _.isFunction( api.section ) ? api.section( 'menu_locations' ).controls() : [],
 			menuId,
 			$emptyMenu = $( '.empty-menu' ),
-			$emptyWidgetAreas = $( '[data-empty-area="\'true\'"]' );
+			$emptyWidgetAreas = $( '[data-empty-area="true"]' );
 
 		// Add our general buttons.
-		_( boldgridFrameworkCustomizerEdit.buttons.general ).each( function( button ) {
+		_( self.i18n.buttons.general ).each( function( button ) {
+
 			// Ensure the element exists before adding a button for it.
-			if( 1 === $( button.selector ).length ) {
+			if ( 1 === $( button.selector ).length ) {
 				self.addButton( null, button.control, button.selector, button.icon );
 			}
 		} );
@@ -100,18 +106,19 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		// Menus.
 		_( menus ).each(
-		    function( menu ) {
-		    	// Define the menuId. It will be used as the selector for our call to addButton.
-		    	menuId = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu-location' )
-			        .find( 'ul' ).first().attr( 'id' );
+			function( menu ) {
 
-			    // If we don't have a menuId, continue.
-			    if( menuId === undefined ) {
-			    	return;
-			    }
+				// Define the menuId. It will be used as the selector for our call to addButton.
+				menuId = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu-location' )
+					.find( 'ul' ).first().attr( 'id' );
 
-			    self.addButton( 'nav_menu', menu.setting._value, '#' + menuId, 'dashicons-edit' );
-		    } );
+				// If we don't have a menuId, continue.
+				if ( _.isUndefined( menuId ) ) {
+					return;
+				}
+
+				self.addButton( 'nav_menu', menu.setting._value, '#' + menuId, 'dashicons-edit' );
+			} );
 
 		// Empty menu locations.
 		_( $emptyMenu ).each(
@@ -120,22 +127,22 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			} );
 
 		// Empty widget areas.
-		_( $emptyWidgetAreas ).each(
-			function( widgetArea ) {
-				$( widgetArea ).append( '<div class="empty-area"></div>' );
+		_( $emptyWidgetAreas ).each( function( widgetArea ) {
+			var dataWidgetArea, widgetAreaId, selector;
 
-				var dataWidgetArea = $( widgetArea ).attr( 'data-widget-area' );
-				var widgetAreaId = dataWidgetArea.replace( 'accordion-section-sidebar-widgets-' , '' );
-				var selector = "[data-widget-area='" + dataWidgetArea + "']";
+			$( widgetArea ).append( '<div class="empty-area"></div>' );
+			dataWidgetArea = $( widgetArea ).attr( 'data-widget-area' );
+			widgetAreaId = dataWidgetArea.replace( 'accordion-section-sidebar-widgets-', '' );
+			selector = '[data-widget-area="' + dataWidgetArea + '"]';
 
-				self.addButton( 'sidebars_widgets', widgetAreaId, selector, 'dashicons-plus' );
-			} );
+			self.addButton( 'sidebars_widgets', widgetAreaId, selector, 'dashicons-plus' );
+		} );
 	};
 
 	/**
-	 * @summary Ensure empty navbars don't take up space.
+	 * Ensure empty navbars don't take up space.
 	 *
-	 * Printing a menu within a nav tag is one approach that several BoldGrid Themes take to print
+	 * @summary Printing a menu within a nav tag is one approach that several BoldGrid Themes take to print
 	 * a navigation menu.
 	 *
 	 * When taking this approach, an empty menu area should be empty, but it's not. This is because
@@ -144,10 +151,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * To ensure the empty navbar does not affect the display of the page, override it's min-height
 	 * value by adding an 'empty-navbar' class.
 	 *
+	 * For all empty menus, we will find their parent nav container and add .empty-navbar.
+	 *
 	 * @since 1.1.10
 	 */
 	this.adjustEmptyMenus = function() {
-		// For all empty menus, find their parent nav container and add .empty-navbar.
 		$( '.empty-menu' ).parent( '.navbar' ).addClass( 'empty-navbar' );
 	};
 
@@ -162,11 +170,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var dataControl = $button.attr( 'data-control' ),
 			cancel = parent.window._wpCustomizeControlsL10n.cancel,
 			dialogSettings = {
-				width : 400,
-				resizable : false,
-				modal : true,
+				width: 400,
+				resizable: false,
+				modal: true
 			},
-			goThereNow = boldgridFrameworkCustomizerEdit.goThereNow,
+			goThereNow = self.i18n.goThereNow,
 			$parent = $( $button.attr( 'data-selector' ) ),
 			$collapseSidebar = $( '.collapse-sidebar', parent.document ),
 			$previewToggleControls = $( '.customize-controls-preview-toggle .controls', parent.document ),
@@ -185,34 +193,36 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		// When "Go there now" is clicked, navigate to the editor for this page.
 		dialogSettings.buttons[goThereNow] = function() {
-	        parent.window.location = boldgridFrameworkCustomizerEdit.editPostLink;
-	    };
+			parent.window.location = self.i18n.editPostLink;
+		};
 
-	    // When "cancel" is clicked, close the dialog.
-	    dialogSettings.buttons[cancel] = function() {
-	        $( this ).dialog( 'close' );
-	    };
+		// When "cancel" is clicked, close the dialog.
+		dialogSettings.buttons[cancel] = function() {
+			$( this ).dialog( 'close' );
+		};
 
 		// If the Customizer sidebar is collapsed, expand it.
-	    if( 'false' === $collapseSidebar.attr( 'aria-expanded' ) ) {
-	    	$collapseSidebar.click();
-	    }
+		if ( 'false' === $collapseSidebar.attr( 'aria-expanded' ) ) {
+			$collapseSidebar.click();
+		}
 
-	    /*
-	     * If we are in mobile / zoomed in to where only the customizer panel or the preview shows,
-	     * show the customizer panel.
-	     */
-	    if( $previewToggleControls.is( ':visible' ) ) {
-	    	$overlay.toggleClass( 'preview-only' );
-	    }
+		/*
+		 * If we are in mobile / zoomed in to where only the customizer panel or the preview shows,
+		 * show the customizer panel.
+		 */
+		if ( $previewToggleControls.is( ':visible' ) ) {
+			$overlay.toggleClass( 'preview-only' );
+		}
 
-	    // Page title or page content.
+		// Page title or page content.
 		if ( 'entry-content' === dataControl || 'entry-title' === dataControl ) {
 			$( '#' + dataControl ).dialog( dialogSettings );
 			return;
+
 		// Empty widget locations.
 		} else if ( 0 === dataControl.lastIndexOf( 'sidebars_widgets', 0 ) ) {
 			api.control( dataControl ).focus();
+
 		// Widgets.
 		} else if ( 0 === dataControl.lastIndexOf( 'sidebar', 0 ) ) {
 			control = dataControl.match( /\[(.*?)\]/ );
@@ -222,13 +232,15 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			 * Because Black Studio TinyMCE opens another pane, there is no need to bounce anything
 			 * in an effort to get the user's attention.
 			 */
-			if( control[ 1 ].startsWith( 'black-studio-tinymce-' ) ) {
+			if ( control[ 1 ].startsWith( 'black-studio-tinymce-' ) ) {
 				return;
 			}
+
 		// Empty menu locations.
 		} else if ( 'new_menu_name' === dataControl ) {
 			navMenuLocation = $parent.attr( 'data-theme-location' );
 			api.control( 'nav_menu_locations[' + navMenuLocation + ']' ).focus();
+
 		// Default.
 		} else {
 			api.control( dataControl ).focus();
@@ -253,7 +265,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				focused = $( '.customize-control-nav_menu_name', parent.document );
 			}
 
-			if( dataControl.startsWith( 'sidebar[' ) ) {
+			if ( dataControl.startsWith( 'sidebar[' ) ) {
 				focused = focused.closest( '.widget' );
 			}
 
@@ -265,17 +277,17 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			initialTransition = focused.css( 'transition' );
 
 			focused.css( {
-			    'min-height' : focused.outerHeight(),
-			    'min-width' : focused.outerWidth(),
-			    'transition' : 'all 0s'
-				} )
-				.effect( 'bounce', {
-					times : 3,
-					distance : 10
-					}, 'slow', function() {
-						$( this ).css( 'transition', initialTransition );
-					} );
-				}, 500 );
+				'min-height': focused.outerHeight(),
+				'min-width': focused.outerWidth(),
+				'transition': 'all 0s'
+			} )
+			.effect( 'bounce', {
+				times: 3,
+				distance: 10
+			}, 'slow', function() {
+				$( this ).css( 'transition', initialTransition );
+			} );
+		}, 500 );
 	};
 
 	/**
@@ -291,23 +303,24 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var top = $parent.offset().top,
 			containerOffset = $parentsContainer.offset(),
 			highlightHeight = $parent.outerHeight( ),
+			count = 0,
 			withTitleWidth;
 
 		/*
 		 * Sometimes the $parent itself does not have a height, but its descendants do. Find the
 		 * tallest descendant and use that height for the hover effect.
 		 */
-		if( 0 === highlightHeight ) {
-			$parent.find('*').each( function() {
+		if ( 0 === highlightHeight ) {
+			$parent.find( '*' ).each( function() {
 				var childHeight = $( this ).outerHeight( );
 
-				if( childHeight > highlightHeight ) {
+				if ( childHeight > highlightHeight ) {
 					highlightHeight = childHeight;
 				}
 			});
 		}
 
-		if( '1' === $button.attr( 'data-fixed-ancestor' ) ) {
+		if ( '1' === $button.attr( 'data-fixed-ancestor' ) ) {
 			self.$targetHighlight.css( 'position', 'fixed' );
 			top = $parent.offset().top - $( window ).scrollTop();
 		} else {
@@ -315,14 +328,19 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}
 
 		self.$targetHighlight
+
 			// Stop any existing animations.
 			.stop( true )
+
 			// The highlight should be as wide as the col.
 			.css( 'width', $parentsContainer.outerWidth() )
+
 			// The highlight should be as tall as the parent element.
 			.css( 'height', highlightHeight )
+
 			// The highlight should be aligned top the same as the parent element.
 			.css( 'top', top )
+
 			// The highlight should be aligned left with the col.
 			.css( 'left', containerOffset.left )
 			.css( 'visibility', 'visible' );
@@ -331,12 +349,12 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		 * An empty widget area may be animating back to 0px. In this case, the current $parent may
 		 * move position on the page wile the previous animation is rendering.
 		 */
-		var count = 0;
-		self.targetHighlightTop = setInterval( function(){
+
+		self.targetHighlightTop = setInterval( function() {
 			count += 10;
 
 			// Calculate the appropriate top.
-			if( '1' === $button.attr( 'data-fixed-ancestor' ) ) {
+			if ( '1' === $button.attr( 'data-fixed-ancestor' ) ) {
 				top = $parent.offset().top - $( window ).scrollTop();
 			} else {
 				top = $parent.offset().top;
@@ -344,13 +362,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 			self.$targetHighlight.css( 'top', top  );
 
-			if( count >= 400 ) {
+			if ( count >= 400 ) {
 				clearInterval( self.targetHighlightTop );
 			}
-		}, 10);
+		}, 10 );
 
 		// If this button is for adding a new menu / widget, add contextual help.
-		if( $button.hasClass( 'new' ) ) {
+		if ( $button.hasClass( 'new' ) ) {
 			withTitleWidth = parseInt( $button.attr( 'data-with-title-width' ) );
 
 			$button
@@ -362,13 +380,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				}, 400 );
 		}
 
-		if( self.isParentEmpty( $parent ) ) {
-			$parent.stop( true ).animate({height:self.buttonHeight},400 );
+		if ( self.isParentEmpty( $parent ) ) {
+			$parent.stop( true ).animate({ height: self.buttonHeight }, 400 );
 
-			 self.$targetHighlight
-			 	.stop( true )
-			 	.css( 'visibility', 'visible' )
-			 	.animate({height:self.buttonHeight},400);
+			self.$targetHighlight
+				.stop( true )
+				.css( 'visibility', 'visible' )
+				.animate({ height: self.buttonHeight }, 400 );
 		}
 	};
 
@@ -383,7 +401,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	this.buttonMouseLeave = function( $button, $parent ) {
 
 		// If this button is for adding a new menu / widget, remove contextual help on mouse out.
-		if( $button.hasClass( 'new' ) ) {
+		if ( $button.hasClass( 'new' ) ) {
 			$button
 				.stop( true )
 				.animate({
@@ -396,14 +414,14 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		clearInterval( self.targetHighlightTop );
 
-		if( self.isParentEmpty( $parent ) ) {
-			$parent.stop(true).animate( {height : '0px' }, 500 );
+		if ( self.isParentEmpty( $parent ) ) {
+			$parent.stop( true ).animate( { height: '0px' }, 500 );
 
 			// Avoid animating height from 2px to 0px for half a second.
-			if( self.$targetHighlight.height() <= 2 ) {
+			if ( self.$targetHighlight.height() <= 2 ) {
 				self.$targetHighlight.css( 'visibility', 'hidden' );
 			} else {
-				self.$targetHighlight.stop(true).animate({height:'0px'},400,function() {
+				self.$targetHighlight.stop( true ).animate({ height:'0px' }, 400, function() {
 					self.$targetHighlight.css( 'visibility', 'hidden' );
 				});
 			}
@@ -419,27 +437,28 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 *
 	 * @param object $div1 The first element.
 	 * @param object $div2 The second element.
-	 * @return bool
+	 * @return bool collides Does elem 1 collide with elem 2?
 	 */
-	this.collide = function ($element1, $element2) {
-		var x1 = parseInt( $element1.attr( 'data-left' ) ),
+	this.collide = function( $element1, $element2 ) {
+		var collides = true,
+			x1 = parseInt( $element1.attr( 'data-left' ) ),
 			x2 = parseInt( $element2.attr( 'data-left' ) ),
 			y1 = parseInt( $element1.attr( 'data-top' ) ),
 			y2 = parseInt( $element2.attr( 'data-top' ) ),
-			h1 = $element1.outerHeight(true),
-			h2 = $element2.outerHeight(true),
-			w1 = $element1.outerWidth(true),
-			w2 = $element2.outerWidth(true),
+			h1 = $element1.outerHeight( true ),
+			h2 = $element2.outerHeight( true ),
+			w1 = $element1.outerWidth( true ),
+			w2 = $element2.outerWidth( true ),
 			b1 = y1 + h1,
 			r1 = x1 + w1,
 			b2 = y2 + h2,
 			r2 = x2 + w2;
 
 		if ( b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2 ) {
-			return false;
-		} else {
-			return true;
+			collides = false;
 		}
+
+		return collides;
 	};
 
 	/**
@@ -470,18 +489,18 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		// Loop through all the buttons, find and fix collsions.
 		$.each( buttons, function( index, buttonA ) {
+			var $buttonA = $( buttonA );
+
 			// If this is not the last button.
-			if( index < ( buttons.length - 1 ) ) {
-				$buttonA = $( buttonA );
-
+			if ( index < ( buttons.length - 1 ) ) {
 				$.each( buttons, function( indexB, buttonB ) {
-					$buttonB = $( buttonB );
+					var $buttonB = $( buttonB );
 
-					if( $buttonA.is( $buttonB ) ) {
+					if ( $buttonA.is( $buttonB ) ) {
 						return;
 					}
 
-					if( self.collide( $buttonA, $buttonB ) ) {
+					if ( self.collide( $buttonA, $buttonB ) ) {
 						self.fixCollision( $buttonA, $buttonB );
 					}
 				} );
@@ -492,15 +511,15 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		buttons.sort( self.sortButtonsDesc );
 
 		// Prevent any button towards the buttom from extending the document's height.
-		_( buttons ).each( function( button, key ) {
-				var $button = $( button ),
+		_( buttons ).each( function( button ) {
+				var topAdjustment, collisionSet, $button = $( button ),
 					bottom = parseInt( $button.attr( 'data-top' ) ) + $button.outerHeight( true );
 
-				if( bottom > initialWindowHeight ) {
-					var topAdjustment = bottom - initialWindowHeight,
-						collisionSet = $button.attr( 'data-collision-set' );
+				if ( bottom > initialWindowHeight ) {
+					topAdjustment = bottom - initialWindowHeight;
+					collisionSet = $button.attr( 'data-collision-set' );
 
-					if( 'undefined' !== typeof collisionSet ) {
+					if ( ! _.isUndefined( collisionSet ) ) {
 						$.each( $( '[data-collision-set=' + collisionSet + ']' ), function() {
 							var $buttonInSet = $( this ),
 								newTop = parseInt( $buttonInSet.attr( 'data-top' ) - topAdjustment );
@@ -524,9 +543,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var selector = '[data-control][style*="position: fixed"][data-fixed-ancestor="0"]:not(.highlight-button)';
 
 		$( selector ).each( function() {
-			var $button = $( this ),
-				$parent = $( $button.attr( 'data-selector' ) ),
-				dataControl = $button.attr( 'data-control' );
+			var $button = $( this );
 
 			/*
 			 * Before resetting the button's placement on the page, adjust its position so that the
@@ -547,7 +564,8 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @param object $buttonA The first button in the set.
 	 * @param object $buttonB The second button in the set.
 	 */
-	this.fixCollision = function( $buttonA, $buttonB ){
+	this.fixCollision = function( $buttonA, $buttonB ) {
+
 		// The button towards the bottom will be moved lower. Figure out which button is higher.
 		var aTop = parseInt( $buttonA.attr( 'data-top' ) ),
 			bTop = parseInt( $buttonB.attr( 'data-top' ) ),
@@ -557,7 +575,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		$lowerButton.attr( 'data-top', parseInt( $higherButton.attr( 'data-top' ) ) + self.buttonHeight );
 
-		if( 'undefined' === typeof collisionSet ) {
+		if ( 'undefined' === typeof collisionSet ) {
 			collisionSet = self.buttonCollisionSet;
 			self.buttonCollisionSet++;
 		}
@@ -575,7 +593,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 */
 	this.getFixedAncestors = function( $element ) {
 		var $fixedAncestors = $element.parents().filter( function() {
-	    	return $( this ).css( 'position' ) === 'fixed';
+			return 'fixed' === $( this ).css( 'position' );
 		});
 
 		return $fixedAncestors;
@@ -599,11 +617,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		// When the window is resized, wait 0.4 seconds and readjust the placement of our buttons.
 		$( window ).resize(function() {
-		    clearTimeout( $.data(this, 'resizeTimer' ) );
+			clearTimeout( $.data( this, 'resizeTimer' ) );
 
-		    $.data( this, 'resizeTimer', setTimeout( function() {
-		    	self.placeButtons();
-		    }, 400 ) );
+			$.data( this, 'resizeTimer', setTimeout( function() {
+				self.placeButtons();
+			}, 400 ) );
 		});
 
 		/*
@@ -621,27 +639,27 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		 * will no longer be visible. In this case, we will fix the button to the top of the page
 		 * so it's easily accessible.
 		 */
-		$( window ).scroll(function() {
+		$( window ).scroll( function() {
 			self.userIsScrolling = true;
 
-		    clearTimeout( $.data( this, 'scrollTimer' ) );
+			clearTimeout( $.data( this, 'scrollTimer' ) );
 
-		    $.data( this, 'scrollTimer', setTimeout( function() {
-		    	self.userIsScrolling = false;
-		    	self.windowScroll();
-		    }, 100 ) );
+			$.data( this, 'scrollTimer', setTimeout( function() {
+				self.userIsScrolling = false;
+				self.windowScroll();
+			}, 100 ) );
 		});
 
 		/*
 		 * As you change your tagline (and other elements), content on the page shifts. When that
 		 * content shifts, update the placement of the buttons.
 		 */
-		wp.customize.preview.bind( 'setting', function( args ) {
+		wp.customize.preview.bind( 'setting', function() {
 			clearTimeout( $.data( this, 'previewBind' ) );
 
-		    $.data( this, 'previewBind', setTimeout( function() {
-		    	self.placeButtons();
-		    }, 400 ) );
+			$.data( this, 'previewBind', setTimeout( function() {
+				self.placeButtons();
+			}, 400 ) );
 		} );
 	};
 
@@ -654,13 +672,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @return bool
 	 */
 	this.inView = function( $element ) {
-	    var $window = $(window),
-	    	docViewTop = $window.scrollTop(),
-	    	docViewBottom = docViewTop + $window.height(),
-	    	elemTop = $element.offset().top,
-	    	elemBottom = elemTop + $element.height();
+		var $window = $( window ),
+			docViewTop = $window.scrollTop(),
+			docViewBottom = docViewTop + $window.height(),
+			elemTop = $element.offset().top,
+			elemBottom = elemTop + $element.height();
 
-	    return ( elemTop <= docViewBottom && elemBottom >= docViewTop );
+		return ( elemTop <= docViewBottom && elemBottom >= docViewTop );
 	};
 
 	/**
@@ -672,7 +690,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @return bool
 	 */
 	this.isParentEmpty = function( $parent ) {
-		return ( $parent.hasClass( 'empty-menu' ) || "'true'" === $parent.attr( 'data-empty-area' ) );
+		return ( $parent.hasClass( 'empty-menu' ) || 'true' === $parent.attr( 'data-empty-area' ) );
 	};
 
 	/**
@@ -689,18 +707,18 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		var $col = null,
 			found = false,
 			selectors = [
-		            'div[class*=col-]',
-		            'div[class^=row]',
-		            'div[class^=container]',
-		            'div',
-		            'p',
-		    ];
+				'div[class*=col-]',
+				'div[class^=row]',
+				'div[class^=container]',
+				'div',
+				'p'
+			];
 
 		_( selectors ).each( function( selector ) {
-			if( false === found ) {
+			if ( false === found ) {
 				$col = $element.closest( selector );
 
-				if( $col.length > 0 ) {
+				if ( $col.length > 0 ) {
 					found = true;
 				}
 			}
@@ -716,18 +734,18 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 *
 	 * @param object $button An edit button.
 	 */
-	this.placeButton = function ( $button ) {
+	this.placeButton = function( $button ) {
 		var $parent = $( $button.attr( 'data-selector' ) ),
 			parentOffset = $parent.offset(),
 			$parentsContainer = self.parentColumn( $parent ),
 			moves = parseInt( $button.attr( 'data-moves' ) ),
-			duration = ( moves === 0 ? 0 : 400 ),
+			duration = ( 0 === moves ? 0 : 400 ),
 			$fixedAncestors = self.getFixedAncestors( $parent ),
 			dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' ),
 			position = 'absolute',
 			buttonLeft = self.right( $parentsContainer ),
 			bodyWidth = $( 'body' ).outerWidth( true ),
-			zindex,
+			zIndex,
 			top;
 
 		/*
@@ -747,7 +765,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		 * THEN update the button's z-index to be one higher.
 		 * ELSE we may have previously altered the z-index, reset it.
 		 */
-		if( $fixedAncestors.length ) {
+		if ( $fixedAncestors.length ) {
 			zIndex = parseInt( $fixedAncestors.last().css( 'z-index' ) );
 
 			/*
@@ -755,7 +773,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			 * setup to do this. Do not adjust the button's z-index if it will be make it lower than
 			 * its default z-index.
 			 */
-			if( Number.isInteger( zIndex ) && zIndex > self.defaultZindex ) {
+			if ( Number.isInteger( zIndex ) && zIndex > self.defaultZindex ) {
 				$button.css( 'z-index', zIndex + 1 );
 			}
 		} else {
@@ -774,7 +792,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			 * show not be show. In this case, hide the button immediately, otherwise fade out.
 			 *
 			 */
-			if( moves === 0 ) {
+			if ( 0 === moves ) {
 				$button.hide();
 			} else {
 				$button.fadeOut();
@@ -786,7 +804,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}
 
 		// Don't allow buttons to go off the screen.
-		if( buttonLeft + self.buttonWidth > bodyWidth ) {
+		if ( buttonLeft + self.buttonWidth > bodyWidth ) {
 			buttonLeft = bodyWidth - self.buttonWidth;
 		}
 
@@ -794,7 +812,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		 * If we're working with a button with a fixed ancestor, adjust our top and position
 		 * attributes.
 		 */
-		if( '1' === $button.attr( 'data-fixed-ancestor' ) ) {
+		if ( '1' === $button.attr( 'data-fixed-ancestor' ) ) {
 			position = 'fixed';
 			top = parentOffset.top - $( window ).scrollTop();
 		} else {
@@ -804,11 +822,13 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		moves++;
 
 		$button
-			.attr( 'data-last-animation', 'placeButton')
-			.attr( 'data-moves', moves )
-			.attr( 'data-top', top )
-			.attr( 'data-left', buttonLeft)
-			.attr( 'data-duration', duration)
+			.attr( {
+				'data-last-animation': 'placeButton',
+				'data-moves': moves,
+				'data-top': top,
+				'data-left': buttonLeft,
+				'data-duration': duration
+			} )
 			.css( 'position', position )
 			.removeAttr( 'data-collision-set' );
 	};
@@ -820,8 +840,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 */
 	this.placeButtons = function( ) {
 		$( 'button[data-control]' ).each( function() {
-			$button = $( this );
-			self.placeButton( $button );
+			self.placeButton( $( this ) );
 		});
 
 		self.findCollision();
@@ -836,10 +855,10 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 */
 	self.positionByData = function() {
 		$( 'button[data-control]' ).each( function() {
-			$button = $( this );
+			var $button = $( this );
 
 			// If the button is fixed and is highlighted, don't touch it.
-			if( $button.hasClass( 'highlight-button') && 'fixed' === $button.css( 'position' ) ) {
+			if ( $button.hasClass( 'highlight-button' ) && 'fixed' === $button.css( 'position' ) ) {
 				return;
 			}
 
@@ -847,15 +866,15 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			 * If the button is for an empty nav / widget area and is currently being animated,
 			 * don't touch it.
 			 */
-			if( $button.hasClass( 'new' ) && $button.is( ':animated' ) ) {
+			if ( $button.hasClass( 'new' ) && $button.is( ':animated' ) ) {
 				return;
 			}
 
 			$button
-				.attr( 'data-last-animation', 'positionByData')
+				.attr( 'data-last-animation', 'positionByData' )
 				.animate({
-					top  : parseInt( $button.attr( 'data-top' ) ),
-					left : parseInt( $button.attr( 'data-left' ) )
+					top: parseInt( $button.attr( 'data-top' ) ),
+					left: parseInt( $button.attr( 'data-left' ) )
 					}, parseInt( $button.attr( 'data-duration' ) ) );
 		});
 	};
@@ -872,8 +891,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @return string The calculated 'right' of an element.
 	 */
 	this.right = function( $element, includeMargin ) {
+
 		// If includeMargin is undefined, set it to false by default.
-		includeMargin = ( includeMargin === undefined ) ? false : includeMargin;
+		includeMargin = ! _.isUndefined( includeMargin ) ? includeMargin : false;
 
 		return $element.offset().left + $element.outerWidth( includeMargin );
 	};
@@ -889,7 +909,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @param object b A jQuery object.
 	 * @return int
 	 */
-	this.sortButtonsAsc = function ( $a, $b) {
+	this.sortButtonsAsc = function( $a, $b ) {
 		var aTop = $a.offset().top,
 			bTop = $b.offset().top,
 			$parentA,
@@ -897,11 +917,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			parentATop,
 			parentBTop;
 
-		if( aTop === bTop ) {
+		if ( aTop === bTop ) {
 			$parentA = $( $a.attr( 'data-selector' ) );
 			parentATop = $parentA.offset().top;
 
-			if( self.isParentEmpty( $parentA ) ) {
+			if ( self.isParentEmpty( $parentA ) ) {
 				parentATop -= 1;
 			}
 
@@ -910,7 +930,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$parentB = $( $b.attr( 'data-selector' ) );
 			parentBTop = $parentB.offset().top;
 
-			if( self.isParentEmpty( $parentB ) ) {
+			if ( self.isParentEmpty( $parentB ) ) {
 				parentBTop -= 1;
 			}
 
@@ -918,11 +938,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		}
 
 		if ( aTop < bTop ) {
-		    return -1;
+			return -1;
 		} else if ( aTop > bTop ) {
-		    return 1;
+			return 1;
 		} else {
-		    return 0;
+			return 0;
 		}
 	};
 
@@ -935,16 +955,16 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @param object b A jQuery object.
 	 * @return int
 	 */
-	this.sortButtonsDesc = function (a,b) {
+	this.sortButtonsDesc = function( a, b ) {
 		var aTop = a.offset().top,
 			bTop = b.offset().top;
 
 		if ( bTop < aTop ) {
-		    return -1;
+			return -1;
 		} else if ( bTop > aTop ) {
-		    return 1;
+			return 1;
 		} else {
-		    return 0;
+			return 0;
 		}
 	};
 
@@ -957,24 +977,23 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @return bool
 	 */
 	this.topInView = function( $element ) {
-	    var $window = $(window),
-	    	docViewTop = $window.scrollTop(),
-	    	docViewBottom = docViewTop + $window.height(),
-	    	elemTop = $element.offset().top,
-	    	elemBottom = elemTop + $element.height();
+		var $window = $( window ),
+			docViewTop = $window.scrollTop(),
+			docViewBottom = docViewTop + $window.height(),
+			elemTop = $element.offset().top;
 
-	    /*
-	     * There are cases in which an element's top is never in view. For example, at certain
-	     * zooms, BoldGrid-Pavilion's site title (at the top of the page) will have a negative top.
-	     *
-	     * In those cases, if we're at the top of the page, return true. Otherwise, run standard
-	     * calculation to determine if the element's top is in view.
-	     */
-	    if( 0 === docViewTop && elemTop < 0 ) {
-	    	return true;
-	    } else {
-	    	return ( elemTop >= docViewTop && elemTop <= docViewBottom );
-	    }
+		/*
+		 * There are cases in which an element's top is never in view. For example, at certain
+		 * zooms, BoldGrid-Pavilion's site title (at the top of the page) will have a negative top.
+		 *
+		 * In those cases, if we're at the top of the page, return true. Otherwise, run standard
+		 * calculation to determine if the element's top is in view.
+		 */
+		if ( 0 === docViewTop && elemTop < 0 ) {
+			return true;
+		} else {
+			return ( elemTop >= docViewTop && elemTop <= docViewBottom );
+		}
 	};
 
 	/**
@@ -983,25 +1002,23 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 	 * @since 1.1.6
 	 */
 	this.windowScroll = function() {
+		var $button, $parent, buttonIsFixed,
+			selector = '[data-control][style*="position: fixed"][data-fixed-ancestor="0"]:not(.highlight-button)';
 
 		/*
 		 * Adjust the position of fixed buttons that are NOT highlighted and need to be snapped back
 		 * into place.
 		 */
-		var selector = '[data-control][style*="position: fixed"][data-fixed-ancestor="0"]:not(.highlight-button)';
-
 		$( selector ).each( function() {
 			var $button = $( this ),
-				$parent = $( $button.attr( 'data-selector' ) ),
-				dataControl = $button.attr( 'data-control' ),
-				isFixed;
+				$parent = $( $button.attr( 'data-selector' ) );
 
 			/*
 			 * IF the parent's top is in view, move the button DOWN to it.
 			 *
 			 * ==================================
 			 * ==                  (BTN-FIXED) ==
-			 * ==       ☝                                     ▼                   ==
+			 * ==                      ▼       ==
 			 * ==                      ▼       ==
 			 * ==  --------------- (BTN-ABS)   ==
 			 * ==  - PARENT      -             ==
@@ -1023,7 +1040,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			 * ==  ---------------             ==
 			 * ==                              ==
 			 * ==                              ==
-			 * ==       ☝                                                           ==
+			 * ==       ☝                      ==
 			 * ==                              ==
 			 * ==                              ==
 			 * ==================================
@@ -1033,7 +1050,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				.css( 'position', 'absolute' )
 				.css( 'top', $( window ).scrollTop() );
 
-			if( self.topInView( $parent ) ) {
+			if ( self.topInView( $parent ) ) {
 				self.placeButton( $button );
 				self.findCollision();
 				self.positionByData();
@@ -1046,7 +1063,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				 * The next animation is to place it correctly.
 				 */
 				$button
-				.attr( 'data-last-animation', 'animation-c' )
+					.attr( 'data-last-animation', 'animation-c' )
 					.animate({
 						top: '-=' + self.buttonHeight
 					}, 400, function() {
@@ -1060,7 +1077,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		// Get the highlighted edit button.
 		$button = $( '.highlight-button[data-control][data-fixed-ancestor="0"]' );
 
-		if( 1 === $button.length ) {
+		if ( 1 === $button.length ) {
 			$parent = $( $button.attr( 'data-selector' ) );
 
 			// Check if the button has fixed positioning.
@@ -1076,18 +1093,18 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			 *     - PARENT      -
 			 *     -             -
 			 * ================================     ====================================
-			 * ==  -           ☀(BTN-FIXED)☀  ==     ==                 ☀(BTN-FIXED)☀  ==
+			 * ==  -          ☀(BTN-FIXED)☀  ==     ==                ☀(BTN-FIXED)☀  ==
 			 * ==  -             -           ==     ==                    ▼          ==
 			 * ==  -             -           ==     ==                    ▼          ==
 			 * ==  -             -           ==     ==  --------------- (BTN-ABS)    ==
 			 * ==  -             -           ==     ==  - PARENT      -              ==
-			 * ==  -     ☝                   -           ==     ==  -      ☝                 -              ==
+			 * ==  -     ☝       -           ==     ==  -      ☝      -              ==
 			 * ==  -             -           ==     ==  -             -              ==
 			 * ==  ---------------           ==     ==  -             -              ==
 			 * ==                            ==     ==  ---------------              ==
 			 * ================================     ===================================
 			 */
-			if( self.topInView( $parent ) && buttonIsFixed ) {
+			if ( self.topInView( $parent ) && buttonIsFixed ) {
 				$button
 					.attr( 'data-last-animation', 'animation-b' )
 					.css( 'position', 'absolute' )
@@ -1110,10 +1127,10 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			 *                                           - PARENT      -      ▼
 			 *                                           -             -      ▼
 			 * ==================================    =========================▼==========
-			 * ==                              ==    ==  -             - ☀(BTN-FIXED)☀  ==
-			 * ==  --------------- ☀(BTN-ABS)☀  ==    ==  -             -               ==
+			 * ==                              ==    ==  -             - ☀(BTN-FIXED)☀ ==
+			 * ==  --------------- ☀(BTN-ABS)☀ ==    ==  -             -               ==
 			 * ==  - PARENT      -             ==    ==  -             -               ==
-			 * ==  -         ☝        -             ==    ==  -        ☝           -               ==
+			 * ==  -             -             ==    ==  -        ☝    -               ==
 			 * ==  -             -             ==    ==  -             -               ==
 			 * ==  -             -             ==    ==  ---------------               ==
 			 * ==  -             -             ==    ==                                ==
@@ -1121,7 +1138,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			 * ==  ---------------             ==    ==                                ==
 			 * ==================================    ====================================
 			 */
-			if( ! self.topInView( $parent ) && ! buttonIsFixed ) {
+			if ( ! self.topInView( $parent ) && ! buttonIsFixed ) {
 				$button
 					.stop( true )
 					.attr( 'data-last-animation', 'animation-a' )
@@ -1134,7 +1151,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				return;
 			}
 
-			if( ! self.inView( $parent ) && buttonIsFixed ) {
+			if ( ! self.inView( $parent ) && buttonIsFixed ) {
 				$button
 				.animate({
 					top: '-=' + self.buttonHeight
@@ -1166,41 +1183,43 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			dataControl = ( null === type ? id : type + '[' + id + ']' ),
 			$fixedAncestors = self.getFixedAncestors( $parent ),
 			dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' ),
-			isEmptyWidget = ( "'true'" === $parent.attr( 'data-empty-area' ) ),
+			isEmptyWidget = ( 'true' === $parent.attr( 'data-empty-area' ) ),
 			isEmptyNav = $parent.hasClass( 'empty-menu' );
 
 		// If the button already exists, abort.
-		if( 0 !== $( 'body' ).find( '[data-selector="' + selector + '"]' ).length ) {
+		if ( 0 !== $( 'body' ).find( '[data-selector="' + selector + '"]' ).length ) {
 			return;
 		}
 
 		// Allow for custom icons per button. By default, each edit buttion will be a pencil icon.
-		icon = ( icon === undefined ? 'dashicons-edit' : icon );
+		icon = _.isUndefined( icon ) ? 'dashicons-edit' : icon;
 		$button.addClass( icon );
 
 		/*
 		 * If this button is for an empty widget area or an empty nav area, add a 'new' class to use
 		 * a plus sign instead of a pencil icon.
 		 */
-		if( isEmptyNav ) {
+		if ( isEmptyNav ) {
 			$button
 				.addClass( 'new' )
-				.attr( 'data-title', boldgridFrameworkCustomizerEdit.menu );
+				.attr( 'data-title', self.i18n.menu );
 		}
 
-		if( isEmptyWidget ) {
+		if ( isEmptyWidget ) {
 			$button
 				.addClass( 'new' )
-				.attr( 'data-title', boldgridFrameworkCustomizerEdit.widget );
+				.attr( 'data-title', self.i18n.widget );
 		}
 
 		$button
-			.attr( 'data-control', dataControl )
-			.attr( 'data-selector', selector )
-			.attr( 'data-moves', 0 )
-			.attr( 'data-fixed-ancestor', dataFixedAncestor);
+			.attr( {
+				'data-control': dataControl,
+				'data-selector': selector,
+				'data-moves': 0,
+				'data-fixed-ancestor': dataFixedAncestor
+			} );
 
-		$('body').append( $button );
+		$( 'body' ).append( $button );
 
 		/*
 		 * If a button has contextual help, like "New Widget" or "New Menu", we need to calculate
@@ -1208,26 +1227,33 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 		 *
 		 * Essentially, we'll add the text, measure the width, then remove the text.
 		 */
-		if( isEmptyNav || isEmptyWidget ) {
+		if ( isEmptyNav || isEmptyWidget ) {
 			$button
+
 				// Allow the button to expand to full width.
 				.css( 'max-width', '100%' )
+
 				// Add the help text.
 				.html( ' ' + $button.attr( 'data-title' ) )
+
 				// Save the width to 'data-with-title-width'.
 				.attr( 'data-with-title-width', $button.outerWidth( true ) )
+
 				// Reset the max width.
 				.css( 'max-width', '' )
+
 				// Remove the help text.
 				.html( '' );
 		}
 
 		// Bind actions to the button's hover.
 		$button.hover(
+
 			// Mouse in.
 			function() {
 				self.buttonMouseEnter( $button, $parent, $parentsContainer );
 			},
+
 			// Mouse out.
 			function() {
 				self.buttonMouseLeave( $button, $parent );
@@ -1241,6 +1267,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 
 		// Bind actions the parent's hover.
 		$parent.hover(
+
 			// Mouse in.
 			function() {
 				$button.addClass( 'highlight-button' );
@@ -1252,9 +1279,9 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				 * If the user is scrolling, skip this action because the on scroll method will
 				 * handle the button placement.
 				 */
-				if( ! self.topInView( $parent ) && 'fixed' !== $button.css( 'position' ) && false === self.userIsScrolling ) {
+				if ( ! self.topInView( $parent ) && 'fixed' !== $button.css( 'position' ) && false === self.userIsScrolling ) {
 					$button
-						.attr( 'data-last-animation', 'ancar')
+						.attr( 'data-last-animation', 'ancar' )
 						.css( 'position', 'fixed' )
 						.css( 'top', -1 * $button.outerHeight() )
 						.animate({
@@ -1262,6 +1289,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 						}, 400 );
 				}
 			},
+
 			// Mouse out.
 			function() {
 				$button.removeClass( 'highlight-button' );

@@ -133,6 +133,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			$( widgetArea ).append( '<div class="empty-area"></div>' );
 			dataWidgetArea = $( widgetArea ).attr( 'data-widget-area' );
 			widgetAreaId = dataWidgetArea.replace( 'accordion-section-sidebar-widgets-', '' );
+
+			/*
+			 * This is a nested data selector inside of another data selector,
+			 * so we have to use single quotes for the property.
+			 */
 			selector = '[data-widget-area=\'' + dataWidgetArea + '\']';
 
 			self.addButton( 'sidebars_widgets', widgetAreaId, selector, 'dashicons-plus' );

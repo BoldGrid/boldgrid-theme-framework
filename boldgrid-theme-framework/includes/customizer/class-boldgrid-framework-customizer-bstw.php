@@ -61,7 +61,10 @@ class Boldgrid_Framework_Customizer_Bstw {
 	 *
 	 * This is checked because not all themes have a CTA, so
 	 * we can enabled the Contact Blocks and disable BSTW by default.
-	 * The default in the theme framework for the CTA is 'none' already.
+	 * The default in the theme framework for the CTA is 'none'.  Unforunately
+	 * some themes are modified where 'none' doesn't work out.  Themes will need
+	 * to opt out of CTA with 'disabled' in their config file. "Resolve" theme
+	 * is an example of one that doesn't work.
 	 *
 	 * @since 1.3.6
 	 *
@@ -70,7 +73,7 @@ class Boldgrid_Framework_Customizer_Bstw {
 	 * @return bool Is the call to action disabled or not.
 	 */
 	public function is_cta_disabled( $configs ) {
-		return 'none' === $configs['template']['call-to-action'] ? true : false;
+		return 'disabled' === $configs['template']['call-to-action'] ? true : false;
 	}
 
 	/**

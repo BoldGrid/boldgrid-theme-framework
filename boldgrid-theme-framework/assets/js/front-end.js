@@ -8,21 +8,21 @@
  * ======================================================================== */
 ( function( $ ) {
 
-	"use strict";
+	'use strict';
 
 	// Use this variable to set up the common and DOM based specific functionality.
 	var BoldGrid = {
 
 		// Scripts to fire on all pages.
-		'common': {
-			init: function() {
+		'common' : {
+			init : function() {
 				// JavaScript to be fired on all pages
 				this.skipLink();
 			},
-			finalize: function() {
+			finalize : function() {
 				// JavaScript to be fired on all pages, after page specific JS is fired
 			},
-			skipLink: function() {
+			skipLink : function() {
 				var isWebkit  =  navigator.userAgent.toLowerCase(  ).indexOf( 'webkit' ) > -1,
 				    isOpera   =  navigator.userAgent.toLowerCase(  ).indexOf( 'opera' )  > -1,
 				    isIE      =  navigator.userAgent.toLowerCase(  ).indexOf( 'msie' )   > -1;
@@ -43,7 +43,7 @@
 						}
 					}, false );
 				}
-			},
+			}
 		},
 
 		/**
@@ -59,11 +59,11 @@
 		 *  height from the filler, so it doesn't overflow.
 		 */
 		'sticky_footer_enabled' : {
-			init: function() {
+			init : function() {
 				// JavaScript to be fired on all pages.
 				this.flexSupport();
 			},
-			finalize: function() {
+			finalize : function() {
 				if ( ! Modernizr.flexbox ) {
 					$( window ).on( 'resize', this.stickyFooter );
 				}
@@ -73,7 +73,7 @@
 					this.stickyFooter();
 				}
 			},
-			stickyFooter: function() {
+			stickyFooter : function() {
 				var footer = $( '.site-footer' );
 				if ( ! footer.length ) {
 					return;
@@ -101,7 +101,7 @@
 							var admin_translate  = 'translate( 0, -' + admin_bar_height + 'px )';
 							// Add 2d transformation to footer to bring bottom links into view
 							footer.css({
-								'bottom': admin_bar_height + 'px',
+								'bottom': admin_bar_height + 'px'
 							});
 						}
 					} else {
@@ -114,21 +114,21 @@
 
 		// Parallax enabled pages.
 		'boldgrid_customizer_parallax' : {
-			init: function() {
+			init : function() {
 				var $body = $( 'body.boldgrid-customizer-parallax' );
 				if ( $body.stellar ) {
 					$body.attr( 'data-stellar-background-ratio', '0.2' );
 					$body.stellar();
 				}
-			},
+			}
 		},
 
 		// Default bootstrap menu handling.
-		'standard_menu_enabled': {
-			init: function() {
+		'standard_menu_enabled' : {
+			init : function() {
 				this.dropdowns();
 			},
-			dropdowns: function() {
+			dropdowns : function() {
 				var dropdown    = $( 'ul.nav li.dropdown' ),
 					breakpoint  = 768;
 				dropdown
@@ -193,20 +193,14 @@
 			}
 		},
 
-		// Offcanvas menu handling.
-		'offcanvas_menu_enabled' : {
-			init: function() {
-
-			},
-		},
 		// WOW.js enabled.
 		'wow_js_enabled' : {
-			init: function() {
+			init : function() {
 				// Trigger event when WOW is enabled.
 				$( document ).trigger( 'wowEnabled' );
 				this.loadWow();
 			},
-			loadWow: function() {
+			loadWow : function() {
 				var wow = new WOW({
 					boxClass     : _wowJsOptions.boxClass,
 					animateClass : _wowJsOptions.animateClass,
@@ -218,7 +212,7 @@
 			}
 		},
 		'nicescroll_enabled' : {
-			init: function() {
+			init : function() {
 				$( _niceScrollOptions.selector ).niceScroll({
 					cursorcolor: _niceScrollOptions.cursorcolor,
 					cursoropacitymin: _niceScrollOptions.cursoropacitymin,
@@ -247,7 +241,7 @@
 						top: _niceScrollOptions.railpadding.top,
 						right: _niceScrollOptions.railpadding.right,
 						left: _niceScrollOptions.railpadding.left,
-						bottom: _niceScrollOptions.railpadding.bottom,
+						bottom: _niceScrollOptions.railpadding.bottom
 					},
 					disableoutline: _niceScrollOptions.disableoutline,
 					horizrailenabled: _niceScrollOptions.horizrailenabled,
@@ -270,9 +264,9 @@
 					oneaxismousemode: _niceScrollOptions.oneaxismousemode,
 					scriptpath: _niceScrollOptions.scriptpath,
 					preventmultitouchscrolling: _niceScrollOptions.preventmultitouchscrolling,
-					disablemutationobserver: _niceScrollOptions.disablemutationobserver,
+					disablemutationobserver: _niceScrollOptions.disablemutationobserver
 				});
-			},
+			}
 		},
 		'goup_enabled' : {
 			init: function() {
@@ -294,10 +288,10 @@
 					title: _goupOptions.title,
 					titleAsText: _goupOptions.titleAsText,
 					titleAsTextClass: _goupOptions.titleAsTextClass,
-					zIndex: _goupOptions.zIndex,
+					zIndex: _goupOptions.zIndex
 				});
-			},
-		},
+			}
+		}
 	};
 
 	// The routing fires all common scripts, followed by the DOM specific scripts.

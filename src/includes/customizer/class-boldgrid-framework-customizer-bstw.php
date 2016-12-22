@@ -51,9 +51,26 @@ class Boldgrid_Framework_Customizer_Bstw {
 	 */
 	public function init() {
 		// Load black studio tinymce widget if framework check passes..
-		if ( $this->theme_mod() ) {
+		if ( $this->theme_mod() && ! $this->sidebars_widgets() ) {
 			$this->load_bstw();
 		}
+	}
+
+	/**
+	 * Check if the Call To Action is disabled by the theme.
+	 *
+	 * This is checked because not all themes have a CTA, so
+	 * we can enabled the Contact Blocks and disable BSTW by default.
+	 * The default in the theme framework for the CTA is 'none' already.
+	 *
+	 * @since 1.3.6
+	 *
+	 * @access public
+	 *
+	 * @return bool Is the call to action disabled or not.
+	 */
+	public function is_cta_disabled( $configs ) {
+		return 'none' === $configs['template']['call-to-action'] ? true : false;
 	}
 
 	/**
@@ -70,61 +87,6 @@ class Boldgrid_Framework_Customizer_Bstw {
 	}
 
 	/**
-	 * Loads the Black Studio TinyMCE Widget plugin.
-	 *
-	 * @since 1.3.6
-	 *
-	 * @access public
-	 */
-	public function load_bstw() {
-		require_once $this->configs['framework']['includes_dir'] . 'black-studio-tinymce-widget/black-studio-tinymce-widget.php';
-	}
-
-	/**
-	 * Check if any BSTW widgets are in the boldgrid_widgets_created option.
-	 *
-	 * Created widgets by BoldGrid should be stored in this option.  We can use
-	 * use this to check if there's possibly some widgets already existing in used
-	 * for a current user.
-	 *
-	 * @since 1.3.6
-	 *
-	 * @access public
-	 *
-	 * @return bool Does boldgrid_widgets_created contain any bstw.
-	 */
-	public function widgets_created() {
-		// Widgets created by BoldGrid are stored in option.
-		$widgets = get_option( 'boldgrid_widgets_created' );
-
-		// If we have widgets stored, check for bstw widgets.
-		$widgets && $this->bstw_widgets( $widgets );
-
-		return $widgets;
-	}
-
-	/**
-	 * Filter Black Studio TinyMCE Widgets.
-	 *
-	 * This checks if the widgets stored for the theme contain any
-	 * bstw widgets.  These widgets are prefixed with "black-stuidio-tinymce",
-	 * and method will return a bool response based on filter.
-	 *
-	 * @since 1.3.6
-	 *
-	 * @access public
-	 *
-	 * @return bool $widgets BSTW are stored or not.
-	 */
-	public function bstw_widgets( $widgets ) {
-		array_filter( $widgets, function( $value, $key ) {
-			return strpos( $value, 'black-studio-tinymce' ) !== false;
-		}, ARRAY_FILTER_USE_BOTH );
-
-		return ! ! $widgets;
-	}
-
-	/**
 	 * Check to see if theme has any BSTW stored in sidebars.
 	 *
 	 * @since 1.3.6
@@ -138,23 +100,29 @@ class Boldgrid_Framework_Customizer_Bstw {
 		$bstw = false;
 		if ( $widgets ) {
 			foreach ( $widgets['data'] as $data ) {
-
 				if ( 'wp_inactive_widgets' === $data ) {
 					continue;
 				}
-
 				foreach ( $data as $key => $value ) {
 					if ( strpos( $value, 'black-studio-tinymce' ) !== false ) {
 						$bstw = true;
-						break;
+						break 2;
 					}
-				}
-				// Exit loop if we found any bstw widgets stored.
-				if ( $bstw ) {
-					break;
 				}
 			}
 		}
+
 		return $bstw;
+	}
+
+	/**
+	 * Loads the Black Studio TinyMCE Widget plugin.
+	 *
+	 * @since 1.3.6
+	 *
+	 * @access public
+	 */
+	public function load_bstw() {
+		require_once $this->configs['framework']['includes_dir'] . 'black-studio-tinymce-widget/black-studio-tinymce-widget.php';
 	}
 }

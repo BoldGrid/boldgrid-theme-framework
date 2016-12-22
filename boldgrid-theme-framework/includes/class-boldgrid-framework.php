@@ -332,6 +332,13 @@ class BoldGrid_Framework {
 	 */
 	public function cta() {
 		$cta = new Boldgrid_Framework_Customizer_Bstw( $this->configs );
+		$mod = true;
+		// If theme has no CTA in header, we can force the disable here.
+		//var_dump( $cta->is_cta_disabled( $this->configs ) ); die;
+		if ( $cta->is_cta_disabled( $this->configs ) ) {
+			$mod = false;
+		}
+		set_theme_mod( 'bstw_enabled', $mod );
 		$this->loader->add_action( 'after_setup_theme', $cta, 'init' );
 	}
 

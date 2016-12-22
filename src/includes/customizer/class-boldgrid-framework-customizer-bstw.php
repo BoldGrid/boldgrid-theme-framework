@@ -101,7 +101,7 @@ class Boldgrid_Framework_Customizer_Bstw {
 	public function sidebars_widgets() {
 		$widgets = get_theme_mod( 'sidebars_widgets' );
 		$bstw = false;
-		if ( $widgets ) {
+		if ( $widgets && isset( $widgets['data'] ) && ! empty( $widgets['data'] ) ) {
 			foreach ( $widgets['data'] as $data ) {
 				if ( 'wp_inactive_widgets' === $data ) {
 					continue;

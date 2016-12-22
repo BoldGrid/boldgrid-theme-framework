@@ -82,7 +82,6 @@
 				var admin_bar      =  $( '#wpadminbar' ),
 					sticky_wrapper =  $( '#boldgrid-sticky-wrap' ),
 					footer_height  =  footer.outerHeight(  ),
-					sticky_push    =  $( '#boldgrid-sticky-push' ).height( footer_height ),
 					footer_top     =  footer[0].getBoundingClientRect().top,
 					content_end    =  $( '.site-content' )[0].getBoundingClientRect().bottom,
 					sticky_filler  =  footer_top - content_end;
@@ -98,8 +97,6 @@
 						// If in admin keep WYSIWYG and caluculate adminbar height
 						if ( $( '#wpadminbar' ).length ) {
 							var admin_bar_height = admin_bar.height(  );
-							var admin_translate  = 'translate( 0, -' + admin_bar_height + 'px )';
-							// Add 2d transformation to footer to bring bottom links into view
 							footer.css({
 								'bottom': admin_bar_height + 'px'
 							});
@@ -109,7 +106,7 @@
 						$( '#boldgrid-sticky-filler' ).removeAttr( 'style' );
 					}
 				}
-			},
+			}
 		},
 
 		// Parallax enabled pages.
@@ -206,7 +203,7 @@
 					animateClass : _wowJsOptions.animateClass,
 					offset       : _wowJsOptions.offset,
 					mobile       : _wowJsOptions.mobile,
-					live         : _wowJsOptions.live,
+					live         : _wowJsOptions.live
 				});
 				wow.init();
 			}

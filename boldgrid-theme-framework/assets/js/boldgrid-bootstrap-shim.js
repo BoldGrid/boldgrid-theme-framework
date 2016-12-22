@@ -27,6 +27,6 @@ jQuery( document ).ready( function(  ) {
 
 	jQuery( 'table#wp-calendar' ).addClass( 'table table-striped');
 
-	jQuery( "select[name='archive-dropdown']" ).addClass( 'form-control' );
+	jQuery( 'select[name="archive-dropdown"]' ).addClass( 'form-control' );
 
 } );

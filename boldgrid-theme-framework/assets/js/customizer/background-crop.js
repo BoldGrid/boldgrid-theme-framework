@@ -13,7 +13,7 @@
 			var control = this,
 				loadedAttachment;
 
-			var setAttachmentDataAndRenderContent = function ( value ) {
+			var setAttachmentDataAndRenderContent = function () {
 				// Reattach data to object.
 				control.params.attachment = loadedAttachment;
 				control.renderContent();

@@ -21,7 +21,7 @@ jQuery( document ).ready( function(  ) {
 			jQuery( '.site-content' ).css( 'padding-top', '0px' );
 		}
 
-		window.addEventListener( 'scroll', function( e ) {
+		window.addEventListener( 'scroll', function() {
 			var distanceY = window.pageYOffset || document.documentElement.scrollTop,
 				shrinkOn = 100,
 				header = document.querySelector( 'header' );

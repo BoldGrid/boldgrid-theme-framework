@@ -6,7 +6,7 @@
  */
 ( function( $ ) {
 
-	"use strict";
+	'use strict';
 
 	// Check each active nav menu location in customizer.
 	var $menus = [],
@@ -187,12 +187,12 @@
 	// Set shadow contols.
 	var updateShadowControls = function () {
 		var logoShadowColor = wp.customize( 'logo_shadow_color')(),
-		    logoShadowBlur = wp.customize( 'logo_shadow_blur')() + "px ",
-		    logoShadowVertical = wp.customize( 'logo_shadow_vertical')() + "px ",
-		    logoShadowHorizontal = wp.customize( 'logo_shadow_horizontal')() + "px ",
+		    logoShadowBlur = wp.customize( 'logo_shadow_blur')() + 'px ',
+		    logoShadowVertical = wp.customize( 'logo_shadow_vertical')() + 'px ',
+		    logoShadowHorizontal = wp.customize( 'logo_shadow_horizontal')() + 'px ',
 		    logoShadowSwitch = wp.customize( 'logo_shadow_switch')(),
 		    cssString = 'none';
-
+		/*jshint eqeqeq:false */
 		if ( '0' != logoShadowSwitch ) {
 			cssString =
 				logoShadowHorizontal +
@@ -207,7 +207,7 @@
 	// Bind the change of shadow controls.
 	$.each( shadowControls, function () {
 		wp.customize( this, function( value ) {
-			value.bind( function( to ) {
+			value.bind( function() {
 				updateShadowControls();
 			});
 		});

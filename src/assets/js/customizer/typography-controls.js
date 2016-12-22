@@ -16,7 +16,7 @@
 			return;
 		}
 		var message = JSON.parse( event.data );
-		if ( message.id == 'synced' ) {
+		if ( message.id === 'synced' ) {
 			$window.trigger( refresh_event, message );
 			hide_nav_controls();
 			hide_alt_font_controls();
@@ -24,7 +24,7 @@
 	} );
 
 	// Set menu location font size's for menu's that are assigned to locations.
-	$( document ).on( 'customize-preview-menu-refreshed', function( e ) {
+	$( document ).on( 'customize-preview-menu-refreshed', function() {
 		hide_nav_controls();
 	});
 

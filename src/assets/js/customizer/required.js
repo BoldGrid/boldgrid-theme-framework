@@ -1,11 +1,11 @@
 var BOLDGRID = BOLDGRID || {};
 BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 
-(function( $ ) {
+( function( $ ) {
+
 	'use strict';
 
 	var $window = $( window );
-	var self = BOLDGRID.CUSTOMIZER.Required;
 	$( function() {
 		$window.on( 'boldgrid_customizer_refresh', onload_procedure );
 	} );
@@ -19,5 +19,5 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			}
 		} );
 	};
-})( jQuery );
 
+})( jQuery );

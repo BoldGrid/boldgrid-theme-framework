@@ -6,7 +6,7 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
  * Create a preview of palette
  * @param $
  */
-(function( $ ) {
+( function( $ ) {
 	'use strict';
 	var self = BOLDGRID.COLOR_PALETTE.Preview;
 
@@ -41,7 +41,7 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 		var body_classes_string = '';
 		if ( body_classes ) {
 			$.each(body_classes, function () {
-				body_classes_string += this + " ";
+				body_classes_string += this + ' ';
 			});
 		}
 

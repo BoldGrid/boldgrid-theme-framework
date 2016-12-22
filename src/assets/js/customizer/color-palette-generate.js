@@ -145,21 +145,21 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 		return neutralColor;
 	};
-	
+
 	/**
 	 * Calculate differences between 2 colors.
-	 * 
+	 *
 	 * @param colorA string
 	 * @param colorB string
 	 * @since 1.1.1
-	 * 
+	 *
 	 * @return array
 	 */
 	self.colorDiff = function ( colorA, colorB ) {
-		
+
 		colorA = net.brehaut.Color( colorA ).toHSL();
 		colorB =  net.brehaut.Color( colorB ).toHSL();
-		
+
 		var hueDiff = colorA.hue - colorB.hue,
 			saturationDiff = colorA.saturation - colorB.saturation,
 			lightnessDiff = colorA.lightness - colorB.lightness,
@@ -167,7 +167,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			saturationPercentageDiff = Math.abs( saturationDiff ),
 			lightnessPercentageDiff = Math.abs( lightnessDiff ),
 			totalPercentageDiff = huePercentageDiff + saturationPercentageDiff + lightnessPercentageDiff;
- 
+
 		return {
 			'hue' : hueDiff,
 			'saturationDiff' : saturationDiff,
@@ -205,16 +205,16 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 		return matches;
 	};
-	
+
 	/**
 	 * Move array key from 1 index to another.
-	 * 
+	 *
 	 * Thanks: http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
-	 * 
-	 * @param int 
-	 * @param int 
+	 *
+	 * @param int
+	 * @param int
 	 * @since 1.1.1
-	 * 
+	 *
 	 * @return array
 	 */
 	self.arrayMove = function( array, new_index, old_index ) {
@@ -271,7 +271,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		 * If this relationship match involves a locked color skip matching
 		 * this relationship all together.
 		 */
-		$.each( relationships, function ( index ) {
+		$.each( relationships, function() {
 			var validRelationship = true;
 
 			$.each( this.values, function () {
@@ -386,23 +386,23 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 		return Math.floor( size * relationalPercentage );
 	};
-	
+
 
 	/**
 	 * For a given color, return a list of palettes that have a similar color. Sorted by similarity.
 	 *
 	 * @param string sampleColor
 	 * @since 1.1.1
-	 * 
+	 *
 	 * @return array palettes.
 	 */
 	self.findPalettesByColor = function ( sampleColor ) {
 		var palettes = [], sort, getPalette;
-		
-		getPalette = function ( paletteIndex ) {
+
+		getPalette = function() {
 			return self.palette_collection[ this.paletteIndex ].slice( 0 );
 		};
-		
+
 		$.each( self.palette_collection, function ( paletteIndex ) {
 			$.each( this, function ( colorIndex ) {
 				var colorDiff = self.colorDiff( this, sampleColor );
@@ -411,18 +411,18 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 				if ( colorDiff.hue > 16 ) {
 					return;
 				}
-				
+
 				var relationship = {
 					'paletteIndex' : paletteIndex,
 					'colorIndex' : colorIndex,
 					'distance' : colorDiff,
 					'getPalette' : getPalette
 				};
-				
+
 				palettes.push( relationship );
 			} );
 		} );
-		
+
 		// Sort by diff percentage sum.
 		sort = function (a, b) {
 			  if ( Math.abs( a.distance.totalPercentageDiff ) > Math.abs( b.distance.totalPercentageDiff ) ) {
@@ -434,9 +434,9 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 			  return 0;
 		};
-		
+
 		palettes.sort( sort );
-		
+
 		return palettes;
 	};
 
@@ -449,7 +449,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		if ( ! count ) {
 			count = 5;
 		}
-		
+
 		// Determine Relationships.
 		var paletteRelationships = self.determineRelations( paletteData ),
 			lockedIndexes = self.findLockedIndexes( paletteData.partialPalette ),
@@ -466,33 +466,33 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 				if ( shouldApplyRelationships ) {
 					newPalette = self.applyRelationships( newPalette, paletteRelationships, lockedIndexes );
 				}
-				
+
 				// Make sure that any locked colors are still locked in suggestions.
 				newPalette = self.fixLockedIndex( newPalette, paletteData.partialPalette );
 
 				palettes.push ( newPalette );
 			}
 		}
-		
+
 		return palettes;
 	};
-	
+
 	/**
 	 * Make sure that any locked colors are still locked in suggestions.
 	 *
 	 * @since 1.2.7
 	 */
 	self.fixLockedIndex = function ( newPalette, partialPalette ) {
-		
+
 		$.each( partialPalette, function ( index ) {
 			if ( this ) {
 				newPalette[ index ] = this;
 			}
 		} );
-		
+
 		return newPalette;
 	};
-	
+
 	/**
 	 * Generate a single palette based on a partial list of colors in a palette.
 	 *
@@ -515,22 +515,22 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 			// If only 1 color is locked.
 			} else {
-				
+
 				var color = colorsPartialPalette.palette[ colorsPartialPalette.generateKeys[0] ];
-				
+
 				// Generate list of similar palettes if we don't have 1 saved already.
 				if ( color.toCSS() !== apiColorCount.color ) {
 					apiColorCount.color = color.toCSS();
 					apiColorCount.palettes = self.findPalettesByColor( apiColorCount.color );
 					apiColorCount.paletteCounter = 0;
 				}
-				
+
 				if ( apiColorCount.palettes[ apiColorCount.paletteCounter ] ) {
 					newPalette = apiColorCount.palettes[ apiColorCount.paletteCounter ].getPalette();
 					newPalette = self.arrayMove( newPalette, colorsPartialPalette.generateKeys[0], this.colorIndex );
 					newPalette = self.truncate_generated_palette( newPalette, colorsPartialPalette.palette );
 					apiColorCount.paletteCounter++;
-					
+
 				} else {
 					/*
 					 * Try to generate a palette based on the color api color scheme methods.
@@ -540,17 +540,17 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 					if ( random == 1 ){
 						var internal_method = internal_palettes[Math.floor(Math.random()*internal_palettes.length)];
 						newPalette = self.color_palettes[internal_method]( color );
-	
+
 					} else if ( random == 2 ) {
 						var colors_method = color_scheme_methods[Math.floor(Math.random()*color_scheme_methods.length)];
 						newPalette = color[colors_method]();
-	
+
 					} else {
 						var degrees = self.random_array(4, 5);
 						degrees.unshift(0);
 						newPalette = color.schemeFromDegrees( degrees );
 					}
-	
+
 					newPalette = self.randomize_palette( newPalette, [0] );
 					newPalette = self.format_palette_to_unchanged( newPalette, colorsPartialPalette.generateKeys[0] );
 					newPalette = self.truncate_generated_palette( newPalette, colorsPartialPalette.palette );
@@ -589,7 +589,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		formated_palette[needed_key] = selected_color;
 		formated_palette[0] = newPalette[needed_key];
 
-		$.each( newPalette, function (key) {
+		$.each( newPalette, function( key ) {
 			if ( key === 0 ) {
 				return;
 			}
@@ -599,8 +599,9 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			}
 		});
 
+		/*jshint unused:false*/
 		formated_palette = $.map( formated_palette, function( value, index ) {
-		    return [value];
+			return [value];
 		});
 
 		return formated_palette;
@@ -671,7 +672,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 */
 	self.is_palette_empty = function ( partial_palette ) {
 		var empty_palette = true;
-		$.each ( partial_palette, function ( key ) {
+		$.each( partial_palette, function() {
 			if ( this ) {
 				empty_palette = false;
 				return false;

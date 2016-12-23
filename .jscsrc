@@ -1,4 +1,14 @@
 {
 	"preset": "wordpress",
 	"requireCamelCaseOrUpperCaseIdentifiers": false,
+	"excludeFiles": [
+		"node_modules/**",
+		"bower_components",
+		"gulpfile.js",
+		".git/",
+		"boldgrid-theme-framework/**",
+		"src/includes/**",
+		"src/assets/js/customizer/**",
+	],
+	"fileExtensions": [".js"],
 }

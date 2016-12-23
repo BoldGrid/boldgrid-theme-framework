@@ -12,11 +12,11 @@ jQuery( document ).ready( function(  ) {
 		var header_height = jQuery( '.site-header' ).height(  );
 		var screen_width = true === in_customizer ? jQuery( window ).width() + 16 : jQuery( window ).width();
 
-		// Desktop
+		// Desktop.
 		if ( screen_width > 768 ) {
 			jQuery( '.site-content' ).css( 'padding-top', header_height + 'px' );
 
-		// Mobile
+		// Mobile.
 		} else {
 			jQuery( '.site-content' ).css( 'padding-top', '0px' );
 		}

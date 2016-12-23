@@ -12,12 +12,12 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 
 	self.$new_style = null;
 
-	//OnLoad
+	//OnLoad.
 	$( function() {
 
-		//When the page loads for the first time, this method wont be called
+		//When the page loads for the first time, this method wont be called.
 
-		//This section of code is executed when the user changes pages in the customizer
+		//This section of code is executed when the user changes pages in the customizer.
 		if ( parent.BOLDGRID && parent.BOLDGRID.COLOR_PALETTE.Modify && parent.BOLDGRID.COLOR_PALETTE.Modify.text_area_val ) {
 			self.update_css( parent.BOLDGRID.COLOR_PALETTE.Modify.text_area_val );
 		}
@@ -37,9 +37,9 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 		var new_palette_data = JSON.parse( to );
 		var $body = $( 'body' );
 
-		//Create a string of body classes to remove
+		//Create a string of body classes to remove.
 
-		//TODO: Do this once, not everytime
+		//TODO: Do this once, not everytime.
 		var body_classes = parent.BOLDGRID.COLOR_PALETTE.Modify.body_classes;
 		var body_classes_string = '';
 		if ( body_classes ) {
@@ -48,17 +48,17 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 			});
 		}
 
-		//Remove all existing palette classes
+		//Remove all existing palette classes.
 		$body.removeClass( body_classes_string )
 			 .addClass( new_palette_data.state['active-palette'] )
 			 .data( 'current-body-class', new_palette_data.state['active-palette'] );
 
-		//New blank stylesheet
+		//New blank stylesheet.
 		var style = document.createElement( 'style' );
 		style.type = 'text/css';
 		style.innerHTML = parent.BOLDGRID.COLOR_PALETTE.Modify.compiled_css;
 
-		//Find the matching stylesheet
+		//Find the matching stylesheet.
 		var regex = new RegExp( parent.BOLDGRIDSass.output_css_filename, 'i' );
 		var enqueue_found = false;
 		$( 'head link[href]' ).each( function() {
@@ -74,7 +74,7 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 			}
 		});
 
-		//This generally happens if color palettes.css was not found
+		//This generally happens if color palettes.css was not found.
 		if ( false === enqueue_found ) {
 			if ( self.$new_style ) {
 				self.$new_style.remove();

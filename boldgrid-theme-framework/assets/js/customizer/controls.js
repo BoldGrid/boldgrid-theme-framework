@@ -13,7 +13,7 @@
 
 		var event = e.originalEvent;
 
-		// Ensure we have a string that's JSON.parse-able
+		// Ensure we have a string that's JSON.parse-able.
 		if ( typeof event.data !== 'string' || event.data[ 0 ] !== '{' ) {
 			return;
 		}
@@ -88,7 +88,7 @@
 						$help_panel.addClass( 'active' );
 					}
 
-					//Fade out modal
+					//Fade out modal.
 					$overlay_help.fadeToggle();
 				} else {
 					if ( $overlay_help.is( ':visible' ) ) {

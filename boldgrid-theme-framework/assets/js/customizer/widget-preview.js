@@ -46,7 +46,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	var bind_section_hover = function() {
 		var mouseenter = function() {
 
-			//Ensure 1 mouse enter for 1 mouseleave
+			//Ensure 1 mouse enter for 1 mouseleave.
 			self.complete_event = true;
 			if ( $( this ).hasClass( 'open' ) ) {
 				return;
@@ -149,7 +149,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var $widgetAreaBottom = $( '#sub-accordion-panel-widgets, #accordion-panel-widgets .accordion-sub-container' ),
 			$navMenuBottom = $( '#sub-accordion-panel-nav_menus, #accordion-panel-nav_menus .accordion-sub-container' );
 
-		//TODO: Move this markup into php and localize
+		//TODO: Move this markup into php and localize.
 		$( '#accordion-panel-widgets, #sub-accordion-panel-widgets' ).find( '.customize-info.accordion-section' )
 			.after( '<p class="boldgrid-subdescription">A Widget is a small block that performs' +
 				' a specific function. We have provided some prefilled widget areas for you. ' +

@@ -1,5 +1,5 @@
 
-// Toggle Author Bio on and off
+// Toggle Author Bio on and off.
 jQuery( document ).ready( function(  ) {
     jQuery( '.reveal-bio a' ).click( function( ) {
         jQuery( '.author-info' ).slideToggle( 'slow' );

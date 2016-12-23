@@ -217,7 +217,9 @@ gulp.task( 'jsHint', function(  ) {
 
 gulp.task( 'jscs', function() {
   return gulp.src( [config.src + '/assets/js/**/*.js'] )
-    .pipe( jscs() );
+    .pipe( jscs() )
+    .pipe(jscs.reporter())
+    .pipe(jscs.reporter('fail'));
 });
 
 // Minify & Copy JS

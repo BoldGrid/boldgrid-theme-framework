@@ -15,13 +15,15 @@
 
 		// Scripts to fire on all pages.
 		'common': {
+
+			// JavaScript to be fired on all pages.
 			init: function() {
-				// JavaScript to be fired on all pages
 				this.skipLink();
 			},
-			finalize: function() {
-				// JavaScript to be fired on all pages, after page specific JS is fired
-			},
+			// JavaScript to be fired on all pages, after page specific JS is fired.
+			finalize: function() {},
+
+			// JavaScript for the skip link functionality.
 			skipLink: function() {
 				var isWebkit  =  navigator.userAgent.toLowerCase(  ).indexOf( 'webkit' ) > -1,
 				    isOpera   =  navigator.userAgent.toLowerCase(  ).indexOf( 'opera' )  > -1,
@@ -60,7 +62,6 @@
 		 */
 		'sticky_footer_enabled': {
 			init: function() {
-				// JavaScript to be fired on all pages.
 				this.flexSupport();
 			},
 			finalize: function() {
@@ -88,12 +89,16 @@
 
 				// Make sure sticky footer is enabled from configs (configs add the wrapper).
 				if ( sticky_wrapper.length ) {
+
 					// Check if the top of footer meets our site content's end.
 					if ( !! ( sticky_filler ) ) {
+
 						// Set negative margin to the wrapper's bottom
 						sticky_wrapper.css({ 'marginBottom': ~footer_height + 1 + 'px' });
+
 						// Give the filler div a height for the remaining distance inbetween.
 						$( '#boldgrid-sticky-filler' ).css({ 'height': sticky_filler - footer_height });
+
 						// If in admin keep WYSIWYG and caluculate adminbar height
 						if ( $( '#wpadminbar' ).length ) {
 							var admin_bar_height = admin_bar.height(  );
@@ -102,6 +107,7 @@
 							});
 						}
 					} else {
+
 						// Remove the filler's height
 						$( '#boldgrid-sticky-filler' ).removeAttr( 'style' );
 					}
@@ -130,12 +136,16 @@
 					breakpoint  = 768;
 				dropdown
 					.on( 'mouseover', function( e ) {
+
 						// Set ARIA expanded to true for screen readers
 						this.firstChild.setAttribute( 'aria-expanded', 'true' );
+
 						// Add open class
 						$( e.currentTarget ).addClass( 'open' );
+
 							// Prevent clicking on the dropdown's parent link
 							$( e.currentTarget ).on( 'click', function( e ) {
+
 								// Only do this if window is mobile size
 								if ( window.innerWidth <= breakpoint ) {
 									if ( e.target === this || e.target.parentNode === this ) {
@@ -147,10 +157,13 @@
 							} );
 						} )
 					.on( 'mouseleave', function( e ) {
+
 						// Set ARIA expanded to falsefor screen readers
 						this.firstChild.setAttribute( 'aria-expanded', 'false' );
+
 						// Remove all open classes on dropdowns
 						dropdown.removeClass( 'open' );
+
 						// If the window is smaller than the 768 bootstrap breakpoint
 						if ( window.innerWidth <= breakpoint ) {
 							if ( e.target === this || e.target.parentNode === this ) {
@@ -158,24 +171,31 @@
 							}
 						}
 					} );
+
 				// Check if device support touch events.
 				if ( 'ontouchstart' in document.documentElement ) {
 					dropdown.each( function(  ) {
 						var $this = $( this );
+
 						// Listen for the touch event
 						this.addEventListener( 'touchstart', function( e ) {
 							if ( e.touches.length === 1 ) {
+
 								// Prevent touch events within dropdown bubbling tp dpcument
 								e.stopPropagation(  );
+
 								// Toggle hover
 								if ( ! $this.hasClass( 'open' ) ) {
+
 									// Prevent link on first touch
 									if ( e.target === this || e.target.parentNode === this ) {
 										e.preventDefault(  );
 									}
+
 									// Hide other open dropdowns
 									dropdown.removeClass( 'open' );
 									$this.addClass( 'open' );
+
 									// Hide dropdown on touch outside of dropdown menu
 									document.addEventListener( 'touchstart', close_dropdown = function( e ) {
 										e.stopPropagation(  );
@@ -193,6 +213,7 @@
 		// WOW.js enabled.
 		'wow_js_enabled': {
 			init: function() {
+
 				// Trigger event when WOW is enabled.
 				$( document ).trigger( 'wowEnabled' );
 				this.loadWow();
@@ -291,8 +312,10 @@
 		}
 	};
 
-	// The routing fires all common scripts, followed by the DOM specific scripts.
-	// Additional events can be added for more control over timing.
+	/*
+	 * The routing fires all common scripts, followed by the DOM specific
+	 * scripts.  Additional events can be added for more control over timing.
+	 */
 	var UTIL = {
 		fire: function( func, funcname, args ) {
 			var fire, namespace = BoldGrid;
@@ -306,6 +329,7 @@
 			}
 		},
 		loadEvents: function() {
+
 			// Fire common init JS.
 			UTIL.fire( 'common' );
 

@@ -6,7 +6,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
  * Generate Palettes for a user based on a partial palette.
  * @param $
  */
-(function( $ ) {
+( function( $ ) {
 
 	'use strict';
 
@@ -86,6 +86,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 		'#FEF1E9',
 		'#FEF6E4',
 		'#EEF3E2',
+
 		// Dark.
 		'#292929',
 		'#4d4d4d',
@@ -183,6 +184,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	 * @return object key value pairs of colors and keys that should have the same color.
 	 */
 	self.findMatches = function( palette ) {
+
 		// Test for matches.
 		var matches = {};
 		$.each( palette, function( testIndex, testColor ) {
@@ -531,6 +533,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 					apiColorCount.paletteCounter++;
 
 				} else {
+
 					/*
 					 * Try to generate a palette based on the color api color scheme methods.
 					 * This is almost never used because it requires users to exhaust ~2500 color combinations.
@@ -644,7 +647,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 	self.get_palette_from_static_list = function( partial_palette ) {
 		var newPalette = [];
 
-		//Try up to 2 times to find a palette
+		// Try up to 2 times to find a palette.
 		$.each( [1, 2], function() {
 			var found_palette = self.palette_collection [ Math.floor( Math.random() * self.palette_collection.length ) ];
 			if ( found_palette.length >= partial_palette.length ) {
@@ -658,6 +661,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			}
 
 			if ( newPalette.length ) {
+
 				//Break out of the loop if found
 				return false;
 			}
@@ -804,11 +808,11 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			palette_colors.push( color.lightenByAmount( 0.2 ) );
 			return palette_colors;
 		},
-		//Tims Palette
+
+		// Tims Palette.
 		intesity_and_hue: function( color ) {
 			var palette_colors = [];
 			palette_colors.push( color );
-
 			palette_colors.push( color.shiftHue( 20 ).lightenByAmount( 0.15 ) );
 			palette_colors.push( color.shiftHue( -20 ).darkenByAmount( 0.20 ) );
 			palette_colors.push( color.shiftHue( -33 ).darkenByAmount( 0.25 ) );
@@ -872,4 +876,5 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 			return palette_colors;
 		}
 	};
+
 })( jQuery );

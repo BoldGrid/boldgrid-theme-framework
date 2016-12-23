@@ -22,9 +22,12 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 		self.processing = true;
 
 		count++;
-		//After about 100 compiles error thrown on compiles
-		//Hackfix to create new instance at 75
-		//Get rich or die tryin' paying homage to 50 cent by settin' compiler instance to fiddy.
+
+		/*
+		 * After about 100 compiles error thrown on compiles
+		 * Hackfix to create new instance at 75
+		 * Get rich or die tryin' paying homage to 50 cent by settin' compiler instance to fiddy.
+		 */
 		if ( count > 50 ) {
 			count = 0;
 			Sass.setWorkerUrl( BOLDGRIDSass.WorkerUrl );
@@ -36,8 +39,10 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 			instance_compiler = new Sass( BOLDGRIDSass.WorkerUrl );
 		}
 
-		//Var d = new Date();
-		//var start_time  = d.getTime();
+		/*
+		 * var d = new Date();
+		 * var start_time  = d.getTime();
+		 */
 
 		instance_compiler.compile( scss, function( result ) {
 			self.processing = false;
@@ -52,11 +57,13 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 
 			self.$window.trigger( self.compile_done, data );
 
-			//Var d = new Date();
-			//var difference  = d.getTime() - start_time;
-			//console.log( difference, " milliseconds" );
-			//console.log( result );
-			//console.log( scss );
+			/*
+			 * var d = new Date();
+			 * var difference  = d.getTime() - start_time;
+			 * console.log( difference, " milliseconds" );
+			 * console.log( result );
+			 * console.log( scss );
+			 */
 		} );
 	};
 

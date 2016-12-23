@@ -1,9 +1,10 @@
-(function( wp, $ ) {
+( function( wp, $ ) {
+
 	'use strict';
 
 	if ( ! wp || ! wp.customize ) {
- return;
- }
+		return;
+	}
 
 	// Set up our namespace.
 	var api = wp.customize;
@@ -16,6 +17,7 @@
 				loadedAttachment;
 
 			var setAttachmentDataAndRenderContent = function() {
+
 				// Reattach data to object.
 				control.params.attachment = loadedAttachment;
 				control.renderContent();
@@ -56,4 +58,5 @@
 	$.extend( api.controlConstructor, {
 		background: api.croppingBackgroundImageControl
 	});
+
 })( window.wp, jQuery );

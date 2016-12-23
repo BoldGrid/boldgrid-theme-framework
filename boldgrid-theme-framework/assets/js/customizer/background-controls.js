@@ -30,6 +30,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'boldgrid_background_color' ).setting( '' );
 			validate_background_color_setting();
 		});
+
 		//Bind Events
 		validate_background_color_setting();
 		append_head_styles();
@@ -140,7 +141,8 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			getAttachmentControl().deactivate( { duration: 0 } );
 
 		} else {
-			//Activate Image
+
+			// Activate Image
 			wp.customize.control( 'boldgrid_background_image_size' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_background_horizontal_position' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_background_vertical_position' ).activate( { duration: 0 } );
@@ -210,6 +212,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var horizontal  =  wp.customize.control( 'logo_shadow_horizontal' );
 		var color       =  wp.customize.control( 'logo_shadow_color' );
 		var blur        =  wp.customize.control( 'logo_shadow_blur' );
+
 		/*jshint eqeqeq:false */
 		if ( 1 != shadow ) {
 			vertical.deactivate( { duration: 0 } );
@@ -240,6 +243,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'logo_margin_left' ).activate( { duration: 0 } );
 			wp.customize.control( 'logo_margin_top' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_logo_size' ).activate( { duration: 0 } );
+
 			//Enable Position Controls & reorganize
 			wp.customize.control( 'boldgrid_position_toggle' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_position_toggle' ).priority( 55 );
@@ -248,6 +252,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'logo_margin_top' ).priority( 55 );
 			wp.customize.control( 'boldgrid_logo_size' ).priority( 50 );
 		} else {
+
 			//Reset Position Controls Position
 			wp.customize.control( 'boldgrid_logo_size' ).deactivate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_position_toggle' ).priority( 10 );
@@ -264,6 +269,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var text_decoration 			=  wp.customize.control( 'logo_text_decoration' );
 		var text_decoration_hover		=  wp.customize.control( 'logo_text_decoration_hover' );
 		var text_transform				=  wp.customize.control( 'logo_text_transform' );
+
 		/*jshint eqeqeq:false */
 		if ( 1 != font )  {
 			font_family.deactivate( { duration: 0 } );
@@ -281,6 +287,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var margin_bottom			=  wp.customize.control( 'logo_margin_bottom' );
 		var margin_top				=  wp.customize.control( 'logo_margin_top' );
 		var margin_left				=  wp.customize.control( 'logo_margin_left' );
+
 		/*jshint eqeqeq:false */
 		if ( 1 != position ) {
 			letter_spacing.deactivate( { duration: 0 } );
@@ -296,6 +303,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	 */
 	$( window ).on( 'message', function( e ) {
 		var event = e.originalEvent;
+
 		// Ensure we have a string that's JSON.parse-able
 		if ( typeof event.data !== 'string' || event.data[0] !== '{' ) {
 			return;

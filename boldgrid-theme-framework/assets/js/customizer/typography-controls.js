@@ -11,6 +11,7 @@
 
 	$window.on( 'message', function( e ) {
 		var event = e.originalEvent;
+
 		// Ensure we have a string that's JSON.parse-able
 		if ( typeof event.data !== 'string' || event.data[ 0 ] !== '{' ) {
 			return;
@@ -34,8 +35,10 @@
 	 */
 	var hide_nav_controls = function() {
 		var $menus = wp.customize.section( 'menu_locations' ).controls();
+
 		// Check all registered menu locations.
 		_.each( $menus, function( id ) {
+
 			// Deactivate all controls initially
 			wp.customize.control( 'navigation_' + id.themeLocation + '_font_size' ).deactivate({ duration: 0 });
 			wp.customize.control( 'navigation_' + id.themeLocation + '_font_family' ).deactivate({ duration: 0 });
@@ -46,10 +49,13 @@
 
 			// If menus aren't present in the preview, then hide controls.
 			if ( $menu_selector.length ) {
+
 				// Hide relevant font size controls
 				wp.customize.control( 'navigation_' + id.themeLocation + '_font_size' ).activate({ duration: 0 });
+
 				// Hide relevant font family controls
 				wp.customize.control( 'navigation_' + id.themeLocation + '_font_family' ).activate({ duration: 0 });
+
 				// Hide relevant text transform controls
 				wp.customize.control( 'navigation_' + id.themeLocation + '_text_transform' ).activate({ duration: 0 });
 			}

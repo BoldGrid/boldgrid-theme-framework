@@ -45,6 +45,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 
 	var bind_section_hover = function() {
 		var mouseenter = function() {
+
 			//Ensure 1 mouse enter for 1 mouseleave
 			self.complete_event = true;
 			if ( $( this ).hasClass( 'open' ) ) {

@@ -19,6 +19,7 @@
 
 	// Site title and description.
 	wp.customize( 'blogname', function( value ) {
+
 		// If logo isn't set then bind site-title for live update, otherwise let .site-title update with logo live.
 		if ( parent.wp.customize( 'boldgrid_logo_setting' ) && ! parent.wp.customize( 'boldgrid_logo_setting' ).get() ) {
 			value.bind( function( to ) {

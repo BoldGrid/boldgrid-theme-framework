@@ -4,7 +4,7 @@
  *
  * @param $
  */
-(function( $ ) {
+( function( $ ) {
 	var refresh_event = $.Event( 'boldgrid_customizer_refresh' );
 	var help_overlay_bound = null;
 	$window = $( window );
@@ -44,7 +44,7 @@
 			}
 		});
 
-		//Add the markup and display the warning if needed
+		// Add the markup and display the warning if needed.
 		setup_transferred_theme_mod_warning();
 
 		$( '#accept-theme-mod-changes' ).on( 'click', function() {
@@ -113,7 +113,7 @@
 			$( '.overlay-prompt' ).remove();
 		};
 
-		//Disable All button during ajax
+		// Disable All button during ajax.
 		$( '.overlay-prompt .button' ).attr( 'disabled', 'disabled' );
 		$( '.overlay-prompt .spinner' ).addClass( 'is-active' );
 

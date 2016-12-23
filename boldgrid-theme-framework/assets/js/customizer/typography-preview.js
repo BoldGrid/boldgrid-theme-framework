@@ -61,6 +61,7 @@
 		var fontSizeType;
 		if ( 'subheadings' === selector.type ) {
 			fontSizeType = 'alternate_headings_font_size';
+
 			// Add alt-font class to subheading elements for live preview.
 			$( rule ).addClass( 'alt-font' );
 		}
@@ -192,6 +193,7 @@
 		    logoShadowHorizontal = wp.customize( 'logo_shadow_horizontal' )() + 'px ',
 		    logoShadowSwitch = wp.customize( 'logo_shadow_switch' )(),
 		    cssString = 'none';
+
 		/*jshint eqeqeq:false */
 		if ( '0' != logoShadowSwitch ) {
 			cssString =

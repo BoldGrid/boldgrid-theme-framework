@@ -27,6 +27,7 @@ jQuery( document ).ready( function( $ ) {
 	$( '.pluto-color-control' ).each( function() {
 		var $control = $( this ),
 			value = $control.val().replace( /\s+/g, '' );
+
 		// Manage Palettes
 		var palette;
 		var palette_input = $control.attr( 'data-palette' );
@@ -39,17 +40,21 @@ jQuery( document ).ready( function( $ ) {
 		}
 		$control.wpColorPicker({ // Change some things with the color picker
 			clear: function() {
+
 			// TODO reset Alpha Slider to 100
 			 },
 			change: function( event, ui ) {
+
 				// Send ajax request to wp.customizer to enable Save & Publish button
 				var _new_value = $control.val();
 				var key = $control.attr( 'data-customize-setting-link' );
 				wp.customize( key, function( obj ) {
 					obj.set( _new_value );
 				});
+
 				// Change the background color of our transparency container whenever a color is updated
 				var $transparency = $control.parents( '.wp-picker-container:first' ).find( '.transparency' );
+
 				// We only want to show the color at 100% alpha
 				$transparency.css( 'backgroundColor', ui.color.toString( 'no-alpha' ) );
 			},
@@ -57,6 +62,7 @@ jQuery( document ).ready( function( $ ) {
 		});
 		$( '<div class="pluto-alpha-container"><div class="slider-alpha"></div><div class="transparency"></div></div>' ).appendTo( $control.parents( '.wp-picker-container' ) );
 		var $alpha_slider = $control.parents( '.wp-picker-container:first' ).find( '.slider-alpha' );
+
 		// If in format RGBA - grab A channel value
 		var alpha_val;
 		if ( value.match( /rgba\(\d+\,\d+\,\d+\,([^\)]+)\)/ ) ) {
@@ -68,6 +74,7 @@ jQuery( document ).ready( function( $ ) {
 		$alpha_slider.slider({
 			slide: function( event, ui ) {
 				$( this ).find( '.ui-slider-handle' ).text( ui.value ); // Show value on slider handle
+
 				// send ajax request to wp.customizer to enable Save & Publish button
 				var _new_value = $control.val();
 				var key = $control.attr( 'data-customize-setting-link' );
@@ -94,6 +101,7 @@ jQuery( document ).ready( function( $ ) {
 			color_picker.toggler.css({
 				backgroundColor: $control.val()
 			});
+
 			// Fix relationship between alpha slider and the 'side slider not updating.
 			var get_val = $control.val();
 			$( $control ).wpColorPicker( 'color', get_val );

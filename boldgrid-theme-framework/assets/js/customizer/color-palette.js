@@ -89,6 +89,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 * @return jQuery Body of iframe.
 	 */
 	colorPalette.get_previewer_body = function() {
+
 		// Get the previewer frame.
 		return $( wp.customize.previewer.container )
 			.find( 'iframe' ).last().contents().find( 'body' );
@@ -165,6 +166,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			if ( false === self.$paletteWrapper.hasClass( 'palette-generate-mode' ) ) {
 
 				if ( self.hasNeutral && self.prelockNeutral ) {
+
 					// Lock it.
 					self.$palette_control_wrapper.find( '.boldgrid-active-palette .boldgrid-palette-colors:last' )
 						.addClass( 'selected-for-generation' );
@@ -242,6 +244,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	colorPalette.bind_generate_palette_action = function() {
 		self.$palette_control_wrapper.find( '.palette-generator-button' ).on( 'click', function() {
 			var paletteData = colorPalette.paletteData(), neutralColor = null;
+
 			// If this palette has a neutral color, generate that color independently.
 			if ( self.hasNeutral ) {
 				paletteData.samplePalette.splice( -1, 1 );
@@ -254,6 +257,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 			if ( self.hasNeutral ) {
 				$.each( palettes, function() {
+
 					// Generate neutral color or pass through existing neutral.
 					if ( ! neutralColor ) {
 						this.push( colorPalette.palette_generator.generateNeutralColor( this ) );
@@ -333,6 +337,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 * palette formats are essentially body classes
 	 */
 	colorPalette.fetch_acceptable_palette_formats = function() {
+
 		//Store the color palette accepted formats
 		colorPalette.body_classes = self.$palette_control_wrapper
 			.find( '.boldgrid-color-palette-wrapper' ).data( 'color-formats' );
@@ -513,6 +518,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 					} );
 				}
 			},
+
 			// On change, instead of sorting colors. Only swap the placeholder with displaced color.
 			change: function( event, ui ) {
 				var $listItems = $ul.find( 'li' ).not( ui.helper ).not( ui.item );
@@ -522,9 +528,11 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 					    bg_color = originalOrder[ key ];
 
 					if ( $this.is( ui.placeholder ) ) {
+
 						// Set the original slot to the displaced color.
 						$listItems.eq( originalIndex ).css( 'background-color', bg_color );
 					} else if ( originalIndex !== key ) {
+
 						// The other colors should be unmodified.
 						$listItems.eq( key ).css( 'background-color', bg_color );
 					}
@@ -629,6 +637,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 */
 	colorPalette.create_color_scss_file = function( palette_config ) {
 		var scss_file = '';
+
 		//Null out variables before use
 		scss_file += '$palette-primary_1: null;$palette-primary_2: null;$palette-primary_3: null;$palette-primary_4: null;$palette-primary_5: null;$palette-primary-neutral-color: null;$text-contrast-palette-primary-1: null;$text-contrast-palette-primary-2: null;$text-contrast-palette-primary-3: null;$text-contrast-palette-primary-4: null;$text-contrast-palette-primary-5: null;$text-contrast-palette-primary-neutral-color: null;';
 
@@ -730,6 +739,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		if ( ! e ) {
 			$this = $element;
 		} else {
+
 			//This event should not occur during palette generation mode
 			$this = $( this );
 			e.stopPropagation();
@@ -778,6 +788,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	};
 
 	colorPalette.set_iris_color = function( css_color ) {
+
 		//Set the color value
 		var background_color = net.brehaut.Color( css_color );
 		self.$color_picker_input.iris( 'color', background_color.toString() );
@@ -796,6 +807,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			.find( '.boldgrid-active-palette' ).attr( 'data-neutral-color' );
 
 		if ( hasNeutralColor ) {
+
 			// Find the last color in the palette and set its color as the data-neutral.
 			$activePalette = self.$palette_control_wrapper.find( '.boldgrid-active-palette' );
 			currentNeutralColor = $activePalette.find( '.boldgrid-palette-colors:last' ).css( 'background-color' );
@@ -809,7 +821,9 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	colorPalette.setup_color_picker = function() {
 
 		var myOptions = {
+
 				// You can declare a default color here,
+
 				// or in the data-default-color attribute on the input
 				defaultColor: false,
 				change: function( event, ui ) {
@@ -834,6 +848,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 
 					colorPalette.last_refresh_time = new Date().getTime();
 					var current_refreshtime = colorPalette.last_refresh_time;
+
 					// Update every 100 ms.
 					setTimeout( function() {
 						var isMostRecent = current_refreshtime === colorPalette.last_refresh_time,
@@ -846,9 +861,12 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 					}, colorPalette.pickerCompileDelay, current_refreshtime );
 
 				},
+
 				// Hide the color picker controls on load
 				hide: true,
+
 				// Show a group of common colors beneath the square
+
 				// or, supply an array of colors to customize further
 				palettes: true
 			};
@@ -868,13 +886,16 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		var $pickerPalettes = self.$palette_control_wrapper.find( '.secondary-colors .iris-palette' );
 
 		if ( index && color ) {
+
 			// Single Update.
 			$pickerPalettes
 				.eq( index )
 				.css( 'background-color', color );
 		} else {
+
 			// Update All.
 			self.$palette_control_wrapper.find( '.boldgrid-active-palette .boldgrid-palette-colors' ).each( function( index ) {
+
 				// Copy Color from active Palette.
 				$pickerPalettes.eq( index ).css( 'background-color', $( this ).css( 'background-color' ) );
 			} );
@@ -921,6 +942,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		self.$palette_control_wrapper.on( 'click', '.boldgrid-copy-palette, .boldgrid-remove-palette', function( e ) {
 			e.stopPropagation();
 			var $this = $( this );
+
 			//Get the closest wrapper of the pallette, this container holds all of the colors
 			var $palette_wrapper = $this.closest( '[data-palette-wrapper="true"]' );
 
@@ -964,11 +986,14 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	colorPalette.copy_palette = function( $palette ) {
 		var $active_palette = $palette.find( '.boldgrid-active-palette' );
 		if ( $active_palette.length ) {
+
 			//Translate the active palette into an inactive palette, clone to make sure that
+
 			//the original stays
 			var $cloned_active_palette = $palette.clone( false );
 			$cloned_active_palette.find( '.palette-action-buttons' ).remove();
 			$cloned_active_palette.find( '.boldgrid-active-palette' ).removeAttr( 'data-auto-generated' );
+
 			//Since this item has already been copied, don't preserve it on modification
 			colorPalette.clean_palette_clone( $palette.find( '.boldgrid-active-palette' ) );
 
@@ -978,9 +1003,11 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			var $first_inactive = colorPalette.get_first_inactive();
 
 			//After the palette was changed into an inactive style, wrap it in the standard container
+
 			//For easy identification purposes
 			$cloned_active_palette.insertBefore( $first_inactive );
 		} else if ( $palette.find( '.boldgrid-inactive-palette' ).length ) {
+
 			//Simply copy in place.
 			var $cloned_palette = $palette.clone( false );
 
@@ -1042,6 +1069,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 * TEMP: hardcoded to first palette.
 	 */
 	colorPalette.get_random_format = function() {
+
 		//Return colorPalette.body_classes[ Math.floor( Math.random() * colorPalette.body_classes.length)];
 		return colorPalette.body_classes[0];
 	};
@@ -1050,6 +1078,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 * Initialization processes to be run after the picker has been initialized
 	 */
 	colorPalette.wp_picker_post_init = function() {
+
 		//Post Color Picker Load
 		var $active_palette = self.$palette_control_wrapper.find( '.boldgrid-inactive-palette[data-is-active="1"]' );
 		var $default_palette = self.$palette_control_wrapper.find( '.boldgrid-inactive-palette[data-is-default="1"]' );
@@ -1091,6 +1120,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 					}
 
 				} else {
+
 					// Remove advanced Options DropDown.
 					$this.closest( '.boldgrid-color-palette-wrapper' )
 						.find( '.boldgrid-advanced-options' )
@@ -1176,6 +1206,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 					duration = new Date().getTime() - timeStartedCompile;
 
 				// The compile to fade back in should trigger at a minimum time of desiredDelay.
+
 				// If the compile time exceeds the min than the the timeout will be 0.
 				if ( duration < desiredDelay ) {
 					timeout = desiredDelay;

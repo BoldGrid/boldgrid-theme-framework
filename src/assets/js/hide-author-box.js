@@ -1,3 +1,4 @@
+
 // Toggle Author Bio on and off
 jQuery( document ).ready( function(  ) {
     jQuery( '.reveal-bio a' ).click( function( ) {

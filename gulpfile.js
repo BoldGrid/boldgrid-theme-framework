@@ -20,6 +20,7 @@ var gulp     = require( 'gulp' ),
     fs       = require( 'fs' ),
     changed  = require( 'gulp-changed' ),
     modernizr = require( 'gulp-modernizr' ),
+    jscs     = require( 'gulp-jscs' ),
     bower    = require( 'gulp-bower' );
 
 // Configs
@@ -214,6 +215,11 @@ gulp.task( 'jsHint', function(  ) {
     .pipe( jshint.reporter( 'fail' ) );
 });
 
+gulp.task( 'jscs', function() {
+  return gulp.src( [config.src + '/assets/js/**/*.js'] )
+    .pipe( jscs() );
+});
+
 // Minify & Copy JS
 gulp.task( 'frameworkJs', function(  ) {
 	// Minified Files.
@@ -345,7 +351,7 @@ gulp.task( 'build', function( cb ) {
     'clean',
     'bower',
     'readme',
-    ['jsHint', 'frameworkJs'],
+    ['jsHint', 'jscs', 'frameworkJs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
     'images',
     ['scssCompile', 'bootstrapCompile'],
@@ -358,7 +364,7 @@ gulp.task( 'build', function( cb ) {
 gulp.task( 'qbuild', function( cb ) {
   sequence(
     'readme',
-    ['jsHint', 'frameworkJs'],
+    ['jsHint', 'jscs', 'frameworkJs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate' ],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',

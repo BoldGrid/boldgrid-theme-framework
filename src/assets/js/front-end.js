@@ -93,13 +93,13 @@
 					// Check if the top of footer meets our site content's end.
 					if ( !! ( sticky_filler ) ) {
 
-						// Set negative margin to the wrapper's bottom
+						// Set negative margin to the wrapper's bottom.
 						sticky_wrapper.css({ 'marginBottom': ~footer_height + 1 + 'px' });
 
 						// Give the filler div a height for the remaining distance inbetween.
 						$( '#boldgrid-sticky-filler' ).css({ 'height': sticky_filler - footer_height });
 
-						// If in admin keep WYSIWYG and caluculate adminbar height
+						// If in admin keep WYSIWYG and caluculate adminbar height.
 						if ( $( '#wpadminbar' ).length ) {
 							var admin_bar_height = admin_bar.height(  );
 							footer.css({
@@ -108,7 +108,7 @@
 						}
 					} else {
 
-						// Remove the filler's height
+						// Remove the filler's height.
 						$( '#boldgrid-sticky-filler' ).removeAttr( 'style' );
 					}
 				}
@@ -137,16 +137,16 @@
 				dropdown
 					.on( 'mouseover', function( e ) {
 
-						// Set ARIA expanded to true for screen readers
+						// Set ARIA expanded to true for screen readers.
 						this.firstChild.setAttribute( 'aria-expanded', 'true' );
 
-						// Add open class
+						// Add open class.
 						$( e.currentTarget ).addClass( 'open' );
 
-							// Prevent clicking on the dropdown's parent link
+							// Prevent clicking on the dropdown's parent link.
 							$( e.currentTarget ).on( 'click', function( e ) {
 
-								// Only do this if window is mobile size
+								// Only do this if window is mobile size.
 								if ( window.innerWidth <= breakpoint ) {
 									if ( e.target === this || e.target.parentNode === this ) {
 										e.preventDefault(  );
@@ -158,13 +158,13 @@
 						} )
 					.on( 'mouseleave', function( e ) {
 
-						// Set ARIA expanded to falsefor screen readers
+						// Set ARIA expanded to falsefor screen readers.
 						this.firstChild.setAttribute( 'aria-expanded', 'false' );
 
-						// Remove all open classes on dropdowns
+						// Remove all open classes on dropdowns.
 						dropdown.removeClass( 'open' );
 
-						// If the window is smaller than the 768 bootstrap breakpoint
+						// If the window is smaller than the 768 bootstrap breakpoint.
 						if ( window.innerWidth <= breakpoint ) {
 							if ( e.target === this || e.target.parentNode === this ) {
 								return true;
@@ -177,26 +177,26 @@
 					dropdown.each( function(  ) {
 						var $this = $( this );
 
-						// Listen for the touch event
+						// Listen for the touch event.
 						this.addEventListener( 'touchstart', function( e ) {
 							if ( e.touches.length === 1 ) {
 
-								// Prevent touch events within dropdown bubbling tp dpcument
+								// Prevent touch events within dropdown bubbling tp dpcument.
 								e.stopPropagation(  );
 
-								// Toggle hover
+								// Toggle hover.
 								if ( ! $this.hasClass( 'open' ) ) {
 
-									// Prevent link on first touch
+									// Prevent link on first touch.
 									if ( e.target === this || e.target.parentNode === this ) {
 										e.preventDefault(  );
 									}
 
-									// Hide other open dropdowns
+									// Hide other open dropdowns.
 									dropdown.removeClass( 'open' );
 									$this.addClass( 'open' );
 
-									// Hide dropdown on touch outside of dropdown menu
+									// Hide dropdown on touch outside of dropdown menu.
 									document.addEventListener( 'touchstart', close_dropdown = function( e ) {
 										e.stopPropagation(  );
 										$this.removeClass( 'open' );

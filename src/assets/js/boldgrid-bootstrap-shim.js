@@ -10,12 +10,12 @@ jQuery( document ).ready( function(  ) {
 	 * @since 1.0.0
 	 **/
 
-	// Comment reply link
+	// Comment reply link.
 	jQuery( '.comment-reply-link' )
 		.addClass( 'btn button-primary color1-text-contrast' )
 		.css( 'transition', 'all .5s' );
 
-	// The WordPress Default Widgets
+	// The WordPress Default Widgets.
 	jQuery( '.widget_rss ul' ).addClass( 'media-list' );
 
 	jQuery( '.widget_meta ul, .widget_recent_entries ul, .widget_archive ul, .widget_categories ul, .widget_nav_menu ul, .widget_pages ul' ).addClass( 'nav' );

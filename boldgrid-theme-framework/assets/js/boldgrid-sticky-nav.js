@@ -1,16 +1,15 @@
-jQuery( document ).ready( function(  ) {
+jQuery( document ).ready( function() {
 
 	'use strict';
 
-	var adjust_content = function(  ) {
-		var in_customizer = false;
+	var adjust_content = function() {
+		var in_customizer = false,
+			header_height = jQuery( '.site-header' ).height(),
+			screen_width = true === in_customizer ? jQuery( window ).width() + 16 : jQuery( window ).width();
 
-		if ( typeof wp !== 'undefined' ) {
-			in_customizer =  typeof wp.customize !== 'undefined' ? true : false;
+		if ( 'undefined' !== typeof wp ) {
+			in_customizer = 'undefined' !== typeof wp.customize ? true : false;
 		}
-
-		var header_height = jQuery( '.site-header' ).height(  );
-		var screen_width = true === in_customizer ? jQuery( window ).width() + 16 : jQuery( window ).width();
 
 		// Desktop.
 		if ( screen_width > 768 ) {
@@ -38,8 +37,6 @@ jQuery( document ).ready( function(  ) {
 		} );
 	};
 
-	adjust_content(  );
-
+	adjust_content();
 	jQuery( window ).resize( adjust_content );
-
 } );

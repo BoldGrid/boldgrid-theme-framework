@@ -20,6 +20,7 @@
 			init: function() {
 				this.skipLink();
 			},
+
 			// JavaScript to be fired on all pages, after page specific JS is fired.
 			finalize: function() {},
 
@@ -75,17 +76,18 @@
 				}
 			},
 			stickyFooter: function() {
-				var footer = $( '.site-footer' );
+				var footer = $( '.site-footer' ),
+					admin_bar        = $( '#wpadminbar' ),
+					sticky_wrapper   = $( '#boldgrid-sticky-wrap' ),
+					footer_height    = footer.outerHeight(  ),
+					footer_top       = footer[0].getBoundingClientRect().top,
+					content_end      = $( '.site-content' )[0].getBoundingClientRect().bottom,
+					sticky_filler    = footer_top - content_end,
+					admin_bar_height = admin_bar.height();
+
 				if ( ! footer.length ) {
 					return;
 				}
-
-				var admin_bar      =  $( '#wpadminbar' ),
-					sticky_wrapper =  $( '#boldgrid-sticky-wrap' ),
-					footer_height  =  footer.outerHeight(  ),
-					footer_top     =  footer[0].getBoundingClientRect().top,
-					content_end    =  $( '.site-content' )[0].getBoundingClientRect().bottom,
-					sticky_filler  =  footer_top - content_end;
 
 				// Make sure sticky footer is enabled from configs (configs add the wrapper).
 				if ( sticky_wrapper.length ) {
@@ -101,7 +103,6 @@
 
 						// If in admin keep WYSIWYG and caluculate adminbar height.
 						if ( $( '#wpadminbar' ).length ) {
-							var admin_bar_height = admin_bar.height(  );
 							footer.css({
 								'bottom': admin_bar_height + 'px'
 							});
@@ -179,7 +180,7 @@
 
 						// Listen for the touch event.
 						this.addEventListener( 'touchstart', function( e ) {
-							if ( e.touches.length === 1 ) {
+							if ( 1 === e.touches.length ) {
 
 								// Prevent touch events within dropdown bubbling tp dpcument.
 								e.stopPropagation(  );
@@ -319,10 +320,10 @@
 	var UTIL = {
 		fire: function( func, funcname, args ) {
 			var fire, namespace = BoldGrid;
-			funcname = ( funcname === undefined ) ? 'init' : funcname;
-			fire = func !== '';
+			funcname = ( undefined === funcname ) ? 'init' : funcname;
+			fire = '' !== func;
 			fire = fire && namespace[func];
-			fire = fire && typeof namespace[func][funcname] === 'function';
+			fire = fire && 'function' === typeof namespace[func][funcname];
 
 			if ( fire ) {
 				namespace[func][funcname]( args );

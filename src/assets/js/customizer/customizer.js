@@ -132,7 +132,7 @@
 				init_values();
 			}
 
-			//Remove these styles that should only overwrite on the front end.
+			// Remove these styles that should only overwrite on the front end.
 			$custom_styles.remove();
 	};
 

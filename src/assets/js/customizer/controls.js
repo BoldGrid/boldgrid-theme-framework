@@ -88,7 +88,7 @@
 						$help_panel.addClass( 'active' );
 					}
 
-					//Fade out modal.
+					// Fade out modal.
 					$overlay_help.fadeToggle();
 				} else {
 					if ( $overlay_help.is( ':visible' ) ) {

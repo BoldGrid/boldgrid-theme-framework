@@ -662,7 +662,7 @@ BOLDGRID.COLOR_PALETTE.Generate = BOLDGRID.COLOR_PALETTE.Generate || {};
 
 			if ( newPalette.length ) {
 
-				//Break out of the loop if found.
+				// Break out of the loop if found.
 				return false;
 			}
 		} );

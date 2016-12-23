@@ -31,7 +31,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			validate_background_color_setting();
 		});
 
-		//Bind Events.
+		// Bind Events.
 		validate_background_color_setting();
 		append_head_styles();
 		bind_background_color_change();
@@ -53,7 +53,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			$remove_selected_pattern.removeAttr( 'disabled', 'disabled' );
 		} );
 
-		//Init Button Set.
+		// Init Button Set.
 		$( '#boldgrid-background-type' ).buttonset();
 		$( '.accordion-section-content, .wp-full-overlay-sidebar-content' ).on( 'scroll', function() {
 			var $this = $( this );
@@ -128,11 +128,11 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 
 		if ( bg_type === 'pattern' ) {
 
-			//Activate Pattern.
+			// Activate Pattern.
 			wp.customize.control( 'boldgrid_background_pattern' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_background_color' ).activate( { duration: 0 } );
 
-			//Deactivate Image.
+			// Deactivate Image.
 			wp.customize.control( 'boldgrid_background_horizontal_position' ).deactivate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_background_vertical_position' ).deactivate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_background_image_size' ).deactivate( { duration: 0 } );
@@ -244,7 +244,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'logo_margin_top' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_logo_size' ).activate( { duration: 0 } );
 
-			//Enable Position Controls & reorganize.
+			// Enable Position Controls & reorganize.
 			wp.customize.control( 'boldgrid_position_toggle' ).activate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_position_toggle' ).priority( 55 );
 			wp.customize.control( 'logo_margin_left' ).priority( 55 );
@@ -253,7 +253,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			wp.customize.control( 'boldgrid_logo_size' ).priority( 50 );
 		} else {
 
-			//Reset Position Controls Position.
+			// Reset Position Controls Position.
 			wp.customize.control( 'boldgrid_logo_size' ).deactivate( { duration: 0 } );
 			wp.customize.control( 'boldgrid_position_toggle' ).priority( 10 );
 			wp.customize.control( 'logo_margin_left' ).priority( 10 );

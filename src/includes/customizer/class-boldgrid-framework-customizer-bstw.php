@@ -103,7 +103,7 @@ class Boldgrid_Framework_Customizer_Bstw {
 		$bstw = false;
 		if ( $widgets && isset( $widgets['data'] ) && ! empty( $widgets['data'] ) ) {
 			foreach ( $widgets['data'] as $data ) {
-				if ( 'wp_inactive_widgets' === $data ) {
+				if ( 'wp_inactive_widgets' === $data || empty( $data ) ) {
 					continue;
 				}
 				foreach ( $data as $key => $value ) {

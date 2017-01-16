@@ -518,4 +518,27 @@ class BoldGrid {
 	public function framework_version( $version ) {
 		return version_compare( $this->configs['framework-version'], $version, '>=' );
 	}
+
+	/**
+	 * Adds markup for password protected pages/posts.
+	 *
+	 * @since 1.3.6
+	 *
+	 * @return String $output HTML to be rendered for password protected form.
+	 */
+	public function password_form() {
+		global $post;
+		$label = 'pwbox-' . ( empty( $post->ID ) ? rand() : $post->ID );
+		$output = '
+		<div class="boldgrid-section">
+			<div class="container">
+				<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="form-inline post-password-form" method="post">
+					<p>' . __( 'This content is password protected. To view it please enter your password below:' ) . '</p>
+					<label for="' . $label . '">' . __( 'Password:' ) . ' <input name="post_password" id="' . $label . '" type="password" size="20" class="form-control" /></label><button type="submit" name="Submit" class="button-primary">' . esc_attr_x( 'Enter', 'post password form' ) . '</button>
+				</form>
+			</div>
+		</div>';
+
+		return $output;
+	}
 }

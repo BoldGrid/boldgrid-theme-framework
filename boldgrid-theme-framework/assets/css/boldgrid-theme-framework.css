@@ -31,6 +31,10 @@
 *:focus {
   outline: 0; }
 
+/* Post/Page password protected styles */
+.post-password-form .button-primary {
+  margin-left: 9px; }
+
 /*--------------------------------------------------------------
 # BoldGrid Bootstrap Additions
 --------------------------------------------------------------*/
@@ -441,6 +445,16 @@ span.author.vcard {
 --------------------------------------------------------------*/
 .bgtfw.search-results {
   padding: 0 15px; }
+
+/*--------------------------------------------------------------
+# Sidebar
+--------------------------------------------------------------*/
+aside.sidebar {
+  margin-top: 50px; }
+
+aside.sidebar h2.widget-title {
+  margin-bottom: 10px;
+  margin-top: 20px; }
 
 /*--------------------------------------------------------------
 # Editor Styles

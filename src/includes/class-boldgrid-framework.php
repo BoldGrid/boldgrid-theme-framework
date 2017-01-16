@@ -395,6 +395,9 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_logo_or_title' );
 		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
 		$this->loader->add_filter( 'boldgrid_primary_navigation',   $boldgrid_theme,   'print_primary_navigation' );
+
+		// Password protected post/page form.
+		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
 	}
 
 	/**

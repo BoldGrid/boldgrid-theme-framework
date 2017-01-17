@@ -51,6 +51,7 @@ gulp.task( 'bower', function(  ) {
 
 // Create CSS file for font-family control based on webfonts.json.
 gulp.task( 'fontFamilyCss', function(  ) {
+	// The latest web fonts file can be found at https://www.googleapis.com/webfonts/v1/webfonts?key={key-goes-here}
 	var fileContent = fs.readFileSync( config.src + "/assets/json/webfonts.json", "utf8" ),
 	    webFonts = JSON.parse( fileContent ),
 	    outFilename = 'font-family-controls.min.css',
@@ -85,9 +86,9 @@ gulp.task( 'googlefonts-image', function () {
 
 	fontImage.getImage({
 		callback: function( base64Data ) {
-			console.log( base64Data );
-			require( 'fs').writeFile( 'out.png', base64Data, 'base64', function( err ) {
-				//console.log( err );
+			//console.log( base64Data );
+			require( 'fs').writeFile( config.src + 'assets/img/web-fonts.png', base64Data, 'base64', function( err ) {
+				console.log( err );
 			} );
 		},
 		port: 1224,

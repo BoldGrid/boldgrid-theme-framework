@@ -11,6 +11,7 @@ var gulp     = require( 'gulp' ),
  //   notify   = require( 'gulp-notify' ),
     replace  = require( 'gulp-replace' ),
     sequence = require( 'run-sequence' ),
+	fontImage = require("googlefonts-sprite-generator"),
     jshint   = require( 'gulp-jshint' ),
     phpcbf   = require( 'gulp-phpcbf' ),
     phpcs    = require( 'gulp-phpcs' ),
@@ -19,6 +20,7 @@ var gulp     = require( 'gulp' ),
     clean    = require( 'gulp-clean' ),
     fs       = require( 'fs' ),
     changed  = require( 'gulp-changed' ),
+	argv     = require('yargs').argv,
     modernizr = require( 'gulp-modernizr' ),
     jscs     = require( 'gulp-jscs' ),
     bower    = require( 'gulp-bower' );
@@ -69,6 +71,34 @@ gulp.task( 'fontFamilyCss', function(  ) {
 	gulp.src( outFilename )
 	  .pipe( clean( config.dist + '/assets/css/customizer/' + outFilename ) )
 	  .pipe( gulp.dest( config.dist + '/assets/css/customizer' ) );
+} );
+
+//Google Fonts image generator
+// Reguires Phatnom JS
+gulp.task( 'googlefonts-image', function () {
+	var googleApiKey = argv.google_api_key;
+	if ( ! googleApiKey ) {
+		console.log( 'gulp googlefonts-image --google_api_key={Key Goes Here}' );
+		return;
+	}
+
+	fontImage.getImage({
+		callback: function( base64Data ) {
+			console.log( base64Data );
+			require( 'fs').writeFile( 'out.png', base64Data, 'base64', function( err ) {
+				//console.log( err );
+			} );
+		},
+		port: 1224,
+		options: {
+			lineHeigth : '40px',
+			fontSize : '25px',
+			width : '400px'
+		},
+		googleAPIKey : googleApiKey
+	} );
+
+	return 1;
 } );
 
 // Clean distribution on build.
@@ -254,7 +284,6 @@ gulp.task( 'modernizr', function(  ) {
   .pipe( modernizr( require( './modernizr-config.json' ) ) )
     .pipe( gulp.dest( config.dist + '/assets/js' ) );
 });
-
 
 // Copy SCSS & CSS deps.
 gulp.task( 'scssDeps', function(  ) {

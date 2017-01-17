@@ -87,7 +87,7 @@ gulp.task( 'googlefonts-image', function () {
 	fontImage.getImage({
 		callback: function( base64Data ) {
 			//console.log( base64Data );
-			require( 'fs').writeFile( config.src + 'assets/img/web-fonts.png', base64Data, 'base64', function( err ) {
+			require( 'fs').writeFile( config.src + '/assets/img/web-fonts.png', base64Data, 'base64', function( err ) {
 				console.log( err );
 			} );
 		},

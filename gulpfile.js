@@ -73,8 +73,9 @@ gulp.task( 'fontFamilyCss', function(  ) {
 	  .pipe( gulp.dest( config.dist + '/assets/css/customizer' ) );
 } );
 
-//Google Fonts image generator
-// Reguires Phatnom JS
+// Google Fonts image generator
+// Reguires Phatnom JS - npm install -g phantomjs
+// If on windows, install python, visual studio express | c++11 compiler
 gulp.task( 'googlefonts-image', function () {
 	var googleApiKey = argv.google_api_key;
 	if ( ! googleApiKey ) {

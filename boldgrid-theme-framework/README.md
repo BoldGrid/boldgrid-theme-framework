@@ -31,6 +31,7 @@ user guide for more information.
 * New Feature: Custom Modernizr builds are now added to theme framework.
 * Update: Sticky Footer is now handled with flexbox if browser supports it.
 * Bug fix: Added markup for password required pages and posts inside sections/containers.
+* New Feature: Adding body class for disabled bstw state.
 
 ### 1.3.6 ###
 * Bug fix: Adding .page-template-default to editor if default template is in use.

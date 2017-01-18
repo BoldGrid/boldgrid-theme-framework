@@ -515,11 +515,14 @@ html.admin-bar {
   flex: 1 0 auto; }
 
 /* Contact Blocks */
-.bgtfw.contact-block span {
+.contact-block:not(:empty) {
+  margin: 10px 0; }
+
+.contact-block span {
   white-space: nowrap;
   display: inline-block; }
 
-.bgtfw.contact-block span:not(:last-child):after {
+.contact-block span:not(:last-child)::after {
   margin: 0 5px;
   content: '|'; }
 

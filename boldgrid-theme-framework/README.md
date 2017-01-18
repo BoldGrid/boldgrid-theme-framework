@@ -32,6 +32,7 @@ user guide for more information.
 * Update: Sticky Footer is now handled with flexbox if browser supports it.
 * Bug fix: Added markup for password required pages and posts inside sections/containers.
 * New Feature: Adding body class for disabled bstw state.
+* Update: Margin applied to contact blocks for better spacing in bgtfw.
 
 ### 1.3.6 ###
 * Bug fix: Adding .page-template-default to editor if default template is in use.

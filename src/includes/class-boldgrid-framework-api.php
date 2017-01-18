@@ -316,6 +316,11 @@ class BoldGrid {
 			}
 		}
 
+		// Add class if bstw is disabled.
+		if ( ! get_theme_mod( 'bstw_enabled' ) ) {
+			$classes[] = 'bstw-disabled';
+		}
+
 		if ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) {
 			$classes[] = 'sticky-nav-enabled';
 		}

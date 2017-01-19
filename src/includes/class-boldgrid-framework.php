@@ -332,7 +332,7 @@ class BoldGrid_Framework {
 	 */
 	public function cta() {
 		$cta = new Boldgrid_Framework_Customizer_Bstw( $this->configs );
-		$mod = true;
+		$mod = $cta->theme_mod();
 		// If theme has no CTA in header, we can force the disable here.
 		if ( $cta->is_cta_disabled( $this->configs ) ) {
 			$mod = false;

@@ -51,7 +51,7 @@ class Boldgrid_Framework_Customizer_Bstw {
 	 */
 	public function init() {
 		// Load black studio tinymce widget if framework check passes..
-		if ( $this->theme_mod() && ! $this->sidebars_widgets() ) {
+		if ( ! $this->theme_mod() && ! $this->sidebars_widgets() ) {
 			$this->load_bstw();
 		}
 	}

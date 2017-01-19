@@ -317,7 +317,7 @@ class BoldGrid {
 		}
 
 		// Add class if bstw is disabled.
-		if ( ! get_theme_mod( 'bstw_enabled' ) ) {
+		if ( get_theme_mod( 'bstw_enabled' ) ) {
 			$classes[] = 'bstw-disabled';
 		}
 

@@ -650,16 +650,9 @@ class BoldGrid_Framework {
 	 */
 	private function contact_blocks() {
 		$contact_blocks = new Boldgrid_Framework_Customizer_Contact_Blocks( $this->configs );
-		// If bstw is disabled, then turn on contact blocks in framework.
-		$enabled = $this->configs['customizer-options']['contact-blocks']['enabled'];
 		$bstw = get_theme_mod( 'bstw_enabled' );
-
-		if ( ! $bstw ) {
-			$enabled = true;
-		}
-
 		// If contact blocks is enabled and BSTW widget is disabled add contact blocks.
-		if ( $enabled ) {
+		if ( $bstw ) {
 			$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
 		}
 	}

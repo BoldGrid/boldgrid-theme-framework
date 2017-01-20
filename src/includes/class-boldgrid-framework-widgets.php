@@ -188,7 +188,7 @@ class Boldgrid_Framework_Widgets {
 		 */
 
 		$theme_mod = $this->bstw->theme_mod();
-		if ( $theme_mod && ! $this->bstw->sidebars_widgets() && ! $this->bstw->is_cta_disabled( $this->configs ) ) {
+		if ( ! $theme_mod && ! $this->bstw->sidebars_widgets() && ! $this->bstw->is_cta_disabled( $this->configs ) ) {
 			foreach ( $ids_created as $id ) {
 				$black_studio = new WP_Widget_Black_Studio_TinyMCE();
 				$black_studio->id = 'black-studio-tinymce-' . $id;

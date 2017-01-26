@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3.8 In progress ###
+* Bug fix: Customizer edit button for edit this page goes to wrong URL.
+
 ### 1.3.7 ###
 * Update: Attribution links are now using postMessage to avoid customizer refreshes.
 * New Feature: Custom Modernizr builds are now added to theme framework.

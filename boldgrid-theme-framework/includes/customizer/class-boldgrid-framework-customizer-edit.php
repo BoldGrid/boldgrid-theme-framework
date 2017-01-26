@@ -123,11 +123,22 @@ class Boldgrid_Framework_Customizer_Edit {
 				$this->configs['version']
 			);
 
+			/*
+			 * Get the link to edit this page.
+			 *
+			 * The WordPress Customizer adds a filter to get_edit_post_link, which returns an empty
+			 * string for all calls to get_edit_post_link. In order for us to get the appropriate
+			 * link, we need to remove that filter, get our link, then add the filter back.
+			 */
+			remove_filter( 'get_edit_post_link', '__return_empty_string' );
+			$edit_post_link = get_edit_post_link( get_the_ID() );
+			add_filter( 'get_edit_post_link', '__return_empty_string' );
+
 			wp_localize_script(
 				'boldgrid-framework-customizer-edit-js',
 				'boldgridFrameworkCustomizerEdit',
 				array(
-					'editPostLink'	=> get_edit_post_link( get_the_ID() ),
+					'editPostLink'	=> $edit_post_link,
 					'goThereNow'	=> __( 'Go there now', 'bgtfw' ),
 					'widget'		=> __( 'Widget', 'bgtfw' ),
 					'menu'			=> __( 'Menu', 'bgtfw' ),

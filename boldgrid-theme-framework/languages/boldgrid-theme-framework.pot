@@ -322,15 +322,15 @@ msgstr ""
 msgid "Enter the text to display in your contact details"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:131
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:142
 msgid "Go there now"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:132
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:143
 msgid "Widget"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:133
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:144
 msgid "Menu"
 msgstr ""
 

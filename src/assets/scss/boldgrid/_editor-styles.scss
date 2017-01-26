@@ -1,4 +1,8 @@
 // Styles for TinyMCE Editor
 #tinymce.mce-content-body {
 	height: auto;
+
+	&.post-type-post {
+		max-width: (1170 * .75) + px !important;
+	}
 }

@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.3.8 In progress ###
 * Bug fix: Customizer edit button for edit this page goes to wrong URL.
+* Update: Set the editor content area to the max width from the theme.
 
 ### 1.3.7 ###
 * Update: Attribution links are now using postMessage to avoid customizer refreshes.

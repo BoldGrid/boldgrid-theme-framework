@@ -462,6 +462,9 @@ aside.sidebar h2.widget-title {
 #tinymce.mce-content-body {
   height: auto; }
 
+#tinymce.mce-content-body.post-type-post {
+  max-width: 877.5px !important; }
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/

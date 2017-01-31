@@ -97,25 +97,6 @@ class Boldgrid_Framework_Activate {
 	}
 
 	/**
-	 * Activate Boldgrid theme framework if staging.
-	 *
-	 * @since 1.0.0
-	 */
-	public function do_staging_activate( $old, $new ) {
-		$option = 'boldgrid_staging_theme_mods_' . $new;
-		// Set the color palettes for staging.
-		$this->set_palette( $option );
-		// Force Recompile On Staging.
-		$staging_theme_mods = get_option( $option );
-		// If color palette is set for staging theme, delete the theme mods and then save them again.
-		if ( ! empty( $staging_theme_mods['boldgrid_color_palette'] ) ) {
-			update_option( $option, array() );
-			update_option( $option, $staging_theme_mods );
-		}
-		return $new;
-	}
-
-	/**
 	 * Remove any theme mods that were transferred to this theme
 	 *
 	 * @since 1.0.0

@@ -430,7 +430,6 @@ class BoldGrid_Framework {
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
 		// Actions.
 		$this->loader->add_action( 'boldgrid_activate_framework', $activate, 'do_activate' );
-		$this->loader->add_filter( 'update_option_boldgrid_staging_stylesheet', $activate, 'do_staging_activate', 99, 2 );
 		$this->loader->add_action( 'boldgrid_framework_reset', $activate, 'reset' );
 		$this->loader->add_action( 'wp_ajax_boldgrid_reset_theme_mods', $activate, 'undo_theme_mod_transfer' );
 

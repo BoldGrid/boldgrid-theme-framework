@@ -331,14 +331,9 @@ class BoldGrid_Framework {
 	 * @access   public
 	 */
 	public function cta() {
-		$cta = new Boldgrid_Framework_Customizer_Bstw( $this->configs );
-		$mod = $cta->theme_mod();
-		// If theme has no CTA in header, we can force the disable here.
-		if ( $cta->is_cta_disabled( $this->configs ) ) {
-			$mod = false;
+		if ( 'disabled' !== $this->configs['template']['call-to-action'] ) {
+			require_once $this->configs['framework']['includes_dir'] . 'black-studio-tinymce-widget/black-studio-tinymce-widget.php';
 		}
-		set_theme_mod( 'bstw_enabled', $mod );
-		$this->loader->add_action( 'after_setup_theme', $cta, 'init' );
 	}
 
 	/**
@@ -634,7 +629,6 @@ class BoldGrid_Framework {
 		$footer = new BoldGrid_Framework_Customizer_Footer( $this->configs );
 		$this->loader->add_action( 'customize_register', $footer, 'footer_panel' );
 		$this->loader->add_action( 'customize_register', $footer, 'add_enable_control' );
-		$this->loader->add_action( 'customize_register', $footer, 'add_contact_control' );
 		$this->loader->add_action( 'customize_register', $footer, 'add_attrbution_control' );
 		$this->loader->add_action( 'body_class', $footer, 'collapse_body_margin' );
 		$this->loader->add_action( 'boldgrid_display_attribution_links', $footer, 'attribution_display_action' );
@@ -649,10 +643,10 @@ class BoldGrid_Framework {
 	 */
 	private function contact_blocks() {
 		$contact_blocks = new Boldgrid_Framework_Customizer_Contact_Blocks( $this->configs );
-		$bstw = get_theme_mod( 'bstw_enabled' );
 		// If contact blocks is enabled and BSTW widget is disabled add contact blocks.
-		if ( $bstw ) {
+		if ( 'disabled' == $this->configs['template']['call-to-action'] ) {
 			$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
+			$this->loader->add_action( 'customize_register', $contact_blocks, 'add_contact_control' );
 		}
 	}
 

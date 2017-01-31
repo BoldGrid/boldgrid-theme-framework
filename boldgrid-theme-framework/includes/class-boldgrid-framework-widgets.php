@@ -42,7 +42,6 @@ class Boldgrid_Framework_Widgets {
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
-		$this->bstw = new Boldgrid_Framework_Customizer_Bstw( $this->configs );
 	}
 
 	/**
@@ -130,6 +129,7 @@ class Boldgrid_Framework_Widgets {
 	 * @since 1.0.0
 	 */
 	public function set_widget_areas() {
+
 		$auto_created_widget_ids = array();
 
 		global $_wp_sidebars_widgets;
@@ -186,9 +186,7 @@ class Boldgrid_Framework_Widgets {
 		 *
 		 * @since 1.0.0
 		 */
-
-		$theme_mod = $this->bstw->theme_mod();
-		if ( ! $theme_mod && ! $this->bstw->sidebars_widgets() && ! $this->bstw->is_cta_disabled( $this->configs ) ) {
+		if ( 'disabled' !== $this->configs['template']['call-to-action'] ) {
 			foreach ( $ids_created as $id ) {
 				$black_studio = new WP_Widget_Black_Studio_TinyMCE();
 				$black_studio->id = 'black-studio-tinymce-' . $id;

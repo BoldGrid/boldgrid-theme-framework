@@ -77,6 +77,7 @@ class Boldgrid_Framework_Upgrade {
 		$version = $this->configs['framework-version'];
 		// If the db version doesn't match the config version then run upgrade methods.
 		if ( $this->get_option() !== $version ) {
+			$this->universal_upgrade();
 			$methods = $this->get_upgrade_methods();
 			// Format found methods to versions.
 			foreach ( $methods as $method ) {
@@ -147,4 +148,15 @@ class Boldgrid_Framework_Upgrade {
 	public function set_option( $version ) {
 		set_theme_mod( "{$this->prefix}_version", $version );
 	}
+
+	/**
+	 * Processes to run on each Upgrade of theme framework.
+	 *
+	 * @since 1.4
+	 */
+	public function universal_upgrade() {
+		$staging = new BoldGrid_Framework_Staging( $this->configs );
+		$staging->set_recompile_flags();
+	}
+
 }

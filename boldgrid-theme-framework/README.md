@@ -30,6 +30,7 @@ user guide for more information.
 * Update: Set the editor content area to the max width from the theme.
 * Bug fix: Customizer edit button for edit this page goes to wrong URL.
 * Bug fix: Staging theme mods being transfered across themes.
+* Bug fix: Issues compiling colors on upgrade from old themes.
 * Update: Removing CTA checks from framework.
 
 ### 1.3.7 ###

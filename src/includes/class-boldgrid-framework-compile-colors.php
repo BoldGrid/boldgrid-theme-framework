@@ -51,9 +51,10 @@ class Boldgrid_Framework_Compile_Colors {
 
 		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];
-			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
-			$i = 0;
+			$colors = is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ?
+				$palettes['state']['palettes'][ $current_palette ]['colors'] : array();
 
+			$i = 0;
 			foreach ( $colors as $color ) {
 				$i++;
 				$boldgrid_colors[ $current_palette . '_' . $i ] = $color;
@@ -98,7 +99,9 @@ class Boldgrid_Framework_Compile_Colors {
 
 		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];
-			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
+			$colors = is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ?
+				$palettes['state']['palettes'][ $current_palette ]['colors'] : array();
+
 			foreach ( $colors as $color ) {
 				$boldgrid_colors .= "{$color} ";
 			}
@@ -253,9 +256,10 @@ class Boldgrid_Framework_Compile_Colors {
 
 		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];
-			$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
-			$i = 0;
+			$colors = is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ?
+				$palettes['state']['palettes'][ $current_palette ]['colors'] : array();
 
+			$i = 0;
 			foreach ( $colors as $color ) {
 				$i++;
 				$boldgrid_colors .= '("color-' . $i . '" $' . $current_palette . '_' . $i . ' $text-contrast-' . $current_palette . '_' . $i . ')';

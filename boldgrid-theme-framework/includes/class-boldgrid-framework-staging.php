@@ -67,6 +67,18 @@ class BoldGrid_Framework_Staging {
 	}
 
 	/**
+	 * Get the current mode for loading this theme, staging or active.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @return string Mode of page load, staging or active
+	 */
+	public function get_site_mode() {
+		$css_file = $this->configs['customizer-options']['colors']['settings']['output_css_name'];
+		return false !== strpos( basename( $css_file ), 'staging' ) ? 'staging' : 'active';
+	}
+
+	/**
 	 * Check to see if we are currently updating staging theme mods
 	 *
 	 * @since     1.0.0

@@ -29,7 +29,8 @@ user guide for more information.
 ### 1.3.8 In progress ###
 * Update: Set the editor content area to the max width from the theme.
 * Bug fix: Customizer edit button for edit this page goes to wrong URL.
-* Bug fix: Staging theme mods being transfered across themes.
+* Bug fix: Staging theme mods being transferred across themes.
+* Bug fix: Issues compiling colors on upgrade from old themes.
 
 ### 1.3.7 ###
 * Update: Attribution links are now using postMessage to avoid customizer refreshes.

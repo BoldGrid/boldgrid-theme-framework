@@ -241,13 +241,41 @@ class Boldgrid_Framework_SCSS {
 	}
 
 	/**
+	 * Check if we should perform a force compile.
+	 *
+	 * In the case the theme does not have a color palettes file, create one.
+	 * Only happens at most once every hour to prevent a failure in creating the file from
+	 * causing this process to always run.
+	 *
+	 * @since 1.4
+	 *
+	 * @return array Staging and Active Compile.
+	 */
+	public function get_force_compile() {
+		$force_recompile = get_theme_mod( 'force_scss_recompile', array() );
+		$css_file = $this->configs['customizer-options']['colors']['settings']['output_css_name'];
+		$fail_safe_compile = get_theme_mod( 'fail_safe_compile' );
+		$site_mode = $this->staging->get_site_mode();
+		$already_compiling = ! empty( $force_recompile[ $site_mode ] );
+
+		// 86400 == 1 Hour in seconds.
+		$fail_safe_expired = ! $fail_safe_compile || ( time() > $fail_safe_compile + 3600 );
+		if ( ! file_exists( $css_file ) && $fail_safe_expired && false === $already_compiling ) {
+			set_theme_mod( 'fail_safe_compile', time() );
+			$force_recompile[ $site_mode ] = true;
+		}
+
+		return $force_recompile;
+	}
+
+	/**
 	 * Recompile sass palettes if needed.
 	 *
 	 * @since      1.0.3
 	 */
 	public function force_recompile_checker() {
 		$recompile = false;
-		$force_recompile = get_theme_mod( 'force_scss_recompile', array() );
+		$force_recompile = $this->get_force_compile();
 
 		// If asked to recompile staging.
 		if ( ! empty( $force_recompile['staging'] ) ) {
@@ -282,7 +310,9 @@ class Boldgrid_Framework_SCSS {
 	}
 
 	/**
-	 * On theme update recompile scss files
+	 * On theme update set the flags to recompile.
+	 *
+	 * This code runs from the old theme not the new.
 	 *
 	 * @since     1.0.0
 	 * @param WP_Upgrader $upgrader WP_Upgrader.
@@ -304,19 +334,7 @@ class Boldgrid_Framework_SCSS {
 
 		// When updating the current theme.
 		if ( ( 'theme' === $type ) && ( 'update' === $action ) && $updating_current_theme ) {
-
-			// Update the standard css file.
-			$this->force_update_css();
-
-			// Force Recompile On Staging.
-			$staging_theme_mods = get_option( 'boldgrid_staging_theme_mods_' . $staging_stylesheet );
-
-			// If color palette is set for staging theme, delete the theme mods and then save them again.
-			// This is a hack to force hooks to run and recompile the sass files.
-			if ( ! empty( $staging_theme_mods['boldgrid_color_palette'] ) ) {
-				update_option( 'boldgrid_staging_theme_mods_' . $staging_stylesheet, array() );
-				update_option( 'boldgrid_staging_theme_mods_' . $staging_stylesheet, $staging_theme_mods );
-			}
+			$this->staging->set_recompile_flags();
 		}
 	}
 

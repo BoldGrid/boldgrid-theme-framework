@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.3.9 ###
+* Bug fix: Fixing error when running wp-cli commands.
+
 ### 1.3.8 ###
 * Update: Set the editor content area to the max width from the theme.
 * Bug fix: Customizer edit button for edit this page goes to wrong URL.

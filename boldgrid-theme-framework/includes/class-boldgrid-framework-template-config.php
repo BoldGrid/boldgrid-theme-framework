@@ -330,6 +330,9 @@ class BoldGrid_Framework_Template_Config {
 	 * @return array $configs BGTFW Configs.
 	 */
 	public function remove_theme_container( $configs ) {
+		if ( empty( $_SERVER['HTTP_HOST'] ) ) {
+			return $configs;
+		}
 
 		// Get Page Id.
 		$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";

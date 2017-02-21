@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.4 ###
+* Bug fix: CTA widget inherits well class if user tries to re-add it.
+
 ### 1.3.9 ###
 * Bug fix: Fixing error when running wp-cli commands.
 

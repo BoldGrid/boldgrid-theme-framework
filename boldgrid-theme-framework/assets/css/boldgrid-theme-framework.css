@@ -272,10 +272,13 @@ select[name="archive-dropdown"] {
 .boldgrid-widget.widget {
   margin: 0; }
 
-.widget_black_studio_tinymce.widget.well {
-  color: transparent;
+.palette-primary [id^="black-studio-tinymce"].widget_black_studio_tinymce.widget.well {
+  background: transparent;
   border: none;
-  padding: none; }
+  padding: 0; }
+
+.palette-primary [id^="black-studio-tinymce"].widget_black_studio_tinymce.widget.well .widget-title {
+  display: none; }
 
 .empty-sidebar-message {
   display: inline-block; }

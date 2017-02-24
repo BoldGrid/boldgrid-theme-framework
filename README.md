@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.4 ###
 * Bug fix: CTA widget inherits well class if user tries to re-add it.
+* Bug fix: Added default styles for sidebar search form widgets.
 
 ### 1.3.9 ###
 * Bug fix: Fixing error when running wp-cli commands.

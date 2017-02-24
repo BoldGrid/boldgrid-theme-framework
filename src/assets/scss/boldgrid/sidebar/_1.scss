@@ -1,0 +1,22 @@
+// Sidebar-1 Styles.
+.sidebar-1 {
+	// Search Form Display.
+	#searchform {
+		.form-group {
+			width: calc(100% - 60px);
+		}
+		input.form-control {
+			width: 100%;
+			margin: 0 5px 2.5px 0;
+		}
+		.button-primary {
+			margin: 0;
+			width: 40px;
+			padding: 8px;
+			border-radius: 4px;
+			span:last-of-type {
+				display: none;
+			}
+		}
+	}
+}

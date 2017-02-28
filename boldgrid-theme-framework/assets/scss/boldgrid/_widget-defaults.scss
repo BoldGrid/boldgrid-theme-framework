@@ -20,13 +20,10 @@ select[name="archive-dropdown"] {
 		margin: 0;
 	}
 }
-.palette-primary [id^="black-studio-tinymce"].widget_black_studio_tinymce.widget.well {
-	background: transparent;
+.widget_black_studio_tinymce.widget.well {
+	color: transparent;
 	border: none;
-	padding: 0;
-	.widget-title {
-		display: none;
-	}
+	padding: none;
 }
 
 // Default Sidebar Message

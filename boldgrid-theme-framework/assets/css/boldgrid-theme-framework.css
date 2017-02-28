@@ -272,11 +272,6 @@ select[name="archive-dropdown"] {
 .boldgrid-widget.widget {
   margin: 0; }
 
-.widget_black_studio_tinymce.widget.well {
-  color: transparent;
-  border: none;
-  padding: none; }
-
 .empty-sidebar-message {
   display: inline-block; }
 

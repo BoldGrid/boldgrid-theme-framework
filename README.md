@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.4.1 ###
+* Update: Let sidebar search widget have standard appearance on small devices.
+
 ### 1.4 ###
 * Bug fix: CTA widget inherits well class if user tries to re-add it.
 * Bug fix: Added default styles for sidebar search form widgets.

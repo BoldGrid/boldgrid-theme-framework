@@ -456,21 +456,19 @@ aside.sidebar h2.widget-title {
   margin-bottom: 10px;
   margin-top: 20px; }
 
-.sidebar-1 #searchform .form-group {
-  width: calc(100% - 60px); }
-
-.sidebar-1 #searchform input.form-control {
-  width: 100%;
-  margin: 0 5px 2.5px 0; }
-
-.sidebar-1 #searchform .button-primary {
-  margin: 0;
-  width: 40px;
-  padding: 8px;
-  border-radius: 4px; }
-
-.sidebar-1 #searchform .button-primary span:last-of-type {
-  display: none; }
+@media only screen and (min-width: 768px) {
+  .sidebar-1 #searchform .form-group {
+    width: calc(100% - 60px); }
+  .sidebar-1 #searchform input.form-control {
+    width: 100%;
+    margin: 0 5px 2.5px 0; }
+  .sidebar-1 #searchform .button-primary {
+    margin: 0;
+    width: 40px;
+    padding: 8px;
+    border-radius: 4px; }
+  .sidebar-1 #searchform .button-primary span:last-of-type {
+    display: none; } }
 
 /*--------------------------------------------------------------
 # Editor Styles

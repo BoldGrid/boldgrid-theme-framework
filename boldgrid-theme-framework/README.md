@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.3
-* **Tested up to:** 4.7.2
+* **Tested up to:** 4.7.3
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,7 +26,7 @@ user guide for more information.
 
 ## Changelog ##
 
-### 1.3.10 ###
+### 1.4 ###
 * Bug fix: CTA widget inherits well class if user tries to re-add it.
 * Bug fix: Added default styles for sidebar search form widgets.
 

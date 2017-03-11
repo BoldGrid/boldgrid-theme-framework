@@ -271,16 +271,4 @@ class BoldGrid_Framework_Comments {
 
 		return $defaults;
 	}
-
-	/**
-	 * Close the div for the comment form if there are comments.
-	 *
-	 * @since 1.0.0
-	 */
-	public function bootstrap_comment_form( $post_id ) {
-		if ( have_comments() ) {
-			// Closing tag for 'comment_notes_after'.
-			echo '</div><!-- .form-group .comment-form-submit -->';
-		}
-	}
 }

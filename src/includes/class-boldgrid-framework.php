@@ -744,7 +744,6 @@ class BoldGrid_Framework {
 	private function comments() {
 		$comments = new Boldgrid_Framework_Comments( $this->configs );
 		$this->loader->add_action( 'boldgrid_comments',     $comments, 'boldgrid_comments' );
-		$this->loader->add_action( 'comment_form',          $comments, 'bootstrap_comment_form', 10, 1 );
 		$this->loader->add_filter( 'comment_form_defaults', $comments, 'bootstrap_comment_form_defaults', 10, 1 );
 	}
 

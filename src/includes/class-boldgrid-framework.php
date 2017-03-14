@@ -66,7 +66,7 @@ class BoldGrid_Framework {
 		global $boldgrid_theme_framework;
 		$boldgrid_theme_framework = $this;
 
-		$this->load_dependencies( );
+		$this->load_dependencies();
 
 		$this->assign_configurations();
 		$this->add_config_filters();
@@ -75,18 +75,19 @@ class BoldGrid_Framework {
 		$this->upgrade();
 		$this->cta();
 
-		$this->define_theme_hooks( );
-		$this->define_admin_hooks( );
-		$this->define_global_hooks( );
-		$this->boldgrid_theme_setup( );
-		$this->setup_menus( );
-		$this->boldgrid_widget_areas( );
-		$this->theme_customizer( );
-		$this->social_icons( );
-		$this->comments( );
-		$this->error_404( );
-		$this->search_forms( );
-		$this->ninja_forms( );
+		$this->define_theme_hooks();
+		$this->define_admin_hooks();
+		$this->define_global_hooks();
+		$this->boldgrid_theme_setup();
+		$this->setup_menus();
+		$this->boldgrid_widget_areas();
+		$this->theme_customizer();
+		$this->social_icons();
+		$this->comments();
+		$this->error_404();
+		$this->search_forms();
+		$this->ninja_forms();
+		$this->woocommerce();
 	}
 
 	/**
@@ -173,6 +174,7 @@ class BoldGrid_Framework {
 			'template-config',
 			'upgrade',
 			'widgets',
+			'woocommerce',
 			'wp-fs',
 			'wrapper',
 		);
@@ -787,6 +789,17 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'ninja_forms_display_field_processing_error_class', $ninja_forms, 'field_error_message_class', 10, 2 );
 		$this->loader->add_filter( 'ninja_forms_display_required_items_class', $ninja_forms, 'form_required_items_class', 10, 2 );
 		$this->loader->add_filter( 'ninja_forms_display_response_message_class', $ninja_forms, 'form_response_message_class', 10, 2 );
+	}
+
+	/**
+	 * Adds in wooCommerce specific functionality added by the BoldGrid Theme Framework.
+	 *
+	 * @since 1.4.1
+	 * @access private
+	 */
+	private function woocommerce() {
+		$woo = new Boldgrid_Framework_Woocommerce( $this->configs );
+		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $woo, 'buttons' );
 	}
 
 	/**

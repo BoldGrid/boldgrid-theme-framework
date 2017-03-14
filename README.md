@@ -30,6 +30,7 @@ user guide for more information.
 * Update: Let sidebar search widget have standard appearance on small devices.
 * Bug fix: Fixing issues with wooCommerce ratings and extraneous div outputting.
 * Bug fix: Customizer tablet preview not showing tablet size menu.
+* Update: Add default button styles for wooCommerce support.
 
 ### 1.4 ###
 * Bug fix: CTA widget inherits well class if user tries to re-add it.

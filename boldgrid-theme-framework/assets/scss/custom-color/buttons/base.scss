@@ -1,5 +1,6 @@
 @if variable-exists( button-primary-classes ) {
-	.button-primary {
+	.button-primary,
+	.woocommerce .button {
 		.palette-primary & {
 			@extend #{$button-primary-classes} !optional;
 		}
@@ -7,7 +8,8 @@
 }
 
 @if variable-exists( button-secondary-classes ) {
-	.button-secondary {
+	.button-secondary,
+	.woocommerce .alt.button {
 		.palette-primary & {
 			@extend #{$button-secondary-classes} !optional;
 		}

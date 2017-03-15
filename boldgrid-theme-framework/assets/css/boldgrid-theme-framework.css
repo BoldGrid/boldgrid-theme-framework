@@ -607,16 +607,16 @@ html.admin-bar {
   justify-content: space-between;
   flex-direction: column;
   margin-top: 2em;
-  width: calc( 100% * (1/4) - 1.6em); }
+  width: calc( 100% * (1/4) - 25px); }
 
 @media screen and (max-width: 992px) {
   .palette-primary.woocommerce ul.products li.product, .palette-primary.woocommerce-page ul.products li.product {
-    width: calc( 100% * (1/3) - 2em);
-    margin: 2em 2.2%; } }
+    width: calc( 100% * (1/3) - 25px);
+    margin: 2em 1.2%; } }
 
 @media screen and (max-width: 768px) {
   .palette-primary.woocommerce ul.products li.product, .palette-primary.woocommerce-page ul.products li.product {
-    width: calc( 100% * (1/2) - 2em);
+    width: calc( 100% * (1/2) - 32px);
     margin: 2em 2.2%; } }
 
 .palette-primary.woocommerce ul.products li.product .button-primary, .palette-primary.woocommerce-page ul.products li.product .button-primary {

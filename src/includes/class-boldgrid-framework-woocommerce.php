@@ -40,6 +40,18 @@ class BoldGrid_Framework_Woocommerce {
 		$this->configs = $configs;
 	}
 
+	/**
+	 * Filter add_to_cart_url.
+	 *
+	 * This is responsible for filtering the add to cart buttons  used throughout
+	 * wooCommerce and placing our button classes on them.
+	 *
+	 * @global $product wooCommerce global product info.
+	 *
+	 * @param  string $link Markup for the link to place on wooCommerce pages.
+	 *
+	 * @return string $link Markup to use for add to cart buttons in wooCommerce.
+	 */
 	public function buttons( $link ) {
 		global $product;
 		$link = sprintf( '<a rel="nofollow" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s" class="%s">%s</a>',

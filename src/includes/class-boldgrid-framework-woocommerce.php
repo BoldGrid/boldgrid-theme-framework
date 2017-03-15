@@ -76,7 +76,7 @@ class BoldGrid_Framework_Woocommerce {
 	 * @return String
 	 */
 	public function woocommerce_custom_sale_text( $text, $post, $_product ) {
-		return '<span class="onsale color1-background-color">Sale!</span>';
+		return '<span class="onsale color2-background-color">Sale!</span>';
 	}
 
 	/**

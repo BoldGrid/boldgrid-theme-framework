@@ -94,6 +94,7 @@ class BoldGrid_Framework_Woocommerce {
 	public function select2_style() {
 		if ( class_exists( 'woocommerce' ) ) {
 			if ( is_checkout() ) {
+				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 				wp_enqueue_style(
 					'select2-bootstrap-css',
 					$this->configs['framework']['css_dir'] . 'select2-bootstrap/select2-bootstrap' . $suffix . '.css',

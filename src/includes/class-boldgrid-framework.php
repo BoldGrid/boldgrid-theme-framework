@@ -800,6 +800,9 @@ class BoldGrid_Framework {
 	private function woocommerce() {
 		$woo = new Boldgrid_Framework_Woocommerce( $this->configs );
 		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $woo, 'buttons' );
+		$this->loader->add_filter( 'woocommerce_sale_flash', $woo, 'woocommerce_custom_sale_text', 10, 3 );
+		$this->loader->add_filter( 'woocommerce_form_field_args', $woo, 'wc_form_field_args', 10, 3 );
+		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'select2_style' );
 	}
 
 	/**

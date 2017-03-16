@@ -25,7 +25,15 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_1 ) {
 	$text-contrast-palette-primary_1: text-contrast( $palette-primary_1 );
 	.color1-text-default { color: $text-contrast-palette-primary_1; }
-	.color-1-text-contrast { color: $text-contrast-palette-primary_1 ! important; }
+	.color-1-text-contrast {
+		color: $text-contrast-palette-primary_1 ! important;
+	}
+	.color-1-text-contrast-hover {
+		&:hover,
+		&:focus {
+			color: $text-contrast-palette-primary_1 ! important;
+		}
+	}
 	$ubtn-colors: append($ubtn-colors,('color-1' $palette-primary_1 $text-contrast-palette-primary_1));
 	@if $ubtn-theme-color == 'palette-primary_1' {
 		$ubtn-bgcolor: $palette-primary_1;
@@ -35,7 +43,15 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_2  ) {
 	$text-contrast-palette-primary_2: text-contrast( $palette-primary_2 );
 	.color2-text-default { color: $text-contrast-palette-primary_2; }
-	.color-2-text-contrast { color: $text-contrast-palette-primary_2 ! important; }
+	.color-2-text-contrast {
+		color: $text-contrast-palette-primary_2 ! important;
+	}
+	.color-2-text-contrast-hover {
+		&:hover,
+		&:focus {
+			color: $text-contrast-palette-primary_2 ! important;
+		}
+	}
 	$ubtn-colors: append($ubtn-colors,('color-2' $palette-primary_2 $text-contrast-palette-primary_2));
 	@if $ubtn-theme-color == 'palette-primary_2' {
 		$ubtn-bgcolor: $palette-primary_2;
@@ -45,7 +61,10 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_3 ) {
 	$text-contrast-palette-primary_3: text-contrast( $palette-primary_3 );
 	.color3-text-default { color: $text-contrast-palette-primary_3; }
-	.color-3-text-contrast { color: $text-contrast-palette-primary_3 ! important; }
+	.color-3-text-contrast,
+	.color-3-text-contrast-hover:hover {
+		color: $text-contrast-palette-primary_3 ! important;
+	}
 	@if $text-contrast-palette-primary_3 != null {
 		$ubtn-colors: append($ubtn-colors,('color-3' $palette-primary_3 $text-contrast-palette-primary_3));
 		@if $ubtn-theme-color == 'palette-primary_3' {
@@ -57,7 +76,10 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_4 ) {
 	$text-contrast-palette-primary_4: text-contrast( $palette-primary_4 );
 	.color4-text-default { color: $text-contrast-palette-primary_4; }
-	.color-4-text-contrast { color: $text-contrast-palette-primary_4 ! important; }
+	.color-4-text-contrast,
+	.color-4-text-contrast-hover:hover {
+		color: $text-contrast-palette-primary_4 ! important;
+	}
 	@if $text-contrast-palette-primary_4 != null {
 		$ubtn-colors: append($ubtn-colors,('color-4' $palette-primary_4 $text-contrast-palette-primary_4));
 		@if $ubtn-theme-color == 'palette-primary_4' {
@@ -69,7 +91,10 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_5 ) {
 	$text-contrast-palette-primary_5: text-contrast( $palette-primary_5 );
 	.color5-text-default { color: $text-contrast-palette-primary_5; }
-	.color-5-text-contrast { color: $text-contrast-palette-primary_5 ! important; }
+	.color-5-text-contrast,
+	.color-5-text-contrast-hover:hover {
+		color: $text-contrast-palette-primary_5 ! important;
+	}
 	@if $text-contrast-palette-primary_5 != null {
 		$ubtn-colors: append($ubtn-colors,('color-5' $palette-primary_5 $text-contrast-palette-primary_5));
 		@if $ubtn-theme-color == 'palette-primary_5' {
@@ -81,7 +106,10 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary-neutral-color ) {
 	$text-contrast-palette-primary-neutral-color: text-contrast( $palette-primary-neutral-color );
 	.color-neutral-text-default { color: $text-contrast-palette-primary-neutral-color; }
-	.color-neutral-text-contrast { color: $text-contrast-palette-primary-neutral-color ! important; }
+	.color-neutral-text-contrast,
+	.color-neutral-text-contrast-hover:hover {
+		color: $text-contrast-palette-primary-neutral-color ! important;
+	}
 	@if $text-contrast-palette-primary-neutral-color != null {
 		$ubtn-colors: append($ubtn-colors,('neutral-color' $palette-primary-neutral-color $text-contrast-palette-primary-neutral-color));
 		@if $ubtn-theme-color == 'palette-primary-neutral-color' {
@@ -96,7 +124,7 @@ $names: color background background-color border-color;
 @for $i from 1 through length( $names ) {
 	@for $color from 1 through length( $colors ) {
 		.color#{$color}-#{nth( $names, $i )} { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
-		.color#{$color}-#{nth($names, $i)}-hover:hover { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
+		.color#{$color}-#{nth($names, $i)}-hover { &:focus, &:hover { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; } }
 	}
 	@if variable-exists( palette-primary-neutral-color ) {
 		.color-neutral-#{nth($names, $i)} { #{nth( $names, $i )}: $palette-primary-neutral-color !important; }

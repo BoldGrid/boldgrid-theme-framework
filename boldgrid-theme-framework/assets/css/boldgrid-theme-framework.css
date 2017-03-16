@@ -702,6 +702,33 @@ html.admin-bar {
   .palette-primary.woocommerce #searchform.woocommerce-product-search .form-group, .palette-primary.woocommerce-page #searchform.woocommerce-product-search .form-group {
     display: inline-block; } }
 
+.palette-primary {
+  /* My Account Dashboard */ }
+
+.palette-primary .woocommerce-MyAccount-navigation-link a:before {
+  font-family: FontAwesome;
+  margin-left: -15px;
+  position: relative;
+  padding: 10px 15px; }
+
+.palette-primary .woocommerce-MyAccount-navigation-link--dashboard a:before {
+  content: "\f0e4"; }
+
+.palette-primary .woocommerce-MyAccount-navigation-link--orders a:before {
+  content: "\f218"; }
+
+.palette-primary .woocommerce-MyAccount-navigation-link--downloads a:before {
+  content: "\f019"; }
+
+.palette-primary .woocommerce-MyAccount-navigation-link--edit-account a:before {
+  content: "\f007"; }
+
+.palette-primary .woocommerce-MyAccount-navigation-link--edit-address a:before {
+  content: "\f2b9"; }
+
+.palette-primary .woocommerce-MyAccount-navigation-link--customer-logout a:before {
+  content: "\f08b"; }
+
 .palette-primary #add_payment_method #payment,
 .palette-primary .woocommerce-cart #payment,
 .palette-primary .woocommerce-checkout #payment {

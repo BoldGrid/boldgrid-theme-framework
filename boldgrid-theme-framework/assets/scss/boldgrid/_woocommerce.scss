@@ -119,6 +119,34 @@
 }
 
 .palette-primary {
+	/* My Account Dashboard */
+	.woocommerce-MyAccount-navigation-link {
+		a:before {
+			font-family: FontAwesome;
+			margin-left: -15px;
+			position: relative;
+			padding: 10px 15px;
+		}
+		&--dashboard a:before {
+			content: "\f0e4";
+		}
+		&--orders a:before {
+			content: "\f218";
+		}
+		&--downloads a:before {
+			content: "\f019";
+		}
+		&--edit-account a:before {
+			content: "\f007";
+		}
+		&--edit-address a:before {
+			content: "\f2b9";
+		}
+		&--customer-logout a:before {
+			content: "\f08b";
+		}
+	}
+
 	#add_payment_method,
 	.woocommerce-cart,
 	.woocommerce-checkout {

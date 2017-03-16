@@ -111,6 +111,9 @@ $names: color background background-color border-color;
 	}
 }
 .breadcrumb li a:not(.filler) {
+	&:after {
+		border-left-color: $palette-primary_1 !important;
+	}
 	&:hover, &:focus {
 		background: $palette-primary_2;
 		color: $text-contrast-palette-primary_2;

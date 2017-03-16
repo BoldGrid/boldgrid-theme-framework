@@ -203,10 +203,10 @@ class BoldGrid_Framework_Woocommerce {
 		return array(
 			'delimiter'   => '',
 			'wrap_before' => '<ol class="breadcrumb color1-background-color color1-text-default">
-				<li><a href="' . apply_filters( 'woocommerce_breadcrumb_home_url', $home_url ) . '"><i class="fa fa-home color3-color"></i><span class="sr-only">' . _x( 'Home', 'breadcrumb', 'woocommerce' ) . '</span></a></li>',
+				<li><a href="' . apply_filters( 'woocommerce_breadcrumb_home_url', $home_url ) . '"><i class="fa fa-home color1-text-default"></i><span class="sr-only">' . _x( 'Home', 'breadcrumb', 'woocommerce' ) . '</span></a></li>',
 			'wrap_after'  => '</ol>',
-			'before'      => '<li><span>',
-			'after'       => '</span></li>',
+			'before'      => '<li>',
+			'after'       => '</li>',
 			'home'        => '',
 		);
 	}

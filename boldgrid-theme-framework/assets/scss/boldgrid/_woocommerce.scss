@@ -23,7 +23,24 @@
 				}
 			}
 		}
+
 		/* Quantity Inputs */
+		div.product form.cart,
+		div.product p.cart {
+			margin: 2em 0;
+			display: flex;
+			align-items: center;
+		}
+		.input-group {
+			&.quantity {
+				display: flex;
+				flex: 1 0;
+				.qty.text {
+					width: 50px;
+					text-align: center;
+				}
+			}
+		}
 		.input-group-btn {
 			width: auto;
 			& > .btn {
@@ -33,9 +50,51 @@
 				height: 34px;
 			}
 		}
-		.input-number.input-text.qty.text {
-			width: 50px;
-			text-align: center;
+		/* Checkout */
+		&.woocommerce-checkout {
+			.btn.button-primary {
+				margin: 0;
+			}
+		}
+		/* Cart */
+		.cart {
+			@media only screen and ( max-width: 768px ) {
+				tr.cart_item td.product-quantity {
+					display: flex;
+					align-items: center;
+				}
+			}
+			.input-group.quantity {
+				display: flex;
+				float: none;
+				@media only screen and ( max-width: 768px ) {
+					justify-content: flex-end;
+				}
+			}
+			.coupon.form-inline {
+				input.form-control {
+					margin-right: 8px;
+					@media only screen and ( max-width: 768px ) {
+						margin-right: 14px;
+					}
+				}
+			}
+		}
+		@media only screen and ( max-width: 768px ) {
+			#add_payment_method,
+			&.woocommerce-cart,
+			&.woocommerce-checkout {
+				input[name="update_cart"] {
+					width: 100%;
+				}
+			}
+		}
+		&.woocommerce-cart .wc-proceed-to-checkout a.checkout-button {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: auto;
+			padding: calc( 1.25em / 2 ); /* Based on font-size increase in wooCommerce styles */
 		}
 
 		/* WooCommerce Widgets */
@@ -60,6 +119,17 @@
 }
 
 .palette-primary {
+	#add_payment_method,
+	.woocommerce-cart,
+	.woocommerce-checkout {
+		#payment {
+			background: transparent;
+			border-radius: 0;
+			ul.payment_methods {
+				border-bottom: 0;
+			}
+		}
+	}
 	.widget_layered_nav_filters ul {
 		padding: 1px;
 	}
@@ -70,66 +140,60 @@
 		list-style: none;
 		overflow: hidden;
 		margin-top: 20px;
-	}
-	.breadcrumb > li + li:before {
-		padding: 0;
-	}
-	.breadcrumb li {
-		float: left;
-	}
-	.breadcrumb li:last-child {
-		padding: 10px 25px 10px 45px;
-		position: relative;
-		display: block;
-	}
-	.breadcrumb li:last-child::before {
-		content: "";
-		color: transparent;
-		padding: 0;
-	}
-	.breadcrumb li span {
-		text-decoration: none;
-		padding: 10px 0 10px 45px;
-		position: relative;
-		display: block;
-		float: left;
-	}
-	.breadcrumb li span:after {
-		content: " ";
-		display: block;
-		width: 0;
-		height: 0;
-		border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
-		border-bottom: 50px solid transparent;
-		border-left: 30px solid currentColor;
-		position: absolute;
-		top: 50%;
-		margin-top: -50px;
-		left: 100%;
-		z-index: 2;
-	}
-	.breadcrumb li span:before {
-		content: " ";
-		display: block;
-		width: 0;
-		height: 0;
-		border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
-		border-bottom: 50px solid transparent;
-		border-left: 30px solid hsla(0, 0%, 83%, .9);
-		position: absolute;
-		top: 50%;
-		margin-top: -50px;
-		margin-left: 1px;
-		left: 100%;
-		z-index: 1;
-	}
-	.breadcrumb li:first-child span {
-		padding-left: 15px;
-	}
-	.breadcrumb li span:hover {
-		background: #ffc107;
-	}
-	.breadcrumb li span:hover:after {
-		border-left-color: #ffc107 !important;
+		li {
+			float: left;
+			&:last-child a {
+				padding: 10px 25px 10px 45px;
+				position: relative;
+				display: block;
+				:before {
+					content: "";
+					color: transparent;
+					padding: 0;
+				}
+			}
+			&:first-child a {
+				padding-left: 15px;
+			}
+			a {
+				text-decoration: none;
+				padding: 10px 0 10px 45px;
+				position: relative;
+				display: block;
+				float: left;
+				&:before {
+					content: " ";
+					display: block;
+					width: 0;
+					height: 0;
+					border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+					border-bottom: 50px solid transparent;
+					border-left: 30px solid hsla(0, 0%, 83%, .9);
+					position: absolute;
+					top: 50%;
+					margin-top: -50px;
+					margin-left: 1px;
+					left: 100%;
+					z-index: 1;
+				}
+				&:after {
+					content: " ";
+					display: block;
+					width: 0;
+					height: 0;
+					border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+					border-bottom: 50px solid transparent;
+					border-left: 30px solid currentColor;
+					position: absolute;
+					top: 50%;
+					margin-top: -50px;
+					left: 100%;
+					z-index: 2;
+				}
+			}
+		}
+		> li + li:before {
+			padding: 0;
+		}
 	}
 }

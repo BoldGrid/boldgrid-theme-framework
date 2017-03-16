@@ -23,4 +23,10 @@ jQuery( document ).ready( function( $ ) {
 		$( '.sidebar .ui-slider' ).css( 'display', 'block' );
 		$( '.sidebar .ui-slider' ).addClass( 'color1-background-color' ).children().addClass( 'color2-background-color' );
 	});
+	$( 'body' ).find( '.button' )
+		.removeClass( 'button' )
+		.addClass( '.btn .button-primary' );
+	$( 'body' ).find( '.button.alt' )
+		.removeClass( 'button alt' )
+		.addClass( '.btn .button-secondary' );
 });

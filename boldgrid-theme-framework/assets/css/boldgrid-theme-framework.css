@@ -599,6 +599,8 @@ html.admin-bar {
 .palette-primary.woocommerce, .palette-primary.woocommerce-page {
   /* Products */
   /* Quantity Inputs */
+  /* Checkout */
+  /* Cart */
   /* WooCommerce Widgets */
   /**
 		 * Layered nav seems to be off, so the close icon is cut off.  Adjusting
@@ -629,6 +631,21 @@ html.admin-bar {
   .palette-primary.woocommerce ul.products li.product, .palette-primary.woocommerce-page ul.products li.product {
     width: calc( 100% * (1/2)); } }
 
+.palette-primary.woocommerce div.product form.cart,
+.palette-primary.woocommerce div.product p.cart, .palette-primary.woocommerce-page div.product form.cart,
+.palette-primary.woocommerce-page div.product p.cart {
+  margin: 2em 0;
+  display: flex;
+  align-items: center; }
+
+.palette-primary.woocommerce .input-group.quantity, .palette-primary.woocommerce-page .input-group.quantity {
+  display: flex;
+  flex: 1 0; }
+
+.palette-primary.woocommerce .input-group.quantity .qty.text, .palette-primary.woocommerce-page .input-group.quantity .qty.text {
+  width: 50px;
+  text-align: center; }
+
 .palette-primary.woocommerce .input-group-btn, .palette-primary.woocommerce-page .input-group-btn {
   width: auto; }
 
@@ -638,9 +655,40 @@ html.admin-bar {
   line-height: 1;
   height: 34px; }
 
-.palette-primary.woocommerce .input-number.input-text.qty.text, .palette-primary.woocommerce-page .input-number.input-text.qty.text {
-  width: 50px;
-  text-align: center; }
+.palette-primary.woocommerce.woocommerce-checkout .btn.button-primary, .palette-primary.woocommerce-page.woocommerce-checkout .btn.button-primary {
+  margin: 0; }
+
+@media only screen and (max-width: 768px) {
+  .palette-primary.woocommerce .cart tr.cart_item td.product-quantity, .palette-primary.woocommerce-page .cart tr.cart_item td.product-quantity {
+    display: flex;
+    align-items: center; } }
+
+.palette-primary.woocommerce .cart .input-group.quantity, .palette-primary.woocommerce-page .cart .input-group.quantity {
+  display: flex;
+  float: none; }
+
+@media only screen and (max-width: 768px) {
+  .palette-primary.woocommerce .cart .input-group.quantity, .palette-primary.woocommerce-page .cart .input-group.quantity {
+    justify-content: flex-end; } }
+
+.palette-primary.woocommerce .cart .coupon.form-inline input.form-control, .palette-primary.woocommerce-page .cart .coupon.form-inline input.form-control {
+  margin-right: 8px; }
+
+@media only screen and (max-width: 768px) {
+  .palette-primary.woocommerce .cart .coupon.form-inline input.form-control, .palette-primary.woocommerce-page .cart .coupon.form-inline input.form-control {
+    margin-right: 14px; } }
+
+@media only screen and (max-width: 768px) {
+  .palette-primary.woocommerce #add_payment_method input[name="update_cart"], .palette-primary.woocommerce.woocommerce-cart input[name="update_cart"], .palette-primary.woocommerce.woocommerce-checkout input[name="update_cart"], .palette-primary.woocommerce-page #add_payment_method input[name="update_cart"], .palette-primary.woocommerce-page.woocommerce-cart input[name="update_cart"], .palette-primary.woocommerce-page.woocommerce-checkout input[name="update_cart"] {
+    width: 100%; } }
+
+.palette-primary.woocommerce.woocommerce-cart .wc-proceed-to-checkout a.checkout-button, .palette-primary.woocommerce-page.woocommerce-cart .wc-proceed-to-checkout a.checkout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding: calc( 1.25em / 2);
+  /* Based on font-size increase in wooCommerce styles */ }
 
 .palette-primary.woocommerce .button-primary,
 .palette-primary.woocommerce .button-secondary, .palette-primary.woocommerce-page .button-primary,
@@ -654,6 +702,17 @@ html.admin-bar {
   .palette-primary.woocommerce #searchform.woocommerce-product-search .form-group, .palette-primary.woocommerce-page #searchform.woocommerce-product-search .form-group {
     display: inline-block; } }
 
+.palette-primary #add_payment_method #payment,
+.palette-primary .woocommerce-cart #payment,
+.palette-primary .woocommerce-checkout #payment {
+  background: transparent;
+  border-radius: 0; }
+
+.palette-primary #add_payment_method #payment ul.payment_methods,
+.palette-primary .woocommerce-cart #payment ul.payment_methods,
+.palette-primary .woocommerce-checkout #payment ul.payment_methods {
+  border-bottom: 0; }
+
 .palette-primary .widget_layered_nav_filters ul {
   padding: 1px; }
 
@@ -665,45 +724,30 @@ html.admin-bar {
   overflow: hidden;
   margin-top: 20px; }
 
-.palette-primary .breadcrumb > li + li:before {
-  padding: 0; }
-
 .palette-primary .breadcrumb li {
   float: left; }
 
-.palette-primary .breadcrumb li:last-child {
+.palette-primary .breadcrumb li:last-child a {
   padding: 10px 25px 10px 45px;
   position: relative;
   display: block; }
 
-.palette-primary .breadcrumb li:last-child::before {
+.palette-primary .breadcrumb li:last-child a :before {
   content: "";
   color: transparent;
   padding: 0; }
 
-.palette-primary .breadcrumb li span {
+.palette-primary .breadcrumb li:first-child a {
+  padding-left: 15px; }
+
+.palette-primary .breadcrumb li a {
   text-decoration: none;
   padding: 10px 0 10px 45px;
   position: relative;
   display: block;
   float: left; }
 
-.palette-primary .breadcrumb li span:after {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent;
-  /* Go big on the size, and let overflow hide */
-  border-bottom: 50px solid transparent;
-  border-left: 30px solid currentColor;
-  position: absolute;
-  top: 50%;
-  margin-top: -50px;
-  left: 100%;
-  z-index: 2; }
-
-.palette-primary .breadcrumb li span:before {
+.palette-primary .breadcrumb li a:before {
   content: " ";
   display: block;
   width: 0;
@@ -719,11 +763,20 @@ html.admin-bar {
   left: 100%;
   z-index: 1; }
 
-.palette-primary .breadcrumb li:first-child span {
-  padding-left: 15px; }
+.palette-primary .breadcrumb li a:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  /* Go big on the size, and let overflow hide */
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid currentColor;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  left: 100%;
+  z-index: 2; }
 
-.palette-primary .breadcrumb li span:hover {
-  background: #ffc107; }
-
-.palette-primary .breadcrumb li span:hover:after {
-  border-left-color: #ffc107 !important; }
+.palette-primary .breadcrumb > li + li:before {
+  padding: 0; }

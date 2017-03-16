@@ -102,6 +102,25 @@ $names: color background background-color border-color;
 		.color-neutral-#{nth($names, $i)} { #{nth( $names, $i )}: $palette-primary-neutral-color !important; }
 	}
 }
+/** Adding minimal color definitions for default breadcrumbs **/
+.breadcrumb li a.filler {
+	background: $palette-primary_2;
+	color: $text-contrast-palette-primary_2;
+	&:after {
+		border-left-color: $palette-primary_2;
+	}
+}
+.breadcrumb li a:not(.filler) {
+	&:hover, &:focus {
+		background: $palette-primary_2;
+		color: $text-contrast-palette-primary_2;
+		&:after {
+			border-left-color: $palette-primary_2 !important;
+			color: $text-contrast-palette-primary_2;
+		}
+	}
+}
+
 /*
 * Base Colors
 *

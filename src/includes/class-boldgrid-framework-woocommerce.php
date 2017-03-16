@@ -79,6 +79,11 @@ class BoldGrid_Framework_Woocommerce {
 		return '<span class="onsale color2-background-color">Sale!</span>';
 	}
 
+	public function variation_dropdown( $args ) {
+		$args['class'] = 'form-control';
+		return $args;
+	}
+
 	/**
 	 * Adds select2 styles to match our theme.
 	 *
@@ -92,8 +97,6 @@ class BoldGrid_Framework_Woocommerce {
 	 * @return null
 	 */
 	public function select2_style() {
-		add_filter( 'woocommerce_enqueue_styles', '__return_false' );
-
 		if ( class_exists( 'woocommerce' ) ) {
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 			if ( is_checkout() ) {

@@ -798,13 +798,14 @@ class BoldGrid_Framework {
 	 * @access private
 	 */
 	private function woocommerce() {
+		//add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 		$woo = new Boldgrid_Framework_Woocommerce( $this->configs );
 		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $woo, 'buttons' );
 		$this->loader->add_filter( 'woocommerce_sale_flash', $woo, 'woocommerce_custom_sale_text', 10, 3 );
 		$this->loader->add_filter( 'woocommerce_form_field_args', $woo, 'wc_form_field_args', 10, 3 );
 		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'select2_style' );
 		$this->loader->add_filter( 'woocommerce_breadcrumb_defaults', $woo, 'breadcrumbs' );
-
+		$this->loader->add_filter( 'woocommerce_dropdown_variation_attribute_options_args', $woo, 'variation_dropdown' );
 	}
 
 	/**

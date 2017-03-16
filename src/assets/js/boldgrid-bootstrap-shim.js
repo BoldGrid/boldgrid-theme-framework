@@ -25,8 +25,8 @@ jQuery( document ).ready( function( $ ) {
 	});
 	$( 'body' ).find( '.button' )
 		.removeClass( 'button' )
-		.addClass( '.btn .button-primary' );
+		.addClass( 'btn button-primary' );
 	$( 'body' ).find( '.button.alt' )
 		.removeClass( 'button alt' )
-		.addClass( '.btn .button-secondary' );
+		.addClass( 'btn button-secondary' );
 });

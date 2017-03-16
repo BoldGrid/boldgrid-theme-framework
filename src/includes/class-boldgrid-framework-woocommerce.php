@@ -93,12 +93,20 @@ class BoldGrid_Framework_Woocommerce {
 	 */
 	public function select2_style() {
 		if ( class_exists( 'woocommerce' ) ) {
+			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 			if ( is_checkout() ) {
-				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 				wp_enqueue_style(
 					'select2-bootstrap-css',
 					$this->configs['framework']['css_dir'] . 'select2-bootstrap/select2-bootstrap' . $suffix . '.css',
 					array( 'select2' ),
+					'1.4.6'
+				);
+			}
+			if ( is_product() || is_cart() ) {
+				wp_enqueue_script(
+					'bgtfw-woo-quantity',
+					$this->configs['framework']['js_dir'] . 'woocommerce/quantity' . $suffix . '.js',
+					array( 'jquery' ),
 					'1.4.6'
 				);
 			}
@@ -189,5 +197,17 @@ class BoldGrid_Framework_Woocommerce {
 		}
 
 		return $args;
+	}
+	public function breadcrumbs() {
+		$home_url = get_home_url();
+		return array(
+			'delimiter'   => '',
+			'wrap_before' => '<ol class="breadcrumb color1-background-color color1-text-default">
+				<li><a href="' . apply_filters( 'woocommerce_breadcrumb_home_url', $home_url ) . '"><i class="fa fa-home color3-color"></i><span class="sr-only">' . _x( 'Home', 'breadcrumb', 'woocommerce' ) . '</span></a></li>',
+			'wrap_after'  => '</ol>',
+			'before'      => '<li><span>',
+			'after'       => '</span></li>',
+			'home'        => '',
+		);
 	}
 }

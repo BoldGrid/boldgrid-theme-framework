@@ -596,6 +596,16 @@ html.admin-bar {
 /*--------------------------------------------------------------
 # WooCommerce
 --------------------------------------------------------------*/
+.palette-primary.woocommerce, .palette-primary.woocommerce-page {
+  /* Products */
+  /* Quantity Inputs */
+  /* WooCommerce Widgets */
+  /**
+		 * Layered nav seems to be off, so the close icon is cut off.  Adjusting
+		 * padding by 1px seems to get everything looking right.
+		 */
+  /* Product Search */ }
+
 .palette-primary.woocommerce ul.products, .palette-primary.woocommerce-page ul.products {
   display: flex;
   flex-wrap: wrap;
@@ -619,5 +629,101 @@ html.admin-bar {
   .palette-primary.woocommerce ul.products li.product, .palette-primary.woocommerce-page ul.products li.product {
     width: calc( 100% * (1/2)); } }
 
-.palette-primary.woocommerce ul.products li.product .button-primary, .palette-primary.woocommerce-page ul.products li.product .button-primary {
+.palette-primary.woocommerce .input-group-btn, .palette-primary.woocommerce-page .input-group-btn {
+  width: auto; }
+
+.palette-primary.woocommerce .input-group-btn > .btn, .palette-primary.woocommerce-page .input-group-btn > .btn {
+  padding: 11px;
+  font-size: 14px;
+  line-height: 1;
+  height: 34px; }
+
+.palette-primary.woocommerce .input-number.input-text.qty.text, .palette-primary.woocommerce-page .input-number.input-text.qty.text {
+  width: 50px;
+  text-align: center; }
+
+.palette-primary.woocommerce .button-primary,
+.palette-primary.woocommerce .button-secondary, .palette-primary.woocommerce-page .button-primary,
+.palette-primary.woocommerce-page .button-secondary {
   padding: 0 1em; }
+
+.palette-primary.woocommerce .widget_layered_nav_filters ul, .palette-primary.woocommerce-page .widget_layered_nav_filters ul {
+  padding: 1px; }
+
+@media only screen and (min-width: 768px) {
+  .palette-primary.woocommerce #searchform.woocommerce-product-search .form-group, .palette-primary.woocommerce-page #searchform.woocommerce-product-search .form-group {
+    display: inline-block; } }
+
+.palette-primary .widget_layered_nav_filters ul {
+  padding: 1px; }
+
+.palette-primary .breadcrumb {
+  display: inline-block;
+  padding: 0px;
+  background: #D4D4D4;
+  list-style: none;
+  overflow: hidden;
+  margin-top: 20px; }
+
+.palette-primary .breadcrumb > li + li:before {
+  padding: 0; }
+
+.palette-primary .breadcrumb li {
+  float: left; }
+
+.palette-primary .breadcrumb li:last-child {
+  padding: 10px 25px 10px 45px;
+  position: relative;
+  display: block; }
+
+.palette-primary .breadcrumb li:last-child::before {
+  content: "";
+  color: transparent;
+  padding: 0; }
+
+.palette-primary .breadcrumb li span {
+  text-decoration: none;
+  padding: 10px 0 10px 45px;
+  position: relative;
+  display: block;
+  float: left; }
+
+.palette-primary .breadcrumb li span:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  /* Go big on the size, and let overflow hide */
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid currentColor;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  left: 100%;
+  z-index: 2; }
+
+.palette-primary .breadcrumb li span:before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  /* Go big on the size, and let overflow hide */
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid rgba(212, 212, 212, 0.9);
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 1; }
+
+.palette-primary .breadcrumb li:first-child span {
+  padding-left: 15px; }
+
+.palette-primary .breadcrumb li span:hover {
+  background: #ffc107; }
+
+.palette-primary .breadcrumb li span:hover:after {
+  border-left-color: #ffc107 !important; }

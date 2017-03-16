@@ -803,6 +803,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'woocommerce_sale_flash', $woo, 'woocommerce_custom_sale_text', 10, 3 );
 		$this->loader->add_filter( 'woocommerce_form_field_args', $woo, 'wc_form_field_args', 10, 3 );
 		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'select2_style' );
+		$this->loader->add_filter( 'woocommerce_breadcrumb_defaults', $woo, 'breadcrumbs' );
+
 	}
 
 	/**

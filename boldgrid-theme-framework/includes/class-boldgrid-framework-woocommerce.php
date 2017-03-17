@@ -99,7 +99,7 @@ class BoldGrid_Framework_Woocommerce {
 	public function select2_style() {
 		if ( class_exists( 'woocommerce' ) ) {
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-			if ( is_checkout() ) {
+			if ( is_checkout() || ( is_account_page() && is_user_logged_in() ) ) {
 				wp_enqueue_style(
 					'select2-bootstrap-css',
 					$this->configs['framework']['css_dir'] . 'select2-bootstrap/select2-bootstrap' . $suffix . '.css',
@@ -111,6 +111,14 @@ class BoldGrid_Framework_Woocommerce {
 				wp_enqueue_script(
 					'bgtfw-woo-quantity',
 					$this->configs['framework']['js_dir'] . 'woocommerce/quantity' . $suffix . '.js',
+					array( 'jquery' ),
+					'1.4.6'
+				);
+			}
+			if ( is_account_page() && ! is_user_logged_in() ) {
+				wp_enqueue_script(
+					'bgtfw-woo-user-login',
+					$this->configs['framework']['js_dir'] . 'woocommerce/user-login' . $suffix . '.js',
 					array( 'jquery' ),
 					'1.4.6'
 				);

@@ -808,3 +808,17 @@ html.admin-bar {
 
 .palette-primary .breadcrumb > li + li:before {
   padding: 0; }
+
+.palette-primary.woocommerce-account .panel.user-login, .palette-primary.woocommerce-account .panel.user-registration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  min-height: 400; }
+
+.palette-primary.woocommerce-account .panel.user-registration {
+  display: none; }
+
+.palette-primary.woocommerce-account .input-group-addon:first-child {
+  width: 39px; }

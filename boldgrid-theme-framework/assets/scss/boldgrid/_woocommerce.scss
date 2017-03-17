@@ -119,34 +119,6 @@
 }
 
 .palette-primary {
-	/* My Account Dashboard */
-	.woocommerce-MyAccount-navigation-link {
-		a:before {
-			font-family: FontAwesome;
-			margin-left: -15px;
-			position: relative;
-			padding: 10px 15px;
-		}
-		&--dashboard a:before {
-			content: "\f0e4";
-		}
-		&--orders a:before {
-			content: "\f218";
-		}
-		&--downloads a:before {
-			content: "\f019";
-		}
-		&--edit-account a:before {
-			content: "\f007";
-		}
-		&--edit-address a:before {
-			content: "\f2b9";
-		}
-		&--customer-logout a:before {
-			content: "\f08b";
-		}
-	}
-
 	#add_payment_method,
 	.woocommerce-cart,
 	.woocommerce-checkout {
@@ -161,67 +133,6 @@
 	.widget_layered_nav_filters ul {
 		padding: 1px;
 	}
-	.breadcrumb {
-		display: inline-block;
-		padding: 0px;
-		background: #D4D4D4;
-		list-style: none;
-		overflow: hidden;
-		margin-top: 20px;
-		li {
-			float: left;
-			&:last-child a {
-				padding: 10px 25px 10px 45px;
-				position: relative;
-				display: block;
-				:before {
-					content: "";
-					color: transparent;
-					padding: 0;
-				}
-			}
-			&:first-child a {
-				padding-left: 15px;
-			}
-			a {
-				text-decoration: none;
-				padding: 10px 0 10px 45px;
-				position: relative;
-				display: block;
-				float: left;
-				&:before {
-					content: " ";
-					display: block;
-					width: 0;
-					height: 0;
-					border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
-					border-bottom: 50px solid transparent;
-					border-left: 30px solid hsla(0, 0%, 83%, .9);
-					position: absolute;
-					top: 50%;
-					margin-top: -50px;
-					margin-left: 1px;
-					left: 100%;
-					z-index: 1;
-				}
-				&:after {
-					content: " ";
-					display: block;
-					width: 0;
-					height: 0;
-					border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
-					border-bottom: 50px solid transparent;
-					border-left: 30px solid;
-					position: absolute;
-					top: 50%;
-					margin-top: -50px;
-					left: 100%;
-					z-index: 2;
-				}
-			}
-		}
-		> li + li:before {
-			padding: 0;
-		}
-	}
+	@import "woocommerce/dashboard-navigation";
+	@import "woocommerce/breadcrumbs";
 }

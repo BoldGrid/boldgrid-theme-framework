@@ -599,6 +599,7 @@ html.admin-bar {
 .palette-primary.woocommerce, .palette-primary.woocommerce-page {
   /* Products */
   /* Quantity Inputs */
+  /* Grouped Products */
   /* Checkout */
   /* Cart */
   /* WooCommerce Widgets */
@@ -654,6 +655,12 @@ html.admin-bar {
   font-size: 14px;
   line-height: 1;
   height: 34px; }
+
+.palette-primary.woocommerce div.product.product-type-grouped form.cart, .palette-primary.woocommerce-page div.product.product-type-grouped form.cart {
+  display: block; }
+
+.palette-primary.woocommerce div.product.product-type-grouped form.cart .group_table > tbody, .palette-primary.woocommerce-page div.product.product-type-grouped form.cart .group_table > tbody {
+  float: left; }
 
 .palette-primary.woocommerce.woocommerce-checkout .btn.button-primary, .palette-primary.woocommerce-page.woocommerce-checkout .btn.button-primary {
   margin: 0; }

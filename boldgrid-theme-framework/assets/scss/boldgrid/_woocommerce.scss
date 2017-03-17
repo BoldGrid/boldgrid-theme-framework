@@ -50,6 +50,15 @@
 				height: 34px;
 			}
 		}
+		/* Grouped Products */
+		div.product.product-type-grouped {
+			form.cart {
+				display: block;
+				.group_table > tbody {
+					float: left;
+				}
+			}
+		}
 		/* Checkout */
 		&.woocommerce-checkout {
 			.btn.button-primary {

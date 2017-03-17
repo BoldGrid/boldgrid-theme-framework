@@ -822,3 +822,42 @@ html.admin-bar {
 
 .palette-primary.woocommerce-account .input-group-addon:first-child {
   width: 39px; }
+
+.palette-primary input[type=radio].with-font,
+.palette-primary input[type=checkbox].with-font {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+
+.palette-primary input[type=radio].with-font ~ label:before,
+.palette-primary input[type=checkbox].with-font ~ label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f1db";
+  letter-spacing: 10px;
+  font-size: 1em;
+  color: #535353;
+  width: 1.2em; }
+
+.palette-primary input[type=radio].with-font:checked ~ label:before,
+.palette-primary input[type=checkbox].with-font:checked ~ label:before {
+  content: "\f00c";
+  font-size: 1em;
+  color: darkgreen;
+  letter-spacing: 5px; }
+
+.palette-primary input[type=checkbox].with-font ~ label:before {
+  content: "\f096"; }
+
+.palette-primary input[type=checkbox].with-font:checked ~ label:before {
+  content: "\f046";
+  color: darkgreen; }
+
+.palette-primary input[type=radio].with-font:focus ~ label:before,
+.palette-primary input[type=checkbox].with-font:focus ~ label:before {
+  color: green; }

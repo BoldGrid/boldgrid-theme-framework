@@ -1,0 +1,19 @@
+&.woocommerce-account {
+	.panel {
+		&.user-login,
+		&.user-registration {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			flex-wrap: wrap;
+			min-height: 400;
+		}
+		&.user-registration {
+			display: none;
+		}
+	}
+	.input-group-addon:first-child {
+		width: 39px;
+	}
+}

@@ -11,6 +11,9 @@
 	display: flex;
 	align-items: center;
 	margin: 0 1em;
+	a {
+		padding: 0 1em;
+	}
 	.btn.button-primary {
 		margin: 0 1.5em 0 0em;
 	}
@@ -113,4 +116,15 @@
 	background-color: #fcf8e3;
 	border-color: #f1daab;
 	color: #c09853;
+}
+.alert-danger {
+	background-color: #f2dede;
+	border-color: #e0b1b8;
+	color: #b94a48;
+}
+
+.alert-white.alert-danger .icon,
+.alert-white.alert-danger .icon:after {
+	border-color: #ca452e;
+	background: #da4932;
 }

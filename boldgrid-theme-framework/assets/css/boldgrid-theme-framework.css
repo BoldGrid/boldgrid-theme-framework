@@ -889,6 +889,9 @@ html.admin-bar {
   align-items: center;
   margin: 0 1em; }
 
+.palette-primary .alert-message a {
+  padding: 0 1em; }
+
 .palette-primary .alert-message .btn.button-primary {
   margin: 0 1.5em 0 0em; }
 
@@ -976,3 +979,13 @@ html.admin-bar {
   background-color: #fcf8e3;
   border-color: #f1daab;
   color: #c09853; }
+
+.palette-primary .alert-danger {
+  background-color: #f2dede;
+  border-color: #e0b1b8;
+  color: #b94a48; }
+
+.palette-primary .alert-white.alert-danger .icon,
+.palette-primary .alert-white.alert-danger .icon:after {
+  border-color: #ca452e;
+  background: #da4932; }

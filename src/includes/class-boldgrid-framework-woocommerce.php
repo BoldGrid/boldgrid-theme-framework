@@ -240,8 +240,8 @@ class BoldGrid_Framework_Woocommerce {
 		$home_url = get_home_url();
 		return array(
 			'delimiter'   => '',
-			'wrap_before' => '<ol class="breadcrumb color1-background-color color1-text-default">
-				<li><a href="' . apply_filters( 'woocommerce_breadcrumb_home_url', $home_url ) . '"><i class="fa fa-home color1-text-default"></i><span class="sr-only">' . _x( 'Home', 'breadcrumb', 'woocommerce' ) . '</span></a></li>',
+			'wrap_before' => '<ol class="breadcrumb color1-background-color">
+				<li><a href="' . apply_filters( 'woocommerce_breadcrumb_home_url', $home_url ) . '"><i class="fa fa-home"></i><span class="sr-only">' . _x( 'Home', 'breadcrumb', 'woocommerce' ) . '</span></a></li>',
 			'wrap_after'  => '</ol>',
 			'before'      => '<li>',
 			'after'       => '</li>',

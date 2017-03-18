@@ -139,6 +139,7 @@ $names: color background background-color border-color;
 	}
 }
 .breadcrumb li a:not(.filler) {
+	color: $text-contrast-palette-primary_1;
 	&:after {
 		border-left-color: $palette-primary_1 !important;
 	}

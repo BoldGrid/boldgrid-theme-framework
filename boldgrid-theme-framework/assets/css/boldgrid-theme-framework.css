@@ -653,6 +653,7 @@ html.admin-bar {
   width: auto; }
 
 .palette-primary.woocommerce .input-group-btn > .btn, .palette-primary.woocommerce-page .input-group-btn > .btn {
+  border: 1px solid transparent;
   padding: 11px;
   font-size: 14px;
   line-height: 1;

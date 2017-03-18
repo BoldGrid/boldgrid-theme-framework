@@ -99,6 +99,10 @@ class BoldGrid_Framework_Woocommerce {
 	public function select2_style() {
 		if ( class_exists( 'woocommerce' ) ) {
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+			/**
+			 * Only needed in checkout pages, or if the use is logged in to account.
+			 */
 			if ( is_checkout() || ( is_account_page() && is_user_logged_in() ) ) {
 				wp_enqueue_style(
 					'select2-bootstrap-css',
@@ -107,6 +111,10 @@ class BoldGrid_Framework_Woocommerce {
 					'1.4.6'
 				);
 			}
+
+			/**
+			 * Only needed on cart and product pages.
+			 */
 			if ( is_product() || is_cart() ) {
 				wp_enqueue_script(
 					'bgtfw-woo-quantity',
@@ -115,6 +123,10 @@ class BoldGrid_Framework_Woocommerce {
 					'1.4.6'
 				);
 			}
+
+			/**
+			 * Only needed on the single-product pages.
+			 */
 			if ( is_product() ) {
 				wp_enqueue_script(
 					'bgtfw-woo-tabs',
@@ -123,7 +135,12 @@ class BoldGrid_Framework_Woocommerce {
 					'1.4.6'
 				);
 			}
-			if ( ( is_account_page() && ! is_user_logged_in() ) ) {
+
+			/**
+			 * Only needed if we're in account section, the user isn't logged in,
+			 * and the site owner has enabled user registration.
+			 */
+			if ( is_account_page() && ! is_user_logged_in() && get_option( 'woocommerce_enable_myaccount_registration' ) === 'yes' ) {
 				wp_enqueue_script(
 					'bgtfw-woo-user-login',
 					$this->configs['framework']['js_dir'] . 'woocommerce/user-login' . $suffix . '.js',

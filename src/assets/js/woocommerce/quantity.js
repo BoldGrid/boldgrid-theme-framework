@@ -14,8 +14,8 @@ jQuery( document ).ready( function( $ ) {
 			if ( ! isNaN( currentVal ) ) {
 				if ( 'minus' === type ) {
 					minValue = parseInt( input.attr( 'min' ) );
-					if ( ! minValue ) {
-						minValue = 1;
+					if ( isNaN( minValue ) ) {
+						minValue = 0;
 					}
 					if ( currentVal > minValue ) {
 						input.val( currentVal - 1 ).change();
@@ -52,8 +52,8 @@ jQuery( document ).ready( function( $ ) {
 			minValue =  parseInt( $( this ).attr( 'min' ) );
 			maxValue =  parseInt( $( this ).attr( 'max' ) );
 
-			if ( ! minValue ) {
-				minValue = 1;
+			if ( isNaN( minValue ) ) {
+				minValue = 0;
 			}
 
 			if ( ! maxValue ) {

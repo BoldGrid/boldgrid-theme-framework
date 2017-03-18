@@ -607,6 +607,7 @@ html.admin-bar {
 		 * Layered nav seems to be off, so the close icon is cut off.  Adjusting
 		 * padding by 1px seems to get everything looking right.
 		 */
+  /* Shopping Cart Widgets */
   /* Product Search */ }
 
 .palette-primary.woocommerce ul.products, .palette-primary.woocommerce-page ul.products {
@@ -637,6 +638,7 @@ html.admin-bar {
 .palette-primary.woocommerce-page div.product p.cart {
   margin: 2em 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center; }
 
 .palette-primary.woocommerce .input-group.quantity, .palette-primary.woocommerce-page .input-group.quantity {
@@ -704,6 +706,9 @@ html.admin-bar {
 
 .palette-primary.woocommerce .widget_layered_nav_filters ul, .palette-primary.woocommerce-page .widget_layered_nav_filters ul {
   padding: 1px; }
+
+.palette-primary.woocommerce .widget_shopping_cart .button-primary, .palette-primary.woocommerce-page .widget_shopping_cart .button-primary {
+  padding: .5em 1em; }
 
 @media only screen and (min-width: 768px) {
   .palette-primary.woocommerce #searchform.woocommerce-product-search .form-group, .palette-primary.woocommerce-page #searchform.woocommerce-product-search .form-group {

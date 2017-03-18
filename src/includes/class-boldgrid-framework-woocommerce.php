@@ -115,7 +115,15 @@ class BoldGrid_Framework_Woocommerce {
 					'1.4.6'
 				);
 			}
-			if ( is_account_page() && ! is_user_logged_in() ) {
+			if ( is_product() ) {
+				wp_enqueue_script(
+					'bgtfw-woo-tabs',
+					$this->configs['framework']['js_dir'] . 'woocommerce/tabs' . $suffix . '.js',
+					array( 'jquery' ),
+					'1.4.6'
+				);
+			}
+			if ( ( is_account_page() && ! is_user_logged_in() ) ) {
 				wp_enqueue_script(
 					'bgtfw-woo-user-login',
 					$this->configs['framework']['js_dir'] . 'woocommerce/user-login' . $suffix . '.js',

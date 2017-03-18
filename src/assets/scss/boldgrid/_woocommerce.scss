@@ -29,6 +29,7 @@
 		div.product p.cart {
 			margin: 2em 0;
 			display: flex;
+			flex-wrap: wrap;
 			align-items: center;
 		}
 		.input-group {
@@ -111,6 +112,7 @@
 		.button-secondary, {
 			padding: 0 1em;
 		}
+
 		/**
 		 * Layered nav seems to be off, so the close icon is cut off.  Adjusting
 		 * padding by 1px seems to get everything looking right.
@@ -118,6 +120,14 @@
 		.widget_layered_nav_filters ul {
 			padding: 1px;
 		}
+
+		/* Shopping Cart Widgets */
+		.widget_shopping_cart {
+			.button-primary {
+				padding: .5em 1em;
+			}
+		}
+
 		/* Product Search */
 		@media only screen and ( min-width: 768px ) {
 			#searchform.woocommerce-product-search .form-group {

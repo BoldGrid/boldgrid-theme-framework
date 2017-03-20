@@ -903,7 +903,8 @@ html.admin-bar {
   padding: 0 1em; }
 
 .palette-primary .alert-message .btn.button-primary {
-  margin: 0 1.5em 0 0em; }
+  margin: 0 1.5em 0 0em;
+  padding: 0 1em; }
 
 .palette-primary .alert-white {
   background-image: linear-gradient(to bottom, #fff, #f9f9f9);

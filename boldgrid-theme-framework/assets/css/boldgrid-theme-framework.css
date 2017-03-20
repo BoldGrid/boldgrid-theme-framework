@@ -716,6 +716,7 @@ html.admin-bar {
     display: inline-block; } }
 
 .palette-primary {
+  /* Product Titles */
   /* My Account Dashboard */
   /* Breadcrumbs */
   /* Colors */ }
@@ -733,6 +734,9 @@ html.admin-bar {
 
 .palette-primary .widget_layered_nav_filters ul {
   padding: 1px; }
+
+.palette-primary .product .product_title:before {
+  all: initial; }
 
 .palette-primary .woocommerce-MyAccount-navigation-link a:before {
   font-family: FontAwesome;

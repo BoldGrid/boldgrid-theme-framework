@@ -971,6 +971,9 @@ html.admin-bar {
   position: absolute;
   top: 50%; }
 
+.palette-primary .alert-white .icon i.fa-info {
+  left: 18px; }
+
 .palette-primary .alert-success {
   color: #3c763d;
   background-color: #dff0d8;

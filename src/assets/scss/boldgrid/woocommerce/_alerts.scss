@@ -80,6 +80,9 @@
 	margin-top: -10px;
 	position: absolute;
 	top: 50%;
+	&.fa-info {
+		left: 18px;
+	}
 }
 /* Colors */
 .alert-success {

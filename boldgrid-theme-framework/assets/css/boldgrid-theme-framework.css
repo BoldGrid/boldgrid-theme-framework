@@ -738,8 +738,9 @@ html.admin-bar {
 .palette-primary .product .product_title:before {
   all: initial; }
 
-.palette-primary .button-primary,
-.palette-primary .button-secondary {
+.palette-primary .woocommerce .button-primary,
+.palette-primary .woocommerce .button-secondary {
+  display: block;
   height: auto;
   padding: 0 .5em; }
 

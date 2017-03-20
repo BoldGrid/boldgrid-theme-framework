@@ -109,10 +109,6 @@
 		}
 
 		/* WooCommerce Widgets */
-		.button-primary,
-		.button-secondary, {
-			padding: 0 1em;
-		}
 
 		/**
 		 * Layered nav seems to be off, so the close icon is cut off.  Adjusting
@@ -154,6 +150,7 @@
 		padding: 1px;
 	}
 	@import "woocommerce/titles";
+	@import "woocommerce/buttons";
 	@import "woocommerce/dashboard-navigation";
 	@import "woocommerce/breadcrumbs";
 	@import "woocommerce/login";

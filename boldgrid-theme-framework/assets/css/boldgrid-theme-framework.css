@@ -700,11 +700,6 @@ html.admin-bar {
   padding: calc( 1.25em / 2);
   /* Based on font-size increase in wooCommerce styles */ }
 
-.palette-primary.woocommerce .button-primary,
-.palette-primary.woocommerce .button-secondary, .palette-primary.woocommerce-page .button-primary,
-.palette-primary.woocommerce-page .button-secondary {
-  padding: 0 1em; }
-
 .palette-primary.woocommerce .widget_layered_nav_filters ul, .palette-primary.woocommerce-page .widget_layered_nav_filters ul {
   padding: 1px; }
 
@@ -717,6 +712,7 @@ html.admin-bar {
 
 .palette-primary {
   /* Product Titles */
+  /* Buttons need a thorough reset so they are inheriting content-specific props */
   /* My Account Dashboard */
   /* Breadcrumbs */
   /* Colors */ }
@@ -735,8 +731,17 @@ html.admin-bar {
 .palette-primary .widget_layered_nav_filters ul {
   padding: 1px; }
 
+.palette-primary .product .product_title {
+  color: currentColor;
+  /* needs testing for proper inheritence across all themes */ }
+
 .palette-primary .product .product_title:before {
   all: initial; }
+
+.palette-primary .button-primary,
+.palette-primary .button-secondary {
+  height: auto;
+  padding: 0 .5em; }
 
 .palette-primary .woocommerce-MyAccount-navigation-link a:before {
   font-family: FontAwesome;

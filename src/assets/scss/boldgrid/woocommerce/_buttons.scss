@@ -1,0 +1,6 @@
+/* Buttons need a thorough reset so they are inheriting content-specific props */
+.button-primary,
+.button-secondary, {
+	height: auto;
+	padding: 0 .5em;
+}

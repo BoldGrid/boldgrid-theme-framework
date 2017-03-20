@@ -70,6 +70,12 @@
 		/* Cart */
 		.cart {
 			@media only screen and ( max-width: 768px ) {
+				&.shop_table.shop_table_responsive {
+					.input-group.quantity {
+						display: flex;
+						justify-content: flex-end;
+					}
+				}
 				tr.cart_item td.product-quantity {
 					display: flex;
 					align-items: center;
@@ -78,9 +84,6 @@
 			.input-group.quantity {
 				display: flex;
 				float: none;
-				@media only screen and ( max-width: 768px ) {
-					justify-content: flex-end;
-				}
 			}
 			.coupon.form-inline {
 				input.form-control {

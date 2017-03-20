@@ -1,9 +1,18 @@
-/* Buttons need a thorough reset so they are inheriting content-specific props */
-&.woocommerce {
+/* Buttons need some tweaks */
+&.woocommerce,
+&.woocommerce-page  {
+	/* Cross Sells */
 	.button-primary,
-	.button-secondary, {
-		display: block;
+	.button-secondary {
 		height: auto;
-		padding: 0 .5em;
+		padding: 0 1em;
+		margin: 0;
+		line-height: 3;
+		font-size: 14px;
+	}
+	.cross-sells .products {
+		.btn.button-primary {
+			padding: 0;
+		}
 	}
 }

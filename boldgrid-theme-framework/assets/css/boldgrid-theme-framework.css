@@ -669,6 +669,9 @@ html.admin-bar {
   margin: 0; }
 
 @media only screen and (max-width: 768px) {
+  .palette-primary.woocommerce .cart.shop_table.shop_table_responsive .input-group.quantity, .palette-primary.woocommerce-page .cart.shop_table.shop_table_responsive .input-group.quantity {
+    display: flex;
+    justify-content: flex-end; }
   .palette-primary.woocommerce .cart tr.cart_item td.product-quantity, .palette-primary.woocommerce-page .cart tr.cart_item td.product-quantity {
     display: flex;
     align-items: center; } }
@@ -676,10 +679,6 @@ html.admin-bar {
 .palette-primary.woocommerce .cart .input-group.quantity, .palette-primary.woocommerce-page .cart .input-group.quantity {
   display: flex;
   float: none; }
-
-@media only screen and (max-width: 768px) {
-  .palette-primary.woocommerce .cart .input-group.quantity, .palette-primary.woocommerce-page .cart .input-group.quantity {
-    justify-content: flex-end; } }
 
 .palette-primary.woocommerce .cart .coupon.form-inline input.form-control, .palette-primary.woocommerce-page .cart .coupon.form-inline input.form-control {
   margin-right: 8px; }
@@ -712,7 +711,7 @@ html.admin-bar {
 
 .palette-primary {
   /* Product Titles */
-  /* Buttons need a thorough reset so they are inheriting content-specific props */
+  /* Buttons need some tweaks */
   /* My Account Dashboard */
   /* Breadcrumbs */
   /* Colors */ }
@@ -738,11 +737,20 @@ html.admin-bar {
 .palette-primary .product .product_title:before {
   all: initial; }
 
+.palette-primary.woocommerce, .palette-primary.woocommerce-page {
+  /* Cross Sells */ }
+
 .palette-primary.woocommerce .button-primary,
-.palette-primary.woocommerce .button-secondary {
-  display: block;
+.palette-primary.woocommerce .button-secondary, .palette-primary.woocommerce-page .button-primary,
+.palette-primary.woocommerce-page .button-secondary {
   height: auto;
-  padding: 0 .5em; }
+  padding: 0 1em;
+  margin: 0;
+  line-height: 3;
+  font-size: 14px; }
+
+.palette-primary.woocommerce .cross-sells .products .btn.button-primary, .palette-primary.woocommerce-page .cross-sells .products .btn.button-primary {
+  padding: 0; }
 
 .palette-primary .woocommerce-MyAccount-navigation-link a:before {
   font-family: FontAwesome;
@@ -770,6 +778,8 @@ html.admin-bar {
 
 .palette-primary .breadcrumb {
   display: inline-block;
+  font-size: 14px;
+  line-height: 2;
   padding: 0px;
   background: #D4D4D4;
   list-style: none;

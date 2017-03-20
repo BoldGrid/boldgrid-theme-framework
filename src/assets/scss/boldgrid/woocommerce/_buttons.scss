@@ -15,4 +15,11 @@
 			padding: 0;
 		}
 	}
+	.single_variation_wrap {
+		.woocommerce-variation-add-to-cart.variations_button {
+			.btn.button-primary {
+				margin-top: 1em;
+			}
+		}
+	}
 }

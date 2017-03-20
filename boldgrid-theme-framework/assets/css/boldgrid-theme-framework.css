@@ -752,6 +752,9 @@ html.admin-bar {
 .palette-primary.woocommerce .cross-sells .products .btn.button-primary, .palette-primary.woocommerce-page .cross-sells .products .btn.button-primary {
   padding: 0; }
 
+.palette-primary.woocommerce .single_variation_wrap .woocommerce-variation-add-to-cart.variations_button .btn.button-primary, .palette-primary.woocommerce-page .single_variation_wrap .woocommerce-variation-add-to-cart.variations_button .btn.button-primary {
+  margin-top: 1em; }
+
 .palette-primary .woocommerce-MyAccount-navigation-link a:before {
   font-family: FontAwesome;
   margin-left: -15px;

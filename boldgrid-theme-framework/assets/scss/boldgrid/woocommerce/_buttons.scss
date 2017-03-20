@@ -1,5 +1,5 @@
 /* Buttons need a thorough reset so they are inheriting content-specific props */
-.woocommerce {
+&.woocommerce {
 	.button-primary,
 	.button-secondary, {
 		display: block;

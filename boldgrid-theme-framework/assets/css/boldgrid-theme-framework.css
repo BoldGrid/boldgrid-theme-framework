@@ -711,7 +711,7 @@ html.admin-bar {
   padding: 1px; }
 
 .palette-primary.woocommerce .widget_shopping_cart .button-primary, .palette-primary.woocommerce-page .widget_shopping_cart .button-primary {
-  padding: .5em 1em; }
+  display: inline-block; }
 
 @media only screen and (min-width: 768px) {
   .palette-primary.woocommerce #searchform.woocommerce-product-search .form-group, .palette-primary.woocommerce-page #searchform.woocommerce-product-search .form-group {

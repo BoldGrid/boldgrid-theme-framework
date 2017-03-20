@@ -602,6 +602,7 @@ html.admin-bar {
   /* Grouped Products */
   /* Checkout */
   /* Cart */
+  /* PayPal Link Alignment */
   /* WooCommerce Widgets */
   /**
 		 * Layered nav seems to be off, so the close icon is cut off.  Adjusting
@@ -680,6 +681,10 @@ html.admin-bar {
   display: flex;
   float: none; }
 
+.palette-primary.woocommerce .cart .coupon.form-inline, .palette-primary.woocommerce-page .cart .coupon.form-inline {
+  display: flex;
+  align-items: center; }
+
 .palette-primary.woocommerce .cart .coupon.form-inline input.form-control, .palette-primary.woocommerce-page .cart .coupon.form-inline input.form-control {
   margin-right: 8px; }
 
@@ -698,6 +703,9 @@ html.admin-bar {
   height: auto;
   padding: calc( 1.25em / 2);
   /* Based on font-size increase in wooCommerce styles */ }
+
+.palette-primary.woocommerce #payment .payment_method_paypal .about_paypal, .palette-primary.woocommerce-page #payment .payment_method_paypal .about_paypal {
+  margin-left: 1em; }
 
 .palette-primary.woocommerce .widget_layered_nav_filters ul, .palette-primary.woocommerce-page .widget_layered_nav_filters ul {
   padding: 1px; }

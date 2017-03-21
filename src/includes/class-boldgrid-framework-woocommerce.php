@@ -69,9 +69,9 @@ class BoldGrid_Framework_Woocommerce {
 	/**
 	 * Set the color of the Sale! indicator.
 	 *
-	 * @param string $text String being filtered.
-	 * @param WC_Post $post WooCommerce Post ID.
-	 * @param WC_Product $product WooCommerce Product ID.
+	 * @param string     $text String being filtered.
+	 * @param WC_Post    $post WooCommerce Post ID.
+	 * @param WC_Product $_product WooCommerce Product ID.
 	 *
 	 * @return String Markup that is being returned to the filter.
 	 */
@@ -83,6 +83,7 @@ class BoldGrid_Framework_Woocommerce {
 	 * Add custom argument to variation dropdowns.
 	 *
 	 * @param  Array $args Arguments for variation dropdown filter.
+	 *
 	 * @return Array $args Arguments to apply to variation dropdown filter.
 	 */
 	public function variation_dropdown( $args ) {
@@ -93,14 +94,13 @@ class BoldGrid_Framework_Woocommerce {
 	/**
 	 * Adds select2 styles to match our theme.
 	 *
-	 * wooCommerce adds select to for their dropdowns, which creates a better
+	 * Woocommerce adds select to for their dropdowns, which creates a better
 	 * user experience overall.  The styles conflict with the native styles of
-	 * bootstrap, so we add our bootstrap select2 style conditionally if wooCommerce
+	 * bootstrap, so we add our bootstrap select2 style conditionally if woocommerce
 	 * class is present, and we are on the checkout page.  This needs to be enqueued
 	 * after the initial select2 styles, so we require that as a dependancy.
 	 *
 	 * @since 1.4.1
-	 * @return null
 	 */
 	public function select2_style() {
 		if ( class_exists( 'woocommerce' ) ) {
@@ -163,9 +163,9 @@ class BoldGrid_Framework_Woocommerce {
 	 * The input elements used throughout wooCommerce should inherit
 	 * the set bootstrap styles we use throughout our themes.
 	 *
-	 * @param  Array $args  Arguments to filter for form attributes.
+	 * @param Array $args Arguments to filter for form attributes.
 	 * @param string $key Not in use.
-	 * @param string $param Not in use.
+	 * @param string $value Not in use.
 	 *
 	 * @return Array $args Our new arguments to apply to forms.
 	 */
@@ -279,10 +279,10 @@ class BoldGrid_Framework_Woocommerce {
 				$args['class'][] = 'form-group';
 				$args['input_class'] = array(
 					'form-control',
-					'input-lg'
+					'input-lg',
 				);
 				$args['label_class'] = array(
-					'control-label'
+					'control-label',
 				);
 				break;
 		}

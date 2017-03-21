@@ -163,7 +163,7 @@ class BoldGrid_Framework_Woocommerce {
 	 * The input elements used throughout wooCommerce should inherit
 	 * the set bootstrap styles we use throughout our themes.
 	 *
-	 * @param Array $args Arguments to filter for form attributes.
+	 * @param Array  $args Arguments to filter for form attributes.
 	 * @param string $key Not in use.
 	 * @param string $value Not in use.
 	 *

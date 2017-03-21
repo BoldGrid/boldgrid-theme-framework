@@ -69,16 +69,22 @@ class BoldGrid_Framework_Woocommerce {
 	/**
 	 * Set the color of the Sale! indicator.
 	 *
-	 * @param  [type] $text     [description]
-	 * @param  [type] $post     [description]
-	 * @param  [type] $_product [description]
+	 * @param string $text String being filtered.
+	 * @param WC_Post $post WooCommerce Post ID.
+	 * @param WC_Product $product WooCommerce Product ID.
 	 *
-	 * @return String
+	 * @return String Markup that is being returned to the filter.
 	 */
 	public function woocommerce_custom_sale_text( $text, $post, $_product ) {
 		return '<span class="onsale color2-background-color color-2-text-contrast">Sale!</span>';
 	}
 
+	/**
+	 * Add custom argument to variation dropdowns.
+	 *
+	 * @param  Array $args Arguments for variation dropdown filter.
+	 * @return Array $args Arguments to apply to variation dropdown filter.
+	 */
 	public function variation_dropdown( $args ) {
 		$args['class'] = 'form-control';
 		return $args;
@@ -157,11 +163,11 @@ class BoldGrid_Framework_Woocommerce {
 	 * The input elements used throughout wooCommerce should inherit
 	 * the set bootstrap styles we use throughout our themes.
 	 *
-	 * @param  [type] $args  [description]
-	 * @param  [type] $key   [description]
-	 * @param  [type] $value [description]
+	 * @param  Array $args  Arguments to filter for form attributes.
+	 * @param string $key Not in use.
+	 * @param string $param Not in use.
 	 *
-	 * @return [type]        [description]
+	 * @return Array $args Our new arguments to apply to forms.
 	 */
 	public function wc_form_field_args( $args, $key, $value = null ) {
 		/**
@@ -175,22 +181,44 @@ class BoldGrid_Framework_Woocommerce {
 			 * state select input types.
 			 */
 			case 'select' :
-				$args['class'][] = 'form-group'; // Add a class to the field's html element wrapper - woocommerce input types (fields) are often wrapped within a <p></p> tag
-				$args['input_class'] = array( 'form-control', 'input-lg' ); // Add a class to the form input itself
-				$args['label_class'] = array( 'control-label' );
-				$args['custom_attributes'] = array( 'data-plugin' => 'select2', 'data-allow-clear' => 'true', 'aria-hidden' => 'true',  ); // Add custom data attributes to the form input itself
+				// Add a class to the field's html element wrapper - woocommerce input types (fields) are often wrapped within a <p></p> tag.
+				$args['class'][] = 'form-group';
+				// Add a class to the form input itself.
+				$args['input_class'] = array(
+					'form-control',
+					'input-lg',
+				);
+				$args['label_class'] = array(
+					'control-label',
+				);
+				// Add custom data attributes to the form input itself.
+				$args['custom_attributes'] = array(
+					'data-plugin' => 'select2',
+					'data-allow-clear' => 'true',
+					'aria-hidden' => 'true',
+				);
 				break;
 
 			/**
 			 * By default WooCommerce will populate a select with the country
 			 * names - $args defined for this specific input type targets only
-			 * the country select element
+			 * the country select element.
 			 */
 			case 'country' :
 				$args['class'][] = 'form-group single-country';
-				$args['input_class'] = array('form-control', 'input-lg'); // add class to the form input itself
-				$args['label_class'] = array('control-label');
-				$args['custom_attributes'] = array( 'data-plugin' => 'select2', 'data-allow-clear' => 'true', 'aria-hidden' => 'true',  );
+				// Add class to the form input itself.
+				$args['input_class'] = array(
+					'form-control',
+					'input-lg',
+				);
+				$args['label_class'] = array(
+					'control-label',
+				);
+				$args['custom_attributes'] = array(
+					'data-plugin' => 'select2',
+					'data-allow-clear' => 'true',
+					'aria-hidden' => 'true',
+				);
 				break;
 
 			/**
@@ -199,12 +227,22 @@ class BoldGrid_Framework_Woocommerce {
 			 * select element.
 			 */
 			case 'state' :
-				$args['class'][] = 'form-group'; // Add class to the field's html element wrapper
-				$args['input_class'] = array('form-control', 'input-lg'); // add class to the form input itself
-				$args['label_class'] = array('control-label');
-				$args['custom_attributes'] = array( 'data-plugin' => 'select2', 'data-allow-clear' => 'true', 'aria-hidden' => 'true',  );
+				// Add class to the field's html element wrapper.
+				$args['class'][] = 'form-group';
+				// Add class to the form input itself.
+				$args['input_class'] = array(
+					'form-control',
+					'input-lg',
+				);
+				$args['label_class'] = array(
+					'control-label',
+				);
+				$args['custom_attributes'] = array(
+					'data-plugin' => 'select2',
+					'data-allow-clear' => 'true',
+					'aria-hidden' => 'true',
+				);
 				break;
-
 
 			case 'password' :
 			case 'text' :
@@ -212,13 +250,23 @@ class BoldGrid_Framework_Woocommerce {
 			case 'tel' :
 			case 'number' :
 				$args['class'][] = 'form-group';
-				$args['input_class'] = array('form-control', 'input-lg');
-				$args['label_class'] = array('control-label');
+				$args['input_class'] = array(
+					'form-control',
+					'input-lg',
+				);
+				$args['label_class'] = array(
+					'control-label',
+				);
 				break;
 
 			case 'textarea' :
-				$args['input_class'] = array('form-control', 'input-lg');
-				$args['label_class'] = array('control-label');
+				$args['input_class'] = array(
+					'form-control',
+					'input-lg',
+				);
+				$args['label_class'] = array(
+					'control-label',
+				);
 				break;
 
 			case 'checkbox' :
@@ -229,13 +277,27 @@ class BoldGrid_Framework_Woocommerce {
 
 			default :
 				$args['class'][] = 'form-group';
-				$args['input_class'] = array('form-control', 'input-lg');
-				$args['label_class'] = array('control-label');
+				$args['input_class'] = array(
+					'form-control',
+					'input-lg'
+				);
+				$args['label_class'] = array(
+					'control-label'
+				);
 				break;
 		}
 
 		return $args;
 	}
+
+	/**
+	 * Filter for wooCommerce Breadcrumbs.
+	 *
+	 * We use this to apply some of our color classes to the breadcrumb output,
+	 * and to style the Home URL as a Home icon.
+	 *
+	 * @return Array The new breadcrumb arguments to apply to filter.
+	 */
 	public function breadcrumbs() {
 		$home_url = get_home_url();
 		return array(

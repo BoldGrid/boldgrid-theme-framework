@@ -798,7 +798,6 @@ class BoldGrid_Framework {
 	 * @access private
 	 */
 	private function woocommerce() {
-		//add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 		$woo = new Boldgrid_Framework_Woocommerce( $this->configs );
 		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $woo, 'buttons' );
 		$this->loader->add_filter( 'woocommerce_sale_flash', $woo, 'woocommerce_custom_sale_text', 10, 3 );

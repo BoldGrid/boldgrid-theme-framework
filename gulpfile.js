@@ -116,6 +116,8 @@ gulp.task( 'jsDeps', function(  ) {
   // Bootstrap
   gulp.src( config.bower + '/bootstrap-sass/assets/javascripts/bootstrap.*' )
     .pipe( gulp.dest( config.jsDest + '/bootstrap' ) );
+  gulp.src( config.bower + '/smartmenus/dist/**/jquery.*.js' )
+    .pipe( gulp.dest( config.jsDest + '/smartmenus' ) );
   // Jasny Bootstrap
   gulp.src( config.bower + '/jasny-bootstrap/js/offcanvas.js' )
     .pipe( gulp.dest( config.jsDest + '/offcanvas' ) );
@@ -235,7 +237,7 @@ gulp.task( 'translate', function (  ) {
       bugReport: 'https://boldgrid.com',
       team: 'The BoldGrid Team <support@boldgrid.com>'
     }) )
-    .pipe( gulp.dest( config.dist + '/languages' ) )
+    .pipe( gulp.dest( config.dist + '/languages' ) );
     //.pipe( notify( { message: 'Theme Translation complete', onLast: true } ) );
 } );
 
@@ -312,6 +314,11 @@ gulp.task( 'scssDeps', function(  ) {
     .pipe( gulp.dest( config.dist + '/assets/scss/buttons' ) );
   gulp.src( config.bower + '/select2-bootstrap-css/select2-bootstrap*.css' )
     .pipe( gulp.dest( config.dist + '/assets/css/select2-bootstrap' ) );
+
+  gulp.src( config.bower + '/smartmenus/dist/css/sm-core-css.css' )
+    .pipe( gulp.dest( config.dist + '/assets/css/smartmenus' ) );
+  gulp.src( config.bower + '/smartmenus/dist/addons/**/jquery.*.css' )
+    .pipe( gulp.dest( config.dist + '/assets/css/smartmenus' ) );
 } );
 
 // Compile SCSS

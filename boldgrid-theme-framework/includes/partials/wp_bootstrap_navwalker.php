@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Name: wp_bootstrap_navwalker
  * GitHub URI: https://github.com/twittem/wp-bootstrap-navwalker
@@ -20,14 +19,29 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 	 * @param int    $depth Depth of page. Used for padding.
 	 */
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
-		global $boldgrid_theme_framework;
-		$indent = str_repeat( "\t", $depth );
-		$configs = $boldgrid_theme_framework->get_configs();
-		$class = '';
-		if ( true === $configs['scripts']['offcanvas-menu'] ) {
-			$class = 'navmenu-nav';
+		$class = isset( $args->dropdown_class ) ? $args->dropdown_class : 'dropdown-menu';
+		// Allow flattened multi-level dropdowns.
+		if ( isset( $args->dropdown_flatten ) ) {
+			if ( $depth == 0 ) {
+				$indent = str_repeat( "\t", $depth );
+				$output .= "\n$indent<ul role=\"menu\" class=\" $class\">\n";
+			}
+			// This will allow overrides to the dropdown class to use as needed.
+		} else {
+			$indent = str_repeat( "\t", $depth );
+			$output .= "\n$indent<ul role=\"menu\" class=\" $class\">\n";
 		}
-		$output .= "\n$indent<ul role=\"menu\" class=\"$class dropdown-menu\">\n";
+	}
+
+	public function end_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat( "\t", $depth );
+		if ( isset( $args->dropdown_flatten ) ) {
+			if ( $depth == 0 ) {
+				$output .= "$indent</ul>\n";
+			}
+		} else {
+			$output .= "$indent</ul>\n";
+		}
 	}
 
 	/**
@@ -101,7 +115,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			$attributes = '';
 			foreach ( $atts as $attr => $value ) {
 				if ( ! empty( $value ) ) {
-					if ( 'title' == $attr &&  $value != strip_tags( $value ) ) {
+					if ( 'title' == $attr && $value != strip_tags( $value ) ) {
 						continue;
 					}
 
@@ -114,10 +128,23 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 
 			// Title Attribute.
 			if ( ! empty( $item->attr_title ) ) {
-				$item_output .= '<a' . $attributes . 'title ="' . esc_attr( $item->attr_title ) . '">'; } else { 				$item_output .= '<a' . $attributes . '>'; }
+				$item_output .= '<a' . $attributes . 'title="' . esc_attr( $item->attr_title ) . '">';
+			} else {
+				$item_output .= '<a' . $attributes . '>';
+			}
+
+			$dropdown_output = '</a>';
+
+			if ( isset( $args->dropdown_flatten ) ) {
+				if ( $args->has_children && 0 === $depth ) {
+					$dropdown_output = ' <span class="caret"></span></a>';
+				}
+			} elseif ( $args->has_children ) {
+				$dropdown_output = ' <span class="caret"></span></a>';
+			}
 
 			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-			$item_output .= ( $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
+			$item_output .= $dropdown_output;
 			$item_output .= $args->after;
 
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
@@ -152,7 +179,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 
 		// Display this element.
 		if ( is_object( $args[0] ) ) {
-		   $args[0]->has_children = ! empty( $children_elements[ $element->$id_field ] ); }
+			$args[0]->has_children = ! empty( $children_elements[ $element->$id_field ] ); }
 
 		parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
 	}

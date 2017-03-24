@@ -80,7 +80,20 @@ class BoldGrid_Framework_Scripts {
 			'3.3.6',
 			true
 		);
-
+		wp_enqueue_script(
+			'bgtfw-smartmenus',
+			$this->configs['framework']['js_dir'] . 'smartmenus/jquery.smartmenus.min.js',
+			array( 'jquery' ),
+			'1.4',
+			true
+		);
+		wp_enqueue_script(
+			'bgtfw-smartmenus-bootstrap',
+			$this->configs['framework']['js_dir'] . 'smartmenus/addons/bootstrap/jquery.smartmenus.bootstrap.min.js',
+			array( 'jquery' ),
+			'1.4',
+			true
+		);
 		/**
 		 * General Boldgrid scripts
 		 *

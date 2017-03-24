@@ -49,6 +49,90 @@
 			}
 		},
 
+		// Default bootstrap menu handling.
+		'standard_menu_enabled': {
+			init: function() {
+				this.dropdowns();
+			},
+			dropdowns: function() {
+				var dropdown    = $( '.no-collapse li.dropdown' ),
+					breakpoint  = 768;
+				dropdown
+					.on( 'mouseover', function( e ) {
+
+						// Set ARIA expanded to true for screen readers.
+						this.firstChild.setAttribute( 'aria-expanded', 'true' );
+
+						// Add open class.
+						$( e.currentTarget ).addClass( 'open' );
+
+							// Prevent clicking on the dropdown's parent link.
+							$( e.currentTarget ).on( 'click', function( e ) {
+
+								// Only do this if window is mobile size.
+								if ( window.innerWidth <= breakpoint ) {
+									if ( e.target === this || e.target.parentNode === this ) {
+										e.preventDefault(  );
+									}
+								} else {
+									return true;
+								}
+							} );
+						} )
+					.on( 'mouseleave', function( e ) {
+
+						// Set ARIA expanded to falsefor screen readers.
+						this.firstChild.setAttribute( 'aria-expanded', 'false' );
+
+						// Remove all open classes on dropdowns.
+						dropdown.removeClass( 'open' );
+
+						// If the window is smaller than the 768 bootstrap breakpoint.
+						if ( window.innerWidth <= breakpoint ) {
+							if ( e.target === this || e.target.parentNode === this ) {
+								return true;
+							}
+						}
+					} );
+
+				// Check if device support touch events.
+				if ( 'ontouchstart' in document.documentElement ) {
+					dropdown.each( function(  ) {
+						var $this = $( this );
+
+						// Listen for the touch event.
+						this.addEventListener( 'touchstart', function( e ) {
+							if ( 1 === e.touches.length ) {
+
+								// Prevent touch events within dropdown bubbling tp dpcument.
+								e.stopPropagation(  );
+
+								// Toggle hover.
+								if ( ! $this.hasClass( 'open' ) ) {
+
+									// Prevent link on first touch.
+									if ( e.target === this || e.target.parentNode === this ) {
+										e.preventDefault(  );
+									}
+
+									// Hide other open dropdowns.
+									dropdown.removeClass( 'open' );
+									$this.addClass( 'open' );
+
+									// Hide dropdown on touch outside of dropdown menu.
+									document.addEventListener( 'touchstart', close_dropdown = function( e ) {
+										e.stopPropagation(  );
+										$this.removeClass( 'open' );
+										document.removeEventListener( 'touchstart', close_dropdown );
+									});
+								}
+							}
+						}, false );
+					});
+				}
+			}
+		},
+
 		/**
 		 *  Add a sticky footer to the theme, so the footer
 		 *  always remains at the bottom of the screen and
@@ -123,90 +207,6 @@
 				if ( $body.stellar ) {
 					$body.attr( 'data-stellar-background-ratio', '0.2' );
 					$body.stellar();
-				}
-			}
-		},
-
-		// Default bootstrap menu handling.
-		'standard_menu_enabled': {
-			init: function() {
-				this.dropdowns();
-			},
-			dropdowns: function() {
-				var dropdown    = $( 'ul.nav li.dropdown' ),
-					breakpoint  = 768;
-				dropdown
-					.on( 'mouseover', function( e ) {
-
-						// Set ARIA expanded to true for screen readers.
-						this.firstChild.setAttribute( 'aria-expanded', 'true' );
-
-						// Add open class.
-						$( e.currentTarget ).addClass( 'open' );
-
-							// Prevent clicking on the dropdown's parent link.
-							$( e.currentTarget ).on( 'click', function( e ) {
-
-								// Only do this if window is mobile size.
-								if ( window.innerWidth <= breakpoint ) {
-									if ( e.target === this || e.target.parentNode === this ) {
-										e.preventDefault(  );
-									}
-								} else {
-									return true;
-								}
-							} );
-						} )
-					.on( 'mouseleave', function( e ) {
-
-						// Set ARIA expanded to falsefor screen readers.
-						this.firstChild.setAttribute( 'aria-expanded', 'false' );
-
-						// Remove all open classes on dropdowns.
-						dropdown.removeClass( 'open' );
-
-						// If the window is smaller than the 768 bootstrap breakpoint.
-						if ( window.innerWidth <= breakpoint ) {
-							if ( e.target === this || e.target.parentNode === this ) {
-								return true;
-							}
-						}
-					} );
-
-				// Check if device support touch events.
-				if ( 'ontouchstart' in document.documentElement ) {
-					dropdown.each( function(  ) {
-						var $this = $( this );
-
-						// Listen for the touch event.
-						this.addEventListener( 'touchstart', function( e ) {
-							if ( 1 === e.touches.length ) {
-
-								// Prevent touch events within dropdown bubbling tp dpcument.
-								e.stopPropagation(  );
-
-								// Toggle hover.
-								if ( ! $this.hasClass( 'open' ) ) {
-
-									// Prevent link on first touch.
-									if ( e.target === this || e.target.parentNode === this ) {
-										e.preventDefault(  );
-									}
-
-									// Hide other open dropdowns.
-									dropdown.removeClass( 'open' );
-									$this.addClass( 'open' );
-
-									// Hide dropdown on touch outside of dropdown menu.
-									document.addEventListener( 'touchstart', close_dropdown = function( e ) {
-										e.stopPropagation(  );
-										$this.removeClass( 'open' );
-										document.removeEventListener( 'touchstart', close_dropdown );
-									});
-								}
-							}
-						}, false );
-					});
 				}
 			}
 		},

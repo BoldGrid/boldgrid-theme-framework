@@ -156,6 +156,22 @@ class BoldGrid_Framework_Styles {
 			$this->configs['version']
 		);
 
+		/* Framework Base Styles */
+		wp_enqueue_style(
+			'bgtfw-smartmenus',
+			$this->configs['framework']['css_dir'] . 'smartmenus/sm-core-css.css',
+			array( 'bootstrap-styles' ),
+			$this->configs['version']
+		);
+		/* Framework Base Styles */
+		wp_enqueue_style(
+			'bgtfw-smartmenus-bootstrap',
+			$this->configs['framework']['css_dir'] . 'smartmenus/bootstrap/jquery.smartmenus.bootstrap.css',
+			array( 'bootstrap-styles' ),
+			$this->configs['version']
+		);
+
+
 		/* Component Styles */
 		wp_enqueue_style(
 			'boldgrid-components',

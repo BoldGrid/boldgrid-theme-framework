@@ -742,6 +742,10 @@ html.admin-bar {
 .palette-primary .product .product_title:before {
   all: initial; }
 
+.palette-primary .pagination {
+  display: flex;
+  justify-content: center; }
+
 .palette-primary.woocommerce, .palette-primary.woocommerce-page {
   /* Cross Sells */ }
 

@@ -539,6 +539,22 @@ html.admin-bar {
   margin: 0 5px;
   content: '|'; }
 
+/* Attribution Links */
+.attribution-theme-mods .link {
+  padding: .5em; }
+
+.attribution-theme-mods .link:last-child {
+  padding-right: 0; }
+
+.attribution-theme-mods .link:last-child:after {
+  margin: 0;
+  border: 0; }
+
+.attribution-theme-mods .link:after {
+  content: "";
+  margin-left: 1em;
+  border-left: 1px solid currentColor; }
+
 /*--------------------------------------------------------------
 # GridBlocks
 --------------------------------------------------------------*/

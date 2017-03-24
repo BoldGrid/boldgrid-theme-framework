@@ -24,7 +24,9 @@
 	}
 	.return-to-shop {
 		.btn.button-primary {
-			padding: 1em;
+			@media only screen and (min-width : 480px) {
+				padding: 1em;
+			}
 		}
 	}
 }

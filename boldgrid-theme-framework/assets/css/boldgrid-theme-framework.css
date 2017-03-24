@@ -288,7 +288,7 @@ select[name="archive-dropdown"] {
 # Page & Post Defaults
 --------------------------------------------------------------*/
 .post-edit-link {
-  padding-right: 5px; }
+  padding: 0 8px; }
 
 .post-navigation {
   margin-top: 1.5em; }

@@ -86,6 +86,7 @@ class BoldGrid_Framework {
 		$this->comments();
 		$this->error_404();
 		$this->search_forms();
+		$this->pagination();
 		$this->ninja_forms();
 		$this->woocommerce();
 	}
@@ -161,6 +162,7 @@ class BoldGrid_Framework {
 			'loader',
 			'menu',
 			'ninja-forms',
+			'pagination',
 			'pointer',
 			'schema-markup',
 			'scripts',
@@ -791,6 +793,10 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'ninja_forms_display_response_message_class', $ninja_forms, 'form_response_message_class', 10, 2 );
 	}
 
+	private function pagination() {
+		$pagination = new BoldGrid_Framework_Pagination();
+		$this->loader->add_action( 'woocommerce_pagination_display', $pagination, 'create' );
+	}
 	/**
 	 * Adds in wooCommerce specific functionality added by the BoldGrid Theme Framework.
 	 *

@@ -36,7 +36,7 @@ class BoldGrid_Framework_Pagination {
 				'current' => max( 1, get_query_var( 'paged' ) ),
 				'total' => $wp_query->max_num_pages,
 				'type' => 'array',
-				'prev_next' => TRUE,
+				'prev_next' => true,
 				'prev_text' => '&larr; Previous',
 				'next_text' => 'Next &rarr;',
 			)
@@ -45,13 +45,13 @@ class BoldGrid_Framework_Pagination {
 		if ( is_array( $pages ) ) {
 			$paged = ( get_query_var( 'paged' ) === 0 ) ? 1 : get_query_var( 'paged' );
 
-			$output .=  '<ul class="pagination">';
+			$output .= '<ul class="pagination">';
 
 			foreach ( $pages as $i => $page ) {
-				if ( $paged === 1 && $i === 0 ) {
+				if ( 1 === $paged && 0 === $i ) {
 					$output .= '<li class="active">' . $page . '</li>';
 				} else {
-					if ( $paged !== 1 && $paged === $i ) {
+					if ( 1 !== $paged && $i === $paged ) {
 						$output .= '<li class="active">' . $page . '</li>';
 					} else {
 						$output .= '<li>' . $page . '</li>';
@@ -74,16 +74,16 @@ class BoldGrid_Framework_Pagination {
 			// Iterate over the $page_numbers node.
 			foreach ( $page_numbers as $page_numbers_item ) {
 				// Add to class 'page-numbers' with bgtfw custom color classes for standard links.
-				$page_numbers_item->attributes->item(0)->value = str_replace(
+				$page_numbers_item->attributes->item( 0 )->value = str_replace(
 					'page-numbers',
 					'page-numbers color1-background-color color1-border-color color-1-text-contrast color2-background-color-hover color-2-text-contrast-hover',
-					$page_numbers_item->attributes->item(0)->value
+					$page_numbers_item->attributes->item( 0 )->value
 				);
 				// Add to class 'current' with bgtfw custom color classes for active link.
-				$page_numbers_item->attributes->item(0)->value = str_replace(
+				$page_numbers_item->attributes->item( 0 )->value = str_replace(
 					'current',
 					'color2-background-color color1-border-color color-2-text-contrast',
-					$page_numbers_item->attributes->item(0)->value
+					$page_numbers_item->attributes->item( 0 )->value
 				);
 			}
 

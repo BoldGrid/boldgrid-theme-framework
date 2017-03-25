@@ -793,10 +793,17 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'ninja_forms_display_response_message_class', $ninja_forms, 'form_response_message_class', 10, 2 );
 	}
 
+	/**
+	 * Responsible for displaying custom pagination in bgtfw.
+	 *
+	 * @since 1.4.2
+	 * @access private
+	 */
 	private function pagination() {
 		$pagination = new BoldGrid_Framework_Pagination();
 		$this->loader->add_action( 'woocommerce_pagination_display', $pagination, 'create' );
 	}
+
 	/**
 	 * Adds in wooCommerce specific functionality added by the BoldGrid Theme Framework.
 	 *

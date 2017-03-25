@@ -734,6 +734,7 @@ html.admin-bar {
   /* Product Titles */
   /* Buttons need some tweaks */
   /* My Account Dashboard */
+  /* My Account Dashboard */
   /* Breadcrumbs */
   /* Colors */ }
 
@@ -810,6 +811,10 @@ html.admin-bar {
 
 .palette-primary .woocommerce-MyAccount-navigation-link--customer-logout a:before {
   content: "\f08b"; }
+
+.palette-primary .woocommerce-EditAccountForm legend {
+  margin-left: 3px;
+  border-bottom: 1px solid currentColor; }
 
 .palette-primary .breadcrumb {
   display: inline-block;

@@ -784,6 +784,9 @@ html.admin-bar {
   .palette-primary.woocommerce .return-to-shop .btn.button-primary, .palette-primary.woocommerce-page .return-to-shop .btn.button-primary {
     padding: 1em; } }
 
+.palette-primary .woocommerce-MyAccount-navigation-link a {
+  text-decoration: none; }
+
 .palette-primary .woocommerce-MyAccount-navigation-link a:before {
   font-family: FontAwesome;
   margin-left: -15px;

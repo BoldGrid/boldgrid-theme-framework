@@ -259,10 +259,6 @@ select[name="archive-dropdown"] {
 .empty-sidebar-message {
   display: inline-block; }
 
-@media only screen and (min-width: 992px) {
-  .empty-sidebar-message {
-    padding-top: 25%; } }
-
 /*--------------------------------------------------------------
 # Ninja Forms
 --------------------------------------------------------------*/
@@ -276,7 +272,7 @@ select[name="archive-dropdown"] {
 # Page & Post Defaults
 --------------------------------------------------------------*/
 .post-edit-link {
-  padding-right: 5px; }
+  padding: 0 8px; }
 
 .post-navigation {
   margin-top: 1.5em; }
@@ -527,6 +523,22 @@ html.admin-bar {
   margin: 0 5px;
   content: '|'; }
 
+/* Attribution Links */
+.attribution-theme-mods .link {
+  padding: .5em; }
+
+.attribution-theme-mods .link:last-child {
+  padding-right: 0; }
+
+.attribution-theme-mods .link:last-child:after {
+  margin: 0;
+  border: 0; }
+
+.attribution-theme-mods .link:after {
+  content: "";
+  margin-left: 1em;
+  border-left: 1px solid currentColor; }
+
 /*--------------------------------------------------------------
 # GridBlocks
 --------------------------------------------------------------*/
@@ -598,6 +610,7 @@ html.admin-bar {
 .palette-primary.woocommerce ul.products, .palette-primary.woocommerce-page ul.products {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   padding: 0;
   margin: 0 0 2em; }
 
@@ -705,6 +718,7 @@ html.admin-bar {
   /* Product Titles */
   /* Buttons need some tweaks */
   /* My Account Dashboard */
+  /* My Account Dashboard */
   /* Breadcrumbs */
   /* Colors */ }
 
@@ -729,6 +743,10 @@ html.admin-bar {
 .palette-primary .product .product_title:before {
   all: initial; }
 
+.palette-primary .pagination {
+  display: flex;
+  justify-content: center; }
+
 .palette-primary.woocommerce, .palette-primary.woocommerce-page {
   /* Cross Sells */ }
 
@@ -746,6 +764,13 @@ html.admin-bar {
 
 .palette-primary.woocommerce .single_variation_wrap .woocommerce-variation-add-to-cart.variations_button .btn.button-primary, .palette-primary.woocommerce-page .single_variation_wrap .woocommerce-variation-add-to-cart.variations_button .btn.button-primary {
   margin-top: 1em; }
+
+@media only screen and (min-width: 480px) {
+  .palette-primary.woocommerce .return-to-shop .btn.button-primary, .palette-primary.woocommerce-page .return-to-shop .btn.button-primary {
+    padding: 1em; } }
+
+.palette-primary .woocommerce-MyAccount-navigation-link a {
+  text-decoration: none; }
 
 .palette-primary .woocommerce-MyAccount-navigation-link a:before {
   font-family: FontAwesome;
@@ -770,6 +795,10 @@ html.admin-bar {
 
 .palette-primary .woocommerce-MyAccount-navigation-link--customer-logout a:before {
   content: "\f08b"; }
+
+.palette-primary .woocommerce-EditAccountForm legend {
+  margin-left: 3px;
+  border-bottom: 1px solid currentColor; }
 
 .palette-primary .breadcrumb {
   display: inline-block;
@@ -840,11 +869,17 @@ html.admin-bar {
 
 .palette-primary.woocommerce-account .panel.user-login, .palette-primary.woocommerce-account .panel.user-registration {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-  min-height: 400; }
+  min-height: 400px;
+  max-width: 400px;
+  margin: 0 auto 20px auto; }
+
+.palette-primary.woocommerce-account .panel.user-login > *, .palette-primary.woocommerce-account .panel.user-registration > * {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  align-items: center; }
 
 .palette-primary.woocommerce-account .panel.user-registration {
   display: none; }
@@ -974,6 +1009,12 @@ html.admin-bar {
   background-color: #dff0d8;
   border-color: #d6e9c6; }
 
+.palette-primary .alert-success a:not(.button-primary) {
+  color: #54a754; }
+
+.palette-primary .alert-success a:not(.button-primary):hover, .palette-primary .alert-success a:not(.button-primary):focus, .palette-primary .alert-success a:not(.button-primary):active {
+  color: #60c060; }
+
 .palette-primary .alert-white.alert-success .icon,
 .palette-primary .alert-white.alert-success .icon:after {
   border-color: #54a754;
@@ -983,6 +1024,12 @@ html.admin-bar {
   background-color: #d9edf7;
   border-color: #98cce6;
   color: #3a87ad; }
+
+.palette-primary .alert-info a:not(.button-primary) {
+  color: #3a8ace; }
+
+.palette-primary .alert-info a:not(.button-primary):hover, .palette-primary .alert-info a:not(.button-primary):focus, .palette-primary .alert-info a:not(.button-primary):active {
+  color: #4d90fd; }
 
 .palette-primary .alert-white.alert-info .icon,
 .palette-primary .alert-white.alert-info .icon:after {
@@ -999,10 +1046,22 @@ html.admin-bar {
   border-color: #f1daab;
   color: #c09853; }
 
+.palette-primary .alert-warning a:not(.button-primary) {
+  color: #d68000; }
+
+.palette-primary .alert-warning a:not(.button-primary):hover, .palette-primary .alert-warning a:not(.button-primary):focus, .palette-primary .alert-warning a:not(.button-primary):active {
+  color: #fc9700; }
+
 .palette-primary .alert-danger {
   background-color: #f2dede;
   border-color: #e0b1b8;
   color: #b94a48; }
+
+.palette-primary .alert-danger a:not(.button-primary) {
+  color: #ca452e; }
+
+.palette-primary .alert-danger a:not(.button-primary):hover, .palette-primary .alert-danger a:not(.button-primary):focus, .palette-primary .alert-danger a:not(.button-primary):active {
+  color: #da4932; }
 
 .palette-primary .alert-white.alert-danger .icon,
 .palette-primary .alert-white.alert-danger .icon:after {

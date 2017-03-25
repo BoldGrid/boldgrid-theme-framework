@@ -5,6 +5,7 @@
 		ul.products {
 			display: flex;
 			flex-wrap: wrap;
+			justify-content: center;
 			padding: 0;
 			margin: 0 0 2em;
 			li.product {
@@ -158,8 +159,10 @@
 		padding: 1px;
 	}
 	@import "woocommerce/titles";
+	@import "woocommerce/pagination";
 	@import "woocommerce/buttons";
 	@import "woocommerce/dashboard-navigation";
+	@import "woocommerce/edit-account";
 	@import "woocommerce/breadcrumbs";
 	@import "woocommerce/login";
 	@import "woocommerce/forms";

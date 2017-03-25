@@ -22,4 +22,11 @@
 			}
 		}
 	}
+	.return-to-shop {
+		.btn.button-primary {
+			@media only screen and (min-width : 480px) {
+				padding: 1em;
+			}
+		}
+	}
 }

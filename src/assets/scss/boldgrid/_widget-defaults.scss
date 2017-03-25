@@ -25,8 +25,3 @@ select[name="archive-dropdown"] {
 .empty-sidebar-message {
 	display: inline-block;
 }
-@media only screen and (min-width : 992px) {
-	.empty-sidebar-message {
-		padding-top: 25%;
-	}
-}

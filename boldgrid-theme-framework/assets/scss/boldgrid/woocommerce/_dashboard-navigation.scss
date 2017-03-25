@@ -1,10 +1,13 @@
 /* My Account Dashboard */
 .woocommerce-MyAccount-navigation-link {
-	a:before {
-		font-family: FontAwesome;
-		margin-left: -15px;
-		position: relative;
-		padding: 10px 15px;
+	a {
+		text-decoration: none;
+		&:before {
+			font-family: FontAwesome;
+			margin-left: -15px;
+			position: relative;
+			padding: 10px 15px;
+		}
 	}
 	&--dashboard a:before {
 		content: "\f0e4";

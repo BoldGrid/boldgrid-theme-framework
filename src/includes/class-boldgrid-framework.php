@@ -86,6 +86,7 @@ class BoldGrid_Framework {
 		$this->comments();
 		$this->error_404();
 		$this->search_forms();
+		$this->pagination();
 		$this->ninja_forms();
 		$this->woocommerce();
 	}
@@ -161,6 +162,7 @@ class BoldGrid_Framework {
 			'loader',
 			'menu',
 			'ninja-forms',
+			'pagination',
 			'pointer',
 			'schema-markup',
 			'scripts',
@@ -792,6 +794,17 @@ class BoldGrid_Framework {
 	}
 
 	/**
+	 * Responsible for displaying custom pagination in bgtfw.
+	 *
+	 * @since 1.4.2
+	 * @access private
+	 */
+	private function pagination() {
+		$pagination = new BoldGrid_Framework_Pagination();
+		$this->loader->add_action( 'woocommerce_pagination_display', $pagination, 'create' );
+	}
+
+	/**
 	 * Adds in wooCommerce specific functionality added by the BoldGrid Theme Framework.
 	 *
 	 * @since 1.4.1
@@ -805,6 +818,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'select2_style' );
 		$this->loader->add_filter( 'woocommerce_breadcrumb_defaults', $woo, 'breadcrumbs' );
 		$this->loader->add_filter( 'woocommerce_dropdown_variation_attribute_options_args', $woo, 'variation_dropdown' );
+		add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );
 	}
 
 	/**

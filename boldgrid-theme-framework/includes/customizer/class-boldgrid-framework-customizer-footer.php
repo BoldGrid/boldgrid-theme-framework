@@ -242,7 +242,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			// BoldGrid.com Link.
 			if ( ! get_theme_mod( 'hide_boldgrid_attribution' ) || is_customize_preview() ) {
 				$theme_mods .= sprintf(
-					'<span class="link boldgrid-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a> | </span>',
+					'<span class="link boldgrid-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a></span>',
 					__( 'Built with', 'bgtfw' ),
 					'http://boldgrid.com/',
 					__( 'BoldGrid', 'bgtfw' )
@@ -252,7 +252,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			// WordPress.org Link.
 			if ( ! get_theme_mod( 'hide_wordpress_attribution' ) || is_customize_preview() ) {
 				$theme_mods .= sprintf(
-					'<span class="link wordpress-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a> | </span>',
+					'<span class="link wordpress-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a></span>',
 					__( 'Powered by', 'bgtfw' ),
 					'https://wordpress.org/',
 					__( 'WordPress', 'bgtfw' )
@@ -263,7 +263,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			if ( ! get_theme_mod( 'hide_partner_attribution' ) || is_customize_preview() ) {
 				if ( ! empty( $reseller_data['reseller_title'] ) ) {
 					$theme_mods .= sprintf(
-						'<span class="link reseller-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a> | </span>',
+						'<span class="link reseller-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a></span>',
 						__( 'Support from', 'bgtfw' ),
 						$reseller_data['reseller_website_url'],
 						$reseller_data['reseller_title']
@@ -272,39 +272,14 @@ class Boldgrid_Framework_Customizer_Footer {
 			}
 		}
 
-		// If theme configs have attribution_links declared, add the link.
-		if ( ! empty( $this->configs['temp']['attribution_links'] ) ) {
-			$theme_mods .= $this->attribution_link();
-		} ?>
+		// Allow plugins or themes to add additional attribution links to footer.
+		$additional_links = '';
+		$additional_links = apply_filters( 'bgtfw_attribution_links', $additional_links );
+		$theme_mods .= $additional_links;
+		?>
 
 		<span class="attribution-theme-mods"><?php echo $theme_mods ?></span>
 		<?php
-	}
-
-	/**
-	 * Create the attribution link and keep link filterable for BoldGrid Staging
-	 *
-	 * @since 1.0.1
-	 * @return string
-	 */
-	public function attribution_link() {
-
-		$option = 'boldgrid_attribution';
-		$option = apply_filters( 'boldgrid_attribution_filter', $option );
-		$attribution_data = get_option( $option );
-		$attribution_page = get_page_by_title( 'Attribution' );
-		$special_thanks = __( 'Special Thanks', 'bgtfw' );
-
-		// If option is available use that or try to find the page by slug name.
-		if ( ! empty( $attribution_data['page']['id'] ) ) {
-			$link = '<a href="' . get_permalink( $attribution_data['page']['id'] ) . '">' . $special_thanks . '</a>';
-		} elseif ( $attribution_page ) {
-			$link = '<a href="' . get_site_url( null, 'attribution' ) . '">' . $special_thanks . '</a>';
-		} else {
-			$link = '';
-		}
-
-		return $link;
 	}
 
 	/**

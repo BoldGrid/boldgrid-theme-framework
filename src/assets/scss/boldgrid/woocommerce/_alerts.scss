@@ -89,6 +89,12 @@
 	color: #3c763d;
 	background-color: #dff0d8;
 	border-color: #d6e9c6;
+	a:not(.button-primary) {
+		color: #54a754;
+		&:hover, &:focus, &:active {
+			color: #60c060;
+		}
+	}
 }
 
 .alert-white.alert-success .icon,
@@ -101,6 +107,12 @@
 	background-color: #d9edf7;
 	border-color: #98cce6;
 	color: #3a87ad;
+	a:not(.button-primary) {
+		color: #3a8ace;
+		&:hover, &:focus, &:active {
+			color: #4d90fd;
+		}
+	}
 }
 
 .alert-white.alert-info .icon,
@@ -120,11 +132,23 @@
 	background-color: #fcf8e3;
 	border-color: #f1daab;
 	color: #c09853;
+	a:not(.button-primary) {
+		color: #d68000;
+		&:hover, &:focus, &:active {
+			color: #fc9700;
+		}
+	}
 }
 .alert-danger {
 	background-color: #f2dede;
 	border-color: #e0b1b8;
 	color: #b94a48;
+	a:not(.button-primary) {
+		color: #ca452e;
+		&:hover, &:focus, &:active {
+			color: #da4932;
+		}
+	}
 }
 
 .alert-white.alert-danger .icon,

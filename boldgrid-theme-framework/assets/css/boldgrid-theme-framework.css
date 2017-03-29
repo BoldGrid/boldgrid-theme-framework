@@ -887,6 +887,14 @@ html.admin-bar {
 .palette-primary .breadcrumb > li + li:before {
   padding: 0; }
 
+.palette-primary.woocommerce-account .btn.button-primary {
+  height: auto;
+  padding: 0 1em;
+  margin: 0;
+  line-height: 3;
+  font-size: 14px;
+  text-align: center; }
+
 .palette-primary.woocommerce-account .panel.user-login, .palette-primary.woocommerce-account .panel.user-registration {
   display: flex;
   flex-direction: column;

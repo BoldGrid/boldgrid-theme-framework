@@ -1,9 +1,11 @@
 /* Buttons need some tweaks */
 &.woocommerce,
-&.woocommerce-page  {
+&.woocommerce-page {
 	/* Cross Sells */
 	.button-primary,
-	.button-secondary {
+	.button-secondary,
+	:not(.call-to-action .button-primary),
+	:not(.call-to-action .button-secondary) {
 		height: auto;
 		padding: 0 1em;
 		margin: 0;

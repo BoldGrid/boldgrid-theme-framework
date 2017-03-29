@@ -767,8 +767,12 @@ html.admin-bar {
   /* Cross Sells */ }
 
 .palette-primary.woocommerce .button-primary,
-.palette-primary.woocommerce .button-secondary, .palette-primary.woocommerce-page .button-primary,
-.palette-primary.woocommerce-page .button-secondary {
+.palette-primary.woocommerce .button-secondary,
+.palette-primary.woocommerce :not(.call-to-action .button-primary),
+.palette-primary.woocommerce :not(.call-to-action .button-secondary), .palette-primary.woocommerce-page .button-primary,
+.palette-primary.woocommerce-page .button-secondary,
+.palette-primary.woocommerce-page :not(.call-to-action .button-primary),
+.palette-primary.woocommerce-page :not(.call-to-action .button-secondary) {
   height: auto;
   padding: 0 1em;
   margin: 0;

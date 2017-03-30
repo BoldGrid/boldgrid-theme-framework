@@ -30,4 +30,12 @@
 			}
 		}
 	}
+	/* Search Sidebar Widget */
+	@media only screen and (min-width: 768px) {
+		&.sidebar-1 .sidebar #searchform button.button-primary {
+			padding: 0 1em;
+			height: auto;
+			width: auto;
+		}
+	}
 }

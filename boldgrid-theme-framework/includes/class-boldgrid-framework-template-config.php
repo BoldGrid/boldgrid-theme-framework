@@ -364,9 +364,14 @@ class BoldGrid_Framework_Template_Config {
 	 * @since 1.1.1
 	 */
 	public function do_location_action( $template_type, $location_id  ) {
-		$template_config = $this->configs['template']['locations'][ $template_type ];
+		$template = $this->configs['template'];
+		$template_config = null;
 
-		if ( ! empty( $template_config[ $location_id ] ) ) {
+		if ( isset( $template['locations'] ) && ! empty( $template['locations'] ) ) {
+			$template_config = $this->configs['template']['locations'][ $template_type ];
+		}
+
+		if ( $template_config && ! empty( $template_config[ $location_id ] ) ) {
 			$location_items = $template_config[ $location_id ];
 
 			// Wrap in array if non existant.

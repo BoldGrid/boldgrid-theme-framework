@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.4.2 ###
 * Bug fix: Check if template configs are present.
+* Update: Default menu descriptions are now generic instead of contextual.
 
 ### 1.4.1 ###
 * Update: Let sidebar search widget have standard appearance on small devices.

@@ -488,8 +488,8 @@ class Boldgrid_Framework_Customizer_Background {
 					'background-image' => $bg_pattern,
 					'background-size' => 'auto',
 					'background-repeat' => 'repeat',
-				    'background-attachment' => 'scroll',
-				    'pattern' => '/** Background pattern from subtlepatterns.com & http://www.transparenttextures.com/ **/',
+					'background-attachment' => 'scroll',
+					'pattern' => '/** Background pattern from subtlepatterns.com & http://www.transparenttextures.com/ **/',
 				),
 			);
 

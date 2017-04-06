@@ -1,4 +1,12 @@
 &.woocommerce-account {
+	.btn.button-primary {
+		height: auto;
+		padding: 0 1em;
+		margin: 0;
+		line-height: 3;
+		font-size: 14px;
+		text-align: center;
+	}
 	.panel {
 		&.user-login,
 		&.user-registration {

@@ -72,10 +72,9 @@ class Boldgrid_Framework_Control_Palette extends WP_Customize_Control {
 			 data-color-palette-format="<?php echo esc_attr( $color_palette['format'] ); ?>"
 			 data-copy-on-mod="<?php echo ! empty( $color_palette['copy_on_mod'] ); ?>"
 			 data-palette-id="<?php echo esc_attr( $palette_id ); ?>"
-			 <?php echo ! empty( $color_palette['neutral-color'] )
-			 	? 'data-neutral-color="' . esc_attr( $color_palette['neutral-color'] ) . '"' : '';?>
-		 >
-		 	<li class='boldgrid-palette-colors'>
+			<?php echo ! empty( $color_palette['neutral-color'] )
+				? 'data-neutral-color="' . esc_attr( $color_palette['neutral-color'] ) . '"' : '';?>>
+			<li class='boldgrid-palette-colors'>
 				<?php
 				foreach ( $color_palette['colors'] as $key => $color ) :  ?>
 					<span data-color="<?php echo esc_attr( $color ); ?>" style="background: <?php echo esc_attr( $color ); ?>"></span>
@@ -84,7 +83,7 @@ class Boldgrid_Framework_Control_Palette extends WP_Customize_Control {
 					<span class="dashicons dashicons-admin-post boldgrid-copy-palette" title="Save Palette"></span>
 					<span class="dashicons dashicons-no boldgrid-remove-palette" title="Remove Palette"></span>
 				</div>
-	        </li>
+			</li>
 		</ul>
 	</div>
 	<?php endforeach; ?>

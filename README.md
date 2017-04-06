@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.4.2 ###
+* Bug fix: Check if template configs are present.
+
 ### 1.4.1 ###
 * Update: Let sidebar search widget have standard appearance on small devices.
 * Bug fix: Fixing issues with wooCommerce ratings and extraneous div outputting.

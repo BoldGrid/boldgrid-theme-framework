@@ -25,3 +25,15 @@ select[name="archive-dropdown"] {
 .empty-sidebar-message {
 	display: inline-block;
 }
+
+// Search Widgets
+.widget_search {
+	.button-primary {
+		height: auto;
+		margin: 0;
+		margin-top: 0;
+		padding: 0 1em;
+		line-height: 3;
+		font-size: 14px;
+	}
+}

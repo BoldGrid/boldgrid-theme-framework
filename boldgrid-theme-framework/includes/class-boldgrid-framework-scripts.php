@@ -135,7 +135,7 @@ class BoldGrid_Framework_Scripts {
 		 *
 		 * @since 1.0.0
 		 */
-	 	if ( true === $this->configs['scripts']['wow-js'] ) {
+		if ( true === $this->configs['scripts']['wow-js'] ) {
 			$handle = 'boldgrid-wow-js';
 			wp_enqueue_script(
 				$handle,

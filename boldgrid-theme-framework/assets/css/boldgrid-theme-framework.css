@@ -259,13 +259,21 @@ select[name="archive-dropdown"] {
 .empty-sidebar-message {
   display: inline-block; }
 
+.widget_search .button-primary {
+  height: auto;
+  margin: 0;
+  margin-top: 0;
+  padding: 0 1em;
+  line-height: 3;
+  font-size: 14px; }
+
 /*--------------------------------------------------------------
 # Ninja Forms
 --------------------------------------------------------------*/
-.ninja-forms-response-msg:empty {
+.alert.ninja-forms-response-msg:empty {
   display: none; }
 
-.ninja-forms-response-msg.alert-success p {
+.alert.ninja-forms-response-msg.alert-success p {
   color: #3c763d; }
 
 /*--------------------------------------------------------------
@@ -437,17 +445,17 @@ aside.sidebar h2.widget-title {
   margin-top: 20px; }
 
 @media only screen and (min-width: 768px) {
-  .sidebar-1 #searchform .form-group {
+  .sidebar-1 .sidebar #searchform .form-group {
     width: calc(100% - 60px); }
-  .sidebar-1 #searchform input.form-control {
+  .sidebar-1 .sidebar #searchform input.form-control {
     width: 100%;
     margin: 0 5px 2.5px 0; }
-  .sidebar-1 #searchform .button-primary {
+  .sidebar-1 .sidebar #searchform .button-primary {
     margin: 0;
     width: 40px;
     padding: 8px;
     border-radius: 4px; }
-  .sidebar-1 #searchform .button-primary span:last-of-type {
+  .sidebar-1 .sidebar #searchform .button-primary span:last-of-type {
     display: none; } }
 
 /*--------------------------------------------------------------
@@ -748,7 +756,9 @@ html.admin-bar {
   justify-content: center; }
 
 .palette-primary.woocommerce, .palette-primary.woocommerce-page {
-  /* Cross Sells */ }
+  /* Base Buttons */
+  /* Cross Sells */
+  /* Search Sidebar Widget */ }
 
 .palette-primary.woocommerce .button-primary,
 .palette-primary.woocommerce .button-secondary, .palette-primary.woocommerce-page .button-primary,
@@ -768,6 +778,12 @@ html.admin-bar {
 @media only screen and (min-width: 480px) {
   .palette-primary.woocommerce .return-to-shop .btn.button-primary, .palette-primary.woocommerce-page .return-to-shop .btn.button-primary {
     padding: 1em; } }
+
+@media only screen and (min-width: 768px) {
+  .palette-primary.woocommerce.sidebar-1 .sidebar #searchform button.button-primary, .palette-primary.woocommerce-page.sidebar-1 .sidebar #searchform button.button-primary {
+    padding: 0 1em;
+    height: auto;
+    width: auto; } }
 
 .palette-primary .woocommerce-MyAccount-navigation-link a {
   text-decoration: none; }
@@ -866,6 +882,14 @@ html.admin-bar {
 
 .palette-primary .breadcrumb > li + li:before {
   padding: 0; }
+
+.palette-primary.woocommerce-account .btn.button-primary {
+  height: auto;
+  padding: 0 1em;
+  margin: 0;
+  line-height: 3;
+  font-size: 14px;
+  text-align: center; }
 
 .palette-primary.woocommerce-account .panel.user-login, .palette-primary.woocommerce-account .panel.user-registration {
   display: flex;

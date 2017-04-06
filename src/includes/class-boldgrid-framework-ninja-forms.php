@@ -116,14 +116,14 @@ class BoldGrid_Framework_Ninja_Forms {
 		}
 
 		if ( '_text' === $settings['type'] ||
-		 	 '_textarea' === $settings['type'] ||
-			 '_profile_pass' === $settings['type'] ||
-			 '_spam' === $settings['type'] ||
-			 '_number' === $settings['type'] ||
-			 '_country' === $settings['type'] ||
-			 '_tax' === $settings['type'] ||
-			 '_calc' === $settings['type'] ) {
-			 $data['class'] .= ' form-control';
+			'_textarea' === $settings['type'] ||
+			'_profile_pass' === $settings['type'] ||
+			'_spam' === $settings['type'] ||
+			'_number' === $settings['type'] ||
+			'_country' === $settings['type'] ||
+			'_tax' === $settings['type'] ||
+			'_calc' === $settings['type'] ) {
+			$data['class'] .= ' form-control';
 		}
 
 		if ( '_desc' === $settings['type'] ) {

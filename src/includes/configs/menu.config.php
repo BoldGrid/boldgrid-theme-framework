@@ -18,10 +18,10 @@ return array(
 	),
 	'locations' => array(
 		'primary' => 'Primary Menu',
-		'social' => 'Left Below Primary Navigation',
-		'secondary' => 'Right Above Primary Navigation',
-		'tertiary' => 'Header Upper Right',
-		'footer_center' => 'Footer Center',
+		'social' => 'Social Icons',
+		'secondary' => 'Secondary Menu',
+		'tertiary' => 'Tertiary Menu',
+		'footer_center' => 'Footer Menu',
 	),
 	'prototype' => array(
 		'primary' => array(

@@ -368,7 +368,10 @@ class BoldGrid_Framework_Template_Config {
 		$template_config = null;
 
 		if ( isset( $template['locations'] ) && ! empty( $template['locations'] ) ) {
-			$template_config = $this->configs['template']['locations'][ $template_type ];
+			$template_locations = $this->configs['template']['locations'];
+			if ( isset( $template_locations[$template_type] ) && ! empty( $template_locations[ $template_type ] ) ) {
+				$template_config = $template_locations[ $template_type ];
+			}
 		}
 
 		if ( $template_config && ! empty( $template_config[ $location_id ] ) ) {

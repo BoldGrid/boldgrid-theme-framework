@@ -163,6 +163,7 @@ class BoldGrid_Framework_Styles {
 			array( 'bootstrap-styles' ),
 			$this->configs['version']
 		);
+
 		/* Framework Base Styles */
 		wp_enqueue_style(
 			'bgtfw-smartmenus-bootstrap',
@@ -170,7 +171,6 @@ class BoldGrid_Framework_Styles {
 			array( 'bootstrap-styles' ),
 			$this->configs['version']
 		);
-
 
 		/* Component Styles */
 		wp_enqueue_style(

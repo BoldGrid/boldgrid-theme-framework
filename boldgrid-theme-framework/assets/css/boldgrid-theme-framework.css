@@ -900,6 +900,14 @@ html.admin-bar {
 .palette-primary .woocommerce-checkout #payment div.payment_box:before {
   border: none; }
 
+.palette-primary #add_payment_method .cart-collaterals .cart_totals tr td,
+.palette-primary #add_payment_method .cart-collaterals .cart_totals tr th,
+.palette-primary .woocommerce-cart .cart-collaterals .cart_totals tr td,
+.palette-primary .woocommerce-cart .cart-collaterals .cart_totals tr th,
+.palette-primary .woocommerce-checkout .cart-collaterals .cart_totals tr td,
+.palette-primary .woocommerce-checkout .cart-collaterals .cart_totals tr th {
+  border-top: none; }
+
 .palette-primary.woocommerce-account .btn.button-primary {
   height: auto;
   padding: 0 1em;

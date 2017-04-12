@@ -91,6 +91,18 @@
   padding-left: 0px;
   padding-right: 0px; }
 
+/** Nav Tabs Default Styles **/
+.nav-tabs {
+  border-bottom: 1px solid currentColor; }
+
+.nav-tabs > li.active > a {
+  border: 1px solid currentColor;
+  border-bottom-color: transparent; }
+
+.nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+  border: 1px solid currentColor;
+  border-bottom-color: transparent; }
+
 /*--------------------------------------------------------------
 # Customizer Styles
 --------------------------------------------------------------*/

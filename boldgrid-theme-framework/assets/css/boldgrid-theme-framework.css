@@ -895,6 +895,11 @@ html.admin-bar {
 .palette-primary .breadcrumb > li + li:before {
   padding: 0; }
 
+.palette-primary #add_payment_method #payment div.payment_box:before,
+.palette-primary .woocommerce-cart #payment div.payment_box:before,
+.palette-primary .woocommerce-checkout #payment div.payment_box:before {
+  border: none; }
+
 .palette-primary.woocommerce-account .btn.button-primary {
   height: auto;
   padding: 0 1em;

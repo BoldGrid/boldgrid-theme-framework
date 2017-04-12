@@ -1,0 +1,7 @@
+#add_payment_method,
+.woocommerce-cart,
+.woocommerce-checkout {
+	#payment div.payment_box:before {
+		border: none;
+	}
+}

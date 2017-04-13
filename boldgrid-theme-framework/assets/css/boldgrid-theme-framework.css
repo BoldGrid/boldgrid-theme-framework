@@ -908,6 +908,15 @@ html.admin-bar {
 .palette-primary .woocommerce-checkout .cart-collaterals .cart_totals tr th {
   border-top: none; }
 
+.palette-primary table.shop_table {
+  border: 1px solid currentColor; }
+
+.palette-primary table.shop_table td,
+.palette-primary table.shop_table tbody th,
+.palette-primary table.shop_table tfoot td,
+.palette-primary table.shop_table tfoot th {
+  border-top-color: currentColor; }
+
 .palette-primary.woocommerce-account .btn.button-primary {
   height: auto;
   padding: 0 1em;

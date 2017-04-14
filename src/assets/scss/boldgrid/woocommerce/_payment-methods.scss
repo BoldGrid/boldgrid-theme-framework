@@ -1,11 +1,11 @@
 #add_payment_method,
-.woocommerce-cart,
-.woocommerce-checkout {
+&.woocommerce-cart,
+&.woocommerce-checkout {
 	#payment div.payment_box:before {
 		border: none;
 	}
 	.cart-collaterals .cart_totals tr td,
 	.cart-collaterals .cart_totals tr th {
-		border-top: none;
+		border-top-color: currentColor;
 	}
 }

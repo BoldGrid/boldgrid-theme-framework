@@ -895,18 +895,14 @@ html.admin-bar {
 .palette-primary .breadcrumb > li + li:before {
   padding: 0; }
 
-.palette-primary #add_payment_method #payment div.payment_box:before,
-.palette-primary .woocommerce-cart #payment div.payment_box:before,
-.palette-primary .woocommerce-checkout #payment div.payment_box:before {
+.palette-primary #add_payment_method #payment div.payment_box:before, .palette-primary.woocommerce-cart #payment div.payment_box:before, .palette-primary.woocommerce-checkout #payment div.payment_box:before {
   border: none; }
 
 .palette-primary #add_payment_method .cart-collaterals .cart_totals tr td,
-.palette-primary #add_payment_method .cart-collaterals .cart_totals tr th,
-.palette-primary .woocommerce-cart .cart-collaterals .cart_totals tr td,
-.palette-primary .woocommerce-cart .cart-collaterals .cart_totals tr th,
-.palette-primary .woocommerce-checkout .cart-collaterals .cart_totals tr td,
-.palette-primary .woocommerce-checkout .cart-collaterals .cart_totals tr th {
-  border-top: none; }
+.palette-primary #add_payment_method .cart-collaterals .cart_totals tr th, .palette-primary.woocommerce-cart .cart-collaterals .cart_totals tr td,
+.palette-primary.woocommerce-cart .cart-collaterals .cart_totals tr th, .palette-primary.woocommerce-checkout .cart-collaterals .cart_totals tr td,
+.palette-primary.woocommerce-checkout .cart-collaterals .cart_totals tr th {
+  border-top-color: currentColor; }
 
 .palette-primary table.shop_table {
   border: 1px solid currentColor; }

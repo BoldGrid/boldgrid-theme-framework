@@ -234,14 +234,26 @@
 --------------------------------------------------------------*/
 /* BGTFW Menus */
 .boldgrid-framework-menu {
-  display: flex; }
+  padding: 5px; }
 
-.no-collapse .nav > li {
-  float: left; }
+.boldgrid-framework-menu ul {
+  padding: 0px 10px;
+  margin-top: 12px; }
 
-@media only screen and (max-width: 768px) {
-  .no-collapse .navbar-nav {
-    margin: 0; } }
+.footer-center-items li:after, .boldgrid-framework-menu li:after {
+  content: " | "; }
+
+.footer-center-items li:last-of-type:after, .boldgrid-framework-menu li:last-of-type:after {
+  content: ""; }
+
+.footer-center-menu li, .boldgrid-framework-menu li {
+  list-style: none;
+  display: inline;
+  list-style-type: none; }
+
+.footer-center-items li a[href="#"]:hover, .footer-center-items li a[href="#"], .footer-center-items li a:not([href]) {
+  text-decoration: none;
+  cursor: text; }
 
 /*--------------------------------------------------------------
 # Widgets

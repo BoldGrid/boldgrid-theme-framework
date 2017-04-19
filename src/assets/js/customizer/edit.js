@@ -261,9 +261,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			var focused = $( ':focus', parent.document ), initialTransition;
 
 			if ( 'hide_boldgrid_attribution' === dataControl ) {
-				focused = $( api.control( 'hide_boldgrid_attribution' ).selector, parent.document )
-					.add( api.control( 'hide_wordpress_attribution' ).selector, parent.document )
-					.add( api.control( 'hide_partner_attribution' ).selector, parent.document );
+				focused = $( 'ul#sub-accordion-section-boldgrid_footer_panel > li[id^="customize-control-hide_"][id$="_attribution"]', parent.document );
 			}
 
 			if ( 0 === dataControl.lastIndexOf( 'nav_menu', 0 ) ) {

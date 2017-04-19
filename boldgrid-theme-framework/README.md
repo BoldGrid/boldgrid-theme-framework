@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.4.3 ###
+* Update: Link focus should be dynamically found for hide_ links.
+
 ### 1.4.2 ###
 * Bug fix: Check if template configs are present.
 * Update: Default menu descriptions are now generic instead of contextual.

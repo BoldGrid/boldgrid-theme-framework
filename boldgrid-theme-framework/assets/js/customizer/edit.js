@@ -261,6 +261,7 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 			var focused = $( ':focus', parent.document ), initialTransition;
 
 			if ( 'hide_boldgrid_attribution' === dataControl ) {
+				// Alternatively read control with regex /^(hide_)+\w*(_attribution)+$/m
 				focused = $( 'ul#sub-accordion-section-boldgrid_footer_panel > li[id^="customize-control-hide_"][id$="_attribution"]', parent.document );
 			}
 

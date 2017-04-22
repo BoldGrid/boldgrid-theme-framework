@@ -1,17 +1,17 @@
 .attribution-theme-mods {
 	.link {
 		padding: .5em;
-		&:last-child {
+		&:after {
+			content: "";
+			margin-left: 1em;
+			border-left: 1px solid currentColor;
+		}
+		&:nth-last-child(2) {
 			padding-right: 0;
 			&:after {
 				margin: 0;
 				border: 0;
 			}
-		}
-		&:after {
-			content: "";
-			margin-left: 1em;
-			border-left: 1px solid currentColor;
 		}
 	}
 }

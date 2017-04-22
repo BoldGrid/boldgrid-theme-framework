@@ -394,31 +394,23 @@ msgstr ""
 msgid "Hide WordPress Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:221
-msgid "Hide Partner Attribution"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:246
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:232
 msgid "Built with"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:248
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:234
 msgid "BoldGrid"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:256
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:242
 msgid "Powered by"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:258
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:244
 msgid "WordPress"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:267
-msgid "Support from"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:322
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:296
 msgid "Enable Footer"
 msgstr ""
 

@@ -212,18 +212,6 @@ class Boldgrid_Framework_Customizer_Footer {
 				'priority'    => 40,
 			)
 		);
-		Kirki::add_field(
-			'',
-			array(
-				'type'        => 'checkbox',
-				'settings'     => 'hide_partner_attribution',
-				'transport'   => 'postMessage',
-				'label'       => __( 'Hide Partner Attribution', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => false,
-				'priority'    => 50,
-			)
-		);
 	}
 
 	/**
@@ -234,11 +222,9 @@ class Boldgrid_Framework_Customizer_Footer {
 	public function attribution_display_action() {
 
 		$theme_mods = '';
-		$reseller_data = get_option( 'boldgrid_reseller', false );
 
 		// If the user hasn't disabled the footer, add the links.
 		if ( get_theme_mod( 'boldgrid_enable_footer', true ) ) {
-
 			// BoldGrid.com Link.
 			if ( ! get_theme_mod( 'hide_boldgrid_attribution' ) || is_customize_preview() ) {
 				$theme_mods .= sprintf(
@@ -257,18 +243,6 @@ class Boldgrid_Framework_Customizer_Footer {
 					'https://wordpress.org/',
 					__( 'WordPress', 'bgtfw' )
 				);
-			}
-
-			// Authorized Reseller/Partner Link.
-			if ( ! get_theme_mod( 'hide_partner_attribution' ) || is_customize_preview() ) {
-				if ( ! empty( $reseller_data['reseller_title'] ) ) {
-					$theme_mods .= sprintf(
-						'<span class="link reseller-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a></span>',
-						__( 'Support from', 'bgtfw' ),
-						$reseller_data['reseller_website_url'],
-						$reseller_data['reseller_title']
-					);
-				}
 			}
 		}
 

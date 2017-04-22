@@ -260,51 +260,35 @@
 	};
 
 	var attribution_links = function() {
-		wp.customize.bind( 'ready',
-			_.defer(
-				function() {
-					if ( !! parseInt( wp.customize( 'hide_partner_attribution' )() ) ) {
-						$( '.reseller-attribution-link' ).addClass( 'hidden' );
-					}
-					if ( !! parseInt( wp.customize( 'hide_boldgrid_attribution' )() ) ) {
-						$( '.boldgrid-attribution-link' ).addClass( 'hidden' );
-					}
-					if ( !! parseInt( wp.customize( 'hide_wordpress_attribution' )() ) ) {
-						$( '.wordpress-attribution-link' ).addClass( 'hidden' );
+		var controls;
+		wp.customize.bind( 'ready', _.defer( function() {
+			controls = parent.wp.customize.section( 'boldgrid_footer_panel' ).controls();
+			_( controls ).each( function( control ) {
+				var selector, regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
+				if ( regex.test( control.id ) ) {
+					if ( !! parseInt( wp.customize( control.id )() ) ) {
+						selector = '.' + control.id.replace( 'hide_', '' ).replace( /_/g, '-' ) + '-link';
+						$( selector ).addClass( 'hidden' );
 					}
 				}
-			)
-		);
+			} );
+		} ) );
 	};
 
-	wp.customize( 'hide_boldgrid_attribution', function( value ) {
-		value.bind( function( to ) {
-			if ( ! to ) {
-				$( '.boldgrid-attribution-link' ).removeClass( 'hidden' );
-			} else {
-				$( '.boldgrid-attribution-link' ).addClass( 'hidden' );
-			}
-		} );
-	} );
-
-	wp.customize( 'hide_wordpress_attribution', function( value ) {
-		value.bind( function( to ) {
-			if ( ! to ) {
-				$( '.wordpress-attribution-link' ).removeClass( 'hidden' );
-			} else {
-				$( '.wordpress-attribution-link' ).addClass( 'hidden' );
-			}
-		} );
-	} );
-
-	wp.customize( 'hide_partner_attribution', function( value ) {
-		value.bind( function( to ) {
-			if ( ! to ) {
-				$( '.reseller-attribution-link' ).removeClass( 'hidden' );
-			} else {
-				$( '.reseller-attribution-link' ).addClass( 'hidden' );
-			}
-		} );
-	} );
-
+	var attributionControls = parent.wp.customize.section( 'boldgrid_footer_panel' ).controls();
+	_( attributionControls ).each( function( control ) {
+		var selector, regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
+		if ( regex.test( control.id ) ) {
+			wp.customize( control.id, function( value ) {
+				selector = '.' + control.id.replace( /hide_/, '' ).replace( /_/g, '-' ) + '-link';
+				value.bind( function( to ) {
+					if ( ! to ) {
+						$( selector ).removeClass( 'hidden' );
+					} else {
+						$( selector ).addClass( 'hidden' );
+					}
+				});
+			});
+		}
+	});
 } )( jQuery );

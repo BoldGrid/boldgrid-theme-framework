@@ -6,7 +6,7 @@
 			margin-left: 1em;
 			border-left: 1px solid currentColor;
 		}
-		&:nth-last-child(2) {
+		&:last-child {
 			padding-right: 0;
 			&:after {
 				margin: 0;

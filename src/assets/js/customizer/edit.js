@@ -265,6 +265,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				focused = $( 'ul#sub-accordion-section-boldgrid_footer_panel > li[id^="customize-control-hide_"][id$="_attribution"]', parent.document );
 			}
 
+			if ( 'hide_boldgrid_attribution' === dataControl && ! api( 'boldgrid_enable_footer' )() ) {
+				// Alternatively read control with regex /^(hide_)+\w*(_attribution)+$/m
+				focused = $( api.control( 'boldgrid_enable_footer' ).selector, parent.document );
+			}
+
 			if ( 0 === dataControl.lastIndexOf( 'nav_menu', 0 ) ) {
 				focused = $( '.customize-control-nav_menu_name', parent.document );
 			}

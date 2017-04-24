@@ -264,8 +264,11 @@ BOLDGRID.Customizer_Edit = function( $ ) {
 				// Alternatively read control with regex /^(hide_)+\w*(_attribution)+$/m
 				focused = $( 'ul#sub-accordion-section-boldgrid_footer_panel > li[id^="customize-control-hide_"][id$="_attribution"]', parent.document );
 			}
-
-			if ( 'hide_boldgrid_attribution' === dataControl && ! api( 'boldgrid_enable_footer' )() ) {
+			/*jshint eqeqeq:false */
+			/*jshint -W041 */
+			if ( 'hide_boldgrid_attribution' === dataControl && false == api( 'boldgrid_enable_footer' )() ) {
+				/*jshint eqeqeq:true */
+				/*jshint +W041 */
 				// Alternatively read control with regex /^(hide_)+\w*(_attribution)+$/m
 				focused = $( api.control( 'boldgrid_enable_footer' ).selector, parent.document );
 			}

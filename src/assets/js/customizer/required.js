@@ -12,7 +12,11 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 
 	var onload_procedure = function() {
 		$.each( BOLDGRID_Customizer_Required, function( key ) {
-			if ( false === wp.customize( key )() ) {
+			/*jshint eqeqeq:false */
+			/*jshint -W041 */
+			if ( false == wp.customize( key )() ) {
+				/*jshint eqeqeq:true */
+				/*jshint +W041 */
 				for ( var i = 0; i < this.length; i++ ) {
 					wp.customize.control( this[ i ] ).deactivate();
 				}

@@ -47,7 +47,7 @@ final class Boldgrid_Framework_Customizer_Help_Overlay {
 				$manager,
 				'boldgrid_customizer_help',
 				array(
-					'title'    => esc_html__( 'Help', 'bgtfw' ),
+					'title' => esc_html__( 'Help', 'bgtfw' ),
 				)
 			)
 		);

@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.4.4 ###
+* Bug fix: Fixed help overlay section in customizer so it's part of the actual controls.
+
 ### 1.4.3 ###
 * Update: Link focus should be dynamically found for hide_ links.
 

@@ -414,6 +414,10 @@ msgstr ""
 msgid "Enable Footer"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-help-overlay.php:50
+msgid "Help"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:108
 msgid "Fonts"
 msgstr ""

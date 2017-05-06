@@ -28,22 +28,6 @@
 .overlay-content .buttony-primary {
   margin-right: 5px; }
 
-.in-themes-panel #accordion-section-boldgrid_customizer_help_panel,
-.section-open #accordion-section-boldgrid_customizer_help_panel,
-.collapsed #accordion-section-boldgrid_customizer_help_panel,
-.in-sub-panel #accordion-section-boldgrid_customizer_help_panel {
-  display: none; }
-
-#customize-theme-controls #accordion-section-boldgrid_customizer_help_panel {
-  position: fixed;
-  bottom: 42px;
-  width: 300px;
-  list-style: none; }
-
-#customize-theme-controls #accordion-section-boldgrid_customizer_help_panel .active > h3 {
-  background-color: #F95B26 !important;
-  color: white !important; }
-
 .preview-tablet .wp-full-overlay-main {
   width: 767px; }
 
@@ -611,9 +595,7 @@
   .expanded .boldgrid-sticky-customizer .background-type-controls,
   .expanded .boldgrid-sticky-customizer #customize-control-boldgrid_background_color,
   .expanded .boldgrid-sticky-customizer .boldgrid-pattern-selection-heading {
-    width: 100%; }
-  #customize-theme-controls #accordion-section-boldgrid_customizer_help_panel {
-    display: none; } }
+    width: 100%; } }
 
 /*****************************************************
 ************Advanced Footer Panel Controls****************
@@ -677,6 +659,14 @@
 
 #accordion-section-title_tagline > ul > li > label > span {
   display: inline-block; }
+
+#accordion-section-boldgrid_customizer_help.active .accordion-section-title {
+  color: #0073aa;
+  background: #f3f3f5;
+  border-left-color: #0073aa; }
+
+#accordion-section-boldgrid_customizer_help.active .accordion-section-title:after {
+  color: #0073aa; }
 
 .customize-control-radio-image .image.ui-buttonset label.ui-state-active {
   border: 3px solid #00a0d2; }

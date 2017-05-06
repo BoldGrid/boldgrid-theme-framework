@@ -684,7 +684,9 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_register', $base, 'add_menu_description', 20 );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'custom_customize_enqueue' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'enqueue_styles' );
-		$this->loader->add_action( 'customize_preview_init', $base, 'add_help_overlay' );
+		if ( is_customize_preview() ) {
+			$this->loader->add_action( 'wp_footer', $base, 'add_help_overlay' );
+		}
 		// Output custom CSS and JS to live site.
 		$this->loader->add_action( 'wp_head', $base, 'custom_css_output' );
 		// This hook can be used to add any styles to the head.

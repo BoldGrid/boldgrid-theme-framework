@@ -606,14 +606,14 @@ msgstr ""
 msgid "Menu Tutorial"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:749
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:736
 msgid "Using the Customizer"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:751
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:738
 msgid ""
 "BoldGrid sites are highly customizable. Each of the menu items to the left correspond with an area\n"
-"						of your site. Become familiar with everything's location to make full use of your site's features."
+"					of your site. Become familiar with everything's location to make full use of your site's features."
 msgstr ""
 
 #: src/includes/partials/author-box.php:14, src/includes/partials/author-box.php:14

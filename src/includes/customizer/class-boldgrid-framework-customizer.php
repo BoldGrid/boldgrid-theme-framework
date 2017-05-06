@@ -726,38 +726,23 @@ HTML;
 	 * @since 1.0.0
 	 */
 	public function add_help_overlay() {
-
-		$configs = $this->configs;
-		$print_overlay = function () use ( $configs ) {
-			$first_time_visit = get_option( 'boldgrid_customizer_first_visit', true );
-			$classes = '';
-
-			// Added 11-2-15 to make sure that the customzier overlay does not display on first time load.
-			$first_time_visit = 'false';
-
-			if ( 'false' !== $first_time_visit ) {
-				$classes = 'fade-in';
-				update_option( 'boldgrid_customizer_first_visit', 'false' );
-			}
-			// @todo: enqueue properly.
-			?>
-			<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-			<div id='boldgrid-customizer-overlay-help' class='overlay-help <?php esc_attr( $classes ); ?>'>
-				<div class='overlay-help-inside'>
-					<div class='overlay-help-text'>
-						<i id='close-help-popup' class="fa fa-times-circle fa-2x pull-right"></i>
-						<h2><?php _e( 'Using the Customizer', 'bgtfw' ); ?></h2>
-						<p>
-						<?php _e( 'BoldGrid sites are highly customizable. Each of the menu items to the left correspond with an area
-						of your site. Become familiar with everything\'s location to make full use of your site\'s features.', 'bgtfw' ); ?>
-						</p>
-					</div>
-					<img src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] ); ?>img/boldgrid-overlay.jpg">
+		// @todo: enqueue properly.
+		?>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<div id='boldgrid-customizer-overlay-help' class='overlay-help'>
+			<div class='overlay-help-inside'>
+				<div class='overlay-help-text'>
+					<i id='close-help-popup' class="fa fa-times-circle fa-2x pull-right"></i>
+					<h2><?php _e( 'Using the Customizer', 'bgtfw' ); ?></h2>
+					<p>
+					<?php _e( 'BoldGrid sites are highly customizable. Each of the menu items to the left correspond with an area
+					of your site. Become familiar with everything\'s location to make full use of your site\'s features.', 'bgtfw' ); ?>
+					</p>
 				</div>
+				<img src="<?php echo esc_url( $this->configs['framework']['admin_asset_dir'] ); ?>img/boldgrid-overlay.jpg">
 			</div>
-			<?php };
-
-		add_action( 'wp_footer', $print_overlay );
+		</div>
+		<?php
 	}
 
 	/**

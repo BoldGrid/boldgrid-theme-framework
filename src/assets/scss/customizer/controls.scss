@@ -31,26 +31,8 @@
 	}
 }
 
-.in-themes-panel #accordion-section-boldgrid_customizer_help_panel,
-.section-open #accordion-section-boldgrid_customizer_help_panel,
-.collapsed #accordion-section-boldgrid_customizer_help_panel,
-.in-sub-panel #accordion-section-boldgrid_customizer_help_panel  {
-	display: none;
-}
-
-#customize-theme-controls #accordion-section-boldgrid_customizer_help_panel {
-	position: fixed;
-	bottom: 42px;
-	width: 300px;
-	list-style:none;
-	.active > h3 {
-		background-color: #F95B26 !important;
-		color: white !important;
-	}
-}
-
 .preview-tablet .wp-full-overlay-main {
-    width: 767px;
+	width: 767px;
 }
 
 .accordion-section-content.menu .customize-section-description {
@@ -684,13 +666,8 @@
 	.expanded .boldgrid-sticky-customizer .background-type-controls,
 	.expanded .boldgrid-sticky-customizer #customize-control-boldgrid_background_color,
 	.expanded .boldgrid-sticky-customizer .boldgrid-pattern-selection-heading {
-    	width: 100%;
-  	}
-
-  	#customize-theme-controls #accordion-section-boldgrid_customizer_help_panel {
-  		display: none;
-  	}
-
+		width: 100%;
+	}
 }
 
 /*****************************************************
@@ -725,11 +702,11 @@
 .background-type-controls,
 .pattern-wrapper {
 	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .boldgrid-pattern-selection-heading {
@@ -737,7 +714,7 @@
 }
 
 .boldgrid-pattern-wrapper .boldgrid-pattern-selection-heading a:after {
-    content: "No Pattern Selected";
+	content: "No Pattern Selected";
 }
 
 .boldgrid-pattern-wrapper[data-pattern-selected="1"] .boldgrid-pattern-selection-heading a:after {
@@ -749,7 +726,6 @@
 	z-index: 1;
 }
 
-
 /**
  * Site Identity Panel
  */
@@ -759,17 +735,24 @@
 #customize-control-logo_text_decoration_hover > label > select {
 	float:right;
 }
-
 #customize-control-logo_font_family > label > select {
-    width: 130px;
-    height: 23px;
+	width: 130px;
+	height: 23px;
 }
 #accordion-section-title_tagline > ul > li > label > span {
-    display: inline-block;
+	display: inline-block;
+}
+#accordion-section-boldgrid_customizer_help.active .accordion-section-title {
+	color: #0073aa;
+	background: #f3f3f5;
+	border-left-color: #0073aa;
+	&:after {
+		color: #0073aa;
+	}
 }
 
 .customize-control-radio-image .image.ui-buttonset label.ui-state-active {
-    border: 3px solid #00a0d2;
+	border: 3px solid #00a0d2;
 }
 
 .boldgrid-subdescription {

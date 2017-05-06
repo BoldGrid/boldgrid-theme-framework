@@ -9,7 +9,7 @@
 	var $body = $( 'body' );
 	var $custom_styles = $( '#boldgrid-override-styles' );
 
-	$(function() {
+	$( function() {
 		init_values();
 		attribution_links();
 		setup_post_edit_link();
@@ -98,22 +98,19 @@
 		value.bind( background_size_update );
 	} );
 
-	var setup_post_edit_link = function() {
-		$( '.post-edit-link' ).on( 'click', function() {
-			parent.location = $( this ).attr( 'href' );
+	var setup_help = function() {
+		$( '#close-help-popup, .dismiss-overlay-help' ).on( 'click', function() {
+			$( this ).closest( '.overlay-help' ).fadeOut();
+			parent.jQuery( '#accordion-section-boldgrid_customizer_help' ).removeClass( 'active' );
 		});
 	};
 
 	/**
 	 * Allow the user to click the post edit link in the customizer and go to the editor
 	 */
-	var setup_help = function() {
-		$( '.overlay-help.fade-in' ).fadeIn();
-
-		$( '#close-help-popup, .dismiss-overlay-help' ).on( 'click', function() {
-			$( this ).closest( '.overlay-help' ).fadeOut();
-
-			parent.jQuery( '#accordion-section-boldgrid_customizer_help_panel' ).removeClass( 'active' );
+	var setup_post_edit_link = function() {
+		$( '.post-edit-link' ).on( 'click', function() {
+			parent.location = $( this ).attr( 'href' );
 		});
 	};
 

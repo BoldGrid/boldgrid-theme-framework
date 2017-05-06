@@ -48,6 +48,10 @@ class Boldgrid_Framework_Wp_Fs {
 		self::init();
 		global $wp_filesystem;
 		// Write output to CSS file.
-		$wp_filesystem->put_contents( $file, $content, FS_CHMOD_FILE );
+		$chmod_dir = ( 0755 & ~ umask() );
+		if ( defined( 'FS_CHMOD_DIR' ) ) {
+			$chmod_dir = FS_CHMOD_DIR;
+		}
+		$wp_filesystem->put_contents( $file, $content, $chmod_dir );
 	}
 }

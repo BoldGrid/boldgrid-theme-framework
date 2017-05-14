@@ -1,10 +1,17 @@
 <?php
 /**
- * Boldgrid Customizer Help Panel.
+ * Class: Boldgrid_Customizer_Help_Overlay.
  *
- * @since  1.0.0
- * @access public
+ * This is the class responsible for the help overlay customizer control displayed.
+ *
+ * @since      1.4.4
+ * @category   Customizer
+ * @package    Boldgrid_Framework
+ * @subpackage Customizer
+ * @author     BoldGrid <support@boldgrid.com>
+ * @link       https://boldgrid.com
  */
+
 final class Boldgrid_Framework_Customizer_Help_Overlay {
 
 	/**
@@ -21,19 +28,19 @@ final class Boldgrid_Framework_Customizer_Help_Overlay {
 	 *
 	 * @since  1.0.0
 	 * @access public
+	 * @param  array  $configs An array of BoldGrid Theme Framework configurations.
 	 * @return void
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
 	}
 
-
 	/**
 	 * Sets up the customizer sections.
 	 *
 	 * @since  1.0.0
 	 * @access public
-	 * @param  object  $manager
+	 * @param  object $manager
 	 * @return void
 	 */
 	public function sections( $manager ) {

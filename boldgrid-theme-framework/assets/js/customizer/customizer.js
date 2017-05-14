@@ -99,7 +99,7 @@
 	} );
 
 	var setup_help = function() {
-		$( '#close-help-popup, .dismiss-overlay-help' ).on( 'click', function() {
+		$( '#close-help-popup' ).on( 'click', function() {
 			$( this ).closest( '.overlay-help' ).fadeOut();
 			parent.jQuery( '#accordion-section-boldgrid_customizer_help' ).removeClass( 'active' );
 		});

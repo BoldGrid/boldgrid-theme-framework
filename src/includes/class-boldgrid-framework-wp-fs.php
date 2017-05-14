@@ -47,11 +47,12 @@ class Boldgrid_Framework_Wp_Fs {
 	public function save( $content, $file ) {
 		self::init();
 		global $wp_filesystem;
+
 		// Write output to CSS file.
-		$chmod_dir = ( 0755 & ~ umask() );
-		if ( defined( 'FS_CHMOD_DIR' ) ) {
-			$chmod_dir = FS_CHMOD_DIR;
+		$chmod_file = ( 0644 & ~ umask() );
+		if ( defined( 'FS_CHMOD_FILE' ) ) {
+			$chmod_file = FS_CHMOD_FILE;
 		}
-		$wp_filesystem->put_contents( $file, $content, $chmod_dir );
+		$wp_filesystem->put_contents( $file, $content, $chmod_file );
 	}
 }

@@ -18,7 +18,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 				/*jshint eqeqeq:true */
 				/*jshint +W041 */
 				for ( var i = 0; i < this.length; i++ ) {
-					wp.customize.control( this[ i ] ).deactivate();
+					! _.isUndefined( wp.customize.control( this[ i ] ) ) && wp.customize.control( this[ i ] ).deactivate();
 				}
 			}
 		} );

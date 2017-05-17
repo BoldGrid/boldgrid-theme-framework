@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.4.5 ###
+* Update: Changed the default fieldset legend styles added.
+
 ### 1.4.4 ###
 * Bug fix: Fixed help overlay section in customizer so it's part of the actual controls.
 * Bug fix: Fixed cases where FS_CHMOD_DIR is an undefined constant with $wp_filesystem.

@@ -7,3 +7,9 @@
 .post-password-form .button-primary {
 	margin-left: 9px;
 }
+
+/* Adds bgtfw default fieldset lengend styles */
+.palette-primary legend {
+	color: currentColor;
+	border-bottom: none;
+}

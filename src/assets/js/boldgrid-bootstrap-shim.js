@@ -18,11 +18,13 @@ jQuery( document ).ready( function( $ ) {
 	$( 'table#wp-calendar' ).addClass( 'table table-striped' );
 	$( '.sidebar select, select[name="archive-dropdown"]' ).addClass( 'form-control' );
 	$( '.sidebar .button' ).removeClass( 'button' ).addClass( 'btn button-primary' );
-	$( '.sidebar .ui-slider' ).css( 'display', 'none' );
+
+	$( '.woocommerce.widget .ui-slider' ).css( 'display', 'none' );
 	$( window ).on( 'load', function() {
-		$( '.sidebar .ui-slider' ).css( 'display', 'block' );
-		$( '.sidebar .ui-slider' ).addClass( 'color1-background-color' ).children().addClass( 'color2-background-color' );
+		$( '.woocommerce.widget .ui-slider' ).css( 'display', 'block' );
+		$( '.woocommerce.widget .ui-slider' ).addClass( 'color1-background-color' ).children().addClass( 'color2-background-color' );
 	});
+
 	$( 'body' ).find( '.button' )
 		.removeClass( 'button' )
 		.addClass( 'btn button-primary' );

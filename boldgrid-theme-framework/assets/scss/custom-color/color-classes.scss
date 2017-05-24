@@ -153,6 +153,15 @@ $names: color background background-color border-color;
 	}
 }
 
+/** WooCommerce overrides **/
+.woocommerce div.product {
+	.stock,
+	span.price,
+	p.price {
+		color: $palette-primary_1;
+	}
+}
+
 /*
 * Base Colors
 *

@@ -13,6 +13,12 @@
  */
 
 if ( class_exists( 'WP_Customize_Section' ) ) {
+
+	/**
+	 * Class: Boldgrid_Customizer_Help_Overlay_Section.
+	 *
+	 * This is the class responsible for the help overlay customizer section displayed.
+	 */
 	class Boldgrid_Framework_Customizer_Help_Overlay_Section extends WP_Customize_Section {
 
 		/**

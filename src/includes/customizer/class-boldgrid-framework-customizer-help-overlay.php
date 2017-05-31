@@ -12,6 +12,11 @@
  * @link       https://boldgrid.com
  */
 
+/**
+ * Class: Boldgrid_Customizer_Help_Overlay.
+ *
+ * This is the class responsible for the help overlay customizer control displayed.
+ */
 final class Boldgrid_Framework_Customizer_Help_Overlay {
 
 	/**
@@ -28,7 +33,7 @@ final class Boldgrid_Framework_Customizer_Help_Overlay {
 	 *
 	 * @since  1.0.0
 	 * @access public
-	 * @param  array  $configs An array of BoldGrid Theme Framework configurations.
+	 * @param  array $configs An array of BoldGrid Theme Framework configurations.
 	 * @return void
 	 */
 	public function __construct( $configs ) {
@@ -40,7 +45,7 @@ final class Boldgrid_Framework_Customizer_Help_Overlay {
 	 *
 	 * @since  1.0.0
 	 * @access public
-	 * @param  object $manager
+	 * @param  object $manager WP_Customize Manager.
 	 * @return void
 	 */
 	public function sections( $manager ) {

@@ -53,14 +53,13 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   overflow: hidden; }
 
 .screen-reader-text:focus {
-  background-color: #f1f1f1;
+  background-color: #fff;
   border-radius: 3px;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
   clip: auto !important;
-  color: #21759b;
+  color: #333;
   display: block;
-  font-size: 14px;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: bold;
   height: auto;
   left: 5px;

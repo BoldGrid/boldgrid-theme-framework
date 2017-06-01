@@ -1,3 +1,10 @@
+.comment-content a {
+	word-wrap: break-word;
+}
+.bypostauthor {
+	display: block;
+}
+
 #commentform {
 	// Comment Form Clearings
 	.form-group:before,

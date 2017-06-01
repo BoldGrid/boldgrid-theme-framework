@@ -19,7 +19,6 @@ var gulp     = require( 'gulp' ),
     del      = require( 'del' ),
     clean    = require( 'gulp-clean' ),
     fs       = require( 'fs' ),
-    changed  = require( 'gulp-changed' ),
 	argv     = require('yargs').argv,
     modernizr = require( 'gulp-modernizr' ),
     jscs     = require( 'gulp-jscs' ),
@@ -40,7 +39,7 @@ var config = {
   img_src: './inc/assets/img/**/*',
   layouts_src: './layouts',
   layouts_dest: '../boldgrid-theme-framework/layouts',
-  scss_minify: 'compressed', // or uncompressed for dev
+  scss_minify: 'compressed' // or uncompressed for dev
 };
 
 // Create a bower task to retrieve bower_components on build
@@ -300,9 +299,6 @@ gulp.task( 'scssDeps', function(  ) {
   gulp.src( config.bower + '/font-awesome/scss/**/*.scss' )
     .pipe( replace( '../fonts', '../../fonts' ) )
     .pipe( gulp.dest( config.dist + '/assets/scss/font-awesome' ) );
-  // Underscores
-  gulp.src( './inc/assets/scss/underscores/**/*.scss' )
-    .pipe( gulp.dest( config.scss_dest + '/underscores' ) );
   // Animate.css
   gulp.src( config.bower + '/animate.css/animate.*' )
     .pipe( gulp.dest( config.dist + '/assets/css/animate-css' ) );

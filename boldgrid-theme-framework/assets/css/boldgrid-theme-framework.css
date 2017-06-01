@@ -592,10 +592,10 @@ html.admin-bar {
   margin-left: 1em;
   border-left: 1px solid currentColor; }
 
-.attribution-theme-mods .link .no-separator, .attribution-theme-mods .link:last-child {
+.attribution-theme-mods .link.no-separator, .attribution-theme-mods .link:last-child {
   padding-right: 0; }
 
-.attribution-theme-mods .link .no-separator:after, .attribution-theme-mods .link:last-child:after {
+.attribution-theme-mods .link.no-separator:after, .attribution-theme-mods .link:last-child:after {
   margin: 0;
   border: 0; }
 

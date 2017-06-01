@@ -269,7 +269,19 @@
 					}
 				}
 			} );
+			attributionSeparators();
 		} ) );
+	};
+
+	/**
+	 * Responsible for adjusting the separators in live preview for attribution footer links.
+	 */
+	var attributionSeparators = function() {
+		$( '.attribution-theme-mods > .link' )
+			.removeClass( 'no-separator' )
+			.filter( ':visible' )
+			.last()
+			.addClass( 'no-separator' );
 	};
 
 	var attributionControls = parent.wp.customize.section( 'boldgrid_footer_panel' ).controls();
@@ -279,11 +291,13 @@
 			wp.customize( control.id, function( value ) {
 				selector = '.' + control.id.replace( /hide_/, '' ).replace( /_/g, '-' ) + '-link';
 				value.bind( function( to ) {
+
 					if ( ! to ) {
 						$( selector ).removeClass( 'hidden' );
 					} else {
 						$( selector ).addClass( 'hidden' );
 					}
+					attributionSeparators();
 				});
 			});
 		}

@@ -3,6 +3,24 @@
 	outline: 0;
 }
 
+img {
+	height: auto;
+	max-width: 100%;
+}
+
+table {
+	margin: 0 0 1.5em;
+	width: 100%;
+}
+
+blockquote {
+	border-left: 5px solid currentColor;
+	font-size: 1.125em;
+	p {
+		font-size: 1.125em;
+	}
+}
+
 /* Post/Page password protected styles */
 .post-password-form .button-primary {
 	margin-left: 9px;

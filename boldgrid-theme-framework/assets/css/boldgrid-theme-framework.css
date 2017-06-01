@@ -33,6 +33,21 @@
 *:focus {
   outline: 0; }
 
+img {
+  height: auto;
+  max-width: 100%; }
+
+table {
+  margin: 0 0 1.5em;
+  width: 100%; }
+
+blockquote {
+  border-left: 5px solid currentColor;
+  font-size: 1.125em; }
+
+blockquote p {
+  font-size: 1.125em; }
+
 /* Post/Page password protected styles */
 .post-password-form .button-primary {
   margin-left: 9px; }
@@ -336,6 +351,9 @@ object {
 /*--------------------------------------------------------------
 ## Galleries
 --------------------------------------------------------------*/
+/*--------------------------------------------------------------
+### Standard WordPress Gallery
+--------------------------------------------------------------*/
 .gallery {
   margin-bottom: 1.5em; }
 
@@ -371,6 +389,19 @@ object {
 
 .gallery-caption {
   display: block; }
+
+/*--------------------------------------------------------------
+### WC Canvas Gallery
+--------------------------------------------------------------*/
+/** Magnific Popup **/
+.mfp-zoom-out-cur .mfp-title > * {
+  color: currentColor; }
+
+.wc-image-links .gallery-caption,
+.wc-gallery-captions-onpopup .gallery-caption,
+.wc-gallery-captions-showon .gallery-caption,
+.wc-gallery-captions-onhover .gallery-caption {
+  opacity: .8; }
 
 /*--------------------------------------------------------------
 # Forms

@@ -11,6 +11,7 @@
 	# BoldGrid Navigation
 	# Widgets
 		## Default Widget Styles
+	# Media
 	# Forms
 	# Ninja Forms
 	# Comments
@@ -28,6 +29,7 @@
 
 // Core Variables and Mixins.
 @import "boldgrid/variables";
+@import "boldgrid/mixins/mixins-master";
 
 /*--------------------------------------------------------------
 # Base Elements
@@ -73,6 +75,11 @@
 # Default Widget Styles
 --------------------------------------------------------------*/
 @import "boldgrid/widget-defaults";
+
+/*--------------------------------------------------------------
+# Media
+--------------------------------------------------------------*/
+@import "boldgrid/media/media";
 
 /*--------------------------------------------------------------
 # Forms

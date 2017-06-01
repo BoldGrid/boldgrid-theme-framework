@@ -126,14 +126,6 @@ class BoldGrid_Framework_Styles {
 			'4.5.0'
 		);
 
-		/* Underscores */
-		wp_enqueue_style(
-			'underscores-styles',
-			$this->configs['framework']['css_dir'] . 'underscores/underscores' . $suffix . '.css',
-			array(),
-			'4.5.0'
-		);
-
 		/* Bootstrap */
 		$bootstrap = get_stylesheet_directory_uri() . '/css/bootstrap.css';
 		if ( ! file_exists( get_stylesheet_directory() . '/css/bootstrap.css' ) ||

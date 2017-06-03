@@ -162,6 +162,15 @@ $names: color background background-color border-color;
 	}
 }
 
+/** Gallery overrides **/
+.gallery-caption {
+	background: $palette-primary_3;
+	color: $text-contrast-palette-primary_3;
+	> * {
+		color: $text-contrast-palette-primary_3;
+	}
+}
+
 /*
 * Base Colors
 *

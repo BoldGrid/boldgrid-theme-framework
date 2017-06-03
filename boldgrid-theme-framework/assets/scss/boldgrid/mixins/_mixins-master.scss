@@ -1,3 +1,12 @@
+// Headings Styles
+@mixin headings($from: 1, $to: 6){
+	@for $i from $from through $to{
+		h#{$i}, .h#{$i} {
+			@content
+		}
+	}
+}
+
 // Rem output with px fallback
 @mixin font-size($sizeValue: 1) {
 	font-size: ($sizeValue * 16) * 1px;

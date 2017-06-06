@@ -27,6 +27,25 @@
 /*--------------------------------------------------------------
 # Base Elements
 --------------------------------------------------------------*/
+/** Headings **/
+.palette-primary h1, .palette-primary .h1 {
+  line-height: 1.1; }
+
+.palette-primary h2, .palette-primary .h2 {
+  line-height: 1.1; }
+
+.palette-primary h3, .palette-primary .h3 {
+  line-height: 1.1; }
+
+.palette-primary h4, .palette-primary .h4 {
+  line-height: 1.1; }
+
+.palette-primary h5, .palette-primary .h5 {
+  line-height: 1.1; }
+
+.palette-primary h6, .palette-primary .h6 {
+  line-height: 1.1; }
+
 /* Removes Blue Box in Chrome */
 *:focus {
   outline: 0; }

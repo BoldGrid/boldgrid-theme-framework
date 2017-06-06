@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.3
-* **Tested up to:** 4.7.3
+* **Tested up to:** 4.8
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,9 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 1.4.0.1 ###
+* Bug fix: Adjusting line-height for tinymce editor for WordPress 4.8 changes.
 
 ### 1.4 ###
 * Bug fix: CTA widget inherits well class if user tries to re-add it.

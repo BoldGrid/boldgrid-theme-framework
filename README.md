@@ -46,6 +46,9 @@ user guide for more information.
 * Bug fix: Customizer tablet preview not showing tablet size menu.
 * Update: Add default button styles for wooCommerce support.
 
+### 1.4.0.1 ###
+* Bug fix: Adjusting line-height for tinymce editor for WordPress 4.8 changes.
+
 ### 1.4 ###
 * Bug fix: CTA widget inherits well class if user tries to re-add it.
 * Bug fix: Added default styles for sidebar search form widgets.

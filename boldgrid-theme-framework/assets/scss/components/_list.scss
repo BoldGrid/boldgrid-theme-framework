@@ -1,0 +1,53 @@
+ul.bg-list {
+	list-style: none;
+	padding   : 0;
+
+	li {
+		margin-bottom: .7em;
+		padding-left : 1.3em;
+	}
+
+	li:before {
+		font-family: FontAwesome;
+		display    : inline-block;
+		margin-left: -1.3em;
+		width      : 1.3em;
+	}
+
+	// Checkmark.
+	&.bg-list-checkmark li:before {
+		content: '\f00c';
+	}
+
+	&.bg-list-share li:before {
+		content: '\f064';
+	}
+
+	&.bg-list-times li:before {
+		content: '\f00d';
+	}
+
+	&.bg-list-minus li:before {
+		content: '\f068';
+	}
+
+	&.bg-list-circle-notch li:before {
+		content: '\f1ce';
+	}
+
+	&.bg-list-chevron li:before {
+		content: '\f054';
+	}
+
+	&.bg-list-chevron-circle li:before {
+		content: '\f138';
+	}
+
+	&.bg-list-dble-right li:before {
+		content: '\f101';
+	}
+
+	&.bg-list-angle-right li:before {
+		content: '\f105';
+	}
+}

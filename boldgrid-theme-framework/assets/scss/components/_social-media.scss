@@ -1,0 +1,22 @@
+.bg-social-icons {
+
+	&.colored {
+		.fa-instagram {
+			color: #3f729b;
+		}
+		.fa-facebook-square {
+			color: #55acee;
+		}
+		.fa-twitter-square {
+			color: #3b5998;
+		}
+	}
+
+	&.inherit a {
+		color: inherit;
+
+		&:hover {
+			color: #337ab7;
+		}
+	}
+}

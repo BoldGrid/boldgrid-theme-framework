@@ -6,16 +6,10 @@
 }
 
 /*--------------------------------------------------------------
-# Column Alignment
+# Gallery
 --------------------------------------------------------------*/
-.align-column-top {
-	align-self: flex-start;
-}
-.align-column-center {
-	align-self: center;
-}
-.align-column-bottom {
-	align-self: flex-end;
+.gallery-full-width img {
+	width: 100%;
 }
 
 /*--------------------------------------------------------------

@@ -1,6 +1,6 @@
 .#{$box-ns} {
 	padding: 1em;
-	
+
 	&.#{$box-ns}-circle,
 	&.#{$box-ns}-pill {
        padding: 4em;
@@ -73,7 +73,7 @@
 	}
 	&.#{$ns}-pointer {
         position: relative;
-    
+
         &:after {
             content: "";
             position: absolute;

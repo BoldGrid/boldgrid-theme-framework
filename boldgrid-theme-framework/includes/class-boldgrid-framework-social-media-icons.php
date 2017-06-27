@@ -302,7 +302,17 @@ class Boldgrid_Framework_Social_Media_Icons {
 			'icon-circle-open' => 'fa fa-tumblr fa-stack-1x',
 			'icon-circle' => 'fa fa-tumblr fa-stack-1x',
 		),
-
+		'twitch.tv' => array(
+			'name' => 'Twitch',
+			'class' => 'twitch',
+			'icon' => 'fa fa-twitch',
+			'icon-sign' => 'fa fa-twitch',
+			'icon-square-open' => 'fa fa-twitch fa-stack-1x',
+			'icon-square' => 'fa fa-twitch fa-stack-1x',
+			'icon-circle-open-thin' => 'fa fa-twitch fa-stack-1x',
+			'icon-circle-open' => 'fa fa-twitch fa-stack-1x',
+			'icon-circle' => 'fa fa-twitch fa-stack-1x',
+		),
 		'twitter.com' => array(
 			'name' => 'Twitter',
 			'class' => 'twitter',

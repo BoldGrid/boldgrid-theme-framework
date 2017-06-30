@@ -163,13 +163,18 @@ $names: color background background-color border-color;
 }
 
 /** Gallery overrides **/
-.gallery-caption {
-	background: $palette-primary_3;
-	color: $text-contrast-palette-primary_3;
-	> * {
+.wc-image-links,
+.wc-gallery-captions-onhover,
+.wc-gallery-captions-showon {
+	.gallery-caption {
+		background-color: $palette-primary_3;
 		color: $text-contrast-palette-primary_3;
+		> * {
+			color: $text-contrast-palette-primary_3;
+		}
 	}
 }
+
 
 /*
 * Base Colors

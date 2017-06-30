@@ -420,13 +420,13 @@ object {
 ### WC Canvas Gallery
 --------------------------------------------------------------*/
 /** Magnific Popup **/
-.palette-primary.mfp-zoom-out-cur .mfp-title > * {
+.mfp-zoom-out-cur .mfp-title > * {
   color: currentColor; }
 
-.palette-primary .wc-image-links .gallery-caption,
-.palette-primary .wc-gallery-captions-onpopup .gallery-caption,
-.palette-primary .wc-gallery-captions-showon .gallery-caption,
-.palette-primary .wc-gallery-captions-onhover .gallery-caption {
+.wc-image-links .gallery-caption,
+.wc-gallery-captions-onpopup .gallery-caption,
+.wc-gallery-captions-showon .gallery-caption,
+.wc-gallery-captions-onhover .gallery-caption {
   opacity: .8; }
 
 /*--------------------------------------------------------------

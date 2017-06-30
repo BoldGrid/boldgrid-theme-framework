@@ -163,13 +163,11 @@ $names: color background background-color border-color;
 }
 
 /** Gallery overrides **/
-.palette-primary {
-	.gallery-caption {
-		background: $palette-primary_3;
+.gallery-caption {
+	background: $palette-primary_3;
+	color: $text-contrast-palette-primary_3;
+	> * {
 		color: $text-contrast-palette-primary_3;
-		> * {
-			color: $text-contrast-palette-primary_3;
-		}
 	}
 }
 

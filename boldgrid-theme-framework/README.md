@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.4.6 ###
+* Update: Updating component shapes to match image styles.
+
 ### 1.4.5 ###
 * Update: Changed the default fieldset legend styles added.
 * Update: Adding new styles to the default components.

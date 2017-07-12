@@ -3,13 +3,8 @@ jQuery( document ).ready( function() {
 	'use strict';
 
 	var adjust_content = function() {
-		var in_customizer = false,
-			header_height = jQuery( '.site-header' ).height(),
-			screen_width = true === in_customizer ? jQuery( window ).width() + 16 : jQuery( window ).width();
-
-		if ( 'undefined' !== typeof wp ) {
-			in_customizer = 'undefined' !== typeof wp.customize ? true : false;
-		}
+		var header_height = jQuery( '.site-header' ).height(),
+			screen_width = jQuery( window ).width() + 16;
 
 		// Desktop.
 		if ( screen_width > 768 ) {

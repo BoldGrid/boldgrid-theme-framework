@@ -154,7 +154,7 @@ class BoldGrid_Framework_Scripts {
 		 * @TODO  should collapsing for mobile be set as a config option?
 		 * @since 1.0.0
 		 */
-		if ( ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) && ! wp_is_mobile() ) {
+		if ( ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) ) {
 			wp_enqueue_script(
 				'boldgrid-sticky-nav-js',
 				$this->configs['framework']['js_dir'] . 'boldgrid-sticky-nav' . $suffix . '.js',

@@ -293,10 +293,14 @@ HTML;
 	 * @return string $mce Contains classes to add to TinyMCE.
 	 */
 	public function tinymce_body_class( $mce ) {
+		$palette = get_theme_mod( 'boldgrid_palette_class' );
+		$mce['body_class'] .= " $palette";
+
 		// Get the current post, check if it's a page and add our body classes.
 		if ( $post = get_post() ) {
 			if ( 'page' === $post->post_type ) {
 				$template = get_page_template_slug();
+
 				// If not the default template generate class.
 				if ( '' === $template ) {
 					$mce['body_class'] .= ' page-template-default';

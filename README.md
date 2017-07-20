@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.4.7 ###
+* Bug fix: Adding theme's defined palette class to TinyMCE Editor instances.
+
 ### 1.4.6 ###
 * Update: Updating component shapes to match image styles.
 * Update: Loading sticky header JS for mobile.

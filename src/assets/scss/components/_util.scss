@@ -20,13 +20,13 @@
 }
 
 // Force all dynamic gridblock colors to inherit color of context.
-.dynamic-gridblock  {
+.boldgrid-section.dynamic-gridblock {
 	&.bg-background-color,
 	.bg-background-color {
 		* {
 			color: currentColor;
 		}
-		hr {
+		blockquote, hr {
 			border-color: currentColor;
 		}
 	}

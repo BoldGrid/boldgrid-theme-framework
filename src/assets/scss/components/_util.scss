@@ -19,6 +19,14 @@
     background-attachment: fixed !important;
 }
 
+// Force all dynamic gridblock colors to inherit color of context.
+.dynamic-gridblock  {
+	&.bg-background-color,
+	.bg-background-color * {
+		color: currentColor;
+	}
+}
+
 /*--------------------------------------------------------------
 # Sections
 --------------------------------------------------------------*/

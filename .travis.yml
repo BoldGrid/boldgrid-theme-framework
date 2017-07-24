@@ -36,7 +36,7 @@ env:
 before_script:
     - nvm install 7.2.1
     - nvm use 7.2.1
-    - npm install gulp
+    - npm install --global gulp-cli
     - npm install bower
     - npm install
     - gulp build

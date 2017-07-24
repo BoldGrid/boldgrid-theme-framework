@@ -22,8 +22,13 @@
 // Force all dynamic gridblock colors to inherit color of context.
 .dynamic-gridblock  {
 	&.bg-background-color,
-	.bg-background-color * {
-		color: currentColor;
+	.bg-background-color {
+		* {
+			color: currentColor;
+		}
+		hr {
+			border-color: currentColor;
+		}
 	}
 }
 

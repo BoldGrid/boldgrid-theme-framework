@@ -460,9 +460,13 @@ ul.bg-list.bg-list-angle-right li:before {
 .background-fixed {
   background-attachment: fixed !important; }
 
-.dynamic-gridblock.bg-background-color,
+.dynamic-gridblock.bg-background-color *,
 .dynamic-gridblock .bg-background-color * {
   color: currentColor; }
+
+.dynamic-gridblock.bg-background-color hr,
+.dynamic-gridblock .bg-background-color hr {
+  border-color: currentColor; }
 
 /*--------------------------------------------------------------
 # Sections

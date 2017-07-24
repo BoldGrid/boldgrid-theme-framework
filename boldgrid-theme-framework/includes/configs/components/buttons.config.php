@@ -26,6 +26,6 @@ return array(
 		'ubtn-font-family' => 'inherit',
 		// 'ubtn-font-color' => '$text-contrast-' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '_' . Boldgrid_Framework_Compile_Colors::get_button_default_color() . ';',
 		'ubtn-font-weight' => 'inherit',
-		'ubtn-font-size' => 'inherit',
+		'ubtn-font-size' => '1em',
 	),
 );

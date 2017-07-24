@@ -460,12 +460,13 @@ ul.bg-list.bg-list-angle-right li:before {
 .background-fixed {
   background-attachment: fixed !important; }
 
-.dynamic-gridblock.bg-background-color *,
-.dynamic-gridblock .bg-background-color * {
+.boldgrid-section.dynamic-gridblock.bg-background-color *,
+.boldgrid-section.dynamic-gridblock .bg-background-color * {
   color: currentColor; }
 
-.dynamic-gridblock.bg-background-color hr,
-.dynamic-gridblock .bg-background-color hr {
+.boldgrid-section.dynamic-gridblock.bg-background-color blockquote, .boldgrid-section.dynamic-gridblock.bg-background-color hr,
+.boldgrid-section.dynamic-gridblock .bg-background-color blockquote,
+.boldgrid-section.dynamic-gridblock .bg-background-color hr {
   border-color: currentColor; }
 
 /*--------------------------------------------------------------

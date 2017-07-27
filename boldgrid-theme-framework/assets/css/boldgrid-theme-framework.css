@@ -77,7 +77,7 @@ blockquote p {
   border-bottom: none; }
 
 /* Edit Links */
-.palette-primary footer.entry-footer {
+.palette-primary.page footer.entry-footer {
   background: transparent;
   position: absolute;
   padding: .5em;
@@ -85,30 +85,30 @@ blockquote p {
   right: 1%;
   z-index: 999; }
 
-.palette-primary .entry-footer .fa-pencil {
+.palette-primary.page .entry-footer .fa-pencil {
   opacity: 0.6; }
 
-.palette-primary .entry-footer .fa-pencil:hover {
+.palette-primary.page .entry-footer .fa-pencil:hover {
   opacity: 1; }
 
-.palette-primary .post-edit-link {
+.palette-primary.page .post-edit-link {
   padding: 5px 30px;
   margin-left: -20px; }
 
-.palette-primary .site-content {
+.palette-primary.page .site-content {
   padding-bottom: 0;
   margin-bottom: 0; }
 
-.palette-primary.disabled-footer footer.entry-footer {
+.palette-primary.page.disabled-footer footer.entry-footer {
   bottom: 2em; }
 
-.palette-primary.disabled-footer {
+.palette-primary.page.disabled-footer {
   margin-bottom: 0; }
 
-.palette-primary.disabled-footer .attribution-theme-mods {
+.palette-primary.page.disabled-footer .attribution-theme-mods {
   margin-bottom: 50px; }
 
-.palette-primary.disabled-footer .attribution-theme-mods:not(:empty) {
+.palette-primary.page.disabled-footer .attribution-theme-mods:not(:empty) {
   margin-bottom: 50px; }
 
 /*--------------------------------------------------------------

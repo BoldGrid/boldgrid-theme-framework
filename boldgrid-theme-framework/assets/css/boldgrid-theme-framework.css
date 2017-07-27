@@ -76,6 +76,41 @@ blockquote p {
   color: currentColor;
   border-bottom: none; }
 
+/* Edit Links */
+.palette-primary footer.entry-footer {
+  background: transparent;
+  position: absolute;
+  padding: .5em;
+  left: 1%;
+  right: 1%;
+  z-index: 999; }
+
+.palette-primary .entry-footer .fa-pencil {
+  opacity: 0.6; }
+
+.palette-primary .entry-footer .fa-pencil:hover {
+  opacity: 1; }
+
+.palette-primary .post-edit-link {
+  padding: 5px 30px;
+  margin-left: -20px; }
+
+.palette-primary .site-content {
+  padding-bottom: 0;
+  margin-bottom: 0; }
+
+.palette-primary.disabled-footer footer.entry-footer {
+  bottom: 2em; }
+
+.palette-primary.disabled-footer {
+  margin-bottom: 0; }
+
+.palette-primary.disabled-footer .attribution-theme-mods {
+  margin-bottom: 50px; }
+
+.palette-primary.disabled-footer .attribution-theme-mods:not(:empty) {
+  margin-bottom: 50px; }
+
 /*--------------------------------------------------------------
 # BoldGrid Bootstrap Additions
 --------------------------------------------------------------*/

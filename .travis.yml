@@ -23,18 +23,18 @@ php:
 # @link http://docs.travis-ci.com/user/workers/container-based-infrastructure/#Routing-your-build-to-container-based-infrastructure
 sudo: false
 
+# Switching to Trusty build 4.3 fails to install PHP 5.3 since it's not included in the distro due to TLSv1.2 only connection to source.
+addons:
+    apt:
+        packages:
+            - libssl1.0.0
+
 # Declare which versions of WordPress to test against.
 # Also declare whether or not to test in Multisite.
 env:
     # Trunk (current version in development is 4.7)
     # @link https://github.com/WordPress/WordPress
     - WP_VERSION=master WP_MULTISITE=0
-
-# Switching to Trusty build 4.3 fails to install PHP 5.3 since it's not included in the distro due to TLSv1.2 only connect to source.
-addons:
-    apt:
-        packages:
-            - libssl1.0.0
 
 # Use this to prepare your build for testing.
 # e.g. copy database configurations, environment variables, etc.

@@ -351,6 +351,12 @@ class BoldGrid {
 			$classes[] = 'standard-menu-enabled';
 		}
 
+		if ( true === $this->configs['edit-post-links']['enabled'] ) {
+			$classes[] = 'bgtfw-edit-links-shown';
+		} else {
+			$classes[] = 'bgtfw-edit-links-hidden';
+		}
+
 		return $classes;
 	}
 

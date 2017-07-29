@@ -158,6 +158,7 @@ class BoldGrid_Framework {
 			'comments',
 			'compile-colors',
 			'editor',
+			'edit-post-links',
 			'i18n',
 			'loader',
 			'menu',
@@ -427,6 +428,15 @@ class BoldGrid_Framework {
 		$admin = new BoldGrid_Framework_Admin( $this->configs );
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
+
+		// Edit post links.
+		if ( true === $this->configs['edit-post-links']['enabled'] ) {
+			add_action( 'init', function() {
+				$links = new Boldgrid_Framework_Edit_Post_Links( $this->configs );
+				add_filter( 'edit_post_link', array( $links, 'getLink' ), 10, 3 );
+			});
+		}
+
 		// Actions.
 		$this->loader->add_action( 'boldgrid_activate_framework', $activate, 'do_activate' );
 		$this->loader->add_action( 'boldgrid_framework_reset', $activate, 'reset' );

@@ -119,7 +119,14 @@ function boldgrid_entry_footer() {
 		echo '</span>';
 	}
 
-	edit_post_link( __( 'Edit', 'bgtfw' ), '<span class="edit-link">', '</span>' );
+	if ( get_edit_post_link() ) {
+		edit_post_link(
+			/* translators: %s: Name of current post. */
+			sprintf( __( 'Click to edit %s.', 'bgtfw' ), get_the_title() ),
+			'<span class="bgtfw-edit-link">',
+			'</span>'
+		);
+	}
 }
 endif;
 

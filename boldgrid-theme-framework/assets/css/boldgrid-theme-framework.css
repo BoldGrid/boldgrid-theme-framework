@@ -130,7 +130,7 @@ blockquote p {
 
 .bgtfw-edit-link a {
   position: absolute;
-  left: -30px;
+  left: 0;
   top: 2px;
   color: #fff;
   width: 30px;
@@ -140,7 +140,6 @@ blockquote p {
   line-height: 1em !important;
   font-size: 18px;
   z-index: 5;
-  background: #0085ba !important;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   border: 2px solid #fff;
@@ -160,6 +159,9 @@ blockquote p {
   pointer-events: none;
   text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799; }
 
+.blog .post .bgtfw-edit-link a {
+  left: 12px; }
+
 .bgtfw-edit-link a svg {
   fill: #fff;
   min-width: 20px;
@@ -169,8 +171,7 @@ blockquote p {
   margin: auto; }
 
 .bgtfw-edit-link a:hover {
-  background: #008ec2 !important;
-  /* matches primary buttons */ }
+  opacity: 1; }
 
 .bgtfw-edit-link a:focus {
   -webkit-box-shadow: 0 0 0 2px #008ec2;
@@ -840,11 +841,8 @@ span.comments-link > a:before {
   margin-right: .5em; }
 
 span.cat-links:after {
-  content: "\2022";
-  margin: 0em .6em; }
-
-.post .post-edit-link {
-  margin-left: .6em; }
+  content: " ";
+  margin: .5vw; }
 
 time.entry-date.published:before,
 time.entry-date.updated:before {

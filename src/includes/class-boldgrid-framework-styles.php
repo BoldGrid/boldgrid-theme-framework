@@ -105,6 +105,33 @@ class BoldGrid_Framework_Styles {
 				$inline_css = get_theme_mod( 'boldgrid_compiled_css' );
 				wp_add_inline_style( 'style', $inline_css );
 			}
+			$helper = new Boldgrid_Framework_Compile_colors( $this->configs );
+			$palettes = $helper->get_palette();
+			if ( ! empty( $palettes ) ) {
+				$current_palette = $palettes['state']['active-palette'];
+				$colors = is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ?
+					$palettes['state']['palettes'][ $current_palette ]['colors'] : array();
+
+				$light = $this->configs['customizer-options']['colors']['light_text'];
+				$dark = $this->configs['customizer-options']['colors']['dark_text'];
+
+				$color = $helper->get_luminance( $colors[0] );
+
+				$lightness = abs( $color - $helper->get_luminance( $light ) );
+				$darkness = abs( $color - $helper->get_luminance( $dark ) );
+
+				if ( $lightness > $darkness ) {
+					$color = $light;
+				} else {
+					$color = $dark;
+				}
+
+				$editLinks  = '.bgtfw-edit-link a{background:' . $colors[0] . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
+				$editLinks .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
+				$editLinks .= '.bgtfw-edit-link a svg{fill:' . $color .'!important;';
+				
+				wp_add_inline_style( 'style', $editLinks );
+			}
 		}
 
 	}
@@ -147,6 +174,11 @@ class BoldGrid_Framework_Styles {
 			array(),
 			$this->configs['version']
 		);
+		$linkColor = 'rgba(255,255,255,1)';
+		$linkBg = '#000000';
+		$editLinks = '.bgtfw-edit-link a svg { fill:' . esc_color( $linkColor ) .';}';
+
+		wp_add_inline_style( 'style', $editLinks );
 
 		/* Framework Base Styles */
 		wp_enqueue_style(

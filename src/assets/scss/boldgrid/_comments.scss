@@ -127,12 +127,8 @@ span.comments-link > a:before {
 	margin-right: .5em;
 }
 span.cat-links:after {
-	content: "\2022";
-	margin: 0em .6em;
-}
-
-.post .post-edit-link{
-	margin-left: .6em;
+	content: " ";
+	margin: .5vw;
 }
 
 time.entry-date.published:before,

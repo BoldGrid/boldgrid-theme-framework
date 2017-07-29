@@ -96,7 +96,7 @@ blockquote {
 
 .bgtfw-edit-link a {
 	position: absolute;
-	left: -30px;
+	left: 0;
 	top: 2px;
 	color: #fff;
 	width: 30px;
@@ -106,7 +106,6 @@ blockquote {
 	line-height: 1em !important;
 	font-size: 18px;
 	z-index: 5;
-	background: #0085ba !important;
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	border: 2px solid #fff;
@@ -130,6 +129,10 @@ blockquote {
 				-1px 0 1px #006799;
 }
 
+.blog .post .bgtfw-edit-link a {
+	left: 12px;
+}
+
 .bgtfw-edit-link a svg {
 	fill: #fff;
 	min-width: 20px;
@@ -140,7 +143,7 @@ blockquote {
 }
 
 .bgtfw-edit-link a:hover {
-	background: #008ec2 !important; /* matches primary buttons */
+	opacity: 1;
 }
 
 .bgtfw-edit-link a:focus {

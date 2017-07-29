@@ -105,33 +105,43 @@ class BoldGrid_Framework_Styles {
 				$inline_css = get_theme_mod( 'boldgrid_compiled_css' );
 				wp_add_inline_style( 'style', $inline_css );
 			}
-			$helper = new Boldgrid_Framework_Compile_colors( $this->configs );
-			$palettes = $helper->get_palette();
-			if ( ! empty( $palettes ) ) {
-				$current_palette = $palettes['state']['active-palette'];
-				$colors = is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ?
-					$palettes['state']['palettes'][ $current_palette ]['colors'] : array();
+		}
 
-				$light = $this->configs['customizer-options']['colors']['light_text'];
-				$dark = $this->configs['customizer-options']['colors']['dark_text'];
+		if ( true === $this->configs['edit-post-links']['enabled'] ) {
+			$background = $this->configs['edit-post-links']['defaultColors']['background'];
+			$color = $this->configs['edit-post-links']['defaultColors']['fill'];
+			if ( true === $this->configs['edit-post-links']['useThemeColors'] ) {
 
-				$color = $helper->get_luminance( $colors[0] );
+				$helper = new Boldgrid_Framework_Compile_colors( $this->configs );
+				$palettes = $helper->get_palette();
 
-				$lightness = abs( $color - $helper->get_luminance( $light ) );
-				$darkness = abs( $color - $helper->get_luminance( $dark ) );
+				if ( ! empty( $palettes ) ) {
+					$current_palette = $palettes['state']['active-palette'];
+					$colors = is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ?
+						$palettes['state']['palettes'][ $current_palette ]['colors'] : array();
 
-				if ( $lightness > $darkness ) {
-					$color = $light;
-				} else {
-					$color = $dark;
+					$light = $this->configs['customizer-options']['colors']['light_text'];
+					$dark = $this->configs['customizer-options']['colors']['dark_text'];
+
+					$color = $helper->get_luminance( $colors[0] );
+
+					$lightness = abs( $color - $helper->get_luminance( $light ) );
+					$darkness = abs( $color - $helper->get_luminance( $dark ) );
+
+					if ( $lightness > $darkness ) {
+						$color = $light;
+					} else {
+						$color = $dark;
+					}
+					$background = $colors[0];
 				}
-
-				$editLinks  = '.bgtfw-edit-link a{background:' . $colors[0] . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
-				$editLinks .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
-				$editLinks .= '.bgtfw-edit-link a svg{fill:' . $color .'!important;';
-				
-				wp_add_inline_style( 'style', $editLinks );
 			}
+
+			$editLinks  = '.bgtfw-edit-link a{background:' . $background . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
+			$editLinks .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
+			$editLinks .= '.bgtfw-edit-link a svg{fill:' . $color .'!important;';
+			
+			wp_add_inline_style( 'style', $editLinks );
 		}
 
 	}

@@ -12,5 +12,9 @@
 
 return array(
 	'enabled'         => true,
-	'useThemeColors'  => false,
+	'useThemeColors'  => true,
+    'defaultColors' => array(
+        'background' => '#0085ba',
+        'fill' => '#fff',
+    ),
 );

@@ -29,6 +29,7 @@ user guide for more information.
 ### 1.4.8 ###
 * Bug fix: Fixing button font sizes.
 * Bug fix: Append tinymce customizer typography styles instead of prepending.
+* Update: Updating versions on CSS files.
 
 ### 1.4.7 ###
 * Bug fix: Adding theme's defined palette class to TinyMCE Editor instances.

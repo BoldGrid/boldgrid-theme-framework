@@ -49,13 +49,15 @@ class BoldGrid_Framework_Styles {
 	 */
 	public function get_local_editor_styles() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$css_dir = $this->configs['framework']['css_dir'];
+		$versions = $this->configs['styles']['versions'];
 
 		$files = array(
 			// uri() is required to enforce order.
-			$this->configs['framework']['css_dir'] . 'bootstrap/bootstrap.min.css',
-			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
-			$this->configs['framework']['css_dir'] . 'boldgrid-theme-framework' . $suffix . '.css',
-			$this->configs['framework']['css_dir'] . 'components' . $suffix . '.css',
+			$css_dir . 'bootstrap/bootstrap.min.css',
+			$css_dir . 'font-awesome/font-awesome' . $suffix . '.css?version=' . $versions['font-awesome'],
+			$css_dir . 'boldgrid-theme-framework' . $suffix . '.css',
+			$css_dir . 'components' . $suffix . '.css?version=' . $versions['boldgrid-components'],
 			$this->configs['framework']['config_directory']['uri'] . '/style.css',
 			Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
 		);
@@ -160,7 +162,7 @@ class BoldGrid_Framework_Styles {
 			'font-awesome',
 			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
 			array(),
-			'4.5.0'
+			$this->configs['styles']['versions']['font-awesome']
 		);
 
 		/* Bootstrap */
@@ -206,7 +208,7 @@ class BoldGrid_Framework_Styles {
 			'boldgrid-components',
 			$this->configs['framework']['css_dir'] . 'components' . $suffix . '.css',
 			array(),
-			$this->configs['version']
+			$this->configs['styles']['versions']['boldgrid-components']
 		);
 
 		/* Button Styles */

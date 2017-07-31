@@ -502,6 +502,9 @@ class BoldGrid_Framework {
 				// $this->loader->add_action( 'customize_save_after', $compile, 'build' );
 		}
 
+		// Remove .hentry from pages for valid schema markup.
+		add_filter( 'post_class', array( 'BoldGrid_Framework_Schema', 'remove_hentry' ) );
+
 		// TODO: Merge these standalone files into classes and our existing structure.
 		$theme_setup->add_additional_setup();
 	}

@@ -325,6 +325,38 @@
   align-items: stretch; }
 
 /*--------------------------------------------------------------
+# Horizontal Rule
+--------------------------------------------------------------*/
+hr.bg-hr {
+  background: none;
+  height: 0;
+  position: relative;
+  border: 1px solid;
+  /** Hifidel **/
+  /** Wedge **/ }
+
+hr.bg-hr.bg-hr-1:after {
+  content: "";
+  display: block;
+  height: 10px;
+  margin: 0 auto;
+  position: relative;
+  width: 10px;
+  transform: translateY(-50%);
+  top: 50%; }
+
+hr.bg-hr.bg-hr-2:after {
+  content: "";
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 8px solid;
+  left: 50%;
+  top: 0;
+  margin-left: -8px;
+  position: absolute;
+  background: transparent; }
+
+/*--------------------------------------------------------------
 # Column Background Helpers
 --------------------------------------------------------------*/
 .bg-box-cover {

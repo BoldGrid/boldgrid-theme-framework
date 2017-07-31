@@ -11,10 +11,11 @@
  */
 
 return array(
-	'enabled'         => true,
-	'useThemeColors'  => true,
-    'defaultColors' => array(
-        'background' => '#0085ba',
-        'fill' => '#fff',
-    ),
+	'enabled' => true,
+	'use-theme-colors' => true,
+	'default-theme-color' => 'color-1',
+	'default-colors' => array(
+		'background' => '#0085ba',
+		'fill' => '#fff',
+	),
 );

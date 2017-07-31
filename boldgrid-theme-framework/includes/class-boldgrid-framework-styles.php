@@ -108,42 +108,42 @@ class BoldGrid_Framework_Styles {
 		}
 
 		if ( true === $this->configs['edit-post-links']['enabled'] ) {
-			$background = $this->configs['edit-post-links']['defaultColors']['background'];
-			$color = $this->configs['edit-post-links']['defaultColors']['fill'];
-			if ( true === $this->configs['edit-post-links']['useThemeColors'] ) {
 
-				$helper = new Boldgrid_Framework_Compile_colors( $this->configs );
+			// Default colors.
+			$background = $this->configs['edit-post-links']['default-colors']['background'];
+			$color = $this->configs['edit-post-links']['default-colors']['fill'];
+
+			if ( true === $this->configs['edit-post-links']['use-theme-colors'] ) {
+
+				$helper = new Boldgrid_Framework_Compile_Colors( $this->configs );
 				$palettes = $helper->get_palette();
 
 				if ( ! empty( $palettes ) ) {
 					$current_palette = $palettes['state']['active-palette'];
-					$colors = is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ?
-						$palettes['state']['palettes'][ $current_palette ]['colors'] : array();
+					$colors = is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ? $palettes['state']['palettes'][ $current_palette ]['colors'] : array();
 
 					$light = $this->configs['customizer-options']['colors']['light_text'];
 					$dark = $this->configs['customizer-options']['colors']['dark_text'];
 
-					$color = $helper->get_luminance( $colors[0] );
+					$index = preg_replace( '/[^0-9]/', '', $this->configs['edit-post-links']['default-theme-color'] );
+					$index = ! empty( $index ) ? ( ( int ) $index ) - 1 : 0;
+
+					$color = $helper->get_luminance( $colors[ $index ] );
 
 					$lightness = abs( $color - $helper->get_luminance( $light ) );
 					$darkness = abs( $color - $helper->get_luminance( $dark ) );
 
-					if ( $lightness > $darkness ) {
-						$color = $light;
-					} else {
-						$color = $dark;
-					}
-					$background = $colors[0];
+					$color= $lightness > $darkness ? $light : $dark;
+					$background = $colors[ $index ];
 				}
 			}
 
-			$editLinks  = '.bgtfw-edit-link a{background:' . $background . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
-			$editLinks .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
-			$editLinks .= '.bgtfw-edit-link a svg{fill:' . $color .'!important;';
+			$edit_links = '.bgtfw-edit-link a{background:' . $background . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
+			$edit_links .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
+			$edit_links .= '.bgtfw-edit-link a svg{fill:' . $color .'!important;';
 			
-			wp_add_inline_style( 'style', $editLinks );
+			wp_add_inline_style( 'style', $edit_links );
 		}
-
 	}
 
 	/**
@@ -184,11 +184,6 @@ class BoldGrid_Framework_Styles {
 			array(),
 			$this->configs['version']
 		);
-		$linkColor = 'rgba(255,255,255,1)';
-		$linkBg = '#000000';
-		$editLinks = '.bgtfw-edit-link a svg { fill:' . esc_color( $linkColor ) .';}';
-
-		wp_add_inline_style( 'style', $editLinks );
 
 		/* Framework Base Styles */
 		wp_enqueue_style(

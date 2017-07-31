@@ -123,18 +123,9 @@ blockquote {
 	animation-duration: .4s;
 	opacity: 0;
 	pointer-events: none;
-	text-shadow: 0 -1px 1px #006799,
-				1px 0 1px #006799,
-				0 1px 1px #006799,
-				-1px 0 1px #006799;
-}
-
-.blog .post .bgtfw-edit-link a {
-	left: 12px;
 }
 
 .bgtfw-edit-link a svg {
-	fill: #fff;
 	min-width: 20px;
 	min-height: 20px;
 	width: 20px;
@@ -144,11 +135,6 @@ blockquote {
 
 .bgtfw-edit-link a:hover {
 	opacity: 1;
-}
-
-.bgtfw-edit-link a:focus {
-	-webkit-box-shadow: 0 0 0 2px #008ec2;
-	box-shadow: 0 0 0 2px #008ec2;
 }
 
 body.bgtfw-edit-links-shown .bgtfw-edit-link a {
@@ -299,17 +285,5 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 		opacity: 0;
 		-webkit-transform: scale3d(.3, .3, .3);
 		transform: scale3d(.3, .3, .3);
-	}
-}
-
-@media screen and (max-width:800px) {
-	.bgtfw-edit-link a {
-		left: 0;
-	}
-}
-
-@media screen and (max-width:320px) {
-	.bgtfw-edit-link a {
-		left: 0;
 	}
 }

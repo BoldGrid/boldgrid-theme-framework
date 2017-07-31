@@ -431,10 +431,8 @@ class BoldGrid_Framework {
 
 		// Edit post links.
 		if ( true === $this->configs['edit-post-links']['enabled'] ) {
-			add_action( 'init', function() {
-				$links = new Boldgrid_Framework_Edit_Post_Links( $this->configs );
-				add_filter( 'edit_post_link', array( $links, 'getLink' ), 10, 3 );
-			});
+			$links = new Boldgrid_Framework_Edit_Post_Links( $this->configs );
+			$this->loader->add_filter( 'edit_post_link', $links, 'get_link', 10, 3 );
 		}
 
 		// Actions.

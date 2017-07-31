@@ -710,136 +710,145 @@ msgctxt "Next post link"
 msgid "%title&nbsp;<span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:82
+#: src/includes/partials/template-tags.php:89
+msgctxt "%s = human-readable time difference"
+msgid "Posted %s ago"
+msgstr ""
+
+#: src/includes/partials/template-tags.php:96
 msgctxt "post date"
 msgid "Posted on %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:87
+#: src/includes/partials/template-tags.php:102
 msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:104, src/includes/partials/template-tags.php:110
+#: src/includes/partials/template-tags.php:120, src/includes/partials/template-tags.php:126
 msgid ", "
 msgstr ""
 
-#: src/includes/partials/template-tags.php:106
+#: src/includes/partials/template-tags.php:122
 msgid "Posted in %1$s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:112
+#: src/includes/partials/template-tags.php:128
 msgid "Tagged %1$s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:118
+#: src/includes/partials/template-tags.php:134
 msgid "Leave a comment"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:118
+#: src/includes/partials/template-tags.php:134
 msgid "1 Comment"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:118
+#: src/includes/partials/template-tags.php:134
 msgid "% Comments"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:125
-msgid "Click to edit %s."
-msgstr ""
-
-#: src/includes/partials/template-tags.php:146
+#: src/includes/partials/template-tags.php:155
 msgid "Category: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:148
+#: src/includes/partials/template-tags.php:157
 msgid "Tag: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:150
+#: src/includes/partials/template-tags.php:159
 msgid "Author: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:152
+#: src/includes/partials/template-tags.php:161
 msgid "Year: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:152
+#: src/includes/partials/template-tags.php:161
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:154
+#: src/includes/partials/template-tags.php:163
 msgid "Month: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:154
+#: src/includes/partials/template-tags.php:163
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:156
+#: src/includes/partials/template-tags.php:165
 msgid "Day: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:156
+#: src/includes/partials/template-tags.php:165
 msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:158
+#: src/includes/partials/template-tags.php:167
 msgctxt "post format archive title"
 msgid "Asides"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:160
+#: src/includes/partials/template-tags.php:169
 msgctxt "post format archive title"
 msgid "Galleries"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:162
+#: src/includes/partials/template-tags.php:171
 msgctxt "post format archive title"
 msgid "Images"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:164
+#: src/includes/partials/template-tags.php:173
 msgctxt "post format archive title"
 msgid "Videos"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:166
+#: src/includes/partials/template-tags.php:175
 msgctxt "post format archive title"
 msgid "Quotes"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:168
+#: src/includes/partials/template-tags.php:177
 msgctxt "post format archive title"
 msgid "Links"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:170
+#: src/includes/partials/template-tags.php:179
 msgctxt "post format archive title"
 msgid "Statuses"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:172
+#: src/includes/partials/template-tags.php:181
 msgctxt "post format archive title"
 msgid "Audio"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:174
+#: src/includes/partials/template-tags.php:183
 msgctxt "post format archive title"
 msgid "Chats"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:176
+#: src/includes/partials/template-tags.php:185
 msgid "Archives: %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:180
+#: src/includes/partials/template-tags.php:189
 msgid "%1$s: %2$s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:182
+#: src/includes/partials/template-tags.php:191
 msgid "Archives"
+msgstr ""
+
+#: src/includes/partials/template-tags.php:297
+msgid "Click to edit %s."
+msgstr ""
+
+#: src/includes/partials/template-tags.php:309
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr ""

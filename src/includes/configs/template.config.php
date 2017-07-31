@@ -63,4 +63,13 @@ return array(
 		'[default]is_page_template',
 		'[page_home.php]is_page_template',
 	),
+	'archives' => array(
+		'posted-on' => array(
+			'format' => 'date',
+			'types' => array( 
+				'date' => 'Date',
+				'timeago' => 'Human Readable',
+			),
+		),
+	),
 );

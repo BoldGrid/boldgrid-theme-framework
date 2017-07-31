@@ -66,6 +66,9 @@ if ( ! function_exists( 'boldgrid_posted_on' ) ) :
  * Prints HTML with meta information for the current post-date/time and author.
  */
 function boldgrid_posted_on() {
+	global $boldgrid_theme_framework;
+	$configs = $boldgrid_theme_framework->get_configs();
+
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -78,18 +81,29 @@ function boldgrid_posted_on() {
 		esc_html( get_the_modified_date() )
 	);
 
-	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'bgtfw' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-	);
+	// Posted on date format.
+	$format = ! empty( $configs['template']['archives']['posted-on']['format'] ) ? $configs['template']['archives']['posted-on']['format'] : 'date';
+
+	if ( 'timeago' === $format ) {
+		$posted_on = sprintf(
+			_x( 'Posted %s ago', '%s = human-readable time difference', 'bgtfw' ),
+			human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) )
+		);
+	}
+
+	if ( 'date' === $format ) {
+		$posted_on = sprintf(
+			_x( 'Posted on %s', 'post date', 'bgtfw' ),
+			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+		);
+	}
 
 	$byline = sprintf(
 		_x( 'by %s', 'post author', 'bgtfw' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
-
+	echo '<span class="posted-on ' . esc_attr( $format ) . '">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
 }
 endif;
 
@@ -98,8 +112,10 @@ if ( ! function_exists( 'boldgrid_entry_footer' ) ) :
  * Prints HTML with meta information for the categories, tags and comments.
  */
 function boldgrid_entry_footer() {
+
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
+
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( __( ', ', 'bgtfw' ) );
 		if ( $categories_list && boldgrid_categorized_blog() ) {
@@ -119,14 +135,7 @@ function boldgrid_entry_footer() {
 		echo '</span>';
 	}
 
-	if ( get_edit_post_link() ) {
-		edit_post_link(
-			/* translators: %s: Name of current post. */
-			sprintf( __( 'Click to edit %s.', 'bgtfw' ), get_the_title() ),
-			'<span class="bgtfw-edit-link">',
-			'</span>'
-		);
-	}
+	bgtfw_edit_post_link();
 }
 endif;
 
@@ -264,3 +273,105 @@ function boldgrid_category_transient_flusher() {
 }
 add_action( 'edit_category', 'boldgrid_category_transient_flusher' );
 add_action( 'save_post',     'boldgrid_category_transient_flusher' );
+
+if ( ! function_exists( 'bgtfw_edit_post_link' ) ) {
+
+	/**
+	* Custom edit post links used.
+	*/
+	function bgtfw_edit_post_link() {
+
+		global $boldgrid_theme_framework;
+		$configs = $boldgrid_theme_framework->get_configs();
+
+		// Check that there is an edit post link.
+		if ( get_edit_post_link() ) {
+
+			// Check configs for the edit post link buttons to be enabled.
+			if ( true === $configs['edit-post-links']['enabled'] ) {
+
+				// Customized post links.
+				edit_post_link(
+
+					/* translators: %s: Name of current post. */
+					sprintf( __( 'Click to edit %s.', 'bgtfw' ), get_the_title() ),
+					'<span class="bgtfw-edit-link">',
+					'</span>'
+				);
+			} else {
+
+				// Default post links.
+				edit_post_link(
+					sprintf(
+						wp_kses(
+
+							/* translators: %s: Name of current post. Only visible to screen readers */
+							__( 'Edit <span class="screen-reader-text">%s</span>', 'bgtfw' ),
+							array(
+								'span' => array(
+									'class' => array(),
+								),
+								'i' => array(
+									'class' => array(),
+								),
+							)
+						),
+						get_the_title()
+					),
+					'<i class="fa fa-pencil">',
+					'</i>'
+				);
+			}
+		}
+	}
+}
+
+if ( ! function_exists( 'bgtfw_get_edit_link' ) ) {
+
+	/**
+	 * Generates edit link buttons with specific URL.
+	 *
+	 * @param string $url URL to direct to.
+	 * @param string $text Text to display for link title attributes.
+	 * @param string $before HTML before link.
+	 * @param string $after HTML after link.
+	 *
+	 * @return string $link HTML to display edit link button.
+	 */
+	function bgtfw_get_edit_link( $url = null, $text = 'Click to edit.', $before = '<span class="bgtfw-edit-link">', $after = '</span>' ) {
+		if ( ! $url ) {
+			return;
+		}
+
+		$link = wp_kses_post( $before );
+
+		$link .= sprintf(
+			'<a href="%1$s" aria-label="%2$s" title="%2$s" class="bgtfw-edit-link-button">' .
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">' .
+					'<path d="M13.89 3.39l2.71 2.72c.46.46.42 1.24.03 1.64l-8.01 8.02-5.56 1.16 1.16-5.58s7.6-7.63 7.99-8.03c.39-.39 1.22-.39 1.68.07zm-2.73 2.79l-5.59 5.61 1.11 1.11 5.54-5.65zm-2.97 8.23l5.58-5.6-1.07-1.08-5.59 5.6z"></path>' .
+				'</svg>' .
+			'</a>',
+			esc_url( $url ),
+			esc_html( $text )
+		);
+
+		$link .= wp_kses_post( $after );
+
+		return apply_filters( 'bgtfw_get_edit_link', $link, $url, $text, $before, $after );
+	}
+}
+
+if ( ! function_exists( 'bgtfw_edit_link' ) ) {
+
+	/**
+	 * Generates edit link buttons with specific URL.
+	 *
+	 * @param string $url URL to direct to.
+	 *
+	 * @return string $link HTML to display edit link button.
+	 */
+	function bgtfw_edit_link( $url ) {
+		$link = bgtfw_get_edit_link( $url );
+		echo apply_filters( 'bgtfw_edit_link', $link );
+	}
+}

@@ -4,7 +4,6 @@
 .bypostauthor {
 	display: block;
 }
-
 #commentform {
 	// Comment Form Clearings
 	.form-group:before,
@@ -117,6 +116,20 @@ fieldset[disabled] a#commentform #submit {
 }
 
 // Link Spacing
+.entry-footer span {
+    padding: 0 0.5em;
+}
+.entry-footer span:first-child {
+    padding-left: 0;
+}
+.entry-footer span:last-child {
+    padding-right: 0;
+}
+.post .entry-footer .bgtfw-edit-link a {
+	left: .25em;
+}
+
+// Link Spacing
 span.comments-link > a:before {
 	content: "\f075";
 	font-family: FontAwesome;
@@ -125,10 +138,6 @@ span.comments-link > a:before {
 	display: inline-block;
 	text-decoration: none;
 	margin-right: .5em;
-}
-span.cat-links:after {
-	content: " ";
-	margin: .5vw;
 }
 
 time.entry-date.published:before,

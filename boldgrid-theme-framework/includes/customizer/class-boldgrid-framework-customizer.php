@@ -663,16 +663,16 @@ HTML;
 			case 4 :
 				?>
 				<div id="header-widget-area" class="row">
-					<div class="header-widgets-1 col-lg-3 col-md-4 col-sm-6">
+					<div class="header-widgets-1 col-md-3 col-sm-6">
 						<?php dynamic_sidebar( 'header-1' ); ?>
 					</div>
-					<div class="header-widgets-2 col-lg-3 col-md-4 col-sm-6">
+					<div class="header-widgets-2 col-md-3 col-sm-6">
 						<?php dynamic_sidebar( 'header-2' ); ?>
 					</div>
-					<div class="header-widgets-3 col-lg-3 col-md-4 col-sm-6">
+					<div class="header-widgets-3 col-md-3 col-sm-6">
 						<?php dynamic_sidebar( 'header-3' ); ?>
 					</div>
-					<div class="header-widgets-4 col-lg-3 col-md-4 col-sm-6">
+					<div class="header-widgets-4 col-md-3 col-sm-6">
 						<?php dynamic_sidebar( 'header-4' ); ?>
 					</div>
 				</div><!-- header-widget-area ends -->

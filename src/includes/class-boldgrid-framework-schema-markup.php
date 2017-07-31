@@ -188,14 +188,14 @@ class BoldGrid_Framework_Schema {
 	}
 
 	/**
-	* Removes hentry class from the array of post classes.
-	*
-	* We are targetting page templates for removal since they
-	* do not have the required formatting for hentry.
-	*
-	* @param  array $classes Classes for the post element.
-	* @return array
-	*/
+	 * Removes hentry class from the array of post classes.
+	 *
+	 * We are targetting page templates for removal since they
+	 * do not have the required formatting for hentry.
+	 *
+	 * @param  array $classes Classes for the post element.
+	 * @return array
+	 */
 	public static function remove_hentry( $classes ) {
 		if ( 'page' === get_post_type() ) {
 			$classes = array_diff( $classes, array( 'hentry' ) );

@@ -66,7 +66,7 @@ return array(
 	'archives' => array(
 		'posted-on' => array(
 			'format' => 'date',
-			'types' => array( 
+			'types' => array(
 				'date' => 'Date',
 				'timeago' => 'Human Readable',
 			),

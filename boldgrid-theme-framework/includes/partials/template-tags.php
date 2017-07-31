@@ -277,8 +277,8 @@ add_action( 'save_post',     'boldgrid_category_transient_flusher' );
 if ( ! function_exists( 'bgtfw_edit_post_link' ) ) {
 
 	/**
-	* Custom edit post links used.
-	*/
+	 * Custom edit post links used.
+	 */
 	function bgtfw_edit_post_link() {
 
 		global $boldgrid_theme_framework;
@@ -367,8 +367,6 @@ if ( ! function_exists( 'bgtfw_edit_link' ) ) {
 	 * Generates edit link buttons with specific URL.
 	 *
 	 * @param string $url URL to direct to.
-	 *
-	 * @return string $link HTML to display edit link button.
 	 */
 	function bgtfw_edit_link( $url ) {
 		$link = bgtfw_get_edit_link( $url );

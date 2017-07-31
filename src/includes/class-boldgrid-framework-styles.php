@@ -135,15 +135,14 @@ class BoldGrid_Framework_Styles {
 					$lightness = abs( $color - $helper->get_luminance( $light ) );
 					$darkness = abs( $color - $helper->get_luminance( $dark ) );
 
-					$color= $lightness > $darkness ? $light : $dark;
+					$color = $lightness > $darkness ? $light : $dark;
 					$background = $colors[ $index ];
 				}
 			}
 
 			$edit_links = '.bgtfw-edit-link a{background:' . $background . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
 			$edit_links .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
-			$edit_links .= '.bgtfw-edit-link a svg{fill:' . $color .'!important;';
-			
+			$edit_links .= '.bgtfw-edit-link a svg{fill:' . $color . '!important;';
 			wp_add_inline_style( 'style', $edit_links );
 		}
 	}

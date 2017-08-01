@@ -373,3 +373,25 @@ if ( ! function_exists( 'bgtfw_edit_link' ) ) {
 		echo apply_filters( 'bgtfw_edit_link', $link );
 	}
 }
+
+/**
+ * Output the view cart button.
+ *
+ * @subpackage	Cart
+ */
+function woocommerce_widget_shopping_cart_button_view_cart() {
+	?>
+		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="btn button-primary wc-forward"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
+	<?php
+}
+
+/**
+ * Output the proceed to checkout button.
+ *
+ * @subpackage	Cart
+ */
+function woocommerce_widget_shopping_cart_proceed_to_checkout() {
+	?>
+		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="btn button-primary checkout wc-forward"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
+	<?php
+}

@@ -310,4 +310,20 @@ class BoldGrid_Framework_Woocommerce {
 			'home'        => '',
 		);
 	}
+
+	/**
+	 * Suppress template outdated messages if user doesn't have
+	 * debugging turned on.
+	 *
+	 * @since 1.5.0
+	 */
+	public function remove_template_warnings() {
+		if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+			if ( class_exists( 'WC_Admin_Notices' ) ) {
+
+				// Remove the "you have outdated template files" nag.
+				WC_Admin_Notices::remove_notice( 'template_files' );
+			}
+		}
+	}
 }

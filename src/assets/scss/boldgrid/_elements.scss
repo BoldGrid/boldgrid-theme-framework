@@ -39,44 +39,6 @@ blockquote {
 	border-bottom: none;
 }
 
-/* Edit Links */
-.palette-primary.page {
-	footer.entry-footer {
-		background: transparent;
-		position: absolute;
-		padding: .5em;
-		left: 1%;
-		right: 1%;
-		z-index: 999;
-	}
-	.entry-footer .fa-pencil {
-		opacity: 0.6;
-	}
-	.entry-footer .fa-pencil:hover {
-		opacity: 1;
-	}
-	.post-edit-link {
-		padding: 5px 30px;
-		margin-left: -20px;
-	}
-	.site-content {
-		padding-bottom: 0;
-		margin-bottom: 0;
-	}
-	&.disabled-footer footer.entry-footer {
-		bottom: 2em;
-	}
-	&.disabled-footer {
-		margin-bottom: 0;
-	}
-	&.disabled-footer .attribution-theme-mods {
-		margin-bottom: 50px;
-	}
-	&.disabled-footer .attribution-theme-mods:not(:empty) {
-		margin-bottom: 50px;
-	}
-}
-
 /* Edit Post Links */
 .bgtfw-edit-link {
 	position: absolute;
@@ -96,7 +58,7 @@ blockquote {
 
 .bgtfw-edit-link a {
 	position: absolute;
-	left: 0;
+	left: -32px;
 	top: 2px;
 	color: #fff;
 	width: 30px;

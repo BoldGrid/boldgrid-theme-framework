@@ -76,41 +76,6 @@ blockquote p {
   color: currentColor;
   border-bottom: none; }
 
-/* Edit Links */
-.palette-primary.page footer.entry-footer {
-  background: transparent;
-  position: absolute;
-  padding: .5em;
-  left: 1%;
-  right: 1%;
-  z-index: 999; }
-
-.palette-primary.page .entry-footer .fa-pencil {
-  opacity: 0.6; }
-
-.palette-primary.page .entry-footer .fa-pencil:hover {
-  opacity: 1; }
-
-.palette-primary.page .post-edit-link {
-  padding: 5px 30px;
-  margin-left: -20px; }
-
-.palette-primary.page .site-content {
-  padding-bottom: 0;
-  margin-bottom: 0; }
-
-.palette-primary.page.disabled-footer footer.entry-footer {
-  bottom: 2em; }
-
-.palette-primary.page.disabled-footer {
-  margin-bottom: 0; }
-
-.palette-primary.page.disabled-footer .attribution-theme-mods {
-  margin-bottom: 50px; }
-
-.palette-primary.page.disabled-footer .attribution-theme-mods:not(:empty) {
-  margin-bottom: 50px; }
-
 /* Edit Post Links */
 .bgtfw-edit-link {
   position: absolute;
@@ -130,7 +95,7 @@ blockquote p {
 
 .bgtfw-edit-link a {
   position: absolute;
-  left: 0;
+  left: -32px;
   top: 2px;
   color: #fff;
   width: 30px;
@@ -912,6 +877,60 @@ aside.sidebar h2.widget-title {
 
 .disabled-footer .content-area {
   margin-bottom: 15px; }
+
+.bgtfw-edit-links-hidden.page footer.entry-footer {
+  background: transparent;
+  position: absolute;
+  padding: .5em;
+  left: 1%;
+  right: 1%;
+  z-index: 999; }
+
+.bgtfw-edit-links-hidden.page .entry-footer .fa-pencil {
+  opacity: 0.6; }
+
+.bgtfw-edit-links-hidden.page .entry-footer .fa-pencil:hover {
+  opacity: 1; }
+
+.bgtfw-edit-links-hidden.page .post-edit-link {
+  padding: 5px 30px;
+  margin-left: -20px; }
+
+.bgtfw-edit-links-hidden.page .site-content {
+  padding-bottom: 0;
+  margin-bottom: 0; }
+
+.bgtfw-edit-links-hidden.page.disabled-footer footer.entry-footer {
+  bottom: 2em; }
+
+.bgtfw-edit-links-hidden.page.disabled-footer {
+  margin-bottom: 0; }
+
+.bgtfw-edit-links-hidden.page.disabled-footer .attribution-theme-mods:not(:empty) {
+  margin-bottom: 50px; }
+
+.bgtfw-edit-links-shown.disabled-footer {
+  margin-bottom: 0; }
+
+.bgtfw-edit-links-shown.disabled-footer .attribution-theme-mods:empty {
+  display: none; }
+
+.bgtfw-edit-links-shown.page.disabled-footer .bgtfw-edit-link a {
+  top: -42px; }
+
+.bgtfw-edit-links-shown.page.disabled-footer .entry-footer {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0; }
+
+.bgtfw-edit-links-shown.page .post-edit-link {
+  padding: 5px 30px;
+  margin-left: -20px; }
+
+.bgtfw-edit-links-shown.page .site-content {
+  padding-bottom: 0;
+  margin-bottom: 0; }
 
 /* Sticky Footer */
 html {

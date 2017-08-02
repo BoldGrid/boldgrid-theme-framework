@@ -525,3 +525,6 @@ iframe.boldgrid-google-maps,
 .button-primary,
 .button-secondary {
   white-space: nowrap; }
+
+.boldgrid-section .btn {
+  text-decoration: none; }

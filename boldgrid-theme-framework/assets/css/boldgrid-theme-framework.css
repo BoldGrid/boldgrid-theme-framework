@@ -847,11 +847,9 @@ aside.sidebar h2.widget-title {
     margin: 0 5px 2.5px 0; }
   .sidebar-1 .sidebar #searchform .button-primary {
     margin: 0;
-    width: auto;
-    height: auto;
-    padding: 0 1em;
-    border-radius: 4px;
-    font-size: 14px; }
+    width: 40px;
+    padding: 8px;
+    border-radius: 4px; }
   .sidebar-1 .sidebar #searchform .button-primary span:last-of-type {
     display: none; } }
 

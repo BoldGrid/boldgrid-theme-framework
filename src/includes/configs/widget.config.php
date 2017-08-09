@@ -34,6 +34,7 @@ return array(
 				'label' => 'black-studio-tinymce',
 			),
 		),
+
 	),
 	'sidebars' => array(
 		'boldgrid-widget-1' => array(
@@ -132,6 +133,14 @@ return array(
 			'before_title'  => '<h2 class="widget-title alt-font">',
 			'after_title'   => '</h2>',
 		),
+		'sidebar-1' => array(
+			'name'          => __( 'Sidebar #1', 'bgtfw' ),
+			'id'            => 'sidebar-1',
+			'description'   => '',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<h2 class="widget-title alt-font">',
+			'after_title'   => '</h2>',
+		)
 	),
 );
-

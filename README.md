@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.5.1 ###
+* Update: Moving sidebar widget area into configuration file.
+
 ### 1.5 ###
 * Update: Bump version.
 

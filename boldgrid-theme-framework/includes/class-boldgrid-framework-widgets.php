@@ -298,21 +298,4 @@ class Boldgrid_Framework_Widgets {
 		add_action( 'dynamic_sidebar_before',  $before_function, 10, 2 );
 		add_action( 'dynamic_sidebar_after',  $after_function, 10, 2 );
 	}
-
-	/**
-	 * Add Sidebar Widgets to BoldGrid Theme
-	 *
-	 * @since     1.0.0
-	 */
-	public function sidebar_widgets() {
-		register_sidebar( array(
-			'name'          => __( 'Sidebar #1', 'bgtfw' ),
-			'id'            => 'sidebar-1',
-			'description'   => '',
-			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</aside>',
-			'before_title'  => '<h2 class="widget-title alt-font">',
-			'after_title'   => '</h2>',
-		) );
-	}
 }

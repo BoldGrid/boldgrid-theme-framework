@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.5.1 ###
 * Update: Moving sidebar widget area into configuration file.
+* Update: Provide support for buttons as post navigation.
 
 ### 1.5 ###
 * Update: Bump version.

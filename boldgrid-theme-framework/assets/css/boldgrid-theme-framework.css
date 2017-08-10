@@ -67,6 +67,18 @@ blockquote {
 blockquote p {
   font-size: 1.125em; }
 
+/* Support for button wrapping classes. */
+div.btn, div.button-primary, div.button-secondary {
+  position: relative; }
+
+div.btn a:after, div.button-primary a:after, div.button-secondary a:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
 /* Post/Page password protected styles */
 .post-password-form .button-primary {
   margin-left: 9px; }
@@ -667,11 +679,14 @@ select {
   padding: 0 8px; }
 
 .post-navigation {
-  margin-top: 1.5em; }
+  margin: 1.5em auto; }
 
 .post-navigation .nav-links {
   display: flex;
   justify-content: space-between; }
+
+.paging-navigation {
+  margin: 1.5em auto; }
 
 /*--------------------------------------------------------------
 # Comments

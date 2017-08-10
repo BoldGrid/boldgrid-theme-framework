@@ -290,6 +290,34 @@ class BoldGrid_Framework_Template_Config {
 	}
 
 	/**
+	 * Add style configs for pagination.
+	 *
+	 * If the style is defined as buttons for pagination, override the classes for paging and posts
+	 * nav classes to add button-primary or whatever the configs for that post are.
+	 *
+	 * @since 1.5
+	 *
+	 * @return array Configuration.
+	 */
+	public function pagination_style( $configs ) {
+		$post_navigation = $configs['template']['post_navigation'];
+
+		if ( 'buttons' === $post_navigation['style'] ) {
+			$pageing_nav_classes = $post_navigation['style_configs']['buttons']['paging_nav_classes'];
+			$post_navigation['paging_nav_classes']['next'] .= ' ' . $pageing_nav_classes;
+			$post_navigation['paging_nav_classes']['previous'] .= ' ' . $pageing_nav_classes;
+
+			$post_nav_classes = $post_navigation['style_configs']['buttons']['post_nav_classes'];
+			$post_navigation['post_nav_classes']['next'] .= ' ' . $post_nav_classes;
+			$post_navigation['post_nav_classes']['previous'] .= ' ' . $post_nav_classes;
+		}
+
+		$configs['template']['post_navigation'] = $post_navigation;
+
+		return $configs;
+	}
+
+	/**
 	 * Hide all of the location rows that are not in use.
 	 *
 	 * @since 1.2

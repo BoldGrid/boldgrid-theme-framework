@@ -35,9 +35,13 @@
 }
 
 .post-navigation {
-	margin-top: 1.5em;
+	margin: 1.5em auto;
 	.nav-links {
 		display: flex;
 		justify-content: space-between;
 	}
+}
+
+.paging-navigation {
+	margin: 1.5em auto;
 }

@@ -35,6 +35,10 @@ div {
 	&.button-secondary {
 		position: relative;
 
+		a {
+			color: inherit !important;
+		}
+
 		a:after {
 			position: absolute;
 			content: '';

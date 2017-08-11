@@ -72,7 +72,7 @@ div.btn, div.button-primary, div.button-secondary {
   position: relative; }
 
 div.btn a, div.button-primary a, div.button-secondary a {
-  color: inherit !important; }
+  color: currentColor !important; }
 
 div.btn a:after, div.button-primary a:after, div.button-secondary a:after {
   position: absolute;

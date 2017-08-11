@@ -18,7 +18,7 @@ function boldgrid_paging_nav() {
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
 	}
-	$nav_classes = $configs['template'][ 'post_navigation' ]['paging_nav_classes'];
+	$nav_classes = $configs['template']['post_navigation']['paging_nav_classes'];
 
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
@@ -55,7 +55,7 @@ function boldgrid_post_nav() {
 		return;
 	}
 
-	$nav_classes = $configs['template'][ 'post_navigation' ]['post_nav_classes'];
+	$nav_classes = $configs['template']['post_navigation']['post_nav_classes'];
 
 	?>
 	<nav class="navigation post-navigation" role="navigation">

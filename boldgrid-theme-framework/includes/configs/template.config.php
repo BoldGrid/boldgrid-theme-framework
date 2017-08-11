@@ -29,7 +29,7 @@ return array(
 				'paging_nav_classes' => 'button-primary',
 				'post_nav_classes' => 'button-primary',
 			),
-		)
+		),
 	),
 	'pages' => array(
 		'blog' => 'container',

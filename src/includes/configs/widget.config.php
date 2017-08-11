@@ -141,6 +141,6 @@ return array(
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h2 class="widget-title alt-font">',
 			'after_title'   => '</h2>',
-		)
+		),
 	),
 );

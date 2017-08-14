@@ -154,6 +154,17 @@ class BoldGrid {
 	}
 
 	/**
+	 * Is this a blog styled page.
+	 *
+	 * @since 1.5.1
+	 *
+	 * @return boolean Whether or not this page is styled as a post.
+	 */
+	public static function is_blog() {
+		return is_single() || is_archive() || is_search() || is_home() || is_attachment();
+	}
+
+	/**
 	 * Print the container class.
 	 *
 	 * @since 1.2
@@ -168,7 +179,7 @@ class BoldGrid {
 
 		if ( 'blog' == $location ) {
 			$class = '';
-			if ( is_single() || is_archive() || is_search() || is_home() || is_attachment() ) {
+			if ( self::is_blog() ) {
 				$class = $configs['template']['pages']['blog'];
 			}
 			if ( ! empty( $configs['template']['pages'][ $template ]['main'] ) ) {

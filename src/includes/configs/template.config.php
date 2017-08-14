@@ -14,6 +14,23 @@ return array(
 	'call-to-action' => 'none',
 	'entry-header' => '',
 	'entry-footer' => '',
+	'post_navigation' => array(
+		'style' => 'default',
+		'paging_nav_classes' => array(
+			'next' => 'nav-next',
+			'previous' => 'nav-previous',
+		),
+		'post_nav_classes' => array(
+			'next' => 'nav-next',
+			'previous' => 'nav-previous',
+		),
+		'style_configs' => array(
+			'buttons' => array(
+				'paging_nav_classes' => 'button-primary',
+				'post_nav_classes' => 'button-primary',
+			),
+		),
+	),
 	'pages' => array(
 		'blog' => 'container',
 		'global' => array(

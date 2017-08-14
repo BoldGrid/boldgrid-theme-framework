@@ -28,6 +28,28 @@ blockquote {
 	}
 }
 
+/* Support for button wrapping classes. */
+div {
+	&.btn,
+	&.button-primary,
+	&.button-secondary {
+		position: relative;
+
+		a {
+			color: currentColor !important;
+		}
+
+		a:after {
+			position: absolute;
+			content: '';
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+	}
+}
+
 /* Post/Page password protected styles */
 .post-password-form .button-primary {
 	margin-left: 9px;

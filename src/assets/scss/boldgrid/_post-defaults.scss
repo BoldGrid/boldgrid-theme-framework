@@ -33,9 +33,9 @@
 .post-edit-link {
 	padding: 0 8px;
 }
-
+.paging-navigation,
 .post-navigation {
-	margin-top: 1.5em;
+	margin: 1.5em auto;
 	.nav-links {
 		display: flex;
 		justify-content: space-between;

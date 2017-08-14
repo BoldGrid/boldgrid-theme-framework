@@ -67,6 +67,21 @@ blockquote {
 blockquote p {
   font-size: 1.125em; }
 
+/* Support for button wrapping classes. */
+div.btn, div.button-primary, div.button-secondary {
+  position: relative; }
+
+div.btn a, div.button-primary a, div.button-secondary a {
+  color: currentColor !important; }
+
+div.btn a:after, div.button-primary a:after, div.button-secondary a:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
 /* Post/Page password protected styles */
 .post-password-form .button-primary {
   margin-left: 9px; }
@@ -666,9 +681,11 @@ select {
 .post-edit-link {
   padding: 0 8px; }
 
+.paging-navigation,
 .post-navigation {
-  margin-top: 1.5em; }
+  margin: 1.5em auto; }
 
+.paging-navigation .nav-links,
 .post-navigation .nav-links {
   display: flex;
   justify-content: space-between; }

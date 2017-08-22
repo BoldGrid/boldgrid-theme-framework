@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.5.2 ###
+* New Feature: Moving component library into it's own package.
+
 ### 1.5.1 ###
 * Update: Moving sidebar widget area into configuration file.
 * Update: Provide support for buttons as post navigation.

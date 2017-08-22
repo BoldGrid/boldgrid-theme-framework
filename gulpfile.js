@@ -315,6 +315,10 @@ gulp.task( 'scssDeps', function(  ) {
     .pipe( gulp.dest( config.dist + '/assets/css/smartmenus' ) );
   gulp.src( config.bower + '/smartmenus/dist/addons/**/jquery.*.css' )
     .pipe( gulp.dest( config.dist + '/assets/css/smartmenus' ) );
+
+  // boldgrid-components.
+  gulp.src( './node_modules/boldgrid-components/dist/css/**/*' )
+    .pipe( gulp.dest( config.dist + '/assets/css' ) );
 } );
 
 // Compile SCSS

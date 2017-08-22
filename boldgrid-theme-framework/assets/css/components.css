@@ -328,22 +328,23 @@
 # Horizontal Rule
 --------------------------------------------------------------*/
 hr.bg-hr {
-  background: none;
+  background: transparent;
   height: 0;
   position: relative;
   border: 1px solid;
   /** Hifidel **/
   /** Wedge **/ }
 
-hr.bg-hr.bg-hr-1:after {
+hr.bg-hr.bg-hr-1:after, hr.bg-hr.bg-hr-19:after {
   content: "";
   display: block;
-  height: 10px;
+  height: 0px;
   margin: 0 auto;
   position: relative;
-  width: 10px;
+  width: 0px;
   transform: translateY(-50%);
-  top: 50%; }
+  top: 50%;
+  border: 6px solid; }
 
 hr.bg-hr.bg-hr-2:after {
   content: "";
@@ -355,6 +356,110 @@ hr.bg-hr.bg-hr-2:after {
   margin-left: -8px;
   position: absolute;
   background: transparent; }
+
+hr.bg-hr.bg-hr-3 {
+  border: 1px double;
+  border-left: 0;
+  border-right: 0;
+  background: transparent;
+  height: 2px; }
+
+hr.bg-hr.bg-hr-4 {
+  border: 1px dashed;
+  background: transparent; }
+
+hr.bg-hr.bg-hr-5 {
+  border: 1px dotted;
+  background: transparent; }
+
+hr.bg-hr.bg-hr-6 {
+  border: 2px dashed;
+  border-left: 0;
+  border-right: 0;
+  background: transparent; }
+
+hr.bg-hr.bg-hr-7 {
+  border: 1px dotted;
+  border-left: 0;
+  border-right: 0;
+  height: 3px;
+  background: transparent; }
+
+hr.bg-hr.bg-hr-8 {
+  border: 1px dotted;
+  border-bottom: 0;
+  background: transparent; }
+
+hr.bg-hr.bg-hr-9 {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8b8b inset;
+  background: transparent; }
+
+hr.bg-hr.bg-hr-10 {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to left, white, #8c8b8b, white); }
+
+hr.bg-hr.bg-hr-11 {
+  border: 0;
+  height: 3px;
+  background-image: linear-gradient(to left, white, #8c8b8b, white); }
+
+hr.bg-hr.bg-hr-13 {
+  border: 0;
+  box-shadow: 0 0 10px 1px black; }
+
+hr.bg-hr.bg-hr-13:after {
+  content: "\00a0"; }
+
+hr.bg-hr.bg-hr-14 {
+  border: 0;
+  border-bottom: 10px solid; }
+
+hr.bg-hr.bg-hr-15 {
+  border: 0;
+  border-bottom: 5px solid; }
+
+hr.bg-hr.bg-hr-16 {
+  border: 0;
+  border-bottom: 3px solid; }
+
+hr.bg-hr.bg-hr-17 {
+  border: 0;
+  height: 5px;
+  border-top: 3px solid;
+  border-bottom: 3px solid;
+  background: transparent; }
+
+hr.bg-hr.bg-hr-18, hr.bg-hr.bg-hr-20 {
+  background: transparent; }
+
+hr.bg-hr.bg-hr-18:before, hr.bg-hr.bg-hr-20:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0px;
+  transform: translateY(-150%);
+  border: 6px solid;
+  right: -1px;
+  top: 12px; }
+
+hr.bg-hr.bg-hr-18:after, hr.bg-hr.bg-hr-20:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0px;
+  transform: translateY(-150%);
+  border: 6px solid;
+  left: -1px;
+  top: 12px; }
+
+hr.bg-hr.bg-hr-19:after {
+  border-radius: 50%; }
+
+hr.bg-hr.bg-hr-20:after, hr.bg-hr.bg-hr-20:before {
+  border-radius: 50%; }
 
 /*--------------------------------------------------------------
 # Column Background Helpers

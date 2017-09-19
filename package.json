@@ -16,7 +16,7 @@
     "url": "https://github.com/BoldGrid/boldgrid-theme-framework.git"
   },
   "devDependencies": {
-    "@boldgrid/components": "^2.3.0",
+    "@boldgrid/components": "^2.3.2",
     "del": "^2.2.0",
     "googlefonts-sprite-generator": "^1.0.3",
     "gulp": "^3.9.1",

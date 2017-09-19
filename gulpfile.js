@@ -317,7 +317,7 @@ gulp.task( 'scssDeps', function(  ) {
     .pipe( gulp.dest( config.dist + '/assets/css/smartmenus' ) );
 
   // boldgrid-components.
-  gulp.src( './node_modules/@boldgrid/components/dist/css/**/*' )
+  gulp.src( './node_modules/@boldgrid/components/dist/css/components.*' )
     .pipe( gulp.dest( config.dist + '/assets/css' ) );
 } );
 

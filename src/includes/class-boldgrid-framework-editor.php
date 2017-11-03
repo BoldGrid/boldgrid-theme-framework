@@ -218,68 +218,49 @@ HTML;
 	}
 
 	/**
-	 * Genereate a kirki google fonts link.
+	 * What method to use to add styles?
 	 *
-	 * @since 1.1.5
+	 * This sets Kirki config to compile CSS to a file instead of adding
+	 * inline.
 	 *
-	 * @global array $wp_styles List of enqueued styles.
+	 * @since 2.0.0
 	 *
-	 * @return string Url to google fonts.
+	 * @return string Name of method of adding CSS styles.
 	 */
-	public function kirki_google_link() {
-
-		global $wp_styles;
-
-		$link = false;
-		$kirki_handle = 'kirki_google_fonts';
-
-		// Force kirki to enqueue styles.
-		$google_fonts = Kirki_Fonts_Google::get_instance();
-		$google_fonts->enqueue();
-
-		// Grab kirkis url.
-		if ( ! empty( $wp_styles->registered[ $kirki_handle ]->src ) ) {
-			$link = $wp_styles->registered[ $kirki_handle ]->src;
-		}
-
-		// Deregister the style.
-		wp_dequeue_style( $kirki_handle );
-
-		return $link;
+	public function add_styles_method() {
+		return 'file';
 	}
 
 	/**
-	 * Enqueue Google fonts if necessary
+	 * Set Kirki's Google Font load method.
 	 *
-	 * @global string $pagenow current page.
+	 * This tells Kirki to embed googlefonts in styles instead of loading
+	 * separate link.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return string Name of method of adding the necessary Google Fonts styles.
 	 */
-	public function add_google_fonts() {
+	public function kirki_load_method() {
+		return 'embed';
+	}
 
-		global $pagenow;
-
-		$valid_pages = array(
-			'post.php',
-			'post-new.php',
-			'customize.php',
-		);
-
-		if ( false === in_array( $pagenow, $valid_pages ) ) {
-			return;
+	/**
+	 * Enqueue Google fonts to the TinyMCE Editor frame.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $mce_css CSS being added to the TinyMCE instance.
+	 *
+	 * @return string $mce_css The modified CSS string to add to the TinyMCE instance.
+	 */
+	public function add_google_fonts( $mce_css ) {
+		if ( ! empty( $mce_css ) ) {
+			$mce_css .= ',';
 		}
+		$upload_dir = wp_upload_dir();
 
-		$config = apply_filters( 'kirki/config', array() );
-
-		/**
-		 * If we have set $config['disable_google_fonts'] to true
-		 * then do not proceed any further.
-		 */
-		if ( isset( $config['disable_google_fonts'] ) && true == $config['disable_google_fonts'] ) {
-			return;
-		}
-		$link = $this->kirki_google_link();
-		if ( $link ) {
-			add_editor_style( $link );
-		}
+		return $mce_css . esc_url_raw( $upload_dir['baseurl'] . '/kirki-css/styles.css' );
 	}
 
 	/**

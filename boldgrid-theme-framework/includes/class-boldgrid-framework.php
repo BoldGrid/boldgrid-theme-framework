@@ -257,6 +257,11 @@ class BoldGrid_Framework {
 		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', 'BoldGrid::get_inspiration_configs', 5 );
 
+		// Adds the sidebar options to the page template selections.
+		add_filter( 'theme_page_templates', array( $template_config, 'templates' ) );
+
+		// Adds the sidebar options to the post template selections.
+		add_filter( 'theme_post_templates', array( $template_config, 'templates' ) );
 		if ( ! is_admin() ) {
 			add_filter( 'boldgrid_theme_framework_config', array( $template_config, 'remove_theme_container' ), 50 );
 		}
@@ -396,6 +401,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_logo_or_title' );
 		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
 		$this->loader->add_filter( 'boldgrid_primary_navigation',   $boldgrid_theme,   'print_primary_navigation' );
+		$this->loader->add_filter( 'boldgrid_print_menu', $boldgrid_theme, 'print_menu' );
 
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
@@ -456,7 +462,9 @@ class BoldGrid_Framework {
 
 		// Add Kirki Fonts to WordPress Page/Post Editor.
 		if ( true === $this->configs['customizer-options']['typography']['enabled'] ) {
-			$this->loader->add_action( 'wp_loaded', $editor, 'add_google_fonts' );
+			$this->loader->add_filter( 'kirki/dynamic_css/method', $editor, 'add_styles_method' );
+			$this->loader->add_filter( 'kirki/bgtfw/googlefonts_load_method', $editor, 'kirki_load_method' );
+			$this->loader->add_filter( 'mce_css', $editor, 'add_google_fonts' );
 		}
 
 		$this->loader->add_action( 'init', $editor, 'add_post_title_toggle' );
@@ -490,7 +498,6 @@ class BoldGrid_Framework {
 		$color_compile = new Boldgrid_Framework_Compile_Colors( $this->configs );
 
 		$this->loader->add_action( 'after_setup_theme', $theme_setup, 'boldgrid_setup' );
-
 		// Add the active button styles from configs to the compiler file array if active.
 		if ( true === $this->configs['components']['buttons']['enabled'] ) {
 			$this->loader->add_filter( 'boldgrid_theme_helper_scss_files', $color_compile, 'get_button_color_files' );
@@ -537,8 +544,8 @@ class BoldGrid_Framework {
 	private function customizer_background_controls() {
 		$background = new Boldgrid_Framework_Customizer_Background( $this->configs );
 		$this->loader->add_action( 'customize_register', $background, 'add_patterns' );
-		$this->loader->add_action( 'customize_register', $background, 'add_position' );
-		$this->loader->add_action( 'customize_register', $background, 'add_color_picker' );
+//		$this->loader->add_action( 'customize_register', $background, 'add_position' );
+//		$this->loader->add_action( 'customize_register', $background, 'add_color_picker' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_size' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_type' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_crop', 11 );
@@ -642,9 +649,6 @@ class BoldGrid_Framework {
 	 */
 	private function customizer_footer() {
 		$footer = new BoldGrid_Framework_Customizer_Footer( $this->configs );
-		$this->loader->add_action( 'customize_register', $footer, 'footer_panel' );
-		$this->loader->add_action( 'customize_register', $footer, 'add_enable_control' );
-		$this->loader->add_action( 'customize_register', $footer, 'add_attrbution_control' );
 		$this->loader->add_action( 'body_class', $footer, 'collapse_body_margin' );
 		$this->loader->add_action( 'boldgrid_display_attribution_links', $footer, 'attribution_display_action' );
 		$this->loader->add_action( 'boldgrid_footer_before', $footer, 'maybe_remove_all_footer_actions' );
@@ -660,8 +664,8 @@ class BoldGrid_Framework {
 		$contact_blocks = new Boldgrid_Framework_Customizer_Contact_Blocks( $this->configs );
 		// If contact blocks is enabled and BSTW widget is disabled add contact blocks.
 		if ( 'disabled' == $this->configs['template']['call-to-action'] ) {
-			$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
-			$this->loader->add_action( 'customize_register', $contact_blocks, 'add_contact_control' );
+			//$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
+			//$this->loader->add_action( 'customize_register', $contact_blocks, 'add_contact_control' );
 		}
 	}
 
@@ -674,6 +678,7 @@ class BoldGrid_Framework {
 	private function customizer_kirki() {
 		$kirki = new Boldgrid_Framework_Customizer_Kirki( $this->configs );
 		$this->loader->add_filter( 'kirki/config', $kirki, 'general_kirki_configs' );
+		$this->loader->add_filter( 'kirki/bgtfw/l10n', $kirki, 'l10n' );
 	}
 
 	/**
@@ -684,12 +689,16 @@ class BoldGrid_Framework {
 	 */
 	private function customizer_base() {
 		$base = new BoldGrid_Framework_Customizer( $this->configs );
+
+		// Load the default Kirki Configuration.
+		$this->loader->add_action( 'init', $base, 'kirki_controls' );
+
 		$this->loader->add_action( 'customize_register', $base, 'site_logo' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_name' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_description' );
-		$this->loader->add_action( 'customize_register', $base, 'advanced_panel' );
+		//$this->loader->add_action( 'customize_register', $base, 'advanced_panel' );
 		$this->loader->add_action( 'customize_register', $base, 'header_panel' );
-		$this->loader->add_action( 'customize_register', $base, 'init_help' );
+		//$this->loader->add_action( 'customize_register', $base, 'init_help' );
 		$this->loader->add_action( 'customize_register', $base, 'customizer_reorganization' );
 		$this->loader->add_action( 'customize_register', $base, 'set_text_contrast' );
 		$this->loader->add_action( 'customize_register', $base, 'add_menu_description', 20 );
@@ -730,7 +739,7 @@ class BoldGrid_Framework {
 	private function customizer_effects() {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		// Add Page Effects Controls.
-		$this->loader->add_action( 'customize_register', $effects, 'add_controls' );
+		//$this->loader->add_action( 'customize_register', $effects, 'add_controls' );
 	}
 
 	/**

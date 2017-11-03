@@ -105,10 +105,16 @@ class Kirki_Control_Typography extends WP_Customize_Control {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( 'wp-color-picker-alpha', trailingslashit( Kirki::$url ) . 'assets/vendor/wp-color-picker-alpha/wp-color-picker-alpha.js', array( 'wp-color-picker' ), '1.2', true );
+		$script_url = trailingslashit( Kirki::$url ) . 'assets/vendor/wp-color-picker-alpha/wp-color-picker-alpha-legacy.js';
+		if ( Kirki_Util::get_wp_version() >= 4.9 ) {
+			$script_url = trailingslashit( Kirki::$url ) . 'assets/vendor/wp-color-picker-alpha/wp-color-picker-alpha.js';
+			wp_enqueue_style( 'wp-color-picker-alpha', trailingslashit( Kirki::$url ) . 'assets/vendor/wp-color-picker-alpha/wp-color-picker-alpha.css', null );
+		}
+		wp_enqueue_script( 'wp-color-picker-alpha', $script_url, array( 'wp-color-picker' ), false, true );
 		wp_enqueue_style( 'wp-color-picker' );
 
-		wp_enqueue_script( 'kirki-typography', trailingslashit( Kirki::$url ) . 'controls/typography/typography.js', array( 'jquery', 'customize-base', 'select2', 'wp-color-picker-alpha' ), false, true );
+		$script_filename = ( Kirki_Util::get_wp_version() >= 4.9 ) ? 'typography.js' : 'typography-legacy.js';
+		wp_enqueue_script( 'kirki-typography', trailingslashit( Kirki::$url ) . 'controls/typography/' . $script_filename, array( 'jquery', 'customize-base', 'select2', 'wp-color-picker-alpha' ), false, true );
 		wp_enqueue_style( 'kirki-typography-css', trailingslashit( Kirki::$url ) . 'controls/typography/typography.css', null );
 
 		wp_enqueue_script( 'select2', trailingslashit( Kirki::$url ) . 'assets/vendor/select2/js/select2.full.js', array( 'jquery' ), '4.0.3', true );
@@ -324,13 +330,17 @@ class Kirki_Control_Typography extends WP_Customize_Control {
 				</div>
 			<# } #>
 		</div>
-		<#
-		if ( ! _.isUndefined( data.value['font-family'] ) ) {
-			data.value['font-family'] = data.value['font-family'].replace( /&quot;/g, '&#39' );
-		}
-		valueJSON = JSON.stringify( data.value ).replace( /'/g, '&#39' );
-		#>
-		<input class="typography-hidden-value" type="hidden" value='{{{ valueJSON }}}' {{{ data.link }}}>
+		<?php if ( Kirki_Util::get_wp_version() >= 4.9 ) : ?>
+			<input class="typography-hidden-value" type="hidden" {{{ data.link }}}>
+		<?php else : ?>
+			<#
+			if ( ! _.isUndefined( data.value['font-family'] ) ) {
+				data.value['font-family'] = data.value['font-family'].replace( /&quot;/g, '&#39' );
+			}
+			valueJSON = JSON.stringify( data.value ).replace( /'/g, '&#39' );
+			#>
+			<input class="typography-hidden-value" type="hidden" value='{{{ valueJSON }}}' {{{ data.link }}}>
+		<?php endif; ?>
 		<?php
 	}
 

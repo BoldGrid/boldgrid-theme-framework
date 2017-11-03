@@ -43,11 +43,249 @@ class BoldGrid_Framework_Customizer {
 		$this->configs = $configs;
 	}
 
-	/**
-	 * Instantiate the Help System (tooltips).
-	 */
-	public function init_help() {
-		new Boldgrid_Framework_Customizer_Help();
+	public function kirki_controls() {
+
+		global $boldgrid_theme_framework;
+		$configs = $boldgrid_theme_framework->get_configs();
+
+		/* Adds "Advanced" top level panel option to customizer. */
+		Kirki::add_panel(
+			'boldgrid_other',
+			array(
+				'title'       => __( 'Advanced', 'boldgrid' ),
+				'description' => 'Additional BoldGrid Options',
+				'priority'    => 120,
+			)
+		);
+		Kirki::add_section(
+			'advanced_edit',
+			array(
+				'title' => __( 'Custom JS & CSS', 'bgtfw' ),
+				'panel' => 'boldgrid_other',
+				'capability' => 'edit_theme_options',
+				'description' => __( 'This section allows you to modify features that are not menus or widgets.', 'bgtfw' ),
+				'priority' => 250, // After all core sections.
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'code',
+				'transport' => 'postMessage',
+				'settings'    => 'custom_theme_css',
+				'label'       => __( 'Custom Theme CSS', 'bgtfw' ),
+				'help'        => __( 'This adds live CSS to your website.', 'bgtfw' ),
+				'description' => __( 'Add custom CSS for this theme.', 'bgtfw' ),
+				'section'     => 'advanced_edit',
+				'default'     => '.boldgrid-css{ background: white; }',
+				'priority'    => 10,
+				'choices'     => array(
+					'language' => 'css',
+					'theme'    => 'base16-dark',
+					'height'   => 100,
+				),
+			)
+		);
+		Kirki::add_field(
+			'custom_theme_js',
+			array(
+				'type'        => 'code',
+				'settings'    => 'custom_theme_js',
+				'label'       => __( 'Custom Theme JS' ),
+				'help'        => __( 'This adds live JavaScript to your website.', 'bgtfw' ),
+				'description' => __( 'Add custom javascript for this theme.', 'bgtfw' ),
+				'section'     => 'advanced_edit',
+				'default'     => "// jQuery('body');",
+				'priority'    => 10,
+				'choices'     => array(
+					'language' => 'javascript',
+					'theme'    => 'base16-dark',
+					'height'   => 100,
+				),
+			)
+		);
+
+		/** Footer Section **/
+		Kirki::add_section(
+			'boldgrid_footer_panel',
+			array(
+				'title' => __( 'Footer Settings', 'bgtfw' ),
+				'priority' => 130, // After all core sections.
+				'panel' => 'boldgrid_other',
+				'capability' => 'edit_theme_options',
+				'description' => __( 'This section allows you to modify features that are not menus or widgets.', 'bgtfw' ),
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'custom',
+				'settings'     => 'boldgrid_attribution_heading',
+				'label'       => __( 'Attribution Control', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => '',
+				'priority'    => 20,
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'checkbox',
+				'settings'     => 'hide_boldgrid_attribution',
+				'transport'   => 'postMessage',
+				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => false,
+				'priority'    => 30,
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'checkbox',
+				'settings'     => 'hide_wordpress_attribution',
+				'transport'   => 'postMessage',
+				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => false,
+				'priority'    => 40,
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'custom',
+				'settings'     => 'boldgrid_footer_widget_help',
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
+				'priority'    => 80,
+				'description' => __( 'You can add widgets to your footer from the widgets section.', 'bgtfw' ),
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'custom',
+				'settings'     => 'boldgrid_edit_footer_widget_help',
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => '<a data-focus-section="sidebar-widgets-boldgrid-widget-3" class="button button-primary" href="#">' .
+					__( 'Edit Footer Widgets', 'bgtfw' ) . '</a>',
+				'priority'    => 60,
+				'description' => __( 'You can edit your default footer widgets from the widget panel.', 'bgtfw' ),
+				'required' => array(
+					array(
+						'settings' => 'boldgrid_enable_footer',
+						'operator' => '==',
+						'value' => true,
+					),
+				),
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'label'       => __( 'Footer Widget Columns', 'bgtfw' ),
+				'description' => __( 'Select the number of footer widget columns you wish to display.', 'bgtfw' ),
+				'type'        => 'radio',
+				'settings'    => 'boldgrid_footer_widgets',
+				'priority'    => 70,
+				'choices'     => array(
+					'0'   => '0',
+					'1'   => '1',
+					'2'   => '2',
+					'3'   => '3',
+					'4'   => '4',
+				),
+				'section'     => 'boldgrid_footer_panel',
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type' => 'switch',
+				'settings' => 'boldgrid_enable_footer',
+				'label' => __( 'Enable Footer', 'bgtfw' ),
+				'section' => 'boldgrid_footer_panel',
+				'default' => true,
+				'priority' => 5,
+			)
+		);
+
+		/* Background Controls*/
+		// Add Background Color Control to Pattern&Color of Background Image Section.
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type' => 'color',
+				'settings' => 'boldgrid_background_color',
+				'label' => __( 'Background Color', 'bgtfw' ),
+				'section' => 'background_image',
+				'transport' => 'postMessage',
+				'default' => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
+				'priority' => 1,
+				'choices' => array(),
+			)
+		);
+
+		// Add Background Vertical Position Control.
+		Kirki::add_field( 'bgtfw', array(
+				'type' => 'slider',
+				'settings' => 'boldgrid_background_vertical_position',
+				'label' => __( 'Vertical Background Position', 'bgtfw' ),
+				'section' => 'background_image',
+				'transport' => 'postMessage',
+				'default' => $configs['customizer-options']['background']['defaults']['boldgrid_background_vertical_position'],
+				'priority' => 16,
+				'choices' => array(
+					'min' => - 100,
+					'max' => 100,
+					'step' => 1,
+				),
+			)
+		);
+
+		// Add Background Horizontal Position Control.
+		Kirki::add_field( 'bgtfw', array(
+				'type' => 'slider',
+				'settings' => 'boldgrid_background_horizontal_position',
+				'label' => __( 'Horizontal Background Position', 'bgtfw' ),
+				'section' => 'background_image',
+				'transport' => 'postMessage',
+				'default' => $configs['customizer-options']['background']['defaults']['boldgrid_background_horizontal_position'],
+				'priority' => 17,
+				'choices' => array(
+					'min' => - 100,
+					'max' => 100,
+					'step' => 1,
+				),
+			)
+		);
+
+		/* Contact Blocks */
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'repeater',
+				'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'priority'    => 10,
+				'row_label' => array(
+					'field' => 'contact_block',
+					'type' => 'field',
+					'value' => esc_attr__( 'Contact Block', 'bgtfw' ),
+				),
+				'settings'    => 'boldgrid_contact_details_setting',
+				'default'     => $this->configs['customizer-options']['contact-blocks']['defaults'],
+				'fields' => array(
+					'contact_block' => array(
+						'type'        => 'text',
+						'label'       => esc_attr__( 'Text', 'bgtfw' ),
+						'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
+						'default'     => '',
+					),
+				),
+			)
+		);
 	}
 
 	/**
@@ -236,7 +474,12 @@ HTML;
 				'priority'    => 120,
 			) );
 		}
-
+			// Add an "other" Panel.
+			$wp_customize->add_panel( 'boldgrid_other', array(
+				'title'       => __( 'Layout', 'boldgrid' ),
+				'description' => 'Site Layout Options',
+				'priority'    => 70,
+			) );
 		// Move Static Front page to the Other Section.
 		if ( $wp_customize->get_section( 'static_front_page' ) ) {
 			$wp_customize->get_section( 'static_front_page' )->panel    = 'boldgrid_other';
@@ -332,9 +575,7 @@ HTML;
 						'3'   => '3',
 						'4'   => '4',
 					),
-
 					'section'     => 'boldgrid_header_panel',
-
 				) );
 
 				$header_settings = function ( $controls ) {
@@ -411,33 +652,14 @@ HTML;
 
 		if ( true === $panel ) {
 
-			$wp_customize->add_section( 'advanced_edit', array(
-				'title'    => __( 'Custom JS & CSS', 'bgtfw' ),
-				'panel' => 'boldgrid_other',
-				'priority' => 250, // After all core sections.
-			) );
+
 
 			// Which config to check?
 			$css_editor = $this->configs['customizer-options']['advanced_controls']['css_editor'];
 
 			// If active add control.
 			if ( true === $css_editor ) {
-				Kirki::add_field( 'custom_theme_css', array(
-					'type'        => 'code',
-					'transport' => 'postMessage',
-					'settings'    => 'custom_theme_css',
-					'label'       => __( 'Custom Theme CSS', 'bgtfw' ),
-					'help'        => __( 'This adds live CSS to your website.', 'bgtfw' ),
-					'description' => __( 'Add custom CSS for this theme.', 'bgtfw' ),
-					'section'     => 'advanced_edit',
-					'default'     => '.boldgrid-css{ background: white; }',
-					'priority'    => 10,
-					'choices'     => array(
-						'language' => 'css',
-						'theme'    => 'base16-dark',
-						'height'   => 100,
-					),
-				) );
+
 			}
 
 			// Which config to check?
@@ -445,25 +667,9 @@ HTML;
 
 			// If active add control.
 			if ( true === $js_editor ) {
-				Kirki::add_field( 'custom_theme_js', array(
-					'type'        => 'code',
-					'settings'    => 'custom_theme_js',
-					'label'       => __( 'Custom Theme JS' ),
-					'help'        => __( 'This adds live JavaScript to your website.', 'bgtfw' ),
-					'description' => __( 'Add custom javascript for this theme.', 'bgtfw' ),
-					'section'     => 'advanced_edit',
-					'default'     => "// jQuery('body');",
-					'priority'    => 10,
-					'choices'     => array(
-						'language' => 'javascript',
-						'theme'    => 'base16-dark',
-						'height'   => 100,
-					),
-				) );
 
 			}
 		}
-
 	}
 
 	/**

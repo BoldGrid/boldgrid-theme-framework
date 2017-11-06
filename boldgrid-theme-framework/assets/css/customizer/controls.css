@@ -54,6 +54,9 @@
   font-weight: normal !important;
   font-size: 1em !important; }
 
+.wp-picker-active .pluto-alpha-container {
+  display: block; }
+
 [id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content .option,
 [id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content .option.active,
 [id^="customize-control-"][id$="_font_family"] .selectize-dropdown-content .option:hover {

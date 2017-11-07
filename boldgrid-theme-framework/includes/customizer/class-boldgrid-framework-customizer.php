@@ -262,30 +262,32 @@ class BoldGrid_Framework_Customizer {
 		);
 
 		/* Contact Blocks */
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type'        => 'repeater',
-				'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'priority'    => 10,
-				'row_label' => array(
-					'field' => 'contact_block',
-					'type' => 'field',
-					'value' => esc_attr__( 'Contact Block', 'bgtfw' ),
-				),
-				'settings'    => 'boldgrid_contact_details_setting',
-				'default'     => $this->configs['customizer-options']['contact-blocks']['defaults'],
-				'fields' => array(
-					'contact_block' => array(
-						'type'        => 'text',
-						'label'       => esc_attr__( 'Text', 'bgtfw' ),
-						'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
-						'default'     => '',
+		if ( 'disabled' == $this->configs['template']['call-to-action'] ) {
+			Kirki::add_field(
+				'bgtfw',
+				array(
+					'type'        => 'repeater',
+					'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
+					'section'     => 'boldgrid_footer_panel',
+					'priority'    => 10,
+					'row_label' => array(
+						'field' => 'contact_block',
+						'type' => 'field',
+						'value' => esc_attr__( 'Contact Block', 'bgtfw' ),
 					),
-				),
-			)
-		);
+					'settings'    => 'boldgrid_contact_details_setting',
+					'default'     => $configs['customizer-options']['contact-blocks']['defaults'],
+					'fields' => array(
+						'contact_block' => array(
+							'type'        => 'text',
+							'label'       => esc_attr__( 'Text', 'bgtfw' ),
+							'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
+							'default'     => '',
+						),
+					),
+				)
+			);
+		}
 	}
 
 	/**

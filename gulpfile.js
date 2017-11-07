@@ -62,8 +62,9 @@ gulp.task('fontFamilyCss', function () {
     family = webFonts.items[key].family;
     position = -5 + (key * -40);
 
-    css += '.selectize-input .item[data-value="' + family + '"] {background-position:0px ' + position + 'px;}';
-    css += '.selectize-dropdown-content [data-value="' + family + '"] {background-position:8px ' + position + 'px;}';
+    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + (position + 8) + 'px;}';
+    css += '[id^="select2-"][id$="-' + family + '"] { color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + position + 'px;}';
+    css += '[id^="select2-"][id$="-' + family + '"]:hover, [id^="select2-"][id$="-' + family + '"].select2-results__option--highlighted[aria-selected] { color: transparent; }';
   }
 
   // Write to file.

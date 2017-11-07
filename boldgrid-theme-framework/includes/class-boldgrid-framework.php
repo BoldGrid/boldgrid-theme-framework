@@ -660,7 +660,6 @@ class BoldGrid_Framework {
 		// If contact blocks is enabled and BSTW widget is disabled add contact blocks.
 		if ( 'disabled' == $this->configs['template']['call-to-action'] ) {
 			$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
-			//$this->loader->add_action( 'customize_register', $contact_blocks, 'add_contact_control' );
 		}
 	}
 

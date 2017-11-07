@@ -158,7 +158,7 @@ class BoldGrid_Framework_Customizer {
 				'settings'     => 'boldgrid_footer_widget_help',
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
-				'priority'    => 80,
+				'priority'    => 90,
 				'description' => __( 'You can add widgets to your footer from the widgets section.', 'bgtfw' ),
 			)
 		);
@@ -170,7 +170,7 @@ class BoldGrid_Framework_Customizer {
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => '<a data-focus-section="sidebar-widgets-boldgrid-widget-3" class="button button-primary" href="#">' .
 					__( 'Edit Footer Widgets', 'bgtfw' ) . '</a>',
-				'priority'    => 60,
+				'priority'    => 70,
 				'description' => __( 'You can edit your default footer widgets from the widget panel.', 'bgtfw' ),
 				'required' => array(
 					array(
@@ -188,7 +188,7 @@ class BoldGrid_Framework_Customizer {
 				'description' => __( 'Select the number of footer widget columns you wish to display.', 'bgtfw' ),
 				'type'        => 'radio',
 				'settings'    => 'boldgrid_footer_widgets',
-				'priority'    => 70,
+				'priority'    => 80,
 				'choices'     => array(
 					'0'   => '0',
 					'1'   => '1',

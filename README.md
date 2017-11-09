@@ -27,7 +27,8 @@ user guide for more information.
 ## Changelog ##
 
 ### 1.5.3 ###
-* Update: Updating components
+* Update: Updating version of kirki.
+* Update: Updating components.
 
 ### 1.5.2 ###
 * New Feature: Moving component library into it's own package.

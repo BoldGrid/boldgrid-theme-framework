@@ -172,6 +172,7 @@ HTML;
 
 		$mce_inline_styles = '';
 		$mce_inline_styles = apply_filters( 'boldgrid_mce_inline_styles', $mce_inline_styles );
+		$mce_inline_styles = apply_filters( 'kirki/global/dynamic_css', $mce_inline_styles );
 
 		wp_localize_script( 'mce-view', 'BOLDGRID_THEME_FRAMEWORK',
 			array(

@@ -87,6 +87,7 @@ class BoldGrid_Framework_Styles {
 	 * @since     1.3
 	 */
 	public function enqueue_colors( $deps = array() ) {
+		//var_dump( get_theme_mod( 'boldgrid_color_palette' ) );die;
 
 		$config_settings = $this->configs['customizer-options']['colors'];
 		if ( ! empty( $config_settings['enabled'] ) && file_exists( $config_settings['settings']['output_css_name'] ) ) {

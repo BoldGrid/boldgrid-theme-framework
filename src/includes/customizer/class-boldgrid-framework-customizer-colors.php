@@ -234,12 +234,11 @@ class Boldgrid_Framework_Customizer_Colors {
 	 * @param string $new_value New Value of theme mod.
 	 */
 	public function update_color_palette( $old_value, $new_value ) {
-
+		$boldgrid_theme_helper_scss = null;
 		$old_palette = ! empty( $old_value['boldgrid_color_palette'] ) ? $old_value['boldgrid_color_palette'] : null;
 		$new_palette = ! empty( $new_value['boldgrid_color_palette'] ) ? $new_value['boldgrid_color_palette'] : null;
 
 		if ( trim( $old_palette ) != trim( $new_palette ) ) {
-
 			// Pass in the color palette that was updated to the compiler.
 			$this->configs['forced_color_palette_decoded'] = null;
 			if ( ! empty( $new_palette ) ) {
@@ -249,6 +248,29 @@ class Boldgrid_Framework_Customizer_Colors {
 			$boldgrid_theme_helper_scss = new Boldgrid_Framework_SCSS( $this->configs );
 			$boldgrid_theme_helper_scss->update_css( true );
 		}
+
+		return $boldgrid_theme_helper_scss;
+	}
+
+	public function changeset_data( $data ) {
+		global $boldgrid_theme_framework;
+
+		$boldgrid_theme_framework->palette_changeset = $data[ 'boldgrid-hydra::boldgrid_color_palette' ]['value'];
+
+		$boldgrid_scss = $this->update_color_palette( false, array(
+			'boldgrid_color_palette' => $data[ 'boldgrid-hydra::boldgrid_color_palette' ]['value']
+		) );
+
+		if ( $boldgrid_scss ) {
+			$data[ 'boldgrid-hydra::boldgrid_compiled_css' ] = array(
+				'value' => $boldgrid_scss->compiled_content,
+				'type' => 'theme_mod',
+				'user_id' => get_current_user_id(),
+				'date_modified_gmt' => current_time( 'mysql', true ),
+			);
+		}
+
+		return $data;
 	}
 
 	/**

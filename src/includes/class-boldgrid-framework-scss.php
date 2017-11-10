@@ -31,6 +31,8 @@ class Boldgrid_Framework_SCSS {
 	 */
 	protected $configs;
 
+	public $compiled_content;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -232,6 +234,7 @@ class Boldgrid_Framework_SCSS {
 					$config_settings['output_css_name']
 				);
 			}
+
 			$this->wpfs->save( $compiled, $config_settings['output_css_name'] );
 
 			$success = true;
@@ -374,6 +377,10 @@ class Boldgrid_Framework_SCSS {
 		return $is_update_deferred;
 	}
 
+	public static function is_draft() {
+		return ! empty( $_POST['customize_changeset_status'] ) && 'draft' === $_POST['customize_changeset_status'];
+	}
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -391,12 +398,15 @@ class Boldgrid_Framework_SCSS {
 
 		$success = false;
 		if ( ( $force_update || $is_expired_file ) && ! $is_update_deferred ) {
-			$file_contents 		= $this->get_scss_file_contents( $files );
-			$compiled_content 	= $this->compile( $file_contents );
-			$success 			= $this->save_compiled_content( $compiled_content );
-			$this->buttons->build_bgtfw();
+			$file_contents = $this->get_scss_file_contents( $files );
+			$this->compiled_content = $this->compile( $file_contents );
 
-			set_theme_mod( 'boldgrid_compiled_css', $compiled_content );
+			if ( ! self::is_draft() ) {
+				$success = $this->save_compiled_content( $this->compiled_content );
+				set_theme_mod( 'boldgrid_compiled_css', $this->compiled_content );
+			}
+
+			$this->buttons->build_bgtfw();
 		}
 
 		return $success;

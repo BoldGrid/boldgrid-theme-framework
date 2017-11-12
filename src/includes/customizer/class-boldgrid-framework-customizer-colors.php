@@ -165,6 +165,24 @@ class Boldgrid_Framework_Customizer_Colors {
 	 */
 	public function add_palette_controls() {
 		$this->wp_customize->add_setting(
+			'boldgrid_compiled_css',
+			array(
+				'type' => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'transport' => 'postMessage',
+			)
+		);
+		$this->wp_customize->add_control(
+			new WP_Customize_Control(
+				$this->wp_customize,
+				'boldgrid_compiled_css',
+				array(
+					'section'        => 'colors',
+					'settings'       => 'boldgrid_compiled_css',
+				)
+			)
+		);
+		$this->wp_customize->add_setting(
 			'boldgrid_color_palette',
 			array(
 				'default' => '',
@@ -252,22 +270,28 @@ class Boldgrid_Framework_Customizer_Colors {
 		return $boldgrid_theme_helper_scss;
 	}
 
+	/**
+	 * Update css for changesets.
+	 *
+	 * @since 1.5.1
+	 *
+	 * @param array $data Changeset data.
+	 */
 	public function changeset_data( $data ) {
 		global $boldgrid_theme_framework;
+		$slug = get_template();
 
-		$boldgrid_theme_framework->palette_changeset = $data[ 'boldgrid-hydra::boldgrid_color_palette' ]['value'];
+		if ( ! empty( $data[ $slug . '::boldgrid_color_palette' ]['value'] ) ) {
+			$boldgrid_theme_framework->changset_customization = true;
+			$boldgrid_theme_framework->palette_changeset = $data[ $slug . '::boldgrid_color_palette' ]['value'];
 
-		$boldgrid_scss = $this->update_color_palette( false, array(
-			'boldgrid_color_palette' => $data[ 'boldgrid-hydra::boldgrid_color_palette' ]['value']
-		) );
+			$boldgrid_scss = $this->update_color_palette( false, array(
+				'boldgrid_color_palette' => $data[ $slug . '::boldgrid_color_palette' ]['value']
+			) );
 
-		if ( $boldgrid_scss ) {
-			$data[ 'boldgrid-hydra::boldgrid_compiled_css' ] = array(
-				'value' => $boldgrid_scss->compiled_content,
-				'type' => 'theme_mod',
-				'user_id' => get_current_user_id(),
-				'date_modified_gmt' => current_time( 'mysql', true ),
-			);
+			if ( $boldgrid_scss ) {
+				$data[ $slug . '::boldgrid_compiled_css' ]['value'] = $boldgrid_scss->compiled_content;
+			}
 		}
 
 		return $data;

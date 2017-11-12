@@ -377,8 +377,18 @@ class Boldgrid_Framework_SCSS {
 		return $is_update_deferred;
 	}
 
+	/**
+	 * Is this a draft compile?
+	 *
+	 * @since 1.5.1
+	 *
+	 * @return boolean Is this a draft compile?
+	 */
 	public static function is_draft() {
-		return ! empty( $_POST['customize_changeset_status'] ) && 'draft' === $_POST['customize_changeset_status'];
+		global $boldgrid_theme_framework;
+
+		return ! empty( $boldgrid_theme_framework->changset_customization ) ||
+			( ! empty( $_POST['customize_changeset_status'] ) && 'draft' === $_POST['customize_changeset_status'] );
 	}
 
 	/**
@@ -406,7 +416,9 @@ class Boldgrid_Framework_SCSS {
 				set_theme_mod( 'boldgrid_compiled_css', $this->compiled_content );
 			}
 
-			$this->buttons->build_bgtfw();
+			$button_css = $this->buttons->build_bgtfw();
+
+			$this->compiled_content = $button_css . $this->compiled_content;
 		}
 
 		return $success;

@@ -87,7 +87,6 @@ class BoldGrid_Framework_Styles {
 	 * @since     1.3
 	 */
 	public function enqueue_colors( $deps = array() ) {
-		//var_dump( get_theme_mod( 'boldgrid_color_palette' ) );die;
 
 		$config_settings = $this->configs['customizer-options']['colors'];
 		if ( ! empty( $config_settings['enabled'] ) && file_exists( $config_settings['settings']['output_css_name'] ) ) {
@@ -98,7 +97,7 @@ class BoldGrid_Framework_Styles {
 				$version = $last_mod;
 			}
 
-			if ( false === $this->configs['framework']['inline_styles'] ) {
+			if ( false === $this->configs['framework']['inline_styles'] && empty( $_REQUEST['customize_changeset_uuid'] ) ) {
 				// Add BoldGrid Theme Helper stylesheet.
 				wp_enqueue_style( 'boldgrid-color-palettes',
 					Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),

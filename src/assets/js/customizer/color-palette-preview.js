@@ -90,6 +90,13 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 	 */
 	wp.customize( 'boldgrid_color_palette', function( value ) {
 		value.bind( self.update_css );
+
+		// Update css field on updates.
+		value.bind( function () {
+			parent.BOLDGRID.COLOR_PALETTE.Modify.$compiled_css_control
+				.val( parent.BOLDGRID.COLOR_PALETTE.Modify.compiled_css )
+				.change();
+		} );
 	} );
 
 })( jQuery );

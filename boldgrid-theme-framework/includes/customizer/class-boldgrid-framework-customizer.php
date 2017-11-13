@@ -43,6 +43,11 @@ class BoldGrid_Framework_Customizer {
 		$this->configs = $configs;
 	}
 
+	/**
+	 * Add all kitki controls.
+	 *
+	 * @since 1.5.3
+	 */
 	public function kirki_controls() {
 
 		global $boldgrid_theme_framework;
@@ -105,7 +110,7 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-		/** Footer Section **/
+		// Footer Section.
 		Kirki::add_section(
 			'boldgrid_footer_panel',
 			array(
@@ -211,7 +216,7 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-		/* Background Controls*/
+		// Background Controls.
 		// Add Background Color Control to Pattern&Color of Background Image Section.
 		Kirki::add_field(
 			'bgtfw',
@@ -647,15 +652,12 @@ HTML;
 	 * textareas.
 	 *
 	 * @since 1.0.0
-	 */
+	*/
 	public function advanced_panel( $wp_customize ) {
 
 		$panel = $this->configs['customizer-options']['advanced_panel'];
 
 		if ( true === $panel ) {
-
-
-
 			// Which config to check?
 			$css_editor = $this->configs['customizer-options']['advanced_controls']['css_editor'];
 

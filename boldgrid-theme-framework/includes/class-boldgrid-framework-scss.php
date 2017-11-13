@@ -31,6 +31,13 @@ class Boldgrid_Framework_SCSS {
 	 */
 	protected $configs;
 
+	/**
+	 * Value of the css after it becomes compiled.
+	 *
+	 * @since 1.5.3
+	 *
+	 * @var string CSS value.
+	 */
 	public $compiled_content;
 
 	/**

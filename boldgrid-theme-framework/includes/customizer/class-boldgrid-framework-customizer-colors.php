@@ -284,7 +284,7 @@ class Boldgrid_Framework_Customizer_Colors {
 			$boldgrid_theme_framework->palette_changeset = $data[ $slug . '::boldgrid_color_palette' ]['value'];
 
 			$boldgrid_scss = $this->update_color_palette( false, array(
-				'boldgrid_color_palette' => $data[ $slug . '::boldgrid_color_palette' ]['value']
+				'boldgrid_color_palette' => $data[ $slug . '::boldgrid_color_palette' ]['value'],
 			) );
 
 			if ( $boldgrid_scss ) {

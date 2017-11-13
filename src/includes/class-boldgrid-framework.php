@@ -539,8 +539,8 @@ class BoldGrid_Framework {
 	private function customizer_background_controls() {
 		$background = new Boldgrid_Framework_Customizer_Background( $this->configs );
 		$this->loader->add_action( 'customize_register', $background, 'add_patterns' );
-//		$this->loader->add_action( 'customize_register', $background, 'add_position' );
-//		$this->loader->add_action( 'customize_register', $background, 'add_color_picker' );
+		// $this->loader->add_action( 'customize_register', $background, 'add_position' );
+		// $this->loader->add_action( 'customize_register', $background, 'add_color_picker' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_size' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_type' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_crop', 11 );
@@ -694,9 +694,9 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_register', $base, 'site_logo' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_name' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_description' );
-		//$this->loader->add_action( 'customize_register', $base, 'advanced_panel' );
+		// $this->loader->add_action( 'customize_register', $base, 'advanced_panel' );
 		$this->loader->add_action( 'customize_register', $base, 'header_panel' );
-		//$this->loader->add_action( 'customize_register', $base, 'init_help' );
+		// $this->loader->add_action( 'customize_register', $base, 'init_help' );
 		$this->loader->add_action( 'customize_register', $base, 'customizer_reorganization' );
 		$this->loader->add_action( 'customize_register', $base, 'set_text_contrast' );
 		$this->loader->add_action( 'customize_register', $base, 'add_menu_description', 20 );
@@ -733,7 +733,7 @@ class BoldGrid_Framework {
 	private function customizer_effects() {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		// Add Page Effects Controls.
-		//$this->loader->add_action( 'customize_register', $effects, 'add_controls' );
+		// $this->loader->add_action( 'customize_register', $effects, 'add_controls' );
 	}
 
 	/**

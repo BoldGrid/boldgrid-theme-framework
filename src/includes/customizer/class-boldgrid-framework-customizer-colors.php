@@ -120,9 +120,7 @@ class Boldgrid_Framework_Customizer_Colors {
 	 * @since 1.0.0
 	 */
 	public function add_color_selection() {
-		$this->get_theme_color_palletes();
-		// If there are palettes to choose from.
-		if ( ! empty( $this->color_palettes['palettes'] ) ) {
+		if ( ! empty( $this->configs['customizer-options']['colors'] ) ) {
 			// Add Palette Controls/Settings/Sections.
 			$this->add_palette_controls();
 		}
@@ -202,7 +200,7 @@ class Boldgrid_Framework_Customizer_Colors {
 					'description' => __( 'Drag a color to a new spot to change what parts of the website are that color.<a href="#" data-action="open-color-picker"><span class="dashicons dashicons-admin-customizer"></span><strong>Click a color</strong></a> to change it. Click a color to change it. Use the "Suggest Palettes" button to get new color suggestions, and press the lock icons to freeze colors in place.', 'bgtfw' ),
 					'priority' => 1,
 					'choices' => array(
-						'palettes' => $this->color_palettes,
+						'palettes' => $this,
 					),
 				)
 			)
@@ -365,7 +363,7 @@ class Boldgrid_Framework_Customizer_Colors {
 	 *
 	 * @since    1.0.0
 	 */
-	public function get_theme_color_palletes() {
+	public function get_color_palettes() {
 		// Get theme Defined Color Palattes.
 		$this->color_palettes['palettes'] = $this->configs['customizer-options']['colors']['defaults'];
 
@@ -393,6 +391,7 @@ class Boldgrid_Framework_Customizer_Colors {
 		// Update the color palettes array to add teh active attribute to the palette that the user has chosen.
 		$this->set_active_palette();
 
+		return $this->color_palettes;
 	}
 
 	/**
@@ -464,6 +463,7 @@ class Boldgrid_Framework_Customizer_Colors {
 				}
 			}
 		}
+
 		// If none of the added palettes are the active palette, then add the active palette to the list.
 		if ( ! $active_palette_found && ! empty( $this->color_palettes['saved_palettes']['active'] ) ) {
 			$this->color_palettes['palettes'][] = array(

@@ -39,6 +39,8 @@ class Boldgrid_Framework_Control_Palette extends WP_Customize_Control {
 	 * @since 1.0
 	 */
 	public function render_content() {
+		$this->choices['palettes'] = $this->choices['palettes']->get_color_palettes();
+
 		$color_palettes = ! empty( $this->choices['palettes'] ) ? $this->choices['palettes'] : array();
 		$has_neutral_color = ! empty( $color_palettes['palettes'][0]['neutral-color'] );
 		$color_palatte_columns = $color_palettes['color-palette-size'] + ( (int) $has_neutral_color );

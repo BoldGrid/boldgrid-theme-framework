@@ -37,8 +37,8 @@ env:
 # e.g. copy database configurations, environment variables, etc.
 # Failures in this section will result in build status 'errored'.
 before_script:
-    - nvm install 8.9.0
-    - nvm use 8.9.0
+    - nvm install 6.12.0
+    - nvm use 6.12.0
     - npm install --global gulp-cli
     - npm install --global yarn
     - npm install bower

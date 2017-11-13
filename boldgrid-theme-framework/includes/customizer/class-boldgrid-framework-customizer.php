@@ -652,7 +652,7 @@ HTML;
 	 * textareas.
 	 *
 	 * @since 1.0.0
-	*/
+	 */
 	public function advanced_panel( $wp_customize ) {
 
 		$panel = $this->configs['customizer-options']['advanced_panel'];

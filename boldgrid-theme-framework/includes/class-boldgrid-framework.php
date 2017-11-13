@@ -596,6 +596,8 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_head', $typography, 'title_text_shadow' );
 	}
 
+
+
 	/**
 	 * This defines the core functionality of the framework's customizer color controls.
 	 *
@@ -606,8 +608,10 @@ class BoldGrid_Framework {
 		$colors = new Boldgrid_Framework_Customizer_Colors( $this->configs );
 		$stylesheet = get_stylesheet();
 		$staging_stylesheet = get_option( 'boldgrid_staging_stylesheet', '' );
+
 		// Color Palette Controls.
 		$this->loader->add_action( 'customize_preview_init', $colors, 'enqueue_preview_color_palette' );
+		$this->loader->add_filter( 'customize_changeset_save_data', $colors, 'changeset_data' );
 		$this->loader->add_action( 'customize_save_after', $colors, 'update_theme_mods' );
 		$this->loader->add_action( 'customize_register', $colors, 'customize_register_action' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $colors, 'enqueue_styles' );

@@ -96,8 +96,7 @@ class BoldGrid_Framework_Styles {
 			if ( $last_mod ) {
 				$version = $last_mod;
 			}
-
-			if ( false === $this->configs['framework']['inline_styles'] ) {
+			if ( false === $this->configs['framework']['inline_styles'] && empty( $_REQUEST['customize_changeset_uuid'] ) ) {
 				// Add BoldGrid Theme Helper stylesheet.
 				wp_enqueue_style( 'boldgrid-color-palettes',
 					Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),

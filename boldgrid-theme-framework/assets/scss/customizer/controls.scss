@@ -35,6 +35,10 @@
 	width: 767px;
 }
 
+#customize-control-boldgrid_compiled_css {
+	display: none !important;
+}
+
 .accordion-section-content.menu .customize-section-description {
 	text-align: right;
 }
@@ -237,12 +241,6 @@
 	}
 	.wp-picker-container {
 	    margin-bottom: 5px;
-	}
-}
-
-@media (min-width: 641px) {
-	#customize-control-boldgrid-color-palette .customize-control-description {
-		width: 260px;
 	}
 }
 /*****************************************************

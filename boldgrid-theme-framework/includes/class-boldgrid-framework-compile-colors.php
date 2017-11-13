@@ -73,7 +73,12 @@ class Boldgrid_Framework_Compile_Colors {
 	 * @return array Current Active Palette.
 	 */
 	public function get_palette() {
-		$palettes = json_decode( get_theme_mod( 'boldgrid_color_palette' ), true );
+		global $boldgrid_theme_framework;
+
+		$palette = ! empty( $boldgrid_theme_framework->palette_changeset ) ?
+			$boldgrid_theme_framework->palette_changeset :
+			get_theme_mod( 'boldgrid_color_palette' );
+		$palettes = json_decode( $palette, true );
 
 		if ( empty( $palettes ) ) {
 			$defaults = $this->configs['customizer-options']['colors']['defaults'];

@@ -120,9 +120,7 @@ class Boldgrid_Framework_Customizer_Colors {
 	 * @since 1.0.0
 	 */
 	public function add_color_selection() {
-		$this->get_theme_color_palletes();
-		// If there are palettes to choose from.
-		if ( ! empty( $this->color_palettes['palettes'] ) ) {
+		if ( ! empty( $this->configs['customizer-options']['colors'] ) ) {
 			// Add Palette Controls/Settings/Sections.
 			$this->add_palette_controls();
 		}
@@ -165,6 +163,24 @@ class Boldgrid_Framework_Customizer_Colors {
 	 */
 	public function add_palette_controls() {
 		$this->wp_customize->add_setting(
+			'boldgrid_compiled_css',
+			array(
+				'type' => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'transport' => 'postMessage',
+			)
+		);
+		$this->wp_customize->add_control(
+			new WP_Customize_Control(
+				$this->wp_customize,
+				'boldgrid_compiled_css',
+				array(
+					'section'        => 'colors',
+					'settings'       => 'boldgrid_compiled_css',
+				)
+			)
+		);
+		$this->wp_customize->add_setting(
 			'boldgrid_color_palette',
 			array(
 				'default' => '',
@@ -184,7 +200,7 @@ class Boldgrid_Framework_Customizer_Colors {
 					'description' => __( 'Drag a color to a new spot to change what parts of the website are that color.<a href="#" data-action="open-color-picker"><span class="dashicons dashicons-admin-customizer"></span><strong>Click a color</strong></a> to change it. Click a color to change it. Use the "Suggest Palettes" button to get new color suggestions, and press the lock icons to freeze colors in place.', 'bgtfw' ),
 					'priority' => 1,
 					'choices' => array(
-						'palettes' => $this->color_palettes,
+						'palettes' => $this,
 					),
 				)
 			)
@@ -234,12 +250,11 @@ class Boldgrid_Framework_Customizer_Colors {
 	 * @param string $new_value New Value of theme mod.
 	 */
 	public function update_color_palette( $old_value, $new_value ) {
-
+		$boldgrid_theme_helper_scss = null;
 		$old_palette = ! empty( $old_value['boldgrid_color_palette'] ) ? $old_value['boldgrid_color_palette'] : null;
 		$new_palette = ! empty( $new_value['boldgrid_color_palette'] ) ? $new_value['boldgrid_color_palette'] : null;
 
 		if ( trim( $old_palette ) != trim( $new_palette ) ) {
-
 			// Pass in the color palette that was updated to the compiler.
 			$this->configs['forced_color_palette_decoded'] = null;
 			if ( ! empty( $new_palette ) ) {
@@ -249,6 +264,35 @@ class Boldgrid_Framework_Customizer_Colors {
 			$boldgrid_theme_helper_scss = new Boldgrid_Framework_SCSS( $this->configs );
 			$boldgrid_theme_helper_scss->update_css( true );
 		}
+
+		return $boldgrid_theme_helper_scss;
+	}
+
+	/**
+	 * Update css for changesets.
+	 *
+	 * @since 1.5.1
+	 *
+	 * @param array $data Changeset data.
+	 */
+	public function changeset_data( $data ) {
+		global $boldgrid_theme_framework;
+		$slug = get_template();
+
+		if ( ! empty( $data[ $slug . '::boldgrid_color_palette' ]['value'] ) ) {
+			$boldgrid_theme_framework->changset_customization = true;
+			$boldgrid_theme_framework->palette_changeset = $data[ $slug . '::boldgrid_color_palette' ]['value'];
+
+			$boldgrid_scss = $this->update_color_palette( false, array(
+				'boldgrid_color_palette' => $data[ $slug . '::boldgrid_color_palette' ]['value']
+			) );
+
+			if ( $boldgrid_scss ) {
+				$data[ $slug . '::boldgrid_compiled_css' ]['value'] = $boldgrid_scss->compiled_content;
+			}
+		}
+
+		return $data;
 	}
 
 	/**
@@ -319,7 +363,7 @@ class Boldgrid_Framework_Customizer_Colors {
 	 *
 	 * @since    1.0.0
 	 */
-	public function get_theme_color_palletes() {
+	public function get_color_palettes() {
 		// Get theme Defined Color Palattes.
 		$this->color_palettes['palettes'] = $this->configs['customizer-options']['colors']['defaults'];
 
@@ -347,6 +391,7 @@ class Boldgrid_Framework_Customizer_Colors {
 		// Update the color palettes array to add teh active attribute to the palette that the user has chosen.
 		$this->set_active_palette();
 
+		return $this->color_palettes;
 	}
 
 	/**
@@ -418,6 +463,7 @@ class Boldgrid_Framework_Customizer_Colors {
 				}
 			}
 		}
+
 		// If none of the added palettes are the active palette, then add the active palette to the list.
 		if ( ! $active_palette_found && ! empty( $this->color_palettes['saved_palettes']['active'] ) ) {
 			$this->color_palettes['palettes'][] = array(

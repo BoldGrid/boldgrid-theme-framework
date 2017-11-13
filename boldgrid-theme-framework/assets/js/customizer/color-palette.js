@@ -31,6 +31,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 */
 	$( function() {
 		self.$palette_control_wrapper = $( '#customize-control-boldgrid-color-palette' );
+		self.$compiled_css_control = $( '#customize-control-boldgrid_compiled_css input' );
 		self.$color_picker_input = self.$palette_control_wrapper.find( '.pluto-color-control' );
 		self.$palette_option_field = self.$palette_control_wrapper.find( '.palette-option-field' );
 		self.generated_palettes_container = self.$palette_control_wrapper.find( '.generated-palettes-container' );

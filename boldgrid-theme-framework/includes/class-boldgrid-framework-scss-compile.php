@@ -105,6 +105,7 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 			}
 		}
 
+		$css = '';
 		if ( false === $empty ) {
 			// Compile.
 			$css = $this->compile( $dir . 'scss/', '@import "buttons";', $variables );
@@ -122,8 +123,12 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 			}
 
 			// Save.
-			$this->wpfs->save( $css, $config_settings['css_file'] );
+			if ( ! Boldgrid_Framework_SCSS::is_draft() ) {
+				$this->wpfs->save( $css, $config_settings['css_file'] );
+			}
 		}
+
+		return $css;
 	}
 
 	/**

@@ -278,8 +278,10 @@ class Boldgrid_Framework_Customizer_Colors {
 	public function changeset_data( $data ) {
 		global $boldgrid_theme_framework;
 		$slug = get_template();
+		$changeset_status = ! empty( $_REQUEST[ 'customize_changeset_status'] ) ?
+			$_REQUEST[ 'customize_changeset_status'] : false;
 
-		if ( ! empty( $data[ $slug . '::boldgrid_color_palette' ]['value'] ) ) {
+		if ( 'publish' !== $changeset_status && ! empty( $data[ $slug . '::boldgrid_color_palette' ]['value'] ) ) {
 			$boldgrid_theme_framework->changset_customization = true;
 			$boldgrid_theme_framework->palette_changeset = $data[ $slug . '::boldgrid_color_palette' ]['value'];
 

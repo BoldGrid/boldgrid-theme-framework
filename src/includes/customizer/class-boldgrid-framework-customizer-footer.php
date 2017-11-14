@@ -193,7 +193,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			array(
 				'type'        => 'checkbox',
 				'settings'     => 'hide_boldgrid_attribution',
-				'transport'   => 'postMessage',
+				'transport'   => 'refresh',
 				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
@@ -205,7 +205,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			array(
 				'type'        => 'checkbox',
 				'settings'     => 'hide_wordpress_attribution',
-				'transport'   => 'postMessage',
+				'transport'   => 'refresh',
 				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
 				'section'     => 'boldgrid_footer_panel',
 				'default'     => false,
@@ -226,7 +226,7 @@ class Boldgrid_Framework_Customizer_Footer {
 		// If the user hasn't disabled the footer, add the links.
 		if ( get_theme_mod( 'boldgrid_enable_footer', true ) ) {
 			// BoldGrid.com Link.
-			if ( ! get_theme_mod( 'hide_boldgrid_attribution' ) || is_customize_preview() ) {
+			if ( ! get_theme_mod( 'hide_boldgrid_attribution' ) ) {
 				$theme_mods .= sprintf(
 					'<span class="link boldgrid-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a></span>',
 					__( 'Built with', 'bgtfw' ),
@@ -236,7 +236,7 @@ class Boldgrid_Framework_Customizer_Footer {
 			}
 
 			// WordPress.org Link.
-			if ( ! get_theme_mod( 'hide_wordpress_attribution' ) || is_customize_preview() ) {
+			if ( ! get_theme_mod( 'hide_wordpress_attribution' ) ) {
 				$theme_mods .= sprintf(
 					'<span class="link wordpress-attribution-link">%s <a href="%s" rel="nofollow" target="_blank">%s</a></span>',
 					__( 'Powered by', 'bgtfw' ),

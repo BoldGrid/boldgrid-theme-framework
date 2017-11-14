@@ -13,7 +13,6 @@
 			init_values();
 			attribution_links();
 			setup_post_edit_link();
-			setup_help();
 			$( '.site-description' ).addClass( _typographyClasses );
 		});
 
@@ -97,13 +96,6 @@
 		wp.customize( 'boldgrid_background_image_size', function( value ) {
 			value.bind( background_size_update );
 		} );
-
-		var setup_help = function() {
-			$( '#close-help-popup' ).on( 'click', function() {
-				$( this ).closest( '.overlay-help' ).fadeOut();
-				parent.jQuery( '#accordion-section-boldgrid_customizer_help' ).removeClass( 'active' );
-			});
-		};
 
 		/**
 		 * Allow the user to click the post edit link in the customizer and go to the editor

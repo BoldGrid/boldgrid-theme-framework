@@ -295,7 +295,7 @@ class BoldGrid_Framework_Customizer {
 		}
 
 		// Check that get_page_templates() method is available in the customizer.
-		if ( is_customize_preview() && ! function_exists( 'get_page_templates' ) ) {
+		if ( ! function_exists( 'get_page_templates' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/theme.php';
 		}
 

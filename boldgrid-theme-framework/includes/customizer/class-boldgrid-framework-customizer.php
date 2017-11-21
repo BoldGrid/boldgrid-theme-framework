@@ -360,6 +360,33 @@ class BoldGrid_Framework_Customizer {
 				'choices'     => $page_templates,
 			)
 		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'typography',
+				'transport'   => 'postMessage',
+				'settings'    => 'bgtfw_site_title_typography',
+				'label'       => esc_attr__( 'Typography', 'bgtfw' ),
+				'section'     => 'title_tagline',
+				'default'     => array(
+					'font-family'    => 'Roboto',
+					'variant'        => 'regular',
+					'font-size'      => '42px',
+					'line-height'    => '1.5',
+					'letter-spacing' => '0',
+					'subsets'        => array( 'latin-ext' ),
+					'color'          => '#333333',
+					'text-transform' => 'none',
+					'text-align'     => 'left'
+				),
+				'priority'    => 10,
+				'output'      => array(
+					array(
+						'element' => '.site-title a',
+					),
+				),
+			)
+		);
 	}
 
 	/**
@@ -548,15 +575,16 @@ HTML;
 				'priority'    => 120,
 			) );
 		}
-			// Add an "other" Panel.
-			$wp_customize->add_panel( 'boldgrid_other', array(
-				'title'       => __( 'Layout', 'boldgrid' ),
-				'description' => 'Site Layout Options',
-				'priority'    => 70,
-			) );
-		// Move Static Front page to the Other Section.
+		// Add an "other" Panel.
+		$wp_customize->add_panel( 'boldgrid_other', array(
+			'title'       => __( 'Layout', 'boldgrid' ),
+			'description' => 'Site Layout Options',
+			'priority'    => 70,
+		) );
+
+		// Move Homepage Settings to the Layouts Panel.
 		if ( $wp_customize->get_section( 'static_front_page' ) ) {
-			$wp_customize->get_section( 'static_front_page' )->panel    = 'boldgrid_other';
+			$wp_customize->get_section( 'static_front_page' )->panel    = 'bgtfw_layout';
 		}
 
 		// Rename Site Identity to Site Title & Logo.

@@ -405,3 +405,19 @@ function woocommerce_widget_shopping_cart_proceed_to_checkout() {
 		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="btn button-primary checkout wc-forward"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
 	<?php
 }
+
+/**
+ * Provides a template tag to check for template including a sidebar layout or not.
+ *
+ * @since 2.0.0
+ */
+function is_not_bgtfw_sidebar_layout() {
+	$layout = get_page_template_slug();
+
+	if ( empty( $layout ) ) {
+		$type = 'page' === get_post_type() ? 'page' : 'blog';
+		$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
+	}
+
+	return ( 'no-sidebar' === $layout ) || empty( $layout ) ? true : false;
+}

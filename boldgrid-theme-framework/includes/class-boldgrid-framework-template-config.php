@@ -425,4 +425,22 @@ class BoldGrid_Framework_Template_Config {
 			}
 		}
 	}
+
+	/**
+	 * Adds the sidebar templates for pages and posts to the
+	 * page/post attributes dropdowns in the WordPress editor.
+	 *
+	 * @since 2.0
+	 *
+	 * @param array $templates Array of available templates to choose from.
+	 *
+	 * @return array $templates The modified $templates array.
+	 */
+	public function templates( $templates ) {
+		$templates['no-sidebar'] = 'No Sidebar';
+		$templates['right-sidebar'] = 'Right Sidebar';
+		$templates['left-sidebar'] = 'Left Sidebar';
+
+		return $templates;
+	}
 }

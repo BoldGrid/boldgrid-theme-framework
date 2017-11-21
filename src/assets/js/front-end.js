@@ -6,12 +6,18 @@
  * Only fires on body classes that match. If a body class contains a dash,
  * replace the dash with an underscore when adding it to the object below.
  * ======================================================================== */
+
+// Setup our object.
+var BoldGrid = BoldGrid || {};
+
 ( function( $ ) {
 
 	'use strict';
 
+	var UTIL;
+
 	// Use this variable to set up the common and DOM based specific functionality.
-	var BoldGrid = {
+	BoldGrid = {
 
 		// Scripts to fire on all pages.
 		'common': {
@@ -51,85 +57,55 @@
 
 		// Default bootstrap menu handling.
 		'standard_menu_enabled': {
-			init: function() {
-				this.dropdowns();
-			},
-			dropdowns: function() {
-				var dropdown    = $( '.no-collapse li.dropdown' ),
-					breakpoint  = 768;
-				dropdown
-					.on( 'mouseover', function( e ) {
 
-						// Set ARIA expanded to true for screen readers.
-						this.firstChild.setAttribute( 'aria-expanded', 'true' );
+			// Setup main navigation.
+            init: function() {
+				var sm = $( '#main-menu' );
+				sm.smartmenus({
+					mainMenuSubOffsetX: -1,
+					mainMenuSubOffsetY: 4,
+					subMenusSubOffsetX: 6,
+					subMenusSubOffsetY: -6
+				});
 
-						// Add open class.
-						$( e.currentTarget ).addClass( 'open' );
+				// Adds event handling for CSS animated sub menus - toggle animation classes on sub menus show/hide.
+				sm.bind({
+					'show.smapi': function( e, menu ) {
+						$( menu ).removeClass( 'hide-animation' ).addClass( 'show-animation' );
+					},
+					'hide.smapi': function( e, menu ) {
+						$( menu ).removeClass( 'show-animation' ).addClass( 'hide-animation' );
+					}
+					}).on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', 'ul', function( e ) {
+						$( this ).removeClass( 'show-animation hide-animation' );
+						e.stopPropagation();
+				});
+				$( function() {
+					var $mainMenuState = $( '#main-menu-state' );
+					if ( $mainMenuState.length ) {
 
-							// Prevent clicking on the dropdown's parent link.
-							$( e.currentTarget ).on( 'click', function( e ) {
-
-								// Only do this if window is mobile size.
-								if ( window.innerWidth <= breakpoint ) {
-									if ( e.target === this || e.target.parentNode === this ) {
-										e.preventDefault(  );
-									}
-								} else {
-									return true;
-								}
-							} );
-						} )
-					.on( 'mouseleave', function( e ) {
-
-						// Set ARIA expanded to falsefor screen readers.
-						this.firstChild.setAttribute( 'aria-expanded', 'false' );
-
-						// Remove all open classes on dropdowns.
-						dropdown.removeClass( 'open' );
-
-						// If the window is smaller than the 768 bootstrap breakpoint.
-						if ( window.innerWidth <= breakpoint ) {
-							if ( e.target === this || e.target.parentNode === this ) {
-								return true;
+						// Animate mobile menu.
+						$mainMenuState.change( function() {
+							var $menu = $( '#main-menu' );
+							if ( this.checked ) {
+								$menu.hide().slideDown( 250, function() {
+									$menu.css( 'display', '' );
+								});
+							} else {
+								$menu.show().slideUp( 250, function() {
+									$menu.css( 'display', '' );
+								});
 							}
-						}
-					} );
+						});
 
-				// Check if device support touch events.
-				if ( 'ontouchstart' in document.documentElement ) {
-					dropdown.each( function(  ) {
-						var $this = $( this );
-
-						// Listen for the touch event.
-						this.addEventListener( 'touchstart', function( e ) {
-							if ( 1 === e.touches.length ) {
-
-								// Prevent touch events within dropdown bubbling tp dpcument.
-								e.stopPropagation(  );
-
-								// Toggle hover.
-								if ( ! $this.hasClass( 'open' ) ) {
-
-									// Prevent link on first touch.
-									if ( e.target === this || e.target.parentNode === this ) {
-										e.preventDefault(  );
-									}
-
-									// Hide other open dropdowns.
-									dropdown.removeClass( 'open' );
-									$this.addClass( 'open' );
-
-									// Hide dropdown on touch outside of dropdown menu.
-									document.addEventListener( 'touchstart', close_dropdown = function( e ) {
-										e.stopPropagation(  );
-										$this.removeClass( 'open' );
-										document.removeEventListener( 'touchstart', close_dropdown );
-									});
-								}
+						// Hide mobile menu beforeunload.
+						$( window ).bind( 'beforeunload unload', function() {
+							if ( $mainMenuState[0].checked ) {
+								$mainMenuState[0].click();
 							}
-						}, false );
-					});
-				}
+						});
+					}
+				});
 			}
 		},
 
@@ -287,7 +263,11 @@
 				});
 			}
 		},
+
+		// Scroll to top button is enabled.
 		'goup_enabled': {
+
+			// Initialize.
 			init: function() {
 				$.goup({
 					location: _goupOptions.location,
@@ -309,6 +289,11 @@
 					titleAsTextClass: _goupOptions.titleAsTextClass,
 					zIndex: _goupOptions.zIndex
 				});
+			},
+
+			// Destroy scroll to top buttons.
+			destroy: function() {
+				$( '.goup-container, .goup-text' ).remove();
 			}
 		}
 	};
@@ -317,7 +302,7 @@
 	 * The routing fires all common scripts, followed by the DOM specific
 	 * scripts.  Additional events can be added for more control over timing.
 	 */
-	var UTIL = {
+	UTIL = {
 		fire: function( func, funcname, args ) {
 			var fire, namespace = BoldGrid;
 			funcname = ( undefined === funcname ) ? 'init' : funcname;

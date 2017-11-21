@@ -262,9 +262,9 @@ class BoldGrid {
 	}
 
 	/**
-	 * Print the sites primary navigation.
+	 * Print the site's primary navigation using the Bootstrap navwalker.
 	 *
-	 * @since   1.0.0
+	 * @since 1.0.0
 	 */
 	public function print_primary_navigation() {
 		if ( has_nav_menu( 'primary' ) ) { ?>
@@ -284,6 +284,24 @@ class BoldGrid {
 			</nav><!-- #site-navigation -->
 			<?php
 		}
+	}
+
+	/**
+	 * Print the site's primary navigation using the native WordPress navwalker.
+	 *
+	 * @since 2.0.0
+	 */
+	public function print_menu() {
+		?>
+			<div id="navi">
+			<!-- Mobile toggle -->
+			<input id="main-menu-state" type="checkbox" />
+			<label class="main-menu-btn" for="main-menu-state">
+				<span class="main-menu-btn-icon"></span><span class="sr-only">Toggle main menu visibility</span>
+			</label>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'false', 'menu_id' => 'main-menu', 'menu_class' => 'sm bgtfw-menu logo logo-left' ) ); ?>
+			</div>
+		<?php
 	}
 
 	/**
@@ -316,7 +334,7 @@ class BoldGrid {
 		}
 		// Add class if sidebar is active.
 		if ( $this->display_sidebar() ) {
-			$classes[] = 'sidebar-1';
+			$classes[] = 'has-sidebar sidebar-1';
 		}
 
 		// Add class if post title is hidden.
@@ -368,7 +386,16 @@ class BoldGrid {
 			$classes[] = 'bgtfw-edit-links-hidden';
 		}
 
-		return $classes;
+		$layout = get_page_template_slug();
+
+		if ( empty( $layout ) ) {
+			$type = 'page' === get_post_type() ? 'page' : 'blog';
+			$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
+		}
+
+		$classes[] = sanitize_html_class( $layout );
+
+		return array_unique( $classes );
 	}
 
 	/**

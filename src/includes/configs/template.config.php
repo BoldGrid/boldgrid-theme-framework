@@ -77,8 +77,7 @@ return array(
 		'is_404',
 		'is_search',
 		'is_front_page',
-		'[default]is_page_template',
-		'[page_home.php]is_page_template',
+		'is_not_bgtfw_sidebar_layout',
 	),
 	'archives' => array(
 		'posted-on' => array(

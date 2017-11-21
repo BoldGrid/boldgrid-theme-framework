@@ -293,6 +293,73 @@ class BoldGrid_Framework_Customizer {
 				)
 			);
 		}
+
+		// Check that get_page_templates() method is available in the customizer.
+		if ( is_customize_preview() && ! function_exists( 'get_page_templates' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/theme.php';
+		}
+
+		// Adds the "Page Layout" control the "Layout" section.
+		// Adds the "Layout" section to the WordPress customizer.
+		Kirki::add_panel(
+			'bgtfw_layout', array(
+				'title'          => __( 'Layout' ),
+				'description'    => __( 'This section controls the layout of pages and posts on your website.' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Adds the "Blog" section to the WordPress customizer "Layout" panel.
+		Kirki::add_section(
+			'bgtfw_layout_blog', array(
+				'title'          => __( 'Blog' ),
+				'panel'        => 'bgtfw_layout',
+				'description'    => __( 'This section controls the layout of pages and posts on your website.' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Adds the "Blog" section to the WordPress customizer "Layout" panel.
+		Kirki::add_section(
+			'bgtfw_layout_page', array(
+				'title'          => __( 'Page' ),
+				'panel'        => 'bgtfw_layout',
+				'description'    => __( 'This section controls the global layout of pages on your website.' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		$post_templates = array_flip( get_page_templates( null, 'post' ) );
+		Kirki::add_field(
+			'bgtfw_layout_page', array(
+				'type'        => 'radio',
+				'settings'    => 'bgtfw_layout_blog',
+				'label'       => __( 'Default Global Layout', 'bgtfw' ),
+				'section'     => 'bgtfw_layout_blog',
+				'default'     => 'none',
+				'priority'    => 10,
+				'choices'     => $post_templates,
+			)
+		);
+
+		$page_templates = array_flip( get_page_templates( null, 'page' ) );
+		Kirki::add_field(
+			'bgtfw_layout_page', array(
+				'type'        => 'radio',
+				'settings'    => 'bgtfw_layout_page',
+				'label'       => __( 'Default Page Layout', 'bgtfw' ),
+				'section'     => 'bgtfw_layout_page',
+				'default'     => 'none',
+				'priority'    => 10,
+				'choices'     => $page_templates,
+			)
+		);
 	}
 
 	/**

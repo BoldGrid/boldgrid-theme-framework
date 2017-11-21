@@ -31,3 +31,17 @@
 @mixin clearfix-after() {
 	clear: both;
 }
+
+// Helper method to strip unit suffixes from numbers for calculations.
+@function strip-unit( $number ) {
+	@if type-of( $number ) == 'number' and not unitless( $number ) {
+		@return $number / ( $number * 0 + 1 );
+	}
+
+	@return $number;
+}
+
+// Helper method to use first unit suffix of $value1 for multiplication calculations.
+@function multiply-use-first-unit( $value1, $value2 ) {
+	@return $value1 * strip-unit( $value2 );
+}

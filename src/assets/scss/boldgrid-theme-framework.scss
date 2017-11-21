@@ -2,6 +2,7 @@
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # Base Elements
+# Blog Layouts
 # BoldGrid Bootstrap Additions
 # Customizer Styles
 	## Widget Overlays
@@ -35,6 +36,11 @@
 # Base Elements
 --------------------------------------------------------------*/
 @import "boldgrid/elements";
+
+/*--------------------------------------------------------------
+# Blog Styles
+--------------------------------------------------------------*/
+@import "boldgrid/blog";
 
 /*--------------------------------------------------------------
 # BoldGrid Bootstrap Additions

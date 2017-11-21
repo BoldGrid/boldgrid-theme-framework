@@ -83,4 +83,12 @@ return array(
 		'settings' => 'background_image',
 		'help' => __( 'To use a full size background image, we recommend a size of at least 1920 x 1080. The BoldGrid Connect Search, available when you select change image, will help you find large images that are suitable.', 'bgtfw' ),
 	),
+	array(
+		'settings' => 'bgtfw_layout_page',
+		'help' => __( 'This layout will be used as the default page template layout for your website\'s pages.  Individual pages can override this setting by choosing a different template in the page editor.', 'bgtfw' ),
+	),
+	array(
+		'settings' => 'bgtfw_layout_blog',
+		'help' => __( 'This layout will be used as the default blog template layout for your website\'s pages.  Individual posts can override this setting by choosing a different template in the post editor.', 'bgtfw' ),
+	),
 );

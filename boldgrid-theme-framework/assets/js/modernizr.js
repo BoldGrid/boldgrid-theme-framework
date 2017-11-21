@@ -1,6 +1,6 @@
 /*!
  * modernizr v3.5.0
- * Build https://modernizr.com/download?-flexbox-flexwrap-inlinesvg-svg-target-touchevents-setclasses-dontmin
+ * Build https://modernizr.com/download?-checked-flexbox-flexwrap-inlinesvg-svg-touchevents-setclasses-dontmin
  *
  * Copyright (c)
  *  Faruk Ates
@@ -1053,35 +1053,25 @@ Detects support for inline SVG in HTML (not within XHTML).
 
 /*!
 {
-  "name": "CSS :target pseudo-class",
+  "name": "CSS :checked pseudo-selector",
   "caniuse": "css-sel3",
-  "property": "target",
+  "property": "checked",
   "tags": ["css"],
   "notes": [{
-    "name": "MDN documentation",
-    "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/:target"
-  }],
-  "authors": ["@zachleat"],
-  "warnings": ["Opera Mini supports :target but doesn't update the hash for anchor links."]
+    "name": "Related Github Issue",
+    "href": "https://github.com/Modernizr/Modernizr/pull/879"
+  }]
 }
 !*/
-/* DOC
-Detects support for the ':target' CSS pseudo-class.
-*/
 
-  // querySelector
-  Modernizr.addTest('target', function() {
-    var doc = window.document;
-    if (!('querySelectorAll' in doc)) {
-      return false;
-    }
-
-    try {
-      doc.querySelectorAll(':target');
-      return true;
-    } catch (e) {
-      return false;
-    }
+  Modernizr.addTest('checked', function() {
+    return testStyles('#modernizr {position:absolute} #modernizr input {margin-left:10px} #modernizr :checked {margin-left:20px;display:block}', function(elem) {
+      var cb = createElement('input');
+      cb.setAttribute('type', 'checkbox');
+      cb.setAttribute('checked', 'checked');
+      elem.appendChild(cb);
+      return cb.offsetLeft === 20;
+    });
   });
 
 

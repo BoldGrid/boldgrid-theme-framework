@@ -769,14 +769,6 @@ msgstr ""
 msgid "Invalid Value"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-layout-page.php:91, src/includes/customizer/class-boldgrid-framework-customizer.php:343
-msgid "Default Global Layout"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer-layout-page.php:104, src/includes/customizer/class-boldgrid-framework-customizer.php:356
-msgid "Default Page Layout"
-msgstr ""
-
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:108
 msgid "Fonts"
 msgstr ""
@@ -919,6 +911,14 @@ msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:101
 msgid "Add custom javascript for this theme."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:343
+msgid "Default Global Layout"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:356
+msgid "Default Page Layout"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:563

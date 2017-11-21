@@ -554,18 +554,6 @@ class BoldGrid_Framework {
 		self::contact_blocks();
 		self::customizer_kirki();
 		self::customizer_effects();
-		//self::layout();
-	}
-
-	/**
-	 * This defines the core functionality of the framework's Layout section in the customizer.
-	 *
-	 * @since    3.0.0
-	 * @access   private
-	 */
-	private function layout() {
-		$layouts = new Boldgrid_Framework_Customizer_Layout_Page( $this->configs );
-		$this->loader->add_action( 'customize_register', $layouts, 'add_controls' );
 	}
 
 	/**

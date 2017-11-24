@@ -26,9 +26,9 @@ return array(
 			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
 		),
 		array(
-			'name'      => 'BoldGrid Editor',
-			'slug'      => 'boldgrid-editor',
-			'source'    => 'https://repo.boldgrid.com/boldgrid-editor.zip',
+			'name'      => 'Post and Page Builder',
+			'slug'      => 'post-and-page-builder',
+			'source'    => 'https://downloads.wordpress.org/plugin/post-and-page-builder.zip',
 			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
 		),
 	),

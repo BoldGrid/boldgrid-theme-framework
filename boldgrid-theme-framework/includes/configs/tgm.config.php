@@ -34,6 +34,16 @@ return array(
 	),
 
 	/*
+	 * These plugins have been renamed, remove the config above if the old name is active.
+	 */
+	'renamed_plugins' => array(
+		array(
+			'old_name' => 'boldgrid-editor',
+			'new_name' => 'post-and-page-builder',
+		),
+	),
+
+	/*
 	 * Array of configuration settings. Amend each line as needed.
 	 *
 	 * TGMPA will start providing localized text strings soon. If you already have translations of our standard

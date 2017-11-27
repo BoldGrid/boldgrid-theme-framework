@@ -154,11 +154,11 @@ msgstr ""
 msgid "Arbitrary text or HTML with visual editor"
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:57
+#: src/includes/configs/tgm.config.php:67
 msgid "Recommended Plugins"
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:58
+#: src/includes/configs/tgm.config.php:68
 msgid "Install Recommended Plugins"
 msgstr ""
 

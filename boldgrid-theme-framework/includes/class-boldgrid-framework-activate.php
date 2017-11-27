@@ -172,6 +172,49 @@ class Boldgrid_Framework_Activate {
 			update_option( $option, $options );
 		}
 	}
+
+	/**
+	 * Override the tgm configurations based on active plugins.
+	 *
+	 * @since 1.5.4
+	 *
+	 * @param  array $configs  BGTFW Configs.
+	 * @return array           BGTFW Configs.
+	 */
+	public function tgm_override( $configs ) {
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+		foreach ( $configs['tgm']['renamed_plugins'] as $renamed ) {
+			if ( is_plugin_active( $renamed['old_name'] . '/' . $renamed['old_name'] . '.php' ) ) {
+				$configs['tgm']['plugins'] = $this->remove_recommended_plugin( $configs, $renamed['new_name'] );
+			}
+		}
+
+		return $configs;
+	}
+
+	/**
+	 * Remove a reccomended plugin from the configs.
+	 *
+	 * @since 1.5.4
+	 *
+	 * @param  array $configs                BGTFW Configs.
+	 * @param  array $disabled_plugin_names  List of disabled names.
+	 * @return array                         BGTFW Configs.
+	 */
+	public function remove_recommended_plugin( $configs, $disabled_plugin_names ) {
+		$plugins = array();
+		foreach ( $configs['tgm']['plugins'] as $plugin ) {
+			if ( $disabled_plugin_name !== $plugin['slug'] ) {
+				$plugins[] = $plugin;
+			}
+		}
+
+		$configs['tgm']['plugins'] = $plugins;
+
+		return $configs;
+	}
+
 	/**
 	 * Register the required plugins for this theme.
 	 *

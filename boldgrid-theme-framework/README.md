@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.5.5 ###
+* Update: Change Post and Page Builder url.
+
 ### 1.5.4 ###
 * Update: Updating version of kirki.
 

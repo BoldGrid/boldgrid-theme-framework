@@ -26,10 +26,20 @@ return array(
 			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
 		),
 		array(
-			'name'      => 'BoldGrid Editor',
-			'slug'      => 'boldgrid-editor',
-			'source'    => 'https://repo.boldgrid.com/boldgrid-editor.zip',
+			'name'      => 'Post and Page Builder',
+			'slug'      => 'post-and-page-builder',
+			'source'    => 'https://downloads.wordpress.org/plugin/post-and-page-builder.zip',
 			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
+		),
+	),
+
+	/*
+	 * These plugins have been renamed, remove the config above if the old name is active.
+	 */
+	'renamed_plugins' => array(
+		array(
+			'old_name' => 'boldgrid-editor',
+			'new_name' => 'post-and-page-builder',
 		),
 	),
 

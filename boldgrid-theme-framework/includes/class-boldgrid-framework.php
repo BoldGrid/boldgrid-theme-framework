@@ -254,9 +254,11 @@ class BoldGrid_Framework {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
 		$template_config = new Boldgrid_Framework_Template_Config( $this->configs );
+		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $template_config, 'pagination_style' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs' ), 20 );
+		add_filter( 'boldgrid_theme_framework_config', array( $activate, 'tgm_override' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', 'BoldGrid::get_inspiration_configs', 5 );
 
 		// Adds the sidebar options to the page template selections.

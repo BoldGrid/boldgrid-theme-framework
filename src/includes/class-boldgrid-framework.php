@@ -255,6 +255,10 @@ class BoldGrid_Framework {
 		$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
 		$template_config = new Boldgrid_Framework_Template_Config( $this->configs );
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
+
+		// Set the is_editing_boldgrid_theme filter to true for any theme using BGTFW.
+		add_filter( 'is_editing_boldgrid_theme', '__return_true' );
+
 		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $template_config, 'pagination_style' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs' ), 20 );

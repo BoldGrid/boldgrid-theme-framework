@@ -575,20 +575,16 @@ HTML;
 				'priority'    => 120,
 			) );
 		}
-		// Add an "other" Panel.
-		$wp_customize->add_panel( 'boldgrid_other', array(
-			'title'       => __( 'Layout', 'boldgrid' ),
-			'description' => 'Site Layout Options',
-			'priority'    => 70,
-		) );
 
 		// Move Homepage Settings to the Layouts Panel.
 		if ( $wp_customize->get_section( 'static_front_page' ) ) {
-			$wp_customize->get_section( 'static_front_page' )->panel    = 'bgtfw_layout';
+			$wp_customize->get_section( 'static_front_page' )->title = 'Homepage';
+			$wp_customize->get_section( 'static_front_page' )->priority = 5;
+			$wp_customize->get_section( 'static_front_page' )->panel = 'bgtfw_layout';
 		}
 
 		// Rename Site Identity to Site Title & Logo.
-		$wp_customize->get_section( 'title_tagline' )->title    = __( 'Site Title & Logo', 'bgtfw' );
+		$wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title & Logo', 'bgtfw' );
 
 		// Remove Addition Control that conflict with site title.
 		$wp_customize->remove_control( 'header_textcolor' );

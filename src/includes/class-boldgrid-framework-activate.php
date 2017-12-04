@@ -202,7 +202,7 @@ class Boldgrid_Framework_Activate {
 	 * @param  array $disabled_plugin_names  List of disabled names.
 	 * @return array                         BGTFW Configs.
 	 */
-	public function remove_recommended_plugin( $configs, $disabled_plugin_names ) {
+	public function remove_recommended_plugin( $configs, $disabled_plugin_name ) {
 		$plugins = array();
 		foreach ( $configs['tgm']['plugins'] as $plugin ) {
 			if ( $disabled_plugin_name !== $plugin['slug'] ) {

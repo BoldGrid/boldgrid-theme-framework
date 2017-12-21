@@ -110,112 +110,6 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-		// Footer Section.
-		Kirki::add_section(
-			'boldgrid_footer_panel',
-			array(
-				'title' => __( 'Footer Settings', 'bgtfw' ),
-				'priority' => 130, // After all core sections.
-				'panel' => 'boldgrid_other',
-				'capability' => 'edit_theme_options',
-				'description' => __( 'This section allows you to modify features that are not menus or widgets.', 'bgtfw' ),
-			)
-		);
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type'        => 'custom',
-				'settings'     => 'boldgrid_attribution_heading',
-				'label'       => __( 'Attribution Control', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => '',
-				'priority'    => 20,
-			)
-		);
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type'        => 'checkbox',
-				'settings'     => 'hide_boldgrid_attribution',
-				'transport'   => 'refresh',
-				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => false,
-				'priority'    => 30,
-			)
-		);
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type'        => 'checkbox',
-				'settings'     => 'hide_wordpress_attribution',
-				'transport'   => 'refresh',
-				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => false,
-				'priority'    => 40,
-			)
-		);
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type'        => 'custom',
-				'settings'     => 'boldgrid_footer_widget_help',
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
-				'priority'    => 90,
-				'description' => __( 'You can add widgets to your footer from the widgets section.', 'bgtfw' ),
-			)
-		);
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type'        => 'custom',
-				'settings'     => 'boldgrid_edit_footer_widget_help',
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => '<a data-focus-section="sidebar-widgets-boldgrid-widget-3" class="button button-primary" href="#">' .
-					__( 'Edit Footer Widgets', 'bgtfw' ) . '</a>',
-				'priority'    => 70,
-				'description' => __( 'You can edit your default footer widgets from the widget panel.', 'bgtfw' ),
-				'required' => array(
-					array(
-						'settings' => 'boldgrid_enable_footer',
-						'operator' => '==',
-						'value' => true,
-					),
-				),
-			)
-		);
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'label'       => __( 'Footer Widget Columns', 'bgtfw' ),
-				'description' => __( 'Select the number of footer widget columns you wish to display.', 'bgtfw' ),
-				'type'        => 'radio',
-				'settings'    => 'boldgrid_footer_widgets',
-				'priority'    => 80,
-				'choices'     => array(
-					'0'   => '0',
-					'1'   => '1',
-					'2'   => '2',
-					'3'   => '3',
-					'4'   => '4',
-				),
-				'section'     => 'boldgrid_footer_panel',
-			)
-		);
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type' => 'switch',
-				'settings' => 'boldgrid_enable_footer',
-				'label' => __( 'Enable Footer', 'bgtfw' ),
-				'section' => 'boldgrid_footer_panel',
-				'default' => true,
-				'priority' => 5,
-			)
-		);
-
 		// Background Controls.
 		// Add Background Color Control to Pattern&Color of Background Image Section.
 		Kirki::add_field(
@@ -265,34 +159,6 @@ class BoldGrid_Framework_Customizer {
 				),
 			)
 		);
-
-		/* Contact Blocks */
-		if ( 'disabled' == $this->configs['template']['call-to-action'] ) {
-			Kirki::add_field(
-				'bgtfw',
-				array(
-					'type'        => 'repeater',
-					'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
-					'section'     => 'boldgrid_footer_panel',
-					'priority'    => 10,
-					'row_label' => array(
-						'field' => 'contact_block',
-						'type' => 'field',
-						'value' => esc_attr__( 'Contact Block', 'bgtfw' ),
-					),
-					'settings'    => 'boldgrid_contact_details_setting',
-					'default'     => $configs['customizer-options']['contact-blocks']['defaults'],
-					'fields' => array(
-						'contact_block' => array(
-							'type'        => 'text',
-							'label'       => esc_attr__( 'Text', 'bgtfw' ),
-							'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
-							'default'     => '',
-						),
-					),
-				)
-			);
-		}
 
 		// Check that get_page_templates() method is available in the customizer.
 		if ( ! function_exists( 'get_page_templates' ) ) {
@@ -360,14 +226,16 @@ class BoldGrid_Framework_Customizer {
 				'choices'     => $page_templates,
 			)
 		);
+
+		// Tagline Typography Settings.
 		Kirki::add_field(
 			'bgtfw',
 			array(
 				'type'        => 'typography',
-				'transport'   => 'postMessage',
-				'settings'    => 'bgtfw_site_title_typography',
+				'transport'   => 'auto',
+				'settings'    => 'bgtfw_tagline_typography',
 				'label'       => esc_attr__( 'Typography', 'bgtfw' ),
-				'section'     => 'title_tagline',
+				'section'     => 'bgtfw_tagline',
 				'default'     => array(
 					'font-family'    => 'Roboto',
 					'variant'        => 'regular',
@@ -382,7 +250,505 @@ class BoldGrid_Framework_Customizer {
 				'priority'    => 10,
 				'output'      => array(
 					array(
-						'element' => '.site-title a',
+						'element' => '.site-branding .site-description',
+					),
+				),
+			)
+		);
+
+		// Adds the "Header" section to the WordPress customizer.
+		Kirki::add_panel(
+			'bgtfw_header', array(
+				'title'          => __( 'Header', 'bgtfw' ),
+				'description'    => __( 'This section controls the appearance of your website\'s Header.', 'bgtfw' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Adds the "Layout" section to the WordPress customizer "Header" panel.
+		Kirki::add_section(
+			'bgtfw_header_layout', array(
+				'title'          => __( 'Layout' ),
+				'panel'        => 'bgtfw_header',
+				'description'    => __( 'Choose from different layouts for your website\'s Header' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Add Header Position Control to the "Header > Layout" section.
+		Kirki::add_field(
+			'bgtfw', array(
+				'type'        => 'radio',
+				'transport'   => 'postMessage',
+				'settings'    => 'bgtfw_header_layout_position',
+				'label'       => __( 'Header Position', 'bgtfw' ),
+				'section'     => 'bgtfw_header_layout',
+				'default'     => 'header-top',
+				'priority'    => 10,
+				'choices'     => array(
+					'header-top'   => array(
+						esc_attr__( 'Header on Top', 'bgtfw' ),
+					),
+					'header-left' => array(
+						esc_attr__( 'Header on Left', 'bgtfw' ),
+					),
+					'header-right'  => array(
+						esc_attr__( 'Header on Right', 'bgtfw' ),
+					),
+				),
+			)
+		);
+
+		// Fixed header toggle - Allows header to switch between fixed/static.
+		Kirki::add_field(
+			'bgtfw', array(
+				'type'        => 'switch',
+				'transport'   => 'postMessage',
+				'settings'    => 'bgtfw_fixed_header',
+				'label'       => esc_attr__( 'Sticky Header', 'bgtfw' ),
+				'section'     => 'bgtfw_header_layout',
+				'default'     => false,
+				'priority'    => 10,
+			)
+		);
+
+		// Header width control - used with header positioned on left or right.
+		Kirki::add_field(
+			'bgtfw', array(
+				'type'        => 'slider',
+				'settings'    => 'bgtfw_header_width',
+				'transport'   => 'auto',
+				'label'       => esc_attr__( 'Header Width', 'bgtfw' ),
+				'section'     => 'bgtfw_header_layout',
+				'default'     => 400,
+				'choices'     => array(
+					'min'  => '0',
+					'max'  => '600',
+					'step' => '1',
+				),
+				'active_callback' => array(
+					array(
+						'setting'  => 'bgtfw_header_layout_position',
+						'operator' => '!=',
+						'value'    => 'header-top',
+					),
+				),
+				'output' => array(
+					array(
+						'media_query' => '@media only screen and (min-width : 768px)',
+						'element'  => '.flexbox .header-left .site-header, .flexbox .header-right .site-header',
+						'property' => 'flex',
+						'value_pattern' => '0 0 $px',
+					),
+					array(
+						'media_query' => '@media only screen and (min-width : 768px)',
+						'element'  => '.flexbox .header-left .site-content, .flexbox .header-left.header-fixed .site-footer, .flexbox .header-right .site-content, .flexbox .header-right.header-fixed .site-footer',
+						'property' => 'width',
+						'value_pattern' => 'calc(100% - $px)',
+					),
+					array(
+						'media_query' => '@media only screen and (min-width : 768px)',
+						'element'  => '.flexbox .header-right.header-fixed .site-header, .flexbox .header-left.header-fixed .site-header',
+						'property' => 'width',
+						'value_pattern' => '$px',
+					),
+					array(
+						'media_query' => '@media only screen and (min-width : 768px)',
+						'element'  => '.flexbox .header-right.header-fixed .site-footer, .flexbox .header-right.header-fixed .site-content',
+						'property' => 'margin-right',
+						'value_pattern' => '$px',
+					),
+					array(
+						'media_query' => '@media only screen and (min-width : 768px)',
+						'element'  => '.flexbox .header-left.header-fixed .site-footer, .flexbox .header-left.header-fixed .site-content',
+						'property' => 'margin-left',
+						'value_pattern' => '$px',
+					),
+				),
+			)
+		);
+/**
+		// Header height control - used with header positioned on top.
+		Kirki::add_field(
+			'bgtfw', array(
+				'type'        => 'slider',
+				'settings'    => 'bgtfw_header_height',
+				'transport'   => 'auto',
+				'label'       => esc_attr__( 'Header Height', 'bgtfw' ),
+				'section'     => 'bgtfw_header_layout',
+				'default'     => 200,
+				'choices'     => array(
+					'min'  => '0',
+					'max'  => '600',
+					'step' => '1',
+				),
+				'output' => array(
+					array(
+						'media_query' => '@media only screen and (min-width : 768px)',
+						'element'  => '.header-top #masthead',
+						'property' => 'height',
+						'value_pattern' => '$px',
+					),
+				),
+				'active_callback' => array(
+					array(
+						'setting'  => 'bgtfw_header_layout_position',
+						'operator' => '==',
+						'value'    => 'header-top',
+					),
+				),
+			)
+		);
+*/
+		// Adds the "Colors" section to the WordPress customizer "Header" panel.
+		Kirki::add_section(
+			'bgtfw_header_colors', array(
+				'title'          => __( 'Colors' ),
+				'panel'        => 'bgtfw_header',
+				'description'    => esc_attr__( 'Change the colors used in your custom header.', 'bgtfw' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Header Background Color
+		Kirki::add_field(
+			'bgtfw', array(
+				'type'        => 'color',
+				'transport'   => 'auto',
+				'settings'    => 'bgtfw_header_bg_color',
+				'label'       => __( 'Background Color', 'bgtfw' ),
+				'description' => esc_attr__( 'This controls the background color of your header.', 'bgtfw' ),
+				'section'     => 'bgtfw_header_colors',
+				'default'     => '#0088CC',
+				'choices'     => array(
+					'alpha' => true,
+				),
+				'output' => array(
+					array(
+						'element'  => '#masthead',
+						'property' => 'background-color',
+					),
+				),
+			)
+		);
+
+		// Header Text Color
+		Kirki::add_field(
+			'bgtfw', array(
+				'type'        => 'color',
+				'transport'   => 'auto',
+				'settings'    => 'bgtfw_header_text_color',
+				'label'       => __( 'Text Color', 'bgtfw' ),
+				'description' => esc_attr__( 'This controls the primary color of text used inside of the header.  This will not impact things like your menu, site title, or tagline if you have selected different colors.', 'bgtfw' ),
+				'section'     => 'bgtfw_header_colors',
+				'default'     => '#0088CC',
+				'choices'     => array(
+					'alpha' => true,
+				),
+				'output' => array(
+					array(
+						'element'  => '#masthead',
+						'property' => 'color',
+					),
+				),
+			)
+		);
+
+		// Adds the "Colors" section to the WordPress customizer "Header" panel.
+		Kirki::add_section(
+			'bgtfw_site_title', array(
+				'title'          => __( 'Site Title' ),
+				'panel'        => 'bgtfw_header',
+				'description'    => esc_attr__( "Change your site title and it's appearance.", 'bgtfw' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Tagline Typography Settings.
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'typography',
+				'transport'   => 'auto',
+				'settings'    => 'bgtfw_site_title_typography',
+				'label'       => esc_attr__( 'Typography', 'bgtfw' ),
+				'section'     => 'bgtfw_site_title',
+				'default'     => array(
+					'font-family'    => 'Roboto',
+					'variant'        => 'regular',
+					'font-size'      => '42px',
+					'line-height'    => '1.5',
+					'letter-spacing' => '0',
+					'subsets'        => array( 'latin-ext' ),
+					'color'          => '#333333',
+					'text-transform' => 'none',
+					'text-align'     => 'left'
+				),
+				'priority'    => 10,
+				'output'      => array(
+					array(
+						'element' => '.site-title > a',
+					),
+				),
+			)
+		);
+
+		// Adds the "Colors" section to the WordPress customizer "Header" panel.
+		Kirki::add_section(
+			'bgtfw_tagline', array(
+				'title'          => __( 'Tagline' ),
+				'panel'        => 'bgtfw_header',
+				'description'    => esc_attr__( "Change your site's tagline, and it's appearance.", 'bgtfw' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Header Top Layouts
+		Kirki::add_field(
+			'bgtfw', array(
+				'type'        => 'radio',
+				'transport'   => 'postMessage',
+				'settings'    => 'bgtfw_header_top_layouts',
+				'label'       => esc_html__( 'Layout', 'bgtfw' ),
+				'section'     => 'bgtfw_header_layout',
+				'default'     => 'layout-1',
+				'priority'    => 10,
+				'choices'     => array(
+					'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
+					'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
+					'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
+					'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
+					'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
+					'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
+				),
+				'active_callback' => array(
+					array(
+						'setting'  => 'bgtfw_header_layout_position',
+						'operator' => '==',
+						'value'    => 'header-top',
+					),
+				),
+			)
+		);
+
+		// Adds the "Footer" panel to the WordPress customizer.
+		Kirki::add_panel(
+			'bgtfw_footer', array(
+				'title'          => __( 'Footer', 'bgtfw' ),
+				'description'    => __( 'This section controls the appearance of your website\'s Footer.', 'bgtfw' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+		// Footer Section.
+		Kirki::add_section(
+			'boldgrid_footer_panel',
+			array(
+				'title' => __( 'Footer Settings', 'bgtfw' ),
+				'priority' => 130, // After all core sections.
+				'panel' => 'boldgrid_other',
+				'capability' => 'edit_theme_options',
+				'description' => __( 'This section allows you to modify features that are not menus or widgets.', 'bgtfw' ),
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'custom',
+				'settings'     => 'boldgrid_attribution_heading',
+				'label'       => __( 'Attribution Control', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => '',
+				'priority'    => 20,
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'checkbox',
+				'settings'     => 'hide_boldgrid_attribution',
+				'transport'   => 'refresh',
+				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => false,
+				'priority'    => 30,
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'checkbox',
+				'settings'     => 'hide_wordpress_attribution',
+				'transport'   => 'refresh',
+				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
+				'section'     => 'boldgrid_footer_panel',
+				'default'     => false,
+				'priority'    => 40,
+			)
+		);
+
+		/* Contact Blocks */
+		if ( 'disabled' == $this->configs['template']['call-to-action'] ) {
+			Kirki::add_field(
+				'bgtfw',
+				array(
+					'type'        => 'repeater',
+					'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
+					'section'     => 'boldgrid_footer_panel',
+					'priority'    => 10,
+					'row_label' => array(
+						'field' => 'contact_block',
+						'type' => 'field',
+						'value' => esc_attr__( 'Contact Block', 'bgtfw' ),
+					),
+					'settings'    => 'boldgrid_contact_details_setting',
+					'default'     => $configs['customizer-options']['contact-blocks']['defaults'],
+					'fields' => array(
+						'contact_block' => array(
+							'type'        => 'text',
+							'label'       => esc_attr__( 'Text', 'bgtfw' ),
+							'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
+							'default'     => '',
+						),
+					),
+				)
+			);
+		}
+
+		// Adds the "Layout" section to the WordPress customizer "Footer" panel.
+		Kirki::add_section(
+			'bgtfw_footer_layout', array(
+				'title'          => __( 'Layout', 'bgtfw' ),
+				'panel'        => 'bgtfw_footer',
+				'description'    => esc_attr__( 'Change the layout of your site\'s footer.', 'bgtfw' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Adds the enable/diable toggle for footer the "Layout" section of the "Footer" panel.
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type' => 'switch',
+				'settings' => 'boldgrid_enable_footer',
+				'label' => __( 'Enable Footer', 'bgtfw' ),
+				'section' => 'bgtfw_footer_layout',
+				'default' => true,
+				'priority' => 5,
+			)
+		);
+
+		// Adds the "Widgets" section to the WordPress customizer "Footer" panel.
+		Kirki::add_section(
+			'bgtfw_footer_widgets', array(
+				'title'          => __( 'Widgets', 'bgtfw' ),
+				'panel'        => 'bgtfw_footer',
+				'description'    => esc_attr__( 'Adjust your footer\'s widget sections.', 'bgtfw' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'custom',
+				'settings'     => 'boldgrid_footer_widget_help',
+				'section'     => 'bgtfw_footer_widgets',
+				'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
+				'priority'    => 90,
+				'description' => __( 'You can add widgets to your footer from the widgets section.', 'bgtfw' ),
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'custom',
+				'settings'     => 'boldgrid_edit_footer_widget_help',
+				'section'     => 'bgtfw_footer_widgets',
+				'default'     => '<a data-focus-section="sidebar-widgets-boldgrid-widget-3" class="button button-primary" href="#">' .
+					__( 'Edit Footer Widgets', 'bgtfw' ) . '</a>',
+				'priority'    => 70,
+				'description' => __( 'You can edit your default footer widgets from the widget panel.', 'bgtfw' ),
+				'required' => array(
+					array(
+						'settings' => 'boldgrid_enable_footer',
+						'operator' => '==',
+						'value' => true,
+					),
+				),
+			)
+		);
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'label'       => __( 'Footer Widget Areas', 'bgtfw' ),
+				'description' => __( 'Select the number of footer widget columns you wish to display.', 'bgtfw' ),
+				'type'        => 'number',
+				'settings'    => 'boldgrid_footer_widgets',
+				'priority'    => 80,
+				'default'     => 0,
+				'transport'   => 'auto',
+				'choices'     => array(
+					'min'  => 0,
+					'max'  => 6,
+					'step' => 1,
+				),
+				'section'     => 'bgtfw_footer_widgets',
+				'partial_refresh' => array(
+					'boldgrid_footer_widgets' => array(
+						'selector'        => '#footer-widget-area',
+						'render_callback' => function() {
+							return $this->widget_row( 'footer', null );
+						},
+					),
+				),
+			)
+		);
+
+		// Adds the "Colors" section to the WordPress customizer "Footer" panel.
+		Kirki::add_section(
+			'bgtfw_footer_colors', array(
+				'title'          => __( 'Colors' ),
+				'panel'          => 'bgtfw_footer',
+				'description'    => esc_attr__( 'Change the colors used in your custom footer.', 'bgtfw' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Footer Background Color.
+		Kirki::add_field(
+			'bgtfw', array(
+				'type'        => 'color',
+				'transport'   => 'auto',
+				'settings'    => 'bgtfw_footer_bg_color',
+				'label'       => __( 'Background Color', 'bgtfw' ),
+				'description' => esc_attr__( 'This controls the background color of your footer.', 'bgtfw' ),
+				'section'     => 'bgtfw_footer_colors',
+				'default'     => '#0088CC',
+				'choices'     => array(
+					'alpha' => true,
+				),
+				'output' => array(
+					array(
+						'element'  => '#colophon',
+						'property' => 'background-color',
 					),
 				),
 			)
@@ -583,8 +949,18 @@ HTML;
 			$wp_customize->get_section( 'static_front_page' )->panel = 'bgtfw_layout';
 		}
 
-		// Rename Site Identity to Site Title & Logo.
-		$wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title & Logo', 'bgtfw' );
+		// Move and Rename Site Identity to Site Title & Logo.
+		if ( $section = $wp_customize->get_section( 'title_tagline' ) ) {
+			$section->title = __( 'Logo & Icon', 'bgtfw' );
+			$section->panel = 'bgtfw_header';
+		}
+		if ( $tagline = $wp_customize->get_control( 'blogdescription' ) ) {
+			$tagline->section = 'bgtfw_tagline';
+		}
+		if ( $title = $wp_customize->get_control( 'blogname' ) ) {
+			$title->section = 'bgtfw_site_title';
+		}
+
 
 		// Remove Addition Control that conflict with site title.
 		$wp_customize->remove_control( 'header_textcolor' );
@@ -821,78 +1197,32 @@ HTML;
 	 * @param    string $columns Number of columns that should display in footer.
 	 * @since    1.0.0
 	 */
-	public function footer_widget_html( $columns = null ) {
+	public function footer_widget_html() {
+		$this->widget_row( 'footer' );
+	}
 
-		$columns = get_theme_mod( 'boldgrid_footer_widgets' );
+	/**
+	 * Generate a row of widgets to add to theme template.
+	 *
+	 * This is used to generate the markup for "dynamic" widget rows.  The prefix should
+	 * match the theme_mod responsible
+	 */
+	public function widget_row( $prefix, $columns = null ) {
+		if ( is_null( $columns ) ) {
+			$columns = get_theme_mod( "boldgrid_{$prefix}_widgets", 0 );
+		}
 
-		switch ( $columns ) :
-
-			case 0 :
-
-				return;
-
-				break;
-
-			case 1 :
-				?>
-				<div id="footer-widget-area" class="row">
-					<div class="footer-widgets-1 col-md-12">
-						<?php dynamic_sidebar( 'footer-1' ); ?>
-					</div>
-					</div><!-- footer-widget-area ends -->
+		if ( $columns > 0 ) {
+			?>
+				<div id="<?php echo $prefix; ?>-widget-area" class="bgtfw-widget-row">
 					<?php
-					break;
-
-			case 2 :
-				?>
-				<div id="footer-widget-area" class="row">
-					<div class="footer-widgets-1 col-md-6">
-						<?php dynamic_sidebar( 'footer-1' ); ?>
-					</div>
-					<div class="footer-widgets-2 col-md-6">
-						<?php dynamic_sidebar( 'footer-2' ); ?>
-					</div>
-					</div><!-- footer-widget-area ends -->
-					<?php
-					break;
-
-			case 3 :
-				?>
-				<div id="footer-widget-area" class="row">
-					<div class="footer-widgets-1 col-md-4">
-						<?php dynamic_sidebar( 'footer-1' ); ?>
-					</div>
-					<div class="footer-widgets-2 col-md-4">
-						<?php dynamic_sidebar( 'footer-2' ); ?>
-					</div>
-					<div class="footer-widgets-3 col-md-4">
-						<?php dynamic_sidebar( 'footer-3' ); ?>
-					</div>
-					</div><!-- footer-widget-area ends -->
-					<?php
-					break;
-
-			default :
-				?>
-				<div id="footer-widget-area" class="row">
-					<div class="footer-widgets-1 col-md-3 col-sm-6">
-						<?php dynamic_sidebar( 'footer-1' ); ?>
-					</div>
-					<div class="footer-widgets-2 col-md-3 col-sm-6">
-						<?php dynamic_sidebar( 'footer-2' ); ?>
-					</div>
-					<div class="footer-widgets-3 col-md-3 col-sm-6">
-						<?php dynamic_sidebar( 'footer-3' ); ?>
-					</div>
-					<div class="footer-widgets-4 col-md-3 col-sm-6">
-						<?php dynamic_sidebar( 'footer-4' ); ?>
-					</div>
-					</div><!-- footer-widget-area ends -->
-					<?php
-					break;
-
-			endswitch;
-
+						for ( $i = 1; $i <= $columns; $i++ ) {
+							bgtfw_widget( "{$prefix}-{$i}", true );
+						}
+					?>
+				</div><!-- <?php echo $prefix; ?>-widget-area ends -->
+			<?php
+		}
 	}
 
 	/**
@@ -910,78 +1240,8 @@ HTML;
 	 * @package BoldGrid
 	 * @since 1.0.0
 	 */
-	public function header_widget_html( $columns = null ) {
-
-		$columns = get_theme_mod( 'boldgrid_header_widgets' );
-
-		switch ( $columns ) :
-
-			case 0 :
-
-				return;
-
-				break;
-
-			case 1 :
-				?>
-				<div id="header-widget-area" class="row">
-					<div class="header-widgets-1 col-xs-12">
-						<?php dynamic_sidebar( 'header-1' ); ?>
-					</div>
-				</div><!-- header-widget-area ends -->
-				<?php
-				break;
-
-			case 2 :
-				?>
-				<div id="header-widget-area" class="row">
-					<div class="header-widgets-1 col-md-6">
-						<?php dynamic_sidebar( 'header-1' ); ?>
-					</div>
-					<div class="header-widgets-2 col-md-6">
-						<?php dynamic_sidebar( 'header-2' ); ?>
-					</div>
-				</div><!-- header-widget-area ends -->
-				<?php
-				break;
-
-			case 3 :
-				?>
-				<div id="header-widget-area" class="row">
-					<div class="header-widgets-1 col-md-4">
-						<?php dynamic_sidebar( 'header-1' ); ?>
-					</div>
-					<div class="header-widgets-2 col-md-4">
-						<?php dynamic_sidebar( 'header-2' ); ?>
-					</div>
-					<div class="header-widgets-3 col-md-4">
-						<?php dynamic_sidebar( 'header-3' ); ?>
-					</div>
-				</div><!-- header-widget-area ends -->
-				<?php
-				break;
-
-			case 4 :
-				?>
-				<div id="header-widget-area" class="row">
-					<div class="header-widgets-1 col-md-3 col-sm-6">
-						<?php dynamic_sidebar( 'header-1' ); ?>
-					</div>
-					<div class="header-widgets-2 col-md-3 col-sm-6">
-						<?php dynamic_sidebar( 'header-2' ); ?>
-					</div>
-					<div class="header-widgets-3 col-md-3 col-sm-6">
-						<?php dynamic_sidebar( 'header-3' ); ?>
-					</div>
-					<div class="header-widgets-4 col-md-3 col-sm-6">
-						<?php dynamic_sidebar( 'header-4' ); ?>
-					</div>
-				</div><!-- header-widget-area ends -->
-				<?php
-				break;
-
-		endswitch;
-
+	public function header_widget_html() {
+		$this->widget_row( 'header' );
 	}
 
 	/**

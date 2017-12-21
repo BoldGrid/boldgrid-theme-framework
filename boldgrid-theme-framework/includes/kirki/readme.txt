@@ -2,9 +2,9 @@
 Contributors: aristath, fovoc, igmoweb
 Tags: customizer,options framework, theme, mods, toolkit
 Donate link: https://aristath.github.io/donate
-Requires at least: 4.8
+Requires at least: 4.8.2
 Tested up to: 4.9
-Stable tag: 3.0.11
+Stable tag: 3.0.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,25 +29,93 @@ You can find detailed documentation on how to use Kirki on [https://aristath.git
 
 Simply install as a normal WordPress plugin and activate.
 
-If you want to integrate Kirki in your theme or plugin, please read the instructions on [our ducumentation site](https://kirki.org/docs/advanced/integration.html).
+If you want to integrate Kirki in your theme or plugin, please read the instructions on [our documentation site](https://kirki.org/docs/advanced/integration.html).
 
 == Changelog ==
 
+= 3.0.17 =
+
+* Fix: In some cases options were not saved when using `option` instead of the default `theme_mod` [#1665](https://github.com/aristath/kirki/issues/1665)
+* Fix: `link` control-type (alias of `url`) was not working [#1660](https://github.com/aristath/kirki/issues/1660)
+* Fix: Allow using tabs & linebreaks when defining elements in the `output` argument [#1659](https://github.com/aristath/kirki/issues/1659)
+* Fix: PHP Warning when using `code` controls without a `label` defined [#1658](https://github.com/aristath/kirki/issues/1658)
+* Fix: Buttons inside `number` controls were not increasing/decreasing the values [#1648](https://github.com/aristath/kirki/issues/1648)
+* Fix: JS error  - only on Safari - for Select controls [#1662](https://github.com/aristath/kirki/issues/1662)
+* Fix: Unable to deselect all options from multiselect controls [#1670](https://github.com/aristath/kirki/issues/1670)
+* Fix: `multicolor` controls missing the `alpha` channel [#1657](https://github.com/aristath/kirki/issues/1657)
+* Fix: Unable to manually edit value in `multicolor` controls [#1666](https://github.com/aristath/kirki/issues/1666)
+* New: Transitioned to a JS-based webfont loader method to load google-fonts instead of using a link.
+* New: Moved `select` controls to new JS implementation.
+* New: Moved `text` and `textarea` controls (`generic` controls) to new JS implementation.
+* Tweak: Validation & Sanitization for `dimension` and `dimensions` controls.
+* Tweak: Refactored `multicolor` controls a bit
+
+= 3.0.16 =
+
+November 19 2017, dev time: 8 hours
+
+* Fix: `typography` controls not working when they are the only fields used [#1627](https://github.com/aristath/kirki/issues/1627)
+* Fix: `slider` controls were not updating the numeric value visually in their textfield when the control was not using `postMessage` [#1633](https://github.com/aristath/kirki/issues/1627)
+* Fix: Deprecated call to non-existing `Kirki_Styles_Frontend`, props @FrankM1 [#1644](https://github.com/aristath/kirki/issues/1644)
+* Fix: Updated the customizer-styling module for compatibility with WP 4.9 [#1639](https://github.com/aristath/kirki/issues/1639)
+* Fix: `code` controls were not using the corect `priority` [#1622](https://github.com/aristath/kirki/issues/1622)
+* Fix: Multiple reports of errors in the console.
+* New: Refactored the `number` controls [#1631](https://github.com/aristath/kirki/issues/1627)
+* New: Refactored the `color` controls. [#1646](https://github.com/aristath/kirki/issues/1646)
+
+= 3.0.15 =
+
+November 12 2017, dev time: 5 minutes.
+
+* Fix: PHP Warning in the `Kirki_Modules_Webfonts_Link` class [#1626](https://github.com/aristath/kirki/issues/1626)
+
+= 3.0.14 =
+
+November 11 2017, dev time: 4 hours.
+
+* Fix: Duplicate subsets output in the Google Fonts URLs [#1618](https://github.com/aristath/kirki/issues/1618)
+* Fix: Theme Check Warnings [#1613](https://github.com/aristath/kirki/issues/1613)
+* Fix: Add Kirki version number when enqueueing scripts & styles (cache-busting) [#1623](https://github.com/aristath/kirki/issues/1623)
+* Fix: JS conflict and PHP warning in typography fields when they are not properly defined [#1621](https://github.com/aristath/kirki/issues/1621)
+
+= 3.0.13 =
+
+November 9 2017, dev time: 3 hours.
+
+* Fix: textdomain typo in a string.
+* Fix: radio-image styling.
+* Fix: JS error (underscore's `_.isUndefined` for some reason doesn't always work as expected).
+* Tweak: Added reset back to sliders.
+* Tweak: CSS improvements.
+
 = 3.0.12 =
+
+November 7 2017, dev time: 42 hours.
+
+This update significantly reduces the plugin size by removing 3rd-party libraries (particularly CodeMirror) and uses the new controls and scripts that become available in WordPress 4.9.
+It also changes the file structure and paves the way for a 3.1 rewrite which will be a significant improvement, making Kirki a mostly JS-based app fully integrated in WordPress's JS API and moving away from the PHP API.
 
 * Fix: WordPress 4.9 compatibility for colorpickers.
 * Fix: WordPress 4.9 compatibility for typography controls.
 * Fix: WordPress 4.9 compatibility for multicolor contols.
 * Fix: WordPress 4.9 compatibility for background contols.
-* Fix: Refactored editor controls to make them compatible with WP 4.9
+* Fix: Refactored `editor` controls to make them compatible with WP 4.9
 * Fix: Remove CodeMirror and use the code control from WordPress Core. Code controls will be displayed as textareas in WP older than 4.9.
-* Fix: Use new DateTimeControl if in WP 4.9+.
+* Fix: Use new `DateTimeControl` if in WP 4.9+ for date control.
 * Fix: Text field styling.
 * Fix: Switch controls labels.
 * Fix: 'choices' arguments were not getting passed-on due to `is_customize_preview` checks in latest WP Versions.
+* Fix: Overriding Kirki translations from a theme when Kirki is embedded.
+* New: Replaced `select2` with `selectWoo`.
+* New: Added a `Kirki_Control_Base` class and abstracted controls.
+* New: Better file structure.
+* New: Compiled JS & CSS files.
+* New: Added ability to manually enter numeric values in slider controls.
 * Tweak: Improved styling of color-palette controls.
 * Tweak: Radio-Image controls now display images inline (using flexbox).
 * Tweak: Removed the reset switch from slider controls & improved their styling.
+* Tweak: Improved typography controls styling for text-align.
+* Removed: Reset module.
 
 = 3.0.11 =
 

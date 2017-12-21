@@ -24,6 +24,12 @@ return array(
 		'footer_center' => 'Footer Menu',
 	),
 	'prototype' => array(
+		'main' => array(
+			'theme_location' => 'main',
+			'container' => 'false',
+			'menu_id' => 'main-menu',
+			'menu_class' => 'sm sm-clean logo logo-left'
+		),
 		'primary' => array(
 			'theme_location'    => 'primary',
 			'depth'             => 0,

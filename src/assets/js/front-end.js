@@ -59,8 +59,11 @@ var BoldGrid = BoldGrid || {};
 		'standard_menu_enabled': {
 
 			// Setup main navigation.
-            init: function() {
-				var sm = $( '#main-menu' );
+			init: function( sm ) {
+				if ( null == sm ) {
+					sm = $( '#main-menu' );
+				}
+
 				sm.smartmenus({
 					mainMenuSubOffsetX: -1,
 					mainMenuSubOffsetY: 4,

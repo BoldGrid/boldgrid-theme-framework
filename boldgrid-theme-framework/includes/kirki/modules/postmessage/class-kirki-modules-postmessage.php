@@ -71,7 +71,7 @@ class Kirki_Modules_PostMessage {
 	 */
 	public function postmessage() {
 
-		wp_enqueue_script( 'kirki_auto_postmessage', trailingslashit( Kirki::$url ) . 'modules/postmessage/postmessage.js', array( 'jquery', 'customize-preview' ), false, true );
+		wp_enqueue_script( 'kirki_auto_postmessage', trailingslashit( Kirki::$url ) . 'modules/postmessage/postmessage.js', array( 'jquery', 'customize-preview' ), KIRKI_VERSION, true );
 		$fields = Kirki::$fields;
 		foreach ( $fields as $field ) {
 			if ( isset( $field['transport'] ) && 'postMessage' === $field['transport'] && isset( $field['js_vars'] ) && ! empty( $field['js_vars'] ) && is_array( $field['js_vars'] ) && isset( $field['settings'] ) ) {
@@ -448,15 +448,17 @@ class Kirki_Modules_PostMessage {
 	private function get_args( $args ) {
 
 		// Make sure everything is defined to avoid "undefined index" errors.
-		$args = wp_parse_args( $args, array(
-			'element'       => '',
-			'property'      => '',
-			'prefix'        => '',
-			'suffix'        => '',
-			'units'         => '',
-			'js_callback'   => array( '', '' ),
-			'value_pattern' => '',
-		));
+		$args = wp_parse_args(
+			$args, array(
+				'element'       => '',
+				'property'      => '',
+				'prefix'        => '',
+				'suffix'        => '',
+				'units'         => '',
+				'js_callback'   => array( '', '' ),
+				'value_pattern' => '',
+			)
+		);
 
 		// Element should be a string.
 		if ( is_array( $args['element'] ) ) {
@@ -466,6 +468,10 @@ class Kirki_Modules_PostMessage {
 		// Make sure arguments that are passed-on to callbacks are strings.
 		if ( is_array( $args['js_callback'] ) && isset( $args['js_callback'][1] ) && is_array( $args['js_callback'][1] ) ) {
 			$args['js_callback'][1] = wp_json_encode( $args['js_callback'][1] );
+		}
+
+		if ( ! isset( $args['js_callback'][1] ) ) {
+			$args['js_callback'][1] = '';
 		}
 		return $args;
 

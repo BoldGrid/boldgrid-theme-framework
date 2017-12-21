@@ -421,3 +421,97 @@ function is_not_bgtfw_sidebar_layout() {
 
 	return ( 'no-sidebar' === $layout ) || empty( $layout ) ? true : false;
 }
+
+
+/**
+ * Display the classes for the body element.
+ *
+ * @since 2.8.0
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function bgtfw_header_class( $class = '' ) {
+	// Separates classes with a single space, collates classes for body element
+	echo 'class="' . join( ' ', bgtfw_get_header_class( $class ) ) . '"';
+}
+
+/**
+ * Retrieve the classes for the body element as an array.
+ *
+ * @since 2.8.0
+ *
+ * @global WP_Query $wp_query
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function bgtfw_get_header_class( $class = '' ) {
+	$classes = array();
+
+	if ( ! empty( $class ) ) {
+
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+
+		$classes = array_merge( $classes, $class );
+	} else {
+
+		// Ensure that we always coerce class to being an array.
+		$class = array();
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	$classes = apply_filters( 'bgtfw_header_class', $classes, $class );
+
+	return array_unique( $classes );
+}
+
+function bgtfw_widget( $sidebar_id, $help = null ) {
+	if ( ! empty( $help ) ) {
+		$tmp = true;
+	}
+	// Link to the widgets section in the customizer.
+	$current_page = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$link = esc_url(
+		add_query_arg(
+			array(
+				'url' => urlencode( $current_page ),
+				array(
+					'autofocus' => array(
+						'control' => 'sidebars_widgets[' . $sidebar_id . ']',
+					),
+				),
+				'return' => $current_page,
+			),
+			wp_customize_url()
+		)
+	);
+
+	$style = 'padding: 5px;'; // For the sake of the background color.
+	$sidebar_meta = get_theme_mod( 'sidebar_meta' );
+
+	if ( ! empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ) {
+		$style .= sprintf( 'background-color: %s;', $sidebar_meta[ $sidebar_id ]['background_color'] );
+	}
+
+	?>
+	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar" role="complementary" style="<?php echo $style; ?>">
+		<?php dynamic_sidebar( $sidebar_id ); ?>
+		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
+			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>
+				<div class="empty-sidebar-message">
+					<h2>Empty Sidebar</h2>
+					<p>This sidebar doesn't have any widgets assigned to it yet.</p>
+					<p><a href="<?php echo $link ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> Add widgets here.</a></p>
+				</div>
+				<?php elseif ( is_active_sidebar( $sidebar_id ) ) : ?>
+					<div class="add-widget-message">
+						<p><a href="<?php echo $link ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> Add another widget.</a></p>
+					</div>
+			<?php endif; ?>
+		<?php endif; ?>
+	</aside>
+<?php
+}

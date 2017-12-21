@@ -39,14 +39,7 @@
 		});
 	});
 
-	$( function() {
-		wp.customize.preview.bind( 'setting', function( args ) {
-			if ( 'boldgrid_color_palette' !== args[0] ) {
-				$window.trigger( 'resize' );
-			}
-		} );
-		updateShadowControls();
-	} );
+
 
 	// Set font size on main body text live.
 	wp.customize( 'body_font_size', function( value ) {
@@ -58,6 +51,7 @@
 
 	// Set font-size of headings/subheadings live.
 	_.each( _typographyOptions, function( selector, rule ) {
+		console.log( _typographyOptions );
 		var fontSizeType;
 		if ( 'subheadings' === selector.type ) {
 			fontSizeType = 'alternate_headings_font_size';
@@ -117,102 +111,117 @@
 		});
 	});
 
-	// Set font size on site title text live.
-	wp.customize( 'logo_font_size', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-title' ).css( 'font-size', to + 'px' );
-		});
-	});
 
-	// Set text-transform on site title text live.
-	wp.customize( 'logo_text_transform', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-title' ).css( 'text-transform', to );
-		});
-	});
+	if ( typeof _bgtfwTypography !== 'undefined' ) {
+		$( function() {
+			wp.customize.preview.bind( 'setting', function( args ) {
+				if ( 'boldgrid_color_palette' !== args[0] ) {
+					$window.trigger( 'resize' );
+				}
+			} );
+			updateShadowControls();
+		} );
 
-	// Set text-decoration on site title text live.
-	wp.customize( 'logo_text_decoration', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-title a' ).css( 'text-decoration', to );
-		});
-	});
-
-	// Set hover text-decoration on site title text live.
-	wp.customize( 'logo_text_decoration_hover', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-title a' ).hover( function(  ) {
-				$( this ).css( 'text-decoration', to );
-			},
-			function(  ) {
-				$( this ).css( 'text-decoration', parent.wp.customize( 'logo_text_decoration' ).get() );
+		// Set font size on site title text live.
+		wp.customize( 'logo_font_size', function( value ) {
+			value.bind( function( to ) {
+				$( '.site-title' ).css( 'font-size', to + 'px' );
 			});
 		});
-	});
 
-	// Set logo margin top on site title text live.
-	wp.customize( 'logo_margin_top', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-title' ).css( 'margin-top', to + 'px' );
-		});
-	});
-
-	// Set logo margin bottom on site title text live.
-	wp.customize( 'logo_margin_bottom', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-description' ).css( 'margin-bottom', to + 'px' );
-		});
-	});
-
-	// Set logo horizontal margin on site title text live.
-	wp.customize( 'logo_margin_left', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-title, .site-description' ).css( 'margin-left', to + 'px' );
-		});
-	});
-
-	// Set logo line height on site title text live.
-	wp.customize( 'logo_line_height', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-title' ).css( 'line-height', to + '%' );
-		});
-	});
-
-	// Set logo letter spacing on site title text live.
-	wp.customize( 'logo_letter_spacing', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-title' ).css( 'letter-spacing', to + 'px' );
-		});
-	});
-
-	// Set shadow contols.
-	var updateShadowControls = function() {
-		var logoShadowColor = wp.customize( 'logo_shadow_color' )(),
-		    logoShadowBlur = wp.customize( 'logo_shadow_blur' )() + 'px ',
-		    logoShadowVertical = wp.customize( 'logo_shadow_vertical' )() + 'px ',
-		    logoShadowHorizontal = wp.customize( 'logo_shadow_horizontal' )() + 'px ',
-		    logoShadowSwitch = wp.customize( 'logo_shadow_switch' )(),
-		    cssString = 'none';
-
-		/*jshint eqeqeq:false */
-		if ( '0' != logoShadowSwitch ) {
-			cssString =
-				logoShadowHorizontal +
-				logoShadowVertical +
-				logoShadowBlur +
-				logoShadowColor;
-		}
-
-		$( '.site-title' ).css( 'text-shadow', cssString );
-	};
-
-	// Bind the change of shadow controls.
-	$.each( shadowControls, function() {
-		wp.customize( this, function( value ) {
-			value.bind( function() {
-				updateShadowControls();
+		// Set text-transform on site title text live.
+		wp.customize( 'logo_text_transform', function( value ) {
+			value.bind( function( to ) {
+				$( '.site-title' ).css( 'text-transform', to );
 			});
 		});
-	} );
+
+		// Set text-decoration on site title text live.
+		wp.customize( 'logo_text_decoration', function( value ) {
+			value.bind( function( to ) {
+				$( '.site-title a' ).css( 'text-decoration', to );
+			});
+		});
+
+		// Set hover text-decoration on site title text live.
+		wp.customize( 'logo_text_decoration_hover', function( value ) {
+			value.bind( function( to ) {
+				$( '.site-title a' ).hover( function(  ) {
+					$( this ).css( 'text-decoration', to );
+				},
+				function(  ) {
+					$( this ).css( 'text-decoration', parent.wp.customize( 'logo_text_decoration' ).get() );
+				});
+			});
+		});
+
+		// Set logo margin top on site title text live.
+		wp.customize( 'logo_margin_top', function( value ) {
+			value.bind( function( to ) {
+				$( '.site-title' ).css( 'margin-top', to + 'px' );
+			});
+		});
+
+		// Set logo margin bottom on site title text live.
+		wp.customize( 'logo_margin_bottom', function( value ) {
+			value.bind( function( to ) {
+				$( '.site-description' ).css( 'margin-bottom', to + 'px' );
+			});
+		});
+
+		// Set logo horizontal margin on site title text live.
+		wp.customize( 'logo_margin_left', function( value ) {
+			value.bind( function( to ) {
+				$( '.site-title, .site-description' ).css( 'margin-left', to + 'px' );
+			});
+		});
+
+		// Set logo line height on site title text live.
+		wp.customize( 'logo_line_height', function( value ) {
+			value.bind( function( to ) {
+				$( '.site-title' ).css( 'line-height', to + '%' );
+			});
+		});
+
+		// Set logo letter spacing on site title text live.
+		wp.customize( 'logo_letter_spacing', function( value ) {
+			value.bind( function( to ) {
+				$( '.site-title' ).css( 'letter-spacing', to + 'px' );
+			});
+		});
+
+		// Set shadow contols.
+		var updateShadowControls = function() {
+			var logoShadowColor = wp.customize( 'logo_shadow_color' )(),
+				logoShadowBlur = wp.customize( 'logo_shadow_blur' )() + 'px ',
+				logoShadowVertical = wp.customize( 'logo_shadow_vertical' )() + 'px ',
+				logoShadowHorizontal = wp.customize( 'logo_shadow_horizontal' )() + 'px ',
+				logoShadowSwitch = wp.customize( 'logo_shadow_switch' )(),
+				cssString = 'none';
+
+			/*jshint eqeqeq:false */
+			if ( '0' != logoShadowSwitch ) {
+				cssString =
+					logoShadowHorizontal +
+					logoShadowVertical +
+					logoShadowBlur +
+					logoShadowColor;
+			}
+
+			$( '.site-title' ).css( 'text-shadow', cssString );
+		};
+
+		// Bind the change of shadow controls.
+		$.each( shadowControls, function() {
+			wp.customize( this, function( value ) {
+				value.bind( function() {
+					updateShadowControls();
+				});
+			});
+		} );
+	}
+
+
+
 
 })( jQuery );

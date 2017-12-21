@@ -105,6 +105,10 @@
   line-height: 44px !important;
   height: 100% !important; }
 
+.customize-control-kirki-typography .select2-container--default .select2-selection--single [id^="select2-kirki-typography-text-transform-"].select2-selection__rendered {
+	display: inline;
+}
+
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   line-height: 44px!important;
   height: 100%!important;
@@ -881,3 +885,8 @@
 # Customizer Sidebar Controls
 --------------------------------------------------------------*/
 @import "controls/sidebar";
+
+/*--------------------------------------------------------------
+# Customizer Panel/Section Icons
+--------------------------------------------------------------*/
+@import "controls/icons";

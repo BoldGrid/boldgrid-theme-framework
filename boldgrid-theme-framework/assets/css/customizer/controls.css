@@ -94,6 +94,9 @@
   line-height: 44px !important;
   height: 100% !important; }
 
+.customize-control-kirki-typography .select2-container--default .select2-selection--single [id^="select2-kirki-typography-text-transform-"].select2-selection__rendered {
+  display: inline; }
+
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   line-height: 44px !important;
   height: 100% !important; }
@@ -860,3 +863,125 @@
 
 [id*="customize-control-bgtfw_layout_"].customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:hover, [id*="customize-control-bgtfw_layout_"].customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:focus, [id*="customize-control-bgtfw_layout_"].customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:checked {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath fill='%23444' d='M2.12 29.96h27.84V2.12H2.12v27.84zM.04 1.26C.04.6.58.04 1.26.04H30.8c.7 0 1.24.54 1.24 1.22V30.8c0 .7-.55 1.24-1.23 1.24H1.28C.6 32.04.04 31.5.04 30.8V1.27z'/%3E%3C/svg%3E"); }
+
+/*--------------------------------------------------------------
+# Customizer Panel/Section Icons
+--------------------------------------------------------------*/
+/* Dashicons Mixin */
+/* Fontawesome Mixin */
+/* BGTFW Custom Icons */
+/* Primary Menu */
+ul.customize-pane-parent > li[id^="accordion-panel-"]:not(.control-panel-themes) > h3:before,
+ul.customize-pane-parent > li[id^="accordion-section-"]:not(.control-panel-themes) > h3:before {
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f111"; }
+
+ul.customize-pane-parent > li#accordion-panel-bgtfw_header > h3:before {
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e927"; }
+
+ul.customize-pane-parent > li#accordion-panel-bgtfw_footer > h3:before {
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e924"; }
+
+ul.customize-pane-parent > li#accordion-panel-bgtfw_layout > h3:before {
+  content: "\f489"; }
+
+ul.customize-pane-parent > li#accordion-panel-widgets > h3:before {
+  content: "\f538"; }
+
+ul.customize-pane-parent > li#accordion-panel-boldgrid_typography > h3:before {
+  content: "\f215"; }
+
+ul.customize-pane-parent > li#accordion-panel-nav_menus > h3:before {
+  content: "\f333"; }
+
+ul.customize-pane-parent > li#accordion-section-colors > h3:before {
+  content: "\f309"; }
+
+ul.customize-pane-parent > li#accordion-section-background_image > h3:before {
+  content: "\f128"; }
+
+/* Header Panel */
+#sub-accordion-panel-bgtfw_header > li[id^="accordion-section-"] > h3:before {
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f111"; }
+
+#sub-accordion-panel-bgtfw_header > li#accordion-section-bgtfw_header_colors > h3:before,
+#sub-accordion-panel-bgtfw_header > li#accordion-section-bgtfw_footer_colors > h3:before {
+  content: "\f309"; }
+
+#sub-accordion-panel-bgtfw_header > li#accordion-section-header_background_image > h3:before {
+  content: "\f128"; }
+
+#sub-accordion-panel-bgtfw_header > li#accordion-section-bgtfw_header_layout > h3:before {
+  content: "\f489"; }
+
+#sub-accordion-panel-bgtfw_header > li#accordion-section-bgtfw_site_title > h3:before {
+  content: "\f227"; }
+
+#sub-accordion-panel-bgtfw_header > li#accordion-section-bgtfw_tagline > h3:before {
+  content: "\f323"; }
+
+#sub-accordion-panel-bgtfw_header > li#accordion-section-title_tagline > h3:before {
+  content: "\f161"; }
+
+/* Layout Panel */
+#sub-accordion-panel-bgtfw_layout > li[id^="accordion-section-"] > h3:before {
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f111"; }
+
+#sub-accordion-panel-bgtfw_layout > li#accordion-section-static_front_page > h3:before {
+  content: "\f102"; }
+
+#sub-accordion-panel-bgtfw_layout > li#accordion-section-bgtfw_layout_blog > h3:before {
+  content: "\f109"; }
+
+#sub-accordion-panel-bgtfw_layout > li#accordion-section-bgtfw_layout_page > h3:before {
+  content: "\f105"; }
+
+/* Typography Panel */
+#sub-accordion-panel-boldgrid_typography > li[id^="accordion-section-"] > h3:before {
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f111"; }
+
+#sub-accordion-panel-boldgrid_typography > li#accordion-section- {
+  /* Headings Section */
+  /* Main Text Section */ }
+
+#sub-accordion-panel-boldgrid_typography > li#accordion-section-headings_typography > h3:before {
+  font-family: FontAwesome;
+  font-size: 1.4em;
+  padding: .5em;
+  content: "\f1dc"; }
+
+#sub-accordion-panel-boldgrid_typography > li#accordion-section-body_typography > h3:before {
+  font-family: FontAwesome;
+  font-size: 1.4em;
+  padding: .5em;
+  content: "\f1dd";
+  padding: 0.65em; }

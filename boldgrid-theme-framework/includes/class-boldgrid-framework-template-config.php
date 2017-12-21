@@ -415,7 +415,7 @@ class BoldGrid_Framework_Template_Config {
 						do_action( 'boldgrid_menu_' . $name );
 						break;
 					case '[widget]':
-						dynamic_sidebar( $name );
+						bgtfw_widget( $name, true );
 						break;
 					default:
 					case '[action]':

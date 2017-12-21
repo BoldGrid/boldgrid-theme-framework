@@ -155,13 +155,8 @@ class BoldGrid_Framework_Styles {
 		$configs = $this->configs;
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		/* Font Awesome */
-		wp_enqueue_style(
-			'font-awesome',
-			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
-			array(),
-			$this->configs['styles']['versions']['font-awesome']
-		);
+		/* Enqueue Fontawesome */
+		$this->enqueue_fontawesome();
 
 		/* Bootstrap */
 		$bootstrap = get_stylesheet_directory_uri() . '/css/bootstrap.css';
@@ -354,11 +349,36 @@ class BoldGrid_Framework_Styles {
 						$style = $added_query_arg;
 					}
 				}
-}
+			}
 
 			$mce_css[] = $style;
 		}
 
 		return implode( ',', $mce_css );
 	}
+
+	/**
+	 * Enqueue Font Awesome
+	 *
+	 * @since     1.0.0
+	 */
+	public function enqueue_fontawesome() {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		/* Font Awesome */
+		wp_enqueue_style(
+			'font-awesome',
+			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
+			array(),
+			$this->configs['styles']['versions']['font-awesome']
+		);
+		/* Custom Icons */
+		wp_enqueue_style(
+			'icomoon',
+			$this->configs['framework']['css_dir'] . 'icomoon/style' . $suffix . '.css',
+			array(),
+			'1.0.0'
+		);
+	}
+
 }

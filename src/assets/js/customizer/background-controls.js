@@ -312,10 +312,12 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var message = JSON.parse( event.data );
 
 		if ( message.id === 'synced' ) {
-			_shadow_toggle(  );
-			_logo_toggle(  );
-			_font_toggle(  );
-			_position_toggle(   );
+			if ( typeof _bgtfwTypography !== 'undefined' ) {
+				_shadow_toggle(  );
+				_logo_toggle(  );
+				_font_toggle(  );
+				_position_toggle(   );
+			}
 		}
 	});
 })( jQuery );

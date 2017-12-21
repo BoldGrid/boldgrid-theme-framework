@@ -33,6 +33,12 @@ return array(
 				'icon' => 'dashicons-edit',
 			),
 			array(
+				'control' => 'boldgrid_logo_setting',
+				'selector' => '#main-menu',
+				'icon' => 'dashicons-edit',
+			),
+
+			array(
 				'control' => 'boldgrid_contact_details_setting',
 				'selector' => '.bgtfw.contact-block',
 				'icon' => 'dashicons-edit',

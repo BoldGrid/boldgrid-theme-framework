@@ -35,6 +35,7 @@ var config = {
   scss_src: './inc/assets/scss',
   css_dest: '../boldgrid-theme-framework/inc/assets/css',
   css_src: './inc/assets/css',
+  fontsSrc: './inc/assets/fonts',
   img_dest: '../boldgrid-theme-framework/inc/assets/img',
   img_src: './inc/assets/img/**/*',
   layouts_src: './layouts',
@@ -154,6 +155,9 @@ gulp.task('fontDeps', function () {
   gulp.src(config.bower + '/font-awesome/fonts/**/*.{ttf,woff,woff2,eot,otf,svg}')
     .pipe(gulp.dest(config.fontsDest));
   // .pipe( notify( { message: 'Font Dependencies Loaded', onLast: true } ) );
+  // Custom Icons
+  gulp.src(config.src + '/assets/fonts/*.{ttf,woff,woff2,eot,otf,svg}')
+    .pipe(gulp.dest(config.fontsDest));
 });
 
 // PHP Dependencies
@@ -300,6 +304,9 @@ gulp.task('scssDeps', function () {
   gulp.src(config.bower + '/font-awesome/scss/**/*.scss')
     .pipe(replace('../fonts', '../../fonts'))
     .pipe(gulp.dest(config.dist + '/assets/scss/font-awesome'));
+  // Custom Icons
+  gulp.src(config.scss_src + '/icomoon/style.scss')
+    .pipe(gulp.dest(config.dist + '/assets/scss/icomoon'));
   // Animate.css
   gulp.src(config.bower + '/animate.css/animate.*')
     .pipe(gulp.dest(config.dist + '/assets/css/animate-css'));

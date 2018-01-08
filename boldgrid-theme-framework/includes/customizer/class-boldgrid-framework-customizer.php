@@ -961,6 +961,12 @@ HTML;
 			$title->section = 'bgtfw_site_title';
 		}
 
+		if ( $header_image = $wp_customize->get_section( 'header_image' ) ) {
+			$header_image->title = __( 'Background', 'bgtfw' );
+			$header_image->panel = 'bgtfw_header';
+		}
+
+
 
 		// Remove Addition Control that conflict with site title.
 		$wp_customize->remove_control( 'header_textcolor' );

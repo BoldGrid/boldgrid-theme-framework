@@ -17,7 +17,7 @@ return array(
 		'footer_center'
 	),
 	'locations' => array(
-		'primary' => 'Primary Menu',
+		'main' => 'Main Menu',
 		'social' => 'Social Icons',
 		'secondary' => 'Secondary Menu',
 		'tertiary' => 'Tertiary Menu',
@@ -29,17 +29,6 @@ return array(
 			'container' => 'false',
 			'menu_id' => 'main-menu',
 			'menu_class' => 'sm sm-clean logo logo-left'
-		),
-		'primary' => array(
-			'theme_location'    => 'primary',
-			'depth'             => 0,
-			'container'         => 'div',
-			'container_class'   => 'collapse navbar-collapse primary-menu',
-			'container_id'      => 'primary-navbar',
-			'menu_class'        => 'nav navbar-nav',
-			'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-			'walker'            => new wp_bootstrap_navwalker(),
-			'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 		),
 		'social' => array(
 			'theme_location'  => 'social',

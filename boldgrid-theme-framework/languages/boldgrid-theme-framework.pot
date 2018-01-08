@@ -1,4 +1,4 @@
-# Copyright (C) 2017 boldgrid_theme_framework
+# Copyright (C) 2018 boldgrid_theme_framework
 # This file is distributed under the same license as the boldgrid_theme_framework package.
 msgid ""
 msgstr ""
@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Language-Team: The BoldGrid Team <support@boldgrid.com>\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -302,7 +302,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:354
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:354, src/includes/customizer/class-boldgrid-framework-customizer.php:965
 msgid "Background"
 msgstr ""
 
@@ -378,7 +378,7 @@ msgstr ""
 msgid "Select the number of footer widget columns you wish to display."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:672, src/includes/customizer/class-boldgrid-framework-customizer.php:1060
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:672, src/includes/customizer/class-boldgrid-framework-customizer.php:1066
 msgid "Continue to Widgets Section"
 msgstr ""
 
@@ -1049,39 +1049,39 @@ msgstr ""
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1024
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1030
 msgid "Header Settings"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1041
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1047
 msgid "Header Widgets"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1042
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1048
 msgid "Select the number of widget areas you wish to display"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1062
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1068
 msgid "You can add widgets to your header from the widgets section."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1082
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1088
 msgid "Custom Header HTML"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1083
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1089
 msgid "Add your custom HTML for your header here"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1163
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1169
 msgid "Menu Tutorial"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1297
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1303
 msgid "Using the Customizer"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1299
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1305
 msgid ""
 "BoldGrid sites are highly customizable. Each of the menu items to the left correspond with an area\n"
 "					of your site. Become familiar with everything's location to make full use of your site's features."

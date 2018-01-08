@@ -55,6 +55,46 @@ var BoldGrid = BoldGrid || {};
 			}
 		},
 
+		// Sticky/Fixed Header.
+		'header_fixed': {
+			init: function() {
+				this.calc();
+				$( window ).resize( this.calc );
+			},
+
+			calc: function() {
+				var header_height = $( '#masthead' ).height(),
+					screen_width = $( window ).width() + 16;
+
+				// Desktop.
+				if ( screen_width > 768 ) {
+					$( '#content' ).css( 'margin-top', header_height + 'px' );
+					$( '.wp-custom-header img' ).css( 'height', header_height );
+
+				// Mobile.
+				} else {
+					$( '#content' ).css( 'margin-top', '0px' );
+					if ( $( '#main-menu' ).is( ':visible' ) ) {
+						header_height = Math.abs( header_height - $( '#main-menu' ).height() );
+					}
+					$( '.wp-custom-header img' ).css( 'height', header_height );
+				}
+
+				window.addEventListener( 'scroll', function() {
+					var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+						shrinkOn = 100,
+						header = document.querySelector( 'header' );
+					if ( distanceY > shrinkOn ) {
+						$( header ).addClass( 'smaller' );
+					} else {
+						if ( true === $( header ).hasClass( 'smaller' ) ) {
+							$( header ).removeClass( 'smaller' );
+						}
+					}
+				} );
+			}
+		},
+
 		// Default bootstrap menu handling.
 		'standard_menu_enabled': {
 
@@ -83,6 +123,18 @@ var BoldGrid = BoldGrid || {};
 						$( this ).removeClass( 'show-animation hide-animation' );
 						e.stopPropagation();
 				});
+
+				$( window ).on( 'resize', function() {
+					var $mainMenuState = $( '#main-menu-state' ),
+						screen_width = $( window ).width() + 16;
+					if ( screen_width > 768 ) {
+						if ( $mainMenuState[0].checked ) {
+							$mainMenuState.attr( 'checked', false );
+						}
+					}
+					console.log( 'resized trigger' );
+				});
+
 				$( function() {
 					var $mainMenuState = $( '#main-menu-state' );
 					if ( $mainMenuState.length ) {
@@ -90,15 +142,7 @@ var BoldGrid = BoldGrid || {};
 						// Animate mobile menu.
 						$mainMenuState.change( function() {
 							var $menu = $( '#main-menu' );
-							if ( this.checked ) {
-								$menu.hide().slideDown( 250, function() {
-									$menu.css( 'display', '' );
-								});
-							} else {
-								$menu.show().slideUp( 250, function() {
-									$menu.css( 'display', '' );
-								});
-							}
+							this.checked ? BoldGrid.standard_menu_enabled.collapse( $menu ) : BoldGrid.standard_menu_enabled.expand( $menu );
 						});
 
 						// Hide mobile menu beforeunload.
@@ -108,6 +152,26 @@ var BoldGrid = BoldGrid || {};
 							}
 						});
 					}
+				});
+			},
+
+			// Collpase the main navigation.
+			collapse: function( $menu ) {
+				if ( $menu.length < 1 ) {
+					$menu = $( '#main-menu' );
+				}
+				$menu.hide().slideDown( 250, function() {
+					$menu.css( 'display', '' );
+				});
+			},
+
+			// Expand the main navigation.
+			expand: function( $menu ) {
+				if ( $menu.length < 1 ) {
+					$menu = $( '#main-menu' );
+				}
+				$menu.show().slideUp( 250, function() {
+					$menu.css( 'display', '' );
 				});
 			}
 		},

@@ -66,18 +66,27 @@ var BoldGrid = BoldGrid || {};
 				var header_height = $( '#masthead' ).height(),
 					screen_width = $( window ).width() + 16;
 
-				// Desktop.
-				if ( screen_width > 768 ) {
-					$( '#content' ).css( 'margin-top', header_height + 'px' );
-					$( '.wp-custom-header img' ).css( 'height', header_height );
+				// Adjusts .header-top position, offsets content based on header content.
+				if ( $( '.header-fixed:not(.header-left):not(.header-right)' ).length ) {
 
-				// Mobile.
-				} else {
-					$( '#content' ).css( 'margin-top', '0px' );
-					if ( $( '#main-menu' ).is( ':visible' ) ) {
-						header_height = Math.abs( header_height - $( '#main-menu' ).height() );
+					// Desktop.
+					if ( screen_width > 768 ) {
+						$( '#content' ).css( 'margin-top', header_height + 'px' );
+						$( '.wp-custom-header img' ).css( 'height', header_height );
+
+					// Mobile.
+					} else {
+						$( '#content' ).css( 'margin-top', '0px' );
+						if ( $( '#main-menu' ).is( ':visible' ) ) {
+							header_height = Math.abs( header_height - $( '#main-menu' ).height() );
+						}
+						$( '.wp-custom-header img' ).css( 'height', header_height );
 					}
-					$( '.wp-custom-header img' ).css( 'height', header_height );
+
+				// Adjusts .header-left and .header-right, remove styling from the .header-top defaults.
+				} else {
+					$( '#content' ).css( 'margin-top', '0' );
+					$( '.wp-custom-header img' ).css( 'height', '100vh' );
 				}
 
 				window.addEventListener( 'scroll', function() {

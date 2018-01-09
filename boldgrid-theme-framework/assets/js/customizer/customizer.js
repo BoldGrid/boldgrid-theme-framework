@@ -113,13 +113,34 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
 ( function( $ ) {
+	var $body, $custom_styles, colors;
 
-	var $body = $( 'body' );
-	var $custom_styles = $( '#boldgrid-override-styles' );
+	$body = $( 'body' );
+	$custom_styles = $( '#boldgrid-override-styles' );
 
 	$( function() {
 
-		var colors = BOLDGRID.Customizer.Util.getInitialPalettes();
+		init_values();
+		attribution_links();
+		setup_post_edit_link();
+
+		$( '.site-description' ).addClass( _typographyClasses );
+
+		// When menu partials are refreshed, we need to ensure we update the new container.
+		$( document ).on( 'customize-preview-menu-refreshed', function( e, params ) {
+			if ( ! _.isUndefined( BoldGrid ) ) {
+				console.log( params );
+				if ( 'main' === params.wpNavMenuArgs.theme_location ) {
+					if ( ! _.isUndefined( BoldGrid.standard_menu_enabled ) ) {
+
+						// Initialize SmartMenu on the updated container and params.
+						BoldGrid.standard_menu_enabled.init( params.newContainer );
+					}
+				}
+			}
+		} );
+
+		colors = BOLDGRID.Customizer.Util.getInitialPalettes();
 
 		if ( colors && ! _.isUndefined( parent.$.wp ) ) {
 			parent.$.wp.wpColorPicker.prototype.options = {
@@ -142,25 +163,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				$( colors ).removeClass( 'iris-active-palette' );
 				$( e.currentTarget ).addClass( 'iris-active-palette' );
 			} );
-		} );
-
-		init_values();
-		attribution_links();
-		setup_post_edit_link();
-		$( '.site-description' ).addClass( _typographyClasses );
-
-		// When menu partials are refreshed, we need to ensure we update the new container.
-		$( document ).on( 'customize-preview-menu-refreshed', function( e, params ) {
-			if ( ! _.isUndefined( BoldGrid ) ) {
-				console.log( params );
-				if ( 'main' === params.wpNavMenuArgs.theme_location ) {
-					if ( ! _.isUndefined( BoldGrid.standard_menu_enabled ) ) {
-
-						// Initialize SmartMenu on the updated container and params.
-						BoldGrid.standard_menu_enabled.init( params.newContainer );
-					}
-				}
-			}
 		} );
 	} );
 

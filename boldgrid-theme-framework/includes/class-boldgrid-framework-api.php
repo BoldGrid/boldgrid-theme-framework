@@ -319,6 +319,14 @@ class BoldGrid {
 	}
 
 	/**
+	 * Adds custom classes to the array of header classes.
+	 */
+	public function header_classes( $classes ) {
+		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts', 'layout-6' );
+		return $classes;
+	}
+
+	/**
 	 * Adds custom classes to the array of body classes.
 	 *
 	 * @param     array $classes Classes for the body element.

@@ -58,7 +58,29 @@ var BoldGrid = BoldGrid || {};
 		// Sticky/Fixed Header.
 		'header_fixed': {
 			init: function() {
+				var video;
+
+				video = document.getElementById( 'wp-custom-header-video' );
+
+				if ( !! video ) {
+					if ( 4 === video.readyState ) {
+						$( window ).trigger( 'resize' );
+					} else {
+
+						// Setup event listener for loadeddata to indicate video has loaded and can be played.
+						video.addEventListener( 'loadeddata', function() {
+							$( window ).trigger( 'resize' );
+						}, false );
+					}
+
+				} else {
+					$( window ).trigger( 'resize' );
+				}
+
+				// Initial calculations.
 				this.calc();
+
+				// Listen for resize events to retrigger calculations.
 				$( window ).resize( this.calc );
 			},
 
@@ -72,12 +94,12 @@ var BoldGrid = BoldGrid || {};
 						// Adjusts .header-top position, offsets content based on header content.
 						if ( $( '.header-fixed:not(.header-left):not(.header-right)' ).length ) {
 							$( '#content' ).css( 'margin-top', header_height + 'px' );
-							$( '.wp-custom-header img' ).css( 'height', header_height );
+							$( '.wp-custom-header' ).css( 'height', header_height + 2 );
 
-						// Adjusts .header-left and .header-right, remove styling from the .header-top defaults.
+							// Adjusts .header-left and .header-right, remove styling from the .header-top defaults.
 						} else {
 							$( '#content' ).css( 'margin-top', '0' );
-							$( '.wp-custom-header img' ).css( 'height', '100vh' );
+							$( '.wp-custom-header' ).css( 'height', '100vh' );
 						}
 
 					// Mobile.
@@ -86,7 +108,7 @@ var BoldGrid = BoldGrid || {};
 						if ( $( '#main-menu' ).is( ':visible' ) ) {
 							header_height = Math.abs( header_height - $( '#main-menu' ).height() );
 						}
-						$( '.wp-custom-header img' ).css( 'height', header_height );
+						$( '.wp-custom-header' ).css( 'height', header_height + 2 );
 					}
 
 				window.addEventListener( 'scroll', function() {

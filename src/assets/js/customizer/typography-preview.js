@@ -51,7 +51,6 @@
 
 	// Set font-size of headings/subheadings live.
 	_.each( _typographyOptions, function( selector, rule ) {
-		console.log( _typographyOptions );
 		var fontSizeType;
 		if ( 'subheadings' === selector.type ) {
 			fontSizeType = 'alternate_headings_font_size';

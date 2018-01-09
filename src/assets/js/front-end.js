@@ -132,7 +132,6 @@ var BoldGrid = BoldGrid || {};
 							$mainMenuState.attr( 'checked', false );
 						}
 					}
-					console.log( 'resized trigger' );
 				});
 
 				$( function() {

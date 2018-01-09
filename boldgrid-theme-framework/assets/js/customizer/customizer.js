@@ -191,10 +191,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 * Update classes for header position layouts.
 	 */
 	wp.customize( 'bgtfw_header_layout_position', function( value ) {
+
 		// Bind value change.
 		value.bind( function( to ) {
+
 			// Add CSS to elements.
 			$( 'body' ).removeClass( 'header-top header-left header-right' ).addClass( to );
+
+			// Trigger resize to recalculate header positioning when options are switched.
+			$( window ).trigger( 'resize' );
 		} );
 	} );
 

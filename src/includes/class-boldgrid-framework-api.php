@@ -390,6 +390,8 @@ class BoldGrid {
 			$classes[] = 'header-fixed';
 		}
 
+		$classes[] = get_theme_mod( 'bgtfw_header_layout_position', 'header-top' );
+
 		$layout = get_page_template_slug();
 
 		if ( empty( $layout ) ) {

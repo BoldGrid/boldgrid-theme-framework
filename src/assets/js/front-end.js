@@ -66,13 +66,19 @@ var BoldGrid = BoldGrid || {};
 				var header_height = $( '#masthead' ).height(),
 					screen_width = $( window ).width() + 16;
 
-				// Adjusts .header-top position, offsets content based on header content.
-				if ( $( '.header-fixed:not(.header-left):not(.header-right)' ).length ) {
-
 					// Desktop.
 					if ( screen_width > 768 ) {
-						$( '#content' ).css( 'margin-top', header_height + 'px' );
-						$( '.wp-custom-header img' ).css( 'height', header_height );
+
+						// Adjusts .header-top position, offsets content based on header content.
+						if ( $( '.header-fixed:not(.header-left):not(.header-right)' ).length ) {
+							$( '#content' ).css( 'margin-top', header_height + 'px' );
+							$( '.wp-custom-header img' ).css( 'height', header_height );
+
+						// Adjusts .header-left and .header-right, remove styling from the .header-top defaults.
+						} else {
+							$( '#content' ).css( 'margin-top', '0' );
+							$( '.wp-custom-header img' ).css( 'height', '100vh' );
+						}
 
 					// Mobile.
 					} else {
@@ -82,12 +88,6 @@ var BoldGrid = BoldGrid || {};
 						}
 						$( '.wp-custom-header img' ).css( 'height', header_height );
 					}
-
-				// Adjusts .header-left and .header-right, remove styling from the .header-top defaults.
-				} else {
-					$( '#content' ).css( 'margin-top', '0' );
-					$( '.wp-custom-header img' ).css( 'height', '100vh' );
-				}
 
 				window.addEventListener( 'scroll', function() {
 					var distanceY = window.pageYOffset || document.documentElement.scrollTop,

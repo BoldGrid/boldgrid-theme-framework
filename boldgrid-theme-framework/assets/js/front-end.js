@@ -55,6 +55,41 @@ var BoldGrid = BoldGrid || {};
 			}
 		},
 
+		// Header Top.
+		'header_top': {
+			init: function() {
+
+				// Initial calculations.
+				this.calc();
+
+				// Listen for resize events to retrigger calculations.
+				$( window ).resize( this.calc );
+			},
+
+			calc: function() {
+				var header_height = $( '#masthead' ).height(),
+					screen_width = $( window ).width() + 16;
+				if ( $( '.header-top:not(.header-fixed)' ) ) {
+
+					// Desktop.
+					if ( screen_width > 768 ) {
+
+						// Adjusts .header-top position, offsets content based on header content.
+						$( '#content' ).css( 'margin-top', '0px' );
+						$( '.wp-custom-header' ).css( 'height', header_height + 2 );
+
+					// Mobile.
+					} else {
+						$( '#content' ).css( 'margin-top', '0px' );
+						if ( $( '#main-menu' ).is( ':visible' ) ) {
+							header_height = Math.abs( header_height - $( '#main-menu' ).height() );
+						}
+						$( '.wp-custom-header' ).css( 'height', header_height + 2 );
+					}
+				}
+			}
+		},
+
 		// Sticky/Fixed Header.
 		'header_fixed': {
 			init: function() {

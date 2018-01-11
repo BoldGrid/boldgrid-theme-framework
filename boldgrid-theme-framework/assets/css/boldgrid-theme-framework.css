@@ -2363,7 +2363,11 @@ html.admin-bar {
 
 .wp-custom-header video {
   object-fit: cover;
+  width: 100%;
   height: 100%; }
+
+.header-top .wp-custom-header video {
+  width: 100vw; }
 
 .wp-custom-header img {
   width: 100vw;

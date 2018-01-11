@@ -2350,8 +2350,14 @@ html.admin-bar {
 #navi {
   display: flex;
   flex-direction: column;
-  padding-top: 1.5em;
+  padding-top: 1.5em; }
+
+#navi:not(.container) {
   width: 100%; }
+
+@media only screen and (max-width: 768px) {
+  #navi {
+    width: 100%; } }
 
 .wp-custom-header {
   position: absolute;

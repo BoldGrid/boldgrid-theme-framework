@@ -250,8 +250,8 @@ msgstr ""
 msgid "This layout will be used as the default blog template layout for your website's pages.  Individual posts can override this setting by choosing a different template in the post editor."
 msgstr ""
 
-#: src/includes/configs/widget.config.php:137
-msgid "Sidebar #1"
+#: src/includes/configs/widget.config.php:144
+msgid "Primary Sidebar"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-background.php:130, src/includes/customizer/class-boldgrid-framework-customizer.php:133
@@ -899,6 +899,14 @@ msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:882
 msgid "Shadow Color"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:152
+msgid "Title:"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:153
+msgid "Background Color:"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:68

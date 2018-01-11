@@ -985,3 +985,15 @@ ul.customize-pane-parent > li#accordion-section-background_image > h3:before {
   padding: .5em;
   content: "\f1dd";
   padding: 0.65em; }
+
+/*--------------------------------------------------------------
+# Customizer Widget Meta Controls
+--------------------------------------------------------------*/
+.customize-widget-sidebar-meta-controls {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  border-bottom: solid 1px #ddd;
+  padding-bottom: 0.5em; }
+
+.customize-widget-sidebar-meta-controls .customize-control {
+  float: none; }

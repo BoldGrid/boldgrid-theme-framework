@@ -980,22 +980,32 @@
 	display: flex;
 	flex-wrap: wrap;
 	flex: 0 0 auto;
-	width: calc((100% / 3 - 1vw) - 4vw);
+	width: calc((100% / 3 - .5vw) - 2vw);
 	margin: 0.5em;
 	flex-direction: column;
 }
-.home.blog .post {
+.post {
 	display: flex;
 	flex-wrap: wrap;
 	flex: 1 0 auto;
-	width: calc((100% / 3 - 1vw) - 4vw);
-	margin: 2vw;
+	width: calc((100% / 1 - .5vw) - 2vw);
+	margin: 1vw;
+}
+.column-2 .post {
+	width: calc((100% / 2 - .5vw) - 2vw);
+}
+.column-3 .post {
+	width: calc((100% / 3 - .5vw) - 2vw);
 }
 .home.blog .post .entry-content {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	width: 100%;
+}
+.single .post {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 /* Post navigation */
 

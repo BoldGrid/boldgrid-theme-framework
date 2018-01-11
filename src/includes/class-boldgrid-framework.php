@@ -158,6 +158,7 @@ class BoldGrid_Framework {
 			'api',
 			'comments',
 			'compile-colors',
+			'custom-header',
 			'editor',
 			'edit-post-links',
 			'i18n',
@@ -416,6 +417,20 @@ class BoldGrid_Framework {
 
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
+
+		// Load Custom Header.
+		$this->custom_header();
+	}
+
+	/**
+	 * This contains hooks for our theme's custom header implementation.
+	 *
+	 * @since 2.0.0
+	 */
+	private function custom_header() {
+		$header  = new Boldgrid_Framework_Custom_Header( $this->configs );
+		$this->loader->add_action( 'after_setup_theme', $header, 'custom_header_setup' );
+		$this->loader->add_filter( 'header_video_settings', $header, 'video_controls' );
 	}
 
 	/**

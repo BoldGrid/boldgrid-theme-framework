@@ -976,20 +976,17 @@
 	flex-wrap: wrap;
 	align-items: flex-start;
 }
-.blog .post {
-	display: flex;
-	flex-wrap: wrap;
-	flex: 0 0 auto;
-	width: calc((100% / 3 - .5vw) - 2vw);
-	margin: 0.5em;
-	flex-direction: column;
-}
+
 .post {
 	display: flex;
 	flex-wrap: wrap;
 	flex: 1 0 auto;
 	width: calc((100% / 1 - .5vw) - 2vw);
 	margin: 1vw;
+}
+[class^="column-"] .post {
+	flex-direction: column;
+	flex: 0 0 auto;
 }
 .column-2 .post {
 	width: calc((100% / 2 - .5vw) - 2vw);

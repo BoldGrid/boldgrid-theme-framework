@@ -279,30 +279,6 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-		// Add Header Position Control to the "Header > Layout" section.
-		Kirki::add_field(
-			'bgtfw', array(
-				'type'        => 'radio',
-				'transport'   => 'postMessage',
-				'settings'    => 'bgtfw_header_layout_position',
-				'label'       => __( 'Header Position', 'bgtfw' ),
-				'section'     => 'bgtfw_header_layout',
-				'default'     => 'header-top',
-				'priority'    => 10,
-				'choices'     => array(
-					'header-top'   => array(
-						esc_attr__( 'Header on Top', 'bgtfw' ),
-					),
-					'header-left' => array(
-						esc_attr__( 'Header on Left', 'bgtfw' ),
-					),
-					'header-right'  => array(
-						esc_attr__( 'Header on Right', 'bgtfw' ),
-					),
-				),
-			)
-		);
-
 		// Fixed header toggle - Allows header to switch between fixed/static.
 		Kirki::add_field(
 			'bgtfw', array(
@@ -352,7 +328,7 @@ class BoldGrid_Framework_Customizer {
 					),
 					array(
 						'media_query' => '@media only screen and (min-width : 768px)',
-						'element'  => '.flexbox .header-right.header-fixed .site-header, .flexbox .header-left.header-fixed .site-header',
+						'element'  => '.flexbox .header-right.header-fixed .site-header, .flexbox .header-left.header-fixed .site-header, .header-right .wp-custom-header, .header-left .wp-custom-header, .header-right .site-header, .header-left .site-header',
 						'property' => 'width',
 						'value_pattern' => '$px',
 					),
@@ -510,34 +486,6 @@ class BoldGrid_Framework_Customizer {
 				'priority'       => 10,
 				'capability'     => 'edit_theme_options',
 				'theme_supports' => '', // Rarely needed.
-			)
-		);
-
-		// Header Top Layouts
-		Kirki::add_field(
-			'bgtfw', array(
-				'type'        => 'radio',
-				'transport'   => 'postMessage',
-				'settings'    => 'bgtfw_header_top_layouts',
-				'label'       => esc_html__( 'Layout', 'bgtfw' ),
-				'section'     => 'bgtfw_header_layout',
-				'default'     => 'layout-1',
-				'priority'    => 10,
-				'choices'     => array(
-					'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
-					'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
-					'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
-					'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
-					'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
-					'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
-				),
-				'active_callback' => array(
-					array(
-						'setting'  => 'bgtfw_header_layout_position',
-						'operator' => '==',
-						'value'    => 'header-top',
-					),
-				),
 			)
 		);
 
@@ -777,11 +725,20 @@ class BoldGrid_Framework_Customizer {
 	public function custom_customize_enqueue() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		wp_register_script( 'boldgrid-customizer-controls-base',
+		wp_register_script(
+			'boldgrid-customizer-controls-base',
 			$this->configs['framework']['js_dir'] . 'customizer/controls' . $suffix . '.js',
-		array( 'jquery', 'customize-controls' ), false, true );
+			array(
+				'jquery',
+				'customize-controls'
+			),
+			false,
+			true
+		);
 
-		wp_localize_script( 'boldgrid-customizer-controls-base', 'Boldgrid_Thememod_Markup',
+		wp_localize_script(
+			'boldgrid-customizer-controls-base',
+			'Boldgrid_Thememod_Markup',
 			array(
 				'html' => $this->get_transferred_theme_mod_markup(),
 				'transferred_theme_mods' => get_theme_mod( 'transferred_theme_mods', array() ),
@@ -789,22 +746,49 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-		wp_register_script( 'boldgrid-customizer-required-helper',
+		wp_register_script(
+			'bgtfw-customizer-header-layout-controls',
+			$this->configs['framework']['js_dir'] . 'customizer/header-layout/controls' . $suffix . '.js',
+			array(
+				'customize-controls',
+				'boldgrid-customizer-controls-base'
+			),
+			false,
+			true
+		);
+
+		wp_register_script(
+			'boldgrid-customizer-required-helper',
 			$this->configs['framework']['js_dir'] . 'customizer/required' . $suffix . '.js',
-		array( 'jquery', 'customize-controls', 'boldgrid-customizer-controls-base' ), false, true );
+			array(
+				'jquery',
+				'customize-controls',
+				'boldgrid-customizer-controls-base'
+			),
+			false,
+			true
+		);
 
-		wp_register_script( 'boldgrid-customizer-widget-preview',
+		wp_register_script(
+			'boldgrid-customizer-widget-preview',
 			$this->configs['framework']['js_dir'] . 'customizer/widget-preview' . $suffix . '.js',
-		array( 'jquery', 'hoverIntent' ), false, true );
+			array(
+				'jquery',
+				'hoverIntent'
+			),
+			false,
+			true
+		);
 
-		wp_localize_script( 'boldgrid-customizer-required-helper',
+		wp_localize_script(
+			'boldgrid-customizer-required-helper',
 			'BOLDGRID_Customizer_Required',
 			$this->configs['customizer-options']['required']
 		);
 
 		wp_enqueue_script( 'boldgrid-customizer-required-helper' );
+		wp_enqueue_script( 'bgtfw-customizer-header-layout-controls' );
 		wp_enqueue_script( 'boldgrid-customizer-widget-preview' );
-
 	}
 
 	/**
@@ -1020,6 +1004,49 @@ HTML;
 	 * @param Object $wp_customize The WP_Customize object.
 	 */
 	public function header_panel( $wp_customize ) {
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_header_top_layouts' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'layout-1',
+			'transport'   => 'postMessage',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_header_top_layouts', array(
+			'label'       => esc_html__( 'Layout', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 30,
+			'choices'     => array(
+				'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
+				'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
+				'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
+				'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
+				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
+				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
+			),
+			'section'     => 'bgtfw_header_layout',
+		) );
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_header_layout_position' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'header-top',
+			'transport'   => 'postMessage',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_header_layout_position', array(
+			'label'       => __( 'Header Position', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 10,
+			'choices'     => array(
+				'header-top'   =>  esc_attr__( 'Header on Top', 'bgtfw' ),
+				'header-left' => esc_attr__( 'Header on Left', 'bgtfw' ),
+				'header-right'  =>  esc_attr__( 'Header on Right', 'bgtfw' ),
+			),
+			'section'     => 'bgtfw_header_layout',
+		) );
 
 		$config = $this->configs['customizer-options']['header_panel'];
 

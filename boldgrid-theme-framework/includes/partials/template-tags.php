@@ -489,15 +489,15 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 		)
 	);
 
-	$style = 'padding: 5px;'; // For the sake of the background color.
+	// Add some padding just for the background color to be visible in certain situations.
+	$style = 'padding-top: 5px; padding-bottom: 5px;';
 	$sidebar_meta = get_theme_mod( 'sidebar_meta' );
 
 	if ( ! empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ) {
 		$style .= sprintf( 'background-color: %s;', $sidebar_meta[ $sidebar_id ]['background_color'] );
 	}
-
 	?>
-	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar" role="complementary" style="<?php echo $style; ?>">
+	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid" role="complementary" style="<?php echo $style; ?>">
 		<?php dynamic_sidebar( $sidebar_id ); ?>
 		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
 			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>

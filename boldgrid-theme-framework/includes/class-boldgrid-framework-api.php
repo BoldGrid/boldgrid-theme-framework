@@ -394,6 +394,8 @@ class BoldGrid {
 			$classes[] = 'bgtfw-edit-links-hidden';
 		}
 
+		$classes[] = 'custom-header';
+
 		if ( get_theme_mod( 'bgtfw_fixed_header' ) ) {
 			$classes[] = 'header-fixed';
 		}

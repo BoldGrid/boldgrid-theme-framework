@@ -211,6 +211,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		value.bind( function( to ) {
 			var body = $( 'body' );
 			to ? body.addClass( 'header-fixed' ) : body.removeClass( 'header-fixed' );
+			$( window ).trigger( 'resize' );
 		} );
 	} );
 
@@ -221,6 +222,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				.removeClass( function( index, className ) {
 					return ( className.match ( /(^|\s)layout-\S+/g ) || [] ).join( ' ' );
 				} ).addClass( to );
+			$( window ).trigger( 'resize' );
 		} );
 	} );
 

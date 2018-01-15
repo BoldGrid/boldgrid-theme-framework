@@ -221,7 +221,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 			/*--------------------------------------------------------------
 			# Customizer Sidebar Controls
 			--------------------------------------------------------------*/
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label {
 				display: flex;
 				align-items: center;
 				opacity: .8;
@@ -230,14 +231,16 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				-o-transition: opacity 200ms ease-out;
 				transition: opacity 200ms ease-out;
 			}
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label:hover {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label:hover,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label:hover {
 				opacity: 1;
 				-webkit-transition: opacity 300ms ease-in;
 				-moz-transition: opacity 300ms ease-in;
 				-o-transition: opacity 300ms ease-in;
 				transition: opacity 300ms ease-in;
 			}
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"] {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"],
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label input[type="radio"] {
 				min-width: 32px;
 				min-height: 32px;
 				font-size: inherit;
@@ -253,13 +256,20 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				line-height: 1.1;
 				margin: 4px 12px 4px 0;
 			}
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:before {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"]:before,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label input[type="radio"]:before {
 				margin: 0;
 			}
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:hover, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:focus, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:checked {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"]:hover,
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio > label input[type="radio"]:focus,
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio > label input[type="radio"]:checked,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label input[type="radio"]:hover,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:focus,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:checked {
 				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath fill='%23444' d='M2.12 29.96h27.84V2.12H2.12v27.84zM.04 1.26C.04.6.58.04 1.26.04H30.8c.7 0 1.24.54 1.24 1.22V30.8c0 .7-.55 1.24-1.23 1.24H1.28C.6 32.04.04 31.5.04 30.8V1.27z'/%3E%3Cpath fill='%23444' d='M22 1.6h8.4v28.8H22V1.6z'/%3E%3C/svg%3E");
 			}
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:before {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"]:before,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label input[type="radio"]:before {
 				background-color: transparent;
 				border-radius: 0;
 				width: 0;
@@ -267,7 +277,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				content: "";
 				opacity: 1;
 			}
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:checked:after {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"]:checked:after,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label input[type="radio"]:checked:after {
 				content: "\f147";
 				display: flex;
 				font-family: dashicons;
@@ -280,19 +291,23 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				min-height: 32px;
 				margin-top: 2px;
 			}
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=left-sidebar] {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"][value=left-sidebar],
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label input[type="radio"][value=left-sidebar] {
 				transform: rotate(180deg);
 				transform-origin: 50% 50%;
 			}
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=left-sidebar]:checked:after {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"][value=left-sidebar]:checked:after,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label input[type="radio"][value=left-sidebar]:checked:after {
 				transform: rotate(180deg);
 				transform-origin: 50% 50%;
 				margin-top: -2px;
 			}
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar] {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"][value=no-sidebar],
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label input[type="radio"][value=no-sidebar] {
 				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath fill='%239b9b9b' d='M2.12 29.96h27.84V2.12H2.12v27.84zM.04 1.26C.04.6.58.04 1.26.04H30.8c.7 0 1.24.54 1.24 1.22V30.8c0 .7-.55 1.24-1.23 1.24H1.28C.6 32.04.04 31.5.04 30.8V1.27z'/%3E%3C/svg%3E");
 			}
-			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:hover, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:focus, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:checked {
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"][value=no-sidebar]:hover, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:focus, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:checked,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label input[type="radio"][value=no-sidebar]:hover, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:focus, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:checked {
 				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath fill='%23444' d='M2.12 29.96h27.84V2.12H2.12v27.84zM.04 1.26C.04.6.58.04 1.26.04H30.8c.7 0 1.24.54 1.24 1.22V30.8c0 .7-.55 1.24-1.23 1.24H1.28C.6 32.04.04 31.5.04 30.8V1.27z'/%3E%3C/svg%3E");
 			}
 			#bgtfw-attributes-meta-box .advanced-toggle:before {
@@ -339,7 +354,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				margin-top: -18px;
 			}
 			/* RTL Styles */
-			.rtl #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"] {
+			.rtl #customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"],
+			.rtl #customize-control-bgtfw_layout_page.customize-control-kirki-radio label input[type="radio"] {
 				margin: 4px 0 4px 12px;
 			}
 			.rtl .template-subtitle {
@@ -380,7 +396,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				$( '#bgtfw-attributes-meta-box .advanced-toggle' ).on( 'click', function() {
 					$( '.post-attributes-advanced-wrap' ).slideToggle();
 					$( this ).toggleClass( 'open' );
-					
+
 				});
 			});
 		</script>

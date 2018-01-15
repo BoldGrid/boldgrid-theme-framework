@@ -559,6 +559,9 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'admin_head-post-new.php', $layouts, 'styles' );
 		$this->loader->add_action( 'admin_footer-post.php', $layouts, 'scripts' );
 		$this->loader->add_action( 'admin_footer-post-new.php', $layouts, 'scripts' );
+
+		$this->loader->add_action( 'customize_controls_print_styles', $layouts, 'styles' );
+		$this->loader->add_action( 'customize_controls_print_scripts', $layouts, 'scripts' );
 	}
 
 	/**

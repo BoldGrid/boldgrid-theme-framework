@@ -747,6 +747,17 @@ class BoldGrid_Framework_Customizer {
 		);
 
 		wp_register_script(
+			'bgtfw-customizer-layout-homepage-controls',
+			$this->configs['framework']['js_dir'] . 'customizer/layout/homepage/controls' . $suffix . '.js',
+			array(
+				'customize-controls',
+				'boldgrid-customizer-controls-base'
+			),
+			false,
+			true
+		);
+
+		wp_register_script(
 			'bgtfw-customizer-header-layout-controls',
 			$this->configs['framework']['js_dir'] . 'customizer/header-layout/controls' . $suffix . '.js',
 			array(
@@ -788,6 +799,7 @@ class BoldGrid_Framework_Customizer {
 
 		wp_enqueue_script( 'boldgrid-customizer-required-helper' );
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-controls' );
+		wp_enqueue_script( 'bgtfw-customizer-layout-homepage-controls' );
 		wp_enqueue_script( 'boldgrid-customizer-widget-preview' );
 	}
 
@@ -1004,6 +1016,24 @@ HTML;
 	 * @param Object $wp_customize The WP_Customize object.
 	 */
 	public function header_panel( $wp_customize ) {
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_layout_homepage_sidebar' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'no-sidebar',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_layout_homepage_sidebar', array(
+			'label'       => esc_html__( 'Default Homepage Layout', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 30,
+			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
+			'section'     => 'static_front_page',
+			'active_callback' => function() {
+				return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
+			},
+		) );
 
 		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
 		$wp_customize->add_setting( 'bgtfw_header_top_layouts' , array(

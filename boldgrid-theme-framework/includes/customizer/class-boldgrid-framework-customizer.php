@@ -328,7 +328,7 @@ class BoldGrid_Framework_Customizer {
 					),
 					array(
 						'media_query' => '@media only screen and (min-width : 768px)',
-						'element'  => '.flexbox .header-right.header-fixed .site-header, .flexbox .header-left.header-fixed .site-header, .header-right .wp-custom-header, .header-left .wp-custom-header, .header-right .site-header, .header-left .site-header',
+						'element'  => '.flexbox .header-right.header-fixed .site-header, .flexbox .header-left.header-fixed .site-header, .header-right .wp-custom-header, .header-left .wp-custom-header, .header-right .site-header, .header-left .site-header, .header-left #masthead, .header-right #masthead',
 						'property' => 'width',
 						'value_pattern' => '$px',
 					),

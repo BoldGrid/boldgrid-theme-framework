@@ -1397,7 +1397,7 @@ main {
   width: 100%; }
 
 /* Adjust Containers in Content */
-.has-sidebar .site-content .container {
+.has-sidebar .site-content .container, .header-right .site-content .container, .header-left .site-content .container {
   width: 100%; }
 
 @media only screen and (min-width: 992px) {
@@ -2283,6 +2283,12 @@ html.admin-bar {
     flex-direction: row; }
   .flexbox .header-left.header-fixed #boldgrid-sticky-filler {
     flex: 0 0 auto; }
+  .header-right .wp-custom-header,
+  .header-right .site-header,
+  .header-right #masthead, .header-left .wp-custom-header,
+  .header-left .site-header,
+  .header-left #masthead {
+    width: 400px; }
   .flexbox .header-left .site-header {
     display: flex;
     flex: 0 0 400px; }

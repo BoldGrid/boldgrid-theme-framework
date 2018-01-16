@@ -492,12 +492,51 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	// Add some padding just for the background color to be visible in certain situations.
 	$style = 'padding-top: 5px; padding-bottom: 5px;';
 	$sidebar_meta = get_theme_mod( 'sidebar_meta' );
+	global $boldgrid_theme_framework;
 
+			$bgtfw_configs = $boldgrid_theme_framework->get_configs();
+			$bgtfw_colors = new Boldgrid_Framework_Compile_Colors( $bgtfw_configs );
+			$bgtfw_palette = $bgtfw_colors->get_palette();
+
+			$current_palette = $bgtfw_palette['state']['active-palette'];
+			$bgtfw_color = is_array( $bgtfw_palette['state']['palettes'][ $current_palette ]['colors'] ) ? $bgtfw_palette['state']['palettes'][ $current_palette ]['colors'] : array();
+			$bgtfw_neutral = $bgtfw_colors->get_neutral_color();
+
+			if ( false !== strpos( $sidebar_meta[ $sidebar_id ]['background_color'], '#' ) ) {
+				$rgb_arrays = $bgtfw_colors->convert_hex_to_rgb( $sidebar_meta[ $sidebar_id ]['background_color'] );
+				$bgtfw_active_color = "rgb({$rgb_arrays[0]}, {$rgb_arrays[1]}, {$rgb_arrays[2]})";
+			}
+
+			$color_class = '';
+
+			foreach ( $bgtfw_color as $k => $v ) {
+				if ( $v === $bgtfw_active_color ) {
+					$color_class = ' color' . abs( $k + 1 ) . '-background-color' ;
+				}
+			}
+
+			if ( ! empty( $bgtfw_neutral ) ) {
+				$bgtfw_neutral_color = $bgtfw_neutral[ $current_palette . '-neutral-color' ];
+
+				if ( false !== strpos( $bgtfw_neutral_color, '#' ) ) {
+					$rgb_arrays = $bgtfw_colors->convert_hex_to_rgb( $bgtfw_neutral_color );
+					$bgtfw_neutral_color = "rgb({$rgb_arrays[0]}, {$rgb_arrays[1]}, {$rgb_arrays[2]})";
+				}
+				if ( $bgtfw_active_color === $bgtfw_neutral_color ) {
+					$color_class = ' color-neutral-background-color';
+				}
+			}
+
+			if ( empty( $color_class ) ) {
+				$style .= sprintf( 'background-color: %s;', $bgtfw_active_color );
+			}
+			/**
 	if ( ! empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ) {
 		$style .= sprintf( 'background-color: %s;', $sidebar_meta[ $sidebar_id ]['background_color'] );
 	}
+	*/
 	?>
-	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid" role="complementary" style="<?php echo $style; ?>">
+	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid<?php echo $color_class; ?>" role="complementary" style="<?php echo $style; ?>">
 		<?php dynamic_sidebar( $sidebar_id ); ?>
 		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
 			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>

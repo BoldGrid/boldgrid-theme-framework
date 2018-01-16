@@ -187,6 +187,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 	} );
 
+	var bgtfw_calculate_layouts = function() {
+		if ( !! wp.customize( 'bgtfw_fixed_header' ) ) {
+			BoldGrid.header_fixed.calc();
+		} else {
+			BoldGrid.custom_header.calc();
+		}
+		$( window ).trigger( 'resize' );
+	};
+
 	/**
 	 * Update classes for header position layouts.
 	 */
@@ -194,12 +203,18 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		// Bind value change.
 		value.bind( function( to ) {
+			var headerWidth;
 
 			// Add CSS to elements.
 			$( 'body' ).removeClass( 'header-top header-left header-right' ).addClass( to );
 
+			if ( to === 'header-left' || to === 'header-right' ) {
+				headerWidth = wp.customize( 'bgtfw_header_width' )();
+				parent.kirkiSetSettingValue.set( 'bgtfw_header_width', headerWidth );
+			}
+
 			// Trigger resize to recalculate header positioning when options are switched.
-			$( window ).trigger( 'resize' );
+			bgtfw_calculate_layouts();
 		} );
 	} );
 
@@ -211,7 +226,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		value.bind( function( to ) {
 			var body = $( 'body' );
 			to ? body.addClass( 'header-fixed' ) : body.removeClass( 'header-fixed' );
-			$( window ).trigger( 'resize' );
+			bgtfw_calculate_layouts();
 		} );
 	} );
 
@@ -222,7 +237,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				.removeClass( function( index, className ) {
 					return ( className.match ( /(^|\s)layout-\S+/g ) || [] ).join( ' ' );
 				} ).addClass( to );
-			$( window ).trigger( 'resize' );
+				bgtfw_calculate_layouts();
+		} );
+	} );
+
+	wp.customize( 'bgtfw_header_width', function( value ) {
+
+		// Bind value change.
+		value.bind( function() {
+			bgtfw_calculate_layouts();
 		} );
 	} );
 

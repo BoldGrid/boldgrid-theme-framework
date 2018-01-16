@@ -40,8 +40,10 @@ main {
 }
 
 /* Adjust Containers in Content */
-.has-sidebar .site-content .container {
-	width: 100%;
+.has-sidebar, .header-right, .header-left {
+	.site-content .container {
+		width: 100%;
+	}
 }
 
 @media only screen and ( min-width: 992px ) {

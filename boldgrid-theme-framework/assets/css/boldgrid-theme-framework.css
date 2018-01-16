@@ -1386,6 +1386,9 @@ span.author.vcard {
     display: none; } }
 
 /** Sidebar Base Styles **/
+#primary-sidebar {
+  width: 100%; }
+
 .site-content {
   display: flex;
   flex-direction: column-reverse; }

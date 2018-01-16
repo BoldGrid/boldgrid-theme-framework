@@ -38,6 +38,12 @@ $adjust: multiply-use-first-unit( $padding, 2 );
 main {
 	width: 100%;
 }
+
+/* Adjust Containers in Content */
+.has-sidebar .site-content .container {
+	width: 100%;
+}
+
 @media only screen and ( min-width: 992px ) {
 	.has-sidebar main {
 		flex: 1 0 auto;

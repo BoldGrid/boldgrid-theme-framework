@@ -34,14 +34,24 @@ $adjust: multiply-use-first-unit( $padding, 2 );
 main {
 	width: 100%;
 }
-
+@media only screen and ( min-width: 992px ) {
+	.has-sidebar main {
+		flex: 1 0 auto;
+	}
+	.has-sidebar main + aside {
+		width: calc((100% * (1/3)) + 1em);
+		max-width: 425px;
+	}
+}
 @media only screen and (min-width : 992px) {
 	.has-sidebar {
 		main {
+			flex: 1 0 auto;
 			width: calc((100% * (2/3)) + #{$adjust});
 		}
 		main + aside {
 			width: calc((100% * (1/3)) + #{$adjust});
+			max-width: 425px;
 			padding: 0 #{$adjust};
 		}
 	}

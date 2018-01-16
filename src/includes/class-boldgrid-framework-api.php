@@ -402,14 +402,19 @@ class BoldGrid {
 
 		$classes[] = get_theme_mod( 'bgtfw_header_layout_position', 'header-top' );
 
-		$layout = get_page_template_slug();
 
-		if ( empty( $layout ) ) {
-			$type = 'page' === get_post_type() ? 'page' : 'blog';
-			$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
+		if ( is_front_page() && is_home() ) {
+			$classes[] = get_theme_mod( 'bgtfw_layout_homepage_sidebar', get_theme_mod( 'bgtfw_layout_blog', 'no-sidebar' ) );
+		} else {
+			$layout = get_page_template_slug();
+
+			if ( empty( $layout ) ) {
+				$type = 'page' === get_post_type() ? 'page' : 'blog';
+				$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
+			}
+
+			$classes[] = sanitize_html_class( $layout );
 		}
-
-		$classes[] = sanitize_html_class( $layout );
 
 		return array_unique( $classes );
 	}
@@ -568,7 +573,35 @@ class BoldGrid {
 
 		isset( $display ) || $display = ! in_array( true, $conditions, true );
 		return apply_filters( 'boldgrid/display_sidebar', $display );
+	}
 
+	/**
+	 * Determine if user has set homepage to NOT display the sidebar.
+	 *
+	 * @since 2.0.0
+	 * @link https://codex.wordpress.org/Conditional_Tags
+	 *
+	 * @return Boolean $display Whether or not to display the sidebar on queried post.
+	 */
+	public function homepage_sidebar( $display ) {
+
+		if ( is_front_page() && is_home() ) {
+
+			// Check if a setting has been saved for blog homepages.
+			$homepage_sidebar = get_theme_mod( 'bgtfw_layout_homepage_sidebar', false );
+
+			if ( empty( $homepage_sidebar ) ) {
+				// Nothing was saved, so check if there's a default global blog page setting set.
+				$global_sidebar = get_theme_mod( 'bgtfw_layout_blog', false );
+				$homepage_sidebar = empty( $global_sidebar ) ? 'no-sidebar' : $global_sidebar;
+			}
+
+			if ( $homepage_sidebar !== 'no-sidebar' ) {
+				$display = true;
+			}
+		}
+
+		return $display;
 	}
 
 	/**

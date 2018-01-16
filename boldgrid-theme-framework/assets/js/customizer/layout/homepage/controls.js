@@ -1,9 +1,10 @@
 wp.customize.bind( 'ready', function () {
 
 	/**
-	 * The active_callback method in PHP doesn't allow for controls to be
-	 * rerendered.  The active_callback needs to be implemented in js to
-	 * allow for the controls to be contextually updated.
+	 * The active_callback method in PHP continues to display the control
+	 * until the previewer has fully refreshed.  This gives the control
+	 * instant feedback for the user by conditionally hiding it as they
+	 * make their selections.
 	 *
 	 * @since 2.0.0
 	 */

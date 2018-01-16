@@ -389,6 +389,8 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $scripts, 'boldgrid_enqueue_scripts' );
 		$this->loader->add_filter( 'language_attributes', $scripts, 'modernizr' );
 
+		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'homepage_sidebar' );
+
 		// Setup Header Metadata.
 		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_meta_charset',  105 );
 		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_enable_xua',    106 );
@@ -403,7 +405,7 @@ class BoldGrid_Framework {
 		// Additional theme functionality.
 		$this->loader->add_action( 'wp',                            $boldgrid_theme,   'setup_author' );
 		$this->loader->add_filter( 'body_class',                    $boldgrid_theme,   'body_classes' );
-		$this->loader->add_filter( 'bgtfw_header_class',                    $boldgrid_theme,   'header_classes' );
+		$this->loader->add_filter( 'bgtfw_header_class',            $boldgrid_theme,   'header_classes' );
 
 		$this->loader->add_filter( 'wp_page_menu_args',             $boldgrid_theme,   'page_menu_args' );
 		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );

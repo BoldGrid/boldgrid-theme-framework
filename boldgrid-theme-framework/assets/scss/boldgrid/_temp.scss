@@ -973,15 +973,22 @@
 	}
 }
 /* 404: No Results Found */
-
 .no-results,
 .not-found {
 	display: flex;
 	justify-content: center;
 	flex: 1 0 100%;
 }
-/* Archive Pages */
 
+/* 404 Page */
+.home.blog.no-sidebar .site-content {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+}
+
+/* Archive Pages */
 .home.blog .main > .row > div {
 	display: flex;
 	flex-wrap: wrap;

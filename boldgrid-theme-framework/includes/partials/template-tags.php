@@ -424,7 +424,7 @@ function is_not_bgtfw_sidebar_layout() {
 
 
 /**
- * Display the classes for the body element.
+ * Display the classes for the header element.
  *
  * @since 2.8.0
  *
@@ -436,7 +436,7 @@ function bgtfw_header_class( $class = '' ) {
 }
 
 /**
- * Retrieve the classes for the body element as an array.
+ * Retrieve the classes for the header element as an array.
  *
  * @since 2.8.0
  *

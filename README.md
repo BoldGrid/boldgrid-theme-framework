@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.5.6 In Progress ###
+* Bug fix: Fixing issue with .site-title line-height conflict from WP4.7 changes.
+
 ### 1.5.5 ###
 * Update: Change Post and Page Builder url.
 

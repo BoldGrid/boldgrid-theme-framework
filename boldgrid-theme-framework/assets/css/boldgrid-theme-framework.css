@@ -30,7 +30,7 @@
 # Base Elements
 --------------------------------------------------------------*/
 /** Headings **/
-.palette-primary h1, .palette-primary .h1 {
+.palette-primary h1:not(.site-title), .palette-primary .h1:not(.site-title) {
   line-height: 1.1; }
 
 .palette-primary h2, .palette-primary .h2 {

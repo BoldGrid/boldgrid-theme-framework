@@ -1,8 +1,14 @@
 // Headings Styles
 @mixin headings($from: 1, $to: 6){
 	@for $i from $from through $to{
-		h#{$i}, .h#{$i} {
-			@content
+		@if $i == 1 {
+			h#{$i}:not(.site-title), .h#{$i}:not(.site-title) {
+				@content
+			}
+		} @else {
+			h#{$i}, .h#{$i} {
+				@content
+			}
 		}
 	}
 }

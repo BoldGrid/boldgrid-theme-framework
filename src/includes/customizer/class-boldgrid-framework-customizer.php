@@ -477,6 +477,35 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
+		// Main Typography Settings.
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'typography',
+				'transport'   => 'auto',
+				'settings'    => 'bgtfw_body_typography',
+				'label'       => esc_attr__( 'Typography', 'bgtfw' ),
+				'section'     => 'body_typography',
+				'default'     => array(
+					'font-family'    => 'Roboto',
+					'variant'        => '100',
+					'font-size'      => '18px',
+					'line-height'    => '1.4',
+					'letter-spacing' => '0',
+					'subsets'        => array( 'latin-ext' ),
+					'color'          => '#333333',
+					'text-transform' => 'none',
+					'text-align'     => 'left'
+				),
+				'priority'    => 10,
+				'output'      => array(
+					array(
+						'element' => 'body, p, .site-content, .site-footer',
+					),
+				),
+			)
+		);
+
 		// Adds the "Colors" section to the WordPress customizer "Header" panel.
 		Kirki::add_section(
 			'bgtfw_tagline', array(

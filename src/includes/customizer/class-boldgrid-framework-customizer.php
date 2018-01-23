@@ -724,7 +724,7 @@ class BoldGrid_Framework_Customizer {
 				),
 				'output' => array(
 					array(
-						'element'  => '#colophon',
+						'element'  => '.site-footer',
 						'property' => 'background-color',
 					),
 				),

@@ -7,12 +7,16 @@
 }
 .footer-center-items, .boldgrid-framework-menu {
 	li:after {
-		content: " | ";
+		content: "";
+		margin-left: 1em;
+		border-left: 1px solid currentColor;
 	}
 	li:last-of-type:after {
-		content: "";
+		margin: 0;
+		border: 0;
 	}
 }
+
 .footer-center-menu, .boldgrid-framework-menu {
 	li {
 		list-style: none;

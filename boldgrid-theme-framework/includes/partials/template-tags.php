@@ -468,6 +468,61 @@ function bgtfw_get_header_class( $class = '' ) {
 	return array_unique( $classes );
 }
 
+/**
+ * Display the classes for the header element.
+ *
+ * @since 2.8.0
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function bgtfw_footer_class( $class = '' ) {
+	// Separates classes with a single space, collates classes for body element
+	echo 'class="' . join( ' ', bgtfw_get_footer_class( $class ) ) . '"';
+}
+
+/**
+ * Retrieve the classes for the footer element as an array.
+ *
+ * @since 2.8.0
+ *
+ * @global WP_Query $wp_query
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function bgtfw_get_footer_class( $class = '' ) {
+	$classes = array();
+
+	if ( ! empty( $class ) ) {
+
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+
+		$classes = array_merge( $classes, $class );
+	} else {
+
+		// Ensure that we always coerce class to being an array.
+		$class = array();
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	$classes = apply_filters( 'bgtfw_footer_class', $classes, $class );
+
+	return array_unique( $classes );
+}
+
+/**
+ * Responsible for displaying sidebar/widget areas in a bgtfw theme.
+ *
+ * @since 2.0.0
+ *
+ * @param string $sidebar_id The sidebar ID to create an area for.
+ * @param bool   $help       Whether or not to display help text inside of widget area.
+ *
+ * @return null Prints the sidebar markup.
+ */
 function bgtfw_widget( $sidebar_id, $help = null ) {
 	if ( ! empty( $help ) ) {
 		$tmp = true;

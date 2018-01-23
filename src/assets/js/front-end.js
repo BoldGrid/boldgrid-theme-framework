@@ -200,7 +200,7 @@ var BoldGrid = BoldGrid || {};
 				$( window ).on( 'resize', function() {
 					var $mainMenuState = $( '#main-menu-state' ),
 						screen_width = $( window ).width() + 16;
-					if ( screen_width > 768 ) {
+					if ( screen_width > 768 && $mainMenuState.length ) {
 						if ( $mainMenuState[0].checked ) {
 							$mainMenuState.attr( 'checked', false );
 						}

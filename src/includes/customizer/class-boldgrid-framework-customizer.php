@@ -1088,6 +1088,29 @@ HTML;
 		) );
 
 		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_footer_layouts' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'layout-1',
+			'transport'   => 'postMessage',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_footer_layouts', array(
+			'label'       => esc_html__( 'Layout', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 10,
+			'choices'     => array(
+				'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
+				'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
+				'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
+				'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
+				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
+				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
+			),
+			'section'     => 'bgtfw_footer_layout',
+		) );
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
 		$wp_customize->add_setting( 'bgtfw_header_layout_position' , array(
 			'type'      => 'theme_mod',
 			'default'   => 'header-top',

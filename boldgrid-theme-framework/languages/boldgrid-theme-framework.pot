@@ -390,7 +390,7 @@ msgstr ""
 msgid "Select the number of footer widget columns you wish to display."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:649, src/includes/customizer/class-boldgrid-framework-customizer.php:1152
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:649, src/includes/customizer/class-boldgrid-framework-customizer.php:1175
 msgid "Continue to Widgets Section"
 msgstr ""
 
@@ -997,7 +997,7 @@ msgstr ""
 msgid "This section controls the appearance of your website's Footer."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:609, src/includes/customizer/class-boldgrid-framework-customizer.php:1076
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:609, src/includes/customizer/class-boldgrid-framework-customizer.php:1076, src/includes/customizer/class-boldgrid-framework-customizer.php:1099
 msgid "Layout"
 msgstr ""
 
@@ -1033,79 +1033,79 @@ msgstr ""
 msgid "Default Homepage Layout"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1080
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1080, src/includes/customizer/class-boldgrid-framework-customizer.php:1103
 msgid "Layout 1"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1081
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1081, src/includes/customizer/class-boldgrid-framework-customizer.php:1104
 msgid "Layout 2"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1082
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1082, src/includes/customizer/class-boldgrid-framework-customizer.php:1105
 msgid "Layout 3"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1083
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1083, src/includes/customizer/class-boldgrid-framework-customizer.php:1106
 msgid "Layout 4"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1084
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1084, src/includes/customizer/class-boldgrid-framework-customizer.php:1107
 msgid "Layout 5"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1085
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1085, src/includes/customizer/class-boldgrid-framework-customizer.php:1108
 msgid "Layout 6"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1099
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1122
 msgid "Header Position"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1103
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1126
 msgid "Header on Top"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1104
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1127
 msgid "Header on Left"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1105
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1128
 msgid "Header on Right"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1116
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1139
 msgid "Header Settings"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1133
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1156
 msgid "Header Widgets"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1134
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1157
 msgid "Select the number of widget areas you wish to display"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1154
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1177
 msgid "You can add widgets to your header from the widgets section."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1174
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1197
 msgid "Custom Header HTML"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1175
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1198
 msgid "Add your custom HTML for your header here"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1255
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1278
 msgid "Menu Tutorial"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1389
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1412
 msgid "Using the Customizer"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1391
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1414
 msgid ""
 "BoldGrid sites are highly customizable. Each of the menu items to the left correspond with an area\n"
 "					of your site. Become familiar with everything's location to make full use of your site's features."

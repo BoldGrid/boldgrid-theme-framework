@@ -230,6 +230,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 	} );
 
+	/**
+	 * Header layout control.
+	 */
 	wp.customize( 'bgtfw_header_top_layouts', function( value ) {
 		// Bind value change.
 		value.bind( function( to ) {
@@ -246,6 +249,19 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		// Bind value change.
 		value.bind( function() {
 			bgtfw_calculate_layouts();
+		} );
+	} );
+
+	/**
+	 * Footer layout control.
+	 */
+	wp.customize( 'bgtfw_footer_layouts', function( value ) {
+		// Bind value change.
+		value.bind( function( to ) {
+			$( '.site-footer' )
+				.removeClass( function( index, className ) {
+					return ( className.match ( /(^|\s)layout-\S+/g ) || [] ).join( ' ' );
+				} ).addClass( to );
 		} );
 	} );
 

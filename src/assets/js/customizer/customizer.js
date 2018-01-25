@@ -258,7 +258,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	wp.customize( 'bgtfw_footer_layouts', function( value ) {
 		// Bind value change.
 		value.bind( function( to ) {
-			$( '.site-footer' )
+			$( '#colophon' )
 				.removeClass( function( index, className ) {
 					return ( className.match ( /(^|\s)layout-\S+/g ) || [] ).join( ' ' );
 				} ).addClass( to );

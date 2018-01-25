@@ -320,9 +320,25 @@ class BoldGrid {
 
 	/**
 	 * Adds custom classes to the array of header classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function header_classes( $classes ) {
 		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts', 'layout-6' );
+		return $classes;
+	}
+
+	/**
+	 * Adds custom classes to the array of footer classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array $classes array of classes to be applied to the .site-footer element.
+	 */
+	public function footer_classes( $classes ) {
+		$classes[] = get_theme_mod( 'bgtfw_footer_layouts', 'layout-1' );
 		return $classes;
 	}
 

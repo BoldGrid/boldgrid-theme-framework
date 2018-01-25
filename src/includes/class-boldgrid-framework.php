@@ -406,6 +406,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp',                            $boldgrid_theme,   'setup_author' );
 		$this->loader->add_filter( 'body_class',                    $boldgrid_theme,   'body_classes' );
 		$this->loader->add_filter( 'bgtfw_header_class',            $boldgrid_theme,   'header_classes' );
+		$this->loader->add_filter( 'bgtfw_footer_class',            $boldgrid_theme,   'footer_classes' );
 
 		$this->loader->add_filter( 'wp_page_menu_args',             $boldgrid_theme,   'page_menu_args' );
 		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );

@@ -1,0 +1,37 @@
+.footer.layout-7 {
+	.social-menu,
+	.footer-center-menu,
+	.contact-block,
+	.attribution-theme-mods {
+		justify-content: center;
+	}
+	.footer-center-menu {
+		order: 1;
+	}
+	.social-menu {
+		order: 2;
+	}
+	.contact-block {
+		order: 3;
+	}
+	.attribution-theme-mods {
+		order: 4;
+	}
+
+	@media only screen and (min-width : 768px) {
+		.footer-center-menu,
+		.social-menu,
+		.contact-block,
+		.attribution-theme-mods {
+			display: flex;
+			flex-direction: row;
+			flex-basis: 50%;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+		}
+		.social-menu,
+		.attribution-theme-mods {
+			justify-content: flex-end;
+		}
+	}
+}

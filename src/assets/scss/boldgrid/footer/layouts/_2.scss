@@ -1,10 +1,10 @@
 .footer.layout-2 {
-	.social-menu {
-		text-align: right;
-	}
+	.social-menu,
+	.footer-center-menu,
 	.contact-block,
 	.attribution-theme-mods {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: flex-end;
 	}
 }

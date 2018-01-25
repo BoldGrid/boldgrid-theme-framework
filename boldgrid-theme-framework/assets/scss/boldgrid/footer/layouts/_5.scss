@@ -1,0 +1,26 @@
+.footer.layout-5 {
+	.social-menu,
+	.footer-center-menu,
+	.contact-block,
+	.attribution-theme-mods {
+		justify-content: center;
+	}
+
+	@media only screen and (min-width : 768px) {
+		.social-menu {
+			flex-basis: 40%;
+			order: 3;
+			justify-content: flex-end;
+		}
+		.footer-center-menu {
+			flex-basis: 60%;
+			order: 2;
+			justify-content: flex-start;
+		}
+		.social-menu,
+		.contact-block,
+		.attribution-theme-mods {
+			justify-content: flex-end;
+		}
+	}
+}

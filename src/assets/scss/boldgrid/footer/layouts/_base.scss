@@ -1,0 +1,53 @@
+/** Footer Styles **/
+.footer-center-items.list-inline > li {
+	padding-left: 0;
+	padding-right: 0;
+}
+.footer-center-items.list-inline > li:not(:first-of-type) {
+	margin-left: 1em;
+}
+footer .bgtfw-widget-row {
+	margin-left: -15px;
+	margin-right: -15px;
+}
+#colophon {
+	padding: 1.5em 15px;
+}
+.contact-block:not(:empty) {
+	margin: 10px 0 0 0;
+}
+
+#colophon {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.footer-center-menu,
+.social-menu,
+.contact-block,
+.attribution-theme-mods {
+	display: flex;
+	flex-direction: row;
+	flex-basis: 100%;
+	flex-wrap: wrap;
+}
+.footer-center-items {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: 0;
+}
+#footer-widget-area {
+	order: 1;
+}
+.social-menu {
+	order: 2;
+}
+.footer-center-menu {
+	order: 3;
+}
+.attribution-theme-mods {
+	order: 4;
+}
+.contact-block{
+	order: 5;
+}

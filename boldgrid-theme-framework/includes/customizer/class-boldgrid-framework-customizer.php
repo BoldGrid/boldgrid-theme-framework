@@ -1106,6 +1106,8 @@ HTML;
 				'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
 				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
 				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
+				'layout-7' => esc_attr__( 'Layout 7', 'bgtfw' ),
+				'layout-8' => esc_attr__( 'Layout 8', 'bgtfw' ),
 			),
 			'section'     => 'bgtfw_footer_layout',
 		) );

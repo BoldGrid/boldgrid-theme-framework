@@ -495,7 +495,7 @@ class BoldGrid_Framework_Customizer {
 					'subsets'        => array( 'latin-ext' ),
 					'color'          => '#333333',
 					'text-transform' => 'none',
-					'text-align'     => 'left'
+
 				),
 				'priority'    => 10,
 				'output'      => array(

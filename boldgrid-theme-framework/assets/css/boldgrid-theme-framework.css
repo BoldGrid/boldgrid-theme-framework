@@ -1592,6 +1592,31 @@ html.admin-bar {
   .attribution-theme-mods {
     padding-left: 0; } }
 
+/* Layouts */
+.footer.layout-1 .social-menu {
+  text-align: left; }
+
+.footer.layout-1 .contact-block,
+.footer.layout-1 .attribution-theme-mods {
+  display: flex;
+  justify-content: flex-start; }
+
+.footer.layout-2 .social-menu {
+  text-align: right; }
+
+.footer.layout-2 .contact-block,
+.footer.layout-2 .attribution-theme-mods {
+  display: flex;
+  justify-content: flex-end; }
+
+.footer.layout-3 .social-menu {
+  text-align: center; }
+
+.footer.layout-3 .contact-block,
+.footer.layout-3 .attribution-theme-mods {
+  display: flex;
+  justify-content: center; }
+
 /*--------------------------------------------------------------
 # GridBlocks
 --------------------------------------------------------------*/

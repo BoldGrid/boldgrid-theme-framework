@@ -4,7 +4,6 @@
 		padding: 0;
 		background-color: white;
 		border-top: none;
-		height: 50px;
 	}
 	.content-area {
 		margin-bottom: 15px;
@@ -38,9 +37,6 @@
 	}
 	&.disabled-footer {
 		margin-bottom: 0;
-	}
-	&.disabled-footer .attribution-theme-mods:not(:empty) {
-		margin-bottom: 50px;
 	}
 }
 .bgtfw-edit-links-shown {

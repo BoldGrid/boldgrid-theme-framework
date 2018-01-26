@@ -1,25 +1,25 @@
 .footer.layout-5 {
-	.social-menu,
-	.footer-center-menu,
-	.contact-block,
-	.attribution-theme-mods {
+	.social-menu-wrapper,
+	.footer-center-menu-wrapper,
+	.contact-block-wrapper,
+	.attribution-theme-mods-wrapper {
 		justify-content: center;
 	}
 
 	@media only screen and (min-width : 768px) {
-		.social-menu {
+		.social-menu-wrapper {
 			flex-basis: 40%;
 			order: 3;
 			justify-content: flex-end;
 		}
-		.footer-center-menu {
+		.footer-center-menu-wrapper {
 			flex-basis: 60%;
 			order: 2;
 			justify-content: flex-start;
 		}
-		.social-menu,
-		.contact-block,
-		.attribution-theme-mods {
+		.social-menu-wrapper,
+		.contact-block-wrapper,
+		.attribution-theme-mods-wrapper {
 			justify-content: flex-end;
 		}
 	}

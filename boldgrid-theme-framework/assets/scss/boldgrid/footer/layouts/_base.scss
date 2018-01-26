@@ -24,10 +24,10 @@ footer .bgtfw-widget-row {
 .contact-block:not(:empty) {
 	margin: 10px 0 0 0;
 }
-.footer-center-menu,
-.social-menu,
-.contact-block,
-.attribution-theme-mods {
+.footer-center-menu-wrapper,
+.social-menu-wrapper,
+.contact-block-wrapper,
+.attribution-theme-mods-wrapper {
 	display: flex;
 	flex-direction: row;
 	flex-basis: 100%;
@@ -37,15 +37,15 @@ footer .bgtfw-widget-row {
 #footer-widget-area {
 	order: 1;
 }
-.social-menu {
+.social-menu-wrapper {
 	order: 2;
 }
-.footer-center-menu {
+.footer-center-menu-wrapper {
 	order: 3;
 }
-.attribution-theme-mods {
+.attribution-theme-mods-wrapper {
 	order: 4;
 }
-.contact-block{
+.contact-block-wrapper {
 	order: 5;
 }

@@ -206,7 +206,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw_layout_page', array(
 				'type'        => 'radio',
 				'settings'    => 'bgtfw_layout_blog',
-				'label'       => __( 'Default Global Layout', 'bgtfw' ),
+				'label'       => __( 'Default Sidebar Display', 'bgtfw' ),
 				'section'     => 'bgtfw_layout_blog',
 				'default'     => 'none',
 				'priority'    => 10,
@@ -608,7 +608,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw_footer_layout', array(
 				'title'          => __( 'Layout', 'bgtfw' ),
 				'panel'        => 'bgtfw_footer',
-				'description'    => esc_attr__( 'Change the layout of your site\'s footer.', 'bgtfw' ),
+				'description'    => esc_html__( 'Change the layout of your site\'s footer.', 'bgtfw' ),
 				'priority'       => 10,
 				'capability'     => 'edit_theme_options',
 				'theme_supports' => '', // Rarely needed.
@@ -634,6 +634,18 @@ class BoldGrid_Framework_Customizer {
 				'title'          => __( 'Widgets', 'bgtfw' ),
 				'panel'        => 'bgtfw_footer',
 				'description'    => esc_attr__( 'Adjust your footer\'s widget sections.', 'bgtfw' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Adds the "Widgets" section to the WordPress customizer "Footer" panel.
+		Kirki::add_section(
+			'bgtfw_header_widgets', array(
+				'title'          => __( 'Widgets', 'bgtfw' ),
+				'panel'        => 'bgtfw_header',
+				'description'    => __( 'Adjust your footer\'s widget sections.', 'bgtfw' ),
 				'priority'       => 10,
 				'capability'     => 'edit_theme_options',
 				'theme_supports' => '', // Rarely needed.
@@ -670,6 +682,7 @@ class BoldGrid_Framework_Customizer {
 				),
 			)
 		);
+
 		Kirki::add_field(
 			'bgtfw',
 			array(
@@ -691,6 +704,34 @@ class BoldGrid_Framework_Customizer {
 						'selector'        => '#footer-widget-area',
 						'render_callback' => function() {
 							return $this->widget_row( 'footer', null );
+						},
+						'container_inclusive' => true,
+					),
+				),
+			)
+		);
+
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'label'       => __( 'Header Widget Areas', 'bgtfw' ),
+				'description' => __( 'Select the number of header widget columns you wish to display.', 'bgtfw' ),
+				'type'        => 'number',
+				'settings'    => 'boldgrid_header_widgets',
+				'priority'    => 80,
+				'default'     => 0,
+				'transport'   => 'auto',
+				'choices'     => array(
+					'min'  => 0,
+					'max'  => 6,
+					'step' => 1,
+				),
+				'section'     => 'bgtfw_header_widgets',
+				'partial_refresh' => array(
+					'boldgrid_header_widgets' => array(
+						'selector'        => '#header-widget-area',
+						'render_callback' => function() {
+							return $this->widget_row( 'header', null );
 						},
 					),
 				),
@@ -1054,7 +1095,7 @@ HTML;
 
 		// Uses the 'radio' type in WordPress.
 		$wp_customize->add_control( 'bgtfw_layout_homepage_sidebar', array(
-			'label'       => esc_html__( 'Default Homepage Layout', 'bgtfw' ),
+			'label'       => esc_html__( 'Homepage Sidebar Display', 'bgtfw' ),
 			'type'        => 'radio',
 			'priority'    => 30,
 			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
@@ -1062,6 +1103,47 @@ HTML;
 			'active_callback' => function() {
 				return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
 			},
+		) );
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_layout_blog_layout' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'layout-1',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_layout_blog_layout', array(
+			'label'       => esc_html__( 'Homepage Blog Layout', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 40,
+			'choices'     => array(
+				'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
+				'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
+				'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
+				'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
+				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
+				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
+			),
+			'section'     => 'static_front_page',
+			'active_callback' => function() {
+				return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
+			},
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_layout_blog_layout', array(
+			'label'       => esc_html__( 'Layout', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 40,
+			'choices'     => array(
+				'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
+				'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
+				'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
+				'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
+				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
+				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
+			),
+			'section'     => 'bgtfw_layout_blog',
 		) );
 
 		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.

@@ -373,7 +373,7 @@ class BoldGrid {
 		global $wp_query;
 
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || ( is_home() && is_front_page() || is_front_page() ) ) {
-			$classes[] = get_theme_mod( 'bgtfw_layout_blog_layout', 'layout-1' );
+			$classes[] = 'col' . get_theme_mod( 'bgtfw_pages_blog_blog_page_layout_columns', '1' );
 		}
 
 		if ( is_archive() ) {
@@ -447,6 +447,24 @@ class BoldGrid {
 	}
 
 	/**
+	 * Apply the blog design to posts page.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $classes Array of classes to add to posts.
+	 *
+	 * @return array $classes Array of classes to add to posts.
+	 */
+	public function post_class( $classes ) {
+		global $post;
+		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || ( is_home() && is_front_page() || is_front_page() ) ) {
+			$classes[] = get_theme_mod( 'bgtfw_blog_layout', 'design-1' );
+		}
+
+		return $classes;
+	}
+
+	/**
 	 * Sets the authordata global when viewing an author archive.
 	 *
 	 * This provides backwards compatibility with
@@ -502,8 +520,6 @@ class BoldGrid {
 	 */
 	public function boldgrid_sticky_bottom() {
 		if ( true === $this->configs['scripts']['boldgrid-sticky-footer'] ) { ?>
-				<div id="boldgrid-sticky-filler"></div>
-				<div id="boldgrid-sticky-push"></div>
 			</div><!-- End of #boldgrid-sticky-wrap -->
 		<?php }
 	}

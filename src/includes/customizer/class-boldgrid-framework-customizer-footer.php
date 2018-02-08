@@ -177,41 +177,7 @@ class Boldgrid_Framework_Customizer_Footer {
 	public function add_attrbution_control( $wp_customize ) {
 
 		$configs = $this->configs;
-		Kirki::add_field(
-			'',
-			array(
-				'type'        => 'custom',
-				'settings'     => 'boldgrid_attribution_heading',
-				'label'       => __( 'Attribution Control', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => '',
-				'priority'    => 20,
-			)
-		);
-		Kirki::add_field(
-			'',
-			array(
-				'type'        => 'checkbox',
-				'settings'     => 'hide_boldgrid_attribution',
-				'transport'   => 'refresh',
-				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => false,
-				'priority'    => 30,
-			)
-		);
-		Kirki::add_field(
-			'',
-			array(
-				'type'        => 'checkbox',
-				'settings'     => 'hide_wordpress_attribution',
-				'transport'   => 'refresh',
-				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => false,
-				'priority'    => 40,
-			)
-		);
+
 	}
 
 	/**
@@ -289,7 +255,7 @@ class Boldgrid_Framework_Customizer_Footer {
 	 */
 	public function add_enable_control() {
 		Kirki::add_field(
-			'',
+			'bgtfw',
 			array(
 				'type' => 'switch',
 				'settings' => 'boldgrid_enable_footer',

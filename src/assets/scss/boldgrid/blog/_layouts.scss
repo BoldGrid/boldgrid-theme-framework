@@ -17,26 +17,27 @@
     }
     &[class*="col"] main > article {
         margin: .5em;
-        flex-wrap: wrap;
         display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
     }
     &.col1 main > article {
-        width: 100%;
+        width: calc( ( 100% / 1 ) - 1em );
     }
     &.col2 main > article {
-        width: calc( (100% / 2 ) - 1em );
+        width: calc( ( 100% / 2 ) - 1em );
     }
     &.col3 main > article {
-        width: calc( (100% / 3 ) - 1em );
+        width: calc( ( 100% / 3 ) - 1em );
     }
     &.col4 main > article {
-        width: calc( (100% / 4 ) - 1em );
+        width: calc( ( 100% / 4 ) - 1em );
     }
     &.col5 main > article {
-        width: calc( (100% / 5 ) - 1em );
+        width: calc( ( 100% / 5 ) - 1em );
     }
     &.col6 main > article {
-        width: calc( (100% / 6 ) - 1em );
+        width: calc( ( 100% / 6 ) - 1em );
     }
     /* Paging Nav */
     .paging-navigation {

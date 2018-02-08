@@ -165,18 +165,6 @@ class BoldGrid_Framework_Customizer {
 			require_once ABSPATH . 'wp-admin/includes/theme.php';
 		}
 
-		// Adds the "Page Layout" control the "Layout" section.
-		// Adds the "Layout" section to the WordPress customizer.
-		Kirki::add_panel(
-			'bgtfw_layout', array(
-				'title'          => __( 'Layout' ),
-				'description'    => __( 'This section controls the layout of pages and posts on your website.' ),
-				'priority'       => 10,
-				'capability'     => 'edit_theme_options',
-				'theme_supports' => '', // Rarely needed.
-			)
-		);
-
 		// Adds the "Blog" section to the WordPress customizer "Layout" panel.
 		Kirki::add_section(
 			'bgtfw_layout_blog', array(
@@ -192,8 +180,8 @@ class BoldGrid_Framework_Customizer {
 		// Adds the "Blog" section to the WordPress customizer "Layout" panel.
 		Kirki::add_section(
 			'bgtfw_layout_page', array(
-				'title'          => __( 'Page' ),
-				'panel'        => 'bgtfw_layout',
+				'title'          => __( 'Pages', 'bgtfw' ),
+				'panel'        => 'bgtfw_design_panel',
 				'description'    => __( 'This section controls the global layout of pages on your website.' ),
 				'priority'       => 10,
 				'capability'     => 'edit_theme_options',
@@ -201,25 +189,14 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-		$post_templates = array_flip( get_page_templates( null, 'post' ) );
-		Kirki::add_field(
-			'bgtfw_layout_page', array(
-				'type'        => 'radio',
-				'settings'    => 'bgtfw_layout_blog',
-				'label'       => __( 'Default Sidebar Display', 'bgtfw' ),
-				'section'     => 'bgtfw_layout_blog',
-				'default'     => 'none',
-				'priority'    => 10,
-				'choices'     => $post_templates,
-			)
-		);
+
 
 		$page_templates = array_flip( get_page_templates( null, 'page' ) );
 		Kirki::add_field(
 			'bgtfw_layout_page', array(
 				'type'        => 'radio',
 				'settings'    => 'bgtfw_layout_page',
-				'label'       => __( 'Default Page Layout', 'bgtfw' ),
+				'label'       => __( 'Default Sidebar Display', 'bgtfw' ),
 				'section'     => 'bgtfw_layout_page',
 				'default'     => 'none',
 				'priority'    => 10,
@@ -253,17 +230,6 @@ class BoldGrid_Framework_Customizer {
 						'element' => '.site-branding .site-description',
 					),
 				),
-			)
-		);
-
-		// Adds the "Header" section to the WordPress customizer.
-		Kirki::add_panel(
-			'bgtfw_header', array(
-				'title'          => __( 'Header', 'bgtfw' ),
-				'description'    => __( 'This section controls the appearance of your website\'s Header.', 'bgtfw' ),
-				'priority'       => 10,
-				'capability'     => 'edit_theme_options',
-				'theme_supports' => '', // Rarely needed.
 			)
 		);
 
@@ -518,27 +484,7 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-		// Adds the "Footer" panel to the WordPress customizer.
-		Kirki::add_panel(
-			'bgtfw_footer', array(
-				'title'          => __( 'Footer', 'bgtfw' ),
-				'description'    => __( 'This section controls the appearance of your website\'s Footer.', 'bgtfw' ),
-				'priority'       => 10,
-				'capability'     => 'edit_theme_options',
-				'theme_supports' => '', // Rarely needed.
-			)
-		);
 		// Footer Section.
-		Kirki::add_section(
-			'boldgrid_footer_panel',
-			array(
-				'title' => __( 'Footer Settings', 'bgtfw' ),
-				'priority' => 130, // After all core sections.
-				'panel' => 'boldgrid_other',
-				'capability' => 'edit_theme_options',
-				'description' => __( 'This section allows you to modify features that are not menus or widgets.', 'bgtfw' ),
-			)
-		);
 		Kirki::add_field(
 			'bgtfw',
 			array(
@@ -605,7 +551,7 @@ class BoldGrid_Framework_Customizer {
 
 		// Adds the "Layout" section to the WordPress customizer "Footer" panel.
 		Kirki::add_section(
-			'bgtfw_footer_layout', array(
+			'boldgrid_footer_panel', array(
 				'title'          => __( 'Layout', 'bgtfw' ),
 				'panel'        => 'bgtfw_footer',
 				'description'    => esc_html__( 'Change the layout of your site\'s footer.', 'bgtfw' ),
@@ -622,7 +568,7 @@ class BoldGrid_Framework_Customizer {
 				'type' => 'switch',
 				'settings' => 'boldgrid_enable_footer',
 				'label' => __( 'Enable Footer', 'bgtfw' ),
-				'section' => 'bgtfw_footer_layout',
+				'section' => 'boldgrid_footer_panel',
 				'default' => true,
 				'priority' => 5,
 			)
@@ -771,6 +717,39 @@ class BoldGrid_Framework_Customizer {
 				),
 			)
 		);
+
+		// Blog page columns
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'label'       => __( 'Columns', 'bgtfw' ),
+				'description' => __( 'Select the number of columns you wish to display on your blog page.', 'bgtfw' ),
+				'type'        => 'number',
+				'settings'    => 'bgtfw_pages_blog_blog_page_layout_columns',
+				'priority'    => 1,
+				'default'     => 1,
+				'transport'   => 'postMessage',
+				'choices'     => array(
+					'min'  => 1,
+					'max'  => 6,
+					'step' => 1,
+				),
+				'section'     => 'bgtfw_pages_blog_blog_page_layout',
+			)
+		);
+
+		// Fixed header toggle - Allows header to switch between fixed/static.
+		Kirki::add_field(
+			'bgtfw', array(
+				'type'        => 'switch',
+				'settings'    => 'bgtfw_pages_blog_blog_page_layout_featimg',
+				'label'       => esc_attr__( 'Featured Images', 'bgtfw' ),
+				'description' => __( 'Display the featured image for posts in the full post content.', 'bgtfw' ),
+				'section'     => 'bgtfw_pages_blog_blog_page_layout',
+				'default'     => false,
+				'priority'    => 45,
+			)
+		);
 	}
 
 	/**
@@ -796,11 +775,21 @@ class BoldGrid_Framework_Customizer {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_script(
-			'boldgrid-customizer-controls-base',
-			$this->configs['framework']['js_dir'] . 'customizer/controls' . $suffix . '.js',
+			'bgtfw-customizer-base-controls',
+			$this->configs['framework']['js_dir'] . 'customizer/base-controls' . $suffix . '.js',
 			array(
 				'jquery',
 				'customize-controls'
+			),
+			false,
+			true
+		);
+
+		wp_register_script(
+			'boldgrid-customizer-controls-base',
+			$this->configs['framework']['js_dir'] . 'customizer/controls' . $suffix . '.js',
+			array(
+				'bgtfw-customizer-base-controls'
 			),
 			false,
 			true
@@ -819,6 +808,17 @@ class BoldGrid_Framework_Customizer {
 		wp_register_script(
 			'bgtfw-customizer-layout-homepage-controls',
 			$this->configs['framework']['js_dir'] . 'customizer/layout/homepage/controls' . $suffix . '.js',
+			array(
+				'customize-controls',
+				'boldgrid-customizer-controls-base'
+			),
+			false,
+			true
+		);
+
+		wp_register_script(
+			'bgtfw-customizer-layout-blog-blog-page-featured-images',
+			$this->configs['framework']['js_dir'] . 'customizer/layout/blog/blog-page/layout/featured-images' . $suffix . '.js',
 			array(
 				'customize-controls',
 				'boldgrid-customizer-controls-base'
@@ -867,8 +867,10 @@ class BoldGrid_Framework_Customizer {
 			$this->configs['customizer-options']['required']
 		);
 
+		wp_enqueue_script( 'bgtfw-customizer-base-controls' );
 		wp_enqueue_script( 'boldgrid-customizer-required-helper' );
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-controls' );
+		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-featured-images' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-homepage-controls' );
 		wp_enqueue_script( 'boldgrid-customizer-widget-preview' );
 	}
@@ -886,7 +888,29 @@ class BoldGrid_Framework_Customizer {
 			array( 'jquery', 'customize-preview' ),
 		$this->configs['version'], true );
 
+		wp_register_script(
+			'bgtfw-customizer-layout-blog-blog-page-live-preview',
+			$this->configs['framework']['js_dir'] . 'customizer/layout/blog/blog-page/layout/live-preview' . $suffix . '.js',
+			array(
+				'boldgrid-theme-customizer'
+			),
+			$this->configs['version'],
+			true
+		);
+
+		wp_register_script(
+			'bgtfw-customizer-layout-blog-blog-page-layout-columns',
+			$this->configs['framework']['js_dir'] . 'customizer/layout/blog/blog-page/layout/columns' . $suffix . '.js',
+			array(
+				'boldgrid-theme-customizer'
+			),
+			$this->configs['version'],
+			true
+		);
+
 		wp_enqueue_script( 'boldgrid-theme-customizer' );
+		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-live-preview' );
+		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-layout-columns' );
 
 		wp_enqueue_style(
 			'boldgrid-theme-framework-customizer-css',
@@ -1011,8 +1035,8 @@ HTML;
 		// Move Homepage Settings to the Layouts Panel.
 		if ( $wp_customize->get_section( 'static_front_page' ) ) {
 			$wp_customize->get_section( 'static_front_page' )->title = 'Homepage';
-			$wp_customize->get_section( 'static_front_page' )->priority = 5;
-			$wp_customize->get_section( 'static_front_page' )->panel = 'bgtfw_layout';
+			$wp_customize->get_section( 'static_front_page' )->priority = 1;
+			$wp_customize->get_section( 'static_front_page' )->panel = 'bgtfw_design_panel';
 		}
 
 		// Move and Rename Site Identity to Site Title & Logo.
@@ -1087,6 +1111,206 @@ HTML;
 	 */
 	public function header_panel( $wp_customize ) {
 
+		// Registers our custom panel and section types.
+		$wp_customize->register_panel_type( 'Boldgrid_Framework_Customizer_Panel' );
+		$wp_customize->register_section_type( 'Boldgrid_Framework_Customizer_Section' );
+
+		// Pages Panel.
+		$pages_panel = new Boldgrid_Framework_Customizer_Panel(
+			$wp_customize,
+			'bgtfw_design_panel',
+			array(
+				'title' => __( 'Design', 'bgtfw' ),
+				'priority' => 1,
+			)
+		);
+
+		$wp_customize->add_panel( $pages_panel );
+
+		// Header Panel
+		$header_panel = new Boldgrid_Framework_Customizer_Panel(
+			$wp_customize,
+			'bgtfw_header',
+			array(
+				'title' => __( 'Header', 'bgtfw' ),
+				'priority' => 1,
+				'panel' => 'bgtfw_design_panel',
+			)
+		);
+
+		$wp_customize->add_panel( $header_panel );
+
+		// Footer Panel
+		$footer_panel = new Boldgrid_Framework_Customizer_Panel(
+			$wp_customize,
+			'bgtfw_footer',
+			array(
+				'title' => __( 'Footer', 'bgtfw' ),
+				'priority' => 2,
+				'panel' => 'bgtfw_design_panel',
+			)
+		);
+
+		$wp_customize->add_panel( $footer_panel );
+
+		// Add three levels on panels
+		$bgtfw_blog_panel = new Boldgrid_Framework_Customizer_Panel( $wp_customize, 'bgtfw_blog_panel', array(
+			'title' => 'Blog',
+			'priority' => 2,
+			'panel' => 'bgtfw_design_panel',
+		));
+
+		$wp_customize->add_panel( $bgtfw_blog_panel );
+
+		$bgtfw_blog_blog_page_panel = new Boldgrid_Framework_Customizer_Panel( $wp_customize, 'bgtfw_blog_blog_page_panel', array(
+			'title' => 'Blog Page',
+			'panel' => 'bgtfw_blog_panel',
+		));
+
+		$wp_customize->add_panel( $bgtfw_blog_blog_page_panel );
+
+		$bgtfw_blog_posts_panel = new Boldgrid_Framework_Customizer_Panel( $wp_customize, 'bgtfw_blog_posts_panel', array(
+			'title' => 'Posts',
+			'panel' => 'bgtfw_blog_panel',
+		));
+
+		$wp_customize->add_panel( $bgtfw_blog_posts_panel );
+
+		// Add example section and controls to the middle (second) panel
+		$wp_customize->add_section( 'bgtfw_pages_blog_blog_page_layout', array(
+			'title' => 'Layout',
+			'panel' => 'bgtfw_blog_blog_page_panel',
+			'priority' => 2,
+		));
+
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_pages_blog_blog_page_layout_content' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'excerpt',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_pages_blog_blog_page_layout_content', array(
+			'label'       => esc_html__( 'Post Content Display', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 40,
+			'choices'     => array(
+				'excerpt' => esc_attr__( 'Post Excerpt', 'bgtfw' ),
+				'content' => esc_attr__( 'Full Content', 'bgtfw' ),
+			),
+			'section' => 'bgtfw_pages_blog_blog_page_layout',
+		) );
+
+		// Add example section and controls to the middle (second) panel
+		$wp_customize->add_section( 'bgtfw_blog_blog_page_panel_sidebar', array(
+			'title' => __( 'Sidebar', 'bgtfw' ),
+			'panel' => 'bgtfw_blog_blog_page_panel',
+			'priority' => 4,
+		));
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_blog_blog_page_sidebar' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'no-sidebar',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_blog_blog_page_sidebar', array(
+			'label'       => esc_html__( 'Sidebar Options', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 10,
+			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
+			'section'     => 'bgtfw_blog_blog_page_panel_sidebar',
+		) );
+
+		// Add example section and controls to the middle (second) panel
+		$wp_customize->add_section( 'bgtfw_pages_blog_posts_layout', array(
+			'title' => 'Layout',
+			'panel' => 'bgtfw_blog_posts_panel',
+			'priority' => 2,
+		));
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_pages_blog_posts_layout_layout' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'container',
+			'transport'   => 'postMessage',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_pages_blog_posts_layout_layout', array(
+			'label'       => esc_html__( 'Layout', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 40,
+			'choices'     => array(
+				'container' => esc_attr__( 'Contained', 'bgtfw' ),
+				'container-fluid' => esc_attr__( 'Full Width', 'bgtfw' ),
+			),
+			'section' => 'bgtfw_pages_blog_posts_layout',
+		) );
+
+
+		// Add example section and controls to the middle (second) panel
+		$wp_customize->add_section( 'bgtfw_pages_blog_posts_sidebar', array(
+			'title' => __( 'Sidebar', 'bgtfw' ),
+			'panel' => 'bgtfw_blog_posts_panel',
+			'priority' => 4,
+		));
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_layout_blog' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'no-sidebar',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_layout_blog', array(
+			'label'       => esc_html__( 'Sidebar Display', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 10,
+			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
+			'section'     => 'bgtfw_pages_blog_posts_sidebar',
+		) );
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_blog_blog_page_settings' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'no-sidebar',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_blog_blog_page_settings', array(
+			'label'       => esc_html__( 'Homepage Sidebar Display', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 10,
+			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
+			'section'     => 'bgtfw_blog_blog_page_settings',
+		) );
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'bgtfw_blog_layout' , array(
+			'type'      => 'theme_mod',
+			'default'   => 'layout-1',
+			'transport'   => 'postMessage',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_blog_layout', array(
+			'label'       => esc_html__( 'Design', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 40,
+			'choices'     => array(
+				'design-1' => esc_attr__( 'Design 1', 'bgtfw' ),
+				'design-2' => esc_attr__( 'Design 2', 'bgtfw' ),
+				'design-3' => esc_attr__( 'Design 3', 'bgtfw' ),
+				'design-4' => esc_attr__( 'Design 4', 'bgtfw' ),
+				'design-5' => esc_attr__( 'Design 5', 'bgtfw' ),
+				'design-6' => esc_attr__( 'Design 6', 'bgtfw' ),
+			),
+			'section' => 'bgtfw_pages_blog_blog_page_layout',
+		) );
+
 		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
 		$wp_customize->add_setting( 'bgtfw_layout_homepage_sidebar' , array(
 			'type'      => 'theme_mod',
@@ -1109,6 +1333,7 @@ HTML;
 		$wp_customize->add_setting( 'bgtfw_layout_blog_layout' , array(
 			'type'      => 'theme_mod',
 			'default'   => 'layout-1',
+			'transport'   => 'postMessage',
 		) );
 
 		// Uses the 'radio' type in WordPress.
@@ -1143,7 +1368,7 @@ HTML;
 				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
 				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
 			),
-			'section'     => 'bgtfw_layout_blog',
+			'section' => 'bgtfw_layout_blog',
 		) );
 
 		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
@@ -1191,7 +1416,7 @@ HTML;
 				'layout-7' => esc_attr__( 'Layout 7', 'bgtfw' ),
 				'layout-8' => esc_attr__( 'Layout 8', 'bgtfw' ),
 			),
-			'section'     => 'bgtfw_footer_layout',
+			'section'     => 'boldgrid_footer_panel',
 		) );
 
 		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
@@ -1213,6 +1438,16 @@ HTML;
 			),
 			'section'     => 'bgtfw_header_layout',
 		) );
+
+		$bgtfw_design_panel = new Boldgrid_Framework_Customizer_Panel( $wp_customize, 'bgtfw_pages_panel', array(
+			'title' => 'Pages',
+			'priority' => 2,
+			'panel' => 'bgtfw_design_panel',
+		));
+
+		$wp_customize->add_panel( $bgtfw_design_panel );
+
+
 
 		$config = $this->configs['customizer-options']['header_panel'];
 

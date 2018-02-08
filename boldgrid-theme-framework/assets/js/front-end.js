@@ -270,7 +270,16 @@ var BoldGrid = BoldGrid || {};
 				}
 			},
 			flexSupport: function() {
+				var wrap, filler, push;
+
 				if ( ! Modernizr.flexbox ) {
+					wrap = document.getElementById( 'boldgrid-sticky-wrap' );
+					filler = document.createElement( 'DIV' );
+					filler.id = 'boldgrid-sticky-filler';
+					push = document.createElement( 'DIV' );
+					push.id = 'boldgrid-sticky-push';
+					wrap.appendChild( filler );
+					wrap.appendChild( push );
 					this.stickyFooter();
 				}
 			},

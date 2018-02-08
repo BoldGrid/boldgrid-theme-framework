@@ -28,16 +28,7 @@
 	width: 100%;
 }
 
-.site-content {
-	display: flex;
-	flex-direction: column-reverse;
-}
-
 $adjust: multiply-use-first-unit( $padding, 2 );
-
-main {
-	width: 100%;
-}
 
 /* Adjust Containers in Content */
 .has-sidebar, .header-right, .header-left {

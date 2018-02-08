@@ -1,3 +1,13 @@
+
+main {
+	width: 100%;
+}
+.site-content {
+	display: flex;
+	flex-direction: column-reverse;
+	flex: 1 0 auto;
+}
+
 /** Headings **/
 .palette-primary {
 	@include headings() {

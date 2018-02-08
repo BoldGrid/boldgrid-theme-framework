@@ -52,7 +52,7 @@ class Boldgrid_Framework_Customizer_Contact_Blocks {
 			array(
 				'type'        => 'repeater',
 				'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
+				'section'     => 'bgtfw_footer_layout',
 				'priority'    => 10,
 				'row_label' => array(
 					'field' => 'contact_block',

@@ -609,3 +609,29 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	</aside>
 <?php
 }
+
+/**
+ * Gets the styles for a feature image set as a background image on an element.
+ *
+ * @since 2.0.0
+ *
+ * @return string $style The inline styles to apply to an element.
+ */
+function bgtfw_get_featured_img_bg( $post_id ) {
+	$style = '';
+	if ( has_post_thumbnail( $post_id ) ) {
+		$img = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
+		$style = 'style="background-image: url(' . $img[0] . ');background-size: cover;background-position: center center;"';
+	}
+
+	return $style;
+}
+
+/**
+ * Echos the style for a feature image set as a background image on an element.
+ *
+ * @since 2.0.0
+ */
+function bgtfw_featured_img_bg ( $post_id ) {
+	echo bgtfw_get_featured_img_bg( $post_id );
+}

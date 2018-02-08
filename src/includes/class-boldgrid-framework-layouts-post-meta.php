@@ -64,8 +64,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	 *
 	 * @since 2.0.0
 	 */
-	public function layout_selection( $post_type = 'page' ) {
-		$templates = get_page_templates( null, $post_type );
+	public function layout_selection( $post ) {
+		$templates = get_page_templates( null, $post->post_type );
 		ksort( $templates );
 
 		/* Get current post/entry layout */
@@ -89,9 +89,20 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				 * @param string $context Where the option label is displayed. Possible values
 				 *                        include 'meta-box' or 'quick-edit'.
 				 */
-				$default_title = apply_filters( 'default_page_template_title',  __( 'Global Theme Default', 'bgtfw' ), 'meta-box' );
-				$type = 'page' === $post_type ? $post_type : 'blog';
-				$global_template = get_theme_mod( 'bgtfw_layout_' . $type, $default_title );
+
+
+				// Check that page_for_posts and pull the default global for blog page sidebar options.
+				if ( get_option( 'page_for_posts' ) == $post->ID ) {
+					$default_title = __( 'Theme Customizer Default', 'bgtfw' );
+					$global_template = get_theme_mod( 'bgtfw_layout_homepage_sidebar', $default_title );
+				} else {
+					$default_title = __( 'Global Theme Default', 'bgtfw' );
+					$type = 'page' === $post->post_type ? $post->post_type : 'blog';
+					$global_template = get_theme_mod( 'bgtfw_layout_' . $type, $default_title );
+				}
+
+				$default_title = apply_filters( 'default_page_template_title', $default_title, 'meta-box' );
+
 				$checked = ! in_array( $post_layout, $templates ) ? 'checked="checked"' : '';
 				$title = $default_title;
 				$subtitle = '';
@@ -144,24 +155,27 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	 * @since 2.0.0
 	 */
 	public function meta_box_callback( $post ) {
-		if ( count( get_page_templates( $post ) ) > 0 && get_option( 'page_for_posts' ) != $post->ID ) :
-			$template = ! empty( $post->page_template ) ? $post->page_template : false;
-			?>
-			<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="page_template"><?php _e( 'Template' ); ?></label><?php
-				/**
-				 * Fires immediately after the label inside the 'Template' section
-				 * of the 'Page Attributes' meta box.
-				 *
-				 * @since 4.4.0
-				 *
-				 * @param string  $template The template used for the current post.
-				 * @param WP_Post $post     The current post.
-				 */
-				do_action( 'page_attributes_meta_box_template', $template, $post );
-			?></p>
+		if ( count( get_page_templates( $post ) ) > 0 ) :
+				$template = ! empty( $post->page_template ) ? $post->page_template : false;
+				?>
+				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="page_template"><?php _e( 'Template' ); ?></label><?php
+					/**
+					 * Fires immediately after the label inside the 'Template' section
+					 * of the 'Page Attributes' meta box.
+					 *
+					 * @since 4.4.0
+					 *
+					 * @param string  $template The template used for the current post.
+					 * @param WP_Post $post     The current post.
+					 */
+					do_action( 'page_attributes_meta_box_template', $template, $post );
+				?></p>
 
-			<?php $this->layout_selection( $post->post_type ); ?>
+				<?php $this->layout_selection( $post ); ?>
+
 		<?php endif; ?>
+
+
 
 		<?php
 			if ( is_post_type_hierarchical( $post->post_type ) ) : ?>

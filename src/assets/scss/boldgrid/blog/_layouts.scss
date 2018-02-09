@@ -7,14 +7,7 @@
     .entry-title {
         word-break: break-word;
     }
-    main {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        > article {
-            display: block;
-        }
-    }
+
     &[class*="col"] main > article {
         margin: .5em;
         display: flex;
@@ -39,10 +32,121 @@
     &.col6 main > article {
         width: calc( ( 100% / 6 ) - 1em );
     }
+
+    /* General Blog Design */
+    main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        > article.post {
+            display: flex;
+            flex-direction: column;
+            .entry-header {
+                display: flex;
+                flex-direction: column;
+                padding-bottom: 1.5em;
+                padding-left: 0;
+                padding-right: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                .entry-title {
+                    margin-top: .5em;
+                    margin-bottom: 0;
+                }
+                .entry-meta {
+                    padding-top: 1.5em;
+                    align-self: flex-end;
+                    justify-content: flex-end;
+                    display: flex;
+                }
+            }
+            .featured-imgage-header {
+                width: 100%
+            }
+            .entry-title,
+            .entry-meta {
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+            .entry-content {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                width: 100%;
+                flex: 1 0 auto;
+                padding-left: 15px;
+                padding-right: 15px;
+                .container,
+                .container-fluid {
+                    padding: 0;
+                }
+            }
+            .entry-footer {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
+                align-self: flex-end;
+                span:first-child {
+                    padding-left: .5em;
+                }
+                span:last-child {
+                    padding-right: .5em;
+                }
+            }
+            .entry-footer .bgtfw-edit-link a {
+                top: -32px;
+                left: -32px;
+            }
+            .entry-footer .bgtfw-edit-link a {
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+            .comments-link {
+                flex: 1 0 auto;
+            }
+            @import "design/1";
+            @import "design/2";
+            @import "design/3";
+        }
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (max-width : 768px) {
+        &[class*="col"] main > article.post {
+            width: calc((100% / 2 - .5vw) - 2vw);
+        }
+    }
+    @media only screen and (max-width : 480px) {
+        &[class*="col"] main > article.post {
+            width: calc((100% / 1 - .5vw) - 2vw);
+        }
+    }
+
     /* Paging Nav */
     .paging-navigation {
         &, .nav-links {
             min-width: 100%;
         }
+    }
+}
+
+
+.bgtfw-edit-link {
+	position: relative;
+	width: auto;
+	height: auto;
+}
+.entry-footer span {
+	display: flex;
+    padding: .5em;
+    &:last-child:not(.comments-link) {
+        justify-content: flex-end;
+        flex: 1 0 auto;
+        padding-right: .5em;
+    }
+    &:first-child {
+        padding-left: .5em;
     }
 }

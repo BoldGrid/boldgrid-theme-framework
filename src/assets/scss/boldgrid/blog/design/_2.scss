@@ -1,0 +1,34 @@
+&.design-2 {
+	display: flex;
+	background-color: transparent;
+	flex-direction: column;
+	border: 1px solid currentColor;
+	.entry-header {
+		display: flex;
+		flex-direction: column;
+		flex: 1 0 100%;
+		max-width: 50%;
+		height: 100%;
+		padding: 0;
+		padding-bottom: 0;
+		.entry-meta {
+			align-self: flex-start;
+		}
+	}
+	.featured-imgage-header{
+		display: flex;
+		flex-direction: column;
+		flex: 1 0 100%;
+	}
+	.entry-content {
+		flex-direction: column;
+		flex: 1 0 auto;
+		max-width: 50%;
+	}
+	.entry-footer {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		max-width: 50%;
+	}
+}

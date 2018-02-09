@@ -1009,7 +1009,7 @@ HTML;
 	 * Let widgets tell the user to go to header and footer to change number of
 	 * columns.
 	 *
-	 * @since  1.0.0
+	 * @since 1.0.0
 	 */
 	public function add_widget_help( $wp_customize ) {
 		// Todo Add Description to widgets to tell the user to go to header and footer to change columns.

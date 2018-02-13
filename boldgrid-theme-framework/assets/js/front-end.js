@@ -59,11 +59,47 @@ var BoldGrid = BoldGrid || {};
 		'custom_header': {
 			init: function() {
 
+				// Check for video background embed type.
+				$( document ).on( 'wp-custom-header-video-loaded', this.checkType );
+
 				// Initial calculations.
 				this.calc();
 
 				// Listen for resize events to retrigger calculations.
 				$( window ).resize( this.calc );
+			},
+
+			/**
+			 * Performs check of video background type as native video or youtube embed.
+			 *
+			 * @since 2.0.0
+			 *
+			 * @return null
+			 */
+			checkType: function() {
+				var timer, body, youtube, nativeVideo;
+
+				timer = setTimeout( function loadVideo() {
+
+					body = $( 'body' );
+					youtube = ( ( ( wp || {} ).customHeader || {} ).handlers || {} ).youtube;
+					nativeVideo = ( ( ( wp || {} ).customHeader || {} ).handlers || {} ).nativeVideo;
+
+						// jscs:disable requireYodaConditions
+						if ( youtube.player == null && nativeVideo.video == null ) {
+								timer = setTimeout( loadVideo, 50 );
+						} else {
+							if ( nativeVideo.video == null && typeof youtube.player.stopVideo === 'function' ) {
+								body.addClass( 'has-youtube-header' );
+							} else if ( youtube.player == null && $( nativeVideo.video ).length ) {
+								body.addClass( 'has-video-header' );
+							} else {
+								timer = setTimeout( loadVideo, 50 );
+							}
+
+						// jscs:enable requireYodaConditions
+						}
+				}, 50 );
 			},
 
 			calc: function() {
@@ -85,9 +121,9 @@ var BoldGrid = BoldGrid || {};
 				} else {
 					$( '#content' ).css( 'margin-top', '0px' );
 					if ( $( '#main-menu' ).is( ':visible' ) ) {
-						header_height = Math.abs( header_height - $( '#main-menu' ).height() );
+						header_height = Math.abs( $( '#navi' ).height() - $( '#main-menu' ).height() );
 					}
-					$( '.wp-custom-header' ).css( 'height', header_height + 2 );
+					$( '.wp-custom-header' ).css( 'height', $( '#navi' ).outerHeight() + 2 );
 				}
 			}
 		},
@@ -147,9 +183,9 @@ var BoldGrid = BoldGrid || {};
 					} else {
 						$( '#content' ).css( 'margin-top', '0px' );
 						if ( $( '#main-menu' ).is( ':visible' ) ) {
-							header_height = Math.abs( header_height - $( '#main-menu' ).height() );
+							header_height = Math.abs( $( '#navi' ).height() - $( '#main-menu' ).height() );
 						}
-						$( '.wp-custom-header' ).css( 'height', header_height + 2 );
+						$( '.wp-custom-header' ).css( 'height', $( '#navi' ).outerHeight() + 2 );
 					}
 				}
 

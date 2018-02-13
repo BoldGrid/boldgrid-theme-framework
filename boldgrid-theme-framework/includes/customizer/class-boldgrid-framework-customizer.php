@@ -908,9 +908,20 @@ class BoldGrid_Framework_Customizer {
 			true
 		);
 
+		wp_register_script(
+			'bgtfw-customizer-header-layout-header-background',
+			$this->configs['framework']['js_dir'] . 'customizer/header-layout/header-background' . $suffix . '.js',
+			array(
+				'boldgrid-theme-customizer'
+			),
+			$this->configs['version'],
+			true
+		);
+
 		wp_enqueue_script( 'boldgrid-theme-customizer' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-live-preview' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-layout-columns' );
+		wp_enqueue_script( 'bgtfw-customizer-header-layout-header-background' );
 
 		wp_enqueue_style(
 			'boldgrid-theme-framework-customizer-css',

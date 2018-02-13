@@ -1,4 +1,5 @@
 ( function( $ ) {
+
 	/**
 	 * Update classes for blog layouts.
 	 */

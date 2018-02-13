@@ -331,9 +331,6 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   flex-direction: row;
   flex-wrap: wrap; }
 
-.blog main > article {
-  display: block; }
-
 .blog main > article.post {
   display: flex;
   flex-direction: column; }
@@ -468,12 +465,6 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .blog main > article.post.design-3 .entry-header .entry-meta {
   padding-bottom: 1.5em; }
-
-.blog[class*="layout"] main > article {
-  margin: .5em;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start; }
 
 @media only screen and (max-width: 768px) {
   .blog[class*="col"] main > article.post {
@@ -2726,6 +2717,47 @@ footer .bgtfw-widget-row {
     object-fit: cover;
     width: 100%;
     overflow: hidden; } }
+
+/** Youtube video iframe background styles **/
+.has-youtube-header .wp-custom-header {
+  background: #eee;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+  position: relative; }
+
+/**
+* This is used to provide a similar effect as object-fit: cover for Youtube video embeds
+* The magic number 56.25vw maintains the 16:9 aspect ratio for the height based on the
+* viewport's width.
+*/
+.has-youtube-header iframe#wp-custom-header-video {
+  box-sizing: border-box;
+  height: 56.25vw;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  max-width: 3000%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  width: 177.77777778vh; }
+
+.has-youtube-header .custom-header-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; }
+
+@media only screen and (min-width: 768px) {
+  .has-youtube-header #navi {
+    top: auto;
+    position: absolute; }
+  .has-youtube-header .custom-header-media {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto; } }
 
 /* Set up header for flex styles */
 #masthead {

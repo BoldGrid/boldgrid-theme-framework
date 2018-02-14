@@ -25,9 +25,11 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 	class Boldgrid_Framework_Customizer_Panel extends WP_Customize_Panel {
 
 		/**
-		 * Panel instance.
+		 * Panel in which to show the panel, making it a sub-panel.
 		 *
 		 * @since 2.0.0
+		 *
+		 * @var string
 		 *
 		 * @access public
 		 */

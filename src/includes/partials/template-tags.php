@@ -551,45 +551,23 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 
 	$bgtfw_configs = $boldgrid_theme_framework->get_configs();
 	$bgtfw_colors = new Boldgrid_Framework_Compile_Colors( $bgtfw_configs );
-	$bgtfw_palette = $bgtfw_colors->get_palette();
 
-	$current_palette = $bgtfw_palette['state']['active-palette'];
-	$bgtfw_color = is_array( $bgtfw_palette['state']['palettes'][ $current_palette ]['colors'] ) ? $bgtfw_palette['state']['palettes'][ $current_palette ]['colors'] : array();
-	$bgtfw_neutral = $bgtfw_colors->get_neutral_color();
+	$active_color = 'rgba(255,255,255,0)';
 
 	$color_class = '';
-	$bgtfw_active_color = "rgba(255,255,255,0)";
 
 	if ( ! empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ) {
-		if ( false !== strpos( $sidebar_meta[ $sidebar_id ]['background_color'], '#' ) ) {
-			$rgb_arrays = $bgtfw_colors->convert_hex_to_rgb( $sidebar_meta[ $sidebar_id ]['background_color'] );
-			$bgtfw_active_color = "rgb({$rgb_arrays[0]}, {$rgb_arrays[1]}, {$rgb_arrays[2]})";
-		}
-
-		foreach ( $bgtfw_color as $k => $v ) {
-			if ( $v === $bgtfw_active_color ) {
-				$color_class = ' color' . abs( $k + 1 ) . '-background-color' ;
-			}
-		}
-
-		if ( ! empty( $bgtfw_neutral ) ) {
-			$bgtfw_neutral_color = $bgtfw_neutral[ $current_palette . '-neutral-color' ];
-			if ( false !== strpos( $bgtfw_neutral_color, '#' ) ) {
-				$rgb_arrays = $bgtfw_colors->convert_hex_to_rgb( $bgtfw_neutral_color );
-				$bgtfw_neutral_color = "rgba({$rgb_arrays[0]}, {$rgb_arrays[1]}, {$rgb_arrays[2]},1)";
-			}
-			if ( $bgtfw_active_color === $bgtfw_neutral_color ) {
-				$color_class = ' color-neutral-background-color';
-			}
-		}
+		$sidebar = $bgtfw_colors->normalize( $sidebar_meta[ $sidebar_id ]['background_color'] );
+		$active_color = ! empty( $sidebar ) ? $sidebar : $active_color;
+		$color_class = $bgtfw_colors->get_color_class( $active_color, 'background-color' );
 	}
 
 	// Apply inline styles if no color class is determined.
 	if ( empty( $color_class ) ) {
-		$style .= sprintf( 'background-color: %s;', $bgtfw_active_color );
+		$style .= sprintf( 'background-color: %s;', $active_color );
 	}
 	?>
-	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid<?php echo $color_class; ?>" role="complementary" style="<?php echo $style; ?>">
+	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid<?php echo $color_class ? ' ' . $color_class : ''; ?>" role="complementary" style="<?php echo $style; ?>">
 		<?php dynamic_sidebar( $sidebar_id ); ?>
 		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
 			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>

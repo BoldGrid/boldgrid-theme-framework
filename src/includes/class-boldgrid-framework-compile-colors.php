@@ -364,4 +364,84 @@ class Boldgrid_Framework_Compile_Colors {
 
 		return $files;
 	}
+
+	/**
+	 * Normalizes hex, rgb, and rgba colors to rgba.
+	 *
+	 * This is mainly used for conversion to rgba, and running
+	 * comparisons on colors used.
+	 *
+	 * Examples:
+	 *
+	 * rgb( 255, 255, 255 )
+	 * rgba(0,0,0,.1)
+	 * #fff
+	 * #B4D455
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $color Hex, rgb, or rgba strings to normalize.
+	 *
+	 * @return string $normalized Normalized color string (or empty).
+	 */
+	public function normalize( $color ) {
+		$normalized = '';
+
+		// Prepare color strings to normalize for comparison.
+		$test = preg_replace( '/\s+/', '', $color );
+
+		// Hex normalization.
+		if ( false !== strpos( $test, '#' ) ) {
+			$rgb = $this->convert_hex_to_rgb( $test );
+			$normalized = "rgba({$rgb[0]},{$rgb[1]},{$rgb[2]},1)";
+		}
+
+		// RGB normalization and validation.
+		if ( preg_match( '/rgb\((?:\s*\d+\s*,){2}\s*[\d]+\)/', $test ) ) {
+			$normalized = str_replace( 'rgb', 'rgba', str_replace( ')', ',1)', $test ) );
+		}
+
+		// RGBA validation.
+		if ( preg_match( '/rgba\((\s*\d+\s*,){3}[\d\.]+\)/', $test ) ) {
+			$normalized = $test;
+		}
+
+		return $normalized;
+	}
+
+	/**
+	 * Get color class associated with a color passed in.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $color a color to check if in palette and obtain color class for it.
+	 * @param string $type CSS property to get color class for. Eg. 'background-color'.
+	 *
+	 * @return mixed $class String containing color class found for color or false.
+	 */
+	public function get_color_class( $color, $type ) {
+		$class = '';
+		$palette = $this->get_palette();
+		$current_palette = $palette['state']['active-palette'];
+		$colors = is_array( $palette['state']['palettes'][ $current_palette ]['colors'] ) ? $palette['state']['palettes'][ $current_palette ]['colors'] : array();
+		$neutral_color = $this->get_neutral_color();
+
+		// Check palette colors.
+		foreach ( $colors as $k => $v ) {
+			if ( $this->normalize( $v ) === $color ) {
+				$class = 'color' . abs( $k + 1 ) . '-' . $type;
+			}
+		}
+
+		// Check neutral color.
+		if ( ! empty( $neutral_color ) ) {
+			$neutral_color = $neutral_color[ $current_palette . '-neutral-color' ];
+			$neutral_color = $this->normalize( $neutral_color );
+			if ( $neutral_color === $color ) {
+				$class = 'color-neutral-' . $type;
+			}
+		}
+
+		return '' !== $class ? $class : false;
+	}
 }

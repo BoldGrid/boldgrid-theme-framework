@@ -1190,7 +1190,6 @@ HTML;
 			'priority' => 2,
 		));
 
-
 		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
 		$wp_customize->add_setting( 'bgtfw_pages_blog_blog_page_layout_content' , array(
 			'type'      => 'theme_mod',
@@ -1426,30 +1425,40 @@ HTML;
 		) );
 
 		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_header_layout_position' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'header-top',
-			'transport'   => 'postMessage',
-		) );
+		$wp_customize->add_setting(
+			'bgtfw_header_layout_position',
+			array(
+				'type' => 'theme_mod',
+				'default' => 'header-top',
+				'transport' => 'postMessage',
+			)
+		);
 
 		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_header_layout_position', array(
-			'label'       => __( 'Header Position', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 10,
-			'choices'     => array(
-				'header-top'   =>  esc_attr__( 'Header on Top', 'bgtfw' ),
-				'header-left' => esc_attr__( 'Header on Left', 'bgtfw' ),
-				'header-right'  =>  esc_attr__( 'Header on Right', 'bgtfw' ),
-			),
-			'section'     => 'bgtfw_header_layout',
-		) );
+		$wp_customize->add_control(
+			'bgtfw_header_layout_position',
+			array(
+				'label' => __( 'Header Position', 'bgtfw' ),
+				'type' => 'radio',
+				'priority' => 10,
+				'choices' => array(
+					'header-top' => esc_attr__( 'Header on Top', 'bgtfw' ),
+					'header-left' => esc_attr__( 'Header on Left', 'bgtfw' ),
+					'header-right' => esc_attr__( 'Header on Right', 'bgtfw' ),
+				),
+				'section' => 'bgtfw_header_layout',
+			)
+		);
 
-		$bgtfw_design_panel = new Boldgrid_Framework_Customizer_Panel( $wp_customize, 'bgtfw_pages_panel', array(
-			'title' => 'Pages',
-			'priority' => 2,
-			'panel' => 'bgtfw_design_panel',
-		));
+		$bgtfw_design_panel = new Boldgrid_Framework_Customizer_Panel(
+			$wp_customize,
+			'bgtfw_pages_panel',
+			array(
+				'title' => 'Pages',
+				'priority' => 2,
+				'panel' => 'bgtfw_design_panel',
+			)
+		);
 
 		$wp_customize->add_panel( $bgtfw_design_panel );
 
@@ -1660,7 +1669,6 @@ HTML;
 	 * through 4, or leave empty for default behavior.
 	 *
 	 * @since  1.0.0
-	 * @return html   Markup for the header widget area of a theme.
 	 */
 	public function header_widget_html() {
 		$this->widget_row( 'header' );

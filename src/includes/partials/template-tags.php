@@ -521,7 +521,7 @@ function bgtfw_get_footer_class( $class = '' ) {
  * @param string $sidebar_id The sidebar ID to create an area for.
  * @param bool   $help       Whether or not to display help text inside of widget area.
  *
- * @return null Prints the sidebar markup.
+ * @return void Prints the sidebar markup.
  */
 function bgtfw_widget( $sidebar_id, $help = null ) {
 	if ( ! empty( $help ) ) {
@@ -549,60 +549,58 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	$sidebar_meta = get_theme_mod( 'sidebar_meta' );
 	global $boldgrid_theme_framework;
 
-			$bgtfw_configs = $boldgrid_theme_framework->get_configs();
-			$bgtfw_colors = new Boldgrid_Framework_Compile_Colors( $bgtfw_configs );
-			$bgtfw_palette = $bgtfw_colors->get_palette();
+	$bgtfw_configs = $boldgrid_theme_framework->get_configs();
+	$bgtfw_colors = new Boldgrid_Framework_Compile_Colors( $bgtfw_configs );
+	$bgtfw_palette = $bgtfw_colors->get_palette();
 
-			$current_palette = $bgtfw_palette['state']['active-palette'];
-			$bgtfw_color = is_array( $bgtfw_palette['state']['palettes'][ $current_palette ]['colors'] ) ? $bgtfw_palette['state']['palettes'][ $current_palette ]['colors'] : array();
-			$bgtfw_neutral = $bgtfw_colors->get_neutral_color();
+	$current_palette = $bgtfw_palette['state']['active-palette'];
+	$bgtfw_color = is_array( $bgtfw_palette['state']['palettes'][ $current_palette ]['colors'] ) ? $bgtfw_palette['state']['palettes'][ $current_palette ]['colors'] : array();
+	$bgtfw_neutral = $bgtfw_colors->get_neutral_color();
 
-			if ( false !== strpos( $sidebar_meta[ $sidebar_id ]['background_color'], '#' ) ) {
-				$rgb_arrays = $bgtfw_colors->convert_hex_to_rgb( $sidebar_meta[ $sidebar_id ]['background_color'] );
-				$bgtfw_active_color = "rgb({$rgb_arrays[0]}, {$rgb_arrays[1]}, {$rgb_arrays[2]})";
-			}
+	$color_class = '';
+	$bgtfw_active_color = "rgba(255,255,255,0)";
 
-			$color_class = '';
-
-			foreach ( $bgtfw_color as $k => $v ) {
-				if ( $v === $bgtfw_active_color ) {
-					$color_class = ' color' . abs( $k + 1 ) . '-background-color' ;
-				}
-			}
-
-			if ( ! empty( $bgtfw_neutral ) ) {
-				$bgtfw_neutral_color = $bgtfw_neutral[ $current_palette . '-neutral-color' ];
-
-				if ( false !== strpos( $bgtfw_neutral_color, '#' ) ) {
-					$rgb_arrays = $bgtfw_colors->convert_hex_to_rgb( $bgtfw_neutral_color );
-					$bgtfw_neutral_color = "rgb({$rgb_arrays[0]}, {$rgb_arrays[1]}, {$rgb_arrays[2]})";
-				}
-				if ( $bgtfw_active_color === $bgtfw_neutral_color ) {
-					$color_class = ' color-neutral-background-color';
-				}
-			}
-
-			if ( empty( $color_class ) ) {
-				$style .= sprintf( 'background-color: %s;', $bgtfw_active_color );
-			}
-			/**
 	if ( ! empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ) {
-		$style .= sprintf( 'background-color: %s;', $sidebar_meta[ $sidebar_id ]['background_color'] );
+		if ( false !== strpos( $sidebar_meta[ $sidebar_id ]['background_color'], '#' ) ) {
+			$rgb_arrays = $bgtfw_colors->convert_hex_to_rgb( $sidebar_meta[ $sidebar_id ]['background_color'] );
+			$bgtfw_active_color = "rgb({$rgb_arrays[0]}, {$rgb_arrays[1]}, {$rgb_arrays[2]})";
+		}
+
+		foreach ( $bgtfw_color as $k => $v ) {
+			if ( $v === $bgtfw_active_color ) {
+				$color_class = ' color' . abs( $k + 1 ) . '-background-color' ;
+			}
+		}
+
+		if ( ! empty( $bgtfw_neutral ) ) {
+			$bgtfw_neutral_color = $bgtfw_neutral[ $current_palette . '-neutral-color' ];
+			if ( false !== strpos( $bgtfw_neutral_color, '#' ) ) {
+				$rgb_arrays = $bgtfw_colors->convert_hex_to_rgb( $bgtfw_neutral_color );
+				$bgtfw_neutral_color = "rgba({$rgb_arrays[0]}, {$rgb_arrays[1]}, {$rgb_arrays[2]},1)";
+			}
+			if ( $bgtfw_active_color === $bgtfw_neutral_color ) {
+				$color_class = ' color-neutral-background-color';
+			}
+		}
 	}
-	*/
+
+	// Apply inline styles if no color class is determined.
+	if ( empty( $color_class ) ) {
+		$style .= sprintf( 'background-color: %s;', $bgtfw_active_color );
+	}
 	?>
 	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid<?php echo $color_class; ?>" role="complementary" style="<?php echo $style; ?>">
 		<?php dynamic_sidebar( $sidebar_id ); ?>
 		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
 			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>
 				<div class="empty-sidebar-message">
-					<h2>Empty Sidebar</h2>
-					<p>This sidebar doesn't have any widgets assigned to it yet.</p>
-					<p><a href="<?php echo $link ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> Add widgets here.</a></p>
+					<h2><?php _e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
+					<p><?php _e( "This sidebar doesn't have any widgets assigned to it yet.", 'bgtfw' ); ?></p>
+					<p><a href="<?php echo $link ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add widgets here.', 'bgtfw' ) ?></a></p>
 				</div>
 				<?php elseif ( is_active_sidebar( $sidebar_id ) ) : ?>
 					<div class="add-widget-message">
-						<p><a href="<?php echo $link ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> Add another widget.</a></p>
+						<p><a href="<?php echo $link ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add another widget.', 'bgtfw' ) ?></a></p>
 					</div>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -632,6 +630,6 @@ function bgtfw_get_featured_img_bg( $post_id ) {
  *
  * @since 2.0.0
  */
-function bgtfw_featured_img_bg ( $post_id ) {
+function bgtfw_featured_img_bg( $post_id ) {
 	echo bgtfw_get_featured_img_bg( $post_id );
 }

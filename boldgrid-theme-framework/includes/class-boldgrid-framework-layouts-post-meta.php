@@ -90,7 +90,6 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				 *                        include 'meta-box' or 'quick-edit'.
 				 */
 
-
 				// Check that page_for_posts and pull the default global for blog page sidebar options.
 				if ( get_option( 'page_for_posts' ) == $post->ID ) {
 					$default_title = __( 'Theme Customizer Default', 'bgtfw' );

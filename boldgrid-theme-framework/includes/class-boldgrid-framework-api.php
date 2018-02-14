@@ -429,7 +429,6 @@ class BoldGrid {
 
 		$classes[] = get_theme_mod( 'bgtfw_header_layout_position', 'header-top' );
 
-
 		if ( is_front_page() && is_home() ) {
 			$classes[] = get_theme_mod( 'bgtfw_layout_homepage_sidebar', get_theme_mod( 'bgtfw_layout_blog', 'no-sidebar' ) );
 		} else {
@@ -639,7 +638,7 @@ class BoldGrid {
 				$homepage_sidebar = empty( $global_sidebar ) ? 'no-sidebar' : $global_sidebar;
 			}
 
-			if ( $homepage_sidebar !== 'no-sidebar' ) {
+			if ( 'no-sidebar' !== $homepage_sidebar ) {
 				$display = true;
 			}
 		}

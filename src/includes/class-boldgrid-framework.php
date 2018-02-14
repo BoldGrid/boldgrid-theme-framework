@@ -588,6 +588,13 @@ class BoldGrid_Framework {
 		self::customizer_widget_meta();
 	}
 
+	/**
+	 * This defines the core functionality of the extended widget meta controls for
+	 * adding color and title fields to widget areas.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 */
 	private function customizer_widget_meta() {
 		$widget_meta = new  Boldgrid_Framework_Customizer_Widget_Meta( $this->configs );
 		$this->loader->add_action( 'customize_register', $widget_meta, 'customize_register' );
@@ -780,8 +787,6 @@ class BoldGrid_Framework {
 		// This hook can be used to add any styles to the head.
 		$this->loader->add_action( 'wp_head',   $base, 'add_head_styles', 9001 );
 		$this->loader->add_action( 'wp_footer', $base, 'custom_js_output' );
-		// Custom Hooks for preview mode and live site.
-		$this->loader->add_action( 'wp_head', $base, 'boldgrid_preview_hooks', 9999, 0 );
 		// Display Widgets.
 		$this->loader->add_action( 'boldgrid_footer_top',   $base, 'footer_widget_html' );
 		$this->loader->add_action( 'boldgrid_header_bottom',   $base, 'header_widget_html' );

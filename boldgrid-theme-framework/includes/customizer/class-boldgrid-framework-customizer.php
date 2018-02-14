@@ -189,8 +189,6 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-
-
 		$page_templates = array_flip( get_page_templates( null, 'page' ) );
 		Kirki::add_field(
 			'bgtfw_layout_page', array(
@@ -222,7 +220,7 @@ class BoldGrid_Framework_Customizer {
 					'subsets'        => array( 'latin-ext' ),
 					'color'          => '#333333',
 					'text-transform' => 'none',
-					'text-align'     => 'left'
+					'text-align'     => 'left',
 				),
 				'priority'    => 10,
 				'output'      => array(
@@ -432,7 +430,7 @@ class BoldGrid_Framework_Customizer {
 					'subsets'        => array( 'latin-ext' ),
 					'color'          => '#333333',
 					'text-transform' => 'none',
-					'text-align'     => 'left'
+					'text-align'     => 'left',
 				),
 				'priority'    => 10,
 				'output'      => array(
@@ -779,7 +777,7 @@ class BoldGrid_Framework_Customizer {
 			$this->configs['framework']['js_dir'] . 'customizer/base-controls' . $suffix . '.js',
 			array(
 				'jquery',
-				'customize-controls'
+				'customize-controls',
 			),
 			false,
 			true
@@ -810,7 +808,7 @@ class BoldGrid_Framework_Customizer {
 			$this->configs['framework']['js_dir'] . 'customizer/layout/homepage/controls' . $suffix . '.js',
 			array(
 				'customize-controls',
-				'boldgrid-customizer-controls-base'
+				'boldgrid-customizer-controls-base',
 			),
 			false,
 			true
@@ -821,7 +819,7 @@ class BoldGrid_Framework_Customizer {
 			$this->configs['framework']['js_dir'] . 'customizer/layout/blog/blog-page/layout/featured-images' . $suffix . '.js',
 			array(
 				'customize-controls',
-				'boldgrid-customizer-controls-base'
+				'boldgrid-customizer-controls-base',
 			),
 			false,
 			true
@@ -832,7 +830,7 @@ class BoldGrid_Framework_Customizer {
 			$this->configs['framework']['js_dir'] . 'customizer/header-layout/controls' . $suffix . '.js',
 			array(
 				'customize-controls',
-				'boldgrid-customizer-controls-base'
+				'boldgrid-customizer-controls-base',
 			),
 			false,
 			true
@@ -844,7 +842,7 @@ class BoldGrid_Framework_Customizer {
 			array(
 				'jquery',
 				'customize-controls',
-				'boldgrid-customizer-controls-base'
+				'boldgrid-customizer-controls-base',
 			),
 			false,
 			true
@@ -855,7 +853,7 @@ class BoldGrid_Framework_Customizer {
 			$this->configs['framework']['js_dir'] . 'customizer/widget-preview' . $suffix . '.js',
 			array(
 				'jquery',
-				'hoverIntent'
+				'hoverIntent',
 			),
 			false,
 			true
@@ -885,8 +883,13 @@ class BoldGrid_Framework_Customizer {
 
 		wp_register_script( 'boldgrid-theme-customizer',
 			$this->configs['framework']['js_dir'] . 'customizer/customizer' . $suffix . '.js',
-			array( 'jquery', 'customize-preview' ),
-		$this->configs['version'], true );
+			array(
+				'jquery',
+				'customize-preview',
+			),
+			$this->configs['version'],
+			true
+		);
 
 		wp_register_script(
 			'bgtfw-customizer-layout-blog-blog-page-live-preview',
@@ -1034,8 +1037,8 @@ HTML;
 	 */
 	public function customizer_reorganization( $wp_customize ) {
 
+		// Add an "other" Panel.
 		if ( true === $this->configs['customizer-options']['advanced_panel'] ) {
-			// Add an "other" Panel.
 			$wp_customize->add_panel( 'boldgrid_other', array(
 				'title'       => __( 'Advanced', 'boldgrid' ),
 				'description' => 'Additional BoldGrid Options',
@@ -1061,13 +1064,10 @@ HTML;
 		if ( $title = $wp_customize->get_control( 'blogname' ) ) {
 			$title->section = 'bgtfw_site_title';
 		}
-
 		if ( $header_image = $wp_customize->get_section( 'header_image' ) ) {
 			$header_image->title = __( 'Background', 'bgtfw' );
 			$header_image->panel = 'bgtfw_header';
 		}
-
-
 
 		// Remove Addition Control that conflict with site title.
 		$wp_customize->remove_control( 'header_textcolor' );
@@ -1080,9 +1080,7 @@ HTML;
 	 * @since  1.0.0
 	 */
 	public function blog_name( $wp_customize ) {
-
 		$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
-
 	}
 
 	/**
@@ -1091,9 +1089,7 @@ HTML;
 	 * @since  1.0.0
 	 */
 	public function blog_description( $wp_customize ) {
-
 		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
-
 	}
 
 	/**
@@ -1260,7 +1256,6 @@ HTML;
 			),
 			'section' => 'bgtfw_pages_blog_posts_layout',
 		) );
-
 
 		// Add example section and controls to the middle (second) panel
 		$wp_customize->add_section( 'bgtfw_pages_blog_posts_sidebar', array(
@@ -1458,8 +1453,6 @@ HTML;
 
 		$wp_customize->add_panel( $bgtfw_design_panel );
 
-
-
 		$config = $this->configs['customizer-options']['header_panel'];
 
 		if ( true === $config ) {
@@ -1542,9 +1535,7 @@ HTML;
 	 * @since 1.0.0
 	 */
 	public function display_footer_html() {
-
 		echo wp_kses_post( get_theme_mod( 'boldgrid_footer_html', '' ) );
-
 	}
 
 	/**
@@ -1553,9 +1544,7 @@ HTML;
 	 * @since 1.0.0
 	 */
 	public function display_header_html() {
-
 		echo wp_kses_post( get_theme_mod( 'boldgrid_header_html', '' ) );
-
 	}
 
 	/**
@@ -1566,9 +1555,7 @@ HTML;
 	 * @since 1.0.0
 	 */
 	public function advanced_panel( $wp_customize ) {
-
 		$panel = $this->configs['customizer-options']['advanced_panel'];
-
 		if ( true === $panel ) {
 			// Which config to check?
 			$css_editor = $this->configs['customizer-options']['advanced_controls']['css_editor'];
@@ -1603,9 +1590,7 @@ HTML;
 			$section = $wp_customize->get_section( $section_id );
 
 			if ( $section ) {
-				$section->description =
-					'<a target="_blank" class="boldgrid-icon-newtab" href="https://www.boldgrid.com/support/working-with-menus-in-boldgrid/">' .
-					__( 'Menu Tutorial', 'bgtfw' ) . '</a>';
+				$section->description = '<a target="_blank" class="boldgrid-icon-newtab" href="https://www.boldgrid.com/support/working-with-menus-in-boldgrid/">' . __( 'Menu Tutorial', 'bgtfw' ) . '</a>';
 			}
 		}
 	}
@@ -1616,19 +1601,16 @@ HTML;
 	 * @since 1.0.0
 	 */
 	public function custom_css_output() {
-
 		echo '<style type="text/css" id="boldgrid-custom-css">' . get_theme_mod( 'custom_theme_css', '' ) . '</style>';
-
 	}
+
 	/**
 	 * Render the custom CSS.
 	 *
 	 * @since 1.0.0
 	 */
 	public function custom_js_output() {
-
 		echo '<script type="text/javascript" id="boldgrid-custom-js">' . get_theme_mod( 'custom_theme_js', '' ) . '</script>';
-
 	}
 
 	/**
@@ -1639,7 +1621,6 @@ HTML;
 	 * of columns to include.  Accepted values should be 1
 	 * through 4, or leave empty for default behavior.
 	 *
-	 * @param    string $columns Number of columns that should display in footer.
 	 * @since    1.0.0
 	 */
 	public function footer_widget_html() {
@@ -1678,35 +1659,11 @@ HTML;
 	 * of columns to include.  Accepted values should be 1
 	 * through 4, or leave empty for default behavior.
 	 *
-	 * @return   html   Markup for the header widget area of a theme.
-	 *
-	 * @param   string $columns   Number of columns that should display in header.
-	 *
-	 * @package BoldGrid
-	 * @since 1.0.0
+	 * @since  1.0.0
+	 * @return html   Markup for the header widget area of a theme.
 	 */
 	public function header_widget_html() {
 		$this->widget_row( 'header' );
-	}
-
-	/**
-	 * This adds a hook for the preview version of the site and a hook for the live version of the site
-	 * so CSS or JS can be applied conditionally.
-	 *
-	 * @since 1.0.0
-	 */
-	public function boldgrid_preview_hooks() {
-
-		if ( ! empty( $GLOBALS['wp_customize'] ) ) {
-
-			do_action( 'wp_head_preview' );
-
-		} else {
-
-			do_action( 'wp_head_live' );
-
-		}
-
 	}
 
 	/**
@@ -1719,10 +1676,7 @@ HTML;
 	 * @since 1.0.0
 	 */
 	public function add_head_styles() {
-		// Allow user to mod css.
 		$css_rules = apply_filters( 'boldgrid_add_head_styles', $css_rules = array() );
-
-		// Print styles.
 		print BoldGrid_Framework_Styles::convert_array_to_css( $css_rules, 'boldgrid-override-styles' );
 	}
 

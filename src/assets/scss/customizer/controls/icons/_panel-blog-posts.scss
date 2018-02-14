@@ -1,0 +1,13 @@
+/* Blog Posts Panel */
+#accordion-panel-bgtfw_blog_posts_panel > li {
+	#accordion-section-bgtfw_ {
+		&pages_blog_posts_layout > h3:before {
+			@include dashicons;
+			content: "\f489";
+		}
+		&pages_blog_posts_sidebar > h3:before {
+			@include bgtfwIcons;
+			content: "\e91b";
+		}
+	}
+}

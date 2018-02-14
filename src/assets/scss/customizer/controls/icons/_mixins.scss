@@ -1,0 +1,29 @@
+/***************************************
+ * Contains common mixins used for panel
+ * icons in the WordPress customizer.
+ ***************************************/
+
+/* Dashicons Mixin */
+@mixin dashicons {
+	font-family: dashicons;
+	padding: .4em;
+	vertical-align: middle;
+	font-size: 1.6em;
+	font-weight: 400;
+}
+
+/* Fontawesome Mixin */
+@mixin FontAwesome {
+	font-family: FontAwesome;
+	font-size: 1.4em;
+	padding: .5em;
+}
+
+/* BGTFW Custom Icons */
+@mixin bgtfwIcons {
+	font-family: icomoon;
+	font-size: 1.4em;
+	font-weight: 400;
+	padding: .5em;
+	vertical-align: middle;
+}

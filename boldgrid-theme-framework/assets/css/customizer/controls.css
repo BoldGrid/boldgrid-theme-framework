@@ -873,9 +873,52 @@
 /*--------------------------------------------------------------
 # Customizer Panel/Section Icons
 --------------------------------------------------------------*/
+/***************************************
+ * Contains common mixins used for panel
+ * icons in the WordPress customizer.
+ ***************************************/
 /* Dashicons Mixin */
 /* Fontawesome Mixin */
 /* BGTFW Custom Icons */
+/* Design Menu */
+#sub-accordion-panel-bgtfw_design_panel > li[id^="accordion-section-"] > h3:before {
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f111"; }
+
+#sub-accordion-panel-bgtfw_design_panel > li#accordion-panel-bgtfw_header > h3:before {
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e927"; }
+
+#sub-accordion-panel-bgtfw_design_panel > li#accordion-panel-bgtfw_footer > h3:before {
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e924"; }
+
+#sub-accordion-panel-bgtfw_design_panel > li#accordion-panel-bgtfw_blog_panel > h3:before {
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f109"; }
+
+#sub-accordion-panel-bgtfw_design_panel > li#accordion-section-static_front_page > h3:before {
+  content: "\f102"; }
+
+#sub-accordion-panel-bgtfw_design_panel > li#accordion-section-bgtfw_layout_page > h3:before {
+  content: "\f105"; }
+
 /* Primary Menu */
 ul.customize-pane-parent > li[id^="accordion-panel-"]:not(.control-panel-themes) > h3:before,
 ul.customize-pane-parent > li[id^="accordion-section-"]:not(.control-panel-themes) > h3:before {
@@ -885,6 +928,9 @@ ul.customize-pane-parent > li[id^="accordion-section-"]:not(.control-panel-theme
   font-size: 1.6em;
   font-weight: 400;
   content: "\f111"; }
+
+ul.customize-pane-parent > li#accordion-panel-bgtfw_design_panel > h3:before {
+  content: "\f100"; }
 
 ul.customize-pane-parent > li#accordion-panel-bgtfw_header > h3:before {
   font-family: icomoon;
@@ -946,10 +992,16 @@ ul.customize-pane-parent > li#accordion-section-background_image > h3:before {
   content: "\f323"; }
 
 #sub-accordion-panel-bgtfw_header > li#accordion-section-title_tagline > h3:before {
-  content: "\f161"; }
+  content: "\f513"; }
 
-/* Layout Panel */
-#sub-accordion-panel-bgtfw_layout > li[id^="accordion-section-"] > h3:before {
+#sub-accordion-panel-bgtfw_header > li#accordion-section-bgtfw_header_widgets > h3:before {
+  content: "\f538"; }
+
+#sub-accordion-panel-bgtfw_header > li#accordion-section-header_image > h3:before {
+  content: "\f128"; }
+
+/* Footer Panel */
+#sub-accordion-panel-bgtfw_footer > li[id^="accordion-section-"] > h3:before {
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -957,14 +1009,63 @@ ul.customize-pane-parent > li#accordion-section-background_image > h3:before {
   font-weight: 400;
   content: "\f111"; }
 
-#sub-accordion-panel-bgtfw_layout > li#accordion-section-static_front_page > h3:before {
-  content: "\f102"; }
+#sub-accordion-panel-bgtfw_footer > li#accordion-section-boldgrid_footer_panel > h3:before {
+  content: "\f489"; }
 
-#sub-accordion-panel-bgtfw_layout > li#accordion-section-bgtfw_layout_blog > h3:before {
+#sub-accordion-panel-bgtfw_footer > li#accordion-section-bgtfw_footer_widgets > h3:before {
+  content: "\f538"; }
+
+#sub-accordion-panel-bgtfw_footer > li#accordion-section-bgtfw_footer_colors > h3:before {
+  content: "\f309"; }
+
+/* Blog Panel */
+#sub-accordion-panel-bgtfw_blog_panel > li[id^="accordion-panel-"] > h3:before {
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f111"; }
+
+#sub-accordion-panel-bgtfw_blog_panel > li#accordion-panel-bgtfw_blog_blog_page_panel > h3:before {
+  content: "\f497"; }
+
+#sub-accordion-panel-bgtfw_blog_panel > li#accordion-panel-bgtfw_blog_posts_panel > h3:before {
   content: "\f109"; }
 
-#sub-accordion-panel-bgtfw_layout > li#accordion-section-bgtfw_layout_page > h3:before {
-  content: "\f105"; }
+/* Blog Page Panel */
+#accordion-panel-bgtfw_blog_blog_page_panel > li #accordion-section-bgtfw_pages_blog_blog_page_layout > h3:before {
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f489"; }
+
+#accordion-panel-bgtfw_blog_blog_page_panel > li #accordion-section-bgtfw_blog_blog_page_panel_sidebar > h3:before {
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e91b"; }
+
+/* Blog Posts Panel */
+#accordion-panel-bgtfw_blog_posts_panel > li #accordion-section-bgtfw_pages_blog_posts_layout > h3:before {
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f489"; }
+
+#accordion-panel-bgtfw_blog_posts_panel > li #accordion-section-bgtfw_pages_blog_posts_sidebar > h3:before {
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e91b"; }
 
 /* Typography Panel */
 #sub-accordion-panel-boldgrid_typography > li[id^="accordion-section-"] > h3:before {
@@ -976,8 +1077,12 @@ ul.customize-pane-parent > li#accordion-section-background_image > h3:before {
   content: "\f111"; }
 
 #sub-accordion-panel-boldgrid_typography > li#accordion-section- {
+  /* Menu Typography Section */
   /* Headings Section */
   /* Main Text Section */ }
+
+#sub-accordion-panel-boldgrid_typography > li#accordion-section-navigation_typography > h3:before {
+  content: "\f333"; }
 
 #sub-accordion-panel-boldgrid_typography > li#accordion-section-headings_typography > h3:before {
   font-family: FontAwesome;

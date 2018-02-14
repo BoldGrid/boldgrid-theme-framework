@@ -25,6 +25,15 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 	class Boldgrid_Framework_Customizer_Section extends WP_Customize_Section {
 
 		/**
+		 * Section instance.
+		 *
+		 * @since 2.0.0
+		 *
+		 * @access public
+		 */
+		public $section;
+
+		/**
 		 * Section type
 		 *
 		 * @access public

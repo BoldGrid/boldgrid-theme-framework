@@ -24,6 +24,8 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 	 */
 	class Boldgrid_Framework_Customizer_Panel extends WP_Customize_Panel {
 
+		public $panel;
+
 		/**
 		 * Panel type
 		 *

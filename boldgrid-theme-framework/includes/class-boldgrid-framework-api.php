@@ -427,6 +427,29 @@ class BoldGrid {
 			$classes[] = 'header-fixed';
 		}
 
+		if ( ! wp_is_mobile() ) {
+
+			// Check if a YouTube video has been added to header background.
+			if ( '' !== get_theme_mod( 'external_header_video' ) ) {
+				if ( isset( $classes['has-video-header'] ) ) {
+					unset( $classes['has-video-header'] );
+				}
+			}
+
+			// Check if an uploaded video has been provided to give precedence over YouTube video.
+			if ( 0 !== get_theme_mod( 'header_video' ) || '' !== get_theme_mod( 'header_video' ) ) {
+				$classes[] = 'has-video-header';
+				if ( isset( $classes['has-youtube-header'] ) ) {
+					unset( $classes['has-youtube-header'] );
+				}
+			}
+		}
+
+		// Add a class if there is a custom header image.
+		if ( has_header_image() ) {
+			$classes[] = 'has-header-image';
+		}
+
 		$classes[] = get_theme_mod( 'bgtfw_header_layout_position', 'header-top' );
 
 		if ( is_front_page() && is_home() ) {

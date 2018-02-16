@@ -285,6 +285,18 @@ class BoldGrid_Framework_Customizer {
 						'value_pattern' => '0 0 $px',
 					),
 					array(
+						'media_query' => '@media only screen and (max-width : 968px)',
+						'element'  => '.flexbox .header-left .site-content, .flexbox .header-right .site-content',
+						'property' => 'flex',
+						'value_pattern' => '1 0 calc(100% - $px)',
+					),
+					array(
+						'media_query' => '@media only screen and (min-width : 768px)',
+						'element'  => ' .flexbox .header-left.header-fixed .site-footer, .flexbox .header-right.header-fixed .site-footer',
+						'property' => 'width',
+						'value_pattern' => 'calc(100% - $px)',
+					),
+					array(
 						'media_query' => '@media only screen and (min-width : 768px)',
 						'element'  => '.flexbox .header-left .site-content, .flexbox .header-left.header-fixed .site-footer, .flexbox .header-right .site-content, .flexbox .header-right.header-fixed .site-footer',
 						'property' => 'width',

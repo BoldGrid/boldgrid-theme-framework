@@ -114,7 +114,7 @@
 
     /* Small Devices, Tablets */
     @media only screen and (max-width : 768px) {
-        &[class*="col"] main > article.post {
+        &[class*="col"]:not(.col1) main > article.post {
             width: calc((100% / 2 - .5vw) - 2vw);
         }
     }

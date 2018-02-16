@@ -38,6 +38,11 @@ main {
   flex-direction: column-reverse;
   flex: 1 0 auto; }
 
+@media only screen and (min-width: 768px) {
+  .site-content {
+    flex-direction: row;
+    flex-wrap: wrap-reverse; } }
+
 /** Headings **/
 .palette-primary h1, .palette-primary .h1 {
   line-height: 1.1;
@@ -461,13 +466,14 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 50%; }
+  max-width: 50%;
+  padding-bottom: 8px; }
 
 .blog main > article.post.design-3 .entry-header .entry-meta {
   padding-bottom: 1.5em; }
 
 @media only screen and (max-width: 768px) {
-  .blog[class*="col"] main > article.post {
+  .blog[class*="col"]:not(.col1) main > article.post {
     width: calc((100% / 2 - .5vw) - 2vw); } }
 
 @media only screen and (max-width: 480px) {
@@ -1569,7 +1575,7 @@ span.author.vcard {
     display: none; } }
 
 /** Sidebar Base Styles **/
-#primary-sidebar {
+.has-sidebar main + aside {
   width: 100%; }
 
 /* Adjust Containers in Content */
@@ -1578,19 +1584,15 @@ span.author.vcard {
 
 @media only screen and (min-width: 992px) {
   .has-sidebar main {
-    flex: 1 0 auto; }
-  .has-sidebar main + aside {
-    width: calc((100% * (1/3)) + 1em);
-    max-width: 425px; } }
-
-@media only screen and (min-width: 992px) {
-  .has-sidebar main {
     flex: 1 0 auto;
     width: calc((100% * (2/3)) + 1em); }
   .has-sidebar main + aside {
+    min-width: 300px;
     width: calc((100% * (1/3)) + 1em);
-    max-width: 425px;
+    max-width: 325px;
     padding: 0 1em; }
+  .has-sidebar.header-left main, .has-sidebar.header-right main {
+    flex: 1; }
   /* Sidebar Template Specific Styles */
   .has-sidebar {
     /** Left Sidebar **/
@@ -2749,10 +2751,15 @@ footer .bgtfw-widget-row {
   left: 0;
   width: 100%; }
 
+@media screen and (max-width: 768px) {
+  .admin-bar.has-youtube-header .custom-header-media {
+    top: 46px; } }
+
 @media only screen and (min-width: 768px) {
   .has-youtube-header #navi {
     top: auto;
-    position: absolute; }
+    position: absolute;
+    align-self: center; }
   .has-youtube-header .custom-header-media {
     position: relative;
     top: auto;

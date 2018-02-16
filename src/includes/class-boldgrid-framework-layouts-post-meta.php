@@ -93,7 +93,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				// Check that page_for_posts and pull the default global for blog page sidebar options.
 				if ( get_option( 'page_for_posts' ) == $post->ID ) {
 					$default_title = __( 'Theme Customizer Default', 'bgtfw' );
-					$global_template = get_theme_mod( 'bgtfw_layout_homepage_sidebar', $default_title );
+					$global_template = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', $default_title );
 				} else {
 					$default_title = __( 'Global Theme Default', 'bgtfw' );
 					$type = 'page' === $post->post_type ? $post->post_type : 'blog';

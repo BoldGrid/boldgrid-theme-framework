@@ -453,7 +453,7 @@ class BoldGrid {
 		$classes[] = get_theme_mod( 'bgtfw_header_layout_position', 'header-top' );
 
 		if ( is_front_page() && is_home() ) {
-			$classes[] = get_theme_mod( 'bgtfw_layout_homepage_sidebar', get_theme_mod( 'bgtfw_layout_blog', 'no-sidebar' ) );
+			$classes[] = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', get_theme_mod( 'bgtfw_layout_blog', 'no-sidebar' ) );
 		} else {
 			$layout = get_page_template_slug();
 
@@ -653,7 +653,7 @@ class BoldGrid {
 		if ( is_front_page() && is_home() ) {
 
 			// Check if a setting has been saved for blog homepages.
-			$homepage_sidebar = get_theme_mod( 'bgtfw_layout_homepage_sidebar', false );
+			$homepage_sidebar = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', false );
 
 			if ( empty( $homepage_sidebar ) ) {
 				// Nothing was saved, so check if there's a default global blog page setting set.

@@ -1227,20 +1227,8 @@ HTML;
 			'priority' => 4,
 		));
 
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_blog_blog_page_sidebar' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'no-sidebar',
-		) );
 
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_blog_blog_page_sidebar', array(
-			'label'       => esc_html__( 'Sidebar Options', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 10,
-			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
-			'section'     => 'bgtfw_blog_blog_page_panel_sidebar',
-		) );
+
 
 		// Add example section and controls to the middle (second) panel
 		$wp_customize->add_section( 'bgtfw_pages_blog_posts_layout', array(
@@ -1329,13 +1317,13 @@ HTML;
 		) );
 
 		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_layout_homepage_sidebar' , array(
+		$wp_customize->add_setting( 'bgtfw_blog_blog_page_sidebar' , array(
 			'type'      => 'theme_mod',
 			'default'   => 'no-sidebar',
 		) );
 
 		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_layout_homepage_sidebar', array(
+		$wp_customize->add_control( 'bgtfw_blog_blog_page_sidebar', array(
 			'label'       => esc_html__( 'Homepage Sidebar Display', 'bgtfw' ),
 			'type'        => 'radio',
 			'priority'    => 30,
@@ -1344,6 +1332,16 @@ HTML;
 			'active_callback' => function() {
 				return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
 			},
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'bgtfw_blog_blog_page_sidebar2', array(
+			'label'       => esc_html__( 'Sidebar Options', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 10,
+			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
+			'section'     => 'bgtfw_blog_blog_page_panel_sidebar',
+			'settings'    => 'bgtfw_blog_blog_page_sidebar',
 		) );
 
 		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.

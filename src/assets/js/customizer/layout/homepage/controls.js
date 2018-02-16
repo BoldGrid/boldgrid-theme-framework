@@ -19,6 +19,6 @@ wp.customize.bind( 'ready', function () {
 			setting.bind( display );
 		};
 
-		wp.customize.control( 'bgtfw_layout_homepage_sidebar', sidebarControl );
+		wp.customize.control( 'bgtfw_blog_blog_page_sidebar', sidebarControl );
 	} );
 } );

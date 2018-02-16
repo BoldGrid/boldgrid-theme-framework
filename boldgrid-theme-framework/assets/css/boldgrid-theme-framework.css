@@ -2749,10 +2749,6 @@ footer .bgtfw-widget-row {
   left: 0;
   width: 100%; }
 
-@media screen and (max-width: 768px) {
-  .admin-bar.has-youtube-header .custom-header-media {
-    top: 46px; } }
-
 @media only screen and (min-width: 768px) {
   .has-youtube-header #navi {
     top: auto;
@@ -2763,6 +2759,11 @@ footer .bgtfw-widget-row {
     top: auto;
     left: auto;
     width: auto; } }
+
+/* Adjust for logged in users with admin bar. */
+@media only screen and (max-width: 768px) {
+  .admin-bar.has-youtube-header .custom-header-media {
+    top: 46px; } }
 
 /* Set up header for flex styles */
 #masthead {

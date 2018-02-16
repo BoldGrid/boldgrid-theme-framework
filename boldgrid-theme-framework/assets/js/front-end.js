@@ -103,7 +103,7 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			calc: function() {
-				var header_height = $( '#masthead' ).height(),
+				var header_height = Math.abs( $( '#navi' ).outerHeight() - $( '#main-menu' ).height() ),
 					screen_width = $( window ).width() + 16;
 
 				$( '.wp-custom-header' ).css( 'height', '' );
@@ -121,7 +121,7 @@ var BoldGrid = BoldGrid || {};
 				} else {
 					$( '#content' ).css( 'margin-top', '0px' );
 					if ( $( '#main-menu' ).is( ':visible' ) ) {
-						header_height = Math.abs( $( '#navi' ).height() - $( '#main-menu' ).height() );
+						header_height = Math.abs( $( '#navi' ).outerHeight() - $( '#main-menu' ).height() );
 					}
 					$( '.wp-custom-header' ).css( 'height', $( '#navi' ).outerHeight() + 2 );
 				}
@@ -158,7 +158,7 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			calc: function() {
-				var header_height = $( '#masthead' ).height(),
+				var header_height = Math.abs( $( '#navi' ).outerHeight() - $( '#main-menu' ).height() ),
 					screen_width = $( window ).width() + 16;
 
 				if ( !! $( '.custom-header.header-fixed' ).length ) {
@@ -183,7 +183,7 @@ var BoldGrid = BoldGrid || {};
 					} else {
 						$( '#content' ).css( 'margin-top', '0px' );
 						if ( $( '#main-menu' ).is( ':visible' ) ) {
-							header_height = Math.abs( $( '#navi' ).height() - $( '#main-menu' ).height() );
+							header_height = Math.abs( $( '#navi' ).outerHeight() - $( '#main-menu' ).height() );
 						}
 						$( '.wp-custom-header' ).css( 'height', $( '#navi' ).outerHeight() + 2 );
 					}

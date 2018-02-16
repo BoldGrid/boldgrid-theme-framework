@@ -2700,8 +2700,7 @@ footer .bgtfw-widget-row {
   .flexbox .header-right.header-fixed .site-header {
     position: fixed;
     width: 400px;
-    height: 100vh;
-    z-index: 9999; }
+    height: 100vh; }
   /** Left w/ fixed position **/
   /* Header adjustments */
   .flexbox .admin-bar.header-right.header-fixed .site-header {
@@ -3517,6 +3516,10 @@ footer .bgtfw-widget-row {
   flex: 1 0 auto;
   width: calc((100% / 1 - .5vw) - 2vw);
   margin: 1vw; }
+
+.single .post {
+  width: auto;
+  margin: 0; }
 
 [class^="column-"] .post {
   flex-direction: column;

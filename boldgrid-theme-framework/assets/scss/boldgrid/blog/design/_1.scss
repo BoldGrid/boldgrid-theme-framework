@@ -26,4 +26,10 @@
 	&.has-post-thumbnail .featured-imgage-header {
 		border-top-left-radius: 2em;
 	}
+	.entry-footer {
+		padding-bottom: 15px;
+		span:last-child {
+			padding-right: 15px;
+		}
+	}
 }

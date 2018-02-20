@@ -933,10 +933,21 @@ class BoldGrid_Framework_Customizer {
 			true
 		);
 
+		wp_register_script(
+			'bgtfw-customizer-header-layout-header-container',
+			$this->configs['framework']['js_dir'] . 'customizer/header-layout/header-container' . $suffix . '.js',
+			array(
+				'boldgrid-theme-customizer'
+			),
+			$this->configs['version'],
+			true
+		);
+
 		wp_enqueue_script( 'boldgrid-theme-customizer' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-live-preview' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-layout-columns' );
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-header-background' );
+		wp_enqueue_script( 'bgtfw-customizer-header-layout-header-container' );
 
 		wp_enqueue_style(
 			'boldgrid-theme-framework-customizer-css',
@@ -1405,6 +1416,25 @@ HTML;
 				'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
 				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
 				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
+			),
+			'section'     => 'bgtfw_header_layout',
+		) );
+
+		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
+		$wp_customize->add_setting( 'header_container' , array(
+			'type'      => 'theme_mod',
+			'default'   => '',
+			'transport'   => 'postMessage',
+		) );
+
+		// Uses the 'radio' type in WordPress.
+		$wp_customize->add_control( 'header_container', array(
+			'label'       => esc_html__( 'Header Container', 'bgtfw' ),
+			'type'        => 'radio',
+			'priority'    => 30,
+			'choices'     => array(
+				'' => esc_attr__( 'Full Width', 'bgtfw' ),
+				'container' => esc_attr__( 'Fixed Width', 'bgtfw' ),
 			),
 			'section'     => 'bgtfw_header_layout',
 		) );

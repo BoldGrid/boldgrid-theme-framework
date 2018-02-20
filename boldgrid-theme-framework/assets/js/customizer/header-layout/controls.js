@@ -7,11 +7,19 @@ wp.customize.bind( 'ready', function () {
 	 *
 	 * @since 2.0.0
 	 */
-	wp.customize.control( 'bgtfw_header_top_layouts', function( control ) {
-		var setting = wp.customize( 'bgtfw_header_layout_position' );
-		control.active.set( 'header-top' === setting.get() );
-		setting.bind( function( value ) {
-			control.active.set( 'header-top' === value );
+	wp.customize( 'bgtfw_header_layout_position', function( setting ) {
+		$.each( ['bgtfw_header_top_layouts', 'header_container' ], function( index, controlId ) {
+			var displayControl;
+
+			displayControl = function( control ) {
+				var display = function() {
+					'header-top' === setting.get() ? control.container.show() : control.container.hide();
+				};
+				display();
+				setting.bind( display );
+			};
+
+			wp.customize.control( controlId, displayControl );
 		} );
 	} );
 } );

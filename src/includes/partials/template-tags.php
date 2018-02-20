@@ -611,3 +611,17 @@ function bgtfw_get_featured_img_bg( $post_id ) {
 function bgtfw_featured_img_bg( $post_id ) {
 	echo bgtfw_get_featured_img_bg( $post_id );
 }
+
+/**
+ * Echos the container class to apply for the header.
+ *
+ * @since 2.0.0
+ */
+function bgtfw_header_container() {
+	$container = '';
+	if ( get_theme_mod( 'bgtfw_header_layout_position' ) === 'header-top' ) {
+		$container = get_theme_mod( 'header_container', $container );
+	}
+
+	echo $container;
+}

@@ -1,8 +1,9 @@
 /** Footer Styles **/
-.footer-center-items {
+ul.footer-center-items {
 	display: flex;
 	flex-wrap: wrap;
 	margin-left: 0;
+	margin-bottom: 0;
 }
 .footer-center-items.list-inline > li {
 	padding-left: 0;
@@ -22,7 +23,7 @@ footer .bgtfw-widget-row {
 	padding: 1.5em 15px;
 }
 .contact-block:not(:empty) {
-	margin: 10px 0 0 0;
+	margin: 1em 0;
 }
 .footer-center-menu-wrapper,
 .social-menu-wrapper,

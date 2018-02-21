@@ -13,6 +13,7 @@
 	}
 	.contact-block-wrapper {
 		order: 3;
+		text-align: center;
 	}
 	.attribution-theme-mods-wrapper {
 		order: 4;
@@ -23,6 +24,7 @@
 		.social-menu-wrapper,
 		.contact-block-wrapper,
 		.attribution-theme-mods-wrapper {
+			align-items: center;
 			display: flex;
 			flex-direction: row;
 			flex-basis: 50%;

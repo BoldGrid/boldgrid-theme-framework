@@ -3508,7 +3508,7 @@ footer .bgtfw-widget-row {
   display: flex;
   flex-direction: column;
   align-content: center;
-  justify-content: center; }
+  justify-content: flex-start; }
 
 /* Archive Pages */
 .home.blog .main > .row > div {

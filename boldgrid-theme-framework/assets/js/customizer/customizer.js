@@ -177,6 +177,24 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		}
 	} );
 
+	/**
+	 * Recalculate layouts on font changes.
+	 *
+	 * @since 2.0.0
+	 */
+	$.each( ['bgtfw_site_title_typography', 'bgtfw_tagline_typography' ], function( index, settingId ) {
+		wp.customize( settingId, function( value ) {
+			value.bind( function( to ) {
+				$.each( ['font-size', 'line-height', 'font-family', 'font-weight' ], function( index, control ) {
+					if ( value[ control ] !== to[ control ] ) {
+						bgtfw_calculate_layouts();
+					}
+				} );
+			} );
+		} );
+	} );
+
+
 	wp.customize( 'blogdescription', function( value ) {
 		value.bind( function( to ) {
 			if ( to ) {
@@ -187,6 +205,11 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 	} );
 
+	/**
+	 * Force recalculation of layouts helper.
+	 *
+	 * @since 2.0.0
+	 */
 	var bgtfw_calculate_layouts = function() {
 		if ( !! wp.customize( 'bgtfw_fixed_header' ) ) {
 			BoldGrid.header_fixed.calc();

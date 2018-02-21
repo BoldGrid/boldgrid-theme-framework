@@ -2774,14 +2774,11 @@ footer .bgtfw-widget-row {
 #masthead {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  /** padding-top: 1.5em;
-     **/ }
+  width: 100%; }
 
 #navi {
   display: flex;
-  flex-direction: column;
-  padding-top: 1.5em; }
+  flex-direction: column; }
 
 #navi:not(.container) {
   width: 100%; }

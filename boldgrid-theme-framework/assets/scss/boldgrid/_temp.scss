@@ -191,13 +191,10 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	/** padding-top: 1.5em;
-     **/
 }
 #navi {
 	display: flex;
 	flex-direction: column;
-	padding-top: 1.5em;
 }
 #navi:not(.container) {
 	width: 100%;

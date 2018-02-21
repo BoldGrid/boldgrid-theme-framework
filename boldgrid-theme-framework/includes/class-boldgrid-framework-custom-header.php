@@ -61,22 +61,40 @@ class Boldgrid_Framework_Custom_Header {
 		 *     @type string $flex-height     		Flex support for height of header.
 		 * }
 		 */
-		add_theme_support( 'custom-header', apply_filters( 'bgtfw_custom_header_args', array(
-			'default-image'      => get_parent_theme_file_uri( '/images/header.jpg' ),
-			'width'              => 2000,
-			'height'             => 1200,
-			'flex-height'        => true,
-			'video'              => true,
-			'wp-head-callback'   => array( $this, 'header_style' ),
-		) ) );
+		add_theme_support(
+			'custom-header',
+			apply_filters(
+				'bgtfw_custom_header_args',
+				array(
+					'default-image'      => 'remove-header',
+					'width'              => 2000,
+					'height'             => 1200,
+					'flex-height'        => true,
+					'video'              => true,
+					'wp-head-callback'   => array( $this, 'header_style' ),
+				)
+			)
+		);
 
-		register_default_headers( array(
-			'default-image' => array(
-				'url'           => '%s/images/header.jpg',
-				'thumbnail_url' => '%s/images/header.jpg',
-				'description'   => __( 'Default Header Image', 'bgtfw' ),
-			),
-		) );
+		// Check that the default-image has been passed for custom-header before registering default headers.
+		$default_image = get_theme_support( 'custom-header', 'default-image' );
+
+		// If it's not a string 'remove-header', then register the default header image based on main image.
+		if ( $default_image !== 'remove-header' ) {
+
+			// Get the relative path passed for url and thumbnail_url to use.
+			$default_image = str_replace( get_template_directory_uri(), '', $default_image );
+
+			register_default_headers(
+				array(
+					'default-image' => array(
+						'url'           => '%s' . $default_image,
+						'thumbnail_url' => '%s' . $default_image,
+						'description'   => __( 'Default Header Image', 'bgtfw' ),
+					),
+				)
+			);
+		}
 	}
 
 	/**

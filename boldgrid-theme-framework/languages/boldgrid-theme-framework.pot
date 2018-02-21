@@ -130,15 +130,15 @@ msgstr ""
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-custom-header.php:77
+#: src/includes/class-boldgrid-framework-custom-header.php:93
 msgid "Default Header Image"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-custom-header.php:144
+#: src/includes/class-boldgrid-framework-custom-header.php:162
 msgid "Play background video"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-custom-header.php:145
+#: src/includes/class-boldgrid-framework-custom-header.php:163
 msgid "Pause background video"
 msgstr ""
 

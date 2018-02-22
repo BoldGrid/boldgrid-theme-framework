@@ -37,5 +37,8 @@ ul.customize-pane-parent > li {
 		&background_image > h3:before {
 			content: "\f128";
 		}
+		&custom_css > h3:before {
+			content: "\f475";
+		}
 	}
 }

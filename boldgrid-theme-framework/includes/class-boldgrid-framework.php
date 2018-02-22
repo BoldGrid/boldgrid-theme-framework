@@ -660,7 +660,6 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'customize_controls_enqueue_scripts', $typography, 'enqueue_scripts' );
 			$this->loader->add_action( 'customize_register', $typography, 'typography_panel' );
 			$this->loader->add_filter( 'kirki/controls', $typography, 'headings_typography_controls' );
-			$this->loader->add_filter( 'kirki/controls', $typography, 'alternate_headings_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $typography, 'navigation_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $typography, 'body_typography_controls' );
 			$this->loader->add_action( 'wp_head', $typography, 'headings_font_size_css' );
@@ -671,8 +670,6 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'kirki/controls', $typography, 'site_identity_controls' );
 		$this->loader->add_action( 'wp_head', $typography, 'title_text_shadow' );
 	}
-
-
 
 	/**
 	 * This defines the core functionality of the framework's customizer color controls.

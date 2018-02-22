@@ -122,12 +122,6 @@ class Boldgrid_Framework_Customizer_Typography {
 				'panel' => 'boldgrid_typography',
 			) );
 
-			// Add Subheadings to Typography Panel.
-			$wp_customize->add_section( 'alternate_headings_typography', array(
-				'title'    => __( 'Subheadings', 'bgtfw' ),
-				'panel' => 'boldgrid_typography',
-			) );
-
 			// Add Body to Typography Panel.
 			$wp_customize->add_section( 'body_typography', array(
 				'title'    => __( 'Main Text', 'bgtfw' ),
@@ -295,73 +289,6 @@ class Boldgrid_Framework_Customizer_Typography {
 						'element'  => 'body, p, .site-content, .site-footer',
 						'property' => 'line-height',
 						'units'    => '%',
-					),
-				),
-			);
-		}
-		return $controls;
-	}
-
-	/**
-	 * Add the Alternate Headings Typography Controls to the WordPress Customizer.
-	 *
-	 * @since     1.0.0
-	 * @param array $controls Array of controls for Kirki.
-	 * @return    array      $controls      array of controls to pass to Kirki.
-	 */
-	public function alternate_headings_typography_controls( $controls ) {
-
-		// Configuration option to check.
-		$alternate_headings_config = $this->configs['customizer-options']['typography']['controls']['alternate_headings'];
-
-		if ( true === $alternate_headings_config ) {
-			// Alternate Headings Font Family Control.
-			$controls['alternate_headings_font_family'] = array(
-				'type'     => 'select',
-				'settings'  => 'alternate_headings_font_family',
-				'label'    => __( 'Font Family', 'bgtfw' ),
-				'section'  => 'alternate_headings_typography',
-				'default'  => $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'],
-				'choices'  => kirki_Fonts::get_font_choices(),
-				'output'  => array(
-					array(
-						'element'  => 'h1.alt-font, h2.alt-font, h3.alt-font, h4.alt-font, h5.alt-font, h6.alt-font, .h1.alt-font, .h2.alt-font, .h3.alt-font, .h4.alt-font, .h5.alt-font, .h6.alt-font',
-						'property' => 'font-family',
-					),
-				),
-			);
-			// Alternate Headings Font Size Control.
-			$controls['alternate_headings_font_size'] = array(
-				'type'     => 'slider',
-				'settings'  => 'alternate_headings_font_size',
-				'transport' => 'postMessage',
-				'label'    => __( 'Font Size', 'bgtfw' ),
-				'section'  => 'alternate_headings_typography',
-				'default'  => $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_size'],
-				'choices'  => array(
-					'min'  => 12,
-					'max'  => 50,
-					'step' => 1,
-				),
-			);
-			// Alternate Headings Text Transform Control.
-			$controls['alternate_headings_text_transform'] = array(
-				'type'     => 'select',
-				'settings'  => 'alternate_headings_text_transform',
-				'transport' => 'postMessage',
-				'label'    => __( 'Capitalization', 'bgtfw' ),
-				'section'  => 'alternate_headings_typography',
-				'default'  => $this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'],
-				'choices'  => array(
-					'capitalize' => 'Capitalize',
-					'lowercase' => 'Lowercase',
-					'uppercase' => 'Uppercase',
-					'none' => 'Unmodified',
-				),
-				'output'   => array(
-					array(
-						'element'  => 'h1.alt-font, h2.alt-font, h3.alt-font, h4.alt-font, h5.alt-font, h6.alt-font',
-						'property' => 'text-transform',
 					),
 				),
 			);

@@ -390,11 +390,11 @@ msgstr ""
 msgid "Footer Widget Columns"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:95, src/includes/customizer/class-boldgrid-framework-customizer.php:646
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:95, src/includes/customizer/class-boldgrid-framework-customizer.php:634
 msgid "Select the number of footer widget columns you wish to display."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:617, src/includes/customizer/class-boldgrid-framework-customizer.php:1577
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:617, src/includes/customizer/class-boldgrid-framework-customizer.php:664, src/includes/customizer/class-boldgrid-framework-customizer.php:1577
 msgid "Continue to Widgets Section"
 msgstr ""
 
@@ -402,11 +402,11 @@ msgstr ""
 msgid "You can add widgets to your footer from the widgets section."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:126, src/includes/customizer/class-boldgrid-framework-customizer.php:629
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:126
 msgid "Edit Footer Widgets"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:128, src/includes/customizer/class-boldgrid-framework-customizer.php:631
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:128
 msgid "You can edit your default footer widgets from the widget panel."
 msgstr ""
 
@@ -1001,8 +1001,12 @@ msgstr ""
 msgid "Adjust your footer's widget sections."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:645
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:633
 msgid "Footer Widget Areas"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:666, src/includes/customizer/class-boldgrid-framework-customizer.php:1579
+msgid "You can add widgets to your header from the widgets section."
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:673
@@ -1183,10 +1187,6 @@ msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:1559
 msgid "Select the number of widget areas you wish to display"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1579
-msgid "You can add widgets to your header from the widgets section."
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:1599

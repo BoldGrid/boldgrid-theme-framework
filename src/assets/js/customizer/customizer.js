@@ -194,7 +194,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 	} );
 
-
 	wp.customize( 'blogdescription', function( value ) {
 		value.bind( function( to ) {
 			if ( to ) {
@@ -279,6 +278,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 * Footer layout control.
 	 */
 	wp.customize( 'bgtfw_footer_layouts', function( value ) {
+
 		// Bind value change.
 		value.bind( function( to ) {
 			$( '#colophon' )

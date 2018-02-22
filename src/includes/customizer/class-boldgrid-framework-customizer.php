@@ -615,20 +615,8 @@ class BoldGrid_Framework_Customizer {
 				'settings'     => 'boldgrid_footer_widget_help',
 				'section'     => 'bgtfw_footer_widgets',
 				'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
-				'priority'    => 90,
+				'priority'    => 10,
 				'description' => __( 'You can add widgets to your footer from the widgets section.', 'bgtfw' ),
-			)
-		);
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type'        => 'custom',
-				'settings'     => 'boldgrid_edit_footer_widget_help',
-				'section'     => 'bgtfw_footer_widgets',
-				'default'     => '<a data-focus-section="sidebar-widgets-boldgrid-widget-3" class="button button-primary" href="#">' .
-					__( 'Edit Footer Widgets', 'bgtfw' ) . '</a>',
-				'priority'    => 70,
-				'description' => __( 'You can edit your default footer widgets from the widget panel.', 'bgtfw' ),
 				'required' => array(
 					array(
 						'settings' => 'boldgrid_enable_footer',
@@ -646,7 +634,7 @@ class BoldGrid_Framework_Customizer {
 				'description' => __( 'Select the number of footer widget columns you wish to display.', 'bgtfw' ),
 				'type'        => 'number',
 				'settings'    => 'boldgrid_footer_widgets',
-				'priority'    => 80,
+				'priority'    => 15,
 				'default'     => 0,
 				'transport'   => 'auto',
 				'choices'     => array(
@@ -664,6 +652,18 @@ class BoldGrid_Framework_Customizer {
 						'container_inclusive' => true,
 					),
 				),
+			)
+		);
+
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'custom',
+				'settings'     => 'bgtfw_header_widget_help',
+				'section'     => 'bgtfw_header_widgets',
+				'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
+				'priority'    => 10,
+				'description' => __( 'You can add widgets to your header from the widgets section.', 'bgtfw' ),
 			)
 		);
 

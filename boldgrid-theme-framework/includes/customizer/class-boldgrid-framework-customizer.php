@@ -415,9 +415,9 @@ class BoldGrid_Framework_Customizer {
 		// Adds the "Colors" section to the WordPress customizer "Header" panel.
 		Kirki::add_section(
 			'bgtfw_site_title', array(
-				'title'          => __( 'Site Title' ),
+				'title'          => esc_attr__( 'Site Title' ),
 				'panel'        => 'bgtfw_header',
-				'description'    => esc_attr__( "Change your site title and it's appearance.", 'bgtfw' ),
+				'description'    => __( "Change your site title and it's appearance.", 'bgtfw' ),
 				'priority'       => 10,
 				'capability'     => 'edit_theme_options',
 				'theme_supports' => '', // Rarely needed.
@@ -487,7 +487,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw_tagline', array(
 				'title'          => __( 'Tagline' ),
 				'panel'        => 'bgtfw_header',
-				'description'    => esc_attr__( "Change your site's tagline, and it's appearance.", 'bgtfw' ),
+				'description'    => __( "Change your site's tagline, and it's appearance.", 'bgtfw' ),
 				'priority'       => 10,
 				'capability'     => 'edit_theme_options',
 				'theme_supports' => '', // Rarely needed.

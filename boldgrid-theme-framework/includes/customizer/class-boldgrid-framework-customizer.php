@@ -53,53 +53,15 @@ class BoldGrid_Framework_Customizer {
 		global $boldgrid_theme_framework;
 		$configs = $boldgrid_theme_framework->get_configs();
 
-		/* Adds "Advanced" top level panel option to customizer. */
-		Kirki::add_panel(
-			'boldgrid_other',
-			array(
-				'title'       => __( 'Advanced', 'boldgrid' ),
-				'description' => 'Additional BoldGrid Options',
-				'priority'    => 120,
-			)
-		);
-		Kirki::add_section(
-			'advanced_edit',
-			array(
-				'title' => __( 'Custom JS & CSS', 'bgtfw' ),
-				'panel' => 'boldgrid_other',
-				'capability' => 'edit_theme_options',
-				'description' => __( 'This section allows you to modify features that are not menus or widgets.', 'bgtfw' ),
-				'priority' => 250, // After all core sections.
-			)
-		);
 		Kirki::add_field(
 			'bgtfw',
-			array(
-				'type'        => 'code',
-				'transport' => 'postMessage',
-				'settings'    => 'custom_theme_css',
-				'label'       => __( 'Custom Theme CSS', 'bgtfw' ),
-				'help'        => __( 'This adds live CSS to your website.', 'bgtfw' ),
-				'description' => __( 'Add custom CSS for this theme.', 'bgtfw' ),
-				'section'     => 'advanced_edit',
-				'default'     => '.boldgrid-css{ background: white; }',
-				'priority'    => 10,
-				'choices'     => array(
-					'language' => 'css',
-					'theme'    => 'base16-dark',
-					'height'   => 100,
-				),
-			)
-		);
-		Kirki::add_field(
-			'custom_theme_js',
 			array(
 				'type'        => 'code',
 				'settings'    => 'custom_theme_js',
 				'label'       => __( 'Custom Theme JS' ),
 				'help'        => __( 'This adds live JavaScript to your website.', 'bgtfw' ),
 				'description' => __( 'Add custom javascript for this theme.', 'bgtfw' ),
-				'section'     => 'advanced_edit',
+				'section'     => 'custom_css',
 				'default'     => "// jQuery('body');",
 				'priority'    => 10,
 				'choices'     => array(
@@ -1071,15 +1033,6 @@ HTML;
 	 */
 	public function customizer_reorganization( $wp_customize ) {
 
-		// Add an "other" Panel.
-		if ( true === $this->configs['customizer-options']['advanced_panel'] ) {
-			$wp_customize->add_panel( 'boldgrid_other', array(
-				'title'       => __( 'Advanced', 'boldgrid' ),
-				'description' => 'Additional BoldGrid Options',
-				'priority'    => 120,
-			) );
-		}
-
 		// Move Homepage Settings to the Layouts Panel.
 		if ( $wp_customize->get_section( 'static_front_page' ) ) {
 			$wp_customize->get_section( 'static_front_page' )->title = 'Homepage';
@@ -1092,15 +1045,27 @@ HTML;
 			$section->title = __( 'Logo & Icon', 'bgtfw' );
 			$section->panel = 'bgtfw_header';
 		}
+
 		if ( $tagline = $wp_customize->get_control( 'blogdescription' ) ) {
 			$tagline->section = 'bgtfw_tagline';
 		}
+
 		if ( $title = $wp_customize->get_control( 'blogname' ) ) {
 			$title->section = 'bgtfw_site_title';
 		}
+
 		if ( $header_image = $wp_customize->get_section( 'header_image' ) ) {
 			$header_image->title = __( 'Background', 'bgtfw' );
 			$header_image->panel = 'bgtfw_header';
+		}
+
+		if ( $section = $wp_customize->get_section( 'custom_css' ) ) {
+			$section->title = __( 'Custom CSS/JS', 'bgtfw' );
+		}
+
+		if ( $control = $wp_customize->get_control( 'custom_css' ) ) {
+			$control->title = __( 'Custom Theme CSS', 'bgtfw' );
+			$control->description = __( 'Add custom CSS for this theme.', 'bgtfw' );
 		}
 
 		// Remove Addition Control that conflict with site title.
@@ -1248,9 +1213,6 @@ HTML;
 			'panel' => 'bgtfw_blog_blog_page_panel',
 			'priority' => 4,
 		));
-
-
-
 
 		// Add example section and controls to the middle (second) panel
 		$wp_customize->add_section( 'bgtfw_pages_blog_posts_layout', array(
@@ -1627,34 +1589,6 @@ HTML;
 	}
 
 	/**
-	 * Add the Advanced Panel to the WordPress Customizer.  This also
-	 * adds the controls we need for the custom CSS and custom JS
-	 * textareas.
-	 *
-	 * @since 1.0.0
-	 */
-	public function advanced_panel( $wp_customize ) {
-		$panel = $this->configs['customizer-options']['advanced_panel'];
-		if ( true === $panel ) {
-			// Which config to check?
-			$css_editor = $this->configs['customizer-options']['advanced_controls']['css_editor'];
-
-			// If active add control.
-			if ( true === $css_editor ) {
-
-			}
-
-			// Which config to check?
-			$js_editor = $this->configs['customizer-options']['advanced_controls']['js_editor'];
-
-			// If active add control.
-			if ( true === $js_editor ) {
-
-			}
-		}
-	}
-
-	/**
 	 * Add tutorials link to each section in the menus panel.
 	 *
 	 * @since 1.2
@@ -1756,41 +1690,5 @@ HTML;
 	public function add_head_styles() {
 		$css_rules = apply_filters( 'boldgrid_add_head_styles', $css_rules = array() );
 		print BoldGrid_Framework_Styles::convert_array_to_css( $css_rules, 'boldgrid-override-styles' );
-	}
-
-	/**
-	 * Add overlay on first visit
-	 *
-	 * @since 1.0.0
-	 */
-	public function add_help_overlay() {
-		// @todo: enqueue properly.
-		?>
-		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<div id='boldgrid-customizer-overlay-help' class='overlay-help'>
-			<div class='overlay-help-inside'>
-				<div class='overlay-help-text'>
-					<i id='close-help-popup' class="fa fa-times-circle fa-2x pull-right"></i>
-					<h2><?php _e( 'Using the Customizer', 'bgtfw' ); ?></h2>
-					<p>
-					<?php _e( 'BoldGrid sites are highly customizable. Each of the menu items to the left correspond with an area
-					of your site. Become familiar with everything\'s location to make full use of your site\'s features.', 'bgtfw' ); ?>
-					</p>
-				</div>
-				<img src="<?php echo esc_url( $this->configs['framework']['admin_asset_dir'] ); ?>img/boldgrid-overlay.jpg">
-			</div>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Remove the additional CSS section, introduced in 4.7, from the Customizer.
-	 *
-	 * @param Object $wp_customize The WP_Customize_Manager object.
-	 *
-	 * @since 1.3.3
-	 */
-	public function remove_css_section( $wp_customize ) {
-		$wp_customize->remove_section( 'custom_css' );
 	}
 }

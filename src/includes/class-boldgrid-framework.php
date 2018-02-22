@@ -770,17 +770,12 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_register', $base, 'site_logo' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_name' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_description' );
-		// $this->loader->add_action( 'customize_register', $base, 'advanced_panel' );
 		$this->loader->add_action( 'customize_register', $base, 'header_panel' );
-		// $this->loader->add_action( 'customize_register', $base, 'init_help' );
 		$this->loader->add_action( 'customize_register', $base, 'customizer_reorganization' );
 		$this->loader->add_action( 'customize_register', $base, 'set_text_contrast' );
 		$this->loader->add_action( 'customize_register', $base, 'add_menu_description', 20 );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'custom_customize_enqueue' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'enqueue_styles' );
-		if ( is_customize_preview() ) {
-			$this->loader->add_action( 'wp_footer', $base, 'add_help_overlay' );
-		}
 
 		// Output custom CSS and JS to live site.
 		$this->loader->add_action( 'wp_head', $base, 'custom_css_output' );
@@ -790,12 +785,8 @@ class BoldGrid_Framework {
 		// Display Widgets.
 		$this->loader->add_action( 'boldgrid_footer_top',   $base, 'footer_widget_html' );
 		$this->loader->add_action( 'boldgrid_header_bottom',   $base, 'header_widget_html' );
-		// Display HTML.
-		$this->loader->add_action( 'boldgrid_header_top', $base, 'display_header_html' );
-		$this->loader->add_action( 'boldgrid_footer_bottom', $base, 'display_footer_html' );
 		// Enqueue live preview javascript in Theme Customizer admin screen.
 		$this->loader->add_action( 'customize_preview_init', $base, 'live_preview' );
-		$this->loader->add_action( 'customize_register', $base, 'remove_css_section', 15 );
 	}
 
 	/**
@@ -822,13 +813,14 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function device_preview() {
-		$device_preview = new Boldgrid_Framework_Device_Preview( $this->configs );
 		// We don't need device previews if user is running on a mobile device or newer WP.
 		$wp_version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>' );
 
 		if ( wp_is_mobile() || $wp_version ) {
 			return;
 		}
+
+		$device_preview = new Boldgrid_Framework_Device_Preview( $this->configs );
 
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $device_preview, 'enqueue_scripts' );
 		$this->loader->add_action( 'customize_controls_print_footer_scripts', $device_preview, 'print_templates' );

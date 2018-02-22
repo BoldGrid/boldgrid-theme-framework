@@ -794,6 +794,16 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+/* WordPress Custom CSS Editor styles */
+.customize-section-description-container + #customize-control-custom_css .customize-control-title.screen-reader-text {
+  margin-left: 0;
+  width: auto;
+  height: auto;
+  position: relative;
+  clip: auto;
+  clip-path: none;
+  -webkit-clip-path: none; }
+
 /*--------------------------------------------------------------
 # Customizer Sidebar Controls
 --------------------------------------------------------------*/

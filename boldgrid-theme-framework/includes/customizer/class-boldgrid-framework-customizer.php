@@ -589,7 +589,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw_footer_widgets', array(
 				'title'          => __( 'Widgets', 'bgtfw' ),
 				'panel'        => 'bgtfw_footer',
-				'description'    => esc_attr__( 'Adjust your footer\'s widget sections.', 'bgtfw' ),
+				'description'    => __( "Adjust your footer's widget sections.", 'bgtfw' ),
 				'priority'       => 10,
 				'capability'     => 'edit_theme_options',
 				'theme_supports' => '', // Rarely needed.
@@ -601,7 +601,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw_header_widgets', array(
 				'title'          => __( 'Widgets', 'bgtfw' ),
 				'panel'        => 'bgtfw_header',
-				'description'    => __( 'Adjust your footer\'s widget sections.', 'bgtfw' ),
+				'description'    => __( "Adjust your header's widget sections.", 'bgtfw' ),
 				'priority'       => 10,
 				'capability'     => 'edit_theme_options',
 				'theme_supports' => '', // Rarely needed.

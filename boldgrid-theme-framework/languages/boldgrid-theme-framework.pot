@@ -997,8 +997,12 @@ msgstr ""
 msgid "Widgets"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:592, src/includes/customizer/class-boldgrid-framework-customizer.php:604
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:592
 msgid "Adjust your footer's widget sections."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:604
+msgid "Adjust your header's widget sections."
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:633

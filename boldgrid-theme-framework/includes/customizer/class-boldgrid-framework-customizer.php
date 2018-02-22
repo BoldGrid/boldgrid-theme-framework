@@ -58,7 +58,7 @@ class BoldGrid_Framework_Customizer {
 			array(
 				'type'        => 'code',
 				'settings'    => 'custom_theme_js',
-				'label'       => __( 'Custom Theme JS' ),
+				'label'       => __( 'JS code' ),
 				'help'        => __( 'This adds live JavaScript to your website.', 'bgtfw' ),
 				'description' => __( 'Add custom javascript for this theme.', 'bgtfw' ),
 				'section'     => 'custom_css',
@@ -1060,11 +1060,10 @@ HTML;
 		}
 
 		if ( $section = $wp_customize->get_section( 'custom_css' ) ) {
-			$section->title = __( 'Custom CSS/JS', 'bgtfw' );
+			$section->title = __( 'CSS/JS Editor', 'bgtfw' );
 		}
 
 		if ( $control = $wp_customize->get_control( 'custom_css' ) ) {
-			$control->title = __( 'Custom Theme CSS', 'bgtfw' );
 			$control->description = __( 'Add custom CSS for this theme.', 'bgtfw' );
 		}
 

@@ -278,7 +278,7 @@ msgstr ""
 msgid "Scaled to Fit"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:191, src/includes/customizer/class-boldgrid-framework-customizer.php:1238, src/includes/customizer/class-boldgrid-framework-customizer.php:1409, src/includes/customizer/class-boldgrid-framework-customizer.php:1453
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:191, src/includes/customizer/class-boldgrid-framework-customizer.php:1237, src/includes/customizer/class-boldgrid-framework-customizer.php:1408, src/includes/customizer/class-boldgrid-framework-customizer.php:1452
 msgid "Full Width"
 msgstr ""
 
@@ -394,7 +394,7 @@ msgstr ""
 msgid "Select the number of footer widget columns you wish to display."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:579, src/includes/customizer/class-boldgrid-framework-customizer.php:626, src/includes/customizer/class-boldgrid-framework-customizer.php:1539
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:579, src/includes/customizer/class-boldgrid-framework-customizer.php:626, src/includes/customizer/class-boldgrid-framework-customizer.php:1538
 msgid "Continue to Widgets Section"
 msgstr ""
 
@@ -969,7 +969,7 @@ msgstr ""
 msgid "Hide WordPress Attribution"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:527, src/includes/customizer/class-boldgrid-framework-customizer.php:1233, src/includes/customizer/class-boldgrid-framework-customizer.php:1359, src/includes/customizer/class-boldgrid-framework-customizer.php:1382, src/includes/customizer/class-boldgrid-framework-customizer.php:1424
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:527, src/includes/customizer/class-boldgrid-framework-customizer.php:1232, src/includes/customizer/class-boldgrid-framework-customizer.php:1358, src/includes/customizer/class-boldgrid-framework-customizer.php:1381, src/includes/customizer/class-boldgrid-framework-customizer.php:1423
 msgid "Layout"
 msgstr ""
 
@@ -993,7 +993,7 @@ msgstr ""
 msgid "Footer Widget Areas"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:628, src/includes/customizer/class-boldgrid-framework-customizer.php:1541
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:628, src/includes/customizer/class-boldgrid-framework-customizer.php:1540
 msgid "You can add widgets to your header from the widgets section."
 msgstr ""
 
@@ -1034,170 +1034,166 @@ msgid "Logo & Icon"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:1063
-msgid "Custom CSS/JS"
+msgid "CSS/JS Editor"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:1067
-msgid "Custom Theme CSS"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1068
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1129, src/includes/customizer/class-boldgrid-framework-customizer.php:1289
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1128, src/includes/customizer/class-boldgrid-framework-customizer.php:1288
 msgid "Design"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1141
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1140
 msgid "Header"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1154
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1153
 msgid "Footer"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1200
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1199
 msgid "Post Content Display"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1204
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1203
 msgid "Post Excerpt"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1205
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1204
 msgid "Full Content"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1212, src/includes/customizer/class-boldgrid-framework-customizer.php:1245
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1211, src/includes/customizer/class-boldgrid-framework-customizer.php:1244
 msgid "Sidebar"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1237
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1236
 msgid "Contained"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1258
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1257
 msgid "Sidebar Display"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1273, src/includes/customizer/class-boldgrid-framework-customizer.php:1311
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1272, src/includes/customizer/class-boldgrid-framework-customizer.php:1310
 msgid "Homepage Sidebar Display"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1293
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1292
 msgid "Design 1"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1294
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1293
 msgid "Design 2"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1295
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1294
 msgid "Design 3"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1296
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1295
 msgid "Design 4"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1297
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1296
 msgid "Design 5"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1298
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1297
 msgid "Design 6"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1323
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1322
 msgid "Sidebar Options"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1340
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1339
 msgid "Homepage Blog Layout"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1344, src/includes/customizer/class-boldgrid-framework-customizer.php:1363, src/includes/customizer/class-boldgrid-framework-customizer.php:1386, src/includes/customizer/class-boldgrid-framework-customizer.php:1428
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1343, src/includes/customizer/class-boldgrid-framework-customizer.php:1362, src/includes/customizer/class-boldgrid-framework-customizer.php:1385, src/includes/customizer/class-boldgrid-framework-customizer.php:1427
 msgid "Layout 1"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1345, src/includes/customizer/class-boldgrid-framework-customizer.php:1364, src/includes/customizer/class-boldgrid-framework-customizer.php:1387, src/includes/customizer/class-boldgrid-framework-customizer.php:1429
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1344, src/includes/customizer/class-boldgrid-framework-customizer.php:1363, src/includes/customizer/class-boldgrid-framework-customizer.php:1386, src/includes/customizer/class-boldgrid-framework-customizer.php:1428
 msgid "Layout 2"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1346, src/includes/customizer/class-boldgrid-framework-customizer.php:1365, src/includes/customizer/class-boldgrid-framework-customizer.php:1388, src/includes/customizer/class-boldgrid-framework-customizer.php:1430
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1345, src/includes/customizer/class-boldgrid-framework-customizer.php:1364, src/includes/customizer/class-boldgrid-framework-customizer.php:1387, src/includes/customizer/class-boldgrid-framework-customizer.php:1429
 msgid "Layout 3"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1347, src/includes/customizer/class-boldgrid-framework-customizer.php:1366, src/includes/customizer/class-boldgrid-framework-customizer.php:1389, src/includes/customizer/class-boldgrid-framework-customizer.php:1431
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1346, src/includes/customizer/class-boldgrid-framework-customizer.php:1365, src/includes/customizer/class-boldgrid-framework-customizer.php:1388, src/includes/customizer/class-boldgrid-framework-customizer.php:1430
 msgid "Layout 4"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1348, src/includes/customizer/class-boldgrid-framework-customizer.php:1367, src/includes/customizer/class-boldgrid-framework-customizer.php:1390, src/includes/customizer/class-boldgrid-framework-customizer.php:1432
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1347, src/includes/customizer/class-boldgrid-framework-customizer.php:1366, src/includes/customizer/class-boldgrid-framework-customizer.php:1389, src/includes/customizer/class-boldgrid-framework-customizer.php:1431
 msgid "Layout 5"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1349, src/includes/customizer/class-boldgrid-framework-customizer.php:1368, src/includes/customizer/class-boldgrid-framework-customizer.php:1391, src/includes/customizer/class-boldgrid-framework-customizer.php:1433
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1348, src/includes/customizer/class-boldgrid-framework-customizer.php:1367, src/includes/customizer/class-boldgrid-framework-customizer.php:1390, src/includes/customizer/class-boldgrid-framework-customizer.php:1432
 msgid "Layout 6"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1405
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1404
 msgid "Header Container"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1410, src/includes/customizer/class-boldgrid-framework-customizer.php:1454
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1409, src/includes/customizer/class-boldgrid-framework-customizer.php:1453
 msgid "Fixed Width"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1434
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1433
 msgid "Layout 7"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1435
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1434
 msgid "Layout 8"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1449
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1448
 msgid "Footer Container"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1473
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1472
 msgid "Header Position"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1477
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1476
 msgid "Header on Top"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1478
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1477
 msgid "Header on Left"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1479
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1478
 msgid "Header on Right"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1503
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1502
 msgid "Header Settings"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1520
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1519
 msgid "Header Widgets"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1521
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1520
 msgid "Select the number of widget areas you wish to display"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1561
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1560
 msgid "Custom Header HTML"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1562
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1561
 msgid "Add your custom HTML for your header here"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:1606
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:1605
 msgid "Menu Tutorial"
 msgstr ""
 

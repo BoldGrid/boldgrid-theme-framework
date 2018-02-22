@@ -3281,6 +3281,11 @@ footer .bgtfw-widget-row {
   .sm-clean.sm-vertical ul a.disabled {
     background: white; } }
 
+@media only screen and (min-width: 768px) {
+  .sm.sm-clean {
+    padding-left: 15px;
+    padding-right: 15px; } }
+
 @media (min-width: 768px) {
   /* prevent text rendering degrade during animation in Mac browsers */
   #main-menu.logo.logo-left .site-title {

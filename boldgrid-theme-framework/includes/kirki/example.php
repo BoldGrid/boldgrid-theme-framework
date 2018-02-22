@@ -82,16 +82,18 @@ $sections = array(
 	'sortable'        => array( esc_attr__( 'Sortable', 'kirki' ), '' ),
 	'switch'          => array( esc_attr__( 'Switch', 'kirki' ), '' ),
 	'toggle'          => array( esc_attr__( 'Toggle', 'kirki' ), '' ),
-	'typography'      => array( esc_attr__( 'Typography', 'kirki' ), '' ),
+	'typography'      => array( esc_attr__( 'Typography', 'kirki' ), '', 'outer' ),
 );
 foreach ( $sections as $section_id => $section ) {
-	Kirki::add_section(
-		str_replace( '-', '_', $section_id ) . '_section', array(
-			'title'       => $section[0],
-			'description' => $section[1],
-			'panel'       => 'kirki_demo_panel',
-		)
+	$section_args = array(
+		'title'       => $section[0],
+		'description' => $section[1],
+		'panel'       => 'kirki_demo_panel',
 	);
+	if ( isset( $section[2] ) ) {
+		$section_args['type'] = $section[2];
+	}
+	Kirki::add_section( str_replace( '-', '_', $section_id ) . '_section', $section_args );
 }
 
 /**
@@ -118,7 +120,7 @@ my_config_kirki_add_field(
 		'default'     => array(
 			'background-color'      => 'rgba(20,20,20,.8)',
 			'background-image'      => '',
-			'background-repeat'     => 'repeat-all',
+			'background-repeat'     => 'repeat',
 			'background-position'   => 'center center',
 			'background-size'       => 'cover',
 			'background-attachment' => 'scroll',
@@ -141,7 +143,6 @@ my_config_kirki_add_field(
 		'default'     => '',
 		'choices'     => array(
 			'language' => 'css',
-			'theme'    => 'monokai',
 		),
 	)
 );
@@ -663,6 +664,62 @@ my_config_kirki_add_field(
 );
 
 /**
+ * Repeater Control.
+ */
+my_config_kirki_add_field(
+	array(
+		'type'        => 'repeater',
+		'settings'    => 'repeater_setting',
+		'label'       => esc_attr__( 'Repeater Control', 'kirki' ),
+		'description' => esc_attr__( 'The description here.', 'kirki' ),
+		'section'     => 'repeater_section',
+		'default'     => array(
+			array(
+				'link_text'   => esc_attr__( 'Kirki Site', 'kirki' ),
+				'link_url'    => 'https://aristath.github.io/kirki/',
+				'link_target' => '_self',
+				'checkbox'    => false,
+			),
+			array(
+				'link_text'   => esc_attr__( 'Kirki Repository', 'kirki' ),
+				'link_url'    => 'https://github.com/aristath/kirki',
+				'link_target' => '_self',
+				'checkbox'    => false,
+			),
+		),
+		'fields' => array(
+			'link_text' => array(
+				'type'        => 'text',
+				'label'       => esc_attr__( 'Link Text', 'kirki' ),
+				'description' => esc_attr__( 'This will be the label for your link', 'kirki' ),
+				'default'     => '',
+			),
+			'link_url' => array(
+				'type'        => 'text',
+				'label'       => esc_attr__( 'Link URL', 'kirki' ),
+				'description' => esc_attr__( 'This will be the link URL', 'kirki' ),
+				'default'     => '',
+			),
+			'link_target' => array(
+				'type'        => 'select',
+				'label'       => esc_attr__( 'Link Target', 'kirki' ),
+				'description' => esc_attr__( 'This will be the link target', 'kirki' ),
+				'default'     => '_self',
+				'choices'     => array(
+					'_blank'  => esc_attr__( 'New Window', 'kirki' ),
+					'_self'   => esc_attr__( 'Same Frame', 'kirki' ),
+				),
+			),
+			'checkbox' => array(
+				'type'			=> 'checkbox',
+				'label'			=> esc_attr__( 'Checkbox', 'kirki' ),
+				'default'		=> false,
+			),
+		),
+	)
+);
+
+/**
  * Select Control.
  */
 my_config_kirki_add_field(
@@ -673,6 +730,7 @@ my_config_kirki_add_field(
 		'description' => esc_attr__( 'The description here.', 'kirki' ),
 		'section'     => 'select_section',
 		'default'     => 'option-3',
+		'placeholder' => esc_attr__( 'Select an option', 'kirki' ),
 		'choices'     => array(
 			'option-1' => esc_attr__( 'Option 1', 'kirki' ),
 			'option-2' => esc_attr__( 'Option 2', 'kirki' ),
@@ -769,6 +827,13 @@ my_config_kirki_add_field(
 			'on'  => esc_attr__( 'Enabled', 'kirki' ),
 			'off' => esc_attr__( 'Disabled', 'kirki' ),
 		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'switch_setting',
+				'operator' => '==',
+				'value'    => true,
+			),
+		),
 	)
 );
 
@@ -796,17 +861,75 @@ my_config_kirki_add_field(
 		'label'       => esc_attr__( 'Typography Control Label', 'kirki' ),
 		'description' => esc_attr__( 'The full set of options.', 'kirki' ),
 		'section'     => 'typography_section',
-		'default'     => array(
-			'font-family'    => 'Roboto',
-			'variant'        => 'regular',
-			'font-size'      => '14px',
-			'line-height'    => '1.5',
-			'letter-spacing' => '0',
-			'subsets'        => array( 'latin-ext' ),
-			'color'          => '#333333',
-			'text-transform' => 'none',
-			'text-align'     => 'left',
-		),
 		'priority'    => 10,
+		'transport'   => 'auto',
+		'default'     => array(
+			'font-family'     => 'Roboto',
+			'variant'         => 'regular',
+			'font-size'       => '14px',
+			'line-height'     => '1.5',
+			'letter-spacing'  => '0',
+			'color'           => '#333333',
+			'text-transform'  => 'none',
+			'text-decoration' => 'none',
+			'text-align'      => 'left',
+			'margin-top'      => '0',
+			'margin-bottom'   => '0',
+		),
+		'output'      => array(
+			array(
+				'element' => 'body, p',
+			),
+		),
+		'choices' => array(
+			'fonts' => array(
+				'google' => array( 'popularity', 60 ),
+			),
+		),
 	)
 );
+
+my_config_kirki_add_field(
+	array(
+		'type'        => 'typography',
+		'settings'    => 'typography_setting_1',
+		'label'       => esc_attr__( 'Typography Control Label', 'kirki' ),
+		'description' => esc_attr__( 'The full set of options.', 'kirki' ),
+		'section'     => 'typography_section',
+		'priority'    => 10,
+		'transport'   => 'auto',
+		'default'     => array(
+			'font-family'     => 'Roboto',
+		),
+		'output'      => array(
+			array(
+				'element' => array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ),
+			),
+		),
+	)
+);
+
+function kirki_sidebars_select_example() {
+	$sidebars = array();
+	if ( isset( $GLOBALS['wp_registered_sidebars'] ) ) {
+		$sidebars = $GLOBALS['wp_registered_sidebars'];
+	}
+	$sidebars_choices = array();
+	foreach ( $sidebars as $sidebar ) {
+		$sidebars_choices[ $sidebar['id'] ] = $sidebar['name'];
+	}
+	if ( ! class_exists( 'Kirki' ) ) {
+		return;
+	}
+	Kirki::add_field( 'kirki_demo', array(
+		'type'        => 'select',
+		'settings'    => 'sidebars_select',
+		'label'       => esc_attr__( 'Sidebars Select', 'kirki' ),
+		'description' => esc_attr__( 'An example of how to implement sidebars selection.', 'kirki' ),
+		'section'     => 'select_section',
+		'default'     => 'primary',
+		'choices'     => $sidebars_choices,
+		'priority'    => 30,
+	) );
+}
+add_action( 'init', 'kirki_sidebars_select_example', 999 );

@@ -33,12 +33,29 @@ class Kirki_Control_Base extends WP_Customize_Control {
 	public $option_type = 'theme_mod';
 
 	/**
+	 * Option name (if using options).
+	 *
+	 * @access public
+	 * @var string
+	 */
+	public $option_name = false;
+
+	/**
 	 * The kirki_config we're using for this control
 	 *
 	 * @access public
 	 * @var string
 	 */
 	public $kirki_config = 'global';
+
+	/**
+	 * Whitelisting the "required" argument.
+	 *
+	 * @since 3.0.17
+	 * @access public
+	 * @var array
+	 */
+	public $required = array();
 
 	/**
 	 * Extra script dependencies.
@@ -59,7 +76,6 @@ class Kirki_Control_Base extends WP_Customize_Control {
 
 		// Build the suffix for the script.
 		$suffix  = '';
-		$suffix .= ( Kirki_Util::get_wp_version() >= 4.9 ) ? '' : '-legacy';
 		$suffix .= ( ! defined( 'SCRIPT_DEBUG' ) || true !== SCRIPT_DEBUG ) ? '.min' : '';
 
 		// The Kirki plugin URL.
@@ -77,13 +93,14 @@ class Kirki_Control_Base extends WP_Customize_Control {
 		// Enqueue the script.
 		wp_enqueue_script(
 			'kirki-script',
-			"{$kirki_url}controls/js/dist/script{$suffix}.js",
+			"{$kirki_url}controls/js/script{$suffix}.js",
 			array(
 				'jquery',
 				'customize-base',
 				'wp-color-picker-alpha',
 				'selectWoo',
 				'jquery-ui-button',
+				'jquery-ui-datepicker',
 			),
 			KIRKI_VERSION
 		);
@@ -92,13 +109,17 @@ class Kirki_Control_Base extends WP_Customize_Control {
 			'kirki-script',
 			'kirkiL10n',
 			array(
-				'noFileSelected' => esc_attr__( 'No File Selected', 'kirki' ),
-				'remove'         => esc_attr__( 'Remove', 'kirki' ),
-				'default'        => esc_attr__( 'Default', 'kirki' ),
-				'selectFile'     => esc_attr__( 'Select File', 'kirki' ),
+				'noFileSelected'   => esc_attr__( 'No File Selected', 'kirki' ),
+				'remove'           => esc_attr__( 'Remove', 'kirki' ),
+				'default'          => esc_attr__( 'Default', 'kirki' ),
+				'selectFile'       => esc_attr__( 'Select File', 'kirki' ),
+				'standardFonts'    => esc_attr__( 'Standard Fonts', 'kirki' ),
+				'googleFonts'      => esc_attr__( 'Google Fonts', 'kirki' ),
+				'defaultCSSValues' => esc_attr__( 'Default CSS Values', 'kirki' ),
 			)
 		);
 
+		$suffix = str_replace( '.min', '', $suffix );
 		// Enqueue the style.
 		wp_enqueue_style(
 			'kirki-styles',
@@ -121,6 +142,8 @@ class Kirki_Control_Base extends WP_Customize_Control {
 		if ( isset( $this->default ) ) {
 			$this->json['default'] = $this->default;
 		}
+		// Required.
+		$this->json['required'] = $this->required;
 		// Output.
 		$this->json['output'] = $this->output;
 		// Value.
@@ -140,6 +163,12 @@ class Kirki_Control_Base extends WP_Customize_Control {
 		foreach ( $this->input_attrs as $attr => $value ) {
 			$this->json['inputAttrs'] .= $attr . '="' . esc_attr( $value ) . '" ';
 		}
+		// The kirki-config.
+		$this->json['kirkiConfig'] = $this->kirki_config;
+		// The option-type.
+		$this->json['kirkiOptionType'] = $this->option_type;
+		// The option-name.
+		$this->json['kirkiOptionName'] = $this->option_name;
 	}
 
 	/**

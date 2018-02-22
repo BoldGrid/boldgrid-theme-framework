@@ -66,7 +66,7 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 
 		// Set up defaults for row labels.
 		$this->row_label = array(
-			'type' => 'text',
+			'type'  => 'text',
 			'value' => esc_attr__( 'row', 'kirki' ),
 			'field' => false,
 		);
@@ -93,7 +93,7 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 			if ( ! isset( $value['label'] ) ) {
 				$args['fields'][ $key ]['label'] = '';
 			}
-			$args['fields'][ $key ]['id']      = $key;
+			$args['fields'][ $key ]['id'] = $key;
 
 			// We check if the filed is an uploaded media ( image , file, video, etc.. ).
 			if ( isset( $value['type'] ) ) {
@@ -117,7 +117,7 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 							)
 						);
 						// Hackily add in the data link parameter.
-						$dropdown = str_replace( '<select', '<select data-field="' . esc_attr( $args['fields'][ $key ]['id'] ) . '"' . $this->get_link(), $dropdown );
+						$dropdown = str_replace( '<select', '<select data-field="' . esc_attr( $args['fields'][ $key ]['id'] ) . '"' . $this->get_link(), $dropdown ); // phpcs:ignore Generic.Formatting.MultipleStatementAlignment.NotSameWarning
 						$args['fields'][ $key ]['dropdown'] = $dropdown;
 						break;
 				}
@@ -161,8 +161,8 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 
 									// 'id' is needed for form hidden value, URL is needed to display the image.
 									$value = array(
-										'id'  => $attachment_id,
-										'url' => $url,
+										'id'       => $attachment_id,
+										'url'      => $url,
 										'filename' => $filename,
 									);
 								}
@@ -184,14 +184,14 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 
 		$fields = $this->fields;
 
-		$this->json['fields'] = $fields;
+		$this->json['fields']    = $fields;
 		$this->json['row_label'] = $this->row_label;
 
 		// If filtered_value has been set and is not empty we use it instead of the actual value.
 		if ( is_array( $this->filtered_value ) && ! empty( $this->filtered_value ) ) {
 			$this->json['value'] = $this->filtered_value;
 		}
-		$this->json['value'] = apply_filters( "kirki/controls/repeater/value/{$this->id}", $this->json['value'] );
+		$this->json['value'] = apply_filters( "kirki_controls_repeater_value_{$this->id}", $this->json['value'] );
 	}
 
 	/**
@@ -268,16 +268,16 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 								<# } #>
 
 								<label>
-									<# if ( field.label ) { #><span class="customize-control-title">{{ field.label }}</span><# } #>
-									<# if ( field.description ) { #><span class="description customize-control-description">{{ field.description }}</span><# } #>
+									<# if ( field.label ) { #><span class="customize-control-title">{{{ field.label }}}</span><# } #>
+									<# if ( field.description ) { #><span class="description customize-control-description">{{{ field.description }}}</span><# } #>
 									<input type="{{field.type}}" name="" value="{{{ field.default }}}" data-field="{{{ field.id }}}"{{ fieldExtras }}>
 								</label>
 
 							<# } else if ( 'number' === field.type ) { #>
 
 								<label>
-									<# if ( field.label ) { #><span class="customize-control-title">{{ field.label }}</span><# } #>
-									<# if ( field.description ) { #><span class="description customize-control-description">{{ field.description }}</span><# } #>
+									<# if ( field.label ) { #><span class="customize-control-title">{{{ field.label }}}</span><# } #>
+									<# if ( field.description ) { #><span class="description customize-control-description">{{{ field.description }}}</span><# } #>
 									<input type="{{ field.type }}" name="" value="{{{ field.default }}}" data-field="{{{ field.id }}}"{{ numberFieldExtras }}>
 								</label>
 
@@ -288,15 +288,15 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 							<# } else if ( 'checkbox' === field.type ) { #>
 
 								<label>
-									<input type="checkbox" value="true" data-field="{{{ field.id }}}" <# if ( field.default ) { #> checked="checked" <# } #> /> {{ field.label }}
-									<# if ( field.description ) { #>{{ field.description }}<# } #>
+									<input type="checkbox" value="{{{ field.default }}}" data-field="{{{ field.id }}}" <# if ( field.default ) { #> checked="checked" <# } #> /> {{{ field.label }}}
+									<# if ( field.description ) { #>{{{ field.description }}}<# } #>
 								</label>
 
 							<# } else if ( 'select' === field.type ) { #>
 
 								<label>
-									<# if ( field.label ) { #><span class="customize-control-title">{{ field.label }}</span><# } #>
-									<# if ( field.description ) { #><span class="description customize-control-description">{{ field.description }}</span><# } #>
+									<# if ( field.label ) { #><span class="customize-control-title">{{{ field.label }}}</span><# } #>
+									<# if ( field.description ) { #><span class="description customize-control-description">{{{ field.description }}}</span><# } #>
 									<select data-field="{{{ field.id }}}"<# if ( ! _.isUndefined( field.multiple ) && false !== field.multiple ) { #> multiple="multiple" data-multiple="{{ field.multiple }}"<# } #>>
 										<# _.each( field.choices, function( choice, i ) { #>
 											<option value="{{{ i }}}" <# if ( field.default == i ) { #> selected="selected" <# } #>>{{ choice }}</option>
@@ -315,8 +315,8 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 							<# } else if ( 'radio' === field.type ) { #>
 
 								<label>
-									<# if ( field.label ) { #><span class="customize-control-title">{{ field.label }}</span><# } #>
-									<# if ( field.description ) { #><span class="description customize-control-description">{{ field.description }}</span><# } #>
+									<# if ( field.label ) { #><span class="customize-control-title">{{{ field.label }}}</span><# } #>
+									<# if ( field.description ) { #><span class="description customize-control-description">{{{ field.description }}}</span><# } #>
 
 									<# _.each( field.choices, function( choice, i ) { #>
 										<label><input type="radio" name="{{{ field.id }}}{{ index }}" data-field="{{{ field.id }}}" value="{{{ i }}}" <# if ( field.default == i ) { #> checked="checked" <# } #>> {{ choice }} <br/></label>
@@ -326,8 +326,8 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 							<# } else if ( 'radio-image' === field.type ) { #>
 
 								<label>
-									<# if ( field.label ) { #><span class="customize-control-title">{{ field.label }}</span><# } #>
-									<# if ( field.description ) { #><span class="description customize-control-description">{{ field.description }}</span><# } #>
+									<# if ( field.label ) { #><span class="customize-control-title">{{{ field.label }}}</span><# } #>
+									<# if ( field.description ) { #><span class="description customize-control-description">{{{ field.description }}}</span><# } #>
 
 									<# _.each( field.choices, function( choice, i ) { #>
 										<input type="radio" id="{{{ field.id }}}_{{ index }}_{{{ i }}}" name="{{{ field.id }}}{{ index }}" data-field="{{{ field.id }}}" value="{{{ i }}}" <# if ( field.default == i ) { #> checked="checked" <# } #>>
@@ -352,15 +352,15 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 
 							<# } else if ( 'textarea' === field.type ) { #>
 
-								<# if ( field.label ) { #><span class="customize-control-title">{{ field.label }}</span><# } #>
-								<# if ( field.description ) { #><span class="description customize-control-description">{{ field.description }}</span><# } #>
+								<# if ( field.label ) { #><span class="customize-control-title">{{{ field.label }}}</span><# } #>
+								<# if ( field.description ) { #><span class="description customize-control-description">{{{ field.description }}}</span><# } #>
 								<textarea rows="5" data-field="{{{ field.id }}}">{{ field.default }}</textarea>
 
 							<# } else if ( field.type === 'image' || field.type === 'cropped_image' ) { #>
 
 								<label>
-									<# if ( field.label ) { #><span class="customize-control-title">{{ field.label }}</span><# } #>
-									<# if ( field.description ) { #><span class="description customize-control-description">{{ field.description }}</span><# } #>
+									<# if ( field.label ) { #><span class="customize-control-title">{{{ field.label }}}</span><# } #>
+									<# if ( field.description ) { #><span class="description customize-control-description">{{{ field.description }}}</span><# } #>
 								</label>
 
 								<figure class="kirki-image-attachment" data-placeholder="<?php esc_attr_e( 'No Image Selected', 'kirki' ); ?>" >
@@ -391,8 +391,8 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 							<# } else if ( field.type === 'upload' ) { #>
 
 								<label>
-									<# if ( field.label ) { #><span class="customize-control-title">{{ field.label }}</span><# } #>
-									<# if ( field.description ) { #><span class="description customize-control-description">{{ field.description }}</span><# } #>
+									<# if ( field.label ) { #><span class="customize-control-title">{{{ field.label }}}</span><# } #>
+									<# if ( field.description ) { #><span class="description customize-control-description">{{{ field.description }}}</span><# } #>
 								</label>
 
 								<figure class="kirki-file-attachment" data-placeholder="<?php esc_attr_e( 'No File Selected', 'kirki' ); ?>" >
@@ -422,8 +422,8 @@ class Kirki_Control_Repeater extends Kirki_Control_Base {
 
 							<# } else if ( 'custom' === field.type ) { #>
 
-								<# if ( field.label ) { #><span class="customize-control-title">{{ field.label }}</span><# } #>
-								<# if ( field.description ) { #><span class="description customize-control-description">{{ field.description }}</span><# } #>
+								<# if ( field.label ) { #><span class="customize-control-title">{{{ field.label }}}</span><# } #>
+								<# if ( field.description ) { #><span class="description customize-control-description">{{{ field.description }}}</span><# } #>
 								<div data-field="{{{ field.id }}}">{{{ field.default }}}</div>
 
 							<# } #>

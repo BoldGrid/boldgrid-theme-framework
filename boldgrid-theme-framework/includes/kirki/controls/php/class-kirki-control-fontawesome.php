@@ -35,11 +35,11 @@ class Kirki_Control_FontAwesome extends Kirki_Control_Base {
 	public function enqueue() {
 		parent::enqueue();
 
-		wp_enqueue_style( 'kirki-fontawesome-font-css', trailingslashit( Kirki::$url ) . 'assets/vendor/fontawesome/css/font-awesome.min.css', array(), KIRKI_VERSION );
+		wp_enqueue_script( 'kirki-fontawesome-font', 'https://use.fontawesome.com/30858dc40a.js', array(), '4.0.7' );
 
 		ob_start();
 		$json_path = wp_normalize_path( Kirki::$path . '/assets/vendor/fontawesome/fontawesome.json' );
-		include( $json_path );
+		include $json_path;
 		$font_awesome_json = ob_get_clean();
 
 		wp_localize_script( 'kirki-script', 'fontAwesomeJSON', $font_awesome_json );
@@ -58,7 +58,7 @@ class Kirki_Control_FontAwesome extends Kirki_Control_Base {
 	protected function content_template() {
 		?>
 		<label>
-			<# if ( data.label ) { #><span class="customize-control-title">{{ data.label }}</span><# } #>
+			<# if ( data.label ) { #><span class="customize-control-title">{{{ data.label }}}</span><# } #>
 			<# if ( data.description ) { #><span class="description customize-control-description">{{{ data.description }}}</span><# } #>
 			<select {{{ data.inputAttrs }}} {{{ data.link }}}></select>
 		</label>

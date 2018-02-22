@@ -31,7 +31,7 @@ class Kirki_Section {
 	 */
 	public function __construct( $args ) {
 
-		$this->section_types = apply_filters( 'kirki/section_types', $this->section_types );
+		$this->section_types = apply_filters( 'kirki_section_types', $this->section_types );
 		$this->add_section( $args );
 
 	}
@@ -51,6 +51,10 @@ class Kirki_Section {
 
 		if ( isset( $args['type'] ) && array_key_exists( $args['type'], $this->section_types ) ) {
 			$section_classname = $this->section_types[ $args['type'] ];
+		}
+		if ( isset( $args['type'] ) && 'kirki-outer' === $args['type'] ) {
+			$args['type']      = 'outer';
+			$section_classname = 'WP_Customize_Section';
 		}
 
 		// Add the section.

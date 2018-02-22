@@ -117,7 +117,7 @@ class Kirki_Modules_CSS {
 
 		global $wp_customize;
 
-		$config   = apply_filters( 'kirki/config', array() );
+		$config   = apply_filters( 'kirki_config', array() );
 		$priority = 999;
 		if ( isset( $config['styles_priority'] ) ) {
 			$priority = absint( $config['styles_priority'] );
@@ -128,7 +128,7 @@ class Kirki_Modules_CSS {
 			return;
 		}
 
-		$method = apply_filters( 'kirki/dynamic_css/method', 'inline' );
+		$method = apply_filters( 'kirki_dynamic_css_method', 'inline' );
 		if ( $wp_customize ) {
 			// If we're in the customizer, load inline no matter what.
 			add_action( 'wp_enqueue_scripts', array( $this, 'inline_dynamic_css' ), $priority );
@@ -190,13 +190,21 @@ class Kirki_Modules_CSS {
 					continue;
 				}
 				$styles = self::loop_controls( $config_id );
-				$styles = apply_filters( "kirki/{$config_id}/dynamic_css", $styles );
+				$styles = apply_filters( "kirki_{$config_id}_dynamic_css", $styles );
 				if ( ! empty( $styles ) ) {
+					$stylesheet = apply_filters( "kirki_{$config_id}_stylesheet", false );
+					if ( $stylesheet ) {
+						wp_add_inline_style( $stylesheet, $styles );
+						continue;
+					}
 					wp_enqueue_style( 'kirki-styles-' . $config_id, trailingslashit( Kirki::$url ) . 'assets/css/kirki-styles.css', array(), KIRKI_VERSION );
 					wp_add_inline_style( 'kirki-styles-' . $config_id, $styles );
 				}
 			}
 			$this->processed = true;
+		}
+		if ( apply_filters( 'kirki_load_fontawesome', true ) ) {
+			wp_enqueue_script( 'kirki-fontawesome-font', 'https://use.fontawesome.com/30858dc40a.js', array(), '4.0.7', true );
 		}
 	}
 
@@ -247,21 +255,23 @@ class Kirki_Modules_CSS {
 				continue;
 			}
 
-			// Only continue if field dependencies are met.
-			if ( ! empty( $field['required'] ) ) {
-				$valid = true;
+			if ( true === apply_filters( "kirki_{$config_id}_css_skip_hidden", true ) ) {
+				// Only continue if field dependencies are met.
+				if ( ! empty( $field['required'] ) ) {
+					$valid = true;
 
-				foreach ( $field['required'] as $requirement ) {
-					if ( isset( $requirement['setting'] ) && isset( $requirement['value'] ) && isset( $requirement['operator'] ) ) {
-						$controller_value = Kirki_Values::get_value( $config_id, $requirement['setting'] );
-						if ( ! Kirki_Active_Callback::compare( $controller_value, $requirement['value'], $requirement['operator'] ) ) {
-							$valid = false;
+					foreach ( $field['required'] as $requirement ) {
+						if ( isset( $requirement['setting'] ) && isset( $requirement['value'] ) && isset( $requirement['operator'] ) ) {
+							$controller_value = Kirki_Values::get_value( $config_id, $requirement['setting'] );
+							if ( ! Kirki_Helper::compare_values( $controller_value, $requirement['value'], $requirement['operator'] ) ) {
+								$valid = false;
+							}
 						}
 					}
-				}
 
-				if ( ! $valid ) {
-					continue;
+					if ( ! $valid ) {
+						continue;
+					}
 				}
 			}
 
@@ -276,7 +286,7 @@ class Kirki_Modules_CSS {
 			}
 		}
 
-		$css = apply_filters( "kirki/{$config_id}/styles", $css );
+		$css = apply_filters( "kirki_{$config_id}_styles", $css );
 
 		if ( is_array( $css ) ) {
 			return Kirki_Modules_CSS_Generator::styles_parse( Kirki_Modules_CSS_Generator::add_prefixes( $css ) );

@@ -31,7 +31,8 @@ class Kirki_Helper {
 	 */
 	public static function array_replace_recursive( $array, $array1 ) {
 		if ( function_exists( 'array_replace_recursive' ) ) {
-			return array_replace_recursive( $array, $array1 );
+			// @codingStandardsIgnoreLine PHPCompatibility.PHP.NewFunctions.array_replace_recursiveFound
+			return array_replace_recursive( $array, $array1 ); // phpcs:ignore PHPCompatibility.PHP.NewFunctions.array_replace_recursiveFound
 		}
 
 		// Handle the arguments, merge one by one.
@@ -84,7 +85,7 @@ class Kirki_Helper {
 	public static function init_filesystem() {
 		global $wp_filesystem;
 		if ( empty( $wp_filesystem ) ) {
-			require_once( ABSPATH . '/wp-admin/includes/file.php' );
+			require_once ABSPATH . '/wp-admin/includes/file.php';
 			WP_Filesystem();
 		}
 		return $wp_filesystem;
@@ -107,7 +108,8 @@ class Kirki_Helper {
 
 		$attachment = wp_cache_get( 'kirki_image_id_' . md5( $url ), null );
 		if ( false === $attachment ) {
-			$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid = %s;", $url ) );
+			// @codingStandardsIgnoreLine WordPress.VIP.DirectDatabaseQuery.DirectQuery
+			$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid = %s;", $url ) ); // phpcs:ignore WordPress.VIP.DirectDatabaseQuery.DirectQuery
 			wp_cache_add( 'kirki_image_id_' . md5( $url ), $attachment, null );
 		}
 
@@ -158,6 +160,7 @@ class Kirki_Helper {
 		}
 
 		// Get the posts.
+		// TODO: WordPress.VIP.RestrictedFunctions.get_posts_get_posts.
 		$posts = get_posts( $args );
 
 		// Properly format the array.
@@ -368,5 +371,47 @@ class Kirki_Helper {
 			'misc'           => array( 'location', 'location-alt', 'vault', 'shield', 'shield-alt', 'sos', 'search', 'slides', 'analytics', 'chart-pie', 'chart-bar', 'chart-line', 'chart-area', 'groups', 'businessman', 'id', 'id-alt', 'products', 'awards', 'forms', 'testimonial', 'portfolio', 'book', 'book-alt', 'download', 'upload', 'backup', 'clock', 'lightbulb', 'microphone', 'desktop', 'tablet', 'smartphone', 'phone', 'index-card', 'carrot', 'building', 'store', 'album', 'palmtree', 'tickets-alt', 'money', 'smiley', 'thumbs-up', 'thumbs-down', 'layout' ),
 		);
 
+	}
+
+	/**
+	 * Compares the 2 values given the condition
+	 *
+	 * @param mixed  $value1   The 1st value in the comparison.
+	 * @param mixed  $value2   The 2nd value in the comparison.
+	 * @param string $operator The operator we'll use for the comparison.
+	 * @return boolean whether The comparison has succeded (true) or failed (false).
+	 */
+	public static function compare_values( $value1, $value2, $operator ) {
+		$return = false;
+		if ( '===' === $operator && $value1 === $value2 ) {
+			$return = true;
+		} elseif ( '!==' === $operator && $value1 !== $value2 ) {
+			$return = true;
+			// @codingStandardsIgnoreLine WordPress.PHP.StrictComparisons.LooseComparison
+		} elseif ( ( '!=' === $operator || 'not equal' === $operator ) && $value1 != $value2 ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+			$return = true;
+		} elseif ( ( '>=' === $operator || 'greater or equal' === $operator || 'equal or greater' === $operator ) && $value2 >= $value1 ) {
+			$return = true;
+		} elseif ( ( '<=' === $operator || 'smaller or equal' === $operator || 'equal or smaller' === $operator ) && $value2 <= $value1 ) {
+			$return = true;
+		} elseif ( ( '>' === $operator || 'greater' === $operator ) && $value2 > $value1 ) {
+			$return = true;
+		} elseif ( ( '<' === $operator || 'smaller' === $operator ) && $value2 < $value1 ) {
+			$return = true;
+		} elseif ( 'contains' === $operator || 'in' === $operator ) {
+			if ( is_array( $value1 ) && ! is_array( $value2 ) ) {
+				// @codingStandardsIgnoreLine
+				$return = ( in_array( $value2, $value1 ) );
+			} elseif ( is_array( $value2 ) && ! is_array( $value1 ) ) {
+				// @codingStandardsIgnoreLine
+				$return = ( in_array( $value1, $value2 ) );
+			} elseif ( false === strrpos( $value1, $value2 ) && false === strpos( $value2, $value1 ) ) {
+				$return = false;
+			}
+		} else {
+			// @codingStandardsIgnoreLine WordPress.PHP.StrictComparisons.LooseComparison
+			$return = ( $value1 == $value2 ) ? true : false; // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+		}
+		return (bool) $return;
 	}
 }

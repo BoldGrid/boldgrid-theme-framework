@@ -39,6 +39,14 @@ class Kirki_Output {
 	protected $styles = array();
 
 	/**
+	 * The field.
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $field = array();
+
+	/**
 	 * The value.
 	 *
 	 * @access protected
@@ -53,12 +61,14 @@ class Kirki_Output {
 	 * @param string       $config_id The config ID.
 	 * @param array        $output    The output argument.
 	 * @param string|array $value     The value.
+	 * @param array        $field     The field.
 	 */
-	public function __construct( $config_id, $output, $value ) {
+	public function __construct( $config_id, $output, $value, $field ) {
 
 		$this->config_id = $config_id;
 		$this->value     = $value;
 		$this->output    = $output;
+		$this->field     = $field;
 
 		$this->parse_output();
 	}
@@ -139,7 +149,7 @@ class Kirki_Output {
 					case 'option':
 						if ( is_array( $options ) ) {
 							if ( $option_name ) {
-								$subkey = str_replace( array( $option_name, '[', ']' ), '', $replace );
+								$subkey      = str_replace( array( $option_name, '[', ']' ), '', $replace );
 								$replacement = ( isset( $options[ $subkey ] ) ) ? $options[ $subkey ] : '';
 								break;
 							}
@@ -164,11 +174,8 @@ class Kirki_Output {
 				$replacement = ( false === $replacement ) ? '' : $replacement;
 				if ( is_array( $value ) ) {
 					foreach ( $value as $k => $v ) {
-						if ( isset( $value[ $v ] ) ) {
-							$value[ $k ] = str_replace( $search, $replacement, $value[ $v ] );
-						} else {
-							$value[ $k ] = str_replace( $search, $replacement, $v );
-						}
+						$_val        = ( isset( $value[ $v ] ) ) ? $value[ $v ] : $v;
+						$value[ $k ] = str_replace( $search, $replacement, $_val );
 					}
 					return $value;
 				}
@@ -210,7 +217,8 @@ class Kirki_Output {
 						}
 						// If 'choice' is defined check for sub-values too.
 						// Fixes https://github.com/aristath/kirki/issues/1416.
-						if ( isset( $output['choice'] ) && isset( $value[ $output['choice'] ] ) && $exclude == $value[ $output['choice'] ] ) {
+						// @codingStandardsIgnoreLine WordPress.PHP.StrictComparisons.LooseComparison
+						if ( isset( $output['choice'] ) && isset( $value[ $output['choice'] ] ) && $exclude == $value[ $output['choice'] ] ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 							$skip = true;
 						}
 					}
@@ -289,7 +297,7 @@ class Kirki_Output {
 	 */
 	protected function process_property_value( $property, $value ) {
 		$properties = apply_filters(
-			"kirki/{$this->config_id}/output/property-classnames", array(
+			"kirki_{$this->config_id}_output_property_classnames", array(
 				'font-family'         => 'Kirki_Output_Property_Font_Family',
 				'background-image'    => 'Kirki_Output_Property_Background_Image',
 				'background-position' => 'Kirki_Output_Property_Background_Position',
@@ -297,7 +305,7 @@ class Kirki_Output {
 		);
 		if ( array_key_exists( $property, $properties ) ) {
 			$classname = $properties[ $property ];
-			$obj = new $classname( $property, $value );
+			$obj       = new $classname( $property, $value );
 			return $obj->get_value();
 		}
 		return $value;

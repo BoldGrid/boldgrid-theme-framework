@@ -20,7 +20,6 @@
 		if ( message.id === 'synced' ) {
 			$window.trigger( refresh_event, message );
 			hide_nav_controls();
-			hide_alt_font_controls();
 		}
 	} );
 
@@ -60,23 +59,6 @@
 				wp.customize.control( 'navigation_' + id.themeLocation + '_text_transform' ).activate({ duration: 0 });
 			}
 		});
-	};
-
-	/**
-	 * Hide the alternate headings panel if there's no alternate headings to configure.
-	 */
-	var hide_alt_font_controls = function() {
-		$alt_font = wp.customize.previewer.container
-			.find( 'iframe[title="Site Preview"]' ).last().contents().find( '.alt-font' );
-		if ( ! $alt_font.length ) {
-			wp.customize.control( 'alternate_headings_text_transform' ).deactivate({ duration: 0 });
-			wp.customize.control( 'alternate_headings_font_size' ).deactivate({ duration: 0 });
-			wp.customize.control( 'alternate_headings_font_family' ).deactivate({ duration: 0 });
-		} else {
-			wp.customize.control( 'alternate_headings_text_transform' ).activate({ duration: 0 });
-			wp.customize.control( 'alternate_headings_font_size' ).activate({ duration: 0 });
-			wp.customize.control( 'alternate_headings_font_family' ).activate({ duration: 0 });
-		}
 	};
 
 })( jQuery );

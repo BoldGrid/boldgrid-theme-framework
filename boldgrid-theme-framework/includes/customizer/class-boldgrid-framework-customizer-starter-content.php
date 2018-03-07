@@ -49,11 +49,22 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	 * @since 2.0.0
 	 */
 	public function add_hooks() {
+		$this->starter_content_settings();
 		if ( get_theme_starter_content() ) {
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue' ) );
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'print_templates' ) );
 			add_action( 'wp_ajax_load_starter_content', array( $this, 'load_starter_content' ) );
 		}
+	}
+
+
+	public function starter_content_settings() {
+		global $wp_customize;
+		$wp_customize->add_setting( 'bgtfw_starter_content_loaded', array(
+			'default' => false,
+			'capability' => 'edit_theme_options',
+			'transport' => 'postMessage',
+		) );
 	}
 
 	/**

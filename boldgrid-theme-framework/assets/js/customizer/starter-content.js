@@ -13,7 +13,7 @@
 					var request, button = $( this );
 					event.preventDefault();
 					$( '.wp-full-overlay' ).addClass( 'customize-loading' ); // @todo This doesn't work.
-					request = wp.ajax.post( 'customize_load_starter_content', wp.customize.previewer.query() );
+					request = wp.ajax.post( 'load_starter_content', wp.customize.previewer.query() );
 					button.prop( 'disabled', true );
 					request.done( function() {
 						panel.loadThemePreview( wp.customize.settings.theme.stylesheet ).fail( function() {

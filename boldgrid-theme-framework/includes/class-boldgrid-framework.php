@@ -583,24 +583,7 @@ class BoldGrid_Framework {
 		self::customizer_kirki();
 		self::customizer_effects();
 		self::customizer_widget_meta();
-	}
-
-	/**
-	 * This defines the core functionality of the extended widget meta controls for
-	 * adding color and title fields to widget areas.
-	 *
-	 * @since    2.0.0
-	 * @access   private
-	 */
-	private function customizer_widget_meta() {
-		$widget_meta = new  Boldgrid_Framework_Customizer_Widget_Meta( $this->configs );
-		$this->loader->add_action( 'customize_register', $widget_meta, 'customize_register' );
-		$this->loader->add_action( 'customize_controls_enqueue_scripts', $widget_meta, 'customize_controls_enqueue_scripts' );
-		$this->loader->add_action( 'customize_controls_print_footer_scripts', $widget_meta, 'customize_controls_print_footer_scripts' );
-		$this->loader->add_action( 'customize_preview_init', $widget_meta, 'customize_preview_init' );
-		$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_start_tag', 5 );
-		$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_title', 9 );
-		$this->loader->add_action( 'dynamic_sidebar_after', $widget_meta, 'render_sidebar_end_tag', 15 );
+		self::customizer_starter_content();
 	}
 
 	/**
@@ -793,6 +776,35 @@ class BoldGrid_Framework {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		// Add Page Effects Controls.
 		// $this->loader->add_action( 'customize_register', $effects, 'add_controls' );
+	}
+
+	/**
+	 * This defines the core functionality of the extended widget meta controls for
+	 * adding color and title fields to widget areas.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 */
+	private function customizer_widget_meta() {
+		$widget_meta = new  Boldgrid_Framework_Customizer_Widget_Meta( $this->configs );
+		$this->loader->add_action( 'customize_register', $widget_meta, 'customize_register' );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $widget_meta, 'customize_controls_enqueue_scripts' );
+		$this->loader->add_action( 'customize_controls_print_footer_scripts', $widget_meta, 'customize_controls_print_footer_scripts' );
+		$this->loader->add_action( 'customize_preview_init', $widget_meta, 'customize_preview_init' );
+		$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_start_tag', 5 );
+		$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_title', 9 );
+		$this->loader->add_action( 'dynamic_sidebar_after', $widget_meta, 'render_sidebar_end_tag', 15 );
+	}
+
+	/**
+	 * This defines the core functionality of the framework's customizer start content import button.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 */
+	private function customizer_starter_content() {
+		$starter_content = new Boldgrid_Framework_Customizer_Starter_Content( $this->configs );
+		$this->loader->add_action( 'customize_register', $starter_content, 'add_hooks' );
 	}
 
 	/**

@@ -1121,3 +1121,20 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 
 .customize-widget-sidebar-meta-controls .customize-control {
   float: none; }
+
+/*--------------------------------------------------------------
+# Customizer Import Starter Content Controls
+--------------------------------------------------------------*/
+#customize-theme-controls .control-panel-themes.has-starter-content {
+  margin-bottom: 15px; }
+
+#customize-theme-controls .control-panel-themes.has-starter-content > .accordion-section-title {
+  margin-bottom: 0; }
+
+#customize-theme-controls .control-panel-themes.has-starter-content .theme-starter-content-actions {
+  background: white;
+  padding: 10px 12px 10px 12px; }
+
+#customize-theme-controls .control-panel-themes.has-starter-content .theme-starter-content-actions button.dashicons-before:before {
+  margin-right: 5px;
+  vertical-align: middle; }

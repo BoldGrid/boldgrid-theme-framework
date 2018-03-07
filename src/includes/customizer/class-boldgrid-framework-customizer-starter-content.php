@@ -57,7 +57,11 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 		}
 	}
 
-
+	/**
+	 * Register starter content settings.
+	 *
+	 * @since 2.0.0
+	 */
 	public function starter_content_settings() {
 		global $wp_customize;
 		$wp_customize->add_setting( 'bgtfw_starter_content_loaded', array(

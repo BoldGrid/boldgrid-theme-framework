@@ -176,6 +176,7 @@ class BoldGrid_Framework {
 			'setup',
 			'social-media-icons',
 			'staging',
+			'starter-content',
 			'styles',
 			'template-config',
 			'upgrade',

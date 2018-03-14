@@ -464,6 +464,12 @@ class BoldGrid_Framework {
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
 
+		if ( ! empty( $this->configs['starter-content'] ) ) {
+			$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
+			$this->loader->add_action( 'after_setup_theme', $starter_content, 'add_theme_support' );
+			$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'add_post_meta', 10, 2 );
+		}
+
 		// Edit post links.
 		if ( true === $this->configs['edit-post-links']['enabled'] ) {
 			$links = new Boldgrid_Framework_Edit_Post_Links( $this->configs );

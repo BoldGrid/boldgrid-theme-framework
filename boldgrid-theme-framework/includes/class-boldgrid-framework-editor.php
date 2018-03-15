@@ -233,17 +233,23 @@ HTML;
 	}
 
 	/**
-	 * Set Kirki's Google Font load method.
+	 * Call kirki to load fonts using the webfont loader.
 	 *
-	 * This tells Kirki to embed googlefonts in styles instead of loading
-	 * separate link.
+	 * This will load the fonts in the primary document, the styles are then copied into
+	 * tinymce after loaded.
 	 *
 	 * @since 2.0.0
-	 *
-	 * @return string Name of method of adding the necessary Google Fonts styles.
 	 */
-	public function kirki_load_method() {
-		return 'embed';
+	public function enqueue_webfonts() {
+		foreach ( array_keys( Kirki::$config ) as $config_id ) {
+			$async = new Kirki_Modules_Webfonts_Async(
+				$config_id,
+				Kirki_Modules_Webfonts::get_instance(),
+				Kirki_Fonts_Google::get_instance()
+			);
+
+			$async->webfont_loader();
+		}
 	}
 
 	/**
@@ -260,7 +266,6 @@ HTML;
 			$mce_css .= ',';
 		}
 		$upload_dir = wp_upload_dir();
-
 		return $mce_css . esc_url_raw( $upload_dir['baseurl'] . '/kirki-css/styles.css' );
 	}
 

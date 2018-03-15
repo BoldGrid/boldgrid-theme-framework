@@ -15,7 +15,7 @@
 					$iframeHead.append( $style );
 
 					// Copy all google fonts into the editor.
-					$( 'head link[rel="stylesheet"][href*="fonts.googleapis.com/css"]' ).each( function () {
+					$( 'head link[rel="stylesheet"][href*="fonts.googleapis.com/css"]' ).each( function() {
 						$iframeHead.append( $( this ).clone() );
 					} );
 				}

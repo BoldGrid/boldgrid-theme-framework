@@ -613,11 +613,11 @@ msgctxt "font style"
 msgid "Monospace"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:121, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:175, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:242, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:528
+#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:121, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:175, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:242, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:526
 msgid "Font Family"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:122, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:191, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:258, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:543
+#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:122, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:191, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:258, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:541
 msgid "Font Size"
 msgstr ""
 
@@ -625,7 +625,7 @@ msgstr ""
 msgid "Font Weight"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:124, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:279, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:703
+#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:124, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:279, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:701
 msgid "Line Height"
 msgstr ""
 
@@ -633,7 +633,7 @@ msgstr ""
 msgid "Font Style"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:126, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:723
+#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:126, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:721
 msgid "Letter Spacing"
 msgstr ""
 
@@ -793,19 +793,19 @@ msgstr ""
 msgid "Main Text"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:205, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:566
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:205, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:564
 msgid "Capitalization"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:210, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:361, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:571
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:210, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:361, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:569
 msgid "Lowercase"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:211, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:362, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:572
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:211, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:362, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:570
 msgid "Uppercase"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:212, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:363, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:573
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:212, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:363, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:571
 msgid "Unmodified"
 msgstr ""
 
@@ -821,75 +821,75 @@ msgstr ""
 msgid " Capitalization"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:360, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:570
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:360, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:568
 msgid "Capitalize"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:518
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:516
 msgid "Custom Font"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:586
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:584
 msgid "Decoration"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:590, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:610
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:588, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:608
 msgid "Normal"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:591, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:611
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:589, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:609
 msgid "Overline"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:592, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:612
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:590, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:610
 msgid "Underline"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:593, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:613
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:591, src/includes/customizer/class-boldgrid-framework-customizer-typography.php:611
 msgid "Strikethrough"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:606
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:604
 msgid "Decoration Hover"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:632
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:630
 msgid "Position"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:643
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:641
 msgid "Top Margin"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:663
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:661
 msgid "Bottom Margin"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:683
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:681
 msgid "Horizontal Margin"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:743
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:741
 msgid "Custom Shadow"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:751
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:749
 msgid "Horizontal Shadow"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:764
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:762
 msgid "Vertical Shadow"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:776
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:774
 msgid "Logo Size"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:796
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:794
 msgid "Shadow Blur"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:809
+#: src/includes/customizer/class-boldgrid-framework-customizer-typography.php:807
 msgid "Shadow Color"
 msgstr ""
 

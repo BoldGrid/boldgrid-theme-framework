@@ -178,6 +178,19 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	} );
 
 	/**
+	 * There's a better way to do this, but I dunno what it is.  This
+	 * works for now.  This will just trigger the preview pane to reload
+	 * the same page after a user changes their header videos.
+	 */
+	$.each( ['external_header_video', 'header_video' ], function( index, settingId ) {
+		wp.customize( settingId, function( value ) {
+			value.bind( function() {
+				wp.customize.preview.send( 'url', window.location.href );
+			} );
+		} );
+	} );
+
+	/**
 	 * Recalculate layouts on font changes.
 	 *
 	 * @since 2.0.0

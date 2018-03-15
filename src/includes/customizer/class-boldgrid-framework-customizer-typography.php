@@ -469,9 +469,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		// Blockquotes.
 		$blockquote = $body_font_size * 1.25;
 		// CSS To apply to editor.
-		$content = "
-			blockquote, blockquote p, .mod-blockquote { font-size: {$blockquote}px; }
-			.mce-content-body, p { font-family: {$body_font_family}; line-height: {$body_line_height}%; font-size: {$body_font_size}px; }";
+		$content = '';
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 		foreach ( $selectors as $selector => $options ) {
 			$base = $font_size_base;

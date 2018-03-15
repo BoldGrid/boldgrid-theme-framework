@@ -239,8 +239,17 @@ HTML;
 	 * tinymce after loaded.
 	 *
 	 * @since 2.0.0
+	 *
+	 * @global string $pagenow
 	 */
 	public function enqueue_webfonts() {
+		global $pagenow;
+
+		// Don't add styles on non editor.
+		if ( $pagenow && ! in_array( $pagenow, array( 'post-new.php', 'post.php' ) ) ) {
+			return;
+		}
+
 		foreach ( array_keys( Kirki::$config ) as $config_id ) {
 			$async = new Kirki_Modules_Webfonts_Async(
 				$config_id,

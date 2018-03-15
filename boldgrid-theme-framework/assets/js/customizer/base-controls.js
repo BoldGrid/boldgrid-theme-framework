@@ -122,6 +122,22 @@
 		}
 	});
 
+	/**
+	 * Override the render font selector method to display font images.
+	 */
+	wp.customize.controlConstructor['kirki-typography'] = wp.customize.controlConstructor['kirki-typography'].extend( {
+		renderFontSelector: function () {
+
+			// Call parent method.
+			wp.customize.controlConstructor['kirki-typography']
+				.__super__
+				.renderFontSelector
+				.apply( this, arguments );
+
+			// Selecting the instance will add the needed attributes, don't ask why.
+			jQuery( this.selector + ' .font-family select' ).selectWoo();
+		}
+	} );
 
 	// Extend Section
 	var _sectionEmbed = wp.customize.Section.prototype.embed;

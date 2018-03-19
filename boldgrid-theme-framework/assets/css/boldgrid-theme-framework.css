@@ -135,7 +135,7 @@ div.btn a:after, div.button-primary a:after, div.button-secondary a:after {
   -webkit-box-shadow: none;
   box-shadow: none;
   outline: none;
-  z-index: 5; }
+  z-index: 201; }
 
 .bgtfw-edit-link a {
   position: absolute;
@@ -148,7 +148,7 @@ div.btn a:after, div.button-primary a:after, div.button-secondary a:after {
   min-height: 30px;
   line-height: 1em !important;
   font-size: 18px;
-  z-index: 5;
+  z-index: 201;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   border: 2px solid #fff;

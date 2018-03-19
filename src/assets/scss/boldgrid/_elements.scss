@@ -68,6 +68,11 @@ div {
 	}
 }
 
+.page-header {
+	display: block;
+	width: 100%;
+}
+
 /* Post/Page password protected styles */
 .post-password-form .button-primary {
 	margin-left: 9px;
@@ -81,10 +86,10 @@ div {
 
 /* Edit Post Links */
 .bgtfw-edit-link {
-	position: absolute;
+	position: relative;
+	width: auto;
+	height: auto;
 	float: left;
-	width: 1px; /* required to have a size to be focusable in Safari */
-	height: 1px;
 	padding: 0;
 	margin: -1px 0 0 -1px;
 	border: 0;
@@ -152,6 +157,19 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .bgtfw-edit-link-hidden .bgtfw-edit-link a {
 	visibility: hidden;
+}
+
+.entry-footer span {
+	display: flex;
+	padding: .5em;
+	&:last-child:not(.comments-link) {
+		justify-content: flex-end;
+		flex: 1 0 auto;
+		padding-right: .5em;
+	}
+	&:first-child {
+		padding-left: .5em;
+	}
 }
 
 @-webkit-keyframes bgtfw-edit-link-bounce-appear {

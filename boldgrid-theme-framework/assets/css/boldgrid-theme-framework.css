@@ -108,6 +108,10 @@ div.btn a:after, div.button-primary a:after, div.button-secondary a:after {
   bottom: 0;
   left: 0; }
 
+.page-header {
+  display: block;
+  width: 100%; }
+
 /* Post/Page password protected styles */
 .post-password-form .button-primary {
   margin-left: 9px; }
@@ -119,11 +123,10 @@ div.btn a:after, div.button-primary a:after, div.button-secondary a:after {
 
 /* Edit Post Links */
 .bgtfw-edit-link {
-  position: absolute;
+  position: relative;
+  width: auto;
+  height: auto;
   float: left;
-  width: 1px;
-  /* required to have a size to be focusable in Safari */
-  height: 1px;
   padding: 0;
   margin: -1px 0 0 -1px;
   border: 0;
@@ -186,6 +189,18 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .bgtfw-edit-link-hidden .bgtfw-edit-link a {
   visibility: hidden; }
+
+.entry-footer span {
+  display: flex;
+  padding: .5em; }
+
+.entry-footer span:last-child:not(.comments-link) {
+  justify-content: flex-end;
+  flex: 1 0 auto;
+  padding-right: .5em; }
+
+.entry-footer span:first-child {
+  padding-left: .5em; }
 
 @-webkit-keyframes bgtfw-edit-link-bounce-appear {
   from, 20%, 40%, 60%, 80%, to {
@@ -294,8 +309,9 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 /*--------------------------------------------------------------
 # Blog Styles
 --------------------------------------------------------------*/
+/* Blog Styles */
 .blog {
-  /* General Blog Design */
+  /* General Design */
   /* Small Devices, Tablets */
   /* Paging Nav */ }
 
@@ -489,22 +505,201 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .blog .paging-navigation, .blog .paging-navigation .nav-links {
   min-width: 100%; }
 
-.bgtfw-edit-link {
-  position: relative;
-  width: auto;
-  height: auto; }
+/* Archive Styles */
+.archive {
+  /* General Design */
+  /* Small Devices, Tablets */
+  /* Paging Nav */ }
 
-.entry-footer span {
+.archive .entry-header,
+.archive .entry-content,
+.archive .entry-content {
+  width: 100%; }
+
+.archive .entry-title {
+  word-break: break-word; }
+
+.archive[class*="col"] main > article {
+  margin: .5em;
   display: flex;
-  padding: .5em; }
+  flex-wrap: wrap;
+  align-content: flex-start; }
 
-.entry-footer span:last-child:not(.comments-link) {
+.archive.col1 main > article {
+  width: calc( ( 100% / 1 ) - 1em); }
+
+.archive.col2 main > article {
+  width: calc( ( 100% / 2 ) - 1em); }
+
+.archive.col3 main > article {
+  width: calc( ( 100% / 3 ) - 1em); }
+
+.archive.col4 main > article {
+  width: calc( ( 100% / 4 ) - 1em); }
+
+.archive.col5 main > article {
+  width: calc( ( 100% / 5 ) - 1em); }
+
+.archive.col6 main > article {
+  width: calc( ( 100% / 6 ) - 1em); }
+
+.archive main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.archive main > article.post {
+  display: flex;
+  flex-direction: column; }
+
+.archive main > article.post .entry-header {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1.5em;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0; }
+
+.archive main > article.post .entry-header .entry-title {
+  margin-top: .5em;
+  margin-bottom: 0; }
+
+.archive main > article.post .entry-header .entry-meta {
+  padding-top: 1.5em;
+  align-self: flex-end;
   justify-content: flex-end;
+  display: flex; }
+
+.archive main > article.post .featured-imgage-header {
+  width: 100%; }
+
+.archive main > article.post .entry-title,
+.archive main > article.post .entry-meta {
+  padding-right: 15px;
+  padding-left: 15px; }
+
+.archive main > article.post .entry-content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
   flex: 1 0 auto;
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.archive main > article.post .entry-content .container,
+.archive main > article.post .entry-content .container-fluid {
+  padding: 0; }
+
+.archive main > article.post .entry-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: flex-end; }
+
+.archive main > article.post .entry-footer span:first-child {
+  padding-left: .5em; }
+
+.archive main > article.post .entry-footer span:last-child {
   padding-right: .5em; }
 
-.entry-footer span:first-child {
-  padding-left: .5em; }
+.archive main > article.post .entry-footer .bgtfw-edit-link a {
+  top: -32px;
+  left: -32px; }
+
+.archive main > article.post .entry-footer .bgtfw-edit-link a {
+  position: relative;
+  top: 0;
+  left: 0; }
+
+.archive main > article.post .comments-link {
+  flex: 1 0 auto; }
+
+.archive main > article.post.design-1 {
+  border-top-left-radius: 2em;
+  border-bottom-right-radius: 2em; }
+
+.archive main > article.post.design-1 .entry-title,
+.archive main > article.post.design-1 .entry-meta {
+  padding-right: 0;
+  padding-left: 0; }
+
+.archive main > article.post.design-1 .entry-header .entry-meta .posted-on {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 7.5px;
+  text-align: right;
+  padding-right: 15px;
+  padding-left: 15px; }
+
+.archive main > article.post.design-1 .entry-header .entry-meta .posted-on a {
+  color: white; }
+
+.archive main > article.post.design-1 .featured-imgage-header {
+  border-top-left-radius: 2em;
+  height: 100%;
+  padding-left: 2em;
+  padding-bottom: 0; }
+
+.archive main > article.post.design-1 .entry-header,
+.archive main > article.post.design-1.has-post-thumbnail .featured-imgage-header {
+  border-top-left-radius: 2em; }
+
+.archive main > article.post.design-1 .entry-footer {
+  padding-bottom: 15px; }
+
+.archive main > article.post.design-1 .entry-footer span:last-child {
+  padding-right: 15px; }
+
+.archive main > article.post.design-2 {
+  display: flex;
+  background-color: transparent;
+  flex-direction: column;
+  border: 1px solid currentColor; }
+
+.archive main > article.post.design-2 .entry-header {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 100%;
+  max-width: 50%;
+  height: 100%;
+  padding: 0;
+  padding-bottom: 0; }
+
+.archive main > article.post.design-2 .entry-header .entry-meta {
+  align-self: flex-start; }
+
+.archive main > article.post.design-2 .featured-imgage-header {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 100%; }
+
+.archive main > article.post.design-2 .entry-content {
+  flex-direction: column;
+  flex: 1 0 auto;
+  max-width: 50%; }
+
+.archive main > article.post.design-2 .entry-footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 50%;
+  padding-bottom: 8px; }
+
+.archive main > article.post.design-3 .entry-header .entry-meta {
+  padding-bottom: 1.5em; }
+
+@media only screen and (max-width: 768px) {
+  .archive[class*="col"]:not(.col1) main > article.post {
+    width: calc((100% / 2 - .5vw) - 2vw); } }
+
+@media only screen and (max-width: 480px) {
+  .archive[class*="col"] main > article.post {
+    width: calc((100% / 1 - .5vw) - 2vw); } }
+
+.archive .paging-navigation, .archive .paging-navigation .nav-links {
+  min-width: 100%; }
 
 /*--------------------------------------------------------------
 # BoldGrid Bootstrap Additions

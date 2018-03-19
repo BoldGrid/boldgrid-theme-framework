@@ -1,0 +1,131 @@
+.entry-header,
+.entry-content,
+.entry-content {
+	width: 100%;
+}
+.entry-title {
+	word-break: break-word;
+}
+
+&[class*="col"] main > article {
+	margin: .5em;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+&.col1 main > article {
+	width: calc( ( 100% / 1 ) - 1em );
+}
+&.col2 main > article {
+	width: calc( ( 100% / 2 ) - 1em );
+}
+&.col3 main > article {
+	width: calc( ( 100% / 3 ) - 1em );
+}
+&.col4 main > article {
+	width: calc( ( 100% / 4 ) - 1em );
+}
+&.col5 main > article {
+	width: calc( ( 100% / 5 ) - 1em );
+}
+&.col6 main > article {
+	width: calc( ( 100% / 6 ) - 1em );
+}
+
+/* General Design */
+main {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	> article.post {
+		display: flex;
+		flex-direction: column;
+		.entry-header {
+			display: flex;
+			flex-direction: column;
+			padding-bottom: 1.5em;
+			padding-left: 0;
+			padding-right: 0;
+			padding-top: 0;
+			padding-bottom: 0;
+			.entry-title {
+				margin-top: .5em;
+				margin-bottom: 0;
+			}
+			.entry-meta {
+				padding-top: 1.5em;
+				align-self: flex-end;
+				justify-content: flex-end;
+				display: flex;
+			}
+		}
+		.featured-imgage-header {
+			width: 100%
+		}
+		.entry-title,
+		.entry-meta {
+			padding-right: 15px;
+			padding-left: 15px;
+		}
+		.entry-content {
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: row;
+			width: 100%;
+			flex: 1 0 auto;
+			padding-left: 15px;
+			padding-right: 15px;
+			.container,
+			.container-fluid {
+				padding: 0;
+			}
+		}
+		.entry-footer {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-end;
+			align-self: flex-end;
+			span:first-child {
+				padding-left: .5em;
+			}
+			span:last-child {
+				padding-right: .5em;
+			}
+		}
+		.entry-footer .bgtfw-edit-link a {
+			top: -32px;
+			left: -32px;
+		}
+		.entry-footer .bgtfw-edit-link a {
+			position: relative;
+			top: 0;
+			left: 0;
+		}
+		.comments-link {
+			flex: 1 0 auto;
+		}
+		@import "1";
+		@import "2";
+		@import "3";
+	}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	&[class*="col"]:not(.col1) main > article.post {
+		width: calc((100% / 2 - .5vw) - 2vw);
+	}
+}
+@media only screen and (max-width : 480px) {
+	&[class*="col"] main > article.post {
+		width: calc((100% / 1 - .5vw) - 2vw);
+	}
+}
+
+/* Paging Nav */
+.paging-navigation {
+	&, .nav-links {
+		min-width: 100%;
+	}
+}

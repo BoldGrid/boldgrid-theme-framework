@@ -71,10 +71,11 @@ main {
 			display: flex;
 			flex-wrap: wrap;
 			flex-direction: column;
-			width: 100%;
 			flex: 1 0 auto;
 			padding-left: 15px;
 			padding-right: 15px;
+			width: 100%;
+			word-break: break-word;
 			.container,
 			.container-fluid {
 				padding: 0;
@@ -83,9 +84,10 @@ main {
 		.entry-footer {
 			display: flex;
 			flex-direction: row;
+			flex-wrap: wrap;
 			align-items: center;
-			justify-content: flex-end;
 			align-self: flex-end;
+			justify-content: flex-end;
 			span:first-child {
 				padding-left: .5em;
 			}
@@ -103,7 +105,7 @@ main {
 			left: 0;
 		}
 		.comments-link {
-			flex: 1 0 auto;
+			flex: 1 1 auto;
 		}
 		@import "1";
 		@import "2";

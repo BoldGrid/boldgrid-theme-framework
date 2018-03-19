@@ -388,10 +388,11 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 100%;
   flex: 1 0 auto;
   padding-left: 15px;
-  padding-right: 15px; }
+  padding-right: 15px;
+  width: 100%;
+  word-break: break-word; }
 
 .blog main > article.post .entry-content .container,
 .blog main > article.post .entry-content .container-fluid {
@@ -400,9 +401,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .blog main > article.post .entry-footer {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-  align-self: flex-end; }
+  align-self: flex-end;
+  justify-content: flex-end; }
 
 .blog main > article.post .entry-footer span:first-child {
   padding-left: .5em; }
@@ -420,16 +422,19 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   left: 0; }
 
 .blog main > article.post .comments-link {
-  flex: 1 0 auto; }
+  flex: 1 1 auto; }
 
 .blog main > article.post.design-1 {
-  border-top-left-radius: 2em;
-  border-bottom-right-radius: 2em; }
+  border-top-left-radius: 3rem;
+  border-bottom-right-radius: 3rem; }
 
 .blog main > article.post.design-1 .entry-title,
 .blog main > article.post.design-1 .entry-meta {
   padding-right: 0;
   padding-left: 0; }
+
+.blog main > article.post.design-1 .entry-title {
+  margin-right: 3rem; }
 
 .blog main > article.post.design-1 .entry-header .entry-meta .posted-on {
   background-color: rgba(0, 0, 0, 0.75);
@@ -442,14 +447,14 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   color: white; }
 
 .blog main > article.post.design-1 .featured-imgage-header {
-  border-top-left-radius: 2em;
+  border-top-left-radius: 3rem;
   height: 100%;
-  padding-left: 2em;
+  padding-left: 3rem;
   padding-bottom: 0; }
 
 .blog main > article.post.design-1 .entry-header,
 .blog main > article.post.design-1.has-post-thumbnail .featured-imgage-header {
-  border-top-left-radius: 2em; }
+  border-top-left-radius: 3rem; }
 
 .blog main > article.post.design-1 .entry-footer {
   padding-bottom: 15px; }
@@ -584,10 +589,11 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 100%;
   flex: 1 0 auto;
   padding-left: 15px;
-  padding-right: 15px; }
+  padding-right: 15px;
+  width: 100%;
+  word-break: break-word; }
 
 .archive main > article.post .entry-content .container,
 .archive main > article.post .entry-content .container-fluid {
@@ -596,9 +602,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .archive main > article.post .entry-footer {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-  align-self: flex-end; }
+  align-self: flex-end;
+  justify-content: flex-end; }
 
 .archive main > article.post .entry-footer span:first-child {
   padding-left: .5em; }
@@ -616,16 +623,19 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   left: 0; }
 
 .archive main > article.post .comments-link {
-  flex: 1 0 auto; }
+  flex: 1 1 auto; }
 
 .archive main > article.post.design-1 {
-  border-top-left-radius: 2em;
-  border-bottom-right-radius: 2em; }
+  border-top-left-radius: 3rem;
+  border-bottom-right-radius: 3rem; }
 
 .archive main > article.post.design-1 .entry-title,
 .archive main > article.post.design-1 .entry-meta {
   padding-right: 0;
   padding-left: 0; }
+
+.archive main > article.post.design-1 .entry-title {
+  margin-right: 3rem; }
 
 .archive main > article.post.design-1 .entry-header .entry-meta .posted-on {
   background-color: rgba(0, 0, 0, 0.75);
@@ -638,14 +648,14 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   color: white; }
 
 .archive main > article.post.design-1 .featured-imgage-header {
-  border-top-left-radius: 2em;
+  border-top-left-radius: 3rem;
   height: 100%;
-  padding-left: 2em;
+  padding-left: 3rem;
   padding-bottom: 0; }
 
 .archive main > article.post.design-1 .entry-header,
 .archive main > article.post.design-1.has-post-thumbnail .featured-imgage-header {
-  border-top-left-radius: 2em; }
+  border-top-left-radius: 3rem; }
 
 .archive main > article.post.design-1 .entry-footer {
   padding-bottom: 15px; }

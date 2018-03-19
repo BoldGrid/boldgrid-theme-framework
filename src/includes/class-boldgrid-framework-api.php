@@ -479,7 +479,7 @@ class BoldGrid {
 	 */
 	public function post_class( $classes ) {
 		global $post;
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || ( is_home() && is_front_page() || is_front_page() ) ) {
+		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || ( is_home() && is_front_page() || is_front_page() ) || is_archive() ) {
 			$classes[] = get_theme_mod( 'bgtfw_blog_layout', 'design-1' );
 		}
 

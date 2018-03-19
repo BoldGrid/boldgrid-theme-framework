@@ -1,6 +1,7 @@
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
+# Initial Preload Styles
 # Base Elements
 # Blog Layouts
 # BoldGrid Bootstrap Additions
@@ -27,8 +28,9 @@
 	## Bootstrap Utilities
 	## Bootstrap Responsive Utilities
 */
-/*
-*/
+/*--------------------------------------------------------------
+# Initial Preload Styles
+--------------------------------------------------------------*/
 /**
  * This applies a css animation for browsers with no JS enabled.
  */
@@ -98,7 +100,8 @@
 --------------------------------------------------------------*/
 .main {
   padding: 2.8rem;
-  width: 100%; }
+  width: 100%;
+  flex: 1 0 auto; }
 
 .site-content {
   display: flex;

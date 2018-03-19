@@ -1,6 +1,7 @@
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
+# Initial Preload Styles
 # Base Elements
 # Blog Layouts
 # BoldGrid Bootstrap Additions
@@ -32,8 +33,9 @@
 @import "boldgrid/variables";
 @import "boldgrid/mixins/mixins-master";
 
-/*
-*/
+/*--------------------------------------------------------------
+# Initial Preload Styles
+--------------------------------------------------------------*/
 @import "boldgrid/preload";
 
 /*--------------------------------------------------------------

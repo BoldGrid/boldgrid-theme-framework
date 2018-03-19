@@ -80,7 +80,7 @@ class Boldgrid_Framework_Custom_Header {
 		$default_image = get_theme_support( 'custom-header', 'default-image' );
 
 		// If it's not a string 'remove-header', then register the default header image based on main image.
-		if ( $default_image !== 'remove-header' && ! empty( $default_image ) ) {
+		if ( 'remove-header' !== $default_image && ! empty( $default_image ) ) {
 
 			// Get the relative path passed for url and thumbnail_url to use.
 			$default_image = str_replace( get_template_directory_uri(), '', $default_image );

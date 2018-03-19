@@ -24,11 +24,14 @@ var BoldGrid = BoldGrid || {};
 
 			// JavaScript to be fired on all pages.
 			init: function() {
+				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
 				this.skipLink();
 			},
 
 			// JavaScript to be fired on all pages, after page specific JS is fired.
-			finalize: function() {},
+			finalize: function() {
+				$( ':root' ).removeClass( 'bgtfw-loading' ).addClass( 'bgtfw-loaded' );
+			},
 
 			// JavaScript for the skip link functionality.
 			skipLink: function() {

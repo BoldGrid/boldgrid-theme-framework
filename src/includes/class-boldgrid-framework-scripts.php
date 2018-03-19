@@ -251,6 +251,6 @@ class BoldGrid_Framework_Scripts {
 	 */
 	public function modernizr( $output ) {
 		$admin_bar = is_admin_bar_showing() ? ' admin-bar' : '';
-		return "$output class='no-js{$admin_bar}'";
+		return "$output class='no-bgtfw no-js{$admin_bar}'";
 	}
 }

@@ -120,38 +120,39 @@ $ubtn-colors: ();
 }
 
 /** Blog Design Colours **/
-.palette-primary.blog .post {
-	background-color: $palette-primary_3;
-	color: $text-contrast-palette-primary_3;
+.palette-primary.archive,
+.palette-primary.blog {
+	.post {
+		background-color: $palette-primary_3;
+		color: $text-contrast-palette-primary_3;
+	}
+	.post p,
+	.post a {
+		color: $text-contrast-palette-primary_3;
+	}
+	.post .featured-imgage-header {
+		background-color: rgba( $palette-primary_1, 0.7 );
+	}
+	.post .featured-imgage-header .entry-title > a {
+		color: $text-contrast-palette-primary_1;
+	}
+	main > article.post.design-3 {
+		box-shadow: -3px 3px 0 0 $palette-primary_3;
+		padding-bottom: 1.5em;
+	}
+	main > article.post.design-3 {
+		background-color: $palette-primary_2;
+		color: $text-contrast-palette-primary_2;
+	}
+	.post p,
+	.post a {
+		color: $text-contrast-palette-primary_2;
+	}
+	main > article.post.design-3 .entry-meta .posted-on,
+	main > article.post.design-3 .entry-meta .posted-on a {
+		color: $text-contrast-palette-primary_1;
+	}
 }
-.palette-primary.blog .post p,
-.palette-primary.blog .post a {
-	color: $text-contrast-palette-primary_3;
-}
-.palette-primary.blog .post .featured-imgage-header {
-	background-color: rgba( $palette-primary_1, 0.7 );
-}
-.palette-primary.blog .post .featured-imgage-header .entry-title > a {
-	color: $text-contrast-palette-primary_1;
-}
-.palette-primary.blog main > article.post.design-3 {
-	box-shadow: -3px 3px 0 0 $palette-primary_3;
-	padding-bottom: 1.5em;
-}
-
-.palette-primary.blog main > article.post.design-3 {
-	background-color: $palette-primary_2;
-	color: $text-contrast-palette-primary_2;
-}
-.palette-primary.blog .post p,
-.palette-primary.blog .post a {
-	color: $text-contrast-palette-primary_2;
-}
-.palette-primary.blog main > article.post.design-3 .entry-meta .posted-on,
-.palette-primary.blog main > article.post.design-3 .entry-meta .posted-on a {
-	color: $text-contrast-palette-primary_1;
-}
-
 
 /*create single css classes to apply palettes on universal elements*/
 $names: color background background-color border-color;
@@ -209,7 +210,6 @@ $names: color background background-color border-color;
 		}
 	}
 }
-
 
 /*
 * Base Colors

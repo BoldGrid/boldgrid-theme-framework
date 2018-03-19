@@ -7,7 +7,6 @@
 
 		// Bind value change.
 		value.bind( function( to ) {
-			console.log( to );
 			$( '.post' )
 				.removeClass( function( index, className ) {
 					return ( className.match ( /(^|\s)design-\S+/g ) || [] ).join( ' ' );

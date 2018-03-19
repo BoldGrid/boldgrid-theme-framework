@@ -372,12 +372,8 @@ class BoldGrid {
 		// Check if we are on a blog roll page (not archive).
 		global $wp_query;
 
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || ( is_home() && is_front_page() || is_front_page() ) ) {
+		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
 			$classes[] = 'col' . get_theme_mod( 'bgtfw_pages_blog_blog_page_layout_columns', '1' );
-		}
-
-		if ( is_archive() ) {
-
 		}
 
 		// Add class if bstw is disabled.
@@ -479,7 +475,7 @@ class BoldGrid {
 	 */
 	public function post_class( $classes ) {
 		global $post;
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || ( is_home() && is_front_page() || is_front_page() ) || is_archive() ) {
+		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
 			$classes[] = get_theme_mod( 'bgtfw_blog_layout', 'design-1' );
 		}
 

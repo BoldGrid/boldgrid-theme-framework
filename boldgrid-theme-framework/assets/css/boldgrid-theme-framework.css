@@ -386,7 +386,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .blog main > article.post .entry-content {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   flex: 1 0 auto;
   padding-left: 15px;
@@ -582,7 +582,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .archive main > article.post .entry-content {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   flex: 1 0 auto;
   padding-left: 15px;

@@ -6,7 +6,7 @@
 
 		// Bind value change.
 		value.bind( function( to ) {
-			$( 'body.blog' )
+			$( 'body.blog, body.archive' )
 				.removeClass( function( index, className ) {
 					return ( className.match ( /(^|\s)col[1-6](?!\S)\s?/g ) || [] ).join( ' ' );
 				} ).addClass( 'col' + to );

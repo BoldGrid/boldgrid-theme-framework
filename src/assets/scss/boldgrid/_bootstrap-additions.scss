@@ -15,15 +15,21 @@
 .entry-content .row .row [class*="col-lg"] {
 	min-height: 15px;
 }
-.entry-content .row > * {
-	max-width: 100%;
-}
-.entry-content .row {
-	display:flex;
-	flex-wrap: wrap;
-	&:before,
-	&:after {
-		width: 0;
+.entry-content {
+	.boldgrid-section {
+		margin-left: -2.8rem;
+		margin-right: -2.8rem;
+	}
+	.row {
+		display:flex;
+		flex-wrap: wrap;
+		&:before,
+		&:after {
+			width: 0;
+		}
+		> * {
+			max-width: 100%;
+		}
 	}
 }
 .full-width-column {

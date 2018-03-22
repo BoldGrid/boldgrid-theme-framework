@@ -385,8 +385,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 /* Blog Styles */
 .blog {
   /* General Design */
-  /* Small Devices, Tablets */
-  /* Paging Nav */ }
+  /* Small Devices, Tablets */ }
 
 .blog .entry-header,
 .blog .entry-content,
@@ -401,6 +400,12 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start; }
+
+.blog[class*="col"]:not(.col1) main .entry-content .row [class*="col-xs"],
+.blog[class*="col"]:not(.col1) main .entry-content .row [class*="col-sm"],
+.blog[class*="col"]:not(.col1) main .entry-content .row [class*="col-md"],
+.blog[class*="col"]:not(.col1) main .entry-content .row [class*="col-lg"] {
+  width: 100%; }
 
 .blog.col1 main > article {
   width: calc( ( 100% / 1 ) - 1em); }
@@ -466,9 +471,9 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   width: 100%;
   word-break: break-word; }
 
-.blog main > article.post .entry-content .container,
-.blog main > article.post .entry-content .container-fluid {
-  padding: 0; }
+.blog main > article.post .entry-content .boldgrid-section {
+  margin-left: -15px;
+  margin-right: -15px; }
 
 .blog main > article.post .entry-footer {
   display: flex;
@@ -580,14 +585,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   .blog[class*="col"] main > article.post {
     width: calc((100% / 1 - .5vw) - 2vw); } }
 
-.blog .paging-navigation, .blog .paging-navigation .nav-links {
-  min-width: 100%; }
-
 /* Archive Styles */
 .archive {
   /* General Design */
-  /* Small Devices, Tablets */
-  /* Paging Nav */ }
+  /* Small Devices, Tablets */ }
 
 .archive .entry-header,
 .archive .entry-content,
@@ -602,6 +603,12 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start; }
+
+.archive[class*="col"]:not(.col1) main .entry-content .row [class*="col-xs"],
+.archive[class*="col"]:not(.col1) main .entry-content .row [class*="col-sm"],
+.archive[class*="col"]:not(.col1) main .entry-content .row [class*="col-md"],
+.archive[class*="col"]:not(.col1) main .entry-content .row [class*="col-lg"] {
+  width: 100%; }
 
 .archive.col1 main > article {
   width: calc( ( 100% / 1 ) - 1em); }
@@ -667,9 +674,9 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   width: 100%;
   word-break: break-word; }
 
-.archive main > article.post .entry-content .container,
-.archive main > article.post .entry-content .container-fluid {
-  padding: 0; }
+.archive main > article.post .entry-content .boldgrid-section {
+  margin-left: -15px;
+  margin-right: -15px; }
 
 .archive main > article.post .entry-footer {
   display: flex;
@@ -781,8 +788,24 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   .archive[class*="col"] main > article.post {
     width: calc((100% / 1 - .5vw) - 2vw); } }
 
-.archive .paging-navigation, .archive .paging-navigation .nav-links {
-  min-width: 100%; }
+/* Single Post Styles */
+.single .post {
+  flex-direction: column; }
+
+.single .post .entry-header .entry-title {
+  margin: 2.4rem 0; }
+
+.single .post .entry-header .entry-meta {
+  margin-bottom: 2.4rem; }
+
+.single .post .entry-footer ~ .navigation.post-navigation {
+  margin-top: 4rem; }
+
+.single .post .entry-footer .cat-links ~ .bgtfw-edit-link {
+  margin-top: 2rem; }
+
+.single .post .entry-footer .bgtfw-edit-link a {
+  left: -3px; }
 
 /*--------------------------------------------------------------
 # BoldGrid Bootstrap Additions
@@ -803,8 +826,9 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .entry-content .row .row [class*="col-lg"] {
   min-height: 15px; }
 
-.entry-content .row > * {
-  max-width: 100%; }
+.entry-content .boldgrid-section {
+  margin-left: -2.8rem;
+  margin-right: -2.8rem; }
 
 .entry-content .row {
   display: flex;
@@ -812,6 +836,9 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .entry-content .row:before, .entry-content .row:after {
   width: 0; }
+
+.entry-content .row > * {
+  max-width: 100%; }
 
 .full-width-column {
   padding: 0px; }
@@ -1659,11 +1686,6 @@ select {
 .group-blog .byline {
   display: inline; }
 
-.page-content,
-.entry-content,
-.entry-summary {
-  margin: 1.5em 0 0; }
-
 .page-links {
   clear: both;
   margin: 0 0 1.5em; }
@@ -1678,7 +1700,7 @@ select {
 
 .paging-navigation,
 .post-navigation {
-  margin: 1.5em auto; }
+  padding: 1em 0; }
 
 .paging-navigation .nav-links,
 .post-navigation .nav-links {

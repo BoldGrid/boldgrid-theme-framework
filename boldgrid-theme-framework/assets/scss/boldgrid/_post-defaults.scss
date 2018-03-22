@@ -13,12 +13,6 @@
 	display: inline;
 }
 
-.page-content,
-.entry-content,
-.entry-summary {
-	margin: 1.5em 0 0;
-}
-
 .page-links {
 	clear: both;
 	margin: 0 0 1.5em;
@@ -35,7 +29,7 @@
 }
 .paging-navigation,
 .post-navigation {
-	margin: 1.5em auto;
+	padding: 1em 0;
 	.nav-links {
 		display: flex;
 		justify-content: space-between;

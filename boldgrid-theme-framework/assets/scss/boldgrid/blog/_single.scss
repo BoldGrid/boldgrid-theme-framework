@@ -1,0 +1,24 @@
+.single {
+	.post {
+		flex-direction: column;
+		.entry-header {
+			.entry-title {
+				margin: 2.4rem 0;
+			}
+			.entry-meta {
+				margin-bottom: 2.4rem;
+			}
+		}
+		.entry-footer {
+			~ .navigation.post-navigation {
+				margin-top: 4rem;
+			}
+			.cat-links ~ .bgtfw-edit-link {
+				margin-top: 2rem;
+			}
+			.bgtfw-edit-link a {
+				left: -3px;
+			}
+		}
+	}
+}

@@ -76,7 +76,6 @@ return array(
 	'sidebar' => array(
 		'is_404',
 		'is_search',
-		'is_front_page',
 		'is_not_bgtfw_sidebar_layout',
 	),
 	'archives' => array(

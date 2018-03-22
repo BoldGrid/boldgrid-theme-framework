@@ -100,8 +100,7 @@
 --------------------------------------------------------------*/
 .main {
   padding: 2.8rem;
-  width: 100%;
-  flex: 1 0 auto; }
+  flex: 1 0 100%; }
 
 .site-content {
   display: flex;
@@ -3847,7 +3846,7 @@ footer .bgtfw-widget-row {
 .home.blog .post .entry-content {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%; }
 
 .single .post {

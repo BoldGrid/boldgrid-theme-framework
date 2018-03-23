@@ -1,29 +1,12 @@
+// Load any mixin methods used in our wooCommerce design.
+@import "woocommerce/mixins";
+
 .palette-primary {
 	&.woocommerce,
 	&.woocommerce-page {
-		/* Products */
-		ul.products {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			padding: 0;
-			margin: 0 0 2em;
-			li.product {
-				display: flex;
-				justify-content: space-between;
-				flex-direction: column;
-				margin: 0;
-				margin-top: 2em;
-				padding: 1em;
-				width: calc( 100% * (1/4) );
-				@media screen and ( max-width: 992px ) {
-					width: calc( 100% * (1/3) );
-				}
-				@media screen and ( max-width: 768px ) {
-					width: calc( 100% * (1/2) );
-				}
-			}
-		}
+
+		/* Product Archive Styles */
+		@import "woocommerce/products";
 
 		/* Quantity Inputs */
 		div.product form.cart,

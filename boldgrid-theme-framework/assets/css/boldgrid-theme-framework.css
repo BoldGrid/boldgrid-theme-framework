@@ -98,9 +98,14 @@
 /*--------------------------------------------------------------
 # Base Elements
 --------------------------------------------------------------*/
+/* Main Padding */
 .main {
   padding: 2.8rem;
   flex: 1 0 100%; }
+
+body.page .main,
+body.post .main {
+  padding: 0 2.8rem; }
 
 .site-content {
   display: flex;

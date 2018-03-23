@@ -21,6 +21,7 @@ ul.products {
 		margin: 0;
 		margin-top: 2em;
 		padding: 1em;
+		@include grid( 4 );
 	}
 	@for $i from 1 through 12 {
 		&.columns-#{$i} li.product {

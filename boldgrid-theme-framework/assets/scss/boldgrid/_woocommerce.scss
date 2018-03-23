@@ -24,6 +24,15 @@
 				}
 			}
 		}
+		&.woocommerce.archive main {
+			justify-content: space-between;
+			align-items: center;
+			.page-title,
+			.woocommerce-result-count,
+			.woocommerce-ordering {
+				margin: 20px 0;
+			}
+		}
 
 		/* Quantity Inputs */
 		div.product form.cart,

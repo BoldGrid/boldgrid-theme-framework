@@ -125,32 +125,57 @@ $ubtn-colors: ();
 	.post {
 		background-color: $palette-primary_3;
 		color: $text-contrast-palette-primary_3;
-	}
-	.post p,
-	.post a {
-		color: $text-contrast-palette-primary_3;
-	}
-	.post .featured-imgage-header {
-		background-color: rgba( $palette-primary_1, 0.7 );
-	}
-	.post .featured-imgage-header .entry-title > a {
-		color: $text-contrast-palette-primary_1;
-	}
-	main > article.post.design-3 {
-		box-shadow: -3px 3px 0 0 $palette-primary_3;
-		padding-bottom: 1.5em;
-	}
-	main > article.post.design-3 {
-		background-color: $palette-primary_2;
-		color: $text-contrast-palette-primary_2;
-	}
-	.post p,
-	.post a {
-		color: $text-contrast-palette-primary_2;
-	}
-	main > article.post.design-3 .entry-meta .posted-on,
-	main > article.post.design-3 .entry-meta .posted-on a {
-		color: $text-contrast-palette-primary_1;
+		a {
+			color: $text-contrast-palette-primary_3;
+		}
+		.featured-imgage-header {
+			background-color: $palette-primary_1;
+			.entry-title > a {
+				color: $text-contrast-palette-primary_1;
+			}
+			.posted-on,
+			.posted-on a {
+				color: $text-contrast-palette-primary_1;
+			}
+		}
+		&.has-post-thumbnail .featured-imgage-header {
+			background-color: rgba( $palette-primary_1, 0.7 );
+		}
+		&.design-1 {
+			.entry-meta {
+				.posted-on {
+					background-color: rgba( $palette-primary_2, 0.8 );
+					color: $text-contrast-palette-primary_2;
+				}
+				.posted-on a {
+					color: $text-contrast-palette-primary_2;
+				}
+			}
+		}
+		&.design-2 {
+			.entry-content,
+			.entry-footer {
+				background-color: $palette-primary-neutral-color;
+				color: $text-contrast-palette-primary-neutral-color;
+			}
+			.entry-footer a {
+				color: $text-contrast-palette-primary-neutral-color;
+			}
+		}
+		&.design-3 {
+			background-color: $palette-primary_2;
+			color: $text-contrast-palette-primary_2;
+			box-shadow: -3px 3px 0 0 $palette-primary_3;
+			padding-bottom: 1.5em;
+			.entry-footer a {
+				color: $text-contrast-palette-primary-2;
+			}
+		}
+		&.design-4 {
+			.entry-footer a {
+				color: $text-contrast-palette-primary-3;
+			}
+		}
 	}
 }
 

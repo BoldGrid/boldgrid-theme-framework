@@ -544,6 +544,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   border-top-left-radius: 3rem; }
 
 .blog main > article.post.design-1 .entry-footer {
+  padding-top: 15px;
   padding-bottom: 15px; }
 
 .blog main > article.post.design-1 .entry-footer span:last-child {
@@ -585,8 +586,16 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   max-width: 50%;
   padding-bottom: 8px; }
 
+.blog main > article.post.design-2 .entry-footer span {
+  justify-content: center;
+  text-align: center;
+  flex-basis: 100%; }
+
 .blog main > article.post.design-3 .entry-header .entry-meta {
   padding-bottom: 1.5em; }
+
+.blog main > article.post.design-3 .entry-footer {
+  padding-top: 2rem; }
 
 @media only screen and (max-width: 768px) {
   .blog[class*="col"]:not(.col1) main > article.post {
@@ -754,6 +763,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   border-top-left-radius: 3rem; }
 
 .archive main > article.post.design-1 .entry-footer {
+  padding-top: 15px;
   padding-bottom: 15px; }
 
 .archive main > article.post.design-1 .entry-footer span:last-child {
@@ -795,8 +805,16 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   max-width: 50%;
   padding-bottom: 8px; }
 
+.archive main > article.post.design-2 .entry-footer span {
+  justify-content: center;
+  text-align: center;
+  flex-basis: 100%; }
+
 .archive main > article.post.design-3 .entry-header .entry-meta {
   padding-bottom: 1.5em; }
+
+.archive main > article.post.design-3 .entry-footer {
+  padding-top: 2rem; }
 
 @media only screen and (max-width: 768px) {
   .archive[class*="col"]:not(.col1) main > article.post {

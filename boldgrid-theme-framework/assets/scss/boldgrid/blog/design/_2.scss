@@ -32,5 +32,10 @@
 		align-self: auto;
 		max-width: 50%;
 		padding-bottom: 8px;
+		span {
+			justify-content: center;
+			text-align: center;
+			flex-basis: 100%;
+		}
 	}
 }

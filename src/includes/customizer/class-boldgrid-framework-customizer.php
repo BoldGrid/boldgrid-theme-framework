@@ -431,7 +431,6 @@ class BoldGrid_Framework_Customizer {
 					'line-height'    => '1.4',
 					'letter-spacing' => '0',
 					'subsets'        => array( 'latin-ext' ),
-					'color'          => '#333333',
 					'text-transform' => 'none',
 
 				),

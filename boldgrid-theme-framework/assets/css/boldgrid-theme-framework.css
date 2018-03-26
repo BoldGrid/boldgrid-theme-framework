@@ -2733,6 +2733,7 @@ footer .bgtfw-widget-row {
 
 .palette-primary .pagination {
   display: flex;
+  flex-basis: 100%;
   justify-content: center; }
 
 .palette-primary.woocommerce, .palette-primary.woocommerce-page {

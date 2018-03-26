@@ -73,18 +73,11 @@ class BoldGrid_Framework_Pagination {
 
 			// Iterate over the $page_numbers node.
 			foreach ( $page_numbers as $page_numbers_item ) {
-				// Add to class 'page-numbers' with bgtfw custom color classes for standard links.
-				$page_numbers_item->attributes->item( 0 )->value = str_replace(
-					'page-numbers',
-					'page-numbers color1-background-color color1-border-color color-1-text-contrast color2-background-color-hover color-2-text-contrast-hover',
-					$page_numbers_item->attributes->item( 0 )->value
-				);
-				// Add to class 'current' with bgtfw custom color classes for active link.
-				$page_numbers_item->attributes->item( 0 )->value = str_replace(
-					'current',
-					'color2-background-color color1-border-color color-2-text-contrast',
-					$page_numbers_item->attributes->item( 0 )->value
-				);
+				if ( strpos( $page_numbers_item->getAttribute( 'class' ), 'current' ) !== false ) {
+					$page_numbers_item->setAttribute( 'class', 'page-numbers color2-background-color color1-border-color color-2-text-contrast' );
+				} else {
+					$page_numbers_item->setAttribute( 'class', 'page-numbers color1-background-color color1-border-color color-1-text-contrast color2-background-color-hover color-2-text-contrast-hover' );
+				}
 			}
 
 			// Save the updated HTML and output it.

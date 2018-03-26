@@ -92,6 +92,9 @@ main {
 			.boldgrid-section {
 				margin-left: -15px;
 				margin-right: -15px;
+				> .container {
+					width: auto;
+				}
 			}
 		}
 		.entry-footer {

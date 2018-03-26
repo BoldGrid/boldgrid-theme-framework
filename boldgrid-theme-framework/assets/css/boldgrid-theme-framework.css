@@ -480,7 +480,8 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .blog main > article.post .entry-content .boldgrid-section {
   margin-left: -15px;
-  margin-right: -15px; }
+  margin-right: -15px;
+  width: calc( 100% + 30px); }
 
 .blog main > article.post .entry-content .boldgrid-section > .container {
   width: auto; }
@@ -491,7 +492,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   flex-wrap: wrap;
   align-items: center;
   align-self: flex-end;
-  justify-content: flex-end; }
+  justify-content: flex-start; }
+
+.blog main > article.post .entry-footer span {
+  flex-wrap: wrap; }
 
 .blog main > article.post .entry-footer span:first-child {
   padding-left: .5em; }
@@ -581,6 +585,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-self: auto;
   max-width: 50%;
   padding-bottom: 8px; }
 
@@ -689,7 +694,8 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .archive main > article.post .entry-content .boldgrid-section {
   margin-left: -15px;
-  margin-right: -15px; }
+  margin-right: -15px;
+  width: calc( 100% + 30px); }
 
 .archive main > article.post .entry-content .boldgrid-section > .container {
   width: auto; }
@@ -700,7 +706,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   flex-wrap: wrap;
   align-items: center;
   align-self: flex-end;
-  justify-content: flex-end; }
+  justify-content: flex-start; }
+
+.archive main > article.post .entry-footer span {
+  flex-wrap: wrap; }
 
 .archive main > article.post .entry-footer span:first-child {
   padding-left: .5em; }
@@ -790,6 +799,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-self: auto;
   max-width: 50%;
   padding-bottom: 8px; }
 

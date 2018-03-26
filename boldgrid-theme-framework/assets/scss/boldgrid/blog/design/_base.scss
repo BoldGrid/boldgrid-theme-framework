@@ -92,6 +92,7 @@ main {
 			.boldgrid-section {
 				margin-left: -15px;
 				margin-right: -15px;
+				width: calc( 100% + 30px );
 				> .container {
 					width: auto;
 				}
@@ -103,12 +104,15 @@ main {
 			flex-wrap: wrap;
 			align-items: center;
 			align-self: flex-end;
-			justify-content: flex-end;
-			span:first-child {
-				padding-left: .5em;
-			}
-			span:last-child {
-				padding-right: .5em;
+			justify-content: flex-start;
+			span {
+				flex-wrap: wrap;
+				&:first-child {
+					padding-left: .5em;
+				}
+				&:last-child {
+					padding-right: .5em;
+				}
 			}
 		}
 		.entry-footer .bgtfw-edit-link a {

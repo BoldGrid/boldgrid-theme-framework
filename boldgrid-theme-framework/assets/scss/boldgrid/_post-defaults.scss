@@ -29,9 +29,21 @@
 }
 .paging-navigation,
 .post-navigation {
+	display: flex;
+	flex-basis: 100%;
 	padding: 1em 0;
 	.nav-links {
 		display: flex;
-		justify-content: space-between;
+		flex-basis: 100%;
+	}
+}
+.paging-navigation {
+	.nav-previous {
+		margin-left: auto;
+	}
+}
+.post-navigation {
+	.nav-next {
+		margin-left: auto;
 	}
 }

@@ -247,7 +247,7 @@
 /* apply the animations just in desktop view */
 
 #main-menu {
-	display: block;
+	padding: 1em 0;
 }
 .sm-clean {
 	background: transparent;
@@ -415,6 +415,7 @@
 		flex-direction: row;
 	}
 	.header-top .layout-2 #main-menu {
+		align-content: flex-end;
 		align-items: flex-end;
 		justify-content: flex-end;
 	}
@@ -493,12 +494,6 @@
 		-ms-border-radius: 0 !important;
 		-o-border-radius: 0 !important;
 		border-radius: 0 !important;
-	}
-	.sm-clean > .menu-item:first-of-type > a {
-		padding-left: 6px
-	}
-	.sm-clean > .menu-item:last-of-type > a:not(.has-submenu) {
-		padding-right: 6px
 	}
 	.sm-clean a:hover,
 	.sm-clean a:focus,
@@ -871,7 +866,6 @@
 /* Menu Mobile */
 
 .main-menu-btn {
-	border-radius: 1em;
 	position: relative;
 	display: flex;
 	align-self: flex-end;

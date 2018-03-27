@@ -203,6 +203,10 @@
 @media only screen and (max-width : 768px) {
 	#navi {
 		width: 100%;
+		padding-bottom: 1rem;
+	}
+	.main-menu-btn {
+		margin-top: -1em;
 	}
 }
 .wp-custom-header {
@@ -878,6 +882,7 @@
 	overflow: hidden;
 	cursor: pointer;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	z-index: 2;
 }
 /* hamburger icon */
 

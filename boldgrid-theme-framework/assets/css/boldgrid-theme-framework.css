@@ -3279,7 +3279,10 @@ footer .bgtfw-widget-row {
 
 @media only screen and (max-width: 768px) {
   #navi {
-    width: 100%; } }
+    width: 100%;
+    padding-bottom: 1rem; }
+  .main-menu-btn {
+    margin-top: -1em; } }
 
 .wp-custom-header {
   position: absolute;
@@ -3857,7 +3860,8 @@ footer .bgtfw-widget-row {
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: transparent;
+  z-index: 2; }
 
 /* hamburger icon */
 .main-menu-btn-icon,

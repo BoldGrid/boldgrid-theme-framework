@@ -2472,8 +2472,7 @@ footer .bgtfw-widget-row {
   /* Product Search */ }
 
 .palette-primary.woocommerce.archive main, .palette-primary.woocommerce-page.archive main {
-  justify-content: space-between;
-  align-items: center; }
+  display: block; }
 
 .palette-primary.woocommerce.archive main .page-title,
 .palette-primary.woocommerce.archive main .woocommerce-result-count,

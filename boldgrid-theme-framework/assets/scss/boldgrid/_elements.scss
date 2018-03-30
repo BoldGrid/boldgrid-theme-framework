@@ -1,7 +1,8 @@
 /* Main Padding */
 .main {
-	padding: 2.8rem;
 	flex: 1 0 100%;
+	align-content: flex-start;
+	padding: 2.8rem;
 }
 body.page,
 body.post {

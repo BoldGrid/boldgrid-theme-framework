@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.5.7 ###
+* Update: Updating WooCommerce templates to latest stable version.
+
 ### 1.5.6 ###
 * Bug fix: Fixing issue with .site-title line-height conflict from WP4.7 changes.
 

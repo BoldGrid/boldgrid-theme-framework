@@ -102,7 +102,8 @@
 .main {
   flex: 1 0 100%;
   align-content: flex-start;
-  padding: 2.8rem; }
+  padding: 2.8rem;
+  min-width: 100%; }
 
 body.page .main,
 body.post .main {

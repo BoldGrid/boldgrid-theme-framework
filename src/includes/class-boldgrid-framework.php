@@ -760,6 +760,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_register', $base, 'add_menu_description', 20 );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'custom_customize_enqueue' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'enqueue_styles' );
+		$this->loader->add_action( 'customize_controls_print_styles', $base, 'control_styles' );
 
 		// Output custom CSS and JS to live site.
 		$this->loader->add_action( 'wp_head', $base, 'custom_css_output' );

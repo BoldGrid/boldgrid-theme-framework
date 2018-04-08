@@ -26,15 +26,11 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var $boldgrid_pattern_wrapper = $pattern_background.find( '.boldgrid-pattern-wrapper' );
 		var $remove_selected_pattern = $pattern_background.find( '.remove-selected-pattern' );
 
-		$flat_color_background.find( '.wp-picker-clear' ).on( 'click', function() {
-			wp.customize.control( 'boldgrid_background_color' ).setting( '' );
-			validate_background_color_setting();
-		});
-
 		// Bind Events.
 		validate_background_color_setting();
 		append_head_styles();
 		bind_background_color_change();
+		bind_palette_change();
 
 		$remove_selected_pattern.on( 'click', function() {
 			$boldgrid_pattern_wrapper.removeAttr( 'data-pattern-selected' );
@@ -102,7 +98,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		if ( to ) {
 			var style = '';
 			style += '<style id="customizer_boldgrid_background_color">';
-			style += '#customize-control-boldgrid_background_pattern .patternpreview{background-color:' + to + ';}';
+			style += '#customize-control-boldgrid_background_pattern .patternpreview{background-color:' + to.split( ':' ).pop() + ';}';
 			style += '</style>';
 
 			$( 'head' ).append( $( style ) );
@@ -117,6 +113,15 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		wp.customize( 'boldgrid_background_color', function( value ) {
 			value.bind( function() {
 				append_head_styles();
+			} );
+		} );
+	};
+
+	var bind_palette_change = function() {
+		wp.customize( 'boldgrid_color_palette', function( value ) {
+			value.bind( function() {
+				append_head_styles();
+				console.log( 'head appended' );
 			} );
 		} );
 	};

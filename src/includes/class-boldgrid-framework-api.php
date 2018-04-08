@@ -461,6 +461,18 @@ class BoldGrid {
 			$classes[] = sanitize_html_class( $layout );
 		}
 
+		$background_color = get_theme_mod( 'boldgrid_background_color' );
+		$background_color = strtok( $background_color, ':' );
+
+		if ( ! empty( $background_color ) ) {
+			$classes[] = $background_color . '-text-default';
+			if ( strpos( $background_color, 'neutral' ) !== false ) {
+				$classes[] = $background_color . '-background-color';
+			} else {
+				$classes[] = str_replace( '-', '', $background_color ) . '-background-color';
+			}
+		}
+
 		return array_unique( $classes );
 	}
 

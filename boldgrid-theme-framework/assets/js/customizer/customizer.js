@@ -113,7 +113,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
 ( function( $ ) {
-	var $body, $custom_styles, colors;
+	var $body, $custom_styles;
 
 	$body = $( 'body' );
 	$custom_styles = $( '#boldgrid-override-styles' );
@@ -129,7 +129,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		// When menu partials are refreshed, we need to ensure we update the new container.
 		$( document ).on( 'customize-preview-menu-refreshed', function( e, params ) {
 			if ( ! _.isUndefined( BoldGrid ) ) {
-				console.log( params );
 				if ( 'main' === params.wpNavMenuArgs.theme_location ) {
 					if ( ! _.isUndefined( BoldGrid.standard_menu_enabled ) ) {
 
@@ -140,30 +139,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			}
 		} );
 
-		colors = BOLDGRID.Customizer.Util.getInitialPalettes();
-
-		if ( colors && ! _.isUndefined( parent.$.wp ) ) {
-			parent.$.wp.wpColorPicker.prototype.options = {
-				palettes: colors
-			};
-		}
-		var irisContainers = $( '.customize-control-kirki-color .iris-palette-container' );
-
-		_( irisContainers ).each( function( irisContainer ) {
-			var colors, picker, label;
-
-			picker = $( irisContainer ).parent( '.iris-picker' );
-			picker.css( 'padding-bottom', 0 );
-			picker.find( '.iris-slider' ).css( 'height', '100%' );
-			colors = $( irisContainer ).find( '.iris-palette' );
-			label = $( irisContainer ).closest( '.customize-control-kirki-color' );
-
-			$( irisContainer ).appendTo( label );
-			$( colors ).on( 'click', function( e ) {
-				$( colors ).removeClass( 'iris-active-palette' );
-				$( e.currentTarget ).addClass( 'iris-active-palette' );
-			} );
-		} );
 	} );
 
 	// Site title and description.
@@ -308,21 +283,25 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		value.bind( function( to ) {
 			var palettes, colors;
 
-			palettes = parent.$( '.customize-control-kirki-color' ).find( '.wp-picker-container' );
+			palettes = parent.$( '.colors-wrapper' );
 			colors = BOLDGRID.Customizer.Util.getInitialPalettes( to );
 
-			// Set options to pass for any wpColorPicker instances not opened.
-			parent.$.wp.wpColorPicker.prototype.options = {
-				palettes: colors
-			};
-
 			// Update any palettes on open colorpicker instances.
-			_( palettes ).each( function( palette ) {
-				var swatches = $( palette ).find( '.iris-palette' );
-				_( swatches ).each( function( swatch, index ) {
-					$( swatch ).css( 'background-color', colors[ index ] );
+			if ( colors ) {
+				_( palettes ).each( function( palette ) {
+					var swatches = $( palette ).find( 'input' );
+					_( swatches ).each( function( swatch, index ) {
+						var currentVal, newVal;
+						currentVal = $( swatch ).val();
+						newVal = currentVal.substring( 0, currentVal.indexOf( ':' ) + 1 ) + colors[ index ];
+						$( swatch ).val( newVal );
+						$( swatch ).next().find( '.color-palette-color' ).css( 'background', colors[ index ] ).text( colors[ index ] );
+						if ( $( swatch ).is( ':checked' ) ) {
+							parent.wp.customize( 'boldgrid_background_color' ).set( newVal );
+						}
+					} );
 				} );
-			} );
+			}
 		} );
 	} );
 
@@ -477,25 +456,37 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 * Set the theme update_color_and_patterns on the preview frame
 	 */
 	var update_color_and_patterns = function() {
-		var background_color = wp.customize( 'boldgrid_background_color' )();
-		var background_pattern = wp.customize( 'boldgrid_background_pattern' )();
+		var backgroundColor, backgroundPattern, colorClassPrefix;
 
-		if ( ! background_color || background_color === 'none' ) {
-			background_color = '';
+		backgroundColor = wp.customize( 'boldgrid_background_color' )();
+		backgroundPattern = wp.customize( 'boldgrid_background_pattern' )();
+		colorClassPrefix = backgroundColor.split( ':' ).shift();
+
+		if ( ! backgroundColor || backgroundColor === 'none' ) {
+			backgroundColor = '';
 		}
 
-		if ( ! background_pattern ) {
-			background_pattern = 'none';
+		if ( ! backgroundPattern ) {
+			backgroundPattern = 'none';
 		}
 
 		$custom_styles.remove();
-		$body.css( {
-			'background-image': background_pattern,
-			'background-size': 'auto',
-			'background-repeat': 'repeat',
-			'background-attachment': 'scroll',
-			'background-color': background_color
-		});
+
+		$body
+			.removeClass( function ( index, css ) {
+				return ( css.match( /(^|\s)color-?([\d]|neutral)\-(background|text)\S+/g ) || [] ).join( ' ' );
+			} )
+			.css( {
+				'background-image': backgroundPattern,
+				'background-size': 'auto',
+				'background-repeat': 'repeat',
+				'background-attachment': 'scroll'
+			});
+		if ( ~ colorClassPrefix.indexOf( 'neutral' ) ) {
+			$body.addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
+		} else {
+			$body.addClass( colorClassPrefix.replace( '-', '' ) + '-background-color ' + colorClassPrefix + '-text-default' );
+		}
 	};
 
 	var background_image_update = function( to ) {

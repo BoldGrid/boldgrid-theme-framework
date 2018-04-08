@@ -38,7 +38,7 @@ class Boldgrid_Framework_Control_Pattern extends WP_Customize_Control {
 		<div class='boldgrid-pattern-wrapper' data-pattern-selected="<?php echo (bool) $this->value(); ?>">
 			<div class='boldgrid-pattern-selection-heading'>
 				<label>
-						<span class="customize-control-title">Background Pattern</span>
+						<span class="customize-control-title">Pattern</span>
 				</label>
 				<div>
 					<a <?php echo ( ! $this->value()) ? 'disabled="disabled"' : ''; ?>class='button remove-selected-pattern'></a>

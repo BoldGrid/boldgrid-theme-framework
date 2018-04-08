@@ -72,19 +72,27 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-		// Background Controls.
-		// Add Background Color Control to Pattern&Color of Background Image Section.
+		$palette = new Boldgrid_Framework_Compile_Colors( $this->configs );
+
+		$active_palette = $palette->get_active_palette();
+		$formatted_palette = $palette->color_format( $active_palette );
+
 		Kirki::add_field(
 			'bgtfw',
 			array(
-				'type' => 'color',
-				'settings' => 'boldgrid_background_color',
-				'label' => __( 'Background Color', 'bgtfw' ),
-				'section' => 'background_image',
+				'type'        => 'bgtfw-palette-selector',
 				'transport' => 'postMessage',
-				'default' => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
+				'settings'    => 'boldgrid_background_color',
+				'label' => esc_attr__( 'Color', 'bgtfw' ),
+				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
+				'tooltip' => 'testing what a tool tip looks like',
+				'section'     => 'background_image',
 				'priority' => 1,
-				'choices' => array(),
+				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
+				'choices'     => array(
+					'colors' => $formatted_palette,
+					'size' => $this->get_palette_size( $formatted_palette ),
+				),
 			)
 		);
 
@@ -724,6 +732,33 @@ class BoldGrid_Framework_Customizer {
 	}
 
 	/**
+	 * Gets the size of the palette control to add.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  array  $palette The active palette to get the size of.
+	 *
+	 * @return string          Size of each palette square.
+	 */
+	public function get_palette_size( $palette ) {
+		$colors = 0;
+		$max_size = 225;
+
+		if ( ! empty( $palette ) ) {
+			$colors = count( $palette );
+		}
+
+		return ( string ) floor( $max_size / $colors );
+	}
+
+	public function control_styles() {
+		?>
+		<style id="bgtfw-control-styles">
+		</style>
+		<?php
+	}
+
+	/**
 	 * Enqueue General customizer helper styles.
 	 *
 	 * @since    1.0.0
@@ -1118,6 +1153,14 @@ HTML;
 		// Registers our custom panel and section types.
 		$wp_customize->register_panel_type( 'Boldgrid_Framework_Customizer_Panel' );
 		$wp_customize->register_section_type( 'Boldgrid_Framework_Customizer_Section' );
+
+		// Register our custom control with Kirki
+		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Palette_Selector' );
+
+		add_filter( 'kirki_control_types', function( $controls ) {
+			$controls['bgtfw-palette-selector'] = 'Boldgrid_Framework_Customizer_Control_Palette_Selector';
+			return $controls;
+		} );
 
 		// Pages Panel.
 		$pages_panel = new Boldgrid_Framework_Customizer_Panel(

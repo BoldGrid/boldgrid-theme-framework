@@ -444,4 +444,30 @@ class Boldgrid_Framework_Compile_Colors {
 
 		return '' !== $class ? $class : false;
 	}
+
+	/**
+	 * Format color palette to easily get color classes to apply.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  string $colors Palette to format.
+	 *
+	 * @return array  $formatted Fromatted color palette.
+	 */
+	public function color_format( $colors ) {
+		$formatted = array();
+		$active_palette = get_theme_mod( 'boldgrid_palette_class', 'palette-primary' );
+
+		foreach ( $colors as $k => $v ) {
+			if ( $k === $active_palette . '-neutral-color' ) {
+				$formatted[ 'color-neutral' ] = $v;
+			} elseif ( strpos( $k, $active_palette ) !== false ) {
+				$formatted[ 'color-' . preg_replace( '/[^0-9]/', '', $k ) ] = $v;
+			} else {
+				$formatted[ $k ] = $v;
+			}
+		}
+
+		return $formatted;
+	}
 }

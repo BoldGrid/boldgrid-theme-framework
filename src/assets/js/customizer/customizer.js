@@ -339,6 +339,12 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		value.bind( update_color_and_patterns );
 	} );
 
+	wp.customize( 'bgtfw_header_color', function( value ) {
+		value.bind( function() {
+			colorOutput( 'bgtfw_header_color', '#masthead' );
+		} );
+	} );
+
 	/**
 	 * When updating background type reset all saved values
 	 */
@@ -452,19 +458,33 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$body.css( 'background-position', background_pos );
 	};
 
+	var colorOutput = function( themeMod, selector ) {
+		var colorClassPrefix;
+		themeMod = wp.customize( themeMod )();
+
+		if ( ! themeMod || themeMod === 'none' ) {
+			themeMod = '';
+		}
+
+		colorClassPrefix = themeMod.split( ':' ).shift();
+
+		$( selector ).removeClass( function ( index, css ) {
+				return ( css.match( /(^|\s)color-?([\d]|neutral)\-(background|text)\S+/g ) || [] ).join( ' ' );
+			} );
+		if ( ~ colorClassPrefix.indexOf( 'neutral' ) ) {
+			$( selector ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
+		} else {
+			$( selector ).addClass( colorClassPrefix.replace( '-', '' ) + '-background-color ' + colorClassPrefix + '-text-default' );
+		}
+	};
+
 	/**
 	 * Set the theme update_color_and_patterns on the preview frame
 	 */
 	var update_color_and_patterns = function() {
-		var backgroundColor, backgroundPattern, colorClassPrefix;
+		var backgroundPattern;
 
-		backgroundColor = wp.customize( 'boldgrid_background_color' )();
 		backgroundPattern = wp.customize( 'boldgrid_background_pattern' )();
-		colorClassPrefix = backgroundColor.split( ':' ).shift();
-
-		if ( ! backgroundColor || backgroundColor === 'none' ) {
-			backgroundColor = '';
-		}
 
 		if ( ! backgroundPattern ) {
 			backgroundPattern = 'none';
@@ -472,21 +492,14 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		$custom_styles.remove();
 
-		$body
-			.removeClass( function ( index, css ) {
-				return ( css.match( /(^|\s)color-?([\d]|neutral)\-(background|text)\S+/g ) || [] ).join( ' ' );
-			} )
-			.css( {
-				'background-image': backgroundPattern,
-				'background-size': 'auto',
-				'background-repeat': 'repeat',
-				'background-attachment': 'scroll'
-			});
-		if ( ~ colorClassPrefix.indexOf( 'neutral' ) ) {
-			$body.addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
-		} else {
-			$body.addClass( colorClassPrefix.replace( '-', '' ) + '-background-color ' + colorClassPrefix + '-text-default' );
-		}
+		$body.css( {
+			'background-image': backgroundPattern,
+			'background-size': 'auto',
+			'background-repeat': 'repeat',
+			'background-attachment': 'scroll'
+		});
+
+		colorOutput( 'boldgrid_background_color', 'body' );
 	};
 
 	var background_image_update = function( to ) {

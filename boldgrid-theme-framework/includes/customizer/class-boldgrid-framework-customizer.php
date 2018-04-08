@@ -325,7 +325,7 @@ class BoldGrid_Framework_Customizer {
 				),
 			)
 		);
-*/
+
 		// Adds the "Colors" section to the WordPress customizer "Header" panel.
 		Kirki::add_section(
 			'bgtfw_header_colors', array(
@@ -337,47 +337,21 @@ class BoldGrid_Framework_Customizer {
 				'theme_supports' => '', // Rarely needed.
 			)
 		);
-
-		// Header Background Color
+*/
 		Kirki::add_field(
-			'bgtfw', array(
-				'type'        => 'color',
-				'transport'   => 'auto',
-				'settings'    => 'bgtfw_header_bg_color',
-				'label'       => __( 'Background Color', 'bgtfw' ),
-				'description' => esc_attr__( 'This controls the background color of your header.', 'bgtfw' ),
-				'section'     => 'bgtfw_header_colors',
-				'default'     => '#0088CC',
+			'bgtfw',
+			array(
+				'type'        => 'bgtfw-palette-selector',
+				'transport' => 'postMessage',
+				'settings'    => 'bgtfw_header_color',
+				'label' => esc_attr__( 'Color', 'bgtfw' ),
+				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
+				'section'     => 'header_image',
+				'priority' => 1,
+				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
 				'choices'     => array(
-					'alpha' => true,
-				),
-				'output' => array(
-					array(
-						'element'  => '#masthead',
-						'property' => 'background-color',
-					),
-				),
-			)
-		);
-
-		// Header Text Color
-		Kirki::add_field(
-			'bgtfw', array(
-				'type'        => 'color',
-				'transport'   => 'auto',
-				'settings'    => 'bgtfw_header_text_color',
-				'label'       => __( 'Text Color', 'bgtfw' ),
-				'description' => esc_attr__( 'This controls the primary color of text used inside of the header.  This will not impact things like your menu, site title, or tagline if you have selected different colors.', 'bgtfw' ),
-				'section'     => 'bgtfw_header_colors',
-				'default'     => '#0088CC',
-				'choices'     => array(
-					'alpha' => true,
-				),
-				'output' => array(
-					array(
-						'element'  => '#masthead',
-						'property' => 'color',
-					),
+					'colors' => $formatted_palette,
+					'size' => $this->get_palette_size( $formatted_palette ),
 				),
 			)
 		);

@@ -326,6 +326,10 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function header_classes( $classes ) {
+		$color = get_theme_mod( 'bgtfw_header_color' );
+		$colorClass = strtok( $color, ':' );
+		$classes[] = str_replace( '-', '', $colorClass ) . '-background-color';
+		$classes[] = $colorClass . '-text-default';
 		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts', 'layout-6' );
 		return $classes;
 	}

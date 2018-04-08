@@ -121,7 +121,6 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		wp.customize( 'boldgrid_color_palette', function( value ) {
 			value.bind( function() {
 				append_head_styles();
-				console.log( 'head appended' );
 			} );
 		} );
 	};

@@ -466,7 +466,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	var colorOutput = function( themeMod, selector ) {
 		var colorClassPrefix;
-		themeMod = wp.customize( themeMod )();
+		themeMod = parent.wp.customize( themeMod )();
 
 		if ( ! themeMod || themeMod === 'none' ) {
 			themeMod = '';

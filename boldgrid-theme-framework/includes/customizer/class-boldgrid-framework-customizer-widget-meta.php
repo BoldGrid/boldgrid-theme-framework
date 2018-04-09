@@ -109,7 +109,6 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 			$background_color_setting = $wp_customize->add_setting( sprintf( 'sidebar_meta[%s][background_color]', $section->sidebar_id ), array(
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
-				'sanitize_callback' => 'sanitize_hex_color',
 				'transport' => 'postMessage',
 				'default' => '',
 			) );
@@ -147,10 +146,19 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		$src = $this->configs['framework']['js_dir'] . 'customizer/widget-meta/controls.js';
 		$deps = array( 'customize-widgets' );
 		wp_enqueue_script( $handle, $src, $deps );
+
+		$palette = new Boldgrid_Framework_Compile_Colors( $this->configs );
+		$active_palette = $palette->get_active_palette();
+		$formatted_palette = $palette->color_format( $active_palette );
+
 		$data = array(
 			'l10n' => array(
 				'title_label' => __( 'Title:', 'bgtfw' ),
 				'background_color_label' => __( 'Background Color:', 'bgtfw' ),
+			),
+			'choices' => array(
+				'colors' => $formatted_palette,
+				'size' => $palette->get_palette_size( $formatted_palette ),
 			),
 		);
 		wp_add_inline_script( $handle, sprintf( 'CustomizeWidgetSidebarMetaControls.init( wp.customize, %s );', wp_json_encode( $data ) ) );

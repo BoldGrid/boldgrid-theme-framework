@@ -18,32 +18,21 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_background_color =
 
 			backgroundColorSetting = api( partial.params.primarySetting );
 			_.each( partial.placements(), function( placement ) {
-				var palette, modified, color;
-				color = parent.net.brehaut.Color( backgroundColorSetting.get() ).toCSS();
-				palette = BOLDGRID.Customizer.Util.getInitialPalettes();
+				var colorClassPrefix;
 
-				// Strip bgtfw traces of background colors from element.
-				placement.container.parent( '.sidebar' );
+				console.log( backgroundColorSetting.get() );
 
-				modified = palette.map( function( c ) {
-					return parent.net.brehaut.Color( c ).toCSS();
-				});
+				colorClassPrefix = backgroundColorSetting.get().split( ':' ).shift();
 
-				if ( _( modified ).contains( color ) ) {
-					placement.container.parent( '.sidebar' )
-						.attr( 'style', 'padding: 0px 1em;' )
-						.addClass( 'color' + Math.abs( _( modified ).indexOf( color ) + 1 ) + '-background-color' );
-				} else {
-					placement.container.parent( '.sidebar' ).removeClass( function( index, className ) {
+				placement.container.parent( '.sidebar' ).removeClass( function ( index, css ) {
+					return ( css.match( /(^|\s)color-?([\d]|neutral)\-(background|text)\S+/g ) || [] ).join( ' ' );
+				} );
 
-						/**
-						 * Matches classes starting with "color" followed by a single 0-9
-						 * number, then "-background" (optionally matches background-color as well).
-						 * Regexr: https://regexr.com/3ib0g
-						 */
-						return ( className.match( /(^|\s)color\d-background(?:-color)?/g ) || [] ).join( ' ' );
-					} ).css( 'background-color', backgroundColorSetting.get() );
+				if ( ! ~ colorClassPrefix.indexOf( 'neutral' ) ) {
+					colorClassPrefix = colorClassPrefix.replace( '-', '' );
 				}
+
+				placement.container.parent( '.sidebar' ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
 			} );
 
 			// Return resolved promise since no server-side selective refresh will be requested.

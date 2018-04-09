@@ -470,4 +470,24 @@ class Boldgrid_Framework_Compile_Colors {
 
 		return $formatted;
 	}
+
+	/**
+	 * Gets the size of the palette control to add.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  array  $palette The active palette to get the size of.
+	 *
+	 * @return string          Size of each palette square.
+	 */
+	public function get_palette_size( $palette ) {
+		$colors = 0;
+		$max_size = 225;
+
+		if ( ! empty( $palette ) ) {
+			$colors = count( $palette );
+		}
+
+		return ( string ) floor( $max_size / $colors );
+	}
 }

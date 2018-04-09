@@ -8,6 +8,10 @@ var CustomizeWidgetSidebarMetaControls = (function( $ ) {
 			l10n: {
 				color_label: '',
 				background_color_label: ''
+			},
+			choices: {
+				colors: [],
+				size: ''
 			}
 		}
 	};
@@ -65,8 +69,6 @@ var CustomizeWidgetSidebarMetaControls = (function( $ ) {
 	 * @returns {boolean} Whether the section was extended (whether it was for a sidebar).
 	 */
 	component.addControls = function addControls( section ) {
-
-		// @todo Let the priority define the ordering.
 		component.addTitleControl( section );
 		component.addBackgroundColorControl( section );
 	};
@@ -87,20 +89,18 @@ var CustomizeWidgetSidebarMetaControls = (function( $ ) {
 				section: null,
 				label: component.data.l10n.title_label,
 				active: true,
-				type: 'widget-sidebar-meta-title', // Needed for template. See \Customize_Widget_Sidebar_Meta_Controls\customize_controls_print_footer_scripts().
+				type: 'widget-sidebar-meta-title',
 				settings: {
 					'default': setting.id
 				},
-				content: '<li class="customize-control"></li>' // This should not be needed in WordPress 4.8.
+				content: '<li class="customize-control"></li>'
 			}
 		} );
 		section.metaControlsContainer.append( control.container );
 
-		// These should not be needed in the future (as of #38077). They are needed currently because section is null.
 		control.renderContent();
 		control.deferred.embedded.resolve();
 
-		// The following will be unnecessary as of #37964 and #30738
 		control.titleElement = new component.api.Element( control.container.find( 'input' ) );
 		control.titleElement.set( setting.get() );
 		control.titleElement.sync( setting );
@@ -113,19 +113,22 @@ var CustomizeWidgetSidebarMetaControls = (function( $ ) {
 	 * @returns {wp.customize.ColorControl} The added control.
 	 */
 	component.addBackgroundColorControl = function addColorControl ( section ) {
-		var control, customizeId;
+		var control, customizeId, setting;
 
 		customizeId = 'sidebar_meta[' + section.params.sidebarId + '][background_color]';
-		control = new component.api.ColorControl( customizeId, {
+		setting = component.api( customizeId );
+
+		// Create dynamic instance of color palette control.
+		control = new component.api.Control( customizeId, {
 			params: {
 				section: null,
 				label: component.data.l10n.background_color_label,
-				active: true,
-				type: 'color', // Needed for template. Shouldn't be needed in the future.
+				type: 'bgtfw-palette-selector', // Needed for template. Shouldn't be needed in the future.
 				settings: {
-					'default': customizeId
+					'default': setting.id
 				},
-				content: '<li class="customize-control"></li>' // This should not be needed in WordPress 4.8.
+				id: customizeId,
+				choices: component.data.choices
 			}
 		} );
 
@@ -134,6 +137,12 @@ var CustomizeWidgetSidebarMetaControls = (function( $ ) {
 		// These should not be needed in the future (as of #38077). They are needed currently because section is null.
 		control.renderContent();
 		control.deferred.embedded.resolve();
+
+		// Create the link between theinput and settings and sync.
+		// https://wordpress.stackexchange.com/questions/280561/customizer-instantiating-settings-and-controls-via-javascript
+		control.inputElement = new component.api.Element( control.container.find( 'input' ) );
+		control.inputElement.set( setting.get() );
+		control.inputElement.sync( setting );
 	};
 
 	return component;

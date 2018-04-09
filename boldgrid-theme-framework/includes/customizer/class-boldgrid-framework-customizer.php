@@ -91,7 +91,7 @@ class BoldGrid_Framework_Customizer {
 				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
 				'choices'     => array(
 					'colors' => $formatted_palette,
-					'size' => $this->get_palette_size( $formatted_palette ),
+					'size' => $palette->get_palette_size( $formatted_palette ),
 				),
 			)
 		);
@@ -307,7 +307,7 @@ class BoldGrid_Framework_Customizer {
 				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
 				'choices'     => array(
 					'colors' => $formatted_palette,
-					'size' => $this->get_palette_size( $formatted_palette ),
+					'size' => $palette->get_palette_size( $formatted_palette ),
 				),
 			)
 		);
@@ -618,7 +618,7 @@ class BoldGrid_Framework_Customizer {
 				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
 				'choices'     => array(
 					'colors' => $formatted_palette,
-					'size' => $this->get_palette_size( $formatted_palette ),
+					'size' => $palette->get_palette_size( $formatted_palette ),
 				),
 			)
 		);
@@ -655,26 +655,6 @@ class BoldGrid_Framework_Customizer {
 				'priority'    => 45,
 			)
 		);
-	}
-
-	/**
-	 * Gets the size of the palette control to add.
-	 *
-	 * @since  2.0.0
-	 *
-	 * @param  array  $palette The active palette to get the size of.
-	 *
-	 * @return string          Size of each palette square.
-	 */
-	public function get_palette_size( $palette ) {
-		$colors = 0;
-		$max_size = 225;
-
-		if ( ! empty( $palette ) ) {
-			$colors = count( $palette );
-		}
-
-		return ( string ) floor( $max_size / $colors );
 	}
 
 	public function control_styles() {

@@ -547,27 +547,21 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	// Add some padding just for the background color to be visible in certain situations.
 	$style = 'padding-top: 5px; padding-bottom: 5px;';
 	$sidebar_meta = get_theme_mod( 'sidebar_meta' );
-	global $boldgrid_theme_framework;
-
-	$bgtfw_configs = $boldgrid_theme_framework->get_configs();
-	$bgtfw_colors = new Boldgrid_Framework_Compile_Colors( $bgtfw_configs );
-
-	$active_color = 'rgba(255,255,255,0)';
 
 	$color_class = '';
+	$classes = array();
 
 	if ( ! empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ) {
-		$sidebar = $bgtfw_colors->normalize( $sidebar_meta[ $sidebar_id ]['background_color'] );
-		$active_color = ! empty( $sidebar ) ? $sidebar : $active_color;
-		$color_class = $bgtfw_colors->get_color_class( $active_color, 'background-color' );
+		$color = $sidebar_meta[ $sidebar_id ]['background_color'];
+		$color_class = strtok( $color, ':' );
+		if ( strpos( $color_class, 'neutral' ) === false ) {
+			$color_class = str_replace( '-', '', $color_class );
+		}
+		$classes[] = $color_class . '-background-color';
+		$classes[] = $color_class . '-text-default';
 	}
-
-	// Apply inline styles if no color class is determined.
-	if ( empty( $color_class ) ) {
-		$style .= sprintf( 'background-color: %s;', $active_color );
-	}
-	?>
-	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid<?php echo $color_class ? ' ' . $color_class : ''; ?>" role="complementary" style="<?php echo $style; ?>">
+?>
+	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid <?php echo implode( ' ', $classes ); ?>" role="complementary" style="<?php echo $style; ?>">
 		<?php dynamic_sidebar( $sidebar_id ); ?>
 		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
 			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>

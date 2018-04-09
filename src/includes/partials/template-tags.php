@@ -412,11 +412,18 @@ function woocommerce_widget_shopping_cart_proceed_to_checkout() {
  * @since 2.0.0
  */
 function is_not_bgtfw_sidebar_layout() {
-	$layout = get_page_template_slug();
+	if ( is_home() ) {
+		// Default homepage
+		$layout = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', get_theme_mod( 'bgtfw_layout_blog', 'no-sidebar' ) );
+	} else {
+		$layout = get_page_template_slug();
 
-	if ( empty( $layout ) ) {
-		$type = 'page' === get_post_type() ? 'page' : 'blog';
-		$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
+		if ( empty( $layout ) ) {
+			$type = 'page' === get_post_type() ? 'page' : 'blog';
+			$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
+		}
+
+		$classes[] = sanitize_html_class( $layout );
 	}
 
 	return ( 'no-sidebar' === $layout ) || empty( $layout ) ? true : false;

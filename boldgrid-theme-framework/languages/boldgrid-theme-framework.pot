@@ -1402,18 +1402,18 @@ msgstr ""
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:569
+#: src/includes/partials/template-tags.php:576
 msgid "Empty Sidebar"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:570
+#: src/includes/partials/template-tags.php:577
 msgid "This sidebar doesn't have any widgets assigned to it yet."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:571
+#: src/includes/partials/template-tags.php:578
 msgid "Add widgets here."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:575
+#: src/includes/partials/template-tags.php:582
 msgid "Add another widget."
 msgstr ""

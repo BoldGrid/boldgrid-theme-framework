@@ -328,7 +328,10 @@ class BoldGrid {
 	public function header_classes( $classes ) {
 		$color = get_theme_mod( 'bgtfw_header_color' );
 		$colorClass = strtok( $color, ':' );
-		$classes[] = str_replace( '-', '', $colorClass ) . '-background-color';
+		if ( strpos( $colorClass, 'neutral' ) === false ) {
+			$colorClass = str_replace( '-', '', $colorClass );
+		}
+		$classes[] = $colorClass . '-background-color';
 		$classes[] = $colorClass . '-text-default';
 		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts', 'layout-6' );
 		return $classes;
@@ -342,6 +345,13 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the .site-footer element.
 	 */
 	public function footer_classes( $classes ) {
+		$color = get_theme_mod( 'bgtfw_footer_color' );
+		$colorClass = strtok( $color, ':' );
+		if ( strpos( $colorClass, 'neutral' ) === false ) {
+			$colorClass = str_replace( '-', '', $colorClass );
+		}
+		$classes[] = $colorClass . '-background-color';
+		$classes[] = $colorClass . '-text-default';
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts', 'layout-1' );
 		return $classes;
 	}

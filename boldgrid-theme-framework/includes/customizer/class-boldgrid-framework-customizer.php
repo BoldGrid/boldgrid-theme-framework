@@ -293,51 +293,7 @@ class BoldGrid_Framework_Customizer {
 				),
 			)
 		);
-/**
-		// Header height control - used with header positioned on top.
-		Kirki::add_field(
-			'bgtfw', array(
-				'type'        => 'slider',
-				'settings'    => 'bgtfw_header_height',
-				'transport'   => 'auto',
-				'label'       => esc_attr__( 'Header Height', 'bgtfw' ),
-				'section'     => 'bgtfw_header_layout',
-				'default'     => 200,
-				'choices'     => array(
-					'min'  => '0',
-					'max'  => '600',
-					'step' => '1',
-				),
-				'output' => array(
-					array(
-						'media_query' => '@media only screen and (min-width : 768px)',
-						'element'  => '.header-top #masthead',
-						'property' => 'height',
-						'value_pattern' => '$px',
-					),
-				),
-				'active_callback' => array(
-					array(
-						'setting'  => 'bgtfw_header_layout_position',
-						'operator' => '==',
-						'value'    => 'header-top',
-					),
-				),
-			)
-		);
 
-		// Adds the "Colors" section to the WordPress customizer "Header" panel.
-		Kirki::add_section(
-			'bgtfw_header_colors', array(
-				'title'          => __( 'Colors' ),
-				'panel'        => 'bgtfw_header',
-				'description'    => esc_attr__( 'Change the colors used in your custom header.', 'bgtfw' ),
-				'priority'       => 10,
-				'capability'     => 'edit_theme_options',
-				'theme_supports' => '', // Rarely needed.
-			)
-		);
-*/
 		Kirki::add_field(
 			'bgtfw',
 			array(
@@ -649,24 +605,20 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-		// Footer Background Color.
 		Kirki::add_field(
-			'bgtfw', array(
-				'type'        => 'color',
-				'transport'   => 'auto',
-				'settings'    => 'bgtfw_footer_bg_color',
-				'label'       => __( 'Background Color', 'bgtfw' ),
-				'description' => esc_attr__( 'This controls the background color of your footer.', 'bgtfw' ),
+			'bgtfw',
+			array(
+				'type'        => 'bgtfw-palette-selector',
+				'transport' => 'postMessage',
+				'settings'    => 'bgtfw_footer_color',
+				'label' => esc_attr__( 'Color', 'bgtfw' ),
+				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
 				'section'     => 'bgtfw_footer_colors',
-				'default'     => '#0088CC',
+				'priority' => 1,
+				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
 				'choices'     => array(
-					'alpha' => true,
-				),
-				'output' => array(
-					array(
-						'element'  => '.site-footer',
-						'property' => 'background-color',
-					),
+					'colors' => $formatted_palette,
+					'size' => $this->get_palette_size( $formatted_palette ),
 				),
 			)
 		);

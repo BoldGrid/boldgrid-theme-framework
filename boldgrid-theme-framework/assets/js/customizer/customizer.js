@@ -345,6 +345,12 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 	} );
 
+	wp.customize( 'bgtfw_footer_color', function( value ) {
+		value.bind( function() {
+			colorOutput( 'bgtfw_footer_color', '#colophon' );
+		} );
+	} );
+
 	/**
 	 * When updating background type reset all saved values
 	 */
@@ -469,13 +475,14 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		colorClassPrefix = themeMod.split( ':' ).shift();
 
 		$( selector ).removeClass( function ( index, css ) {
-				return ( css.match( /(^|\s)color-?([\d]|neutral)\-(background|text)\S+/g ) || [] ).join( ' ' );
-			} );
-		if ( ~ colorClassPrefix.indexOf( 'neutral' ) ) {
-			$( selector ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
-		} else {
-			$( selector ).addClass( colorClassPrefix.replace( '-', '' ) + '-background-color ' + colorClassPrefix + '-text-default' );
+			return ( css.match( /(^|\s)color-?([\d]|neutral)\-(background|text)\S+/g ) || [] ).join( ' ' );
+		} );
+
+		if ( ! ~ colorClassPrefix.indexOf( 'neutral' ) ) {
+			colorClassPrefix = colorClassPrefix.replace( '-', '' );
 		}
+
+		$( selector ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
 	};
 
 	/**

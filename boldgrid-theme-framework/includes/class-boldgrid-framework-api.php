@@ -326,14 +326,8 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function header_classes( $classes ) {
-		$color = get_theme_mod( 'bgtfw_header_color' );
-		$colorClass = strtok( $color, ':' );
-		if ( strpos( $colorClass, 'neutral' ) === false ) {
-			$colorClass = str_replace( '-', '', $colorClass );
-		}
-		$classes[] = $colorClass . '-background-color';
-		$classes[] = $colorClass . '-text-default';
 		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts', 'layout-6' );
+		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
 		return $classes;
 	}
 
@@ -345,14 +339,28 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the .site-footer element.
 	 */
 	public function footer_classes( $classes ) {
-		$color = get_theme_mod( 'bgtfw_footer_color' );
-		$colorClass = strtok( $color, ':' );
-		if ( strpos( $colorClass, 'neutral' ) === false ) {
-			$colorClass = str_replace( '-', '', $colorClass );
-		}
-		$classes[] = $colorClass . '-background-color';
-		$classes[] = $colorClass . '-text-default';
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts', 'layout-1' );
+		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		return $classes;
+	}
+
+	/**
+	 * Get background colors.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $mod     Palette Selector theme_mod to get value for.
+	 *
+	 * @return array  $classes Classes for background color/text contrast.
+	 */
+	public function get_background_color( $mod ) {
+		$color = get_theme_mod( $mod );
+		$color_class = strtok( $color, ':' );
+		if ( strpos( $color_class, 'neutral' ) === false ) {
+			$color_class = str_replace( '-', '', $color_class );
+		}
+		$classes[] = $color_class . '-background-color';
+		$classes[] = $color_class . '-text-default';
 		return $classes;
 	}
 

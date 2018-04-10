@@ -1,5 +1,3 @@
-/* Base Footer Styles */
-@import "base";
 /* Disabled Footer */
 @import "disabled-footer";
 /* Sticky Footer */
@@ -9,4 +7,4 @@
 /* Attribution Links */
 @import "attribution-links";
 /* Layouts */
-@import "layouts";
+@import "layouts/base";

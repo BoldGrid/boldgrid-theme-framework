@@ -28,7 +28,7 @@ return array(
 			'theme_location' => 'main',
 			'container' => 'false',
 			'menu_id' => 'main-menu',
-			'menu_class' => 'sm sm-clean logo logo-left',
+			'menu_class' => 'sm sm-clean main-menu',
 		),
 		'social' => array(
 			'theme_location'  => 'social',

@@ -44,7 +44,7 @@
 			wp.customize.control( 'navigation_' + id.themeLocation + '_text_transform' ).deactivate({ duration: 0 });
 
 			var $menu_selector = wp.customize.previewer.container.find( 'iframe' ).contents()
-				.find( 'div.' + id.themeLocation.replace( /_/g, '-' ) + '-menu:not(:has( ul li.menu-social ) )' );
+				.find( '.' + id.themeLocation.replace( /_/g, '-' ) + '-menu:not(:has( ul li.menu-social ) )' );
 
 			// If menus aren't present in the preview, then hide controls.
 			if ( $menu_selector.length ) {

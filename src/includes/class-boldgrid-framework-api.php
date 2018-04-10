@@ -299,7 +299,7 @@ class BoldGrid {
 			<label class="main-menu-btn" for="main-menu-state">
 				<span class="main-menu-btn-icon"></span><span class="sr-only">Toggle main menu visibility</span>
 			</label>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'false', 'menu_id' => 'main-menu', 'menu_class' => 'sm bgtfw-menu logo logo-left' ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'false', 'menu_id' => 'main-menu', 'menu_class' => 'sm bgtfw-menu main-menu' ) ); ?>
 			</div>
 		<?php
 	}
@@ -343,6 +343,8 @@ class BoldGrid {
 		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
 		return $classes;
 	}
+
+
 
 	/**
 	 * Get background colors.

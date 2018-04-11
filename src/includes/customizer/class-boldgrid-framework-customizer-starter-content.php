@@ -49,8 +49,11 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	 * @since 2.0.0
 	 */
 	public function add_hooks() {
-		$this->starter_content_settings();
-		if ( get_theme_starter_content() ) {
+		$content = get_theme_support( 'starter-content' );
+
+		// Check for valid starter-content being passed before loading.
+		if ( is_array( $content ) && ! empty( $content[0] ) && is_array( $content[0] ) && ( bool ) array_filter( $content[0] ) ) {
+			$this->starter_content_settings();
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue' ) );
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'print_templates' ) );
 			add_action( 'wp_ajax_load_starter_content', array( $this, 'load_starter_content' ) );

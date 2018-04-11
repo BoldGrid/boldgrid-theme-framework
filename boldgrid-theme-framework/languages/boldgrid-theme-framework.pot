@@ -773,7 +773,7 @@ msgstr ""
 msgid "Invalid Value"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:102
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:105
 msgid "Import Starter Content"
 msgstr ""
 

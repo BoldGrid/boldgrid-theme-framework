@@ -263,8 +263,6 @@
 	display: flex;
 	justify-content: flex-start;
 	padding: 13px 20px;
-	color: #555555;
-	line-height: 17px;
 	text-decoration: none;
 }
 .sm-clean a.current {
@@ -492,7 +490,6 @@
 	.sm-clean a:active,
 	.sm-clean a.highlighted {
 		padding: 12px 12px;
-		color: #555555;
 		-webkit-border-radius: 0 !important;
 		-moz-border-radius: 0 !important;
 		-ms-border-radius: 0 !important;
@@ -621,7 +618,6 @@
 	.sm-clean ul a.highlighted {
 		border: 0 !important;
 		padding: 10px 20px;
-		color: #555555;
 	}
 	.sm-clean ul a:hover,
 	.sm-clean ul a:focus,

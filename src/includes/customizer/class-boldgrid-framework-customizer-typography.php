@@ -312,65 +312,32 @@ class Boldgrid_Framework_Customizer_Typography {
 			// Create controls for all nav menus created.
 			$boldgrid_menus = get_registered_nav_menus();
 			foreach ( $boldgrid_menus as $location => $description ) {
-				// Navigation Font Family Controls.
-				$controls[ 'navigation_' . $location . '_font_family' ] = array(
-					'type'     => 'select',
-					'settings'  => 'navigation_' . $location . '_font_family',
-					'label'    => $description . __( ' Font', 'bgtfw' ),
-					'section'  => 'navigation_typography',
-					'default'  => $this->configs['customizer-options']['typography']['defaults']['navigation_font_family'],
-					'choices'  => kirki_Fonts::get_font_choices(),
-					'output'   => array(
+				// Tagline Typography Settings.
+				$controls[ 'navigation_' . $location . '_typography' ] = array(
+					'type'        => 'typography',
+					'transport'   => 'auto',
+					'settings'    => 'navigation_' . $location . '_typography',
+					'label'       => esc_attr( $description . ' ' . __( 'Typography', 'bgtfw' ) ),
+					'section'     => 'navigation_typography',
+					'default'     => array(
+						'font-family'    => 'Roboto',
+						'variant'        => 'regular',
+						'font-size'      => $this->configs['customizer-options']['typography']['defaults']['navigation_font_size'],
+						'line-height'    => '1.5',
+						'letter-spacing' => '0',
+						'subsets'        => array( 'latin-ext' ),
+						'text-transform' => $this->configs['customizer-options']['typography']['defaults']['navigation_text_transform'],
+					),
+					'priority'    => 10,
+					'output'      => array(
 						array(
-							'element'  => '.' . str_replace( '_', '-', $location ) . '-menu ul li a',
-							'property' => 'font-family',
-						),
-					),
-				);
-				// Navigation Font Size Controls.
-				$controls[ 'navigation_' . $location . '_font_size' ] = array(
-					'type'     => 'slider',
-					'settings'  => 'navigation_' . $location . '_font_size',
-					'transport' => 'postMessage',
-					'label'    => $description . __( ' Font Size', 'bgtfw' ),
-					'section'  => 'navigation_typography',
-					'default'  => $this->configs['customizer-options']['typography']['defaults']['navigation_font_size'],
-					'choices'  => array(
-						'min'  => 6,
-						'max'  => 28,
-						'step' => 1,
-					),
-					'output' => array(
-						array(
-							'element'  => '.' . str_replace( '_', '-', $location ) . '-menu ul li a',
-							'property' => 'font-size',
-							'units'    => 'px',
-						),
-					),
-				);
-				// Navigation Font Size Controls.
-				$controls[ 'navigation_' . $location . '_text_transform' ] = array(
-					'type'     => 'select',
-					'settings'  => 'navigation_' . $location . '_text_transform',
-					'transport' => 'postMessage',
-					'label'    => $description . __( ' Capitalization', 'bgtfw' ),
-					'section'  => 'navigation_typography',
-					'default'  => $this->configs['customizer-options']['typography']['defaults']['navigation_text_transform'],
-					'choices'  => array(
-						'capitalize' => __( 'Capitalize', 'bgtfw' ),
-						'lowercase' => __( 'Lowercase', 'bgtfw' ),
-						'uppercase' => __( 'Uppercase', 'bgtfw' ),
-						'none' => __( 'Unmodified', 'bgtfw' ),
-					),
-					'output' => array(
-						array(
-							'element'  => '.' . str_replace( '_', '-', $location ) . '-menu ul li a',
-							'property' => 'text-transform',
+							'element' => '.' . str_replace( '_', '-', $location ) . '-menu li a',
 						),
 					),
 				);
 			}
 		}
+
 		return $controls;
 	}
 

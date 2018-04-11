@@ -20,18 +20,18 @@ return array(
 		'navigation' => true,
 	),
 	'defaults' => array(
-		'headings_font_size' => 14,
-		'headings_font_family' => 'Oswald',
+		'headings_font_size' => '18px',
+		'headings_font_family' => 'Roboto',
 		'headings_text_transform' => 'uppercase',
 		'alternate_headings_font_size' => 14,
 		'alternate_headings_font_family' => 'Oswald',
 		'alternate_headings_text_transform' => 'uppercase',
-		'body_font_size' => 14,
-		'body_font_family' => 'Open Sans',
-		'body_line_height' => 136,
-		'navigation_font_size' => 14,
+		'body_font_size' => '18px',
+		'body_font_family' => 'Roboto',
+		'body_line_height' => '1.4',
+		'navigation_font_size' => '18px',
 		'navigation_text_transform' => 'uppercase',
-		'navigation_font_family' => 'Oswald',
+		'navigation_font_family' => 'Roboto',
 	),
 	'selectors' => array(
 		'h1:not( .site-title ):not( .alt-font ), .h1' => array(
@@ -96,4 +96,3 @@ return array(
 		),
 	),
 );
-

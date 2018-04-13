@@ -116,13 +116,13 @@ var BoldGrid = BoldGrid || {};
 					if ( !! $( '.custom-header' ).not( '.header-fixed' ).length ) {
 
 						// Adjusts .header-top position, offsets content based on header content.
-						$( '#content' ).css( 'margin-top', '0px' );
+						$( '.site-header + div' ).css( 'margin-top', '0px' );
 						$( '.wp-custom-header' ).css( 'height', header_height + 2 );
 					}
 
 				// Mobile.
 				} else {
-					$( '#content' ).css( 'margin-top', '0px' );
+					$( '.site-header + div' ).css( 'margin-top', '0px' );
 					if ( $( '#main-menu' ).is( ':visible' ) ) {
 						header_height = Math.abs( $( '#navi' ).outerHeight() - $( '#main-menu' ).height() );
 					}
@@ -173,18 +173,18 @@ var BoldGrid = BoldGrid || {};
 
 						// Adjusts .header-top position, offsets content based on header content.
 						if ( $( '.header-fixed:not(.header-left):not(.header-right)' ).length ) {
-							$( '#content' ).css( 'margin-top', header_height + 'px' );
+							$( '.site-header + div' ).css( 'margin-top', header_height + 'px' );
 							$( '.wp-custom-header' ).css( 'height', header_height + 2 );
 
 							// Adjusts .header-left and .header-right, remove styling from the .header-top defaults.
 						} else {
-							$( '#content' ).css( 'margin-top', '0' );
+							$( '.site-header + div' ).css( 'margin-top', '0' );
 							$( '.wp-custom-header' ).css( 'height', '100vh' );
 						}
 
 					// Mobile.
 					} else {
-						$( '#content' ).css( 'margin-top', '0px' );
+						$( '.site-header + div' ).css( 'margin-top', '0px' );
 						if ( $( '#main-menu' ).is( ':visible' ) ) {
 							header_height = Math.abs( $( '#navi' ).outerHeight() - $( '#main-menu' ).height() );
 						}

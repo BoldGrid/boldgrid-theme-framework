@@ -769,7 +769,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_footer', $base, 'custom_js_output' );
 		// Display Widgets.
 		$this->loader->add_action( 'boldgrid_footer_top', $base, 'footer_widget_html' );
-		$this->loader->add_action( 'boldgrid_header_bottom', $base, 'header_widget_html' );
+		$this->loader->add_action( 'boldgrid_main_top', $base, 'header_widget_html' );
 		// Enqueue live preview javascript in Theme Customizer admin screen.
 		$this->loader->add_action( 'customize_preview_init', $base, 'live_preview' );
 	}

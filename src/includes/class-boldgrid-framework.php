@@ -812,6 +812,8 @@ class BoldGrid_Framework {
 	 */
 	private function customizer_starter_content() {
 		$starter_content = new Boldgrid_Framework_Customizer_Starter_Content( $this->configs );
+		$query = new Boldgrid_Framework_Customizer_Starter_Content_Query();
+		$this->loader->add_action( 'customize_preview_init', $query, 'make_auto_drafts_queryable' );
 		$this->loader->add_action( 'customize_register', $starter_content, 'add_hooks' );
 	}
 

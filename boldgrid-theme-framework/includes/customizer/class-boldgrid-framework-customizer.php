@@ -172,6 +172,34 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
+		// Add Headings Typography Controls.
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'     => 'typography',
+				'settings'  => 'bgtfw_headings_typography',
+				'transport'   => 'auto',
+				'settings'    => 'bgtfw_headings_typography',
+				'label'       => esc_attr__( 'Headings Typography', 'bgtfw' ),
+				'section'     => 'headings_typography',
+				'default'     => array(
+					'font-family'    => $this->configs['customizer-options']['typography']['defaults']['headings_font_family'],
+					'variant'        => 'regular',
+					'font-size'      => '14px',
+					'line-height'    => '1.5',
+					'letter-spacing' => '0',
+					'subsets'        => array( 'latin-ext' ),
+					'text-transform' => 'none',
+				),
+				'priority'    => 10,
+				'output'      => array(
+					array(
+						'element'  => 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6',
+					),
+				),
+			)
+		);
+
 		// Tagline Typography Settings.
 		Kirki::add_field(
 			'bgtfw',

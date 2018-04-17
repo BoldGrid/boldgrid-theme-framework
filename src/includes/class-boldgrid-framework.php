@@ -646,11 +646,10 @@ class BoldGrid_Framework {
 		if ( true === $this->configs['customizer-options']['typography']['enabled'] ) {
 			$this->loader->add_action( 'customize_controls_enqueue_scripts', $typography, 'enqueue_scripts' );
 			$this->loader->add_action( 'customize_register', $typography, 'typography_panel' );
-			$this->loader->add_filter( 'kirki/controls', $typography, 'headings_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $typography, 'navigation_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $typography, 'body_typography_controls' );
-			$this->loader->add_action( 'wp_head', $typography, 'headings_font_size_css' );
-			$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'headings_editor_styles' );
+			$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'add_font_size_css' );
+			$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
 		}
 		// Add Site title typography controls.
 		$this->loader->add_action( 'customize_preview_init', $typography, 'live_preview' );

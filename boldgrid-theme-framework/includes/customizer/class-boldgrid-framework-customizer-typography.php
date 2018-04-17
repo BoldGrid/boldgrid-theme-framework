@@ -156,73 +156,6 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
-	 * Add the Headings Typography Controls to the WordPress Customizer.
-	 *
-	 * @since     1.0.0
-	 * @param array $controls Array of controls for Kirki.
-	 * @return    array      $controls      array of controls to pass to Kirki.
-	 */
-	public function headings_typography_controls( $controls ) {
-
-		// Configuration option to check.
-		$headings_config = $this->configs['customizer-options']['typography']['controls']['headings'];
-
-		if ( true === $headings_config ) {
-			// Headings Font Family Control.
-			$controls['headings_font_family'] = array(
-				'type'     => 'select',
-				'settings'  => 'heading_font_family',
-				'label'    => __( 'Font Family', 'bgtfw' ),
-				'section'  => 'headings_typography',
-				'default'  => $this->configs['customizer-options']['typography']['defaults']['headings_font_family'],
-				'choices'  => kirki_Fonts::get_font_choices(),
-				'output'   => array(
-					array(
-						'element'  => 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6',
-						'property' => 'font-family',
-					),
-				),
-			);
-			// Headings Font Size Control.
-			$controls['headings_font_size'] = array(
-				'type'     => 'slider',
-				'settings'  => 'headings_font_size',
-				'transport' => 'postMessage',
-				'label'    => __( 'Font Size', 'bgtfw' ),
-				'section'  => 'headings_typography',
-				'default'  => $this->configs['customizer-options']['typography']['defaults']['headings_font_size'],
-				'choices'  => array(
-					'min'  => 12,
-					'max'  => 50,
-					'step' => 1,
-				),
-			);
-			// Headings Text Transform Control.
-			$controls['headings_text_transform'] = array(
-				'type'     => 'select',
-				'settings'  => 'headings_text_transform',
-				'transport' => 'postMessage',
-				'label'    => __( 'Capitalization', 'bgtfw' ),
-				'section'  => 'headings_typography',
-				'default'  => $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'],
-				'choices'  => array(
-					'capitalize' => 'Capitalize',
-					'lowercase' => __( 'Lowercase', 'bgtfw' ),
-					'uppercase' => __( 'Uppercase', 'bgtfw' ),
-					'none' => __( 'Unmodified', 'bgtfw' ),
-				),
-				'output'   => array(
-					array(
-						'element'  => 'h1, h2, h3, h4, h5, h6',
-						'property' => 'text-transform',
-					),
-				),
-			);
-		}
-		return $controls;
-	}
-
-	/**
 	 * Add the Main Text Typography Controls to the WordPress Customizer.
 	 *
 	 * @since     1.0.0
@@ -365,94 +298,61 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
-	 * Heading size based on Bootstrap's LESS implementation.
+	 * Adds font size CSS to style.css inline.
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
-	public function headings_font_size_css() {
-		// Font size.
-		$font_size_base = get_theme_mod( 'headings_font_size', $this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
-		$alt_font_size_base = get_theme_mod( 'alternate_headings_font_size', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_size'] );
-		$body_font_size = get_theme_mod( 'body_font_size', $this->configs['customizer-options']['typography']['defaults']['body_font_size'] );
-		$blockquote = $body_font_size * 1.25;
-		// Text Transform.
-		$heading_text_transform = get_theme_mod( 'headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
-		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'] );
-		// Font Family.
-		$heading_font_family = get_theme_mod( 'heading_font_family', $this->configs['customizer-options']['typography']['defaults']['headings_font_family'] );
-		$alt_font_family = get_theme_mod( 'alternate_headings_font_family', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'] );
-		$selectors = $this->configs['customizer-options']['typography']['selectors'];
-		?>
-		<style id="boldgrid-custom-fonts" type="text/css">
-		<?php
-		foreach ( $selectors as $selector => $options ) {
-			$base = $font_size_base;
-			$transform = $heading_text_transform;
-			$family = $heading_font_family;
-			if ( 'subheadings' === $options['type'] ) {
-				$base = $alt_font_size_base;
-				$transform = $alt_heading_text_transform;
-				$family = $alt_font_family;
-			}
-			if ( 'floor' === $options['round'] ) {
-				print $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; font-family:' . $family . ';}';
-
-			}
-			if ( 'ceil' === $options['round'] ) {
-				print $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; font-family:' . $family . ';}';
-			}
-		}
-
-		print $this->create_font_classes();
-
-		?>
-			blockquote, blockquote p, .mod-blockquote { font-size: <?php print $blockquote; ?>px; }
-		</style>
-		<?php
+	public function add_font_size_css() {
+		wp_add_inline_style( 'style', $this->generate_font_size_css() );
 	}
 
 	/**
-	 * Editor Typography Styles.
+	 * Generates font sizes based on Bootstrap's LESS implementation.
 	 *
-	 * Styles to add to the WordPress TinyMCE Editor.
-	 *
-	 * @param string $content CSS to add to the editor.
-	 * @since 1.1
+	 * @since 2.0.0
 	 */
-	public function headings_editor_styles( $content ) {
-		// Font Size.
-		$font_size_base = get_theme_mod( 'headings_font_size', $this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
-		$alt_font_size_base = get_theme_mod( 'alternate_headings_font_size', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_size'] );
-		// Font Family.
-		$font_family    = get_theme_mod( 'heading_font_family', $this->configs['customizer-options']['typography']['defaults']['headings_font_family'] );
-		$alt_font_family = get_theme_mod( 'alternate_headings_font_family', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_font_family'] );
-		// Text Transform.
-		$heading_text_transform = get_theme_mod( 'headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'] );
-		$alt_heading_text_transform = get_theme_mod( 'alternate_headings_text_transform', $this->configs['customizer-options']['typography']['defaults']['alternate_headings_text_transform'] );
-		// Main Text Size, Family, and Line Height.
-		$body_font_size = get_theme_mod( 'body_font_size', $this->configs['customizer-options']['typography']['defaults']['body_font_size'] );
-		$body_font_family = get_theme_mod( 'body_font_family', $this->configs['customizer-options']['typography']['defaults']['body_font_family'] );
-		$body_line_height = get_theme_mod( 'body_line_height', $this->configs['customizer-options']['typography']['defaults']['body_line_height'] );
+	public function generate_font_size_css( $content = '' ) {
+		// Headings Font.
+		$headings_font = get_theme_mod( 'bgtfw_headings_typography', $this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
+		$headings_font_family = ! empty( $headings_font['font-family'] ) ? $headings_font['font-family'] : $this->configs['customizer-options']['typography']['defaults']['headings_font_family'];
+		$headings_text_transform = ! empty( $headings_font['text-transform'] ) ? $headings_font['text-transform'] : $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'];
+
+		$headings_font_size = ! empty( $headings_font['font-size'] ) ? $headings_font['font-size'] : $this->configs['customizer-options']['typography']['defaults']['headings_font_size'];
+
+		$headings_base = ( int ) preg_replace( '/[^0-9]./', '', $headings_font_size );
+		$headings_unit = preg_replace( '/[^a-z]/i', '', $headings_font_size );
+		$headings_unit = empty( $headings_unit ) ? 'px' : $headings_unit;
+
+		// Body Font.
+		$body_font = get_theme_mod( 'bgtfw_body_typography' );
+		$body_font_size = ! empty( $body_font['font-size'] ) ? $body_font['font-size'] : $this->configs['customizer-options']['typography']['defaults']['body_font_size'];
+
+		$body_base = ( int ) preg_replace( '/[^0-9]./', '', $body_font_size );
+		$body_unit = preg_replace( '/[^a-z]/i', '', $body_font_size );
+		$body_unit = empty( $body_unit ) ? 'px' : $body_unit;
+
 		// Blockquotes.
-		$blockquote = $body_font_size * 1.25;
-		// CSS To apply to editor.
-		$content = '';
+		$blockquote = $body_base * 1.25;
+		$content .= 'blockquote, blockquote p, .mod-blockquote {font-size:' . $blockquote . $body_unit . ';}';
+
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
+
 		foreach ( $selectors as $selector => $options ) {
-			$base = $font_size_base;
-			$transform = $heading_text_transform;
-			$family = $font_family;
 			if ( 'subheadings' === $options['type'] ) {
-				$base = $alt_font_size_base;
-				$transform = $alt_heading_text_transform;
-				$family = $alt_font_family;
+				continue;
 			}
+
+			$content .= $selector . '{font-size:';
+
 			if ( 'floor' === $options['round'] ) {
-				$content .= $selector . '{ font-size:' . floor( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; font-family:' . $family . '; }';
+				$content .= floor( $headings_base * $options['amount'] );
 			}
+
 			if ( 'ceil' === $options['round'] ) {
-				$content .= $selector . '{ font-size:' . ceil( $base * $options['amount'] ) . 'px; text-transform:' . $transform . '; font-family:' . $family . '; }';
+				$content .= ceil( $headings_base * $options['amount'] );
 			}
+
+			$content .= $headings_unit . ';}';
 		}
 
 		$content .= $this->create_font_classes();

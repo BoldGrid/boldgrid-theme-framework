@@ -49,43 +49,30 @@
 		});
 	});
 
-	// Set font-size of headings/subheadings live.
-	_.each( _typographyOptions, function( selector, rule ) {
-		var fontSizeType;
-		if ( 'subheadings' === selector.type ) {
-			fontSizeType = 'alternate_headings_font_size';
-
-			// Add alt-font class to subheading elements for live preview.
-			$( rule ).addClass( 'alt-font' );
-		}
-		if ( 'headings' === selector.type ) {
-			fontSizeType = 'headings_font_size';
-		}
-		wp.customize( fontSizeType, function( value ) {
-			value.bind( function( to ) {
-				if ( 'ceil' === selector.round ) {
-					$( rule )
-						.css( 'font-size', Math.ceil( to * selector.amount ) + 'px' );
-				}
-				if ( 'floor' === selector.round ) {
-					$( rule )
-						.css( 'font-size', Math.floor( to * selector.amount ) + 'px' );
+	// Set font-size of headings live.
+	wp.customize( 'bgtfw_headings_typography', function( value ) {
+		value.bind( function( to ) {
+			var size, base, unit;
+			if ( _.isString( to ) ) {
+				to = JSON.parse( to );
+			}
+			size = to['font-size'];
+			base = size.replace( /[^0-9]./gi, '' );
+			unit = size.replace( /[^a-z]/gi, '' );
+			unit = _.isEmpty( unit ) ? 'px' : unit;
+			_.each( _typographyOptions, function( selector, rule ) {
+				var val;
+				if ( 'headings' === selector.type ) {
+					val = parseInt( base ) * parseInt( selector.amount );
+					if ( 'ceil' === selector.round ) {
+						val = Math.ceil( val );
+					}
+					if ( 'floor' === selector.round ) {
+						val = Math.floor( val );
+					}
+					$( rule ).css( 'font-size', val + unit );
 				}
 			});
-		});
-	});
-
-	// Set text-transform on headings live.
-	wp.customize( 'headings_text_transform', function( value ) {
-		value.bind( function( to ) {
-			$( ':header:not( .site-title, .alt-font, .site-description )' ).css( 'text-transform', to );
-		});
-	});
-
-	// Set text-transform on alternate headings live.
-	wp.customize( 'alternate_headings_text_transform', function( value ) {
-		value.bind( function( to ) {
-			$( ':header.alt-font' ).css( 'text-transform', to );
 		});
 	});
 

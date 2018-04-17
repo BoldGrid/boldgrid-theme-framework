@@ -102,6 +102,8 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 		/**
 		 * Events fired in the WordPress Customizer.
+		 *
+		 * @memberOf BOLDGRID.CustomizerEdit
 		 */
 		_customizer: function() {
 			/*
@@ -160,7 +162,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			* Navbars can sometimes become collapsed in a hamburger menu and button placement will
 			* need adjusting. After a navbar toggle is clicked, wait 0.4 seconds and adjust buttons.
 			*/
-			$( '.navbar-toggle' ).click( function() {
+			$( self.i18n.config.hamburgers ).click( function() {
 				setTimeout( self.placeButtons, 400 );
 			});
 
@@ -181,8 +183,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					self.windowScroll();
 				}, 100 ) );
 			});
-
-
 		},
 
 		/**
@@ -197,55 +197,80 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$emptyWidgetAreas = $( '[data-empty-area="true"]' );
 
 			// Add our general buttons.
-			_( self.i18n.buttons.general ).each( function( button ) {
+			_( self.i18n.config.buttons.general ).each( function( button ) {
 
 				// Ensure the element exists before adding a button for it.
 				if ( 1 === $( button.selector ).length ) {
-					self.addButton( null, button.control, button.selector, button.icon );
+					self.addButton( button );
 				}
 			} );
 
 			// Widgets.
 			$( 'aside.widget' ).each( function() {
-				var widgetId = $( this ).attr( 'id' );
+				var widgetId = $( this ).attr( 'id' ),
+					button = {
+						type : 'sidebar',
+						control : widgetId,
+						selector : '#' + widgetId
+					};
 
-				self.addButton( 'sidebar', widgetId, '#' + widgetId, 'dashicons-edit' );
+				self.addButton( button );
 			} );
 
 			// Black Studio TinyMCE.
 			$( 'aside[id^="black-studio-tinymce-"]' ).each( function() {
 				var $widget = $( this ),
 					widgetId = $widget.attr( 'id' ),
-					blackStudioId = widgetId.replace( 'black-studio-tinymce-', '' ).trim();
+					blackStudioId = widgetId.replace( 'black-studio-tinymce-', '' ).trim(),
+					button = {
+						type : 'widget_black-studio-tinymce',
+						control : blackStudioId,
+						selector : '#' + widgetId
+					};
 
-				self.addButton( 'widget_black-studio-tinymce', blackStudioId, '#' + widgetId, 'dashicons-edit' );
+				self.addButton( button );
 			} );
 
-			// Menus.
+			// Menu locations.
 			_( menus ).each(
 				function( menu ) {
+					var button;
 
 					// Define the menuId. It will be used as the selector for our call to addButton.
-					menuId = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu-location' )
-						.find( 'ul' ).first().attr( 'id' );
-
-					// If we don't have a menuId, continue.
-					if ( _.isUndefined( menuId ) ) {
+					menuId = self.getMenuId( menu );
+					if ( ! menuId ) {
 						return;
 					}
 
-					self.addButton( 'nav_menu', menu.setting._value, '#' + menuId, 'dashicons-edit' );
+					// All menu edit buttons will be aligned with the menu itself.
+					$( '#' + menuId ).attr( 'data-parent-column', '#' + menuId );
+
+					button = {
+						type : 'nav_menu',
+						control : menu.setting._value,
+						selector : '#' + menuId
+					};
+
+					self.addButton( button );
 				} );
 
 			// Empty menu locations.
 			_( $emptyMenu ).each(
 				function( menu ) {
-					self.addButton( null, 'new_menu_name', '#' + $( menu ).attr( 'id' ), 'dashicons-plus' );
-				} );
+					var button = {
+						type : null,
+						control : 'new_menu_name',
+						selector : '#' + $( menu ).attr( 'id' ),
+						icon : 'dashicons-plus'
+					};
+
+					self.addButton( button );
+				}
+			);
 
 			// Empty widget areas.
 			_( $emptyWidgetAreas ).each( function( widgetArea ) {
-				var dataWidgetArea, widgetAreaId, selector;
+				var dataWidgetArea, widgetAreaId, selector, button;
 
 				$( widgetArea ).append( '<div class="empty-area"></div>' );
 				dataWidgetArea = $( widgetArea ).attr( 'data-widget-area' );
@@ -257,7 +282,14 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				*/
 				selector = '[data-widget-area=\'' + dataWidgetArea + '\']';
 
-				self.addButton( 'sidebars_widgets', widgetAreaId, selector, 'dashicons-plus' );
+				button = {
+					type : 'sidebars_widgets',
+					control : widgetAreaId,
+					selector : selector,
+					icon : 'dashicons-plus'
+				};
+
+				self.addButton( button );
 			} );
 		},
 
@@ -729,6 +761,30 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		},
 
 		/**
+		 * @summary Find the id of a menu.
+		 *
+		 * Pass in a menu location control (Customizer > Menus > View All Locations) and we will find
+		 * the id of the element on the page that contains that menu.
+		 *
+		 * @param object menu A menu location control, found by calling within the Customizer:
+		 *                    parent.wp.customize.section( 'menu_locations' ).controls()
+		 */
+		getMenuId: function( menu ) {
+			var $menuContainer,
+				id = null;
+
+			$menuContainer = $( '[data-customize-partial-placement-context*="' + menu.themeLocation + '-menu-location"]' );
+
+			if( $menuContainer.is( 'ul' ) ){
+				id = $menuContainer.attr( 'id' );
+			} else if ( $menuContainer.is( 'div' ) ) {
+				id = $menuContainer.find( 'ul' ).first().attr( 'id' );
+			}
+
+			return id;
+		},
+
+		/**
 		 * @summary Determine if the top of an element is in view.
 		 *
 		 * @since 1.1.6
@@ -777,7 +833,20 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					'div[class^=container]',
 					'div',
 					'p'
-				];
+				],
+				// Parent column values, see edit.config.php.
+				isParentColumn = $element.attr( 'data-is-parent-column' ),
+				parentColumn = $element.attr( 'data-parent-column' );
+
+			// If we've defined the element itself to be the parent column, return it now.
+			if( isParentColumn ) {
+				return $element;
+			}
+
+			// If we've defined a selector for parent column, set as highest priority within selectors.
+			if( parentColumn ) {
+				selectors.unshift( parentColumn );
+			}
 
 			_( selectors ).each( function( selector ) {
 				if ( false === found ) {
@@ -1239,29 +1308,42 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 *
 		 * @since 1.1.6
 		 *
-		 * @param string type The type of element this button controls.
-		 * @param string id The id of an element to control.
-		 * @param string selector A selector that points to an element this button controls.
-		 * @param string icon The icon for the button, added as a class.
+		 * @param array config
 		 */
-		addButton: function( type, id, selector, icon ) {
-			var $button = $( '<button></button>' ),
-				$parent = $( selector ),
-				$parentsContainer = self.parentColumn( $parent ),
-				dataControl = ( null === type ? id : type + '[' + id + ']' ),
+		addButton: function( config ) {
+			var icon, $parentsContainer,
+				type = config.type ? config.type : null,
+				$button = $( '<button></button>' ),
+				// The element we are controlling, such as '.site-title a' or '.entry-content'.
+				$parent = $( config.selector ),
+				dataControl = ( null === type ? config.control : type + '[' + config.control + ']' ),
 				$fixedAncestors = self.getFixedAncestors( $parent ),
 				dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' ),
 				isEmptyWidget = $parent.attr( 'data-empty-area' ),
 				isEmptyNav = $parent.hasClass( 'empty-menu' );
 
 			// If the button already exists, abort.
-			if ( 0 !== $( 'body' ).find( '[data-selector="' + selector + '"]' ).length ) {
+			if ( 0 !== $( 'body' ).find( '[data-selector="' + config.selector + '"]' ).length ) {
+				return;
+			}
+
+			// If we require text but the element doesn't have any, abort.
+			if( config.requireText && '' === $parent.text().replace( /\s/g, '' ) ) {
 				return;
 			}
 
 			// Allow for custom icons per button. By default, each edit buttion will be a pencil icon.
-			icon = _.isUndefined( icon ) ? 'dashicons-edit' : icon;
+			icon = _.isUndefined( config.icon ) ? self.i18n.config.defaultIcon : config.icon;
 			$button.addClass( icon );
+
+			// Before setting the parentsContainer, set a few attributes that will help.
+			if( config.isParentColumn ) {
+				$parent.attr( 'data-is-parent-column', true );
+			}
+			if( config.parentColumn ) {
+				$parent.attr( 'data-parent-column', config.parentColumn );
+			}
+			$parentsContainer = self.parentColumn( $parent );
 
 			/*
 			* If this button is for an empty widget area or an empty nav area, add a 'new' class to use
@@ -1282,7 +1364,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			$button
 				.attr( {
 					'data-control': dataControl,
-					'data-selector': selector,
+					'data-selector': config.selector,
 					'data-moves': 0,
 					'data-fixed-ancestor': dataFixedAncestor
 				} );

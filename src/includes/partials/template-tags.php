@@ -573,7 +573,9 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
 			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>
 				<div class="empty-sidebar-message">
-					<h2><?php _e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
+					<?php if ( empty( $sidebar_meta[ $sidebar_id ]['title'] ) ) : ?>
+						<h2><?php _e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
+					<?php endif; ?>
 					<p><?php _e( "This sidebar doesn't have any widgets assigned to it yet.", 'bgtfw' ); ?></p>
 					<p><a href="<?php echo $link ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add widgets here.', 'bgtfw' ) ?></a></p>
 				</div>

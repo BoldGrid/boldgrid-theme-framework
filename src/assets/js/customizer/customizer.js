@@ -291,13 +291,18 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				_( palettes ).each( function( palette ) {
 					var swatches = $( palette ).find( 'input' );
 					_( swatches ).each( function( swatch, index ) {
-						var currentVal, newVal;
+						var currentVal, newVal, link;
 						currentVal = $( swatch ).val();
 						newVal = currentVal.substring( 0, currentVal.indexOf( ':' ) + 1 ) + colors[ index ];
 						$( swatch ).val( newVal );
 						$( swatch ).next().find( '.color-palette-color' ).css( 'background', colors[ index ] ).text( colors[ index ] );
+
+						// Update setting link for control.
 						if ( $( swatch ).is( ':checked' ) ) {
-							parent.wp.customize( 'boldgrid_background_color' ).set( newVal );
+							link = $( swatch ).data( 'customize-setting-link' );
+							if ( ! _.isUndefined( link ) ) {
+								parent.wp.customize( link ).set( newVal );
+							}
 						}
 					} );
 				} );
@@ -342,6 +347,18 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	wp.customize( 'bgtfw_header_color', function( value ) {
 		value.bind( function() {
 			colorOutput( 'bgtfw_header_color', '#masthead' );
+		} );
+	} );
+
+	wp.customize( 'bgtfw_header_headings_color', function( value ) {
+		value.bind( function( to ) {
+			headingsColorOutput( to, '.site-header' );
+		} );
+	} );
+
+	wp.customize( 'bgtfw_footer_headings_color', function( value ) {
+		value.bind( function( to ) {
+			headingsColorOutput( to, '.site-footer' );
 		} );
 	} );
 
@@ -462,6 +479,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		var cur_background_pos = $body.css( 'background-position' );
 		var background_pos =  ( to ) * 5 + 'px' + ' ' +  cur_background_pos.split( ' ' )[1];
 		$body.css( 'background-position', background_pos );
+	};
+
+	var headingsColorOutput = function( to, selector ) {
+		var color;
+		if ( ! to || to === 'none' ) {
+			return;
+		}
+		color = to.split( ':' ).pop();
+		$( selector ).find( 'h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6' ).css( 'color', color );
 	};
 
 	var colorOutput = function( themeMod, selector ) {

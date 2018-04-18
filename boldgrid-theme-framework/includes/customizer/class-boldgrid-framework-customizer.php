@@ -340,6 +340,74 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
+		// Adds the "Colors" section to the WordPress customizer "Footer" panel.
+		Kirki::add_section(
+			'bgtfw_header_colors', array(
+				'title'          => __( 'Colors' ),
+				'panel'          => 'bgtfw_header',
+				'description'    => esc_attr__( 'Change the colors used in your custom header.', 'bgtfw' ),
+				'priority'       => 10,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '', // Rarely needed.
+			)
+		);
+
+		// Adds header background color selector.
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'bgtfw-palette-selector',
+				'transport' => 'postMessage',
+				'settings'    => 'bgtfw_header_color',
+				'label' => esc_attr__( 'Color', 'bgtfw' ),
+				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
+				'section'     => 'bgtfw_header_colors',
+				'priority' => 1,
+				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
+				'choices'     => array(
+					'colors' => $formatted_palette,
+					'size' => $palette->get_palette_size( $formatted_palette ),
+				),
+			)
+		);
+
+		// Adds Headings color selector.
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'bgtfw-palette-selector',
+				'transport' => 'postMessage',
+				'settings'    => 'bgtfw_header_headings_color',
+				'label' => esc_attr__( 'Color', 'bgtfw' ),
+				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
+				'section'     => 'bgtfw_header_colors',
+				'priority' => 1,
+				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
+				'choices'     => array(
+					'colors' => $formatted_palette,
+					'size' => $palette->get_palette_size( $formatted_palette ),
+				),
+			)
+		);
+
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'bgtfw-palette-selector',
+				'transport' => 'postMessage',
+				'settings'    => 'bgtfw_footer_headings_color',
+				'label' => esc_attr__( 'Headings Color', 'bgtfw' ),
+				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
+				'section'     => 'bgtfw_footer_colors',
+				'priority' => 10,
+				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
+				'choices'     => array(
+					'colors' => $formatted_palette,
+					'size' => $palette->get_palette_size( $formatted_palette ),
+				),
+			)
+		);
+
 		// Adds the "Colors" section to the WordPress customizer "Header" panel.
 		Kirki::add_section(
 			'bgtfw_site_title', array(

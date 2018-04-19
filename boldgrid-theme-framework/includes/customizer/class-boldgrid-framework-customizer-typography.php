@@ -419,7 +419,9 @@ class Boldgrid_Framework_Customizer_Typography {
 		}
 
 		foreach ( $selectors as $selector => $options ) {
-			$css .= "$section $selector{color:{$theme_mod};}";
+			if ( 'headings' === $options['type'] ) {
+				$css .= "$section $selector{color:{$theme_mod};}";
+			}
 		}
 
 		return $css;

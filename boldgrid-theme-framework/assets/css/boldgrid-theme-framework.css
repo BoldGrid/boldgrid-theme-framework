@@ -3164,6 +3164,9 @@ footer .bgtfw-widget-row {
     object-fit: cover; } }
 
 /** Header on left **/
+.header-fixed.header-left #masthead, .header-fixed.header-right #masthead {
+  overflow-y: auto; }
+
 @media only screen and (min-width: 768px) {
   .flexbox .header-left #boldgrid-sticky-wrap {
     flex-direction: row; }
@@ -4079,6 +4082,7 @@ nav.navigation.posts-navigation {
 .bgtfw-widget-row {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   flex: 1 0 100%; }
 
 .bgtfw-widget-row:first-child {
@@ -4111,6 +4115,18 @@ nav.navigation.posts-navigation {
 @media only screen and (min-width: 992px) {
   .bgtfw-widget-row > .sidebar {
     flex: 1 0 0; } }
+
+/* header-left and header-right style for sidebar area in header */
+.header-left #header-widget-area,
+.header-right #header-widget-area {
+  flex: 0;
+  flex-direction: column;
+  flex-wrap: nowrap; }
+
+.header-left #header-widget-area > .sidebar,
+.header-right #header-widget-area > .sidebar {
+  margin-left: 0;
+  margin-right: 0; }
 
 /** * No JS sticky header to preserve style. */
 .no-js.flexbox .header-fixed .bgtfw-layout {

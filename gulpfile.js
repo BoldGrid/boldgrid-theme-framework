@@ -61,7 +61,7 @@ gulp.task('fontFamilyCss', function () {
 
   for (var key in webFonts.items) {
     family = webFonts.items[key].family;
-    position = -5 + (key * -40);
+    position = -5 + (key * -37);
 
     css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + (position + 8) + 'px;}';
     css += '[id^="select2-"][id$="-' + family + '"] { color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + position + 'px;}';
@@ -94,7 +94,8 @@ gulp.task('googlefonts-image', function () {
     },
     port: 1224,
     options: {
-      lineHeigth: '40px',
+      // If above 37px, not all fonts will be rendered within web-fonts.png.
+      lineHeigth: '37px',
       fontSize: '25px',
       width: '500px'
     },

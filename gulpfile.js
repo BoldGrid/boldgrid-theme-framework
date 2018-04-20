@@ -96,7 +96,7 @@ gulp.task('googlefonts-image', function () {
     options: {
       lineHeigth: '40px',
       fontSize: '25px',
-      width: '400px'
+      width: '500px'
     },
     googleAPIKey: googleApiKey
   });

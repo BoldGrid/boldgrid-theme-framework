@@ -281,7 +281,7 @@ class Boldgrid_Framework_Customizer_Typography {
 	 *
 	 * @return string css.
 	 */
-	public function create_font_classes() {
+	public function generate_font_classes() {
 		$configs = $this->configs['customizer-options']['typography']['defaults'];
 		$heading_font_family = get_theme_mod( 'heading_font_family', $configs['headings_font_family'] );
 		$alt_font_family = get_theme_mod( 'alternate_headings_font_family', $configs['alternate_headings_font_family'] );
@@ -309,20 +309,30 @@ class Boldgrid_Framework_Customizer_Typography {
 	/**
 	 * Generates font sizes based on Bootstrap's LESS implementation.
 	 *
-	 * @since 2.0.0
+	 * @since  2.0.0
+	 *
+	 * @param  string $css CSS to append styles to.
+	 *
+	 * @return string $css Generated CSS styles.
 	 */
-	public function generate_font_size_css( $content = '' ) {
-		// Headings Font.
-		$headings_font = get_theme_mod( 'bgtfw_headings_typography', $this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
-		$headings_font_family = ! empty( $headings_font['font-family'] ) ? $headings_font['font-family'] : $this->configs['customizer-options']['typography']['defaults']['headings_font_family'];
-		$headings_text_transform = ! empty( $headings_font['text-transform'] ) ? $headings_font['text-transform'] : $this->configs['customizer-options']['typography']['defaults']['headings_text_transform'];
+	public function generate_font_size_css( $css = '' ) {
+		$css .= $this->generate_body_css();
+		$css .= $this->generate_headings_css();
+		$css .= $this->generate_font_classes();
 
-		$headings_font_size = ! empty( $headings_font['font-size'] ) ? $headings_font['font-size'] : $this->configs['customizer-options']['typography']['defaults']['headings_font_size'];
+		return $css;
+	}
 
-		$headings_base = ( int ) preg_replace( '/[^0-9]./', '', $headings_font_size );
-		$headings_unit = preg_replace( '/[^a-z]/i', '', $headings_font_size );
-		$headings_unit = empty( $headings_unit ) ? 'px' : $headings_unit;
-
+	/**
+	 * Generates headings CSS to apply to frontend.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  string $css CSS to append body styles to.
+	 *
+	 * @return string $css CSS for body styles.
+	 */
+	public function generate_body_css( $css = '' ) {
 		// Body Font.
 		$body_font = get_theme_mod( 'bgtfw_body_typography' );
 		$body_font_size = ! empty( $body_font['font-size'] ) ? $body_font['font-size'] : $this->configs['customizer-options']['typography']['defaults']['body_font_size'];
@@ -333,7 +343,28 @@ class Boldgrid_Framework_Customizer_Typography {
 
 		// Blockquotes.
 		$blockquote = $body_base * 1.25;
-		$content .= 'blockquote, blockquote p, .mod-blockquote {font-size:' . $blockquote . $body_unit . ';}';
+		$css .= 'blockquote, blockquote p, .mod-blockquote {font-size:' . $blockquote . $body_unit . ';}';
+
+		return $css;
+	}
+
+	/**
+	 * Generates headings CSS to apply to frontend.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  string $css CSS to append headings styles to.
+	 *
+	 * @return string $css CSS for headings styles.
+	 */
+	public function generate_headings_css( $css = '' ) {
+		$headings_font = get_theme_mod( 'bgtfw_headings_typography', $this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
+
+		$headings_font_size = ! empty( $headings_font['font-size'] ) ? $headings_font['font-size'] : $this->configs['customizer-options']['typography']['defaults']['headings_font_size'];
+
+		$headings_base = ( int ) preg_replace( '/[^0-9]./', '', $headings_font_size );
+		$headings_unit = preg_replace( '/[^a-z]/i', '', $headings_font_size );
+		$headings_unit = empty( $headings_unit ) ? 'px' : $headings_unit;
 
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 
@@ -342,22 +373,58 @@ class Boldgrid_Framework_Customizer_Typography {
 				continue;
 			}
 
-			$content .= $selector . '{font-size:';
+			$css .= $selector . '{font-size:';
 
 			if ( 'floor' === $options['round'] ) {
-				$content .= floor( $headings_base * $options['amount'] );
+				$css .= floor( $headings_base * $options['amount'] );
 			}
 
 			if ( 'ceil' === $options['round'] ) {
-				$content .= ceil( $headings_base * $options['amount'] );
+				$css .= ceil( $headings_base * $options['amount'] );
 			}
 
-			$content .= $headings_unit . ';}';
+			$css .= "$headings_unit;}";
 		}
 
-		$content .= $this->create_font_classes();
+		$css .= $this->generate_headings_color_css( 'bgtfw_header_headings_color', '.site-header', $selectors );
+		$css .= $this->generate_headings_color_css( 'bgtfw_footer_headings_color', '.site-footer', $selectors );
 
-		return $content;
+		return $css;
+	}
+
+	/**
+	 * Generates headings color CSS to apply to frontend.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  string $theme_mod Name of thememod to get color palette settings from.
+	 * @param  string $section   CSS selector for section to apply heading colors to.
+	 * @param  array  $selectors Array of heading CSS selectors from configs.
+	 * @param  string $css       CSS to append headings styles to.
+	 *
+	 * @return string $css       Output CSS for headings color styles.
+	 */
+	public function generate_headings_color_css( $theme_mod, $section, $selectors = array(), $css = '' ) {
+		$theme_mod = get_theme_mod( $theme_mod, false );
+
+		if ( empty( $theme_mod ) ) {
+			return;
+		}
+
+		$theme_mod = explode( ':', $theme_mod );
+		$theme_mod = array_pop( $theme_mod );
+
+		if ( empty( $selectors ) ) {
+			$selectors = $this->configs['customizer-options']['typography']['selectors'];
+		}
+
+		foreach ( $selectors as $selector => $options ) {
+			if ( 'headings' === $options['type'] ) {
+				$css .= "$section $selector{color:{$theme_mod};}";
+			}
+		}
+
+		return $css;
 	}
 
 	/**

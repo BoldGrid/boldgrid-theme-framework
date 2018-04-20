@@ -25,6 +25,15 @@
 }
 
 /** Header on left **/
+.header-fixed {
+	&.header-left,
+	&.header-right {
+		#masthead {
+			overflow-y: auto;
+		}
+	}
+}
+
 @media only screen and (min-width: 768px) {
 	.flexbox .header-left #boldgrid-sticky-wrap {
 		flex-direction: row;
@@ -1091,10 +1100,10 @@ nav.navigation.posts-navigation {
 /** Widget Styles **/
 
 /* Base Styles */
-
 .bgtfw-widget-row {
 	display: flex;
 	flex-wrap: wrap;
+	flex-direction: row;
 	flex: 1 0 100%;
 }
 .bgtfw-widget-row:first-child {
@@ -1110,28 +1119,42 @@ nav.navigation.posts-navigation {
 .bgtfw-widget-row:last-child {
 	margin-bottom: -1.5em;
 }
-/* Footer Widget Row Styles */
 
+/* Footer Widget Row Styles */
 #footer-widget-area.bgtfw-widget-row:last-child:after {
 	padding-bottom: 0;
 }
-/* Mobile First */
 
+/* Mobile First */
 .bgtfw-widget-row > .sidebar {
 	flex: 1 0 100%;
 }
-/* Small Devices, Tablets */
 
+/* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
 	.bgtfw-widget-row > .sidebar {
 		flex: 1 0 50%;
 	}
 }
-/* Medium Devices, Desktops */
 
+/* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
 	.bgtfw-widget-row > .sidebar {
 		flex: 1 0 0;
+	}
+}
+
+/* header-left and header-right style for sidebar area in header */
+.header-left,
+.header-right {
+	#header-widget-area {
+		flex: 0;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		> .sidebar {
+			margin-left: 0;
+			margin-right: 0;
+		}
 	}
 }
 /** * No JS sticky header to preserve style. */

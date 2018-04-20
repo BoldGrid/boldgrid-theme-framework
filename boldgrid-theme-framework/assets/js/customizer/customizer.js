@@ -481,13 +481,24 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$body.css( 'background-position', background_pos );
 	};
 
-	var headingsColorOutput = function( to, selector ) {
+	var headingsColorOutput = function( to, section ) {
 		var color;
+
 		if ( ! to || to === 'none' ) {
 			return;
 		}
+
+		if ( _.isUndefined( section ) ) {
+			section = 'body';
+		}
+
 		color = to.split( ':' ).pop();
-		$( selector ).find( 'h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6' ).css( 'color', color );
+
+		_.each( _typographyOptions, function( selector, rule ) {
+			if ( 'headings' === selector.type ) {
+				$( section ).find( rule ).css( 'color', color );
+			}
+		} );
 	};
 
 	var colorOutput = function( themeMod, selector ) {

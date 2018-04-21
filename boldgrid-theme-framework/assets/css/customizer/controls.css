@@ -1164,32 +1164,32 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 /*--------------------------------------------------------------
 # Customizer Palette Selector Controls
 --------------------------------------------------------------*/
-.customize-control-bgtfw-palette-selector {
-  position: relative; }
-
-.boldgrid-sticky-customizer .customize-control-bgtfw-palette-selector .bgtfw-control-wrapper {
+.boldgrid-sticky-customizer #customize-control-boldgrid_background_color .bgtfw-control-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-left: 15px;
   padding-right: 15px; }
 
-.boldgrid-sticky-customizer .customize-control-bgtfw-palette-selector .bgtfw-control-wrapper .customize-control-title {
+.boldgrid-sticky-customizer #customize-control-boldgrid_background_color .bgtfw-control-wrapper .customize-control-title {
   display: block; }
 
-.boldgrid-sticky-customizer .customize-control-bgtfw-palette-selector .bgtfw-control-wrapper .customize-control-description {
+.boldgrid-sticky-customizer #customize-control-boldgrid_background_color .bgtfw-control-wrapper .customize-control-description {
   display: none;
   text-align: left; }
 
-.boldgrid-sticky-customizer .customize-control-bgtfw-palette-selector .bgtfw-control-wrapper .colors-wrapper {
+.boldgrid-sticky-customizer #customize-control-boldgrid_background_color .bgtfw-control-wrapper .colors-wrapper {
   padding: 10px 2px 10px 10px; }
 
-.expanded .boldgrid-sticky-customizer .customize-control-bgtfw-palette-selector label {
+.expanded .boldgrid-sticky-customizer #customize-control-boldgrid_background_color label {
   width: 28px !important;
   height: 28px !important; }
 
-.customize-control-bgtfw-palette-selector .customize-control-title {
+#customize-control-boldgrid_background_color .customize-control-title {
   display: none; }
+
+.customize-control-bgtfw-palette-selector {
+  position: relative; }
 
 .customize-control-bgtfw-palette-selector .customize-control-description {
   text-align: center; }

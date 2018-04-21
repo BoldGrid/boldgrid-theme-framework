@@ -5,7 +5,7 @@
 	 */
 	wp.customize( 'footer_container', function( value ) {
 		value.bind( function( to ) {
-			$( '#colophon' ).removeClass( 'container' ).addClass( to );
+			$( '#colophon' ).find( '.footer-content' ).removeClass( 'container' ).addClass( to );
 		} );
 	} );
 } )( jQuery );

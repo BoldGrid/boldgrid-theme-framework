@@ -234,7 +234,6 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw_header_layout', array(
 				'title'          => __( 'Layout' ),
 				'panel'        => 'bgtfw_header',
-				'description'    => __( 'Choose from different layouts for your website\'s Header' ),
 				'priority'       => 10,
 				'capability'     => 'edit_theme_options',
 				'theme_supports' => '', // Rarely needed.
@@ -322,24 +321,6 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type'        => 'bgtfw-palette-selector',
-				'transport' => 'postMessage',
-				'settings'    => 'bgtfw_header_color',
-				'label' => esc_attr__( 'Color', 'bgtfw' ),
-				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
-				'section'     => 'header_image',
-				'priority' => 1,
-				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
-				'choices'     => array(
-					'colors' => $formatted_palette,
-					'size' => $palette->get_palette_size( $formatted_palette ),
-				),
-			)
-		);
-
 		// Adds the "Colors" section to the WordPress customizer "Footer" panel.
 		Kirki::add_section(
 			'bgtfw_header_colors', array(
@@ -359,7 +340,7 @@ class BoldGrid_Framework_Customizer {
 				'type'        => 'bgtfw-palette-selector',
 				'transport' => 'postMessage',
 				'settings'    => 'bgtfw_header_color',
-				'label' => esc_attr__( 'Color', 'bgtfw' ),
+				'label' => esc_attr__( 'Background Color', 'bgtfw' ),
 				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
 				'section'     => 'bgtfw_header_colors',
 				'priority' => 1,
@@ -378,8 +359,7 @@ class BoldGrid_Framework_Customizer {
 				'type'        => 'bgtfw-palette-selector',
 				'transport' => 'postMessage',
 				'settings'    => 'bgtfw_header_headings_color',
-				'label' => esc_attr__( 'Color', 'bgtfw' ),
-				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
+				'label' => esc_attr__( 'Headings Color', 'bgtfw' ),
 				'section'     => 'bgtfw_header_colors',
 				'priority' => 1,
 				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
@@ -397,7 +377,6 @@ class BoldGrid_Framework_Customizer {
 				'transport' => 'postMessage',
 				'settings'    => 'bgtfw_footer_headings_color',
 				'label' => esc_attr__( 'Headings Color', 'bgtfw' ),
-				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
 				'section'     => 'bgtfw_footer_colors',
 				'priority' => 10,
 				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
@@ -707,7 +686,7 @@ class BoldGrid_Framework_Customizer {
 				'type'        => 'bgtfw-palette-selector',
 				'transport' => 'postMessage',
 				'settings'    => 'bgtfw_footer_color',
-				'label' => esc_attr__( 'Color', 'bgtfw' ),
+				'label' => esc_attr__( 'Background Color', 'bgtfw' ),
 				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
 				'section'     => 'bgtfw_footer_colors',
 				'priority' => 1,

@@ -352,13 +352,13 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	wp.customize( 'bgtfw_header_headings_color', function( value ) {
 		value.bind( function( to ) {
-			headingsColorOutput( to, '.site-header' );
+			headingsColorOutput( to, '#masthead > :not(.bgtfw-widget-row)' );
 		} );
 	} );
 
 	wp.customize( 'bgtfw_footer_headings_color', function( value ) {
 		value.bind( function( to ) {
-			headingsColorOutput( to, '.site-footer' );
+			headingsColorOutput( to, '.site-footer :not(.bgtfw-widget-row)' );
 		} );
 	} );
 
@@ -482,7 +482,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	};
 
 	var headingsColorOutput = function( to, section ) {
-		var color;
+		var color, selectors = [];
 
 		if ( ! to || to === 'none' ) {
 			return;
@@ -494,11 +494,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		color = to.split( ':' ).pop();
 
-		_.each( _typographyOptions, function( selector, rule ) {
-			if ( 'headings' === selector.type ) {
-				$( section ).find( rule ).css( 'color', color );
+		_.each( _typographyOptions, function( value, key ) {
+			if ( value.type = 'headings' ) {
+				selectors.push( section + ' ' + key );
 			}
 		} );
+
+		selectors = selectors.join( ', ' );
+
+		$( selectors ).css( 'color', color );
 	};
 
 	var colorOutput = function( themeMod, selector ) {

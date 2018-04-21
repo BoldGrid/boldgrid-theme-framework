@@ -320,7 +320,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		$css .= $this->generate_headings_css();
 		$css .= $this->generate_font_classes();
 
-		return $css;
+		return apply_filters( 'bgtfw_inline_css', $css );
 	}
 
 	/**
@@ -386,8 +386,8 @@ class Boldgrid_Framework_Customizer_Typography {
 			$css .= "$headings_unit;}";
 		}
 
-		$css .= $this->generate_headings_color_css( 'bgtfw_header_headings_color', '.site-header', $selectors );
-		$css .= $this->generate_headings_color_css( 'bgtfw_footer_headings_color', '.site-footer', $selectors );
+		$css .= $this->generate_headings_color_css( 'bgtfw_header_headings_color', '.site-header :not(.bgtfw-widget-row)', $selectors );
+		$css .= $this->generate_headings_color_css( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)', $selectors );
 
 		return $css;
 	}
@@ -418,11 +418,16 @@ class Boldgrid_Framework_Customizer_Typography {
 			$selectors = $this->configs['customizer-options']['typography']['selectors'];
 		}
 
+		$found = array();
+
 		foreach ( $selectors as $selector => $options ) {
 			if ( 'headings' === $options['type'] ) {
-				$css .= "$section $selector{color:{$theme_mod};}";
+				$found[] = "$section $selector";
 			}
 		}
+
+		$found = implode( ', ', $found );
+		$css .= "$found{color:{$theme_mod};}";
 
 		return $css;
 	}

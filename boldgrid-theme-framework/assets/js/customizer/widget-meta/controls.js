@@ -7,7 +7,8 @@ var CustomizeWidgetSidebarMetaControls = (function( $ ) {
 		data: {
 			l10n: {
 				color_label: '',
-				background_color_label: ''
+				background_color_label: '',
+				headings_color_label: ''
 			},
 			choices: {
 				colors: [],
@@ -55,7 +56,8 @@ var CustomizeWidgetSidebarMetaControls = (function( $ ) {
 
 		component.api.apply( component.api, [
 			'sidebar_meta[' + section.params.sidebarId + '][title]',
-			'sidebar_meta[' + section.params.sidebarId + '][background_color]'
+			'sidebar_meta[' + section.params.sidebarId + '][background_color]',
+			'sidebar_meta[' + section.params.sidebarId + '][headings_color]'
 		] ).done( function() {
 			component.addControls( section );
 		} );
@@ -71,6 +73,7 @@ var CustomizeWidgetSidebarMetaControls = (function( $ ) {
 	component.addControls = function addControls( section ) {
 		component.addTitleControl( section );
 		component.addBackgroundColorControl( section );
+		component.addHeadingsColorControl( section );
 	};
 
 	/**
@@ -110,7 +113,7 @@ var CustomizeWidgetSidebarMetaControls = (function( $ ) {
 	 * Add color control.
 	 *
 	 * @param {wp.customize.Widgets.SidebarSection} section Section.
-	 * @returns {wp.customize.ColorControl} The added control.
+	 * @returns {wp.customize.control} The added control.
 	 */
 	component.addBackgroundColorControl = function addColorControl ( section ) {
 		var control, customizeId, setting;
@@ -128,6 +131,47 @@ var CustomizeWidgetSidebarMetaControls = (function( $ ) {
 					'default': setting.id
 				},
 				id: customizeId,
+				link: 'data-customize-setting-link="' + customizeId + '"',
+				choices: component.data.choices
+			}
+		} );
+
+		section.metaControlsContainer.append( control.container );
+
+		// These should not be needed in the future (as of #38077). They are needed currently because section is null.
+		control.renderContent();
+		control.deferred.embedded.resolve();
+
+		// Create the link between theinput and settings and sync.
+		// https://wordpress.stackexchange.com/questions/280561/customizer-instantiating-settings-and-controls-via-javascript
+		control.inputElement = new component.api.Element( control.container.find( 'input' ) );
+		control.inputElement.set( setting.get() );
+		control.inputElement.sync( setting );
+	};
+
+	/**
+	 * Add color control.
+	 *
+	 * @param {wp.customize.Widgets.SidebarSection} section Section.
+	 * @returns {wp.customize.control} The added control.
+	 */
+	component.addHeadingsColorControl = function addColorControl ( section ) {
+		var control, customizeId, setting;
+
+		customizeId = 'sidebar_meta[' + section.params.sidebarId + '][headings_color]';
+		setting = component.api( customizeId );
+
+		// Create dynamic instance of color palette control.
+		control = new component.api.Control( customizeId, {
+			params: {
+				section: null,
+				label: component.data.l10n.headings_color_label,
+				type: 'bgtfw-palette-selector', // Needed for template. Shouldn't be needed in the future.
+				settings: {
+					'default': setting.id
+				},
+				id: customizeId,
+				link: 'data-customize-setting-link="' + customizeId + '"',
 				choices: component.data.choices
 			}
 		} );

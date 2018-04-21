@@ -120,10 +120,35 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 				'selector' => sprintf( '.dynamic-sidebar.%s', sanitize_title( $section->sidebar_id ) ),
 			) );
 
+			$headings_color_setting = $wp_customize->add_setting( sprintf( 'sidebar_meta[%s][headings_color]', $section->sidebar_id ), array(
+				'type' => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'transport' => 'postMessage',
+				'default' => '',
+			) );
+
+			$selectors = array();
+
+			foreach ( $this->configs['customizer-options']['typography']['selectors'] as $selector => $options ) {
+				if ( 'headings' === $options['type'] ) {
+					$selectors[] = ".dynamic-sidebar.%s {$selector}";
+				}
+			}
+
+			$selectors = empty( $selectors ) ? '' : implode( ', ', $selectors );
+
+			// Note that this partial has no render_callback because it is purely for JS previews.
+			$wp_customize->selective_refresh->add_partial( $headings_color_setting->id, array(
+				'type' => 'sidebar_meta_headings_color',
+				'settings' => array( $headings_color_setting->id ),
+				'selector' => str_replace( '%s', sanitize_title( $section->sidebar_id ), $selectors ),
+			) );
+
 			// Handle previewing of late-created settings.
 			if ( did_action( 'customize_preview_init' ) ) {
 				$title_setting->preview();
 				$background_color_setting->preview();
+				$headings_color_setting->preview();
 			}
 		} // End foreach().
 	}
@@ -155,6 +180,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 			'l10n' => array(
 				'title_label' => __( 'Title:', 'bgtfw' ),
 				'background_color_label' => __( 'Background Color:', 'bgtfw' ),
+				'headings_color_label' => __( 'Headings Color:', 'bgtfw' ),
 			),
 			'choices' => array(
 				'colors' => $formatted_palette,
@@ -166,8 +192,6 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 	/**
 	 * Print controls template.
-	 *
-	 * This should not be needed as of #30738.
 	 *
 	 * @link https://core.trac.wordpress.org/ticket/30738
 	 */
@@ -185,6 +209,8 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	/**
 	 * Enqueue frontend preview script.
 	 *
+	 * @since  2.0.0
+	 *
 	 * @global \WP_Customize_Manager $wp_customize
 	 */
 	public function customize_preview_init() {
@@ -199,6 +225,8 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 	/**
 	 * Enqueue preview scripts.
+	 *
+	 * @since 2.0.0
 	 */
 	public function enqueue_preview_scripts() {
 		$handle = 'bgtfw-customizer-widget-meta-title-partial';
@@ -208,6 +236,11 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 		$handle = 'bgtfw-customizer-widget-meta-background-color-partial';
 		$src = $this->configs['framework']['js_dir'] . 'customizer/widget-meta/background-color-partial.js';
+		$deps = array( 'customize-preview', 'customize-selective-refresh' );
+		wp_enqueue_script( $handle, $src, $deps );
+
+		$handle = 'bgtfw-customizer-widget-meta-headings-color-partial';
+		$src = $this->configs['framework']['js_dir'] . 'customizer/widget-meta/headings-color-partial.js';
 		$deps = array( 'customize-preview', 'customize-selective-refresh' );
 		wp_enqueue_script( $handle, $src, $deps );
 	}
@@ -270,5 +303,46 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 */
 	public function render_sidebar_end_tag( $sidebar_id ) {
 		printf( '</div><!-- / .dynamic-sidebar.%s -->', sanitize_title( $sidebar_id ) );
+	}
+
+	/**
+	 * Add sidebar inline styles.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $css The CSS being filtered.
+	 *
+	 * @return string $css The modified CSS.
+	 */
+	public function add_sidebar_styles( $css ) {
+		global $wp_registered_sidebars;
+
+		if ( empty( $wp_registered_sidebars ) ) {
+			return;
+		}
+
+		$sidebar_meta = get_theme_mod( 'sidebar_meta' );
+
+		foreach ( $wp_registered_sidebars as $sidebar ) {
+			$sidebar_id = $sidebar['id'];
+			if ( is_active_sidebar( $sidebar_id ) || ! empty( $sidebar_meta[ $sidebar_id ]['title'] ) ) {
+				$headings_color = empty( $sidebar_meta[ $sidebar_id ]['headings_color'] ) ? '' : $sidebar_meta[ $sidebar_id ]['headings_color'];
+				$headings_color = explode( ':', $headings_color );
+				$headings_color = array_pop( $headings_color );
+
+				$selectors = array();
+
+				foreach ( $this->configs['customizer-options']['typography']['selectors'] as $selector => $options ) {
+					if ( 'headings' === $options['type'] ) {
+						$selectors[] = ".dynamic-sidebar.{$sidebar_id} {$selector}";
+					}
+				}
+
+				$selectors = empty( $selectors ) ? '' : implode( ', ', $selectors );
+				$css .= "{$selectors} {color:{$headings_color};}";
+			}
+		}
+
+		return $css;
 	}
 }

@@ -885,16 +885,20 @@ msgstr ""
 msgid "Shadow Color"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:181
+#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:195
 msgid "Title:"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:182
+#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:196
 msgid "Background Color:"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:183
+#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:197
 msgid "Headings Color:"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:198
+msgid "Links Color:"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:62

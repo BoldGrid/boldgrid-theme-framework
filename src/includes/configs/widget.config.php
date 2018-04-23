@@ -23,22 +23,6 @@ return array(
 	'footer_widgets' => array(
 		'boldgrid-widget-3'
 	),
-	'widget_instances' => array(
-
-		// This supports adding many widgets to 1 area.
-		'boldgrid-widget-3' => array(
-
-			// Specify name as key to assist with lookups.
-			'footer-company-details' => array(
-				'title' => 'Contact Info',
-				'text' => $custom_widgets['footer-company-details'],
-				'type' => 'visual',
-				'filter' => 1,
-				'label' => 'black-studio-tinymce',
-			),
-		),
-
-	),
 	'sidebars' => array(
 		'boldgrid-widget-1' => array(
 			'name'          => 'Widget 1',

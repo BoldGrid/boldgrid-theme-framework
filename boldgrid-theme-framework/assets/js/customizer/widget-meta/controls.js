@@ -149,6 +149,7 @@ var CustomizeWidgetSidebarMetaControls = ( function( $ ) {
 					'default': setting.id
 				},
 				id: customizeId,
+				link: 'data-customize-setting-link="' + customizeId + '"',
 				choices: component.data.choices
 			}
 		};
@@ -193,6 +194,7 @@ var CustomizeWidgetSidebarMetaControls = ( function( $ ) {
 					'default': setting.id
 				},
 				id: customizeId,
+				link: 'data-customize-setting-link="' + customizeId + '"',
 				choices: component.data.choices
 			}
 		};
@@ -237,6 +239,7 @@ var CustomizeWidgetSidebarMetaControls = ( function( $ ) {
 					'default': setting.id
 				},
 				id: customizeId,
+				link: 'data-customize-setting-link="' + customizeId + '"',
 				choices: component.data.choices
 			}
 		};

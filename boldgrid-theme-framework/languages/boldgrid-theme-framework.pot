@@ -773,6 +773,18 @@ msgstr ""
 msgid "Invalid Value"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-search.php:73
+msgid "Search"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-search.php:79
+msgid "Search Controls..."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-search.php:80
+msgid "Clear"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:105
 msgid "Import Starter Content"
 msgstr ""

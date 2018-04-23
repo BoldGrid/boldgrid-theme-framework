@@ -773,6 +773,18 @@ msgstr ""
 msgid "Invalid Value"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-search.php:73
+msgid "Search"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-search.php:79
+msgid "Search Controls..."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-search.php:80
+msgid "Clear"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:105
 msgid "Import Starter Content"
 msgstr ""
@@ -885,16 +897,20 @@ msgstr ""
 msgid "Shadow Color"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:181
+#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:195
 msgid "Title:"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:182
+#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:196
 msgid "Background Color:"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:183
+#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:197
 msgid "Headings Color:"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:198
+msgid "Links Color:"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:62

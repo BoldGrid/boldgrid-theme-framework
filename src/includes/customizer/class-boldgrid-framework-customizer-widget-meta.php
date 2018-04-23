@@ -144,11 +144,25 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 				'selector' => str_replace( '%s', sanitize_title( $section->sidebar_id ), $selectors ),
 			) );
 
+			$links_color_setting = $wp_customize->add_setting( sprintf( 'sidebar_meta[%s][links_color]', $section->sidebar_id ), array(
+				'type' => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'transport' => 'postMessage',
+				'default' => '',
+			) );
+
+			$wp_customize->selective_refresh->add_partial( $links_color_setting->id, array(
+				'type' => 'sidebar_meta_links_color',
+				'settings' => array( $links_color_setting->id ),
+				'selector' => sprintf( '.dynamic-sidebar.%s a', sanitize_title( $section->sidebar_id ) ),
+			) );
+
 			// Handle previewing of late-created settings.
 			if ( did_action( 'customize_preview_init' ) ) {
 				$title_setting->preview();
 				$background_color_setting->preview();
 				$headings_color_setting->preview();
+				$links_color_setting->preview();
 			}
 		} // End foreach().
 	}
@@ -181,6 +195,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 				'title_label' => __( 'Title:', 'bgtfw' ),
 				'background_color_label' => __( 'Background Color:', 'bgtfw' ),
 				'headings_color_label' => __( 'Headings Color:', 'bgtfw' ),
+				'links_color_label' => __( 'Links Color:', 'bgtfw' ),
 			),
 			'choices' => array(
 				'colors' => $formatted_palette,
@@ -241,6 +256,11 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 		$handle = 'bgtfw-customizer-widget-meta-headings-color-partial';
 		$src = $this->configs['framework']['js_dir'] . 'customizer/widget-meta/headings-color-partial.js';
+		$deps = array( 'customize-preview', 'customize-selective-refresh' );
+		wp_enqueue_script( $handle, $src, $deps );
+
+		$handle = 'bgtfw-customizer-widget-meta-links-color-partial';
+		$src = $this->configs['framework']['js_dir'] . 'customizer/widget-meta/links-color-partial.js';
 		$deps = array( 'customize-preview', 'customize-selective-refresh' );
 		wp_enqueue_script( $handle, $src, $deps );
 	}
@@ -340,6 +360,12 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 				$selectors = empty( $selectors ) ? '' : implode( ', ', $selectors );
 				$css .= "{$selectors} {color:{$headings_color};}";
+
+				$links_color = empty( $sidebar_meta[ $sidebar_id ]['links_color'] ) ? '' : $sidebar_meta[ $sidebar_id ]['links_color'];
+				$links_color = explode( ':', $links_color );
+				$links_color = array_pop( $links_color );
+
+				$css .= ".dynamic-sidebar.{$sidebar_id} a {color:{$links_color};}";
 			}
 		}
 

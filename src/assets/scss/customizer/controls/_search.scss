@@ -1,0 +1,227 @@
+.search-field-wrapper {
+	display: flex;
+}
+.search-input {
+	display: block;
+	margin-bottom: 8px;
+}
+
+.customizer-search-section {
+	padding: 10px;
+}
+
+input[type="text"].customizer-search-input {
+	border: 1px solid transparent;
+	box-shadow: none;
+	flex: 1;
+	height: 32px;
+	width: 77%;
+}
+
+.button.clear-search {
+	border-radius: 0;
+	border: 0;
+	box-shadow: none;
+	height: 34px;
+}
+
+@media screen and (max-width: 782px) {
+	#accordion-section-customizer-search .button.clear-search {
+		height: 34px;
+	}
+}
+
+.customizer-search-section {
+	padding: 10px;
+}
+
+.customize-pane-parent {
+	overflow: inherit;
+}
+#accordion-section-customizer-search {
+	position: absolute;
+	display: block;
+	top: 45px;
+	left: -1px;
+	right: -1px;
+}
+
+.preview-only #customize-header-actions .customize-search-toggle {
+	display: none;
+}
+
+
+@media screen and (max-width: 640px) {
+	.customize-controls-preview-toggle {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.customize-controls-preview-toggle {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 95px;
+		line-height: 45px;
+		font-size: 14px;
+		padding: 0 12px;
+		margin: 0;
+		height: 45px;
+		background: #eee;
+		border: 0;
+		border-right: 1px solid #ddd;
+		color: #555d66;
+		cursor: pointer;
+		transition: color .1s ease-in-out, background .1s ease-in-out;
+		.preview-only & {
+			left: 48px;
+		}
+	}
+}
+
+.customize-search-toggle.dashicons.dashicons-search {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 48px;
+	width: 45px;
+	height: 41px;
+	padding: 0 2px 0 0;
+	background: #eee;
+	border: none;
+	border-top: 4px solid #eee;
+	border-right: 1px solid #ddd;
+	color: #444;
+	text-align: left;
+	cursor: pointer;
+	transition: color .15s ease-in-out, border-color .15s ease-in-out, background .15s ease-in-out;
+	box-sizing: content-box;
+	&:before {
+		display: flex;
+		justify-content: center;
+	}
+	&.open,
+	&:hover,
+	&:focus {
+		background: #fff;
+		color: #0073aa;
+		border-top-color: #0073aa;
+		outline: none;
+		box-shadow: none;
+	}
+}
+#customize-controls .customize-info .customize-search-toggle {
+	padding: 20px;
+}
+
+#customize-controls .customize-info .customize-search-toggle {
+	position: absolute;
+	bottom: 4px;
+	right: 1px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	box-shadow: none;
+	-webkit-appearance: none;
+	background: transparent;
+	color: #555d66;
+	border: none;
+}
+
+#customize-controls .customize-info .customize-search-toggle:before {
+	padding: 4px;
+}
+
+#customize-controls .customize-info .customize-search-toggle:before {
+	position: absolute;
+	top: 5px;
+	left: 6px;
+}
+
+#accordion-section-customizer-search {
+	margin-bottom: 0;
+	color: #555d66;
+	background: #fff;
+	padding: 0;
+	border-top: 1px solid #ddd;
+}
+
+#accordion-section-customizer-search .accordion-section-title:after {
+	content: none;
+}
+
+.customizer-search-section {
+	padding: 0;
+}
+
+.search-not-found {
+	height: 0;
+	transition: height 0.3s ease-in-out;
+	visibility: hidden;
+	opacity: 0;
+	display: none;
+}
+
+.search-found {
+	height: 100%;
+	transition: height 0.3s ease-in-out;
+	visibility: visible;
+	opacity: 1;
+}
+
+#search-results .accordion-section {
+	border-left: none;
+	border-right: none;
+	padding: 10px 10px 11px 14px;
+	line-height: 21px;
+	background: #fff;
+	position: relative;
+}
+
+#search-results .accordion-section h3 {
+	padding: 0;
+	margin: 0
+}
+
+#search-results .accordion-section:hover {
+	background: #f3f3f5;
+}
+
+.search-setting-path {
+	display: inline-block;
+}
+
+.customizer-search-results {
+	cursor: pointer;
+}
+
+#search-results .accordion-section:after {
+	font: normal 20px/1 dashicons;
+	speak: none;
+	display: block;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-decoration: none !important;
+}
+
+#search-results .accordion-section:after {
+	content: "\f345";
+	position: absolute;
+	top: 12px;
+	right: 10px;
+	z-index: 1;
+	top: calc(50% - 10px);
+}
+
+#search-results .accordion-section h3:after {
+	content: none;
+}
+
+#search-results .accordion-section h3:hover {
+	background: inherit;
+}
+
+#customize-controls .hl {
+	background: #ffcd1724;
+}

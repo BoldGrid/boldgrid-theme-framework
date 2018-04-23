@@ -590,6 +590,7 @@ class BoldGrid_Framework {
 		self::customizer_effects();
 		self::customizer_widget_meta();
 		self::customizer_starter_content();
+		self::customizer_search();
 	}
 
 	/**
@@ -782,6 +783,18 @@ class BoldGrid_Framework {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		// Add Page Effects Controls.
 		// $this->loader->add_action( 'customize_register', $effects, 'add_controls' );
+	}
+
+
+	/**
+	 * Add hooks to customizer register action.
+	 *
+	 * @since 2.0.0
+	 */
+	private function customizer_search() {
+		$search = new Boldgrid_Framework_Customizer_Search( $this->configs );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $search, 'enqueue' );
+		$this->loader->add_action( 'customize_controls_print_footer_scripts', $search, 'print_templates' );
 	}
 
 	/**

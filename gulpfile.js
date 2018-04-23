@@ -50,8 +50,11 @@ gulp.task('bower', function () {
 });
 
 // Create CSS file for font-family control based on webfonts.json.
+//
+// To avoid misalignment, we need to work off the same list as our googlefonts-image gulp task.
+// Before running, make sure assets/json/webfonts.json is up to date with
+// https://www.googleapis.com/webfonts/v1/webfonts?key={key-goes-here}
 gulp.task('fontFamilyCss', function () {
-  // The latest web fonts file can be found at https://www.googleapis.com/webfonts/v1/webfonts?key={key-goes-here}
   var fileContent = fs.readFileSync(config.src + "/assets/json/webfonts.json", "utf8"),
     webFonts = JSON.parse(fileContent),
     outFilename = 'font-family-controls.min.css',
@@ -76,8 +79,15 @@ gulp.task('fontFamilyCss', function () {
 });
 
 // Google Fonts image generator
+//
 // Reguires Phatnom JS - npm install -g phantomjs
 // If on windows, install python, visual studio express | c++11 compiler
+//
+// Troubleshooting:
+// # Within node_modules/googlefonts-sprint-generator/app.js use dnodeOpts: {weak: false}, as shown
+//   here: https://pastebin.com/uZGZP5Ms
+// # Preview the image used within sprites by visiting the following page:
+//   node_modules/googlefonts-sprint-generator/generators/generator_phantom.html
 gulp.task('googlefonts-image', function () {
   var googleApiKey = argv.google_api_key;
   if (!googleApiKey) {

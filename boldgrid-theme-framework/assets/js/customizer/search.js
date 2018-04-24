@@ -260,9 +260,15 @@ BOLDGRID.CUSTOMIZER.Search = BOLDGRID.CUSTOMIZER.Search || {};
 		 * @since  2.0.0
 		 */
 		_closeSearchForm: function _closeSearchForm() {
+			var searchHeight, noticeHeight, visibility;
+			noticeHeight = $( '#customize-notifications-area' ).outerHeight();
+			searchHeight = $( '#accordion-section-customizer-search' ).outerHeight();
+			visibility = $( '#customize-notifications-area:hidden' ).length ? 0 : 1;
+
 			$( '#accordion-section-customizer-search' ).removeClass( 'open' ).slideUp( 'fast' );
 			$( '#customize-header-actions .customize-search-toggle' ).removeClass( 'open' );
-			$( '.wp-full-overlay-sidebar-content' ).animate( { top: '45px' }, 'fast' );
+			$( '.wp-full-overlay-sidebar-content' ).animate( { top: 45 + noticeHeight + visibility + 'px' }, 'fast' );
+			$( '#customize-notifications-area' ).animate( { top: $( '#customize-header-actions' ).outerHeight() + 'px' }, 'fast' );
 			BOLDGRID.CUSTOMIZER.Search._clearSearch();
 		},
 
@@ -272,10 +278,16 @@ BOLDGRID.CUSTOMIZER.Search = BOLDGRID.CUSTOMIZER.Search || {};
 		 * @since  2.0.0
 		 */
 		_openSearchForm: function _openSearchForm() {
+			var searchHeight, noticeHeight, visibility;
+			noticeHeight = $( '#customize-notifications-area' ).height();
+			searchHeight = $( '#accordion-section-customizer-search' ).height();
+			visibility = $( '#customize-notifications-area:hidden' ).length ? 0 : 1;
+
 			$( '.customize-panel-description' ).removeClass( 'open' ).slideUp( 'fast' );
 			$( '#customize-header-actions .customize-search-toggle' ).addClass( 'open' );
 			$( '#accordion-section-customizer-search' ).addClass( 'open' ).slideDown( 'fast' );
-			$( '.wp-full-overlay-sidebar-content' ).animate( { top: '81px' }, 'fast' );
+			$( '#customize-notifications-area' ).animate( { top: $( '#customize-header-actions' ).height() + searchHeight + 2 + 'px' }, 'fast' );
+			$( '.wp-full-overlay-sidebar-content' ).animate( { top: 81 + noticeHeight + visibility + 'px' }, 'fast' );
 		},
 
 		/**

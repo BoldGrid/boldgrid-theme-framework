@@ -32,6 +32,7 @@ BOLDGRID.CUSTOMIZER.Search = BOLDGRID.CUSTOMIZER.Search || {};
 	 * @since 2.0.0
 	 */
 	BOLDGRID.CUSTOMIZER.Search = {
+		controls: [],
 		/**
 		 * Initializes the customizer search interface.
 		 *
@@ -41,7 +42,7 @@ BOLDGRID.CUSTOMIZER.Search = BOLDGRID.CUSTOMIZER.Search || {};
 			this._bind();
 
 			// Maps the existing controls.
-			var controls = $.map( _wpCustomizeSettings.controls, function( control ) {
+			BOLDGRID.CUSTOMIZER.Search.controls = $.map( _wpCustomizeSettings.controls, function( control ) {
 				$.map( _wpCustomizeSettings.sections, function( section ) {
 					if ( control.section === section.id ) {
 						$.map( _wpCustomizeSettings.panels, function( panel ) {
@@ -74,7 +75,7 @@ BOLDGRID.CUSTOMIZER.Search = BOLDGRID.CUSTOMIZER.Search || {};
 						c.section = sidebar.params.id;
 						c.panel = panel.params.id;
 						c.panelName = panel.params.title;
-						controls.push( c );
+						BOLDGRID.CUSTOMIZER.Search.controls.push( c );
 					} );
 				}
 			} );
@@ -90,7 +91,7 @@ BOLDGRID.CUSTOMIZER.Search = BOLDGRID.CUSTOMIZER.Search || {};
 				string = $this.val();
 
 				if ( string.length > 0 ) {
-					BOLDGRID.CUSTOMIZER.Search.displayMatches( string, controls );
+					BOLDGRID.CUSTOMIZER.Search.displayMatches( string, BOLDGRID.CUSTOMIZER.Search.controls );
 				} else {
 					BOLDGRID.CUSTOMIZER.Search._clearSearch();
 				}

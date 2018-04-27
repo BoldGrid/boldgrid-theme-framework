@@ -7,9 +7,9 @@
 		@return null;
 	}
 	@else {
-		$color-brightness: brightness($color);
-		$light-text-brightness: brightness($light_text);
-		$dark-text-brightness: brightness($dark_text);
+		$color-brightness: obrightness($color);
+		$light-text-brightness: obrightness($light_text);
+		$dark-text-brightness: obrightness($dark_text);
 
 		@if (abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness)) {
 			@return $light_text;
@@ -18,7 +18,7 @@
 		}
 	}
 }
-@function brightness($color) {
+@function obrightness($color) {
 	@return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
 }
 $ubtn-colors: ();
@@ -32,6 +32,19 @@ $ubtn-colors: ();
 		&:hover,
 		&:focus {
 			color: $text-contrast-palette-primary_1 ! important;
+		}
+	}
+	.color-1-link-color a {
+		@if ( $text-contrast-palette-primary_1 == $dark_text ) {
+			color: $palette-primary_1;
+			a:hover, a:focus {
+				filter: brightness(75%);
+			}
+		} @else {
+			color: $palette-primary_1;
+			a:hover, a:focus {
+				filter: brightness(175%);
+			}
 		}
 	}
 	$ubtn-colors: append($ubtn-colors,('color-1' $palette-primary_1 $text-contrast-palette-primary_1));
@@ -52,6 +65,19 @@ $ubtn-colors: ();
 			color: $text-contrast-palette-primary_2 ! important;
 		}
 	}
+	.color-2-link-color a {
+		@if ( $text-contrast-palette-primary_2 == $dark_text ) {
+			color: $palette-primary_2;
+			a:hover, a:focus {
+				filter: brightness(75%);
+			}
+		} @else {
+			color: $palette-primary_2;
+			a:hover, a:focus {
+				filter: brightness(175%);
+			}
+		}
+	}
 	$ubtn-colors: append($ubtn-colors,('color-2' $palette-primary_2 $text-contrast-palette-primary_2));
 	@if $ubtn-theme-color == 'palette-primary_2' {
 		$ubtn-bgcolor: $palette-primary_2;
@@ -64,6 +90,19 @@ $ubtn-colors: ();
 	.color-3-text-contrast,
 	.color-3-text-contrast-hover:hover {
 		color: $text-contrast-palette-primary_3 ! important;
+	}
+	.color-3-link-color a {
+		@if ( $text-contrast-palette-primary_3 == $dark_text ) {
+			color: $palette-primary_3;
+			a:hover, a:focus {
+				filter: brightness(75%);
+			}
+		} @else {
+			color: $palette-primary_3;
+			a:hover, a:focus {
+				filter: brightness(175%);
+			}
+		}
 	}
 	@if $text-contrast-palette-primary_3 != null {
 		$ubtn-colors: append($ubtn-colors,('color-3' $palette-primary_3 $text-contrast-palette-primary_3));
@@ -80,6 +119,19 @@ $ubtn-colors: ();
 	.color-4-text-contrast-hover:hover {
 		color: $text-contrast-palette-primary_4 ! important;
 	}
+	.color-4-link-color a {
+		@if ( $text-contrast-palette-primary_4 == $dark_text ) {
+			color: $palette-primary_4;
+			a:hover, a:focus {
+				filter: brightness(75%);
+			}
+		} @else {
+			color: $palette-primary_4;
+			a:hover, a:focus {
+				filter: brightness(175%);
+			}
+		}
+	}
 	@if $text-contrast-palette-primary_4 != null {
 		$ubtn-colors: append($ubtn-colors,('color-4' $palette-primary_4 $text-contrast-palette-primary_4));
 		@if $ubtn-theme-color == 'palette-primary_4' {
@@ -95,6 +147,19 @@ $ubtn-colors: ();
 	.color-5-text-contrast-hover:hover {
 		color: $text-contrast-palette-primary_5 ! important;
 	}
+	.color-5-link-color a {
+		@if ( $text-contrast-palette-primary_5 == $dark_text ) {
+			color: $palette-primary_5;
+			a:hover, a:focus {
+				filter: brightness(75%);
+			}
+		} @else {
+			color: $palette-primary_5;
+			a:hover, a:focus {
+				filter: brightness(175%);
+			}
+		}
+	}
 	@if $text-contrast-palette-primary_5 != null {
 		$ubtn-colors: append($ubtn-colors,('color-5' $palette-primary_5 $text-contrast-palette-primary_5));
 		@if $ubtn-theme-color == 'palette-primary_5' {
@@ -109,6 +174,19 @@ $ubtn-colors: ();
 	.color-neutral-text-contrast,
 	.color-neutral-text-contrast-hover:hover {
 		color: $text-contrast-palette-primary-neutral-color ! important;
+	}
+	.color-neutral-link-color a {
+		@if ( $text-contrast-palette-primary-neutral-color == $dark_text ) {
+			color: $palette-primary-neutral-color;
+			a:hover, a:focus {
+				filter: brightness(75%);
+			}
+		} @else {
+			color: $palette-primary-neutral-color;
+			a:hover, a:focus {
+				filter: brightness(175%);
+			}
+		}
 	}
 	@if $text-contrast-palette-primary-neutral-color != null {
 		$ubtn-colors: append($ubtn-colors,('neutral-color' $palette-primary-neutral-color $text-contrast-palette-primary-neutral-color));

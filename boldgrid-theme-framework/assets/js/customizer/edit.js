@@ -194,7 +194,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			var	menus = _.isFunction( api.section ) ? api.section( 'menu_locations' ).controls() : [],
 				menuId,
 				$emptyMenu = $( '.empty-menu' ),
-				$emptyWidgetAreas = $( '[data-empty-area="true"]' );
+				widgetAreas;
 
 			// Add our general buttons.
 			_( self.i18n.config.buttons.general ).each( function( button ) {
@@ -205,28 +205,15 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				}
 			} );
 
-			// Widgets.
-			$( 'aside.widget' ).each( function() {
-				var widgetId = $( this ).attr( 'id' ),
-					button = {
-						type : 'sidebar',
-						control : widgetId,
-						selector : '#' + widgetId
-					};
-
-				self.addButton( button );
-			} );
-
-			// Black Studio TinyMCE.
-			$( 'aside[id^="black-studio-tinymce-"]' ).each( function() {
-				var $widget = $( this ),
-					widgetId = $widget.attr( 'id' ),
-					blackStudioId = widgetId.replace( 'black-studio-tinymce-', '' ).trim(),
-					button = {
-						type : 'widget_black-studio-tinymce',
-						control : blackStudioId,
-						selector : '#' + widgetId
-					};
+			// Widget locations.
+			widgetAreas = self.getSections( 'sidebar-widgets-' );
+			_( widgetAreas ).each( function( widgetArea ) {
+				var button = {
+					control : widgetArea.id,
+					selector : '#' + widgetArea.idSplit[1] + '.sidebar',
+					objectType: 'section',
+					isParentColumn: true
+				};
 
 				self.addButton( button );
 			} );
@@ -267,30 +254,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					self.addButton( button );
 				}
 			);
-
-			// Empty widget areas.
-			_( $emptyWidgetAreas ).each( function( widgetArea ) {
-				var dataWidgetArea, widgetAreaId, selector, button;
-
-				$( widgetArea ).append( '<div class="empty-area"></div>' );
-				dataWidgetArea = $( widgetArea ).attr( 'data-widget-area' );
-				widgetAreaId = dataWidgetArea.replace( 'accordion-section-sidebar-widgets-', '' );
-
-				/*
-				* This is a nested data selector inside of another data selector,
-				* so we have to use single quotes for the property.
-				*/
-				selector = '[data-widget-area=\'' + dataWidgetArea + '\']';
-
-				button = {
-					type : 'sidebars_widgets',
-					control : widgetAreaId,
-					selector : selector,
-					icon : 'dashicons-plus'
-				};
-
-				self.addButton( button );
-			} );
 		},
 
 		/**
@@ -333,7 +296,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$collapseSidebar = $( '.collapse-sidebar', parent.document ),
 				$previewToggleControls = $( '.customize-controls-preview-toggle .controls', parent.document ),
 				$overlay = $( '.wp-full-overlay', parent.document ),
-				navMenuLocation, control;
+				navMenuLocation;
 
 			/*
 			* When clicking on the page title or the page content, the user will be prompted to
@@ -373,22 +336,10 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$( '#' + dataControl ).dialog( dialogSettings );
 				return;
 
-			// Empty widget locations.
-			} else if ( 0 === dataControl.lastIndexOf( 'sidebars_widgets', 0 ) ) {
-				api.control( dataControl ).focus();
-
-			// Widgets.
-			} else if ( 0 === dataControl.lastIndexOf( 'sidebar', 0 ) ) {
-				control = dataControl.match( /\[(.*?)\]/ );
-				api.Widgets.focusWidgetFormControl( control[ 1 ] );
-
-				/*
-				* Because Black Studio TinyMCE opens another pane, there is no need to bounce anything
-				* in an effort to get the user's attention.
-				*/
-				if ( control[ 1 ].startsWith( 'black-studio-tinymce-' ) ) {
-					return;
-				}
+			// Sections
+			} else if ( 'section' === $button.attr( 'data-object-type' ) ) {
+				api.section( dataControl ).focus();
+				return;
 
 			// Empty menu locations.
 			} else if ( 'new_menu_name' === dataControl ) {
@@ -424,10 +375,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 				if ( 0 === dataControl.lastIndexOf( 'nav_menu', 0 ) ) {
 					focused = $( '.customize-control-nav_menu_name', parent.document );
-				}
-
-				if ( dataControl.startsWith( 'sidebar[' ) ) {
-					focused = focused.closest( '.widget' );
 				}
 
 				/*
@@ -528,7 +475,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				}
 			}, 10 );
 
-			// If this button is for adding a new menu / widget, add contextual help.
+			// If this button is for adding a new menu, add contextual help.
 			if ( $button.hasClass( 'new' ) ) {
 				withTitleWidth = parseInt( $button.attr( 'data-with-title-width' ) );
 
@@ -561,7 +508,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 */
 		buttonMouseLeave: function( $button, $parent ) {
 
-			// If this button is for adding a new menu / widget, remove contextual help on mouse out.
+			// If this button is for adding a new menu, remove contextual help on mouse out.
 			if ( $button.hasClass( 'new' ) ) {
 				$button
 					.stop( true )
@@ -785,6 +732,27 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		},
 
 		/**
+		 * @summary Get array of sections whose id begings with beginning.
+		 *
+		 * @since 2.0.0
+		 *
+		 * @param  string beginning
+		 * @return array
+		 */
+		getSections: function( beginning ) {
+			var sections = [];
+
+			api.section.each( function ( section ) {
+				if( section.id.startsWith( beginning ) ) {
+					section.idSplit = section.id.split( beginning );
+					sections.push( section );
+				}
+			} );
+
+			return sections;
+		},
+
+		/**
 		 * @summary Determine if the top of an element is in view.
 		 *
 		 * @since 1.1.6
@@ -803,7 +771,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		},
 
 		/**
-		 * @summary Is the parent element an empty widget / nav area.
+		 * @summary Determine if the parent element is an empty nav area.
 		 *
 		 * @since 1.1.6
 		 *
@@ -811,7 +779,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 * @return bool
 		 */
 		isParentEmpty: function( $parent ) {
-			return ( $parent.hasClass( 'empty-menu' ) || $parent.attr( 'data-empty-area' ) );
+			return ( $parent.hasClass( 'empty-menu' ) );
 		},
 
 		/**
@@ -999,10 +967,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					return;
 				}
 
-				/*
-				* If the button is for an empty nav / widget area and is currently being animated,
-				* don't touch it.
-				*/
+				// If button is for an empty nav area and is currently being animated, don't touch it.
 				if ( $button.hasClass( 'new' ) && $button.is( ':animated' ) ) {
 					return;
 				}
@@ -1319,7 +1284,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				dataControl = ( null === type ? config.control : type + '[' + config.control + ']' ),
 				$fixedAncestors = self.getFixedAncestors( $parent ),
 				dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' ),
-				isEmptyWidget = $parent.attr( 'data-empty-area' ),
 				isEmptyNav = $parent.hasClass( 'empty-menu' );
 
 			// If the button already exists, abort.
@@ -1345,20 +1309,11 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			}
 			$parentsContainer = self.parentColumn( $parent );
 
-			/*
-			* If this button is for an empty widget area or an empty nav area, add a 'new' class to use
-			* a plus sign instead of a pencil icon.
-			*/
+			// If button is for empty nav area, add 'new' class to use plus icon  instead of pencil.
 			if ( isEmptyNav ) {
 				$button
 					.addClass( 'new' )
 					.attr( 'data-title', self.i18n.menu );
-			}
-
-			if ( isEmptyWidget ) {
-				$button
-					.addClass( 'new' )
-					.attr( 'data-title', self.i18n.widget );
 			}
 
 			$button
@@ -1369,15 +1324,19 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					'data-fixed-ancestor': dataFixedAncestor
 				} );
 
+			if( config.objectType ) {
+				$button.attr( 'data-object-type', config.objectType );
+			}
+
 			$( 'body' ).append( $button );
 
 			/*
-			* If a button has contextual help, like "New Widget" or "New Menu", we need to calculate
-			* the width of those buttons when the help text is added.
+			* If a button has contextual help, like "New Menu", we need to calculate the width of
+			* those buttons when the help text is added.
 			*
 			* Essentially, we'll add the text, measure the width, then remove the text.
 			*/
-			if ( isEmptyNav || isEmptyWidget ) {
+			if ( isEmptyNav ) {
 				$button
 
 					// Allow the button to expand to full width.

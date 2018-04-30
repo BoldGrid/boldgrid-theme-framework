@@ -40,6 +40,11 @@ return array(
 		 *                            if we are controlling ".site-title a", we can require that that
 		 *                            element has some sort of text within it, before adding a button
 		 *                            for it.
+		 * @param objectType string   @since 2.0.0 A customizer object type, such as "panel", "section",
+		 *                            or "control". This param used in helping to determine action to
+		 *                            take when edit button is clicked. For example, a control within
+		 *                            a panel can be bounced to bring attention to it, but you don't
+		 *                            want to bounce a section / panel.
 		 */
 		'general' => array(
 			array(
@@ -75,6 +80,18 @@ return array(
 				'selector' => '.site-description',
 				'isParentColumn' => true,
 			),
+			array(
+				'control' => 'bgtfw_header_layout',
+				'selector' => '#masthead',
+				'isParentColumn' => true,
+				'objectType' => 'section',
+			),
+			array(
+				'control' => 'boldgrid_footer_panel',
+				'selector' => '#colophon',
+				'isParentColumn' => true,
+				'objectType' => 'section',
+			)
 		),
 	),
 );

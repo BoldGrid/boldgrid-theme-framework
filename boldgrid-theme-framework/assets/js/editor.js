@@ -16,7 +16,7 @@
 
 					// Copy all google fonts into the editor.
 					$( 'head link[rel="stylesheet"][href*="fonts.googleapis.com/css"]' ).each( function() {
-						$iframeHead.append( $( this ).clone() );
+						$iframeHead.append( $( this ).addClass( 'webfontjs-loader-styles' ).clone() );
 					} );
 				}
 			} );

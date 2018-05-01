@@ -283,16 +283,20 @@ class Boldgrid_Framework_Customizer_Typography {
 	 */
 	public function generate_font_classes() {
 		$configs = $this->configs['customizer-options']['typography']['defaults'];
-		$heading_font_family = get_theme_mod( 'heading_font_family', $configs['headings_font_family'] );
-		$alt_font_family = get_theme_mod( 'alternate_headings_font_family', $configs['alternate_headings_font_family'] );
-		$menu_font_family = get_theme_mod( 'navigation_primary_font_family', $configs['navigation_font_family'] );
-		$body_font_family = get_theme_mod( 'body_font_family', $configs['body_font_family'] );
+
+		$headings_font = get_theme_mod( 'bgtfw_headings_typography', false );
+		$headings_font_family = ! empty( $headings_font['font-family'] ) ? $headings_font['font-family'] : $configs['headings_font_family'];
+
+		$menu_font = get_theme_mod( 'navigation_main_typography', false );
+		$menu_font_family = ! empty( $menu_font['font-family'] ) ? $menu_font['font-family'] : $configs['navigation_font_family'];
+
+		$body_font = get_theme_mod( 'bgtfw_body_typography', false );
+		$body_font_family = ! empty( $body_font['font-family'] ) ? $body_font['font-family'] : $configs['body_font_family'];
 
 		$css = '';
 		$css .= ".bg-font-family-menu { font-family: $menu_font_family !important }";
 		$css .= ".bg-font-family-body { font-family: $body_font_family !important }";
-		$css .= ".bg-font-family-alt { font-family: $alt_font_family !important }";
-		$css .= ".bg-font-family-heading { font-family: $heading_font_family !important }";
+		$css .= ".bg-font-family-heading { font-family: $headings_font_family !important }";
 
 		return $css;
 	}

@@ -194,7 +194,7 @@ class BoldGrid_Framework_Customizer {
 				'priority'    => 10,
 				'output'      => array(
 					array(
-						'element'  => 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6',
+						'element'  => implode( ', ', array_keys( $this->configs['customizer-options']['typography']['selectors'] ) ),
 					),
 				),
 			)

@@ -57,12 +57,12 @@
 				to = JSON.parse( to );
 			}
 			size = to['font-size'];
-			base = size.replace( /[^0-9]./gi, '' );
+			base = size.replace( /[^0-9]/gi, '' );
 			unit = size.replace( /[^a-z]/gi, '' );
 
 			validUnits = [ 'fr', 'rem', 'em', 'ex', '%', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ch', 'vh', 'vw', 'vmin', 'vmax' ];
 
-			// Check for valid units.
+			// Check for valid units, default to pixels otherwise.
 			if ( ( 'auto' !== unit && 'inherit' !== unit && 'initial' !== unit && -1 === $.inArray( unit, validUnits ) ) || _.isEmpty( unit ) ) {
 				unit = 'px';
 			}

@@ -57,7 +57,7 @@
 				to = JSON.parse( to );
 			}
 			size = to['font-size'];
-			base = size.replace( /[^0-9]./gi, '' );
+			base = size.replace( /[^0-9]/gi, '' );
 			unit = size.replace( /[^a-z]/gi, '' );
 
 			validUnits = [ 'fr', 'rem', 'em', 'ex', '%', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ch', 'vh', 'vw', 'vmin', 'vmax' ];

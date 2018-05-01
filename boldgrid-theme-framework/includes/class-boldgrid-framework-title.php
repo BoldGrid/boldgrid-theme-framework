@@ -65,6 +65,8 @@ class Boldgrid_Framework_Title {
 	 * Determine whether or not to show post title on a post/page.
 	 *
 	 * @since 2.0.0
+	 *
+	 * @param int $id Post id.
 	 */
 	public static function to_show( $id = 0 ) {
 

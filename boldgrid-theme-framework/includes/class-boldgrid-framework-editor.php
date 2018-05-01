@@ -107,7 +107,8 @@ class Boldgrid_Framework_Editor {
 					$post_type = 'post';
 				}
 
-				$display_page_title = true;
+				// By default, do not show titles.
+				$display_page_title = false;
 				$disabled = '';
 			}
 

@@ -25,7 +25,7 @@
   "require": {
     "php": ">=5.2",
     "php-coveralls/php-coveralls": "^2.0",
-    "phpunit/phpunit": "*"
+    "phpunit/phpunit": "^6.5"
   },
   "require-dev": {
     "composer/installers": "*",

@@ -148,6 +148,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		if ( parent.wp.customize( 'boldgrid_logo_setting' ) && ! parent.wp.customize( 'boldgrid_logo_setting' ).get() ) {
 			value.bind( function( to ) {
 				$( '.site-title a' ).text( to );
+				bgtfw_calculate_layouts();
 			} );
 		}
 	} );
@@ -189,6 +190,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			} else {
 				$( '.site-description' ).text( '' ).addClass( 'invisible' );
 			}
+			bgtfw_calculate_layouts();
 		} );
 	} );
 

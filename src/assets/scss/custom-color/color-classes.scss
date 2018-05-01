@@ -37,12 +37,12 @@ $ubtn-colors: ();
 	.color-1-link-color a {
 		@if ( $text-contrast-palette-primary_1 == $dark_text ) {
 			color: $palette-primary_1;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(75%);
 			}
 		} @else {
 			color: $palette-primary_1;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(175%);
 			}
 		}
@@ -68,12 +68,12 @@ $ubtn-colors: ();
 	.color-2-link-color a {
 		@if ( $text-contrast-palette-primary_2 == $dark_text ) {
 			color: $palette-primary_2;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(75%);
 			}
 		} @else {
 			color: $palette-primary_2;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(175%);
 			}
 		}
@@ -94,12 +94,12 @@ $ubtn-colors: ();
 	.color-3-link-color a {
 		@if ( $text-contrast-palette-primary_3 == $dark_text ) {
 			color: $palette-primary_3;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(75%);
 			}
 		} @else {
 			color: $palette-primary_3;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(175%);
 			}
 		}
@@ -122,12 +122,12 @@ $ubtn-colors: ();
 	.color-4-link-color a {
 		@if ( $text-contrast-palette-primary_4 == $dark_text ) {
 			color: $palette-primary_4;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(75%);
 			}
 		} @else {
 			color: $palette-primary_4;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(175%);
 			}
 		}
@@ -150,12 +150,12 @@ $ubtn-colors: ();
 	.color-5-link-color a {
 		@if ( $text-contrast-palette-primary_5 == $dark_text ) {
 			color: $palette-primary_5;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(75%);
 			}
 		} @else {
 			color: $palette-primary_5;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(175%);
 			}
 		}
@@ -178,12 +178,12 @@ $ubtn-colors: ();
 	.color-neutral-link-color a {
 		@if ( $text-contrast-palette-primary-neutral-color == $dark_text ) {
 			color: $palette-primary-neutral-color;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(75%);
 			}
 		} @else {
 			color: $palette-primary-neutral-color;
-			a:hover, a:focus {
+			&:hover, &:focus {
 				filter: brightness(175%);
 			}
 		}

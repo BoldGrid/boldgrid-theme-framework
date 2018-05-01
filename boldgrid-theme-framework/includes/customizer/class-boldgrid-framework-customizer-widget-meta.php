@@ -154,7 +154,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 			$wp_customize->selective_refresh->add_partial( $links_color_setting->id, array(
 				'type' => 'sidebar_meta_links_color',
 				'settings' => array( $links_color_setting->id ),
-				'selector' => sprintf( '.dynamic-sidebar.%s a', sanitize_title( $section->sidebar_id ) ),
+				'selector' => sprintf( '.dynamic-sidebar.%s', sanitize_title( $section->sidebar_id ) ),
 			) );
 
 			// Handle previewing of late-created settings.
@@ -360,12 +360,6 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 				$selectors = empty( $selectors ) ? '' : implode( ', ', $selectors );
 				$css .= "{$selectors} {color:{$headings_color};}";
-
-				$links_color = empty( $sidebar_meta[ $sidebar_id ]['links_color'] ) ? '' : $sidebar_meta[ $sidebar_id ]['links_color'];
-				$links_color = explode( ':', $links_color );
-				$links_color = array_pop( $links_color );
-
-				$css .= ".dynamic-sidebar.{$sidebar_id} a {color:{$links_color};}";
 			}
 		}
 

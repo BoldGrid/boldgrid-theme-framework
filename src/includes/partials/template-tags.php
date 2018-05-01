@@ -567,6 +567,11 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 		$classes[] = $color_class . '-background-color';
 		$classes[] = $color_class . '-text-default';
 	}
+	if ( ! empty( $sidebar_meta[ $sidebar_id ]['links_color'] ) ) {
+		$color = $sidebar_meta[ $sidebar_id ]['links_color'];
+		$color_class = strtok( $color, ':' );
+		$classes[] = $color_class . '-link-color';
+	}
 ?>
 	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid <?php echo implode( ' ', $classes ); ?>" role="complementary" style="<?php echo $style; ?>">
 		<?php dynamic_sidebar( $sidebar_id ); ?>

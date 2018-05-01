@@ -302,8 +302,8 @@ class Boldgrid_Framework_Customizer_Typography {
 	 *
 	 * @since 2.0.0
 	 */
-	public function add_font_size_css() {
-		wp_add_inline_style( 'style', $this->generate_font_size_css() );
+	public function add_font_size_css( $css ) {
+		return $this->generate_font_size_css( $css );
 	}
 
 	/**

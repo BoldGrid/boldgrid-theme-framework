@@ -649,8 +649,8 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'customize_register', $typography, 'typography_panel' );
 			$this->loader->add_filter( 'kirki/controls', $typography, 'navigation_typography_controls' );
 			$this->loader->add_filter( 'kirki/controls', $typography, 'body_typography_controls' );
-			$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'add_font_size_css' );
 			$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
+			$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
 		}
 		// Add Site title typography controls.
 		$this->loader->add_action( 'customize_preview_init', $typography, 'live_preview' );
@@ -761,11 +761,9 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'custom_customize_enqueue' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_print_styles', $base, 'control_styles' );
-
-		// Output custom CSS and JS to live site.
-		$this->loader->add_action( 'wp_head', $base, 'custom_css_output' );
 		// This hook can be used to add any styles to the head.
 		$this->loader->add_action( 'wp_head', $base, 'add_head_styles', 9001 );
+		// Output custom JS to live site.
 		$this->loader->add_action( 'wp_footer', $base, 'custom_js_output' );
 		// Display Widgets.
 		$this->loader->add_action( 'boldgrid_footer_top', $base, 'footer_widget_html' );

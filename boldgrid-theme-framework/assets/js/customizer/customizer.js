@@ -148,6 +148,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		if ( parent.wp.customize( 'boldgrid_logo_setting' ) && ! parent.wp.customize( 'boldgrid_logo_setting' ).get() ) {
 			value.bind( function( to ) {
 				$( '.site-title a' ).text( to );
+				bgtfw_calculate_layouts();
 			} );
 		}
 	} );
@@ -189,6 +190,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			} else {
 				$( '.site-description' ).text( '' ).addClass( 'invisible' );
 			}
+			bgtfw_calculate_layouts();
 		} );
 	} );
 
@@ -362,9 +364,21 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 	} );
 
+	wp.customize( 'bgtfw_header_links', function( value ) {
+		value.bind( function( to ) {
+			linksColorOutput( to, '#masthead' );
+		} );
+	} );
+
 	wp.customize( 'bgtfw_footer_color', function( value ) {
 		value.bind( function() {
 			colorOutput( 'bgtfw_footer_color', '#colophon' );
+		} );
+	} );
+
+	wp.customize( 'bgtfw_footer_links', function( value ) {
+		value.bind( function( to ) {
+			linksColorOutput( to, '#colophon' );
 		} );
 	} );
 
@@ -524,6 +538,22 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		}
 
 		$( selector ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
+	};
+
+	var linksColorOutput = function( themeMod, selector ) {
+		var colorClassPrefix;
+
+		if ( ! themeMod || themeMod === 'none' ) {
+			themeMod = '';
+		}
+
+		colorClassPrefix = themeMod.split( ':' ).shift();
+
+		$( selector ).removeClass( function ( index, css ) {
+			return ( css.match( /(^|\s)color-?([\d]|neutral)\-(link)\S+/g ) || [] ).join( ' ' );
+		} );
+
+		$( selector ).addClass( colorClassPrefix + '-link-color' );
 	};
 
 	/**

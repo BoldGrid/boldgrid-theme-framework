@@ -328,6 +328,7 @@ class BoldGrid {
 	public function header_classes( $classes ) {
 		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts', 'layout-6' );
 		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
+		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_header_links' ) );
 		return $classes;
 	}
 
@@ -341,6 +342,7 @@ class BoldGrid {
 	public function footer_classes( $classes ) {
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts', 'layout-1' );
 		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_footer_links' ) );
 		return $classes;
 	}
 
@@ -363,6 +365,22 @@ class BoldGrid {
 		}
 		$classes[] = $color_class . '-background-color';
 		$classes[] = $color_class . '-text-default';
+		return $classes;
+	}
+
+	/**
+	 * Get link colors.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $mod     Palette Selector theme_mod to get value for.
+	 *
+	 * @return array  $classes Classes for link colors.
+	 */
+	public function get_link_color( $mod ) {
+		$color_class = get_theme_mod( $mod );
+		$color_class = strtok( $color_class, ':' );
+		$classes[] = $color_class . '-link-color';
 		return $classes;
 	}
 

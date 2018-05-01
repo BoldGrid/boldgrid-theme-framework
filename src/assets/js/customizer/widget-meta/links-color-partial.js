@@ -19,9 +19,11 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_links_color = ( fu
 			linksColorSetting = api( partial.params.primarySetting );
 
 			_.each( partial.placements(), function( placement ) {
-				var color;
-				color = linksColorSetting.get().split( ':' ).pop();
-				$( placement.partial.params.selector ).css( 'color', color );
+				var colorClass;
+				colorClass = linksColorSetting.get().split( ':' ).shift();
+				$( placement.partial.params.selector ).parent( '.sidebar' ).removeClass( function ( index, css ) {
+					return ( css.match( /(^|\s)color-?([\d]|neutral)\-(link)\S+/g ) || [] ).join( ' ' );
+				} ).addClass( colorClass + '-link-color' );
 			} );
 
 			// Return resolved promise since no server-side selective refresh will be requested.

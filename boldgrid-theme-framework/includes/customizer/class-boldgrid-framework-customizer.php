@@ -341,7 +341,6 @@ class BoldGrid_Framework_Customizer {
 				'transport' => 'postMessage',
 				'settings'    => 'bgtfw_header_color',
 				'label' => esc_attr__( 'Background Color', 'bgtfw' ),
-				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
 				'section'     => 'bgtfw_header_colors',
 				'priority' => 1,
 				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
@@ -370,15 +369,16 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
+		// Adds link color selector for header.
 		Kirki::add_field(
 			'bgtfw',
 			array(
 				'type'        => 'bgtfw-palette-selector',
 				'transport' => 'postMessage',
-				'settings'    => 'bgtfw_footer_headings_color',
-				'label' => esc_attr__( 'Headings Color', 'bgtfw' ),
-				'section'     => 'bgtfw_footer_colors',
-				'priority' => 10,
+				'settings'    => 'bgtfw_header_links',
+				'label' => esc_attr__( 'Link Color', 'bgtfw' ),
+				'section'     => 'bgtfw_header_colors',
+				'priority' => 1,
 				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
 				'choices'     => array(
 					'colors' => $formatted_palette,
@@ -680,6 +680,7 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
+		// Footer background color.
 		Kirki::add_field(
 			'bgtfw',
 			array(
@@ -689,7 +690,7 @@ class BoldGrid_Framework_Customizer {
 				'label' => esc_attr__( 'Background Color', 'bgtfw' ),
 				'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
 				'section'     => 'bgtfw_footer_colors',
-				'priority' => 1,
+				'priority' => 10,
 				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
 				'choices'     => array(
 					'colors' => $formatted_palette,
@@ -698,6 +699,41 @@ class BoldGrid_Framework_Customizer {
 			)
 		);
 
+		// Footer headings color.
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'bgtfw-palette-selector',
+				'transport' => 'postMessage',
+				'settings'    => 'bgtfw_footer_headings_color',
+				'label' => esc_attr__( 'Headings Color', 'bgtfw' ),
+				'section'     => 'bgtfw_footer_colors',
+				'priority' => 20,
+				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
+				'choices'     => array(
+					'colors' => $formatted_palette,
+					'size' => $palette->get_palette_size( $formatted_palette ),
+				),
+			)
+		);
+
+		// Adds link color selector for footer.
+		Kirki::add_field(
+			'bgtfw',
+			array(
+				'type'        => 'bgtfw-palette-selector',
+				'transport' => 'postMessage',
+				'settings'    => 'bgtfw_footer_links',
+				'label' => esc_attr__( 'Link Color', 'bgtfw' ),
+				'section'     => 'bgtfw_footer_colors',
+				'priority' => 30,
+				'default'     => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
+				'choices'     => array(
+					'colors' => $formatted_palette,
+					'size' => $palette->get_palette_size( $formatted_palette ),
+				),
+			)
+		);
 		// Blog page columns
 		Kirki::add_field(
 			'bgtfw',

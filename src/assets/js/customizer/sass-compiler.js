@@ -11,7 +11,8 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 	Sass.setWorkerUrl( BOLDGRIDSass.WorkerUrl );
 
 	var instance_compiler = new Sass( BOLDGRIDSass.WorkerUrl );
-	var count = 0;
+
+	instance_compiler.writeFile( 'bgtfw/config-files.scss', BOLDGRIDSass.ScssFormatFileContents );
 
 	/**
 	 * Setup a compile function
@@ -20,24 +21,6 @@ BOLDGRID.Sass = BOLDGRID.Sass || {};
 		options = options || {};
 
 		self.processing = true;
-
-		count++;
-
-		/*
-		 * After about 100 compiles error thrown on compiles
-		 * Hackfix to create new instance at 75
-		 * Get rich or die tryin' paying homage to 50 cent by settin' compiler instance to fiddy.
-		 */
-		if ( count > 50 ) {
-			count = 0;
-			Sass.setWorkerUrl( BOLDGRIDSass.WorkerUrl );
-			if ( instance_compiler ) {
-				instance_compiler.destroy();
-				instance_compiler = null;
-			}
-
-			instance_compiler = new Sass( BOLDGRIDSass.WorkerUrl );
-		}
 
 		/*
 		 * var d = new Date();

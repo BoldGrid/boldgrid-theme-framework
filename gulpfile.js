@@ -433,12 +433,13 @@ gulp.task('qbuild', function (cb) {
   );
 });
 
-gulp.task('css-js', function (cb) {
-  sequence('frameworkFiles', 'frameworkJs', 'scssCompile', cb);
+gulp.task('framework-js', function (cb) {
+  return sequence('frameworkFiles', ['jsHint', 'jscs', 'frameworkJs'], cb);
 });
 
 gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate']);
 
 gulp.task('watch', function () {
-  gulp.watch(config.src + '/**/*', ['css-js']);
+	gulp.start( 'sass:watch' );
+	gulp.watch(config.src + '/**/*', ['framework-js']);
 });

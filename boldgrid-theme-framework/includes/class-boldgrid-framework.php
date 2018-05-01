@@ -460,9 +460,16 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
+
+		// @todo TMP CODE.
+		if( ! class_exists( 'BoldGrid_Framework_Title' ) ) {
+			include_once( ABSPATH . BGTFW_PATH . '/includes/class-boldgrid-framework-title.php' );
+		}
+
 		$admin = new BoldGrid_Framework_Admin( $this->configs );
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
+		$title = new BoldGrid_Framework_Title();
 
 		if ( ! empty( $this->configs['starter-content'] ) ) {
 			$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
@@ -501,10 +508,10 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'admin_enqueue_scripts', $editor, 'enqueue_webfonts' );
 		}
 
-		$this->loader->add_action( 'init', $editor, 'add_post_title_toggle' );
-		$this->loader->add_action( 'save_post', $editor, 'update_page_title_toggle', 10, 2 );
 		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'admin_enqueue_scripts' );
 		$this->loader->add_filter( 'tiny_mce_before_init', $editor, 'tinymce_body_class' );
+
+		$this->loader->add_action( 'post_updated', $title, 'post_updated', 10, 3 );
 	}
 
 	/**

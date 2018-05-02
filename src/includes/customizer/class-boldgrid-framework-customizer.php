@@ -422,7 +422,7 @@ class BoldGrid_Framework_Customizer {
 				'priority'    => 10,
 				'output'      => array(
 					array(
-						'element' => '.site-title > a',
+						'element' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover',
 					),
 				),
 			)

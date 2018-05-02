@@ -406,6 +406,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'post_class', $boldgrid_theme, 'post_class' );
 		$this->loader->add_filter( 'bgtfw_header_class',            $boldgrid_theme,   'header_classes' );
 		$this->loader->add_filter( 'bgtfw_footer_class',            $boldgrid_theme,   'footer_classes' );
+		$this->loader->add_filter( 'bgtfw_inner_header_class', $boldgrid_theme, 'inner_header_classes' );
+		$this->loader->add_filter( 'bgtfw_inner_footer_class', $boldgrid_theme, 'inner_footer_classes' );
 
 		$this->loader->add_filter( 'wp_page_menu_args',             $boldgrid_theme,   'page_menu_args' );
 		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );

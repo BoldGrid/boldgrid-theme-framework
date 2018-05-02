@@ -482,6 +482,96 @@ function bgtfw_get_header_class( $class = '' ) {
  *
  * @param string|array $class One or more classes to add to the class list.
  */
+function bgtfw_inner_header_class( $class = '' ) {
+	// Separates classes with a single space, collates classes for body element
+	echo 'class="' . join( ' ', bgtfw_get_inner_header_class( $class ) ) . '"';
+}
+
+/**
+ * Retrieve the classes for the header element as an array.
+ *
+ * @since 2.8.0
+ *
+ * @global WP_Query $wp_query
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function bgtfw_get_inner_header_class( $class = '' ) {
+	$classes = array( bgtfw_get_header_container() );
+
+	if ( ! empty( $class ) ) {
+
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+
+		$classes = array_merge( $classes, $class );
+	} else {
+
+		// Ensure that we always coerce class to being an array.
+		$class = array();
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	$classes = apply_filters( 'bgtfw_inner_header_class', $classes, $class );
+
+	return array_unique( $classes );
+}
+
+/**
+ * Display the classes for the header element.
+ *
+ * @since 2.8.0
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function bgtfw_inner_footer_class( $class = '' ) {
+	// Separates classes with a single space, collates classes for body element
+	echo 'class="' . join( ' ', bgtfw_get_inner_footer_class( $class ) ) . '"';
+}
+
+/**
+ * Retrieve the classes for the header element as an array.
+ *
+ * @since 2.8.0
+ *
+ * @global WP_Query $wp_query
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function bgtfw_get_inner_footer_class( $class = '' ) {
+	$classes = array( bgtfw_get_footer_container() );
+
+	if ( ! empty( $class ) ) {
+
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+
+		$classes = array_merge( $classes, $class );
+	} else {
+
+		// Ensure that we always coerce class to being an array.
+		$class = array();
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	$classes = apply_filters( 'bgtfw_inner_footer_class', $classes, $class );
+
+	return array_unique( $classes );
+}
+
+/**
+ * Display the classes for the header element.
+ *
+ * @since 2.8.0
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
 function bgtfw_footer_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for body element
 	echo 'class="' . join( ' ', bgtfw_get_footer_class( $class ) ) . '"';

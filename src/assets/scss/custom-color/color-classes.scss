@@ -21,6 +21,82 @@
 @function obrightness($color) {
 	@return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
 }
+
+@function color-luminance($value) {
+	@if $value <= 0.03928 {
+		@return $value / 12.92;
+	} @else {
+		@return ($value + 0.055)/1.055 * ($value + 0.055)/1.055;
+	}
+}
+
+@function luminosity($color) {
+	$r: color-luminance(red($color) / 255);
+	$g: color-luminance(green($color) / 255);
+	$b: color-luminance(blue($color) / 255);
+
+	@return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+}
+
+@function contrast-ratio($c1, $c2) {
+	$l1: luminosity($c1);
+	$l2: luminosity($c2);
+
+	@if $l2 > $l1 {
+		@return $l2 / $l1;
+	} @else {
+		@return $l1 / $l2;
+	}
+}
+
+@function hover($background, $color) {
+
+	$style: '';
+	$hover-color: '';
+	$color-lightness: abs(lightness($color));
+	$background-lightness: abs(lightness($background));
+	$contrast: abs(contrast-ratio($background, $color));
+
+	@if $color-lightness == 100 {
+		/* White */
+		@if $background-lightness >= 90 {
+			$hover-color: darken($background, 15);
+		} @else {
+			$hover-color: mix($color, $background, 80);
+		}
+	} @else if $color-lightness == 0 {
+		/* Black */
+		@if $background-lightness < 10 {
+			$hover-color: lighten($background, 20);
+		} @else {
+			$hover-color: mix($color, $background, 60);
+		}
+	} @else if $background-lightness < $color-lightness {
+		/* Light text on dark background */
+		$style: 'lighten';
+		@if $color-lightness > 90 {
+			/* Color too light to lighten */
+			$hover-color: darken($color, 20);
+			$style: 'darken';
+		} @else {
+		$hover-color: lighten($color, 20);
+	}
+
+	} @else {
+		/* Dark text on light background */
+		$style: 'darken';
+		@if $color-lightness < 15 {
+			/* Color is too dark to further darken */
+			$hover-color: lighten($color, 20);
+			$style: 'lighten';
+		} @else {
+			$hover-color: darken($color, 20);
+		}
+	}
+
+	@return $hover-color;
+}
+
 $ubtn-colors: ();
 @if variable-exists( palette-primary_1 ) {
 	$text-contrast-palette-primary_1: text-contrast( $palette-primary_1 );
@@ -32,19 +108,6 @@ $ubtn-colors: ();
 		&:hover,
 		&:focus {
 			color: $text-contrast-palette-primary_1 ! important;
-		}
-	}
-	.color-1-link-color a {
-		@if ( $text-contrast-palette-primary_1 == $dark_text ) {
-			color: $palette-primary_1;
-			&:hover, &:focus {
-				filter: brightness(75%);
-			}
-		} @else {
-			color: $palette-primary_1;
-			&:hover, &:focus {
-				filter: brightness(175%);
-			}
 		}
 	}
 	$ubtn-colors: append($ubtn-colors,('color-1' $palette-primary_1 $text-contrast-palette-primary_1));
@@ -65,19 +128,6 @@ $ubtn-colors: ();
 			color: $text-contrast-palette-primary_2 ! important;
 		}
 	}
-	.color-2-link-color a {
-		@if ( $text-contrast-palette-primary_2 == $dark_text ) {
-			color: $palette-primary_2;
-			&:hover, &:focus {
-				filter: brightness(75%);
-			}
-		} @else {
-			color: $palette-primary_2;
-			&:hover, &:focus {
-				filter: brightness(175%);
-			}
-		}
-	}
 	$ubtn-colors: append($ubtn-colors,('color-2' $palette-primary_2 $text-contrast-palette-primary_2));
 	@if $ubtn-theme-color == 'palette-primary_2' {
 		$ubtn-bgcolor: $palette-primary_2;
@@ -90,19 +140,6 @@ $ubtn-colors: ();
 	.color-3-text-contrast,
 	.color-3-text-contrast-hover:hover {
 		color: $text-contrast-palette-primary_3 ! important;
-	}
-	.color-3-link-color a {
-		@if ( $text-contrast-palette-primary_3 == $dark_text ) {
-			color: $palette-primary_3;
-			&:hover, &:focus {
-				filter: brightness(75%);
-			}
-		} @else {
-			color: $palette-primary_3;
-			&:hover, &:focus {
-				filter: brightness(175%);
-			}
-		}
 	}
 	@if $text-contrast-palette-primary_3 != null {
 		$ubtn-colors: append($ubtn-colors,('color-3' $palette-primary_3 $text-contrast-palette-primary_3));
@@ -119,19 +156,6 @@ $ubtn-colors: ();
 	.color-4-text-contrast-hover:hover {
 		color: $text-contrast-palette-primary_4 ! important;
 	}
-	.color-4-link-color a {
-		@if ( $text-contrast-palette-primary_4 == $dark_text ) {
-			color: $palette-primary_4;
-			&:hover, &:focus {
-				filter: brightness(75%);
-			}
-		} @else {
-			color: $palette-primary_4;
-			&:hover, &:focus {
-				filter: brightness(175%);
-			}
-		}
-	}
 	@if $text-contrast-palette-primary_4 != null {
 		$ubtn-colors: append($ubtn-colors,('color-4' $palette-primary_4 $text-contrast-palette-primary_4));
 		@if $ubtn-theme-color == 'palette-primary_4' {
@@ -147,19 +171,6 @@ $ubtn-colors: ();
 	.color-5-text-contrast-hover:hover {
 		color: $text-contrast-palette-primary_5 ! important;
 	}
-	.color-5-link-color a {
-		@if ( $text-contrast-palette-primary_5 == $dark_text ) {
-			color: $palette-primary_5;
-			&:hover, &:focus {
-				filter: brightness(75%);
-			}
-		} @else {
-			color: $palette-primary_5;
-			&:hover, &:focus {
-				filter: brightness(175%);
-			}
-		}
-	}
 	@if $text-contrast-palette-primary_5 != null {
 		$ubtn-colors: append($ubtn-colors,('color-5' $palette-primary_5 $text-contrast-palette-primary_5));
 		@if $ubtn-theme-color == 'palette-primary_5' {
@@ -174,19 +185,6 @@ $ubtn-colors: ();
 	.color-neutral-text-contrast,
 	.color-neutral-text-contrast-hover:hover {
 		color: $text-contrast-palette-primary-neutral-color ! important;
-	}
-	.color-neutral-link-color a {
-		@if ( $text-contrast-palette-primary-neutral-color == $dark_text ) {
-			color: $palette-primary-neutral-color;
-			&:hover, &:focus {
-				filter: brightness(75%);
-			}
-		} @else {
-			color: $palette-primary-neutral-color;
-			&:hover, &:focus {
-				filter: brightness(175%);
-			}
-		}
 	}
 	@if $text-contrast-palette-primary-neutral-color != null {
 		$ubtn-colors: append($ubtn-colors,('neutral-color' $palette-primary-neutral-color $text-contrast-palette-primary-neutral-color));
@@ -261,11 +259,54 @@ $ubtn-colors: ();
 $names: color background background-color border-color;
 @for $i from 1 through length( $names ) {
 	@for $color from 1 through length( $colors ) {
-		.color#{$color}-#{nth( $names, $i )} { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; }
-		.color#{$color}-#{nth($names, $i)}-hover { &:focus, &:hover { #{nth( $names, $i )}: #{nth($colors, $color)} ! important; } }
+		$reference: nth($colors, $color);
+		.color#{$color}-#{nth( $names, $i )} {
+			#{nth( $names, $i )}: #{nth($colors, $color)} ! important;
+			@if ( nth( $names, $i ) == 'background-color' or nth( $names, $i ) == 'background' ) {
+				@for $each from 1 through length( $colors ) {
+					.color-#{$each}-link-color a {
+						color: #{nth($colors, $each)};
+						&:hover {
+							color: hover( $reference, nth($colors, $each) );
+						}
+					}
+					@if variable-exists( palette-primary-neutral-color ) {
+						.color-neutral-link-color a {
+							color: $palette-primary-neutral-color;
+							&:hover {
+								color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+							}
+						}
+					}
+				}
+			}
+			&-hover {
+				&:focus, &:hover {
+					#{nth( $names, $i )}: #{$reference} ! important;
+				}
+			}
+		}
 	}
 	@if variable-exists( palette-primary-neutral-color ) {
-		.color-neutral-#{nth($names, $i)} { #{nth( $names, $i )}: $palette-primary-neutral-color !important; }
+		.color-neutral-#{nth($names, $i)} {
+			#{nth( $names, $i )}: $palette-primary-neutral-color !important;
+			@if ( nth( $names, $i ) == 'background-color' or nth( $names, $i ) == 'background' ) {
+				@for $each from 1 through length( $colors) {
+					.color-#{$each}-link-color a {
+						color: #{nth($colors, $each)};
+						&:hover {
+							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+						}
+					}
+					.color-neutral-link-color a {
+						color: $palette-primary-neutral-color;
+						&:hover {
+							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+						}
+					}
+				}
+			}
+		}
 	}
 }
 /** Adding minimal color definitions for default breadcrumbs **/

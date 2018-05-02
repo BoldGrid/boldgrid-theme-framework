@@ -366,7 +366,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	wp.customize( 'bgtfw_header_links', function( value ) {
 		value.bind( function( to ) {
-			linksColorOutput( to, '#masthead' );
+			linksColorOutput( to, '#navi' );
 		} );
 	} );
 
@@ -378,7 +378,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	wp.customize( 'bgtfw_footer_links', function( value ) {
 		value.bind( function( to ) {
-			linksColorOutput( to, '#colophon' );
+			linksColorOutput( to, '.footer-content' );
 		} );
 	} );
 

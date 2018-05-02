@@ -195,6 +195,61 @@ $ubtn-colors: ();
 	}
 }
 
+/* Create single css classes to apply palettes on universal elements. */
+$names: color background background-color border-color;
+@for $i from 1 through length( $names ) {
+	@for $color from 1 through length( $colors ) {
+		$reference: nth($colors, $color);
+		.color#{$color}-#{nth( $names, $i )} {
+			#{nth( $names, $i )}: #{nth($colors, $color)} ! important;
+			@if ( nth( $names, $i ) == 'background-color' or nth( $names, $i ) == 'background' ) {
+				@for $each from 1 through length( $colors ) {
+					&.color-#{$each}-link-color a:not(.btn) {
+						color: #{nth($colors, $each)};
+						&:hover {
+							color: hover( $reference, nth($colors, $each) );
+						}
+					}
+					@if variable-exists( palette-primary-neutral-color ) {
+						&.color-neutral-link-color a:not(.btn) {
+							color: $palette-primary-neutral-color;
+							&:hover {
+								color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+							}
+						}
+					}
+				}
+			}
+			&-hover {
+				&:focus, &:hover {
+					#{nth( $names, $i )}: #{$reference} ! important;
+				}
+			}
+		}
+	}
+	@if variable-exists( palette-primary-neutral-color ) {
+		.color-neutral-#{nth($names, $i)} {
+			#{nth( $names, $i )}: $palette-primary-neutral-color !important;
+			@if ( nth( $names, $i ) == 'background-color' or nth( $names, $i ) == 'background' ) {
+				@for $each from 1 through length( $colors) {
+					&.color-#{$each}-link-color a:not(.btn) {
+						color: #{nth($colors, $each)};
+						&:hover {
+							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+						}
+					}
+					&.color-neutral-link-color a:not(.btn) {
+						color: $palette-primary-neutral-color;
+						&:hover {
+							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 /** Blog Design Colours **/
 .palette-primary.archive,
 .palette-primary.blog {
@@ -250,60 +305,6 @@ $ubtn-colors: ();
 	}
 }
 
-/*create single css classes to apply palettes on universal elements*/
-$names: color background background-color border-color;
-@for $i from 1 through length( $names ) {
-	@for $color from 1 through length( $colors ) {
-		$reference: nth($colors, $color);
-		.color#{$color}-#{nth( $names, $i )} {
-			#{nth( $names, $i )}: #{nth($colors, $color)} ! important;
-			@if ( nth( $names, $i ) == 'background-color' or nth( $names, $i ) == 'background' ) {
-				@for $each from 1 through length( $colors ) {
-					.color-#{$each}-link-color a:not(.btn) {
-						color: #{nth($colors, $each)};
-						&:hover {
-							color: hover( $reference, nth($colors, $each) );
-						}
-					}
-					@if variable-exists( palette-primary-neutral-color ) {
-						.color-neutral-link-color a:not(.btn) {
-							color: $palette-primary-neutral-color;
-							&:hover {
-								color: hover( $palette-primary-neutral-color, nth($colors, $each) );
-							}
-						}
-					}
-				}
-			}
-			&-hover {
-				&:focus, &:hover {
-					#{nth( $names, $i )}: #{$reference} ! important;
-				}
-			}
-		}
-	}
-	@if variable-exists( palette-primary-neutral-color ) {
-		.color-neutral-#{nth($names, $i)} {
-			#{nth( $names, $i )}: $palette-primary-neutral-color !important;
-			@if ( nth( $names, $i ) == 'background-color' or nth( $names, $i ) == 'background' ) {
-				@for $each from 1 through length( $colors) {
-					.color-#{$each}-link-color a:not(.btn) {
-						color: #{nth($colors, $each)};
-						&:hover {
-							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
-						}
-					}
-					.color-neutral-link-color a:not(.btn) {
-						color: $palette-primary-neutral-color;
-						&:hover {
-							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
-						}
-					}
-				}
-			}
-		}
-	}
-}
 /** Adding minimal color definitions for default breadcrumbs **/
 .breadcrumb li a.filler {
 	background: $palette-primary_2;

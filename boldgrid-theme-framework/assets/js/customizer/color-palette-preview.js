@@ -53,36 +53,9 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 			 .addClass( new_palette_data.state['active-palette'] )
 			 .data( 'current-body-class', new_palette_data.state['active-palette'] );
 
-		// New blank stylesheet.
-		var style = document.createElement( 'style' );
-		style.type = 'text/css';
-		style.innerHTML = parent.BOLDGRID.COLOR_PALETTE.Modify.compiled_css;
-
 		// Find the matching stylesheet.
-		var regex = new RegExp( parent.BOLDGRIDSass.output_css_filename, 'i' );
-		var enqueue_found = false;
-		$( 'head link[href]' ).each( function() {
-			if ( $( this ).attr( 'href' ) && $( this ).attr( 'href' ) .match( regex ) ) {
-				enqueue_found = true;
-
-				if ( self.$new_style ) {
-					self.$new_style.remove();
-				}
-
-				self.$new_style = $( style );
-				self.$new_style.insertAfter( $( this ) );
-			}
-		});
-
-		// This generally happens if color palettes.css was not found.
-		if ( false === enqueue_found ) {
-			if ( self.$new_style ) {
-				self.$new_style.remove();
-			}
-
-			self.$new_style = $( style );
-			$( 'head' ).append( self.$new_style );
-		}
+		var stylesheet = document.getElementById( 'boldgrid-color-palettes-inline-css' );
+		stylesheet.innerHTML = parent.BOLDGRID.COLOR_PALETTE.Modify.compiled_css;
 	};
 
 	/**

@@ -204,18 +204,18 @@ $names: color background background-color border-color;
 			#{nth( $names, $i )}: #{nth($colors, $color)} ! important;
 			@if ( nth( $names, $i ) == 'background-color' or nth( $names, $i ) == 'background' ) {
 				@for $each from 1 through length( $colors ) {
-					&.color-#{$each}-link-color a:not(.btn) {
+					&.color-#{$each}-link-color a {
 						color: #{nth($colors, $each)};
 						&:hover {
-							color: hover( $reference, nth($colors, $each) );
+							color: hover( nth($colors, $color), nth($colors, $each) );
 						}
 					}
-					@if variable-exists( palette-primary-neutral-color ) {
-						&.color-neutral-link-color a:not(.btn) {
-							color: $palette-primary-neutral-color;
-							&:hover {
-								color: hover( $palette-primary-neutral-color, nth($colors, $each) );
-							}
+				}
+				@if variable-exists( palette-primary-neutral-color ) {
+					&.color-neutral-link-color a {
+						color: $palette-primary-neutral-color;
+						&:hover {
+							color: hover( nth($colors, $color), $palette-primary-neutral-color );
 						}
 					}
 				}
@@ -232,17 +232,17 @@ $names: color background background-color border-color;
 			#{nth( $names, $i )}: $palette-primary-neutral-color !important;
 			@if ( nth( $names, $i ) == 'background-color' or nth( $names, $i ) == 'background' ) {
 				@for $each from 1 through length( $colors) {
-					&.color-#{$each}-link-color a:not(.btn) {
+					&.color-#{$each}-link-color a {
 						color: #{nth($colors, $each)};
 						&:hover {
 							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
 						}
 					}
-					&.color-neutral-link-color a:not(.btn) {
-						color: $palette-primary-neutral-color;
-						&:hover {
-							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
-						}
+				}
+				&.color-neutral-link-color a {
+					color: $palette-primary-neutral-color;
+					&:hover {
+						color: hover( $palette-primary-neutral-color, $palette-primary-neutral-color );
 					}
 				}
 			}

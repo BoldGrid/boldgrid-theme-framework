@@ -8,9 +8,8 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
  */
 ( function( $ ) {
 	'use strict';
-	var self = BOLDGRID.COLOR_PALETTE.Preview;
 
-	self.$new_style = null;
+	var self = BOLDGRID.COLOR_PALETTE.Preview;
 
 	// OnLoad.
 	$( function() {
@@ -30,32 +29,22 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 	 * This function attaches a new css file to the DOM
 	 */
 	self.update_css = function( to ) {
+		var style, data, classes, modify;
+
 		if ( ! to ) {
 			return;
 		}
 
-		var new_palette_data = JSON.parse( to );
-		var $body = $( 'body' );
+		data = JSON.parse( to );
+		modify = parent.BOLDGRID.COLOR_PALETTE.Modify;
+		classes = _.isArray( modify.body_classes ) ? modify.body_classes.join( ' ' ) : '';
 
-		// Create a string of body classes to remove.
+		// Update body class.
+		$( 'body:not(.' + data.state['active-palette'] + ')' ).removeClass( classes ).addClass( data.state['active-palette'] );
 
-		// TODO: Do this once, not everytime.
-		var body_classes = parent.BOLDGRID.COLOR_PALETTE.Modify.body_classes;
-		var body_classes_string = '';
-		if ( body_classes ) {
-			$.each( body_classes, function() {
-				body_classes_string += this + ' ';
-			});
-		}
-
-		// Remove all existing palette classes.
-		$body.removeClass( body_classes_string )
-			 .addClass( new_palette_data.state['active-palette'] )
-			 .data( 'current-body-class', new_palette_data.state['active-palette'] );
-
-		// Find the matching stylesheet.
-		var stylesheet = document.getElementById( 'boldgrid-color-palettes-inline-css' );
-		stylesheet.innerHTML = parent.BOLDGRID.COLOR_PALETTE.Modify.compiled_css;
+		// Update styles.
+		style = document.getElementById( 'boldgrid-color-palettes-inline-css' );
+		style.innerHTML = modify.compiled_css;
 	};
 
 	/**

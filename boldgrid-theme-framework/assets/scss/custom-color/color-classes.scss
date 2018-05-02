@@ -234,7 +234,7 @@ $ubtn-colors: ();
 				background-color: $palette-primary-neutral-color;
 				color: $text-contrast-palette-primary-neutral-color;
 			}
-			.entry-footer a {
+			a {
 				color: $text-contrast-palette-primary-neutral-color;
 			}
 		}
@@ -243,13 +243,8 @@ $ubtn-colors: ();
 			color: $text-contrast-palette-primary_2;
 			box-shadow: -3px 3px 0 0 $palette-primary_3;
 			padding-bottom: 1.5em;
-			.entry-footer a {
+			a {
 				color: $text-contrast-palette-primary-2;
-			}
-		}
-		&.design-4 {
-			.entry-footer a {
-				color: $text-contrast-palette-primary-3;
 			}
 		}
 	}

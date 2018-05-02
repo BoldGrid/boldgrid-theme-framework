@@ -32,6 +32,9 @@ select[name="archive-dropdown"] {
 .empty-sidebar-message {
 	display: inline-block;
 }
+.add-widget-message a:hover {
+	text-decoration: none;
+}
 
 // Search Widgets
 .widget_search {

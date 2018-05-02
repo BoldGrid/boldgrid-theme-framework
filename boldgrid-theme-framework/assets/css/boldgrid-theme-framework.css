@@ -1580,6 +1580,9 @@ select[name="archive-dropdown"] {
 .empty-sidebar-message {
   display: inline-block; }
 
+.add-widget-message a:hover {
+  text-decoration: none; }
+
 .widget_search .button-primary {
   height: auto;
   margin: 0;

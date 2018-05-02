@@ -507,11 +507,12 @@ class BoldGrid {
 		$background_color = strtok( $background_color, ':' );
 
 		if ( ! empty( $background_color ) ) {
-			$classes[] = $background_color . '-text-default';
 			if ( strpos( $background_color, 'neutral' ) !== false ) {
 				$classes[] = $background_color . '-background-color';
+				$classes[] = $background_color . '-text-default';
 			} else {
 				$classes[] = str_replace( '-', '', $background_color ) . '-background-color';
+				$classes[] = str_replace( '-', '', $background_color ) . '-text-default';
 			}
 		}
 

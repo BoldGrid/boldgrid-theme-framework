@@ -346,36 +346,42 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		value.bind( update_color_and_patterns );
 	} );
 
+	/* Header Background Color */
 	wp.customize( 'bgtfw_header_color', function( value ) {
 		value.bind( function() {
-			colorOutput( 'bgtfw_header_color', '#masthead' );
+			colorOutput( 'bgtfw_header_color', '#masthead, #navi' );
 		} );
 	} );
 
+	/* Header Headings Color */
 	wp.customize( 'bgtfw_header_headings_color', function( value ) {
 		value.bind( function( to ) {
 			headingsColorOutput( to, '#masthead > :not(.bgtfw-widget-row)' );
 		} );
 	} );
 
-	wp.customize( 'bgtfw_footer_headings_color', function( value ) {
-		value.bind( function( to ) {
-			headingsColorOutput( to, '.site-footer :not(.bgtfw-widget-row)' );
-		} );
-	} );
-
+	/* Header Links Color */
 	wp.customize( 'bgtfw_header_links', function( value ) {
 		value.bind( function( to ) {
 			linksColorOutput( to, '#navi' );
 		} );
 	} );
 
+	/* Footer Background Color */
 	wp.customize( 'bgtfw_footer_color', function( value ) {
 		value.bind( function() {
-			colorOutput( 'bgtfw_footer_color', '#colophon' );
+			colorOutput( 'bgtfw_footer_color', '#colophon, .footer-content' );
 		} );
 	} );
 
+	/* Footer Headings Color */
+	wp.customize( 'bgtfw_footer_headings_color', function( value ) {
+		value.bind( function( to ) {
+			headingsColorOutput( to, '.site-footer :not(.bgtfw-widget-row)' );
+		} );
+	} );
+
+	/* Footer Links Color */
 	wp.customize( 'bgtfw_footer_links', function( value ) {
 		value.bind( function( to ) {
 			linksColorOutput( to, '.footer-content' );
@@ -495,6 +501,18 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$body.css( 'background-position', background_pos );
 	};
 
+	/**
+	 * Handles front-end headings color changes in previewer.
+	 *
+	 * This will add classes for the headings color changes to elements during a live preview.
+	 * The headings makes use of the global _typographyOptions which contains the selectors
+	 * defined in the PHP configurations for bgtfw.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string to       Theme mod value of headings color.
+	 * @param string selector CSS selector to apply classes to.
+	 */
 	var headingsColorOutput = function( to, section ) {
 		var color, selectors = [];
 
@@ -519,6 +537,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$( selectors ).css( 'color', color );
 	};
 
+	/**
+	 * Handles front-end background color changes in previewer.
+	 *
+	 * This will add classes for the background color changes to elements during a live preview.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string themeMod Theme mod to use for retrieving a background color.
+	 * @param string selector CSS selector to apply classes to.
+	 */
 	var colorOutput = function( themeMod, selector ) {
 		var colorClassPrefix;
 		themeMod = parent.wp.customize( themeMod )();
@@ -540,6 +568,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$( selector ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
 	};
 
+	/**
+	 * Handles front-end link color changes in previewer.
+	 *
+	 * This will add classes for the link color changes to elements during a live preview.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string themeMod Theme mod value of a link color.
+	 * @param string selector CSS selector to apply classes to.
+	 */
 	var linksColorOutput = function( themeMod, selector ) {
 		var colorClassPrefix;
 

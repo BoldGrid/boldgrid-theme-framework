@@ -20,8 +20,10 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_headings_color = (
 
 			_.each( partial.placements(), function( placement ) {
 				var color;
+
 				color = headingsColorSetting.get().split( ':' ).pop();
 				$( placement.partial.params.selector ).css( 'color', color );
+				$( '#dynamic-sidebar-' + placement.partial.id.match( /\[(.*?)\]/ ).pop() + '-css' ).remove();
 			} );
 
 			// Return resolved promise since no server-side selective refresh will be requested.

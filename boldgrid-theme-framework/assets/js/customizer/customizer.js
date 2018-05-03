@@ -1,6 +1,7 @@
 var BOLDGRID = BOLDGRID || {};
 BOLDGRID.Customizer = BOLDGRID.Customizer || {};
 BOLDGRID.Customizer.Util = BOLDGRID.Customizer.Util || {};
+BOLDGRID.Customizer.Widgets = BOLDGRID.Customizer.Widgets || {};
 
 /**
  * Check if the string is valid JSON by the use of regular expressions.
@@ -706,4 +707,49 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			}
 		});
 	}
+	$( document ).on( 'customize-preview-menu-refreshed', function( event, menu ) {
+		$.each( menu.newContainer.closest( '[data-is-parent-column]' ), function() {
+			BOLDGRID.Customizer.Widgets.updatePartial( $( this ) );
+		} );
+	} );
+
+	// Reinitialize widgets when our sidebar areas are re-rendered.
+	wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+
+		// Only update when the dynamic widget sidebars are rerendered.
+		if ( placement.partial.id !== 'boldgrid_header_widgets' && placement.partial.id !== 'boldgrid_footer_widgets' ) {
+			return;
+		}
+
+		BOLDGRID.Customizer.Widgets.updatePartial( placement.container );
+	} );
+
+	BOLDGRID.Customizer.Widgets.updatePartial = function( selector ) {
+
+		// Comment reply link.
+		selector.find( '.comment-reply-link' )
+			.addClass( 'btn button-primary color1-text-contrast' )
+			.css( 'transition', 'all .5s' );
+
+		// The WordPress Default Widgets.
+		selector.find( '.widget_rss ul' ).addClass( 'media-list' );
+		selector.find( '.widget_meta ul, .widget_recent_entries ul, .widget_archive ul, .widget_categories ul, .widget_nav_menu ul, .widget_pages ul' ).addClass( 'nav' );
+		selector.find( '.widget_recent_comments ul#recentcomments' )
+			.css({ 'list-style': 'none', 'padding-left': '0' });
+		selector.find( '.widget_recent_comments ul#recentcomments li' ).css( 'padding', '5px 15px' );
+		selector.find( 'table#wp-calendar' ).addClass( 'table table-striped' );
+		selector.find( '.sidebar select, select[name="archive-dropdown"]' ).addClass( 'form-control' );
+		selector.find( '.sidebar .button' ).removeClass( 'button' ).addClass( 'btn button-primary' );
+		// WooCommerce Widgets.
+		selector.find( '.woocommerce.widget .ui-slider' ).css( 'display', 'none' );
+		selector.find( '.woocommerce.widget .ui-slider' ).css( 'display', 'block' );
+		selector.find( '.woocommerce.widget .ui-slider' ).addClass( 'color1-background-color' ).children().addClass( 'color2-background-color' );
+		// Buttons.
+		selector.find( '.button' )
+			.removeClass( 'button' )
+			.addClass( 'btn button-primary' );
+		selector.find( '.button.alt' )
+			.removeClass( 'button alt' )
+			.addClass( 'btn button-secondary' );
+	};
 } )( jQuery );

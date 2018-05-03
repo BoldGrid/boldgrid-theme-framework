@@ -254,7 +254,7 @@ msgstr ""
 msgid "This layout will be used as the default blog template layout for your website's pages.  Individual posts can override this setting by choosing a different template in the post editor."
 msgstr ""
 
-#: src/includes/configs/widget.config.php:144
+#: src/includes/configs/widget.config.php:97
 msgid "Primary Sidebar"
 msgstr ""
 

@@ -811,10 +811,14 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $widget_meta, 'customize_controls_enqueue_scripts' );
 		$this->loader->add_action( 'customize_controls_print_footer_scripts', $widget_meta, 'customize_controls_print_footer_scripts' );
 		$this->loader->add_action( 'customize_preview_init', $widget_meta, 'customize_preview_init' );
-		$this->loader->add_filter( 'bgtfw_inline_css', $widget_meta, 'add_sidebar_styles' );
 		$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_start_tag', 5 );
 		$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_title', 9 );
 		$this->loader->add_action( 'dynamic_sidebar_after', $widget_meta, 'render_sidebar_end_tag', 15 );
+		if ( is_customize_preview() ) {
+			$this->loader->add_filter( 'dynamic_sidebar_before', $widget_meta, 'add_customizer_sidebar_styles', 1 );
+		} else {
+			$this->loader->add_filter( 'bgtfw_inline_css', $widget_meta, 'add_frontend_sidebar_styles' );
+		}
 	}
 
 	/**

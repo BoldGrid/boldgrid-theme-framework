@@ -326,41 +326,67 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	}
 
 	/**
-	 * Add sidebar inline styles.
+	 * Add sidebar inline styles for customizer preview.
 	 *
 	 * @since 2.0.0
+	 *
+	 * @param string $sidebar_id The ID of the sidebar to apply styles for.
+	 */
+	public function add_customizer_sidebar_styles( $sidebar_id ) {
+		$css = $this->generate_sidebar_styles( $sidebar_id );
+		print "<style id=\"dynamic-sidebar-{$sidebar_id}-css\">{$css}</style>";
+	}
+
+	/**
+	 * Add sidebar inline styles for frontend of site.
+	 *
+	 * @since  2.0.0
 	 *
 	 * @param  string $css The CSS being filtered.
 	 *
 	 * @return string $css The modified CSS.
 	 */
-	public function add_sidebar_styles( $css ) {
+	public function add_frontend_sidebar_styles( $css ) {
 		global $wp_registered_sidebars;
 
 		if ( empty( $wp_registered_sidebars ) ) {
 			return;
 		}
 
-		$sidebar_meta = get_theme_mod( 'sidebar_meta' );
-
 		foreach ( $wp_registered_sidebars as $sidebar ) {
-			$sidebar_id = $sidebar['id'];
-			if ( is_active_sidebar( $sidebar_id ) || ! empty( $sidebar_meta[ $sidebar_id ]['title'] ) ) {
-				$headings_color = empty( $sidebar_meta[ $sidebar_id ]['headings_color'] ) ? '' : $sidebar_meta[ $sidebar_id ]['headings_color'];
-				$headings_color = explode( ':', $headings_color );
-				$headings_color = array_pop( $headings_color );
+			$css .= $this->generate_sidebar_styles( $sidebar['id'] );
+		}
 
-				$selectors = array();
+		return $css;
+	}
 
-				foreach ( $this->configs['customizer-options']['typography']['selectors'] as $selector => $options ) {
-					if ( 'headings' === $options['type'] ) {
-						$selectors[] = ".dynamic-sidebar.{$sidebar_id} {$selector}";
-					}
+	/**
+	 * Generates the inline CSS for a sidebar.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  string $sidebar_id The ID of the sidebar to apply styles for.
+	 *
+	 * @return string $css        The inline CSS to apply for the sidebar.
+	 */
+	public function generate_sidebar_styles( $sidebar_id ) {
+		$css = "";
+		$sidebar_meta = get_theme_mod( 'sidebar_meta' );
+		if ( is_active_sidebar( $sidebar_id ) || ! empty( $sidebar_meta[ $sidebar_id ]['title'] ) ) {
+			$headings_color = empty( $sidebar_meta[ $sidebar_id ]['headings_color'] ) ? '' : $sidebar_meta[ $sidebar_id ]['headings_color'];
+			$headings_color = explode( ':', $headings_color );
+			$headings_color = array_pop( $headings_color );
+
+			$selectors = array();
+
+			foreach ( $this->configs['customizer-options']['typography']['selectors'] as $selector => $options ) {
+				if ( 'headings' === $options['type'] ) {
+					$selectors[] = ".dynamic-sidebar.{$sidebar_id} {$selector}";
 				}
-
-				$selectors = empty( $selectors ) ? '' : implode( ', ', $selectors );
-				$css .= "{$selectors} {color:{$headings_color};}";
 			}
+
+			$selectors = empty( $selectors ) ? '' : implode( ', ', $selectors );
+			$css .= "{$selectors} {color:{$headings_color};}";
 		}
 
 		return $css;

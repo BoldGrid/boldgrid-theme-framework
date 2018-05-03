@@ -20,7 +20,6 @@ return array(
 		'main' => 'Main Menu',
 		'social' => 'Social Icons',
 		'secondary' => 'Secondary Menu',
-		'tertiary' => 'Tertiary Menu',
 		'footer_center' => 'Footer Menu',
 	),
 	'prototype' => array(

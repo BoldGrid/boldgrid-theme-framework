@@ -565,6 +565,35 @@ class Boldgrid_Framework_Customizer_Background {
 	}
 
 	/**
+	 * Add editor styles.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  array $css CSS to add to editor.
+	 *
+	 * @return array $css Modified CSS to add to editor.
+	 */
+	public function add_editor_styles( $css ) {
+		$styles = '';
+
+		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) ) {
+			$styles = $this->create_background_styles();
+		}
+
+		// Convert array to css.
+		foreach ( $styles as $rule => $definitions ) {
+			$def = '';
+			foreach ( $definitions as $prop => $definition ) {
+				$def .= $prop . ':' . $definition . ';';
+			}
+
+			$css .= sprintf( '%s { %s }', $rule, $def );
+		}
+
+		return $css;
+	}
+
+	/**
 	 * Replace the core background image control with one that supports cropping.
 	 *
 	 * Functionality From: https://wordpress.org/plugins/background-image-cropper/

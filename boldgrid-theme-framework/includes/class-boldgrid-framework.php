@@ -614,6 +614,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'admin_enqueue_scripts', $background, 'register_control_scripts' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $background, 'register_front_end_scripts' );
 		$this->loader->add_filter( 'boldgrid_add_head_styles', $background, 'add_head_styles_filter' );
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $background, 'add_editor_styles' );
 
 		// Only do this on 4.7 and above.
 		if ( version_compare( get_bloginfo( 'version' ), '4.6.2', '>=' ) ) {

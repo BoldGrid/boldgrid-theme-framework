@@ -4090,7 +4090,8 @@ nav.navigation.posts-navigation {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  flex: 1 0 100%; }
+  flex: 1 0 100%;
+  z-index: 1; }
 
 .bgtfw-widget-row:first-child {
   margin-top: -1.5em; }

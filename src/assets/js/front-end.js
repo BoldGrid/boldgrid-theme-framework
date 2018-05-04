@@ -241,7 +241,7 @@ var BoldGrid = BoldGrid || {};
 						screen_width = $( window ).width() + 16;
 					if ( screen_width > 768 && $mainMenuState.length ) {
 						if ( $mainMenuState[0].checked ) {
-							$mainMenuState.attr( 'checked', false );
+							$mainMenuState.prop( 'checked', false );
 						}
 					}
 				});

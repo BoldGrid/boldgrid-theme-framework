@@ -295,7 +295,7 @@ HTML;
 		$api = new BoldGrid( $this->configs );
 		$mce['body_class'] .= ' ' . implode( ' ', $api->get_background_color( 'boldgrid_background_color' ) );
 
-		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) ) {
+		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( get_theme_mod( 'boldgrid_background_pattern' ) ) ) {
 			$mce['body_class'] .= ' custom-background';
 		}
 

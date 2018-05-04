@@ -768,6 +768,12 @@ class BoldGrid_Framework_Customizer {
 		);
 	}
 
+	/**
+	 * Adds the bgtfw-control-styles stylesheet to the customizer
+	 * controls.
+	 *
+	 * @since 2.0.0
+	 */
 	public function control_styles() {
 		?>
 		<style id="bgtfw-control-styles">

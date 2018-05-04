@@ -102,7 +102,7 @@ class Boldgrid_Framework_Customizer_Background {
 			$this->configs['framework']['js_dir'] . 'customizer/background-controls.js',
 			array(
 				'jquery',
-				'jquery-ui-button'
+				'jquery-ui-button',
 			),
 			$this->configs['version'], true
 		);

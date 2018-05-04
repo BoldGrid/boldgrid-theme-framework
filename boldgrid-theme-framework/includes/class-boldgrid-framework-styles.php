@@ -98,7 +98,7 @@ class BoldGrid_Framework_Styles {
 			}
 
 			$handle = 'boldgrid-color-palettes';
-			$inline_override = $this->configs['framework']['inline_styles'] === true;
+			$inline_override = true === $this->configs['framework']['inline_styles'];
 			$is_changeset = ! empty( $_REQUEST['customize_changeset_uuid'] ) && ! is_customize_preview();
 
 			if ( $inline_override || $is_changeset || is_customize_preview() ) {

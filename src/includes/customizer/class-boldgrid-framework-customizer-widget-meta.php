@@ -370,7 +370,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 * @return string $css        The inline CSS to apply for the sidebar.
 	 */
 	public function generate_sidebar_styles( $sidebar_id ) {
-		$css = "";
+		$css = '';
 		$sidebar_meta = get_theme_mod( 'sidebar_meta' );
 		if ( is_active_sidebar( $sidebar_id ) || ! empty( $sidebar_meta[ $sidebar_id ]['title'] ) ) {
 			$headings_color = empty( $sidebar_meta[ $sidebar_id ]['headings_color'] ) ? '' : $sidebar_meta[ $sidebar_id ]['headings_color'];

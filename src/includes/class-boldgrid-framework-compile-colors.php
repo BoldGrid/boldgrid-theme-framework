@@ -460,7 +460,7 @@ class Boldgrid_Framework_Compile_Colors {
 
 		foreach ( $colors as $k => $v ) {
 			if ( $k === $active_palette . '-neutral-color' ) {
-				$formatted[ 'color-neutral' ] = $v;
+				$formatted['color-neutral'] = $v;
 			} elseif ( strpos( $k, $active_palette ) !== false ) {
 				$formatted[ 'color-' . preg_replace( '/[^0-9]/', '', $k ) ] = $v;
 			} else {
@@ -474,9 +474,9 @@ class Boldgrid_Framework_Compile_Colors {
 	/**
 	 * Gets the size of the palette control to add.
 	 *
-	 * @since  2.0.0
+	 * @since 2.0.0
 	 *
-	 * @param  array  $palette The active palette to get the size of.
+	 * @param array $palette The active palette to get the size of.
 	 *
 	 * @return string          Size of each palette square.
 	 */

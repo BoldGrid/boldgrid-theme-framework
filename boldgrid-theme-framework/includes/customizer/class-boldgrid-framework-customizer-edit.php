@@ -80,13 +80,13 @@ class Boldgrid_Framework_Customizer_Edit {
 		 */
 		$ids = array( 'container_id', 'menu_id' );
 		foreach ( $ids as $id ) {
-			if ( ! empty( $menu[$id] ) ) {
+			if ( ! empty( $menu[ $id ] ) ) {
 				$container_id = $id;
 				break;
 			}
 		}
 
-		if( empty( $container_id ) ) {
+		if ( empty( $container_id ) ) {
 			return;
 		}
 

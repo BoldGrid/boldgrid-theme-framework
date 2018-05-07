@@ -328,6 +328,18 @@ class BoldGrid {
 	public function header_classes( $classes ) {
 		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts', 'layout-6' );
 		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
+		return $classes;
+	}
+
+	/**
+	 * Adds custom classes to the array of inner header classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array $classes array of classes to be applied to the #masthead element.
+	 */
+	public function inner_header_classes( $classes ) {
+		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
 		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_header_links' ) );
 		return $classes;
 	}
@@ -342,11 +354,21 @@ class BoldGrid {
 	public function footer_classes( $classes ) {
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts', 'layout-1' );
 		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
-		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_footer_links' ) );
 		return $classes;
 	}
 
-
+	/**
+	 * Adds custom classes to the array of inner header classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array $classes array of classes to be applied to the #masthead element.
+	 */
+	public function inner_footer_classes( $classes ) {
+		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_footer_links' ) );
+		return $classes;
+	}
 
 	/**
 	 * Get background colors.
@@ -507,11 +529,12 @@ class BoldGrid {
 		$background_color = strtok( $background_color, ':' );
 
 		if ( ! empty( $background_color ) ) {
-			$classes[] = $background_color . '-text-default';
 			if ( strpos( $background_color, 'neutral' ) !== false ) {
 				$classes[] = $background_color . '-background-color';
+				$classes[] = $background_color . '-text-default';
 			} else {
 				$classes[] = str_replace( '-', '', $background_color ) . '-background-color';
+				$classes[] = str_replace( '-', '', $background_color ) . '-text-default';
 			}
 		}
 

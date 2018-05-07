@@ -211,7 +211,7 @@ div.btn a:after, div.button-primary a:after, div.button-secondary a:after {
   -webkit-box-shadow: none;
   box-shadow: none;
   outline: none;
-  z-index: 201; }
+  z-index: 199; }
 
 .bgtfw-edit-link a {
   position: absolute;
@@ -1037,6 +1037,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 /*--------------------------------------------------------------
 ## Site Title
 --------------------------------------------------------------*/
+.site-title {
+  margin-top: 20px;
+  margin-bottom: 10px; }
+
 .site-title a.logo-site-title {
   background: none !important;
   padding: 0px; }
@@ -1579,6 +1583,9 @@ select[name="archive-dropdown"] {
 
 .empty-sidebar-message {
   display: inline-block; }
+
+.add-widget-message a:hover {
+  text-decoration: none; }
 
 .widget_search .button-primary {
   height: auto;
@@ -3303,6 +3310,7 @@ footer .bgtfw-widget-row {
   width: 100%; }
 
 #navi {
+  background-color: transparent !important;
   display: flex;
   flex-direction: column; }
 
@@ -4083,7 +4091,8 @@ nav.navigation.posts-navigation {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  flex: 1 0 100%; }
+  flex: 1 0 100%;
+  z-index: 1; }
 
 .bgtfw-widget-row:first-child {
   margin-top: -1.5em; }

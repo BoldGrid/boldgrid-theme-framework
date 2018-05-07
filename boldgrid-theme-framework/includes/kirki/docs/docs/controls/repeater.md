@@ -31,9 +31,8 @@ Kirki::add_field( 'theme_config_id', array(
 		'type' => 'text',
 		'value' => esc_attr__('your custom value', 'textdomain' ),
 	),
-	'button_label' => esc_attr__('"Add new" button label (optional) ', 'textdomain' ),
-	'settings'     => 'my_setting',
-	'default'      => array(
+	'settings'    => 'my_setting',
+	'default'     => array(
 		array(
 			'link_text' => esc_attr__( 'Kirki Site', 'textdomain' ),
 			'link_url'  => 'https://aristath.github.io/kirki/',
@@ -73,9 +72,8 @@ Kirki::add_field( 'theme_config_id', array(
 		'value' => esc_attr__('your custom value', 'textdomain' ),
 		'field' => 'link_text',
 	),
-	'button_label' => esc_attr__('"Add new" button label (optional) ', 'textdomain' ),
-	'settings'     => 'my_setting',
-	'default'      => array(
+	'settings'    => 'my_setting',
+	'default'     => array(
 		array(
 			'link_text' => esc_attr__( 'Kirki Site', 'textdomain' ),
 			'link_url'  => 'https://aristath.github.io/kirki/',

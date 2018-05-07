@@ -91,7 +91,7 @@ return array(
 				'selector' => '#colophon',
 				'isParentColumn' => true,
 				'objectType' => 'section',
-			)
+			),
 		),
 	),
 );

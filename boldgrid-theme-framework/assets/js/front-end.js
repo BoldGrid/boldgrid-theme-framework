@@ -106,7 +106,7 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			calc: function() {
-				var header_height = $( '.site-header' ).outerHeight(),
+				var header_height = $( '#navi' ).outerHeight(),
 					screen_width = $( window ).width() + 16;
 
 				$( '.wp-custom-header' ).css( 'height', '' );
@@ -124,7 +124,7 @@ var BoldGrid = BoldGrid || {};
 				} else {
 					$( '.site-header + div' ).css( 'margin-top', '0px' );
 					if ( $( '#main-menu' ).is( ':visible' ) ) {
-						header_height = Math.abs( $( '.site-header' ).outerHeight() - $( '#main-menu' ).height() );
+						header_height = Math.abs( header_height - $( '#main-menu' ).outerHeight() );
 					}
 					$( '.wp-custom-header' ).css( 'height', header_height + 2 );
 				}
@@ -161,7 +161,7 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			calc: function() {
-				var header_height = $( '.site-header' ).outerHeight(),
+				var header_height = $( '#navi' ).outerHeight(),
 					screen_width = $( window ).width() + 16;
 
 				if ( !! $( '.custom-header.header-fixed' ).length ) {
@@ -186,7 +186,7 @@ var BoldGrid = BoldGrid || {};
 					} else {
 						$( '.site-header + div' ).css( 'margin-top', '0px' );
 						if ( $( '#main-menu' ).is( ':visible' ) ) {
-							header_height = Math.abs( $( '.site-header' ).outerHeight() - $( '#main-menu' ).height() );
+							header_height = Math.abs( header_height - $( '#main-menu' ).outerHeight() );
 						}
 						$( '.wp-custom-header' ).css( 'height', header_height + 2 );
 					}
@@ -241,7 +241,7 @@ var BoldGrid = BoldGrid || {};
 						screen_width = $( window ).width() + 16;
 					if ( screen_width > 768 && $mainMenuState.length ) {
 						if ( $mainMenuState[0].checked ) {
-							$mainMenuState.attr( 'checked', false );
+							$mainMenuState.prop( 'checked', false );
 						}
 					}
 				});

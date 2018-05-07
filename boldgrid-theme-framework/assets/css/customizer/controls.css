@@ -724,7 +724,7 @@
   width: 4px;
   height: 3px;
   top: -9px;
-  z-index: 99;
+  z-index: 1;
   -webkit-transform: translate(7px, 0px);
   /* Safari */
   -moz-transform: translate(7px, 0px);

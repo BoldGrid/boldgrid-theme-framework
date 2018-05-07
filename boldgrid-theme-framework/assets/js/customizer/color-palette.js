@@ -694,7 +694,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		options = options || {};
 		colorPalette.state = colorPalette.format_current_palette_state();
 		var scss_file = colorPalette.create_color_scss_file( colorPalette.state );
-		colorPalette.compile( scss_file + BOLDGRIDSass.ScssFormatFileContents, options );
+		colorPalette.compile( scss_file + '@import "bgtfw/config-files.scss";', options );
 	};
 
 	/**

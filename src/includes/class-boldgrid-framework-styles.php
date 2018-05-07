@@ -96,15 +96,24 @@ class BoldGrid_Framework_Styles {
 			if ( $last_mod ) {
 				$version = $last_mod;
 			}
-			if ( false === $this->configs['framework']['inline_styles'] && empty( $_REQUEST['customize_changeset_uuid'] ) ) {
-				// Add BoldGrid Theme Helper stylesheet.
-				wp_enqueue_style( 'boldgrid-color-palettes',
-					Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
-					$deps,  $last_mod );
+
+			$handle = 'boldgrid-color-palettes';
+			$inline_override = true === $this->configs['framework']['inline_styles'];
+			$is_changeset = ! empty( $_REQUEST['customize_changeset_uuid'] ) && ! is_customize_preview();
+
+			if ( $inline_override || $is_changeset || is_customize_preview() ) {
+				wp_register_style( $handle, false );
+				wp_enqueue_style( $handle );
+				$css = get_theme_mod( 'boldgrid_compiled_css', '' );
+				wp_add_inline_style( $handle, $css );
 			} else {
-				// Add inline styles.
-				$inline_css = get_theme_mod( 'boldgrid_compiled_css' );
-				wp_add_inline_style( 'style', $inline_css );
+				wp_register_style(
+					$handle,
+					Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
+					$deps,
+					$last_mod
+				);
+				wp_enqueue_style( $handle );
 			}
 		}
 
@@ -292,6 +301,8 @@ class BoldGrid_Framework_Styles {
 
 			$css .= sprintf( '%s { %s }', $rule, $def );
 		}
+
+		$css = apply_filters( "$id-content", $css );
 
 		return "<style id='{$id}' type='text/css'>{$css}</style>";
 	}

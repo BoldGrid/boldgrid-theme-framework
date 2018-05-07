@@ -1,6 +1,7 @@
 var BOLDGRID = BOLDGRID || {};
 BOLDGRID.Customizer = BOLDGRID.Customizer || {};
 BOLDGRID.Customizer.Util = BOLDGRID.Customizer.Util || {};
+BOLDGRID.Customizer.Widgets = BOLDGRID.Customizer.Widgets || {};
 
 /**
  * Check if the string is valid JSON by the use of regular expressions.
@@ -346,39 +347,45 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		value.bind( update_color_and_patterns );
 	} );
 
+	/* Header Background Color */
 	wp.customize( 'bgtfw_header_color', function( value ) {
 		value.bind( function() {
-			colorOutput( 'bgtfw_header_color', '#masthead' );
+			colorOutput( 'bgtfw_header_color', '#masthead, #navi' );
 		} );
 	} );
 
+	/* Header Headings Color */
 	wp.customize( 'bgtfw_header_headings_color', function( value ) {
 		value.bind( function( to ) {
 			headingsColorOutput( to, '#masthead > :not(.bgtfw-widget-row)' );
 		} );
 	} );
 
+	/* Header Links Color */
+	wp.customize( 'bgtfw_header_links', function( value ) {
+		value.bind( function( to ) {
+			linksColorOutput( to, '#navi' );
+		} );
+	} );
+
+	/* Footer Background Color */
+	wp.customize( 'bgtfw_footer_color', function( value ) {
+		value.bind( function() {
+			colorOutput( 'bgtfw_footer_color', '#colophon, .footer-content' );
+		} );
+	} );
+
+	/* Footer Headings Color */
 	wp.customize( 'bgtfw_footer_headings_color', function( value ) {
 		value.bind( function( to ) {
 			headingsColorOutput( to, '.site-footer :not(.bgtfw-widget-row)' );
 		} );
 	} );
 
-	wp.customize( 'bgtfw_header_links', function( value ) {
-		value.bind( function( to ) {
-			linksColorOutput( to, '#masthead' );
-		} );
-	} );
-
-	wp.customize( 'bgtfw_footer_color', function( value ) {
-		value.bind( function() {
-			colorOutput( 'bgtfw_footer_color', '#colophon' );
-		} );
-	} );
-
+	/* Footer Links Color */
 	wp.customize( 'bgtfw_footer_links', function( value ) {
 		value.bind( function( to ) {
-			linksColorOutput( to, '#colophon' );
+			linksColorOutput( to, '.footer-content' );
 		} );
 	} );
 
@@ -495,6 +502,18 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$body.css( 'background-position', background_pos );
 	};
 
+	/**
+	 * Handles front-end headings color changes in previewer.
+	 *
+	 * This will add classes for the headings color changes to elements during a live preview.
+	 * The headings makes use of the global _typographyOptions which contains the selectors
+	 * defined in the PHP configurations for bgtfw.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string to       Theme mod value of headings color.
+	 * @param string selector CSS selector to apply classes to.
+	 */
 	var headingsColorOutput = function( to, section ) {
 		var color, selectors = [];
 
@@ -519,6 +538,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$( selectors ).css( 'color', color );
 	};
 
+	/**
+	 * Handles front-end background color changes in previewer.
+	 *
+	 * This will add classes for the background color changes to elements during a live preview.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string themeMod Theme mod to use for retrieving a background color.
+	 * @param string selector CSS selector to apply classes to.
+	 */
 	var colorOutput = function( themeMod, selector ) {
 		var colorClassPrefix;
 		themeMod = parent.wp.customize( themeMod )();
@@ -540,6 +569,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$( selector ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
 	};
 
+	/**
+	 * Handles front-end link color changes in previewer.
+	 *
+	 * This will add classes for the link color changes to elements during a live preview.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string themeMod Theme mod value of a link color.
+	 * @param string selector CSS selector to apply classes to.
+	 */
 	var linksColorOutput = function( themeMod, selector ) {
 		var colorClassPrefix;
 
@@ -668,4 +707,49 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			}
 		});
 	}
+	$( document ).on( 'customize-preview-menu-refreshed', function( event, menu ) {
+		$.each( menu.newContainer.closest( '[data-is-parent-column]' ), function() {
+			BOLDGRID.Customizer.Widgets.updatePartial( $( this ) );
+		} );
+	} );
+
+	// Reinitialize widgets when our sidebar areas are re-rendered.
+	wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+
+		// Only update when the dynamic widget sidebars are rerendered.
+		if ( placement.partial.id !== 'boldgrid_header_widgets' && placement.partial.id !== 'boldgrid_footer_widgets' ) {
+			return;
+		}
+
+		BOLDGRID.Customizer.Widgets.updatePartial( placement.container );
+	} );
+
+	BOLDGRID.Customizer.Widgets.updatePartial = function( selector ) {
+
+		// Comment reply link.
+		selector.find( '.comment-reply-link' )
+			.addClass( 'btn button-primary color1-text-contrast' )
+			.css( 'transition', 'all .5s' );
+
+		// The WordPress Default Widgets.
+		selector.find( '.widget_rss ul' ).addClass( 'media-list' );
+		selector.find( '.widget_meta ul, .widget_recent_entries ul, .widget_archive ul, .widget_categories ul, .widget_nav_menu ul, .widget_pages ul' ).addClass( 'nav' );
+		selector.find( '.widget_recent_comments ul#recentcomments' )
+			.css({ 'list-style': 'none', 'padding-left': '0' });
+		selector.find( '.widget_recent_comments ul#recentcomments li' ).css( 'padding', '5px 15px' );
+		selector.find( 'table#wp-calendar' ).addClass( 'table table-striped' );
+		selector.find( '.sidebar select, select[name="archive-dropdown"]' ).addClass( 'form-control' );
+		selector.find( '.sidebar .button' ).removeClass( 'button' ).addClass( 'btn button-primary' );
+		// WooCommerce Widgets.
+		selector.find( '.woocommerce.widget .ui-slider' ).css( 'display', 'none' );
+		selector.find( '.woocommerce.widget .ui-slider' ).css( 'display', 'block' );
+		selector.find( '.woocommerce.widget .ui-slider' ).addClass( 'color1-background-color' ).children().addClass( 'color2-background-color' );
+		// Buttons.
+		selector.find( '.button' )
+			.removeClass( 'button' )
+			.addClass( 'btn button-primary' );
+		selector.find( '.button.alt' )
+			.removeClass( 'button alt' )
+			.addClass( 'btn button-secondary' );
+	};
 } )( jQuery );

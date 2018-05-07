@@ -194,7 +194,7 @@ class BoldGrid_Framework_Customizer {
 				'priority'    => 10,
 				'output'      => array(
 					array(
-						'element'  => 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6',
+						'element'  => implode( ', ', array_keys( $this->configs['customizer-options']['typography']['selectors'] ) ),
 					),
 				),
 			)
@@ -422,7 +422,7 @@ class BoldGrid_Framework_Customizer {
 				'priority'    => 10,
 				'output'      => array(
 					array(
-						'element' => '.site-title > a',
+						'element' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover',
 					),
 				),
 			)
@@ -768,6 +768,12 @@ class BoldGrid_Framework_Customizer {
 		);
 	}
 
+	/**
+	 * Adds the bgtfw-control-styles stylesheet to the customizer
+	 * controls.
+	 *
+	 * @since 2.0.0
+	 */
 	public function control_styles() {
 		?>
 		<style id="bgtfw-control-styles">

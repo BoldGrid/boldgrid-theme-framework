@@ -202,6 +202,7 @@
 	width: 100%;
 }
 #navi {
+	background-color: transparent !important;
 	display: flex;
 	flex-direction: column;
 }
@@ -1105,6 +1106,7 @@ nav.navigation.posts-navigation {
 	flex-wrap: wrap;
 	flex-direction: row;
 	flex: 1 0 100%;
+	z-index: 1;
 }
 .bgtfw-widget-row:first-child {
 	margin-top: -1.5em;

@@ -148,10 +148,16 @@ class BoldGrid_Framework_Styles {
 				}
 			}
 
-			$edit_links = '.bgtfw-edit-link a{background:' . $background . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
-			$edit_links .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
-			$edit_links .= '.bgtfw-edit-link a svg{fill:' . $color . '!important;}';
-			wp_add_inline_style( 'style', $edit_links );
+			$inline_css = '.bgtfw-edit-link a{background:' . $background . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
+			$inline_css .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
+			$inline_css .= '.bgtfw-edit-link a svg{fill:' . $color . '!important;}';
+
+			if ( is_customize_preview() ) {
+				$bgtfw = new BoldGrid( $this->configs );
+				$inline_css .= $bgtfw->main_menu_css();
+			};
+
+			wp_add_inline_style( 'style', $inline_css );
 		}
 	}
 

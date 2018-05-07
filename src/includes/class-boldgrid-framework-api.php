@@ -332,6 +332,29 @@ class BoldGrid {
 	}
 
 	/**
+	 * Adds custom CSS for main menu based on header color/link color selections by user.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $css CSS string being filtered.
+	 *
+	 * @return string $css Modified CSS to add to front end.
+	 */
+	public function main_menu_css( $css = '' ) {
+		$color = get_theme_mod( 'bgtfw_header_color' );
+		$color = explode( ':', $color );
+		$color = array_pop( $color );
+
+		$css .= '@media (min-width: 768px) {';
+		$css .= '.sm-clean ul, .sm-clean ul a, .sm-clean ul a:hover, .sm-clean ul a:focus, .sm-clean ul a:active, .sm-clean ul a.highlighted, .sm-clean span.scroll-up, .sm-clean span.scroll-down, .sm-clean span.scroll-up:hover, .sm-clean span.scroll-down:hover { background-color:' . $color . ';}';
+		$css .='.sm-clean ul { border: 1px solid ' . $color . ';}';
+		$css .= '.sm-clean > li > ul:before, .sm-clean > li > ul:after { border-color: transparent transparent ' . $color . ' transparent;}';
+		$css .= '}';
+
+		return $css;
+	}
+
+	/**
 	 * Adds custom classes to the array of inner header classes.
 	 *
 	 * @since 2.0.0

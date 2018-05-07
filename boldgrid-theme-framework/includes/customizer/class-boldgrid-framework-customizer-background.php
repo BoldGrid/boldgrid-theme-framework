@@ -576,7 +576,9 @@ class Boldgrid_Framework_Customizer_Background {
 	public function add_editor_styles( $css ) {
 		$styles = '';
 
-		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( get_theme_mod( 'boldgrid_background_pattern' ) ) ) {
+		$pattern = get_theme_mod( 'boldgrid_background_pattern' );
+
+		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( $pattern ) ) {
 			$styles = $this->create_background_styles();
 		}
 

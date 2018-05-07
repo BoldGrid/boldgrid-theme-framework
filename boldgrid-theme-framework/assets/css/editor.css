@@ -1,0 +1,53 @@
+#bgtfw-attributes-meta-box div.inside {
+	margin: 0px;
+	padding: 0px;
+}
+
+.bgtfw-misc-pub-section:before {
+	/* Taken from wp-admin/css/edit.css */
+	font: normal 20px/1 dashicons;
+	speak: none;
+	display: inline-block;
+	margin-left: -1px;
+	padding-right: 3px;
+	vertical-align: top;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #82878c;
+}
+
+
+.bgtfw-misc-pub-section.bgtfw-page-title:before {
+	content: "\f495";
+}
+
+.bgtfw-misc-pub-section.bgtfw-template:before {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath fill='%239b9b9b' d='M2.12 29.96h27.84V2.12H2.12v27.84zM.04 1.26C.04.6.58.04 1.26.04H30.8c.7 0 1.24.54 1.24 1.22V30.8c0 .7-.55 1.24-1.23 1.24H1.28C.6 32.04.04 31.5.04 30.8V1.27z'/%3E%3Cpath fill='%239b9b9b' d='M22 1.6h8.4v28.8H22V1.6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    width: 20px;
+    height: 20px;
+    content:" ";
+    background-position-x: 3px;
+}
+
+.bgtfw-misc-pub-section .options {
+	margin: 10px 0px;
+	display: none;
+}
+
+.bgtfw-misc-pub-section .options > label {
+	display: block;
+}
+
+.bgtfw-misc-pub-section .value-displayed {
+	font-weight: bold;
+}
+
+/* Specifically for the Page Title radio */
+.bgtfw-misc-pub-section.bgtfw-page-title label .template-subtitle,
+/* For all "value displayed" spans. */
+.bgtfw-misc-pub-section .value-displayed .template-subtitle {
+	display: inline;
+	margin: 0;	
+}

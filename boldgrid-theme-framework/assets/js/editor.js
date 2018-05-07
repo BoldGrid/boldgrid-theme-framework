@@ -1,5 +1,72 @@
+var BOLDGRID = BOLDGRID || {};
+BOLDGRID.BGTFW = BOLDGRID.BGTFW || {};
+
 ( function( $ ) {
 	'use strict';
+
+	BOLDGRID.BGTFW.Editor = {
+
+		/**
+		 *
+		 */
+		initValueDisplayed: function() {
+			$( '.bgtfw-misc-pub-section' ).each( function() {
+				var $section = $( this ),
+					$defaultOption = $section.find( 'input[data-default-option="1"]' );
+
+				$section.find( '.value-displayed' ).html( $defaultOption.attr( 'data-value-displayed' ) );
+			});
+		},
+
+		/**
+		 * @memberOf BOLDGRID.BGTFW.Editor
+		 *
+		 */
+		onClickEdit : function() {
+			var $edit = $( this ),
+				$section = $edit.closest( '.bgtfw-misc-pub-section' );
+
+			$section.find( '.options' ).slideToggle( 'fast' );
+			$edit.toggle();
+
+			return false;
+		},
+
+		/**
+		 *
+		 */
+		onClickCancel: function() {
+			var $cancel = $( this ),
+				$section = $cancel.closest( '.bgtfw-misc-pub-section' ),
+				$defaultOption = $section.find( 'input[data-default-option="1"]' );
+
+			$section.find( '.options' ).slideToggle( 'fast' );
+			$section.find( '.edit' ).toggle();
+
+			// Within the options available, reset it to the original.
+			$defaultOption.attr( 'checked', 'checked' );
+
+			$section.find( '.value-displayed' ).html( $defaultOption.attr( 'data-value-displayed' ) );
+
+			return false;
+		},
+
+		/**
+		 *
+		 */
+		onClickOk: function() {
+			var $ok = $( this ),
+				$section = $ok.closest( '.bgtfw-misc-pub-section' ),
+				$selected = $section.find( 'input:checked' );
+
+			$section.find( '.options' ).slideToggle( 'fast' );
+			$section.find( '.edit' ).toggle();
+
+			$section.find( '.value-displayed' ).html( $selected.attr( 'data-value-displayed' ) );
+
+			return false;
+		},
+	};
 
 	$( function() {
 		tinymce.PluginManager.add( 'boldgrid_theme_framework', function( editor ) {
@@ -23,6 +90,9 @@
 
 		} );
 
+		$( 'body' ).on( 'click', '.bgtfw-misc-pub-section a.edit', BOLDGRID.BGTFW.Editor.onClickEdit );
+		$( 'body' ).on( 'click', '.bgtfw-misc-pub-section a.button-cancel', BOLDGRID.BGTFW.Editor.onClickCancel );
+		$( 'body' ).on( 'click', '.bgtfw-misc-pub-section a.button', BOLDGRID.BGTFW.Editor.onClickOk );
+		BOLDGRID.BGTFW.Editor.initValueDisplayed();
 	} );
-
 })( jQuery );

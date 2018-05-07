@@ -111,6 +111,8 @@ class Boldgrid_Framework_Title {
 		$post_meta = get_post_meta( $post->ID, self::$config['hide'], true );
 		$global = $this->get_global( $post->post_type );
 
+		$title = sprintf( '%1$s %2$s', 'post' === $post->post_type ? __( 'Post', 'bgtfw' ) : __( 'Page', 'bgtfw' ), __( 'Title', 'bgtfw' ) );
+
 		$options = array(
 			array(
 				'name' => __( 'Use Global Setting', 'bgtfw' ),
@@ -129,19 +131,27 @@ class Boldgrid_Framework_Title {
 				'checked' => '0' === $post_meta,
 			),
 		);
+		?>
 
-		?><p class="post-attributes-label-wrapper">
-			<label class="post-attributes-label" for="page_template">
-				<?php echo 'post' === $post->post_type ? __( 'Post', 'bgtfw' ) : __( 'Page', 'bgtfw' ); ?> Title
-			</label>
-		</p><?php
-
-		foreach( $options as $option ) {
-			?><label>
-				<input type="radio" name="<?php echo self::$config['hide']; ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> />
-				<?php echo $option['name']; echo ! empty( $option['post_text'] ) ? sprintf( ' <span class="template-subtitle" style="display:inline;margin:0;">%1$s</span>', $option['post_text'] )  : ''; ?>
-			</label><br /><?php
-		}
+		<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-page-title">
+			<?php echo $title; ?>: <span class="value-displayed">...</span>
+			<a class="edit" href="">
+				<span aria-hidden="true"><?php echo __( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo $title; ?></span>
+			</a>
+			<div class="options">
+				<?php foreach( $options as $option ) {
+					$value_displayed = $option['name'] . ( ! empty( $option['post_text'] ) ? sprintf( ' <span class="template-subtitle">%1$s</span>', $option['post_text'] )  : '' );
+				?><label>
+					<input type="radio" name="<?php echo self::$config['hide']; ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo $option['checked'] ? '1' : '0'; ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
+					<?php echo $value_displayed; ?>
+				</label>
+				<?php } ?>
+				<p>
+					<a href="" class="button">OK</a>
+					<a href="" class="button-cancel">Cancel</a>
+				</p>
+			</div>
+		</div><?php
 	}
 
 	/**

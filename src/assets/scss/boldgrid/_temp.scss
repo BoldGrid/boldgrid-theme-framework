@@ -28,7 +28,8 @@
 .header-fixed {
 	&.header-left,
 	&.header-right {
-		#masthead {
+		.site-header {
+			overflow-x: hidden;
 			overflow-y: auto;
 		}
 	}
@@ -46,6 +47,9 @@
 		.site-header,
 		#masthead {
 			width: 400px;
+		}
+		#secondary-menu {
+			justify-content: center;
 		}
 	}
 	.flexbox .header-left .site-header {
@@ -175,8 +179,9 @@
 }
 
 @media only screen and (min-width: 768px) {
-	.has-youtube-header #navi {
-		top: auto;
+	.has-youtube-header #navi-wrap {
+		display: flex;
+		flex-wrap: wrap;
 		position: absolute;
 		align-self: center;
 	}
@@ -201,19 +206,31 @@
 	flex-direction: column;
 	width: 100%;
 }
-#navi {
+
+#navi-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	align-self: center;
 	background-color: transparent !important;
+	margin-right: 0;
+	margin-left: 0;
+	&:not(.container) {
+		width: 100%;
+	}
+}
+
+#navi {
 	display: flex;
 	flex-direction: column;
-}
-#navi:not(.container) {
-	width: 100%;
+	flex-basis: 100%;
 }
 
 @media only screen and (max-width : 768px) {
 	#navi {
-		width: 100%;
 		padding-bottom: 1rem;
+	}
+	#navi-wrap {
+		width: 100%;
 	}
 	.main-menu-btn {
 		margin-top: -1em;
@@ -411,56 +428,87 @@
 }
 /** Header Layouts **/
 
-/** Header Top layout-1 **/
+/** Header Top Layouts **/
+.header-top {
+	@media (min-width: 768px) {
+		.layout {
 
-.header-top .layout-1 #navi {
-	flex-direction: column;
+			/** Header Top layout-1 **/
+			&-1 {
+				#main-menu, #secondary-menu {
+					align-items: flex-start;
+					justify-content: flex-start;
+				}
+			}
+
+			/** Header Top layout-2 **/
+			&-2 {
+				#navi {
+					flex-direction: row;
+				}
+				#secondary-menu {
+					align-content: flex-start;
+					justify-content: flex-start;
+				}
+				.site-branding {
+					align-items: flex-start;
+					flex-basis: 50%;
+				}
+				#main-menu {
+					align-content: flex-end;
+					align-items: flex-end;
+					justify-content: flex-end;
+				}
+			}
+
+			/** Header Top layout-3 **/
+			&-3 {
+				#navi {
+					flex-direction: row-reverse;
+				}
+				#main-menu {
+					align-items: flex-end;
+					justify-content: flex-start;
+				}
+				.site-branding {
+					align-items: flex-end;
+					flex-basis: 50%;
+				}
+			}
+
+			/** Header Top layout-4 **/
+			&-4 {
+				.site-branding {
+					align-items: center;
+				}
+				#main-menu, #secondary-menu {
+					align-items: center;
+					justify-content: center;
+				}
+			}
+
+			/** Header Top layout-5 **/
+			&-5 {
+				#secondary-menu, #main-menu {
+					align-items: center;
+					justify-content: center;
+				}
+				#navi {
+					flex-direction: column-reverse;
+				}
+			}
+
+			/** Header Top layout-6 **/
+			&-6 {
+				#secondary-menu {
+					align-items: center;
+					justify-content: center;
+				}
+			}
+		}
+	}
 }
-@media (min-width: 768px) {
-	/** Header Top layout-1 **/
-	.header-top .layout-1 #main-menu {
-		align-items: flex-start;
-		justify-content: flex-start;
-	}
-	/** Header Top layout-2 **/
-	.header-top .layout-2 #navi {
-		flex-direction: row;
-	}
-	.header-top .layout-2 #main-menu {
-		align-content: flex-end;
-		align-items: flex-end;
-		justify-content: flex-end;
-	}
-	.header-top .layout-2 .site-branding,
-	.header-top .layout-3 .site-branding {
-		flex-basis: 50%;
-	}
-	/** Header layout-3 **/
-	.header-top .layout-3 #navi {
-		flex-direction: row-reverse;
-	}
-	.header-top .layout-3 #main-menu {
-		align-items: flex-end;
-		justify-content: flex-start;
-	}
-	.header-top .layout-3 .site-branding {
-		align-items: flex-end;
-	}
-	.header-top .layout-4 .site-branding {
-		align-items: center;
-	}
-	.header-top .layout-4 #main-menu {
-		align-items: center;
-		justify-content: center;
-	}
-	.header-top .layout-5 #navi {
-		flex-direction: column-reverse;
-	}
-	.header-top .layout-5 #main-menu {
-		align-items: center;
-		justify-content: center;
-	}
-}
+
 @media (min-width: 768px) {
 	/* Switch to desktop layout ----------------------------------------------- These transform the menu tree from collapsible to desktop (navbar + dropdowns) -----------------------------------------------*/
 	/* start... (it's not recommended editing these rules) */
@@ -1115,6 +1163,15 @@ nav.navigation.posts-navigation {
 /* Footer Widget Row Styles */
 #footer-widget-area.bgtfw-widget-row:last-child:after {
 	padding-bottom: 0;
+}
+
+.header-left, .header-right {
+	#header-widget-area {
+		&.bgtfw-widget-row:first-child:after,
+		&.bgtfw-widget-row:last-child:after {
+			padding-bottom: 0;
+		}
+	}
 }
 
 /* Mobile First */

@@ -372,7 +372,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	public function generate_sidebar_styles( $sidebar_id ) {
 		$css = '';
 		$sidebar_meta = get_theme_mod( 'sidebar_meta' );
-		if ( is_active_sidebar( $sidebar_id ) || ! empty( $sidebar_meta[ $sidebar_id ]['title'] ) ) {
+		if ( is_active_sidebar( $sidebar_id ) || ! empty( $sidebar_meta[ $sidebar_id ]['title'] ) || current_user_can( 'edit_theme_options' ) ) {
 			$headings_color = empty( $sidebar_meta[ $sidebar_id ]['headings_color'] ) ? '' : $sidebar_meta[ $sidebar_id ]['headings_color'];
 			$headings_color = explode( ':', $headings_color );
 			$headings_color = array_pop( $headings_color );
@@ -381,7 +381,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 			foreach ( $this->configs['customizer-options']['typography']['selectors'] as $selector => $options ) {
 				if ( 'headings' === $options['type'] ) {
-					$selectors[] = ".dynamic-sidebar.{$sidebar_id} {$selector}";
+					$selectors[] = "#{$sidebar_id} {$selector}";
 				}
 			}
 

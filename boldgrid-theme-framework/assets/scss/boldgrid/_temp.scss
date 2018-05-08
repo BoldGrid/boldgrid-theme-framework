@@ -28,7 +28,8 @@
 .header-fixed {
 	&.header-left,
 	&.header-right {
-		#masthead {
+		.site-header {
+			overflow-x: hidden;
 			overflow-y: auto;
 		}
 	}
@@ -46,6 +47,9 @@
 		.site-header,
 		#masthead {
 			width: 400px;
+		}
+		#secondary-menu {
+			justify-content: center;
 		}
 	}
 	.flexbox .header-left .site-header {
@@ -175,8 +179,9 @@
 }
 
 @media only screen and (min-width: 768px) {
-	.has-youtube-header #navi {
-		top: auto;
+	.has-youtube-header #navi-wrap {
+		display: flex;
+		flex-wrap: wrap;
 		position: absolute;
 		align-self: center;
 	}
@@ -201,19 +206,31 @@
 	flex-direction: column;
 	width: 100%;
 }
-#navi {
+
+#navi-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	align-self: center;
 	background-color: transparent !important;
+	margin-right: 0;
+	margin-left: 0;
+	&:not(.container) {
+		width: 100%;
+	}
+}
+
+#navi {
 	display: flex;
 	flex-direction: column;
-}
-#navi:not(.container) {
-	width: 100%;
+	flex-basis: 100%;
 }
 
 @media only screen and (max-width : 768px) {
 	#navi {
-		width: 100%;
 		padding-bottom: 1rem;
+	}
+	#navi-wrap {
+		width: 100%;
 	}
 	.main-menu-btn {
 		margin-top: -1em;
@@ -411,56 +428,87 @@
 }
 /** Header Layouts **/
 
-/** Header Top layout-1 **/
+/** Header Top Layouts **/
+.header-top {
+	@media (min-width: 768px) {
+		.layout {
 
-.header-top .layout-1 #navi {
-	flex-direction: column;
+			/** Header Top layout-1 **/
+			&-1 {
+				#main-menu, #secondary-menu {
+					align-items: flex-start;
+					justify-content: flex-start;
+				}
+			}
+
+			/** Header Top layout-2 **/
+			&-2 {
+				#navi {
+					flex-direction: row;
+				}
+				#secondary-menu {
+					align-content: flex-start;
+					justify-content: flex-start;
+				}
+				.site-branding {
+					align-items: flex-start;
+					flex-basis: 50%;
+				}
+				#main-menu {
+					align-content: flex-end;
+					align-items: flex-end;
+					justify-content: flex-end;
+				}
+			}
+
+			/** Header Top layout-3 **/
+			&-3 {
+				#navi {
+					flex-direction: row-reverse;
+				}
+				#main-menu {
+					align-items: flex-end;
+					justify-content: flex-start;
+				}
+				.site-branding {
+					align-items: flex-end;
+					flex-basis: 50%;
+				}
+			}
+
+			/** Header Top layout-4 **/
+			&-4 {
+				.site-branding {
+					align-items: center;
+				}
+				#main-menu, #secondary-menu {
+					align-items: center;
+					justify-content: center;
+				}
+			}
+
+			/** Header Top layout-5 **/
+			&-5 {
+				#secondary-menu, #main-menu {
+					align-items: center;
+					justify-content: center;
+				}
+				#navi {
+					flex-direction: column-reverse;
+				}
+			}
+
+			/** Header Top layout-6 **/
+			&-6 {
+				#secondary-menu {
+					align-items: center;
+					justify-content: center;
+				}
+			}
+		}
+	}
 }
-@media (min-width: 768px) {
-	/** Header Top layout-1 **/
-	.header-top .layout-1 #main-menu {
-		align-items: flex-start;
-		justify-content: flex-start;
-	}
-	/** Header Top layout-2 **/
-	.header-top .layout-2 #navi {
-		flex-direction: row;
-	}
-	.header-top .layout-2 #main-menu {
-		align-content: flex-end;
-		align-items: flex-end;
-		justify-content: flex-end;
-	}
-	.header-top .layout-2 .site-branding,
-	.header-top .layout-3 .site-branding {
-		flex-basis: 50%;
-	}
-	/** Header layout-3 **/
-	.header-top .layout-3 #navi {
-		flex-direction: row-reverse;
-	}
-	.header-top .layout-3 #main-menu {
-		align-items: flex-end;
-		justify-content: flex-start;
-	}
-	.header-top .layout-3 .site-branding {
-		align-items: flex-end;
-	}
-	.header-top .layout-4 .site-branding {
-		align-items: center;
-	}
-	.header-top .layout-4 #main-menu {
-		align-items: center;
-		justify-content: center;
-	}
-	.header-top .layout-5 #navi {
-		flex-direction: column-reverse;
-	}
-	.header-top .layout-5 #main-menu {
-		align-items: center;
-		justify-content: center;
-	}
-}
+
 @media (min-width: 768px) {
 	/* Switch to desktop layout ----------------------------------------------- These transform the menu tree from collapsible to desktop (navbar + dropdowns) -----------------------------------------------*/
 	/* start... (it's not recommended editing these rules) */
@@ -568,20 +616,20 @@
 			-moz-transform: translateX(0px);
 			transform: translateX(0px);
 		}
-		top:50%;
-		margin-top:-2px;
-		right:12px;
-		width:0;
-		height:0;
-		border-width:4px;
-		border-style:solid dashed dashed dashed;
-		border-color:#555555 transparent transparent transparent;
-		background:transparent;
-		-webkit-border-radius:0;
-		-moz-border-radius:0;
-		-ms-border-radius:0;
-		-o-border-radius:0;
-		border-radius:0;
+		top: 50%;
+		margin-top: -2px;
+		right: 12px;
+		width: 0;
+		height: 0;
+		border-width: 4px;
+		border-style: solid dashed dashed dashed;
+		border-color: currentColor transparent transparent transparent;
+		background: transparent;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		-ms-border-radius: 0;
+		-o-border-radius: 0;
+		border-radius: 0;
 	}
 	.sm-clean a.highlighted span.sub-arrow:before {
 		display: none;
@@ -629,16 +677,6 @@
 		border: 0 !important;
 		padding: 10px 20px;
 	}
-	.sm-clean ul a:hover,
-	.sm-clean ul a:focus,
-	.sm-clean ul a:active,
-	.sm-clean ul a.highlighted {
-		background: #eeeeee;
-		color: #d23600;
-	}
-	.sm-clean ul a.current {
-		color: #d23600;
-	}
 	.sm-clean ul a.disabled {
 		background: white;
 		color: #cccccc;
@@ -652,7 +690,7 @@
 		margin-top: -5px;
 		border-width: 5px;
 		border-style: dashed dashed dashed solid;
-		border-color: transparent transparent transparent #555555;
+		border-color: transparent transparent transparent currentColor;
 	}
 	.sm-clean span.scroll-up,
 	.sm-clean span.scroll-down {
@@ -669,10 +707,10 @@
 	}
 	.sm-clean span.scroll-up:hover span.scroll-up-arrow,
 	.sm-clean span.scroll-up:hover span.scroll-down-arrow {
-		border-color: transparent transparent #d23600 transparent;
+		border-color: transparent transparent currentColor transparent;
 	}
 	.sm-clean span.scroll-down:hover span.scroll-down-arrow {
-		border-color: #d23600 transparent transparent transparent;
+		border-color: currentColor transparent transparent transparent;
 	}
 	.sm-clean span.scroll-up-arrow,
 	.sm-clean span.scroll-down-arrow {
@@ -685,12 +723,12 @@
 		overflow: hidden;
 		border-width: 6px;
 		border-style: dashed dashed solid dashed;
-		border-color: transparent transparent #555555 transparent;
+		border-color: transparent transparent currentColor transparent;
 	}
 	.sm-clean span.scroll-down-arrow {
 		top: 8px;
 		border-style: solid dashed dashed dashed;
-		border-color: #555555 transparent transparent transparent;
+		border-color: currentColor transparent transparent transparent;
 	}
 	.sm-clean.sm-rtl a.has-submenu {
 		padding-right: 12px;
@@ -707,7 +745,7 @@
 		right: auto;
 		left: 8px;
 		border-style: dashed solid dashed dashed;
-		border-color: transparent #555555 transparent transparent;
+		border-color: transparent currentColor transparent transparent;
 	}
 	.sm-clean.sm-rtl > li > ul:before {
 		left: auto;
@@ -724,7 +762,7 @@
 		right: auto;
 		left: 8px;
 		border-style: dashed solid dashed dashed;
-		border-color: transparent #555555 transparent transparent;
+		border-color: transparent currentColor transparent transparent;
 	}
 	.sm-clean.sm-vertical {
 		padding: 10px 0;
@@ -752,7 +790,7 @@
 		margin-top: -5px;
 		border-width: 5px;
 		border-style: dashed dashed dashed solid;
-		border-color: transparent transparent transparent #555555;
+		border-color: transparent transparent transparent currentColor;
 	}
 	.sm-clean.sm-vertical > li > ul:before,
 	.sm-clean.sm-vertical > li > ul:after {
@@ -1125,6 +1163,15 @@ nav.navigation.posts-navigation {
 /* Footer Widget Row Styles */
 #footer-widget-area.bgtfw-widget-row:last-child:after {
 	padding-bottom: 0;
+}
+
+.header-left, .header-right {
+	#header-widget-area {
+		&.bgtfw-widget-row:first-child:after,
+		&.bgtfw-widget-row:last-child:after {
+			padding-bottom: 0;
+		}
+	}
 }
 
 /* Mobile First */

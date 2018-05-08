@@ -204,17 +204,21 @@ $names: color background background-color border-color;
 			#{nth( $names, $i )}: #{nth($colors, $color)} ! important;
 			@if ( nth( $names, $i ) == 'background-color' or nth( $names, $i ) == 'background' ) {
 				@for $each from 1 through length( $colors ) {
-					&.color-#{$each}-link-color a {
-						color: #{nth($colors, $each)};
-						&:hover {
+					&.color-#{$each}-link-color {
+						a {
+							color: #{nth($colors, $each)};
+						}
+						a:hover, a:focus, a:active, .sm-clean ul a.highlighted, .sm-clean ul a.current, .current-menu-ancestor > a, .current-menu-item > a {
 							color: hover( nth($colors, $color), nth($colors, $each) );
 						}
 					}
 				}
 				@if variable-exists( palette-primary-neutral-color ) {
-					&.color-neutral-link-color a {
-						color: $palette-primary-neutral-color;
-						&:hover {
+					&.color-neutral-link-color {
+						a {
+							color: $palette-primary-neutral-color;
+						}
+						a:hover, a:focus, a:active, .sm-clean ul a.highlighted, .sm-clean ul a.current, .current-menu-ancestor > a, .current-menu-item > a {
 							color: hover( nth($colors, $color), $palette-primary-neutral-color );
 						}
 					}
@@ -232,16 +236,20 @@ $names: color background background-color border-color;
 			#{nth( $names, $i )}: $palette-primary-neutral-color !important;
 			@if ( nth( $names, $i ) == 'background-color' or nth( $names, $i ) == 'background' ) {
 				@for $each from 1 through length( $colors) {
-					&.color-#{$each}-link-color a {
-						color: #{nth($colors, $each)};
-						&:hover {
+					&.color-#{$each}-link-color {
+						a {
+							color: #{nth($colors, $each)};
+						}
+						a:hover, a:focus, a:active, .sm-clean ul a.highlighted, .sm-clean ul a.current, .current-menu-ancestor > a, .current-menu-item > a {
 							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
 						}
 					}
 				}
-				&.color-neutral-link-color a {
-					color: $palette-primary-neutral-color;
-					&:hover {
+				&.color-neutral-link-color {
+					a {
+						color: $palette-primary-neutral-color;
+					}
+					a:hover, a:focus, a:active, .sm-clean ul a.highlighted, .sm-clean ul a.current, .current-menu-ancestor > a, .current-menu-item > a {
 						color: hover( $palette-primary-neutral-color, $palette-primary-neutral-color );
 					}
 				}

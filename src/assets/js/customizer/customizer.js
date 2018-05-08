@@ -349,8 +349,36 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	/* Header Background Color */
 	wp.customize( 'bgtfw_header_color', function( value ) {
-		value.bind( function() {
+		value.bind( function( to ) {
+			var style, head, css, color;
+
 			colorOutput( 'bgtfw_header_color', '#masthead, #navi' );
+
+			color = to.split( ':' ).pop();
+
+			css = '@media (min-width: 768px) {';
+			css += '.sm-clean ul, .sm-clean ul a, .sm-clean ul a:hover, .sm-clean ul a:focus, .sm-clean ul a:active, .sm-clean ul a.highlighted, .sm-clean span.scroll-up, .sm-clean span.scroll-down, .sm-clean span.scroll-up:hover, .sm-clean span.scroll-down:hover { background-color:' + color + ';}';
+			css += '.sm-clean ul { border: 1px solid ' + color + ';}';
+			css += '.sm-clean > li > ul:before, .sm-clean > li > ul:after { border-color: transparent transparent ' + color + ' transparent;}';
+			css += '}';
+
+			// Set CSS in the innerHTML of stylesheet or create a new stylesheet to append to head.
+			if ( !! document.getElementById( 'bgtfw-menu-colors' ) ) {
+				document.getElementById( 'bgtfw-menu-colors' ).innerHTML = css;
+			} else {
+				head = document.head || document.getElementsByTagName( 'head' )[0],
+				style = document.createElement( 'style' );
+				style.type = 'text/css';
+				style.id = 'bgtfw-menu-colors';
+
+				if ( style.styleSheet ) {
+					style.styleSheet.cssText = css;
+				} else {
+					style.appendChild( document.createTextNode( css ) );
+				}
+
+				head.appendChild( style );
+			}
 		} );
 	} );
 

@@ -574,7 +574,7 @@ class Boldgrid_Framework_Customizer_Background {
 	 * @return array $css Modified CSS to add to editor.
 	 */
 	public function add_editor_styles( $css ) {
-		$styles = '';
+		$styles = array();
 
 		$pattern = get_theme_mod( 'boldgrid_background_pattern' );
 

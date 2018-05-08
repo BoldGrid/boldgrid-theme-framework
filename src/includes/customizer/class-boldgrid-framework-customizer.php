@@ -1173,6 +1173,9 @@ HTML;
 	 */
 	public function header_panel( $wp_customize ) {
 
+		// tmp / todo. Where should files be included?
+		include_once( ABSPATH . BGTFW_PATH . '/includes/class-boldgrid-framework-title.php' );
+
 		// Registers our custom panel and section types.
 		$wp_customize->register_panel_type( 'Boldgrid_Framework_Customizer_Panel' );
 		$wp_customize->register_section_type( 'Boldgrid_Framework_Customizer_Section' );
@@ -1303,6 +1306,9 @@ HTML;
 			),
 			'section' => 'bgtfw_pages_blog_posts_layout',
 		) );
+
+		$title = new Boldgrid_Framework_Title();
+		$title->add_customizer_controls( $wp_customize );
 
 		// Add example section and controls to the middle (second) panel
 		$wp_customize->add_section( 'bgtfw_pages_blog_posts_sidebar', array(

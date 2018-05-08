@@ -1,3 +1,5 @@
+/* global tinymce,BOLDGRID_THEME_FRAMEWORK,tinyMCE,jQuery */
+
 var BOLDGRID = BOLDGRID || {};
 BOLDGRID.BGTFW = BOLDGRID.BGTFW || {};
 
@@ -7,7 +9,9 @@ BOLDGRID.BGTFW = BOLDGRID.BGTFW || {};
 	BOLDGRID.BGTFW.Editor = {
 
 		/**
+		 * @summary Initialize the "value displayed" element.
 		 *
+		 * @since 2.0.0
 		 */
 		initValueDisplayed: function() {
 			$( '.bgtfw-misc-pub-section' ).each( function() {
@@ -19,8 +23,11 @@ BOLDGRID.BGTFW = BOLDGRID.BGTFW || {};
 		},
 
 		/**
-		 * @memberOf BOLDGRID.BGTFW.Editor
+		 * @summary Handle the click of the Edit link.
 		 *
+		 * @since 2.0.0
+		 *
+		 * @memberOf BOLDGRID.BGTFW.Editor
 		 */
 		onClickEdit : function() {
 			var $edit = $( this ),
@@ -33,36 +40,39 @@ BOLDGRID.BGTFW = BOLDGRID.BGTFW || {};
 		},
 
 		/**
+		 * @summary Handle the click of the Cancel link.
 		 *
+		 * @since 2.0.0
 		 */
 		onClickCancel: function() {
 			var $cancel = $( this ),
 				$section = $cancel.closest( '.bgtfw-misc-pub-section' ),
 				$defaultOption = $section.find( 'input[data-default-option="1"]' );
 
-			$section.find( '.options' ).slideToggle( 'fast' );
-			$section.find( '.edit' ).toggle();
+			$section
+				.find( '.options' ).slideToggle( 'fast' ).end()
+				.find( '.edit' ).toggle().end()
+				.find( '.value-displayed' ).html( $defaultOption.attr( 'data-value-displayed' ) );
 
-			// Within the options available, reset it to the original.
 			$defaultOption.attr( 'checked', 'checked' );
-
-			$section.find( '.value-displayed' ).html( $defaultOption.attr( 'data-value-displayed' ) );
 
 			return false;
 		},
 
 		/**
+		 * @summary Handle the click of the OK button.
 		 *
+		 * @since 2.0.0
 		 */
 		onClickOk: function() {
 			var $ok = $( this ),
 				$section = $ok.closest( '.bgtfw-misc-pub-section' ),
 				$selected = $section.find( 'input:checked' );
 
-			$section.find( '.options' ).slideToggle( 'fast' );
-			$section.find( '.edit' ).toggle();
-
-			$section.find( '.value-displayed' ).html( $selected.attr( 'data-value-displayed' ) );
+			$section
+				.find( '.options' ).slideToggle( 'fast' ).end()
+				.find( '.edit' ).toggle().end()
+				.find( '.value-displayed' ).html( $selected.attr( 'data-value-displayed' ) );
 
 			return false;
 		},

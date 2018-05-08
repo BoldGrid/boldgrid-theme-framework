@@ -183,8 +183,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					<div class="options">
 						<?php $this->layout_selection( $post ); ?>
 						<p>
-							<a href="" class="button">OK</a>
-							<a href="" class="button-cancel">Cancel</a>
+							<a href="" class="button"><?php echo __( 'OK', 'bgtfw' ); ?></a>
+							<a href="" class="button-cancel"><?php echo __( 'Cancel', 'bgtfw' ); ?></a>
 						</p>
 					</div>
 				</div>

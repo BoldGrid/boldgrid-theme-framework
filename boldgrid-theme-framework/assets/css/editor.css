@@ -44,10 +44,14 @@
 	font-weight: bold;
 }
 
-/* Specifically for the Page Title radio */
+/* Specifically for the Page Title radio. */
 .bgtfw-misc-pub-section.bgtfw-page-title label .template-subtitle,
 /* For all "value displayed" spans. */
 .bgtfw-misc-pub-section .value-displayed .template-subtitle {
 	display: inline;
-	margin: 0;	
+	margin: 0;
+}
+
+.post-attributes-advanced-wrap {
+	padding: 0px 6px;
 }

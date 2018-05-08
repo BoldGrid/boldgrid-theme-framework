@@ -84,10 +84,10 @@ class Boldgrid_Framework_Editor {
 
 		$plugin_array['boldgrid_theme_framework'] = $editor_js_file;
 
+		// This call could be moved elsewhere. Essentially, load this css when edit any array( 'page', 'post' ).
 		wp_enqueue_style(
 			'editor',
-			$this->configs['framework']['css_dir'] . 'editor.css',
-			array()
+			$this->configs['framework']['css_dir'] . 'editor.css'
 		);
 
 		return $plugin_array;
@@ -194,7 +194,15 @@ class Boldgrid_Framework_Editor {
 	 */
 	public function tinymce_body_class( $mce ) {
 		$palette = get_theme_mod( 'boldgrid_palette_class' );
+		$pattern = get_theme_mod( 'boldgrid_background_pattern' );
 		$mce['body_class'] .= " $palette";
+
+		$api = new BoldGrid( $this->configs );
+		$mce['body_class'] .= ' ' . implode( ' ', $api->get_background_color( 'boldgrid_background_color' ) );
+
+		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( $pattern ) ) {
+			$mce['body_class'] .= ' custom-background';
+		}
 
 		// Get the current post, check if it's a page and add our body classes.
 		if ( $post = get_post() ) {

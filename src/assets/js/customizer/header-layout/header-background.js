@@ -28,7 +28,7 @@
 				}
 
 				// Check if a header video is provided as preferred state.
-				if ( 0 !== wp.customize( 'header_video' )() || '' !== wp.customize( 'header_video' )() ) {
+				if ( 0 !== wp.customize( 'header_video' )() && '' !== wp.customize( 'header_video' )() ) {
 					$( document.body ).addClass( 'has-video-header' );
 					$( document.body ).removeClass( 'has-youtube-header' );
 				}

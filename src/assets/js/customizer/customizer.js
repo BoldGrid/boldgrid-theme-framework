@@ -388,14 +388,14 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	/* Header Headings Color */
 	wp.customize( 'bgtfw_header_headings_color', function( value ) {
 		value.bind( function( to ) {
-			headingsColorOutput( to, '#masthead > :not(.bgtfw-widget-row)' );
+			headingsColorOutput( to, '#navi-wrap > :not(.bgtfw-widget-row)' );
 		} );
 	} );
 
 	/* Header Links Color */
 	wp.customize( 'bgtfw_header_links', function( value ) {
 		value.bind( function( to ) {
-			linksColorOutput( to, '#navi' );
+			linksColorOutput( to, '#navi-wrap' );
 		} );
 	} );
 
@@ -566,7 +566,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		selectors = selectors.join( ', ' );
 
-		$( selectors ).css( 'color', color );
+		$( selectors ).not( '.site-description' ).css( 'color', color );
 	};
 
 	/**

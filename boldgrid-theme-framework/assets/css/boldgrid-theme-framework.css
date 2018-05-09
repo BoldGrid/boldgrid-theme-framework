@@ -109,6 +109,10 @@ body.page .main,
 body.post .main {
   padding: 0 2.8rem; }
 
+/* Fixes background scrolling on chrome in iframe */
+body.custom-background {
+  backface-visibility: hidden; }
+
 .site-content {
   display: flex;
   flex-direction: column-reverse;

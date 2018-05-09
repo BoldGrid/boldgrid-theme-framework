@@ -31,6 +31,9 @@ select[name="archive-dropdown"] {
 // Default Sidebar Message
 .empty-sidebar-message {
 	display: inline-block;
+	a:hover {
+		text-decoration: none;
+	}
 }
 .add-widget-message a:hover {
 	text-decoration: none;

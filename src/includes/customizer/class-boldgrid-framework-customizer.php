@@ -307,6 +307,12 @@ class BoldGrid_Framework_Customizer {
 					),
 					array(
 						'media_query' => '@media only screen and (min-width : 768px)',
+						'element'  => '.header-left #navi-wrap, .header-right #navi-wrap',
+						'property' => 'max-width',
+						'value_pattern' => '$px',
+					),
+					array(
+						'media_query' => '@media only screen and (min-width : 768px)',
 						'element'  => '.flexbox .header-right.header-fixed .site-footer, .flexbox .header-right.header-fixed .site-content',
 						'property' => 'margin-right',
 						'value_pattern' => '$px',

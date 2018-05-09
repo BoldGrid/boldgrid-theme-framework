@@ -374,7 +374,7 @@ class BoldGrid_Framework {
 
 		// Register Locations.
 		$this->loader->add_action( 'boldgrid-theme-location', $template, 'do_location_action', 10, 2 );
-		$this->loader->add_action( 'wp_footer', $template, 'print_styles', 10, 2 );
+		//$this->loader->add_action( 'wp_footer', $template, 'print_styles', 10, 2 );
 
 		// Add Theme Styles.
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
@@ -942,6 +942,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'woocommerce_breadcrumb_defaults', $woo, 'breadcrumbs' );
 		$this->loader->add_filter( 'woocommerce_dropdown_variation_attribute_options_args', $woo, 'variation_dropdown' );
 		add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );
+		add_action( 'boldgrid_main_top', 'woocommerce_demo_store', 5 );
+		remove_action( 'wp_footer', 'woocommerce_demo_store', 10 );
 	}
 
 	/**

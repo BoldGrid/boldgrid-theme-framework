@@ -498,7 +498,7 @@ function bgtfw_inner_header_class( $class = '' ) {
  * @return array Array of classes.
  */
 function bgtfw_get_inner_header_class( $class = '' ) {
-	$classes = array( bgtfw_get_header_container() );
+	$classes = array();
 
 	if ( ! empty( $class ) ) {
 
@@ -718,7 +718,7 @@ function bgtfw_featured_img_bg( $post_id ) {
 function bgtfw_get_header_container() {
 	$container = '';
 	if ( get_theme_mod( 'bgtfw_header_layout_position' ) === 'header-top' ) {
-		$container = get_theme_mod( 'header_container', $container );
+		$container = get_theme_mod( 'header_container', '' );
 	}
 
 	return $container;
@@ -730,7 +730,7 @@ function bgtfw_get_header_container() {
  * @since 2.0.0
  */
 function bgtfw_header_container() {
-	echo bgtfw_get_header_container();
+	echo 'class="' . bgtfw_get_header_container( $class ) . '"';
 }
 
 /**

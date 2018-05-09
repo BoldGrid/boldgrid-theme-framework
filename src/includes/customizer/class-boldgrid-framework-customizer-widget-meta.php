@@ -97,12 +97,14 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 				'default' => '',
 			) );
 
+			$widget_meta = $this;
+
 			$wp_customize->selective_refresh->add_partial( $title_setting->id, array(
 				'type' => 'sidebar_meta_title',
 				'settings' => array( $title_setting->id ),
 				'selector' => sprintf( '[data-customize-partial-id="%s"]', $title_setting->id ),
-				'render_callback' => function() use ( $section ) {
-					render_sidebar_title( $section->sidebar_id );
+				'render_callback' => function() use ( $widget_meta, $section ) {
+					$widget_meta->render_sidebar_title( $section->sidebar_id );
 				},
 			) );
 

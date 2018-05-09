@@ -345,10 +345,16 @@ class BoldGrid {
 		$color = explode( ':', $color );
 		$color = array_pop( $color );
 
+		$color_obj = ariColor::newColor( $color );
+
+		$color_obj->alpha = 0.7;
+		$css .= '.header-left #main-menu, .header-right #main-menu { background-color:' . $color_obj->toCSS( 'rgba' ) .'; }';
 		$css .= '@media (min-width: 768px) {';
-		$css .= '.sm-clean ul, .sm-clean ul a, .sm-clean ul a:hover, .sm-clean ul a:focus, .sm-clean ul a:active, .sm-clean ul a.highlighted, .sm-clean span.scroll-up, .sm-clean span.scroll-down, .sm-clean span.scroll-up:hover, .sm-clean span.scroll-down:hover { background-color:' . $color . ';}';
-		$css .= '.sm-clean ul { border: 1px solid ' . $color . ';}';
-		$css .= '.sm-clean > li > ul:before, .sm-clean > li > ul:after { border-color: transparent transparent ' . $color . ' transparent;}';
+
+		$color_obj->alpha = 0.4;
+		$css .= '.sm-clean ul, .sm-clean ul a, .sm-clean ul a:hover, .sm-clean ul a:focus, .sm-clean ul a:active, .sm-clean ul a.highlighted, .sm-clean span.scroll-up, .sm-clean span.scroll-down, .sm-clean span.scroll-up:hover, .sm-clean span.scroll-down:hover { background-color:' . $color_obj->toCSS( 'rgba' ) . ';}';
+		$css .= '.sm-clean ul { border: 1px solid ' . $color_obj->toCSS( 'rgba' ) . ';}';
+		$css .= '.sm-clean > li > ul:before, .sm-clean > li > ul:after { border-color: transparent transparent ' . $color_obj->toCSS( 'rgba' ) . ' transparent;}';
 		$css .= '}';
 
 		return $css;
@@ -381,7 +387,7 @@ class BoldGrid {
 	}
 
 	/**
-	 * Adds custom classes to the array of inner header classes.
+	 * Adds custom classes to the array of inner footer classes.
 	 *
 	 * @since 2.0.0
 	 *
@@ -404,7 +410,7 @@ class BoldGrid {
 	 */
 	public function get_background_color( $mod ) {
 		$color = get_theme_mod( $mod );
-		$color_class = strtok( $color, ':' );
+		$color_class = array_shift( explode( ':', $color ) );
 		if ( strpos( $color_class, 'neutral' ) === false ) {
 			$color_class = str_replace( '-', '', $color_class );
 		}
@@ -423,9 +429,9 @@ class BoldGrid {
 	 * @return array  $classes Classes for link colors.
 	 */
 	public function get_link_color( $mod ) {
-		$color_class = get_theme_mod( $mod );
-		$color_class = strtok( $color_class, ':' );
-		$classes[] = $color_class . '-link-color';
+		$color = get_theme_mod( $mod );
+		$color = strtok( $color, ':' );
+		$classes[] = array_shift( explode( ':', $color ) ) . '-link-color';
 		return $classes;
 	}
 
@@ -520,7 +526,7 @@ class BoldGrid {
 			}
 
 			// Check if an uploaded video has been provided to give precedence over YouTube video.
-			if ( 0 !== get_theme_mod( 'header_video' ) || '' !== get_theme_mod( 'header_video' ) ) {
+			if ( 0 !== get_theme_mod( 'header_video' ) && '' !== get_theme_mod( 'header_video' ) ) {
 				$classes[] = 'has-video-header';
 				if ( isset( $classes['has-youtube-header'] ) ) {
 					unset( $classes['has-youtube-header'] );

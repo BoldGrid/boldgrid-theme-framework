@@ -201,12 +201,12 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 * @since 2.0.0
 	 */
 	var bgtfw_calculate_layouts = function() {
-		if ( !! wp.customize( 'bgtfw_fixed_header' ) ) {
+		if ( !! wp.customize( 'bgtfw_fixed_header' )() ) {
 			BoldGrid.header_fixed.calc();
 		} else {
 			BoldGrid.custom_header.calc();
 		}
-		$( window ).trigger( 'resize' );
+		//$( window ).trigger( 'resize' );
 	};
 
 	/**
@@ -350,16 +350,19 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	/* Header Background Color */
 	wp.customize( 'bgtfw_header_color', function( value ) {
 		value.bind( function( to ) {
-			var style, head, css, color;
+			var style, head, css, color, alpha;
 
 			colorOutput( 'bgtfw_header_color', '#masthead, #navi' );
 
 			color = to.split( ':' ).pop();
 
-			css = '@media (min-width: 768px) {';
-			css += '.sm-clean ul, .sm-clean ul a, .sm-clean ul a:hover, .sm-clean ul a:focus, .sm-clean ul a:active, .sm-clean ul a.highlighted, .sm-clean span.scroll-up, .sm-clean span.scroll-down, .sm-clean span.scroll-up:hover, .sm-clean span.scroll-down:hover { background-color:' + color + ';}';
-			css += '.sm-clean ul { border: 1px solid ' + color + ';}';
-			css += '.sm-clean > li > ul:before, .sm-clean > li > ul:after { border-color: transparent transparent ' + color + ' transparent;}';
+			alpha = parent.net.brehaut.Color( color );
+
+			css = '.header-left #main-menu, .header-right #main-menu { background-color: ' + alpha.setAlpha( 0.7 ).toString() + '; }';
+			css += '@media (min-width: 768px) {';
+			css += '.sm-clean ul, .sm-clean ul a, .sm-clean ul a:hover, .sm-clean ul a:focus, .sm-clean ul a:active, .sm-clean ul a.highlighted, .sm-clean span.scroll-up, .sm-clean span.scroll-down, .sm-clean span.scroll-up:hover, .sm-clean span.scroll-down:hover { background-color:' + alpha.setAlpha( 0.4 ).toString() + ';}';
+			css += '.sm-clean ul { border: 1px solid ' + alpha.setAlpha( 0.4 ).toString() + ';}';
+			css += '.sm-clean > li > ul:before, .sm-clean > li > ul:after { border-color: transparent transparent ' + alpha.setAlpha( 0.4 ).toString() + ' transparent;}';
 			css += '}';
 
 			// Set CSS in the innerHTML of stylesheet or create a new stylesheet to append to head.
@@ -738,6 +741,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	$( document ).on( 'customize-preview-menu-refreshed', function( event, menu ) {
 		$.each( menu.newContainer.closest( '[data-is-parent-column]' ), function() {
 			BOLDGRID.Customizer.Widgets.updatePartial( $( this ) );
+			if ( 'secondary-menu' === menu.container_id && '' !== wp.customize( 'bgtfw_header_container' )() ) {
+				document.getElementById( menu.container_id ).classList.add( wp.customize( 'bgtfw_header_container' )() );
+			}
 		} );
 	} );
 

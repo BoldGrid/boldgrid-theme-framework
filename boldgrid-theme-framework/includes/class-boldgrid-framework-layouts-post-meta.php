@@ -155,9 +155,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	 */
 	public function meta_box_callback( $post ) {
 
-		// tmp / todo. Where should files be included?
-		include_once( ABSPATH . BGTFW_PATH . '/includes/class-boldgrid-framework-title.php' );
-		$title = new Boldgrid_Framework_Title();
+		$title = new Boldgrid_Framework_Title( $this->configs );
 		$title->meta_box_callback( $post );
 
 		if ( count( get_page_templates( $post ) ) > 0 ) :

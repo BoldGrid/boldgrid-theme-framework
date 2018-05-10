@@ -54,7 +54,7 @@ BOLDGRID.BGTFW = BOLDGRID.BGTFW || {};
 				.find( '.edit' ).toggle().end()
 				.find( '.value-displayed' ).html( $defaultOption.attr( 'data-value-displayed' ) );
 
-			$defaultOption.attr( 'checked', 'checked' );
+			$defaultOption.prop( 'checked', true );
 
 			return false;
 		},

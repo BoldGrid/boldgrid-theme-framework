@@ -90,6 +90,7 @@ class BoldGrid_Framework {
 		$this->pagination();
 		$this->ninja_forms();
 		$this->woocommerce();
+		$this->title();
 	}
 
 	/**
@@ -179,6 +180,7 @@ class BoldGrid_Framework {
 			'starter-content',
 			'styles',
 			'template-config',
+			'title',
 			'upgrade',
 			'widgets',
 			'woocommerce',
@@ -463,16 +465,9 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-
-		// @todo TMP CODE.
-		if( ! class_exists( 'BoldGrid_Framework_Title' ) ) {
-			include_once( ABSPATH . BGTFW_PATH . '/includes/class-boldgrid-framework-title.php' );
-		}
-
 		$admin = new BoldGrid_Framework_Admin( $this->configs );
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
-		$title = new BoldGrid_Framework_Title();
 
 		if ( ! empty( $this->configs['starter-content'] ) ) {
 			$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
@@ -513,8 +508,6 @@ class BoldGrid_Framework {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'admin_enqueue_scripts' );
 		$this->loader->add_filter( 'tiny_mce_before_init', $editor, 'tinymce_body_class' );
-
-		$this->loader->add_action( 'post_updated', $title, 'post_updated', 10, 3 );
 	}
 
 	/**
@@ -949,6 +942,19 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'woocommerce_breadcrumb_defaults', $woo, 'breadcrumbs' );
 		$this->loader->add_filter( 'woocommerce_dropdown_variation_attribute_options_args', $woo, 'variation_dropdown' );
 		add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );
+	}
+
+	/**
+	 * Adds in page title functionality for bgtfw.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 */
+	private function title() {
+		$title = new BoldGrid_Framework_Title( $this->configs );
+
+		$this->loader->add_action( 'post_updated', $title, 'post_updated', 10, 3 );
+		$this->loader->add_filter( 'the_title', $title, 'show_title', 10, 2 );
 	}
 
 	/**

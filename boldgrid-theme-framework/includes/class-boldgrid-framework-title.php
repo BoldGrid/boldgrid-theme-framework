@@ -34,7 +34,7 @@ class Boldgrid_Framework_Title {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param     array $configs The BoldGrid Theme Framework configurations.
+	 * @param array $configs The BoldGrid Theme Framework configurations.
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;

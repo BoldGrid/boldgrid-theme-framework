@@ -21,22 +21,24 @@ defined( 'WPINC' ) ? : die;
 class Boldgrid_Framework_Title {
 
 	/**
-	 * Config.
+	 * The BoldGrid Theme Framework configurations.
+	 *
+	 * @since     2.0.0
+	 * @access    protected
+	 * @var       array $configs The BoldGrid Theme Framework configurations.
+	 */
+	protected $configs;
+
+	/**
+	 * Initialize the class and set its properties.
 	 *
 	 * @since 2.0.0
 	 *
-	 * @var array
+	 * @param array $configs The BoldGrid Theme Framework configurations.
 	 */
-	public static $config = array(
-		// Post meta data that determines if title should show on individual page.
-		'hide' => 'boldgrid_hide_page_title',
-		// Theme mod, determines if title should display on pages.
-		'page' => 'bgtfw_pages_display_title',
-		// Theme mod, determines if title should display on posts.
-		'post' => 'bgtfw_posts_display_title',
-		'default_page' => '0',
-		'default_post' => '1',
-	);
+	public function __construct( $configs ) {
+		$this->configs = $configs;
+	}
 
 	/**
 	 * Add Controls to the customizer.
@@ -46,22 +48,7 @@ class Boldgrid_Framework_Title {
 	 * @param WP_Customize_Manager $wp_customize
 	 */
 	public function add_customizer_controls( $wp_customize ) {
-		$settings = array(
-			array(
-				'label' => esc_html__( 'Page Title', 'bgtfw' ),
-				'section' => 'bgtfw_layout_page',
-				'setting' => self::$config['page'],
-				'default' => self::$config['default_page'],
-			),
-			array(
-				'label' => esc_html__( 'Post Title', 'bgtfw' ),
-				'section' => 'bgtfw_pages_blog_posts_layout',
-				'setting' => self::$config['post'],
-				'default' => self::$config['default_post'],
-			),
-		);
-
-		foreach( $settings as $setting ) {
+		foreach( $this->configs['title']['customizer_controls'] as $setting ) {
 			$wp_customize->add_setting( $setting['setting'] , array(
 				'type'      => 'theme_mod',
 				'default'   => $setting['default'],
@@ -88,10 +75,9 @@ class Boldgrid_Framework_Title {
 	 * @param  string $post_type page or post.
 	 * @return string
 	 */
-	public static function get_global( $post_type = null ) {
+	public function get_global( $post_type = null ) {
 		$post_type = empty( $post_type ) ? get_post_type() : $post_type;
-
-		$default = self::$config[ 'default_' . $post_type ];
+		$default = $this->configs['title'][ 'default_' . $post_type ];
 
 		return get_theme_mod( 'bgtfw_' . $post_type . 's_display_title', $default );
 	}
@@ -108,7 +94,7 @@ class Boldgrid_Framework_Title {
 			return;
 		}
 
-		$post_meta = get_post_meta( $post->ID, self::$config['hide'], true );
+		$post_meta = get_post_meta( $post->ID, $this->configs['title']['hide'], true );
 		$global = $this->get_global( $post->post_type );
 
 		$title = sprintf( '%1$s %2$s', 'post' === $post->post_type ? __( 'Post', 'bgtfw' ) : __( 'Page', 'bgtfw' ), __( 'Title', 'bgtfw' ) );
@@ -142,7 +128,7 @@ class Boldgrid_Framework_Title {
 				<?php foreach( $options as $option ) {
 					$value_displayed = $option['name'] . ( ! empty( $option['post_text'] ) ? sprintf( ' <span class="template-subtitle">%1$s</span>', $option['post_text'] )  : '' );
 				?><label>
-					<input type="radio" name="<?php echo self::$config['hide']; ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo $option['checked'] ? '1' : '0'; ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
+					<input type="radio" name="<?php echo $this->configs['title']['hide']; ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo $option['checked'] ? '1' : '0'; ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
 					<?php echo $value_displayed; ?>
 				</label>
 				<?php } ?>
@@ -164,34 +150,47 @@ class Boldgrid_Framework_Title {
 	 * @param string $post_before
 	 */
 	public function post_updated( $post_ID, $post_after, $post_before ) {
-		if( isset( $_POST[self::$config['hide']] ) ) {
-			delete_post_meta( $post_ID, self::$config['hide'] );
+		if( isset( $_POST[$this->configs['title']['hide']] ) ) {
+			delete_post_meta( $post_ID, $this->configs['title']['hide'] );
 
-			if( in_array( $_POST[self::$config['hide']], array( '0', '1' ), true ) ) {
-				update_post_meta( $post_ID, self::$config['hide'], $_POST[self::$config['hide']] );
+			if( in_array( $_POST[$this->configs['title']['hide']], array( '0', '1' ), true ) ) {
+				update_post_meta( $post_ID, $this->configs['title']['hide'], $_POST[$this->configs['title']['hide']] );
 			}
 		}
 	}
 
 	/**
+	 * Filter a post's title within the_title filter.
+	 *
 	 * Determine whether or not to show post title on a post/page.
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param int $id Post id.
+	 * @param  string $title The post title.
+	 * @param  int    $id    The post ID.
+	 * @return string
 	 */
-	public static function to_show( $id = 0 ) {
+	public function show_title( $title, $id ) {
 
-		// Never show the page title on the homepage.
-		if( 'page_home.php' === get_page_template_slug() ) {
-			return false;
+		// This method only needs to be ran if we're looking at a single page / post.
+		$is_single_post = is_page() || is_single();
+		if( ! $is_single_post ) {
+			return $title;
 		}
 
-		$id = empty( $id ) ? get_the_ID() : $id;
+		/*
+		 * The the_title filter is ran quite often. For example, when displaying nav menus, this filter
+		 * is ran and can change a page's title in the nav. We're only interested in adjusting the
+		 * title when displaying a post.
+		 */
+		if( ! in_the_loop() ) {
+			return $title;
+		}
 
-		$post_meta = get_post_meta( $id, self::$config['hide'], true );
-		$global = self::get_global();
+		$post_meta = get_post_meta( $id, $this->configs['title']['hide'], true );
+		$global = $this->get_global();
+		$show = '1' === $post_meta || ( '' === $post_meta && '1' === $global );
 
-		return '1' === $post_meta || ( '' === $post_meta && '1' === $global );
+		return $show ? $title : '';
 	}
 }

@@ -171,15 +171,15 @@ var BoldGrid = BoldGrid || {};
 						if ( classes.contains( 'header-top' ) ) {
 							headerHeight = naviHeight + secondaryMenuHeight + 2;
 							siteMargin = $( '#navi-wrap' ).outerHeight();
-							if ( classes.contains( 'has-youtube-header' ) ) {
-								siteMargin = siteMargin + $( '#header-widget-area' ).outerHeight();
-							}
 						}
 
 					// Non-fixed headers.
 					} else {
 						if ( classes.contains( 'header-top' ) ) {
 							headerHeight = naviHeight + secondaryMenuHeight + 2;
+							if ( classes.contains( 'has-youtube-header' ) ) {
+								siteMargin = siteMargin + $( '#header-widget-area' ).outerHeight();
+							}
 						}
 					}
 

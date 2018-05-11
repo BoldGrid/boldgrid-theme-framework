@@ -87,7 +87,7 @@ var BoldGrid = BoldGrid || {};
 
 				timer = setTimeout( function loadVideo() {
 					i++;
-					body = $( 'body' );
+					body = document.body.classList;
 					youtube = ( ( ( wp || {} ).customHeader || {} ).handlers || {} ).youtube;
 					nativeVideo = ( ( ( wp || {} ).customHeader || {} ).handlers || {} ).nativeVideo;
 
@@ -98,19 +98,22 @@ var BoldGrid = BoldGrid || {};
 
 					// jscs:disable requireYodaConditions
 					if ( youtube.player == null && nativeVideo.video == null ) {
-							timer = setTimeout( loadVideo, 50 );
+						timer = setTimeout( loadVideo, 50 );
 					} else {
 
 						// YouTube player found and YT handler is loaded.
 						if ( nativeVideo.video == null && typeof youtube.player.stopVideo === 'function' ) {
-							body.addClass( 'has-youtube-header' );
-							body.removeClass( 'has-header-image has-video-header' );
-							body.hasClass( 'header-fixed' ) ? BoldGrid.header_fixed.calc() : BoldGrid.custom_header.calc();
+							body.add( 'has-youtube-header' );
+							body.remove( 'has-header-image' );
+							body.remove( 'has-video-header' );
+							BoldGrid.custom_header.calc();
 
 						// HTML5 video player found and native handler is loaded.
 						} else if ( youtube.player == null && $( nativeVideo.video ).length ) {
-							body.addClass( 'has-video-header' );
-							body.removeClass( 'has-header-image has-youtube-header' );
+							console.log( nativeVideo );
+							body.add( 'has-video-header' );
+							body.remove( 'has-header-image' );
+							body.remove( 'has-youtube-header' );
 
 							video = document.getElementById( 'wp-custom-header-video' );
 
@@ -118,12 +121,12 @@ var BoldGrid = BoldGrid || {};
 
 								// Check  ready state of video player before attempting to reflow layout.
 								if ( 4 === video.readyState ) {
-									body.hasClass( 'header-fixed' ) ? BoldGrid.header_fixed.calc() : BoldGrid.custom_header.calc();
+									BoldGrid.custom_header.calc();
 								} else {
 
 									// Setup event listener for loadeddata to indicate video has loaded and can be played.
 									video.addEventListener( 'loadeddata', function() {
-										body.hasClass( 'header-fixed' ) ? BoldGrid.header_fixed.calc() : BoldGrid.custom_header.calc();
+										BoldGrid.custom_header.calc();
 									}, false );
 								}
 							}
@@ -137,96 +140,68 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			checkImg: function() {
-				var customHeader;
+				var customHeader, body;
 
-				document.body.classList.remove( 'has-header-image' );
+				body = document.body.classList;
+				body.remove( 'has-header-image' );
 				customHeader = document.getElementById( 'wp-custom-header' );
 
 				if ( customHeader && customHeader.firstChild && 'IMG' === customHeader.firstChild.nodeName ) {
-					document.body.add( 'has-header-image' );
+					body.add( 'has-header-image' );
 				}
 			},
 
 			calc: function() {
-				var header_height = $( '#navi-wrap' ).outerHeight() - $( '#header-widget-area' ).outerHeight(),
-					screen_width = $( window ).width() + 16,
-					distance = $( '#navi-wrap' ).outerHeight() - $( '#wp-custom-header' ).outerHeight();
+				var classes, headerHeight, siteMargin, naviHeight, secondaryMenuHeight, menu;
 
-				$( '.wp-custom-header' ).css( 'height', '' );
+				classes = document.body.classList;
 
-				// Desktop.
-				if ( screen_width > 768 ) {
-					if ( !! $( '.custom-header' ).not( '.header-fixed' ).length ) {
+				headerHeight = '100vh';
+				siteMargin = 0;
+				naviHeight = $( '#navi' ).outerHeight();
 
-						// Adjusts .header-top position, offsets content based on header content.
-						if ( $( 'body.header-top.has-youtube-header' ).length ) {
-							$( '.site-header + div' ).css( 'margin-top', distance );
-						} else if ( $( 'body.header-left.has-video-header, body.header-left.has-video-header' ).length ) {
-							$( 'wp-custom-header' ).css( 'height', '100vh' );
-							$( '.site-header + div' ).css( 'margin-top', 0 );
-						} else {
-							$( '.site-header + div' ).css( 'margin-top', 0 );
+				// Desktop view.
+				if ( window.innerWidth > 768 ) {
+					secondaryMenuHeight = $( '#secondary-menu' ).outerHeight();
+
+					// Fixed Headers
+					if ( classes.contains( 'header-fixed' ) ) {
+
+						// Header on left, or header on right.
+						if ( classes.contains( 'header-top' ) ) {
+							headerHeight = naviHeight + secondaryMenuHeight + 2;
+							siteMargin = $( '#navi-wrap' ).outerHeight();
+							if ( classes.contains( 'has-youtube-header' ) ) {
+								siteMargin = siteMargin + $( '#header-widget-area' ).outerHeight();
+							}
 						}
-						$( '.wp-custom-header' ).css( 'height', header_height + 2 );
+
+					// Non-fixed headers.
+					} else {
+						if ( classes.contains( 'header-top' ) ) {
+							headerHeight = naviHeight + secondaryMenuHeight + 2;
+						}
 					}
 
 				// Mobile.
 				} else {
-					$( '.site-header + div' ).css( 'margin-top', '0px' );
-					if ( $( '#main-menu' ).is( ':visible' ) ) {
-						header_height = Math.abs( $( '#navi' ).outerHeight() - $( '#main-menu' ).outerHeight() );
+					menu = $( '#main-menu' );
+
+					if ( menu.is( ':visible' ) ) {
+						headerHeight = naviHeight - menu.outerHeight() + 2;
 					} else {
-						header_height = $( '#navi' ).outerHeight();
+						headerHeight = naviHeight + 2;
 					}
-					$( '.wp-custom-header' ).css( 'height', header_height + 2 );
 				}
+
+				$( '.wp-custom-header' ).css( 'height', headerHeight );
+				$( '.site-header + *' ).css( 'margin-top', siteMargin );
 			}
 		},
 
 		// Sticky/Fixed Header.
 		'header_fixed': {
 			init: function() {
-
-				// Listen for resize events to retrigger calculations.
-				$( window ).resize( this.calc );
-
-				// Initial calculations.
-				this.calc();
-			},
-
-			calc: function() {
-				var header_height = $( '#navi-wrap' ).outerHeight() - $( '#header-widget-area' ).outerHeight(),
-					screen_width = $( window ).width() + 16;
-
-				if ( !! $( '.custom-header.header-fixed' ).length ) {
-
-					$( '.wp-custom-header' ).css( 'height', '' );
-
-					// Desktop.
-					if ( screen_width > 768 ) {
-
-						// Adjusts .header-top position, offsets content based on header content.
-						if ( $( '.header-fixed:not(.header-left):not(.header-right)' ).length ) {
-							$( '.wp-custom-header' ).css( 'height', $( '#navi' ).outerHeight() + $( '#secondary-menu' ).outerHeight() + 2 );
-							$( '.site-header + div' ).css( 'margin-top', $( '#navi-wrap' ).outerHeight() );
-
-							// Adjusts .header-left and .header-right, remove styling from the .header-top defaults.
-						} else {
-							$( '.site-header + div' ).css( 'margin-top', '0' );
-							$( '.wp-custom-header' ).css( 'height', '100vh' );
-						}
-
-					// Mobile.
-					} else {
-						$( '.site-header + div' ).css( 'margin-top', '0px' );
-						if ( $( '#main-menu' ).is( ':visible' ) ) {
-							header_height = Math.abs( $( '#navi' ).outerHeight() - $( '#main-menu' ).outerHeight() );
-						} else {
-							header_height = $( '#navi' ).outerHeight();
-						}
-						$( '.wp-custom-header' ).css( 'height', header_height + 2 );
-					}
-				}
 
 				window.addEventListener( 'scroll', function() {
 					var distanceY, shrinkOn, header;
@@ -236,6 +211,10 @@ var BoldGrid = BoldGrid || {};
 					header = document.getElementById( 'masthead' );
 					distanceY > shrinkOn ? header.classList.add( 'smaller' ) : header.classList.remove( 'smaller' );
 				} );
+			},
+
+			calc: function() {
+				BoldGrid.custom_header.calc();
 			}
 		},
 

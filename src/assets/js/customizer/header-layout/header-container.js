@@ -8,12 +8,12 @@
 			var containers = [ 'navi', 'secondary-menu' ];
 			_.each( containers, function( container ) {
 				container = document.getElementById( container );
-				container.classList.remove( 'container' );
+				container && container.classList.remove( 'container' );
 				if ( to === 'header-top' && ! _.isEmpty( api( 'header_container' )() ) ) {
-					container.classList.add( api( 'header_container' )() );
+					container && container.classList.add( api( 'header_container' )() );
 				}
 			} );
-			document.body.classList.contains( 'header-fixed' ) ? BoldGrid.header_fixed.calc() : BoldGrid.custom_header.calc();
+			BoldGrid.custom_header.calc();
 		} );
 	} );
 
@@ -25,12 +25,12 @@
 			var containers = [ 'navi', 'secondary-menu' ];
 			_.each( containers, function( container ) {
 				container = document.getElementById( container );
-				container.classList.remove( 'container' );
+				container && container.classList.remove( 'container' );
 				if ( ! _.isEmpty( api( 'header_container' )() ) ) {
-					container.classList.add( to );
+					container && container.classList.add( to );
 				}
 			} );
-			document.body.classList.contains( 'header-fixed' ) ? BoldGrid.header_fixed.calc() : BoldGrid.custom_header.calc();
+			BoldGrid.custom_header.calc();
 		} );
 	} );
 } )( wp.customize );

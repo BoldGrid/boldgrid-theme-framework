@@ -155,7 +155,7 @@ class Boldgrid_Framework_Menu {
 			 * @param array $args      Arguments to override BGTFW default configs for wp_nav_menu().
 			 * @param array $add_class Array of wp_nav_menu args that are CSS class overrides.
 			 */
-			$action = function( $args, $add_class ) use ( $menu, $edit_enabled ) {
+			$action = function( $args, $add_class = array() ) use ( $menu, $edit_enabled ) {
 
 				// Combine classes in $args from hook, and merge the remaining items in array.
 				if ( doing_action( $this->configs['menu']['action_prefix'] . $menu['theme_location'] ) ) {

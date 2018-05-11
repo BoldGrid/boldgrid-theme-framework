@@ -410,7 +410,8 @@ class BoldGrid {
 	 */
 	public function get_background_color( $mod ) {
 		$color = get_theme_mod( $mod );
-		$color_class = array_shift( explode( ':', $color ) );
+		$color_class = explode( ':', $color );
+		$color_class = array_shift( $color_class );
 		if ( strpos( $color_class, 'neutral' ) === false ) {
 			$color_class = str_replace( '-', '', $color_class );
 		}
@@ -430,8 +431,8 @@ class BoldGrid {
 	 */
 	public function get_link_color( $mod ) {
 		$color = get_theme_mod( $mod );
-		$color = strtok( $color, ':' );
-		$classes[] = array_shift( explode( ':', $color ) ) . '-link-color';
+		$color = explode( ':', $color );
+		$classes[] = array_shift( $color ) . '-link-color';
 		return $classes;
 	}
 
@@ -555,7 +556,8 @@ class BoldGrid {
 		}
 
 		$background_color = get_theme_mod( 'boldgrid_background_color' );
-		$background_color = strtok( $background_color, ':' );
+		$background_color = explode( ':', $background_color );
+		$background_color = array_shift( $background_color );
 
 		if ( ! empty( $background_color ) ) {
 			if ( strpos( $background_color, 'neutral' ) !== false ) {

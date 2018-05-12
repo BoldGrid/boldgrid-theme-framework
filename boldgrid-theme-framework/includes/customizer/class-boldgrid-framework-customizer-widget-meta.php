@@ -99,6 +99,8 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 			$widget_meta = $this;
 
+			$sanitize = new Boldgrid_Framework_Customizer_Color_Sanitize();
+
 			$wp_customize->selective_refresh->add_partial( $title_setting->id, array(
 				'type' => 'sidebar_meta_title',
 				'settings' => array( $title_setting->id ),
@@ -111,6 +113,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 			$background_color_setting = $wp_customize->add_setting( sprintf( 'sidebar_meta[%s][background_color]', $section->sidebar_id ), array(
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
+				'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 				'transport' => 'postMessage',
 				'default' => '',
 			) );
@@ -125,6 +128,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 			$headings_color_setting = $wp_customize->add_setting( sprintf( 'sidebar_meta[%s][headings_color]', $section->sidebar_id ), array(
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
+				'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 				'transport' => 'postMessage',
 				'default' => '',
 			) );
@@ -149,6 +153,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 			$links_color_setting = $wp_customize->add_setting( sprintf( 'sidebar_meta[%s][links_color]', $section->sidebar_id ), array(
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
+				'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 				'transport' => 'postMessage',
 				'default' => '',
 			) );

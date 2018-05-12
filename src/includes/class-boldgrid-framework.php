@@ -243,6 +243,7 @@ class BoldGrid_Framework {
 		// Assign configs.
 		$this->assign_configs();
 		$this->assign_configs( 'customizer-options' );
+		$this->assign_configs( 'customizer' );
 		$this->assign_configs( 'components' );
 	}
 
@@ -257,10 +258,12 @@ class BoldGrid_Framework {
 		$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
 		$template_config = new Boldgrid_Framework_Template_Config( $this->configs );
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
+		$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
 
 		// Set the is_editing_boldgrid_theme filter to true for any theme using BGTFW.
 		add_filter( 'is_editing_boldgrid_theme', '__return_true', 20 );
 
+		add_filter( 'boldgrid_theme_framework_config', array( $starter_content, 'set_configs' ), 15 );
 		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $template_config, 'pagination_style' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs' ), 20 );
@@ -582,6 +585,7 @@ class BoldGrid_Framework {
 	 */
 	private function theme_customizer() {
 		self::customizer_base();
+		self::widget_areas();
 		self::customizer_background_controls();
 		self::device_preview();
 		self::customizer_edit_buttons();
@@ -753,7 +757,7 @@ class BoldGrid_Framework {
 
 		// Load the default Kirki Configuration.
 		$this->loader->add_action( 'init', $base, 'kirki_controls' );
-
+		$this->loader->add_action( 'customize_register', $base, 'add_panels' );
 		$this->loader->add_action( 'customize_register', $base, 'site_logo' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_name' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_description' );
@@ -764,15 +768,26 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'custom_customize_enqueue' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_print_styles', $base, 'control_styles' );
+
 		// This hook can be used to add any styles to the head.
 		$this->loader->add_action( 'wp_head', $base, 'add_head_styles', 9001 );
+
 		// Output custom JS to live site.
 		$this->loader->add_action( 'wp_footer', $base, 'custom_js_output' );
-		// Display Widgets.
-		$this->loader->add_action( 'boldgrid_footer_top', $base, 'footer_widget_html' );
-		$this->loader->add_action( 'boldgrid_header_bottom', $base, 'header_widget_html' );
+
 		// Enqueue live preview javascript in Theme Customizer admin screen.
 		$this->loader->add_action( 'customize_preview_init', $base, 'live_preview' );
+	}
+
+	/**
+	 * Responsible for creating the dynamic widget area markup.
+	 *
+	 * @since 2.0.0
+	 */
+	private function widget_areas() {
+		$widget_areas = new Boldgrid_Framework_Customizer_Widget_Areas();
+		$this->loader->add_action( 'boldgrid_footer_top', $widget_areas, 'footer_html' );
+		$this->loader->add_action( 'boldgrid_header_bottom', $widget_areas, 'header_html' );
 	}
 
 	/**

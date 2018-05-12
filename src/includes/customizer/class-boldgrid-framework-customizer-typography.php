@@ -98,38 +98,6 @@ class Boldgrid_Framework_Customizer_Typography {
 	 */
 	public function typography_panel( $wp_customize ) {
 
-		// Configuration option to check.
-		$typography_config = $this->configs['customizer-options']['typography']['enabled'];
-
-		if ( true === $typography_config ) {
-
-			// Add the Typography Panel to main customizer view.
-			$wp_customize->add_panel( 'boldgrid_typography', array(
-				'title'       => __( 'Fonts', 'bgtfw' ),
-				'description' => 'Manage your site typography settings.',
-				'priority'    => 99,
-			) );
-
-			// Add Navigation to Typography Panel.
-			$wp_customize->add_section( 'navigation_typography', array(
-				'title'    => __( 'Menus', 'bgtfw' ),
-				'panel' => 'boldgrid_typography',
-			) );
-
-			// Add Headings to Typography Panel.
-			$wp_customize->add_section( 'headings_typography', array(
-				'title' => __( 'Headings', 'bgtfw' ),
-				'panel' => 'boldgrid_typography',
-			) );
-
-			// Add Body to Typography Panel.
-			$wp_customize->add_section( 'body_typography', array(
-				'title'    => __( 'Main Text', 'bgtfw' ),
-				'panel' => 'boldgrid_typography',
-			) );
-
-		}
-
 	}
 
 	/**

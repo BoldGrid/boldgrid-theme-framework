@@ -258,7 +258,7 @@ msgstr ""
 msgid "Enable Footer"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:384, src/includes/configs/customizer/controls.config.php:421, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:839
+#: src/includes/configs/customizer/controls.config.php:384, src/includes/configs/customizer/controls.config.php:421, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:114
 msgid "Continue to Widgets Section"
 msgstr ""
 
@@ -274,7 +274,7 @@ msgstr ""
 msgid "Select the number of footer widget columns you wish to display."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:423, src/includes/customizer/class-boldgrid-framework-customizer.php:841
+#: src/includes/configs/customizer/controls.config.php:423
 msgid "You can add widgets to your header from the widgets section."
 msgstr ""
 
@@ -302,8 +302,124 @@ msgstr ""
 msgid "Display the featured image for posts in the full post content."
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:15, src/includes/customizer/class-boldgrid-framework-customizer.php:603
+#: src/includes/configs/customizer/controls.config.php:517
+msgid "Post Content Display"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:521
+msgid "Post Excerpt"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:522
+msgid "Full Content"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:529, src/includes/configs/customizer/controls.config.php:617, src/includes/configs/customizer/controls.config.php:634, src/includes/configs/customizer/controls.config.php:664, src/includes/configs/customizer/sections.config.php:27, src/includes/configs/customizer/sections.config.php:57
+msgid "Layout"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:534
+msgid "Contained"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:535, src/includes/configs/customizer/controls.config.php:656, src/includes/configs/customizer/controls.config.php:688, src/includes/customizer/class-boldgrid-framework-customizer-background.php:201
+msgid "Full Width"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:541
+msgid "Sidebar Display"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:550, src/includes/configs/customizer/controls.config.php:574
+msgid "Homepage Sidebar Display"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:560, src/includes/configs/customizer/panels.config.php:15
 msgid "Design"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:565
+msgid "Design 1"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:566
+msgid "Design 2"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:567
+msgid "Design 3"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:568
+msgid "Design 4"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:587
+msgid "Sidebar Options"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:597
+msgid "Homepage Blog Layout"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:602, src/includes/configs/customizer/controls.config.php:622, src/includes/configs/customizer/controls.config.php:639, src/includes/configs/customizer/controls.config.php:669
+msgid "Layout 1"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:603, src/includes/configs/customizer/controls.config.php:623, src/includes/configs/customizer/controls.config.php:640, src/includes/configs/customizer/controls.config.php:670
+msgid "Layout 2"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:604, src/includes/configs/customizer/controls.config.php:624, src/includes/configs/customizer/controls.config.php:641, src/includes/configs/customizer/controls.config.php:671
+msgid "Layout 3"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:605, src/includes/configs/customizer/controls.config.php:625, src/includes/configs/customizer/controls.config.php:642, src/includes/configs/customizer/controls.config.php:672
+msgid "Layout 4"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:606, src/includes/configs/customizer/controls.config.php:626, src/includes/configs/customizer/controls.config.php:643, src/includes/configs/customizer/controls.config.php:673
+msgid "Layout 5"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:607, src/includes/configs/customizer/controls.config.php:627, src/includes/configs/customizer/controls.config.php:644, src/includes/configs/customizer/controls.config.php:674
+msgid "Layout 6"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:651
+msgid "Header Container"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:657, src/includes/configs/customizer/controls.config.php:689
+msgid "Fixed Width"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:675
+msgid "Layout 7"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:676
+msgid "Layout 8"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:683
+msgid "Footer Container"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:696
+msgid "Header Position"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:701
+msgid "Header on Top"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:702
+msgid "Header on Left"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:703
+msgid "Header on Right"
 msgstr ""
 
 #: src/includes/configs/customizer/panels.config.php:19
@@ -332,10 +448,6 @@ msgstr ""
 
 #: src/includes/configs/customizer/panels.config.php:47
 msgid "Posts"
-msgstr ""
-
-#: src/includes/configs/customizer/sections.config.php:27, src/includes/configs/customizer/sections.config.php:57, src/includes/customizer/class-boldgrid-framework-customizer.php:547, src/includes/customizer/class-boldgrid-framework-customizer.php:671, src/includes/customizer/class-boldgrid-framework-customizer.php:694, src/includes/customizer/class-boldgrid-framework-customizer.php:736
-msgid "Layout"
 msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:29
@@ -392,6 +504,10 @@ msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:83
 msgid "Main Text"
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:92, src/includes/configs/customizer/sections.config.php:102
+msgid "Sidebar"
 msgstr ""
 
 #: src/includes/configs/tgm.config.php:67
@@ -494,10 +610,6 @@ msgstr ""
 msgid "Scaled to Fit"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:201, src/includes/customizer/class-boldgrid-framework-customizer.php:552, src/includes/customizer/class-boldgrid-framework-customizer.php:721, src/includes/customizer/class-boldgrid-framework-customizer.php:765
-msgid "Full Width"
-msgstr ""
-
 #: src/includes/customizer/class-boldgrid-framework-customizer-background.php:202
 msgid "Full Height"
 msgstr ""
@@ -530,7 +642,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:409
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:454
 msgid "Background"
 msgstr ""
 
@@ -1065,143 +1177,19 @@ msgstr ""
 msgid "Links Color:"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:396
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:441
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:414
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:459
 msgid "CSS/JS Editor"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:418
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:463
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:514
-msgid "Post Content Display"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:518
-msgid "Post Excerpt"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:519
-msgid "Full Content"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:526, src/includes/customizer/class-boldgrid-framework-customizer.php:559
-msgid "Sidebar"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:551
-msgid "Contained"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:572
-msgid "Sidebar Display"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:587, src/includes/customizer/class-boldgrid-framework-customizer.php:623
-msgid "Homepage Sidebar Display"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:607
-msgid "Design 1"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:608
-msgid "Design 2"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:609
-msgid "Design 3"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:610
-msgid "Design 4"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:635
-msgid "Sidebar Options"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:652
-msgid "Homepage Blog Layout"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:656, src/includes/customizer/class-boldgrid-framework-customizer.php:675, src/includes/customizer/class-boldgrid-framework-customizer.php:698, src/includes/customizer/class-boldgrid-framework-customizer.php:740
-msgid "Layout 1"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:657, src/includes/customizer/class-boldgrid-framework-customizer.php:676, src/includes/customizer/class-boldgrid-framework-customizer.php:699, src/includes/customizer/class-boldgrid-framework-customizer.php:741
-msgid "Layout 2"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:658, src/includes/customizer/class-boldgrid-framework-customizer.php:677, src/includes/customizer/class-boldgrid-framework-customizer.php:700, src/includes/customizer/class-boldgrid-framework-customizer.php:742
-msgid "Layout 3"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:659, src/includes/customizer/class-boldgrid-framework-customizer.php:678, src/includes/customizer/class-boldgrid-framework-customizer.php:701, src/includes/customizer/class-boldgrid-framework-customizer.php:743
-msgid "Layout 4"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:660, src/includes/customizer/class-boldgrid-framework-customizer.php:679, src/includes/customizer/class-boldgrid-framework-customizer.php:702, src/includes/customizer/class-boldgrid-framework-customizer.php:744
-msgid "Layout 5"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:661, src/includes/customizer/class-boldgrid-framework-customizer.php:680, src/includes/customizer/class-boldgrid-framework-customizer.php:703, src/includes/customizer/class-boldgrid-framework-customizer.php:745
-msgid "Layout 6"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:717
-msgid "Header Container"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:722, src/includes/customizer/class-boldgrid-framework-customizer.php:766
-msgid "Fixed Width"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:746
-msgid "Layout 7"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:747
-msgid "Layout 8"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:761
-msgid "Footer Container"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:785
-msgid "Header Position"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:789
-msgid "Header on Top"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:790
-msgid "Header on Left"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:791
-msgid "Header on Right"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:803
-msgid "Header Settings"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:820
-msgid "Header Widgets"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:821
-msgid "Select the number of widget areas you wish to display"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:867
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:559
 msgid "Menu Tutorial"
 msgstr ""
 

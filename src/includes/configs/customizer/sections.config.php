@@ -83,4 +83,24 @@ return array(
 		'title' => __( 'Main Text', 'bgtfw' ),
 		'panel' => 'boldgrid_typography',
 	),
+	'bgtfw_pages_blog_blog_page_layout' => array(
+		'title' => 'Layout',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'priority' => 2,
+	),
+	'bgtfw_blog_blog_page_panel_sidebar' => array(
+		'title' => __( 'Sidebar', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'priority' => 4,
+	),
+	'bgtfw_pages_blog_posts_layout' => array(
+		'title' => 'Layout',
+		'panel' => 'bgtfw_blog_posts_panel',
+		'priority' => 2,
+	),
+	'bgtfw_pages_blog_posts_sidebar' => array(
+		'title' => __( 'Sidebar', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_posts_panel',
+		'priority' => 4,
+	),
 );

@@ -49,12 +49,57 @@ class BoldGrid_Framework_Customizer {
 	 * @since 1.5.3
 	 */
 	public function kirki_controls() {
-
-		global $boldgrid_theme_framework;
-		$configs = $boldgrid_theme_framework->get_configs();
+		global $wp_customize;
 
 		foreach( $this->configs['customizer']['controls'] as $control ) {
-			Kirki::add_field( 'bgtfw', $control );
+			if ( 'radio' !== $control['type'] ) {
+				Kirki::add_field( 'bgtfw', $control );
+			} else {
+				if ( $wp_customize ) {
+					if ( 'radio' === $control['type'] ) {
+						$setting = array();
+
+						$setting['default'] = isset( $control['default'] ) ? $control['default'] : false;
+
+						// Configs are set before page templates available can be determined, so check the controls and update choices.
+						if ( empty( $control['choices'] ) && strpos( $control['default'], 'sidebar' ) !== false ) {
+							$type = ( strpos( $control['settings'], 'blog' ) !== false ) ? 'post' : 'page';
+							$control['choices'] = array_flip( get_page_templates( null, $type ) );
+						}
+
+						unset( $control['default'] );
+
+						$setting['capability'] = isset( $control['capability'] ) ? $control['capability'] : 'edit_theme_options';
+						unset( $control['capability'] );
+
+						$setting['transport'] = isset( $control['transport'] ) ? $control['transport'] : 'refresh';
+						unset( $control['transport'] );
+
+						$setting['type'] = isset( $control['option_type'] ) ? $control['option_type'] : 'theme_mod';
+						unset( $control['option_type'] );
+
+						if ( isset( $control['theme_supports'] ) ) {
+							$setting['theme_supports'] = $control['theme_supports'];
+							unset( $control['theme_supports'] );
+						}
+						if ( isset( $control['sanitize_callback'] ) ) {
+							$setting['sanitize_callback'] = $control['sanitize_callback'];
+							unset( $control['sanitize_callback'] );
+						}
+						if ( isset( $control['sanitize_js_callback'] ) ) {
+							$setting['sanitize_js_callback'] = $control['sanitize_js_callback'];
+							unset( $control['sanitize_js_callback'] );
+						}
+
+						$wp_customize->add_setting( $control['settings'], $setting );
+
+						$setting['setting'] = isset( $control['setting'] ) ? $control['setting'] : $control['settings'];
+						unset( $control['setting'] );
+
+						$wp_customize->add_control( $setting['setting'], $control );
+					}
+				}
+			}
 		}
 
 		foreach( $this->configs['customizer']['sections'] as $name => $section ) {
@@ -468,7 +513,6 @@ HTML;
 
 		// Register custom panel type.
 		$wp_customize->register_panel_type( 'Boldgrid_Framework_Customizer_Panel' );
-
 		foreach( $this->configs['customizer']['panels'] as $name => $panel ) {
 			$panel = new Boldgrid_Framework_Customizer_Panel( $wp_customize, $name, $panel );
 			$wp_customize->add_panel( $panel );
@@ -495,358 +539,6 @@ HTML;
 			$controls['bgtfw-palette-selector'] = 'Boldgrid_Framework_Customizer_Control_Palette_Selector';
 			return $controls;
 		} );
-
-		// Add example section and controls to the middle (second) panel
-		$wp_customize->add_section( 'bgtfw_pages_blog_blog_page_layout', array(
-			'title' => 'Layout',
-			'panel' => 'bgtfw_blog_blog_page_panel',
-			'priority' => 2,
-		));
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_pages_blog_blog_page_layout_content' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'excerpt',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_pages_blog_blog_page_layout_content', array(
-			'label'       => esc_html__( 'Post Content Display', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 40,
-			'choices'     => array(
-				'excerpt' => esc_attr__( 'Post Excerpt', 'bgtfw' ),
-				'content' => esc_attr__( 'Full Content', 'bgtfw' ),
-			),
-			'section' => 'bgtfw_pages_blog_blog_page_layout',
-		) );
-
-		// Add example section and controls to the middle (second) panel
-		$wp_customize->add_section( 'bgtfw_blog_blog_page_panel_sidebar', array(
-			'title' => __( 'Sidebar', 'bgtfw' ),
-			'panel' => 'bgtfw_blog_blog_page_panel',
-			'priority' => 4,
-		));
-
-		// Add example section and controls to the middle (second) panel
-		$wp_customize->add_section( 'bgtfw_pages_blog_posts_layout', array(
-			'title' => 'Layout',
-			'panel' => 'bgtfw_blog_posts_panel',
-			'priority' => 2,
-		));
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_pages_blog_posts_layout_layout' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'container',
-			'transport'   => 'postMessage',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_pages_blog_posts_layout_layout', array(
-			'label'       => esc_html__( 'Layout', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 40,
-			'choices'     => array(
-				'container' => esc_attr__( 'Contained', 'bgtfw' ),
-				'container-fluid' => esc_attr__( 'Full Width', 'bgtfw' ),
-			),
-			'section' => 'bgtfw_pages_blog_posts_layout',
-		) );
-
-		// Add example section and controls to the middle (second) panel
-		$wp_customize->add_section( 'bgtfw_pages_blog_posts_sidebar', array(
-			'title' => __( 'Sidebar', 'bgtfw' ),
-			'panel' => 'bgtfw_blog_posts_panel',
-			'priority' => 4,
-		));
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_layout_blog' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'no-sidebar',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_layout_blog', array(
-			'label'       => esc_html__( 'Sidebar Display', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 10,
-			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
-			'section'     => 'bgtfw_pages_blog_posts_sidebar',
-		) );
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_blog_blog_page_settings' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'no-sidebar',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_blog_blog_page_settings', array(
-			'label'       => esc_html__( 'Homepage Sidebar Display', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 10,
-			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
-			'section'     => 'bgtfw_blog_blog_page_settings',
-		) );
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_blog_layout' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'layout-1',
-			'transport'   => 'postMessage',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_blog_layout', array(
-			'label'       => esc_html__( 'Design', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 40,
-			'choices'     => array(
-				'design-1' => esc_attr__( 'Design 1', 'bgtfw' ),
-				'design-2' => esc_attr__( 'Design 2', 'bgtfw' ),
-				'design-3' => esc_attr__( 'Design 3', 'bgtfw' ),
-				'design-4' => esc_attr__( 'Design 4', 'bgtfw' ),
-			),
-			'section' => 'bgtfw_pages_blog_blog_page_layout',
-		) );
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_blog_blog_page_sidebar' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'no-sidebar',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_blog_blog_page_sidebar', array(
-			'label'       => esc_html__( 'Homepage Sidebar Display', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 30,
-			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
-			'section'     => 'static_front_page',
-			'active_callback' => function() {
-				return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
-			},
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_blog_blog_page_sidebar2', array(
-			'label'       => esc_html__( 'Sidebar Options', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 10,
-			'choices'     => array_flip( get_page_templates( null, 'post' ) ),
-			'section'     => 'bgtfw_blog_blog_page_panel_sidebar',
-			'settings'    => 'bgtfw_blog_blog_page_sidebar',
-		) );
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_layout_blog_layout' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'layout-1',
-			'transport'   => 'postMessage',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_layout_blog_layout', array(
-			'label'       => esc_html__( 'Homepage Blog Layout', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 40,
-			'choices'     => array(
-				'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
-				'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
-				'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
-				'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
-				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
-				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
-			),
-			'section'     => 'static_front_page',
-			'active_callback' => function() {
-				return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
-			},
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_layout_blog_layout', array(
-			'label'       => esc_html__( 'Layout', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 40,
-			'choices'     => array(
-				'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
-				'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
-				'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
-				'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
-				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
-				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
-			),
-			'section' => 'bgtfw_layout_blog',
-		) );
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_header_top_layouts' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'layout-1',
-			'transport'   => 'postMessage',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_header_top_layouts', array(
-			'label'       => esc_html__( 'Layout', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 30,
-			'choices'     => array(
-				'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
-				'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
-				'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
-				'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
-				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
-				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
-			),
-			'section'     => 'bgtfw_header_layout',
-		) );
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'header_container' , array(
-			'type'      => 'theme_mod',
-			'default'   => '',
-			'transport'   => 'postMessage',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'header_container', array(
-			'label'       => esc_html__( 'Header Container', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 30,
-			'choices'     => array(
-				'' => esc_attr__( 'Full Width', 'bgtfw' ),
-				'container' => esc_attr__( 'Fixed Width', 'bgtfw' ),
-			),
-			'section'     => 'bgtfw_header_layout',
-		) );
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'bgtfw_footer_layouts' , array(
-			'type'      => 'theme_mod',
-			'default'   => 'layout-1',
-			'transport'   => 'postMessage',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'bgtfw_footer_layouts', array(
-			'label'       => esc_html__( 'Layout', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 10,
-			'choices'     => array(
-				'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
-				'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
-				'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
-				'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
-				'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
-				'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
-				'layout-7' => esc_attr__( 'Layout 7', 'bgtfw' ),
-				'layout-8' => esc_attr__( 'Layout 8', 'bgtfw' ),
-			),
-			'section'     => 'boldgrid_footer_panel',
-		) );
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting( 'footer_container' , array(
-			'type'      => 'theme_mod',
-			'default'   => '',
-			'transport'   => 'postMessage',
-		) );
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control( 'footer_container', array(
-			'label'       => esc_html__( 'Footer Container', 'bgtfw' ),
-			'type'        => 'radio',
-			'priority'    => 10,
-			'choices'     => array(
-				'' => esc_attr__( 'Full Width', 'bgtfw' ),
-				'container' => esc_attr__( 'Fixed Width', 'bgtfw' ),
-			),
-			'section'     => 'boldgrid_footer_panel',
-		) );
-
-		// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-		$wp_customize->add_setting(
-			'bgtfw_header_layout_position',
-			array(
-				'type' => 'theme_mod',
-				'default' => 'header-top',
-				'transport' => 'postMessage',
-			)
-		);
-
-		// Uses the 'radio' type in WordPress.
-		$wp_customize->add_control(
-			'bgtfw_header_layout_position',
-			array(
-				'label' => __( 'Header Position', 'bgtfw' ),
-				'type' => 'radio',
-				'priority' => 10,
-				'choices' => array(
-					'header-top' => esc_attr__( 'Header on Top', 'bgtfw' ),
-					'header-left' => esc_attr__( 'Header on Left', 'bgtfw' ),
-					'header-right' => esc_attr__( 'Header on Right', 'bgtfw' ),
-				),
-				'section' => 'bgtfw_header_layout',
-			)
-		);
-
-		$config = $this->configs['customizer-options']['header_panel'];
-
-		if ( true === $config ) {
-
-			// It really doesn't matter if another plugin or the theme adds the same section; they will merge.
-			$wp_customize->add_section( 'boldgrid_header_panel', array(
-				'title'    => __( 'Header Settings', 'bgtfw' ),
-				'panel' => 'boldgrid_other',
-				'priority' => 120, // After all core sections.
-			) );
-
-			$header_widget_control = $this->configs['customizer-options']['header_controls']['widgets'];
-
-			if ( true === $header_widget_control ) {
-
-				// 'theme_mod's are stored with the theme, so different themes can have unique custom css rules with basically no extra effort.
-				$wp_customize->add_setting( 'boldgrid_header_widgets' , array(
-					'type'      => 'theme_mod',
-					'default'   => '0',
-				) );
-
-				// Uses the 'radio' type in WordPress.
-				$wp_customize->add_control( 'boldgrid_header_widgets', array(
-					'label'       => __( 'Header Widgets', 'bgtfw' ),
-					'description' => __( 'Select the number of widget areas you wish to display', 'bgtfw' ) . ':',
-					'type'        => 'radio',
-					'priority'    => 10,
-					'choices'     => array(
-						'0'   => '0',
-						'1'   => '1',
-						'2'   => '2',
-						'3'   => '3',
-						'4'   => '4',
-					),
-					'section'     => 'boldgrid_header_panel',
-				) );
-
-				$header_settings = function ( $controls ) {
-					$controls['boldgrid_header_widget_help'] = array(
-						'type'        => 'custom',
-						'setting'     => 'boldgrid_header_widget_help',
-						'section'     => 'boldgrid_header_panel',
-						'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
-						'priority'    => 15,
-						'description' => __( 'You can add widgets to your header from the widgets section.', 'bgtfw' ),
-					);
-
-					return $controls;
-				};
-
-				add_filter( 'kirki/controls', $header_settings );
-			}
-		}
 	}
 
 	/**

@@ -416,7 +416,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bolgrid_call_to_action',        $boldgrid_theme,   'call_to_action' );
 		$this->loader->add_filter( 'bolgrid_call_to_action_button', $boldgrid_theme,   'cta_button' );
 		$this->loader->add_filter( 'boldgrid_contact_phone',        $boldgrid_theme,   'contact_phone' );
-		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_logo_or_title' );
+		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_title' );
 		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
 		$this->loader->add_filter( 'boldgrid_primary_navigation',   $boldgrid_theme,   'print_primary_navigation' );
 		$this->loader->add_filter( 'bgtfw_inline_css', $boldgrid_theme, 'main_menu_css' );
@@ -758,7 +758,6 @@ class BoldGrid_Framework {
 		// Load the default Kirki Configuration.
 		$this->loader->add_action( 'init', $base, 'kirki_controls' );
 		$this->loader->add_action( 'customize_register', $base, 'add_panels' );
-		$this->loader->add_action( 'customize_register', $base, 'site_logo' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_name' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_description' );
 		$this->loader->add_action( 'customize_register', $base, 'header_panel' );

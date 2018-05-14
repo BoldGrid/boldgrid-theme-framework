@@ -255,6 +255,9 @@ class BoldGrid {
 	public function print_title_tagline() {
 	?>
 		<div class="site-branding">
+			<?php if ( function_exists( 'the_custom_logo' ) ) : ?>
+				<?php the_custom_logo(); ?>
+			<?php endif; ?>
 			<?php do_action( 'boldgrid_site_title' ); ?>
 			<?php do_action( 'boldgrid_print_tagline' ); ?>
 		</div><!-- .site-branding -->

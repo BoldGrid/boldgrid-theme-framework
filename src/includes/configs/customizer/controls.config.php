@@ -21,7 +21,6 @@ if ( ! function_exists( 'get_page_templates' ) ) {
 $palette = new Boldgrid_Framework_Compile_Colors( $this->configs );
 $active_palette = $palette->get_active_palette();
 $formatted_palette = $palette->color_format( $active_palette );
-$page_templates = array_flip( get_page_templates( null, 'page' ) );
 $sanitize = new Boldgrid_Framework_Customizer_Color_Sanitize();
 
 return array(
@@ -89,9 +88,9 @@ return array(
 		'settings'    => 'bgtfw_layout_page',
 		'label'       => __( 'Default Sidebar Display', 'bgtfw' ),
 		'section'     => 'bgtfw_layout_page',
-		'default'     => 'none',
+		'default'     => 'no-sidebar',
 		'priority'    => 10,
-		'choices'     => $page_templates,
+		'choices'     => array(),
 	),
 	array(
 		'type'     => 'typography',
@@ -542,7 +541,7 @@ return array(
 		'type'        => 'radio',
 		'priority'    => 10,
 		'default'   => 'no-sidebar',
-		'choices'     => array_flip( get_page_templates( null, 'post' ) ),
+		'choices'     => array(),
 		'section'     => 'bgtfw_pages_blog_posts_sidebar',
 	),
 	array(
@@ -551,7 +550,7 @@ return array(
 		'type'        => 'radio',
 		'priority'    => 10,
 		'default'   => 'no-sidebar',
-		'choices'     => array_flip( get_page_templates( null, 'post' ) ),
+		'choices'     => array(),
 		'section'     => 'bgtfw_blog_blog_page_settings',
 	),
 	array(
@@ -575,7 +574,7 @@ return array(
 		'type'        => 'radio',
 		'priority'    => 30,
 		'default'   => 'no-sidebar',
-		'choices'     => array_flip( get_page_templates( null, 'post' ) ),
+		'choices'     => array(),
 		'section'     => 'static_front_page',
 		'active_callback' => function() {
 			return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
@@ -588,7 +587,7 @@ return array(
 		'type'        => 'radio',
 		'priority'    => 10,
 		'default'   => 'no-sidebar',
-		'choices'     => array_flip( get_page_templates( null, 'post' ) ),
+		'choices'     => array(),
 		'section'     => 'bgtfw_blog_blog_page_panel_sidebar',
 	),
 	array(

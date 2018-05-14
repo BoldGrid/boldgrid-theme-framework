@@ -32,7 +32,7 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:317
+#: src/includes/class-boldgrid-framework-api.php:320
 msgid "Skip to content"
 msgstr ""
 
@@ -642,7 +642,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:454
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:393
 msgid "Background"
 msgstr ""
 
@@ -1177,19 +1177,19 @@ msgstr ""
 msgid "Links Color:"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:441
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:380
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:459
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:398
 msgid "CSS/JS Editor"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:463
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:402
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:559
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:493
 msgid "Menu Tutorial"
 msgstr ""
 

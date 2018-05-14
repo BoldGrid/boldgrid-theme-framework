@@ -349,67 +349,6 @@ HTML;
 	}
 
 	/**
-	 * Site Logo Customizer Control
-	 *
-	 * Responsible for displaying the site customizer logo control.
-	 *
-	 * @since  1.0.0
-	 */
-	public function site_logo( $wp_customize ) {
-
-		$config = $this->configs['customizer-options']['site_logo'];
-
-		if ( true === $config ) {
-
-			$wp_customize->add_setting( 'boldgrid_logo_setting', array(
-				'default'       => '', // Default setting/value to save
-				'capability'    => 'edit_theme_options', // Optional. Special permissions for accessing this setting.
-				'transport'     => 'refresh', // What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
-			) );
-
-			$wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'boldgrid_logo_setting', array(
-				'section'     => 'title_tagline',
-				'label'       => __( 'Site Logo' ),
-				'priority'    => 50,
-				'description' => 'If you have a logo to use for your site, it will replace your Site Title.  Press "Remove" to remove your site logo and use a Site Title instead.',
-				'flex_width'  => true, // Allow any width, making the specified value recommended. False by default.
-				'flex_height' => true, // Require the resulting image to be exactly as tall as the height attribute (default).
-				'width'       => 520,
-				'height'      => 160,
-			) ) );
-		}
-	}
-
-	/**
-	 * Not in use
-	 * This code was created to change the crop size to twice the recommended to
-	 * allow for unpixelated resizing.
-	 *
-	 * @since 1.0
-	 */
-	public function change_logo_crop_size() {
-		$callback = function ( $payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop ) {
-
-			global $boldgrid_overwrote_cropping;
-			if ( $boldgrid_overwrote_cropping ) {
-				return null;
-			}
-
-			$boldgrid_overwrote_cropping = true;
-
-			$correct_context = ! empty( $_POST['context'] ) ? ( 'boldgrid_logo_setting' === $_POST['context'] ) : false;
-			$crop_action = ! empty( $_POST['action'] ) ? ( 'crop-image' === $_POST['action'] ) : false;
-			$customizer_on = ! empty( $_POST['wp_customize'] ) ? true : false;
-
-			if ( $crop_action && $customizer_on && $correct_context ) {
-				return image_resize_dimensions( $orig_w * 2, $orig_h * 2, $dest_w, $dest_h, $crop );
-			}
-		};
-
-		add_filter( 'image_resize_dimensions', $callback, 10, 6 );
-	}
-
-	/**
 	 * Add widget help.
 	 *
 	 * Let widgets tell the user to go to header and footer to change number of
@@ -510,8 +449,6 @@ HTML;
 	 * @param Object $wp_customize The WP_Customize object.
 	 */
 	public function add_panels( $wp_customize ) {
-
-		// Register custom panel type.
 		$wp_customize->register_panel_type( 'Boldgrid_Framework_Customizer_Panel' );
 		foreach( $this->configs['customizer']['panels'] as $name => $panel ) {
 			$panel = new Boldgrid_Framework_Customizer_Panel( $wp_customize, $name, $panel );
@@ -531,10 +468,7 @@ HTML;
 
 		// Registers our custom section type and controls.
 		$wp_customize->register_section_type( 'Boldgrid_Framework_Customizer_Section' );
-
-		// Register our custom control with Kirki
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Palette_Selector' );
-
 		add_filter( 'kirki_control_types', function( $controls ) {
 			$controls['bgtfw-palette-selector'] = 'Boldgrid_Framework_Customizer_Control_Palette_Selector';
 			return $controls;

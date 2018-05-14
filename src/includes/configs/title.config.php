@@ -39,4 +39,16 @@ return array(
 			'default' => '0',
 		),
 	),
+
+	// Editor meta box controls.
+	'meta_box' => array(
+		'post' => array(
+			'show_post_text' => '',
+			'hide_post_text' => '',
+		),
+		'page' => array(
+			'show_post_text' => '',
+			'hide_post_text' => __( 'recommended', 'bgtfw' ),
+		),
+	),
 );

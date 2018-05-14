@@ -1945,17 +1945,20 @@ span.author.vcard {
 # Sidebar
 --------------------------------------------------------------*/
 @media only screen and (min-width: 768px) {
-  .sidebar-1 .sidebar #searchform .form-group {
+  .sidebar #searchform .form-group {
     width: calc(100% - 60px); }
-  .sidebar-1 .sidebar #searchform input.form-control {
+  .sidebar #searchform input.form-control {
     width: 100%;
     margin: 0 5px 2.5px 0; }
-  .sidebar-1 .sidebar #searchform .button-primary {
+  .sidebar #searchform .button-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin: 0;
     width: 40px;
     padding: 8px;
     border-radius: 4px; }
-  .sidebar-1 .sidebar #searchform .button-primary span:last-of-type {
+  .sidebar #searchform .button-primary span:last-of-type {
     display: none; } }
 
 /** Sidebar Base Styles **/

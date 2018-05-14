@@ -1,5 +1,5 @@
 // Sidebar-1 Styles.
-.sidebar-1 .sidebar {
+.sidebar {
 	@media only screen and (min-width : 768px) {
 		// Search Form Display.
 		#searchform {
@@ -11,6 +11,9 @@
 				margin: 0 5px 2.5px 0;
 			}
 			.button-primary {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
 				margin: 0;
 				width: 40px;
 				padding: 8px;

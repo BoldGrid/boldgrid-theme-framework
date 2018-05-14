@@ -730,18 +730,9 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 *                    parent.wp.customize.section( 'menu_locations' ).controls()
 		 */
 		getMenuId: function( menu ) {
-			var $menuContainer,
-				id = null;
-
-			$menuContainer = $( '[data-customize-partial-placement-context*="' + menu.themeLocation + '-menu-location"]' );
-
-			if( $menuContainer.is( 'ul' ) ){
-				id = $menuContainer.attr( 'id' );
-			} else if ( $menuContainer.is( 'div' ) ) {
-				id = $menuContainer.find( 'ul' ).first().attr( 'id' );
-			}
-
-			return id;
+			var data;
+			data = $( '[data-customize-partial-placement-context*="' + menu.themeLocation.replace( '_', '-' ) + '-menu-location"]' ).data();
+			return data ? data.customizePartialPlacementContext.container_id : null;
 		},
 
 		/**

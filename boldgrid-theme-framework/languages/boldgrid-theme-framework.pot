@@ -510,11 +510,11 @@ msgstr ""
 msgid "Sidebar"
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:67
+#: src/includes/configs/tgm.config.php:61
 msgid "Recommended Plugins"
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:68
+#: src/includes/configs/tgm.config.php:62
 msgid "Install Recommended Plugins"
 msgstr ""
 

@@ -12,7 +12,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	self.hover_bound = false;
 	self.section_click_bound = false;
 	$( function() {
-		$window.on( 'boldgrid_customizer_refresh',  onload  );
+		$window.on( 'boldgrid_customizer_refresh', onload );
 		add_widget_description();
 	} );
 
@@ -23,9 +23,10 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		bind_force_mouse_leave();
 
 		self.$widget_overlay = $( '<div id="boldgrid-widget-area-overlay" class="widget-area-overlay hidden"><h2>Widget Area</h2></div>' );
-		self.$previewer
-			.find( 'body' )
-			.append( self.$widget_overlay );
+		if ( ! self.$previewer.find( 'body' ).find( '#boldgrid-widget-area-overlay' ).length ) {
+			self.$previewer.find( 'body' ).append( self.$widget_overlay );
+		}
+		self.$widget_overlay = self.$previewer.find( 'body' ).find( '#boldgrid-widget-area-overlay' );
 	};
 
 	var bind_force_mouse_leave = function() {

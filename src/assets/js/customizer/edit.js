@@ -106,6 +106,19 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 * @memberOf BOLDGRID.CustomizerEdit
 		 */
 		_customizer: function() {
+			var sm;
+
+			sm = $( '#main-menu' );
+
+			if ( sm.length ) {
+
+				// Bind event handling for sub menu hiding and showing.
+				sm.on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', 'ul', function( e ) {
+						BOLDGRID.CustomizerEdit.placeButtons();
+						e.stopPropagation();
+				});
+			}
+
 			/*
 			 * As you change your tagline (and other elements), content on the page shifts. When that
 			 * content shifts, update the placement of the buttons.

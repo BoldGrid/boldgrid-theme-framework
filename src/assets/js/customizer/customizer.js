@@ -144,13 +144,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	// Site title and description.
 	wp.customize( 'blogname', function( value ) {
+		value.bind( function( to ) {
+			$( '.site-title a' ).text( to );
+			bgtfw_calculate_layouts();
+		} );
+	} );
 
-		// If logo isn't set then bind site-title for live update, otherwise let .site-title update with logo live.
-		if ( parent.wp.customize( 'boldgrid_logo_setting' ) && ! parent.wp.customize( 'boldgrid_logo_setting' ).get() ) {
-			value.bind( function( to ) {
-				$( '.site-title a' ).text( to );
-				bgtfw_calculate_layouts();
-			} );
+	// Custom logo changes need layout recalculated.
+	wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+		if ( 'custom_logo' === placement.partial.id ) {
+			bgtfw_calculate_layouts();
 		}
 	} );
 

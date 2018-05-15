@@ -355,7 +355,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		value.bind( function( to ) {
 			var style, head, css, color, alpha;
 
-			colorOutput( 'bgtfw_header_color', '#masthead, #navi' );
+			outputColor( 'bgtfw_header_color', '#masthead, #navi', [ 'background-color', 'text-default' ] );
 
 			color = to.split( ':' ).pop();
 
@@ -405,7 +405,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	/* Footer Background Color */
 	wp.customize( 'bgtfw_footer_color', function( value ) {
 		value.bind( function() {
-			colorOutput( 'bgtfw_footer_color', '#colophon, .footer-content' );
+			outputColor( 'bgtfw_header_color', '#colophon, .footer-content', [
+				'background-color', 'text-default'
+			] );
 		} );
 	} );
 
@@ -623,37 +625,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	};
 
 	/**
-	 * Handles front-end background color changes in previewer.
-	 *
-	 * This will add classes for the background color changes to elements during a live preview.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param string themeMod Theme mod to use for retrieving a background color.
-	 * @param string selector CSS selector to apply classes to.
-	 */
-	var colorOutput = function( themeMod, selector ) {
-		var colorClassPrefix;
-		themeMod = parent.wp.customize( themeMod )();
-
-		if ( ! themeMod || themeMod === 'none' ) {
-			themeMod = '';
-		}
-
-		colorClassPrefix = themeMod.split( ':' ).shift();
-
-		$( selector ).removeClass( function ( index, css ) {
-			return ( css.match( /(^|\s)color-?([\d]|neutral)\-(background|text)\S+/g ) || [] ).join( ' ' );
-		} );
-
-		if ( ! ~ colorClassPrefix.indexOf( 'neutral' ) ) {
-			colorClassPrefix = colorClassPrefix.replace( '-', '' );
-		}
-
-		$( selector ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
-	};
-
-	/**
 	 * Handles front-end link color changes in previewer.
 	 *
 	 * This will add classes for the link color changes to elements during a live preview.
@@ -700,7 +671,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			'background-attachment': 'scroll'
 		});
 
-		colorOutput( 'boldgrid_background_color', 'body' );
+		outputColor( 'boldgrid_background_color', 'body', [
+			'background-color', 'text-default'
+		] );
 	};
 
 	var background_image_update = function( to ) {

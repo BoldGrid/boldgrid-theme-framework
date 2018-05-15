@@ -730,9 +730,19 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 *                    parent.wp.customize.section( 'menu_locations' ).controls()
 		 */
 		getMenuId: function( menu ) {
-			var data;
+			var data, id;
 			data = $( '[data-customize-partial-placement-context*="' + menu.themeLocation.replace( '_', '-' ) + '-menu-location"]' ).data();
-			return data ? data.customizePartialPlacementContext.container_id : null;
+			if ( data ) {
+				if ( ! _.isEmpty( data.customizePartialPlacementContext.container_id ) ) {
+					id = data.customizePartialPlacementContext.container_id;
+				} else if ( ! _.isEmpty( data.customizePartialPlacementContext.menu_id ) ) {
+					id = data.customizePartialPlacementContext.menu_id;
+				} else {
+					id = null;
+				}
+			}
+
+			return id;
 		},
 
 		/**

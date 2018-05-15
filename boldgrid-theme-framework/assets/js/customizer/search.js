@@ -230,12 +230,12 @@ BOLDGRID.CUSTOMIZER.Search = BOLDGRID.CUSTOMIZER.Search || {};
 			var template;
 
 			template = wp.template( 'search-button' );
-			if ( $( '#customize-info .accordion-section-title .customize-search-toggle' ).length === 0 ) {
+			if ( $( '#customize-header-actions .customize-search-toggle' ).length === 0 ) {
 				$( '#customize-header-actions' ).append( template() );
 			}
 
 			template = wp.template( 'search-form' );
-			if ( $( '#customize-info #accordion-section-customizer-search' ).length === 0 ) {
+			if ( $( '#accordion-section-customizer-search' ).length === 0 ) {
 				$( '#customize-header-actions' ).after( template() );
 			}
 		},

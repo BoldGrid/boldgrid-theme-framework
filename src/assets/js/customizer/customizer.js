@@ -409,6 +409,18 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 	} );
 
+	wp.customize( 'bgtfw_tagline_color', function( value ) {
+		value.bind( function() {
+			outputColor( 'bgtfw_tagline_color', '.site-description', [ 'color' ] );
+		} );
+	} );
+
+	wp.customize( 'bgtfw_site_title_color', function( value ) {
+		value.bind( function() {
+			outputColor( 'bgtfw_site_title_color', '.site-title', [ 'color' ] );
+		} );
+	} );
+
 	/* Footer Headings Color */
 	wp.customize( 'bgtfw_footer_headings_color', function( value ) {
 		value.bind( function( to ) {
@@ -570,6 +582,44 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		selectors = selectors.join( ', ' );
 
 		$( selectors ).not( '.site-description' ).css( 'color', color );
+	};
+
+	/**
+	 * Handles front-end color changes in previewer.
+	 *
+	 * This will add classes for color changes to elements during a live preview.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string themeMod Theme mod to use for retrieving a background color.
+	 * @param string selector CSS selector to apply classes to.
+	 * @param array  list of properties to add.
+	 */
+	var outputColor = function ( themeMod, selector, properties ) {
+		var colorClassPrefix,
+			$selector = $( selector ),
+			regex = new RegExp( 'color-?([\\d]|neutral)\-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
+
+		themeMod = parent.wp.customize( themeMod )();
+
+		if ( ! themeMod || themeMod === 'none' ) {
+			themeMod = '';
+		}
+
+		$selector.removeClass( function ( index, css ) {
+			return ( css.match( regex ) || [] ).join( ' ' );
+		} );
+
+		// Get class prefix.
+		colorClassPrefix = themeMod.split( ':' ).shift();
+		if ( ! ~ colorClassPrefix.indexOf( 'neutral' ) ) {
+			colorClassPrefix = colorClassPrefix.replace( '-', '' );
+		}
+
+		// Add all classes.
+		$selector.addClass( _.map( properties, function( property ) {
+			return colorClassPrefix + '-' + property;
+		} ).join(' ') );
 	};
 
 	/**

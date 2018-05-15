@@ -7,3 +7,8 @@
 		padding: 0px;
 	}
 }
+
+// Disable any link colors when site title has color.
+.site-title[class*="color"] a {
+	color: currentColor !important;
+}

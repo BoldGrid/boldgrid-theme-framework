@@ -290,12 +290,13 @@ HTML;
 	 */
 	public function tinymce_body_class( $mce ) {
 		$palette = get_theme_mod( 'boldgrid_palette_class' );
+		$pattern = get_theme_mod( 'boldgrid_background_pattern' );
 		$mce['body_class'] .= " $palette";
 
 		$api = new BoldGrid( $this->configs );
 		$mce['body_class'] .= ' ' . implode( ' ', $api->get_background_color( 'boldgrid_background_color' ) );
 
-		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( get_theme_mod( 'boldgrid_background_pattern' ) ) ) {
+		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( $pattern ) ) {
 			$mce['body_class'] .= ' custom-background';
 		}
 

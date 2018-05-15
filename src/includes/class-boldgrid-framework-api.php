@@ -145,12 +145,21 @@ class BoldGrid {
 	 * @since 1.0.0
 	 */
 	public static function site_title() {
+		global $boldgrid_theme_framework;
+		$configs = $boldgrid_theme_framework->get_configs();
+
 		// Bug fix 9/28/15: https://codex.wordpress.org/Function_Reference/is_home.
-		if ( is_front_page( ) && 'page' === get_option( 'show_on_front' ) ) : ?>
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-		<?php else : ?>
-			<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-		<?php endif;
+		if ( is_front_page( ) && 'page' === get_option( 'show_on_front' ) ) {
+			$titleTag = $configs['template']['site-title-tag'];
+		} else {
+			$titleTag = 'p';
+		}
+
+		// Site title link.
+		$link = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo ( 'name' ) . '</a>';
+
+		echo '<' . $titleTag . ' class="' . esc_attr( $configs['template']['site-title-classes'] )
+			. '">' . $link . '</' . $titleTag . '>';
 	}
 
 	/**
@@ -399,6 +408,32 @@ class BoldGrid {
 	public function inner_footer_classes( $classes ) {
 		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
 		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_footer_links' ) );
+		return $classes;
+	}
+
+	/**
+	 * Get color classes for a property, given a theme mod.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $mod        Palette Selector theme_mod to get value for.
+	 * @param  array $properties  A list of properties to check..
+	 *
+	 * @return array  $classes    Classes to add.
+	 */
+	public static function get_color_classes( $mod, $properties ) {
+		$color = get_theme_mod( $mod );
+		$color_class = explode( ':', $color );
+		$color_class = array_shift( $color_class );
+		if ( strpos( $color_class, 'neutral' ) === false ) {
+			$color_class = str_replace( '-', '', $color_class );
+		}
+
+		$classes = array();
+		foreach( $properties as $property ) {
+			$classes[] = $color_class . '-' . $property;
+		}
+
 		return $classes;
 	}
 

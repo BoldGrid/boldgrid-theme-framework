@@ -119,6 +119,35 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	$body = $( 'body' );
 	$custom_styles = $( '#boldgrid-override-styles' );
 
+	var colorClassControls = [
+		{
+			name: 'bgtfw_header_links',
+			selector: '#navi-wrap',
+			properties: [ 'link-color' ]
+		},
+		{
+			name: 'bgtfw_footer_color',
+			selector: '#colophon, .footer-content',
+			properties: [ 'background-color', 'text-default' ]
+		},
+
+		{
+			name: 'bgtfw_tagline_color',
+			selector: '.site-description',
+			properties: [ 'color' ]
+		},
+		{
+			name: 'bgtfw_site_title_color',
+			selector: '.site-title',
+			properties: [ 'color' ]
+		},
+		{
+			name: 'bgtfw_footer_links',
+			selector: '.footer-content',
+			properties: [ 'link-color' ]
+		}
+	];
+
 	$( function() {
 
 		init_values();
@@ -355,7 +384,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		value.bind( function( to ) {
 			var style, head, css, color, alpha;
 
-			colorOutput( 'bgtfw_header_color', '#masthead, #navi' );
+			outputColor( 'bgtfw_header_color', '#masthead, #navi', [ 'background-color', 'text-default' ] );
 
 			color = to.split( ':' ).pop();
 
@@ -390,36 +419,24 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	/* Header Headings Color */
 	wp.customize( 'bgtfw_header_headings_color', function( value ) {
-		value.bind( function( to ) {
-			headingsColorOutput( to, '#navi-wrap > :not(.bgtfw-widget-row)' );
-		} );
-	} );
-
-	/* Header Links Color */
-	wp.customize( 'bgtfw_header_links', function( value ) {
-		value.bind( function( to ) {
-			linksColorOutput( to, '#navi-wrap' );
-		} );
-	} );
-
-	/* Footer Background Color */
-	wp.customize( 'bgtfw_footer_color', function( value ) {
 		value.bind( function() {
-			colorOutput( 'bgtfw_footer_color', '#colophon, .footer-content' );
+			headingsColorOutput( 'bgtfw_header_headings_color', '#navi-wrap > :not(.bgtfw-widget-row)' );
 		} );
 	} );
 
 	/* Footer Headings Color */
 	wp.customize( 'bgtfw_footer_headings_color', function( value ) {
-		value.bind( function( to ) {
-			headingsColorOutput( to, '.site-footer :not(.bgtfw-widget-row)' );
+		value.bind( function() {
+			headingsColorOutput( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)' );
 		} );
 	} );
 
-	/* Footer Links Color */
-	wp.customize( 'bgtfw_footer_links', function( value ) {
-		value.bind( function( to ) {
-			linksColorOutput( to, '.footer-content' );
+	// Bind all color class controls.
+	_.each( colorClassControls, function ( control ) {
+		wp.customize( control.name, function( value ) {
+			value.bind( function() {
+				outputColor( control.name, control.selector, control.properties );
+			} );
 		} );
 	} );
 
@@ -548,18 +565,8 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 * @param string to       Theme mod value of headings color.
 	 * @param string selector CSS selector to apply classes to.
 	 */
-	var headingsColorOutput = function( to, section ) {
-		var color, selectors = [];
-
-		if ( ! to || to === 'none' ) {
-			return;
-		}
-
-		if ( _.isUndefined( section ) ) {
-			section = 'body';
-		}
-
-		color = to.split( ':' ).pop();
+	var headingsColorOutput = function( themeMod, section ) {
+		var selectors = [];
 
 		_.each( _typographyOptions, function( value, key ) {
 			if ( value.type = 'headings' ) {
@@ -569,64 +576,49 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		selectors = selectors.join( ', ' );
 
-		$( selectors ).not( '.site-description' ).css( 'color', color );
+		outputColor( themeMod, $( selectors ).not( '.site-description' ), [ 'color' ] );
 	};
 
 	/**
-	 * Handles front-end background color changes in previewer.
+	 * Handles front-end color changes in previewer.
 	 *
-	 * This will add classes for the background color changes to elements during a live preview.
+	 * This will add classes for color changes to elements during a live preview.
 	 *
 	 * @since 2.0.0
 	 *
 	 * @param string themeMod Theme mod to use for retrieving a background color.
 	 * @param string selector CSS selector to apply classes to.
+	 * @param array  list of properties to add.
 	 */
-	var colorOutput = function( themeMod, selector ) {
-		var colorClassPrefix;
+	var outputColor = function ( themeMod, selector, properties ) {
+		var colorClassPrefix,
+			$selector = $( selector ),
+			regex = new RegExp( 'color-?([\\d]|neutral)\-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
+
 		themeMod = parent.wp.customize( themeMod )();
 
 		if ( ! themeMod || themeMod === 'none' ) {
 			themeMod = '';
 		}
 
-		colorClassPrefix = themeMod.split( ':' ).shift();
-
-		$( selector ).removeClass( function ( index, css ) {
-			return ( css.match( /(^|\s)color-?([\d]|neutral)\-(background|text)\S+/g ) || [] ).join( ' ' );
+		$selector.removeClass( function ( index, css ) {
+			return ( css.match( regex ) || [] ).join( ' ' );
 		} );
 
-		if ( ! ~ colorClassPrefix.indexOf( 'neutral' ) ) {
-			colorClassPrefix = colorClassPrefix.replace( '-', '' );
-		}
-
-		$( selector ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
-	};
-
-	/**
-	 * Handles front-end link color changes in previewer.
-	 *
-	 * This will add classes for the link color changes to elements during a live preview.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param string themeMod Theme mod value of a link color.
-	 * @param string selector CSS selector to apply classes to.
-	 */
-	var linksColorOutput = function( themeMod, selector ) {
-		var colorClassPrefix;
-
-		if ( ! themeMod || themeMod === 'none' ) {
-			themeMod = '';
-		}
-
+		// Get class prefix.
 		colorClassPrefix = themeMod.split( ':' ).shift();
 
-		$( selector ).removeClass( function ( index, css ) {
-			return ( css.match( /(^|\s)color-?([\d]|neutral)\-(link)\S+/g ) || [] ).join( ' ' );
-		} );
+		// Add all classes.
+		$selector.addClass( _.map( properties, function( property ) {
+			var prefix = colorClassPrefix;
 
-		$( selector ).addClass( colorClassPrefix + '-link-color' );
+			// If neutral or link-color, do not remove color hyphen.
+			if ( -1 === colorClassPrefix.indexOf( 'neutral' ) && -1 === property.indexOf( 'link-color' ) ) {
+				prefix = colorClassPrefix.replace( '-', '' );
+			}
+
+			return prefix + '-' + property;
+		} ).join(' ') );
 	};
 
 	/**
@@ -650,7 +642,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			'background-attachment': 'scroll'
 		});
 
-		colorOutput( 'boldgrid_background_color', 'body' );
+		outputColor( 'boldgrid_background_color', 'body', [
+			'background-color', 'text-default'
+		] );
 	};
 
 	var background_image_update = function( to ) {

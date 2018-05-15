@@ -127,7 +127,11 @@ class BoldGrid_Framework_Starter_Content {
 				} elseif ( strpos( $control['settings'], 'links' ) !== false ) {
 					$config['customizer']['controls'][ $index ]['default'] = 'color-3:' . $this->default[0]['colors'][2];
 
-				// Background color default.
+				// Main page background color set to neutral if default palette has it.
+				} elseif ( 'boldgrid_background_color' === $control['settings'] && isset( $this->default[0]['neutral-color'] ) ) {
+					$config['customizer']['controls'][ $index ]['default'] = 'color-neutral:' . $this->default[0]['neutral-color'];
+
+				// All other background color defaults.
 				} else {
 					$config['customizer']['controls'][ $index ]['default'] = 'color-1:' . $this->default[0]['colors'][0];
 				}
@@ -163,5 +167,22 @@ class BoldGrid_Framework_Starter_Content {
 		}
 
 		return $config;
+	}
+
+	/**
+	 * Adds default values for get_theme_mod calls if no value is
+	 * passed.
+	 */
+	public function dynamic_theme_mod_filter() {
+		global $boldgrid_theme_framework;
+		$config = $boldgrid_theme_framework->get_configs();
+
+		foreach( $config['customizer']['controls'] as $index => $control ) {
+			$setting = $control['settings'];
+			$default = isset( $control['default'] ) ? $control['default'] : false;
+			add_filter( "theme_mod_{$setting}", function( $setting ) use ( $default ) {
+				return false === $setting ? $default : $setting;
+			} );
+		}
 	}
 }

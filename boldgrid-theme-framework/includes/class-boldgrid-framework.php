@@ -262,7 +262,7 @@ class BoldGrid_Framework {
 
 		// Set the is_editing_boldgrid_theme filter to true for any theme using BGTFW.
 		add_filter( 'is_editing_boldgrid_theme', '__return_true', 20 );
-
+		add_action( 'after_setup_theme', array( $starter_content, 'dynamic_theme_mod_filter' ) );
 		add_filter( 'boldgrid_theme_framework_config', array( $starter_content, 'set_configs' ), 15 );
 		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $template_config, 'pagination_style' ), 20 );

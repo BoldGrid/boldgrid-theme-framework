@@ -397,15 +397,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	/* Header Links Color */
 	wp.customize( 'bgtfw_header_links', function( value ) {
-		value.bind( function( to ) {
-			linksColorOutput( to, '#navi-wrap' );
+		value.bind( function() {
+			outputColor( 'bgtfw_header_links', '#navi-wrap', [ 'link-color' ] );
 		} );
 	} );
 
 	/* Footer Background Color */
 	wp.customize( 'bgtfw_footer_color', function( value ) {
 		value.bind( function() {
-			outputColor( 'bgtfw_header_color', '#colophon, .footer-content', [
+			outputColor( 'bgtfw_footer_color', '#colophon, .footer-content', [
 				'background-color', 'text-default'
 			] );
 		} );
@@ -432,8 +432,8 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	/* Footer Links Color */
 	wp.customize( 'bgtfw_footer_links', function( value ) {
-		value.bind( function( to ) {
-			linksColorOutput( to, '.footer-content' );
+		value.bind( function() {
+			outputColor( 'bgtfw_footer_links', '.footer-content', [ 'link-color' ] );
 		} );
 	} );
 
@@ -614,40 +614,18 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		// Get class prefix.
 		colorClassPrefix = themeMod.split( ':' ).shift();
-		if ( ! ~ colorClassPrefix.indexOf( 'neutral' ) ) {
-			colorClassPrefix = colorClassPrefix.replace( '-', '' );
-		}
 
 		// Add all classes.
 		$selector.addClass( _.map( properties, function( property ) {
-			return colorClassPrefix + '-' + property;
+			var prefix = colorClassPrefix;
+
+			// If neutral or link-color, do not remove color hyphen.
+			if ( -1 === colorClassPrefix.indexOf( 'neutral' ) && -1 === property.indexOf( 'link-color' ) ) {
+				prefix = colorClassPrefix.replace( '-', '' );
+			}
+
+			return prefix + '-' + property;
 		} ).join(' ') );
-	};
-
-	/**
-	 * Handles front-end link color changes in previewer.
-	 *
-	 * This will add classes for the link color changes to elements during a live preview.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param string themeMod Theme mod value of a link color.
-	 * @param string selector CSS selector to apply classes to.
-	 */
-	var linksColorOutput = function( themeMod, selector ) {
-		var colorClassPrefix;
-
-		if ( ! themeMod || themeMod === 'none' ) {
-			themeMod = '';
-		}
-
-		colorClassPrefix = themeMod.split( ':' ).shift();
-
-		$( selector ).removeClass( function ( index, css ) {
-			return ( css.match( /(^|\s)color-?([\d]|neutral)\-(link)\S+/g ) || [] ).join( ' ' );
-		} );
-
-		$( selector ).addClass( colorClassPrefix + '-link-color' );
 	};
 
 	/**

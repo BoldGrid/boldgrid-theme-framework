@@ -390,8 +390,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	/* Header Headings Color */
 	wp.customize( 'bgtfw_header_headings_color', function( value ) {
-		value.bind( function( to ) {
-			headingsColorOutput( to, '#navi-wrap > :not(.bgtfw-widget-row)' );
+		value.bind( function() {
+			headingsColorOutput( 'bgtfw_header_headings_color', '#navi-wrap > :not(.bgtfw-widget-row)' );
+		} );
+	} );
+
+	/* Footer Headings Color */
+	wp.customize( 'bgtfw_footer_headings_color', function( value ) {
+		value.bind( function() {
+			headingsColorOutput( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)' );
 		} );
 	} );
 
@@ -420,13 +427,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	wp.customize( 'bgtfw_site_title_color', function( value ) {
 		value.bind( function() {
 			outputColor( 'bgtfw_site_title_color', '.site-title', [ 'color' ] );
-		} );
-	} );
-
-	/* Footer Headings Color */
-	wp.customize( 'bgtfw_footer_headings_color', function( value ) {
-		value.bind( function( to ) {
-			headingsColorOutput( to, '.site-footer :not(.bgtfw-widget-row)' );
 		} );
 	} );
 
@@ -562,18 +562,8 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 * @param string to       Theme mod value of headings color.
 	 * @param string selector CSS selector to apply classes to.
 	 */
-	var headingsColorOutput = function( to, section ) {
-		var color, selectors = [];
-
-		if ( ! to || to === 'none' ) {
-			return;
-		}
-
-		if ( _.isUndefined( section ) ) {
-			section = 'body';
-		}
-
-		color = to.split( ':' ).pop();
+	var headingsColorOutput = function( themeMod, section ) {
+		var selectors = [];
 
 		_.each( _typographyOptions, function( value, key ) {
 			if ( value.type = 'headings' ) {
@@ -583,7 +573,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		selectors = selectors.join( ', ' );
 
-		$( selectors ).not( '.site-description' ).css( 'color', color );
+		outputColor( themeMod, $( selectors ).not( '.site-description' ), [ 'color' ] );
 	};
 
 	/**

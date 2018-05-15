@@ -259,6 +259,7 @@ class BoldGrid_Framework {
 		$template_config = new Boldgrid_Framework_Template_Config( $this->configs );
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
+		$custom_header = new Boldgrid_Framework_Custom_Header( $this->configs );
 
 		// Set the is_editing_boldgrid_theme filter to true for any theme using BGTFW.
 		add_filter( 'is_editing_boldgrid_theme', '__return_true', 20 );
@@ -268,6 +269,7 @@ class BoldGrid_Framework {
 		add_filter( 'boldgrid_theme_framework_config', array( $template_config, 'pagination_style' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $activate, 'tgm_override' ), 20 );
+		add_filter( 'boldgrid_theme_framework_config', array( $custom_header, 'add_color_classes' ), 5 );
 		add_filter( 'boldgrid_theme_framework_config', 'BoldGrid::get_inspiration_configs', 5 );
 
 		// Adds the sidebar options to the page template selections.

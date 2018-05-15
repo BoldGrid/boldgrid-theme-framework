@@ -116,6 +116,20 @@ return array(
 		),
 	),
 	array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_tagline_color',
+		'label'       => esc_attr__( 'Color', 'bgtfw' ),
+		'section'     => 'bgtfw_tagline',
+		'priority'    => 10,
+		'default'     => '',
+		'choices'     => array(
+			'colors'  => $formatted_palette,
+			'size'    => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	array(
 		'type'        => 'typography',
 		'transport'   => 'auto',
 		'settings'    => 'bgtfw_tagline_typography',
@@ -128,11 +142,11 @@ return array(
 			'line-height'    => '1.5',
 			'letter-spacing' => '0',
 			'subsets'        => array( 'latin-ext' ),
-			'color'          => '#333333',
+			// 'color'          => '#333333',
 			'text-transform' => 'none',
 			'text-align'     => 'left',
 		),
-		'priority'    => 10,
+		'priority'    => 20,
 		'output'      => array(
 			array(
 				'element' => '.site-branding .site-description',
@@ -262,6 +276,20 @@ return array(
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
 	array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport' => 'postMessage',
+		'settings'    => 'bgtfw_site_title_color',
+		'label' => esc_attr__( 'Color', 'bgtfw' ),
+		'section'     => 'bgtfw_site_title',
+		'priority' => 10,
+		'default'     => '',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	array(
 		'type'        => 'typography',
 		'transport'   => 'auto',
 		'settings'    => 'bgtfw_site_title_typography',
@@ -274,11 +302,10 @@ return array(
 			'line-height'    => '1.5',
 			'letter-spacing' => '0',
 			'subsets'        => array( 'latin-ext' ),
-			'color'          => '#333333',
 			'text-transform' => 'none',
 			'text-align'     => 'left',
 		),
-		'priority'    => 10,
+		'priority'    => 20,
 		'output'      => array(
 			array(
 				'element' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover',

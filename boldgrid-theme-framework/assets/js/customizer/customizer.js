@@ -119,6 +119,35 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	$body = $( 'body' );
 	$custom_styles = $( '#boldgrid-override-styles' );
 
+	var colorClassControls = [
+		{
+			name: 'bgtfw_header_links',
+			selector: '#navi-wrap',
+			properties: [ 'link-color' ]
+		},
+		{
+			name: 'bgtfw_footer_color',
+			selector: '#colophon, .footer-content',
+			properties: [ 'background-color', 'text-default' ]
+		},
+
+		{
+			name: 'bgtfw_tagline_color',
+			selector: '.site-description',
+			properties: [ 'color' ]
+		},
+		{
+			name: 'bgtfw_site_title_color',
+			selector: '.site-title',
+			properties: [ 'color' ]
+		},
+		{
+			name: 'bgtfw_footer_links',
+			selector: '.footer-content',
+			properties: [ 'link-color' ]
+		}
+	];
+
 	$( function() {
 
 		init_values();
@@ -402,38 +431,12 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 	} );
 
-	/* Header Links Color */
-	wp.customize( 'bgtfw_header_links', function( value ) {
-		value.bind( function() {
-			outputColor( 'bgtfw_header_links', '#navi-wrap', [ 'link-color' ] );
-		} );
-	} );
-
-	/* Footer Background Color */
-	wp.customize( 'bgtfw_footer_color', function( value ) {
-		value.bind( function() {
-			outputColor( 'bgtfw_footer_color', '#colophon, .footer-content', [
-				'background-color', 'text-default'
-			] );
-		} );
-	} );
-
-	wp.customize( 'bgtfw_tagline_color', function( value ) {
-		value.bind( function() {
-			outputColor( 'bgtfw_tagline_color', '.site-description', [ 'color' ] );
-		} );
-	} );
-
-	wp.customize( 'bgtfw_site_title_color', function( value ) {
-		value.bind( function() {
-			outputColor( 'bgtfw_site_title_color', '.site-title', [ 'color' ] );
-		} );
-	} );
-
-	/* Footer Links Color */
-	wp.customize( 'bgtfw_footer_links', function( value ) {
-		value.bind( function() {
-			outputColor( 'bgtfw_footer_links', '.footer-content', [ 'link-color' ] );
+	// Bind all color class controls.
+	_.each( colorClassControls, function ( control ) {
+		wp.customize( control.name, function( value ) {
+			value.bind( function() {
+				outputColor( control.name, control.selector, control.properties );
+			} );
 		} );
 	} );
 

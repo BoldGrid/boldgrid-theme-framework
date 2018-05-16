@@ -37,108 +37,6 @@ class Boldgrid_Framework_Editor {
 	}
 
 	/**
-	 * Save page title toggle via ajax call.
-	 *
-	 * @since 1.0.7
-	 */
-	public function update_page_title_toggle( $post_id, $post ) {
-		$post_id = ! empty( $post_id ) ? $post_id : null;
-
-		// If this is a revision, get real post ID.
-		if ( $parent_id = wp_is_post_revision( $post_id ) ) {
-			$post_id = $parent_id;
-		}
-
-		$status = isset( $_POST['boldgrid-display-post-title'] ) ? intval( $_POST['boldgrid-display-post-title'] ) : null;
-		if ( $post_id && false == is_null( $status ) ) {
-			$post_meta = get_post_meta( $post_id );
-			if ( ! empty( $post_meta ) ) {
-				// Save post meta.
-				update_post_meta( $post_id, 'boldgrid_hide_page_title', $status );
-			}
-		}
-
-	}
-
-	/**
-	 * Display a post title display control on the page and post editor.
-	 *
-	 * @since 1.0.7
-	 */
-	public function add_post_title_toggle() {
-		global $pagenow;
-
-		$post_id = ! empty( $_REQUEST['post'] ) ? $_REQUEST['post'] : null;
-
-		if ( in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) ) {
-
-			$template_file = null;
-
-			if ( false == empty( $post_id ) ) {
-				$post = get_post( $post_id );
-
-				if ( ! $post ) {
-					return;
-				}
-
-				// If the post type is not page or post that do not display.
-				if ( false == in_array( $post->post_type, array( 'post', 'page' ) ) ) {
-					return;
-				}
-
-				$post_meta = get_post_meta( $post->ID );
-				$display_page_title = ! empty( $post_meta['boldgrid_hide_page_title'][0] ) || ! isset( $post_meta['boldgrid_hide_page_title'] );
-				$template_file = get_post_meta( $post->ID, '_wp_page_template', true );
-
-				// Don't allow modification on home page.
-				$disabled = '';
-				if ( 'page_home.php' == $template_file ) {
-					$display_page_title = false;
-					$disabled = 'disabled="disabled"';
-				}
-
-				$post_type = 'page';
-				if ( 'post' == $post->post_type ) {
-					$post_type = 'post';
-				}
-			} else {
-				$post_type = ! empty( $_REQUEST['post_type'] ) ? $_REQUEST['post_type'] : null;
-				if ( 'page' != $post_type ) {
-					$post_type = 'post';
-				}
-
-				$display_page_title = true;
-				$disabled = '';
-			}
-
-			add_action( 'edit_form_after_title',
-				function () use ( $post_type, $display_page_title, $disabled, $template_file ) {
-					$checked = checked( $display_page_title, true, false );
-					$message = "The {$post_type} title displays as a heading at the top of your {$post_type}. Your BoldGrid theme supports this feature.";
-					if ( 'page_home.php' === $template_file ) {
-						$message = 'The Home template does not support adding a page title.  You can change the template from the dropdown box in the Page Attributes section.';
-					}
-					echo <<<HTML
-						<div id="boldgrid-hide-post-title">
-							<input style='display:none' type='checkbox' value='0' checked='checked' name='boldgrid-display-post-title'>
-							<label>
-							<input value="1" name="boldgrid-display-post-title" {$checked} {$disabled} type='checkbox'> Display
-							 $post_type  title </label><span class="dashicons dashicons-editor-help"></span>
-							<span class="spinner"></span>
-							<div class='boldgrid-tooltip'>
-								<div class="boldgrid-tooltip-arrow">
-								</div>
-								<div class="boldgrid-tooltip-inner">
-									{$message}
-								</div>
-							</div>
-						</div>
-HTML;
-			} );
-		}
-	}
-
-	/**
 	 * Theme framework mce plugin responsible for adding inline styles to editor.
 	 *
 	 * @param array $plugin_array Array of tinymce plugins.
@@ -185,6 +83,12 @@ HTML;
 		$editor_js_file = $this->configs['framework']['admin_asset_dir'] . 'js/editor.js';
 
 		$plugin_array['boldgrid_theme_framework'] = $editor_js_file;
+
+		// This call could be moved elsewhere. Essentially, load this css when edit any array( 'page', 'post' ).
+		wp_enqueue_style(
+			'editor',
+			$this->configs['framework']['css_dir'] . 'editor.css'
+		);
 
 		return $plugin_array;
 	}

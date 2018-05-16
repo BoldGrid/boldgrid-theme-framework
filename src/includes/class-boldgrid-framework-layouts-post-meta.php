@@ -113,7 +113,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				}
 			?>
 			<label class="theme-layout-label layout-default layout-selected">
-				<input type="radio" name="page_template" class="theme-layout-input" value="default" <?php echo $checked; ?> />
+				<input type="radio" name="page_template" class="theme-layout-input" value="default" <?php echo $checked; ?> data-value-displayed="<?php echo esc_attr( strip_tags( $title ) . ' ' . $subtitle ); ?>" data-default-option="<?php echo $checked ? '1' : '0'; ?>" />
 				<?php echo $title; ?>
 			</label>
 			<?php echo $subtitle; ?>
@@ -139,7 +139,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 			$layout_label = $template;
 			?>
 			<label class="<?php echo esc_attr( $label_class ); ?>">
-				<input type="radio" name="page_template" class="theme-layout-input" value="<?php echo esc_attr( $templates[ $template ] ); ?>" <?php checked( $post_layout, $layout_value ); ?> />
+				<input type="radio" name="page_template" class="theme-layout-input" value="<?php echo esc_attr( $templates[ $template ] ); ?>" <?php checked( $post_layout, $layout_value ); ?> data-value-displayed="<?php echo esc_attr( $template ); ?>" data-default-option="<?php echo $post_layout === $layout_value ? '1' : '0'; ?>" />
 				<?php echo $template; ?>
 			</label>
 	<?php }?>
@@ -154,24 +154,38 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	 * @since 2.0.0
 	 */
 	public function meta_box_callback( $post ) {
+
+		$title = new Boldgrid_Framework_Title( $this->configs );
+		$title->meta_box_callback( $post );
+
 		if ( count( get_page_templates( $post ) ) > 0 ) :
 				$template = ! empty( $post->page_template ) ? $post->page_template : false;
 				?>
-				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="page_template"><?php _e( 'Template' ); ?></label><?php
-					/**
-					 * Fires immediately after the label inside the 'Template' section
-					 * of the 'Page Attributes' meta box.
-					 *
-					 * @since 4.4.0
-					 *
-					 * @param string  $template The template used for the current post.
-					 * @param WP_Post $post     The current post.
-					 */
-					do_action( 'page_attributes_meta_box_template', $template, $post );
-				?></p>
-
-				<?php $this->layout_selection( $post ); ?>
-
+				<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-template">
+					<?php _e( 'Template' ); ?>:<?php
+						/**
+						 * Fires immediately after the label inside the 'Template' section
+						 * of the 'Page Attributes' meta box.
+						 *
+						 * @since 4.4.0
+						 *
+						 * @param string  $template The template used for the current post.
+						 * @param WP_Post $post     The current post.
+						 */
+						do_action( 'page_attributes_meta_box_template', $template, $post );
+					?>
+					<span class="value-displayed">...</span>
+					<a class="edit" href="">
+						<span aria-hidden="true"><?php echo __( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo __( 'Edit template', 'bgtfw' ); ?></span>
+					</a>
+					<div class="options">
+						<?php $this->layout_selection( $post ); ?>
+						<p>
+							<a href="" class="button"><?php echo __( 'OK', 'bgtfw' ); ?></a>
+							<a href="" class="button-cancel"><?php echo __( 'Cancel', 'bgtfw' ); ?></a>
+						</p>
+					</div>
+				</div>
 		<?php endif; ?>
 
 
@@ -288,7 +302,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 			#customize-control-bgtfw_layout_blog input[type="radio"]:before {
 				margin: 0;
 			}
-			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"]:hover,
+			#customize-control-bgtfw_layout_blog input[type="radio"]:hover,
 			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio > label input[type="radio"]:focus,
 			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio > label input[type="radio"]:checked,
 			#customize-control-bgtfw_layout_page input[type="radio"]:hover,

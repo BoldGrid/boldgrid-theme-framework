@@ -88,7 +88,7 @@ msgstr ""
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:162
+#: src/includes/class-boldgrid-framework-comments.php:162, src/includes/class-boldgrid-framework-layouts-post-meta.php:179, src/includes/class-boldgrid-framework-title.php:127
 msgid "Edit"
 msgstr ""
 
@@ -158,8 +158,44 @@ msgstr ""
 msgid "Global Theme Default"
 msgstr ""
 
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:179
+msgid "Edit template"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:184
+msgid "OK"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:185
+msgid "Cancel"
+msgstr ""
+
 #: src/includes/class-boldgrid-framework-search-forms.php:53
 msgid "Search &hellip;"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-title.php:62, src/includes/class-boldgrid-framework-title.php:107, src/includes/class-boldgrid-framework-title.php:110
+msgid "Show"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-title.php:63, src/includes/class-boldgrid-framework-title.php:107, src/includes/class-boldgrid-framework-title.php:116
+msgid "Hide"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-title.php:100
+msgid "Post"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-title.php:100
+msgid "Page"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-title.php:100
+msgid "Title"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-title.php:104
+msgid "Use Global Setting"
 msgstr ""
 
 #: src/includes/class-boldgrid-framework-widgets.php:195
@@ -516,6 +552,18 @@ msgstr ""
 
 #: src/includes/configs/tgm.config.php:62
 msgid "Install Recommended Plugins"
+msgstr ""
+
+#: src/includes/configs/title.config.php:30
+msgid "Page Title"
+msgstr ""
+
+#: src/includes/configs/title.config.php:36
+msgid "Post Title"
+msgstr ""
+
+#: src/includes/configs/title.config.php:51
+msgid "recommended"
 msgstr ""
 
 #: src/includes/configs/tooltips.config.php:16

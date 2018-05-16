@@ -90,6 +90,7 @@ class BoldGrid_Framework {
 		$this->pagination();
 		$this->ninja_forms();
 		$this->woocommerce();
+		$this->title();
 	}
 
 	/**
@@ -179,6 +180,7 @@ class BoldGrid_Framework {
 			'starter-content',
 			'styles',
 			'template-config',
+			'title',
 			'upgrade',
 			'widgets',
 			'woocommerce',
@@ -508,8 +510,6 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'admin_enqueue_scripts', $editor, 'enqueue_webfonts' );
 		}
 
-		$this->loader->add_action( 'init', $editor, 'add_post_title_toggle' );
-		$this->loader->add_action( 'save_post', $editor, 'update_page_title_toggle', 10, 2 );
 		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'admin_enqueue_scripts' );
 		$this->loader->add_filter( 'tiny_mce_before_init', $editor, 'tinymce_body_class' );
 	}
@@ -970,6 +970,19 @@ class BoldGrid_Framework {
 				add_action( 'boldgrid_main_bottom' , array( $woo, 'add_container_close' ) );
 			}
 		});
+	}
+
+	/**
+	 * Adds in page title functionality for bgtfw.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 */
+	private function title() {
+		$title = new BoldGrid_Framework_Title( $this->configs );
+
+		$this->loader->add_action( 'post_updated', $title, 'post_updated', 10, 3 );
+		$this->loader->add_filter( 'the_title', $title, 'show_title', 10, 2 );
 	}
 
 	/**

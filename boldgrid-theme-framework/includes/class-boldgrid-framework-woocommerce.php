@@ -104,6 +104,55 @@ class BoldGrid_Framework_Woocommerce {
 	}
 
 	/**
+	 * Adds a container wrapper to woocommerce pages.
+	 *
+	 * @since 2.0.0
+	 */
+	public function add_container_open() {
+		$classes = array( get_theme_mod( 'woocommerce_container', 'container' ) );
+		$classes = apply_filters( 'bgtfw_woocommerce_wrapper_classes', $classes );
+		echo '<div class="' . esc_attr( implode( ' ', $classes ) ) . '"><div>';
+	}
+
+	/**
+	 * Closes the wrapper div on woocommerce pages.
+	 *
+	 * @since 2.0.0
+	 */
+	public function add_container_close() {
+		echo '</div>';
+	}
+
+	/**
+	 * Checks if on woocommerce page.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return bool Is current page a woocommerce page.
+	 */
+	public function is_woocommerce_page() {
+		return ( bool ) ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || array_filter(
+			array(
+				'woocommerce_shop_page_id',
+				'woocommerce_terms_page_id',
+				'woocommerce_cart_page_id',
+				'woocommerce_checkout_page_id',
+				'woocommerce_pay_page_id',
+				'woocommerce_thanks_page_id',
+				'woocommerce_myaccount_page_id',
+				'woocommerce_edit_address_page_id',
+				'woocommerce_view_order_page_id',
+				'woocommerce_change_password_page_id',
+				'woocommerce_logout_page_id',
+				'woocommerce_lost_password_page_id'
+			),
+			function( $id ) {
+				return get_the_ID() == get_option( $id , 0 );
+			}
+		);
+	}
+
+	/**
 	 * Adds select2 styles to match our theme.
 	 *
 	 * Woocommerce adds select to for their dropdowns, which creates a better
@@ -122,6 +171,7 @@ class BoldGrid_Framework_Woocommerce {
 				$style = '.palette-primary.woocommerce ul.products li.product a.btn, .palette-primary.woocommerce-page ul.products li.product a.btn { max-width: ' . get_site_option( 'woocommerce_thumbnail_image_width', 300 ) . 'px;}';
 				wp_add_inline_style( 'woocommerce-layout', $style );
 			}
+
 			/**
 			 * Only needed in checkout pages, or if the use is logged in to account.
 			 */

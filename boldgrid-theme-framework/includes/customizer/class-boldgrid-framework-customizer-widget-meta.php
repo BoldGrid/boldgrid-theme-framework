@@ -43,9 +43,18 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 *
 	 * @since     1.0.0
 	 * @access    protected
-	 * @var       string     $configs       The BoldGrid Theme Framework configurations.
+	 * @var       array     $configs       The BoldGrid Theme Framework configurations.
 	 */
 	protected $configs;
+
+	/**
+	 * Reference to Boldgrid_Framework_Compile_Colors object.
+	 *
+	 * @since  2.0.0
+	 * @access protected
+	 * @var    Object    $palette The BoldGrid Theme Framework configurations.
+	 */
+	protected $palette;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -55,6 +64,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
+		$this->palette = new Boldgrid_Framework_Compile_Colors( $configs );
 	}
 
 	/**
@@ -115,7 +125,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 				'capability' => 'edit_theme_options',
 				'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 				'transport' => 'postMessage',
-				'default' => '',
+				'default' => $this->get_sidebar_defaults( $section->sidebar_id, 'background_color' ),
 			) );
 
 			// Note that this partial has no render_callback because it is purely for JS previews.
@@ -130,7 +140,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 				'capability' => 'edit_theme_options',
 				'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 				'transport' => 'postMessage',
-				'default' => '',
+				'default' => $this->get_sidebar_defaults( $section->sidebar_id, 'headings_color' ),
 			) );
 
 			$selectors = array();
@@ -155,7 +165,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 				'capability' => 'edit_theme_options',
 				'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 				'transport' => 'postMessage',
-				'default' => '',
+				'default' => $this->get_sidebar_defaults( $section->sidebar_id, 'links_color' ),
 			) );
 
 			$wp_customize->selective_refresh->add_partial( $links_color_setting->id, array(
@@ -193,9 +203,8 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		$deps = array( 'customize-widgets' );
 		wp_enqueue_script( $handle, $src, $deps );
 
-		$palette = new Boldgrid_Framework_Compile_Colors( $this->configs );
-		$active_palette = $palette->get_active_palette();
-		$formatted_palette = $palette->color_format( $active_palette );
+		$active_palette = $this->palette->get_active_palette();
+		$formatted_palette = $this->palette->color_format( $active_palette );
 
 		$data = array(
 			'l10n' => array(
@@ -206,7 +215,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 			),
 			'choices' => array(
 				'colors' => $formatted_palette,
-				'size' => $palette->get_palette_size( $formatted_palette ),
+				'size' => $this->palette->get_palette_size( $formatted_palette ),
 			),
 		);
 		wp_add_inline_script( $handle, sprintf( 'CustomizeWidgetSidebarMetaControls.init( wp.customize, %s );', wp_json_encode( $data ) ) );
@@ -397,5 +406,67 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		}
 
 		return $css;
+	}
+
+	/**
+	 * Get defaults for registered sidebars when creating controls.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $sidebar_id ID of the sidebar.
+	 * @param bool   $type       Whether to return a specific setting or full sidebar settings.
+	 */
+	public function get_sidebar_defaults( $sidebar_id, $type = false ) {
+		global $boldgrid_theme_framework;
+		$config = $boldgrid_theme_framework->get_configs();
+
+		$settings = array();
+		$active_palette = $this->palette->get_active_palette();
+		$formatted_palette = $this->palette->color_format( $active_palette );
+
+		$settings[ $sidebar_id ] = array(
+			'title' => '',
+			'background_color' => '',
+			'headings_color' => '',
+			'links_color' => '',
+		);
+
+		// Header sidebars defaults.
+		if ( strpos( $sidebar_id, 'header' ) !== false ) {
+			$settings[ $sidebar_id ]['background_color'] = get_theme_mod( 'bgtfw_header_color', $this->get_control_default( 'bgtfw_header_color' ) );
+			$settings[ $sidebar_id ]['headings_color'] = get_theme_mod( 'bgtfw_header_headings_color', $this->get_control_default( 'bgtfw_header_headings_color' ) );
+			$settings[ $sidebar_id ]['links_color'] = get_theme_mod( 'bgtfw_header_links', $this->get_control_default( 'bgtfw_header_links' ) );
+
+		// Footer sidebars defaults.
+		} elseif ( strpos( $sidebar_id, 'footer' ) !== false ) {
+			$settings[ $sidebar_id ]['background_color'] = get_theme_mod( 'bgtfw_footer_color', $this->get_control_default( 'bgtfw_footer_color' ) );
+			$settings[ $sidebar_id ]['headings_color'] = get_theme_mod( 'bgtfw_footer_headings_color', $this->get_control_default( 'bgtfw_footer_headings_color' ) );
+			$settings[ $sidebar_id ]['links_color'] = get_theme_mod( 'bgtfw_footer_links', $this->get_control_default( 'bgtfw_footer_links' ) );
+
+		// All other sidebar defaults.
+		} else {
+			$settings[ $sidebar_id ]['background_color'] = 'color-1:' . preg_replace( '/\s+/', '', $formatted_palette['color-1'] );
+			$settings[ $sidebar_id ]['headings_color'] = 'color-2:' . preg_replace( '/\s+/', '', $formatted_palette['color-2'] );
+			$settings[ $sidebar_id ]['links_color'] = 'color-3:' . preg_replace( '/\s+/', '', $formatted_palette['color-3'] );
+		}
+
+		return false !== $type ? $settings[ $sidebar_id ][ $type ] : $settings[ $sidebar_id ];
+	}
+
+	/**
+	 * Get default value for customizer control.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $settings The settings ID associated with a control.
+	 *
+	 * @return mixed  $default  Default value for control from configs.
+	 */
+	public function get_control_default( $settings ) {
+		$control = array_filter( $this->configs['customizer']['controls'], function( $setting ) use ( $settings ) {
+			return $setting['settings'] === $settings;
+		} );
+
+		return isset( $control['default'] ) ? $control['default'] : false;
 	}
 }

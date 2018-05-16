@@ -274,6 +274,21 @@ gulp.task('jscs', function () {
 
 gulp.task( 'webpack', shell.task('webpack --color') );
 
+// Minify & Copy JS
+gulp.task('frameworkJs', function () {
+  // Minified Files.
+  gulp.src([config.src + '/assets/js/**/*.js'])
+    .pipe(uglify().on('error', gutil.log))
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(config.dist + '/assets/js'));
+
+  // Unminified Files.
+  gulp.src([config.src + '/assets/js/**/*.js'])
+    .pipe(gulp.dest(config.dist + '/assets/js'));
+});
+
 // Modernizr
 // Minify & Copy JS
 gulp.task('modernizr', function () {
@@ -405,9 +420,9 @@ gulp.task('build', function (cb) {
     'clean',
     'bower',
     'readme',
-    ['jsHint', 'jscs'],
+    ['jsHint', 'jscs', 'frameworkJs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate'],
-    //'images',
+    'images',
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
     cb
@@ -418,7 +433,7 @@ gulp.task('build', function (cb) {
 gulp.task('qbuild', function (cb) {
   sequence(
     'readme',
-    ['jsHint', 'jscs'],
+    ['jsHint', 'jscs', 'frameworkJs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate'],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
@@ -430,7 +445,7 @@ gulp.task('framework-js', function (cb) {
   return sequence('frameworkFiles', ['jsHint', 'jscs', 'modernizr'], cb);
 });
 
-gulp.task('prebuild', [/*'images',*/ 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate']);
+gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate']);
 
 gulp.task('watch', function () {
 	gulp.start( 'sass:watch' );

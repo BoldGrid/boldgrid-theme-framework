@@ -78,7 +78,7 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@boldgrid/components@^2.3.2":
+"@boldgrid/components@^2.12.1":
   version "2.12.1"
   resolved "https://registry.yarnpkg.com/@boldgrid/components/-/components-2.12.1.tgz#a11946fcb0614e8ff46baccdbc38e752d3d86836"
   dependencies:

@@ -58,7 +58,8 @@ BOLDGRID.Customizer.Util.bgtfwParseJSON = function( string ) {
 			if ( data && _.isObject( data ) ) {
 				return data;
 			}
-		} catch( error ) {
+		} catch ( error ) {
+
 			// console.warn( 'An error retrieving the active color palette occured!', error );
 			return false;
 		}
@@ -191,7 +192,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 * works for now.  This will just trigger the preview pane to reload
 	 * the same page after a user changes their header videos.
 	 */
-	$.each( ['external_header_video', 'header_video' ], function( index, settingId ) {
+	$.each( [ 'external_header_video', 'header_video' ], function( index, settingId ) {
 		wp.customize( settingId, function( value ) {
 			value.bind( function() {
 				wp.customize.preview.send( 'url', window.location.href );
@@ -204,10 +205,10 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 *
 	 * @since 2.0.0
 	 */
-	$.each( ['bgtfw_site_title_typography', 'bgtfw_tagline_typography' ], function( index, settingId ) {
+	$.each( [ 'bgtfw_site_title_typography', 'bgtfw_tagline_typography' ], function( index, settingId ) {
 		wp.customize( settingId, function( value ) {
 			value.bind( function( to ) {
-				$.each( ['font-size', 'line-height', 'font-family', 'font-weight' ], function( index, control ) {
+				$.each( [ 'font-size', 'line-height', 'font-family', 'font-weight' ], function( index, control ) {
 					if ( value[ control ] !== to[ control ] ) {
 						bgtfw_calculate_layouts();
 					}
@@ -238,6 +239,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} else {
 			BoldGrid.custom_header.calc();
 		}
+
 		//$( window ).trigger( 'resize' );
 	};
 
@@ -253,7 +255,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			// Add CSS to elements.
 			$( 'body' ).removeClass( 'header-top header-left header-right' ).addClass( to );
 
-			if ( to === 'header-left' || to === 'header-right' ) {
+			if ( 'header-left' === to || 'header-right' === to ) {
 				headerWidth = wp.customize( 'bgtfw_header_width' )();
 				parent.kirkiSetSettingValue.set( 'bgtfw_header_width', headerWidth );
 			}
@@ -267,6 +269,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 * Add controls for fixed/not fixed header.
 	 */
 	wp.customize( 'bgtfw_fixed_header', function( value ) {
+
 		// Bind value change.
 		value.bind( function( to ) {
 			var body = $( 'body' );
@@ -279,6 +282,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 * Header layout control.
 	 */
 	wp.customize( 'bgtfw_header_top_layouts', function( value ) {
+
 		// Bind value change.
 		value.bind( function( to ) {
 			$( '#masthead' )
@@ -432,7 +436,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	} );
 
 	// Bind all color class controls.
-	_.each( colorClassControls, function ( control ) {
+	_.each( colorClassControls, function( control ) {
 		wp.customize( control.name, function( value ) {
 			value.bind( function() {
 				outputColor( control.name, control.selector, control.properties );
@@ -472,12 +476,12 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	var setup_post_edit_link = function() {
 		$( '.post-edit-link' ).on( 'click', function() {
 			parent.location = $( this ).attr( 'href' );
-		});
+		} );
 	};
 
 	var background_type_update = function( to ) {
 
-			if ( to === 'pattern' ) {
+			if ( 'pattern' === to ) {
 				update_color_and_patterns();
 			} else {
 				$body.css( {
@@ -499,7 +503,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	};
 
 	var background_attachment_update = function( to ) {
-		if ( to === 'parallax' ) {
+		if ( 'parallax' === to ) {
 			$body.addClass( 'boldgrid-customizer-parallax-effect' );
 			$body.css( 'background-attachment', 'fixed' );
 
@@ -524,7 +528,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 			$body.css( {
 				'background-attachment': to
-			});
+			} );
 			set_background_vertical_position();
 			set_background_horizontal_position();
 			background_repeat_update();
@@ -590,18 +594,18 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	 * @param string selector CSS selector to apply classes to.
 	 * @param array  list of properties to add.
 	 */
-	var outputColor = function ( themeMod, selector, properties ) {
+	var outputColor = function( themeMod, selector, properties ) {
 		var colorClassPrefix,
 			$selector = $( selector ),
 			regex = new RegExp( 'color-?([\\d]|neutral)\-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
 
 		themeMod = parent.wp.customize( themeMod )();
 
-		if ( ! themeMod || themeMod === 'none' ) {
+		if ( ! themeMod || 'none' === themeMod ) {
 			themeMod = '';
 		}
 
-		$selector.removeClass( function ( index, css ) {
+		$selector.removeClass( function( index, css ) {
 			return ( css.match( regex ) || [] ).join( ' ' );
 		} );
 
@@ -618,7 +622,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			}
 
 			return prefix + '-' + property;
-		} ).join(' ') );
+		} ).join( ' ' ) );
 	};
 
 	/**
@@ -640,7 +644,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			'background-size': 'auto',
 			'background-repeat': 'repeat',
 			'background-attachment': 'scroll'
-		});
+		} );
 
 		outputColor( 'boldgrid_background_color', 'body', [
 			'background-color', 'text-default'
@@ -656,13 +660,13 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		$body.css( {
 			'background-image': to
-		});
+		} );
 	};
 
 	var background_repeat_update = function( ) {
 		$body.css( {
 			'background-repeat': wp.customize( 'background_repeat' )()
-		});
+		} );
 	};
 
 	var init_values = function() {
@@ -672,12 +676,12 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			bg_type = wp.customize( 'boldgrid_background_type' )();
 
 		update_color_and_patterns();
-		if ( bg_type !== 'pattern' ) {
+		if ( 'pattern' !== bg_type ) {
 			background_attachment_update( bg_attach );
 			background_size_update( bg_img_size );
 			var bg_image = wp.customize( 'background_image' )();
 			background_image_update( bg_image );
-			if ( bg_attach !== 'parallax' ) {
+			if ( 'parallax' !== bg_attach ) {
 				set_background_vertical_position();
 				set_background_horizontal_position();
 				background_repeat_update();
@@ -692,7 +696,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			if ( _.isFunction( parent.wp.customize.section ) ) {
 				controls = parent.wp.customize.section( 'boldgrid_footer_panel' ).controls();
 				_( controls ).each( function( control ) {
-					var selector, regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
+					var selector,
+						regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
+
 					if ( regex.test( control.id ) ) {
 						if ( !! parseInt( wp.customize( control.id )() ) ) {
 							selector = '.' + control.id.replace( 'hide_', '' ).replace( /_/g, '-' ) + '-link';
@@ -719,7 +725,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	if ( _.isFunction( parent.wp.customize.section ) ) {
 		var attributionControls = parent.wp.customize.section( 'boldgrid_footer_panel' ).controls();
 		_( attributionControls ).each( function( control ) {
-			var selector, regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
+			var selector,
+				regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
+
 			if ( regex.test( control.id ) ) {
 				wp.customize( control.id, function( value ) {
 					selector = '.' + control.id.replace( /hide_/, '' ).replace( /_/g, '-' ) + '-link';
@@ -730,10 +738,10 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 							$( selector ).addClass( 'hidden' );
 						}
 						attributionSeparators();
-					});
-				});
+					} );
+				} );
 			}
-		});
+		} );
 	}
 	$( document ).on( 'customize-preview-menu-refreshed', function( event, menu ) {
 		$.each( menu.newContainer.closest( '[data-is-parent-column]' ), function() {
@@ -748,7 +756,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
 
 		// Only update when the dynamic widget sidebars are rerendered.
-		if ( placement.partial.id !== 'boldgrid_header_widgets' && placement.partial.id !== 'boldgrid_footer_widgets' ) {
+		if ( 'boldgrid_header_widgets' !== placement.partial.id && 'boldgrid_footer_widgets' !== placement.partial.id ) {
 			return;
 		}
 
@@ -766,15 +774,17 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		selector.find( '.widget_rss ul' ).addClass( 'media-list' );
 		selector.find( '.widget_meta ul, .widget_recent_entries ul, .widget_archive ul, .widget_categories ul, .widget_nav_menu ul, .widget_pages ul' ).addClass( 'nav' );
 		selector.find( '.widget_recent_comments ul#recentcomments' )
-			.css({ 'list-style': 'none', 'padding-left': '0' });
+			.css( { 'list-style': 'none', 'padding-left': '0' } );
 		selector.find( '.widget_recent_comments ul#recentcomments li' ).css( 'padding', '5px 15px' );
 		selector.find( 'table#wp-calendar' ).addClass( 'table table-striped' );
 		selector.find( '.sidebar select, select[name="archive-dropdown"]' ).addClass( 'form-control' );
 		selector.find( '.sidebar .button' ).removeClass( 'button' ).addClass( 'btn button-primary' );
+
 		// WooCommerce Widgets.
 		selector.find( '.woocommerce.widget .ui-slider' ).css( 'display', 'none' );
 		selector.find( '.woocommerce.widget .ui-slider' ).css( 'display', 'block' );
 		selector.find( '.woocommerce.widget .ui-slider' ).addClass( 'color1-background-color' ).children().addClass( 'color2-background-color' );
+
 		// Buttons.
 		selector.find( '.button' )
 			.removeClass( 'button' )

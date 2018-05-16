@@ -144,7 +144,7 @@ class BoldGrid_Framework_Woocommerce {
 				'woocommerce_view_order_page_id',
 				'woocommerce_change_password_page_id',
 				'woocommerce_logout_page_id',
-				'woocommerce_lost_password_page_id'
+				'woocommerce_lost_password_page_id',
 			),
 			function( $id ) {
 				return get_the_ID() == get_option( $id , 0 );

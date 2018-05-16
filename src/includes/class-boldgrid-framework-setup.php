@@ -237,6 +237,11 @@ class BoldGrid_Framework_Setup {
 		}
 	}
 
+	/**
+	 * Add support for custom logo.
+	 *
+	 * @since 2.0.0
+	 */
 	public function custom_logo_setup() {
 		add_theme_support(
 			'custom-logo',

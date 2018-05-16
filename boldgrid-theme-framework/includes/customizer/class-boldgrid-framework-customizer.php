@@ -51,7 +51,7 @@ class BoldGrid_Framework_Customizer {
 	public function kirki_controls() {
 		global $wp_customize;
 
-		foreach( $this->configs['customizer']['controls'] as $control ) {
+		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			if ( 'radio' !== $control['type'] ) {
 				Kirki::add_field( 'bgtfw', $control );
 			} else {
@@ -102,7 +102,7 @@ class BoldGrid_Framework_Customizer {
 			}
 		}
 
-		foreach( $this->configs['customizer']['sections'] as $name => $section ) {
+		foreach ( $this->configs['customizer']['sections'] as $name => $section ) {
 			Kirki::add_section( $name, $section );
 		}
 	}
@@ -264,7 +264,8 @@ class BoldGrid_Framework_Customizer {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_script( 'boldgrid-theme-customizer',
-			$this->configs['framework']['js_dir'] . 'customizer/customizer' . $suffix . '.js',
+			// Force minifies file for customizer.
+			$this->configs['framework']['js_dir'] . 'customizer/customizer.min.js',
 			array(
 				'jquery',
 				'customize-preview',
@@ -462,7 +463,7 @@ HTML;
 	 */
 	public function add_panels( $wp_customize ) {
 		$wp_customize->register_panel_type( 'Boldgrid_Framework_Customizer_Panel' );
-		foreach( $this->configs['customizer']['panels'] as $name => $panel ) {
+		foreach ( $this->configs['customizer']['panels'] as $name => $panel ) {
 			$panel = new Boldgrid_Framework_Customizer_Panel( $wp_customize, $name, $panel );
 			$wp_customize->add_panel( $panel );
 		}

@@ -150,16 +150,16 @@ class BoldGrid {
 
 		// Bug fix 9/28/15: https://codex.wordpress.org/Function_Reference/is_home.
 		if ( is_front_page( ) && 'page' === get_option( 'show_on_front' ) ) {
-			$titleTag = $configs['template']['site-title-tag'];
+			$title_tag = $configs['template']['site-title-tag'];
 		} else {
-			$titleTag = 'p';
+			$title_tag = 'p';
 		}
 
 		// Site title link.
-		$link = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo ( 'name' ) . '</a>';
+		$link = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo( 'name' ) . '</a>';
 
-		echo '<' . $titleTag . ' class="' . esc_attr( $configs['template']['site-title-classes'] )
-			. '">' . $link . '</' . $titleTag . '>';
+		echo '<' . $title_tag . ' class="' . esc_attr( $configs['template']['site-title-classes'] )
+			. '">' . $link . '</' . $title_tag . '>';
 	}
 
 	/**
@@ -360,7 +360,7 @@ class BoldGrid {
 		$color_obj = ariColor::newColor( $color );
 
 		$color_obj->alpha = 0.7;
-		$css .= '.header-left #main-menu, .header-right #main-menu { background-color:' . $color_obj->toCSS( 'rgba' ) .'; }';
+		$css .= '.header-left #main-menu, .header-right #main-menu { background-color:' . $color_obj->toCSS( 'rgba' ) . '; }';
 		$css .= '@media (min-width: 768px) {';
 
 		$color_obj->alpha = 0.4;
@@ -417,7 +417,7 @@ class BoldGrid {
 	 * @since 2.0.0
 	 *
 	 * @param  string $mod        Palette Selector theme_mod to get value for.
-	 * @param  array $properties  A list of properties to check..
+	 * @param  array  $properties  A list of properties to check..
 	 *
 	 * @return array  $classes    Classes to add.
 	 */
@@ -430,7 +430,7 @@ class BoldGrid {
 		}
 
 		$classes = array();
-		foreach( $properties as $property ) {
+		foreach ( $properties as $property ) {
 			$classes[] = $color_class . '-' . $property;
 		}
 

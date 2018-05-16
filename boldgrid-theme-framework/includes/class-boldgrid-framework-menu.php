@@ -209,7 +209,7 @@ class Boldgrid_Framework_Menu {
 			if ( ! empty( $classes ) ) {
 
 				// Loop through each of the classes we wish to override.
-				foreach( $classes as $class ) {
+				foreach ( $classes as $class ) {
 
 					// Join existing bgtfw configs for menu classes passed in $args.
 					if ( isset( $args[ $class ] ) && ! empty( $args[ $class ] ) ) {

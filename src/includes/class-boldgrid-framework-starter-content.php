@@ -28,6 +28,14 @@ class BoldGrid_Framework_Starter_Content {
 	 * @var    string    $configs The BoldGrid Theme Framework configurations.
 	 */
 	protected $configs;
+
+	/**
+	 * Default value for starter content.
+	 *
+	 * @since 2.0.0
+	 * @access protected
+	 * @var    mixed     Value of default.
+	 */
 	protected $default = '';
 
 	/**
@@ -41,6 +49,14 @@ class BoldGrid_Framework_Starter_Content {
 		$this->configs = $configs;
 	}
 
+	/**
+	 * Default palette to use for palette selector controls.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  array $config  BGTFW Configuration.
+	 * @return mixed $default Default Configiguraton.
+	 */
 	public function set_default( $config ) {
 		// Default palette to use for palette selector controls.
 		$default = array_filter( $config['customizer-options']['colors']['defaults'], function( $palette ) {
@@ -92,7 +108,7 @@ class BoldGrid_Framework_Starter_Content {
 	 * @return array $config Array of BGTFW configuration options.
 	 */
 	public function set_configs( $config ) {
-		foreach( $config['customizer']['controls'] as $index => $control ) {
+		foreach ( $config['customizer']['controls'] as $index => $control ) {
 			$config = $this->set_colors( $config, $index, $control );
 			$config = $this->set_defaults( $config, $index, $control );
 		}
@@ -177,7 +193,7 @@ class BoldGrid_Framework_Starter_Content {
 		global $boldgrid_theme_framework;
 		$config = $boldgrid_theme_framework->get_configs();
 
-		foreach( $config['customizer']['controls'] as $index => $control ) {
+		foreach ( $config['customizer']['controls'] as $index => $control ) {
 			$setting = $control['settings'];
 			$default = isset( $control['default'] ) ? $control['default'] : false;
 			add_filter( "theme_mod_{$setting}", function( $setting ) use ( $default ) {

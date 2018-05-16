@@ -248,7 +248,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 			/*--------------------------------------------------------------
 			# Customizer Sidebar Controls
 			--------------------------------------------------------------*/
-			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label,
+			#customize-control-bgtfw_layout_page.customize-control-kirki-radio label,
 			#customize-control-bgtfw_layout_page .customize-inside-control-row,
 			#customize-control-bgtfw_blog_blog_page_sidebar .customize-inside-control-row,
 			#customize-control-bgtfw_blog_blog_page_sidebar2 .customize-inside-control-row,
@@ -393,13 +393,14 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				font-size: 20px;
 				line-height: 1.5;
 			}
+			#bgtfw-attributes-meta-box .post-attributes-advanced-wrap {
+				padding: 0 12px;
+			}
 			#bgtfw-attributes-meta-box .advanced-toggle p {
 				display: inline-block;
 			}
 			#bgtfw-attributes-meta-box .advanced-toggle {
 				opacity: .7;
-				margin-top: 12px;
-				margin-bottom: -12px;
 				border-top: 1px solid #e5e5e5;
 				text-align: center;
 			}

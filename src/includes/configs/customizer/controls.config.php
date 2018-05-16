@@ -93,6 +93,30 @@ return array(
 		'choices'     => array(),
 	),
 	array(
+		'type' => 'radio',
+		'settings' => 'bgtfw_pages_display_title',
+		'label' => esc_html__( 'Page Title', 'bgtfw' ),
+		'section' => 'bgtfw_layout_page',
+		'priority' => 40,
+		'default' => '0',
+		'choices' => array(
+			'1' => esc_attr__( 'Show', 'bgtfw' ),
+			'0' => esc_attr__( 'Hide', 'bgtfw' ),
+		),
+	),
+	array(
+		'type' => 'radio',
+		'settings' => 'bgtfw_posts_display_title',
+		'label' => esc_html__( 'Post Title', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_layout',
+		'priority' => 40,
+		'default' => '0',
+		'choices' => array(
+			'1' => esc_attr__( 'Show', 'bgtfw' ),
+			'0' => esc_attr__( 'Hide', 'bgtfw' ),
+		),
+	),
+	array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_headings_color',

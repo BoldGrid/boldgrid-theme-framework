@@ -149,7 +149,7 @@ class Boldgrid_Framework_Title {
 
 		// This method only needs to be ran if we're looking at a single page / post.
 		$is_single_post = is_page() || is_single();
-		if( ! $is_single_post ) {
+		if ( ! $is_single_post ) {
 			return $title;
 		}
 
@@ -158,7 +158,7 @@ class Boldgrid_Framework_Title {
 		 * is ran and can change a page's title in the nav. We're only interested in adjusting the
 		 * title when displaying a post.
 		 */
-		if( ! in_the_loop() ) {
+		if ( ! in_the_loop() ) {
 			return $title;
 		}
 

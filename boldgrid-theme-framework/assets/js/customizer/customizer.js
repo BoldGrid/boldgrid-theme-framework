@@ -697,7 +697,8 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				controls = parent.wp.customize.section( 'boldgrid_footer_panel' ).controls();
 				_( controls ).each( function( control ) {
 					var selector,
-regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
+						regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
+
 					if ( regex.test( control.id ) ) {
 						if ( !! parseInt( wp.customize( control.id )() ) ) {
 							selector = '.' + control.id.replace( 'hide_', '' ).replace( /_/g, '-' ) + '-link';
@@ -725,7 +726,8 @@ regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
 		var attributionControls = parent.wp.customize.section( 'boldgrid_footer_panel' ).controls();
 		_( attributionControls ).each( function( control ) {
 			var selector,
-regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
+				regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
+
 			if ( regex.test( control.id ) ) {
 				wp.customize( control.id, function( value ) {
 					selector = '.' + control.id.replace( /hide_/, '' ).replace( /_/g, '-' ) + '-link';

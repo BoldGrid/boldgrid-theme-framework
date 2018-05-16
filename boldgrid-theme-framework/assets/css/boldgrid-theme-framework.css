@@ -1481,7 +1481,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 /* hamburger icon */
 .main-menu-btn-icon,
@@ -4078,7 +4078,7 @@ footer .bgtfw-widget-row {
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   z-index: 2; }
 
 /* hamburger icon */

@@ -1,11 +1,10 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
-const distDir = path.resolve( __dirname, 'boldgrid-theme-framework' );
 
 module.exports = {
 	mode: 'production',
 
-	context:  path.resolve( __dirname, 'src' ),
+	context: path.resolve( __dirname, 'src' ),
 
 	entry: {
 		customizer: './assets/js/customizer/customizer.js'
@@ -13,8 +12,7 @@ module.exports = {
 
 	output: {
 		filename: './assets/js/customizer/[name].min.js',
-		path: distDir,
-		publicPath: '/'
+		path: path.resolve( __dirname, 'boldgrid-theme-framework' )
 	},
 
 	module: {
@@ -37,7 +35,8 @@ module.exports = {
 			{
 				test: /\.js$/,
 				use: [ 'babel-loader' ]
-			},
+			}
+
 			// Disabled eslint because everything was failing.
 			/*{
 				test: /\.js$/,

@@ -106,6 +106,10 @@ class BoldGrid_Framework_Woocommerce {
 		if ( class_exists( 'woocommerce' ) ) {
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
+			if ( is_woocommerce() ) {
+				$style = '.palette-primary.woocommerce ul.products li.product a.btn, .palette-primary.woocommerce-page ul.products li.product a.btn { max-width: ' . get_site_option( 'woocommerce_thumbnail_image_width', 300 ) . 'px;}';
+				wp_add_inline_style( 'woocommerce-layout', $style );
+			}
 			/**
 			 * Only needed in checkout pages, or if the use is logged in to account.
 			 */

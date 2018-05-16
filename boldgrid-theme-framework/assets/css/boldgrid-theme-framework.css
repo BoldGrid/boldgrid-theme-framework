@@ -2548,6 +2548,24 @@ footer .bgtfw-widget-row {
 .palette-primary.woocommerce-page.archive main .woocommerce-ordering {
   margin: 20px 0; }
 
+.palette-primary.woocommerce span.onsale, .palette-primary.woocommerce-page span.onsale {
+  height: 3.236em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.236em;
+  padding: .202em;
+  font-weight: 700;
+  position: absolute;
+  text-align: center;
+  line-height: 3.236;
+  top: -0.75em;
+  left: -.75em;
+  margin: 0;
+  border-radius: 100%;
+  font-size: .857em;
+  z-index: 9; }
+
 .palette-primary.woocommerce ul.products, .palette-primary.woocommerce-page ul.products {
   display: flex;
   flex-wrap: wrap;
@@ -2558,6 +2576,7 @@ footer .bgtfw-widget-row {
 .palette-primary.woocommerce ul.products li.product, .palette-primary.woocommerce-page ul.products li.product {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-direction: column;
   margin: 0;
   margin-top: 2em;
@@ -2571,6 +2590,28 @@ footer .bgtfw-widget-row {
 @media screen and (max-width: 768px) {
   .palette-primary.woocommerce ul.products li.product, .palette-primary.woocommerce-page ul.products li.product {
     width: calc( 100% * (1/2)); } }
+
+.palette-primary.woocommerce ul.products li.product img, .palette-primary.woocommerce-page ul.products li.product img {
+  width: auto;
+  margin-top: 0; }
+
+.palette-primary.woocommerce ul.products li.product .onsale, .palette-primary.woocommerce-page ul.products li.product .onsale {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -1.618em;
+  left: -1.618em;
+  height: 3.236em;
+  width: 3.236em;
+  margin: 0;
+  padding: 1em 0.636em; }
+
+.palette-primary.woocommerce ul.products li.product .onsale + img, .palette-primary.woocommerce-page ul.products li.product .onsale + img {
+  margin-top: -2.8em; }
+
+.palette-primary.woocommerce ul.products li.product a.btn, .palette-primary.woocommerce-page ul.products li.product a.btn {
+  width: 100%; }
 
 .palette-primary.woocommerce ul.products.columns-1 li.product, .palette-primary.woocommerce-page ul.products.columns-1 li.product {
   width: calc( 100% * (1/1)); }

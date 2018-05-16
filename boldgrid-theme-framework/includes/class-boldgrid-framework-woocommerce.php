@@ -92,6 +92,18 @@ class BoldGrid_Framework_Woocommerce {
 	}
 
 	/**
+	 * Modify WooCommerce customizer controls.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param WP_Customize $wp_customize WP_Customizer object.
+	 */
+	public function customizer( $wp_customize ) {
+		delete_site_option( 'woocommerce_single_image_width' );
+		$wp_customize->remove_control( 'woocommerce_single_image_width' );
+	}
+
+	/**
 	 * Adds select2 styles to match our theme.
 	 *
 	 * Woocommerce adds select to for their dropdowns, which creates a better

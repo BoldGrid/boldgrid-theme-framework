@@ -98,7 +98,7 @@ return array(
 		'label' => esc_html__( 'Page Title', 'bgtfw' ),
 		'section' => 'bgtfw_layout_page',
 		'priority' => 40,
-		'default' => '0',
+		'default' => '1',
 		'choices' => array(
 			'1' => esc_attr__( 'Show', 'bgtfw' ),
 			'0' => esc_attr__( 'Hide', 'bgtfw' ),
@@ -110,7 +110,7 @@ return array(
 		'label' => esc_html__( 'Post Title', 'bgtfw' ),
 		'section' => 'bgtfw_pages_blog_posts_layout',
 		'priority' => 40,
-		'default' => '0',
+		'default' => '1',
 		'choices' => array(
 			'1' => esc_attr__( 'Show', 'bgtfw' ),
 			'0' => esc_attr__( 'Hide', 'bgtfw' ),

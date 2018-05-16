@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Class: Boldgrid_Framework_Customizer_Widget_Areas

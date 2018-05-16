@@ -93,6 +93,20 @@ return array(
 		'choices'     => array(),
 	),
 	array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_headings_color',
+		'label'       => esc_attr__( 'Color', 'bgtfw' ),
+		'section'     => 'headings_typography',
+		'priority'    => 10,
+		'default'     => '',
+		'choices'     => array(
+			'colors'  => $formatted_palette,
+			'size'    => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	array(
 		'type'     => 'typography',
 		'settings'  => 'bgtfw_headings_typography',
 		'transport'   => 'auto',
@@ -108,7 +122,7 @@ return array(
 			'subsets'        => array( 'latin-ext' ),
 			'text-transform' => 'none',
 		),
-		'priority'    => 10,
+		'priority'    => 20,
 		'output'      => array(
 			array(
 				'element'  => implode( ', ', array_keys( $this->configs['customizer-options']['typography']['selectors'] ) ),
@@ -374,7 +388,7 @@ return array(
 		'settings'    => 'boldgrid_contact_details_setting',
 		'default'     => array(
 			array(
-				'contact_block' => '© '. date( 'Y' ) . ' ' . get_bloginfo( 'name' ),
+				'contact_block' => '© ' . date( 'Y' ) . ' ' . get_bloginfo( 'name' ),
 			),
 			array(
 				'contact_block' => esc_attr( '202 Grid Blvd. Agloe, NY 12776' ),

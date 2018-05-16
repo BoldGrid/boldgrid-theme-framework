@@ -4,7 +4,8 @@
   "description": "BoldGrid Theme Framework",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "php-codesniffer": "phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --ignore=*/black-studio-tinymce-widget/*,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php"
   },
   "keywords": [
     "BoldGrid"

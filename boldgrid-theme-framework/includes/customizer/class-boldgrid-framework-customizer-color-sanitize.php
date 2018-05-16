@@ -22,6 +22,14 @@
  */
 class Boldgrid_Framework_Customizer_Color_Sanitize {
 
+	/**
+	 * Sanitize a color palette.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $color Color seperated by colon.
+	 * @return string        Sanitized color seperated by colon.
+	 */
 	public function sanitize_palette_selector( $color ) {
 
 		// If no color specified.

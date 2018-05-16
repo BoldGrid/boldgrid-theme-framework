@@ -414,7 +414,7 @@ gulp.task('build', function (cb) {
     'readme',
     ['jsHint', 'jscs', 'frameworkJs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate'],
-    'images',
+    //'images',
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
     cb
@@ -437,7 +437,7 @@ gulp.task('framework-js', function (cb) {
   return sequence('frameworkFiles', ['jsHint', 'jscs', 'frameworkJs'], cb);
 });
 
-gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate']);
+gulp.task('prebuild', [/*'images',*/ 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate']);
 
 gulp.task('watch', function () {
 	gulp.start( 'sass:watch' );

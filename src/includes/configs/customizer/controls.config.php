@@ -78,7 +78,7 @@ return array(
 		'default' => '0',
 		'priority' => 17,
 		'choices' => array(
-			'min' => - 100,
+			'min' => -100,
 			'max' => 100,
 			'step' => 1,
 		),
@@ -180,7 +180,6 @@ return array(
 			'line-height'    => '1.5',
 			'letter-spacing' => '0',
 			'subsets'        => array( 'latin-ext' ),
-			// 'color'          => '#333333',
 			'text-transform' => 'none',
 			'text-align'     => 'left',
 		),

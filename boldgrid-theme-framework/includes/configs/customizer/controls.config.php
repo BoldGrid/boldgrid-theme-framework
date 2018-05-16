@@ -78,7 +78,7 @@ return array(
 		'default' => '0',
 		'priority' => 17,
 		'choices' => array(
-			'min' => - 100,
+			'min' => -100,
 			'max' => 100,
 			'step' => 1,
 		),
@@ -98,7 +98,7 @@ return array(
 		'label' => esc_html__( 'Page Title', 'bgtfw' ),
 		'section' => 'bgtfw_layout_page',
 		'priority' => 40,
-		'default' => '0',
+		'default' => '1',
 		'choices' => array(
 			'1' => esc_attr__( 'Show', 'bgtfw' ),
 			'0' => esc_attr__( 'Hide', 'bgtfw' ),
@@ -180,7 +180,6 @@ return array(
 			'line-height'    => '1.5',
 			'letter-spacing' => '0',
 			'subsets'        => array( 'latin-ext' ),
-			// 'color'          => '#333333',
 			'text-transform' => 'none',
 			'text-align'     => 'left',
 		),

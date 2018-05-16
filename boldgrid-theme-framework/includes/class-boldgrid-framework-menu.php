@@ -138,7 +138,7 @@ class Boldgrid_Framework_Menu {
 	 * @param array $add_class Array of wp_nav_menu args that are CSS class overrides.
 	 */
 	public function add_dynamic_actions( $args = array(), $add_class = array() ) {
-		$edit_enabled = $this->configs['customizer-options']['edit']['enabled'];
+		$bgtfw_menus = $this;
 		foreach ( $this->configs['menu']['prototype'] as $menu ) {
 
 			/**
@@ -155,13 +155,11 @@ class Boldgrid_Framework_Menu {
 			 * @param array $args      Arguments to override BGTFW default configs for wp_nav_menu().
 			 * @param array $add_class Array of wp_nav_menu args that are CSS class overrides.
 			 */
-			$action = function( $args, $add_class = array() ) use ( $menu, $edit_enabled ) {
+			$action = function( $args, $add_class = array() ) use ( $menu, &$bgtfw_menus ) {
 
 				// Combine classes in $args from hook, and merge the remaining items in array.
-				if ( doing_action( $this->configs['menu']['action_prefix'] . $menu['theme_location'] ) ) {
-					$add_class = ( ! empty( $add_class ) && is_array( $add_class ) ) ? $add_class : array( 'menu_class', 'container_class' );
-					$menu = $this->parse_nav_args( $args, $menu, $add_class );
-				}
+				$add_class = ( ! empty( $add_class ) && is_array( $add_class ) ) ? $add_class : array( 'menu_class', 'container_class' );
+				$menu = $this->parse_nav_args( $args, $menu, $add_class );
 
 				/*
 				 * IF we're in the customizer and edit buttons are enabled:
@@ -171,7 +169,7 @@ class Boldgrid_Framework_Menu {
 				 * ELSE:
 				 * # Follow standard practice and print the nav menu if it's configured.
 				 */
-				if ( is_customize_preview() && true === $edit_enabled ) {
+				if ( is_customize_preview() && true === $bgtfw_menus->configs['customizer-options']['edit']['enabled'] ) {
 					$menu['fallback_cb'] = 'Boldgrid_Framework_Customizer_Edit::fallback_cb';
 					wp_nav_menu( $menu );
 				} elseif ( has_nav_menu( $menu['theme_location'] ) ) {

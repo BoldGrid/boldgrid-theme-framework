@@ -18,7 +18,12 @@
   },
   "devDependencies": {
     "@boldgrid/components": "^2.3.2",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "del": "^2.2.0",
+    "eslint": "^4.19.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-html": "^4.0.3",
     "googlefonts-sprite-generator": "^1.0.3",
     "gulp": "^3.9.1",
     "gulp-bower": "0.0.13",
@@ -36,12 +41,17 @@
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^4.0.1",
+    "gulp-shell": "^0.6.5",
     "gulp-sort": "^2.0.0",
     "gulp-uglify": "^1.5.2",
     "gulp-wp-pot": "^1.1.1",
     "gutil": "^1.6.4",
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.1.0",
-    "run-sequence": "^1.1.5"
+    "run-sequence": "^1.1.5",
+    "webpack": "^4.8.3",
+	"babel-loader": "^7.1.4",
+	"ejs-loader": "^0.3.1",
+    "webpack-cli": "^2.1.3"
   }
 }

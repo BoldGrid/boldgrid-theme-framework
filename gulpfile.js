@@ -16,6 +16,7 @@ var gulp = require('gulp'),
   phpcbf = require('gulp-phpcbf'),
   phpcs = require('gulp-phpcs'),
   gutil = require('gutil'),
+  shell = require('gulp-shell'),
   del = require('del'),
   clean = require('gulp-clean'),
   fs = require('fs'),
@@ -271,26 +272,16 @@ gulp.task('jscs', function () {
     .pipe(jscs.reporter('fail'));
 });
 
-// Minify & Copy JS
-gulp.task('frameworkJs', function () {
-  // Minified Files.
-  gulp.src([config.src + '/assets/js/**/*.js'])
-    .pipe(uglify().on('error', gutil.log))
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest(config.dist + '/assets/js'));
-
-  // Unminified Files.
-  gulp.src([config.src + '/assets/js/**/*.js'])
-    .pipe(gulp.dest(config.dist + '/assets/js'));
-});
+gulp.task( 'webpack', shell.task('webpack --color') );
 
 // Modernizr
 // Minify & Copy JS
 gulp.task('modernizr', function () {
   // Minified Files.
-  gulp.src([config.src + '/assets/js/**/*.js'])
+  gulp.src([
+	  config.src + '/assets/js/**/*.js',
+	  '!' + config.src + '/assets/js/customizer/customizer.js',
+	])
     .pipe(modernizr(require('./modernizr-config.json')))
     .pipe(uglify().on('error', gutil.log))
     .pipe(rename({
@@ -302,6 +293,8 @@ gulp.task('modernizr', function () {
   gulp.src([config.src + '/assets/js/**/*.js'])
     .pipe(modernizr(require('./modernizr-config.json')))
     .pipe(gulp.dest(config.dist + '/assets/js'));
+
+	gulp.start('webpack');
 });
 
 // Copy SCSS & CSS deps.
@@ -412,7 +405,7 @@ gulp.task('build', function (cb) {
     'clean',
     'bower',
     'readme',
-    ['jsHint', 'jscs', 'frameworkJs'],
+    ['jsHint', 'jscs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate'],
     //'images',
     ['scssCompile', 'bootstrapCompile'],
@@ -425,7 +418,7 @@ gulp.task('build', function (cb) {
 gulp.task('qbuild', function (cb) {
   sequence(
     'readme',
-    ['jsHint', 'jscs', 'frameworkJs'],
+    ['jsHint', 'jscs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate'],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
@@ -434,7 +427,7 @@ gulp.task('qbuild', function (cb) {
 });
 
 gulp.task('framework-js', function (cb) {
-  return sequence('frameworkFiles', ['jsHint', 'jscs', 'frameworkJs'], cb);
+  return sequence('frameworkFiles', ['jsHint', 'jscs', 'modernizr'], cb);
 });
 
 gulp.task('prebuild', [/*'images',*/ 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate']);

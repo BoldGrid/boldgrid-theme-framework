@@ -22,15 +22,14 @@ var gulp = require('gulp'),
   fs = require('fs'),
   argv = require('yargs').argv,
   modernizr = require('gulp-modernizr'),
-  jscs = require('gulp-jscs'),
-  bower = require('gulp-bower');
+  jscs = require('gulp-jscs');
 
 // Configs
 var config = {
   fontsDest: './boldgrid-theme-framework/assets/fonts',
   src: './src',
   dist: './boldgrid-theme-framework',
-  bower: './bower_components',
+  node_modules: './node_modules',
   jsDest: './boldgrid-theme-framework/assets/js',
   scss_dest: '../boldgrid-theme-framework/inc/assets/scss',
   scss_src: './inc/assets/scss',
@@ -43,12 +42,6 @@ var config = {
   layouts_dest: '../boldgrid-theme-framework/layouts',
   scss_minify: 'compressed' // or uncompressed for dev
 };
-
-// Create a bower task to retrieve bower_components on build
-gulp.task('bower', function () {
-  return bower()
-    .pipe(gulp.dest(config.bower));
-});
 
 // Create CSS file for font-family control based on webfonts.json.
 //
@@ -116,6 +109,11 @@ gulp.task('googlefonts-image', function () {
   return 1;
 });
 
+// Create dist folder.
+gulp.task('dist', function () {
+  return gulp.src('*.*', {read: false})
+    .pipe(gulp.dest('./boldgrid-theme-framework'))
+});
 // Clean distribution on build.
 gulp.task('clean', function () {
   return del([config.dist]);
@@ -124,38 +122,42 @@ gulp.task('clean', function () {
 // Javascript Dependencies
 gulp.task('jsDeps', function () {
   // jQuery Stellar - Check
-  gulp.src(config.bower + '/jquery.stellar/jquery.stellar*.js')
+  gulp.src(config.node_modules + '/jquery.stellar/jquery.stellar*.js')
+    .pipe(gulp.dest(config.jsDest + '/jquery-stellar'));
+  gulp.src(config.node_modules + '/jquery.stellar/jquery.stellar*.js')
+    .pipe(uglify())
+    .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(config.jsDest + '/jquery-stellar'));
   // Bootstrap
-  gulp.src(config.bower + '/bootstrap-sass/assets/javascripts/bootstrap.*')
+  gulp.src(config.node_modules + '/bootstrap-sass/assets/javascripts/bootstrap.*')
     .pipe(gulp.dest(config.jsDest + '/bootstrap'));
-  gulp.src(config.bower + '/smartmenus/dist/**/jquery.*.js')
+  gulp.src(config.node_modules + '/smartmenus/dist/**/jquery.*.js')
     .pipe(gulp.dest(config.jsDest + '/smartmenus'));
   // Jasny Bootstrap
-  gulp.src(config.bower + '/jasny-bootstrap/js/offcanvas.js')
+  gulp.src(config.node_modules + '/jasny-bootstrap/js/offcanvas.js')
     .pipe(gulp.dest(config.jsDest + '/offcanvas'));
-  gulp.src(config.bower + '/jasny-bootstrap/js/offcanvas.js')
+  gulp.src(config.node_modules + '/jasny-bootstrap/js/offcanvas.js')
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(config.jsDest + '/offcanvas'));
   // Nicescroll.
-  gulp.src(config.bower + '/jquery.nicescroll/dist/*.{js,png}')
+  gulp.src(config.node_modules + '/jquery.nicescroll/dist/*.{js,png}')
     .pipe(gulp.dest(config.jsDest + '/niceScroll'));
   // jQuery goup.
   gulp.src([
-    config.bower + '/jquery-goup/src/*.js',
-    config.bower + '/jquery-goup/*.js'])
+    config.node_modules + '/jquery-goup/src/*.js',
+    config.node_modules + '/jquery-goup/*.js'])
     .pipe(gulp.dest(config.jsDest + '/goup'));
   // sass.js - Check
-  gulp.src(config.bower + '/sass.js/dist/**/*')
+  gulp.src(config.node_modules + '/sass.js/dist/**/*')
     .pipe(gulp.dest(config.jsDest + '/sass-js'));
   // Wowjs - Check
-  gulp.src(config.bower + '/wow/dist/**/*')
+  gulp.src(config.node_modules + '/wowjs/dist/**/*')
     .pipe(gulp.dest(config.jsDest + '/wow'));
   // Color-js
-  gulp.src(config.bower + '/color-js/color.js')
+  gulp.src(config.node_modules + '/color-js/color.js')
     .pipe(gulp.dest(config.jsDest + '/color-js'));
-  gulp.src(config.bower + '/color-js/color.js')
+  gulp.src(config.node_modules + '/color-js/color.js')
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(config.jsDest + '/color-js'));
@@ -164,7 +166,7 @@ gulp.task('jsDeps', function () {
 // Font Dependencies
 gulp.task('fontDeps', function () {
   // Font Awesome
-  gulp.src(config.bower + '/font-awesome/fonts/**/*.{ttf,woff,woff2,eot,otf,svg}')
+  gulp.src(config.node_modules + '/font-awesome/fonts/**/*.{ttf,woff,woff2,eot,otf,svg}')
     .pipe(gulp.dest(config.fontsDest));
   // .pipe( notify( { message: 'Font Dependencies Loaded', onLast: true } ) );
   // Custom Icons
@@ -176,31 +178,31 @@ gulp.task('fontDeps', function () {
 gulp.task('phpDeps', function () {
   // Leafo SCSSPHP Compiler
   gulp.src([
-    '!' + config.bower + '/scssphp/scss.inc.php',
-    '!' + config.bower + '/scssphp/tests',
-    '!' + config.bower + '/scssphp/tests/**',
-    config.bower + '/scssphp/**/*.php'
+    '!' + config.node_modules + '/scssphp/scss.inc.php',
+    '!' + config.node_modules + '/scssphp/tests',
+    '!' + config.node_modules + '/scssphp/tests/**',
+    config.node_modules + '/scssphp/**/*.php'
   ])
     .pipe(gulp.dest(config.dist + '/includes/scssphp'));
-  gulp.src(config.bower + '/scssphp/scss.inc.php')
+  gulp.src(config.node_modules + '/scssphp/scss.inc.php')
     .pipe(replace('5.4', '5.3', true))
     .pipe(gulp.dest(config.dist + '/includes/scssphp'));
   // Kirki Customizer Controls.
   gulp.src([
-    '!' + config.bower + '/kirki/assets',
-    '!' + config.bower + '/kirki/assets/**',
-    '!' + config.bower + '/kirki/tests',
-    '!' + config.bower + '/kirki/tests/**',
-    config.bower + '/kirki/**',
+    '!' + config.node_modules + '/kirki-toolkit/assets',
+    '!' + config.node_modules + '/kirki-toolkit/assets/**',
+    '!' + config.node_modules + '/kirki-toolkit/tests',
+    '!' + config.node_modules + '/kirki-toolkit/tests/**',
+    config.node_modules + '/kirki-toolkit/**',
   ])
     .pipe(replace('kirki-logo.svg', 'boldgrid-logo.svg'))
     .pipe(gulp.dest(config.dist + '/includes/kirki'));
   // Get Kirki CSS.
-  gulp.src(config.bower + '/kirki/assets/**/*.{css,map}')
+  gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{css,map}')
     .pipe(replace('Button styles **/', 'Button styles **', true))
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets'));
   // Get Kirki Assets.
-  gulp.src(config.bower + '/kirki/assets/**/*.{png,scss,js}')
+  gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{png,scss,js}')
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets'));
   gulp.src(config.src + "/assets/json/webfonts.json")
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets/json'));
@@ -315,32 +317,32 @@ gulp.task('modernizr', function () {
 // Copy SCSS & CSS deps.
 gulp.task('scssDeps', function () {
   // Bootstrap
-  gulp.src(config.bower + '/bootstrap-sass/assets/stylesheets/**/*')
+  gulp.src(config.node_modules + '/bootstrap-sass/assets/stylesheets/**/*')
     .pipe(replace(/@import "bootstrap\/buttons";/, '//@import "bootstrap/buttons";'))
     .pipe(replace(/@import "bootstrap\/button-groups";/, '//@import "bootstrap/button-groups";'))
     .pipe(gulp.dest(config.dist + '/assets/scss/bootstrap'));
   // Font-Awesome
-  gulp.src(config.bower + '/font-awesome/scss/**/*.scss')
+  gulp.src(config.node_modules + '/font-awesome/scss/**/*.scss')
     .pipe(replace('../fonts', '../../fonts'))
     .pipe(gulp.dest(config.dist + '/assets/scss/font-awesome'));
   // Custom Icons
   gulp.src(config.scss_src + '/icomoon/style.scss')
     .pipe(gulp.dest(config.dist + '/assets/scss/icomoon'));
   // Animate.css
-  gulp.src(config.bower + '/animate.css/animate.*')
+  gulp.src(config.node_modules + '/animate.css/animate.*')
     .pipe(gulp.dest(config.dist + '/assets/css/animate-css'));
   // Underscores
-  gulp.src(config.bower + '/Buttons/scss/**/*.scss')
+  gulp.src(config.node_modules + '/Buttons/scss/**/*.scss')
     .pipe(replace('$values: #{$values}, #{$i}px #{$i}px #{$kolor};', "$values: unquote(#{$values}+', '+#{$i}+'px '+#{$i}+'px '+#{$kolor});"))
     .pipe(replace("$values: #{$values}, unquote($i * -1 + 'px') #{$i}px #{$kolor};", "$values: unquote(#{$values}+', '+#{$i * -1}+'px '+#{$i}+'px '+#{$kolor});"))
     .pipe(replace("background: linear-gradient(top,", "background: linear-gradient("))
     .pipe(gulp.dest(config.dist + '/assets/scss/buttons'));
-  gulp.src(config.bower + '/select2-bootstrap-css/select2-bootstrap*.css')
+  gulp.src(config.node_modules + '/select2-bootstrap-css/select2-bootstrap*.css')
     .pipe(gulp.dest(config.dist + '/assets/css/select2-bootstrap'));
 
-  gulp.src(config.bower + '/smartmenus/dist/css/sm-core-css.css')
+  gulp.src(config.node_modules + '/smartmenus/dist/css/sm-core-css.css')
     .pipe(gulp.dest(config.dist + '/assets/css/smartmenus'));
-  gulp.src(config.bower + '/smartmenus/dist/addons/**/jquery.*.css')
+  gulp.src(config.node_modules + '/smartmenus/dist/addons/**/jquery.*.css')
     .pipe(gulp.dest(config.dist + '/assets/css/smartmenus'));
 
   // boldgrid-components.
@@ -417,8 +419,8 @@ gulp.task('codeSniffer', function () {
 // Tasks
 gulp.task('build', function (cb) {
   sequence(
+    'dist',
     'clean',
-    'bower',
     'readme',
     ['jsHint', 'jscs', 'frameworkJs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate'],
@@ -432,6 +434,7 @@ gulp.task('build', function (cb) {
 // Tasks
 gulp.task('qbuild', function (cb) {
   sequence(
+    'dist',
     'readme',
     ['jsHint', 'jscs', 'frameworkJs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate'],

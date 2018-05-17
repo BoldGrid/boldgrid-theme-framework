@@ -41,7 +41,6 @@ before_script:
     - nvm use 6.12.0
     - npm install --global gulp-cli
 #    - npm install --global yarn
-    - npm install bower
     - yarn install
     - gulp build
     # Set up WordPress installation.

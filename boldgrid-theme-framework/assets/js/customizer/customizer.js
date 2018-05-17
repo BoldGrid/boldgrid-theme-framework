@@ -481,7 +481,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		// Custom logo changes need layout recalculated.
 		wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
-			if ( 'custom_logo' === placement.partial.id ) {
+			if ( 'custom_logo' === placement.partial.id || 'custom_header' === placement.partial.id ) {
 				bgtfwCalculateLayouts();
 			}
 		} );

@@ -2,17 +2,20 @@
 # Color Palettes
 --------------------------------------------------------------*/
 .color-palette-transitions.duration-long * {
-  transition-duration: .5s; }
+  transition-duration: .5s;
+}
 
 .color-palette-transitions * {
   transition-property: background-color, color, border-color;
   transition-duration: .3s;
   transition-delay: 0s;
-  transition-timing-function: linear; }
+  transition-timing-function: linear;
+}
 
 .color-palette-transitions .menu-social a,
 .color-palette-transitions .fa-stack {
-  transition: none; }
+  transition: none;
+}
 
 /*--------------------------------------------------------------
 # Edit Buttons
@@ -28,12 +31,14 @@ body button[data-control]:before {
   display: inline-block;
   -webkit-font-smoothing: antialiased;
   font: normal 20px/1 'dashicons';
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 /* "New" buttons will have text added on hover */
 body button[data-control].new {
   overflow: hidden;
-  white-space: nowrap; }
+  white-space: nowrap;
+}
 
 /* Default settings for all buttons. If updating z-index, update in edit.js as well. */
 body button[data-control] {
@@ -51,7 +56,8 @@ body button[data-control] {
   top: 0px;
   right: 0px;
   line-height: 20px;
-  max-width: 30px; }
+  max-width: 30px;
+}
 
 /* Orange / orange shadow for button hover. */
 body button[data-control]:hover,
@@ -61,7 +67,8 @@ body button[data-control].highlight-button {
   color: #fff;
   -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5); }
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+}
 
 /**
 * #.# jQuery UI Dialog.
@@ -71,7 +78,8 @@ body button[data-control].highlight-button {
 */
 /* By default, ensure the dialog is hidden. */
 .dialog-hidden {
-  display: none; }
+  display: none;
+}
 
 /* Generic settings to ensure a theme's css does not interfere with dialog. */
 .ui-dialog {
@@ -80,7 +88,8 @@ body button[data-control].highlight-button {
   font-family: Helvetica;
   font-weight: normal;
   font-size: 14px;
-  line-height: 20px; }
+  line-height: 20px;
+}
 
 /* Simulate wp-core-ui's button-primary */
 .ui-dialog-buttonset button:first-of-type {
@@ -90,16 +99,19 @@ body button[data-control].highlight-button {
   box-shadow: 0 1px 0 #006799;
   color: #fff;
   text-decoration: none;
-  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799; }
+  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+}
 
 /* Images used within the dialog, such as the 'Show page title' image when editing a page title. */
 #entry-title img {
-  margin: 10px 0px; }
+  margin: 10px 0px;
+}
 
 /* By defualt, a .ui-button color is #555. The ".palette-primary button" class may override this,
 causing undesired effects. Below, override color settings set by ".palette-primary button". */
 .ui-dialog .ui-button {
-  color: #555; }
+  color: #555;
+}
 
 /**
 * #.# Other
@@ -115,11 +127,13 @@ causing undesired effects. Below, override color settings set by ".palette-prima
   z-index: 200;
   -webkit-box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 0.5);
   -moz-box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 0.5);
-  box-shadow: 0px 0px 10px 2px #f95b26; }
+  box-shadow: 0px 0px 10px 2px #f95b26;
+}
 
 /* Remove WP 4.7's visible edit shortcuts, we have our own. */
 .customize-partial-edit-shortcut {
-  display: none; }
+  display: none;
+}
 
 /**
 * #.# Empty areas
@@ -132,13 +146,16 @@ causing undesired effects. Below, override color settings set by ".palette-prima
   /* Buttons are typically aligned far right of an element. If an empty area has no width, the button
   is going to look "off" because it will belong to a 0px by 0px element. Give the empty area 100% width
   to prevent this 0px by 0px element. */
-  width: 100%; }
+  width: 100%;
+}
 
 /* When an empty area is expanded, it will become the same height as an edit button. */
 [data-empty-area].expanded,
 .empty-menu.expanded {
-  height: 30px; }
+  height: 30px;
+}
 
 /* We don't want empty navbars to take up space. Adjust their min-height (usually 50px) to hide them. */
 .navbar.empty-navbar {
-  min-height: 0px; }
+  min-height: 0px;
+}

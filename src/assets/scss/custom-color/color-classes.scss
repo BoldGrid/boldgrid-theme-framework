@@ -22,40 +22,12 @@
 	@return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
 }
 
-@function color-luminance($value) {
-	@if $value <= 0.03928 {
-		@return $value / 12.92;
-	} @else {
-		@return ($value + 0.055)/1.055 * ($value + 0.055)/1.055;
-	}
-}
-
-@function luminosity($color) {
-	$r: color-luminance(red($color) / 255);
-	$g: color-luminance(green($color) / 255);
-	$b: color-luminance(blue($color) / 255);
-
-	@return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
-}
-
-@function contrast-ratio($c1, $c2) {
-	$l1: luminosity($c1);
-	$l2: luminosity($c2);
-
-	@if $l2 > $l1 {
-		@return $l2 / $l1;
-	} @else {
-		@return $l1 / $l2;
-	}
-}
-
 @function hover($background, $color) {
 
 	$style: '';
 	$hover-color: '';
 	$color-lightness: abs(lightness($color));
 	$background-lightness: abs(lightness($background));
-	$contrast: abs(contrast-ratio($background, $color));
 
 	@if $color-lightness == 100 {
 		/* White */

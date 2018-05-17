@@ -110,7 +110,6 @@ var BoldGrid = BoldGrid || {};
 
 						// HTML5 video player found and native handler is loaded.
 						} else if ( youtube.player == null && $( nativeVideo.video ).length ) {
-							console.log( nativeVideo );
 							body.add( 'has-video-header' );
 							body.remove( 'has-header-image' );
 							body.remove( 'has-youtube-header' );

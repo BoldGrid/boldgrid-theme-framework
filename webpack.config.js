@@ -35,10 +35,8 @@ module.exports = {
 			{
 				test: /\.js$/,
 				use: [ 'babel-loader' ]
-			}
-
-			// Disabled eslint because everything was failing.
-			/*{
+			},
+			{
 				test: /\.js$/,
 				enforce: 'pre',
 				exclude: /node_modules/,
@@ -46,7 +44,7 @@ module.exports = {
 				options: {
 					emitWarning: true
 				}
-			},*/
+			}
 		]
 	}
 };

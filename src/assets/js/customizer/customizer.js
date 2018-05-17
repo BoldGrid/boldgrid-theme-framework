@@ -1,3 +1,5 @@
+import ColorPreview from './color/preview';
+
 var BOLDGRID = BOLDGRID || {};
 BOLDGRID.Customizer = BOLDGRID.Customizer || {};
 BOLDGRID.Customizer.Util = BOLDGRID.Customizer.Util || {};
@@ -117,44 +119,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
 ( function( $ ) {
-	var $body, $customStyles, colorClassControls;
+	var $body, $customStyles, colorPreview;
 
 	$body = $( 'body' );
 	$customStyles = $( '#boldgrid-override-styles' );
 
-	colorClassControls = [
-		{
-			name: 'bgtfw_header_links',
-			selector: '#navi-wrap',
-			properties: [ 'link-color' ]
-		},
-		{
-			name: 'bgtfw_footer_color',
-			selector: '#colophon, .footer-content',
-			properties: [ 'background-color', 'text-default' ]
-		},
-
-		{
-			name: 'bgtfw_tagline_color',
-			selector: '.site-description',
-			properties: [ 'color' ]
-		},
-		{
-			name: 'bgtfw_site_title_color',
-			selector: '.site-title',
-			properties: [ 'color' ]
-		},
-		{
-			name: 'bgtfw_footer_links',
-			selector: '.footer-content',
-			properties: [ 'link-color' ]
-		}
-	];
+	colorPreview = new ColorPreview().init();
 
 	$( function() {
 		var bgtfwCalculateLayouts,
 			updateColorAndPatterns,
-			outputColor,
 			headingsColorOutput,
 			setupPostEditLink,
 			backgroundTypeUpdate,
@@ -298,49 +272,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 			selectors = selectors.join( ', ' );
 
-			outputColor( themeMod, $( selectors ).not( '.site-description' ), [ 'color' ] );
-		};
-
-		/**
-		 * Handles front-end color changes in previewer.
-		 *
-		 * This will add classes for color changes to elements during a live preview.
-		 *
-		 * @since 2.0.0
-		 *
-		 * @param string themeMod Theme mod to use for retrieving a background color.
-		 * @param string selector CSS selector to apply classes to.
-		 * @param array  list of properties to add.
-		 */
-		outputColor = function( themeMod, selector, properties ) {
-			var colorClassPrefix,
-				$selector = $( selector ),
-				regex = new RegExp( 'color-?([\\d]|neutral)\-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
-
-			themeMod = parent.wp.customize( themeMod )();
-
-			if ( ! themeMod || 'none' === themeMod ) {
-				themeMod = '';
-			}
-
-			$selector.removeClass( function( index, css ) {
-				return ( css.match( regex ) || [] ).join( ' ' );
-			} );
-
-			// Get class prefix.
-			colorClassPrefix = themeMod.split( ':' ).shift();
-
-			// Add all classes.
-			$selector.addClass( _.map( properties, function( property ) {
-				var prefix = colorClassPrefix;
-
-				// If neutral or link-color, do not remove color hyphen.
-				if ( -1 === colorClassPrefix.indexOf( 'neutral' ) && -1 === property.indexOf( 'link-color' ) ) {
-					prefix = colorClassPrefix.replace( '-', '' );
-				}
-
-				return prefix + '-' + property;
-			} ).join( ' ' ) );
+			colorPreview.outputColor( themeMod, $( selectors ).not( '.site-description' ), [ 'color' ] );
 		};
 
 		/**
@@ -364,7 +296,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				'background-attachment': 'scroll'
 			} );
 
-			outputColor( 'boldgrid_background_color', 'body', [
+			colorPreview.outputColor( 'boldgrid_background_color', 'body', [
 				'background-color', 'text-default'
 			] );
 		};
@@ -672,7 +604,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			value.bind( function( to ) {
 				var style, head, css, color, alpha;
 
-				outputColor( 'bgtfw_header_color', '#masthead, #navi', [ 'background-color', 'text-default' ] );
+				colorPreview.outputColor( 'bgtfw_header_color', '#masthead, #navi', [ 'background-color', 'text-default' ] );
 
 				color = to.split( ':' ).pop();
 
@@ -716,15 +648,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		wp.customize( 'bgtfw_footer_headings_color', function( value ) {
 			value.bind( function() {
 				headingsColorOutput( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)' );
-			} );
-		} );
-
-		// Bind all color class controls.
-		_.each( colorClassControls, function( control ) {
-			wp.customize( control.name, function( value ) {
-				value.bind( function() {
-					outputColor( control.name, control.selector, control.properties );
-				} );
 			} );
 		} );
 

@@ -234,7 +234,7 @@ gulp.task('images', function () {
       optimizationLevel: 7,
       progressive: true,
       interlaced: true
-    }))
+  }))
     .pipe(gulp.dest(config.dist + '/assets/img'))
   // .pipe( notify( { message: 'Image minification complete', onLast: true } ) );
 });
@@ -269,7 +269,7 @@ gulp.task('jscs', function () {
     .pipe(jscs.reporter('fail'));
 });
 
-gulp.task( 'webpack', shell.task('webpack --color') );
+gulp.task( 'webpack', shell.task('npm run build-webpack') );
 
 // Minify & Copy JS
 gulp.task('frameworkJs', function () {
@@ -347,17 +347,17 @@ gulp.task('scssDeps', function () {
 
 // Compile SCSS
 gulp.task('scssCompile', function () {
-  gulp.src([
+  return gulp.src([
     '!' + config.dist + '/assets/scss/bootstrap.scss',
     '!' + config.dist + '/assets/scss/custom-color/**/*',
     config.dist + '/assets/scss/**/*.scss'])
     .pipe(sass({
-      includePaths: [
+	 outputStyle: 'expanded',
+     includePaths: [
         config.dist + 'assets/scss/',
         config.dist + 'assets/scss/bootstrap',
       ]
     }).on('error', sass.logError))
-    .pipe(sass.sync().on('error', sass.logError))
     .pipe(gulp.dest(config.dist + '/assets/css'))
     .pipe(cssnano({
       discardComments: { removeAll: true },

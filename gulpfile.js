@@ -178,15 +178,10 @@ gulp.task('fontDeps', function () {
 gulp.task('phpDeps', function () {
   // Leafo SCSSPHP Compiler
   gulp.src([
-    '!' + config.node_modules + '/scssphp/scss.inc.php',
     '!' + config.node_modules + '/scssphp/tests',
     '!' + config.node_modules + '/scssphp/tests/**',
     config.node_modules + '/scssphp/**/*.php'
-  ])
-    .pipe(gulp.dest(config.dist + '/includes/scssphp'));
-  gulp.src(config.node_modules + '/scssphp/scss.inc.php')
-    .pipe(replace('5.4', '5.3', true))
-    .pipe(gulp.dest(config.dist + '/includes/scssphp'));
+  ]).pipe(gulp.dest(config.dist + '/includes/scssphp'));
   // Kirki Customizer Controls.
   gulp.src([
     '!' + config.node_modules + '/kirki-toolkit/assets',

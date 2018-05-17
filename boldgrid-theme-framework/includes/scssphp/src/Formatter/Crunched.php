@@ -2,7 +2,7 @@
 /**
  * SCSSPHP
  *
- * @copyright 2012-2015 Leaf Corcoran
+ * @copyright 2012-2018 Leaf Corcoran
  *
  * @license http://opensource.org/licenses/MIT MIT
  *
@@ -33,18 +33,7 @@ class Crunched extends Formatter
         $this->close = '}';
         $this->tagSeparator = ',';
         $this->assignSeparator = ':';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function stripSemicolon(&$lines)
-    {
-        if (($count = count($lines))
-            && substr($lines[$count - 1], -1) === ';'
-        ) {
-            $lines[$count - 1] = substr($lines[$count - 1], 0, -1);
-        }
+        $this->keepSemicolons = false;
     }
 
     /**
@@ -62,10 +51,10 @@ class Crunched extends Formatter
             }
         }
 
-        echo $inner . implode($glue, $block->lines);
+        $this->write($inner . implode($glue, $block->lines));
 
         if (! empty($block->children)) {
-            echo $this->break;
+            $this->write($this->break);
         }
     }
 }

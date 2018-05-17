@@ -2,7 +2,7 @@
 /**
  * SCSSPHP
  *
- * @copyright 2012-2015 Leaf Corcoran
+ * @copyright 2012-2018 Leaf Corcoran
  *
  * @license http://opensource.org/licenses/MIT MIT
  *
@@ -38,6 +38,7 @@ class Nested extends Formatter
         $this->close = ' }';
         $this->tagSeparator = ', ';
         $this->assignSeparator = ': ';
+        $this->keepSemicolons = true;
     }
 
     /**
@@ -65,10 +66,10 @@ class Nested extends Formatter
             }
         }
 
-        echo $inner . implode($glue, $block->lines);
+        $this->write($inner . implode($glue, $block->lines));
 
         if (! empty($block->children)) {
-            echo $this->break;
+            $this->write($this->break);
         }
     }
 
@@ -79,9 +80,9 @@ class Nested extends Formatter
     {
         $inner = $this->indentStr();
 
-        echo $inner
+        $this->write($inner
             . implode($this->tagSeparator, $block->selectors)
-            . $this->open . $this->break;
+            . $this->open . $this->break);
     }
 
     /**
@@ -93,13 +94,13 @@ class Nested extends Formatter
             $this->block($child);
 
             if ($i < count($block->children) - 1) {
-                echo $this->break;
+                $this->write($this->break);
 
                 if (isset($block->children[$i + 1])) {
                     $next = $block->children[$i + 1];
 
                     if ($next->depth === max($block->depth, 1) && $child->depth >= $next->depth) {
-                        echo $this->break;
+                        $this->write($this->break);
                     }
                 }
             }
@@ -118,6 +119,9 @@ class Nested extends Formatter
         if (empty($block->lines) && empty($block->children)) {
             return;
         }
+
+        $this->currentBlock = $block;
+
 
         $this->depth = $block->depth;
 
@@ -138,11 +142,11 @@ class Nested extends Formatter
         if (! empty($block->selectors)) {
             $this->indentLevel--;
 
-            echo $this->close;
+            $this->write($this->close);
         }
 
         if ($block->type === 'root') {
-            echo $this->break;
+            $this->write($this->break);
         }
     }
 
@@ -154,7 +158,7 @@ class Nested extends Formatter
     private function adjustAllChildren(OutputBlock $block)
     {
         // flatten empty nested blocks
-        $children = array();
+        $children = [];
 
         foreach ($block->children as $i => $child) {
             if (empty($child->lines) && empty($child->children)) {

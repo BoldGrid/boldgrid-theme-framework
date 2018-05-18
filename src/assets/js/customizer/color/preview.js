@@ -101,22 +101,39 @@ export class Preview  {
 	getHeadingCSS( to ) {
 		const color = new PaletteSelector().getColor( to );
 
-		let css = '';
+		let css = '',
+			headingSelectors = [];
+
 		if ( color ) {
+			headingSelectors = this.getHeadingColorSelectors().join( ', ' );
+
 			css =  `
-				.palette-primary h1,
-				.palette-primary h2,
-				.palette-primary h3,
-				.palette-primary h4,
-				.palette-primary h5,
-				.palette-primary h6
-				{
+				${ headingSelectors } {
 					color: ${ color };
 				}
 			`;
 		}
 
 		return css;
+	}
+
+	/**
+	 * Get a list of heading selectors from the global.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return {array} list of selectors.
+	 */
+	getHeadingColorSelectors() {
+		const selectors = [];
+
+		_.each( _typographyOptions, function( value, key ) {
+			if ( 'headings' === value.type ) {
+				selectors.push( key );
+			}
+		} );
+
+		return selectors;
 	}
 
 	/**
@@ -144,11 +161,26 @@ export class Preview  {
 	}
 
 	/**
+	 * Use the theme mod saved for a heading color to set the heading colors.
+	 *
+	 * @since 2.0.0
+	 */
+	setHeadingColors() {
+		const css = this.getHeadingCSS( wp.customize( 'bgtfw_headings_color' )() );
+		this.updateDynamicStyles( 'bgtfw_headings_color', css );
+	}
+
+	/**
 	 * Events to run when the Dom loads.
 	 *
 	 * @since 2.0.0
 	 */
 	_onLoad() {
+
+		// Set Defaults.
+		this.setHeadingColors();
+
+		// Setup event handlers.
 		this._bindConfiguredControls();
 		this._bindHeadingColor();
 	}
@@ -173,10 +205,7 @@ export class Preview  {
 	 */
 	_bindHeadingColor() {
 		wp.customize( 'bgtfw_headings_color', ( value ) => {
-			value.bind( ( to ) => {
-				const css = this.getHeadingCSS( to );
-				this.updateDynamicStyles( 'bgtfw_headings_color', css );
-			} );
+			value.bind( () => this.setHeadingColors() );
 		} );
 	}
 

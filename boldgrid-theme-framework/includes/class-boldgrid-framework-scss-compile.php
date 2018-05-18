@@ -145,7 +145,7 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 		$path = $this->configs['framework']['asset_dir'] . 'scss/';
 		$scss->setImportPaths( $path );
 		$scss->setVariables( $variables );
-		$compiled_scss = $scss->compile( $content );
+		$compiled_scss = @$scss->compile( $content );
 		return $compiled_scss;
 	}
 }

@@ -7,7 +7,8 @@ module.exports = {
 	context: path.resolve( __dirname, 'src' ),
 
 	entry: {
-		customizer: './assets/js/customizer/customizer.js'
+		customizer: './assets/js/customizer/customizer.js',
+		'base-controls': './assets/js/customizer/base-controls.js'
 	},
 
 	output: {

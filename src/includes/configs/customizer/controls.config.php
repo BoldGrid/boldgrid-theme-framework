@@ -465,7 +465,7 @@ return array(
 		'transport'   => 'auto',
 		'choices'     => array(
 			'min'  => 0,
-			'max'  => 6,
+			'max'  => 4,
 			'step' => 1,
 		),
 		'section'     => 'bgtfw_footer_widgets',
@@ -498,7 +498,7 @@ return array(
 		'transport'   => 'auto',
 		'choices'     => array(
 			'min'  => 0,
-			'max'  => 6,
+			'max'  => 4,
 			'step' => 1,
 		),
 		'section'     => 'bgtfw_header_widgets',

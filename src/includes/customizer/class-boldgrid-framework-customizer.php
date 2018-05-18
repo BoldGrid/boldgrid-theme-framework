@@ -144,7 +144,7 @@ class BoldGrid_Framework_Customizer {
 
 		wp_register_script(
 			'bgtfw-customizer-base-controls',
-			$this->configs['framework']['js_dir'] . 'customizer/base-controls' . $suffix . '.js',
+			$this->configs['framework']['js_dir'] . 'customizer/base-controls.min.js',
 			array(
 				'jquery',
 				'customize-controls',

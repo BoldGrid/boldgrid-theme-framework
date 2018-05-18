@@ -1,5 +1,7 @@
 import ColorPreview from './color/preview';
 
+import { BorderRadius } from '@boldgrid/controls/src/controls/border-radius';
+
 var BOLDGRID = BOLDGRID || {};
 BOLDGRID.Customizer = BOLDGRID.Customizer || {};
 BOLDGRID.Customizer.Util = BOLDGRID.Customizer.Util || {};

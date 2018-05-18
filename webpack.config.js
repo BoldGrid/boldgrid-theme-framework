@@ -33,6 +33,27 @@ module.exports = {
 				]
 			},
 			{
+				test: /\.svg$/,
+				loader: 'svg-inline-loader'
+			},
+			{
+				test: /\.(scss|css)$/,
+				use: [
+					{
+						loader: 'style-loader'
+					},
+					{
+						loader: 'css-loader'
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							includePaths: [ 'node_modules' ]
+						}
+					}
+				]
+			},
+			{
 				test: /\.js$/,
 				use: [ 'babel-loader' ]
 			},

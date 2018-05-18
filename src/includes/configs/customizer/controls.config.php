@@ -472,7 +472,10 @@ return array(
 		'partial_refresh' => array(
 			'boldgrid_footer_widgets' => array(
 				'selector'        => '#footer-widget-area',
-				'render_callback' => array( 'Boldgrid_Framework_Customizer_Widget_Areas', 'footer_html' ),
+				'render_callback' => function() {
+					$widget_area = new Boldgrid_Framework_Customizer_Widget_Areas();
+					$widget_area->header_html();
+				},
 				'container_inclusive' => true,
 			),
 		),
@@ -502,7 +505,10 @@ return array(
 		'partial_refresh' => array(
 			'boldgrid_header_widgets' => array(
 				'selector'        => '#header-widget-area',
-				'render_callback' => array( 'Boldgrid_Framework_Customizer_Widget_Areas', 'header_html' ),
+				'render_callback' => function() {
+					$widget_area = new Boldgrid_Framework_Customizer_Widget_Areas();
+					$widget_area->header_html();
+				},
 			),
 		),
 	),

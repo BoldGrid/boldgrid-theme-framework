@@ -474,7 +474,7 @@ return array(
 				'selector'        => '#footer-widget-area',
 				'render_callback' => function() {
 					$widget_area = new Boldgrid_Framework_Customizer_Widget_Areas();
-					$widget_area->header_html();
+					$widget_area->footer_html();
 				},
 				'container_inclusive' => true,
 			),

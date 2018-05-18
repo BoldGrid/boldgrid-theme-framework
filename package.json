@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@boldgrid/components": "^2.14.0",
+    "@boldgrid/controls": "^0.14.0",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",
     "animate.css": "latest",
     "bootstrap-sass": "~3.3.6",

@@ -88,7 +88,7 @@ msgstr ""
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:162, src/includes/class-boldgrid-framework-layouts-post-meta.php:179, src/includes/class-boldgrid-framework-title.php:100
+#: src/includes/class-boldgrid-framework-comments.php:162, src/includes/class-boldgrid-framework-layouts-post-meta.php:179, src/includes/class-boldgrid-framework-title.php:101
 msgid "Edit"
 msgstr ""
 
@@ -174,27 +174,27 @@ msgstr ""
 msgid "Search &hellip;"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:73
+#: src/includes/class-boldgrid-framework-title.php:74
 msgid "Post"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:73
+#: src/includes/class-boldgrid-framework-title.php:74
 msgid "Page"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:73
+#: src/includes/class-boldgrid-framework-title.php:74
 msgid "Title"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:77
+#: src/includes/class-boldgrid-framework-title.php:78
 msgid "Use Global Setting"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:80, src/includes/class-boldgrid-framework-title.php:83, src/includes/configs/customizer/controls.config.php:103, src/includes/configs/customizer/controls.config.php:115
+#: src/includes/class-boldgrid-framework-title.php:81, src/includes/class-boldgrid-framework-title.php:84, src/includes/configs/customizer/controls.config.php:103, src/includes/configs/customizer/controls.config.php:115
 msgid "Show"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:80, src/includes/class-boldgrid-framework-title.php:89, src/includes/configs/customizer/controls.config.php:104, src/includes/configs/customizer/controls.config.php:116
+#: src/includes/class-boldgrid-framework-title.php:81, src/includes/class-boldgrid-framework-title.php:90, src/includes/configs/customizer/controls.config.php:104, src/includes/configs/customizer/controls.config.php:116
 msgid "Hide"
 msgstr ""
 

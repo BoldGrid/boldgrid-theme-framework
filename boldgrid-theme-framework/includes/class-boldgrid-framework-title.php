@@ -50,10 +50,9 @@ class Boldgrid_Framework_Title {
 	 */
 	public function get_global( $post_type = null ) {
 		$post_type = empty( $post_type ) ? get_post_type() : $post_type;
-		$post_type = ! empty( $this->configs['title'][ 'default_' . $post_type ] ) ? $post_type : 'post';
-		$default = $this->configs['title'][ 'default_' . $post_type ];
+		$post_type = isset( $this->configs['title'][ 'default_' . $post_type ] ) ? $post_type : 'post';
 
-		return get_theme_mod( 'bgtfw_' . $post_type . 's_display_title', $default );
+		return get_theme_mod( 'bgtfw_' . $post_type . 's_display_title' );
 	}
 
 	/**

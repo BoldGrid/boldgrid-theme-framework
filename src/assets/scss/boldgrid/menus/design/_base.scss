@@ -1,0 +1,14 @@
+/* reverses framework code */
+.secondary-menu a:active,
+.secondary-menu a:focus,
+.secondary-menu a:hover,
+.footer-center-menu a:active,
+.footer-center-menu a:focus,
+.footer-center-menu a:hover {
+	text-decoration: none;
+}
+.boldgrid-framework-menu li::after,
+.footer-center-items li::after {
+	content: none;
+	border-left: none;
+}

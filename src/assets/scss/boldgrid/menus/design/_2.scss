@@ -1,0 +1,56 @@
+/* Layout 1B - border added on hover & active */
+&.design-2 {
+	.header-top .sm-clean a,
+	.header-left .main-menu li a,
+	.header-right .main-menu li a {
+		border: 1px solid transparent;
+		margin-right: 10px;
+	}
+	.secondary-menu a,
+	.footer-center-menu a {
+		border: 1px solid transparent;
+		padding: 10px 20px;
+	}
+	.header-top .main-menu li a,
+	.header-top .main-menu li a:hover .sm-clean a,
+	.header-top  .main-menu a:hover,
+	.header-left .main-menu li a,
+	.header-left .main-menu li a:hover,
+	.header-right .main-menu li a,
+	.header-right .main-menu li a:hover {
+		padding: 10px 20px !important;
+	}
+	.header-top .sm-clean a.highlighted,
+	.header-top .sm-clean a:active,
+	.header-top .sm-clean a:focus,
+	.header-top .sm-clean a:hover,
+	.header-left .main-menu li a:active,
+	.header-left .main-menu li a:focus,
+	.header-left .main-menu li a:hover,
+	.header-right .main-menu li a:active,
+	.header-right .main-menu li a:focus,
+	.header-right .main-menu li a:hover,
+	.secondary-menu a:active,
+	.secondary-menu a:focus,
+	.secondary-menu a:hover,
+	.footer-center-menu a:active,
+	.footer-center-menu a:focus,
+	.footer-center-menu a:hover,
+	.header-top .current-menu-item > a,
+	.header-left li.current-menu-item > a,
+	.secondary-menu li.current-menu-item > a,
+	.footer-center-menu .current-menu-item > a {
+		background: transparent;
+		border: 1px solid #f95b26;
+		padding: 10px 20px;
+	}
+	.footer-center-items li {
+		margin: 10px auto;
+	}
+
+	/* side header adjustment */
+	.header-left .secondary-menu li,
+	.header-right .secondary-menu li {
+		margin-bottom: 20px;
+	}
+}

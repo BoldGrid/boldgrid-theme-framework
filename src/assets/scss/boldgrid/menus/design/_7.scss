@@ -1,0 +1,13 @@
+/* Style 4 - border on top and bottom full width */
+&.design-7 {
+	#main-menu,
+	#secondary-menu,
+	.footer-center-menu-wrapper {
+		border-top: 2px solid #fff;
+		border-bottom: 2px solid #fff;
+	}
+	#secondary-menu li a,
+	.footer-center-menu-wrapper {
+		padding: 12px;
+	}
+}

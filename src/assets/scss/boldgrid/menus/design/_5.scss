@@ -1,0 +1,57 @@
+/* Style 3 - color inset - solid background */
+&.design-5 {
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a,
+	.secondary-menu a,
+	.footer-center-menu a,
+	.header-left .sm-clean a,
+	.header-right .sm-clean a {
+		background: #fff;
+		color: #f95b26 !important;
+		padding: 10px 40px;
+	}
+	.sm-clean li {
+		border-top: none;
+	}
+	.header-top #main-menu {
+		padding-bottom: 0px;
+	}
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a.highlighted,
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a:active,
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a:focus,
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a:hover,
+	.standard-menu-enabled:not(.header-left):not(.header-right) .current-menu-item > a {
+		background: #f95b26;
+		color: #fff !important;
+		padding: 10px 40px;
+	}
+	.secondary-menu a:active,
+	.secondary-menu a:focus,
+	.secondary-menu a:hover,
+	.footer-center-menu a:active,
+	.footer-center-menu a:focus,
+	.footer-center-menu a:hover,
+	.standard-menu-enabled .sm-clean a.highlighted,
+	.standard-menu-enabled .sm-clean a:active,
+	.standard-menu-enabled .sm-clean a:focus,
+	.standard-menu-enabled .sm-clean a:hover,
+	.standard-menu-enabled .current-menu-item > a,
+	.secondary-menu .current-menu-item > a,
+	.footer-center-menu .current-menu-item > a {
+		background: #f95b26;
+		color: #fff !important;
+	}
+	.secondary-menu li,
+	.footer-center-items li {
+		margin-bottom: 16px;
+	}
+
+	/* reverses framework code */
+	.secondary-menu .list-inline > li,
+	.footer-menu .list-inline > li {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+	.footer-center-items.list-inline > li:not(:first-of-type) {
+		margin-left: 0em;
+	}
+}

@@ -1,0 +1,40 @@
+/* Layout 1 - background added on hover & active */
+&.design-1 {
+	.header-top .sm-clean a,
+	.header-top .sm-clean a.highlighted,
+	.header-top .sm-clean a:active,
+	.header-top .sm-clean a:focus,
+	.header-top .sm-clean a:hover {
+		margin-right: 10px;
+		padding: 10px 20px !important;
+	}
+	.secondary-menu a,
+	.footer-center-menu a {
+		padding: 10px 20px;
+	}
+	.standard-menu-enabled .sm-clean a.highlighted,
+	.standard-menu-enabled .sm-clean a:active,
+	.standard-menu-enabled .sm-clean a:focus,
+	.standard-menu-enabled .sm-clean a:hover,
+	.standard-menu-enabled .current-menu-item > a,
+	.secondary-menu a:active,
+	.secondary-menu a:focus,
+	.secondary-menu a:hover,
+	.secondary-menu .current-menu-item > a,
+	.footer-center-menu a:active,
+	.footer-center-menu a:focus,
+	.footer-center-menu a:hover,
+	.footer-center-menu .current-menu-item > a {
+		background: #f95b26;
+		color: #fff !important;
+	}
+	.footer-center-items li {
+		margin: 10px auto;
+	}
+
+	/* side header adjustment */
+	.header-left .secondary-menu li,
+	.header-right .secondary-menu li {
+		margin-bottom: 20px;
+	}
+}

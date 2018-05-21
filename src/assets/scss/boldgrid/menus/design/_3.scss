@@ -1,0 +1,57 @@
+/* Layout 2 - CTA for last menu item - full background to outline on hover */
+&.design-3 {
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a, 
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a.highlighted, 
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a:active, 
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a:focus, 
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a:hover,
+	.secondary-menu a,
+	.footer-center-menu a {
+		border-radius: 50px !important;
+		padding: 10px 20px !important;
+	}
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean > li:last-child > a,
+	.standard-menu-enabled .sm-clean > li:last-child > a,
+	.secondary-menu .list-inline > li:last-child > a,
+	.footer-center-menu .list-inline > li:last-child > a {
+		background: #f95b26;
+		border: 2px solid transparent;
+		border-radius: 50px !important;
+		color: #fff !important;
+		padding: 10px 40px !important;
+	}
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean > li:last-child > a,
+	.secondary-menu .list-inline > li:last-child > a, 
+	.footer-center-menu .list-inline > li:last-child > a {
+		margin-left: 15px;
+	}
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean > li:last-child > a:hover,
+	.standard-menu-enabled .sm-clean > li:last-child > a:hover,
+	.secondary-menu .list-inline > li:last-child > a:hover,
+	.footer-center-menu .list-inline > li:last-child > a:hover {
+		background: transparent;
+		border: 2px solid #f95b26;
+		color: #f95b26 !important;
+	}
+	.footer-center-items li {
+		margin: 10px auto;
+	}
+
+	/* side header adjustment */
+	.standard-menu-enabled .sm-clean a, 
+	.standard-menu-enabled .sm-clean a.highlighted, 
+	.standard-menu-enabled .sm-clean a:active, 
+	.standard-menu-enabled .sm-clean a:focus, 
+	.standard-menu-enabled .sm-clean a:hover {
+		border-radius: 50px !important;
+		padding: 10px 40px !important;
+	}
+	.header-left .sm-clean li,
+	.header-right .sm-clean li {
+		width: auto;
+	}
+	.header-left .secondary-menu li,
+	.header-right .secondary-menu li {
+		margin-bottom: 20px;
+	}
+}

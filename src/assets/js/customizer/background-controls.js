@@ -11,7 +11,13 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	var $window = $( window );
 
 	$( function() {
+
+		/**
+		 * @todo This needs to be refactored. All these events should not be each time
+		 * preview iframe is refreshed.
+		 */
 		$window.on( 'boldgrid_customizer_refresh', onload_procedure );
+		loadPatterns();
 	} );
 
 	var onload_procedure = function() {
@@ -74,6 +80,26 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		});
 
 		$background_type.find( 'input:checked' ).change();
+	};
+
+	/**
+	 * When the background panel is opened, load available background patterns.
+	 *
+	 * @since 2.0.0
+	 */
+	var loadPatterns = function() {
+		var loaded = false;
+
+		wp.customize.section( 'background_image' ).expanded.bind( function( isExpanded ) {
+			if ( isExpanded && ! loaded ) {
+				loaded = true;
+
+				$( '.patternpreview' ).each( function() {
+					var $el = $( this );
+					$el.css( 'background-image', 'url(' + $el.data( 'background' ) + ')' );
+				} );
+			}
+		} );
 	};
 
 	var validate_background_color_setting = function() {

@@ -17,14 +17,12 @@ footer .bgtfw-widget-row {
 	margin-right: -15px;
 }
 #colophon {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
 	padding: 1.5em 15px;
 }
 .contact-block:not(:empty) {
-	margin: 1em 0;
+	margin-top: 1em;
 }
+.footer-content,
 .footer-center-menu-wrapper,
 .social-menu-wrapper,
 .contact-block-wrapper,
@@ -49,4 +47,15 @@ footer .bgtfw-widget-row {
 }
 .contact-block-wrapper {
 	order: 5;
+}
+
+.site-footer {
+	@import "1";
+	@import "2";
+	@import "3";
+	@import "4";
+	@import "5";
+	@import "6";
+	@import "7";
+	@import "8";
 }

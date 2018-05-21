@@ -52,7 +52,8 @@ class Boldgrid_Framework_Control_Pattern extends WP_Customize_Control {
 						$active_class = 'active-pattern';
 					}
 					?>
-					<div class="patternpreview <?php echo $active_class; ?>" style='background-image:url("<?php echo esc_attr( $pattern['uri'] )?>")'></div>
+					<div class="patternpreview <?php echo $active_class; ?>"
+							data-background="<?php echo esc_attr( $pattern['uri'] )?>"></div>
 				<?php } ?>
 
 				</div>

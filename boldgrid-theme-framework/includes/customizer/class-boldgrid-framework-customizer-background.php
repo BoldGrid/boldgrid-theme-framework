@@ -102,7 +102,7 @@ class Boldgrid_Framework_Customizer_Background {
 			$this->configs['framework']['js_dir'] . 'customizer/background-controls.js',
 			array(
 				'jquery',
-				'jquery-ui-button'
+				'jquery-ui-button',
 			),
 			$this->configs['version'], true
 		);
@@ -562,6 +562,36 @@ class Boldgrid_Framework_Customizer_Background {
 	public function add_head_styles_filter( $cur_rules ) {
 		$css_rules  = $this->create_background_styles();
 		return array_merge( $cur_rules, $css_rules );
+	}
+
+	/**
+	 * Add editor styles.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  array $css CSS to add to editor.
+	 *
+	 * @return array $css Modified CSS to add to editor.
+	 */
+	public function add_editor_styles( $css ) {
+		$pattern = get_theme_mod( 'boldgrid_background_pattern' );
+		$styles = array();
+
+		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( $pattern ) ) {
+			$styles = $this->create_background_styles();
+		}
+
+		// Convert array to css.
+		foreach ( $styles as $rule => $definitions ) {
+			$def = '';
+			foreach ( $definitions as $prop => $definition ) {
+				$def .= $prop . ':' . $definition . ';';
+			}
+
+			$css .= sprintf( '%s { %s }', $rule, $def );
+		}
+
+		return $css;
 	}
 
 	/**

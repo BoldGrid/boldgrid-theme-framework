@@ -100,6 +100,27 @@ class Boldgrid_Framework_Custom_Header {
 	}
 
 	/**
+	 * Add colors color classes to header items.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $configs BGTFW Configs.
+	 */
+	public function add_color_classes( $configs ) {
+		if ( get_theme_mod( 'bgtfw_tagline_color' ) ) {
+			$color = BoldGrid::get_color_classes( 'bgtfw_tagline_color', array( 'color' ) );
+			$configs['template']['tagline-classes'] .= ' ' . implode( ' ', $color );
+		}
+
+		if ( get_theme_mod( 'bgtfw_site_title_color' ) ) {
+			$color = BoldGrid::get_color_classes( 'bgtfw_site_title_color', array( 'color' ) );
+			$configs['template']['site-title-classes'] .= ' ' . implode( ' ', $color );
+		}
+
+		return $configs;
+	}
+
+	/**
 	 * Styles the header image and text displayed on the blog.
 	 *
 	 * @see custom_header_setup().

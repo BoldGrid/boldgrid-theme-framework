@@ -102,8 +102,23 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 		/**
 		 * Events fired in the WordPress Customizer.
+		 *
+		 * @memberOf BOLDGRID.CustomizerEdit
 		 */
 		_customizer: function() {
+			var sm;
+
+			sm = $( '#main-menu' );
+
+			if ( sm.length ) {
+
+				// Bind event handling for sub menu hiding and showing.
+				sm.on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', 'ul', function( e ) {
+						BOLDGRID.CustomizerEdit.placeButtons();
+						e.stopPropagation();
+				});
+			}
+
 			/*
 			 * As you change your tagline (and other elements), content on the page shifts. When that
 			 * content shifts, update the placement of the buttons.
@@ -160,7 +175,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			* Navbars can sometimes become collapsed in a hamburger menu and button placement will
 			* need adjusting. After a navbar toggle is clicked, wait 0.4 seconds and adjust buttons.
 			*/
-			$( '.navbar-toggle' ).click( function() {
+			$( self.i18n.config.hamburgers ).click( function() {
 				setTimeout( self.placeButtons, 400 );
 			});
 
@@ -181,8 +196,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					self.windowScroll();
 				}, 100 ) );
 			});
-
-
 		},
 
 		/**
@@ -194,71 +207,66 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			var	menus = _.isFunction( api.section ) ? api.section( 'menu_locations' ).controls() : [],
 				menuId,
 				$emptyMenu = $( '.empty-menu' ),
-				$emptyWidgetAreas = $( '[data-empty-area="true"]' );
+				widgetAreas;
 
 			// Add our general buttons.
-			_( self.i18n.buttons.general ).each( function( button ) {
+			_( self.i18n.config.buttons.general ).each( function( button ) {
 
 				// Ensure the element exists before adding a button for it.
 				if ( 1 === $( button.selector ).length ) {
-					self.addButton( null, button.control, button.selector, button.icon );
+					self.addButton( button );
 				}
 			} );
 
-			// Widgets.
-			$( 'aside.widget' ).each( function() {
-				var widgetId = $( this ).attr( 'id' );
+			// Widget locations.
+			widgetAreas = self.getSections( 'sidebar-widgets-' );
+			_( widgetAreas ).each( function( widgetArea ) {
+				var button = {
+					control : widgetArea.id,
+					selector : '#' + widgetArea.idSplit[1] + '.sidebar',
+					objectType: 'section',
+					isParentColumn: true
+				};
 
-				self.addButton( 'sidebar', widgetId, '#' + widgetId, 'dashicons-edit' );
+				self.addButton( button );
 			} );
 
-			// Black Studio TinyMCE.
-			$( 'aside[id^="black-studio-tinymce-"]' ).each( function() {
-				var $widget = $( this ),
-					widgetId = $widget.attr( 'id' ),
-					blackStudioId = widgetId.replace( 'black-studio-tinymce-', '' ).trim();
-
-				self.addButton( 'widget_black-studio-tinymce', blackStudioId, '#' + widgetId, 'dashicons-edit' );
-			} );
-
-			// Menus.
+			// Menu locations.
 			_( menus ).each(
 				function( menu ) {
+					var button;
 
 					// Define the menuId. It will be used as the selector for our call to addButton.
-					menuId = $( '.' + menu.themeLocation.replace( /_/g, '-' ) + '-menu-location' )
-						.find( 'ul' ).first().attr( 'id' );
-
-					// If we don't have a menuId, continue.
-					if ( _.isUndefined( menuId ) ) {
+					menuId = self.getMenuId( menu );
+					if ( ! menuId ) {
 						return;
 					}
 
-					self.addButton( 'nav_menu', menu.setting._value, '#' + menuId, 'dashicons-edit' );
+					// All menu edit buttons will be aligned with the menu itself.
+					$( '#' + menuId ).attr( 'data-parent-column', '#' + menuId );
+
+					button = {
+						type : 'nav_menu',
+						control : menu.setting._value,
+						selector : '#' + menuId
+					};
+
+					self.addButton( button );
 				} );
 
 			// Empty menu locations.
 			_( $emptyMenu ).each(
 				function( menu ) {
-					self.addButton( null, 'new_menu_name', '#' + $( menu ).attr( 'id' ), 'dashicons-plus' );
-				} );
+					var button = {
+						type : null,
+						control : 'new_menu_name',
+						selector : '#' + $( menu ).attr( 'id' ),
+						icon : 'dashicons-plus'
+					};
 
-			// Empty widget areas.
-			_( $emptyWidgetAreas ).each( function( widgetArea ) {
-				var dataWidgetArea, widgetAreaId, selector;
-
-				$( widgetArea ).append( '<div class="empty-area"></div>' );
-				dataWidgetArea = $( widgetArea ).attr( 'data-widget-area' );
-				widgetAreaId = dataWidgetArea.replace( 'accordion-section-sidebar-widgets-', '' );
-
-				/*
-				* This is a nested data selector inside of another data selector,
-				* so we have to use single quotes for the property.
-				*/
-				selector = '[data-widget-area=\'' + dataWidgetArea + '\']';
-
-				self.addButton( 'sidebars_widgets', widgetAreaId, selector, 'dashicons-plus' );
-			} );
+					self.addButton( button );
+				}
+			);
 		},
 
 		/**
@@ -301,7 +309,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$collapseSidebar = $( '.collapse-sidebar', parent.document ),
 				$previewToggleControls = $( '.customize-controls-preview-toggle .controls', parent.document ),
 				$overlay = $( '.wp-full-overlay', parent.document ),
-				navMenuLocation, control;
+				navMenuLocation;
 
 			/*
 			* When clicking on the page title or the page content, the user will be prompted to
@@ -341,22 +349,10 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$( '#' + dataControl ).dialog( dialogSettings );
 				return;
 
-			// Empty widget locations.
-			} else if ( 0 === dataControl.lastIndexOf( 'sidebars_widgets', 0 ) ) {
-				api.control( dataControl ).focus();
-
-			// Widgets.
-			} else if ( 0 === dataControl.lastIndexOf( 'sidebar', 0 ) ) {
-				control = dataControl.match( /\[(.*?)\]/ );
-				api.Widgets.focusWidgetFormControl( control[ 1 ] );
-
-				/*
-				* Because Black Studio TinyMCE opens another pane, there is no need to bounce anything
-				* in an effort to get the user's attention.
-				*/
-				if ( control[ 1 ].startsWith( 'black-studio-tinymce-' ) ) {
-					return;
-				}
+			// Sections
+			} else if ( 'section' === $button.attr( 'data-object-type' ) ) {
+				api.section( dataControl ).focus();
+				return;
 
 			// Empty menu locations.
 			} else if ( 'new_menu_name' === dataControl ) {
@@ -392,10 +388,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 				if ( 0 === dataControl.lastIndexOf( 'nav_menu', 0 ) ) {
 					focused = $( '.customize-control-nav_menu_name', parent.document );
-				}
-
-				if ( dataControl.startsWith( 'sidebar[' ) ) {
-					focused = focused.closest( '.widget' );
 				}
 
 				/*
@@ -496,7 +488,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				}
 			}, 10 );
 
-			// If this button is for adding a new menu / widget, add contextual help.
+			// If this button is for adding a new menu, add contextual help.
 			if ( $button.hasClass( 'new' ) ) {
 				withTitleWidth = parseInt( $button.attr( 'data-with-title-width' ) );
 
@@ -529,7 +521,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 */
 		buttonMouseLeave: function( $button, $parent ) {
 
-			// If this button is for adding a new menu / widget, remove contextual help on mouse out.
+			// If this button is for adding a new menu, remove contextual help on mouse out.
 			if ( $button.hasClass( 'new' ) ) {
 				$button
 					.stop( true )
@@ -729,6 +721,52 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		},
 
 		/**
+		 * @summary Find the id of a menu.
+		 *
+		 * Pass in a menu location control (Customizer > Menus > View All Locations) and we will find
+		 * the id of the element on the page that contains that menu.
+		 *
+		 * @param object menu A menu location control, found by calling within the Customizer:
+		 *                    parent.wp.customize.section( 'menu_locations' ).controls()
+		 */
+		getMenuId: function( menu ) {
+			var data, id;
+			data = $( '[data-customize-partial-placement-context*="' + menu.themeLocation.replace( '_', '-' ) + '-menu-location"]' ).data();
+			if ( data ) {
+				if ( ! _.isEmpty( data.customizePartialPlacementContext.container_id ) ) {
+					id = data.customizePartialPlacementContext.container_id;
+				} else if ( ! _.isEmpty( data.customizePartialPlacementContext.menu_id ) ) {
+					id = data.customizePartialPlacementContext.menu_id;
+				} else {
+					id = null;
+				}
+			}
+
+			return id;
+		},
+
+		/**
+		 * @summary Get array of sections whose id begings with beginning.
+		 *
+		 * @since 2.0.0
+		 *
+		 * @param  string beginning
+		 * @return array
+		 */
+		getSections: function( beginning ) {
+			var sections = [];
+
+			api.section.each( function ( section ) {
+				if( section.id.startsWith( beginning ) ) {
+					section.idSplit = section.id.split( beginning );
+					sections.push( section );
+				}
+			} );
+
+			return sections;
+		},
+
+		/**
 		 * @summary Determine if the top of an element is in view.
 		 *
 		 * @since 1.1.6
@@ -747,7 +785,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		},
 
 		/**
-		 * @summary Is the parent element an empty widget / nav area.
+		 * @summary Determine if the parent element is an empty nav area.
 		 *
 		 * @since 1.1.6
 		 *
@@ -755,7 +793,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 * @return bool
 		 */
 		isParentEmpty: function( $parent ) {
-			return ( $parent.hasClass( 'empty-menu' ) || $parent.attr( 'data-empty-area' ) );
+			return ( $parent.hasClass( 'empty-menu' ) );
 		},
 
 		/**
@@ -777,7 +815,20 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					'div[class^=container]',
 					'div',
 					'p'
-				];
+				],
+				// Parent column values, see edit.config.php.
+				isParentColumn = $element.attr( 'data-is-parent-column' ),
+				parentColumn = $element.attr( 'data-parent-column' );
+
+			// If we've defined the element itself to be the parent column, return it now.
+			if( isParentColumn ) {
+				return $element;
+			}
+
+			// If we've defined a selector for parent column, set as highest priority within selectors.
+			if( parentColumn ) {
+				selectors.unshift( parentColumn );
+			}
 
 			_( selectors ).each( function( selector ) {
 				if ( false === found ) {
@@ -930,10 +981,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					return;
 				}
 
-				/*
-				* If the button is for an empty nav / widget area and is currently being animated,
-				* don't touch it.
-				*/
+				// If button is for an empty nav area and is currently being animated, don't touch it.
 				if ( $button.hasClass( 'new' ) && $button.is( ':animated' ) ) {
 					return;
 				}
@@ -1239,63 +1287,70 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 *
 		 * @since 1.1.6
 		 *
-		 * @param string type The type of element this button controls.
-		 * @param string id The id of an element to control.
-		 * @param string selector A selector that points to an element this button controls.
-		 * @param string icon The icon for the button, added as a class.
+		 * @param array config
 		 */
-		addButton: function( type, id, selector, icon ) {
-			var $button = $( '<button></button>' ),
-				$parent = $( selector ),
-				$parentsContainer = self.parentColumn( $parent ),
-				dataControl = ( null === type ? id : type + '[' + id + ']' ),
+		addButton: function( config ) {
+			var icon, $parentsContainer,
+				type = config.type ? config.type : null,
+				$button = $( '<button></button>' ),
+				// The element we are controlling, such as '.site-title a' or '.entry-content'.
+				$parent = $( config.selector ),
+				dataControl = ( null === type ? config.control : type + '[' + config.control + ']' ),
 				$fixedAncestors = self.getFixedAncestors( $parent ),
 				dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' ),
-				isEmptyWidget = $parent.attr( 'data-empty-area' ),
 				isEmptyNav = $parent.hasClass( 'empty-menu' );
 
 			// If the button already exists, abort.
-			if ( 0 !== $( 'body' ).find( '[data-selector="' + selector + '"]' ).length ) {
+			if ( 0 !== $( 'body' ).find( '[data-selector="' + config.selector + '"]' ).length ) {
+				return;
+			}
+
+			// If we require text but the element doesn't have any, abort.
+			if( config.requireText && '' === $parent.text().replace( /\s/g, '' ) ) {
 				return;
 			}
 
 			// Allow for custom icons per button. By default, each edit buttion will be a pencil icon.
-			icon = _.isUndefined( icon ) ? 'dashicons-edit' : icon;
+			icon = _.isUndefined( config.icon ) ? self.i18n.config.defaultIcon : config.icon;
 			$button.addClass( icon );
 
-			/*
-			* If this button is for an empty widget area or an empty nav area, add a 'new' class to use
-			* a plus sign instead of a pencil icon.
-			*/
+			// Before setting the parentsContainer, set a few attributes that will help.
+			if( config.isParentColumn ) {
+				$parent.attr( 'data-is-parent-column', true );
+			}
+			if( config.parentColumn ) {
+				$parent.attr( 'data-parent-column', config.parentColumn );
+			}
+			$parentsContainer = self.parentColumn( $parent );
+
+			// If button is for empty nav area, add 'new' class to use plus icon  instead of pencil.
 			if ( isEmptyNav ) {
 				$button
 					.addClass( 'new' )
 					.attr( 'data-title', self.i18n.menu );
 			}
 
-			if ( isEmptyWidget ) {
-				$button
-					.addClass( 'new' )
-					.attr( 'data-title', self.i18n.widget );
-			}
-
 			$button
 				.attr( {
 					'data-control': dataControl,
-					'data-selector': selector,
+					'data-selector': config.selector,
 					'data-moves': 0,
 					'data-fixed-ancestor': dataFixedAncestor
 				} );
 
+			if( config.objectType ) {
+				$button.attr( 'data-object-type', config.objectType );
+			}
+
 			$( 'body' ).append( $button );
 
 			/*
-			* If a button has contextual help, like "New Widget" or "New Menu", we need to calculate
-			* the width of those buttons when the help text is added.
+			* If a button has contextual help, like "New Menu", we need to calculate the width of
+			* those buttons when the help text is added.
 			*
 			* Essentially, we'll add the text, measure the width, then remove the text.
 			*/
-			if ( isEmptyNav || isEmptyWidget ) {
+			if ( isEmptyNav ) {
 				$button
 
 					// Allow the button to expand to full width.

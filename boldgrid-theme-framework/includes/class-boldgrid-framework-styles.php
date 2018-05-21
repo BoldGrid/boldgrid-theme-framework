@@ -96,15 +96,24 @@ class BoldGrid_Framework_Styles {
 			if ( $last_mod ) {
 				$version = $last_mod;
 			}
-			if ( false === $this->configs['framework']['inline_styles'] && empty( $_REQUEST['customize_changeset_uuid'] ) ) {
-				// Add BoldGrid Theme Helper stylesheet.
-				wp_enqueue_style( 'boldgrid-color-palettes',
-					Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
-					$deps,  $last_mod );
+
+			$handle = 'boldgrid-color-palettes';
+			$inline_override = true === $this->configs['framework']['inline_styles'];
+			$is_changeset = ! empty( $_REQUEST['customize_changeset_uuid'] ) && ! is_customize_preview();
+
+			if ( $inline_override || $is_changeset || is_customize_preview() ) {
+				wp_register_style( $handle, false );
+				wp_enqueue_style( $handle );
+				$css = get_theme_mod( 'boldgrid_compiled_css', '' );
+				wp_add_inline_style( $handle, $css );
 			} else {
-				// Add inline styles.
-				$inline_css = get_theme_mod( 'boldgrid_compiled_css' );
-				wp_add_inline_style( 'style', $inline_css );
+				wp_register_style(
+					$handle,
+					Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
+					$deps,
+					$last_mod
+				);
+				wp_enqueue_style( $handle );
 			}
 		}
 
@@ -139,10 +148,16 @@ class BoldGrid_Framework_Styles {
 				}
 			}
 
-			$edit_links = '.bgtfw-edit-link a{background:' . $background . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
-			$edit_links .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
-			$edit_links .= '.bgtfw-edit-link a svg{fill:' . $color . '!important;}';
-			wp_add_inline_style( 'style', $edit_links );
+			$inline_css = '.bgtfw-edit-link a{background:' . $background . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
+			$inline_css .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
+			$inline_css .= '.bgtfw-edit-link a svg{fill:' . $color . '!important;}';
+
+			if ( is_customize_preview() ) {
+				$bgtfw = new BoldGrid( $this->configs );
+				$inline_css .= $bgtfw->main_menu_css();
+			};
+
+			wp_add_inline_style( 'style', $inline_css );
 		}
 	}
 
@@ -292,6 +307,8 @@ class BoldGrid_Framework_Styles {
 
 			$css .= sprintf( '%s { %s }', $rule, $def );
 		}
+
+		$css = apply_filters( "$id-content", $css );
 
 		return "<style id='{$id}' type='text/css'>{$css}</style>";
 	}

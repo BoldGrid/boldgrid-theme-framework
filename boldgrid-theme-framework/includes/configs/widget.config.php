@@ -16,60 +16,13 @@ $custom_widgets['footer-company-details'] = <<<HTML
 HTML;
 
 return array(
-	'force_enable_bstw' => true,
-	'force_disable_bstw' => false,
+	'force_enable_bstw' => false,
+	'force_disable_bstw' => true,
 
 	// When the footer is disabled, these widgets will be removed.
-	'footer_widgets' => array(
-		'boldgrid-widget-3'
-	),
-	'widget_instances' => array(
-
-		// This supports adding many widgets to 1 area.
-		'boldgrid-widget-3' => array(
-
-			// Specify name as key to assist with lookups.
-			'footer-company-details' => array(
-				'title' => 'Contact Info',
-				'text' => $custom_widgets['footer-company-details'],
-				'type' => 'visual',
-				'filter' => 1,
-				'label' => 'black-studio-tinymce',
-			),
-		),
-
-	),
+	'footer_widgets' => array(),
+	'widget_instances' => array(),
 	'sidebars' => array(
-		'boldgrid-widget-1' => array(
-			'name'          => 'Widget 1',
-			'id'            => 'boldgrid-widget-1',
-			'before_widget' => '<aside class="%2$s widget well" id="%1$s">',
-			'after_widget'  => '</aside>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-			'before_bg_widget' => '<aside class="%2$s widget" id="%1$s">',
-			'after_bg_widget' => '</aside>',
-		),
-		'boldgrid-widget-2' => array(
-			'name'          => 'Widget 2',
-			'id'            => 'boldgrid-widget-2',
-			'before_widget' => '<aside class="%2$s widget" id="%1$s">',
-			'after_widget'  => '</aside>',
-			'before_title'  => '<h2 class="widget-title alt-font">',
-			'after_title'   => '</h2>',
-			'before_bg_widget' => '<aside class="%2$s widget" id="%1$s">',
-			'after_bg_widget' => '</aside>',
-		),
-		'boldgrid-widget-3' => array(
-			'name'          => 'Footer Center',
-			'id'            => 'boldgrid-widget-3',
-			'before_widget' => '<aside class="%2$s widget" id="%1$s">',
-			'after_widget'  => '</aside>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-			'before_bg_widget' => '<aside class="%2$s widget" id="%1$s">',
-			'after_bg_widget' => '</aside>',
-		),
 
 		// Header Widgets.
 		'header-1' => array(

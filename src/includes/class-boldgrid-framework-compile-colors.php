@@ -51,8 +51,18 @@ class Boldgrid_Framework_Compile_Colors {
 
 		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];
-			$colors = is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ?
-				$palettes['state']['palettes'][ $current_palette ]['colors'] : array();
+
+			$colors = array();
+
+			if ( empty( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ) {
+				$activate = new Boldgrid_Framework_Activate( $this->configs );
+				$option = 'theme_mods_' . get_stylesheet();
+				$activate->set_palette( $option );
+			}
+
+			if ( is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ) {
+				$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
+			}
 
 			$i = 0;
 			foreach ( $colors as $color ) {
@@ -81,12 +91,12 @@ class Boldgrid_Framework_Compile_Colors {
 		$palettes = json_decode( $palette, true );
 
 		if ( empty( $palettes ) ) {
-			$defaults = $this->configs['customizer-options']['colors']['defaults'];
-			$active_palette = Boldgrid_Framework_Customizer_Colors::get_simplified_external_palettes( $defaults );
-			$palette_class = key( $active_palette );
-			$state['active-palette'] = $active_palette[ $palette_class ]['format'];
-			$state['palettes'] = $active_palette;
-			$palettes['state'] = $state;
+			$activate = new Boldgrid_Framework_Activate( $this->configs );
+			$option = 'theme_mods_' . get_stylesheet();
+			$activate->set_palette( $option );
+			$palette = ! empty( $boldgrid_theme_framework->palette_changeset ) ?
+			$boldgrid_theme_framework->palette_changeset : get_theme_mod( 'boldgrid_color_palette' );
+			$palettes = json_decode( $palette, true );
 		}
 
 		return $palettes;
@@ -460,7 +470,7 @@ class Boldgrid_Framework_Compile_Colors {
 
 		foreach ( $colors as $k => $v ) {
 			if ( $k === $active_palette . '-neutral-color' ) {
-				$formatted[ 'color-neutral' ] = $v;
+				$formatted['color-neutral'] = $v;
 			} elseif ( strpos( $k, $active_palette ) !== false ) {
 				$formatted[ 'color-' . preg_replace( '/[^0-9]/', '', $k ) ] = $v;
 			} else {
@@ -474,9 +484,9 @@ class Boldgrid_Framework_Compile_Colors {
 	/**
 	 * Gets the size of the palette control to add.
 	 *
-	 * @since  2.0.0
+	 * @since 2.0.0
 	 *
-	 * @param  array  $palette The active palette to get the size of.
+	 * @param array $palette The active palette to get the size of.
 	 *
 	 * @return string          Size of each palette square.
 	 */
@@ -488,6 +498,6 @@ class Boldgrid_Framework_Compile_Colors {
 			$colors = count( $palette );
 		}
 
-		return ( string ) floor( $max_size / $colors );
+		return 0 !== $colors ? ( string ) floor( $max_size / $colors ) : '0';
 	}
 }

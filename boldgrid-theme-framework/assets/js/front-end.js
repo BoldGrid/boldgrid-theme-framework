@@ -62,6 +62,9 @@ var BoldGrid = BoldGrid || {};
 		'custom_header': {
 			init: function() {
 
+				// Check for custom header image.
+				this.checkImg();
+
 				// Check for video background embed type.
 				$( document ).on( 'wp-custom-header-video-loaded', this.checkType );
 
@@ -80,130 +83,137 @@ var BoldGrid = BoldGrid || {};
 			 * @return null
 			 */
 			checkType: function() {
-				var timer, body, youtube, nativeVideo;
+				var timer, body, youtube, nativeVideo, video, i = 0;
 
 				timer = setTimeout( function loadVideo() {
-
-					body = $( 'body' );
+					i++;
+					body = document.body.classList;
 					youtube = ( ( ( wp || {} ).customHeader || {} ).handlers || {} ).youtube;
 					nativeVideo = ( ( ( wp || {} ).customHeader || {} ).handlers || {} ).nativeVideo;
 
-						// jscs:disable requireYodaConditions
-						if ( youtube.player == null && nativeVideo.video == null ) {
-								timer = setTimeout( loadVideo, 50 );
-						} else {
-							if ( nativeVideo.video == null && typeof youtube.player.stopVideo === 'function' ) {
-								body.addClass( 'has-youtube-header' );
-							} else if ( youtube.player == null && $( nativeVideo.video ).length ) {
-								body.addClass( 'has-video-header' );
-							} else {
-								timer = setTimeout( loadVideo, 50 );
-							}
+					// ~ 3sec with 50ms delays between load attempts.
+					if ( i > 60 ) {
+						clearTimeout( timer );
+					}
 
-						// jscs:enable requireYodaConditions
+					// jscs:disable requireYodaConditions
+					if ( youtube.player == null && nativeVideo.video == null ) {
+						timer = setTimeout( loadVideo, 50 );
+					} else {
+
+						// YouTube player found and YT handler is loaded.
+						if ( nativeVideo.video == null && typeof youtube.player.stopVideo === 'function' ) {
+							body.add( 'has-youtube-header' );
+							body.remove( 'has-header-image' );
+							body.remove( 'has-video-header' );
+							BoldGrid.custom_header.calc();
+
+						// HTML5 video player found and native handler is loaded.
+						} else if ( youtube.player == null && $( nativeVideo.video ).length ) {
+							body.add( 'has-video-header' );
+							body.remove( 'has-header-image' );
+							body.remove( 'has-youtube-header' );
+
+							video = document.getElementById( 'wp-custom-header-video' );
+
+							if ( !! video ) {
+
+								// Check  ready state of video player before attempting to reflow layout.
+								if ( 4 === video.readyState ) {
+									BoldGrid.custom_header.calc();
+								} else {
+
+									// Setup event listener for loadeddata to indicate video has loaded and can be played.
+									video.addEventListener( 'loadeddata', function() {
+										BoldGrid.custom_header.calc();
+									}, false );
+								}
+							}
+						} else {
+							timer = setTimeout( loadVideo, 50 );
 						}
+
+					// jscs:enable requireYodaConditions
+					}
 				}, 50 );
 			},
 
+			checkImg: function() {
+				var customHeader, body;
+
+				body = document.body.classList;
+				body.remove( 'has-header-image' );
+				customHeader = document.getElementById( 'wp-custom-header' );
+
+				if ( customHeader && customHeader.firstChild && 'IMG' === customHeader.firstChild.nodeName ) {
+					body.add( 'has-header-image' );
+				}
+			},
+
 			calc: function() {
-				var header_height = $( '#navi' ).outerHeight(),
-					screen_width = $( window ).width() + 16;
+				var classes, headerHeight, siteMargin, naviHeight, secondaryMenuHeight, menu;
 
-				$( '.wp-custom-header' ).css( 'height', '' );
+				classes = document.body.classList;
 
-				// Desktop.
-				if ( screen_width > 768 ) {
-					if ( !! $( '.custom-header' ).not( '.header-fixed' ).length ) {
+				headerHeight = '100vh';
+				siteMargin = 0;
+				naviHeight = $( '#navi' ).outerHeight();
 
-						// Adjusts .header-top position, offsets content based on header content.
-						$( '#content' ).css( 'margin-top', '0px' );
-						$( '.wp-custom-header' ).css( 'height', header_height + 2 );
+				// Desktop view.
+				if ( window.innerWidth > 768 ) {
+					secondaryMenuHeight = $( '#secondary-menu' ).outerHeight();
+
+					// Fixed Headers
+					if ( classes.contains( 'header-fixed' ) ) {
+
+						// Header on left, or header on right.
+						if ( classes.contains( 'header-top' ) ) {
+							headerHeight = naviHeight + secondaryMenuHeight + 2;
+							siteMargin = $( '#navi-wrap' ).outerHeight();
+						}
+
+					// Non-fixed headers.
+					} else {
+						if ( classes.contains( 'header-top' ) ) {
+							headerHeight = naviHeight + secondaryMenuHeight + 2;
+							if ( classes.contains( 'has-youtube-header' ) ) {
+								siteMargin = siteMargin + $( '#header-widget-area' ).outerHeight();
+							}
+						}
 					}
 
 				// Mobile.
 				} else {
-					$( '#content' ).css( 'margin-top', '0px' );
-					if ( $( '#main-menu' ).is( ':visible' ) ) {
-						header_height = Math.abs( $( '#navi' ).outerHeight() - $( '#main-menu' ).height() );
+					menu = $( '#main-menu' );
+
+					if ( menu.is( ':visible' ) ) {
+						headerHeight = naviHeight - menu.outerHeight() + 2;
+					} else {
+						headerHeight = naviHeight + 2;
 					}
-					$( '.wp-custom-header' ).css( 'height', header_height + 2 );
 				}
+
+				$( '.wp-custom-header' ).css( 'height', headerHeight );
+				$( '.site-header + *' ).css( 'margin-top', siteMargin );
 			}
 		},
 
 		// Sticky/Fixed Header.
 		'header_fixed': {
 			init: function() {
-				var video;
 
-				video = document.getElementById( 'wp-custom-header-video' );
+				window.addEventListener( 'scroll', function() {
+					var distanceY, shrinkOn, header;
 
-				if ( !! video ) {
-					if ( 4 === video.readyState ) {
-						$( window ).trigger( 'resize' );
-					} else {
-
-						// Setup event listener for loadeddata to indicate video has loaded and can be played.
-						video.addEventListener( 'loadeddata', function() {
-							$( window ).trigger( 'resize' );
-						}, false );
-					}
-
-				} else {
-					$( window ).trigger( 'resize' );
-				}
-
-				// Initial calculations.
-				this.calc();
-
-				// Listen for resize events to retrigger calculations.
-				$( window ).resize( this.calc );
+					distanceY = window.pageYOffset || document.documentElement.scrollTop,
+					shrinkOn = 100,
+					header = document.getElementById( 'masthead' );
+					distanceY > shrinkOn ? header.classList.add( 'smaller' ) : header.classList.remove( 'smaller' );
+				} );
 			},
 
 			calc: function() {
-				var header_height = $( '#navi' ).outerHeight(),
-					screen_width = $( window ).width() + 16;
-
-				if ( !! $( '.custom-header.header-fixed' ).length ) {
-
-					$( '.wp-custom-header' ).css( 'height', '' );
-
-					// Desktop.
-					if ( screen_width > 768 ) {
-
-						// Adjusts .header-top position, offsets content based on header content.
-						if ( $( '.header-fixed:not(.header-left):not(.header-right)' ).length ) {
-							$( '#content' ).css( 'margin-top', header_height + 'px' );
-							$( '.wp-custom-header' ).css( 'height', header_height + 2 );
-
-							// Adjusts .header-left and .header-right, remove styling from the .header-top defaults.
-						} else {
-							$( '#content' ).css( 'margin-top', '0' );
-							$( '.wp-custom-header' ).css( 'height', '100vh' );
-						}
-
-					// Mobile.
-					} else {
-						$( '#content' ).css( 'margin-top', '0px' );
-						if ( $( '#main-menu' ).is( ':visible' ) ) {
-							header_height = Math.abs( $( '#navi' ).outerHeight() - $( '#main-menu' ).height() );
-						}
-						$( '.wp-custom-header' ).css( 'height', header_height + 2 );
-					}
-				}
-
-				window.addEventListener( 'scroll', function() {
-					var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-						shrinkOn = 100,
-						header = document.querySelector( 'header' );
-					if ( distanceY > shrinkOn ) {
-						$( header ).addClass( 'smaller' );
-					} else {
-						if ( true === $( header ).hasClass( 'smaller' ) ) {
-							$( header ).removeClass( 'smaller' );
-						}
-					}
-				} );
+				BoldGrid.custom_header.calc();
 			}
 		},
 
@@ -241,7 +251,7 @@ var BoldGrid = BoldGrid || {};
 						screen_width = $( window ).width() + 16;
 					if ( screen_width > 768 && $mainMenuState.length ) {
 						if ( $mainMenuState[0].checked ) {
-							$mainMenuState.attr( 'checked', false );
+							$mainMenuState.prop( 'checked', false );
 						}
 					}
 				});
@@ -481,6 +491,26 @@ var BoldGrid = BoldGrid || {};
 			// Destroy scroll to top buttons.
 			destroy: function() {
 				$( '.goup-container, .goup-text' ).remove();
+			}
+		},
+		'woocommerce_demo_store': {
+			finalize: function() {
+				if ( 'undefined' !== typeof wp ) {
+					if ( 'undefined' === typeof wp.customize ) {
+
+						// Remove margin-top when notice is dismissed.
+						$( '.woocommerce-store-notice__dismiss-link' ).click( function() {
+							$( '.header-fixed.header-top.woocommerce-demo-store' ).css( 'margin-top', '0' );
+						} );
+
+						// Check the value of that cookie and show/hide the notice accordingly
+						if ( 'hidden' === Cookies.get( 'store_notice' ) ) {
+							$( '.header-fixed.header-top.woocommerce-demo-store' ).css( 'margin-top', '0' );
+						} else {
+							$( '.header-fixed.header-top.woocommerce-demo-store' ).css( 'margin-top', $( '.woocommerce-store-notice' ).outerHeight() );
+						}
+					}
+				}
 			}
 		}
 	};

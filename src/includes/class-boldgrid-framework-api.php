@@ -145,12 +145,21 @@ class BoldGrid {
 	 * @since 1.0.0
 	 */
 	public static function site_title() {
+		global $boldgrid_theme_framework;
+		$configs = $boldgrid_theme_framework->get_configs();
+
 		// Bug fix 9/28/15: https://codex.wordpress.org/Function_Reference/is_home.
-		if ( is_front_page( ) && 'page' === get_option( 'show_on_front' ) ) : ?>
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-		<?php else : ?>
-			<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-		<?php endif;
+		if ( is_front_page( ) && 'page' === get_option( 'show_on_front' ) ) {
+			$title_tag = $configs['template']['site-title-tag'];
+		} else {
+			$title_tag = 'p';
+		}
+
+		// Site title link.
+		$link = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo( 'name' ) . '</a>';
+
+		echo '<' . $title_tag . ' class="' . esc_attr( $configs['template']['site-title-classes'] )
+			. '">' . $link . '</' . $title_tag . '>';
 	}
 
 	/**
@@ -255,6 +264,9 @@ class BoldGrid {
 	public function print_title_tagline() {
 	?>
 		<div class="site-branding">
+			<?php if ( function_exists( 'the_custom_logo' ) ) : ?>
+				<?php the_custom_logo(); ?>
+			<?php endif; ?>
 			<?php do_action( 'boldgrid_site_title' ); ?>
 			<?php do_action( 'boldgrid_print_tagline' ); ?>
 		</div><!-- .site-branding -->
@@ -299,7 +311,7 @@ class BoldGrid {
 			<label class="main-menu-btn" for="main-menu-state">
 				<span class="main-menu-btn-icon"></span><span class="sr-only">Toggle main menu visibility</span>
 			</label>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'false', 'menu_id' => 'main-menu', 'menu_class' => 'sm bgtfw-menu logo logo-left' ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'false', 'menu_id' => 'main-menu', 'menu_class' => 'sm bgtfw-menu main-menu' ) ); ?>
 			</div>
 		<?php
 	}
@@ -326,14 +338,50 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function header_classes( $classes ) {
-		$color = get_theme_mod( 'bgtfw_header_color' );
-		$colorClass = strtok( $color, ':' );
-		if ( strpos( $colorClass, 'neutral' ) === false ) {
-			$colorClass = str_replace( '-', '', $colorClass );
-		}
-		$classes[] = $colorClass . '-background-color';
-		$classes[] = $colorClass . '-text-default';
 		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts', 'layout-6' );
+		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
+		return $classes;
+	}
+
+	/**
+	 * Adds custom CSS for main menu based on header color/link color selections by user.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $css CSS string being filtered.
+	 *
+	 * @return string $css Modified CSS to add to front end.
+	 */
+	public function main_menu_css( $css = '' ) {
+		$color = get_theme_mod( 'bgtfw_header_color' );
+		$color = explode( ':', $color );
+		$color = array_pop( $color );
+
+		$color_obj = ariColor::newColor( $color );
+
+		$color_obj->alpha = 0.7;
+		$css .= '.header-left #main-menu, .header-right #main-menu { background-color:' . $color_obj->toCSS( 'rgba' ) . '; }';
+		$css .= '@media (min-width: 768px) {';
+
+		$color_obj->alpha = 0.4;
+		$css .= '.sm-clean ul, .sm-clean ul a, .sm-clean ul a:hover, .sm-clean ul a:focus, .sm-clean ul a:active, .sm-clean ul a.highlighted, .sm-clean span.scroll-up, .sm-clean span.scroll-down, .sm-clean span.scroll-up:hover, .sm-clean span.scroll-down:hover { background-color:' . $color_obj->toCSS( 'rgba' ) . ';}';
+		$css .= '.sm-clean ul { border: 1px solid ' . $color_obj->toCSS( 'rgba' ) . ';}';
+		$css .= '.sm-clean > li > ul:before, .sm-clean > li > ul:after { border-color: transparent transparent ' . $color_obj->toCSS( 'rgba' ) . ' transparent;}';
+		$css .= '}';
+
+		return $css;
+	}
+
+	/**
+	 * Adds custom classes to the array of inner header classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array $classes array of classes to be applied to the #masthead element.
+	 */
+	public function inner_header_classes( $classes ) {
+		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
+		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_header_links' ) );
 		return $classes;
 	}
 
@@ -345,14 +393,84 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the .site-footer element.
 	 */
 	public function footer_classes( $classes ) {
-		$color = get_theme_mod( 'bgtfw_footer_color' );
-		$colorClass = strtok( $color, ':' );
-		if ( strpos( $colorClass, 'neutral' ) === false ) {
-			$colorClass = str_replace( '-', '', $colorClass );
-		}
-		$classes[] = $colorClass . '-background-color';
-		$classes[] = $colorClass . '-text-default';
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts', 'layout-1' );
+		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		return $classes;
+	}
+
+	/**
+	 * Adds custom classes to the array of inner footer classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array $classes array of classes to be applied to the #masthead element.
+	 */
+	public function inner_footer_classes( $classes ) {
+		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_footer_links' ) );
+		return $classes;
+	}
+
+	/**
+	 * Get color classes for a property, given a theme mod.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $mod        Palette Selector theme_mod to get value for.
+	 * @param  array  $properties  A list of properties to check..
+	 *
+	 * @return array  $classes    Classes to add.
+	 */
+	public static function get_color_classes( $mod, $properties ) {
+		$color = get_theme_mod( $mod );
+		$color_class = explode( ':', $color );
+		$color_class = array_shift( $color_class );
+		if ( strpos( $color_class, 'neutral' ) === false ) {
+			$color_class = str_replace( '-', '', $color_class );
+		}
+
+		$classes = array();
+		foreach ( $properties as $property ) {
+			$classes[] = $color_class . '-' . $property;
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Get background colors.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $mod     Palette Selector theme_mod to get value for.
+	 *
+	 * @return array  $classes Classes for background color/text contrast.
+	 */
+	public function get_background_color( $mod ) {
+		$color = get_theme_mod( $mod );
+		$color_class = explode( ':', $color );
+		$color_class = array_shift( $color_class );
+		if ( strpos( $color_class, 'neutral' ) === false ) {
+			$color_class = str_replace( '-', '', $color_class );
+		}
+		$classes[] = $color_class . '-background-color';
+		$classes[] = $color_class . '-text-default';
+		return $classes;
+	}
+
+	/**
+	 * Get link colors.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $mod     Palette Selector theme_mod to get value for.
+	 *
+	 * @return array  $classes Classes for link colors.
+	 */
+	public function get_link_color( $mod ) {
+		$color = get_theme_mod( $mod );
+		$color = explode( ':', $color );
+		$classes[] = array_shift( $color ) . '-link-color';
 		return $classes;
 	}
 
@@ -447,7 +565,7 @@ class BoldGrid {
 			}
 
 			// Check if an uploaded video has been provided to give precedence over YouTube video.
-			if ( 0 !== get_theme_mod( 'header_video' ) || '' !== get_theme_mod( 'header_video' ) ) {
+			if ( 0 !== get_theme_mod( 'header_video' ) && '' !== get_theme_mod( 'header_video' ) ) {
 				$classes[] = 'has-video-header';
 				if ( isset( $classes['has-youtube-header'] ) ) {
 					unset( $classes['has-youtube-header'] );
@@ -476,14 +594,16 @@ class BoldGrid {
 		}
 
 		$background_color = get_theme_mod( 'boldgrid_background_color' );
-		$background_color = strtok( $background_color, ':' );
+		$background_color = explode( ':', $background_color );
+		$background_color = array_shift( $background_color );
 
 		if ( ! empty( $background_color ) ) {
-			$classes[] = $background_color . '-text-default';
 			if ( strpos( $background_color, 'neutral' ) !== false ) {
 				$classes[] = $background_color . '-background-color';
+				$classes[] = $background_color . '-text-default';
 			} else {
 				$classes[] = str_replace( '-', '', $background_color ) . '-background-color';
+				$classes[] = str_replace( '-', '', $background_color ) . '-text-default';
 			}
 		}
 

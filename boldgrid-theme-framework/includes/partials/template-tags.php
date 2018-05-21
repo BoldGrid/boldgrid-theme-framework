@@ -482,6 +482,96 @@ function bgtfw_get_header_class( $class = '' ) {
  *
  * @param string|array $class One or more classes to add to the class list.
  */
+function bgtfw_inner_header_class( $class = '' ) {
+	// Separates classes with a single space, collates classes for body element
+	echo 'class="' . join( ' ', bgtfw_get_inner_header_class( $class ) ) . '"';
+}
+
+/**
+ * Retrieve the classes for the header element as an array.
+ *
+ * @since 2.8.0
+ *
+ * @global WP_Query $wp_query
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function bgtfw_get_inner_header_class( $class = '' ) {
+	$classes = array();
+
+	if ( ! empty( $class ) ) {
+
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+
+		$classes = array_merge( $classes, $class );
+	} else {
+
+		// Ensure that we always coerce class to being an array.
+		$class = array();
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	$classes = apply_filters( 'bgtfw_inner_header_class', $classes, $class );
+
+	return array_unique( $classes );
+}
+
+/**
+ * Display the classes for the header element.
+ *
+ * @since 2.8.0
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function bgtfw_inner_footer_class( $class = '' ) {
+	// Separates classes with a single space, collates classes for body element
+	echo 'class="' . join( ' ', bgtfw_get_inner_footer_class( $class ) ) . '"';
+}
+
+/**
+ * Retrieve the classes for the header element as an array.
+ *
+ * @since 2.8.0
+ *
+ * @global WP_Query $wp_query
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function bgtfw_get_inner_footer_class( $class = '' ) {
+	$classes = array( bgtfw_get_footer_container() );
+
+	if ( ! empty( $class ) ) {
+
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+
+		$classes = array_merge( $classes, $class );
+	} else {
+
+		// Ensure that we always coerce class to being an array.
+		$class = array();
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	$classes = apply_filters( 'bgtfw_inner_footer_class', $classes, $class );
+
+	return array_unique( $classes );
+}
+
+/**
+ * Display the classes for the header element.
+ *
+ * @since 2.8.0
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
 function bgtfw_footer_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for body element
 	echo 'class="' . join( ' ', bgtfw_get_footer_class( $class ) ) . '"';
@@ -567,13 +657,20 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 		$classes[] = $color_class . '-background-color';
 		$classes[] = $color_class . '-text-default';
 	}
+	if ( ! empty( $sidebar_meta[ $sidebar_id ]['links_color'] ) ) {
+		$color = $sidebar_meta[ $sidebar_id ]['links_color'];
+		$color_class = strtok( $color, ':' );
+		$classes[] = $color_class . '-link-color';
+	}
 ?>
 	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid <?php echo implode( ' ', $classes ); ?>" role="complementary" style="<?php echo $style; ?>">
 		<?php dynamic_sidebar( $sidebar_id ); ?>
 		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
 			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>
 				<div class="empty-sidebar-message">
-					<h2><?php _e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
+					<?php if ( empty( $sidebar_meta[ $sidebar_id ]['title'] ) ) : ?>
+						<h2><?php _e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
+					<?php endif; ?>
 					<p><?php _e( "This sidebar doesn't have any widgets assigned to it yet.", 'bgtfw' ); ?></p>
 					<p><a href="<?php echo $link ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add widgets here.', 'bgtfw' ) ?></a></p>
 				</div>
@@ -621,7 +718,7 @@ function bgtfw_featured_img_bg( $post_id ) {
 function bgtfw_get_header_container() {
 	$container = '';
 	if ( get_theme_mod( 'bgtfw_header_layout_position' ) === 'header-top' ) {
-		$container = get_theme_mod( 'header_container', $container );
+		$container = get_theme_mod( 'header_container', '' );
 	}
 
 	return $container;
@@ -633,7 +730,7 @@ function bgtfw_get_header_container() {
  * @since 2.0.0
  */
 function bgtfw_header_container() {
-	echo bgtfw_get_header_container();
+	echo 'class="' . bgtfw_get_header_container( $class ) . '"';
 }
 
 /**

@@ -70,9 +70,29 @@ class Boldgrid_Framework_Customizer_Edit {
 	 * @param array $menu An array of menu settings.
 	 */
 	public static function fallback_cb( $menu ) {
+		$container_id = '';
+
+		/*
+		 * Determine the id for this element.
+		 *
+		 * @since 1.0.0 we could rely on the $menu['container_id'].
+		 * @since 2.0.0 we will check $menu['menu_id'] as well.
+		 */
+		$ids = array( 'container_id', 'menu_id' );
+		foreach ( $ids as $id ) {
+			if ( ! empty( $menu[ $id ] ) ) {
+				$container_id = $id;
+				break;
+			}
+		}
+
+		if ( empty( $container_id ) ) {
+			return;
+		}
+
 		printf( "<%s id='%s' class='empty-menu' data-theme-location='%s'></%s>",
 			$menu['container'],
-			$menu['container_id'],
+			$container_id,
 			$menu['theme_location'],
 			$menu['container']
 		);
@@ -140,9 +160,8 @@ class Boldgrid_Framework_Customizer_Edit {
 				array(
 					'editPostLink'	=> $edit_post_link,
 					'goThereNow'	=> __( 'Go there now', 'bgtfw' ),
-					'widget'		=> __( 'Widget', 'bgtfw' ),
 					'menu'			=> __( 'Menu', 'bgtfw' ),
-					'buttons'		=> $this->configs['customizer-options']['edit']['buttons'],
+					'config'		=> $this->configs['customizer-options']['edit'],
 				)
 			);
 

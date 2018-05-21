@@ -1,27 +1,34 @@
 #boldgrid-hide-post-title .dashicons-editor-help {
   color: #777;
   position: relative;
-  top: 5px; }
+  top: 5px;
+}
 
 #boldgrid-hide-post-title .dashicons-editor-help:hover {
-  cursor: help; }
+  cursor: help;
+}
 
 #boldgrid-hide-post-title .spinner {
   float: none;
-  height: 27px; }
+  height: 27px;
+}
 
 #boldgrid-hide-post-title {
-  position: relative; }
+  position: relative;
+}
 
 #boldgrid-hide-post-title input {
-  margin-left: 10px; }
+  margin-left: 10px;
+}
 
 #boldgrid-hide-post-title .boldgrid-tooltip {
   left: 38px;
-  top: 25px; }
+  top: 25px;
+}
 
 #boldgrid-hide-post-title .dashicons:hover ~ .boldgrid-tooltip {
-  display: block; }
+  display: block;
+}
 
 .boldgrid-tooltip {
   margin-top: 2px;
@@ -31,10 +38,12 @@
   filter: alpha(opacity=80);
   zoom: 1;
   display: none;
-  z-index: 9999; }
+  z-index: 9999;
+}
 
 .boldgrid-tooltip:hover {
-  display: block; }
+  display: block;
+}
 
 .boldgrid-tooltip-inner {
   -webkit-border-radius: 3px;
@@ -49,7 +58,8 @@
   max-width: 200px;
   padding: 5px 8px 4px 8px;
   text-align: center;
-  white-space: normal; }
+  white-space: normal;
+}
 
 .boldgrid-tooltip-arrow {
   top: 0;
@@ -63,7 +73,9 @@
   position: absolute;
   width: 0;
   height: 0;
-  line-height: 0; }
+  line-height: 0;
+}
 
 #tgmpa-plugins .tablenav.bottom small {
-  display: none; }
+  display: none;
+}

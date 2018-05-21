@@ -20,12 +20,6 @@ return array(
 	 */
 	'plugins' => array(
 		array(
-			'name'      => 'BoldGrid Inspirations',
-			'slug'      => 'boldgrid-inspirations',
-			'source'    => 'https://repo.boldgrid.com/boldgrid-inspirations.zip',
-			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
-		),
-		array(
 			'name'      => 'Post and Page Builder',
 			'slug'      => 'post-and-page-builder',
 			'source'    => 'https://downloads.wordpress.org/plugin/post-and-page-builder.zip',

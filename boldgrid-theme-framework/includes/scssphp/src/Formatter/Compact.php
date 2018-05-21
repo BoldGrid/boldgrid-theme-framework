@@ -2,7 +2,7 @@
 /**
  * SCSSPHP
  *
- * @copyright 2012-2015 Leaf Corcoran
+ * @copyright 2012-2018 Leaf Corcoran
  *
  * @license http://opensource.org/licenses/MIT MIT
  *
@@ -32,6 +32,7 @@ class Compact extends Formatter
         $this->close = "}\n\n";
         $this->tagSeparator = ',';
         $this->assignSeparator = ':';
+        $this->keepSemicolons = true;
     }
 
     /**

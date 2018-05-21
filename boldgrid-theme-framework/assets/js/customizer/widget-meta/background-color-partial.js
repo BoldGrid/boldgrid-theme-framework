@@ -1,6 +1,6 @@
 /* eslint max-nested-callbacks: [ "error", 4 ], consistent-this: [ "error", "partial" ] */
 
-wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_background_color = (function( api, $ ) {
+wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_background_color = ( function( api, $ ) {
 	'use strict';
 
 	return api.selectiveRefresh.Partial.extend( {
@@ -19,8 +19,6 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_background_color =
 			backgroundColorSetting = api( partial.params.primarySetting );
 			_.each( partial.placements(), function( placement ) {
 				var colorClassPrefix;
-
-				console.log( backgroundColorSetting.get() );
 
 				colorClassPrefix = backgroundColorSetting.get().split( ':' ).shift();
 

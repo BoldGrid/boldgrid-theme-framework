@@ -1,6 +1,6 @@
 /*!
- * modernizr v3.5.0
- * Build https://modernizr.com/download?-checked-flexbox-flexwrap-inlinesvg-svg-touchevents-video-setclasses-dontmin
+ * modernizr v3.6.0
+ * Build https://modernizr.com/download?-checked-contains-flexbox-flexwrap-inlinesvg-svg-touchevents-video-setclasses-dontmin
  *
  * Copyright (c)
  *  Faruk Ates
@@ -36,7 +36,7 @@
 
   var ModernizrProto = {
     // The current version, dummy
-    _version: '3.5.0',
+    _version: '3.6.0',
 
     // Any settings that don't work as separate modules
     // can go in here as configuration.
@@ -1135,6 +1135,20 @@ Modernizr.video.ogg     // 'probably'
       return cb.offsetLeft === 20;
     });
   });
+
+/*!
+{
+  "name": "ES5 String.prototype.contains",
+  "property": "contains",
+  "authors": ["Robert Kowalski"],
+  "tags": ["es6"]
+}
+!*/
+/* DOC
+Check if browser implements ECMAScript 6 `String.prototype.contains` per specification.
+*/
+
+  Modernizr.addTest('contains', is(String.prototype.contains, 'function'));
 
 
   // Run each test

@@ -37,28 +37,33 @@
 
 		// Check all registered menu locations.
 		_.each( $menus, function( id ) {
+			var menuSelector;
+
+			// Don't remove main menu controls even if no menu is assigned.
+			if ( id.themeLocation === 'main' ) {
+				return;
+			}
 
 			// Deactivate all controls initially.
-			wp.customize.control( 'navigation_' + id.themeLocation + '_font_size' ).deactivate({ duration: 0 });
-			wp.customize.control( 'navigation_' + id.themeLocation + '_font_family' ).deactivate({ duration: 0 });
-			wp.customize.control( 'navigation_' + id.themeLocation + '_text_transform' ).deactivate({ duration: 0 });
+			wp.customize.control( 'navigation_' + id.themeLocation + '_typography' ).deactivate( { duration: 0 } );
 
-			var $menu_selector = wp.customize.previewer.container.find( 'iframe' ).contents()
-				.find( 'div.' + id.themeLocation.replace( /_/g, '-' ) + '-menu:not(:has( ul li.menu-social ) )' );
+			menuSelector = wp.customize.previewer.container.find( 'iframe' ).contents()
+				.find( '.' + id.themeLocation.replace( /_/g, '-' ) + '-menu:not(:has( ul li.menu-social ) )' );
 
-			// If menus aren't present in the preview, then hide controls.
-			if ( $menu_selector.length ) {
-
-				// Hide relevant font size controls.
-				wp.customize.control( 'navigation_' + id.themeLocation + '_font_size' ).activate({ duration: 0 });
-
-				// Hide relevant font family controls.
-				wp.customize.control( 'navigation_' + id.themeLocation + '_font_family' ).activate({ duration: 0 });
-
-				// Hide relevant text transform controls.
-				wp.customize.control( 'navigation_' + id.themeLocation + '_text_transform' ).activate({ duration: 0 });
+			// Menus found in the previewer, so show controls.
+			if ( menuSelector.length ) {
+				wp.customize.control( 'navigation_' + id.themeLocation + '_typography' ).activate( { duration: 0 } );
 			}
-		});
+		} );
+
+		// Update search results.
+		BOLDGRID.CUSTOMIZER.Search.controls = _.filter( BOLDGRID.CUSTOMIZER.Search.controls, function( control ) {
+			if ( control.section === 'navigation_typography' && wp.customize.control( control.id ).active() === true ) {
+				return control;
+			} else if ( control.section !== 'navigation_typography' ) {
+				return control;
+			}
+		} );
 	};
 
-})( jQuery );
+} )( jQuery );

@@ -132,13 +132,35 @@ class Boldgrid_Framework_Menu {
 	 * This takes each menu location specified in the configs and allows it to be used
 	 * depending on if the configs have set a location for the menu.
 	 *
-	 * @since     1.0.0
+	 * @since 1.0.0
+	 *
+	 * @param array $args      Arguments to override BGTFW default configs for wp_nav_menu().
+	 * @param array $add_class Array of wp_nav_menu args that are CSS class overrides.
 	 */
-	public function add_dynamic_actions() {
-		$edit_enabled = $this->configs['customizer-options']['edit']['enabled'];
-
+	public function add_dynamic_actions( $args = array(), $add_class = array() ) {
+		$bgtfw_menus = $this;
 		foreach ( $this->configs['menu']['prototype'] as $menu ) {
-			$action = function () use ( $menu, $edit_enabled ) {
+
+			/**
+			 * Optionally you can pass in $args to override the defaults being passed in during
+			 * the dynamic instantiation.  Additionally if you pass in strings to override in
+			 * $add_class, the string of CSS classes will be extended instead of overwritten. By
+			 * default menu_class and container_class are able to be extended.  This can be useful
+			 * for generating dynamic classes to add to menus, or even dynamic IDs for multiple
+			 * new menu locations if needed.
+			 *
+			 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
+			 * See link for a list of arguments that can be passed to wp_nav_menu().
+			 *
+			 * @param array $args      Arguments to override BGTFW default configs for wp_nav_menu().
+			 * @param array $add_class Array of wp_nav_menu args that are CSS class overrides.
+			 */
+			$action = function( $args, $add_class = array() ) use ( $menu, &$bgtfw_menus ) {
+
+				// Combine classes in $args from hook, and merge the remaining items in array.
+				$add_class = ( ! empty( $add_class ) && is_array( $add_class ) ) ? $add_class : array( 'menu_class', 'container_class' );
+				$menu = $this->parse_nav_args( $args, $menu, $add_class );
+
 				/*
 				 * IF we're in the customizer and edit buttons are enabled:
 				 * # Modify 'fallback_cb' and force the "edit button's fallback_cb".
@@ -147,7 +169,7 @@ class Boldgrid_Framework_Menu {
 				 * ELSE:
 				 * # Follow standard practice and print the nav menu if it's configured.
 				 */
-				if ( is_customize_preview() && true === $edit_enabled ) {
+				if ( is_customize_preview() && true === $bgtfw_menus->configs['customizer-options']['edit']['enabled'] ) {
 					$menu['fallback_cb'] = 'Boldgrid_Framework_Customizer_Edit::fallback_cb';
 					wp_nav_menu( $menu );
 				} elseif ( has_nav_menu( $menu['theme_location'] ) ) {
@@ -155,9 +177,61 @@ class Boldgrid_Framework_Menu {
 				}
 			};
 
-			// Add action(boldgrid_menu_footer_center).
-			add_action( $this->configs['menu']['action_prefix'] . $menu['theme_location'], $action );
+			// Add our dynamic actions we created, so they can be hooked into ( For example: 'boldgrid_menu_main' ).
+			add_action( $this->configs['menu']['action_prefix'] . $menu['theme_location'], $action, 10, 2 );
 		}
+	}
+
+	/**
+	 * Parses $args being passed to create dynamic actions for bgtfw menus
+	 * to be inserted into, and calling wp_nav_menu.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @see BoldGrid_Framework_Menu::add_dynamic_actions
+	 *
+	 * @param  array $args     Arguments passed in to parse.
+	 * @param  array $defaults Default arguments to override.
+	 * @param  array $classes  CSS classes to extend instead of override(add to existing CSS classes).
+	 *
+	 * @return array $defaults Merged and extended default configuration array.
+	 */
+	public function parse_nav_args( $args = array(), $defaults = array(), $classes = array() ) {
+
+		// Parse query strings to an array.
+		if ( is_string( $args ) ) {
+			$args = wp_parse_args( $args );
+		}
+
+		if ( ! empty( $args ) && is_array( $args ) ) {
+
+			// Classes to override.
+			if ( ! empty( $classes ) ) {
+
+				// Loop through each of the classes we wish to override.
+				foreach ( $classes as $class ) {
+
+					// Join existing bgtfw configs for menu classes passed in $args.
+					if ( isset( $args[ $class ] ) && ! empty( $args[ $class ] ) ) {
+
+						// Check for defaults from bgtfw configs.
+						if ( isset( $defaults[ $class ] ) && ! empty( $defaults[ $class ] ) && is_string( $defaults[ $class ] ) ) {
+
+							// Combine the strings to create menu with.
+							$defaults[ $class ] = implode( ' ', array( $defaults[ $class ], $args[ $class ] ) );
+
+							// Remove container_class from $args since it's been processed.
+							unset( $args[ $class ] );
+						}
+					}
+				}
+			}
+
+			// Merge in the remaining $defaults with passed $args.
+			$defaults = wp_parse_args( $args, $defaults );
+		}
+
+		return $defaults;
 	}
 
 	/**
@@ -169,7 +243,6 @@ class Boldgrid_Framework_Menu {
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( $this->configs['menu']['locations'] );
-
 	}
 
 	/**

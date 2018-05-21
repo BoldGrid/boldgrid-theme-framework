@@ -1,9 +1,15 @@
-.footer.layout-6 {
+&.layout-6 {
 	.social-menu-wrapper,
 	.footer-center-menu-wrapper,
 	.contact-block-wrapper,
 	.attribution-theme-mods-wrapper {
 		justify-content: center;
+	}
+	.footer-center-items {
+		justify-content: center;
+	}
+	.contact-block {
+		text-align: center;
 	}
 	@media only screen and (min-width : 768px) {
 		.social-menu-wrapper {
@@ -15,6 +21,12 @@
 			flex-basis: 70%;
 			order: 2;
 			justify-content: flex-start;
+		}
+		.footer-center-items {
+			justify-content: flex-start;
+		}
+		.contact-block {
+			text-align: right;
 		}
 	}
 }

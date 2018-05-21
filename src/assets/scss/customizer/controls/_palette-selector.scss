@@ -1,6 +1,4 @@
-.customize-control-bgtfw-palette-selector {
-	position: relative;
-
+#customize-control-boldgrid_background_color {
 	.boldgrid-sticky-customizer & {
 		.bgtfw-control-wrapper {
 			display: flex;
@@ -12,10 +10,12 @@
 			.customize-control-title {
 				display: block;
 			}
+
 			.customize-control-description {
 				display: none;
 				text-align: left;
 			}
+
 			.colors-wrapper {
 				padding: 10px 2px 10px 10px;
 			}
@@ -30,6 +30,10 @@
 	.customize-control-title {
 		display: none;
 	}
+}
+
+.customize-control-bgtfw-palette-selector {
+	position: relative;
 
 	.customize-control-description {
 		text-align: center;

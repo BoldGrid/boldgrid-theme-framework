@@ -12,7 +12,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	self.hover_bound = false;
 	self.section_click_bound = false;
 	$( function() {
-		$window.on( 'boldgrid_customizer_refresh',  onload  );
+		$window.on( 'boldgrid_customizer_refresh', onload );
 		add_widget_description();
 	} );
 
@@ -23,9 +23,10 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		bind_force_mouse_leave();
 
 		self.$widget_overlay = $( '<div id="boldgrid-widget-area-overlay" class="widget-area-overlay hidden"><h2>Widget Area</h2></div>' );
-		self.$previewer
-			.find( 'body' )
-			.append( self.$widget_overlay );
+		if ( ! self.$previewer.find( 'body' ).find( '#boldgrid-widget-area-overlay' ).length ) {
+			self.$previewer.find( 'body' ).append( self.$widget_overlay );
+		}
+		self.$widget_overlay = self.$previewer.find( 'body' ).find( '#boldgrid-widget-area-overlay' );
 	};
 
 	var bind_force_mouse_leave = function() {
@@ -157,12 +158,14 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			);
 
 		// If no header or footer widgets, change wording to add more widgets.
-		if ( wp.customize( 'boldgrid_footer_widgets' ).get(  ) &&
-			 wp.customize( 'boldgrid_header_widgets' ).get(  ) !== '0' ) {
-			$widgetAreaBottom
-				.append( '<p class="boldgrid-subdescription bottom-description">To change the number of columns in your header or footer, use the following buttons. </p>' )
-				.append( '<div class="boldgrid-subdescription"><button  type="button" data-focus-control="boldgrid_header_widgets" class="button">Header Columns</button><button class="button" type="button" data-focus-control="boldgrid_footer_widgets">Footer Columns</button><div>' )
-				.append( '<div class="boldgrid-subdescription edit-in-admin"><a href="' + Boldgrid_Thememod_Markup.siteurl + '/wp-admin/widgets.php" type="button" class="button">Edit in Admin</a><div>' );
+		if ( ! _.isUndefined( wp.customize( 'boldgrid_footer_widgets' ) ) &&
+			! _.isUndefined( wp.customize( 'boldgrid_header_widgets' ) ) &&
+			wp.customize( 'boldgrid_footer_widgets' ).get() !== '0' &&
+			wp.customize( 'boldgrid_header_widgets' ).get() !== '0' ) {
+				$widgetAreaBottom
+					.append( '<p class="boldgrid-subdescription bottom-description">To change the number of columns in your header or footer, use the following buttons. </p>' )
+					.append( '<div class="boldgrid-subdescription"><button  type="button" data-focus-control="boldgrid_header_widgets" class="button">Header Columns</button><button class="button" type="button" data-focus-control="boldgrid_footer_widgets">Footer Columns</button><div>' )
+					.append( '<div class="boldgrid-subdescription edit-in-admin"><a href="' + Boldgrid_Thememod_Markup.siteurl + '/wp-admin/widgets.php" type="button" class="button">Edit in Admin</a><div>' );
 		} else {
 			$widgetAreaBottom
 				.append( '<p class="boldgrid-subdescription bottom-description">You can add more widget areas in your header or footer, just use the following buttons: </p>' )

@@ -17,14 +17,10 @@ sudo: false
 matrix:
   include:
   - php: 7.1
-  - php: 7.0
+#  - php: 7.0
   - php: 5.6
-  - php: 5.5
+#  - php: 5.5
   - php: 5.4
-  - php: 5.3
-    dist: precise
-  - php: 5.2
-    dist: precise
 
 # Declare which versions of WordPress to test against.
 # Also declare whether or not to test in Multisite.
@@ -33,6 +29,10 @@ env:
     # @link https://github.com/WordPress/WordPress
     - WP_VERSION=master WP_MULTISITE=0
 
+notifications:
+  slack:
+    secure: U0C7obTxqgI1blt1RIhIY+M3mU94CgSVMCP3oWtPyVaXrDwYdlSZvqXGCdezJXqVzFOcMEytDlKMJxo1zM6fnXlpqvUllBGm2IJkpQj6ijUr+uQy6bVqMWQiIWDho8XRKH3GoYa812XSsNJOROX+let9JiXiO5qz0DWSs3FQ4gl+Ti+E/Znck9yE32AfY5rHEhtkbN2ih/Agx7o+8PkdGG2BGr6hqfn/Gf1sHiUA6KifdoD6lZRR/nym/1osEMlkuavbY4tOf+RBvUTpSpyBDthPXmgXCPJZ8iGGTKySic7KF367AXITWNWdZxX0ChzNB6WcmJWvdvghbxRnIZXN3nML+gtXclmNnH8GOO4iLyXtUbyh7JpoZh/5KVnqP2hmgjPzBGNm84JBmZuqB7jIKHAZwWh66u9k03uteM5wrYNxQBYvDHvTaeeP7TnOBDWhUkjvEacx61TpxmUCb6VGHahSv/MuqaAEpvolcj83BPBC4fjrLA3dj6u+WjYxTqRZeA9A35eW6qT3182beKHCj+GfN1PfsMRGCyqebxcj6CMLgGti0UMgFUBBp1w30z54vKq/lpIRCgMYXQWbETJPLhez76u9MqVCc1j9JoxD6o7we3BsvYtOhngnCbKLcpDzsQK8q/TTtVB/etfQcYdir6lkJn4wAQbvoM5US8uPQ7w=
+
 # Use this to prepare your build for testing.
 # e.g. copy database configurations, environment variables, etc.
 # Failures in this section will result in build status 'errored'.
@@ -40,10 +40,8 @@ before_script:
     - nvm install 6.12.0
     - nvm use 6.12.0
     - npm install --global gulp-cli
-    - npm install --global yarn
-    - npm install bower
-    - yarn install
-    - gulp build
+#    - npm install --global yarn
+    - yarn install && yarn run build
     # Set up WordPress installation.
     - export WP_DEVELOP_DIR=/tmp/wordpress/
     - mkdir -p $WP_DEVELOP_DIR

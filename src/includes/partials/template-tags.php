@@ -725,7 +725,7 @@ function bgtfw_get_header_container() {
  * @since 2.0.0
  */
 function bgtfw_header_container() {
-	echo 'class="' . bgtfw_get_header_container( $class ) . '"';
+	echo 'class="' . bgtfw_get_header_container() . '"';
 }
 
 /**

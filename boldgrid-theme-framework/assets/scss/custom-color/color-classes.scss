@@ -285,6 +285,12 @@ $names: color background background-color border-color;
 	}
 }
 
+/** Mark elements **/
+mark, .mark {
+	background-color: $palette-primary_3;
+	color: $text-contrast-palette-primary-3;
+}
+
 /** Adding minimal color definitions for default breadcrumbs **/
 .breadcrumb li a.filler {
 	background: $palette-primary_2;

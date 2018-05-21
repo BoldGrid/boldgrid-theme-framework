@@ -416,13 +416,12 @@ class BoldGrid {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  string $mod        Palette Selector theme_mod to get value for.
+	 * @param  string $color       Palette Selector theme_mod value.
 	 * @param  array  $properties  A list of properties to check..
 	 *
 	 * @return array  $classes    Classes to add.
 	 */
-	public static function get_color_classes( $mod, $properties ) {
-		$color = get_theme_mod( $mod );
+	public static function get_color_classes( $color, $properties ) {
 		$color_class = explode( ':', $color );
 		$color_class = array_shift( $color_class );
 		if ( strpos( $color_class, 'neutral' ) === false ) {

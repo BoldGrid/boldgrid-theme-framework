@@ -107,14 +107,20 @@ class Boldgrid_Framework_Custom_Header {
 	 * @param array $configs BGTFW Configs.
 	 */
 	public function add_color_classes( $configs ) {
-		if ( get_theme_mod( 'bgtfw_tagline_color' ) ) {
-			$color = BoldGrid::get_color_classes( 'bgtfw_tagline_color', array( 'color' ) );
-			$configs['template']['tagline-classes'] .= ' ' . implode( ' ', $color );
+		$title_color = get_theme_mod( 'bgtfw_site_title_color',
+			$configs['customizer']['controls']['bgtfw_site_title_color']['default'] );
+
+		if ( $title_color ) {
+			$color = BoldGrid::get_color_classes( $title_color, array( 'color' ) );
+			$configs['template']['site-title-classes'] .= ' ' . implode( ' ', $color );
 		}
 
-		if ( get_theme_mod( 'bgtfw_site_title_color' ) ) {
-			$color = BoldGrid::get_color_classes( 'bgtfw_site_title_color', array( 'color' ) );
-			$configs['template']['site-title-classes'] .= ' ' . implode( ' ', $color );
+		$tagline_color = get_theme_mod( 'bgtfw_tagline_color',
+			$configs['customizer']['controls']['bgtfw_tagline_color']['default'] );
+
+		if ( $tagline_color ) {
+			$color = BoldGrid::get_color_classes( $tagline_color, array( 'color' ) );
+			$configs['template']['tagline-classes'] .= ' ' . implode( ' ', $color );
 		}
 
 		return $configs;

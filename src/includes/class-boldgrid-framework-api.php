@@ -380,8 +380,15 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function inner_header_classes( $classes ) {
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
-		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_header_links' ) );
+		$classes = array_merge(
+			$classes,
+			array(
+				bgtfw_get_header_container()
+			),
+			$this->get_background_color( 'bgtfw_header_color' ),
+			$this->get_link_color( 'bgtfw_header_links' )
+		);
+
 		return $classes;
 	}
 
@@ -406,8 +413,15 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function inner_footer_classes( $classes ) {
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
-		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_footer_links' ) );
+		$classes = array_merge(
+			$classes,
+			array(
+				bgtfw_get_footer_container()
+			),
+			$this->get_background_color( 'bgtfw_footer_color' ),
+			$this->get_link_color( 'bgtfw_footer_links' )
+		);
+
 		return $classes;
 	}
 

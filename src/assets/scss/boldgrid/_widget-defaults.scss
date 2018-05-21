@@ -50,3 +50,13 @@ select[name="archive-dropdown"] {
 		font-size: 14px;
 	}
 }
+
+.widget_calendar {
+	caption {
+		color: currentColor;
+	}
+	td, th {
+		padding: 8px;
+		text-align: center;
+	}
+}

@@ -2376,8 +2376,10 @@ span.author.vcard {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.6rem;
     margin: 0;
     width: 40px;
+    height: 40px;
     padding: 8px;
     border-radius: 4px;
   }
@@ -3518,7 +3520,6 @@ footer .bgtfw-widget-row {
 .palette-primary.woocommerce, .palette-primary.woocommerce-page {
   /* Base Buttons */
   /* Cross Sells */
-  /* Search Sidebar Widget */
 }
 
 .palette-primary.woocommerce .button-primary,
@@ -3542,14 +3543,6 @@ footer .bgtfw-widget-row {
 @media only screen and (min-width: 480px) {
   .palette-primary.woocommerce .return-to-shop .btn.button-primary, .palette-primary.woocommerce-page .return-to-shop .btn.button-primary {
     padding: 1em;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .palette-primary.woocommerce.sidebar-1 .sidebar #searchform button.button-primary, .palette-primary.woocommerce-page.sidebar-1 .sidebar #searchform button.button-primary {
-    padding: 0 1em;
-    height: auto;
-    width: auto;
   }
 }
 

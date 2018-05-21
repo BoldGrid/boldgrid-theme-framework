@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "php-codesniffer": "phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --ignore=*/black-studio-tinymce-widget/*,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php",
+    "php-codesniffer": "phpcs -p -s -v -n ./src --standard=./codesniffer.ruleset.xml --ignore=*/black-studio-tinymce-widget/*,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php",
     "build": "gulp build",
     "build-webpack": "webpack --color",
     "quick-build": "gulp qbuild"
@@ -54,6 +54,8 @@
     "html-loader": "^0.5.5",
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.1.0",
+    "mini-css-extract-plugin": "^0.4.0",
+    "postcss-loader": "^2.1.5",
     "run-sequence": "^1.1.5",
     "sass-loader": "^7.0.1",
     "svg-inline-loader": "^0.8.0",
@@ -74,7 +76,7 @@
     "jquery.stellar": "~0.6.2",
     "kirki-toolkit": "https://github.com/aristath/kirki.git#3.0.25",
     "sass.js": "~0.9.4",
-    "scssphp": "https://github.com/leafo/scssphp.git#0.7.5",
+    "scssphp": "https://github.com/leafo/scssphp.git#9715679e32533d61dbd1716820cea980b4014dfd",
     "select2-bootstrap-css": "^1.4.6",
     "smartmenus": "^1.1.0",
     "style-loader": "^0.21.0",

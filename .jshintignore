@@ -1,2 +1,4 @@
 ./src/assets/js/customizer/customizer.js
 ./src/assets/js/customizer/color/**/*
+./src/assets/js/customizer/base-controls.js
+./src/assets/js/customizer/widget/**/*

@@ -292,7 +292,8 @@ gulp.task('modernizr', function () {
   // Minified Files.
   gulp.src([
 	  config.src + '/assets/js/**/*.js',
-	  '!' + config.src + '/assets/js/customizer/customizer.js',
+    '!' + config.src + '/assets/js/customizer/customizer.js',
+    '!' + config.src + '/assets/js/customizer/base-customizer.js',
 	])
     .pipe(modernizr(require('./modernizr-config.json')))
     .pipe(uglify().on('error', gutil.log))

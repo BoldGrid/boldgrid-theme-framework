@@ -1,5 +1,6 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 module.exports = {
 	mode: 'production',
@@ -7,7 +8,8 @@ module.exports = {
 	context: path.resolve( __dirname, 'src' ),
 
 	entry: {
-		customizer: './assets/js/customizer/customizer.js'
+		customizer: './assets/js/customizer/customizer.js',
+		'base-controls': './assets/js/customizer/base-controls.js'
 	},
 
 	output: {
@@ -37,20 +39,13 @@ module.exports = {
 				loader: 'svg-inline-loader'
 			},
 			{
-				test: /\.(scss|css)$/,
+				test: /\.s?[ac]ss$/,
 				use: [
-					{
-						loader: 'style-loader'
-					},
-					{
-						loader: 'css-loader'
-					},
-					{
-						loader: 'sass-loader',
-						options: {
-							includePaths: [ 'node_modules' ]
-						}
-					}
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+
+					// 'postcss-loader',
+					'sass-loader'
 				]
 			},
 			{
@@ -67,5 +62,10 @@ module.exports = {
 				}
 			}
 		]
-	}
+	},
+	plugins: [
+		new MiniCssExtractPlugin( {
+			filename: './assets/css/[name]-bundle.min.css'
+		} )
+	]
 };

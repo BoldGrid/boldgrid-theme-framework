@@ -24,7 +24,7 @@ $formatted_palette = $palette->color_format( $active_palette );
 $sanitize = new Boldgrid_Framework_Customizer_Color_Sanitize();
 
 return array(
-	array(
+	'custom_theme_js' => array(
 		'type'        => 'code',
 		'settings'    => 'custom_theme_js',
 		'label'       => __( 'JS code' ),
@@ -39,7 +39,7 @@ return array(
 			'height'   => 100,
 		),
 	),
-	array(
+	'boldgrid_background_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
 		'settings'    => 'boldgrid_background_color',
@@ -55,7 +55,7 @@ return array(
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	array(
+	'boldgrid_background_vertical_position' => array(
 		'type' => 'slider',
 		'settings' => 'boldgrid_background_vertical_position',
 		'label' => __( 'Vertical Background Position', 'bgtfw' ),
@@ -69,7 +69,7 @@ return array(
 			'step' => 1,
 		),
 	),
-	array(
+	'boldgrid_background_horizontal_position' => array(
 		'type' => 'slider',
 		'settings' => 'boldgrid_background_horizontal_position',
 		'label' => __( 'Horizontal Background Position', 'bgtfw' ),
@@ -83,7 +83,7 @@ return array(
 			'step' => 1,
 		),
 	),
-	array(
+	'bgtfw_layout_page' => array(
 		'type'        => 'radio',
 		'settings'    => 'bgtfw_layout_page',
 		'label'       => __( 'Default Sidebar Display', 'bgtfw' ),
@@ -92,7 +92,7 @@ return array(
 		'priority'    => 10,
 		'choices'     => array(),
 	),
-	array(
+	'bgtfw_pages_display_title' => array(
 		'type' => 'radio',
 		'settings' => 'bgtfw_pages_display_title',
 		'label' => esc_html__( 'Page Title', 'bgtfw' ),
@@ -104,7 +104,7 @@ return array(
 			'0' => esc_attr__( 'Hide', 'bgtfw' ),
 		),
 	),
-	array(
+	'bgtfw_posts_display_title' => array(
 		'type' => 'radio',
 		'settings' => 'bgtfw_posts_display_title',
 		'label' => esc_html__( 'Post Title', 'bgtfw' ),
@@ -116,7 +116,7 @@ return array(
 			'0' => esc_attr__( 'Hide', 'bgtfw' ),
 		),
 	),
-	array(
+	'bgtfw_headings_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_headings_color',
@@ -130,7 +130,7 @@ return array(
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	array(
+	'bgtfw_headings_typography' => array(
 		'type'     => 'typography',
 		'settings'  => 'bgtfw_headings_typography',
 		'transport'   => 'auto',
@@ -153,7 +153,7 @@ return array(
 			),
 		),
 	),
-	array(
+	'bgtfw_tagline_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_tagline_color',
@@ -167,7 +167,7 @@ return array(
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	array(
+	'bgtfw_tagline_typography' => array(
 		'type'        => 'typography',
 		'transport'   => 'auto',
 		'settings'    => 'bgtfw_tagline_typography',
@@ -190,7 +190,7 @@ return array(
 			),
 		),
 	),
-	array(
+	'bgtfw_fixed_header' => array(
 		'type'        => 'switch',
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_fixed_header',
@@ -199,7 +199,7 @@ return array(
 		'default'     => false,
 		'priority'    => 10,
 	),
-	array(
+	'bgtfw_header_width' => array(
 		'type'        => 'slider',
 		'settings'    => 'bgtfw_header_width',
 		'transport'   => 'auto',
@@ -269,8 +269,7 @@ return array(
 			),
 		),
 	),
-
-	array(
+	'bgtfw_header_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
 		'settings'    => 'bgtfw_header_color',
@@ -284,7 +283,7 @@ return array(
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	array(
+	'bgtfw_header_headings_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
 		'settings'    => 'bgtfw_header_headings_color',
@@ -298,7 +297,7 @@ return array(
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	array(
+	'bgtfw_header_links' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
 		'settings'    => 'bgtfw_header_links',
@@ -312,7 +311,7 @@ return array(
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	array(
+	'bgtfw_site_title_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
 		'settings'    => 'bgtfw_site_title_color',
@@ -326,7 +325,7 @@ return array(
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	array(
+	'bgtfw_site_title_typography' => array(
 		'type'        => 'typography',
 		'transport'   => 'auto',
 		'settings'    => 'bgtfw_site_title_typography',
@@ -349,7 +348,7 @@ return array(
 			),
 		),
 	),
-	array(
+	'bgtfw_body_typography' => array(
 		'type'        => 'typography',
 		'transport'   => 'auto',
 		'settings'    => 'bgtfw_body_typography',
@@ -372,7 +371,7 @@ return array(
 			),
 		),
 	),
-	array(
+	'boldgrid_attribution_heading' => array(
 		'type'        => 'custom',
 		'settings'     => 'boldgrid_attribution_heading',
 		'label'       => __( 'Attribution Control', 'bgtfw' ),
@@ -380,7 +379,7 @@ return array(
 		'default'     => '',
 		'priority'    => 20,
 	),
-	array(
+	'hide_boldgrid_attribution' => array(
 		'type'        => 'checkbox',
 		'settings'     => 'hide_boldgrid_attribution',
 		'transport'   => 'refresh',
@@ -389,7 +388,7 @@ return array(
 		'default'     => false,
 		'priority'    => 30,
 	),
-	array(
+	'hide_wordpress_attribution' => array(
 		'type'        => 'checkbox',
 		'settings'     => 'hide_wordpress_attribution',
 		'transport'   => 'refresh',
@@ -398,7 +397,7 @@ return array(
 		'default'     => false,
 		'priority'    => 40,
 	),
-	array(
+	'boldgrid_contact_details_setting' => array(
 		'type'        => 'repeater',
 		'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
 		'section'     => 'boldgrid_footer_panel',
@@ -432,7 +431,7 @@ return array(
 			),
 		),
 	),
-	array(
+	'boldgrid_enable_footer' => array(
 		'type' => 'switch',
 		'settings' => 'boldgrid_enable_footer',
 		'label' => __( 'Enable Footer', 'bgtfw' ),
@@ -440,7 +439,7 @@ return array(
 		'default' => true,
 		'priority' => 5,
 	),
-	array(
+	'boldgrid_footer_widget_help' => array(
 		'type'        => 'custom',
 		'settings'     => 'boldgrid_footer_widget_help',
 		'section'     => 'bgtfw_footer_widgets',
@@ -455,7 +454,7 @@ return array(
 			),
 		),
 	),
-	array(
+	'boldgrid_footer_widgets' => array(
 		'label'       => __( 'Footer Widget Areas', 'bgtfw' ),
 		'description' => __( 'Select the number of footer widget columns you wish to display.', 'bgtfw' ),
 		'type'        => 'number',
@@ -465,7 +464,7 @@ return array(
 		'transport'   => 'auto',
 		'choices'     => array(
 			'min'  => 0,
-			'max'  => 6,
+			'max'  => 4,
 			'step' => 1,
 		),
 		'section'     => 'bgtfw_footer_widgets',
@@ -480,7 +479,7 @@ return array(
 			),
 		),
 	),
-	array(
+	'bgtfw_header_widget_help' => array(
 		'type'        => 'custom',
 		'settings'     => 'bgtfw_header_widget_help',
 		'section'     => 'bgtfw_header_widgets',
@@ -488,7 +487,7 @@ return array(
 		'priority'    => 10,
 		'description' => __( 'You can add widgets to your header from the widgets section.', 'bgtfw' ),
 	),
-	array(
+	'boldgrid_header_widgets' => array(
 		'label'       => __( 'Header Widget Areas', 'bgtfw' ),
 		'description' => __( 'Select the number of header widget columns you wish to display.', 'bgtfw' ),
 		'type'        => 'number',
@@ -498,7 +497,7 @@ return array(
 		'transport'   => 'auto',
 		'choices'     => array(
 			'min'  => 0,
-			'max'  => 6,
+			'max'  => 4,
 			'step' => 1,
 		),
 		'section'     => 'bgtfw_header_widgets',
@@ -512,7 +511,7 @@ return array(
 			),
 		),
 	),
-	array(
+	'bgtfw_footer_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
 		'settings'    => 'bgtfw_footer_color',
@@ -527,35 +526,35 @@ return array(
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	array(
-		'type'        => 'bgtfw-palette-selector',
+	'bgtfw_footer_headings_color' => array(
+		'type' => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
-		'settings'    => 'bgtfw_footer_headings_color',
+		'settings' => 'bgtfw_footer_headings_color',
 		'label' => esc_attr__( 'Headings Color', 'bgtfw' ),
-		'section'     => 'bgtfw_footer_colors',
+		'section' => 'bgtfw_footer_colors',
 		'priority' => 20,
-		'default'     => '',
-		'choices'     => array(
+		'default' => '',
+		'choices' => array(
 			'colors' => $formatted_palette,
 			'size' => $palette->get_palette_size( $formatted_palette ),
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	array(
-		'type'        => 'bgtfw-palette-selector',
+	'bgtfw_footer_links' => array(
+		'type' => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
-		'settings'    => 'bgtfw_footer_links',
+		'settings' => 'bgtfw_footer_links',
 		'label' => esc_attr__( 'Link Color', 'bgtfw' ),
-		'section'     => 'bgtfw_footer_colors',
+		'section' => 'bgtfw_footer_colors',
 		'priority' => 30,
-		'default'     => '',
-		'choices'     => array(
+		'default' => '',
+		'choices' => array(
 			'colors' => $formatted_palette,
 			'size' => $palette->get_palette_size( $formatted_palette ),
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	array(
+	'bgtfw_pages_blog_blog_page_layout_columns' => array(
 		'label'       => __( 'Columns', 'bgtfw' ),
 		'description' => __( 'Select the number of columns you wish to display on your blog page.', 'bgtfw' ),
 		'type'        => 'number',
@@ -570,7 +569,7 @@ return array(
 		),
 		'section'     => 'bgtfw_pages_blog_blog_page_layout',
 	),
-	array(
+	'bgtfw_pages_blog_blog_page_layout_featimg' => array(
 		'type'        => 'switch',
 		'settings'    => 'bgtfw_pages_blog_blog_page_layout_featimg',
 		'label'       => esc_attr__( 'Featured Images', 'bgtfw' ),
@@ -579,7 +578,7 @@ return array(
 		'default'     => false,
 		'priority'    => 45,
 	),
-	array(
+	'bgtfw_pages_blog_blog_page_layout_content' => array(
 		'type'        => 'radio',
 		'settings' => 'bgtfw_pages_blog_blog_page_layout_content',
 		'transport' => 'refresh',
@@ -592,7 +591,7 @@ return array(
 		),
 		'section' => 'bgtfw_pages_blog_blog_page_layout',
 	),
-	array(
+	'bgtfw_pages_blog_posts_layout_layout' => array(
 		'settings' => 'bgtfw_pages_blog_posts_layout_layout',
 		'transport'   => 'postMessage',
 		'label'       => esc_html__( 'Layout', 'bgtfw' ),
@@ -605,7 +604,7 @@ return array(
 		),
 		'section' => 'bgtfw_pages_blog_posts_layout',
 	),
-	array(
+	'bgtfw_layout_blog' => array(
 		'settings' => 'bgtfw_layout_blog',
 		'label'       => esc_html__( 'Sidebar Display', 'bgtfw' ),
 		'type'        => 'radio',
@@ -614,7 +613,7 @@ return array(
 		'choices'     => array(),
 		'section'     => 'bgtfw_pages_blog_posts_sidebar',
 	),
-	array(
+	'bgtfw_blog_blog_page_settings' => array(
 		'settings' => 'bgtfw_blog_blog_page_settings',
 		'label'       => esc_html__( 'Homepage Sidebar Display', 'bgtfw' ),
 		'type'        => 'radio',
@@ -623,7 +622,7 @@ return array(
 		'choices'     => array(),
 		'section'     => 'bgtfw_blog_blog_page_settings',
 	),
-	array(
+	'bgtfw_blog_layout' => array(
 		'settings' => 'bgtfw_blog_layout',
 		'transport'   => 'postMessage',
 		'label'       => esc_html__( 'Design', 'bgtfw' ),
@@ -638,7 +637,7 @@ return array(
 		),
 		'section' => 'bgtfw_pages_blog_blog_page_layout',
 	),
-	array(
+	'bgtfw_blog_blog_page_sidebar' => array(
 		'settings' => 'bgtfw_blog_blog_page_sidebar',
 		'label'       => esc_html__( 'Homepage Sidebar Display', 'bgtfw' ),
 		'type'        => 'radio',
@@ -650,7 +649,7 @@ return array(
 			return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
 		},
 	),
-	array(
+	'bgtfw_blog_blog_page_sidebar2' => array(
 		'setting' => 'bgtfw_blog_blog_page_sidebar2',
 		'settings'    => 'bgtfw_blog_blog_page_sidebar',
 		'label'       => esc_html__( 'Sidebar Options', 'bgtfw' ),
@@ -660,7 +659,7 @@ return array(
 		'choices'     => array(),
 		'section'     => 'bgtfw_blog_blog_page_panel_sidebar',
 	),
-	array(
+	'bgtfw_layout_blog_layout' => array(
 		'settings' => 'bgtfw_layout_blog_layout',
 		'transport'   => 'postMessage',
 		'label'       => esc_html__( 'Homepage Blog Layout', 'bgtfw' ),
@@ -680,7 +679,7 @@ return array(
 			return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
 		},
 	),
-	array(
+	'bgtfw_layout_blog_layout' => array(
 		'settings' => 'bgtfw_layout_blog_layout',
 		'transport'   => 'postMessage',
 		'label'       => esc_html__( 'Layout', 'bgtfw' ),
@@ -697,7 +696,7 @@ return array(
 		),
 		'section' => 'bgtfw_layout_blog',
 	),
-	array(
+	'bgtfw_header_top_layouts' => array(
 		'settings' => 'bgtfw_header_top_layouts',
 		'transport'   => 'postMessage',
 		'label'       => esc_html__( 'Layout', 'bgtfw' ),
@@ -714,7 +713,7 @@ return array(
 		),
 		'section'     => 'bgtfw_header_layout',
 	),
-	array(
+	'header_container' => array(
 		'settings' => 'header_container',
 		'transport'   => 'postMessage',
 		'label'       => esc_html__( 'Header Container', 'bgtfw' ),
@@ -727,7 +726,7 @@ return array(
 		),
 		'section'     => 'bgtfw_header_layout',
 	),
-	array(
+	'bgtfw_footer_layouts' => array(
 		'settings' => 'bgtfw_footer_layouts',
 		'transport'   => 'postMessage',
 		'label'       => esc_html__( 'Layout', 'bgtfw' ),
@@ -746,7 +745,7 @@ return array(
 		),
 		'section'     => 'boldgrid_footer_panel',
 	),
-	array(
+	'footer_container' => array(
 		'settings' => 'footer_container',
 		'transport'   => 'postMessage',
 		'label'       => esc_html__( 'Footer Container', 'bgtfw' ),
@@ -759,7 +758,7 @@ return array(
 		),
 		'section'     => 'boldgrid_footer_panel',
 	),
-	array(
+	'bgtfw_header_layout_position' => array(
 		'settings' => 'bgtfw_header_layout_position',
 		'transport' => 'postMessage',
 		'label' => __( 'Header Position', 'bgtfw' ),

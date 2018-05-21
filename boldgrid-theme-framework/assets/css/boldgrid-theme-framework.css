@@ -3950,6 +3950,13 @@ footer .bgtfw-widget-row {
   position: fixed;
 }
 
+@media screen and (max-width: 782px) {
+  .admin-bar.header-fixed.header-top.palette-primary .woocommerce-store-notice, .admin-bar.header-fixed.header-top.palette-primary p.demo_store {
+    position: absolute;
+    top: 46px;
+  }
+}
+
 .header-left.palette-primary .woocommerce-store-notice, .header-left.palette-primary p.demo_store, .header-right.palette-primary .woocommerce-store-notice, .header-right.palette-primary p.demo_store {
   height: 57px;
   min-height: 57px;

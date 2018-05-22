@@ -3395,6 +3395,16 @@ footer .bgtfw-widget-row {
 .palette-primary.woocommerce .input-group.quantity .qty.text, .palette-primary.woocommerce-page .input-group.quantity .qty.text {
   width: 50px;
   text-align: center;
+  -moz-appearance: textfield;
+  /* FireFox textfield appearence for number input */
+}
+
+.palette-primary.woocommerce .input-group.quantity .qty.text::-webkit-inner-spin-button, .palette-primary.woocommerce .input-group.quantity .qty.text::-webkit-outer-spin-button, .palette-primary.woocommerce-page .input-group.quantity .qty.text::-webkit-inner-spin-button, .palette-primary.woocommerce-page .input-group.quantity .qty.text::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  /* Chrome textfield appearence for number input */
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 .palette-primary.woocommerce .input-group-btn, .palette-primary.woocommerce-page .input-group-btn {

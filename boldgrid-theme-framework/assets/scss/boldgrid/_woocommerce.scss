@@ -23,6 +23,14 @@
 				.qty.text {
 					width: 50px;
 					text-align: center;
+					-moz-appearance:textfield; /* FireFox textfield appearence for number input */
+					&::-webkit-inner-spin-button,
+					&::-webkit-outer-spin-button {
+						-webkit-appearance: none; /* Chrome textfield appearence for number input */
+						-moz-appearance: none;
+						appearance: none;
+						margin: 0;
+					}
 				}
 			}
 		}

@@ -3980,6 +3980,52 @@ footer .bgtfw-widget-row {
   padding-left: 1em;
 }
 
+.palette-primary table.cart td.actions .coupon {
+  display: flex;
+  align-items: center;
+}
+
+.palette-primary table.cart td.actions .coupon #coupon_code {
+  margin-right: 1em;
+}
+
+.palette-primary .woocommerce-terms-and-conditions-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.palette-primary .woocommerce-terms-and-conditions-wrapper .form-row {
+  display: flex;
+}
+
+.palette-primary .woocommerce-terms-and-conditions-wrapper .form-row label.checkbox {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.palette-primary .woocommerce-terms-and-conditions-wrapper .form-row label.checkbox input[type="checkbox"] {
+  position: relative;
+}
+
+.palette-primary .woocommerce-form-login-toggle + .login .form-row {
+  width: 47%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.palette-primary .woocommerce-form-login-toggle + .login .form-row button {
+  padding: 0 40px;
+}
+
+.palette-primary .woocommerce-form-login-toggle + .login .form-row label.inline {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  margin-bottom: 0;
+}
+
 /*--------------------------------------------------------------
 # Temp
 --------------------------------------------------------------*/

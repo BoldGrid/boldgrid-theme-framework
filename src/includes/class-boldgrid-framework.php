@@ -981,7 +981,7 @@ class BoldGrid_Framework {
 	private function title() {
 		$title = new BoldGrid_Framework_Title( $this->configs );
 
-		$this->loader->add_action( 'post_updated', $title, 'post_updated', 10, 3 );
+		$this->loader->add_action( 'post_updated', $title, 'post_updated' );
 		$this->loader->add_filter( 'the_title', $title, 'show_title', 10, 2 );
 	}
 

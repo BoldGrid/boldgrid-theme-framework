@@ -1,0 +1,15 @@
+.woocommerce-terms-and-conditions-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	.form-row {
+		display: flex;
+		label.checkbox {
+			display: flex;
+			align-items: center;
+			margin: 0;
+			input[type="checkbox"] {
+				position: relative;
+			}
+		}
+	}
+}

@@ -130,6 +130,9 @@ class BoldGrid_Framework_Customizer {
 	public function enqueue_styles() {
 		wp_enqueue_style( 'boldgrid-customizer-controls-base',
 			$this->configs['framework']['css_dir'] . 'customizer/font-family-controls.min.css' );
+
+		wp_enqueue_style( 'boldgrid-customizer-controls-bundle',
+			$this->configs['framework']['css_dir'] . 'base-controls-bundle.min.css' );
 	}
 
 	/**

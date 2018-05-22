@@ -1,7 +1,5 @@
 import ColorPreview from './color/preview';
 
-import { BorderRadius } from '@boldgrid/controls/src/controls/border-radius';
-
 var BOLDGRID = BOLDGRID || {};
 BOLDGRID.Customizer = BOLDGRID.Customizer || {};
 BOLDGRID.Customizer.Util = BOLDGRID.Customizer.Util || {};
@@ -670,6 +668,17 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		wp.customize( 'background_repeat', function( value ) {
 			value.bind( backgroundRepeatUpdate );
+		} );
+
+		// Bind all generic control previews.
+		parent.wp.customize.control.each( ( wpControl ) => {
+			if ( wpControl.params.choices && 'boldgrid_controls' === wpControl.params.choices.name ) {
+				wp.customize( wpControl.id, ( value ) => {
+					value.bind( ( setting ) => {
+						colorPreview.updateDynamicStyles( wpControl.id, setting.css );
+					} );
+				} );
+			}
 		} );
 
 		/**

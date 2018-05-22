@@ -103,4 +103,26 @@ return array(
 		'panel' => 'bgtfw_blog_posts_panel',
 		'priority' => 4,
 	),
+
+	/** Start: Generic Header Controls **/
+	'boldgrid_header_margin_section' => array(
+		'title' => __( 'Margin', 'bgtfw' ),
+		'panel' => 'bgtfw_header',
+		'description' => esc_html__( 'Change the margin of your site\'s header.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+	),
+	'boldgrid_header_padding_section' => array(
+		'title' => __( 'Padding', 'bgtfw' ),
+		'panel' => 'bgtfw_header',
+		'description' => esc_html__( 'Change the padding of your site\'s header.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+	),
+	'boldgrid_header_border_section' => array(
+		'title' => __( 'Border', 'bgtfw' ),
+		'panel' => 'bgtfw_header',
+		'description' => esc_html__( 'Change the border of your site\'s header.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+	),
+	/** End: Generic Header Controls **/
+
 );

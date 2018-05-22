@@ -69,6 +69,61 @@ return array(
 			'step' => 1,
 		),
 	),
+	'bgtfw_header_margin' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'boldgrid_header_margin_section',
+		'settings'    => 'bgtfw_header_margin',
+		'label'       => esc_attr__( '', 'bgtfw' ),
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Margin',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '.header' ),
+					'sliders' => array(
+						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
+						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'padding-bottom' ),
+					),
+				)
+			)
+		),
+	),
+	'bgtfw_header_padding' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'boldgrid_header_padding_section',
+		'settings'    => 'bgtfw_header_padding',
+		'label'       => esc_attr__( '', 'bgtfw' ),
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Padding',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '.header' ),
+				)
+			)
+		),
+	),
+	'bgtfw_border_margin' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'boldgrid_header_border_section',
+		'settings'    => 'bgtfw_border_margin',
+		'label'       => esc_attr__( '', 'bgtfw' ),
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Border',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '.header' ),
+				)
+			)
+		),
+	),
 	'boldgrid_background_horizontal_position' => array(
 		'type' => 'slider',
 		'settings' => 'boldgrid_background_horizontal_position',

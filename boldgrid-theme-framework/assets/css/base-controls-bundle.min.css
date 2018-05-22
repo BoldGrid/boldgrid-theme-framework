@@ -1,0 +1,124 @@
+.directional-control {
+  position: relative; }
+  .directional-control .refresh svg {
+    width: 19px;
+    margin: 0 20px;
+    position: absolute;
+    transition: fill 0.25s; }
+    .directional-control .refresh svg:hover {
+      fill: #f95b26; }
+  .directional-control .units {
+    font-size: 12px;
+    position: absolute;
+    right: 28px;
+    top: -10px;
+    color: currentColor; }
+    .directional-control .units label {
+      margin: 4px;
+      cursor: pointer; }
+    .directional-control .units .unit {
+      display: none; }
+      .directional-control .units .unit:checked + span {
+        color: #f95b26; }
+  .directional-control .link {
+    visibility: hidden;
+    width: 20px;
+    margin: 0 8px;
+    transform: translateY(3px);
+    transition: fill 0.5s;
+    fill: #121212; }
+    .directional-control .link.linked {
+      fill: #f95b26; }
+  .directional-control:not([data-linkable='false']) .slider-control:first-of-type .link {
+    visibility: visible; }
+  .directional-control .control-name {
+    font-size: 15px;
+    margin-bottom: 5px; }
+
+.boldgrid-control.slider-control label {
+  font-size: 13px;
+  font-variant: small-caps; }
+
+.boldgrid-control.slider-control .slider-wrap {
+  display: flex; }
+
+.boldgrid-control.slider-control .slider {
+  width: 80%;
+  margin: 10px 15px;
+  height: 8px;
+  border-radius: 0;
+  background: #f1f1f1;
+  cursor: pointer;
+  border: 0;
+  position: relative; }
+  .boldgrid-control.slider-control .slider .ui-slider-handle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); }
+
+.boldgrid-control.slider-control .number {
+  width: 60px;
+  border: 0;
+  background: #f1f1f1;
+  padding: 0 2px 0 15px;
+  border-radius: 5px;
+  text-align: center; }
+
+.boldgrid-control .ui-slider-handle {
+  border-radius: 50%;
+  border: 5px solid #f7f7f7;
+  background: #f95b26;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.28);
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  transition: background 0.25s; }
+  .boldgrid-control .ui-slider-handle.ui-state-focus {
+    background-color: #121212; }
+
+.border-width-control {
+  display: none; }
+
+.border-type-control {
+  margin-bottom: 30px; }
+  .border-type-control .control-title {
+    font-size: 15px; }
+  .border-type-control ul {
+    list-style: none;
+    padding-left: 5px;
+    font-size: 15px; }
+    .border-type-control ul li {
+      margin: 6px 0; }
+      .border-type-control ul li label {
+        cursor: pointer;
+        position: relative;
+        display: block; }
+        .border-type-control ul li label input::after {
+          content: '';
+          max-width: 100px;
+          border-top: 4px dashed black;
+          position: absolute;
+          right: 40px;
+          width: 33%;
+          top: 6px;
+          border-bottom: transparent;
+          border-left: transparent;
+          border-right: transparent; }
+        .border-type-control ul li label input[value='solid']::after {
+          border-style: solid; }
+        .border-type-control ul li label input[value='dotted']::after {
+          border-style: dotted; }
+        .border-type-control ul li label input[value='double']::after {
+          border-style: double; }
+        .border-type-control ul li label input[value='']::after {
+          border-color: transparent; }
+      .border-type-control ul li input {
+        margin: 0 7px; }
+
+.boldgrid-control input {
+  width: 16px; }
+
+.boldgrid-control.slider-control .number,
+.boldgrid-control.slider-control .slider {
+  background-color: white; }
+

@@ -3,7 +3,7 @@ const webpack = require( 'webpack' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 module.exports = {
-	mode: 'production',
+	mode: 'development',
 
 	context: path.resolve( __dirname, 'src' ),
 
@@ -50,7 +50,12 @@ module.exports = {
 			},
 			{
 				test: /\.js$/,
-				use: [ 'babel-loader' ]
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: [ '@babel/preset-env' ]
+					}
+				}
 			},
 			{
 				test: /\.js$/,

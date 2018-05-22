@@ -1,10 +1,12 @@
 import WidgetSectionUpdate from './widget/section-update';
+import { GenericControls } from './generic-controls.js';
 
 ( function( $ ) {
-	var api, widgetSectionUpdate, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;
+	var api, widgetSectionUpdate, genericControls, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;
 
 	api = wp.customize;
 	widgetSectionUpdate = new WidgetSectionUpdate().init();
+	genericControls = new GenericControls().init();
 
 	api.bind( 'pane-contents-reflowed', function() {
 		var sections, panels;

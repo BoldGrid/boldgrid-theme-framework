@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.5.8 ###
+* Update: Added styles for 3.4.0 WooCommerce changes.
+
 ### 1.5.7 ###
 * Update: Updating WooCommerce templates to latest stable version.
 

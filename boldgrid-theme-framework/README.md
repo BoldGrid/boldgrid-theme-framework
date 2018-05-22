@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.5.9 ###
+* Update: Removing the spinner's arrows from the quantity number inputs.
+
 ### 1.5.8 ###
 * Update: Added styles for 3.4.0 WooCommerce changes.
 

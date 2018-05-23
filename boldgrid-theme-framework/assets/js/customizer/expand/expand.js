@@ -1,5 +1,6 @@
 /* esversion: 6 */
 const api = wp.customize;
+const clear = () => this.previousUrl = null;
 
 /**
  * This class is responsible for managing the expand and collapse
@@ -50,7 +51,6 @@ export class Expand {
 	 * @param {bool} isExpanded Triggers expanded or collapsed.
 	 */
 	_bindExpanded( isExpanded ) {
-		let clear = () => this.previousUrl = null;
 		isExpanded ? this.expanded( clear ) : this.collapsed( clear );
 	}
 

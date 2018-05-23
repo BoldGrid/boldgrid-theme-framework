@@ -198,7 +198,7 @@ class BoldGrid_Framework_Starter_Content {
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
 			$settings = $control['settings'];
 			add_filter( "theme_mod_{$settings}", function( $setting ) use ( $control ) {
-				return $setting === false && isset( $control['default'] ) ? is_bool( $control['default'] ) && $control['default'] ? $setting : $control['default'] : $setting;
+				return false === $setting && isset( $control['default'] ) ? is_bool( $control['default'] ) && $control['default'] ? $setting : $control['default'] : $setting;
 			} );
 		}
 	}

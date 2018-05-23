@@ -236,6 +236,23 @@ class BoldGrid_Framework_Customizer {
 		);
 
 		wp_enqueue_script( 'bgtfw-customizer-base-controls' );
+
+		$initialize = 'BOLDGRID = BOLDGRID || {};';
+		$initialize .= 'BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};';
+		$initialize .= 'BOLDGRID.CUSTOMIZER.data';
+
+		$data = [
+			'design' => [
+				'blog' => [
+					'posts' => [
+						'mostRecentPost' => wp_get_recent_posts( array( 'numposts' => 1 ) )[0]['ID'],
+					],
+				],
+			],
+		];
+
+		wp_localize_script( 'bgtfw-customizer-base-controls', $initialize, $data );
+
 		wp_enqueue_script( 'boldgrid-customizer-required-helper' );
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-controls' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-featured-images' );

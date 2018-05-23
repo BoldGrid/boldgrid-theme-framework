@@ -22,8 +22,23 @@ export class BlogPagePanelExpand extends ExpandPanel {
 	constructor( { typeId = 'bgtfw_blog_blog_page_panel', url = null } = {} ) {
 		super( ...arguments );
 		this.typeId = typeId;
-		$( () => this.setUrl() );
+		$( () => this.setUrl() && this._bindControls() );
 		_.extend( this, ...arguments );
+	}
+
+	/**
+	 * Bind control settings.
+	 *
+	 * These settings modify the URL that could be used to direct
+	 * the user's previewer to.
+	 *
+	 * @since 2.0.0
+	 */
+	_bindControls() {
+		const controls = [ 'show_on_front', 'page_on_front', 'page_for_posts' ];
+		_.each( controls, ( control ) => {
+			api( control, value => value.bind( () => this.setUrl() ) );
+		} );
 	}
 
 	/**
@@ -34,7 +49,20 @@ export class BlogPagePanelExpand extends ExpandPanel {
 	 * @return {String} this.url The URL for the previewer.
 	 */
 	setUrl() {
-		return this.url = 'page' === api( 'show_on_front' )() ? api.settings.url.home + '?page_id=' + api( 'page_for_posts' )() : api.settings.url.home;
+		let showOnFront = api( 'show_on_front' )();
+		let pageOnFrontId = parseInt( api( 'page_on_front' )(), 10 );
+		let pageId = parseInt( api( 'page_for_posts' )(), 10 );
+		let url = api.settings.url.home;
+		if ( 'page' === showOnFront ) {
+			if ( 0 < pageOnFrontId ) {
+				url = api.settings.url.home;
+			}
+			if ( 0 < pageId ) {
+				url = api.settings.url.home + '?page_id=' + pageId;
+			}
+		}
+
+		return this.url;
 	}
 }
 

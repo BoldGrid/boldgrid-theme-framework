@@ -1,0 +1,11 @@
+table.cart td.actions {
+
+	.coupon {
+		display: flex;
+		align-items: center;
+
+		#coupon_code {
+			margin-right: 1em;
+		}
+	}
+}

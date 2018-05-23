@@ -79,21 +79,26 @@ class Boldgrid_Framework_Widgets {
 		$sidebar_widgets = get_option( 'sidebars_widgets', array() );
 
 		foreach ( get_option( 'boldgrid_widgets_created', array() ) as $widget_id ) {
-			// Example: black-studio-tinymce-102.
+
+			// Example: custom-widget-102.
 			$widget_name = $this->get_widget_id_base( $widget_id );
-			// Example: black-studio-tinymce.
+
+			// Example: custom-widget.
 			$widget_key = $this->get_widget_key( $widget_id );
+
 			// Example: 102.
 			$widget_key = $widget_key[1];
 
-			// If we havn't grabbed the widgets of this type, for example $widgets['black-studio-tinymce'].
+			// If we havn't grabbed the widgets of this type, for example $widgets['custom-widget'].
 			if ( empty( $widgets[ $widget_name ] ) ) {
+
 				// Then grab and set those widgets.
 				$widgets[ $widget_name ] = get_option( 'widget_' . $widget_name, array() );
 			}
 
 			// Remove this widget from all widget areas, including inactive widgets.
 			foreach ( $sidebar_widgets as $widget_area => $widgets_in_area ) {
+
 				// If there are no widgets in this widget area, continue.
 				if ( ! is_array( $sidebar_widgets[ $widget_area ] ) ) {
 					continue;
@@ -172,45 +177,6 @@ class Boldgrid_Framework_Widgets {
 				$_wp_sidebars_widgets = $sidebar_widgets;
 			}
 		}
-
-		/**
-		 * TODO: Address this issue
-		 * This is a hack fix to make sure that widgets display properly
-		 * If we wanted to programmatically create any other type of widget, we would
-		 * need to fix this issue
-		 *
-		 * The problem is that on first load widgets are not displaying. It takes 2 page laods for
-		 * widgets to appear
-		 *
-		 * This issue is prominent on inspiration previews.
-		 *
-		 * @since 1.0.0
-		 */
-		if ( 'disabled' !== $this->configs['template']['call-to-action'] ) {
-			foreach ( $ids_created as $id ) {
-				$black_studio = new WP_Widget_Black_Studio_TinyMCE();
-				$black_studio->id = 'black-studio-tinymce-' . $id;
-				$black_studio->number = $id;
-				$wp_registered_widgets[ "black-studio-tinymce-{$id}" ] = array(
-					'name' => __( 'Visual Editor', 'bgtfw' ),
-					'id' => 'black-studio-tinymce-' . $id,
-					'callback' => array(
-						$black_studio,
-						'display_callback',
-					),
-					'params' => array(
-						array(
-							'number' => $id,
-						),
-					),
-					'classname' => 'widget_black_studio_tinymce',
-					'description' => __( 'Arbitrary text or HTML with visual editor', 'bgtfw' ),
-				);
-			}
-
-			$widgets_created = get_option( 'boldgrid_widgets_created', array() );
-			update_option( 'boldgrid_widgets_created', array_merge( $widgets_created, $auto_created_widget_ids ) );
-		}
 	}
 
 	/**
@@ -243,7 +209,6 @@ class Boldgrid_Framework_Widgets {
 
 	/**
 	 * Create sidebars based on config file
-	 * WP_Widget_Black_Studio_TinyMCE
 	 *
 	 * @since     1.0.0
 	 */

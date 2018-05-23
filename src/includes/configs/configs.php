@@ -51,7 +51,6 @@ return array(
 	'framework' => array(
 		'asset_dir'       => $theme_framework_dir . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR,
 		'includes_dir'    => $theme_framework_dir . '/includes/',
-		'black_studio'    => $theme_framework_uri . '/includes/black-studio-tinymce-widget/',
 		'root_uri'        => $theme_framework_uri . '/',
 		'admin_asset_dir' => $theme_framework_uri . '/assets/',
 		'js_dir'          => $theme_framework_uri . '/assets/js/',

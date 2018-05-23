@@ -50,10 +50,9 @@ class Boldgrid_Framework_Title {
 	 */
 	public function get_global( $post_type = null ) {
 		$post_type = empty( $post_type ) ? get_post_type() : $post_type;
-		$post_type = ! empty( $this->configs['title'][ 'default_' . $post_type ] ) ? $post_type : 'post';
-		$default = $this->configs['title'][ 'default_' . $post_type ];
+		$post_type = isset( $this->configs['title'][ 'default_' . $post_type ] ) ? $post_type : 'post';
 
-		return get_theme_mod( 'bgtfw_' . $post_type . 's_display_title', $default );
+		return get_theme_mod( 'bgtfw_' . $post_type . 's_display_title' );
 	}
 
 	/**
@@ -61,10 +60,10 @@ class Boldgrid_Framework_Title {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param WP_Post $post
+	 * @param WP_Post $post WordPress Post Object.
 	 */
 	public function meta_box_callback( $post ) {
-		if( ! in_array( $post->post_type, array( 'post', 'page' ), true ) ) {
+		if ( ! in_array( $post->post_type, array( 'post', 'page' ), true ) ) {
 			return;
 		}
 
@@ -84,13 +83,13 @@ class Boldgrid_Framework_Title {
 				'name' => __( 'Show', 'bgtfw' ),
 				'value' => '1',
 				'checked' => '1' === $post_meta,
-				'post_text' => $this->configs['title']['meta_box'][$post->post_type]['show_post_text'],
+				'post_text' => $this->configs['title']['meta_box'][ $post->post_type ]['show_post_text'],
 			),
 			array(
 				'name' => __( 'Hide', 'bgtfw' ),
 				'value' => '0',
 				'checked' => '0' === $post_meta,
-				'post_text' => $this->configs['title']['meta_box'][$post->post_type]['hide_post_text'],
+				'post_text' => $this->configs['title']['meta_box'][ $post->post_type ]['hide_post_text'],
 			),
 		);
 		?>
@@ -101,7 +100,7 @@ class Boldgrid_Framework_Title {
 				<span aria-hidden="true"><?php echo __( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo $title; ?></span>
 			</a>
 			<div class="options">
-				<?php foreach( $options as $option ) {
+				<?php foreach ( $options as $option ) {
 					$value_displayed = $option['name'] . ( ! empty( $option['post_text'] ) ? sprintf( ' <span class="template-subtitle">%1$s</span>', $option['post_text'] )  : '' );
 				?><label>
 					<input type="radio" name="<?php echo $this->configs['title']['hide']; ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo $option['checked'] ? '1' : '0'; ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
@@ -121,16 +120,14 @@ class Boldgrid_Framework_Title {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param int    $post_ID
-	 * @param string $post_after
-	 * @param string $post_before
+	 * @param int $post_id The ID of the post being updated.
 	 */
-	public function post_updated( $post_ID, $post_after, $post_before ) {
+	public function post_updated( $post_id ) {
 		if ( isset( $_POST[ $this->configs['title']['hide'] ] ) ) {
-			delete_post_meta( $post_ID, $this->configs['title']['hide'] );
+			delete_post_meta( $post_id, $this->configs['title']['hide'] );
 
-			if ( in_array( $_POST[$this->configs['title']['hide']], array( '0', '1' ), true ) ) {
-				update_post_meta( $post_ID, $this->configs['title']['hide'], $_POST[ $this->configs['title']['hide'] ] );
+			if ( in_array( $_POST[ $this->configs['title']['hide'] ], array( '0', '1' ), true ) ) {
+				update_post_meta( $post_id, $this->configs['title']['hide'], $_POST[ $this->configs['title']['hide'] ] );
 			}
 		}
 	}

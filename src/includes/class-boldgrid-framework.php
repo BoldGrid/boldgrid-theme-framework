@@ -73,7 +73,6 @@ class BoldGrid_Framework {
 		$this->load_theme_configs();
 		$this->set_doing_cron();
 		$this->upgrade();
-		$this->cta();
 
 		$this->define_theme_hooks();
 		$this->define_admin_hooks();
@@ -350,18 +349,6 @@ class BoldGrid_Framework {
 	}
 
 	/**
-	 * Call to Action Functionality from BSTW.
-	 *
-	 * @since    1.3.6
-	 * @access   public
-	 */
-	public function cta() {
-		if ( 'disabled' !== $this->configs['template']['call-to-action'] ) {
-			require_once $this->configs['framework']['includes_dir'] . 'black-studio-tinymce-widget/black-studio-tinymce-widget.php';
-		}
-	}
-
-	/**
 	 * This defines the core functionality of the themes and associated template actions.
 	 *
 	 * @since    1.0.0
@@ -417,9 +404,6 @@ class BoldGrid_Framework {
 
 		$this->loader->add_filter( 'wp_page_menu_args',             $boldgrid_theme,   'page_menu_args' );
 		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );
-		$this->loader->add_filter( 'bolgrid_call_to_action',        $boldgrid_theme,   'call_to_action' );
-		$this->loader->add_filter( 'bolgrid_call_to_action_button', $boldgrid_theme,   'cta_button' );
-		$this->loader->add_filter( 'boldgrid_contact_phone',        $boldgrid_theme,   'contact_phone' );
 		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_title' );
 		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
 		$this->loader->add_filter( 'boldgrid_primary_navigation',   $boldgrid_theme,   'print_primary_navigation' );
@@ -730,10 +714,7 @@ class BoldGrid_Framework {
 	 */
 	private function contact_blocks() {
 		$contact_blocks = new Boldgrid_Framework_Customizer_Contact_Blocks( $this->configs );
-		// If contact blocks is enabled and BSTW widget is disabled add contact blocks.
-		if ( 'disabled' == $this->configs['template']['call-to-action'] ) {
-			$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
-		}
+		$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
 	}
 
 	/**
@@ -981,7 +962,7 @@ class BoldGrid_Framework {
 	private function title() {
 		$title = new BoldGrid_Framework_Title( $this->configs );
 
-		$this->loader->add_action( 'post_updated', $title, 'post_updated', 10, 3 );
+		$this->loader->add_action( 'post_updated', $title, 'post_updated' );
 		$this->loader->add_filter( 'the_title', $title, 'show_title', 10, 2 );
 	}
 

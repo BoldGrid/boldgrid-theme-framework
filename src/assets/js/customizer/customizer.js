@@ -721,7 +721,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			selector.find( '.widget_recent_comments ul#recentcomments' )
 				.css( { 'list-style': 'none', 'padding-left': '0' } );
 			selector.find( '.widget_recent_comments ul#recentcomments li' ).css( 'padding', '5px 15px' );
-			selector.find( 'table#wp-calendar' ).addClass( 'table table-striped' );
 			selector.find( '.sidebar select, select[name="archive-dropdown"]' ).addClass( 'form-control' );
 			selector.find( '.sidebar .button' ).removeClass( 'button' ).addClass( 'btn button-primary' );
 

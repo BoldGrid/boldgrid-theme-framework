@@ -9,15 +9,7 @@
  * @return   array   An array of widget configs.
  */
 
-$year = date( 'Y' );
-$blogname = get_bloginfo( 'name' );
-$custom_widgets['footer-company-details'] = <<<HTML
-	&copy; $year $blogname | 202 Grid Blvd. Agloe, NY 12776 | <span class="phone-number">777-765-4321</span> | <a href="mailto:">info@example.com</a>
-HTML;
-
 return array(
-	'force_enable_bstw' => false,
-	'force_disable_bstw' => true,
 
 	// When the footer is disabled, these widgets will be removed.
 	'footer_widgets' => array(),

@@ -518,11 +518,6 @@ class BoldGrid {
 			$classes[] = 'col' . get_theme_mod( 'bgtfw_pages_blog_blog_page_layout_columns', '1' );
 		}
 
-		// Add class if bstw is disabled.
-		if ( get_theme_mod( 'bstw_enabled' ) ) {
-			$classes[] = 'bstw-disabled';
-		}
-
 		if ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) {
 			$classes[] = 'sticky-nav-enabled';
 		}

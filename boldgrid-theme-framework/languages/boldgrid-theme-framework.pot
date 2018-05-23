@@ -198,14 +198,6 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-widgets.php:195
-msgid "Visual Editor"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-widgets.php:207
-msgid "Arbitrary text or HTML with visual editor"
-msgstr ""
-
 #: src/includes/configs/customizer/controls.config.php:31
 msgid "This adds live JavaScript to your website."
 msgstr ""
@@ -642,7 +634,7 @@ msgstr ""
 msgid "This layout will be used as the default blog template layout for your website's pages.  Individual posts can override this setting by choosing a different template in the post editor."
 msgstr ""
 
-#: src/includes/configs/widget.config.php:97
+#: src/includes/configs/widget.config.php:89
 msgid "Primary Sidebar"
 msgstr ""
 

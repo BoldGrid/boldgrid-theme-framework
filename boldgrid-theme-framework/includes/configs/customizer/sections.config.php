@@ -123,6 +123,19 @@ return array(
 		'description' => esc_html__( 'Change the border of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
+	'boldgrid_header_shadow_section' => array(
+		'title' => __( 'Box Shadow', 'bgtfw' ),
+		'panel' => 'bgtfw_header',
+		'description' => esc_html__( 'Change the box shadow of your site\'s header.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+	),
+
+	'boldgrid_header_radius_section' => array(
+		'title' => __( 'Border Radius', 'bgtfw' ),
+		'panel' => 'bgtfw_header',
+		'description' => esc_html__( 'Change the border radius of your site\'s header.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+	),
 	/** End: Generic Header Controls **/
 
 );

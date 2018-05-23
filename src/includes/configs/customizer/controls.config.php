@@ -84,7 +84,7 @@ return array(
 					'selectors' => array( '.header' ),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
-						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'padding-bottom' ),
+						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
 					),
 				)
 			)
@@ -107,16 +107,50 @@ return array(
 			)
 		),
 	),
-	'bgtfw_border_margin' => array(
+	'bgtfw_header_border' => array(
 		'type'        => 'kirki-generic',
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_header_border_section',
-		'settings'    => 'bgtfw_border_margin',
+		'settings'    => 'bgtfw_header_border',
 		'label'       => esc_attr__( '', 'bgtfw' ),
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '.header' ),
+				)
+			)
+		),
+	),
+	'bgtfw_header_shadow' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'boldgrid_header_shadow_section',
+		'settings'    => 'bgtfw_header_shadow',
+		'label'       => esc_attr__( '', 'bgtfw' ),
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'BoxShadow',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '.header' ),
+				)
+			)
+		),
+	),
+	'bgtfw_header_radius' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'boldgrid_header_radius_section',
+		'settings'    => 'bgtfw_header_radius',
+		'label'       => esc_attr__( '', 'bgtfw' ),
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'BorderRadius',
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '.header' ),

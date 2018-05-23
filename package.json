@@ -20,7 +20,7 @@
     "url": "https://github.com/BoldGrid/boldgrid-theme-framework.git"
   },
   "devDependencies": {
-    "@boldgrid/controls": "https://github.com/BoldGrid/controls#dev",
+    "@boldgrid/controls": "https://github.com/BoldGrid/controls",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0-beta",
     "babel-preset-minify": "^0.4.3",

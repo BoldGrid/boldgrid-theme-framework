@@ -690,11 +690,11 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
 
 			// Only update when the dynamic widget sidebars are rerendered.
-			if ( 'boldgrid_header_widgets' !== placement.partial.id && 'boldgrid_footer_widgets' !== placement.partial.id ) {
-				return;
+			if ( 'boldgrid_header_widgets' === placement.partial.id || 'boldgrid_footer_widgets' === placement.partial.id ) {
+				BOLDGRID.Customizer.Widgets.updatePartial( placement.container );
 			}
 
-			BOLDGRID.Customizer.Widgets.updatePartial( placement.container );
+			BoldGrid.custom_header.calc();
 		} );
 
 		BOLDGRID.Customizer.Widgets.updatePartial = function( selector ) {

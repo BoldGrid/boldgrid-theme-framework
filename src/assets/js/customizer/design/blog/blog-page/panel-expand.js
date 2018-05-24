@@ -54,11 +54,11 @@ export class BlogPagePanelExpand extends ExpandPanel {
 		let pageId = parseInt( api( 'page_for_posts' )(), 10 );
 		let url = api.settings.url.home;
 		if ( 'page' === showOnFront ) {
-			if ( 0 < pageOnFrontId ) {
-				url = api.settings.url.home;
+			if ( 0 <= pageOnFrontId ) {
+				this.url = api.settings.url.home;
 			}
-			if ( 0 < pageId ) {
-				url = api.settings.url.home + '?page_id=' + pageId;
+			if ( 0 <= pageId ) {
+				this.url = api.settings.url.home + '?page_id=' + pageId;
 			}
 		}
 

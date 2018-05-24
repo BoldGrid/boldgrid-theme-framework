@@ -1,6 +1,5 @@
 /* esversion: 6 */
 const api = wp.customize;
-const clear = () => this.previousUrl = null;
 
 /**
  * This class is responsible for managing the expand and collapse
@@ -21,6 +20,7 @@ export class Expand {
 	 */
 	constructor( { type = null, typeId = null, url = null } = {} ) {
 		$( () => _.extend( this, ...arguments, { previousUrl: null, preview: api.previewer.previewUrl } ) && this._onLoad() );
+		this.clear = () => this.previousUrl = null;
 	}
 
 	/**
@@ -51,7 +51,7 @@ export class Expand {
 	 * @param {bool} isExpanded Triggers expanded or collapsed.
 	 */
 	_bindExpanded( isExpanded ) {
-		isExpanded ? this.expanded( clear ) : this.collapsed( clear );
+		isExpanded ? this.expanded() : this.collapsed();
 	}
 
 	/**
@@ -63,10 +63,10 @@ export class Expand {
 	 *
 	 * @param {Function} clear Reference method to bind.
 	 */
-	expanded( clear ) {
+	expanded() {
 		this.previousUrl = this.preview.get();
 		this.preview.set( this.url );
-		this.preview.bind( clear );
+		this.preview.bind( this.clear );
 	}
 
 	/**
@@ -79,8 +79,8 @@ export class Expand {
 	 *
 	 * @param {Function} clear Reference method to unbind.
 	 */
-	collapsed( clear ) {
-		this.preview.unbind( clear );
+	collapsed() {
+		this.preview.unbind( this.clear );
 		this.previousUrl && this.preview.set( this.previousUrl );
 	}
 

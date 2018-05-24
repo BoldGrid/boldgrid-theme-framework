@@ -77,7 +77,7 @@ class Boldgrid_Framework_Title {
 				'name' => __( 'Use Global Setting', 'bgtfw' ),
 				'value' => 'global',
 				'checked' => '' === $post_meta,
-				'post_text' => '1' === $global ? __( 'Show', 'bgtfw' ) : __( 'Hide', 'bgtfw' ),
+				'post_text' => true === $global ? __( 'Show', 'bgtfw' ) : __( 'Hide', 'bgtfw' ),
 			),
 			array(
 				'name' => __( 'Show', 'bgtfw' ),
@@ -162,7 +162,7 @@ class Boldgrid_Framework_Title {
 
 		$post_meta = get_post_meta( $id, $this->configs['title']['hide'], true );
 		$global = $this->get_global();
-		$show = '1' === $post_meta || ( '' === $post_meta && '1' === $global );
+		$show = '1' === $post_meta || ( '' === $post_meta && true === $global );
 
 		return $show ? $title : '';
 	}

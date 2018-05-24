@@ -197,8 +197,22 @@ class BoldGrid_Framework_Starter_Content {
 
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
 			$settings = $control['settings'];
+
 			add_filter( "theme_mod_{$settings}", function( $setting ) use ( $control ) {
-				return false === $setting && isset( $control['default'] ) ? is_bool( $control['default'] ) && $control['default'] ? $setting : $control['default'] : $setting;
+				if ( false === $setting && isset( $control['default'] ) ) {
+					if ( is_bool( $control['default'] ) ) {
+
+						// Check stored theme_mods in db.
+						$slug = get_option( 'stylesheet' );
+						$stored = get_option( "theme_mods_{$slug}", array() );
+						if ( ! isset( $stored[ $control['settings'] ] ) ) {
+							$setting = $control['default'];
+						}
+					} else {
+						$setting = $control['default'];
+					}
+				}
+				return $setting;
 			} );
 		}
 	}

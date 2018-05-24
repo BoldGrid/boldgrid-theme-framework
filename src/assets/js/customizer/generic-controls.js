@@ -92,6 +92,8 @@ export class GenericControls {
 	 * @param  {object} bgControl BoldGrid control instance.
 	 */
 	_bindChangeEvent( wpControl, bgControl ) {
-		bgControl.events.on( 'change', ( settings ) => wpControl.setting( settings ) );
+		bgControl.events.on( 'change', ( settings ) => {
+			wpControl.setting.set( settings );
+		} );
 	}
 }

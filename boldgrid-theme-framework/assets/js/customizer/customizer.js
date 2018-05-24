@@ -671,15 +671,20 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 
 		// Bind all generic control previews.
-		parent.wp.customize.control.each( ( wpControl ) => {
-			if ( wpControl.params.choices && 'boldgrid_controls' === wpControl.params.choices.name ) {
-				wp.customize( wpControl.id, ( value ) => {
-					value.bind( ( setting ) => {
-						colorPreview.updateDynamicStyles( wpControl.id, setting.css );
+		if ( parent.wp.customize.control ) {
+			parent.wp.customize.control.each( ( wpControl ) => {
+				if ( wpControl.params.choices && 'boldgrid_controls' === wpControl.params.choices.name ) {
+					wp.customize( wpControl.id, ( value ) => {
+						value.bind( ( setting ) => {
+							colorPreview.updateDynamicStyles(
+								wpControl.id + '-bgcontrol-inline-css',
+								setting.css
+							);
+						} );
 					} );
-				} );
-			}
-		} );
+				}
+			} );
+		}
 
 		/**
 		 * When updating background type reset all saved values

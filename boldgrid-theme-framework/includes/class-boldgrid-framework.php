@@ -457,6 +457,9 @@ class BoldGrid_Framework {
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
 
+		$generic = new Boldgrid_Framework_Customizer_Generic( $this->configs );
+		$this->loader->add_action( 'wp_enqueue_scripts', $generic, 'add_styles' );
+
 		if ( ! empty( $this->configs['starter-content'] ) ) {
 			$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
 			$this->loader->add_action( 'after_setup_theme', $starter_content, 'add_theme_support' );

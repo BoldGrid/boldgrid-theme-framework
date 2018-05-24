@@ -1,10 +1,16 @@
 import WidgetSectionUpdate from './widget/section-update';
+import BlogPagePanelExpand from './design/blog/blog-page/panel-expand.js';
+import BlogPostsPanelExpand from './design/blog/posts/panel-expand.js';
+import HomepageSectionExpand from './design/homepage/section-expand.js';
 
 ( function( $ ) {
-	var api, widgetSectionUpdate, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;
+	var api, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;
 
 	api = wp.customize;
-	widgetSectionUpdate = new WidgetSectionUpdate().init();
+	let widgetSectionUpdate = new WidgetSectionUpdate().init();
+	let blogPanel = new BlogPagePanelExpand();
+	let blogPostsPanel = new BlogPostsPanelExpand();
+	let homepageSection = new HomepageSectionExpand();
 
 	api.bind( 'pane-contents-reflowed', function() {
 		var sections, panels;

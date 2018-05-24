@@ -338,7 +338,7 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function header_classes( $classes ) {
-		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts', 'layout-6' );
+		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts' );
 		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
 		return $classes;
 	}
@@ -380,8 +380,12 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function inner_header_classes( $classes ) {
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
-		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_header_links' ) );
+		$classes = array_merge(
+			$classes,
+			$this->get_background_color( 'bgtfw_header_color' ),
+			$this->get_link_color( 'bgtfw_header_links' )
+		);
+
 		return $classes;
 	}
 
@@ -393,7 +397,7 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the .site-footer element.
 	 */
 	public function footer_classes( $classes ) {
-		$classes[] = get_theme_mod( 'bgtfw_footer_layouts', 'layout-1' );
+		$classes[] = get_theme_mod( 'bgtfw_footer_layouts' );
 		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
 		return $classes;
 	}
@@ -406,8 +410,15 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function inner_footer_classes( $classes ) {
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
-		$classes = array_merge( $classes, $this->get_link_color( 'bgtfw_footer_links' ) );
+		$classes = array_merge(
+			$classes,
+			array(
+				bgtfw_get_footer_container()
+			),
+			$this->get_background_color( 'bgtfw_footer_color' ),
+			$this->get_link_color( 'bgtfw_footer_links' )
+		);
+
 		return $classes;
 	}
 
@@ -416,13 +427,12 @@ class BoldGrid {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  string $mod        Palette Selector theme_mod to get value for.
+	 * @param  string $color       Palette Selector theme_mod value.
 	 * @param  array  $properties  A list of properties to check..
 	 *
 	 * @return array  $classes    Classes to add.
 	 */
-	public static function get_color_classes( $mod, $properties ) {
-		$color = get_theme_mod( $mod );
+	public static function get_color_classes( $color, $properties ) {
 		$color_class = explode( ':', $color );
 		$color_class = array_shift( $color_class );
 		if ( strpos( $color_class, 'neutral' ) === false ) {
@@ -506,11 +516,6 @@ class BoldGrid {
 
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
 			$classes[] = 'col' . get_theme_mod( 'bgtfw_pages_blog_blog_page_layout_columns', '1' );
-		}
-
-		// Add class if bstw is disabled.
-		if ( get_theme_mod( 'bstw_enabled' ) ) {
-			$classes[] = 'bstw-disabled';
 		}
 
 		if ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) {

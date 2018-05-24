@@ -690,11 +690,11 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
 
 			// Only update when the dynamic widget sidebars are rerendered.
-			if ( 'boldgrid_header_widgets' !== placement.partial.id && 'boldgrid_footer_widgets' !== placement.partial.id ) {
-				return;
+			if ( 'boldgrid_header_widgets' === placement.partial.id || 'boldgrid_footer_widgets' === placement.partial.id ) {
+				BOLDGRID.Customizer.Widgets.updatePartial( placement.container );
 			}
 
-			BOLDGRID.Customizer.Widgets.updatePartial( placement.container );
+			BoldGrid.custom_header.calc();
 		} );
 
 		BOLDGRID.Customizer.Widgets.updatePartial = function( selector ) {
@@ -710,7 +710,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			selector.find( '.widget_recent_comments ul#recentcomments' )
 				.css( { 'list-style': 'none', 'padding-left': '0' } );
 			selector.find( '.widget_recent_comments ul#recentcomments li' ).css( 'padding', '5px 15px' );
-			selector.find( 'table#wp-calendar' ).addClass( 'table table-striped' );
 			selector.find( '.sidebar select, select[name="archive-dropdown"]' ).addClass( 'form-control' );
 			selector.find( '.sidebar .button' ).removeClass( 'button' ).addClass( 'btn button-primary' );
 

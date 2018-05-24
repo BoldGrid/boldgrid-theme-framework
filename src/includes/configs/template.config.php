@@ -13,7 +13,6 @@ return array(
 	'site-title-classes' => 'site-title',
 	'tagline' => '<h3 class="site-description %s">%s</h3>',
 	'tagline-classes' => 'alt-font',
-	'call-to-action' => 'none',
 	'entry-header' => '',
 	'entry-footer' => '',
 	'post_navigation' => array(
@@ -37,7 +36,6 @@ return array(
 		'blog' => 'container',
 		'global' => array(
 			'header' => 'container',
-			'call-to-action' => '',
 			'footer' => 'container',
 		),
 		'default' => array(

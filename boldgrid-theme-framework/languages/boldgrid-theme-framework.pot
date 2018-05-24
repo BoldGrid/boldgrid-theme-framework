@@ -88,7 +88,7 @@ msgstr ""
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:162, src/includes/class-boldgrid-framework-layouts-post-meta.php:179, src/includes/class-boldgrid-framework-title.php:101
+#: src/includes/class-boldgrid-framework-comments.php:162, src/includes/class-boldgrid-framework-layouts-post-meta.php:179, src/includes/class-boldgrid-framework-title.php:100
 msgid "Edit"
 msgstr ""
 
@@ -134,11 +134,11 @@ msgstr ""
 msgid "Default Header Image"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-custom-header.php:185
+#: src/includes/class-boldgrid-framework-custom-header.php:191
 msgid "Play background video"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-custom-header.php:186
+#: src/includes/class-boldgrid-framework-custom-header.php:192
 msgid "Pause background video"
 msgstr ""
 
@@ -174,36 +174,28 @@ msgstr ""
 msgid "Search &hellip;"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:74
+#: src/includes/class-boldgrid-framework-title.php:73
 msgid "Post"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:74
+#: src/includes/class-boldgrid-framework-title.php:73
 msgid "Page"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:74
+#: src/includes/class-boldgrid-framework-title.php:73
 msgid "Title"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:78
+#: src/includes/class-boldgrid-framework-title.php:77
 msgid "Use Global Setting"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:81, src/includes/class-boldgrid-framework-title.php:84, src/includes/configs/customizer/controls.config.php:103, src/includes/configs/customizer/controls.config.php:115
+#: src/includes/class-boldgrid-framework-title.php:80, src/includes/class-boldgrid-framework-title.php:83, src/includes/configs/customizer/controls.config.php:103, src/includes/configs/customizer/controls.config.php:115
 msgid "Show"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:81, src/includes/class-boldgrid-framework-title.php:90, src/includes/configs/customizer/controls.config.php:104, src/includes/configs/customizer/controls.config.php:116
+#: src/includes/class-boldgrid-framework-title.php:80, src/includes/class-boldgrid-framework-title.php:89, src/includes/configs/customizer/controls.config.php:104, src/includes/configs/customizer/controls.config.php:116
 msgid "Hide"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-widgets.php:195
-msgid "Visual Editor"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-widgets.php:207
-msgid "Arbitrary text or HTML with visual editor"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:31
@@ -642,7 +634,7 @@ msgstr ""
 msgid "This layout will be used as the default blog template layout for your website's pages.  Individual posts can override this setting by choosing a different template in the post editor."
 msgstr ""
 
-#: src/includes/configs/widget.config.php:97
+#: src/includes/configs/widget.config.php:89
 msgid "Primary Sidebar"
 msgstr ""
 
@@ -690,7 +682,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:406
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:411
 msgid "Background"
 msgstr ""
 
@@ -1225,19 +1217,19 @@ msgstr ""
 msgid "Links Color:"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:393
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:398
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:411
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:416
 msgid "CSS/JS Editor"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:415
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:420
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:506
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:511
 msgid "Menu Tutorial"
 msgstr ""
 

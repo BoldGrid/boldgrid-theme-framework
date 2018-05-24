@@ -1,0 +1,20 @@
+.woocommerce-form-login-toggle + .login {
+
+	.form-row {
+		width: 47%;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+
+		button {
+			padding: 0 40px;
+		}
+
+		label.inline {
+			display: flex;
+			flex: 1;
+			justify-content: flex-end;
+			margin-bottom: 0;
+		}
+	}
+}

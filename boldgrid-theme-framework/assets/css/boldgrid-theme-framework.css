@@ -1802,7 +1802,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* hamburger icon */
@@ -1975,6 +1975,15 @@ select[name="archive-dropdown"] {
   padding: 0 1em;
   line-height: 3;
   font-size: 14px;
+}
+
+.widget_calendar caption {
+  color: currentColor;
+}
+
+.widget_calendar td, .widget_calendar th {
+  padding: 8px;
+  text-align: center;
 }
 
 /*--------------------------------------------------------------
@@ -3386,6 +3395,16 @@ footer .bgtfw-widget-row {
 .palette-primary.woocommerce .input-group.quantity .qty.text, .palette-primary.woocommerce-page .input-group.quantity .qty.text {
   width: 50px;
   text-align: center;
+  -moz-appearance: textfield;
+  /* FireFox textfield appearence for number input */
+}
+
+.palette-primary.woocommerce .input-group.quantity .qty.text::-webkit-inner-spin-button, .palette-primary.woocommerce .input-group.quantity .qty.text::-webkit-outer-spin-button, .palette-primary.woocommerce-page .input-group.quantity .qty.text::-webkit-inner-spin-button, .palette-primary.woocommerce-page .input-group.quantity .qty.text::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  /* Chrome textfield appearence for number input */
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 .palette-primary.woocommerce .input-group-btn, .palette-primary.woocommerce-page .input-group-btn {
@@ -3950,6 +3969,13 @@ footer .bgtfw-widget-row {
   position: fixed;
 }
 
+@media screen and (max-width: 782px) {
+  .admin-bar.header-fixed.header-top.palette-primary .woocommerce-store-notice, .admin-bar.header-fixed.header-top.palette-primary p.demo_store {
+    position: absolute;
+    top: 46px;
+  }
+}
+
 .header-left.palette-primary .woocommerce-store-notice, .header-left.palette-primary p.demo_store, .header-right.palette-primary .woocommerce-store-notice, .header-right.palette-primary p.demo_store {
   height: 57px;
   min-height: 57px;
@@ -3962,6 +3988,52 @@ footer .bgtfw-widget-row {
 
 .palette-primary .woocommerce-store-notice a, .palette-primary p.demo_store a {
   padding-left: 1em;
+}
+
+.palette-primary table.cart td.actions .coupon {
+  display: flex;
+  align-items: center;
+}
+
+.palette-primary table.cart td.actions .coupon #coupon_code {
+  margin-right: 1em;
+}
+
+.palette-primary .woocommerce-terms-and-conditions-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.palette-primary .woocommerce-terms-and-conditions-wrapper .form-row {
+  display: flex;
+}
+
+.palette-primary .woocommerce-terms-and-conditions-wrapper .form-row label.checkbox {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.palette-primary .woocommerce-terms-and-conditions-wrapper .form-row label.checkbox input[type="checkbox"] {
+  position: relative;
+}
+
+.palette-primary .woocommerce-form-login-toggle + .login .form-row {
+  width: 47%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.palette-primary .woocommerce-form-login-toggle + .login .form-row button {
+  padding: 0 40px;
+}
+
+.palette-primary .woocommerce-form-login-toggle + .login .form-row label.inline {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  margin-bottom: 0;
 }
 
 /*--------------------------------------------------------------
@@ -4984,7 +5056,7 @@ footer .bgtfw-widget-row {
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
   z-index: 2;
 }
 

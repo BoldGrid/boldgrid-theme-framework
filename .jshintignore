@@ -2,3 +2,5 @@
 ./src/assets/js/customizer/color/**/*
 ./src/assets/js/customizer/base-controls.js
 ./src/assets/js/customizer/widget/**/*
+./src/assets/js/customizer/design/**/*
+./src/assets/js/customizer/expand/**/*

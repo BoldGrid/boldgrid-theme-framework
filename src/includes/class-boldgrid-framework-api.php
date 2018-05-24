@@ -373,6 +373,18 @@ class BoldGrid {
 	}
 
 	/**
+	 * Adds custom classes to the array of navi classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array $classes array of classes to be applied to the #navi element.
+	 */
+	public function navi_classes( $classes ) {
+		$classes[] = self::get_container_classes( 'header' );
+		return $classes;
+	}
+
+	/**
 	 * Adds custom classes to the array of inner header classes.
 	 *
 	 * @since 2.0.0
@@ -413,7 +425,7 @@ class BoldGrid {
 		$classes = array_merge(
 			$classes,
 			array(
-				bgtfw_get_footer_container()
+				self::get_container_classes( 'footer' )
 			),
 			$this->get_background_color( 'bgtfw_footer_color' ),
 			$this->get_link_color( 'bgtfw_footer_links' )
@@ -850,5 +862,31 @@ class BoldGrid {
 		</div>';
 
 		return $output;
+	}
+
+	/**
+	 * Display the classes for the header element.
+	 *
+	 * @since 2.8.0
+	 *
+	 * @param string|array $class One or more classes to add to the class list.
+	 *
+	 * @return string String of 'classes="$classes"' to add to an element.
+	 */
+	public static function add_class( $element = '', $class = '' ) {
+		$el = new Boldgrid_Framework_Element_Class( $element, $class );
+		echo $el->html;
+	}
+
+	/**
+	 * Get container classes for a location.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return string $container String containing classes to add to an element's container.
+	 */
+	public static function get_container_classes( $location = '' ) {
+		$container = new Boldgrid_Framework_Container( $location );
+		return $container->classes;
 	}
 }

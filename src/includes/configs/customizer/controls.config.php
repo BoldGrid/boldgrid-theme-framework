@@ -122,14 +122,10 @@ return array(
 				'render_callback' => function() {
 					if ( get_theme_mod( 'bgtfw_posts_display_title' ) ) {
 						the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' );
-						echo '<div class="entry-meta">';
-						boldgrid_posted_on();
-						echo '</div>';
-					} else {
-						echo '<div class="entry-meta">';
-						boldgrid_posted_on();
-						echo '</div>';
 					}
+					echo '<div class="entry-meta">';
+					boldgrid_posted_on();
+					echo '</div>';
 					return;
 				},
 			),

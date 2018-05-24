@@ -38,7 +38,7 @@
 	.secondary-menu .current-menu-item > a,
 	.footer-center-menu .current-menu-item > a {
 		background: #f95b26;
-		color: #fff !important;
+		color: #fff !important;	
 	}
 	.secondary-menu li,
 	.footer-center-items li {
@@ -53,5 +53,19 @@
 	}
 	.footer-center-items.list-inline > li:not(:first-of-type) {
 		margin-left: 0em;
+	}
+
+	/* dropdown */
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean ul {
+		border: none;
+		padding: 0 !important;
+		background: transparent;
+		border-radius: 0px !important;
+	}
+
+	/* carrot above dropdown */
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean > li > ul::after,
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean > li > ul::before {
+		border-color: transparent transparent #fff;
 	}
 }

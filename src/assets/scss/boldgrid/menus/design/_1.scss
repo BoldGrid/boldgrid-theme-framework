@@ -1,16 +1,14 @@
 /* Layout 1 - background added on hover & active */
 &.design-1 {
 	.header-top .sm-clean a,
-	.header-top .sm-clean a.highlighted,
-	.header-top .sm-clean a:active,
-	.header-top .sm-clean a:focus,
-	.header-top .sm-clean a:hover {
+	.header-left .main-menu li a,
+	.header-right .main-menu li a {
 		margin-right: 10px;
 		padding: 10px 20px !important;
 	}
 	.secondary-menu a,
 	.footer-center-menu a {
-		padding: 10px 20px;
+		padding: 10px 20px;	
 	}
 	.standard-menu-enabled .sm-clean a.highlighted,
 	.standard-menu-enabled .sm-clean a:active,
@@ -36,5 +34,26 @@
 	.header-left .secondary-menu li,
 	.header-right .secondary-menu li {
 		margin-bottom: 20px;
+	}
+
+	/* dropdown */
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean ul {
+		border: 1px solid #000;
+		padding: 0 !important;
+		background: #000;
+		border-radius: 0px !important;
+	}
+	.header-top .sm-clean.main-menu ul.sub-menu a,
+	.header-top .sm-clean.main-menu ul.sub-menu a.highlighted,
+	.header-top .sm-clean.main-menu ul.sub-menu a:active,
+	.header-top .sm-clean.main-menu ul.sub-menu a:focus,
+	.header-top .sm-clean.main-menu ul.sub-menu a:hover {
+		margin-right: 0px;
+	}
+
+	/* carrot above dropdown */
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean > li > ul::after,
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean > li > ul::before {
+		border-color: transparent transparent #000;
 	}
 }

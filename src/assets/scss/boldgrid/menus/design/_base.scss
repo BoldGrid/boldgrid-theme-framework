@@ -12,3 +12,9 @@
 	content: none;
 	border-left: none;
 }
+
+/* dropdown menu scrollbar */
+.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean span.scroll-down,
+.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean span.scroll-up {
+	background: #f95b26 !important;
+}

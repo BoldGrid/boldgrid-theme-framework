@@ -1,7 +1,7 @@
 /* Layout 2B - CTA for last menu item - outline to full background on hover */
 &.design-4 {
 	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a, 
-	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a.highlighted, 
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a.highlighted,
 	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a:active, 
 	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a:focus, 
 	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean a:hover,
@@ -53,5 +53,18 @@
 	.header-left .secondary-menu li,
 	.header-right .secondary-menu li {
 		margin-bottom: 20px;
+	}
+
+	/* dropdown */
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean ul {
+		border: 1px solid #f95b26;
+		background: #000;
+		border-radius: 25px !important;
+	}
+
+	/* carrot above dropdown */
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean > li > ul::after,
+	.standard-menu-enabled:not(.header-left):not(.header-right) .sm-clean > li > ul::before {
+		border-color: transparent transparent #f95b26;
 	}
 }

@@ -4,3 +4,16 @@
 .search .post {
 	margin: 0;
 }
+
+// Buttons at bottom of search results page
+.pager li > a,
+.pager li > span {
+	background-color: $palette-primary_1;
+	border: 1px solid $palette-primary_1;
+	color: $text-contrast-palette-primary_1;
+}
+.pager li > a:focus,
+.pager li > a:hover {
+	background-color: $text-contrast-palette-primary_1;
+	color: $palette-primary_1;
+}

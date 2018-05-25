@@ -30,11 +30,11 @@ Class Boldgrid_Framework_Container {
 		$container = '';
 		$location = empty( $location ) ? $this->location : $location;
 
-		if ( $location = 'header' ) {
+		if ( $location === 'header' ) {
 			$container = $this->get_header_container_classes();
 		}
 
-		if ( $location = 'footer' ) {
+		if ( $location === 'footer' ) {
 			$container = $this->get_footer_container_classes();
 		}
 

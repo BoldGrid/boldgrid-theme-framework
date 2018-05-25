@@ -188,7 +188,7 @@ return array(
 		'type'        => 'kirki-generic',
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_footer_padding_section',
-		'settings'    => 'bgtfw_header_padding',
+		'settings'    => 'bgtfw_footer_padding',
 		'label'       => esc_attr__( '', 'bgtfw' ),
 		'default'     => '',
 		'choices' => array(

@@ -47,7 +47,6 @@ export class GenericControls {
 		} );
 	}
 
-
 	/**
 	 * Setup the control.
 	 *
@@ -56,10 +55,37 @@ export class GenericControls {
 	 * @param  {object} wpControl WordPress control instance.
 	 */
 	_setupControl( wpControl ) {
-		let bgControl = new this.classes[ wpControl.params.choices.type ]( wpControl.params.choices.settings || {} );
+		let bgControl,
+			controlSettings = wpControl.params.choices.settings || {};
+
+		this._setDefaults( wpControl, controlSettings );
+		bgControl = new this.classes[ wpControl.params.choices.type ]( controlSettings );
 
 		this._bindRender( wpControl, bgControl );
 		this._bindChangeEvent( wpControl, bgControl );
+	}
+
+
+	/**
+	 * Get the default values defined by the theme mod.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  {object} wpControl       Wordpress control.
+	 * @param  {object} controlSettings Current Control settings.
+	 */
+	_setDefaults( wpControl, controlSettings ) {
+		let defaults = wpControl.setting.get() || false;
+
+		if ( _.isObject( defaults ) ) {
+			controlSettings.defaults = defaults;
+
+			try {
+				controlSettings.defaults.values = JSON.parse( controlSettings.defaults.values ) || {};
+			} catch ( e ) {
+				controlSettings.defaults.values = {};
+			}
+		}
 	}
 
 	/**
@@ -77,8 +103,8 @@ export class GenericControls {
 				const $el = $( wpControl.selector ),
 					$input = $el.find( 'input' );
 
-				$input.hide();
 				$input.after( bgControl.render() );
+				$input.remove();
 			} );
 		} );
 	}
@@ -93,6 +119,7 @@ export class GenericControls {
 	 */
 	_bindChangeEvent( wpControl, bgControl ) {
 		bgControl.events.on( 'change', ( settings ) => {
+			settings.values = JSON.stringify( settings.values );
 			wpControl.setting.set( settings );
 		} );
 	}

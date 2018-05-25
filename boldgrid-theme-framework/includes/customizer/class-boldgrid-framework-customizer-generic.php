@@ -40,12 +40,23 @@ class Boldgrid_Framework_Customizer_Generic {
 				$theme_mod_val = get_theme_mod( $control['settings'] );
 				if ( $theme_mod_val && ! empty( $theme_mod_val['css'] ) ) {
 					$styleId = $control['settings'] . '-bgcontrol';
-					wp_register_style( $styleId, false );
-					wp_enqueue_style( $styleId );
-					wp_add_inline_style( $styleId, $theme_mod_val['css'] );
-					//wp_add_inline_style( 'style', );
+					$this->add_inline_style( $styleId, $theme_mod_val['css'] );
 				}
 			}
 		}
+	}
+
+	/**
+	 * Add inline style without parent stylesheet.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $id  Desired ID, will have a suffix of -inline-style
+	 * @param string $css CSS to output.
+	 */
+	public function add_inline_style( $id, $css ) {
+		wp_register_style( $id, false );
+		wp_enqueue_style( $id );
+		wp_add_inline_style( $id, $css );
 	}
 }

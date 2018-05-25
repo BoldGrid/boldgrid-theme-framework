@@ -317,9 +317,12 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			var bgAttach, bgImgSize, bgType, bgImage;
 
 			$( '#custom-background-css' ).remove();
-			updateColorAndPatterns();
 
 			bgType = api( 'boldgrid_background_type' )();
+
+			if ( 'pattern' === bgType ) {
+				updateColorAndPatterns();
+			}
 
 			if ( 'pattern' !== bgType ) {
 				bgAttach = api( 'background_attachment' )();

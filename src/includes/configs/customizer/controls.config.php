@@ -84,6 +84,9 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '.header' ),
+					'linkable' => array(
+						'isLinked' => false,
+					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
@@ -105,6 +108,9 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '.header' ),
+					'linkable' => array(
+						'isLinked' => false,
+					),
 				)
 			)
 		),
@@ -176,6 +182,9 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
+					'linkable' => array(
+						'isLinked' => false,
+					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
@@ -197,6 +206,9 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
+					'linkable' => array(
+						'isLinked' => false,
+					),
 				)
 			)
 		),

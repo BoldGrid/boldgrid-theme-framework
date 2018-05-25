@@ -60,11 +60,11 @@
     "sass-loader": "^7.0.1",
     "svg-inline-loader": "^0.8.0",
     "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.3"
+    "webpack-cli": "^2.1.3",
+	"@babel/core": "^7.0.0-beta.47",
+	"@babel/preset-env": "^7.0.0-beta.47"
   },
   "dependencies": {
-    "@babel/core": "^7.0.0-beta.47",
-    "@babel/preset-env": "^7.0.0-beta.47",
     "@boldgrid/components": "^2.14.0",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",
     "animate.css": "latest",

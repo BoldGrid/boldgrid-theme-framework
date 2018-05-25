@@ -69,6 +69,8 @@ return array(
 			'step' => 1,
 		),
 	),
+
+	/*** Start Header Generic Controls ***/
 	'bgtfw_header_margin' => array(
 		'type'        => 'kirki-generic',
 		'transport'   => 'postMessage',
@@ -158,6 +160,100 @@ return array(
 			)
 		),
 	),
+	/*** End Header Generic Controls ***/
+
+	/*** Start Footer Generic Controls ***/
+	'bgtfw_footer_margin' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'boldgrid_footer_margin_section',
+		'settings'    => 'bgtfw_footer_margin',
+		'label'       => esc_attr__( '', 'bgtfw' ),
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Margin',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#colophon.site-footer' ),
+					'sliders' => array(
+						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
+						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
+					),
+				)
+			)
+		),
+	),
+	'bgtfw_footer_padding' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'boldgrid_footer_padding_section',
+		'settings'    => 'bgtfw_header_padding',
+		'label'       => esc_attr__( '', 'bgtfw' ),
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Padding',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#colophon.site-footer' ),
+				)
+			)
+		),
+	),
+	'bgtfw_footer_border' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'boldgrid_footer_border_section',
+		'settings'    => 'bgtfw_footer_border',
+		'label'       => esc_attr__( '', 'bgtfw' ),
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Border',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#colophon.site-footer' ),
+				)
+			)
+		),
+	),
+	'bgtfw_footer_shadow' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'boldgrid_footer_shadow_section',
+		'settings'    => 'bgtfw_footer_shadow',
+		'label'       => esc_attr__( '', 'bgtfw' ),
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'BoxShadow',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#colophon.site-footer' ),
+				)
+			)
+		),
+	),
+	'bgtfw_footer_radius' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'boldgrid_footer_radius_section',
+		'settings'    => 'bgtfw_footer_radius',
+		'label'       => esc_attr__( '', 'bgtfw' ),
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'BorderRadius',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#colophon.site-footer' ),
+				)
+			)
+		),
+	),
+	/*** End Footer Generic Controls ***/
+
 	'boldgrid_background_horizontal_position' => array(
 		'type' => 'slider',
 		'settings' => 'boldgrid_background_horizontal_position',

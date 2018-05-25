@@ -218,7 +218,7 @@ msgstr ""
 msgid "Vertical Background Position"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:79, src/includes/configs/customizer/controls.config.php:103, src/includes/configs/customizer/controls.config.php:123, src/includes/configs/customizer/controls.config.php:140, src/includes/configs/customizer/controls.config.php:157, src/includes/configs/customizer/controls.config.php:177, src/includes/configs/customizer/controls.config.php:201, src/includes/configs/customizer/controls.config.php:221, src/includes/configs/customizer/controls.config.php:238, src/includes/configs/customizer/controls.config.php:255
+#: src/includes/configs/customizer/controls.config.php:140, src/includes/configs/customizer/controls.config.php:157, src/includes/configs/customizer/controls.config.php:177, src/includes/configs/customizer/controls.config.php:201, src/includes/configs/customizer/controls.config.php:221, src/includes/configs/customizer/controls.config.php:238, src/includes/configs/customizer/controls.config.php:255
 msgid ""
 msgstr ""
 

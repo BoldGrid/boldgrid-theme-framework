@@ -76,14 +76,14 @@ return array(
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_header_margin_section',
 		'settings'    => 'bgtfw_header_margin',
-		'label'       => esc_attr__( '', 'bgtfw' ),
+		'label'       => '',
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.header' ),
+					'selectors' => array( '.site-header' ),
 					'linkable' => array(
 						'isLinked' => false,
 					),
@@ -100,14 +100,14 @@ return array(
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_header_padding_section',
 		'settings'    => 'bgtfw_header_padding',
-		'label'       => esc_attr__( '', 'bgtfw' ),
+		'label'       => '',
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Padding',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.header' ),
+					'selectors' => array( '.site-header' ),
 					'linkable' => array(
 						'isLinked' => false,
 					),
@@ -120,14 +120,14 @@ return array(
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_header_border_section',
 		'settings'    => 'bgtfw_header_border',
-		'label'       => esc_attr__( '', 'bgtfw' ),
+		'label'       => '',
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.header' ),
+					'selectors' => array( '.site-header' ),
 				)
 			)
 		),
@@ -144,7 +144,7 @@ return array(
 			'type' => 'BoxShadow',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.header' ),
+					'selectors' => array( '.site-header' ),
 				)
 			)
 		),
@@ -161,7 +161,7 @@ return array(
 			'type' => 'BorderRadius',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.header' ),
+					'selectors' => array( '.site-header' ),
 				)
 			)
 		),

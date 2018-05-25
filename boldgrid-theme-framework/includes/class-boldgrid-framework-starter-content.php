@@ -188,16 +188,31 @@ class BoldGrid_Framework_Starter_Content {
 	/**
 	 * Adds default values for get_theme_mod calls if no value is
 	 * passed.
+	 *
+	 * @since 2.0.0
 	 */
 	public function dynamic_theme_mod_filter() {
 		global $boldgrid_theme_framework;
 		$config = $boldgrid_theme_framework->get_configs();
 
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
-			$setting = $control['settings'];
-			$default = isset( $control['default'] ) ? $control['default'] : false;
-			add_filter( "theme_mod_{$setting}", function( $setting ) use ( $default ) {
-				return false === $setting ? $default : $setting;
+			$settings = $control['settings'];
+
+			add_filter( "theme_mod_{$settings}", function( $setting ) use ( $control ) {
+				if ( false === $setting && isset( $control['default'] ) ) {
+					if ( is_bool( $control['default'] ) ) {
+
+						// Check stored theme_mods in db.
+						$slug = get_option( 'stylesheet' );
+						$stored = get_option( "theme_mods_{$slug}", array() );
+						if ( ! isset( $stored[ $control['settings'] ] ) ) {
+							$setting = $control['default'];
+						}
+					} else {
+						$setting = $control['default'];
+					}
+				}
+				return $setting;
 			} );
 		}
 	}

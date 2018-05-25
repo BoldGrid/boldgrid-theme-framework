@@ -1,12 +1,18 @@
 import WidgetSectionUpdate from './widget/section-update';
-import { GenericControls } from './generic-controls.js';
+import BlogPagePanelExpand from './design/blog/blog-page/panel-expand.js';
+import BlogPostsPanelExpand from './design/blog/posts/panel-expand.js';
+import HomepageSectionExpand from './design/homepage/section-expand.js';
+import { Control as GenericControls } from './generic/control.js';
 
 ( function( $ ) {
-	var api, widgetSectionUpdate, genericControls, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;
+	var api, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;
 
 	api = wp.customize;
-	widgetSectionUpdate = new WidgetSectionUpdate().init();
-	genericControls = new GenericControls().init();
+	let widgetSectionUpdate = new WidgetSectionUpdate().init();
+	let blogPanel = new BlogPagePanelExpand();
+	let blogPostsPanel = new BlogPostsPanelExpand();
+	let homepageSection = new HomepageSectionExpand();
+	let genericControls = new GenericControls().init();
 
 	api.bind( 'pane-contents-reflowed', function() {
 		var sections, panels;

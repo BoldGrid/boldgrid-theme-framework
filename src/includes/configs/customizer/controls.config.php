@@ -182,27 +182,42 @@ return array(
 		'choices'     => array(),
 	),
 	'bgtfw_pages_display_title' => array(
-		'type' => 'radio',
+		'type' => 'switch',
 		'settings' => 'bgtfw_pages_display_title',
+		'transport' => 'auto',
 		'label' => esc_html__( 'Page Title', 'bgtfw' ),
 		'section' => 'bgtfw_layout_page',
 		'priority' => 40,
-		'default' => '1',
-		'choices' => array(
-			'1' => esc_attr__( 'Show', 'bgtfw' ),
-			'0' => esc_attr__( 'Hide', 'bgtfw' ),
+		'default' => true,
+		'partial_refresh' => array(
+			'bgtfw_pages_display_title' => array(
+				'selector' => '.page .page .featured-imgage-header',
+				'render_callback' => function() {
+					return get_theme_mod( 'bgtfw_pages_display_title' ) ? the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ) : '';
+				},
+			),
 		),
 	),
 	'bgtfw_posts_display_title' => array(
-		'type' => 'radio',
+		'type' => 'switch',
 		'settings' => 'bgtfw_posts_display_title',
 		'label' => esc_html__( 'Post Title', 'bgtfw' ),
 		'section' => 'bgtfw_pages_blog_posts_layout',
 		'priority' => 40,
-		'default' => '1',
-		'choices' => array(
-			'1' => esc_attr__( 'Show', 'bgtfw' ),
-			'0' => esc_attr__( 'Hide', 'bgtfw' ),
+		'default' => true,
+		'partial_refresh' => array(
+			'bgtfw_posts_display_title' => array(
+				'selector' => '.single .post .featured-imgage-header',
+				'render_callback' => function() {
+					if ( get_theme_mod( 'bgtfw_posts_display_title' ) ) {
+						the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' );
+					}
+					echo '<div class="entry-meta">';
+					boldgrid_posted_on();
+					echo '</div>';
+					return;
+				},
+			),
 		),
 	),
 	'bgtfw_headings_color' => array(

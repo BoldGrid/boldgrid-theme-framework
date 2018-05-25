@@ -16,21 +16,4 @@
 			BoldGrid.custom_header.calc();
 		} );
 	} );
-
-	/**
-	 * Update classes for blog layouts.
-	 */
-	wp.customize( 'header_container', function( value ) {
-		value.bind( function( to ) {
-			var containers = [ 'navi', 'secondary-menu' ];
-			_.each( containers, function( container ) {
-				container = document.getElementById( container );
-				container && container.classList.remove( 'container' );
-				if ( ! _.isEmpty( api( 'header_container' )() ) ) {
-					container && container.classList.add( to );
-				}
-			} );
-			BoldGrid.custom_header.calc();
-		} );
-	} );
 } )( wp.customize );

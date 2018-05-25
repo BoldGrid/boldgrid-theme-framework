@@ -210,17 +210,6 @@ class BoldGrid_Framework_Customizer {
 		);
 
 		wp_register_script(
-			'bgtfw-customizer-design-static-front-page-controls',
-			$this->configs['framework']['js_dir'] . 'customizer/design/static-front-page/controls' . $suffix . '.js',
-			array(
-				'customize-controls',
-				'boldgrid-customizer-controls-base',
-			),
-			false,
-			true
-		);
-
-		wp_register_script(
 			'boldgrid-customizer-required-helper',
 			$this->configs['framework']['js_dir'] . 'customizer/required' . $suffix . '.js',
 			array(
@@ -250,11 +239,27 @@ class BoldGrid_Framework_Customizer {
 		);
 
 		wp_enqueue_script( 'bgtfw-customizer-base-controls' );
+
+		$initialize = 'BOLDGRID = BOLDGRID || {};';
+		$initialize .= 'BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};';
+		$initialize .= 'BOLDGRID.CUSTOMIZER.data';
+
+		$data = [
+			'design' => [
+				'blog' => [
+					'posts' => [
+						'mostRecentPost' => wp_get_recent_posts( array( 'numposts' => 1 ) )[0]['ID'],
+					],
+				],
+			],
+		];
+
+		wp_localize_script( 'bgtfw-customizer-base-controls', $initialize, $data );
+
 		wp_enqueue_script( 'boldgrid-customizer-required-helper' );
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-controls' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-featured-images' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-homepage-controls' );
-		wp_enqueue_script( 'bgtfw-customizer-design-static-front-page-controls' );
 		wp_enqueue_script( 'boldgrid-customizer-widget-preview' );
 	}
 

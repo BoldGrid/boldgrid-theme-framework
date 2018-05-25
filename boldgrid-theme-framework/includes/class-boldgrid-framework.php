@@ -158,9 +158,11 @@ class BoldGrid_Framework {
 			'api',
 			'comments',
 			'compile-colors',
+			'container',
 			'custom-header',
 			'editor',
 			'edit-post-links',
+			'element-class',
 			'i18n',
 			'layouts-post-meta',
 			'loader',
@@ -397,10 +399,12 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp',                            $boldgrid_theme,   'setup_author' );
 		$this->loader->add_filter( 'body_class',                    $boldgrid_theme,   'body_classes' );
 		$this->loader->add_filter( 'post_class', $boldgrid_theme, 'post_class' );
-		$this->loader->add_filter( 'bgtfw_header_class',            $boldgrid_theme,   'header_classes' );
-		$this->loader->add_filter( 'bgtfw_footer_class',            $boldgrid_theme,   'footer_classes' );
-		$this->loader->add_filter( 'bgtfw_inner_header_class', $boldgrid_theme, 'inner_header_classes' );
-		$this->loader->add_filter( 'bgtfw_inner_footer_class', $boldgrid_theme, 'inner_footer_classes' );
+
+		$this->loader->add_filter( 'bgtfw_header_classes', $boldgrid_theme, 'header_classes' );
+		$this->loader->add_filter( 'bgtfw_footer_classes', $boldgrid_theme, 'footer_classes' );
+		$this->loader->add_filter( 'bgtfw_navi_wrap_classes', $boldgrid_theme, 'inner_header_classes' );
+		$this->loader->add_filter( 'bgtfw_navi_classes', $boldgrid_theme, 'navi_classes' );
+		$this->loader->add_filter( 'bgtfw_footer_content_classes', $boldgrid_theme, 'inner_footer_classes' );
 
 		$this->loader->add_filter( 'wp_page_menu_args',             $boldgrid_theme,   'page_menu_args' );
 		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );

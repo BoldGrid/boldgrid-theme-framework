@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "php-codesniffer": "phpcs -p -s -v -n ./src --standard=./codesniffer.ruleset.xml --ignore=*/black-studio-tinymce-widget/*,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php",
+    "phpcs-installStandards": "php node_modules/PHP_CodeSniffer/scripts/phpcs --config-set installed_paths node_modules/WordPress-Coding-Standards/",
+    "php-codesniffer": "npm run phpcs-installStandards && php ./node_modules/PHP_CodeSniffer/scripts/phpcs -p -s -v -n ./src --standard=./phpcs.ruleset.xml --ignore=*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php",
     "build": "gulp build",
     "build-webpack": "webpack --color",
     "quick-build": "gulp qbuild"
@@ -23,6 +24,8 @@
     "@babel/core": "^7.0.0-beta.47",
     "@babel/preset-env": "^7.0.0-beta.47",
     "@boldgrid/controls": "https://github.com/BoldGrid/controls#dev",
+    "PHP_CodeSniffer": "https://github.com/squizlabs/PHP_CodeSniffer/#2.9",
+    "WordPress-Coding-Standards": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards#0.10.0",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0-beta",
     "babel-preset-minify": "^0.4.3",

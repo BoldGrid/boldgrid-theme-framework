@@ -1,0 +1,121 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "905084e5f79e1a0eda0b83ff592d5844",
+    "packages": [
+        {
+            "name": "boldgrid/library",
+            "version": "2.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BoldGrid/library.git",
+                "reference": "fa13062b0812ecb9c913f8ac47b619211b2699de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BoldGrid/library/zipball/fa13062b0812ecb9c913f8ac47b619211b2699de",
+                "reference": "fa13062b0812ecb9c913f8ac47b619211b2699de",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Boldgrid\\Library\\Util\\": "src/Util"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Tim Elsass",
+                    "email": "dev@tim.ph",
+                    "homepage": "http://tim.ph",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Rafael Ramos",
+                    "homepage": "http://rafael-ramos.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "bwmarkle",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Joe C",
+                    "email": "joec@boldgrid.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The BoldGrid Library for shared code used in official BoldGrid plugins and themes.",
+            "time": "2018-05-08T13:27:34+00:00"
+        },
+        {
+            "name": "boldgrid/theme-updater",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BoldGrid/theme-updater.git",
+                "reference": "87cf31aaa4c4992c2befddfe58f7ac4b1faa49e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BoldGrid/theme-updater/zipball/87cf31aaa4c4992c2befddfe58f7ac4b1faa49e0",
+                "reference": "87cf31aaa4c4992c2befddfe58f7ac4b1faa49e0",
+                "shasum": ""
+            },
+            "require": {
+                "boldgrid/library": "^2.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Boldgrid\\Library\\Theme\\": "src/Theme"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Tim Elsass",
+                    "email": "dev@tim.ph",
+                    "homepage": "http://tim.ph",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Joe C",
+                    "email": "joec@boldgrid.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Rafael Ramos",
+                    "email": "rafaelh@boldgrid.com",
+                    "homepage": "http://rafael-ramos.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "bwmarkle",
+                    "email": "bradm@boldgrid.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A composer package for updating BoldGrid themes.",
+            "time": "2018-02-28T16:39:25+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

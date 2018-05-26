@@ -104,7 +104,7 @@ return array(
 		'priority' => 4,
 	),
 
-	/** Start: Generic Header Controls **/
+	/*  Start: Generic Header Controls */
 	'boldgrid_header_margin_section' => array(
 		'title' => __( 'Margin', 'bgtfw' ),
 		'panel' => 'bgtfw_header',
@@ -141,9 +141,8 @@ return array(
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
-	/** End: Generic Header Controls **/
-
-	/** Start: Generic Footer Controls **/
+	// End: Generic Header Controls
+	// Start: Generic Footer Controls
 	'boldgrid_footer_margin_section' => array(
 		'title' => __( 'Margin', 'bgtfw' ),
 		'panel' => 'bgtfw_footer',
@@ -180,6 +179,5 @@ return array(
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
-	/** End: Generic Footer Controls **/
-
+	// End: Generic Footer Controls
 );

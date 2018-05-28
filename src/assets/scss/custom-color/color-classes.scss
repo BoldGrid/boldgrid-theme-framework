@@ -322,6 +322,12 @@ mark, .mark {
 		color: $palette-primary_1;
 	}
 }
+#reviews #comments ol.commentlist li .meta {
+	color: $palette-primary_1;
+}
+#reviews #comments ol.commentlist li .comment-text {
+	border: 1px solid $palette-primary_1;
+}
 
 /** Gallery overrides **/
 .wc-image-links,

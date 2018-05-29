@@ -109,8 +109,48 @@ class BoldGrid_Framework_Starter_Content {
 	 */
 	public function set_configs( $config ) {
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
+			$config = $this->set_menus( $config, $index, $control );
 			$config = $this->set_colors( $config, $index, $control );
 			$config = $this->set_defaults( $config, $index, $control );
+		}
+
+		return $config;
+	}
+
+	public function set_menus( $config, $index, $control ) {
+		if ( strpos( $control['settings'], 'bgtfw_menu_' ) !== false && strpos( $control['settings'], 'main' ) !== false ) {
+
+			$menus = $config['menu']['locations'];
+
+			foreach ( $menus as $location => $description ) {
+
+				// Add controls based on main menu's.
+				$new_key = str_replace( 'main', $location, $control['settings'] );
+
+				if ( $location !== 'main' && ! isset( $this->configs['customizer']['controls'][ $new_key ] ) ) {
+
+					$config['customizer']['controls'][ $new_key ] = [];
+
+					foreach( $control as $option => $value ) {
+						$config['customizer']['controls'][ $new_key ][ $option ] = is_string( $value ) ? str_replace( 'main', $location, $value ) : $value;
+					}
+
+					// Only enable hamburgers on main menu unless otherwise explicitly set in configs.
+					if ( strpos( $new_key, '_toggle' ) !== false ) {
+						$config['customizer']['controls'][ $new_key ]['default'] = false;
+					}
+
+					// Active callbacks/ required.
+					foreach ( ['active_callback', 'required' ] as $item ) {
+						if ( isset( $config['customizer']['controls'][ $new_key ][ $item ] ) ) {
+							foreach ( $config['customizer']['controls'][ $new_key ][ $item ] as $set => $opts ) {
+								$config['customizer']['controls'][ $new_key ][ $item ][ $set ]['setting'] = str_replace( 'main', $location, $opts['setting'] );
+							}
+						}
+					}
+
+				}
+			}
 		}
 
 		return $config;

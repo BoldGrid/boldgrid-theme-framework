@@ -1,0 +1,109 @@
+ul[id^="sub-accordion-section-bgtfw_menu_hamburgers_"] {
+
+	.customize-section-title {
+		display: flex;
+
+		.customize-section-back {
+			display: flex;
+			height: auto;
+			flex-direction: column;
+			flex: 0;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	.bgtfw-hamburgers-wrapper {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		.name {
+			font-variant: small-caps;
+			z-index: -1;
+		}
+
+		input[type="radio"] {
+			display: none;
+		}
+
+		.bgtfw-hamburger-col {
+			background-color: #ddd;
+			cursor: pointer;
+			display: flex;
+			flex: 1 1 calc( 50% - 1px );
+			align-content: center;
+			justify-content: center;
+			padding-top: 15px;
+			border-top: 1px solid #ccc;
+			z-index: 2;
+
+			&:hover {
+				background-color: white;
+				box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+			}
+
+			&:nth-child(even):not(.hamburger-selected):hover {
+				border-left: none;
+				box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+				z-index: 3;
+			}
+
+			&:nth-child(odd) {
+				border-right: 1px solid #ccc;
+
+				&:not(.hamburger-selected) {
+
+					&:hover {
+						border-right: none;
+						box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+						z-index: 3;
+					}
+
+					&:last-of-type {
+						border-right: none;
+						border-bottom: 1px solid #ccc;
+					}
+				}
+			}
+
+			&.hamburger-selected {
+				box-sizing: border-box;
+				background-color: white;
+				border: 1.5px solid #f95b26;
+
+				&:after {
+					/* padding-bottom: 0px; */
+					content: "Selected Hamburger";
+					position: absolute;
+					align-self: flex-start;
+					margin-top: -17px;
+					margin-bottom: 3px;
+					font-variant: small-caps;
+					background-color: #f95b26;
+					width: calc( 50% - 1px);
+					text-align: center;
+					color: white;
+				}
+			}
+
+			.tray {
+				display: inline-flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+
+				.hamburger{
+					z-index:-1;
+				}
+			}
+		}
+	}
+}
+
+span.section-title-extended {
+	display: block;
+	font-size: 13px;
+	font-variant: small-caps;
+	font-weight: 400;
+}

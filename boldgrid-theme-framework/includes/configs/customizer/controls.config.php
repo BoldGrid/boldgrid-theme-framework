@@ -91,8 +91,8 @@ return array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
 					),
-				)
-			)
+				),
+			),
 		),
 	),
 	'bgtfw_header_padding' => array(
@@ -111,8 +111,8 @@ return array(
 					'linkable' => array(
 						'isLinked' => false,
 					),
-				)
-			)
+				),
+			),
 		),
 	),
 	'bgtfw_header_border' => array(
@@ -128,8 +128,8 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '.site-header' ),
-				)
-			)
+				),
+			),
 		),
 	),
 	'bgtfw_header_shadow' => array(
@@ -137,7 +137,7 @@ return array(
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_header_shadow_section',
 		'settings'    => 'bgtfw_header_shadow',
-		'label'       => esc_attr__( '', 'bgtfw' ),
+		'label'       => '',
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
@@ -145,8 +145,8 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '.site-header' ),
-				)
-			)
+				),
+			),
 		),
 	),
 	'bgtfw_header_radius' => array(
@@ -154,7 +154,7 @@ return array(
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_header_radius_section',
 		'settings'    => 'bgtfw_header_radius',
-		'label'       => esc_attr__( '', 'bgtfw' ),
+		'label'       => '',
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
@@ -162,8 +162,8 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '.site-header' ),
-				)
-			)
+				),
+			),
 		),
 	),
 	/*** End Header Generic Controls ***/
@@ -174,7 +174,7 @@ return array(
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_footer_margin_section',
 		'settings'    => 'bgtfw_footer_margin',
-		'label'       => esc_attr__( '', 'bgtfw' ),
+		'label'       => '',
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
@@ -189,8 +189,8 @@ return array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
 					),
-				)
-			)
+				),
+			),
 		),
 	),
 	'bgtfw_footer_padding' => array(
@@ -198,7 +198,7 @@ return array(
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_footer_padding_section',
 		'settings'    => 'bgtfw_footer_padding',
-		'label'       => esc_attr__( '', 'bgtfw' ),
+		'label'       => '',
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
@@ -209,8 +209,8 @@ return array(
 					'linkable' => array(
 						'isLinked' => false,
 					),
-				)
-			)
+				),
+			),
 		),
 	),
 	'bgtfw_footer_border' => array(
@@ -218,7 +218,7 @@ return array(
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_footer_border_section',
 		'settings'    => 'bgtfw_footer_border',
-		'label'       => esc_attr__( '', 'bgtfw' ),
+		'label'       => '',
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
@@ -226,8 +226,8 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
-				)
-			)
+				),
+			),
 		),
 	),
 	'bgtfw_footer_shadow' => array(
@@ -235,7 +235,7 @@ return array(
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_footer_shadow_section',
 		'settings'    => 'bgtfw_footer_shadow',
-		'label'       => esc_attr__( '', 'bgtfw' ),
+		'label'       => '',
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
@@ -243,8 +243,8 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
-				)
-			)
+				),
+			),
 		),
 	),
 	'bgtfw_footer_radius' => array(
@@ -252,7 +252,7 @@ return array(
 		'transport'   => 'postMessage',
 		'section'     => 'boldgrid_footer_radius_section',
 		'settings'    => 'bgtfw_footer_radius',
-		'label'       => esc_attr__( '', 'bgtfw' ),
+		'label'       => '',
 		'default'     => '',
 		'choices' => array(
 			'name' => 'boldgrid_controls',
@@ -260,8 +260,8 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
-				)
-			)
+				),
+			),
 		),
 	),
 	/*** End Footer Generic Controls ***/
@@ -984,4 +984,36 @@ return array(
 		),
 		'section' => 'bgtfw_header_layout',
 	),
+
+	/*** Start: Dynamic Menu Controls ***/
+	'bgtfw_menu_hamburger_main_toggle' => array(
+		'type' => 'switch',
+		'settings' => "bgtfw_menu_hamburger_main_toggle",
+		'transport' => 'postMessage',
+		'label' => esc_html__( 'Enable Hamburger Menu', 'bgtfw' ),
+		'section' => 'bgtfw_menu_hamburgers_main',
+		'default' => true,
+	),
+	'bgtfw_menu_hamburger_main_color' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_menu_hamburger_main_color',
+		'label'       => esc_attr__( 'Primary Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_hamburgers_main',
+		'default'     => 'color-1',
+		'choices'     => array(
+			'colors'  => $formatted_palette,
+			'size'    => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_menu_hamburger_main' => array(
+		'settings' => 'bgtfw_menu_hamburger_main',
+		'transport' => 'postMessage',
+		'label' => __( 'Hamburger Style', 'bgtfw' ),
+		'type' => 'bgtfw-menu-hamburgers',
+		'default' => 'hamburger--collapse',
+		'section' => 'bgtfw_menu_hamburgers_main',
+	),
+	/*** End: Dynamic Menu Controls ***/
 );

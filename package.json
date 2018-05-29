@@ -75,6 +75,8 @@
     "color-js": "^1.0.1",
     "css-loader": "^0.28.11",
     "font-awesome": "^4.7.0",
+    "hamburgers": "https://github.com/jonsuh/hamburgers#v0.9.3",
+    "hover.css": "^2.3.1",
     "jquery-goup": "^1.1.0",
     "jquery.nicescroll": "^3.6.8",
     "jquery.stellar": "~0.6.2",

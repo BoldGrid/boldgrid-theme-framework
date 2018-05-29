@@ -47,4 +47,9 @@ return array(
 		'title' => __( 'Posts', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_panel',
 	),
+	'bgtfw_menus_panel' => array(
+		'title' => __( 'Menus', 'bgtfw' ),
+		'priority' => 3,
+		'panel' => 'bgtfw_design_panel',
+	),
 );

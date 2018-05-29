@@ -54,6 +54,35 @@ class BoldGrid_Framework_Customizer {
 		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			if ( 'radio' !== $control['type'] ) {
 				Kirki::add_field( 'bgtfw', $control );
+
+				if ( strpos( $control['settings'], 'bgtfw_menu_' ) !== false &&
+					strpos( $control['settings'], 'main' ) !== false && $wp_customize ) {
+
+					$menus = get_registered_nav_menus();
+
+					foreach ( $menus as $location => $description ) {
+						$panel = new Boldgrid_Framework_Customizer_Panel(
+							$wp_customize,
+							"bgtfw_menu_location_$location",
+							array(
+								'title' => $description,
+								'panel' => 'bgtfw_menus_panel',
+								'capability' => 'edit_theme_options',
+							)
+						);
+
+						$wp_customize->add_panel( $panel );
+
+						Kirki::add_section(
+							"bgtfw_menu_hamburgers_$location",
+							array(
+								'title' => __( 'Hamburger Style', 'bgtfw' ),
+								'panel' => "bgtfw_menu_location_$location",
+								'capability' => 'edit_theme_options',
+							)
+						);
+					}
+				}
 			} else {
 				if ( $wp_customize ) {
 					if ( 'radio' === $control['type'] ) {
@@ -128,6 +157,22 @@ class BoldGrid_Framework_Customizer {
 	 * @var      string    $configs    An array of the theme framework configurations
 	 */
 	public function enqueue_styles() {
+		wp_register_style(
+			'bgtfw-menu-hamburgers',
+			$this->configs['framework']['css_dir'] . 'hamburgers/hamburgers.min.css',
+			array(),
+			$this->configs['version']
+		);
+
+		wp_register_style(
+			'bgtfw-menu-hovers',
+			$this->configs['framework']['css_dir'] . 'hamburgers/hamburgers.min.css',
+			array(),
+			$this->configs['version']
+		);
+
+		wp_enqueue_style( 'bgtfw-menu-hamburgers' );
+
 		wp_enqueue_style( 'boldgrid-customizer-controls-base',
 			$this->configs['framework']['css_dir'] . 'customizer/font-family-controls.min.css' );
 
@@ -490,8 +535,11 @@ HTML;
 		// Registers our custom section type and controls.
 		$wp_customize->register_section_type( 'Boldgrid_Framework_Customizer_Section' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Palette_Selector' );
+		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers' );
+
 		add_filter( 'kirki_control_types', function( $controls ) {
 			$controls['bgtfw-palette-selector'] = 'Boldgrid_Framework_Customizer_Control_Palette_Selector';
+			$controls['bgtfw-menu-hamburgers'] = 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers';
 			return $controls;
 		} );
 	}

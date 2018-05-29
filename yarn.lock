@@ -1065,10 +1065,6 @@ JSV@^4.0.x:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/JSV/-/JSV-4.0.2.tgz#d077f6825571f82132f9dffaed587b4029feff57"
 
-"PHP_CodeSniffer@https://github.com/squizlabs/PHP_CodeSniffer":
-  version "0.0.0"
-  resolved "https://github.com/squizlabs/PHP_CodeSniffer#bbdaac852406ebbbd5a772e16a97fa69a4df6cfe"
-
 "PHP_CodeSniffer@https://github.com/squizlabs/PHP_CodeSniffer/#2.9":
   version "0.0.0"
   resolved "https://github.com/squizlabs/PHP_CodeSniffer/#8a457eb0e3dcd366b85fd0ee1e6509cf17e47814"
@@ -5209,6 +5205,10 @@ gutil@^1.6.4:
   dependencies:
     sliced "*"
 
+"hamburgers@https://github.com/jonsuh/hamburgers#v0.9.3":
+  version "0.9.3"
+  resolved "https://github.com/jonsuh/hamburgers#0aedeec91c0ffc14b3c6e31b2e8fb700ea0fb3d3"
+
 har-schema@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-2.0.0.tgz#a94c2224ebcac04782a0d9035521f24735b7ec92"
@@ -5378,6 +5378,10 @@ hooker@~0.2.3:
 hosted-git-info@^2.1.4:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.6.0.tgz#23235b29ab230c576aab0d4f13fc046b0b038222"
+
+hover.css@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/hover.css/-/hover.css-2.3.1.tgz#04378aed45a3dc4e62ed26ed399e4510520fd6e6"
 
 html-comment-regex@^1.1.0:
   version "1.1.1"

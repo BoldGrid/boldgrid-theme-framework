@@ -77,8 +77,8 @@
 		width: 100%;
 	}
 	/** Menu Styles */
-	.flexbox .header-left #main-menu-state:checked ~ #main-menu,
-	.flexbox .header-left #main-menu-state:not(:checked) ~ #main-menu {
+	.flexbox .header-left .site-header input:checked ~ .sm-clean,
+	.flexbox .header-left .site-header input:not(:checked):not(.hidden) ~ .sm-clean {
 		flex-direction: column;
 	}
 	/** Left w/ fixed position **/
@@ -126,8 +126,8 @@
 		width: calc(100% - 400px);
 	}
 	/** Menu Styles */
-	.flexbox .header-right #main-menu-state:checked ~ #main-menu,
-	.flexbox .header-right #main-menu-state:not(:checked) ~ #main-menu {
+	.flexbox .header-right .site-header input:checked ~ .sm-clean,
+	.flexbox .header-right .site-header input:not(:checked):not(.hidden) ~ .sm-clean {
 		flex-direction: column;
 	}
 	/** Left w/ fixed position **/
@@ -303,12 +303,8 @@
 .site-branding {
 	z-index: 1;
 }
+
 /* apply the animations just in desktop view */
-
-#main-menu {
-	padding: 1em 0;
-}
-
 .sm-clean {
 	background: transparent;
 	&.sm {
@@ -335,7 +331,7 @@
 	top: 50%;
 	margin-top: -17px;
 	left: auto;
-	right: 4px;
+	right: 17.5px;
 	width: 34px;
 	height: 34px;
 	overflow: hidden;
@@ -871,6 +867,57 @@
 			background: white;
 		}
 	}
+
+	/* Menu Mobile */
+	label[id$="-menu-btn"] {
+		position: relative;
+		display: flex;
+		align-self: flex-end;
+		white-space: nowrap;
+		overflow: hidden;
+		cursor: pointer;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		z-index: 2;
+	}
+
+	/* hide menu state checkbox (keep it visible to screen readers) */
+	input[id$="-menu-state"] {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		border: 0;
+		padding: 0;
+		overflow: hidden;
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+
+	/* hide the menu in mobile view */
+	input:not(:checked):not(.hidden) ~ .sm-clean {
+		display: none;
+	}
+	input:checked ~ .sm-clean {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+	}
+
+	@media only screen and (min-width: 768px) {
+		/* hide the button in desktop view */
+		label[id$="-menu-btn"] {
+			position: absolute;
+			top: -99999px;
+		}
+
+		/* always show the menu in desktop view */
+		input:checked ~ .sm-clean,
+		input:not(:checked):not(.hidden) ~ .sm-clean {
+			display: flex;
+			width: 100%;
+			flex-direction: row;
+		}
+	}
+
 	/* prevent text rendering degrade during animation in Mac browsers */
 	#main-menu.logo.logo-left .site-title {
 		display: flex;
@@ -902,7 +949,7 @@
 		align-items: flex-end;
 		justify-content: flex-end;
 	}
-	#main-menu {
+	.sm-clean {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
@@ -910,7 +957,7 @@
 		-webkit-font-smoothing: subpixel-antialiased;
 	}
 	/* show animation */
-	#main-menu ul.show-animation {
+	.sm-clean ul.show-animation {
 		-webkit-animation: show-animation 0.2s;
 		animation: show-animation 0.2s;
 	}
@@ -941,7 +988,7 @@
 		}
 	}
 	/* hide animation */
-	#main-menu ul.hide-animation {
+	.sm-clean ul.hide-animation {
 		-webkit-animation: hide-animation 0.2s;
 		animation: hide-animation 0.2s;
 	}
@@ -974,85 +1021,8 @@
 	}
 }
 
-/* Menu Mobile */
 
-.main-menu-btn {
-	position: relative;
-	display: flex;
-	align-self: flex-end;
-	width: 100%;
-	width: 28px;
-	height: 28px;
-	text-indent: 28px;
-	margin: .25em .5em;
-	white-space: nowrap;
-	overflow: hidden;
-	cursor: pointer;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	z-index: 2;
-}
-/* hamburger icon */
 
-.main-menu-btn-icon,
-.main-menu-btn-icon:before,
-.main-menu-btn-icon:after {
-	position: absolute;
-	top: 50%;
-	left: 2px;
-	height: 2px;
-	width: 24px;
-	background: #bbb;
-	-webkit-transition: all 0.25s;
-	transition: all 0.25s;
-}
-.main-menu-btn-icon:before {
-	content: '';
-	top: -7px;
-	left: 0;
-}
-.main-menu-btn-icon:after {
-	content: '';
-	top: 7px;
-	left: 0;
-}
-/* x icon */
-
-#main-menu-state:checked ~ .main-menu-btn .main-menu-btn-icon {
-	height: 0;
-	background: transparent;
-}
-#main-menu-state:checked ~ .main-menu-btn .main-menu-btn-icon:before {
-	top: 0;
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-#main-menu-state:checked ~ .main-menu-btn .main-menu-btn-icon:after {
-	top: 0;
-	-webkit-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
-/* hide menu state checkbox (keep it visible to screen readers) */
-
-#main-menu-state {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	border: 0;
-	padding: 0;
-	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
-}
-/* hide the menu in mobile view */
-
-#main-menu-state:not(:checked) ~ #main-menu {
-	display: none;
-}
-#main-menu-state:checked ~ #main-menu {
-	display: flex;
-	width: 100%;
-	flex-direction: column;
-}
 /* Menu button alignments. */
 
 /* Align Right */
@@ -1084,20 +1054,7 @@
 .header.mobile-menu-text-center .sm-clean a:active {
 	justify-content: center;
 }
-@media only screen and (min-width: 768px) {
-	/* hide the button in desktop view */
-	.main-menu-btn {
-		position: absolute;
-		top: -99999px;
-	}
-	/* always show the menu in desktop view */
-	#main-menu-state:checked ~ #main-menu,
-	#main-menu-state:not(:checked) ~ #main-menu {
-		display: flex;
-		width: 100%;
-		flex-direction: row;
-	}
-}
+
 .site-title {
 	display: flex;
 }

@@ -3,6 +3,8 @@ import BlogPagePanelExpand from './design/blog/blog-page/panel-expand.js';
 import BlogPostsPanelExpand from './design/blog/posts/panel-expand.js';
 import HomepageSectionExpand from './design/homepage/section-expand.js';
 import { Control as GenericControls } from './generic/control.js';
+import SectionExtendTitle from './menus/extend-title';
+import HamburgerControlToggle from './menus/hamburger-control-toggle';
 
 ( function( $ ) {
 	var api, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;
@@ -12,7 +14,9 @@ import { Control as GenericControls } from './generic/control.js';
 	let blogPanel = new BlogPagePanelExpand();
 	let blogPostsPanel = new BlogPostsPanelExpand();
 	let homepageSection = new HomepageSectionExpand();
+	let sectionTitles = new SectionExtendTitle();
 	let genericControls = new GenericControls().init();
+	let hamburgerControlToggle = new HamburgerControlToggle();
 
 	api.bind( 'pane-contents-reflowed', function() {
 		var sections, panels;
@@ -155,6 +159,43 @@ import { Control as GenericControls } from './generic/control.js';
 
 			// Selecting the instance will add the needed attributes, don't ask why.
 			$( this.selector + ' .font-family select' ).selectWoo();
+		}
+	} );
+
+	/**
+	 * Recalculate layouts on font changes.
+	 *
+	 * @since 2.0.0
+	 */
+	api( 'bgtfw_site_title_typography', 'bgtfw_tagline_typography', ( ...args ) => {
+		args.map( ( control ) => {
+			let settings = [ 'font-size', 'line-height', 'font-family', 'font-weight' ];
+			let update = ( to ) => {
+				_.each( settings, _.once( ( setting ) => control[ setting ] === to[ setting ] || calc() ) );
+			};
+			control.bind( _.throttle( update, 250 ) );
+		} );
+	} );
+
+	wp.customize.controlConstructor['bgtfw-menu-hamburgers'] = wp.customize.Control.extend( {
+		ready: function() {
+			var control = this;
+
+			control.container.find( '.bgtfw-hamburger-col, .tray, input' ).on( 'click touchend', function( e ) {
+				var col = $( e.target ).find( '.bgtfw-hamburger-col' );
+				if ( ! col.length ) {
+					col = $( e.target ).closest( '.bgtfw-hamburger-col' );
+				}
+				control.container.find( '.bgtfw-hamburger-col' ).removeClass( 'hamburger-selected' );
+				col.addClass( 'hamburger-selected' );
+			} );
+
+			control.container.find( '.bgtfw-hamburger-col' ).on( 'mouseover', function( e ) {
+				$( e.target ).find( '.hamburger' ).addClass( 'is-active' );
+			} );
+			control.container.find( '.bgtfw-hamburger-col' ).on( 'mouseout', function( e ) {
+				$( e.target ).find( '.hamburger' ).removeClass( 'is-active' );
+			} );
 		}
 	} );
 

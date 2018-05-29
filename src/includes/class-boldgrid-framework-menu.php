@@ -161,6 +161,9 @@ class Boldgrid_Framework_Menu {
 				$add_class = ( ! empty( $add_class ) && is_array( $add_class ) ) ? $add_class : array( 'menu_class', 'container_class' );
 				$menu = $this->parse_nav_args( $args, $menu, $add_class );
 
+				// Allow hamburgers at all menu locations.
+				$this->add_hamburger( $menu );
+
 				/*
 				 * IF we're in the customizer and edit buttons are enabled:
 				 * # Modify 'fallback_cb' and force the "edit button's fallback_cb".
@@ -232,6 +235,27 @@ class Boldgrid_Framework_Menu {
 		}
 
 		return $defaults;
+	}
+
+	/**
+	 * Add hamburger menu to menu location.
+	 *
+	 * @since 2.0.0
+	 */
+	public function add_hamburger( $menu ) {
+		$hamburger = get_theme_mod( 'bgtfw_menu_hamburger_' . $menu['theme_location'] );
+		$hidden = get_theme_mod( 'bgtfw_menu_hamburger_' . $menu['theme_location'] . '_toggle' ) ? '' : 'hidden';
+		?>
+		<input id="<?php echo esc_attr( $menu['menu_id'] ); ?>-state" type="checkbox" <?php BoldGrid::add_class( $menu['theme_location'] . '_menu_hamburger_input', [ $hidden ] ); ?> />
+		<label id="<?php echo esc_attr( $menu['menu_id'] ); ?>-btn" class="<?php echo esc_attr( $menu['menu_id'] ); ?>-btn" for="<?php echo esc_attr( $menu['menu_id'] ); ?>-state">
+			<div id="<?php echo esc_attr( $menu['menu_id'] ); ?>-hamburger" <?php BoldGrid::add_class( $menu['theme_location'] . '_menu_hamburger', [ 'hamburger', $hamburger, $hidden ] ); ?>>
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+			<span class="screen-reader-text"><?php esc_html_e( 'Toggle menu visibility.', 'bgtfw' ); ?></span>
+		</label>
+		<?php
 	}
 
 	/**

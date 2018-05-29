@@ -344,6 +344,14 @@ gulp.task('scssDeps', function () {
   // boldgrid-components.
   gulp.src('./node_modules/@boldgrid/components/dist/css/components.*')
     .pipe(gulp.dest(config.dist + '/assets/css'));
+
+  // hamburgers.
+  gulp.src(config.node_modules + '/hamburgers/dist/*.css')
+    .pipe(gulp.dest(config.dist + '/assets/css/hamburgers'));
+
+  // hovers.
+  gulp.src(config.node_modules + '/hover.css/css/hover*.css')
+    .pipe(gulp.dest(config.dist + '/assets/css/hover.css'));
 });
 
 // Compile SCSS

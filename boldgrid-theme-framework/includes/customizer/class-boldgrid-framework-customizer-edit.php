@@ -81,13 +81,17 @@ class Boldgrid_Framework_Customizer_Edit {
 		$ids = array( 'container_id', 'menu_id' );
 		foreach ( $ids as $id ) {
 			if ( ! empty( $menu[ $id ] ) ) {
-				$container_id = $id;
+				$container_id = $menu[ $id ];
 				break;
 			}
 		}
 
 		if ( empty( $container_id ) ) {
 			return;
+		}
+
+		if ( empty( $menu['container'] ) ) {
+			$menu['container'] = 'div';
 		}
 
 		printf( "<%s id='%s' class='empty-menu' data-theme-location='%s'></%s>",

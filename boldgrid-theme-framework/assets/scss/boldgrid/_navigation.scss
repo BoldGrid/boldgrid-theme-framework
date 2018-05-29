@@ -6,3 +6,13 @@
 
 /* Secondary Menu Styles */
 @import "navigation/secondary";
+
+.palette-primary {
+	.hamburger {
+		&-inner {
+			&, &::before, &::after {
+				background-color: currentColor;
+			}
+		}
+	}
+}

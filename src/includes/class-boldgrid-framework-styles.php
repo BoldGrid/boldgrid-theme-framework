@@ -211,6 +211,14 @@ class BoldGrid_Framework_Styles {
 			$this->configs['version']
 		);
 
+		/* Framework Base Styles */
+		wp_enqueue_style(
+			'bgtfw-hamburgers',
+			$this->configs['framework']['css_dir'] . 'hamburgers/hamburgers' . $suffix . '.css',
+			array( 'boldgrid-theme-framework' ),
+			$this->configs['version']
+		);
+
 		/* Component Styles */
 		wp_enqueue_style(
 			'boldgrid-components',

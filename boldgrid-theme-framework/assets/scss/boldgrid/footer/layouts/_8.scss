@@ -1,15 +1,10 @@
 &.layout-8 {
-	.social-menu-wrapper,
-	.footer-center-menu-wrapper,
 	.contact-block-wrapper,
 	.attribution-theme-mods-wrapper {
 		justify-content: center;
 	}
 	.footer-center-menu-wrapper {
 		order: 1;
-	}
-	.footer-center-items {
-		justify-content: center;
 	}
 	.contact-block-wrapper {
 		order: 2;
@@ -32,9 +27,6 @@
 			flex-direction: row;
 			flex-basis: 50%;
 			flex-wrap: wrap;
-			justify-content: flex-start;
-		}
-		.footer-center-items {
 			justify-content: flex-start;
 		}
 		.contact-block-wrapper {

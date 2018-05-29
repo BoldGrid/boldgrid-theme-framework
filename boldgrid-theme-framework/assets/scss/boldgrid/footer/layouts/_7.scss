@@ -1,6 +1,4 @@
 &.layout-7 {
-	.social-menu-wrapper,
-	.footer-center-menu-wrapper,
 	.contact-block-wrapper,
 	.attribution-theme-mods-wrapper {
 		justify-content: center;
@@ -10,7 +8,6 @@
 	}
 	.social-menu-wrapper {
 		order: 2;
-		margin-top: 1em;
 	}
 	.contact-block-wrapper {
 		order: 3;
@@ -19,9 +16,7 @@
 	.attribution-theme-mods-wrapper {
 		order: 4;
 	}
-	.footer-center-items {
-		justify-content: center;
-	}
+
 	@media only screen and (min-width : 768px) {
 		.footer-center-menu-wrapper,
 		.social-menu-wrapper,
@@ -32,9 +27,6 @@
 			flex-direction: row;
 			flex-basis: 50%;
 			flex-wrap: wrap;
-			justify-content: flex-start;
-		}
-		.footer-center-items {
 			justify-content: flex-start;
 		}
 		.social-menu-wrapper {

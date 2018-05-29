@@ -110,7 +110,7 @@ export class Preview  {
 		if ( color ) {
 			headingSelectors = this.getHeadingColorSelectors().join( ', ' );
 
-			css =  `
+			css = `
 				${ headingSelectors } {
 					color: ${ color };
 				}
@@ -150,6 +150,52 @@ export class Preview  {
 	}
 
 	/**
+	 *
+	 * @param {String} to Thememod's color value.
+	 * @param {String} menu_id Menu ID for nav menu instance.
+	 */
+	getHamburgerCSS( to, menu_id ) {
+		const color = new PaletteSelector().getColor( to );
+		let css = `
+		.${menu_id}-btn .hamburger-inner,
+		.${menu_id}-btn .hamburger-inner::before,
+		.${menu_id}-btn .hamburger-inner::after {
+			background-color: ${color};
+		}`;
+
+		return css;
+	}
+
+	/**
+	 * Set the hamburger colors for menus.
+	 *
+	 * @since 2.0.0
+	 * @param {Object} props Properties assigned for a nav menu instance.
+	 */
+	setHamburgerColors( location, menuId ) {
+		let to = wp.customize( `bgtfw_menu_hamburger_${location}_color` )();
+		let css = this.getHamburgerCSS( to, menuId );
+		this.previewUtility.updateDynamicStyles( `bgtfw_menu_hamburger_${location}_color`, css );
+	}
+
+	/**
+	 * Loop over registered nav menu instances and their arguments
+	 * to handle the CSS color controls for hamburgers on each.
+	 *
+	 * @since 2.0.0
+	 */
+	hamburgers() {
+		for ( const [ instance, props ] of Object.entries( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+
+			// Set Defaults.
+			this.setHamburgerColors( props.theme_location, props.menu_id );
+
+			// Setup event handlers.
+			this._bindHamburgerColors( props.theme_location, props.menu_id );
+		};
+	}
+
+	/**
 	 * Events to run when the Dom loads.
 	 *
 	 * @since 2.0.0
@@ -158,6 +204,7 @@ export class Preview  {
 
 		// Set Defaults.
 		this.setHeadingColors();
+		this.hamburgers();
 
 		// Setup event handlers.
 		this._bindConfiguredControls();
@@ -185,6 +232,17 @@ export class Preview  {
 	_bindHeadingColor() {
 		wp.customize( 'bgtfw_headings_color', ( value ) => {
 			value.bind( () => this.setHeadingColors() );
+		} );
+	}
+
+	/**
+	 * Bind the change events for hamburger colors
+	 *
+	 * @since 2.0.0
+	 */
+	_bindHamburgerColors( location, menuId ) {
+		wp.customize( `bgtfw_menu_hamburger_${location}_color`, ( value ) => {
+			value.bind( () => this.setHamburgerColors( location, menuId ) );
 		} );
 	}
 

@@ -23,8 +23,6 @@ footer .bgtfw-widget-row {
 	margin-top: 1em;
 }
 .footer-content,
-.footer-center-menu-wrapper,
-.social-menu-wrapper,
 .contact-block-wrapper,
 .attribution-theme-mods-wrapper {
 	display: flex;
@@ -32,7 +30,14 @@ footer .bgtfw-widget-row {
 	flex-basis: 100%;
 	flex-wrap: wrap;
 }
-
+.social-menu-wrapper,
+.footer-center-menu-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex-basis: 100%;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
 #footer-widget-area {
 	order: 1;
 }

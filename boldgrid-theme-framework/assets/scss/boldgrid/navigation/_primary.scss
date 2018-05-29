@@ -4,7 +4,7 @@
 .bgtfw-menu a:active {
     padding: 13px 20px;
     /* make room for the toggle button (sub indicator) */
-    
+
     padding-right: 58px;
     color: #555555;
     text-decoration: none;
@@ -14,7 +14,7 @@
     top: 50%;
     margin-top: -17px;
     left: auto;
-    right: 4px;
+    right: 17.5px;
     width: 34px;
     height: 34px;
     overflow: hidden;
@@ -123,7 +123,7 @@
        collapsible to desktop (navbar + dropdowns)
     -----------------------------------------------*/
     /* start... (it's not recommended editing these rules) */
-    
+
     .bgtfw-menu ul {
         position: absolute;
         width: 12em;
@@ -151,7 +151,7 @@
         white-space: nowrap;
     }
     /* ...end */
-    
+
     .bgtfw-menu {
         padding: 0 10px;
     }
@@ -174,7 +174,7 @@
     .bgtfw-menu a span.sub-arrow {
         top: 50%;
         margin-top: -2px;
-        right: 12px;
+        right: 17.5px;
         width: 0;
         height: 0;
         border-width: 4px;
@@ -363,7 +363,7 @@
 }
 @media (min-width: 768px) {
     /* prevent text rendering degrade during animation in Mac browsers */
-    
+
     #main-menu.logo.logo-left .site-title {
         display: flex;
         order: -1;
@@ -400,7 +400,7 @@
         -webkit-font-smoothing: subpixel-antialiased;
     }
     /* show animation */
-    
+
     #main-menu ul.show-animation {
         -webkit-animation: show-animation 0.2s;
         animation: show-animation 0.2s;
@@ -432,7 +432,7 @@
         }
     }
     /* hide animation */
-    
+
     #main-menu ul.hide-animation {
         -webkit-animation: hide-animation 0.2s;
         animation: hide-animation 0.2s;
@@ -463,10 +463,7 @@
 .main-menu-btn {
     position: relative;
     display: inline-block;
-    width: 28px;
-    height: 28px;
-    text-indent: 28px;
-    margin: 0 .5em;
+    margin: 3.5px 14px;
     white-space: nowrap;
     overflow: hidden;
     cursor: pointer;
@@ -542,13 +539,13 @@
 }
 @media only screen and (min-width: 768px) {
     /* hide the button in desktop view */
-    
+
     .main-menu-btn {
         position: absolute;
         top: -99999px;
     }
     /* always show the menu in desktop view */
-    
+
     #main-menu-state:checked ~ #main-menu,
     #main-menu-state:not(:checked) ~ #main-menu {
         display: flex;

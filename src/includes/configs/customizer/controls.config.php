@@ -984,4 +984,36 @@ return array(
 		),
 		'section' => 'bgtfw_header_layout',
 	),
+
+	/*** Start: Dynamic Menu Controls ***/
+	'bgtfw_menu_hamburger_main_toggle' => array(
+		'type' => 'switch',
+		'settings' => "bgtfw_menu_hamburger_main_toggle",
+		'transport' => 'postMessage',
+		'label' => esc_html__( 'Enable Hamburger Menu', 'bgtfw' ),
+		'section' => 'bgtfw_menu_hamburgers_main',
+		'default' => true,
+	),
+	'bgtfw_menu_hamburger_main_color' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_menu_hamburger_main_color',
+		'label'       => esc_attr__( 'Primary Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_hamburgers_main',
+		'default'     => 'color-1',
+		'choices'     => array(
+			'colors'  => $formatted_palette,
+			'size'    => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_menu_hamburger_main' => array(
+		'settings' => 'bgtfw_menu_hamburger_main',
+		'transport' => 'postMessage',
+		'label' => __( 'Hamburger Style', 'bgtfw' ),
+		'type' => 'bgtfw-menu-hamburgers',
+		'default' => 'hamburger--collapse',
+		'section' => 'bgtfw_menu_hamburgers_main',
+	),
+	/*** End: Dynamic Menu Controls ***/
 );

@@ -220,21 +220,27 @@ var BoldGrid = BoldGrid || {};
 		// Default bootstrap menu handling.
 		'standard_menu_enabled': {
 
-			// Setup main navigation.
 			init: function( sm ) {
-				if ( null == sm ) {
-					sm = $( '#main-menu' );
+				if ( null != sm ) {
+					BoldGrid.standard_menu_enabled.setupMenu( sm );
+				} else {
+					$.each( $( '.sm' ), function( index, menu ) {
+						BoldGrid.standard_menu_enabled.setupMenu( $( menu ) );
+					} );
 				}
+			},
 
-				sm.smartmenus({
+			// Setup main navigation.
+			setupMenu: function( sm ) {
+				sm.smartmenus( {
 					mainMenuSubOffsetX: -1,
 					mainMenuSubOffsetY: 4,
 					subMenusSubOffsetX: 6,
 					subMenusSubOffsetY: -6
-				});
+				} );
 
 				// Adds event handling for CSS animated sub menus - toggle animation classes on sub menus show/hide.
-				sm.bind({
+				sm.bind( {
 					'show.smapi': function( e, menu ) {
 						$( menu ).removeClass( 'hide-animation' ).addClass( 'show-animation' );
 					},
@@ -244,25 +250,25 @@ var BoldGrid = BoldGrid || {};
 					}).on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', 'ul', function( e ) {
 						$( this ).removeClass( 'show-animation hide-animation' );
 						e.stopPropagation();
-				});
+				} );
 
 				$( window ).on( 'resize', function() {
-					var $mainMenuState = $( '#main-menu-state' ),
+					var $mainMenuState = sm.siblings( 'input' ),
 						screen_width = $( window ).width() + 16;
 					if ( screen_width > 768 && $mainMenuState.length ) {
 						if ( $mainMenuState[0].checked ) {
-							$mainMenuState.prop( 'checked', false );
+							$mainMenuState.prop( 'checked', false ).trigger( 'change' );
 						}
 					}
 				});
 
 				$( function() {
-					var $mainMenuState = $( '#main-menu-state' );
+					var $mainMenuState = sm.siblings( 'input' );
 					if ( $mainMenuState.length ) {
 
 						// Animate mobile menu.
-						$mainMenuState.change( function() {
-							var $menu = $( '#main-menu' );
+						$mainMenuState.change( function( e ) {
+							var $menu = $( e.currentTarget ).siblings( '.sm' );
 							this.checked ? BoldGrid.standard_menu_enabled.collapse( $menu ) : BoldGrid.standard_menu_enabled.expand( $menu );
 						});
 
@@ -279,21 +285,23 @@ var BoldGrid = BoldGrid || {};
 			// Collpase the main navigation.
 			collapse: function( $menu ) {
 				if ( $menu.length < 1 ) {
-					$menu = $( '#main-menu' );
+					return;
 				}
-				$menu.hide().slideDown( 250, function() {
+				$menu.siblings( 'label' ).find( '.hamburger' ).addClass( 'is-active' );
+				$menu.hide().slideDown( 220, function() {
 					$menu.css( 'display', '' );
-				});
+				} );
 			},
 
 			// Expand the main navigation.
 			expand: function( $menu ) {
 				if ( $menu.length < 1 ) {
-					$menu = $( '#main-menu' );
+					return;
 				}
-				$menu.show().slideUp( 250, function() {
+				$menu.siblings( 'label' ).find( '.hamburger' ).removeClass( 'is-active' );
+				$menu.show().slideUp( 220, function() {
 					$menu.css( 'display', '' );
-				});
+				} );
 			}
 		},
 

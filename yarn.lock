@@ -1065,10 +1065,6 @@ JSV@^4.0.x:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/JSV/-/JSV-4.0.2.tgz#d077f6825571f82132f9dffaed587b4029feff57"
 
-"PHP_CodeSniffer@https://github.com/squizlabs/PHP_CodeSniffer":
-  version "0.0.0"
-  resolved "https://github.com/squizlabs/PHP_CodeSniffer#bbdaac852406ebbbd5a772e16a97fa69a4df6cfe"
-
 "PHP_CodeSniffer@https://github.com/squizlabs/PHP_CodeSniffer/#2.9":
   version "0.0.0"
   resolved "https://github.com/squizlabs/PHP_CodeSniffer/#8a457eb0e3dcd366b85fd0ee1e6509cf17e47814"

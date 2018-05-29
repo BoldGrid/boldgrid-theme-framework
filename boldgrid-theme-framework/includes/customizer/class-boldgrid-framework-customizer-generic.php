@@ -1,28 +1,37 @@
 <?php
 /**
- * Class: Boldgrid_Framework_Customizer_Help
+ * File: Boldgrid_Framework_Customizer_Generic
  *
- * This adds help tooltips to the WordPress customizer options in
- * case a user needs additional direction while customizer their site.
+ * Add generic css controls to the customizer.
  *
  * @since      1.0.0
  * @category   Customizer
  * @package    Boldgrid_Framework
- * @subpackage Boldgrid_Framework_Customizer_Help
+ * @subpackage Boldgrid_Framework_Customizer_Generic
  * @author     BoldGrid <support@boldgrid.com>
  * @link       https://boldgrid.com
- * @uses       Kirki\Scripts\EnqueueScript
  */
 
 /**
- * Class responsible for the customizer help bubbles.
+ * Class: Add generic css controls to the customizer.
  *
- * @since 1.0
+ * @since 2.0.0
  */
 class Boldgrid_Framework_Customizer_Generic {
 
+	/**
+	 * BGTFW Configs
+	 *
+	 * @var array $configs
+	 */
 	protected $configs;
 
+	/**
+	 * Setup the boldgrid configs.
+	 *
+	 * @since 2.0.0
+	 * @param array $configs Configurations.
+	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
 	}
@@ -33,14 +42,14 @@ class Boldgrid_Framework_Customizer_Generic {
 	 * @since 2.0.0
 	 */
 	public function add_styles() {
-		foreach( $this->configs['customizer']['controls'] as $control ) {
+		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			$name = ! empty( $control['choices']['name'] ) ? $control['choices']['name'] : null;
 			if ( 'boldgrid_controls' === $name ) {
 
 				$theme_mod_val = get_theme_mod( $control['settings'] );
 				if ( $theme_mod_val && ! empty( $theme_mod_val['css'] ) ) {
-					$styleId = $control['settings'] . '-bgcontrol';
-					$this->add_inline_style( $styleId, $theme_mod_val['css'] );
+					$style_id = $control['settings'] . '-bgcontrol';
+					$this->add_inline_style( $style_id, $theme_mod_val['css'] );
 				}
 			}
 		}
@@ -51,7 +60,7 @@ class Boldgrid_Framework_Customizer_Generic {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param string $id  Desired ID, will have a suffix of -inline-style
+	 * @param string $id  Desired ID, will have a suffix of -inline-style.
 	 * @param string $css CSS to output.
 	 */
 	public function add_inline_style( $id, $css ) {

@@ -107,8 +107,7 @@
 
 			&:checked {
 				+ label .color-palette-color {
-					box-shadow: 1px 0 3px 0 #333;
-					border: 1px solid rgba(0, 0, 0, 0.2);
+					box-shadow: 1px 0 3px 0 #333, 0px 0px 0 2px #F44336 inset;
 				}
 			}
 		}

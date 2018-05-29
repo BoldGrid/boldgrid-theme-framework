@@ -322,6 +322,11 @@ mark, .mark {
 		color: $palette-primary_1;
 	}
 }
+.woocommerce-store-notice,
+p.demo_store {
+	background-color: $palette-primary_1;
+	color: $text-contrast-palette-primary_1;
+}
 
 /** Gallery overrides **/
 .wc-image-links,

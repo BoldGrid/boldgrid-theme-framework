@@ -49,7 +49,7 @@ class Boldgrid_Framework_Customizer_Generic {
 				$theme_mod_val = get_theme_mod( $control['settings'] );
 				if ( $theme_mod_val && ! empty( $theme_mod_val['css'] ) ) {
 					$style_id = $control['settings'] . '-bgcontrol';
-					$this->add_inline_style( $style_id, $theme_mod_val['css'] );
+					$this->add_inline_style( $style_id, wp_specialchars_decode( $theme_mod_val['css'], $quote_style = ENT_QUOTES ) );
 				}
 			}
 		}

@@ -527,7 +527,7 @@ class BoldGrid {
 		global $wp_query;
 
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
-			$classes[] = 'col' . get_theme_mod( 'bgtfw_pages_blog_blog_page_layout_columns', '1' );
+			$classes[] = 'col' . get_theme_mod( 'bgtfw_pages_blog_blog_page_layout_columns' );
 		}
 
 		if ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) {
@@ -595,16 +595,16 @@ class BoldGrid {
 			$classes[] = 'has-header-image';
 		}
 
-		$classes[] = get_theme_mod( 'bgtfw_header_layout_position', 'header-top' );
+		$classes[] = get_theme_mod( 'bgtfw_header_layout_position' );
 
 		if ( is_home() ) {
-			$classes[] = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', get_theme_mod( 'bgtfw_layout_blog', 'no-sidebar' ) );
+			$classes[] = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', get_theme_mod( 'bgtfw_layout_blog' ) );
 		} else {
 			$layout = get_page_template_slug();
 
 			if ( empty( $layout ) ) {
 				$type = 'page' === get_post_type() ? 'page' : 'blog';
-				$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
+				$layout = get_theme_mod( 'bgtfw_layout_' . $type );
 			}
 
 			$classes[] = sanitize_html_class( $layout );
@@ -639,7 +639,7 @@ class BoldGrid {
 	public function post_class( $classes ) {
 		global $post;
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
-			$classes[] = get_theme_mod( 'bgtfw_blog_layout', 'design-1' );
+			$classes[] = get_theme_mod( 'bgtfw_blog_layout' );
 		}
 
 		return $classes;

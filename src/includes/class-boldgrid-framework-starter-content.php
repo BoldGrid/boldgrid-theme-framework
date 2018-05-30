@@ -165,7 +165,6 @@ class BoldGrid_Framework_Starter_Content {
 						! empty( $config['customizer']['controls'][ $new_key ]['choices']['settings']['control']['selectors'] ) ) {
 							$config['customizer']['controls'][ $new_key ]['choices']['settings']['control']['selectors'] = str_replace( 'main', $location, $config['customizer']['controls'][ $new_key ]['choices']['settings']['control']['selectors'] );
 					}
-
 				}
 			}
 		}

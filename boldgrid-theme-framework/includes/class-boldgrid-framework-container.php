@@ -38,7 +38,7 @@ class Boldgrid_Framework_Container {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param string|array $class One or more classes to add to the class list.
+	 * @param string|array $location Location container classes should be added to.
 	 */
 	public function __construct( $location ) {
 		$this->location = $location;

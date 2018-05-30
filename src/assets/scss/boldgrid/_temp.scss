@@ -321,9 +321,6 @@
 	padding: 13px 20px;
 	text-decoration: none;
 }
-.sm-clean a.current {
-	color: #d23600;
-}
 .sm-clean a.disabled {
 	color: #bbbbbb;
 }
@@ -612,15 +609,6 @@
 			-ms-border-radius: 0 !important;
 			-o-border-radius: 0 !important;
 			border-radius: 0 !important;
-		}
-		.sm-clean a:hover,
-		.sm-clean a:focus,
-		.sm-clean a:active,
-		.sm-clean a.highlighted {
-			color: #d23600;
-		}
-		.sm-clean a.current {
-			color: #d23600;
 		}
 		.sm-clean a.disabled {
 			color: #bbbbbb;

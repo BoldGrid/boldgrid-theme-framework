@@ -152,14 +152,14 @@ export class Preview  {
 	/**
 	 *
 	 * @param {String} to Thememod's color value.
-	 * @param {String} menu_id Menu ID for nav menu instance.
+	 * @param {String} menuId Menu ID for nav menu instance.
 	 */
-	getHamburgerCSS( to, menu_id ) {
+	getHamburgerCSS( to, menuId ) {
 		const color = new PaletteSelector().getColor( to );
 		let css = `
-		.${menu_id}-btn .hamburger-inner,
-		.${menu_id}-btn .hamburger-inner::before,
-		.${menu_id}-btn .hamburger-inner::after {
+		.${menuId}-btn .hamburger-inner,
+		.${menuId}-btn .hamburger-inner::before,
+		.${menuId}-btn .hamburger-inner::after {
 			background-color: ${color};
 		}`;
 

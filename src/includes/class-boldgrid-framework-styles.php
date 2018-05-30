@@ -162,6 +162,28 @@ class BoldGrid_Framework_Styles {
 	}
 
 	/**
+	 * Adds custom CSS for hamburger menu locations.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $css CSS string being filtered.
+	 *
+	 * @return string $css Modified CSS to add to front end.
+	 */
+	public function hamburgers_css( $css = '' ) {
+		$menus = get_registered_nav_menus();
+
+		foreach ( $menus as $location => $description ) {
+			$color = get_theme_mod( "bgtfw_menu_hamburger_{$location}_color" );
+			$color = explode( ':', $color );
+			$color = array_pop( $color );
+			$css .= ".{$location}-menu-btn .hamburger-inner,.{$location}-menu-btn .hamburger-inner:before,.{$location}-menu-btn .hamburger-inner:after {background-color: {$color};}";
+		}
+
+		return $css;
+	}
+
+	/**
 	 * Enqueue the styles for our BoldGrid Theme.
 	 *
 	 * @since     1.0.0
@@ -212,12 +234,16 @@ class BoldGrid_Framework_Styles {
 		);
 
 		/* Framework Base Styles */
-		wp_enqueue_style(
+		wp_register_style(
 			'bgtfw-hamburgers',
 			$this->configs['framework']['css_dir'] . 'hamburgers/hamburgers' . $suffix . '.css',
 			array( 'boldgrid-theme-framework' ),
 			$this->configs['version']
 		);
+
+		wp_add_inline_style( 'bgtfw-hamburgers', $this->hamburgers_css() );
+
+		wp_enqueue_style( 'bgtfw-hamburgers' );
 
 		/* Component Styles */
 		wp_enqueue_style(

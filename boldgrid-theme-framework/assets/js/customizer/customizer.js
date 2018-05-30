@@ -529,7 +529,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			new Toggle( `bgtfw_menu_hamburger_${props.theme_location}_toggle`, ( to ) => {
 
 				// If disabled, ensure the hamburger is forced open, and active state is set.
-				let menu = document.getElementById( `${props.menu_id}-state`);
+				let menu = document.getElementById( `${props.menu_id}-state` );
 				let hamburger = document.getElementById( `${props.menu_id}-hamburger` );
 				if ( ! to ) {
 					if ( ! menu.checked ) {

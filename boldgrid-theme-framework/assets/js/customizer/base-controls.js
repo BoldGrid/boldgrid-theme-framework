@@ -162,21 +162,6 @@ import HamburgerControlToggle from './menus/hamburger-control-toggle';
 		}
 	} );
 
-	/**
-	 * Recalculate layouts on font changes.
-	 *
-	 * @since 2.0.0
-	 */
-	api( 'bgtfw_site_title_typography', 'bgtfw_tagline_typography', ( ...args ) => {
-		args.map( ( control ) => {
-			let settings = [ 'font-size', 'line-height', 'font-family', 'font-weight' ];
-			let update = ( to ) => {
-				_.each( settings, _.once( ( setting ) => control[ setting ] === to[ setting ] || calc() ) );
-			};
-			control.bind( _.throttle( update, 250 ) );
-		} );
-	} );
-
 	wp.customize.controlConstructor['bgtfw-menu-hamburgers'] = wp.customize.Control.extend( {
 		ready: function() {
 			var control = this;

@@ -65,7 +65,7 @@ export class Preview  {
 	outputColor( themeMod, selector, properties ) {
 		let colorClassPrefix,
 			$selector = $( selector ),
-			regex = new RegExp( 'color-?([\\d]|neutral)\-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
+			regex = new RegExp( 'color-?([\\d]|neutral)-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
 
 		themeMod = parent.wp.customize( themeMod )();
 
@@ -130,7 +130,7 @@ export class Preview  {
 	getHeadingColorSelectors() {
 		const selectors = [];
 
-		_.each( _typographyOptions, function( value, key ) {
+		_.each( window._typographyOptions, function( value, key ) {
 			if ( 'headings' === value.type ) {
 				selectors.push( key );
 			}
@@ -209,14 +209,14 @@ export class Preview  {
 	 * @since 2.0.0
 	 */
 	hamburgers() {
-		for ( const [ instance, props ] of Object.entries( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+		for ( const props of Object.entries( window._wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
 
 			// Set Defaults.
 			this.setHamburgerColors( props.theme_location, props.menu_id );
 
 			// Setup event handlers.
 			this._bindHamburgerColors( props.theme_location, props.menu_id );
-		};
+		}
 	}
 
 	/**

@@ -2,6 +2,7 @@
 import ExpandPanel from '../../../expand/panel';
 
 const api = wp.customize;
+const $ = jQuery;
 
 /**
  * This class is responsible for setting the URL to go to, and
@@ -19,7 +20,7 @@ export class BlogPagePanelExpand extends ExpandPanel {
 	 * @param {String} typeId ID of the panel to add expand and collapse bindings.
 	 * @param {String} url    URL the user should be directed to on expanded state.
 	 */
-	constructor( { typeId = 'bgtfw_blog_blog_page_panel', url = null } = {} ) {
+	constructor( { typeId = 'bgtfw_blog_blog_page_panel' } = {} ) {
 		super( ...arguments );
 		this.typeId = typeId;
 		$( () => this.setUrl() && this._bindControls() );
@@ -52,7 +53,6 @@ export class BlogPagePanelExpand extends ExpandPanel {
 		let showOnFront = api( 'show_on_front' )();
 		let pageOnFrontId = parseInt( api( 'page_on_front' )(), 10 );
 		let pageId = parseInt( api( 'page_for_posts' )(), 10 );
-		let url = api.settings.url.home;
 		if ( 'page' === showOnFront ) {
 			if ( 0 <= pageOnFrontId ) {
 				this.url = api.settings.url.home;

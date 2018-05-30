@@ -1,5 +1,6 @@
 /* esversion: 6 */
 const api = wp.customize;
+const $ = jQuery;
 
 /**
  * This class is responsible for managing the expand and collapse
@@ -13,12 +14,8 @@ export class SectionExtendTitle {
 	 * Constructor
 	 *
 	 * @since 2.0.0
-	 *
-	 * @param {type}   string Either 'panel' or 'section'.
-	 * @param {typeId} string ID of the panel or section.
-	 * @param {url}    string URL to direct previewer to.
 	 */
-	constructor( { type = null, typeId = null, url = null } = {} ) {
+	constructor() {
 		$( () => this._onLoad() );
 	}
 
@@ -28,10 +25,10 @@ export class SectionExtendTitle {
 	 * @since 2.0.0
 	 */
 	_bindMenuPanels() {
-		for ( const [ location, description ] of Object.entries( this.menus ) ) {
+		for ( const [ location ] of Object.entries( this.menus ) ) {
 			api.panel( `bgtfw_menu_location_${location}` ).expanded.bind( () => this.updateTitle( location ) );
-			api( `bgtfw_menu_hamburger_${location}`, ( value ) => value.bind( ( to ) => this.updateTitle( location ) ) );
-			api( `bgtfw_menu_hamburger_${location}_toggle`, ( value ) => value.bind( ( to ) => this.updateTitle( location ) ) );
+			api( `bgtfw_menu_hamburger_${location}`, ( value ) => value.bind( () => this.updateTitle( location ) ) );
+			api( `bgtfw_menu_hamburger_${location}_toggle`, ( value ) => value.bind( () => this.updateTitle( location ) ) );
 		}
 	}
 
@@ -61,7 +58,7 @@ export class SectionExtendTitle {
 	 * @since 2.0.0
 	 */
 	_onLoad() {
-		this.menus = _wpCustomizeNavMenusSettings.locationSlugMappedToName;
+		this.menus = window._wpCustomizeNavMenusSettings.locationSlugMappedToName;
 		this._bindMenuPanels();
 	}
 }

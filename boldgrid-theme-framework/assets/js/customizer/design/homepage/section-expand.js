@@ -2,6 +2,7 @@
 import ExpandSection from '../../expand/section';
 
 const api = wp.customize;
+const $ = jQuery;
 
 /**
  * This class is responsible for setting the URL to go to, and
@@ -19,7 +20,7 @@ export class HomepageSectionExpand extends ExpandSection {
 	 * @param {String} typeId ID of the section to add expand and collapse bindings.
 	 * @param {String} url    URL the user should be directed to on expanded state.
 	 */
-	constructor( { typeId = 'static_front_page', url = null } = {} ) {
+	constructor( { typeId = 'static_front_page' } = {} ) {
 		super( ...arguments );
 		this.typeId = typeId;
 		$( () => this.setUrl() );

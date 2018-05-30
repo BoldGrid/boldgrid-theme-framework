@@ -41,7 +41,7 @@ export class Toggle {
 		this._bindControl();
 	}
 
-	bound( to ) {}
+	bound() {}
 }
 
 export default Toggle;

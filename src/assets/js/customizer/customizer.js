@@ -42,8 +42,8 @@ BOLDGRID.Customizer.Util.bgtfwIsJSON = function( string ) {
 	}
 
 	// Validate that the string is valid format for being JSON.
-	string = string.replace( /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@' );
-	string = string.replace( /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']' );
+	string = string.replace( /\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@' );
+	string = string.replace( /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?/g, ']' );
 	string = string.replace( /(?:^|:|,)(?:\s*\[)+/g, '' );
 
 	return ( /^[\],:{}\s]*$/ ).test( string );
@@ -150,7 +150,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			attributionSeparators,
 			attributionControls;
 
-		let calc = BoldGrid.custom_header.calc;
+		let calc = window.BoldGrid.custom_header.calc;
 
 		/**
 		 * Allow the user to click the post edit link in the customizer and go to the editor
@@ -260,7 +260,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		headingsColorOutput = function( themeMod, section ) {
 			var selectors = [];
 
-			_.each( _typographyOptions, function( value, key ) {
+			_.each( window._typographyOptions, function( value, key ) {
 				if ( 'headings' === value.type ) {
 					selectors.push( section + ' ' + key );
 				}
@@ -352,7 +352,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 							regex = new RegExp( /^(hide_)+\w*(_attribution)+$/, 'm' );
 
 						if ( regex.test( control.id ) ) {
-							if ( !! parseInt( api( control.id )() ) ) {
+							if ( parseInt( api( control.id )() ) ) {
 								selector = '.' + control.id.replace( 'hide_', '' ).replace( /_/g, '-' ) + '-link';
 								$( selector ).addClass( 'hidden' );
 							}
@@ -396,7 +396,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		attributionLinks();
 		setupPostEditLink();
 
-		$( '.site-description' ).addClass( _typographyClasses );
+		$( '.site-description' ).addClass( window._typographyClasses );
 
 		/**
 		 * There's a better way to do this, but I dunno what it is.  This
@@ -475,7 +475,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				css += '}';
 
 				// Set CSS in the innerHTML of stylesheet or create a new stylesheet to append to head.
-				if ( !! document.getElementById( 'bgtfw-menu-colors' ) ) {
+				if ( document.getElementById( 'bgtfw-menu-colors' ) ) {
 					document.getElementById( 'bgtfw-menu-colors' ).innerHTML = css;
 				} else {
 					head = document.head || document.getElementsByTagName( 'head' )[0],
@@ -494,34 +494,34 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			} );
 		} );
 
-		let headerContainer = new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
-		let postContainer = new ToggleClass( 'bgtfw_fixed_header', 'body', 'header-fixed', calc );
+		new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
+		new ToggleClass( 'bgtfw_fixed_header', 'body', 'header-fixed', calc );
 
 		let layoutFn = ( index, className ) => {
 			return ( className.match ( /(^|\s)layout-\S+/g ) || [] ).join( ' ' );
 		};
 
-		let footerLayout = new ToggleValue( 'bgtfw_footer_layouts', '#colophon', layoutFn );
-		let headerTopLayout = new ToggleValue( 'bgtfw_header_top_layouts', '#masthead', layoutFn, calc );
+		new ToggleValue( 'bgtfw_footer_layouts', '#colophon', layoutFn );
+		new ToggleValue( 'bgtfw_header_top_layouts', '#masthead', layoutFn, calc );
 
-		let headerWidth = new Toggle( 'bgtfw_header_width', calc );
-		let headingsColor = new Toggle( 'bgtfw_header_headings_color', () => headingsColorOutput( 'bgtfw_header_headings_color', '#navi-wrap > :not(.bgtfw-widget-row)' ) );
-		let footerHeadings = new Toggle( 'bgtfw_footer_headings_color', () => headingsColorOutput( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)' ) );
-		let siteTitle = new Toggle( 'blogname', ( to ) => $( '.site-title a' ).text( to ) && calc() );
-		let tagline = new Toggle( 'blogdescription', ( to ) => {
+		new Toggle( 'bgtfw_header_width', calc );
+		new Toggle( 'bgtfw_header_headings_color', () => headingsColorOutput( 'bgtfw_header_headings_color', '#navi-wrap > :not(.bgtfw-widget-row)' ) );
+		new Toggle( 'bgtfw_footer_headings_color', () => headingsColorOutput( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)' ) );
+		new Toggle( 'blogname', ( to ) => $( '.site-title a' ).text( to ) && calc() );
+		new Toggle( 'blogdescription', ( to ) => {
 			$( '.site-description' ).text( to ).toggleClass( 'invisible', ! to ) && calc();
 		} );
 
-		let backgroundVertical = new Toggle( 'boldgrid_background_vertical_position', setBackgroundVerticalPosition );
-		let backgroundHorizontal = new Toggle( 'boldgrid_background_horizontal_position', setBackgroundHorizontalPosition );
-		let backgroundPattern = new Toggle( 'boldgrid_background_pattern', updateColorAndPatterns );
-		let backgroundColor = new Toggle( 'boldgrid_background_color', updateColorAndPatterns );
+		new Toggle( 'boldgrid_background_vertical_position', setBackgroundVerticalPosition );
+		new Toggle( 'boldgrid_background_horizontal_position', setBackgroundHorizontalPosition );
+		new Toggle( 'boldgrid_background_pattern', updateColorAndPatterns );
+		new Toggle( 'boldgrid_background_color', updateColorAndPatterns );
 
-		let backgroundType = new Toggle( 'boldgrid_background_type', backgroundTypeUpdate );
-		let backgroundAttachment = new Toggle( 'background_attachment', backgroundAttachmentUpdate );
-		let backgroundImage = new Toggle( 'background_image', backgroundImageUpdate );
-		let backgroundRepeat = new Toggle( 'background_repeat', backgroundRepeatUpdate );
-		let backgroundSize = new Toggle( 'boldgrid_background_image_size', backgroundSizeUpdate );
+		new Toggle( 'boldgrid_background_type', backgroundTypeUpdate );
+		new Toggle( 'background_attachment', backgroundAttachmentUpdate );
+		new Toggle( 'background_image', backgroundImageUpdate );
+		new Toggle( 'background_repeat', backgroundRepeatUpdate );
+		new Toggle( 'boldgrid_background_image_size', backgroundSizeUpdate );
 
 		let setHeaderPosition = ( to ) => {
 			if ( 'header-top' !== to ) {
@@ -530,7 +530,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			calc();
 		};
 
-		let headerPosition = new ToggleValue( 'bgtfw_header_layout_position', 'body', 'header-top header-left header-right', setHeaderPosition );
+		new ToggleValue( 'bgtfw_header_layout_position', 'body', 'header-top header-left header-right', setHeaderPosition );
 
 		$( document ).on( 'customize-preview-menu-refreshed', function( event, menu ) {
 			$.each( menu.newContainer.closest( '[data-is-parent-column]' ), function() {
@@ -584,12 +584,12 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		// When menu partials are refreshed, we need to ensure we update the new container.
 		$( document ).on( 'customize-preview-menu-refreshed', function( e, params ) {
-			if ( ! _.isUndefined( BoldGrid ) ) {
+			if ( ! _.isUndefined( window.BoldGrid ) ) {
 				if ( 'main' === params.wpNavMenuArgs.theme_location ) {
-					if ( ! _.isUndefined( BoldGrid.standard_menu_enabled ) ) {
+					if ( ! _.isUndefined( window.BoldGrid.standard_menu_enabled ) ) {
 
 						// Initialize SmartMenu on the updated container and params.
-						BoldGrid.standard_menu_enabled.init( params.newContainer );
+						window.BoldGrid.standard_menu_enabled.init( params.newContainer );
 					}
 				}
 			}

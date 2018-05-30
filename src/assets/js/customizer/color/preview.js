@@ -209,7 +209,10 @@ export class Preview  {
 	 * @since 2.0.0
 	 */
 	hamburgers() {
-		for ( const props of Object.entries( window._wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+
+		const menuArgs = window._wpCustomizePreviewNavMenusExports.navMenuInstanceArgs;
+		for ( const instance in menuArgs ) {
+			const props = menuArgs[ instance ];
 
 			// Set Defaults.
 			this.setHamburgerColors( props.theme_location, props.menu_id );

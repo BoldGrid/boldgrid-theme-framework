@@ -1,8 +1,6 @@
 /* esversion: 6 */
-import Toggle from './toggle';
 import ToggleValue from './value';
 
-const api = wp.customize;
 const $ = jQuery;
 
 /**

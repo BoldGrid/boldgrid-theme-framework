@@ -1,7 +1,6 @@
 /* esversion: 6 */
 import Base from './toggle';
 
-const api = wp.customize;
 const $ = jQuery;
 
 /**

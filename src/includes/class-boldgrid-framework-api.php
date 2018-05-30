@@ -598,13 +598,13 @@ class BoldGrid {
 		$classes[] = get_theme_mod( 'bgtfw_header_layout_position' );
 
 		if ( is_home() ) {
-			$classes[] = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', get_theme_mod( 'bgtfw_layout_blog' ) );
+			$classes[] = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', get_theme_mod( 'bgtfw_layout_blog', 'no-sidebar' ) );
 		} else {
 			$layout = get_page_template_slug();
 
 			if ( empty( $layout ) ) {
 				$type = 'page' === get_post_type() ? 'page' : 'blog';
-				$layout = get_theme_mod( 'bgtfw_layout_' . $type );
+				$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
 			}
 
 			$classes[] = sanitize_html_class( $layout );
@@ -626,6 +626,32 @@ class BoldGrid {
 
 		return array_unique( $classes );
 	}
+	public function menu_border_color( $config ) {
+		foreach ( $config['menu']['locations'] as $location => $description ) {
+
+			// Filter per menu location.
+			$filter = function( $classes, $item, $args ) use( $location ) {
+				if ( $args->theme_location === $location ) {
+					if ( empty( $item->menu_item_parent ) ) {
+						$color = get_theme_mod( "bgtfw_menu_items_border_color_{$location}" );
+						$color = explode( ':', $color );
+						$color = array_shift( $color );
+						if ( strpos( $color, 'neutral' ) !== false ) {
+							$color = $color . '-border-color';
+						} else {
+							$color = str_replace( '-', '', $color ) . '-border-color';
+						}
+						$classes[] = $color;
+					}
+				}
+
+				return $classes;
+			};
+
+			add_filter( 'nav_menu_css_class', $filter, 10, 3 );
+		}
+	}
+
 
 	/**
 	 * Apply the blog design to posts page.

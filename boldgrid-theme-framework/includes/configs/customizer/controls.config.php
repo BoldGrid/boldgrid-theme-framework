@@ -1015,11 +1015,58 @@ return array(
 		'default' => 'hamburger--collapse',
 		'section' => 'bgtfw_menu_hamburgers_main',
 	),
-	'bgtfw_menu_spacing_main' => array(
+	'bgtfw_menu_items_border_main' => array(
 		'type'        => 'kirki-generic',
 		'transport'   => 'postMessage',
-		'section'     => 'bgtfw_menu_spacing_main',
-		'settings'    => 'bgtfw_menu_spacing_main',
+		'section'     => 'bgtfw_menu_items_border_main',
+		'settings'    => 'bgtfw_menu_items_border_main',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Border',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#main-menu > li' ),
+				),
+			),
+		),
+	),
+	'bgtfw_menu_items_border_color_main' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_menu_items_border_color_main',
+		'label'       => esc_attr__( 'Primary Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_items_border_main',
+		'default'     => 'color-3',
+		'choices'     => array(
+			'colors'  => $formatted_palette,
+			'size'    => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_menu_items_border_radius_main' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_menu_items_border_main',
+		'settings'    => 'bgtfw_menu_items_border_radius_main',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'BorderRadius',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#main-menu > li' ),
+				),
+			),
+		),
+	),
+	'bgtfw_menu_items_spacing_main' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_menu_items_spacing_main',
+		'settings'    => 'bgtfw_menu_items_spacing_main',
 		'label'       => '',
 		'default'     => '',
 		'choices' => array(

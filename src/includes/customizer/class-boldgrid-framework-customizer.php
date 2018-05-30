@@ -73,6 +73,18 @@ class BoldGrid_Framework_Customizer {
 
 						$wp_customize->add_panel( $panel );
 
+						$panel = new Boldgrid_Framework_Customizer_Panel(
+							$wp_customize,
+							"bgtfw_menu_items_$location",
+							array(
+								'title' => __( 'Menu Items', 'bgtfw' ),
+								'panel' => "bgtfw_menu_location_$location",
+								'capability' => 'edit_theme_options',
+							)
+						);
+
+						$wp_customize->add_panel( $panel );
+
 						Kirki::add_section(
 							"bgtfw_menu_hamburgers_$location",
 							array(
@@ -83,10 +95,19 @@ class BoldGrid_Framework_Customizer {
 						);
 
 						Kirki::add_section(
-							"bgtfw_menu_spacing_$location",
+							"bgtfw_menu_items_border_$location",
+							array(
+								'title' => __( 'Border', 'bgtfw' ),
+								'panel' => "bgtfw_menu_items_$location",
+								'capability' => 'edit_theme_options',
+							)
+						);
+
+						Kirki::add_section(
+							"bgtfw_menu_items_spacing_$location",
 							array(
 								'title' => __( 'Spacing', 'bgtfw' ),
-								'panel' => "bgtfw_menu_location_$location",
+								'panel' => "bgtfw_menu_items_$location",
 								'capability' => 'edit_theme_options',
 							)
 						);

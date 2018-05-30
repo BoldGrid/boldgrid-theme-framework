@@ -179,13 +179,32 @@ export class Preview  {
 	}
 
 	/**
+	 * Set menu item border colors.
+	 *
+	 * @since 2.0.0
+	 * @param {Object} props Properties assigned for a nav menu instance.
+	 */
+	setMenuBorder( location, menuId ) {
+		this.classControls.push(
+			{
+				name: `bgtfw_menu_items_border_color_${location}`,
+				selector: `#${menuId} > li`,
+				properties: [ 'border-color' ]
+			}
+		);
+	}
+
+	/**
 	 * Loop over registered nav menu instances and their arguments
 	 * to handle the CSS color controls for hamburgers on each.
 	 *
 	 * @since 2.0.0
 	 */
-	hamburgers() {
+	menus() {
 		for ( const [ instance, props ] of Object.entries( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+
+			// Set menu border colors.
+			this.setMenuBorder( props.theme_location, props.menu_id );
 
 			// Set Defaults.
 			this.setHamburgerColors( props.theme_location, props.menu_id );
@@ -204,7 +223,7 @@ export class Preview  {
 
 		// Set Defaults.
 		this.setHeadingColors();
-		this.hamburgers();
+		this.menus();
 
 		// Setup event handlers.
 		this._bindConfiguredControls();

@@ -975,6 +975,10 @@
   -webkit-clip-path: none;
 }
 
+.customize-control-title {
+  color: #23282d;
+}
+
 /*--------------------------------------------------------------
 # Customizer Sidebar Controls
 --------------------------------------------------------------*/
@@ -1770,6 +1774,11 @@ input[type="text"].customizer-search-input {
 /*--------------------------------------------------------------
 # Menu Hamburger Controls
 --------------------------------------------------------------*/
+ul[id^="sub-accordion-section-bgtfw_menu_hamburgers_"] .customize-control-bgtfw-menu-hamburgers .customize-control-title {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
 ul[id^="sub-accordion-section-bgtfw_menu_hamburgers_"] .customize-section-title {
   display: flex;
 }

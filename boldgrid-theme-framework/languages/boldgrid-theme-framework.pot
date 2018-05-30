@@ -466,11 +466,11 @@ msgstr ""
 msgid "Enable Hamburger Menu"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1001
+#: src/includes/configs/customizer/controls.config.php:1001, src/includes/configs/customizer/controls.config.php:1039
 msgid "Primary Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1013, src/includes/customizer/class-boldgrid-framework-customizer.php:79
+#: src/includes/configs/customizer/controls.config.php:1013, src/includes/customizer/class-boldgrid-framework-customizer.php:91
 msgid "Hamburger Style"
 msgstr ""
 
@@ -578,7 +578,7 @@ msgstr ""
 msgid "Change the padding of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:123, src/includes/configs/customizer/sections.config.php:161
+#: src/includes/configs/customizer/sections.config.php:123, src/includes/configs/customizer/sections.config.php:161, src/includes/customizer/class-boldgrid-framework-customizer.php:100
 msgid "Border"
 msgstr ""
 
@@ -758,7 +758,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:468
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:489
 msgid "Background"
 msgstr ""
 
@@ -1093,7 +1093,7 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:141, src/includes/customizer/class-boldgrid-framework-customizer.php:88
+#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:141, src/includes/customizer/class-boldgrid-framework-customizer.php:109
 msgid "Spacing"
 msgstr ""
 
@@ -1293,19 +1293,23 @@ msgstr ""
 msgid "Links Color:"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:455
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:80
+msgid "Menu Items"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:476
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:473
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:494
 msgid "CSS/JS Editor"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:477
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:498
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:571
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:592
 msgid "Menu Tutorial"
 msgstr ""
 

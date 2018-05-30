@@ -417,6 +417,9 @@ class BoldGrid_Framework {
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
 
+		// Register dynamic menu hooks.
+		$boldgrid_theme->menu_border_color( $this->configs );
+
 		// Load Custom Header.
 		$this->custom_header();
 	}

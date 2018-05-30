@@ -218,6 +218,7 @@
 
 /* Set up header for flex styles */
 #masthead {
+	backface-visibility: hidden;
 	display: flex;
 	flex-direction: column;
 	width: 100%;

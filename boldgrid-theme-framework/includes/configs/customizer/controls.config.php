@@ -723,6 +723,51 @@ return array(
 			),
 		),
 	),
+
+	// Header overlay begin.
+	'bgtfw_header_overlay' => array(
+		'type'        => 'switch',
+		'settings'    => 'bgtfw_header_overlay',
+		'transport'   => 'postMessage',
+		'label'       => __( 'Header Overlay', 'bgtfw' ),
+		'description' => esc_attr__( 'Add an overlay to give your text readability over an image or video.', 'bgtfw' ),
+		'section'     => 'header_image',
+		'default'     => false,
+		'priority'    => 20,
+		'choices'     => array(
+			'on'  => esc_attr__( 'Enable', 'bgtfw' ),
+			'off' => esc_attr__( 'Disable', 'bgtfw' ),
+		),
+	),
+	'bgtfw_header_overlay_color' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_header_overlay_color',
+		'label'       => esc_attr__( 'Overlay Color', 'bgtfw' ),
+		'section'     => 'header_image',
+		'priority'    => 25,
+		'default'     => 'color-neutral',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_header_overlay_alpha' => array(
+		'type'        => 'slider',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_header_overlay_alpha',
+		'label'       => esc_attr__( 'Overlay Opacity', 'bgtfw' ),
+		'section'     => 'header_image',
+		'priority'    => 30,
+		'default'     => '0.70',
+		'choices'     => array(
+			'min'  => '0',
+			'max'  => '1',
+			'step' => '.01',
+		),
+	),
+	// Header overlay end.
 	'bgtfw_footer_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',

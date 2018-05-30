@@ -179,6 +179,7 @@ export class Preview  {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Set menu item border colors.
 	 *
 	 * @since 2.0.0
@@ -192,6 +193,29 @@ export class Preview  {
 				properties: [ 'border-color' ]
 			}
 		);
+=======
+	 * Set the overlay colors.
+	 *
+	 * @since 2.0.0
+	 */
+	setHeaderOverlay() {
+		const selector = new PaletteSelector(),
+			color = selector.getColor( wp.customize( 'bgtfw_header_overlay_color' )() ),
+			alpha = wp.customize( 'bgtfw_header_overlay_alpha' )(),
+			brehautColor = parent.net.brehaut.Color( color ),
+			rgba = brehautColor.setAlpha( alpha ).toString();
+
+		let styles = '#wp-custom-header::after{ display: none; }';
+		if ( wp.customize( 'bgtfw_header_overlay' )() ) {
+			styles = `
+				#wp-custom-header::after {
+					background-color: ${rgba} !important;
+				}
+			`;
+		}
+
+		this.previewUtility.updateDynamicStyles( 'bgtfw-header-overlay-inline-css', styles );
+>>>>>>> 7c95b52fb1fd26d54e7274191f04d70d5554e6af
 	}
 
 	/**
@@ -228,6 +252,18 @@ export class Preview  {
 		// Setup event handlers.
 		this._bindConfiguredControls();
 		this._bindHeadingColor();
+		this._bindHeaderOverlay();
+	}
+
+	/**
+	 * Bind the event of the overlay changing colors.
+	 *
+	 * @since 2.0.0
+	 */
+	_bindHeaderOverlay() {
+		wp.customize( 'bgtfw_header_overlay_alpha', 'bgtfw_header_overlay', 'bgtfw_header_overlay_color', ( ...args ) => {
+			args.map( ( control ) => control.bind( () => this.setHeaderOverlay() ) );
+		} );
 	}
 
 	/**

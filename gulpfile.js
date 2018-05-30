@@ -214,7 +214,7 @@ gulp.task('frameworkFiles', function () {
   return gulp.src([
     '!' + config.src + '/includes/black-studio-tinymce-widget',
     '!' + config.src + '/includes/black-studio-tinymce-widget/**',
-    config.src + '/**/*.{php,txt,json,css,scss,mo,po,pot}',
+    config.src + '/**/*.{php,txt,json,css,mo,po,pot}',
   ])
     .pipe(gulp.dest(config.dist));
 });
@@ -389,8 +389,10 @@ gulp.task('bootstrapCompile', function () {
 
 // Watch for changes and recompile scss
 gulp.task('sass:watch', function () {
-  gulp.watch(config.scss + '/**/*.scss', ['scssCompile']);
-});
+	gulp.watch( 'src/assets/scss/**/*.scss', function () {
+		sequence( 'copyScss', 'scssCompile' );
+	} );
+} );
 
 // WordPress Standard PHP Beautify
 gulp.task('phpcbf', function () {
@@ -403,6 +405,13 @@ gulp.task('phpcbf', function () {
     .on('error', gutil.log)
     .pipe(gulp.dest('src'));
 });
+
+
+// WordPress Standard PHP Beautify
+gulp.task( 'copyScss', () => {
+	return gulp.src( config.src + '/assets/scss/**/*.scss' )
+		.pipe( gulp.dest( config.dist + '/assets/scss/' ) );
+} );
 
 // PHP Code Sniffer
 gulp.task('codeSniffer', function () {
@@ -427,7 +436,7 @@ gulp.task('build', function (cb) {
     'clean',
     'readme',
     ['jsHint', 'jscs', 'frameworkJs'],
-    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate'],
+    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     'images',
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
@@ -441,7 +450,7 @@ gulp.task('qbuild', function (cb) {
     'dist',
     'readme',
     ['jsHint', 'jscs', 'frameworkJs'],
-    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate'],
+    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
     cb
@@ -449,12 +458,13 @@ gulp.task('qbuild', function (cb) {
 });
 
 gulp.task('framework-js', function (cb) {
-  return sequence('frameworkFiles', ['jsHint', 'jscs', 'modernizr'], cb);
+  return sequence(['jsHint', 'jscs', 'modernizr'], cb);
 });
 
-gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'translate']);
+gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate']);
 
 gulp.task('watch', function () {
 	gulp.start( 'sass:watch' );
-	gulp.watch(config.src + '/**/*', ['framework-js']);
+	gulp.watch(config.src + '/**/*.{php,txt,json,css,mo,po,pot}', ['frameworkFiles']);
+	gulp.watch(config.src + '/**/*.js', ['framework-js']);
 });

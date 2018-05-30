@@ -29,4 +29,8 @@ return array(
 		'bgtfw_footer_headings_color',
 		'bgtfw_footer_links',
 	),
+	'bgtfw_header_overlay' => array(
+		'bgtfw_header_overlay_alpha',
+		'bgtfw_header_overlay_color',
+	),
 );

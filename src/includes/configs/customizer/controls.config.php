@@ -988,7 +988,7 @@ return array(
 	/*** Start: Dynamic Menu Controls ***/
 	'bgtfw_menu_hamburger_main_toggle' => array(
 		'type' => 'switch',
-		'settings' => "bgtfw_menu_hamburger_main_toggle",
+		'settings' => 'bgtfw_menu_hamburger_main_toggle',
 		'transport' => 'postMessage',
 		'label' => esc_html__( 'Enable Hamburger Menu', 'bgtfw' ),
 		'section' => 'bgtfw_menu_hamburgers_main',

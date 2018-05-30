@@ -14,18 +14,26 @@
 if ( class_exists( 'WP_Customize_Control' ) ) {
 
 	/**
-	 * Adds a color-palette control.
-	 * This is essentially a radio control, styled as a palette.
+	 * Adds a menu hamburger selection control.
+	 *
+	 * This is a custom radio control.
+	 *
+	 * @since 2.0.0
 	 */
 	class Boldgrid_Framework_Customizer_Control_Menu_Hamburgers extends WP_Customize_Control {
 
 		/**
 		 * The control type.
 		 *
-		 * @access public
-		 * @var string
+		 * @var string $type The control type.
 		 */
 		public $type = 'bgtfw-menu-hamburgers';
+
+		/**
+		 * Initials choices for control.
+		 *
+		 * @var string $initial Initial choices for control.
+		 */
 		public $initial = [
 			'3DX' => 'hamburger--3dx',
 			'3DX Reverse' => 'hamburger--3dx-r',
@@ -60,6 +68,11 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			'Vortex Reverse' => 'hamburger--vortex-r',
 		];
 
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @since 2.0.0
+		 */
 		public function to_json() {
 
 			// Call parent to_json() method to get the core defaults like "label", "description", etc.

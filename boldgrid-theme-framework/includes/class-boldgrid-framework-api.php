@@ -869,9 +869,8 @@ class BoldGrid {
 	 *
 	 * @since 2.8.0
 	 *
-	 * @param string|array $class One or more classes to add to the class list.
-	 *
-	 * @return string String of 'classes="$classes"' to add to an element.
+	 * @param string       $element Element class is being added to.
+	 * @param string|array $class   One or more classes to add to the class list.
 	 */
 	public static function add_class( $element = '', $class = '' ) {
 		$el = new Boldgrid_Framework_Element_Class( $element, $class );

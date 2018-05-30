@@ -117,6 +117,17 @@ class BoldGrid_Framework_Starter_Content {
 		return $config;
 	}
 
+	/**
+	 * Sets dynamic menu configs.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array  $config  Array of BGTFW configuration options.
+	 * @param string $index   Index of control in configuration.
+	 * @param array  $control Control settings from configuration.
+	 *
+	 * @return array $config Array of BGTFW configuration options.
+	 */
 	public function set_menus( $config, $index, $control ) {
 		if ( strpos( $control['settings'], 'bgtfw_menu_' ) !== false && strpos( $control['settings'], 'main' ) !== false ) {
 
@@ -127,11 +138,11 @@ class BoldGrid_Framework_Starter_Content {
 				// Add controls based on main menu's.
 				$new_key = str_replace( 'main', $location, $control['settings'] );
 
-				if ( $location !== 'main' && ! isset( $this->configs['customizer']['controls'][ $new_key ] ) ) {
+				if ( 'main' !== $location && ! isset( $this->configs['customizer']['controls'][ $new_key ] ) ) {
 
 					$config['customizer']['controls'][ $new_key ] = [];
 
-					foreach( $control as $option => $value ) {
+					foreach ( $control as $option => $value ) {
 						$config['customizer']['controls'][ $new_key ][ $option ] = is_string( $value ) ? str_replace( 'main', $location, $value ) : $value;
 					}
 
@@ -141,7 +152,7 @@ class BoldGrid_Framework_Starter_Content {
 					}
 
 					// Active callbacks/ required.
-					foreach ( ['active_callback', 'required' ] as $item ) {
+					foreach ( [ 'active_callback', 'required' ] as $item ) {
 						if ( isset( $config['customizer']['controls'][ $new_key ][ $item ] ) ) {
 							foreach ( $config['customizer']['controls'][ $new_key ][ $item ] as $set => $opts ) {
 								$config['customizer']['controls'][ $new_key ][ $item ][ $set ]['setting'] = str_replace( 'main', $location, $opts['setting'] );
@@ -167,9 +178,9 @@ class BoldGrid_Framework_Starter_Content {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param array $config  Array of BGTFW configuration options.
-	 * @param int   $index   Index of control in configuration.
-	 * @param array $control Control settings from configuration.
+	 * @param array  $config  Array of BGTFW configuration options.
+	 * @param string $index   Index of control in configuration.
+	 * @param array  $control Control settings from configuration.
 	 *
 	 * @return array $config Array of BGTFW configuration options.
 	 */
@@ -217,9 +228,9 @@ class BoldGrid_Framework_Starter_Content {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param array $config  Array of BGTFW configuration options.
-	 * @param int   $index   Index of control in configuration.
-	 * @param array $control Control settings from configuration.
+	 * @param array  $config  Array of BGTFW configuration options.
+	 * @param string $index   Index of control in configuration.
+	 * @param array  $control Control settings from configuration.
 	 *
 	 * @return array $config Array of BGTFW configuration options.
 	 */

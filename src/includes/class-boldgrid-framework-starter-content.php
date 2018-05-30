@@ -149,6 +149,12 @@ class BoldGrid_Framework_Starter_Content {
 						}
 					}
 
+					// Generic controls.
+					if ( 'kirki-generic' === $config['customizer']['controls'][ $new_key ]['type'] &&
+						! empty( $config['customizer']['controls'][ $new_key ]['choices']['settings']['control']['selectors'] ) ) {
+							$config['customizer']['controls'][ $new_key ]['choices']['settings']['control']['selectors'] = str_replace( 'main', $location, $config['customizer']['controls'][ $new_key ]['choices']['settings']['control']['selectors'] );
+					}
+
 				}
 			}
 		}

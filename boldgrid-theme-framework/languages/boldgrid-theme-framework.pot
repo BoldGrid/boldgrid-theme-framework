@@ -758,7 +758,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:459
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:468
 msgid "Background"
 msgstr ""
 
@@ -1093,7 +1093,7 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:141
+#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:141, src/includes/customizer/class-boldgrid-framework-customizer.php:88
 msgid "Spacing"
 msgstr ""
 
@@ -1293,19 +1293,19 @@ msgstr ""
 msgid "Links Color:"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:446
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:455
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:464
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:473
 msgid "CSS/JS Editor"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:468
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:477
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:562
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:571
 msgid "Menu Tutorial"
 msgstr ""
 

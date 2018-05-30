@@ -81,6 +81,15 @@ class BoldGrid_Framework_Customizer {
 								'capability' => 'edit_theme_options',
 							)
 						);
+
+						Kirki::add_section(
+							"bgtfw_menu_spacing_$location",
+							array(
+								'title' => __( 'Spacing', 'bgtfw' ),
+								'panel' => "bgtfw_menu_location_$location",
+								'capability' => 'edit_theme_options',
+							)
+						);
 					}
 				}
 			} else {

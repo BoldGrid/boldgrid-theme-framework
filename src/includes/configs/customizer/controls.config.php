@@ -1015,5 +1015,29 @@ return array(
 		'default' => 'hamburger--collapse',
 		'section' => 'bgtfw_menu_hamburgers_main',
 	),
+	'bgtfw_menu_spacing_main' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_menu_spacing_main',
+		'settings'    => 'bgtfw_menu_spacing_main',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Margin',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#main-menu > li' ),
+					'linkable' => array(
+						'isLinked' => true,
+					),
+					'sliders' => array(
+						array( 'name' => 'left', 'label' => 'Left', 'cssProperty' => 'margin-left' ),
+						array( 'name' => 'right', 'label' => 'Right', 'cssProperty' => 'margin-right' ),
+					),
+				),
+			),
+		),
+	),
 	/*** End: Dynamic Menu Controls ***/
 );

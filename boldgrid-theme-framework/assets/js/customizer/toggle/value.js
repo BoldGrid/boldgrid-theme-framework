@@ -1,8 +1,6 @@
 /* esversion: 6 */
+/* eslint-env jquery */
 import Base from './toggle';
-
-const api = wp.customize;
-const $ = jQuery;
 
 /**
  * This class is responsible for managing the expand and collapse

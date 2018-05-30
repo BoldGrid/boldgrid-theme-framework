@@ -1,6 +1,6 @@
 /* esversion: 6 */
+/* eslint-env jquery */
 const api = wp.customize;
-const $ = jQuery;
 
 /**
  * This class is responsible for managing the expand and collapse
@@ -41,7 +41,12 @@ export class Toggle {
 		this._bindControl();
 	}
 
-	bound( to ) {}
+	/**
+	 * Noop
+	 *
+	 * @since 2.0.0
+	 */
+	bound() {}
 }
 
 export default Toggle;

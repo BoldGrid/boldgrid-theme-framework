@@ -1,4 +1,5 @@
 /* esversion: 6 */
+/* global _wpCustomizeNavMenusSettings:false, $:false */
 const api = wp.customize;
 
 /**
@@ -18,7 +19,7 @@ export class SectionExtendTitle {
 	 * @param {typeId} string ID of the panel or section.
 	 * @param {url}    string URL to direct previewer to.
 	 */
-	constructor( { type = null, typeId = null, url = null } = {} ) {
+	constructor() {
 		$( () => this._onLoad() );
 	}
 
@@ -28,10 +29,10 @@ export class SectionExtendTitle {
 	 * @since 2.0.0
 	 */
 	_bindMenuPanels() {
-		for ( const [ location, description ] of Object.entries( this.menus ) ) {
+		for ( const location of Object.keys( this.menus ) ) {
 			api.panel( `bgtfw_menu_location_${location}` ).expanded.bind( () => this.updateTitle( location ) );
-			api( `bgtfw_menu_hamburger_${location}`, ( value ) => value.bind( ( to ) => this.updateTitle( location ) ) );
-			api( `bgtfw_menu_hamburger_${location}_toggle`, ( value ) => value.bind( ( to ) => this.updateTitle( location ) ) );
+			api( `bgtfw_menu_hamburger_${location}`, ( value ) => value.bind( () => this.updateTitle( location ) ) );
+			api( `bgtfw_menu_hamburger_${location}_toggle`, ( value ) => value.bind( () => this.updateTitle( location ) ) );
 		}
 	}
 

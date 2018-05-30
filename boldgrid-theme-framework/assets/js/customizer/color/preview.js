@@ -1,7 +1,8 @@
+/* eslint-env jquery */
+/* global _wpCustomizePreviewNavMenusExports:false, _typographyOptions:true */
+
 import PaletteSelector from './palette-selector';
 import { Preview as PreviewUtility } from '../preview';
-
-const $ = jQuery;
 
 export class Preview  {
 
@@ -65,7 +66,7 @@ export class Preview  {
 	outputColor( themeMod, selector, properties ) {
 		let colorClassPrefix,
 			$selector = $( selector ),
-			regex = new RegExp( 'color-?([\\d]|neutral)\-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
+			regex = new RegExp( 'color-?([\\d]|neutral)-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
 
 		themeMod = parent.wp.customize( themeMod )();
 
@@ -179,7 +180,6 @@ export class Preview  {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Set menu item border colors.
 	 *
 	 * @since 2.0.0
@@ -193,7 +193,9 @@ export class Preview  {
 				properties: [ 'border-color' ]
 			}
 		);
-=======
+	}
+
+	/**
 	 * Set the overlay colors.
 	 *
 	 * @since 2.0.0
@@ -215,7 +217,6 @@ export class Preview  {
 		}
 
 		this.previewUtility.updateDynamicStyles( 'bgtfw-header-overlay-inline-css', styles );
->>>>>>> 7c95b52fb1fd26d54e7274191f04d70d5554e6af
 	}
 
 	/**
@@ -225,7 +226,7 @@ export class Preview  {
 	 * @since 2.0.0
 	 */
 	menus() {
-		for ( const [ instance, props ] of Object.entries( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
 
 			// Set menu border colors.
 			this.setMenuBorder( props.theme_location, props.menu_id );
@@ -235,7 +236,7 @@ export class Preview  {
 
 			// Setup event handlers.
 			this._bindHamburgerColors( props.theme_location, props.menu_id );
-		};
+		}
 	}
 
 	/**

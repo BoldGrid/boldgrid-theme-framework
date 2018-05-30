@@ -768,7 +768,6 @@ return array(
 		),
 	),
 	// Header overlay end.
-
 	'bgtfw_footer_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',

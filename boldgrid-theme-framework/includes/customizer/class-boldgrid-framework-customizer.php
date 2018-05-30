@@ -274,7 +274,6 @@ class BoldGrid_Framework_Customizer {
 			true
 		);
 
-
 		wp_enqueue_script( 'bgtfw-customizer-base-controls' );
 
 		$initialize = 'BOLDGRID = BOLDGRID || {};';

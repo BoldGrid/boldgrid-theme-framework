@@ -746,7 +746,7 @@ return array(
 		'label'       => esc_attr__( 'Overlay Color', 'bgtfw' ),
 		'section'     => 'header_image',
 		'priority'    => 25,
-		'default'     => 'color-neutral',
+		'default'     => 'color-1',
 		'choices'     => array(
 			'colors' => $formatted_palette,
 			'size' => $palette->get_palette_size( $formatted_palette ),

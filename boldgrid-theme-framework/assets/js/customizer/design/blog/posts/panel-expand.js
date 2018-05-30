@@ -2,6 +2,7 @@
 import ExpandPanel from '../../../expand/panel';
 
 const api = wp.customize;
+const $ = jQuery;
 
 /**
  * This class is responsible for setting the URL to go to, and
@@ -17,9 +18,8 @@ export class BlogPostsPanelExpand extends ExpandPanel {
 	 * @since 2.0.0
 	 *
 	 * @param {String} typeId ID of the panel to add expand and collapse bindings.
-	 * @param {String} url    URL the user should be directed to on expanded state.
 	 */
-	constructor( { typeId = 'bgtfw_blog_posts_panel', url = null } = {} ) {
+	constructor( { typeId = 'bgtfw_blog_posts_panel' } = {} ) {
 		super( ...arguments );
 		this.typeId = typeId;
 		$( () => this.setUrl() );
@@ -35,7 +35,7 @@ export class BlogPostsPanelExpand extends ExpandPanel {
 	 * @return {String} this.url The URL for the previewer.
 	 */
 	setUrl() {
-		return this.url = api.settings.url.home + '?p=' + BOLDGRID.CUSTOMIZER.data.design.blog.posts.mostRecentPost;
+		return this.url = api.settings.url.home + '?p=' + window.BOLDGRID.CUSTOMIZER.data.design.blog.posts.mostRecentPost;
 	}
 }
 

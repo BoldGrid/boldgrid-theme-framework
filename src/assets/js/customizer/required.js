@@ -1,10 +1,10 @@
-var $ = jQuery;
+const $ = jQuery;
 
 export class Required {
 
 	constructor() {
 		this.bound = {};
-		this.options = BOLDGRID.CUSTOMIZER.data.customizerOptions;
+		this.options = window.BOLDGRID.CUSTOMIZER.data.customizerOptions;
 	}
 
 	/**
@@ -24,7 +24,7 @@ export class Required {
 	 * @since 2.0.0
 	 */
 	_setup() {
-		for ( const [ switchControl, childControls ] of Object.entries( this.options.required ) ) {
+		for ( const [ switchControl ] of Object.entries( this.options.required ) ) {
 			this._toggle( switchControl );
 
 			// Bind event only once per control.
@@ -33,7 +33,7 @@ export class Required {
 				wp.customize( switchControl ).bind( () => this._toggle( switchControl ) );
 			}
 		}
-	};
+	}
 
 	/**
 	 * Toggle the visibility of the control.

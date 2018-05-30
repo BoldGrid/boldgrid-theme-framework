@@ -1,8 +1,8 @@
-/* eslint-env jquery */
 /* global _wpCustomizePreviewNavMenusExports:false, _typographyOptions:true */
-
 import PaletteSelector from './palette-selector';
 import { Preview as PreviewUtility } from '../preview';
+
+const $ = jQuery;
 
 export class Preview  {
 
@@ -20,7 +20,6 @@ export class Preview  {
 				selector: '#colophon, .footer-content',
 				properties: [ 'background-color', 'text-default' ]
 			},
-
 			{
 				name: 'bgtfw_tagline_color',
 				selector: '.site-description',

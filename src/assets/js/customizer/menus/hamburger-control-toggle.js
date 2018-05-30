@@ -55,7 +55,7 @@ export class HamburgerControlToggle {
 	 * @since 2.0.0
 	 */
 	_onLoad() {
-		this.menus = _wpCustomizeNavMenusSettings.locationSlugMappedToName;
+		this.menus = window._wpCustomizeNavMenusSettings.locationSlugMappedToName;
 		this._bindHamburgerToggle();
 	}
 }

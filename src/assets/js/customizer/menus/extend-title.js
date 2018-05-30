@@ -1,6 +1,6 @@
-/* esversion: 6 */
-/* global _wpCustomizeNavMenusSettings:false, $:false */
+/* global _wpCustomizeNavMenusSettings:false */
 const api = wp.customize;
+const $ = jQuery;
 
 /**
  * This class is responsible for managing the expand and collapse
@@ -14,10 +14,6 @@ export class SectionExtendTitle {
 	 * Constructor
 	 *
 	 * @since 2.0.0
-	 *
-	 * @param {type}   string Either 'panel' or 'section'.
-	 * @param {typeId} string ID of the panel or section.
-	 * @param {url}    string URL to direct previewer to.
 	 */
 	constructor() {
 		$( () => this._onLoad() );

@@ -6,7 +6,7 @@ import { Border } from '@boldgrid/controls/src/controls/border';
 import { MultiSlider } from '@boldgrid/controls/src/controls/multi-slider';
 import '../../../scss/customizer/controls/_generic.scss';
 
-var $ = jQuery;
+var $ = window.jQuery;
 
 export class Control {
 

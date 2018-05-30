@@ -12,13 +12,13 @@ import HamburgerControlToggle from './menus/hamburger-control-toggle';
 
 	api = wp.customize;
 	new Required().init();
-	let widgetSectionUpdate = new WidgetSectionUpdate().init();
-	let blogPanel = new BlogPagePanelExpand();
-	let blogPostsPanel = new BlogPostsPanelExpand();
-	let homepageSection = new HomepageSectionExpand();
-	let sectionTitles = new SectionExtendTitle();
-	let genericControls = new GenericControls().init();
-	let hamburgerControlToggle = new HamburgerControlToggle();
+	new WidgetSectionUpdate().init();
+	new BlogPagePanelExpand();
+	new BlogPostsPanelExpand();
+	new HomepageSectionExpand();
+	new SectionExtendTitle();
+	new GenericControls().init();
+	new HamburgerControlToggle();
 
 	api.bind( 'pane-contents-reflowed', function() {
 		var sections, panels;

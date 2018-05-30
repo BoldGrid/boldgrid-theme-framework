@@ -1,6 +1,6 @@
 /* esversion: 6 */
-/* eslint-env jquery */
-const api = wp.customize;
+const api = wp.customize,
+	$ = window.jQuery;
 
 export class WidgetSectionUpdate {
 

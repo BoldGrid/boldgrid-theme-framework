@@ -1,5 +1,6 @@
 /* esversion: 6 */
 const api = wp.customize;
+const $ = jQuery;
 
 /**
  * This class is responsible for managing the expand and collapse
@@ -18,7 +19,7 @@ export class Expand {
 	 * @param {typeId} string ID of the panel or section.
 	 * @param {url}    string URL to direct previewer to.
 	 */
-	constructor( { type = null, typeId = null, url = null } = {} ) {
+	constructor() {
 		$( () => _.extend( this, ...arguments, { previousUrl: null, preview: api.previewer.previewUrl } ) && this._onLoad() );
 		this.clear = () => this.previousUrl = null;
 	}

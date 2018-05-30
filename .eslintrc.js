@@ -7,7 +7,11 @@ module.exports = {
     sourceType: 'module'
   },
   env: {
-    browser: true
+    browser: true,
+	commonjs: true,
+
+	// The following line will allow you to neglect var $ = jQuery, but I believe older WP versions will fail if you ignore it.
+	// jquery: true
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: [ 'eslint:recommended', 'wordpress' ],

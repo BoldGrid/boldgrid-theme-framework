@@ -19,7 +19,7 @@ BOLDGRID.BGTFW = BOLDGRID.BGTFW || {};
 					$defaultOption = $section.find( 'input[data-default-option="1"]' );
 
 				$section.find( '.value-displayed' ).html( $defaultOption.attr( 'data-value-displayed' ) );
-			});
+			} );
 		},
 
 		/**

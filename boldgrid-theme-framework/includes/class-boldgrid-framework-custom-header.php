@@ -132,6 +132,7 @@ class Boldgrid_Framework_Custom_Header {
 	 * @see custom_header_setup().
 	 */
 	public function header_style() {
+		$this->add_overlay_color();
 		$header_text_color = get_header_textcolor();
 
 		// If no custom options for text are set, let's bail.
@@ -179,6 +180,30 @@ class Boldgrid_Framework_Custom_Header {
 		<?php endif; ?>
 		</style>
 		<?php
+	}
+
+	/**
+	 * Add the header color to inline styles.
+	 *
+	 * @since 2.0.0
+	 */
+	public function add_overlay_color() {
+		$generic_controls = new Boldgrid_Framework_Customizer_Generic( $this->configs );
+
+		$overlay_enabled = get_theme_mod( 'bgtfw_header_overlay' );
+		$overlay_color = get_theme_mod( 'bgtfw_header_overlay_color' );
+		if ( $overlay_color && $overlay_enabled ) {
+			$overlay_color = explode( ':', $overlay_color );
+			$overlay_color = array_pop( $overlay_color );
+			$color_obj = ariColor::newColor( $overlay_color );
+			$color_obj->alpha = get_theme_mod( 'bgtfw_header_overlay_alpha', 0.7 );
+			if ( $overlay_color ) {
+				$generic_controls->add_inline_style(
+					'header-image-overlay',
+					'#wp-custom-header::after { background-color:' . $color_obj->toCSS( 'rgba' ) . '; }'
+				);
+			}
+		}
 	}
 
 	/**

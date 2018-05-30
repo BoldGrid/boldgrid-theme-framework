@@ -179,6 +179,30 @@ export class Preview  {
 	}
 
 	/**
+	 * Set the overlay colors.
+	 *
+	 * @since 2.0.0
+	 */
+	setHeaderOverlay() {
+		const selector = new PaletteSelector(),
+			color = selector.getColor( wp.customize( 'bgtfw_header_overlay_color' )() ),
+			alpha = wp.customize( 'bgtfw_header_overlay_alpha' )(),
+			brehautColor = parent.net.brehaut.Color( color ),
+			rgba = brehautColor.setAlpha( alpha ).toString();
+
+		let styles = '#wp-custom-header::after{ display: none; }';
+		if ( wp.customize( 'bgtfw_header_overlay' )() ) {
+			styles = `
+				#wp-custom-header::after {
+					background-color: ${rgba} !important;
+				}
+			`;
+		}
+
+		this.previewUtility.updateDynamicStyles( 'bgtfw-header-overlay-inline-css', styles );
+	}
+
+	/**
 	 * Loop over registered nav menu instances and their arguments
 	 * to handle the CSS color controls for hamburgers on each.
 	 *
@@ -209,6 +233,18 @@ export class Preview  {
 		// Setup event handlers.
 		this._bindConfiguredControls();
 		this._bindHeadingColor();
+		this._bindHeaderOverlay();
+	}
+
+	/**
+	 * Bind the event of the overlay changing colors.
+	 *
+	 * @since 2.0.0
+	 */
+	_bindHeaderOverlay() {
+		wp.customize( 'bgtfw_header_overlay_alpha', 'bgtfw_header_overlay', 'bgtfw_header_overlay_color', ( ...args ) => {
+			args.map( ( control ) => control.bind( () => this.setHeaderOverlay() ) );
+		} );
 	}
 
 	/**

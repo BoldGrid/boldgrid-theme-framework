@@ -235,6 +235,15 @@ div.btn a:after, div.button-primary a:after, div.button-secondary a:after {
   width: 100%;
 }
 
+#wp-custom-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 /* Post/Page password protected styles */
 .post-password-form .button-primary {
   margin-left: 9px;

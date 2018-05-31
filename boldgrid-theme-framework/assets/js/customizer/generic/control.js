@@ -103,7 +103,9 @@ export class Control {
 					$input = $el.find( 'input' );
 
 				$input.after( bgControl.render() );
-				$input.remove();
+
+				// This dummy input removes orginal handlers, and serves as a honeypot for DOM queries.
+				$input.replaceWith( $( '<input type="text">' ).hide() );
 			} );
 		} );
 	}

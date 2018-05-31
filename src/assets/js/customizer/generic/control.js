@@ -119,9 +119,11 @@ export class Control {
 	 * @param  {object} bgControl BoldGrid control instance.
 	 */
 	_bindChangeEvent( wpControl, bgControl ) {
-		bgControl.events.on( 'change', ( settings ) => {
+		let throttled = _.throttle( ( settings ) => {
 			settings.values = JSON.stringify( settings.values );
 			wpControl.setting.set( settings );
-		} );
+		}, 50 );
+
+		bgControl.events.on( 'change', throttled );
 	}
 }

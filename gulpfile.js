@@ -22,7 +22,9 @@ var gulp = require('gulp'),
   fs = require('fs'),
   argv = require('yargs').argv,
   modernizr = require('gulp-modernizr'),
-  jscs = require('gulp-jscs');
+  jscs = require('gulp-jscs'),
+  postcss = require('gulp-postcss'),
+  inject = require('gulp-inject-string');
 
 // Configs
 var config = {
@@ -427,6 +429,30 @@ gulp.task('codeSniffer', function () {
     }))
     // Log all problems that was found
     .pipe(phpcs.reporter('log'));
+});
+
+gulp.task('hoverColors', function() {
+  var plugins = [
+    require('postcss-colors-only')({
+      withoutGrey: false, // set to true to remove rules that only have grey colors
+      withoutMonochrome: false, // set to true to remove rules that only have grey, black, or white colors
+      inverse: false, // set to true to remove colors from rules
+    }),
+    require('postcss-prefix-selector')({ prefix: '\' . $menu_id . \'' })
+  ];
+  return gulp.src(config.node_modules + '/hover.css/css/hover.css')
+      .pipe(cssnano({
+        discardComments: { removeAll: true }}))
+      .pipe(postcss(plugins))
+      .pipe(replace('#fff', '\' . $text_color . \''))
+      .pipe(replace('#2098d1', '\' . $color . \''))
+      .pipe(replace('#e1e1e1', '\' . $background_color . \''))
+      .pipe(inject.wrap('<?php \nreturn \'', '\';'))
+      .pipe(rename({
+        suffix: '-colors-only',
+        extname: '.php'
+      }))
+      .pipe(gulp.dest(config.dist + '/includes/partials'));
 });
 
 // Tasks

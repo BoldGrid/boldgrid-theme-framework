@@ -1,3 +1,4 @@
+/* global _wpCustomizePreviewNavMenusExports:false, BoldGrid:true */
 import ColorPreview from './color/preview';
 import { Preview as GenericPreview } from './generic/preview.js';
 import Toggle from './toggle/toggle';
@@ -504,6 +505,52 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		new ToggleValue( 'bgtfw_footer_layouts', '#colophon', layoutFn );
 		new ToggleValue( 'bgtfw_header_top_layouts', '#masthead', layoutFn, calc );
 
+		// Setup hamburger menus.
+		let hamburgerFn = ( index, className ) => {
+			return ( className.match ( /(^|\s)hamburger--\S+/g ) || [] ).join( ' ' );
+		};
+
+		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+
+			// Setup partials.
+			new ToggleValue( `bgtfw_menu_hamburger_${props.theme_location}_toggle`, `#${props.menu_id}`, () => {
+				let id = `nav_menu_instance[${props.args_hmac}]`;
+				if ( wp.customize.selectiveRefresh.partial( id ) ) {
+
+					// before triggering a refresh destroy the instance.
+					$( `#${props.menu_id}` ).smartmenus( 'destroy' );
+					wp.customize.selectiveRefresh.partial( id ).refresh();
+				}
+			} );
+
+			// Setup hamburger menus.
+			new ToggleValue( `bgtfw_menu_hamburger_${props.theme_location}`, `#${props.menu_id}-hamburger`, hamburgerFn );
+
+			// Setup hamburger menu enable/disable.
+			new Toggle( `bgtfw_menu_hamburger_${props.theme_location}_toggle`, ( to ) => {
+
+				// If disabled, ensure the hamburger is forced open, and active state is set.
+				let menu = document.getElementById( `${props.menu_id}-state` );
+				let hamburger = document.getElementById( `${props.menu_id}-hamburger` );
+				if ( ! to ) {
+					if ( ! menu.checked ) {
+						$( menu ).click();
+						hamburger.classList.remove( 'is-active' );
+					}
+				}
+
+				if ( to ) {
+					if ( menu.checked ) {
+						$( menu ).click();
+						hamburger.classList.remove( 'is-active' );
+					}
+				}
+
+				// Toggle hidden classes for display.
+				$( `#${props.menu_id}-hamburger, #${props.menu_id}-state` ).toggleClass( 'hidden', ! to ) && calc();
+			} );
+		}
+
 		new Toggle( 'bgtfw_header_width', calc );
 		new Toggle( 'bgtfw_header_headings_color', () => headingsColorOutput( 'bgtfw_header_headings_color', '#navi-wrap > :not(.bgtfw-widget-row)' ) );
 		new Toggle( 'bgtfw_footer_headings_color', () => headingsColorOutput( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)' ) );
@@ -582,15 +629,30 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				.addClass( 'btn button-secondary' );
 		};
 
-		// When menu partials are refreshed, we need to ensure we update the new container.
-		$( document ).on( 'customize-preview-menu-refreshed', function( e, params ) {
-			if ( ! _.isUndefined( window.BoldGrid ) ) {
-				if ( 'main' === params.wpNavMenuArgs.theme_location ) {
-					if ( ! _.isUndefined( window.BoldGrid.standard_menu_enabled ) ) {
+		/**
+		 * Before displaying the partal content for nav menu items on the page we want to
+		 * destroy the existing instance of our menus tied to the partial because when the
+		 * partial is rendered, we will re-initialize the individual menu, and would no
+		 * longer have reference back to the initial instance referenced.
+		 */
+		api.selectiveRefresh.bind( 'render-partials-response', function( placement ) {
 
-						// Initialize SmartMenu on the updated container and params.
-						window.BoldGrid.standard_menu_enabled.init( params.newContainer );
-					}
+			// Destroy menu instances.
+			if ( ! _.isUndefined( placement.nav_menu_instance_args ) ) {
+				_.each( placement.nav_menu_instance_args, ( instance ) => $( `#${instance.menu_id}` ).smartmenus( 'destroy' ) );
+			}
+		} );
+
+		/**
+		 * When menu partials are refreshed, we need to ensure that we update the new
+		 * container, and initialize a new instance of our menus for proper funcitonality.
+		 */
+		$( document ).on( 'customize-preview-menu-refreshed', function( e, params ) {
+			if ( ! _.isUndefined( BoldGrid ) ) {
+				if ( ! _.isUndefined( BoldGrid.standard_menu_enabled ) ) {
+
+					// Initialize SmartMenu on the updated container and params.
+					BoldGrid.standard_menu_enabled.init( params.newContainer );
 				}
 			}
 		} );

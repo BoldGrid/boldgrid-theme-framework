@@ -95,6 +95,33 @@ class BoldGrid_Framework_Customizer {
 						);
 
 						Kirki::add_section(
+							"bgtfw_menu_items_standard_item_$location",
+							array(
+								'title' => __( 'Standard Display', 'bgtfw' ),
+								'panel' => "bgtfw_menu_items_$location",
+								'capability' => 'edit_theme_options',
+							)
+						);
+
+						Kirki::add_section(
+							"bgtfw_menu_items_hover_item_$location",
+							array(
+								'title' => __( 'Hover Display', 'bgtfw' ),
+								'panel' => "bgtfw_menu_items_$location",
+								'capability' => 'edit_theme_options',
+							)
+						);
+
+						Kirki::add_section(
+							"bgtfw_menu_items_active_item_$location",
+							array(
+								'title' => __( 'Active Item Display', 'bgtfw' ),
+								'panel' => "bgtfw_menu_items_$location",
+								'capability' => 'edit_theme_options',
+							)
+						);
+
+						Kirki::add_section(
 							"bgtfw_menu_items_border_$location",
 							array(
 								'title' => __( 'Border', 'bgtfw' ),

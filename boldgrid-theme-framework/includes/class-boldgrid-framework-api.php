@@ -631,8 +631,12 @@ class BoldGrid {
 
 			// Filter per menu location.
 			$filter = function( $classes, $item, $args ) use( $location ) {
+
+				// Verify location.
 				if ( $args->theme_location === $location ) {
-					if ( empty( $item->menu_item_parent ) ) {
+
+					// Only apply these to top level menu items, active menu items have their own controls.
+					if ( empty( $item->menu_item_parent ) && ! in_array( 'current-menu-item', $classes ) ) {
 						$color = get_theme_mod( "bgtfw_menu_items_border_color_{$location}" );
 						$color = explode( ':', $color );
 						$color = array_shift( $color );
@@ -642,6 +646,11 @@ class BoldGrid {
 							$color = str_replace( '-', '', $color ) . '-border-color';
 						}
 						$classes[] = $color;
+					}
+
+					// Apply to all other menu items that aren't active menu items.
+					if ( ! in_array( 'current-menu-item', $classes ) ) {
+						$classes[] = get_theme_mod( "bgtfw_menu_items_hover_effect_{$location}" );
 					}
 				}
 

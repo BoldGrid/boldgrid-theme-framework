@@ -1072,7 +1072,7 @@ return array(
 			'type' => 'Border',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '#main-menu > li' ),
+					'selectors' => array( '#main-menu > li:not(.current-menu-item)' ),
 				),
 			),
 		),
@@ -1102,7 +1102,7 @@ return array(
 			'type' => 'BorderRadius',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '#main-menu > li' ),
+					'selectors' => array( '#main-menu > li:not(.current-menu-item)' ),
 				),
 			),
 		),
@@ -1121,15 +1121,97 @@ return array(
 				'control' => array(
 					'selectors' => array( '#main-menu > li' ),
 					'linkable' => array(
-						'isLinked' => true,
+						'isLinked' => false,
 					),
 					'sliders' => array(
-						array( 'name' => 'left', 'label' => 'Left', 'cssProperty' => 'margin-left' ),
+						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'right', 'label' => 'Right', 'cssProperty' => 'margin-right' ),
+						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
+						array( 'name' => 'left', 'label' => 'Left', 'cssProperty' => 'margin-left' ),
 					),
 				),
 			),
 		),
 	),
+	'bgtfw_menu_items_hover_color_main' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_menu_items_hover_color_main',
+		'label'       => esc_attr__( 'Primary Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_items_hover_item_main',
+		'default'     => 'color-4',
+		'choices'     => array(
+			'colors'  => $formatted_palette,
+			'size'    => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_menu_items_hover_background_main' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_menu_items_hover_background_main',
+		'label'       => esc_attr__( 'Background Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_items_hover_item_main',
+		'default'     => 'transparent',
+		'choices'     => array(
+			'colors'  => $formatted_palette,
+			'size'    => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_menu_items_hover_effect_main' => array(
+		'type'        => 'radio',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_menu_items_hover_effect_main',
+		'label'       => esc_attr__( 'Hover Effect', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_items_hover_item_main',
+		'default'     => 'hvr-underline-reveal',
+		'choices'     => array(
+
+			/** No Effects */
+			'' => esc_attr__( 'No Hover Effects', 'bgtfw' ),
+
+			/** Background Transitions */
+			'hvr-fade' => esc_attr__( 'Fade', 'bgtfw' ),
+			'hvr-back-pulse' => esc_attr__( 'Back Pulse', 'bgtfw' ),
+			'hvr-sweep-to-right' => esc_attr__( 'Sweep to Right', 'bgtfw' ),
+			'hvr-sweep-to-left' => esc_attr__( 'Sweep to Left', 'bgtfw' ),
+			'hvr-sweep-to-bottom' => esc_attr__( 'Sweep to Bottom', 'bgtfw' ),
+			'hvr-sweep-to-top' => esc_attr__( 'Sweep to Top', 'bgtfw' ),
+			'hvr-bounce-to-right' => esc_attr__( 'Bounce to Right', 'bgtfw' ),
+			'hvr-bounce-to-left' => esc_attr__( 'Bounce to Left', 'bgtfw' ),
+			'hvr-bounce-to-bottom' => esc_attr__( 'Bounce to Bottom', 'bgtfw' ),
+			'hvr-bounce-to-top' => esc_attr__( 'Bounce to Top', 'bgtfw' ),
+			'hvr-radial-in' => esc_attr__( 'Radial In', 'bgtfw' ),
+			'hvr-radial-out' => esc_attr__( 'Radial Out', 'bgtfw' ),
+			'hvr-rectangle-in' => esc_attr__( 'Rectangle In', 'bgtfw' ),
+			'hvr-rectangle-out' => esc_attr__( 'Rectangle Out', 'bgtfw' ),
+			'hvr-shutter-in-horizontal' => esc_attr__( 'Shutter In Horizontal', 'bgtfw' ),
+			'hvr-shutter-in-vertical' => esc_attr__( 'Shutter In Vertical', 'bgtfw' ),
+			'hvr-shutter-out-horizontal' => esc_attr__( 'Shutter Out Horizontal', 'bgtfw' ),
+			'hvr-shutter-out-vertical' => esc_attr__( 'Shutter Out Vertical', 'bgtfw' ),
+
+			/** Border Effects */
+			'hvr-border-fade' => esc_attr__( 'Border Fade', 'bgtfw' ),
+			'hvr-hollow' => esc_attr__( 'Hollow', 'bgtfw' ),
+			'hvr-trim' => esc_attr__( 'Trim', 'bgtfw' ),
+			'hvr-ripple-out' => esc_attr__( 'Ripple Out', 'bgtfw' ),
+			'hvr-ripple-in' => esc_attr__( 'Ripple In', 'bgtfw' ),
+			'hvr-outline-out' => esc_attr__( 'Outline Out', 'bgtfw' ),
+			'hvr-outline-in' => esc_attr__( 'Outline In', 'bgtfw' ),
+			'hvr-round-corners' => esc_attr__( 'Round Corners', 'bgtfw' ),
+			'hvr-underline-from-left' => esc_attr__( 'Underline From Left', 'bgtfw' ),
+			'hvr-underline-from-center' => esc_attr__( 'Underline From Center', 'bgtfw' ),
+			'hvr-underline-from-right' => esc_attr__( 'Underline From Right', 'bgtfw' ),
+			'hvr-reveal' => esc_attr__( 'Reveal', 'bgtfw' ),
+			'hvr-underline-reveal' => esc_attr__( 'Underline Reveal', 'bgtfw' ),
+			'hvr-overline-reveal' => esc_attr__( 'Overline Reveal', 'bgtfw' ),
+			'hvr-overline-from-left' => esc_attr__( 'Overline From Left', 'bgtfw' ),
+			'hvr-overline-from-center' => esc_attr__( 'Overline From Center', 'bgtfw' ),
+			'hvr-overline-from-right' => esc_attr__( 'Overline From Right', 'bgtfw' ),
+		),
+	),
+
+
 	/*** End: Dynamic Menu Controls ***/
 );

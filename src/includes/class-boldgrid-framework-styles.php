@@ -184,6 +184,34 @@ class BoldGrid_Framework_Styles {
 	}
 
 	/**
+	 * Adds custom CSS for hamburger menu locations.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $css CSS string being filtered.
+	 *
+	 * @return string $css Modified CSS to add to front end.
+	 */
+	public function hover_css( $css = '' ) {
+		$menus = get_registered_nav_menus();
+
+		foreach ( $menus as $location => $description ) {
+			$color = get_theme_mod( "bgtfw_menu_items_hover_color_{$location}" );
+			$color = explode( ':', $color );
+			$color = array_pop( $color );
+			$text_color = 'white';
+			$background_color = get_theme_mod( "bgtfw_menu_items_hover_background_{$location}" );
+			$background_color = explode( ':', $background_color );
+			$background_color = array_pop( $background_color );
+
+			$menu_id = "#{$location}-menu";
+
+			$css .= require_once $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php';
+		}
+		//var_dump( $css ); die;
+		return $css;
+	}
+	/**
 	 * Enqueue the styles for our BoldGrid Theme.
 	 *
 	 * @since     1.0.0
@@ -244,6 +272,16 @@ class BoldGrid_Framework_Styles {
 		wp_add_inline_style( 'bgtfw-hamburgers', $this->hamburgers_css() );
 
 		wp_enqueue_style( 'bgtfw-hamburgers' );
+
+		wp_register_style(
+			'hover.css',
+			$this->configs['framework']['css_dir'] . 'hover.css/hover' . str_replace( '.', '-', $suffix ) . '.css',
+			array( 'boldgrid-theme-framework' ),
+			$this->configs['version']
+		);
+
+		wp_add_inline_style( 'hover.css', $this->hover_css() );
+		wp_enqueue_style( 'hover.css' );
 
 		/* Component Styles */
 		wp_enqueue_style(

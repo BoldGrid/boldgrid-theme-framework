@@ -4,6 +4,7 @@ import { Padding } from '@boldgrid/controls/src/controls/padding';
 import { BoxShadow } from '@boldgrid/controls/src/controls/box-shadow';
 import { Border } from '@boldgrid/controls/src/controls/border';
 import { MultiSlider } from '@boldgrid/controls/src/controls/multi-slider';
+import { PaletteSelector } from '../color/palette-selector';
 import '../../../scss/customizer/controls/_generic.scss';
 
 var $ = window.jQuery;
@@ -124,6 +125,41 @@ export class Control {
 			wpControl.setting.set( settings );
 		}, 50 );
 
+		this._bindBorderColor( wpControl, bgControl );
+
 		bgControl.events.on( 'change', throttled );
+	}
+
+	/**
+	 * If this is a border control bind the color control to sync add the color.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  {object} wpControl WordPress Control.
+	 * @param  {object} bgControl BoldGrid Control.
+	 */
+	_bindBorderColor( wpControl, bgControl ) {
+		let colorControl = wp.customize.control( wpControl.id + '_color' );
+
+		if ( 'border-width' === bgControl.controlOptions.control.name && colorControl ) {
+
+			let toggleVisibility = ( settings ) => {
+				return ! settings.type ? colorControl.deactivate() : colorControl.activate();
+			};
+
+			// When the border style/width changes add color.
+			bgControl.events.on( 'change', ( settings ) => {
+				let valueValue = new PaletteSelector().getColor( colorControl.setting() ),
+					colorCSS = bgControl.controlOptions.control.selectors.join( ',' ) +
+						'{border-color:' + valueValue + '}';
+
+				settings.css += colorCSS;
+
+				toggleVisibility( settings );
+			} );
+
+			// When the border color changes, trigger bgcontrol change.
+			colorControl.setting.bind( () => bgControl.events.emit( 'change', bgControl.getSettings() ) );
+		}
 	}
 }

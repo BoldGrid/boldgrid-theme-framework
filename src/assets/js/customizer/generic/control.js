@@ -103,7 +103,9 @@ export class Control {
 					$input = $el.find( 'input' );
 
 				$input.after( bgControl.render() );
-				$input.remove();
+
+				// This dummy input removes orginal handlers, and serves as a honeypot for DOM queries.
+				$input.replaceWith( $( '<input type="text">' ).hide() );
 			} );
 		} );
 	}
@@ -117,9 +119,11 @@ export class Control {
 	 * @param  {object} bgControl BoldGrid control instance.
 	 */
 	_bindChangeEvent( wpControl, bgControl ) {
-		bgControl.events.on( 'change', ( settings ) => {
+		let throttled = _.throttle( ( settings ) => {
 			settings.values = JSON.stringify( settings.values );
 			wpControl.setting.set( settings );
-		} );
+		}, 50 );
+
+		bgControl.events.on( 'change', throttled );
 	}
 }

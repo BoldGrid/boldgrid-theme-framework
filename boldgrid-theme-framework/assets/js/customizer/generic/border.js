@@ -66,8 +66,8 @@ export class Border extends BaseBorder {
 
 		if ( this.colorControl ) {
 			let valueValue = this.paletteSelector.getColor( this.colorControl.setting() ),
-			colorCSS = this.controlOptions.control.selectors.join( ',' ) +
-				'{border-color:' + valueValue + '}';
+				colorCSS = this.controlOptions.control.selectors.join( ',' ) +
+					'{border-color:' + valueValue + '}';
 
 			settings.css += colorCSS;
 		}

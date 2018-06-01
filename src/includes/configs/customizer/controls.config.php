@@ -107,7 +107,7 @@ return array(
 			'type' => 'Padding',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.site-header' ),
+					'selectors' => array( '.site-header header' ),
 					'linkable' => array(
 						'isLinked' => false,
 					),
@@ -127,7 +127,7 @@ return array(
 			'type' => 'Border',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.site-header' ),
+					'selectors' => array( '.site-header header' ),
 				),
 			),
 		),
@@ -158,7 +158,7 @@ return array(
 			'type' => 'BoxShadow',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.site-header' ),
+					'selectors' => array( '.site-header header' ),
 				),
 			),
 		),
@@ -175,7 +175,7 @@ return array(
 			'type' => 'BorderRadius',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.site-header' ),
+					'selectors' => array( '.site-header header', '.wp-custom-header' ),
 				),
 			),
 		),

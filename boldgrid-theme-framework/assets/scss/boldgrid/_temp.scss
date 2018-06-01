@@ -259,9 +259,16 @@
 		margin-top: -1em;
 	}
 }
+
+/** Allow box shadow display **/
+.site-header {
+	z-index: 1;
+}
+
 .wp-custom-header {
 	position: absolute;
 	overflow: hidden;
+	max-width: 100%;
 	/** Fixes bug with video background adding gaps on scroll with object-fit cover on chrome. **/
 	width: 100%;
 	height: calc( 100% + 2px );
@@ -273,6 +280,12 @@
 		z-index: 0;
 	}
 }
+
+/** Contains custom header image width **/
+.custom-header-media {
+	position: relative;
+}
+
 .wp-custom-header video {
 	object-fit: cover;
 	width: 100%;

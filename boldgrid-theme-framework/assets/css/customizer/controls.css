@@ -1891,3 +1891,10 @@ span.section-title-extended {
   font-variant: small-caps;
   font-weight: 400;
 }
+
+/*--------------------------------------------------------------
+# Section Orginization
+--------------------------------------------------------------*/
+#customize-theme-controls .control-section#accordion-section-boldgrid_footer_margin_section, #customize-theme-controls .control-section#accordion-section-boldgrid_header_margin_section {
+  border-top: 20px solid rgba(0, 0, 0, 0.1);
+}

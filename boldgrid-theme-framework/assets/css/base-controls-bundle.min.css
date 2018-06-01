@@ -285,6 +285,9 @@
 .boldgrid-control.slider-control .slider {
   background-color: white; }
 
+.boldgrid-control.slider-control .slider .ui-slider-handle {
+  transform: translateY(-50%) translateX(-50%); }
+
 .boldgrid-control .pluto-color-control + .iris-picker {
   min-width: 280px; }
 

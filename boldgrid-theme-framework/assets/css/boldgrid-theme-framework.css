@@ -4183,7 +4183,6 @@ footer .bgtfw-widget-row {
   height: 100%;
   overflow: hidden;
   padding: 0;
-  position: relative;
 }
 
 /**
@@ -4204,25 +4203,11 @@ footer .bgtfw-widget-row {
   width: 177.77777778vh;
 }
 
-.has-youtube-header .custom-header-media {
-  position: absolute;
-  top: auto;
-  left: 0;
-  width: 100%;
-}
-
 @media only screen and (min-width: 768px) {
   .has-youtube-header #navi-wrap {
     display: block;
     flex-wrap: wrap;
-    position: absolute;
     align-self: center;
-  }
-  .has-youtube-header .custom-header-media {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: auto;
   }
   .header-left .has-youtube-header .custom-header-media, .header-right .has-youtube-header .custom-header-media {
     height: 100%;
@@ -4299,11 +4284,6 @@ footer .bgtfw-widget-row {
   z-index: 0;
 }
 
-/** Contains custom header image width **/
-.custom-header-media {
-  position: relative;
-}
-
 .wp-custom-header video {
   object-fit: cover;
   width: 100%;
@@ -4319,6 +4299,18 @@ footer .bgtfw-widget-row {
   height: 100%;
   max-width: 100%;
   object-fit: cover;
+}
+
+.header {
+  position: relative;
+}
+
+.header .wp-custom-header {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: auto !important;
+  max-height: 100vh;
 }
 
 /* Site Branding */

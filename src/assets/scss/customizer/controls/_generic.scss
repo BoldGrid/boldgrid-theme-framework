@@ -7,6 +7,10 @@
 	.slider {
 		background-color: white;
 	}
+
+	.slider .ui-slider-handle {
+		transform: translateY(-50%) translateX(-50%);
+	}
 }
 
 .boldgrid-control .pluto-color-control + .iris-picker {

@@ -1112,6 +1112,15 @@
   content: "\f109";
 }
 
+#sub-accordion-panel-bgtfw_design_panel > li#accordion-panel-bgtfw_menus_panel > h3:before {
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f333";
+}
+
 #sub-accordion-panel-bgtfw_design_panel > li#accordion-section-static_front_page > h3:before {
   content: "\f102";
 }

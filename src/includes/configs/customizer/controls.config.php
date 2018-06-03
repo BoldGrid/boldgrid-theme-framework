@@ -107,7 +107,7 @@ return array(
 			'type' => 'Padding',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.site-header' ),
+					'selectors' => array( '.site-header header' ),
 					'linkable' => array(
 						'isLinked' => false,
 					),
@@ -127,10 +127,24 @@ return array(
 			'type' => 'Border',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.site-header' ),
+					'selectors' => array( '.site-header header' ),
 				),
 			),
 		),
+	),
+	'bgtfw_header_border_color' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_header_border_color',
+		'label'       => esc_attr__( 'Border Color', 'bgtfw' ),
+		'section'     => 'boldgrid_header_border_section',
+		'priority'    => 20,
+		'default'     => 'color-1',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_header_shadow' => array(
 		'type'        => 'kirki-generic',
@@ -144,7 +158,7 @@ return array(
 			'type' => 'BoxShadow',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.site-header' ),
+					'selectors' => array( '.site-header header' ),
 				),
 			),
 		),
@@ -161,7 +175,7 @@ return array(
 			'type' => 'BorderRadius',
 			'settings' => array(
 				'control' => array(
-					'selectors' => array( '.site-header' ),
+					'selectors' => array( '.site-header header', '.wp-custom-header' ),
 				),
 			),
 		),
@@ -229,6 +243,20 @@ return array(
 				),
 			),
 		),
+	),
+	'bgtfw_footer_border_color' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_footer_border_color',
+		'label'       => esc_attr__( 'Border Color', 'bgtfw' ),
+		'section'     => 'boldgrid_footer_border_section',
+		'priority'    => 20,
+		'default'     => 'color-1',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_footer_shadow' => array(
 		'type'        => 'kirki-generic',

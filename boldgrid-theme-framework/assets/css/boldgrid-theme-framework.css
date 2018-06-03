@@ -4183,7 +4183,6 @@ footer .bgtfw-widget-row {
   height: 100%;
   overflow: hidden;
   padding: 0;
-  position: relative;
 }
 
 /**
@@ -4204,31 +4203,14 @@ footer .bgtfw-widget-row {
   width: 177.77777778vh;
 }
 
-.has-youtube-header .custom-header-media {
-  position: absolute;
-  top: auto;
-  left: 0;
-  width: 100%;
-}
-
 @media only screen and (min-width: 768px) {
   .has-youtube-header #navi-wrap {
     display: block;
     flex-wrap: wrap;
-    position: absolute;
     align-self: center;
-  }
-  .has-youtube-header .custom-header-media {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: auto;
   }
   .header-left .has-youtube-header .custom-header-media, .header-right .has-youtube-header .custom-header-media {
     height: 100%;
-  }
-  .header-left.header-fixed #wp-custom-header, .header-right.header-fixed #wp-custom-header {
-    position: fixed;
   }
 }
 
@@ -4280,9 +4262,15 @@ footer .bgtfw-widget-row {
   }
 }
 
+/** Allow box shadow display **/
+.site-header {
+  z-index: 1;
+}
+
 .wp-custom-header {
   position: absolute;
   overflow: hidden;
+  max-width: 100%;
   /** Fixes bug with video background adding gaps on scroll with object-fit cover on chrome. **/
   width: 100%;
   height: calc( 100% + 2px);
@@ -4311,6 +4299,18 @@ footer .bgtfw-widget-row {
   height: 100%;
   max-width: 100%;
   object-fit: cover;
+}
+
+.header {
+  position: relative;
+}
+
+.header .wp-custom-header {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: auto !important;
+  max-height: 100vh;
 }
 
 /* Site Branding */

@@ -2,7 +2,7 @@ import { BorderRadius } from '@boldgrid/controls/src/controls/border-radius';
 import { Margin } from '@boldgrid/controls/src/controls/margin';
 import { Padding } from '@boldgrid/controls/src/controls/padding';
 import { BoxShadow } from '@boldgrid/controls/src/controls/box-shadow';
-import { Border } from '@boldgrid/controls/src/controls/border';
+import { Border } from './border';
 import { MultiSlider } from '@boldgrid/controls/src/controls/multi-slider';
 import '../../../scss/customizer/controls/_generic.scss';
 
@@ -58,7 +58,7 @@ export class Control {
 			controlSettings = wpControl.params.choices.settings || {};
 
 		this._setDefaults( wpControl, controlSettings );
-		bgControl = new this.classes[ wpControl.params.choices.type ]( controlSettings );
+		bgControl = new this.classes[ wpControl.params.choices.type ]( controlSettings, wpControl );
 
 		this._bindRender( wpControl, bgControl );
 		this._bindChangeEvent( wpControl, bgControl );

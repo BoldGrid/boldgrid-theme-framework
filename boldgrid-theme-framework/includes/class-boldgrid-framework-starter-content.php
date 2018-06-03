@@ -250,6 +250,7 @@ class BoldGrid_Framework_Starter_Content {
 	public function dynamic_theme_mod_filter() {
 		global $boldgrid_theme_framework;
 		$config = $boldgrid_theme_framework->get_configs();
+		$config = $this->set_configs( $config );
 
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
 			$settings = $control['settings'];

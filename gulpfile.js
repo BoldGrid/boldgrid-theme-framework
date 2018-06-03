@@ -438,15 +438,15 @@ gulp.task('hoverColors', function() {
       withoutMonochrome: false, // set to true to remove rules that only have grey, black, or white colors
       inverse: false, // set to true to remove colors from rules
     }),
-    require('postcss-prefix-selector')({ prefix: '\' . $menu_id . \'' })
+    require('postcss-prefix-selector')({ prefix: '%1$s' })
   ];
   return gulp.src(config.node_modules + '/hover.css/css/hover.css')
       .pipe(cssnano({
         discardComments: { removeAll: true }}))
       .pipe(postcss(plugins))
-      .pipe(replace('#fff', '\' . $text_color . \''))
-      .pipe(replace('#2098d1', '\' . $color . \''))
-      .pipe(replace('#e1e1e1', '\' . $background_color . \''))
+      .pipe(replace('#fff', '%2$s'))
+      .pipe(replace('#2098d1', '%3$s'))
+      .pipe(replace('#e1e1e1', '%4$s'))
       .pipe(inject.wrap('<?php \nreturn \'', '\';'))
       .pipe(rename({
         suffix: '-colors-only',
@@ -466,6 +466,7 @@ gulp.task('build', function (cb) {
     'images',
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
+    'hoverColors',
     cb
   );
 });
@@ -479,6 +480,7 @@ gulp.task('qbuild', function (cb) {
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
+    'hoverColors',
     cb
   );
 });

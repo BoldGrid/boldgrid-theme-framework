@@ -1,4 +1,4 @@
-/* global _wpCustomizePreviewNavMenusExports:false, _typographyOptions:true */
+/* global _wpCustomizePreviewNavMenusExports:false, _typographyOptions:true, BOLDGRID:true */
 import PaletteSelector from './palette-selector';
 import { Preview as PreviewUtility } from '../preview';
 
@@ -167,6 +167,26 @@ export class Preview  {
 	}
 
 	/**
+	 *
+	 * @param {String} to Thememod's color value.
+	 * @param {String} menuId Menu ID for nav menu instance.
+	 */
+	getHoverCSS( location ) {
+
+		const color = new PaletteSelector().getColor( wp.customize( `bgtfw_menu_items_hover_color_${location}` )() );
+		const backgroundColor = new PaletteSelector().getColor( wp.customize( `bgtfw_menu_items_hover_background_${location}` )() );
+		const textColor = 'white';
+		let css = BOLDGRID.CUSTOMIZER.data.hoverColors;
+
+		css = css.replace( /%1\$s/g, `#${location}-menu` );
+		css = css.replace( /%2\$s/g, textColor );
+		css = css.replace( /%3\$s/g, color );
+		css = css.replace( /%4\$s/g, backgroundColor );
+
+		return css;
+	}
+
+	/**
 	 * Set the hamburger colors for menus.
 	 *
 	 * @since 2.0.0
@@ -176,6 +196,17 @@ export class Preview  {
 		let to = wp.customize( `bgtfw_menu_hamburger_${location}_color` )();
 		let css = this.getHamburgerCSS( to, menuId );
 		this.previewUtility.updateDynamicStyles( `bgtfw_menu_hamburger_${location}_color`, css );
+	}
+
+	/**
+	 * Set the hamburger colors for menus.
+	 *
+	 * @since 2.0.0
+	 * @param {Object} props Properties assigned for a nav menu instance.
+	 */
+	setHoverColors( location ) {
+		let css = this.getHoverCSS( location );
+		this.previewUtility.updateDynamicStyles( `hover-${location}-inline-css`, css );
 	}
 
 	/**
@@ -232,6 +263,12 @@ export class Preview  {
 
 			// Set Defaults.
 			this.setHamburgerColors( props.theme_location, props.menu_id );
+
+			// Set Defaults.
+			this.setHoverColors( props.theme_location );
+
+			// Setup event handlers.
+			this._bindHoverColors( props.theme_location );
 
 			// Setup event handlers.
 			this._bindHamburgerColors( props.theme_location, props.menu_id );
@@ -301,6 +338,19 @@ export class Preview  {
 		} );
 	}
 
+	/**
+	 * Bind the change events for hamburger colors
+	 *
+	 * @since 2.0.0
+	 */
+	_bindHoverColors( location ) {
+		wp.customize( `bgtfw_menu_items_hover_color_${location}`, ( value ) => {
+			value.bind( () => this.setHoverColors( location ) );
+		} );
+		wp.customize( `bgtfw_menu_items_hover_background_${location}`, ( value ) => {
+			value.bind( () => this.setHoverColors( location ) );
+		} );
+	}
 }
 
 export default Preview;

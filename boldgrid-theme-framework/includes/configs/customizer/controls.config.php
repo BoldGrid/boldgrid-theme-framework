@@ -1160,7 +1160,7 @@ return array(
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_menu_items_hover_effect_main' => array(
-		'type'        => 'radio',
+		'type'        => 'select',
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_menu_items_hover_effect_main',
 		'label'       => esc_attr__( 'Hover Effect', 'bgtfw' ),
@@ -1173,7 +1173,15 @@ return array(
 
 			/** Background Transitions */
 			'hvr-fade' => esc_attr__( 'Fade', 'bgtfw' ),
-			'hvr-back-pulse' => esc_attr__( 'Back Pulse', 'bgtfw' ),
+
+			/**
+			 * Currently this pulses to default color in RGBA. Color doesn't look
+			 * like it gets extracted out since it's happening in a transition.
+			 *
+			 * Disabling this for now.
+			 *
+			 * 'hvr-back-pulse' => esc_attr__( 'Back Pulse', 'bgtfw' ),
+			 */
 			'hvr-sweep-to-right' => esc_attr__( 'Sweep to Right', 'bgtfw' ),
 			'hvr-sweep-to-left' => esc_attr__( 'Sweep to Left', 'bgtfw' ),
 			'hvr-sweep-to-bottom' => esc_attr__( 'Sweep to Bottom', 'bgtfw' ),

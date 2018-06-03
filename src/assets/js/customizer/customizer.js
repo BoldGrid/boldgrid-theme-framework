@@ -510,6 +510,11 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			return ( className.match ( /(^|\s)hamburger--\S+/g ) || [] ).join( ' ' );
 		};
 
+		let hoverFn = ( index, className ) => {
+			return ( className.match ( /(^|\s)hvr-\S+/g ) || [] ).join( ' ' );
+		};
+
+		// Setup menu controls.
 		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
 
 			// Setup partials.
@@ -549,6 +554,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				// Toggle hidden classes for display.
 				$( `#${props.menu_id}-hamburger, #${props.menu_id}-state` ).toggleClass( 'hidden', ! to ) && calc();
 			} );
+
+			// Bind menu items hover effects.
+			new ToggleValue( `bgtfw_menu_items_hover_effect_${props.theme_location}`, `#${props.menu_id} > li:not(.current-menu-item)`, hoverFn );
 		}
 
 		new Toggle( 'bgtfw_header_width', calc );

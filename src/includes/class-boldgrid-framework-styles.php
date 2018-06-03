@@ -183,6 +183,27 @@ class BoldGrid_Framework_Styles {
 		return $css;
 	}
 
+	public function hover_generate( $location = '' ) {
+		if ( empty( $location ) ) {
+			$location = 'main';
+		}
+
+		$color = get_theme_mod( "bgtfw_menu_items_hover_color_{$location}" );
+		$color = explode( ':', $color );
+		$color = array_pop( $color );
+		$text_color = 'white';
+		$background_color = get_theme_mod( "bgtfw_menu_items_hover_background_{$location}" );
+		$background_color = explode( ':', $background_color );
+		$background_color = array_pop( $background_color );
+
+		$menu_id = "#{$location}-menu";
+
+		$css = include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php';
+		$css = sprintf( $css, $menu_id, $text_color, $color, $background_color );
+
+		return $css;
+	}
+
 	/**
 	 * Adds custom CSS for hamburger menu locations.
 	 *
@@ -192,25 +213,16 @@ class BoldGrid_Framework_Styles {
 	 *
 	 * @return string $css Modified CSS to add to front end.
 	 */
-	public function hover_css( $css = '' ) {
+	public function hover_css() {
+		global $boldgrid_theme_framework;
+		$config = $boldgrid_theme_framework->get_configs();
+		$generic = new Boldgrid_Framework_Customizer_Generic( $config );
 		$menus = get_registered_nav_menus();
-
 		foreach ( $menus as $location => $description ) {
-			$color = get_theme_mod( "bgtfw_menu_items_hover_color_{$location}" );
-			$color = explode( ':', $color );
-			$color = array_pop( $color );
-			$text_color = 'white';
-			$background_color = get_theme_mod( "bgtfw_menu_items_hover_background_{$location}" );
-			$background_color = explode( ':', $background_color );
-			$background_color = array_pop( $background_color );
-
-			$menu_id = "#{$location}-menu";
-
-			$css .= require_once $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php';
+			$generic->add_inline_style( "hover-{$location}", $this->hover_generate( $location ) );
 		}
-		//var_dump( $css ); die;
-		return $css;
 	}
+
 	/**
 	 * Enqueue the styles for our BoldGrid Theme.
 	 *
@@ -280,8 +292,9 @@ class BoldGrid_Framework_Styles {
 			$this->configs['version']
 		);
 
-		wp_add_inline_style( 'hover.css', $this->hover_css() );
 		wp_enqueue_style( 'hover.css' );
+
+		$this->hover_css();
 
 		/* Component Styles */
 		wp_enqueue_style(

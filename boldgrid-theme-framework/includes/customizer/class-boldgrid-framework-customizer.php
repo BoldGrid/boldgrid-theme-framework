@@ -337,6 +337,7 @@ class BoldGrid_Framework_Customizer {
 					],
 				],
 			],
+			'hoverColors' => include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php',
 		];
 
 		wp_localize_script( 'bgtfw-customizer-base-controls', $initialize, $data );
@@ -365,6 +366,18 @@ class BoldGrid_Framework_Customizer {
 			$this->configs['version'],
 			true
 		);
+
+		$initialize = 'BOLDGRID = BOLDGRID || {};';
+		$initialize .= 'BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};';
+		$initialize .= 'BOLDGRID.CUSTOMIZER.data';
+
+		$data = [
+			'customizerOptions' => $this->configs['customizer-options'],
+			'hoverColors' => include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php',
+		];
+
+		wp_localize_script( 'boldgrid-theme-customizer', $initialize, $data );
+
 
 		wp_register_script(
 			'bgtfw-customizer-layout-blog-blog-page-live-preview',

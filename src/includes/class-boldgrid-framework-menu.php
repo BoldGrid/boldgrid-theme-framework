@@ -163,6 +163,8 @@ class Boldgrid_Framework_Menu {
 
 				// Allow hamburgers at all menu locations.
 				$this->add_hamburger( $menu );
+				$menu = $this->add_menu_border( $menu );
+				$menu = $this->add_menu_bg( $menu );
 
 				/*
 				 * IF we're in the customizer and edit buttons are enabled:
@@ -241,6 +243,8 @@ class Boldgrid_Framework_Menu {
 	 * Add hamburger menu to menu location.
 	 *
 	 * @since 2.0.0
+	 *
+	 * @param array $menu Menu location settings.
 	 */
 	public function add_hamburger( $menu ) {
 		$hamburger = get_theme_mod( 'bgtfw_menu_hamburger_' . $menu['theme_location'] );
@@ -256,6 +260,69 @@ class Boldgrid_Framework_Menu {
 			<span class="screen-reader-text"><?php esc_html_e( 'Toggle menu visibility.', 'bgtfw' ); ?></span>
 		</label>
 		<?php
+	}
+
+	/**
+	 * Adds appropriate border class to register menu's UL elements.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $menu Menu location settings.
+	 *
+	 * @return array $menu Modfied menu location settings.
+	 */
+	public function add_menu_border( $menu ) {
+		$color = get_theme_mod( 'bgtfw_menu_border_color_' . $menu['theme_location'] );
+		$color = explode( ':', $color );
+		$color = array_shift( $color );
+
+		// Get array of current menu classes.
+		$classes = explode( ' ', $menu['menu_class'] );
+
+		if ( ! empty( $color ) ) {
+			if ( strpos( $color, 'neutral' ) !== false ) {
+				$classes[] = $color . '-border-color';
+			} else {
+				$classes[] = str_replace( '-', '', $color ) . '-border-color';
+			}
+		}
+
+		// Convert back to string.
+		$menu['menu_class'] = implode( ' ', $classes );
+
+		return $menu;
+	}
+
+
+	/**
+	 * Adds appropriate background class to register menu's UL elements.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $menu Menu location settings.
+	 *
+	 * @return array $menu Modfied menu location settings.
+	 */
+	public function add_menu_bg( $menu ) {
+		$color = get_theme_mod( 'bgtfw_menu_background_' . $menu['theme_location'] );
+		$color = explode( ':', $color );
+		$color = array_shift( $color );
+
+		// Get array of current menu classes.
+		$classes = explode( ' ', $menu['menu_class'] );
+
+		if ( ! empty( $color ) ) {
+			if ( strpos( $color, 'neutral' ) !== false ) {
+				$classes[] = $color . '-background-color';
+			} else {
+				$classes[] = str_replace( '-', '', $color ) . '-background-color';
+			}
+		}
+
+		// Convert back to string.
+		$menu['menu_class'] = implode( ' ', $classes );
+
+		return $menu;
 	}
 
 	/**

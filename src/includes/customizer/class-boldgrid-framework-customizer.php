@@ -80,6 +80,7 @@ class BoldGrid_Framework_Customizer {
 								'title' => __( 'Menu Items', 'bgtfw' ),
 								'panel' => "bgtfw_menu_location_$location",
 								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-networking',
 							)
 						);
 
@@ -91,6 +92,46 @@ class BoldGrid_Framework_Customizer {
 								'title' => __( 'Hamburger Style', 'bgtfw' ),
 								'panel' => "bgtfw_menu_location_$location",
 								'capability' => 'edit_theme_options',
+							)
+						);
+
+						Kirki::add_section(
+							"bgtfw_menu_background_$location",
+							array(
+								'title' => __( 'Background', 'bgtfw' ),
+								'panel' => "bgtfw_menu_location_$location",
+								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-format-image',
+							)
+						);
+
+						Kirki::add_section(
+							"bgtfw_menu_border_$location",
+							array(
+								'title' => __( 'Border', 'bgtfw' ),
+								'panel' => "bgtfw_menu_location_$location",
+								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-grid-view',
+							)
+						);
+
+						Kirki::add_section(
+							"bgtfw_menu_margin_$location",
+							array(
+								'title' => __( 'Margin', 'bgtfw' ),
+								'panel' => "bgtfw_menu_location_$location",
+								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-editor-outdent',
+							)
+						);
+
+						Kirki::add_section(
+							"bgtfw_menu_padding_$location",
+							array(
+								'title' => __( 'Padding', 'bgtfw' ),
+								'panel' => "bgtfw_menu_location_$location",
+								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-editor-indent',
 							)
 						);
 

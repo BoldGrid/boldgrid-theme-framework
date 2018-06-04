@@ -1088,6 +1088,148 @@ return array(
 		'default' => 'hamburger--collapse',
 		'section' => 'bgtfw_menu_hamburgers_main',
 	),
+
+	/* Start: Main Menu Background Controls */
+	'bgtfw_menu_background_main' => array(
+		'type'            => 'bgtfw-palette-selector',
+		'transport'       => 'postMessage',
+		'settings'        => 'bgtfw_menu_background_main',
+		'label'           => esc_attr__( 'Background Color', 'bgtfw' ),
+		'section'         => 'bgtfw_menu_background_main',
+		'default'         => 'transparent',
+		'choices'         => array(
+			'colors'      => $formatted_palette,
+			'size'        => $palette->get_palette_size( $formatted_palette, true ),
+			'transparent' => true,
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+
+	/* Start: Main Menu Spacing Controls */
+	'bgtfw_menu_margin_main' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_menu_margin_main',
+		'settings'    => 'bgtfw_menu_margin_main',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Margin',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#main-menu' ),
+					'linkable' => array(
+						'isLinked' => false,
+					),
+					'sliders' => array(
+						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
+						array( 'name' => 'right', 'label' => 'Right', 'cssProperty' => 'margin-right' ),
+						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
+						array( 'name' => 'left', 'label' => 'Left', 'cssProperty' => 'margin-left' ),
+					),
+				),
+				'slider' => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'em' => array(
+						'min' => 0,
+						'max' => 5,
+					),
+				),
+			),
+		),
+	),
+	'bgtfw_menu_padding_main' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_menu_padding_main',
+		'settings'    => 'bgtfw_menu_padding_main',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Padding',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#main-menu' ),
+					'linkable' => array(
+						'isLinked' => false,
+					),
+					'sliders' => array(
+						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'padding-top' ),
+						array( 'name' => 'right', 'label' => 'Right', 'cssProperty' => 'padding-right' ),
+						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'padding-bottom' ),
+						array( 'name' => 'left', 'label' => 'Left', 'cssProperty' => 'padding-left' ),
+					),
+				),
+				'slider' => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'em' => array(
+						'min' => 0,
+						'max' => 5,
+					),
+				),
+			),
+		),
+	),
+	/* End: Main Menu Spacing Controls */
+
+	/* Start: Main Menu Border */
+	'bgtfw_menu_border_main' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_menu_border_main',
+		'settings'    => 'bgtfw_menu_border_main',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Border',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#main-menu' ),
+				),
+			),
+		),
+	),
+	'bgtfw_menu_border_color_main' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_menu_border_color_main',
+		'label'       => esc_attr__( 'Border Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_border_main',
+		'default'     => 'color-3',
+		'choices'     => array(
+			'colors'  => $formatted_palette,
+			'size'    => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_menu_border_radius_main' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_menu_border_main',
+		'settings'    => 'bgtfw_menu_border_radius_main',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'BorderRadius',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#main-menu' ),
+				),
+			),
+		),
+	),
+
+	/* End: Main Menu Border */
 	'bgtfw_menu_items_border_main' => array(
 		'type'        => 'kirki-generic',
 		'transport'   => 'postMessage',

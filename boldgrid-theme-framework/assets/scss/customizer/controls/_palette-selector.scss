@@ -64,6 +64,15 @@
 			-moz-user-select: none; /* Firefox */
 			-ms-user-select: none; /* IE10+/Edge */
 			user-select: none; /* Standard */
+			&.dashicons.dashicons-editor-removeformatting:before {
+				color: #555d66;
+				content: "\f218";
+				display: flex;
+				font-size: 1.2em;
+				align-items: center;
+				justify-content: center;
+				height: 100%;
+			}
 		}
 
 		&.round {
@@ -94,6 +103,15 @@
 			-moz-user-select: none; /* Firefox */
 			-ms-user-select: none; /* IE10+/Edge */
 			user-select: none; /* Standard */
+			&.dashicons.dashicons-editor-removeformatting:before {
+				color: black;
+				content: "\f218";
+				display: flex;
+				font-size: 1.6em;
+				align-items: center;
+				justify-content: center;
+				height: 100%;
+			}
 		}
 
 		&.with-margin {

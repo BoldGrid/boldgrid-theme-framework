@@ -1505,6 +1505,16 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
   /* Standard */
 }
 
+.customize-control-bgtfw-palette-selector .colors-wrapper .color-palette-color.dashicons.dashicons-editor-removeformatting:before {
+  color: #555d66;
+  content: "\f218";
+  display: flex;
+  font-size: 1.2em;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 .customize-control-bgtfw-palette-selector .colors-wrapper.round label {
   padding: 3px;
 }
@@ -1533,6 +1543,16 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
   /* IE10+/Edge */
   user-select: none;
   /* Standard */
+}
+
+.customize-control-bgtfw-palette-selector .colors-wrapper input:checked + label .color-palette-color.dashicons.dashicons-editor-removeformatting:before {
+  color: black;
+  content: "\f218";
+  display: flex;
+  font-size: 1.6em;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .customize-control-bgtfw-palette-selector .colors-wrapper.with-margin label {

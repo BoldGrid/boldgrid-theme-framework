@@ -486,16 +486,21 @@ class Boldgrid_Framework_Compile_Colors {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param array $palette The active palette to get the size of.
+	 * @param array $palette     The active palette to get the size of.
+	 * @param bool  $transparent Palette selector allows transparency option?
 	 *
-	 * @return string          Size of each palette square.
+	 * @return string            Size of each palette square.
 	 */
-	public function get_palette_size( $palette ) {
+	public function get_palette_size( $palette, $transparent = false ) {
 		$colors = 0;
 		$max_size = 225;
 
 		if ( ! empty( $palette ) ) {
 			$colors = count( $palette );
+		}
+
+		if ( true === $transparent ) {
+			$colors += 1;
 		}
 
 		return 0 !== $colors ? ( string ) floor( $max_size / $colors ) : '0';

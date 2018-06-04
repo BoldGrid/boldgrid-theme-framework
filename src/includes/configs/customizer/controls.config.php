@@ -1243,18 +1243,19 @@ return array(
 			'optgroup3' => array(
 				esc_attr__( 'Border Effects', 'bgtfw' ),
 				array(
-					'hvr-border-fade' => esc_attr__( 'Border Fade', 'bgtfw' ),
-					'hvr-hollow' => esc_attr__( 'Hollow', 'bgtfw' ),
 					'hvr-trim' => esc_attr__( 'Trim', 'bgtfw' ),
 					'hvr-ripple-out' => esc_attr__( 'Ripple Out', 'bgtfw' ),
 					'hvr-ripple-in' => esc_attr__( 'Ripple In', 'bgtfw' ),
 					'hvr-outline-out' => esc_attr__( 'Outline Out', 'bgtfw' ),
 					'hvr-outline-in' => esc_attr__( 'Outline In', 'bgtfw' ),
-					'hvr-round-corners' => esc_attr__( 'Round Corners', 'bgtfw' ),
+				),
+			),
+			'optgroup4' => array(
+				esc_attr__( 'Overline/Underline Effects', 'bgtfw' ),
+				array(
 					'hvr-underline-from-left' => esc_attr__( 'Underline From Left', 'bgtfw' ),
 					'hvr-underline-from-center' => esc_attr__( 'Underline From Center', 'bgtfw' ),
 					'hvr-underline-from-right' => esc_attr__( 'Underline From Right', 'bgtfw' ),
-					'hvr-reveal' => esc_attr__( 'Reveal', 'bgtfw' ),
 					'hvr-underline-reveal' => esc_attr__( 'Underline Reveal', 'bgtfw' ),
 					'hvr-overline-reveal' => esc_attr__( 'Overline Reveal', 'bgtfw' ),
 					'hvr-overline-from-left' => esc_attr__( 'Overline From Left', 'bgtfw' ),

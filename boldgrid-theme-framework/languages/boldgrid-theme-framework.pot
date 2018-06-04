@@ -599,70 +599,58 @@ msgid "Border Effects"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1246
-msgid "Border Fade"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1247
-msgid "Hollow"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1248
 msgid "Trim"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1249
+#: src/includes/configs/customizer/controls.config.php:1247
 msgid "Ripple Out"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1250
+#: src/includes/configs/customizer/controls.config.php:1248
 msgid "Ripple In"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1251
+#: src/includes/configs/customizer/controls.config.php:1249
 msgid "Outline Out"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1252
+#: src/includes/configs/customizer/controls.config.php:1250
 msgid "Outline In"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1253
-msgid "Round Corners"
-msgstr ""
-
 #: src/includes/configs/customizer/controls.config.php:1254
-msgid "Underline From Left"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1255
-msgid "Underline From Center"
+msgid "Overline/Underline Effects"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1256
-msgid "Underline From Right"
+msgid "Underline From Left"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1257
-msgid "Reveal"
+msgid "Underline From Center"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1258
-msgid "Underline Reveal"
+msgid "Underline From Right"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1259
-msgid "Overline Reveal"
+msgid "Underline Reveal"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1260
-msgid "Overline From Left"
+msgid "Overline Reveal"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1261
-msgid "Overline From Center"
+msgid "Overline From Left"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1262
+msgid "Overline From Center"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1263
 msgid "Overline From Right"
 msgstr ""
 

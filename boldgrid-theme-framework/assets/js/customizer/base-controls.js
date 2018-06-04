@@ -6,6 +6,7 @@ import { Control as GenericControls } from './generic/control.js';
 import { Required } from './required.js';
 import SectionExtendTitle from './menus/extend-title';
 import HamburgerControlToggle from './menus/hamburger-control-toggle';
+import HoverBackgroundToggle from './menus/hover-background-toggle';
 
 ( function( $ ) {
 	var api, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;
@@ -19,6 +20,7 @@ import HamburgerControlToggle from './menus/hamburger-control-toggle';
 	new SectionExtendTitle();
 	new GenericControls().init();
 	new HamburgerControlToggle();
+	new HoverBackgroundToggle();
 
 	api.bind( 'pane-contents-reflowed', function() {
 		var sections, panels;

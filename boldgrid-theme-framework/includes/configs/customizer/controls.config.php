@@ -1178,9 +1178,9 @@ return array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_menu_items_hover_background_main',
-		'label'       => esc_attr__( 'Background Color', 'bgtfw' ),
+		'label'       => esc_attr__( 'Secondary Color', 'bgtfw' ),
 		'section'     => 'bgtfw_menu_items_hover_item_main',
-		'default'     => 'transparent',
+		'default'     => 'color-3',
 		'choices'     => array(
 			'colors'  => $formatted_palette,
 			'size'    => $palette->get_palette_size( $formatted_palette ),

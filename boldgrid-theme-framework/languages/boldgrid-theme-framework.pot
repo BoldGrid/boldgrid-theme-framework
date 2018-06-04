@@ -258,7 +258,7 @@ msgstr ""
 msgid "Header Width"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:516, src/includes/configs/customizer/controls.config.php:803, src/includes/configs/customizer/controls.config.php:1181, src/includes/customizer/class-boldgrid-framework-customizer-background.php:231, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:74
+#: src/includes/configs/customizer/controls.config.php:516, src/includes/configs/customizer/controls.config.php:803, src/includes/customizer/class-boldgrid-framework-customizer-background.php:231, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:74
 msgid "Background Color"
 msgstr ""
 
@@ -500,6 +500,10 @@ msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1086, src/includes/customizer/class-boldgrid-framework-customizer.php:91
 msgid "Hamburger Style"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1181
+msgid "Secondary Color"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1194

@@ -1,4 +1,4 @@
-/* global _wpCustomizePreviewNavMenusExports:false, BoldGrid:true */
+/* global _wpCustomizePreviewNavMenusExports:false, _wpCustomizeSettings:false, BoldGrid:true */
 import ColorPreview from './color/preview';
 import { Preview as GenericPreview } from './generic/preview.js';
 import Toggle from './toggle/toggle';
@@ -48,6 +48,74 @@ BOLDGRID.Customizer.Util.bgtfwIsJSON = function( string ) {
 	string = string.replace( /(?:^|:|,)(?:\s*\[)+/g, '' );
 
 	return ( /^[\],:{}\s]*$/ ).test( string );
+};
+
+
+BOLDGRID.Customizer.Util.getAllUrlParams = function( url ) {
+
+	// Get query string from url (optional) or window.
+	let queryString = url ? url.split( '?' )[1] : window.location.search.slice( 1 );
+
+	// We'll store the parameters here.
+	const obj = {};
+
+	// If query string exists...
+	if ( queryString ) {
+
+		// Stuff after # is not part of query string, so get rid of it.
+		queryString = queryString.split( '#' )[0];
+
+		// Split our query string into its component parts.
+		let arr = queryString.split( '&' );
+
+		for ( let i = 0; i < arr.length; i++ ) {
+
+			// Separate the keys and the values.
+			let a = arr[i].split( '=' );
+
+			// In case params look like: list[]=thing1&list[]=thing2.
+			let paramNum = undefined;
+			let paramName = a[0].replace( /\[\d*\]/, function( v ) {
+				paramNum = v.slice( 1, -1 );
+				return '';
+			} );
+
+			// Set parameter value (use 'true' if empty).
+			let paramValue = 'undefined' === typeof( a[1] ) ? true : a[1];
+
+			// Keep casing consistent.
+			paramName = paramName.toLowerCase();
+			paramValue = paramValue.toLowerCase();
+
+			// If parameter name already exists..
+			if ( obj[ paramName ] ) {
+
+				// Convert value to array (if still string).
+				if ( 'string' === typeof obj[ paramName ] ) {
+					obj[ paramName ] = [ obj[ paramName ] ];
+				}
+
+				// If no array index number specified...
+				if ( 'undefined' === typeof paramNum ) {
+
+					// Put the value on the end of the array.
+					obj[ paramName ].push( paramValue );
+
+				// If array index number specified...
+				} else {
+
+					// Put the value at that index number.
+					obj[ paramName ][ paramNum ] = paramValue;
+				}
+
+			// If param name doesn't exist yet, set it.
+			} else {
+				obj[ paramName ] = paramValue;
+			}
+		}
+	}
+
+	return obj;
 };
 
 /**
@@ -514,8 +582,39 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			return ( className.match ( /(^|\s)hvr-\S+/g ) || [] ).join( ' ' );
 		};
 
+		/**
+		 * Customizer always marks home as the current-menu-item.  This will check the query
+		 * params of the link in the menu, and compare it to the currently previewed URL and
+		 * remove the .current-menu-item classes from links that don't match.  I assume this
+		 * should be fixed in core at some point, or we have done something incorrect somewhere,
+		 * but for the time being this works.
+		 *
+		 * @since 2.0.0
+		 */
+		let setupCurrentMenuItems = menuId => {
+			var currents;
+
+			if ( 1 === menuId.length ) {
+				currents = $( menuId ).find( '.current-menu-item' );
+			} else {
+				currents = $( `#${menuId}` ).find( '.current-menu-item' );
+			}
+
+			if ( currents.length ) {
+				let links = currents.find( 'a' );
+				_.each( links, link => {
+					let current = BOLDGRID.Customizer.Util.getAllUrlParams( _wpCustomizeSettings.url.self );
+					let href = BOLDGRID.Customizer.Util.getAllUrlParams( $( link ).attr( 'href' ) );
+					! _.isMatch( href, current ) && $( link ).parent( 'li' ).removeClass( 'current-menu-item' );
+				} );
+			}
+		};
+
 		// Setup menu controls.
 		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+
+			// Setup current menu items.
+			setupCurrentMenuItems( props.menu_id );
 
 			// Setup partials.
 			new ToggleValue( `bgtfw_menu_hamburger_${props.theme_location}_toggle`, `#${props.menu_id}`, () => {
@@ -654,10 +753,18 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		/**
 		 * When menu partials are refreshed, we need to ensure that we update the new
 		 * container, and initialize a new instance of our menus for proper funcitonality.
+		 *
+		 * The delay for setupCurrentMenuItems() is important because after
+		 * customize-preview-menu-refreshed is trigged _wpCustomizeSettings reflects a
+		 * different page ID, so we wait the full duration of the selectiveRefresh event
+		 * before attempting to correct the menu classes.
 		 */
 		$( document ).on( 'customize-preview-menu-refreshed', function( e, params ) {
 			if ( ! _.isUndefined( BoldGrid ) ) {
 				if ( ! _.isUndefined( BoldGrid.standard_menu_enabled ) ) {
+
+					// Reset current-menu-item classes in customizer.
+					_.delay( () => setupCurrentMenuItems( params.newContainer ), _wpCustomizeSettings.timeouts.selectiveRefresh );
 
 					// Initialize SmartMenu on the updated container and params.
 					BoldGrid.standard_menu_enabled.init( params.newContainer );

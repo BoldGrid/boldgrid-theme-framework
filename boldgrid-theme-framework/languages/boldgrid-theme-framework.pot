@@ -510,143 +510,155 @@ msgstr ""
 msgid "No Hover Effects"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1203
-msgid "Fade"
+#: src/includes/configs/customizer/controls.config.php:1204
+msgid "Single Color Transitions"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1211
+#: src/includes/configs/customizer/controls.config.php:1212
 msgid "Back Pulse"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1213
-msgid "Sweep to Right"
-msgstr ""
-
 #: src/includes/configs/customizer/controls.config.php:1214
-msgid "Sweep to Left"
+msgid "Fade"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1215
-msgid "Sweep to Bottom"
+msgid "Sweep to Right"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1216
-msgid "Sweep to Top"
+msgid "Sweep to Left"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1217
-msgid "Bounce to Right"
+msgid "Sweep to Bottom"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1218
-msgid "Bounce to Left"
+msgid "Sweep to Top"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1219
-msgid "Bounce to Bottom"
+msgid "Bounce to Right"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1220
-msgid "Bounce to Top"
+msgid "Bounce to Left"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1221
-msgid "Radial In"
+msgid "Bounce to Bottom"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1222
-msgid "Radial Out"
+msgid "Bounce to Top"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1223
-msgid "Rectangle In"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1224
-msgid "Rectangle Out"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1225
-msgid "Shutter In Horizontal"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1226
-msgid "Shutter In Vertical"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1227
-msgid "Shutter Out Horizontal"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1228
-msgid "Shutter Out Vertical"
+#: src/includes/configs/customizer/controls.config.php:1229
+msgid "Two Color Transitions"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1231
-msgid "Border Fade"
+msgid "Radial In"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1232
-msgid "Hollow"
+msgid "Radial Out"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1233
-msgid "Trim"
+msgid "Rectangle In"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1234
-msgid "Ripple Out"
+msgid "Rectangle Out"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1235
-msgid "Ripple In"
+msgid "Shutter In Horizontal"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1236
-msgid "Outline Out"
+msgid "Shutter In Vertical"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1237
-msgid "Outline In"
+msgid "Shutter Out Horizontal"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1238
-msgid "Round Corners"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1239
-msgid "Underline From Left"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1240
-msgid "Underline From Center"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1241
-msgid "Underline From Right"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1242
-msgid "Reveal"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1243
-msgid "Underline Reveal"
+msgid "Shutter Out Vertical"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1244
-msgid "Overline Reveal"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1245
-msgid "Overline From Left"
+msgid "Border Effects"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1246
-msgid "Overline From Center"
+msgid "Border Fade"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1247
+msgid "Hollow"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1248
+msgid "Trim"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1249
+msgid "Ripple Out"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1250
+msgid "Ripple In"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1251
+msgid "Outline Out"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1252
+msgid "Outline In"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1253
+msgid "Round Corners"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1254
+msgid "Underline From Left"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1255
+msgid "Underline From Center"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1256
+msgid "Underline From Right"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1257
+msgid "Reveal"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1258
+msgid "Underline Reveal"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1259
+msgid "Overline Reveal"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1260
+msgid "Overline From Left"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1261
+msgid "Overline From Center"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:1262
 msgid "Overline From Right"
 msgstr ""
 

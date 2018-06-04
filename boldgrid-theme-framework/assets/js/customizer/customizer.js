@@ -595,12 +595,12 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			var currents;
 
 			if ( 1 === menuId.length ) {
-				currents = $( menuId ).find( '.current-menu-item' );
+				currents = $( menuId ).children( '.current-menu-item' );
 			} else {
-				currents = $( `#${menuId}` ).find( '.current-menu-item' );
+				currents = $( `#${menuId} > .current-menu-item` );
 			}
 
-			if ( currents.length ) {
+			if ( currents.length && ! currents.hasClass( 'current-menu-parent' ) ) {
 				let links = currents.find( 'a' );
 				_.each( links, link => {
 					let current = BOLDGRID.Customizer.Util.getAllUrlParams( _wpCustomizeSettings.url.self );

@@ -295,6 +295,9 @@ $names: color background background-color border-color;
 		border-color: $palette-primary_1;
 	}
 }
+pre {
+	color: $text-contrast-palette-primary-neutral-color;
+}
 
 /** Mark elements **/
 mark, .mark {

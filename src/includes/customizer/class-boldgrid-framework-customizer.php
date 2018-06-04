@@ -40,7 +40,10 @@ class BoldGrid_Framework_Customizer {
 	 * @since     1.0.0
 	 */
 	public function __construct( $configs ) {
-		$this->configs = $configs;
+
+		// Ensure defaults are processed on customize load.
+		$format = new BoldGrid_Framework_Starter_Content( $configs );
+		$this->configs = $format->set_configs( $configs );
 	}
 
 	/**

@@ -600,6 +600,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				currents = $( `#${menuId} > .current-menu-item` );
 			}
 
+			// Check if it's a parent menu item before removing things.
 			if ( currents.length && ! currents.hasClass( 'current-menu-parent' ) ) {
 				let links = currents.find( 'a' );
 				_.each( links, link => {

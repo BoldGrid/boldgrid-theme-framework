@@ -191,7 +191,7 @@ class BoldGrid_Framework_Styles {
 		$color = get_theme_mod( "bgtfw_menu_items_hover_color_{$location}" );
 		$color = explode( ':', $color );
 		$color = array_pop( $color );
-		$text_color = 'white';
+
 		$background_color = get_theme_mod( "bgtfw_menu_items_hover_background_{$location}" );
 		$background_color = explode( ':', $background_color );
 		$background_color = array_pop( $background_color );
@@ -199,7 +199,7 @@ class BoldGrid_Framework_Styles {
 		$menu_id = "#{$location}-menu";
 
 		$css = include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php';
-		$css = sprintf( $css, $menu_id, $text_color, $color, $background_color );
+		$css = sprintf( $css, $menu_id, $background_color, $color, $background_color );
 
 		return $css;
 	}

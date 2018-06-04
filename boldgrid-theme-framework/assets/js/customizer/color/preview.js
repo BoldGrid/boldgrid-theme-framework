@@ -175,11 +175,10 @@ export class Preview  {
 
 		const color = new PaletteSelector().getColor( wp.customize( `bgtfw_menu_items_hover_color_${location}` )() );
 		const backgroundColor = new PaletteSelector().getColor( wp.customize( `bgtfw_menu_items_hover_background_${location}` )() );
-		const textColor = 'white';
 		let css = BOLDGRID.CUSTOMIZER.data.hoverColors;
 
 		css = css.replace( /%1\$s/g, `#${location}-menu` );
-		css = css.replace( /%2\$s/g, textColor );
+		css = css.replace( /%2\$s/g, backgroundColor );
 		css = css.replace( /%3\$s/g, color );
 		css = css.replace( /%4\$s/g, backgroundColor );
 

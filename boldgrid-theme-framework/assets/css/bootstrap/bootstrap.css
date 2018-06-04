@@ -1496,7 +1496,7 @@ pre {
   line-height: 1.42857;
   word-break: break-all;
   word-wrap: break-word;
-  background-color: transparent;
+  background-color: transparent; 
   border: 1px solid #ccc;
   border-radius: 4px; }
 

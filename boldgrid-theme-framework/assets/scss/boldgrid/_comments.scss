@@ -164,3 +164,9 @@ time.entry-date.updated:before {
 span.author.vcard {
 	margin-left: .3em;
 }
+
+// Removes numbers and bullet points from comment lists
+ol.comment-list,
+li.comment {
+	list-style-type: none;
+}

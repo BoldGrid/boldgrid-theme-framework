@@ -151,31 +151,29 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			calc: function() {
-				var classes, headerHeight, siteMargin, naviHeight, secondaryMenuHeight, menu;
+				var classes, headerHeight, siteMargin, naviHeight, menu;
 
 				classes = document.body.classList;
 
-				headerHeight = '100vh';
+				headerHeight = '';
 				siteMargin = 0;
-				naviHeight = $( '#navi' ).outerHeight();
+				naviHeight = $( '#navi-wrap' ).outerHeight();
 
 				// Desktop view.
 				if ( window.innerWidth > 768 ) {
-					secondaryMenuHeight = $( '#secondary-menu' ).outerHeight();
 
 					// Fixed Headers
 					if ( classes.contains( 'header-fixed' ) ) {
 
 						// Header on left, or header on right.
 						if ( classes.contains( 'header-top' ) ) {
-							headerHeight = naviHeight + secondaryMenuHeight + 2;
-							siteMargin = $( '#navi-wrap' ).outerHeight();
+							siteMargin = $( '.site-header' ).outerHeight();
 						}
 
 					// Non-fixed headers.
 					} else {
 						if ( classes.contains( 'header-top' ) ) {
-							headerHeight = naviHeight + secondaryMenuHeight + 2;
+
 							if ( classes.contains( 'has-youtube-header' ) ) {
 								siteMargin = siteMargin + $( '#header-widget-area' ).outerHeight();
 							}

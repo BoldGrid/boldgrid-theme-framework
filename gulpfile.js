@@ -492,7 +492,7 @@ gulp.task('qbuild', function (cb) {
 });
 
 gulp.task('framework-js', function (cb) {
-  return sequence(['jsHint', 'jscs', 'modernizr'], cb);
+  return sequence( [ 'jsHint', 'jscs' ], 'frameworkJs', 'modernizr', cb );
 });
 
 gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate']);

@@ -4310,8 +4310,20 @@ footer .bgtfw-widget-row {
   top: 0;
   left: 0;
   bottom: 0;
-  height: auto !important;
+  height: auto;
   max-height: 100vh;
+}
+
+/*
+ * Unset the user controled padding on mobile for header media. Reason: Media
+ * doesnt fill space on mobile beacuse of hameber menus.
+ */
+@media only screen and (max-width: 767px) {
+  .has-video-header .site-header header,
+  .has-header-image .site-header header,
+  .has-youtube-header .site-header header {
+    padding: 0;
+  }
 }
 
 /* Site Branding */

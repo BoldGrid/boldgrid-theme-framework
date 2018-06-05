@@ -285,8 +285,22 @@
 		top: 0;
 		left: 0;
 		bottom: 0;
-		height: auto !important; // Temporary need to remove 100vh from inline.
+		height: auto;
 		max-height: 100vh;
+	}
+}
+
+/*
+ * Unset the user controled padding on mobile for header media. Reason: Media
+ * doesnt fill space on mobile beacuse of hameber menus.
+ */
+@media only screen and (max-width: 767px) {
+	.has-video-header,
+	.has-header-image,
+	.has-youtube-header {
+		.site-header header {
+			padding: 0;
+		}
 	}
 }
 

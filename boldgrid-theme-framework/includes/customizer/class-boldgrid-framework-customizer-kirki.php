@@ -50,7 +50,7 @@ class Boldgrid_Framework_Customizer_Kirki {
 	 */
 	public function general_kirki_configs( $controls ) {
 		$url  = $this->configs['framework']['root_uri'] . 'includes/kirki/';
-		$logo = $this->configs['framework']['admin_asset_dir'] . 'img/boldgrid-logo.png';
+		$logo = $this->configs['framework']['admin_asset_dir'] . 'img/crio-logo.svg';
 
 		Kirki::$url = $url;
 

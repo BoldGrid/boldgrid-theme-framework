@@ -241,6 +241,12 @@ gulp.task('images', function () {
   // .pipe( notify( { message: 'Image minification complete', onLast: true } ) );
 });
 
+// Move src svgs to dist.
+gulp.task('svgs', function() {
+  return gulp.src([config.src + '/assets/img/**/*.svg'])
+    .pipe(gulp.dest(config.dist + '/assets/img'))
+});
+
 // Setup Translate.
 gulp.task('translate', function () {
   return gulp.src(config.src + '/**/*.php')
@@ -461,7 +467,7 @@ gulp.task('build', function (cb) {
     'dist',
     'clean',
     'readme',
-    ['jsHint', 'jscs', 'frameworkJs'],
+    ['jsHint', 'jscs', 'frameworkJs', 'svgs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     'images',
     ['scssCompile', 'bootstrapCompile'],

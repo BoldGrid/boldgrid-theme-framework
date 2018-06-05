@@ -13,7 +13,7 @@ export class Preview {
 	 */
 	updateDynamicStyles( id, css ) {
 		const $head = $( 'head' );
-		let $selector = $head.find( '#' + id );
+		let $selector = $( '#' + id );
 
 		if ( $selector.length ) {
 			$selector.html( css );

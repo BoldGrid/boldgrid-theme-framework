@@ -1,5 +1,8 @@
 /* eslint max-nested-callbacks: [ "error", 4 ], consistent-this: [ "error", "partial" ] */
 
+import { Preview } from  '../preview';
+
+// eslint-disable-next-line camelcase
 wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_headings_color = ( function( api, $ ) {
 	'use strict';
 
@@ -14,20 +17,26 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_headings_color = (
 		 * @returns {jQuery.promise}
 		 */
 		refresh: function() {
-			var partial = this, headingsColorSetting;
+			var partial = this,
+				headingsColorSetting;
 
 			headingsColorSetting = api( partial.params.primarySetting );
 
 			_.each( partial.placements(), function( placement ) {
-				var color;
+				var color,
+					id = 'dynamic-sidebar-' + placement.partial.id.match( /\[(.*?)\]/ ).pop() + '-css';
 
 				color = headingsColorSetting.get().split( ':' ).pop();
-				$( placement.partial.params.selector ).css( 'color', color );
-				$( '#dynamic-sidebar-' + placement.partial.id.match( /\[(.*?)\]/ ).pop() + '-css' ).remove();
+
+				new Preview().updateDynamicStyles( id, `
+					${placement.partial.params.selector} {
+						color: ${color};
+					}
+				` );
 			} );
 
 			// Return resolved promise since no server-side selective refresh will be requested.
 			return $.Deferred().resolve().promise();
 		}
 	} );
-})( wp.customize, jQuery );
+} )( wp.customize, jQuery );

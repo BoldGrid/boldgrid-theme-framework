@@ -147,7 +147,10 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 			foreach ( $this->configs['customizer-options']['typography']['selectors'] as $selector => $options ) {
 				if ( 'headings' === $options['type'] ) {
-					$selectors[] = ".dynamic-sidebar.%s {$selector}";
+					$selectorSet = explode( ',', $selector );
+					foreach( $selectorSet as $selector ) {
+						$selectors[] = ".dynamic-sidebar.%s {$selector}";
+					}
 				}
 			}
 
@@ -267,11 +270,6 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 		$handle = 'bgtfw-customizer-widget-meta-background-color-partial';
 		$src = $this->configs['framework']['js_dir'] . 'customizer/widget-meta/background-color-partial.js';
-		$deps = array( 'customize-preview', 'customize-selective-refresh' );
-		wp_enqueue_script( $handle, $src, $deps );
-
-		$handle = 'bgtfw-customizer-widget-meta-headings-color-partial';
-		$src = $this->configs['framework']['js_dir'] . 'customizer/widget-meta/headings-color-partial.js';
 		$deps = array( 'customize-preview', 'customize-selective-refresh' );
 		wp_enqueue_script( $handle, $src, $deps );
 

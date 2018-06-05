@@ -5,6 +5,7 @@ import { Preview as HeaderPreview } from './header-layout/preview.js';
 import Toggle from './toggle/toggle';
 import ToggleValue from './toggle/value';
 import ToggleClass from './toggle/class';
+import './widget-meta';
 
 const api = wp.customize;
 const controlApi = parent.wp.customize;

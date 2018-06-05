@@ -3,6 +3,8 @@
 ./src/assets/js/customizer/preview.js
 ./src/assets/js/customizer/required.js
 ./src/assets/js/customizer/header-layout/preview.js
+./src/assets/js/customizer/widget-meta/index.js
+./src/assets/js/customizer/widget-meta/headings-color-partial.js
 ./src/assets/js/customizer/color/**/*
 ./src/assets/js/customizer/widget/**/*
 ./src/assets/js/customizer/generic/**/*

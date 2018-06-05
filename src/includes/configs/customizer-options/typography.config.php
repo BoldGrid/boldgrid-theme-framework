@@ -34,63 +34,33 @@ return array(
 		'navigation_font_family' => 'Roboto',
 	),
 	'selectors' => array(
-		'h1:not( .site-title ):not( .alt-font ), .h1' => array(
+		'h1, .h1' => array(
 			'type' => 'headings',
 			'round' => 'floor',
 			'amount' => 2.6,
 		),
-		'h2:not( .alt-font ), .h2' => array(
+		'h2, .h2' => array(
 			'type' => 'headings',
 			'round' => 'floor',
 			'amount' => 2.15,
 		),
-		'h3:not( .alt-font ):not( .site-description ), .h3' => array(
+		'h3, .h3' => array(
 			'type' => 'headings',
 			'round' => 'ceil',
 			'amount' => 1.7,
 		),
-		'h4:not( .alt-font ), .h4' => array(
+		'h4, .h4' => array(
 			'type' => 'headings',
 			'round' => 'ceil',
 			'amount' => 1.25,
 		),
-		'h5:not( .alt-font ), .h5' => array(
+		'h5, .h5' => array(
 			'type' => 'headings',
 			'round' => 'floor',
 			'amount' => 1,
 		),
-		'h6:not( .alt-font ), .h6' => array(
+		'h6, .h6' => array(
 			'type' => 'headings',
-			'round' => 'ceil',
-			'amount' => 0.85,
-		),
-		'h1.alt-font, .h1.alt-font' => array(
-			'type' => 'subheadings',
-			'round' => 'floor',
-			'amount' => 2.6,
-		),
-		'h2.alt-font, .h2.alt-font' => array(
-			'type' => 'subheadings',
-			'round' => 'floor',
-			'amount' => 2.15,
-		),
-		'h3.alt-font, .h3.alt-font' => array(
-			'type' => 'subheadings',
-			'round' => 'ceil',
-			'amount' => 1.7,
-		),
-		'h4.alt-font, .h4.alt-font' => array(
-			'type' => 'subheadings',
-			'round' => 'ceil',
-			'amount' => 1.25,
-		),
-		'h5.alt-font, .h5.alt-font' => array(
-			'type' => 'subheadings',
-			'round' => 'floor',
-			'amount' => 1,
-		),
-		'h6.alt-font, .h6.alt-font' => array(
-			'type' => 'subheadings',
 			'round' => 'ceil',
 			'amount' => 0.85,
 		),

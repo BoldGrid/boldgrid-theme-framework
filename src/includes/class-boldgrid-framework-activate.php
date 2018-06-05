@@ -50,14 +50,9 @@ class Boldgrid_Framework_Activate {
 	 * Removing any menu locations and widget locations
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param bool $active Are we resetting an active installation.
 	 */
-	public function reset( $active = true ) {
-
-		$this->widgets->remove_saved_widgets();
+	public function reset() {
 		$this->menus->reset_nav_locations();
-		$this->menus->remove_saved_menus( $active );
 
 		// Delete Option indicating that the framework needs to be setup.
 		delete_option( 'boldgrid_framework_init' );
@@ -80,10 +75,6 @@ class Boldgrid_Framework_Activate {
 		$this->reset();
 
 		$this->widgets->empty_widget_areas();
-		$this->widgets->set_widget_areas();
-
-		// Create Default Menus.
-		$this->menus->create_default_menus();
 
 		// Then update the menu_check option to make sure this code only runs once.
 		update_option( 'boldgrid_framework_init', true );

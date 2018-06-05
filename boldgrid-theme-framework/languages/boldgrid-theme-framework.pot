@@ -170,7 +170,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-menu.php:260
+#: src/includes/class-boldgrid-framework-menu.php:213
 msgid "Toggle menu visibility."
 msgstr ""
 

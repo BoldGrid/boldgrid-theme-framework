@@ -209,7 +209,7 @@ class BoldGrid_Framework_Starter_Content {
 		}
 
 		if ( 'bgtfw-palette-selector' === $control['type'] && strpos( $control['default'], ':' ) === false ) {
-			if ( empty( $control['default'] ) && 'none' === $control['default'] ) {
+			if ( empty( $control['default'] ) ) {
 
 				// Headings default.
 				if ( strpos( $control['settings'], 'headings' ) !== false ) {

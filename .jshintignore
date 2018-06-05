@@ -2,6 +2,7 @@
 ./src/assets/js/customizer/base-controls.js
 ./src/assets/js/customizer/preview.js
 ./src/assets/js/customizer/required.js
+./src/assets/js/customizer/header-layout/preview.js
 ./src/assets/js/customizer/color/**/*
 ./src/assets/js/customizer/widget/**/*
 ./src/assets/js/customizer/generic/**/*

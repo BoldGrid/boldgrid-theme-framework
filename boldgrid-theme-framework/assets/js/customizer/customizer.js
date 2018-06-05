@@ -1,6 +1,7 @@
 /* global _wpCustomizePreviewNavMenusExports:false, _wpCustomizeSettings:false, BoldGrid:true */
 import ColorPreview from './color/preview';
 import { Preview as GenericPreview } from './generic/preview.js';
+import { Preview as HeaderPreview } from './header-layout/preview.js';
 import Toggle from './toggle/toggle';
 import ToggleValue from './toggle/value';
 import ToggleClass from './toggle/class';
@@ -202,6 +203,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	colorPreview = new ColorPreview().init();
 	new GenericPreview().bindEvents();
+	new HeaderPreview().bindEvents();
 
 	$( function() {
 		var updateColorAndPatterns,

@@ -2192,6 +2192,10 @@ select {
 /*--------------------------------------------------------------
 # Comments
 --------------------------------------------------------------*/
+.comments .comment-list, .comments .comment {
+  display: block;
+}
+
 .comment-content a {
   word-wrap: break-word;
 }

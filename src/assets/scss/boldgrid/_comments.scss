@@ -1,9 +1,17 @@
+.comments {
+	.comment-list, .comment {
+		display: block;
+	}
+}
+
 .comment-content a {
 	word-wrap: break-word;
 }
+
 .bypostauthor {
 	display: block;
 }
+
 #commentform {
 	// Comment Form Clearings
 	.form-group:before,
@@ -117,13 +125,13 @@ fieldset[disabled] a#commentform #submit {
 
 // Link Spacing
 .entry-footer span {
-    padding: 0 0.5em;
+	padding: 0 0.5em;
 }
 .entry-footer span:first-child {
-    padding-left: 0;
+	padding-left: 0;
 }
 .entry-footer span:last-child {
-    padding-right: 0;
+	padding-right: 0;
 }
 .post .entry-footer .bgtfw-edit-link a {
 	left: .25em;
@@ -151,6 +159,7 @@ time.entry-date.updated:before {
 	margin-right: .5em;
 	margin-left: .3em;
 }
+
 .group-blog .byline,
 span.author.vcard {
 	margin-left: .3em;

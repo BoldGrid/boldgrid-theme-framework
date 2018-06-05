@@ -1,0 +1,10 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "boldgrid-theme-framework/includes/kirki/package.json",
+        "package.json"
+      ]
+    }
+  }
+}

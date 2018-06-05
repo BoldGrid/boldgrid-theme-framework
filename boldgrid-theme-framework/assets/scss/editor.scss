@@ -54,3 +54,12 @@
 .post-attributes-advanced-wrap {
 	padding: 0px 12px;
 }
+
+/** Gutenberg Styles **/
+.gutenberg {
+
+	/** 100% - ( offset + 16px scrollbar probability ) **/
+	.edit-post-visual-editor .editor-block-list__block {
+		max-width: calc( 100% - 58px)
+	}
+}

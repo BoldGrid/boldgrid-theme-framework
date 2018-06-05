@@ -63,6 +63,26 @@ class BoldGrid_Framework_Styles {
 		);
 
 		$files = apply_filters( 'local_editor_styles', $files );
+
+		// Enqueue styles for Gutenberg.
+		add_action( 'enqueue_block_editor_assets', function() use ( $files, $css_dir ) {
+			$gutenberg = array();
+			foreach ( $files as $file ) {
+				$handle = explode( "?", basename( $file ) );
+				$handle = basename( basename( $handle[0], '.css' ), '.min' );
+				$query = $handle[1];
+				parse_str( $handle[1] );
+				$gutenberg[] = array(
+					'handle' => $handle,
+					'file' => $file,
+					'version' => ! empty( $version ) ? $version : null,
+				);
+			}
+			foreach ( $gutenberg as $ss ) {
+				wp_enqueue_style( $ss['handle'], $ss['file'], ! is_null( $ss['version'] ) && $ss['version'] );
+			}
+		} );
+
 		return $files;
 	}
 

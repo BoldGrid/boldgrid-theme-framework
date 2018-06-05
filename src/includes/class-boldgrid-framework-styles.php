@@ -78,9 +78,17 @@ class BoldGrid_Framework_Styles {
 					'version' => ! empty( $version ) ? $version : null,
 				);
 			}
+
 			foreach ( $gutenberg as $ss ) {
 				wp_enqueue_style( $ss['handle'], $ss['file'], ! is_null( $ss['version'] ) && $ss['version'] );
 			}
+
+			// Add Kirki dynamically generated styles.
+			$kirki_css = Kirki_Modules_CSS::get_instance();
+			$styles = apply_filters( 'kirki_bgtfw_dynamic_css', $kirki_css::loop_controls( 'bgtfw' ) );
+			wp_register_style( 'bgtfw-dynamic', false );
+			wp_add_inline_style( 'bgtfw-dynamic', $styles );
+			wp_enqueue_style( 'bgtfw-dynamic' );
 		} );
 
 		return $files;

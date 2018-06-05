@@ -3,7 +3,6 @@
 		margin: 10px 0;
 	}
 	span {
-		white-space: nowrap;
 		display: inline-block;
 		&:not(:last-child)::after {
 			margin: 0 5px;

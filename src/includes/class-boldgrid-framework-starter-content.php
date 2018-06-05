@@ -50,6 +50,15 @@ class BoldGrid_Framework_Starter_Content {
 	}
 
 	/**
+	 * Get the default palette array.
+	 *
+	 * @since 2.0.0
+	 */
+	public function get_default() {
+		return ! empty( $this->default ) ? $this->default : $this->set_default( $this->configs );
+	}
+
+	/**
 	 * Default palette to use for palette selector controls.
 	 *
 	 * @since 2.0.0
@@ -58,13 +67,25 @@ class BoldGrid_Framework_Starter_Content {
 	 * @return mixed $default Default Configiguraton.
 	 */
 	public function set_default( $config ) {
+
 		// Default palette to use for palette selector controls.
 		$default = array_filter( $config['customizer-options']['colors']['defaults'], function( $palette ) {
 			return ! empty( $palette['default'] );
 		} );
 
+		// Convert default colors to RGBs if alternate format was passed in configs.
+		foreach ( $default[0]['colors'] as $index => $color ) {
+			$default[0]['colors'][ $index ] = ariColor::newColor( $color )->toCSS( 'rgb' );
+		}
+
+		// Convert neutral color to RGB if alternate format was passed in configs.
+		if ( isset( $default[0]['neutral-color'] ) ) {
+			$default[0]['neutral-color'] = ariColor::newColor( $default[0]['neutral-color'] )->toCSS( 'rgb' );
+		}
+
 		return $this->default = $default;
 	}
+
 	/**
 	 * Adds post meta to get_theme_starter_content filter.
 	 *
@@ -111,7 +132,6 @@ class BoldGrid_Framework_Starter_Content {
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
 			$config = $this->set_menus( $config, $index, $control );
 			$config = $this->set_colors( $config, $index, $control );
-			$config = $this->set_defaults( $config, $index, $control );
 		}
 
 		return $config;
@@ -188,8 +208,8 @@ class BoldGrid_Framework_Starter_Content {
 			$this->default = $this->set_default( $config );
 		}
 
-		if ( 'bgtfw-palette-selector' === $control['type'] ) {
-			if ( empty( $control['default'] ) || 'none' === $control['default'] ) {
+		if ( 'bgtfw-palette-selector' === $control['type'] && strpos( $control['default'], ':' ) === false ) {
+			if ( empty( $control['default'] ) && 'none' === $control['default'] ) {
 
 				// Headings default.
 				if ( strpos( $control['settings'], 'headings' ) !== false ) {

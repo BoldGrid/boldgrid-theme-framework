@@ -145,6 +145,21 @@ class Boldgrid_Framework_Activate {
 
 		// If there's not a palette set by user, then set it.
 		if ( ! array_key_exists( 'boldgrid_color_palette', $options ) && $enabled && $palette ) {
+
+			// Normalize default passed in palettes from configs to RGB.
+			foreach ( $palette as $index => $settings ) {
+
+				// Convert default colors to RGBs if alternate format was passed in configs.
+				foreach ( $palette[ $index ]['colors'] as $colorIndex => $color ) {
+					$palette[ $index ]['colors'][ $colorIndex ] = ariColor::newColor( $color )->toCSS( 'rgb' );
+				}
+
+				// Convert neutral color to RGB if alternate format was passed in configs.
+				if ( isset( $palette[ $index ]['neutral-color'] ) ) {
+					$palette[ $index ]['neutral-color'] = ariColor::newColor( $palette[ $index ]['neutral-color'] )->toCSS( 'rgb' );
+				}
+			}
+
 			// Initizalize $theme_mod array.
 			$theme_mod = array();
 			// Get assigned default palette for category/theme.

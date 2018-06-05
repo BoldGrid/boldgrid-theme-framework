@@ -65,7 +65,8 @@ class BoldGrid_Framework_Styles {
 		$files = apply_filters( 'local_editor_styles', $files );
 
 		// Enqueue styles for Gutenberg.
-		add_action( 'enqueue_block_editor_assets', function() use ( $files, $css_dir ) {
+		$config = $this->configs;
+		add_action( 'enqueue_block_editor_assets', function() use ( $files, $config ) {
 			$gutenberg = array();
 			foreach ( $files as $file ) {
 				$handle = explode( "?", basename( $file ) );

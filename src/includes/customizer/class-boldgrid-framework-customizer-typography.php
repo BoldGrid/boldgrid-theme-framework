@@ -187,7 +187,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				),
 				'output' => array(
 					array(
-						'element'  => 'body, p, .site-content, .site-footer',
+						'element'  => '.site-header, .site-content, .site-footer',
 						'property' => 'line-height',
 						'units'    => '%',
 					),

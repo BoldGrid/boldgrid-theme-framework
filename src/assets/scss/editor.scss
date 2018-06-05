@@ -59,7 +59,21 @@
 .gutenberg {
 
 	/** 100% - ( offset + 16px scrollbar probability ) **/
+	.edit-post-visual-editor .editor-post-title__block,
 	.edit-post-visual-editor .editor-block-list__block {
 		max-width: calc( 100% - 58px)
+	}
+
+	/* Inherit bgtfw fonts instead of using Gutenberg defaults. */
+	.edit-post-visual-editor, .edit-post-visual-editor p {
+		font-family: inherit;
+		font-size: inherit;
+		font-weight: inherit;
+		letter-spacing: inherit;
+		text-transform: inherit;
+	}
+	.wp-block-freeform.core-blocks-rich-text__tinymce li,
+	.wp-block-freeform.core-blocks-rich-text__tinymce p {
+		line-height: inherit;
 	}
 }

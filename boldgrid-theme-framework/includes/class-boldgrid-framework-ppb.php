@@ -43,8 +43,6 @@ class BoldGrid_Framework_PPB {
 	 * @param array $editor_configs Theme fonts.
 	 */
 	public function set_theme_fonts( $editor_configs ) {
-		$editor_configs['builder_config']['theme_fonts'] = array();
-
 		$fonts = array();
 		$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
 		foreach ( $typography->get_typography_settings() as $typography_setting ) {

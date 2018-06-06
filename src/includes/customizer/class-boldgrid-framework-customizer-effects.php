@@ -72,8 +72,8 @@ class Boldgrid_Framework_Customizer_Effects {
 					'default'     => get_theme_mod( 'boldgrid_slim_scroll', (int) $this->configs['scripts']['options']['nicescroll']['enabled'] ),
 					'priority'    => 10,
 					'choices'     => array(
-						'on'  => esc_attr__( 'Enable', 'my_textdomain' ),
-						'off' => esc_attr__( 'Disable', 'my_textdomain' ),
+						'on'  => esc_attr__( 'Enable', 'bgtfw' ),
+						'off' => esc_attr__( 'Disable', 'bgtfw' ),
 					),
 			) );
 		}

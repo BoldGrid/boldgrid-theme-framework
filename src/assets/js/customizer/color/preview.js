@@ -65,7 +65,7 @@ export class Preview  {
 	outputColor( themeMod, selector, properties ) {
 		let colorClassPrefix,
 			$selector = $( selector ),
-			regex = new RegExp( 'color-?([\\d]|neutral)-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
+			regex = new RegExp( '(color-?([\\d]|neutral)|transparent)-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
 
 		themeMod = parent.wp.customize( themeMod )();
 
@@ -232,6 +232,11 @@ export class Preview  {
 				name: `bgtfw_menu_background_${location}`,
 				selector: `#${menuId}`,
 				properties: [ 'background-color' ]
+			},
+			{
+				name: `bgtfw_menu_items_link_color_${location}`,
+				selector: `#${menuId}`,
+				properties: [ 'link-color' ]
 			}
 		);
 	}

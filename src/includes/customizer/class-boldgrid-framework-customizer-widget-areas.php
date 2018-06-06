@@ -39,13 +39,13 @@ class Boldgrid_Framework_Customizer_Widget_Areas {
 
 		if ( $columns > 0 ) {
 			?>
-				<div id="<?php echo $prefix; ?>-widget-area" class="bgtfw-widget-row">
+				<div id="<?php echo esc_attr( $prefix ); ?>-widget-area" class="bgtfw-widget-row">
 					<?php
 						for ( $i = 1; $i <= $columns; $i++ ) {
 							bgtfw_widget( "{$prefix}-{$i}", true );
 						}
 					?>
-				</div><!-- <?php echo $prefix; ?>-widget-area ends -->
+				</div><!-- <?php echo esc_html( $prefix ); ?>-widget-area ends -->
 			<?php
 		}
 	}

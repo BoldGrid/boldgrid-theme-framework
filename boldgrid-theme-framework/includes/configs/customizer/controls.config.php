@@ -27,7 +27,7 @@ return array(
 	'custom_theme_js' => array(
 		'type'        => 'code',
 		'settings'    => 'custom_theme_js',
-		'label'       => __( 'JS code' ),
+		'label'       => __( 'JS code', 'bgtfw' ),
 		'help'        => __( 'This adds live JavaScript to your website.', 'bgtfw' ),
 		'description' => __( 'Add custom javascript for this theme.', 'bgtfw' ),
 		'section'     => 'custom_css',
@@ -1408,5 +1408,19 @@ return array(
 		),
 	),
 
+	'bgtfw_menu_items_link_color_main' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport' => 'postMessage',
+		'settings'    => 'bgtfw_menu_items_link_color_main',
+		'label' => esc_attr__( 'Link Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_items_link_color_main',
+		'priority' => 1,
+		'default'     => 'color-1',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
 	/*** End: Dynamic Menu Controls ***/
 );

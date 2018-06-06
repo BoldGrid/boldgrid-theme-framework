@@ -1,4 +1,4 @@
-/* global _wpCustomizePreviewNavMenusExports:false, _wpCustomizeSettings:false, BoldGrid:true */
+/* global _wpCustomizePreviewNavMenusExports:false, _wpCustomizeSettings:false, BoldGrid:true, BOLDGRID:true */
 import ColorPreview from './color/preview';
 import { Preview as GenericPreview } from './generic/preview.js';
 import { Preview as HeaderPreview } from './header-layout/preview.js';
@@ -10,7 +10,6 @@ import './widget-meta';
 const api = wp.customize;
 const controlApi = parent.wp.customize;
 
-var BOLDGRID = BOLDGRID || {};
 BOLDGRID.Customizer = BOLDGRID.Customizer || {};
 BOLDGRID.Customizer.Util = BOLDGRID.Customizer.Util || {};
 BOLDGRID.Customizer.Widgets = BOLDGRID.Customizer.Widgets || {};
@@ -614,6 +613,30 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			}
 		};
 
+		/**
+		 * Get the menu color being used for link color contrast.
+		 *
+		 * @since 2.0.0
+		 *
+		 * @param {String} location Menu location.
+		 *
+		 * @return {String} Name of theme mod to use.
+		 */
+		let menuContrastColor = ( location, menuId ) => {
+			let type = `bgtfw_menu_background_${location}`;
+			if ( api( type )().includes( 'transparent' ) ) {
+				type = 'header';
+
+				if ( BOLDGRID.CUSTOMIZER.data.menu.footerMenus.includes( location ) ) {
+					type = 'footer';
+				}
+
+				type = `bgtfw_${type}_color`;
+			}
+
+			new ColorPreview().outputColor( type, `#${menuId}`, [ 'background-color' ] );
+		};
+
 		// Setup menu controls.
 		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
 
@@ -660,6 +683,11 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 			// Bind menu items hover effects.
 			new ToggleValue( `bgtfw_menu_items_hover_effect_${props.theme_location}`, `#${props.menu_id} > li:not(.current-menu-item)`, hoverFn );
+
+			// Bind menu background contrast for link colors.
+			api( `bgtfw_menu_background_${props.theme_location}`, 'bgtfw_header_color', 'bgtfw_footer_color', ( ...args ) => {
+				args.map( control => control.bind( () => menuContrastColor( props.theme_location, props.menu_id ) ) );
+			} );
 		}
 
 		new Toggle( 'bgtfw_header_width', calc );

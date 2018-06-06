@@ -148,6 +148,16 @@ class BoldGrid_Framework_Customizer {
 						);
 
 						Kirki::add_section(
+							"bgtfw_menu_items_link_color_$location",
+							array(
+								'title' => __( 'Link Color', 'bgtfw' ),
+								'panel' => "bgtfw_menu_items_$location",
+								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-admin-links',
+							)
+						);
+
+						Kirki::add_section(
 							"bgtfw_menu_items_hover_item_$location",
 							array(
 								'title' => __( 'Hover Display', 'bgtfw' ),
@@ -374,6 +384,9 @@ class BoldGrid_Framework_Customizer {
 
 		$data = [
 			'customizerOptions' => $this->configs['customizer-options'],
+			'menu' => [
+				'footerMenus' => $this->configs['menu']['footer_menus'],
+			],
 			'design' => [
 				'blog' => [
 					'posts' => [
@@ -417,6 +430,9 @@ class BoldGrid_Framework_Customizer {
 
 		$data = [
 			'customizerOptions' => $this->configs['customizer-options'],
+			'menu' => [
+				'footerMenus' => $this->configs['menu']['footer_menus'],
+			],
 			'hoverColors' => include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php',
 		];
 

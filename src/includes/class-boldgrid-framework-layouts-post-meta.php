@@ -202,7 +202,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					'exclude_tree'     => $post->ID,
 					'selected'         => $post->post_parent,
 					'name'             => 'parent_id',
-					'show_option_none' => __( '(no parent)' ),
+					'show_option_none' => __( '(no parent)', 'bgtfw' ),
 					'sort_column'      => 'menu_order, post_title',
 					'echo'             => 0,
 				);

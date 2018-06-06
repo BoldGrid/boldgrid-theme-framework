@@ -14,13 +14,13 @@ return array(
 	'bgtfw_layout_blog' => array(
 		'title' => __( 'Blog', 'bgtfw' ),
 		'panel' => 'bgtfw_layout',
-		'description' => __( 'This section controls the layout of pages and posts on your website.' ),
+		'description' => __( 'This section controls the layout of pages and posts on your website.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
 	'bgtfw_layout_page' => array(
 		'title' => __( 'Pages', 'bgtfw' ),
 		'panel' => 'bgtfw_design_panel',
-		'description' => __( 'This section controls the global layout of pages on your website.' ),
+		'description' => __( 'This section controls the global layout of pages on your website.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
 	'boldgrid_footer_panel' => array(

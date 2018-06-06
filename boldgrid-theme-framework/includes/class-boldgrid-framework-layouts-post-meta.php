@@ -162,7 +162,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				$template = ! empty( $post->page_template ) ? $post->page_template : false;
 				?>
 				<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-template">
-					<?php _e( 'Template' ); ?>:<?php
+					<?php _e( 'Template', 'bgtfw' ); ?>:<?php
 						/**
 						 * Fires immediately after the label inside the 'Template' section
 						 * of the 'Page Attributes' meta box.
@@ -220,17 +220,17 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				$dropdown_args = apply_filters( 'page_attributes_dropdown_pages_args', $dropdown_args, $post );
 				$pages = wp_dropdown_pages( $dropdown_args );
 				if ( ! empty( $pages ) ) : ?>
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php _e( 'Parent' ); ?></label></p>
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php _e( 'Parent', 'bgtfw' ); ?></label></p>
 					<?php echo $pages; ?>
 					<?php
 				endif; // end empty pages check
 			endif;  // end hierarchical check.
 		?>
 		<?php if ( post_type_supports( $post->post_type, 'page-attributes' ) ) : ?>
-		<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order"><?php _e( 'Order' ); ?></label></p>
+		<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order"><?php _e( 'Order', 'bgtfw' ); ?></label></p>
 		<input name="menu_order" type="text" size="4" id="menu_order" value="<?php echo esc_attr( $post->menu_order ); ?>" />
 		<?php if ( 'page' == $post->post_type && get_current_screen()->get_help_tabs() ) : ?>
-		<p><?php _e( 'Need help? Use the Help tab above the screen title.' ); ?></p>
+		<p><?php _e( 'Need help? Use the Help tab above the screen title.', 'bgtfw' ); ?></p>
 		<?php endif; ?>
 		</div>
 		<?php endif; ?>

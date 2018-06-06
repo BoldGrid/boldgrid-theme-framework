@@ -607,7 +607,7 @@ return array(
 		'priority'    => 10,
 		'output'      => array(
 			array(
-				'element' => '.site-header, .site-content, .site-footer, .gutenberg .edit-post-visual-editor',
+				'element' => '.site-header, .site-content, .site-footer, .gutenberg .edit-post-visual-editor, .mce-content-body',
 			),
 		),
 	),

@@ -36,6 +36,14 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
+#: src/includes/class-boldgrid-framework-api.php:893
+msgid "This content is password protected. To view it please enter your password below:"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-api.php:894
+msgid "Password:"
+msgstr ""
+
 #: src/includes/class-boldgrid-framework-comments.php:64
 msgctxt "comments title"
 msgid "One thought on &ldquo;%s&rdquo;"
@@ -158,6 +166,10 @@ msgstr ""
 msgid "Global Theme Default"
 msgstr ""
 
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:165
+msgid "Template"
+msgstr ""
+
 #: src/includes/class-boldgrid-framework-layouts-post-meta.php:179
 msgid "Edit template"
 msgstr ""
@@ -170,8 +182,32 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:205
+msgid "(no parent)"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:223
+msgid "Parent"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:230
+msgid "Order"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:233
+msgid "Need help? Use the Help tab above the screen title."
+msgstr ""
+
 #: src/includes/class-boldgrid-framework-menu.php:216
 msgid "Toggle menu visibility."
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-pointer.php:57
+msgid "$ptr[title]"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-pointer.php:58
+msgid "$ptr[content]"
 msgstr ""
 
 #: src/includes/class-boldgrid-framework-search-forms.php:53
@@ -200,6 +236,10 @@ msgstr ""
 
 #: src/includes/class-boldgrid-framework-title.php:80, src/includes/class-boldgrid-framework-title.php:89
 msgid "Hide"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:30
+msgid "JS code"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:31
@@ -338,11 +378,11 @@ msgstr ""
 msgid "Add an overlay to give your text readability over an image or video."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:766
+#: src/includes/configs/customizer/controls.config.php:766, src/includes/customizer/class-boldgrid-framework-customizer-effects.php:75
 msgid "Enable"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:767
+#: src/includes/configs/customizer/controls.config.php:767, src/includes/customizer/class-boldgrid-framework-customizer-effects.php:76
 msgid "Disable"
 msgstr ""
 
@@ -686,6 +726,14 @@ msgstr ""
 msgid "Menus"
 msgstr ""
 
+#: src/includes/configs/customizer/sections.config.php:17
+msgid "This section controls the layout of pages and posts on your website."
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:23
+msgid "This section controls the global layout of pages on your website."
+msgstr ""
+
 #: src/includes/configs/customizer/sections.config.php:29
 msgid "Change the layout of your site's footer."
 msgstr ""
@@ -888,6 +936,38 @@ msgstr ""
 
 #: src/includes/configs/tooltips.config.php:92
 msgid "This layout will be used as the default blog template layout for your website's pages.  Individual posts can override this setting by choosing a different template in the post editor."
+msgstr ""
+
+#: src/includes/configs/widget.config.php:21
+msgid "Header Column 1"
+msgstr ""
+
+#: src/includes/configs/widget.config.php:29
+msgid "Header Column 2"
+msgstr ""
+
+#: src/includes/configs/widget.config.php:37
+msgid "Header Column 3"
+msgstr ""
+
+#: src/includes/configs/widget.config.php:45
+msgid "Header Column 4"
+msgstr ""
+
+#: src/includes/configs/widget.config.php:55
+msgid "Footer Column 1"
+msgstr ""
+
+#: src/includes/configs/widget.config.php:63
+msgid "Footer Column 2"
+msgstr ""
+
+#: src/includes/configs/widget.config.php:71
+msgid "Footer Column 3"
+msgstr ""
+
+#: src/includes/configs/widget.config.php:79
+msgid "Footer Column 4"
 msgstr ""
 
 #: src/includes/configs/widget.config.php:89

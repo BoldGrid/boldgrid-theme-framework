@@ -76,7 +76,7 @@ class Boldgrid_Framework_Element_Class {
 	 * @return string Markup to be added to element.
 	 */
 	public function set_html() {
-		return 'class="' . join( ' ', $this->classes ) . '"';
+		return 'class="' . esc_attr( join( ' ', $this->classes ) ) . '"';
 	}
 
 	/**

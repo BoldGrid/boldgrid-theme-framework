@@ -487,7 +487,7 @@ class Boldgrid_Framework_Compile_Colors {
 	 * @since 2.0.0
 	 *
 	 * @param array $palette     The active palette to get the size of.
-	 * @param bool  $transparent Palette selector allows transparency option?
+	 * @param bool  $transparent Palette selector allows transparency option?.
 	 *
 	 * @return string            Size of each palette square.
 	 */

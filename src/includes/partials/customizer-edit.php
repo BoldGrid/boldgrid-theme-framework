@@ -11,11 +11,11 @@ $edit_page_content  = __( "This section is part of an individual page of your si
 $edit_title_header  = __( 'Hide page title', 'bgtfw' );
 $edit_title_content = __( "To hide the title on this page, you'll need to leave the Customizer and go to the Page Editor.", 'bgtfw' );
 ?>
-<div id='entry-content' title='<?php echo $edit_page_header ?>' class='dialog-hidden'>
+<div id='entry-content' title='<?php echo esc_attr( $edit_page_header ) ?>' class='dialog-hidden'>
 	<?php echo $edit_page_content; ?>
 </div>
-<div id='entry-title' title='<?php echo $edit_title_header; ?>' class='dialog-hidden'>
+<div id='entry-title' title='<?php echo esc_attr( $edit_title_header ); ?>' class='dialog-hidden'>
 	<?php echo $edit_title_content; ?><br />
-	<img src='<?php echo $this->configs['framework']['admin_asset_dir']; ?>img/hide-page-title.png' />
+	<img src='<?php echo esc_url( $this->configs['framework']['admin_asset_dir'] ); ?>img/hide-page-title.png' />
 </div>
 <div id='target-highlight'></div>

@@ -19,7 +19,7 @@ export class ToggleClass extends ToggleValue {
 	 * @param {Mixed} to New value control is updating to.
 	 */
 	bound( to ) {
-		to ? $( this.element ).addClass( this.remove ) : $( this.element ).removeClass( this.remove ) && this.cb();
+		$( this.element ).toggleClass( this.remove, to ) && this.cb();
 	}
 }
 

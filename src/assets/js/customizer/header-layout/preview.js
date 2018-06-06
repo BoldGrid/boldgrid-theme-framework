@@ -1,4 +1,4 @@
-const $ = jQuery;
+/* global BoldGrid:false */
 const api = wp.customize;
 
 export class Preview {
@@ -21,9 +21,8 @@ export class Preview {
 	 * @since 2.0.0
 	 */
 	_setupResize() {
-		let resize = _.debounce( () => $( window ).trigger( 'resize' ), 1000 );
-
-		api( 'bgtfw_header_padding', 'bgtfw_header_border', 'bgtfw_header_margin', 'bgtfw_fixed_header', ( ...args ) => {
+		let resize = _.debounce( () => BoldGrid.custom_header.calc(), 500 );
+		api( 'bgtfw_header_padding', 'bgtfw_header_border', 'bgtfw_header_margin', ( ...args ) => {
 			args.map( ( control ) => control.bind( resize ) );
 		} );
 	}

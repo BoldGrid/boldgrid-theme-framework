@@ -414,10 +414,11 @@ class BoldGrid_Framework_Customizer {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_script( 'boldgrid-theme-customizer',
-			// Force minifies file for customizer.
+
+		// Force minifies file for customizer.
 			$this->configs['framework']['js_dir'] . 'customizer/customizer.min.js',
 			array(
-				'jquery',
+				'boldgrid-front-end-scripts',
 				'customize-preview',
 			),
 			$this->configs['version'],

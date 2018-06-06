@@ -87,13 +87,7 @@ class BoldGrid_Framework_Scripts {
 			'1.4',
 			true
 		);
-		wp_enqueue_script(
-			'bgtfw-smartmenus-bootstrap',
-			$this->configs['framework']['js_dir'] . 'smartmenus/addons/bootstrap/jquery.smartmenus.bootstrap.min.js',
-			array( 'jquery' ),
-			'1.4',
-			true
-		);
+
 		/**
 		 * General Boldgrid scripts
 		 *
@@ -101,7 +95,7 @@ class BoldGrid_Framework_Scripts {
 		 *
 		 * @since 1.0.0
 		 */
-		wp_enqueue_script(
+		wp_register_script(
 			'boldgrid-front-end-scripts',
 			$this->configs['framework']['js_dir'] . 'front-end' . $suffix . '.js',
 			array( 'jquery' ),
@@ -140,42 +134,12 @@ class BoldGrid_Framework_Scripts {
 			wp_enqueue_script(
 				$handle,
 				$this->configs['framework']['js_dir'] . 'wow/wow' . $suffix . '.js',
-				array( 'jquery' ),
+				array( 'boldgrid-front-end-scripts' ),
 				$this->configs['version']
 			);
 			$wp_scripts = wp_scripts();
 			$wow_configs = $this->configs['scripts']['options']['wow-js'];
 			$wp_scripts->add_data( $handle, 'data', sprintf( 'var _wowJsOptions = %s;', wp_json_encode( $wow_configs ) ) );
-		}
-
-		/**
-		 * Add the sticky header nav script thing if a theme requests it and is not on a mobile device.
-		 *
-		 * @TODO  should collapsing for mobile be set as a config option?
-		 * @since 1.0.0
-		 */
-		if ( ( true === $this->configs['scripts']['boldgrid-sticky-nav'] ) ) {
-			wp_enqueue_script(
-				'boldgrid-sticky-nav-js',
-				$this->configs['framework']['js_dir'] . 'boldgrid-sticky-nav' . $suffix . '.js',
-				array( 'jquery' ),
-				$this->configs['version'],
-				true
-			);
-		}
-
-		/**
-		 * Add offcanvas.js for offcanvas menus if a theme requests it.
-		 *
-		 * @since 1.0.0
-		 */
-		if ( true === $this->configs['scripts']['offcanvas-menu'] ) {
-			wp_enqueue_script(
-				'boldgrid-offcanvas-js',
-				$this->configs['framework']['js_dir'] . 'offcanvas/offcanvas' . $suffix . '.js',
-				array( 'jquery' ),
-				$this->configs['version']
-			);
 		}
 
 		/**
@@ -187,7 +151,7 @@ class BoldGrid_Framework_Scripts {
 			wp_enqueue_script(
 				'boldgrid-nicescroll-js',
 				$this->configs['framework']['js_dir'] . 'niceScroll/jquery.nicescroll.min.js',
-				array( 'jquery' ),
+				array( 'boldgrid-front-end-scripts' ),
 				$this->configs['version']
 			);
 
@@ -205,7 +169,7 @@ class BoldGrid_Framework_Scripts {
 			wp_enqueue_script(
 				'boldgrid-goup-js',
 				$this->configs['framework']['js_dir'] . 'goup/jquery.goup' . $suffix . '.js',
-				array( 'jquery' ),
+				array( 'boldgrid-front-end-scripts' ),
 				$this->configs['version']
 			);
 
@@ -234,10 +198,12 @@ class BoldGrid_Framework_Scripts {
 		wp_enqueue_script(
 			'bgtfw-modernizr',
 			$this->configs['framework']['js_dir'] . 'modernizr' . $suffix . '.js',
-			array(),
+			array( 'boldgrid-front-end-scripts' ),
 			$this->configs['version'],
 			true
 		);
+
+		wp_enqueue_script( 'boldgrid-front-end-scripts' );
 	}
 
 	/**

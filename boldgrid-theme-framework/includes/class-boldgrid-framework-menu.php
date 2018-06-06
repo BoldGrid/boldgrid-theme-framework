@@ -116,8 +116,11 @@ class Boldgrid_Framework_Menu {
 
 				// Allow hamburgers at all menu locations.
 				$this->add_hamburger( $menu );
-				$menu = $this->add_menu_border( $menu );
+
+				// Set menu classes.
 				$menu = $this->add_menu_bg( $menu );
+				$menu = $this->add_menu_border( $menu );
+				$menu = $this->add_menu_link( $menu );
 
 				/*
 				 * IF we're in the customizer and edit buttons are enabled:
@@ -270,6 +273,58 @@ class Boldgrid_Framework_Menu {
 			} else {
 				$classes[] = str_replace( '-', '', $color ) . '-background-color';
 			}
+		}
+
+		// Convert back to string.
+		$menu['menu_class'] = implode( ' ', $classes );
+
+		return $menu;
+	}
+
+	/**
+	 * Adds appropriate background class to register menu's UL elements.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $menu Menu location settings.
+	 *
+	 * @return array $menu Modfied menu location settings.
+	 */
+	public function add_menu_link( $menu ) {
+		$color = get_theme_mod( 'bgtfw_menu_items_link_color_' . $menu['theme_location'] );
+		$color = explode( ':', $color );
+		$color = array_shift( $color );
+
+		$background_color = null;
+
+		// Check if a transparent BG has been applied.
+		if ( strpos( $menu['menu_class'], 'transparent' ) !== false ) {
+			$background_color = 'header';
+
+			if ( in_array( $menu['theme_location'], $this->configs['menu']['footer_menus'], true ) ) {
+				$background_color = 'footer';
+			}
+
+			$background_color = get_theme_mod( "bgtfw_{$background_color}_color" );
+		} else {
+			$background_color = get_theme_mod( 'bgtfw_menu_background_' . $menu['theme_location'] );
+		}
+
+		// Get array of current menu classes.
+		$classes = explode( ' ', $menu['menu_class'] );
+
+		if ( ! empty( $color ) ) {
+			if ( ! is_null( $background_color ) ) {
+				$background_color = explode( ':', $background_color );
+				$background_color = array_shift( $background_color );
+
+				if ( strpos( $background_color, 'neutral' ) !== false ) {
+					$classes[] = $background_color . '-background-color';
+				} else {
+					$classes[] = str_replace( '-', '', $background_color ) . '-background-color';
+				}
+			}
+			$classes[] = $color . '-link-color';
 		}
 
 		// Convert back to string.

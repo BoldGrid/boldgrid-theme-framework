@@ -1408,5 +1408,19 @@ return array(
 		),
 	),
 
+	'bgtfw_menu_items_link_color_main' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport' => 'postMessage',
+		'settings'    => 'bgtfw_menu_items_link_color_main',
+		'label' => esc_attr__( 'Link Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_items_link_color_main',
+		'priority' => 1,
+		'default'     => 'color-1',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
 	/*** End: Dynamic Menu Controls ***/
 );

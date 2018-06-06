@@ -83,7 +83,6 @@ class BoldGrid_Framework_Customizer {
 								'title' => __( 'Menu Items', 'bgtfw' ),
 								'panel' => "bgtfw_menu_location_$location",
 								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-networking',
 							)
 						);
 
@@ -95,6 +94,7 @@ class BoldGrid_Framework_Customizer {
 								'title' => __( 'Hamburger Style', 'bgtfw' ),
 								'panel' => "bgtfw_menu_location_$location",
 								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-menu'
 							)
 						);
 
@@ -144,6 +144,7 @@ class BoldGrid_Framework_Customizer {
 								'title' => __( 'Standard Display', 'bgtfw' ),
 								'panel' => "bgtfw_menu_items_$location",
 								'capability' => 'edit_theme_options',
+
 							)
 						);
 
@@ -153,16 +154,17 @@ class BoldGrid_Framework_Customizer {
 								'title' => __( 'Link Color', 'bgtfw' ),
 								'panel' => "bgtfw_menu_items_$location",
 								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-admin-links',
+								'icon' => 'dashicons-art',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_items_hover_item_$location",
 							array(
-								'title' => __( 'Hover Display', 'bgtfw' ),
+								'title' => __( 'Hover Style', 'bgtfw' ),
 								'panel' => "bgtfw_menu_items_$location",
 								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-admin-links',
 							)
 						);
 
@@ -181,6 +183,7 @@ class BoldGrid_Framework_Customizer {
 								'title' => __( 'Border', 'bgtfw' ),
 								'panel' => "bgtfw_menu_items_$location",
 								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-grid-view',
 							)
 						);
 
@@ -190,6 +193,7 @@ class BoldGrid_Framework_Customizer {
 								'title' => __( 'Spacing', 'bgtfw' ),
 								'panel' => "bgtfw_menu_items_$location",
 								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-editor-outdent',
 							)
 						);
 					}

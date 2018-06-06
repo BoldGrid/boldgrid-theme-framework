@@ -306,7 +306,7 @@ msgstr ""
 msgid "Headings Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:544, src/includes/configs/customizer/controls.config.php:832, src/includes/configs/customizer/controls.config.php:1415, src/includes/customizer/class-boldgrid-framework-customizer.php:153
+#: src/includes/configs/customizer/controls.config.php:544, src/includes/configs/customizer/controls.config.php:832, src/includes/configs/customizer/controls.config.php:1415, src/includes/customizer/class-boldgrid-framework-customizer.php:154
 msgid "Link Color"
 msgstr ""
 
@@ -538,7 +538,7 @@ msgstr ""
 msgid "Primary Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1086, src/includes/customizer/class-boldgrid-framework-customizer.php:95
+#: src/includes/configs/customizer/controls.config.php:1086, src/includes/customizer/class-boldgrid-framework-customizer.php:94
 msgid "Hamburger Style"
 msgstr ""
 
@@ -806,7 +806,7 @@ msgstr ""
 msgid "Change the padding of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:123, src/includes/configs/customizer/sections.config.php:161, src/includes/customizer/class-boldgrid-framework-customizer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:181
+#: src/includes/configs/customizer/sections.config.php:123, src/includes/configs/customizer/sections.config.php:161, src/includes/customizer/class-boldgrid-framework-customizer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:183
 msgid "Border"
 msgstr ""
 
@@ -1018,7 +1018,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:104, src/includes/customizer/class-boldgrid-framework-customizer.php:572
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:367, src/includes/customizer/class-boldgrid-framework-customizer.php:104, src/includes/customizer/class-boldgrid-framework-customizer.php:576
 msgid "Background"
 msgstr ""
 
@@ -1353,7 +1353,7 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:141, src/includes/customizer/class-boldgrid-framework-customizer.php:190
+#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:141, src/includes/customizer/class-boldgrid-framework-customizer.php:193
 msgid "Spacing"
 msgstr ""
 
@@ -1561,27 +1561,27 @@ msgstr ""
 msgid "Standard Display"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:163
-msgid "Hover Display"
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:164
+msgid "Hover Style"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:172
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:174
 msgid "Active Item Display"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:559
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:563
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:577
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:581
 msgid "CSS/JS Editor"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:581
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:585
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:675
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:679
 msgid "Menu Tutorial"
 msgstr ""
 

@@ -1084,6 +1084,7 @@
 /* BGTFW Custom Icons */
 /* Design Menu */
 #sub-accordion-panel-bgtfw_design_panel > li[id^="accordion-section-"] > h3:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1093,6 +1094,7 @@
 }
 
 #sub-accordion-panel-bgtfw_design_panel > li#accordion-panel-bgtfw_header > h3:before {
+  display: inline;
   font-family: icomoon;
   font-size: 1.4em;
   font-weight: 400;
@@ -1102,6 +1104,7 @@
 }
 
 #sub-accordion-panel-bgtfw_design_panel > li#accordion-panel-bgtfw_footer > h3:before {
+  display: inline;
   font-family: icomoon;
   font-size: 1.4em;
   font-weight: 400;
@@ -1111,6 +1114,7 @@
 }
 
 #sub-accordion-panel-bgtfw_design_panel > li#accordion-panel-bgtfw_blog_panel > h3:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1120,6 +1124,7 @@
 }
 
 #sub-accordion-panel-bgtfw_design_panel > li#accordion-panel-bgtfw_menus_panel > h3:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1139,6 +1144,7 @@
 /* Primary Menu */
 ul.customize-pane-parent > li[id^="accordion-panel-"]:not(.control-panel-themes) > h3:before,
 ul.customize-pane-parent > li[id^="accordion-section-"]:not(.control-panel-themes) > h3:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1152,6 +1158,7 @@ ul.customize-pane-parent > li#accordion-panel-bgtfw_design_panel > h3:before {
 }
 
 ul.customize-pane-parent > li#accordion-panel-bgtfw_header > h3:before {
+  display: inline;
   font-family: icomoon;
   font-size: 1.4em;
   font-weight: 400;
@@ -1161,6 +1168,7 @@ ul.customize-pane-parent > li#accordion-panel-bgtfw_header > h3:before {
 }
 
 ul.customize-pane-parent > li#accordion-panel-bgtfw_footer > h3:before {
+  display: inline;
   font-family: icomoon;
   font-size: 1.4em;
   font-weight: 400;
@@ -1199,6 +1207,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 
 /* Header Panel */
 #sub-accordion-panel-bgtfw_header > li[id^="accordion-section-"] > h3:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1242,6 +1251,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 
 /* Footer Panel */
 #sub-accordion-panel-bgtfw_footer > li[id^="accordion-section-"] > h3:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1264,6 +1274,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 
 /* Blog Panel */
 #sub-accordion-panel-bgtfw_blog_panel > li[id^="accordion-panel-"] > h3:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1282,6 +1293,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 
 /* Blog Page Panel */
 #accordion-panel-bgtfw_blog_blog_page_panel > li #accordion-section-bgtfw_pages_blog_blog_page_layout > h3:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1291,6 +1303,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 }
 
 #accordion-panel-bgtfw_blog_blog_page_panel > li #accordion-section-bgtfw_blog_blog_page_panel_sidebar > h3:before {
+  display: inline;
   font-family: icomoon;
   font-size: 1.4em;
   font-weight: 400;
@@ -1301,6 +1314,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 
 /* Blog Posts Panel */
 #accordion-panel-bgtfw_blog_posts_panel > li #accordion-section-bgtfw_pages_blog_posts_layout > h3:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1310,6 +1324,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 }
 
 #accordion-panel-bgtfw_blog_posts_panel > li #accordion-section-bgtfw_pages_blog_posts_sidebar > h3:before {
+  display: inline;
   font-family: icomoon;
   font-size: 1.4em;
   font-weight: 400;
@@ -1320,6 +1335,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 
 /* Typography Panel */
 #sub-accordion-panel-boldgrid_typography > li[id^="accordion-section-"] > h3:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1339,6 +1355,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 }
 
 #sub-accordion-panel-boldgrid_typography > li#accordion-section-headings_typography > h3:before {
+  display: inline;
   font-family: FontAwesome;
   font-size: 1.4em;
   padding: .5em;
@@ -1346,6 +1363,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 }
 
 #sub-accordion-panel-boldgrid_typography > li#accordion-section-body_typography > h3:before {
+  display: inline;
   font-family: FontAwesome;
   font-size: 1.4em;
   padding: .5em;
@@ -1354,6 +1372,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 }
 
 #customize-theme-controls .accordion-section li[id*="margin_section"] > .accordion-section-title:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1363,6 +1382,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 }
 
 #customize-theme-controls .accordion-section li[id*="padding_section"] > .accordion-section-title:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1372,6 +1392,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 }
 
 #customize-theme-controls .accordion-section li[id*="border_section"] > .accordion-section-title:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1381,6 +1402,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 }
 
 #customize-theme-controls .accordion-section li[id*="shadow_section"] > .accordion-section-title:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
@@ -1390,12 +1412,30 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 }
 
 #customize-theme-controls .accordion-section li[id*="radius_section"] > .accordion-section-title:before {
+  display: inline;
   font-family: dashicons;
   padding: .4em;
   vertical-align: middle;
   font-size: 1.6em;
   font-weight: 400;
   content: "\f531";
+}
+
+#customize-controls .control-panel-bgtfw_panel > li:not(.customize-info) > h3.accordion-section-title:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+}
+
+#customize-controls [id^="accordion-panel-bgtfw_menu_items_"] > h3.accordion-section-title:before {
+  content: "\f325";
+}
+
+#customize-controls [id^="accordion-section-bgtfw_menu_items_hover_item_"] > h3.accordion-section-title:before {
+  text-decoration: underline;
 }
 
 /*--------------------------------------------------------------
@@ -1912,6 +1952,14 @@ ul[id^="sub-accordion-section-bgtfw_menu_hamburgers_"] .bgtfw-hamburgers-wrapper
   z-index: -1;
 }
 
+/*--------------------------------------------------------------
+# Section Orginization
+--------------------------------------------------------------*/
+#customize-theme-controls .control-section#accordion-section-boldgrid_footer_margin_section, #customize-theme-controls .control-section#accordion-section-boldgrid_header_margin_section {
+  border-top: 20px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Extended Section Titles */
 span.section-title-extended {
   display: block;
   font-size: 13px;
@@ -1919,9 +1967,8 @@ span.section-title-extended {
   font-weight: 400;
 }
 
-/*--------------------------------------------------------------
-# Section Orginization
---------------------------------------------------------------*/
-#customize-theme-controls .control-section#accordion-section-boldgrid_footer_margin_section, #customize-theme-controls .control-section#accordion-section-boldgrid_header_margin_section {
-  border-top: 20px solid rgba(0, 0, 0, 0.1);
+h3.accordion-section-title span.section-title-extended {
+  margin-left: 3.25em;
+  margin-bottom: -6px;
+  margin-top: -3px;
 }

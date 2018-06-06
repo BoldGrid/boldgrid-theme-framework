@@ -4,3 +4,16 @@
 		border-top: 20px solid rgba(0, 0, 0, 0.1);
 	}
 }
+
+/* Extended Section Titles */
+span.section-title-extended {
+	display: block;
+	font-size: 13px;
+	font-variant: small-caps;
+	font-weight: 400;
+	h3.accordion-section-title & {
+		margin-left: 3.25em;
+		margin-bottom: -6px;
+		margin-top: -3px;
+	}
+}

@@ -5,6 +5,7 @@
 
 /* Dashicons Mixin */
 @mixin dashicons {
+	display: inline;
 	font-family: dashicons;
 	padding: .4em;
 	vertical-align: middle;
@@ -14,6 +15,7 @@
 
 /* Fontawesome Mixin */
 @mixin FontAwesome {
+	display: inline;
 	font-family: FontAwesome;
 	font-size: 1.4em;
 	padding: .5em;
@@ -21,6 +23,7 @@
 
 /* BGTFW Custom Icons */
 @mixin bgtfwIcons {
+	display: inline;
 	font-family: icomoon;
 	font-size: 1.4em;
 	font-weight: 400;

@@ -54,8 +54,8 @@ class Boldgrid_Framework_Pointer {
 					'target' => $ptr['target'],
 					'options' => array(
 						'content' => sprintf( '<h3> %s </h3> <p> %s </p>',
-							__( $ptr['title'], 'plugindomain' ),
-						__( $ptr['content'], 'plugindomain' ) ),
+							__( $ptr['title'], 'bgtfw' ),
+						__( $ptr['content'], 'bgtfw' ) ),
 						'position' => $ptr['position'],
 					),
 				);
@@ -125,7 +125,7 @@ class Boldgrid_Framework_Pointer {
 		            });
 				}, 1000);
             });
-            		
+
             function wp_help_pointer_open(i) {
                 pointer = WPHelpPointer.pointers[i];
                 options = $.extend( pointer.options, {
@@ -135,12 +135,12 @@ class Boldgrid_Framework_Pointer {
                             pointer: pointer.pointer_id,
                             action: 'dismiss-wp-pointer'
                         });
-            			
+
             			//Remove After dismissing so that it wont show anymore
             			$('.boldgrid-color-palette-help').remove();
                     }
                 });
-            	
+
                 $(pointer.target).pointer( options ).pointer('open');
             	jQuery('#accordion-section-colors').off('click.boldgrid-help-pointer');
             }

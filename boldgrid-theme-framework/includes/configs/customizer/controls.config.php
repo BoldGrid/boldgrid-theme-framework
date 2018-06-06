@@ -27,7 +27,7 @@ return array(
 	'custom_theme_js' => array(
 		'type'        => 'code',
 		'settings'    => 'custom_theme_js',
-		'label'       => __( 'JS code' ),
+		'label'       => __( 'JS code', 'bgtfw' ),
 		'help'        => __( 'This adds live JavaScript to your website.', 'bgtfw' ),
 		'description' => __( 'Add custom javascript for this theme.', 'bgtfw' ),
 		'section'     => 'custom_css',
@@ -607,7 +607,7 @@ return array(
 		'priority'    => 10,
 		'output'      => array(
 			array(
-				'element' => '.site-header, .site-content, .site-footer, .gutenberg .edit-post-visual-editor',
+				'element' => '.site-header, .site-content, .site-footer, .gutenberg .edit-post-visual-editor, .mce-content-body',
 			),
 		),
 	),

@@ -18,7 +18,7 @@ return array(
 
 		// Header Widgets.
 		'header-1' => array(
-			'name'          => __( 'Header Column 1' ),
+			'name'          => __( 'Header Column 1', 'bgtfw' ),
 			'id'            => 'header-1',
 			'before_widget' => '<aside class="%2$s widget" id="%1$s">',
 			'after_widget'  => '</aside>',
@@ -26,7 +26,7 @@ return array(
 			'after_title'   => '</h2>',
 		),
 		'header-2' => array(
-			'name'          => __( 'Header Column 2' ),
+			'name'          => __( 'Header Column 2', 'bgtfw' ),
 			'id'            => 'header-2',
 			'before_widget' => '<aside class="%2$s widget" id="%1$s">',
 			'after_widget'  => '</aside>',
@@ -34,7 +34,7 @@ return array(
 			'after_title'   => '</h2>',
 		),
 		'header-3' => array(
-			'name'          => __( 'Header Column 3' ),
+			'name'          => __( 'Header Column 3', 'bgtfw' ),
 			'id'            => 'header-3',
 			'before_widget' => '<aside class="%2$s widget" id="%1$s">',
 			'after_widget'  => '</aside>',
@@ -42,7 +42,7 @@ return array(
 			'after_title'   => '</h2>',
 		),
 		'header-4' => array(
-			'name'          => __( 'Header Column 4' ),
+			'name'          => __( 'Header Column 4', 'bgtfw' ),
 			'id'            => 'header-4',
 			'before_widget' => '<aside class="%2$s widget" id="%1$s">',
 			'after_widget'  => '</aside>',
@@ -52,7 +52,7 @@ return array(
 
 		// Footer Widgets.
 		'footer-1' => array(
-			'name'          => __( 'Footer Column 1' ),
+			'name'          => __( 'Footer Column 1', 'bgtfw' ),
 			'id'            => 'footer-1',
 			'before_widget' => '<aside class="%2$s widget" id="%1$s">',
 			'after_widget'  => '</aside>',
@@ -60,7 +60,7 @@ return array(
 			'after_title'   => '</h2>',
 		),
 		'footer-2' => array(
-			'name'          => __( 'Footer Column 2' ),
+			'name'          => __( 'Footer Column 2', 'bgtfw' ),
 			'id'            => 'footer-2',
 			'before_widget' => '<aside class="%2$s widget" id="%1$s">',
 			'after_widget'  => '</aside>',
@@ -68,7 +68,7 @@ return array(
 			'after_title'   => '</h2>',
 		),
 		'footer-3' => array(
-			'name'          => __( 'Footer Column 3' ),
+			'name'          => __( 'Footer Column 3', 'bgtfw' ),
 			'id'            => 'footer-3',
 			'before_widget' => '<aside class="%2$s widget" id="%1$s">',
 			'after_widget'  => '</aside>',
@@ -76,7 +76,7 @@ return array(
 			'after_title'   => '</h2>',
 		),
 		'footer-4' => array(
-			'name'          => __( 'Footer Column 4' ),
+			'name'          => __( 'Footer Column 4', 'bgtfw' ),
 			'id'            => 'footer-4',
 			'before_widget' => '<aside class="%2$s widget" id="%1$s">',
 			'after_widget'  => '</aside>',

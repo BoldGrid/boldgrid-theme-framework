@@ -169,6 +169,7 @@ class BoldGrid_Framework {
 			'menu',
 			'ninja-forms',
 			'pagination',
+			'ppb',
 			'pointer',
 			'schema-markup',
 			'scripts',
@@ -463,6 +464,7 @@ class BoldGrid_Framework {
 		$admin = new BoldGrid_Framework_Admin( $this->configs );
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
+		$boldgrid_ppb = new Boldgrid_Framework_PPB( $this->configs );
 
 		$generic = new Boldgrid_Framework_Customizer_Generic( $this->configs );
 		$this->loader->add_action( 'wp_enqueue_scripts', $generic, 'add_styles' );
@@ -478,6 +480,9 @@ class BoldGrid_Framework {
 			$links = new Boldgrid_Framework_Edit_Post_Links( $this->configs );
 			$this->loader->add_filter( 'edit_post_link', $links, 'get_link', 10, 3 );
 		}
+
+		// BoldGrid Post and Page Builder Support.
+		$this->loader->add_filter( 'BoldgridEditor\PageBuilder', $boldgrid_ppb, 'set_theme_fonts' );
 
 		// Actions.
 		$this->loader->add_action( 'boldgrid_activate_framework', $activate, 'do_activate' );

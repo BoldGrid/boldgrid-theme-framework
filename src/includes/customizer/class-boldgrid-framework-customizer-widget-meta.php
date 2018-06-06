@@ -147,8 +147,8 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 
 			foreach ( $this->configs['customizer-options']['typography']['selectors'] as $selector => $options ) {
 				if ( 'headings' === $options['type'] ) {
-					$selectorSet = explode( ',', $selector );
-					foreach( $selectorSet as $selector ) {
+					$selector_set = explode( ',', $selector );
+					foreach ( $selector_set as $selector ) {
 						$selectors[] = ".dynamic-sidebar.%s {$selector}";
 					}
 				}

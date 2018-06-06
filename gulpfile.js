@@ -358,7 +358,7 @@ gulp.task('scssDeps', function () {
     .pipe(gulp.dest(config.dist + '/assets/css/hamburgers'));
 
   // hovers.
-  gulp.src(config.node_modules + '/hover.css/css/hover*.css')
+  gulp.src(config.node_modules + '/hover.css/css/hover*.css*')
     .pipe(gulp.dest(config.dist + '/assets/css/hover.css'));
 });
 

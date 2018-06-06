@@ -221,7 +221,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			attributionSeparators,
 			attributionControls;
 
-		let calc = window.BoldGrid.custom_header.calc;
+		let calc = BoldGrid.custom_header.calc;
 
 		/**
 		 * Allow the user to click the post edit link in the customizer and go to the editor

@@ -95,15 +95,15 @@ class Boldgrid_Framework_Title {
 		?>
 
 		<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-page-title">
-			<?php echo $title; ?>: <span class="value-displayed">...</span>
+			<?php echo esc_html( $title ); ?>: <span class="value-displayed">...</span>
 			<a class="edit" href="">
-				<span aria-hidden="true"><?php echo __( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo $title; ?></span>
+				<span aria-hidden="true"><?php echo __( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo esc_html( $title ); ?></span>
 			</a>
 			<div class="options">
 				<?php foreach ( $options as $option ) {
 					$value_displayed = $option['name'] . ( ! empty( $option['post_text'] ) ? sprintf( ' <span class="template-subtitle">%1$s</span>', $option['post_text'] )  : '' );
 				?><label>
-					<input type="radio" name="<?php echo $this->configs['title']['hide']; ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo $option['checked'] ? '1' : '0'; ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
+					<input type="radio" name="<?php echo esc_attr( $this->configs['title']['hide'] ); ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo $option['checked'] ? '1' : '0'; ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
 					<?php echo $value_displayed; ?>
 				</label>
 				<?php } ?>

@@ -36,7 +36,7 @@ class Boldgrid_Framework_Control_Background_Type extends WP_Customize_Control {
 	public function render_content() {
 		?>
 		<div class='background-type-controls'>
-			<div id="<?php echo $this->id ?>">
+			<div id="<?php echo esc_attr( $this->id ); ?>">
 				<input type="radio"
 					id="radio1" name="radio" <?php echo checked( $this->value(), 'image' ); ?> value='image'
 					<?php $this->link();?>><label for="radio1">Image <span

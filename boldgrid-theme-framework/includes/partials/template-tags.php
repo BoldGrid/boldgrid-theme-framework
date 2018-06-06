@@ -27,11 +27,11 @@ function boldgrid_paging_nav() {
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="<?php echo $nav_classes['next'] ?>"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'bgtfw' ) ); ?></div>
+			<div class="<?php echo esc_attr( $nav_classes['next'] ) ?>"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'bgtfw' ) ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="<?php echo $nav_classes['previous'] ?>"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'bgtfw' ) ); ?></div>
+			<div class="<?php echo esc_attr( $nav_classes['previous'] ) ?>"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'bgtfw' ) ); ?></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->
@@ -483,7 +483,7 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 		$classes[] = $color_class . '-link-color';
 	}
 ?>
-	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid <?php echo implode( ' ', $classes ); ?>" role="complementary" style="<?php echo $style; ?>">
+	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid <?php echo esc_attr( implode( ' ', $classes ) ); ?>" role="complementary" style="<?php echo esc_attr( $style ); ?>">
 		<?php dynamic_sidebar( $sidebar_id ); ?>
 		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
 			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>
@@ -492,11 +492,11 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 						<h2><?php _e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
 					<?php endif; ?>
 					<p><?php _e( "This sidebar doesn't have any widgets assigned to it yet.", 'bgtfw' ); ?></p>
-					<p><a href="<?php echo $link ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add widgets here.', 'bgtfw' ) ?></a></p>
+					<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add widgets here.', 'bgtfw' ) ?></a></p>
 				</div>
 				<?php elseif ( is_active_sidebar( $sidebar_id ) ) : ?>
 					<div class="add-widget-message">
-						<p><a href="<?php echo $link ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add another widget.', 'bgtfw' ) ?></a></p>
+						<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add another widget.', 'bgtfw' ) ?></a></p>
 					</div>
 			<?php endif; ?>
 		<?php endif; ?>

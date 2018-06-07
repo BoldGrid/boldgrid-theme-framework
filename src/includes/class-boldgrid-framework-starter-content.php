@@ -160,30 +160,18 @@ class BoldGrid_Framework_Starter_Content {
 
 				if ( 'main' !== $location && ! isset( $this->configs['customizer']['controls'][ $new_key ] ) ) {
 
-					$config['customizer']['controls'][ $new_key ] = [];
+					$config['customizer']['controls'][ $new_key ] = $control;
 
-					foreach ( $control as $option => $value ) {
-						$config['customizer']['controls'][ $new_key ][ $option ] = is_string( $value ) ? str_replace( 'main', $location, $value ) : $value;
-					}
+					// Update main to location in configs.
+					array_walk_recursive( $config['customizer']['controls'][ $new_key ], function ( &$value ) use ( $location ) {
+						if ( is_string( $value ) ) {
+							$value = str_replace( 'main', $location, $value );
+						}
+					} );
 
 					// Only enable hamburgers on main menu unless otherwise explicitly set in configs.
 					if ( strpos( $new_key, '_toggle' ) !== false ) {
 						$config['customizer']['controls'][ $new_key ]['default'] = false;
-					}
-
-					// Active callbacks/ required.
-					foreach ( [ 'active_callback', 'required' ] as $item ) {
-						if ( isset( $config['customizer']['controls'][ $new_key ][ $item ] ) ) {
-							foreach ( $config['customizer']['controls'][ $new_key ][ $item ] as $set => $opts ) {
-								$config['customizer']['controls'][ $new_key ][ $item ][ $set ]['setting'] = str_replace( 'main', $location, $opts['setting'] );
-							}
-						}
-					}
-
-					// Generic controls.
-					if ( 'kirki-generic' === $config['customizer']['controls'][ $new_key ]['type'] &&
-						! empty( $config['customizer']['controls'][ $new_key ]['choices']['settings']['control']['selectors'] ) ) {
-							$config['customizer']['controls'][ $new_key ]['choices']['settings']['control']['selectors'] = str_replace( 'main', $location, $config['customizer']['controls'][ $new_key ]['choices']['settings']['control']['selectors'] );
 					}
 				}
 			}

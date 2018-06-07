@@ -567,10 +567,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .blog main > article.post .entry-header .entry-meta {
+  display: inline-block;
   padding-top: 1.5em;
-  align-self: flex-end;
-  justify-content: flex-end;
-  display: flex;
+  text-align: right;
+  width: 100%;
 }
 
 .blog main > article.post .featured-imgage-header {
@@ -836,10 +836,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .archive main > article.post .entry-header .entry-meta {
+  display: inline-block;
   padding-top: 1.5em;
-  align-self: flex-end;
-  justify-content: flex-end;
-  display: flex;
+  text-align: right;
+  width: 100%;
 }
 
 .archive main > article.post .featured-imgage-header {

@@ -259,7 +259,6 @@ class BoldGrid_Framework {
 	 */
 	public function add_config_filters() {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
-		$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
 		$template_config = new Boldgrid_Framework_Template_Config( $this->configs );
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
@@ -271,7 +270,6 @@ class BoldGrid_Framework {
 		add_filter( 'boldgrid_theme_framework_config', array( $starter_content, 'set_configs' ), 15 );
 		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $template_config, 'pagination_style' ), 20 );
-		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $activate, 'tgm_override' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $custom_header, 'add_color_classes' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', 'BoldGrid::get_inspiration_configs', 5 );
@@ -649,19 +647,9 @@ class BoldGrid_Framework {
 	 */
 	private function customizer_typography() {
 		$typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
-		// Add Typography Controls.
-		if ( true === $this->configs['customizer-options']['typography']['enabled'] ) {
-			$this->loader->add_action( 'customize_controls_enqueue_scripts', $typography, 'enqueue_scripts' );
-			$this->loader->add_action( 'customize_register', $typography, 'typography_panel' );
-			$this->loader->add_filter( 'kirki/controls', $typography, 'navigation_typography_controls' );
-			$this->loader->add_filter( 'kirki/controls', $typography, 'body_typography_controls' );
-			$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
-			$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
-		}
-		// Add Site title typography controls.
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
+		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
 		$this->loader->add_action( 'customize_preview_init', $typography, 'live_preview' );
-		$this->loader->add_filter( 'kirki/controls', $typography, 'site_identity_controls' );
-		$this->loader->add_action( 'wp_head', $typography, 'title_text_shadow' );
 	}
 
 	/**

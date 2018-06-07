@@ -87,7 +87,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		foreach ( array_keys( $configs['menu']['locations'] ) as $location ) {
 			self::$typography_settings[] = [
 				'settings' => "bgtfw_menu_typography_{$location}",
-				'class_name' => "bg-font-family-menu-{$location}",
+				'class_name' => 'bg-font-family-menu-' . str_replace( '_', '-', $location ),
 			];
 		}
 	}

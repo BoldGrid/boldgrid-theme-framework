@@ -184,11 +184,13 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 				wp.customize.control( 'boldgrid_background_horizontal_position' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_vertical_position' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_image_size' ).deactivate( { duration: 0 } );
+				wp.customize.control( 'bgtfw_background_overlay' ).deactivate( { duration: 0 } );
 				getAttachmentControl().deactivate( { duration: 0 } );
 				wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
 			} else {
 				wp.customize.control( 'boldgrid_background_horizontal_position' ).activate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_vertical_position' ).activate( { duration: 0 } );
+				wp.customize.control( 'bgtfw_background_overlay' ).activate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_image_size' ).activate( { duration: 0 } );
 				getAttachmentControl().activate( { duration: 0 } );
 				wp.customize.control( 'background_repeat' ).activate( { duration: 0 } );

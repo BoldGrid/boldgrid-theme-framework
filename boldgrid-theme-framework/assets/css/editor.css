@@ -4,7 +4,6 @@
   speak: none;
   display: inline-block;
   margin-left: -1px;
-  padding-right: 3px;
   vertical-align: top;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -38,7 +37,8 @@
   font-weight: bold;
 }
 
-.bgtfw-misc-pub-section .value-displayed .template-subtitle {
+.bgtfw-misc-pub-section .value-displayed .template-subtitle,
+.bgtfw-page-title .template-subtitle {
   display: inline;
   margin: 0;
 }

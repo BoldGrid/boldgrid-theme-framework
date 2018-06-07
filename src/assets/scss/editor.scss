@@ -7,7 +7,6 @@
 		speak: none;
 		display: inline-block;
 		margin-left: -1px;
-		padding-right: 3px;
 		vertical-align: top;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -38,12 +37,13 @@
 
 	.value-displayed {
 		font-weight: bold;
-
-		.template-subtitle {
-			display: inline;
-			margin: 0;
-		}
 	}
+}
+
+.bgtfw-misc-pub-section .value-displayed .template-subtitle,
+.bgtfw-page-title .template-subtitle {
+	display: inline;
+	margin: 0;
 }
 
 #bgtfw-attributes-meta-box div.inside {

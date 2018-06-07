@@ -37,12 +37,13 @@
 
 	.value-displayed {
 		font-weight: bold;
-
-		.template-subtitle {
-			display: inline;
-			margin: 0;
-		}
 	}
+}
+
+.bgtfw-misc-pub-section .value-displayed .template-subtitle,
+.bgtfw-page-title .template-subtitle {
+	display: inline;
+	margin: 0;
 }
 
 #bgtfw-attributes-meta-box div.inside {

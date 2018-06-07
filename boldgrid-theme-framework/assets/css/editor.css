@@ -37,7 +37,8 @@
   font-weight: bold;
 }
 
-.bgtfw-misc-pub-section .value-displayed .template-subtitle {
+.bgtfw-misc-pub-section .value-displayed .template-subtitle,
+.bgtfw-page-title .template-subtitle {
   display: inline;
   margin: 0;
 }

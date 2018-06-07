@@ -141,8 +141,8 @@ class Boldgrid_Framework_Activate {
 			foreach ( $palette as $index => $settings ) {
 
 				// Convert default colors to RGBs if alternate format was passed in configs.
-				foreach ( $palette[ $index ]['colors'] as $colorIndex => $color ) {
-					$palette[ $index ]['colors'][ $colorIndex ] = ariColor::newColor( $color )->toCSS( 'rgb' );
+				foreach ( $palette[ $index ]['colors'] as $color_index => $color ) {
+					$palette[ $index ]['colors'][ $color_index ] = ariColor::newColor( $color )->toCSS( 'rgb' );
 				}
 
 				// Convert neutral color to RGB if alternate format was passed in configs.

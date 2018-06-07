@@ -592,7 +592,7 @@ class Boldgrid_Framework_Customizer_Background {
 			$color_obj->alpha = $alpha;
 			$color = esc_attr( $color_obj->toCSS( 'rgba' ) );
 
-			$rule = 'linear-gradient(to right, '. $color .', ' . $color .
+			$rule = 'linear-gradient(to right, ' . $color . ', ' . $color .
 				' ), url("' . esc_attr( $image ) . '")';
 		}
 

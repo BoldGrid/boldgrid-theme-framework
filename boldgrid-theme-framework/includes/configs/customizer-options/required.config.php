@@ -32,5 +32,5 @@ return array(
 	'bgtfw_header_overlay' => array(
 		'bgtfw_header_overlay_alpha',
 		'bgtfw_header_overlay_color',
-	)
+	),
 );

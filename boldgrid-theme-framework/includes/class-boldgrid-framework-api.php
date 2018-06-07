@@ -626,11 +626,19 @@ class BoldGrid {
 
 		return array_unique( $classes );
 	}
+
+	/**
+	 * Filters the nav menu css and adds classes to menu locations.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $config Array of bgtfw configurations.
+	 */
 	public function menu_border_color( $config ) {
 		foreach ( $config['menu']['locations'] as $location => $description ) {
 
 			// Filter per menu location.
-			$filter = function( $classes, $item, $args ) use( $location ) {
+			$filter = function( $classes, $item, $args ) use ( $location ) {
 
 				// Verify location.
 				if ( $args->theme_location === $location ) {
@@ -660,7 +668,6 @@ class BoldGrid {
 			add_filter( 'nav_menu_css_class', $filter, 10, 3 );
 		}
 	}
-
 
 	/**
 	 * Apply the blog design to posts page.

@@ -69,7 +69,7 @@ class BoldGrid_Framework_Styles {
 		add_action( 'enqueue_block_editor_assets', function() use ( $files, $config ) {
 			$gutenberg = array();
 			foreach ( $files as $file ) {
-				$handle = explode( "?", basename( $file ) );
+				$handle = explode( '?', basename( $file ) );
 				$handle = basename( basename( $handle[0], '.css' ), '.min' );
 				$query = $handle[1];
 				parse_str( $handle[1] );
@@ -214,6 +214,15 @@ class BoldGrid_Framework_Styles {
 		return $css;
 	}
 
+	/**
+	 * Generate hover color CSS for nav menu locations.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $location Nav menu location to generate CSS for.
+	 *
+	 * @return string $css Generated CSS for nav menu location.
+	 */
 	public function hover_generate( $location = '' ) {
 		if ( empty( $location ) ) {
 			$location = 'main';
@@ -239,10 +248,6 @@ class BoldGrid_Framework_Styles {
 	 * Adds custom CSS for hamburger menu locations.
 	 *
 	 * @since 2.0.0
-	 *
-	 * @param string $css CSS string being filtered.
-	 *
-	 * @return string $css Modified CSS to add to front end.
 	 */
 	public function hover_css() {
 		global $boldgrid_theme_framework;
@@ -257,7 +262,7 @@ class BoldGrid_Framework_Styles {
 	/**
 	 * Enqueue the styles for our BoldGrid Theme.
 	 *
-	 * @since     1.0.0
+	 * @since 1.0.0
 	 */
 	public function boldgrid_enqueue_styles() {
 		$configs = $this->configs;

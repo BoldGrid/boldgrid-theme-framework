@@ -67,11 +67,29 @@ class Boldgrid_Framework_Customizer_Typography {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since     1.0.0
-	 * @param     string $configs       The BoldGrid Theme Framework configurations.
+	 * @since 1.0.0
+	 *
+	 * @param array $configs The BoldGrid Theme Framework configurations.
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
+		$this->set_menu_typography( $configs );
+	}
+
+	/**
+	 * Set dynamic menu typography settings.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $configs The BoldGrid Theme Framework configurations.
+	 */
+	public function set_menu_typography( $configs ) {
+		foreach ( array_keys( $configs['menu']['locations'] ) as $location ) {
+			self::$typography_settings[] = [
+				'settings' => "bgtfw_menu_typography_{$location}",
+				'class_name' => "bg-font-family-menu-{$location}",
+			];
+		}
 	}
 
 	/**

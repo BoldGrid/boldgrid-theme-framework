@@ -204,7 +204,7 @@ class Boldgrid_Framework_Menu {
 	 */
 	public function add_hamburger( $menu ) {
 		$hamburger = get_theme_mod( 'bgtfw_menu_hamburger_' . $menu['theme_location'] );
-		$hidden = get_theme_mod( 'bgtfw_menu_hamburger_' . $menu['theme_location'] . '_toggle' ) ? '' : 'hidden';
+		$hidden = ! get_theme_mod( 'bgtfw_menu_hamburger_' . $menu['theme_location'] . '_toggle' ) || ! has_nav_menu( $menu['theme_location'] ) ? 'hidden' : '';
 		?>
 		<input id="<?php echo esc_attr( $menu['menu_id'] ); ?>-state" type="checkbox" <?php BoldGrid::add_class( $menu['theme_location'] . '_menu_hamburger_input', [ $hidden ] ); ?> />
 		<label id="<?php echo esc_attr( $menu['menu_id'] ); ?>-btn" class="<?php echo esc_attr( $menu['menu_id'] ); ?>-btn" for="<?php echo esc_attr( $menu['menu_id'] ); ?>-state">

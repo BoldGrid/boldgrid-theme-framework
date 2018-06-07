@@ -70,58 +70,10 @@ class Boldgrid_Framework_Customizer_Edit {
 	 * @param array $menu An array of menu settings.
 	 */
 	public static function fallback_cb( $menu ) {
-		$container_id = '';
-
-		/*
-		 * Determine the id for this element.
-		 *
-		 * @since 1.0.0 we could rely on the $menu['container_id'].
-		 * @since 2.0.0 we will check $menu['menu_id'] as well.
-		 */
-		$ids = array( 'container_id', 'menu_id' );
-		foreach ( $ids as $id ) {
-			if ( ! empty( $menu[ $id ] ) ) {
-				$container_id = $menu[ $id ];
-				break;
-			}
-		}
-
-		if ( empty( $container_id ) ) {
-			return;
-		}
-
-		if ( empty( $menu['container'] ) ) {
-			$menu['container'] = 'div';
-		}
-
-		printf( "<%s id='%s' class='empty-menu' data-theme-location='%s'></%s>",
-			$menu['container'],
-			$container_id,
-			$menu['theme_location'],
-			$menu['container']
+		printf( "<div id='%s' class='empty-menu' data-theme-location='%s'></div>",
+			$menu['menu_id'],
+			$menu['theme_location']
 		);
-	}
-
-	/**
-	 * Return true for ALL has_nav_menu() calls.
-	 *
-	 * This is done however ONLY if we're in the customizer and edit_buttons are enabled.
-	 *
-	 * For further details as to why we're doing this, please see:
-	 * Boldgrid_Framework_Menu::add_dynamic_actions
-	 *
-	 * @since 1.1.7
-	 *
-	 * @param  bool   $has_nav_menu Whether there is a menu assigned to a location.
-	 * @param  string $location     Menu location.
-	 * @return bool   $has_nav_menu
-	 */
-	public function has_nav_menu( $has_nav_menu, $location ) {
-		if ( is_customize_preview() && true === $this->enabled ) {
-			return true;
-		} else {
-			return $has_nav_menu;
-		}
 	}
 
 	/**

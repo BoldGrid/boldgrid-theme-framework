@@ -1042,11 +1042,11 @@ msgstr ""
 msgid "BoldGrid Color Palettes"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:166
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:118
 msgid "Go there now"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:167
+#: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:119
 msgid "Menu"
 msgstr ""
 

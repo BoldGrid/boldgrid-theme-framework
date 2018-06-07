@@ -639,7 +639,6 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $edit, 'wp_enqueue_scripts' );
 		$this->loader->add_action( 'wp_footer', $edit, 'wp_footer' );
 		$this->loader->add_action( 'wp_nav_menu_args', $edit, 'wp_nav_menu_args' );
-		$this->loader->add_filter( 'has_nav_menu', $edit, 'has_nav_menu', 10, 2 );
 	}
 
 	/**

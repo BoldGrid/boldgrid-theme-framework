@@ -160,7 +160,7 @@ var BoldGrid = BoldGrid || {};
 				naviHeight = $( '#navi-wrap' ).outerHeight();
 
 				// Desktop view.
-				if ( window.innerWidth > 768 ) {
+				if ( window.innerWidth >= 768 ) {
 
 					// Fixed Headers
 					if ( classes.contains( 'header-fixed' ) ) {
@@ -253,7 +253,7 @@ var BoldGrid = BoldGrid || {};
 				$( window ).on( 'resize', function() {
 					var $mainMenuState = sm.siblings( 'input' ),
 						screen_width = $( window ).width() + 16;
-					if ( screen_width > 768 && $mainMenuState.length ) {
+					if ( screen_width >= 768 && $mainMenuState.length ) {
 						if ( $mainMenuState[0].checked ) {
 							$mainMenuState.prop( 'checked', false ).trigger( 'change' );
 						}

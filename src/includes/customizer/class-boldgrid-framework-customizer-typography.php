@@ -93,36 +93,6 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
-	 * This outputs the javascript needed to automate the live settings preview.
-	 * Also keep in mind that this function isn't necessary unless your settings
-	 * are using 'transport'=>'postMessage' instead of the default 'transport'
-	 * => 'refresh'
-	 *
-	 * Used by hook: 'customize_preview_init'
-	 *
-	 * @see add_action( 'customize_preview_init', $func )
-	 * @since 1.0.0
-	 */
-	public function live_preview() {
-		$handle = 'boldgrid-framework-customizer-typography-preview';
-		wp_register_script(
-			$handle,
-			$this->configs['framework']['js_dir'] . 'customizer/typography-preview.js',
-			array( 'jquery', 'customize-preview' ),
-			$this->configs['version'],
-			true
-		);
-
-		wp_enqueue_script( $handle );
-
-		// Add data for script.
-		$wp_scripts = wp_scripts();
-		$font_configs = $this->configs['customizer-options']['typography']['selectors'];
-		$wp_scripts->add_data( $handle, 'data', sprintf( 'var _typographyOptions = %s;', wp_json_encode( $font_configs ) ) );
-		wp_localize_script( $handle, '_typographyClasses', $this->configs['template']['tagline-classes'] );
-	}
-
-	/**
 	 * Get the current font settings.
 	 *
 	 * This method includes the currently saved theme mod value.

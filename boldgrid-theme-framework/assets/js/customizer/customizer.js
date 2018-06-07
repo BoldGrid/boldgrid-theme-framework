@@ -6,6 +6,7 @@ import Toggle from './toggle/toggle';
 import ToggleValue from './toggle/value';
 import ToggleClass from './toggle/class';
 import './widget-meta';
+import { Preview as TypographyPreview } from './typography/preview';
 
 const api = wp.customize;
 const controlApi = parent.wp.customize;
@@ -204,6 +205,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	colorPreview = new ColorPreview().init();
 	new GenericPreview().bindEvents();
 	new HeaderPreview().bindEvents();
+	new TypographyPreview().bindEvents();
 
 	$( function() {
 		var updateColorAndPatterns,
@@ -320,8 +322,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		 * Handles front-end headings color changes in previewer.
 		 *
 		 * This will add classes for the headings color changes to elements during a live preview.
-		 * The headings makes use of the global _typographyOptions which contains the selectors
-		 * defined in the PHP configurations for bgtfw.
+		 * The headings makes use of the global:
+		 * BOLDGRID.CUSTOMIZER.data.customizerOptions.typography.selectors,
+		 * which contains the selectors defined in the PHP configurations for bgtfw.
 		 *
 		 * @since 2.0.0
 		 *
@@ -331,7 +334,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		headingsColorOutput = function( themeMod, section ) {
 			var selectors = [];
 
-			_.each( window._typographyOptions, function( value, key ) {
+			_.each( BOLDGRID.CUSTOMIZER.data.customizerOptions.typography.selectors, function( value, key ) {
 				if ( 'headings' === value.type ) {
 					selectors.push( section + ' ' + key );
 				}

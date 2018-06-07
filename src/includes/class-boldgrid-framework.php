@@ -649,7 +649,6 @@ class BoldGrid_Framework {
 		$typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
 		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
-		$this->loader->add_action( 'customize_preview_init', $typography, 'live_preview' );
 	}
 
 	/**

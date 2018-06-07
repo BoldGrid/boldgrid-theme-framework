@@ -1,4 +1,4 @@
-/* global _wpCustomizePreviewNavMenusExports:false, _typographyOptions:true, BOLDGRID:true */
+/* global _wpCustomizePreviewNavMenusExports:false, BOLDGRID:false */
 import PaletteSelector from './palette-selector';
 import { Preview as PreviewUtility } from '../preview';
 
@@ -130,7 +130,7 @@ export class Preview  {
 	getHeadingColorSelectors() {
 		const selectors = [];
 
-		_.each( _typographyOptions, function( value, key ) {
+		_.each( BOLDGRID.CUSTOMIZER.data.customizerOptions.typography.selectors, function( value, key ) {
 			if ( 'headings' === value.type ) {
 				selectors.push( key );
 			}

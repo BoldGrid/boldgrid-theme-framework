@@ -12,3 +12,4 @@
 ./src/assets/js/customizer/expand/**/*
 ./src/assets/js/customizer/toggle/**/*
 ./src/assets/js/customizer/menus/**/*
+./src/assets/js/customizer/typography/**/*

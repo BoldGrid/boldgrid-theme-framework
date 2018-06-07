@@ -185,6 +185,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 				wp.customize.control( 'boldgrid_background_vertical_position' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_image_size' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'bgtfw_background_overlay' ).deactivate( { duration: 0 } );
+				toggleOverlay();
 				getAttachmentControl().deactivate( { duration: 0 } );
 				wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
 			} else {
@@ -194,6 +195,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 				wp.customize.control( 'boldgrid_background_image_size' ).activate( { duration: 0 } );
 				getAttachmentControl().activate( { duration: 0 } );
 				wp.customize.control( 'background_repeat' ).activate( { duration: 0 } );
+				toggleOverlay();
 			}
 
 			if ( bg_attach === 'parallax' ) {
@@ -203,6 +205,21 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			}
 		}
 
+	};
+
+	/**
+	 * Hide or show the background overlay controls.
+	 *
+	 * @since 2.0.0
+	 */
+	var toggleOverlay = function () {
+		if ( wp.customize('bgtfw_background_overlay')() ) {
+			wp.customize.control( 'bgtfw_background_overlay_color' ).activate( { duration: 0 } );
+			wp.customize.control( 'bgtfw_background_overlay_alpha' ).activate( { duration: 0 } );
+		} else {
+			wp.customize.control( 'bgtfw_background_overlay_color' ).deactivate( { duration: 0 } );
+			wp.customize.control( 'bgtfw_background_overlay_alpha' ).deactivate( { duration: 0 } );
+		}
 	};
 
 	var getAttachmentControl = function() {
@@ -218,6 +235,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		    'background_image',
 		    'background_attachment',
 		    'background_repeat',
+		    'bgtfw_background_overlay',
 		    'boldgrid_background_image_size',
 		    'boldgrid_background_horizontal_position',
 		    'boldgrid_background_type',

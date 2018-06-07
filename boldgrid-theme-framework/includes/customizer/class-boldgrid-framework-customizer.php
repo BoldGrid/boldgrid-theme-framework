@@ -99,6 +99,16 @@ class BoldGrid_Framework_Customizer {
 						);
 
 						Kirki::add_section(
+							"bgtfw_menu_typography_$location",
+							array(
+								'title' => __( 'Font', 'bgtfw' ),
+								'panel' => "bgtfw_menu_location_$location",
+								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-editor-textcolor',
+							)
+						);
+
+						Kirki::add_section(
 							"bgtfw_menu_background_$location",
 							array(
 								'title' => __( 'Background', 'bgtfw' ),

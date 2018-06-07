@@ -1547,5 +1547,29 @@ return array(
 		),
 	),
 
+	/** Menu Typography */
+	'bgtfw_menu_typography_main' => array(
+		'type'     => 'typography',
+		'transport'   => 'auto',
+		'settings'    => 'bgtfw_menu_typography_main',
+		'label'       => esc_attr__( 'Typography', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_typography_main',
+		'default'     => array(
+			'font-family'    => 'Roboto',
+			'variant'        => 'regular',
+			'font-size'      => '18px',
+			'line-height'    => '1.5',
+			'letter-spacing' => '0',
+			'subsets'        => array( 'latin-ext' ),
+			'text-transform' => 'uppercase',
+		),
+		'priority'    => 20,
+		'output'      => array(
+			array(
+				'element'  => '#main-menu li a',
+			),
+		),
+	),
+
 	/*** End: Dynamic Menu Controls ***/
 );

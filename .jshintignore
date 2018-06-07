@@ -8,6 +8,7 @@
 ./src/assets/js/customizer/color/**/*
 ./src/assets/js/customizer/widget/**/*
 ./src/assets/js/customizer/generic/**/*
+./src/assets/js/customizer/background/**/*
 ./src/assets/js/customizer/design/**/*
 ./src/assets/js/customizer/expand/**/*
 ./src/assets/js/customizer/toggle/**/*

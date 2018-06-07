@@ -2,6 +2,7 @@
 import ColorPreview from './color/preview';
 import { Preview as GenericPreview } from './generic/preview.js';
 import { Preview as HeaderPreview } from './header-layout/preview.js';
+import { Preview as BackgroundPreview } from './background/preview.js';
 import Toggle from './toggle/toggle';
 import ToggleValue from './toggle/value';
 import ToggleClass from './toggle/class';
@@ -203,6 +204,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	$customStyles = $( '#boldgrid-override-styles' );
 
 	colorPreview = new ColorPreview().init();
+	new BackgroundPreview().init();
 	new GenericPreview().bindEvents();
 	new HeaderPreview().bindEvents();
 	new TypographyPreview().bindEvents();
@@ -216,7 +218,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			backgroundAttachmentUpdate,
 			setBackgroundVerticalPosition,
 			setBackgroundHorizontalPosition,
-			backgroundImageUpdate,
 			backgroundRepeatUpdate,
 			initValues,
 			attributionLinks,
@@ -371,18 +372,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			] );
 		};
 
-		backgroundImageUpdate = function( to ) {
-			if ( ! to ) {
-				to = '';
-			} else {
-				to = 'url(' + to + ')';
-			}
-
-			$body.css( {
-				'background-image': to
-			} );
-		};
-
 		backgroundRepeatUpdate = function( ) {
 			$body.css( {
 				'background-repeat': api( 'background_repeat' )()
@@ -390,7 +379,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		};
 
 		initValues = function() {
-			var bgAttach, bgImgSize, bgType, bgImage;
+			var bgAttach, bgImgSize, bgType;
 
 			$( '#custom-background-css' ).remove();
 
@@ -405,8 +394,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				bgImgSize = api( 'boldgrid_background_image_size' )();
 				backgroundAttachmentUpdate( bgAttach );
 				backgroundSizeUpdate( bgImgSize );
-				bgImage = api( 'background_image' )();
-				backgroundImageUpdate( bgImage );
+
 				if ( 'parallax' !== bgAttach ) {
 					setBackgroundVerticalPosition();
 					setBackgroundHorizontalPosition();
@@ -715,7 +703,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		new Toggle( 'boldgrid_background_type', backgroundTypeUpdate );
 		new Toggle( 'background_attachment', backgroundAttachmentUpdate );
-		new Toggle( 'background_image', backgroundImageUpdate );
 		new Toggle( 'background_repeat', backgroundRepeatUpdate );
 		new Toggle( 'boldgrid_background_image_size', backgroundSizeUpdate );
 

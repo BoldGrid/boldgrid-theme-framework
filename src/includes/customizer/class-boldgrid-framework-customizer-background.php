@@ -442,6 +442,7 @@ class Boldgrid_Framework_Customizer_Background {
 		$theme_mods = get_theme_mods();
 		$background_options = $this->configs['customizer-options']['background'];
 
+		$bg_image = ! empty( $theme_mods['background_image'] ) ? $theme_mods['background_image'] : null;
 		$bg_type = ! empty( $theme_mods['boldgrid_background_type'] ) ? $theme_mods['boldgrid_background_type'] : null;
 		$bg_pattern = ! empty( $theme_mods['boldgrid_background_pattern'] ) ? $theme_mods['boldgrid_background_pattern'] : 'none';
 		$bg_x_pos = isset( $theme_mods['boldgrid_background_horizontal_position'] ) ? $theme_mods['boldgrid_background_horizontal_position'] : null;
@@ -493,6 +494,12 @@ class Boldgrid_Framework_Customizer_Background {
 			}
 		}
 
+		if ( ! $bg_image ) {
+			if ( ! empty( $background_options['defaults']['background_image'] ) ) {
+				$bg_image = $background_options['defaults']['background_image'];
+			}
+		}
+
 		$css_rules = array();
 
 		if ( 'pattern' === $bg_type ) {
@@ -535,6 +542,10 @@ class Boldgrid_Framework_Customizer_Background {
 				wp_enqueue_script( 'boldgrid-stellar-parallax' );
 			}
 
+			if ( $bg_image ) {
+				$css_rules['body.custom-background']['background-image'] = $this->create_overlay_css( $bg_image );
+			}
+
 			if ( $bg_image_size ) {
 				$css_rules['body.custom-background']['background-size'] = esc_attr( $bg_image_size );
 			}
@@ -550,6 +561,42 @@ class Boldgrid_Framework_Customizer_Background {
 		}
 
 		return $css_rules;
+	}
+
+	/**
+	 * Create a CSS rule for background image.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $image Image URL value from theme mod or config.
+	 * @return string        A CSS rule for the background image.
+	 */
+	public function create_overlay_css( $image ) {
+		$controls = $this->configs['customizer']['controls'];
+
+		// Get the related theme mods.
+		$enabled = get_theme_mod( 'bgtfw_background_overlay',
+			$controls['bgtfw_background_overlay']['default'] );
+		$color = get_theme_mod( 'bgtfw_background_overlay_color',
+			$controls['bgtfw_background_overlay_color']['default'] );
+		$alpha = get_theme_mod( 'bgtfw_background_overlay_alpha',
+			$controls['bgtfw_background_overlay_alpha']['default'] );
+
+		$rule = '';
+		if ( $enabled && $color && $alpha ) {
+
+			// Create an rgba given palette color and alpha.
+			$color = explode( ':', $color );
+			$color = array_pop( $color );
+			$color_obj = ariColor::newColor( $color );
+			$color_obj->alpha = $alpha;
+			$color = esc_attr( $color_obj->toCSS( 'rgba' ) );
+
+			$rule = 'linear-gradient(to right, '. $color .', ' . $color .
+				' ), url("' . esc_attr( $image ) . '")';
+		}
+
+		return $rule;
 	}
 
 	/**

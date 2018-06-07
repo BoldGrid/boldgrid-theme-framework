@@ -70,6 +70,51 @@ return array(
 		),
 	),
 
+	/*** Start Background Image Overlay ***/
+	'bgtfw_background_overlay' => array(
+		'type'        => 'switch',
+		'settings'    => 'bgtfw_background_overlay',
+		'transport'   => 'postMessage',
+		'label'       => __( 'Image Overlay', 'bgtfw' ),
+		'description' => esc_attr__( 'Add an overlay to give your text readability over an image.', 'bgtfw' ),
+		'section'     => 'background_image',
+		'default'     => false,
+		'priority'    => 10,
+		'choices'     => array(
+			'on'  => esc_attr__( 'Enable', 'bgtfw' ),
+			'off' => esc_attr__( 'Disable', 'bgtfw' ),
+		),
+	),
+	'bgtfw_background_overlay_color' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_background_overlay_color',
+		'label'       => esc_attr__( 'Overlay Color', 'bgtfw' ),
+		'section'     => 'background_image',
+		'priority'    => 10,
+		'default'     => 'color-1',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_background_overlay_alpha' => array(
+		'type'        => 'slider',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_background_overlay_alpha',
+		'label'       => esc_attr__( 'Overlay Opacity', 'bgtfw' ),
+		'section'     => 'background_image',
+		'priority'    => 10,
+		'default'     => '0.70',
+		'choices'     => array(
+			'min'  => '0',
+			'max'  => '1',
+			'step' => '.01',
+		),
+	),
+	/*** End Background Image Overlay ***/
+
 	/*** Start Header Generic Controls ***/
 	'bgtfw_header_margin' => array(
 		'type'        => 'kirki-generic',

@@ -94,7 +94,7 @@ class BoldGrid_Framework_Customizer {
 								'title' => __( 'Hamburger Style', 'bgtfw' ),
 								'panel' => "bgtfw_menu_location_$location",
 								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-menu'
+								'icon' => 'dashicons-menu',
 							)
 						);
 
@@ -417,9 +417,9 @@ class BoldGrid_Framework_Customizer {
 	public function live_preview() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		wp_register_script( 'boldgrid-theme-customizer',
-
 		// Force minifies file for customizer.
+		wp_register_script(
+			'boldgrid-theme-customizer',
 			$this->configs['framework']['js_dir'] . 'customizer/customizer.min.js',
 			array(
 				'boldgrid-front-end-scripts',
@@ -442,7 +442,6 @@ class BoldGrid_Framework_Customizer {
 		];
 
 		wp_localize_script( 'boldgrid-theme-customizer', $initialize, $data );
-
 
 		wp_register_script(
 			'bgtfw-customizer-layout-blog-blog-page-live-preview',

@@ -605,10 +605,17 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			// Check if it's a parent menu item before removing things.
 			if ( currents.length && ! currents.hasClass( 'current-menu-parent' ) ) {
 				let links = currents.find( 'a' );
+				let regex = new RegExp( '(color-?([\\d]|neutral)|transparent)-.?[^\\s]+', 'g' );
+
 				_.each( links, link => {
 					let current = BOLDGRID.Customizer.Util.getAllUrlParams( _wpCustomizeSettings.url.self );
 					let href = BOLDGRID.Customizer.Util.getAllUrlParams( $( link ).attr( 'href' ) );
-					! _.isMatch( href, current ) && $( link ).parent( 'li' ).removeClass( 'current-menu-item' );
+					! _.isMatch( href, current ) && $( link )
+						.parent( 'li' )
+						.removeClass( 'current-menu-item' )
+						.removeClass( ( index, css ) => {
+							return ( css.match( regex ) || [] ).join( ' ' );
+						} );
 				} );
 			}
 		};

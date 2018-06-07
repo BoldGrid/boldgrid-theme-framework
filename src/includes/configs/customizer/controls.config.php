@@ -1422,5 +1422,85 @@ return array(
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
+
+	'bgtfw_menu_items_active_link_color_main' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport' => 'postMessage',
+		'settings'    => 'bgtfw_menu_items_active_link_color_main',
+		'label' => esc_attr__( 'Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_items_active_link_color_main',
+		'priority' => 1,
+		'default'  => 'color-4',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+
+	'bgtfw_menu_items_active_link_background_main' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport' => 'postMessage',
+		'settings'    => 'bgtfw_menu_items_active_link_background_main',
+		'label' => esc_attr__( 'Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_items_active_link_background_main',
+		'priority' => 1,
+		'default'  => 'color-4',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette, true ),
+			'transparent' => true,
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+
+	'bgtfw_menu_items_active_link_border_main' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_menu_items_active_link_border_main',
+		'settings'    => 'bgtfw_menu_items_active_link_border_main',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Border',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#main-menu > li.current-menu-item' ),
+				),
+			),
+		),
+	),
+	'bgtfw_menu_items_active_link_border_color_main' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_menu_items_active_link_border_color_main',
+		'label'       => esc_attr__( 'Primary Color', 'bgtfw' ),
+		'section'     => 'bgtfw_menu_items_active_link_border_main',
+		'default'     => 'color-3',
+		'choices'     => array(
+			'colors'  => $formatted_palette,
+			'size'    => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_menu_items_active_link_border_radius_main' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_menu_items_active_link_border_main',
+		'settings'    => 'bgtfw_menu_items_active_link_border_radius_main',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'BorderRadius',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#main-menu > li.current-menu-item' ),
+				),
+			),
+		),
+	),
+
 	/*** End: Dynamic Menu Controls ***/
 );

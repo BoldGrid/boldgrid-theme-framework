@@ -148,13 +148,45 @@ class BoldGrid_Framework_Customizer {
 							)
 						);
 
-						Kirki::add_section(
-							"bgtfw_menu_items_link_color_$location",
+						$panel = new Boldgrid_Framework_Customizer_Panel(
+							$wp_customize,
+							"bgtfw_menu_items_active_item_$location",
 							array(
-								'title' => __( 'Link Color', 'bgtfw' ),
+								'title' => __( 'Active Link Style', 'bgtfw' ),
 								'panel' => "bgtfw_menu_items_$location",
 								'capability' => 'edit_theme_options',
+							)
+						);
+
+						$wp_customize->add_panel( $panel );
+
+						Kirki::add_section(
+							"bgtfw_menu_items_active_link_color_$location",
+							array(
+								'title' => __( 'Link Color', 'bgtfw' ),
+								'panel' => "bgtfw_menu_items_active_item_$location",
+								'capability' => 'edit_theme_options',
 								'icon' => 'dashicons-art',
+							)
+						);
+
+						Kirki::add_section(
+							"bgtfw_menu_items_active_link_background_$location",
+							array(
+								'title' => __( 'Background Color', 'bgtfw' ),
+								'panel' => "bgtfw_menu_items_active_item_$location",
+								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-format-image',
+							)
+						);
+
+						Kirki::add_section(
+							"bgtfw_menu_items_active_link_border_$location",
+							array(
+								'title' => __( 'Border', 'bgtfw' ),
+								'panel' => "bgtfw_menu_items_active_item_$location",
+								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-grid-view',
 							)
 						);
 
@@ -169,11 +201,12 @@ class BoldGrid_Framework_Customizer {
 						);
 
 						Kirki::add_section(
-							"bgtfw_menu_items_active_item_$location",
+							"bgtfw_menu_items_link_color_$location",
 							array(
-								'title' => __( 'Active Item Display', 'bgtfw' ),
+								'title' => __( 'Link Color', 'bgtfw' ),
 								'panel' => "bgtfw_menu_items_$location",
 								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-art',
 							)
 						);
 

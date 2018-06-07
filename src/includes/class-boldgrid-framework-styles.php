@@ -245,6 +245,26 @@ class BoldGrid_Framework_Styles {
 	}
 
 	/**
+	 * Generate active link color CSS for nav menu locations.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $location Nav menu location to generate CSS for.
+	 *
+	 * @return string $css Generated CSS for nav menu location.
+	 */
+	public function active_link_generate( $location ) {
+		$color = get_theme_mod( "bgtfw_menu_items_active_link_color_{$location}" );
+		$color = explode( ':', $color );
+		$color = array_pop( $color );
+
+		$menu_id = "#{$location}-menu";
+		$css = "{$menu_id} > li.current-menu-item > a { color: {$color} !important; }";
+
+		return $css;
+	}
+
+	/**
 	 * Adds custom CSS for hamburger menu locations.
 	 *
 	 * @since 2.0.0
@@ -256,6 +276,7 @@ class BoldGrid_Framework_Styles {
 		$menus = get_registered_nav_menus();
 		foreach ( $menus as $location => $description ) {
 			$generic->add_inline_style( "hover-{$location}", $this->hover_generate( $location ) );
+			$generic->add_inline_style( "active-link-color-{$location}", $this->active_link_generate( $location ) );
 		}
 	}
 

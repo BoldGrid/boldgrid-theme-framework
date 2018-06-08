@@ -18,8 +18,8 @@ return array(
 	),
 	'locations' => array(
 		'main' => 'Main Menu',
-		'social' => 'Social Icons',
 		'secondary' => 'Secondary Menu',
+		'social' => 'Social Icons',
 		'footer_center' => 'Footer Menu',
 	),
 	'prototype' => array(
@@ -29,17 +29,17 @@ return array(
 			'menu_id' => 'main-menu',
 			'menu_class' => 'sm sm-clean main-menu',
 		),
-		'social' => array(
-			'theme_location'  => 'social',
-			'container'       => false,
-			'menu_id'         => 'social-menu',
-			'menu_class'      => 'sm sm-clean social-menu',
-		),
 		'secondary' => array(
 			'theme_location'  => 'secondary',
 			'container'       => false,
 			'menu_id'         => 'secondary-menu',
 			'menu_class'      => 'sm sm-clean secondary-menu',
+		),
+		'social' => array(
+			'theme_location'  => 'social',
+			'container'       => false,
+			'menu_id'         => 'social-menu',
+			'menu_class'      => 'sm sm-clean social-menu',
 		),
 		'footer_center' => array(
 			'theme_location'  => 'footer_center',

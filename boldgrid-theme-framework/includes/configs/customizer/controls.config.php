@@ -1550,7 +1550,7 @@ return array(
 	/** Menu Typography */
 	'bgtfw_menu_typography_main' => array(
 		'type'     => 'typography',
-		'transport'   => 'auto',
+		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_menu_typography_main',
 		'label'       => esc_attr__( 'Typography', 'bgtfw' ),
 		'section'     => 'bgtfw_menu_typography_main',

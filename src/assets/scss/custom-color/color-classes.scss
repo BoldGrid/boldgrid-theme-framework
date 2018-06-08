@@ -262,6 +262,21 @@ $names: color background background-color border-color;
 					color: $text-contrast-palette-primary_2;
 				}
 			}
+			.sticky { 
+				background-color: $palette-primary_1;
+				color: $text-contrast-palette-primary_1;
+			}
+			.sticky .featured-imgage-header {
+				background-color: $palette-primary_2;
+				color: $text-contrast-palette-primary_2;
+			}
+			.sticky .featured-imgage-header .entry-title > a,
+			.sticky .author a {
+				color: $text-contrast-palette-primary_2;
+			}
+			.sticky a {
+				color: $text-contrast-palette-primary_1;
+			}
 		}
 		&.design-2 {
 			.entry-content,
@@ -272,6 +287,14 @@ $names: color background background-color border-color;
 			a {
 				color: $text-contrast-palette-primary-neutral-color;
 			}
+			.sticky .featured-imgage-header {
+				background-color: $palette-primary_2;
+				color: $text-contrast-palette-primary_2;
+			}
+			.sticky .featured-imgage-header .entry-title > a,
+			.sticky .post .author a {
+				color: $text-contrast-palette-primary_2;
+			}
 		}
 		&.design-3 {
 			background-color: $palette-primary_2;
@@ -280,6 +303,18 @@ $names: color background background-color border-color;
 			padding-bottom: 1.5em;
 			a {
 				color: $text-contrast-palette-primary-2;
+			}
+			.sticky { 
+				background-color: $palette-primary_1;
+				color: $text-contrast-palette-primary_1;
+			}
+			.sticky .featured-imgage-header {
+				background-color: $palette-primary_2;
+				color: $text-contrast-palette-primary_2;
+			}
+			.sticky .featured-imgage-header .entry-title > a,
+			.sticky .author a {
+				color: $text-contrast-palette-primary_2;
 			}
 		}
 	}

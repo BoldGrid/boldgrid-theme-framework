@@ -143,6 +143,7 @@ var BoldGrid = BoldGrid || {};
 
 				body = document.body.classList;
 				body.remove( 'has-header-image' );
+				body.remove( 'has-video-header' );
 				customHeader = document.getElementById( 'wp-custom-header' );
 
 				if ( customHeader && customHeader.firstChild && 'IMG' === customHeader.firstChild.nodeName ) {

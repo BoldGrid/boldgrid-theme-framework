@@ -7,6 +7,10 @@
 	word-break: break-word;
 }
 
+.post.sticky {
+	width: calc( 100% - 1em );
+}
+
 &[class*="col"] {
 	main > article {
 		margin: .5em;

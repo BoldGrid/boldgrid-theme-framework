@@ -315,14 +315,12 @@
 		clip: rect(1px, 1px, 1px, 1px);
 	}
 
-	/* hide the menu in mobile view */
+	// Hide the menu in mobile view.
 	input:not(:checked):not(.hidden) ~ .sm-clean {
 		display: none;
 	}
 	input:checked ~ .sm-clean {
-		display: flex;
-		width: 100%;
-		flex-direction: column;
+		display: block;
 	}
 
 	@media only screen and (min-width: 768px) {

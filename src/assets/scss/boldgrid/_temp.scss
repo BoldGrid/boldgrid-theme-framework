@@ -1,18 +1,3 @@
-/* Site Title */
-.site-title a {
-	width: 100%;
-	word-break: break-word;
-}
-.site-title > a:hover,
-.site-title > a:focus,
-.site-title > a:active {
-	text-decoration: none;
-}
-/* Tagline */
-
-.site-branding .site-description {
-	word-break: break-word;
-}
 /* Header Position Styles */
 
 /** Header on top specific styles (this is the default style) **/
@@ -302,23 +287,6 @@
 			padding: 0;
 		}
 	}
-}
-
-/* Site Branding */
-.site-branding {
-	display: flex;
-	flex-direction: column;
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-bottom: 1em;
-	padding-top: 1em;
-	z-index: 1;
-}
-.site-branding .site-description {
-	margin: 0;
-}
-.site-branding {
-	z-index: 1;
 }
 
 /* apply the animations just in desktop view */
@@ -710,9 +678,6 @@ nav.navigation.posts-navigation {
 	}
 	.bgtfw-widget-row:last-child {
 		margin-bottom: 0;
-	}
-	#main-menu-state:checked ~ #main-menu {
-		display: block;
 	}
 	.bgtfw-widget-row:first-child:after,
 	.bgtfw-widget-row:last-child:after {

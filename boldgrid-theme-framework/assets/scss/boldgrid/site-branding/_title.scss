@@ -1,7 +1,8 @@
-/* Site Title */
-.site-title {
-	margin-top: 20px; /* Required to match h1 margins */
-	margin-bottom: 10px; /* Required to match h1 margins */
+&-title {
+
+	// Required to match h1 margins.
+	margin-top: 20px;
+	margin-bottom: 10px;
 
 	a {
 		width: 100%;

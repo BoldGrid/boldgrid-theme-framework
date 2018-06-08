@@ -16,7 +16,7 @@ export class Preview {
 	 * @since 2.0.0
 	 */
 	bindEvents() {
-		api.bind( 'preview-ready', () => this._bindTypography );
+		$( () => this._bindTypography() );
 	}
 
 	/**
@@ -104,6 +104,7 @@ export class Preview {
 	 * @since 2.0.0
 	 */
 	_bindTypography() {
+		this.addStyle( this.getCSS( api( 'bgtfw_headings_typography' )() ) );
 		api( 'bgtfw_headings_typography', value => value.bind( to => this.addStyle( this.getCSS( to ) ) ) );
 	}
 }

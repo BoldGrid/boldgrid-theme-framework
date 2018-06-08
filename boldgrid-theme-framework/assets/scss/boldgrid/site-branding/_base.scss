@@ -1,0 +1,14 @@
+/* Site Branding */
+.site {
+	&-branding {
+		display: flex;
+		flex-direction: column;
+		padding-left: 15px;
+		padding-right: 15px;
+		padding-bottom: 1em;
+		padding-top: 1em;
+		z-index: 1;
+	}
+	@import "title";
+	@import "description";
+}

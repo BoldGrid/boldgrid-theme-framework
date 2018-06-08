@@ -502,6 +502,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   word-break: break-word;
 }
 
+.blog .post.sticky {
+  width: calc( 100% - 1em);
+}
+
 .blog[class*="col"] main > article {
   margin: .5em;
   display: flex;
@@ -769,6 +773,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .archive .entry-title {
   word-break: break-word;
+}
+
+.archive .post.sticky {
+  width: calc( 100% - 1em);
 }
 
 .archive[class*="col"] main > article {
@@ -1275,14 +1283,22 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 # BoldGrid Core Styles
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
-## Site Title
+## Site Branding
 --------------------------------------------------------------*/
-/* Site Title */
+/* Site Branding */
+.site-branding {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  z-index: 1;
+}
+
 .site-title {
   margin-top: 20px;
-  /* Required to match h1 margins */
   margin-bottom: 10px;
-  /* Required to match h1 margins */
 }
 
 .site-title a {
@@ -1303,6 +1319,11 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   text-decoration: none;
 }
 
+.site-description {
+  word-break: break-word;
+  margin: 0;
+}
+
 /*--------------------------------------------------------------
 # BoldGrid Navigation
 --------------------------------------------------------------*/
@@ -1310,7 +1331,6 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .standard-menu-enabled {
   /* Menu Mobile */
   /* hide menu state checkbox (keep it visible to screen readers) */
-  /* hide the menu in mobile view */
   /* prevent text rendering degrade during animation in Mac browsers */
   /* show animation */
   /* hide animation */
@@ -1637,9 +1657,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .standard-menu-enabled input:checked ~ .sm-clean {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
+  display: block;
 }
 
 @media only screen and (min-width: 768px) {
@@ -4465,23 +4483,6 @@ footer .bgtfw-widget-row {
 /*--------------------------------------------------------------
 # Temp
 --------------------------------------------------------------*/
-/* Site Title */
-.site-title a {
-  width: 100%;
-  word-break: break-word;
-}
-
-.site-title > a:hover,
-.site-title > a:focus,
-.site-title > a:active {
-  text-decoration: none;
-}
-
-/* Tagline */
-.site-branding .site-description {
-  word-break: break-word;
-}
-
 /* Header Position Styles */
 /** Header on top specific styles (this is the default style) **/
 @media only screen and (min-width: 768px) {
@@ -4768,25 +4769,6 @@ footer .bgtfw-widget-row {
   .has-youtube-header .site-header header {
     padding: 0;
   }
-}
-
-/* Site Branding */
-.site-branding {
-  display: flex;
-  flex-direction: column;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 1em;
-  padding-top: 1em;
-  z-index: 1;
-}
-
-.site-branding .site-description {
-  margin: 0;
-}
-
-.site-branding {
-  z-index: 1;
 }
 
 /* apply the animations just in desktop view */
@@ -5193,10 +5175,6 @@ nav.navigation.posts-navigation {
 
 .header-top:not(.header-fixed) .bgtfw-widget-row:last-child {
   margin-bottom: 0;
-}
-
-.header-top:not(.header-fixed) #main-menu-state:checked ~ #main-menu {
-  display: block;
 }
 
 .header-top:not(.header-fixed) .bgtfw-widget-row:first-child:after,

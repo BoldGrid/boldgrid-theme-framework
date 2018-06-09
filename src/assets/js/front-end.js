@@ -31,6 +31,9 @@ var BoldGrid = BoldGrid || {};
 			// JavaScript to be fired on all pages, after page specific JS is fired.
 			finalize: function() {
 				$( ':root' ).removeClass( 'bgtfw-loading' ).addClass( 'bgtfw-loaded' );
+				$( ':root' ).one( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function() {
+					BoldGrid.custom_header.calc();
+				} );
 			},
 
 			// JavaScript for the skip link functionality.
@@ -67,9 +70,6 @@ var BoldGrid = BoldGrid || {};
 
 				// Check for video background embed type.
 				$( document ).on( 'wp-custom-header-video-loaded', this.checkType );
-
-				// Initial calculations.
-				this.calc();
 
 				// Listen for resize events to retrigger calculations.
 				$( window ).resize( this.calc );

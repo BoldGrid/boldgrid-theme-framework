@@ -36,11 +36,11 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:906
+#: src/includes/class-boldgrid-framework-api.php:902
 msgid "This content is password protected. To view it please enter your password below:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:907
+#: src/includes/class-boldgrid-framework-api.php:903
 msgid "Password:"
 msgstr ""
 

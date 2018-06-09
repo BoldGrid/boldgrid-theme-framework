@@ -73,7 +73,6 @@
 
 #customize-preview iframe {
   -webkit-transition: all ease .5s;
-  -moz-transition: all ease .5s;
   transition: all ease .5s;
 }
 
@@ -96,7 +95,6 @@
   padding-top: 8vw;
   padding-bottom: 8vw;
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 

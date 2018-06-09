@@ -17,7 +17,6 @@ return array(
 	'boldgrid-sticky-footer'  => false,
 	'wow-js'                  => false,
 	'animate-css'             => false,
-	'offcanvas-menu'          => false,
 	'options' => array(
 		'wow-js' => array(
 			'enabled'      => false,

@@ -554,11 +554,7 @@ class BoldGrid {
 			$classes[] = 'goup-enabled';
 		}
 
-		if ( true === $this->configs['scripts']['offcanvas-menu'] ) {
-			$classes[] = 'offcanvas-menu-enabled';
-		} else {
-			$classes[] = 'standard-menu-enabled';
-		}
+		$classes[] = 'standard-menu-enabled';
 
 		if ( true === $this->configs['edit-post-links']['enabled'] ) {
 			$classes[] = 'bgtfw-edit-links-shown';

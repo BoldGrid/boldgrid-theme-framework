@@ -388,16 +388,6 @@ class BoldGrid_Framework_Styles {
 			);
 		}
 
-		// Add offcanvas styles.
-		if ( true === $this->configs['scripts']['offcanvas-menu'] ) {
-			wp_enqueue_style(
-				'boldgrid-offcanvas-css',
-				$this->configs['framework']['css_dir'] . 'offcanvas' . $suffix . '.css',
-				array(),
-				$this->configs['version']
-			);
-		}
-
 		/* Always load active theme's style.css. */
 		wp_enqueue_style(
 			'style',

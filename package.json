@@ -27,6 +27,7 @@
     "@boldgrid/controls": "^0.15.0",
     "PHP_CodeSniffer": "https://github.com/squizlabs/PHP_CodeSniffer/#2.9",
     "WordPress-Coding-Standards": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards#0.10.0",
+    "autoprefixer": "^8.6.2",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0-beta",
     "babel-preset-minify": "^0.4.3",

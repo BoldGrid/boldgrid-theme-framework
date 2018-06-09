@@ -364,6 +364,9 @@ gulp.task('scssDeps', function () {
 
 // Compile SCSS
 gulp.task('scssCompile', function () {
+  var plugins = [
+    require('autoprefixer')
+  ];
   return gulp.src([
     '!' + config.dist + '/assets/scss/bootstrap.scss',
     '!' + config.dist + '/assets/scss/custom-color/**/*',
@@ -375,6 +378,7 @@ gulp.task('scssCompile', function () {
         config.dist + 'assets/scss/bootstrap',
       ]
     }).on('error', sass.logError))
+    .pipe(postcss(plugins))
     .pipe(gulp.dest(config.dist + '/assets/css'))
     .pipe(cssnano({
       discardComments: { removeAll: true },

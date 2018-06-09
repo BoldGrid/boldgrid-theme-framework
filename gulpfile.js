@@ -365,6 +365,7 @@ gulp.task('scssDeps', function () {
 // Compile SCSS
 gulp.task('scssCompile', function () {
   var plugins = [
+    require('postcss-flexbugs-fixes'),
     require('autoprefixer')
   ];
   return gulp.src([

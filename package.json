@@ -66,6 +66,7 @@
     "jshint-stylish": "^2.1.0",
     "mini-css-extract-plugin": "^0.4.0",
     "postcss-colors-only": "^0.0.3",
+    "postcss-flexbugs-fixes": "^3.3.1",
     "postcss-loader": "^2.1.5",
     "postcss-merge-rules": "^2.1.2",
     "postcss-prefix-selector": "^1.6.0",

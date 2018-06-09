@@ -1680,8 +1680,8 @@ input[type="text"].customizer-search-input {
   -webkit-box-shadow: none;
           box-shadow: none;
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
   height: 32px;
   width: 77%;
 }
@@ -1931,8 +1931,8 @@ ul[id^="sub-accordion-section-bgtfw_menu_hamburgers_"] .customize-section-title 
       -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-flex: 0;
-      -ms-flex: 0;
-          flex: 0;
+      -ms-flex: 0 1;
+          flex: 0 1;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1969,8 +1969,12 @@ ul[id^="sub-accordion-section-bgtfw_menu_hamburgers_"] .bgtfw-hamburgers-wrapper
   display: -ms-flexbox;
   display: flex;
   -webkit-box-flex: 1;
-      -ms-flex: 1 1 calc( 50% - 1px);
-          flex: 1 1 calc( 50% - 1px);
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  -ms-flex-preferred-size: calc( 50% - 1px);
+      flex-basis: calc( 50% - 1px);
   -ms-flex-line-pack: center;
       align-content: center;
   -webkit-box-pack: center;

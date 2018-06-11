@@ -103,32 +103,48 @@ return array(
 		'panel' => 'bgtfw_blog_posts_panel',
 		'priority' => 4,
 	),
+	'bgtfw_header_advanced' => array(
+		'title' => __( 'Advanced', 'bgtfw' ),
+		'description' => esc_html__( 'Advanced settings for the appearance of your site\'s header.', 'bgtfw' ),
+		'panel' => 'bgtfw_header',
+		'priority' => 70,
+	),
+	'bgtfw_footer_advanced' => array(
+		'title' => __( 'Advanced', 'bgtfw' ),
+		'description' => esc_html__( 'Advanced settings for the appearance of your site\'s footer.', 'bgtfw' ),
+		'panel' => 'bgtfw_footer',
+		'priority' => 70,
+	),
 
 	/*  Start: Generic Header Controls */
 	'boldgrid_header_margin_section' => array(
 		'title' => __( 'Margin', 'bgtfw' ),
-		'panel' => 'bgtfw_header_advanced',
+		'panel' => 'bgtfw_header',
+		'section' => 'bgtfw_header_advanced',
 		'description' => esc_html__( 'Change the margin of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_header_padding_section' => array(
 		'title' => __( 'Padding', 'bgtfw' ),
-		'panel' => 'bgtfw_header_advanced',
+		'panel' => 'bgtfw_header',
+		'section' => 'bgtfw_header_advanced',
 		'description' => esc_html__( 'Change the padding of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_header_border_section' => array(
 		'title' => __( 'Border', 'bgtfw' ),
-		'panel' => 'bgtfw_header_advanced',
+		'panel' => 'bgtfw_header',
+		'section' => 'bgtfw_header_advanced',
 		'description' => esc_html__( 'Change the border of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_header_shadow_section' => array(
 		'title' => __( 'Box Shadow', 'bgtfw' ),
-		'panel' => 'bgtfw_header_advanced',
+		'panel' => 'bgtfw_header',
+		'section' => 'bgtfw_header_advanced',
 		'description' => esc_html__( 'Change the box shadow of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
@@ -136,37 +152,39 @@ return array(
 
 	'boldgrid_header_radius_section' => array(
 		'title' => __( 'Border Radius', 'bgtfw' ),
-		'panel' => 'bgtfw_header_advanced',
+		'panel' => 'bgtfw_header',
+		'section' => 'bgtfw_header_advanced',
 		'description' => esc_html__( 'Change the border radius of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
+
 	// End: Generic Header Controls
 	// Start: Generic Footer Controls
 	'boldgrid_footer_margin_section' => array(
 		'title' => __( 'Margin', 'bgtfw' ),
-		'panel' => 'bgtfw_footer_advanced',
+		'section' => 'bgtfw_footer_advanced',
 		'description' => esc_html__( 'Change the margin of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_footer_padding_section' => array(
 		'title' => __( 'Padding', 'bgtfw' ),
-		'panel' => 'bgtfw_footer_advanced',
+		'section' => 'bgtfw_footer_advanced',
 		'description' => esc_html__( 'Change the padding of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_footer_border_section' => array(
 		'title' => __( 'Border', 'bgtfw' ),
-		'panel' => 'bgtfw_footer_advanced',
+		'section' => 'bgtfw_footer_advanced',
 		'description' => esc_html__( 'Change the border of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_footer_shadow_section' => array(
 		'title' => __( 'Box Shadow', 'bgtfw' ),
-		'panel' => 'bgtfw_footer_advanced',
+		'section' => 'bgtfw_footer_advanced',
 		'description' => esc_html__( 'Change the box shadow of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
@@ -174,7 +192,7 @@ return array(
 
 	'boldgrid_footer_radius_section' => array(
 		'title' => __( 'Border Radius', 'bgtfw' ),
-		'panel' => 'bgtfw_footer_advanced',
+		'section' => 'bgtfw_footer_advanced',
 		'description' => esc_html__( 'Change the border radius of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,

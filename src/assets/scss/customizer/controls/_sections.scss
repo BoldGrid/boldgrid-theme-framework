@@ -1,3 +1,31 @@
+// Base Styles
+#customize-controls {
+	.control-section-bgtfw_section.open > li.control-section-bgtfw_section {
+		margin-left: -12px;
+		margin-right: -12px;
+
+		.accordion-section-title {
+			color: #555d66;
+			background-color: #fff;
+			border-left: 4px solid #fff;
+
+			&:after {
+				color: #a0a5aa;
+			}
+
+			&:hover, &:focus, &:active {
+				color: #0073aa;
+				background: #f3f3f5;
+				border-left-color: #0073aa;
+
+				&:after {
+					color: #0073aa;
+				}
+			}
+		}
+	}
+}
+
 #customize-theme-controls .control-section {
 	&#accordion-section-boldgrid_footer_margin_section,
 	&#accordion-section-boldgrid_header_margin_section {

@@ -288,10 +288,6 @@ class BoldGrid_Framework_Customizer {
 				}
 			}
 		}
-
-		foreach ( $this->configs['customizer']['sections'] as $name => $section ) {
-			Kirki::add_section( $name, $section );
-		}
 	}
 
 	/**
@@ -679,6 +675,12 @@ HTML;
 			$panel = new Boldgrid_Framework_Customizer_Panel( $wp_customize, $name, $panel );
 			$wp_customize->add_panel( $panel );
 		}
+
+		$wp_customize->register_section_type( 'Boldgrid_Framework_Customizer_Section' );
+		foreach ( $this->configs['customizer']['sections'] as $name => $section ) {
+			$section = new Boldgrid_Framework_Customizer_Section( $wp_customize, $name, $section );
+			$wp_customize->add_section( $section );
+		}
 	}
 
 	/**
@@ -692,7 +694,6 @@ HTML;
 	public function header_panel( $wp_customize ) {
 
 		// Registers our custom section type and controls.
-		$wp_customize->register_section_type( 'Boldgrid_Framework_Customizer_Section' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Palette_Selector' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers' );
 

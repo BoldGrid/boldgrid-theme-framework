@@ -60,11 +60,11 @@
 /*****************************************************
 ************Kirki Control Rules****************
 ******************************************************/
-#customize-theme-controls .control-section.open .accordion-section-title {
+#customize-theme-controls .control-section.open:not(.control-section-bgtfw_section) .accordion-section-title {
   color: #fff !important;
 }
 
-#customize-theme-controls .control-section.open .accordion-section-title:after {
+#customize-theme-controls .control-section.open:not(.control-section-bgtfw_section) .accordion-section-title:after {
   color: #fff;
 }
 
@@ -2057,6 +2057,31 @@ ul[id^="sub-accordion-section-bgtfw_menu_hamburgers_"] .bgtfw-hamburgers-wrapper
 /*--------------------------------------------------------------
 # Section Orginization
 --------------------------------------------------------------*/
+#customize-controls .control-section-bgtfw_section.open > li.control-section-bgtfw_section {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+#customize-controls .control-section-bgtfw_section.open > li.control-section-bgtfw_section .accordion-section-title {
+  color: #555d66;
+  background-color: #fff;
+  border-left: 4px solid #fff;
+}
+
+#customize-controls .control-section-bgtfw_section.open > li.control-section-bgtfw_section .accordion-section-title:after {
+  color: #a0a5aa;
+}
+
+#customize-controls .control-section-bgtfw_section.open > li.control-section-bgtfw_section .accordion-section-title:hover, #customize-controls .control-section-bgtfw_section.open > li.control-section-bgtfw_section .accordion-section-title:focus, #customize-controls .control-section-bgtfw_section.open > li.control-section-bgtfw_section .accordion-section-title:active {
+  color: #0073aa;
+  background: #f3f3f5;
+  border-left-color: #0073aa;
+}
+
+#customize-controls .control-section-bgtfw_section.open > li.control-section-bgtfw_section .accordion-section-title:hover:after, #customize-controls .control-section-bgtfw_section.open > li.control-section-bgtfw_section .accordion-section-title:focus:after, #customize-controls .control-section-bgtfw_section.open > li.control-section-bgtfw_section .accordion-section-title:active:after {
+  color: #0073aa;
+}
+
 #customize-theme-controls .control-section#accordion-section-boldgrid_footer_margin_section, #customize-theme-controls .control-section#accordion-section-boldgrid_header_margin_section {
   border-top: 20px solid rgba(0, 0, 0, 0.1);
 }

@@ -61,7 +61,7 @@
 ************Kirki Control Rules****************
 ******************************************************/
 #customize-theme-controls {
-	.control-section.open .accordion-section-title {
+	.control-section.open:not(.control-section-bgtfw_section) .accordion-section-title {
 		color: #fff !important;
 		&:after{
 			color: #fff;

@@ -730,7 +730,7 @@ msgstr ""
 msgid "Posts"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:51, src/includes/configs/customizer/sections.config.php:79
+#: src/includes/configs/customizer/panels.config.php:51, src/includes/configs/customizer/sections.config.php:85
 msgid "Menus"
 msgstr ""
 
@@ -786,24 +786,24 @@ msgstr ""
 msgid "Adjust your header's widget sections."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:83
-msgid "Headings"
-msgstr ""
-
-#: src/includes/configs/customizer/sections.config.php:87
-msgid "Main Text"
-msgstr ""
-
-#: src/includes/configs/customizer/sections.config.php:96, src/includes/configs/customizer/sections.config.php:106
-msgid "Sidebar"
-msgstr ""
-
-#: src/includes/configs/customizer/sections.config.php:111, src/includes/configs/customizer/sections.config.php:117
+#: src/includes/configs/customizer/sections.config.php:79, src/includes/configs/customizer/sections.config.php:117
 msgid "Advanced"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:112
+#: src/includes/configs/customizer/sections.config.php:80
 msgid "Advanced settings for the appearance of your site's header."
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:89
+msgid "Headings"
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:93
+msgid "Main Text"
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:102, src/includes/configs/customizer/sections.config.php:112
+msgid "Sidebar"
 msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:118

@@ -75,6 +75,12 @@ return array(
 		'capability' => 'edit_theme_options',
 		'priority' => 13,
 	),
+	'bgtfw_header_advanced' => array(
+		'title' => __( 'Advanced', 'bgtfw' ),
+		'description' => esc_html__( 'Advanced settings for the appearance of your site\'s header.', 'bgtfw' ),
+		'panel' => 'bgtfw_header',
+		'priority' => 70,
+	),
 	'navigation_typography' => array(
 		'title' => __( 'Menus', 'bgtfw' ),
 		'panel' => 'boldgrid_typography',
@@ -106,12 +112,6 @@ return array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
 		'priority' => 4,
-	),
-	'bgtfw_header_advanced' => array(
-		'title' => __( 'Advanced', 'bgtfw' ),
-		'description' => esc_html__( 'Advanced settings for the appearance of your site\'s header.', 'bgtfw' ),
-		'panel' => 'bgtfw_header',
-		'priority' => 70,
 	),
 	'bgtfw_footer_advanced' => array(
 		'title' => __( 'Advanced', 'bgtfw' ),

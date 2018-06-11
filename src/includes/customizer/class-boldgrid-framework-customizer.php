@@ -592,7 +592,7 @@ HTML;
 		// Move Homepage Settings to the Layouts Panel.
 		if ( $wp_customize->get_section( 'static_front_page' ) ) {
 			$wp_customize->get_section( 'static_front_page' )->title = 'Homepage';
-			$wp_customize->get_section( 'static_front_page' )->priority = 1;
+			$wp_customize->get_section( 'static_front_page' )->priority = 5;
 			$wp_customize->get_section( 'static_front_page' )->panel = 'bgtfw_design_panel';
 		}
 

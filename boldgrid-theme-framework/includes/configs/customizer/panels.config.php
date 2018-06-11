@@ -32,7 +32,7 @@ return array(
 	),
 	'bgtfw_blog_panel' => array(
 		'title' => __( 'Blog', 'bgtfw' ),
-		'priority' => 2,
+		'priority' => 4,
 		'panel' => 'bgtfw_design_panel',
 	),
 	'bgtfw_blog_blog_page_panel' => array(
@@ -44,13 +44,13 @@ return array(
 		'priority' => 2,
 		'panel' => 'bgtfw_design_panel',
 	),
-	'bgtfw_blog_posts_panel' => array(
-		'title' => __( 'Posts', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_panel',
-	),
 	'bgtfw_menus_panel' => array(
 		'title' => __( 'Menus', 'bgtfw' ),
 		'priority' => 3,
 		'panel' => 'bgtfw_design_panel',
+	),
+	'bgtfw_blog_posts_panel' => array(
+		'title' => __( 'Posts', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_panel',
 	),
 );

@@ -22,6 +22,7 @@ return array(
 		'panel' => 'bgtfw_design_panel',
 		'description' => __( 'This section controls the global layout of pages on your website.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
+		'priority' => 1,
 	),
 	'boldgrid_footer_panel' => array(
 		'title' => __( 'Layout', 'bgtfw' ),

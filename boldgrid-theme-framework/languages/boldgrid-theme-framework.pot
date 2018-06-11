@@ -430,7 +430,7 @@ msgstr ""
 msgid "Full Content"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:927, src/includes/configs/customizer/controls.config.php:1015, src/includes/configs/customizer/controls.config.php:1032, src/includes/configs/customizer/controls.config.php:1062, src/includes/configs/customizer/sections.config.php:27, src/includes/configs/customizer/sections.config.php:55
+#: src/includes/configs/customizer/controls.config.php:927, src/includes/configs/customizer/controls.config.php:1015, src/includes/configs/customizer/controls.config.php:1032, src/includes/configs/customizer/controls.config.php:1062, src/includes/configs/customizer/sections.config.php:28, src/includes/configs/customizer/sections.config.php:56
 msgid "Layout"
 msgstr ""
 
@@ -726,12 +726,12 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:48
-msgid "Posts"
+#: src/includes/configs/customizer/panels.config.php:48, src/includes/configs/customizer/sections.config.php:96
+msgid "Menus"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:52, src/includes/configs/customizer/sections.config.php:95
-msgid "Menus"
+#: src/includes/configs/customizer/panels.config.php:53
+msgid "Posts"
 msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:17
@@ -742,131 +742,131 @@ msgstr ""
 msgid "This section controls the global layout of pages on your website."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:29
+#: src/includes/configs/customizer/sections.config.php:30
 msgid "Change the layout of your site's footer."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:34, src/includes/configs/customizer/sections.config.php:75
+#: src/includes/configs/customizer/sections.config.php:35, src/includes/configs/customizer/sections.config.php:76
 msgid "Colors"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:36
+#: src/includes/configs/customizer/sections.config.php:37
 msgid "Change the colors used in your custom footer."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:41, src/includes/configs/customizer/sections.config.php:82
+#: src/includes/configs/customizer/sections.config.php:42, src/includes/configs/customizer/sections.config.php:83
 msgid "Widgets"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:43
+#: src/includes/configs/customizer/sections.config.php:44
 msgid "Adjust your footer's widget sections."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:48, src/includes/configs/customizer/sections.config.php:89
+#: src/includes/configs/customizer/sections.config.php:49, src/includes/configs/customizer/sections.config.php:90
 msgid "Advanced"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:49
+#: src/includes/configs/customizer/sections.config.php:50
 msgid "Advanced settings for the appearance of your site's footer."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:61
+#: src/includes/configs/customizer/sections.config.php:62
 msgid "Site Title"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:63
+#: src/includes/configs/customizer/sections.config.php:64
 msgid "Change your site title and it's appearance."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:68
+#: src/includes/configs/customizer/sections.config.php:69
 msgid "Tagline"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:70
+#: src/includes/configs/customizer/sections.config.php:71
 msgid "Change your site's tagline, and it's appearance."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:77
+#: src/includes/configs/customizer/sections.config.php:78
 msgid "Change the colors used in your custom header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:84
+#: src/includes/configs/customizer/sections.config.php:85
 msgid "Adjust your header's widget sections."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:90
+#: src/includes/configs/customizer/sections.config.php:91
 msgid "Advanced settings for the appearance of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:99
+#: src/includes/configs/customizer/sections.config.php:100
 msgid "Headings"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:103
+#: src/includes/configs/customizer/sections.config.php:104
 msgid "Main Text"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:112, src/includes/configs/customizer/sections.config.php:122
+#: src/includes/configs/customizer/sections.config.php:113, src/includes/configs/customizer/sections.config.php:123
 msgid "Sidebar"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:129, src/includes/configs/customizer/sections.config.php:173, src/includes/customizer/class-boldgrid-framework-customizer.php:134
+#: src/includes/configs/customizer/sections.config.php:130, src/includes/configs/customizer/sections.config.php:174, src/includes/customizer/class-boldgrid-framework-customizer.php:134
 msgid "Margin"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:132
+#: src/includes/configs/customizer/sections.config.php:133
 msgid "Change the margin of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:137, src/includes/configs/customizer/sections.config.php:180, src/includes/customizer/class-boldgrid-framework-customizer.php:144
+#: src/includes/configs/customizer/sections.config.php:138, src/includes/configs/customizer/sections.config.php:181, src/includes/customizer/class-boldgrid-framework-customizer.php:144
 msgid "Padding"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:140
+#: src/includes/configs/customizer/sections.config.php:141
 msgid "Change the padding of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:145, src/includes/configs/customizer/sections.config.php:187, src/includes/customizer/class-boldgrid-framework-customizer.php:124, src/includes/customizer/class-boldgrid-framework-customizer.php:196, src/includes/customizer/class-boldgrid-framework-customizer.php:226
+#: src/includes/configs/customizer/sections.config.php:146, src/includes/configs/customizer/sections.config.php:188, src/includes/customizer/class-boldgrid-framework-customizer.php:124, src/includes/customizer/class-boldgrid-framework-customizer.php:196, src/includes/customizer/class-boldgrid-framework-customizer.php:226
 msgid "Border"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:148
+#: src/includes/configs/customizer/sections.config.php:149
 msgid "Change the border of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:153, src/includes/configs/customizer/sections.config.php:194
+#: src/includes/configs/customizer/sections.config.php:154, src/includes/configs/customizer/sections.config.php:195
 msgid "Box Shadow"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:156
+#: src/includes/configs/customizer/sections.config.php:157
 msgid "Change the box shadow of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:162, src/includes/configs/customizer/sections.config.php:202
+#: src/includes/configs/customizer/sections.config.php:163, src/includes/configs/customizer/sections.config.php:203
 msgid "Border Radius"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:165
+#: src/includes/configs/customizer/sections.config.php:166
 msgid "Change the border radius of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:175
+#: src/includes/configs/customizer/sections.config.php:176
 msgid "Change the margin of your site's footer."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:182
+#: src/includes/configs/customizer/sections.config.php:183
 msgid "Change the padding of your site's footer."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:189
+#: src/includes/configs/customizer/sections.config.php:190
 msgid "Change the border of your site's footer."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:196
+#: src/includes/configs/customizer/sections.config.php:197
 msgid "Change the box shadow of your site's footer."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:204
+#: src/includes/configs/customizer/sections.config.php:205
 msgid "Change the border radius of your site's footer."
 msgstr ""
 

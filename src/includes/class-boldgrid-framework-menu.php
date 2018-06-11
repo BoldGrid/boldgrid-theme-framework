@@ -173,10 +173,10 @@ class Boldgrid_Framework_Menu {
 				foreach ( $classes as $class ) {
 
 					// Join existing bgtfw configs for menu classes passed in $args.
-					if ( isset( $args[ $class ] ) && ! empty( $args[ $class ] ) ) {
+					if ( isset( $args[ $class ] ) ) {
 
 						// Check for defaults from bgtfw configs.
-						if ( isset( $defaults[ $class ] ) && ! empty( $defaults[ $class ] ) && is_string( $defaults[ $class ] ) ) {
+						if ( isset( $defaults[ $class ] ) && is_string( $defaults[ $class ] ) ) {
 
 							// Combine the strings to create menu with.
 							$defaults[ $class ] = implode( ' ', array( $defaults[ $class ], $args[ $class ] ) );

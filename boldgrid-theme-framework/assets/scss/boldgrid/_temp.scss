@@ -41,7 +41,7 @@
 			justify-content: center;
 		}
 		&.header-fixed {
-			#navi-wrap {
+			.site-header {
 				overflow-x: hidden;
 				overflow-y: auto;
 				height: 100vh;
@@ -61,12 +61,6 @@
 	.flexbox .site-header {
 		width: 100%;
 	}
-	/** Menu Styles */
-	.flexbox .header-left .site-header input:checked ~ .sm-clean,
-	.flexbox .header-left .site-header input:not(:checked):not(.hidden) ~ .sm-clean {
-		flex-direction: column;
-	}
-	/** Left w/ fixed position **/
 	/* Header adjustments */
 	.flexbox .header-left.header-fixed .site-header {
 		width: 400px;
@@ -88,12 +82,6 @@
 		/* set z-index lower than customizer edit buttons, but higher than site content */
 		z-index: 200;
 	}
-	.flexbox .header-fixed.header-left .wp-custom-header video {
-		min-height: 100vh;
-		object-fit: cover;
-		width: 100%;
-		overflow: hidden;
-	}
 }
 /** Header on Right **/
 @media only screen and (min-width: 768px) {
@@ -111,9 +99,11 @@
 		width: calc(100% - 400px);
 	}
 	/** Menu Styles */
+	.flexbox .header-left .site-header input:checked ~ .sm-clean,
+	.flexbox .header-left .site-header input:not(:checked):not(.hidden) ~ .sm-clean,
 	.flexbox .header-right .site-header input:checked ~ .sm-clean,
 	.flexbox .header-right .site-header input:not(:checked):not(.hidden) ~ .sm-clean {
-		flex-direction: column;
+		display: block;
 	}
 	/** Left w/ fixed position **/
 	/* Header adjustments */
@@ -135,6 +125,7 @@
 	.flexbox .header-right.header-fixed .site-content {
 		margin-right: 400px;
 	}
+	.flexbox .header-fixed.header-left .wp-custom-header video,
 	.flexbox .header-fixed.header-right .wp-custom-header video {
 		min-height: 100vh;
 		object-fit: cover;

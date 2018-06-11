@@ -78,6 +78,16 @@ var BoldGrid = BoldGrid || {};
 						}
 					}, false );
 				}
+			},
+			sideHeaderHandler: function() {
+				var header;
+
+				header = $( '.site-header' );
+				header.bind( 'scroll', function() {
+					if ( 0 !== header.scrollLeft() ) {
+						header.scrollLeft( 0 );
+					}
+				} );
 			}
 		},
 
@@ -233,6 +243,18 @@ var BoldGrid = BoldGrid || {};
 
 			calc: function() {
 				BoldGrid.custom_header.calc();
+			}
+		},
+
+		'header_left': {
+			init: function() {
+				BoldGrid.common.sideHeaderHandler();
+			}
+		},
+
+		'header_right': {
+			init: function() {
+				BoldGrid.common.sideHeaderHandler();
 			}
 		},
 

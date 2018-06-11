@@ -2565,35 +2565,6 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   }
 }
 
-/* Secondary Menu Styles */
-@media only screen and (min-width: 768px) {
-  #secondary-menu {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    z-index: 1;
-  }
-  #secondary-menu-items {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  #secondary-menu-items li:after {
-    margin-left: .5em;
-  }
-  #secondary-menu.container {
-    -ms-flex-preferred-size: auto;
-        flex-basis: auto;
-  }
-}
-
 .palette-primary .hamburger-inner, .palette-primary .hamburger-inner::before, .palette-primary .hamburger-inner::after {
   background-color: currentColor;
 }
@@ -5032,7 +5003,7 @@ footer .bgtfw-widget-row {
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .header-right.header-fixed #navi-wrap, .header-left.header-fixed #navi-wrap {
+  .header-right.header-fixed .site-header, .header-left.header-fixed .site-header {
     overflow-x: hidden;
     overflow-y: auto;
     height: 100vh;
@@ -5053,15 +5024,6 @@ footer .bgtfw-widget-row {
   .flexbox .site-header {
     width: 100%;
   }
-  /** Menu Styles */
-  .flexbox .header-left .site-header input:checked ~ .sm-clean,
-  .flexbox .header-left .site-header input:not(:checked):not(.hidden) ~ .sm-clean {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  /** Left w/ fixed position **/
   /* Header adjustments */
   .flexbox .header-left.header-fixed .site-header {
     width: 400px;
@@ -5082,13 +5044,6 @@ footer .bgtfw-widget-row {
     position: fixed;
     /* set z-index lower than customizer edit buttons, but higher than site content */
     z-index: 200;
-  }
-  .flexbox .header-fixed.header-left .wp-custom-header video {
-    min-height: 100vh;
-    -o-object-fit: cover;
-       object-fit: cover;
-    width: 100%;
-    overflow: hidden;
   }
 }
 
@@ -5117,12 +5072,11 @@ footer .bgtfw-widget-row {
     width: calc(100% - 400px);
   }
   /** Menu Styles */
+  .flexbox .header-left .site-header input:checked ~ .sm-clean,
+  .flexbox .header-left .site-header input:not(:checked):not(.hidden) ~ .sm-clean,
   .flexbox .header-right .site-header input:checked ~ .sm-clean,
   .flexbox .header-right .site-header input:not(:checked):not(.hidden) ~ .sm-clean {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    display: block;
   }
   /** Left w/ fixed position **/
   /* Header adjustments */
@@ -5144,6 +5098,7 @@ footer .bgtfw-widget-row {
   .flexbox .header-right.header-fixed .site-content {
     margin-right: 400px;
   }
+  .flexbox .header-fixed.header-left .wp-custom-header video,
   .flexbox .header-fixed.header-right .wp-custom-header video {
     min-height: 100vh;
     -o-object-fit: cover;

@@ -144,7 +144,12 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				BOLDGRID.CustomizerEdit.destroy();
 				BOLDGRID.CustomizerEdit.start();
 				/* jshint ignore:end */
-			});
+			} );
+
+			// Fixed side headers need to readjust edit buttons when header is scrolled.
+			$( '.header-fixed .site-header' ).on( 'scroll', _.debounce( function() {
+				BOLDGRID.CustomizerEdit.placeButtons();
+			}, 400 ) );
 		},
 		/**
 		 * @summary Init the buttons.

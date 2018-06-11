@@ -1490,7 +1490,7 @@ return array(
 		'label' => esc_attr__( 'Color', 'bgtfw' ),
 		'section'     => 'bgtfw_menu_items_active_link_background_main',
 		'priority' => 1,
-		'default'  => 'color-4',
+		'default'  => 'transparent',
 		'choices'     => array(
 			'colors' => $formatted_palette,
 			'size' => $palette->get_palette_size( $formatted_palette, true ),

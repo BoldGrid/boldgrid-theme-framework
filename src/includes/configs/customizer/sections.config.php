@@ -28,19 +28,29 @@ return array(
 		'panel' => 'bgtfw_footer',
 		'description' => esc_html__( 'Change the layout of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
-	),
-	'bgtfw_footer_widgets' => array(
-		'title' => __( 'Widgets', 'bgtfw' ),
-		'panel' => 'bgtfw_footer',
-		'description' => __( "Adjust your footer's widget sections.", 'bgtfw' ),
-		'capability' => 'edit_theme_options',
+		'priority' => 1,
 	),
 	'bgtfw_footer_colors' => array(
 		'title' => __( 'Colors', 'bgtfw' ),
 		'panel' => 'bgtfw_footer',
 		'description' => esc_attr__( 'Change the colors used in your custom footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
+		'priority' => 2,
 	),
+	'bgtfw_footer_widgets' => array(
+		'title' => __( 'Widgets', 'bgtfw' ),
+		'panel' => 'bgtfw_footer',
+		'description' => __( "Adjust your footer's widget sections.", 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+		'priority' => 3,
+	),
+	'bgtfw_footer_advanced' => array(
+		'title' => __( 'Advanced', 'bgtfw' ),
+		'description' => esc_html__( 'Advanced settings for the appearance of your site\'s footer.', 'bgtfw' ),
+		'panel' => 'bgtfw_footer',
+		'priority' => 70,
+	),
+
 	'bgtfw_header_layout' => array(
 		'title' => __( 'Layout', 'bgtfw' ),
 		'panel' => 'bgtfw_header',
@@ -112,12 +122,6 @@ return array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
 		'priority' => 4,
-	),
-	'bgtfw_footer_advanced' => array(
-		'title' => __( 'Advanced', 'bgtfw' ),
-		'description' => esc_html__( 'Advanced settings for the appearance of your site\'s footer.', 'bgtfw' ),
-		'panel' => 'bgtfw_footer',
-		'priority' => 70,
 	),
 
 	/*  Start: Generic Header Controls */

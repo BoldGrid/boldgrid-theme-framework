@@ -2082,11 +2082,6 @@ ul[id^="sub-accordion-section-bgtfw_menu_hamburgers_"] .bgtfw-hamburgers-wrapper
   color: #0073aa;
 }
 
-#customize-theme-controls .control-section#accordion-section-boldgrid_footer_margin_section, #customize-theme-controls .control-section#accordion-section-boldgrid_header_margin_section {
-  border-top: 20px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Extended Section Titles */
 span.section-title-extended {
   display: block;
   font-size: 13px;

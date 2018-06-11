@@ -1,4 +1,4 @@
-// Base Styles
+// Base Styles.
 #customize-controls {
 	.control-section-bgtfw_section.open > li.control-section-bgtfw_section {
 		margin-left: -12px;
@@ -26,14 +26,7 @@
 	}
 }
 
-#customize-theme-controls .control-section {
-	&#accordion-section-boldgrid_footer_margin_section,
-	&#accordion-section-boldgrid_header_margin_section {
-		border-top: 20px solid rgba(0, 0, 0, 0.1);
-	}
-}
-
-/* Extended Section Titles */
+// Extended Section Titles.
 span.section-title-extended {
 	display: block;
 	font-size: 13px;

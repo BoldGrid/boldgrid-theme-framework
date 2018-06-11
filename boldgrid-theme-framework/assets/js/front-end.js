@@ -25,15 +25,15 @@ var BoldGrid = BoldGrid || {};
 			// JavaScript to be fired on all pages.
 			init: function() {
 				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
-				$( '#boldgrid-sticky-wrap' ).one( BoldGrid.common.detectAnimationEvent(), function() {
-					BoldGrid.custom_header.calc();
-				} );
 				this.skipLink();
 			},
 
 			// JavaScript to be fired on all pages, after page specific JS is fired.
 			finalize: function() {
 				$( ':root' ).removeClass( 'bgtfw-loading' ).addClass( 'bgtfw-loaded' );
+				$( '#boldgrid-sticky-wrap' ).one( BoldGrid.common.detectAnimationEvent(), function() {
+					BoldGrid.custom_header.calc();
+				} );
 			},
 
 			detectAnimationEvent: function() {
@@ -99,6 +99,9 @@ var BoldGrid = BoldGrid || {};
 
 				// Check for video background embed type.
 				$( document ).on( 'wp-custom-header-video-loaded', this.checkType );
+
+				// Initial calc.
+				BoldGrid.custom_header.calc();
 
 				// Listen for resize events to retrigger calculations.
 				$( window ).resize( this.calc );

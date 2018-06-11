@@ -600,6 +600,7 @@ HTML;
 		if ( $section = $wp_customize->get_section( 'title_tagline' ) ) {
 			$section->title = __( 'Logo & Icon', 'bgtfw' );
 			$section->panel = 'bgtfw_header';
+			$section->priority = 7;
 		}
 
 		if ( $tagline = $wp_customize->get_control( 'blogdescription' ) ) {
@@ -613,6 +614,7 @@ HTML;
 		if ( $header_image = $wp_customize->get_section( 'header_image' ) ) {
 			$header_image->title = __( 'Background', 'bgtfw' );
 			$header_image->panel = 'bgtfw_header';
+			$header_image->priority = 12;
 		}
 
 		if ( $section = $wp_customize->get_section( 'custom_css' ) ) {

@@ -96,12 +96,12 @@ return array(
 		'title' => __( 'Menus', 'bgtfw' ),
 		'panel' => 'boldgrid_typography',
 	),
-	'headings_typography' => array(
-		'title' => __( 'Headings', 'bgtfw' ),
-		'panel' => 'boldgrid_typography',
-	),
 	'body_typography' => array(
 		'title' => __( 'Main Text', 'bgtfw' ),
+		'panel' => 'boldgrid_typography',
+	),
+	'headings_typography' => array(
+		'title' => __( 'Headings', 'bgtfw' ),
 		'panel' => 'boldgrid_typography',
 	),
 	'bgtfw_pages_blog_blog_page_layout' => array(

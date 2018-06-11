@@ -799,11 +799,11 @@ msgid "Advanced settings for the appearance of your site's header."
 msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:100
-msgid "Headings"
+msgid "Main Text"
 msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:104
-msgid "Main Text"
+msgid "Headings"
 msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:113, src/includes/configs/customizer/sections.config.php:123

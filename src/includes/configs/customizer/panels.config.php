@@ -52,4 +52,12 @@ return array(
 		'priority' => 3,
 		'panel' => 'bgtfw_design_panel',
 	),
+	'bgtfw_header_advanced' => array(
+		'title' => __( 'Advanced', 'bgtfw' ),
+		'panel' => 'bgtfw_header',
+	),
+	'bgtfw_footer_advanced' => array(
+		'title' => __( 'Advanced', 'bgtfw' ),
+		'panel' => 'bgtfw_footer',
+	),
 );

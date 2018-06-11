@@ -734,6 +734,10 @@ msgstr ""
 msgid "Menus"
 msgstr ""
 
+#: src/includes/configs/customizer/panels.config.php:56, src/includes/configs/customizer/panels.config.php:60
+msgid "Advanced"
+msgstr ""
+
 #: src/includes/configs/customizer/sections.config.php:17
 msgid "This section controls the layout of pages and posts on your website."
 msgstr ""

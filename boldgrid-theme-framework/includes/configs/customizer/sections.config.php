@@ -107,28 +107,28 @@ return array(
 	/*  Start: Generic Header Controls */
 	'boldgrid_header_margin_section' => array(
 		'title' => __( 'Margin', 'bgtfw' ),
-		'panel' => 'bgtfw_header',
+		'panel' => 'bgtfw_header_advanced',
 		'description' => esc_html__( 'Change the margin of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_header_padding_section' => array(
 		'title' => __( 'Padding', 'bgtfw' ),
-		'panel' => 'bgtfw_header',
+		'panel' => 'bgtfw_header_advanced',
 		'description' => esc_html__( 'Change the padding of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_header_border_section' => array(
 		'title' => __( 'Border', 'bgtfw' ),
-		'panel' => 'bgtfw_header',
+		'panel' => 'bgtfw_header_advanced',
 		'description' => esc_html__( 'Change the border of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_header_shadow_section' => array(
 		'title' => __( 'Box Shadow', 'bgtfw' ),
-		'panel' => 'bgtfw_header',
+		'panel' => 'bgtfw_header_advanced',
 		'description' => esc_html__( 'Change the box shadow of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
@@ -136,7 +136,7 @@ return array(
 
 	'boldgrid_header_radius_section' => array(
 		'title' => __( 'Border Radius', 'bgtfw' ),
-		'panel' => 'bgtfw_header',
+		'panel' => 'bgtfw_header_advanced',
 		'description' => esc_html__( 'Change the border radius of your site\'s header.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
@@ -145,28 +145,28 @@ return array(
 	// Start: Generic Footer Controls
 	'boldgrid_footer_margin_section' => array(
 		'title' => __( 'Margin', 'bgtfw' ),
-		'panel' => 'bgtfw_footer',
+		'panel' => 'bgtfw_footer_advanced',
 		'description' => esc_html__( 'Change the margin of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_footer_padding_section' => array(
 		'title' => __( 'Padding', 'bgtfw' ),
-		'panel' => 'bgtfw_footer',
+		'panel' => 'bgtfw_footer_advanced',
 		'description' => esc_html__( 'Change the padding of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_footer_border_section' => array(
 		'title' => __( 'Border', 'bgtfw' ),
-		'panel' => 'bgtfw_footer',
+		'panel' => 'bgtfw_footer_advanced',
 		'description' => esc_html__( 'Change the border of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
 	'boldgrid_footer_shadow_section' => array(
 		'title' => __( 'Box Shadow', 'bgtfw' ),
-		'panel' => 'bgtfw_footer',
+		'panel' => 'bgtfw_footer_advanced',
 		'description' => esc_html__( 'Change the box shadow of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
@@ -174,7 +174,7 @@ return array(
 
 	'boldgrid_footer_radius_section' => array(
 		'title' => __( 'Border Radius', 'bgtfw' ),
-		'panel' => 'bgtfw_footer',
+		'panel' => 'bgtfw_footer_advanced',
 		'description' => esc_html__( 'Change the border radius of your site\'s footer.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'priority' => 70,

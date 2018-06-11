@@ -25,16 +25,15 @@ var BoldGrid = BoldGrid || {};
 			// JavaScript to be fired on all pages.
 			init: function() {
 				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
+				$( '#boldgrid-sticky-wrap' ).one( BoldGrid.common.detectAnimationEvent(), function() {
+					BoldGrid.custom_header.calc();
+				} );
 				this.skipLink();
 			},
 
 			// JavaScript to be fired on all pages, after page specific JS is fired.
 			finalize: function() {
-				var root = $( ':root' );
-				root.removeClass( 'bgtfw-loading' ).addClass( 'bgtfw-loaded' );
-				root.one( BoldGrid.common.detectAnimationEvent(), function() {
-					BoldGrid.custom_header.calc();
-				} );
+				$( ':root' ).removeClass( 'bgtfw-loading' ).addClass( 'bgtfw-loaded' );
 			},
 
 			detectAnimationEvent: function() {

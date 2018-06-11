@@ -18,6 +18,7 @@ return array(
 	'boldgrid_typography' => array(
 		'title' => __( 'Fonts', 'bgtfw' ),
 		'description' => 'Manage your site typography settings.',
+		'priority' => 90,
 	),
 	'bgtfw_header' => array(
 		'title' => __( 'Header', 'bgtfw' ),

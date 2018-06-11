@@ -30,10 +30,30 @@ var BoldGrid = BoldGrid || {};
 
 			// JavaScript to be fired on all pages, after page specific JS is fired.
 			finalize: function() {
-				$( ':root' ).removeClass( 'bgtfw-loading' ).addClass( 'bgtfw-loaded' );
-				$( ':root' ).one( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function() {
+				var root = $( ':root' );
+				root.removeClass( 'bgtfw-loading' ).addClass( 'bgtfw-loaded' );
+				root.one( BoldGrid.common.detectAnimationEvent(), function() {
 					BoldGrid.custom_header.calc();
 				} );
+			},
+
+			detectAnimationEvent: function() {
+				var i, el, animations;
+
+				el = document.createElement( 'fakeelement' );
+
+				animations = {
+					'animation': 'animationend',
+					'OAnimation': 'oAnimationEnd',
+					'MozAnimation': 'animationend',
+					'WebkitAnimation': 'webkitAnimationEnd'
+				};
+
+				for ( i in animations ) {
+					if ( undefined !== el.style[i] ) {
+						return animations[i];
+					}
+				}
 			},
 
 			// JavaScript for the skip link functionality.

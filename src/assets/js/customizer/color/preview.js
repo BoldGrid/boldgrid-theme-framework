@@ -191,12 +191,14 @@ export class Preview  {
 	 */
 	getMenuColorsCSS( location ) {
 		let type = `bgtfw_menu_background_${location}`;
+		let inFooter = false;
 
 		if ( wp.customize( type )().includes( 'transparent' ) || _.isUndefined( wp.customize( type )() ) ) {
 			type = 'header';
 
 			if ( BOLDGRID.CUSTOMIZER.data.menu.footerMenus.includes( location ) ) {
 				type = 'footer';
+				inFooter = true;
 			}
 
 			type = `bgtfw_${type}_color`;
@@ -207,9 +209,14 @@ export class Preview  {
 
 		let alpha = parent.net.brehaut.Color( color );
 		let css = '';
-		css += `.header-left #main-menu, .header-right #main-menu { background-color: ${alpha};}`;
-		css += '@media (min-width: 768px) {';
 
+		location = location.replace( /_/g, '-' );
+
+		if ( ! inFooter ) {
+			css += `.header-left #main-menu, .header-right #main-menu { background-color: ${alpha}; }`;
+		}
+
+		css += '@media (min-width: 768px) {';
 		css += `#${location}-menu.sm-clean ul {background-color: ${color};}`;
 		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${alpha};}`;
 		css += `#${location}-menu.sm-clean ul { border: 1px solid ${alpha};}`;
@@ -241,6 +248,8 @@ export class Preview  {
 		const color = new PaletteSelector().getColor( wp.customize( `bgtfw_menu_items_hover_color_${location}` )() );
 		const backgroundColor = new PaletteSelector().getColor( wp.customize( `bgtfw_menu_items_hover_background_${location}` )() );
 		let css = BOLDGRID.CUSTOMIZER.data.hoverColors;
+
+		location = location.replace( /_/g, '-' );
 
 		css = css.replace( /%1\$s/g, `#${location}-menu` );
 		css = css.replace( /%2\$s/g, backgroundColor );

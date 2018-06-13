@@ -1,4 +1,154 @@
 .standard-menu-enabled {
+	.sm-clean {
+		background: transparent;
+		&.sm {
+			z-index: 200;
+			&#secondary-menu {
+				z-index: 201;
+			}
+		}
+	}
+	.sm {
+		&.sm-clean a,
+		&.sm-clean a:hover,
+		&.sm-clean a:focus,
+		&.sm-clean a:active {
+			display: flex;
+			padding: 13px 20px;
+			text-decoration: none;
+		}
+	}
+	.sm-clean a.disabled {
+		color: #bbbbbb;
+	}
+	.sm-clean a span.sub-arrow {
+		position: absolute;
+		top: 50%;
+		margin-top: -17px;
+		left: auto;
+		right: 17.5px;
+		width: 34px;
+		height: 34px;
+		overflow: hidden;
+		font: bold 16px/34px monospace !important;
+		text-align: center;
+		text-shadow: none;
+		background: rgba(255, 255, 255, 0.5);
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-ms-border-radius: 5px;
+		-o-border-radius: 5px;
+		border-radius: 5px;
+	}
+	.sm-clean a .sub-arrow {
+		position: absolute;
+		top: 50%;
+		margin-top: -17px;
+		left: auto;
+		right: 4px;
+		width: 34px;
+		height: 34px;
+		overflow: hidden;
+		font: bold 16px/34px monospace !important;
+		text-align: center;
+		text-shadow: none;
+		background: rgba(255, 255, 255, 0.5);
+		border-radius: 5px;
+	}
+	.sm-clean a .sub-arrow::before {
+		content: '+';
+	}
+	.sm-clean a.highlighted .sub-arrow::before {
+		content: '-';
+	}
+	.sm-clean a.highlighted span.sub-arrow:before {
+		display: block;
+		content: '-';
+	}
+	.sm-clean > li:first-child > a,
+	.sm-clean > li:first-child >:not(ul) a {
+		-webkit-border-radius: 5px 5px 0 0;
+		-moz-border-radius: 5px 5px 0 0;
+		-ms-border-radius: 5px 5px 0 0;
+		-o-border-radius: 5px 5px 0 0;
+		border-radius: 5px 5px 0 0;
+	}
+	.sm-clean > li:last-child > a,
+	.sm-clean > li:last-child > *:not(ul) a,
+	.sm-clean > li:last-child > ul,
+	.sm-clean > li:last-child > ul > li:last-child > a,
+	.sm-clean > li:last-child > ul > li:last-child > *:not(ul) a,
+	.sm-clean > li:last-child > ul > li:last-child > ul,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > a,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > *:not(ul) a,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > a,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > *:not(ul) a,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > ul,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > a,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > *:not(ul) a,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > ul {
+		-webkit-border-radius: 0 0 5px 5px;
+		-moz-border-radius: 0 0 5px 5px;
+		-ms-border-radius: 0 0 5px 5px;
+		-o-border-radius: 0 0 5px 5px;
+		border-radius: 0 0 5px 5px;
+	}
+	.sm-clean > li:last-child > a.highlighted,
+	.sm-clean > li:last-child > *:not(ul) a.highlighted,
+	.sm-clean > li:last-child > ul > li:last-child > a.highlighted,
+	.sm-clean > li:last-child > ul > li:last-child > *:not(ul) a.highlighted,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > a.highlighted,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > *:not(ul) a.highlighted,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > a.highlighted,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > *:not(ul) a.highlighted,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > a.highlighted,
+	.sm-clean > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > ul > li:last-child > *:not(ul) a.highlighted {
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		-ms-border-radius: 0;
+		-o-border-radius: 0;
+		border-radius: 0;
+	}
+	.sm-clean li {
+		border-top: 1px solid rgba(0, 0, 0, 0.05);
+	}
+	.sm-clean > li:first-child {
+		border-top: 0;
+	}
+	.sm-clean ul {
+		background: rgba(162, 162, 162, 0.1);
+	}
+	.header.mobile-menu-indent .sm-clean ul a,
+	.header.mobile-menu-indent .sm-clean ul a:hover,
+	.header.mobile-menu-indent .sm-clean ul a:focus,
+	.header.mobile-menu-indent .sm-clean ul a:active {
+		border-left: 8px solid transparent;
+	}
+	.header.mobile-menu-indent .sm-clean ul ul a,
+	.header.mobile-menu-indent .sm-clean ul ul a:hover,
+	.header.mobile-menu-indent .sm-clean ul ul a:focus,
+	.header.mobile-menu-indent .sm-clean ul ul a:active {
+		border-left: 16px solid transparent;
+	}
+	.header.mobile-menu-indent .sm-clean ul ul ul a,
+	.header.mobile-menu-indent .sm-clean ul ul ul a:hover,
+	.header.mobile-menu-indent .sm-clean ul ul ul a:focus,
+	.header.mobile-menu-indent .sm-clean ul ul ul a:active {
+		border-left: 24px solid transparent;
+	}
+	.header.mobile-menu-indent .sm-clean ul ul ul ul a,
+	.header.mobile-menu-indent .sm-clean ul ul ul ul a:hover,
+	.header.mobile-menu-indent .sm-clean ul ul ul ul a:focus,
+	.header.mobile-menu-indent .sm-clean ul ul ul ul a:active {
+		border-left: 32px solid transparent;
+	}
+	.header.mobile-menu-indent .sm-clean ul ul ul ul ul a,
+	.header.mobile-menu-indent .sm-clean ul ul ul ul ul a:hover,
+	.header.mobile-menu-indent .sm-clean ul ul ul ul ul a:focus,
+	.header.mobile-menu-indent .sm-clean ul ul ul ul ul a:active {
+		border-left: 40px solid transparent;
+	}
 	@media (min-width: 768px) {
 		/* Switch to desktop layout ----------------------------------------------- These transform the menu tree from collapsible to desktop (navbar + dropdowns) -----------------------------------------------*/
 		/* start... (it's not recommended editing these rules) */

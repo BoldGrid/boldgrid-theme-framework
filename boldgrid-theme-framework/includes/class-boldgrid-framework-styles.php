@@ -203,6 +203,7 @@ class BoldGrid_Framework_Styles {
 			$color = get_theme_mod( "bgtfw_menu_hamburger_{$location}_color" );
 			$color = explode( ':', $color );
 			$color = array_pop( $color );
+			$location = str_replace( '_', '-', $location );
 			$css .= ".{$location}-menu-btn .hamburger-inner,.{$location}-menu-btn .hamburger-inner:before,.{$location}-menu-btn .hamburger-inner:after {background-color: {$color};}";
 		}
 
@@ -231,6 +232,7 @@ class BoldGrid_Framework_Styles {
 		$background_color = explode( ':', $background_color );
 		$background_color = array_pop( $background_color );
 
+		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";
 
 		$css = include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php';
@@ -253,6 +255,7 @@ class BoldGrid_Framework_Styles {
 		$color = explode( ':', $color );
 		$color = array_pop( $color );
 
+		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";
 		$css = "{$menu_id} > li.current-menu-item > a { color: {$color} !important; }";
 
@@ -281,17 +284,19 @@ class BoldGrid_Framework_Styles {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param string $css CSS string being filtered.
+	 * @param string $location Menu location to generate CSS for.
 	 *
 	 * @return string $css Modified CSS to add to front end.
 	 */
 	public function menu_css( $location ) {
 		$background_color = get_theme_mod( "bgtfw_menu_background_{$location}" );
+		$in_footer = false;
 		if ( strpos( $background_color, 'transparent' ) !== false ) {
 			$background_color = 'header';
 
 			if ( in_array( $location, $this->configs['menu']['footer_menus'], true ) ) {
 				$background_color = 'footer';
+				$in_footer = true;
 			}
 
 			$background_color = get_theme_mod( "bgtfw_{$background_color}_color" );
@@ -306,8 +311,12 @@ class BoldGrid_Framework_Styles {
 
 		$css = '';
 
+		$location = str_replace( '_', '-', $location );
+
+		if ( false === $in_footer ) {
+			$css .= ".header-left #{$location}-menu, .header-right #{$location}-menu { background-color: " . $color_obj->toCSS( 'rgba' ) . '; }';
+		}
 		$color_obj->alpha = 0.7;
-		$css .= '.header-left #main-menu, .header-right #main-menu { background-color:' . $color_obj->toCSS( 'rgba' ) . '; }';
 		$css .= '@media (min-width: 768px) {';
 
 		$color_obj->alpha = 0.4;

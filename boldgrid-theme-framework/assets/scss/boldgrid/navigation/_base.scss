@@ -118,34 +118,34 @@
 	.sm-clean ul {
 		background: rgba(162, 162, 162, 0.1);
 	}
-	.header.mobile-menu-indent .sm-clean ul a,
-	.header.mobile-menu-indent .sm-clean ul a:hover,
-	.header.mobile-menu-indent .sm-clean ul a:focus,
-	.header.mobile-menu-indent .sm-clean ul a:active {
+	.mobile-menu-indent .sm-clean ul a,
+	.mobile-menu-indent .sm-clean ul a:hover,
+	.mobile-menu-indent .sm-clean ul a:focus,
+	.mobile-menu-indent .sm-clean ul a:active {
 		border-left: 8px solid transparent;
 	}
-	.header.mobile-menu-indent .sm-clean ul ul a,
-	.header.mobile-menu-indent .sm-clean ul ul a:hover,
-	.header.mobile-menu-indent .sm-clean ul ul a:focus,
-	.header.mobile-menu-indent .sm-clean ul ul a:active {
+	.mobile-menu-indent .sm-clean ul ul a,
+	.mobile-menu-indent .sm-clean ul ul a:hover,
+	.mobile-menu-indent .sm-clean ul ul a:focus,
+	.mobile-menu-indent .sm-clean ul ul a:active {
 		border-left: 16px solid transparent;
 	}
-	.header.mobile-menu-indent .sm-clean ul ul ul a,
-	.header.mobile-menu-indent .sm-clean ul ul ul a:hover,
-	.header.mobile-menu-indent .sm-clean ul ul ul a:focus,
-	.header.mobile-menu-indent .sm-clean ul ul ul a:active {
+	.mobile-menu-indent .sm-clean ul ul ul a,
+	.mobile-menu-indent .sm-clean ul ul ul a:hover,
+	.mobile-menu-indent .sm-clean ul ul ul a:focus,
+	.mobile-menu-indent .sm-clean ul ul ul a:active {
 		border-left: 24px solid transparent;
 	}
-	.header.mobile-menu-indent .sm-clean ul ul ul ul a,
-	.header.mobile-menu-indent .sm-clean ul ul ul ul a:hover,
-	.header.mobile-menu-indent .sm-clean ul ul ul ul a:focus,
-	.header.mobile-menu-indent .sm-clean ul ul ul ul a:active {
+	.mobile-menu-indent .sm-clean ul ul ul ul a,
+	.mobile-menu-indent .sm-clean ul ul ul ul a:hover,
+	.mobile-menu-indent .sm-clean ul ul ul ul a:focus,
+	.mobile-menu-indent .sm-clean ul ul ul ul a:active {
 		border-left: 32px solid transparent;
 	}
-	.header.mobile-menu-indent .sm-clean ul ul ul ul ul a,
-	.header.mobile-menu-indent .sm-clean ul ul ul ul ul a:hover,
-	.header.mobile-menu-indent .sm-clean ul ul ul ul ul a:focus,
-	.header.mobile-menu-indent .sm-clean ul ul ul ul ul a:active {
+	.mobile-menu-indent .sm-clean ul ul ul ul ul a,
+	.mobile-menu-indent .sm-clean ul ul ul ul ul a:hover,
+	.mobile-menu-indent .sm-clean ul ul ul ul ul a:focus,
+	.mobile-menu-indent .sm-clean ul ul ul ul ul a:active {
 		border-left: 40px solid transparent;
 	}
 	@media (min-width: 768px) {
@@ -468,8 +468,10 @@
 	input:not(:checked):not(.hidden) ~ .sm-clean {
 		display: none;
 	}
-	input:checked ~ .sm-clean {
+	input:checked ~ .sm-clean,
+	input.hidden:not(:checked) ~ .sm-clean {
 		display: block;
+		width: 100%;
 	}
 
 	@media only screen and (min-width: 768px) {
@@ -486,38 +488,6 @@
 			width: 100%;
 			flex-direction: row;
 		}
-	}
-
-	/* prevent text rendering degrade during animation in Mac browsers */
-	#main-menu.logo.logo-left .site-title {
-		display: flex;
-		order: -1;
-	}
-	#main-menu.logo.logo-center .site-title {
-		display: flex;
-		order: 0;
-	}
-	#main-menu.logo.logo-right .site-title {
-		display: flex;
-		order: 1;
-	}
-	#main-menu.center {
-		display: flex;
-		justify-content: center;
-	}
-	#main-menu.space-evenly {
-		display: flex;
-		justify-content: space-evenly;
-	}
-	#main-menu.left {
-		display: flex;
-		align-items: flex-start;
-		justify-content: flex-start;
-	}
-	#main-menu.right {
-		display: flex;
-		align-items: flex-end;
-		justify-content: flex-end;
 	}
 	.sm-clean {
 		display: flex;

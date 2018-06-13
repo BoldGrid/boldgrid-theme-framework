@@ -8,14 +8,14 @@
 			}
 		}
 	}
-	.sm {
-		&.sm-clean a,
-		&.sm-clean a:hover,
-		&.sm-clean a:focus,
-		&.sm-clean a:active {
-			display: flex;
-			text-decoration: none;
-		}
+	.sm-clean a,
+	.sm-clean a:hover,
+	.sm-clean a:focus,
+	.sm-clean a:active,
+	.sm-clean a.highlighted {
+		display: flex;
+		padding: 13px 20px;
+		text-decoration: none;
 	}
 	.sm-clean a.disabled {
 		color: #bbbbbb;

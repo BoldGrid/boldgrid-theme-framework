@@ -410,7 +410,6 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_title' );
 		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
 		$this->loader->add_filter( 'boldgrid_primary_navigation',   $boldgrid_theme,   'print_primary_navigation' );
-		$this->loader->add_filter( 'bgtfw_inline_css', $boldgrid_theme, 'main_menu_css' );
 		$this->loader->add_filter( 'boldgrid_print_menu', $boldgrid_theme, 'print_menu' );
 
 		// Password protected post/page form.

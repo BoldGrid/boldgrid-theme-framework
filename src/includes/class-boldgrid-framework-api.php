@@ -344,35 +344,6 @@ class BoldGrid {
 	}
 
 	/**
-	 * Adds custom CSS for main menu based on header color/link color selections by user.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param string $css CSS string being filtered.
-	 *
-	 * @return string $css Modified CSS to add to front end.
-	 */
-	public function main_menu_css( $css = '' ) {
-		$color = get_theme_mod( 'bgtfw_header_color' );
-		$color = explode( ':', $color );
-		$color = array_pop( $color );
-
-		$color_obj = ariColor::newColor( $color );
-
-		$color_obj->alpha = 0.7;
-		$css .= '.header-left #main-menu, .header-right #main-menu { background-color:' . $color_obj->toCSS( 'rgba' ) . '; }';
-		$css .= '@media (min-width: 768px) {';
-
-		$color_obj->alpha = 0.4;
-		$css .= '.sm-clean ul, .sm-clean ul a, .sm-clean ul a:hover, .sm-clean ul a:focus, .sm-clean ul a:active, .sm-clean ul a.highlighted, .sm-clean span.scroll-up, .sm-clean span.scroll-down, .sm-clean span.scroll-up:hover, .sm-clean span.scroll-down:hover { background-color:' . $color_obj->toCSS( 'rgba' ) . ';}';
-		$css .= '.sm-clean ul { border: 1px solid ' . $color_obj->toCSS( 'rgba' ) . ';}';
-		$css .= '.sm-clean > li > ul:before, .sm-clean > li > ul:after { border-color: transparent transparent ' . $color_obj->toCSS( 'rgba' ) . ' transparent;}';
-		$css .= '}';
-
-		return $css;
-	}
-
-	/**
 	 * Adds custom classes to the array of navi classes.
 	 *
 	 * @since 2.0.0

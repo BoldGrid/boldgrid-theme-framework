@@ -188,6 +188,55 @@ export class Preview  {
 	}
 
 	/**
+	 * Get supplementary menu color CSS.
+	 *
+	 * @param {String} location Menu location for nav menu instance.
+	 *
+	 * @return {String} css The CSS to add.
+	 */
+	getMenuColorsCSS( location ) {
+		let type = `bgtfw_menu_background_${location}`;
+
+		if ( wp.customize( type )().includes( 'transparent' ) || _.isUndefined( wp.customize( type)() ) ) {
+			type = 'header';
+
+			if ( BOLDGRID.CUSTOMIZER.data.menu.footerMenus.includes( location ) ) {
+				type = 'footer';
+			}
+
+			type = `bgtfw_${type}_color`;
+		}
+
+		let color = wp.customize( type )();
+		color = new PaletteSelector().getColor( color );
+
+		let alpha = parent.net.brehaut.Color( color );
+		let css = '';
+		css += `.header-left #main-menu, .header-right #main-menu { background-color: ${alpha};}`;
+		css += '@media (min-width: 768px) {';
+
+		css += `#${location}-menu.sm-clean ul {background-color: ${color};}`;
+		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${alpha};}`;
+		css += `#${location}-menu.sm-clean ul { border: 1px solid ${alpha};}`;
+		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${color} transparent;}`;
+		css += '}';
+
+		return css;
+	}
+
+	/**
+	 * Set supplementary menu colors.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param {String} location Menu location for nav menu instance.
+	 */
+	setMenuColors( location ) {
+		let css = this.getMenuColorsCSS( location );
+		this.previewUtility.updateDynamicStyles( `menu-colors-${location}-inline-css`, css );
+	}
+
+	/**
 	 *
 	 * @param {String} to Thememod's color value.
 	 * @param {String} menuId Menu ID for nav menu instance.
@@ -333,8 +382,14 @@ export class Preview  {
 			// Set active link colors.
 			this.setActiveLinkColor( props.theme_location, props.menu_id );
 
+			// Set supplementary menu CSS.
+			this.setMenuColors( props.theme_location );
+
 			// Setup event handlers.
 			this._bindHoverColors( props.theme_location );
+
+			// Setup event handlers.
+			this._bindMenuColors( props.theme_location );
 
 			// Setup active link color even handlers.
 			this._bindActiveLinkColors( props.theme_location, props.menu_id );
@@ -369,6 +424,17 @@ export class Preview  {
 	_bindHeaderOverlay() {
 		wp.customize( 'bgtfw_header_overlay_alpha', 'bgtfw_header_overlay', 'bgtfw_header_overlay_color', ( ...args ) => {
 			args.map( ( control ) => control.bind( () => this.setHeaderOverlay() ) );
+		} );
+	}
+
+		/**
+	 * Bind the event of the overlay changing colors.
+	 *
+	 * @since 2.0.0
+	 */
+	_bindMenuColors( location ) {
+		wp.customize( `bgtfw_menu_background_${location}`, 'bgtfw_header_color', 'bgtfw_footer_color', ( ...args ) => {
+			args.map( ( control ) => control.bind( () => this.setMenuColors( location ) ) );
 		} );
 	}
 

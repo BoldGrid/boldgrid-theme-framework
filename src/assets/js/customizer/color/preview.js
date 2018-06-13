@@ -192,7 +192,7 @@ export class Preview  {
 	getMenuColorsCSS( location ) {
 		let type = `bgtfw_menu_background_${location}`;
 
-		if ( wp.customize( type )().includes( 'transparent' ) || _.isUndefined( wp.customize( type)() ) ) {
+		if ( wp.customize( type )().includes( 'transparent' ) || _.isUndefined( wp.customize( type )() ) ) {
 			type = 'header';
 
 			if ( BOLDGRID.CUSTOMIZER.data.menu.footerMenus.includes( location ) ) {

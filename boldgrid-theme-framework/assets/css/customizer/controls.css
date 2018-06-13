@@ -2094,3 +2094,11 @@ h3.accordion-section-title span.section-title-extended {
   margin-bottom: -6px;
   margin-top: -3px;
 }
+
+/*--------------------------------------------------------------
+# Menu Locations
+--------------------------------------------------------------*/
+#sub-accordion-section-menu_locations li[id^="customize-control-nav_menu_locations-"] a.edit-menu-design {
+  float: right;
+  margin-top: 5px;
+}

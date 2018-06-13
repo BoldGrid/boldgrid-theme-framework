@@ -501,7 +501,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 						_( swatches ).each( function( swatch, index ) {
 							var currentVal, newVal, link;
 							currentVal = $( swatch ).val();
-							if ( currentVal !== 'transparent' ) {
+							if ( 'transparent' !== currentVal ) {
 								newVal = currentVal.substring( 0, currentVal.indexOf( ':' ) + 1 ) + colors[ index ];
 								$( swatch ).val( newVal );
 								$( swatch ).next().find( '.color-palette-color' ).css( 'background', colors[ index ] ).text( colors[ index ] );

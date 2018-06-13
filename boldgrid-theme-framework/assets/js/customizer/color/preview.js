@@ -11,11 +11,6 @@ export class Preview  {
 
 		this.classControls = [
 			{
-				name: 'bgtfw_header_links',
-				selector: '#navi-wrap',
-				properties: [ 'link-color' ]
-			},
-			{
 				name: 'bgtfw_footer_color',
 				selector: '#colophon, .footer-content',
 				properties: [ 'background-color', 'text-default' ]

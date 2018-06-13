@@ -365,8 +365,7 @@ class BoldGrid {
 	public function inner_header_classes( $classes ) {
 		$classes = array_merge(
 			$classes,
-			$this->get_background_color( 'bgtfw_header_color' ),
-			$this->get_link_color( 'bgtfw_header_links' )
+			$this->get_background_color( 'bgtfw_header_color' )
 		);
 
 		return $classes;

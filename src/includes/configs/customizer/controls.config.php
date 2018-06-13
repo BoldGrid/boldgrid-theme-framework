@@ -582,20 +582,6 @@ return array(
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
 	),
-	'bgtfw_header_links' => array(
-		'type'        => 'bgtfw-palette-selector',
-		'transport' => 'postMessage',
-		'settings'    => 'bgtfw_header_links',
-		'label' => esc_attr__( 'Link Color', 'bgtfw' ),
-		'section'     => 'bgtfw_header_colors',
-		'priority' => 1,
-		'default'     => '',
-		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
-		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
-	),
 	'bgtfw_site_title_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',

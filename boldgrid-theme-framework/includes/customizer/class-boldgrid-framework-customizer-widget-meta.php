@@ -432,8 +432,6 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		// Header sidebars defaults.
 		if ( strpos( $sidebar_id, 'header' ) !== false ) {
 			$settings[ $sidebar_id ]['background_color'] = get_theme_mod( 'bgtfw_header_color', $this->get_control_default( 'bgtfw_header_color' ) );
-			$settings[ $sidebar_id ]['headings_color'] = get_theme_mod( 'bgtfw_header_headings_color', $this->get_control_default( 'bgtfw_header_headings_color' ) );
-			$settings[ $sidebar_id ]['links_color'] = get_theme_mod( 'bgtfw_header_links', $this->get_control_default( 'bgtfw_header_links' ) );
 
 		// Footer sidebars defaults.
 		} elseif ( strpos( $sidebar_id, 'footer' ) !== false ) {

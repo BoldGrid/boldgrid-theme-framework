@@ -287,14 +287,15 @@
 		z-index: 200;
 	}
 }
-.sm-clean a,
-.sm-clean a:hover,
-.sm-clean a:focus,
-.sm-clean a:active {
-	display: flex;
-	justify-content: flex-start;
-	padding: 13px 20px;
-	text-decoration: none;
+.sm {
+	&.sm-clean a,
+	&.sm-clean a:hover,
+	&.sm-clean a:focus,
+	&.sm-clean a:active {
+		display: flex;
+		padding: 13px 20px;
+		text-decoration: none;
+	}
 }
 .sm-clean a.disabled {
 	color: #bbbbbb;

@@ -6609,7 +6609,7 @@ loader-runner@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.3.0.tgz#f482aea82d543e07921700d5a46ef26fdac6b8a2"
 
-loader-utils@^0.2.11, loader-utils@^0.2.7:
+loader-utils@^0.2.11, loader-utils@^0.2.12, loader-utils@^0.2.7:
   version "0.2.17"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.17.tgz#f86e6374d43205a6e6c60e9196f17c0299bfb348"
   dependencies:
@@ -8257,6 +8257,14 @@ postcss-flexbugs-fixes@^3.3.1:
   dependencies:
     postcss "^6.0.1"
 
+"postcss-hash-classname@https://github.com/timelsass/postcss-hash-classname":
+  version "0.4.0"
+  resolved "https://github.com/timelsass/postcss-hash-classname#e63b8632f8b49b402ff3111ba880d6cc64e33f66"
+  dependencies:
+    loader-utils "^0.2.12"
+    postcss "^5.0.10"
+    postcss-selector-parser "^2.2.1"
+
 postcss-load-config@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/postcss-load-config/-/postcss-load-config-1.2.0.tgz#539e9afc9ddc8620121ebf9d8c3673e0ce50d28a"
@@ -8426,7 +8434,7 @@ postcss-reduce-transforms@^1.0.3:
     postcss "^5.0.8"
     postcss-value-parser "^3.0.1"
 
-postcss-selector-parser@^2.0.0, postcss-selector-parser@^2.2.2:
+postcss-selector-parser@^2.0.0, postcss-selector-parser@^2.2.1, postcss-selector-parser@^2.2.2:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-2.2.3.tgz#f9437788606c3c9acee16ffe8d8b16297f27bb90"
   dependencies:

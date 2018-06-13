@@ -356,10 +356,6 @@ gulp.task('scssDeps', function () {
   // hamburgers.
   gulp.src(config.node_modules + '/hamburgers/dist/*.css')
     .pipe(gulp.dest(config.dist + '/assets/css/hamburgers'));
-
-  // hovers.
-  gulp.src(config.node_modules + '/hover.css/css/hover*.css*')
-    .pipe(gulp.dest(config.dist + '/assets/css/hover.css'));
 });
 
 // Compile SCSS
@@ -442,12 +438,37 @@ gulp.task('codeSniffer', function () {
     .pipe(phpcs.reporter('log'));
 });
 
+// hovers.
+gulp.task('hovers', function() {
+  var plugins = [
+    require('postcss-hash-classname')({
+      hashType: 'md5',
+      digestType: 'base32',
+      maxLength: 0,
+      outputName: 'hover1',
+      classnameFormat: '[classname] a',
+      type: '.json'
+    })
+  ];
+  gulp.src(config.node_modules + '/hover.css/css/hover*.css')
+    .pipe(postcss(plugins))
+    .pipe(gulp.dest(config.dist + '/assets/css/hover.css'));
+});
+
 gulp.task('hoverColors', function() {
   var plugins = [
     require('postcss-colors-only')({
       withoutGrey: false, // set to true to remove rules that only have grey colors
       withoutMonochrome: false, // set to true to remove rules that only have grey, black, or white colors
       inverse: false, // set to true to remove colors from rules
+    }),
+    require('postcss-hash-classname')({
+      hashType: 'md5',
+      digestType: 'base32',
+      maxLength: 0,
+      outputName: 'hover2',
+      classnameFormat: '[classname] a',
+      type: '.json'
     }),
     require('postcss-prefix-selector')({ prefix: '%1$s' })
   ];
@@ -466,6 +487,11 @@ gulp.task('hoverColors', function() {
       .pipe(gulp.dest(config.dist + '/includes/partials'));
 });
 
+gulp.task('cleanHovers', function() {
+  return gulp.src('hover*.json')
+    .pipe(clean({force: true}));
+});
+
 // Tasks
 gulp.task('build', function (cb) {
   sequence(
@@ -477,7 +503,9 @@ gulp.task('build', function (cb) {
     'images',
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
+    'hovers',
     'hoverColors',
+    'cleanHovers',
     cb
   );
 });
@@ -491,7 +519,9 @@ gulp.task('qbuild', function (cb) {
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
+    'hovers',
     'hoverColors',
+    'cleanHovers',
     cb
   );
 });

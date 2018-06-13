@@ -5289,16 +5289,13 @@ footer .bgtfw-widget-row {
   z-index: 200;
 }
 
-.sm-clean a,
-.sm-clean a:hover,
-.sm-clean a:focus,
-.sm-clean a:active {
+.sm.sm-clean a,
+.sm.sm-clean a:hover,
+.sm.sm-clean a:focus,
+.sm.sm-clean a:active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
   padding: 13px 20px;
   text-decoration: none;
 }

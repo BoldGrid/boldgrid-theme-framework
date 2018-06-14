@@ -175,8 +175,10 @@ export class Preview  {
 	getActiveLinkColor( to, menuId ) {
 		const color = new PaletteSelector().getColor( to );
 		let css = `
-		#${menuId} > li.current-menu-item > a {
-			color: ${color} !important;
+		#${menuId} .current-menu-item > a,
+		#${menuId} .current-menu-ancestor > a,
+		#${menuId} .current-menu-parent > a {
+			color: ${color};
 		}`;
 
 		return css;

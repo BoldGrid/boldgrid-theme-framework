@@ -80,9 +80,9 @@ export class Control {
 			controlSettings.defaults = defaults;
 
 			try {
-				controlSettings.defaults.values = JSON.parse( controlSettings.defaults.values ) || {};
+				controlSettings.defaults.media = JSON.parse( controlSettings.defaults.media ) || {};
 			} catch ( e ) {
-				controlSettings.defaults.values = {};
+				controlSettings.defaults.media = {};
 			}
 		}
 	}
@@ -120,12 +120,10 @@ export class Control {
 	 */
 	_bindChangeEvent( wpControl, bgControl ) {
 		let throttled = _.throttle( ( settings ) => {
+			let controlSettings = { ...settings };
 
-console.log( settings );
-
-			// settings.values = JSON.stringify( settings.values );
-
-			wpControl.setting.set( settings );
+			controlSettings.media = JSON.stringify( controlSettings.media );
+			wpControl.setting.set( controlSettings );
 		}, 50 );
 
 		bgControl.events.on( 'change', throttled );

@@ -58,7 +58,7 @@
   width: 80%;
   margin: 10px 15px;
   height: 8px;
-  border-radius: 0;
+  border-radius: 3px;
   background: #f1f1f1;
   cursor: pointer;
   border: 0;
@@ -98,7 +98,7 @@
   .boldgrid-control .device .selection-text {
     position: absolute;
     right: 0;
-    top: -20px;
+    top: -22px;
     font-size: 12px; }
   .boldgrid-control .device li {
     display: inline;
@@ -106,7 +106,8 @@
   .boldgrid-control .device input {
     display: none; }
     .boldgrid-control .device input + label {
-      cursor: pointer; }
+      cursor: pointer;
+      vertical-align: top; }
     .boldgrid-control .device input:checked + label svg {
       fill: #f95b26; }
     .boldgrid-control .device input:checked + label {
@@ -312,6 +313,9 @@
 .boldgrid-control .pluto-color-control + .iris-picker {
   min-width: 280px; }
 
-.bg-control-switch.boldgrid-control .mdc-switch {
+.boldgrid-control.bg-control-switch .mdc-switch {
   top: 5px; }
+
+.boldgrid-control.directional-control {
+  margin: 20px 0; }
 

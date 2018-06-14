@@ -33,9 +33,6 @@ export class Preview {
 	bindControl( wpControl ) {
 		wp.customize( wpControl.id, value => {
 			value.bind( setting => {
-
-				console.log( setting.css );
-
 				this.preview.updateDynamicStyles(
 					wpControl.id + '-bgcontrol-inline-css',
 					setting.css

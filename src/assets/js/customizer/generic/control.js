@@ -126,6 +126,7 @@ export class Control {
 			let controlSettings = { ...settings };
 
 			controlSettings.media = JSON.stringify( controlSettings.media );
+
 			wpControl.setting.set( controlSettings );
 		}, 50 );
 

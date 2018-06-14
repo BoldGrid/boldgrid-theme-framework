@@ -20,6 +20,27 @@
 class Boldgrid_Framework_Customizer_Generic {
 
 	/**
+	 * Device Widths used for creating mobile styles.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @var array
+	 */
+	public static $deviceSizes = array(
+
+		// Phone size from 0 to 767px.
+		'phone' => 767,
+
+		// Tablet size from 768 to 991.
+		'tablet' => 991,
+
+		// Desktop from 992 to 1199.
+		'desktop'  => 1199,
+
+		// Large 1200 +++.
+	);
+
+	/**
 	 * BGTFW Configs
 	 *
 	 * @var array $configs

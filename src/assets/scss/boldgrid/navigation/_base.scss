@@ -1,12 +1,15 @@
 .standard-menu-enabled {
+	.site-footer .sm-clean {
+		z-index: 200;
+	}
+	.site-header .sm-clean {
+		z-index: 201;
+		&#secondary-menu {
+			z-index: 202;
+		}
+	}
 	.sm-clean {
 		background: transparent;
-		&.sm {
-			z-index: 200;
-			&#secondary-menu {
-				z-index: 201;
-			}
-		}
 	}
 	.sm-clean a,
 	.sm-clean a:hover,

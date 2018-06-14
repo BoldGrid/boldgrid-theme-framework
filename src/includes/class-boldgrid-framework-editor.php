@@ -153,7 +153,6 @@ class Boldgrid_Framework_Editor {
 		if ( $pagenow && ! in_array( $pagenow, array( 'post-new.php', 'post.php' ) ) ) {
 			return;
 		}
-
 		foreach ( array_keys( Kirki::$config ) as $config_id ) {
 			$async = new Kirki_Modules_Webfonts_Async(
 				$config_id,
@@ -162,6 +161,13 @@ class Boldgrid_Framework_Editor {
 			);
 
 			$async->webfont_loader();
+
+			$local_fonts = new Kirki_Modules_Webfonts_Local(
+				Kirki_Modules_Webfonts::get_instance(),
+				Kirki_Fonts_Google::get_instance()
+			);
+
+			$local_fonts->add_styles();
 		}
 	}
 

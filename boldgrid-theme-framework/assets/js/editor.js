@@ -92,7 +92,7 @@ BOLDGRID.BGTFW = BOLDGRID.BGTFW || {};
 					$iframeHead.append( $style );
 
 					// Copy all google fonts into the editor.
-					$( 'head link[rel="stylesheet"][href*="fonts.googleapis.com/css"]' ).each( function() {
+					$( 'head link[rel="stylesheet"][href*="fonts.googleapis.com/css"], [id^="kirki-local-webfonts"]' ).each( function() {
 						$iframeHead.append( $( this ).addClass( 'webfontjs-loader-styles' ).clone() );
 					} );
 				}

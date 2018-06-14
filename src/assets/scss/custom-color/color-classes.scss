@@ -180,7 +180,7 @@ $names: color background background-color border-color;
 						a {
 							color: #{nth($colors, $each)};
 						}
-						a:hover, a:focus, a:active, a.highlighted, .sm-clean ul a.current, .current-menu-ancestor > a, .current-menu-item > a {
+						a:hover, a:focus, a:active, a.highlighted {
 							color: hover( nth($colors, $color), nth($colors, $each) );
 						}
 					}
@@ -190,7 +190,7 @@ $names: color background background-color border-color;
 						a {
 							color: $palette-primary-neutral-color;
 						}
-						a:hover, a:focus, a:active, a.highlighted, .sm-clean ul a.current, .current-menu-ancestor > a, .current-menu-item > a {
+						a:hover, a:focus, a:active, a.highlighted {
 							color: hover( nth($colors, $color), $palette-primary-neutral-color );
 						}
 					}
@@ -212,7 +212,7 @@ $names: color background background-color border-color;
 						a {
 							color: #{nth($colors, $each)};
 						}
-						a:hover, a:focus, a:active, a.highlighted, .sm-clean ul a.current, .current-menu-ancestor > a, .current-menu-item > a {
+						a:hover, a:focus, a:active, a.highlighted {
 							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
 						}
 					}
@@ -221,7 +221,7 @@ $names: color background background-color border-color;
 					a {
 						color: $palette-primary-neutral-color;
 					}
-					a:hover, a:focus, a:active, a.highlighted, .sm-clean ul a.current, .current-menu-ancestor > a, .current-menu-item > a {
+					a:hover, a:focus, a:active, a.highlighted {
 						color: hover( $palette-primary-neutral-color, $palette-primary-neutral-color );
 					}
 				}

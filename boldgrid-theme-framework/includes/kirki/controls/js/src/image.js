@@ -1,5 +1,5 @@
 /* global kirkiControlLoader */
-wp.customize.controlConstructor['kirki-image'] = wp.customize.Control.extend({
+wp.customize.controlConstructor['kirki-image'] = wp.customize.Control.extend( {
 
 	// When we're finished loading continue processing
 	ready: function() {
@@ -19,12 +19,12 @@ wp.customize.controlConstructor['kirki-image'] = wp.customize.Control.extend({
 	initKirkiControl: function() {
 
 		var control       = this,
-		    value         = control.getValue(),
-		    saveAs        = ( ! _.isUndefined( control.params.choices ) && ! _.isUndefined( control.params.choices.save_as ) ) ? control.params.choices.save_as : 'url',
-		    preview       = control.container.find( '.placeholder, .thumbnail' ),
-		    previewImage  = ( 'array' === saveAs ) ? value.url : value,
-		    removeButton  = control.container.find( '.image-upload-remove-button' ),
-		    defaultButton = control.container.find( '.image-default-button' );
+			value         = control.getValue(),
+			saveAs        = ( ! _.isUndefined( control.params.choices ) && ! _.isUndefined( control.params.choices.save_as ) ) ? control.params.choices.save_as : 'url',
+			preview       = control.container.find( '.placeholder, .thumbnail' ),
+			previewImage  = ( 'array' === saveAs ) ? value.url : value,
+			removeButton  = control.container.find( '.image-upload-remove-button' ),
+			defaultButton = control.container.find( '.image-default-button' );
 
 		control.container.find( '.kirki-controls-loading-spinner' ).hide();
 
@@ -49,7 +49,7 @@ wp.customize.controlConstructor['kirki-image'] = wp.customize.Control.extend({
 		}
 
 		// If value is default, hide the default button.
-		if ( value === control.params['default'] ) {
+		if ( value === control.params.default ) {
 			control.container.find( 'image-default-button' ).hide();
 		}
 
@@ -58,27 +58,31 @@ wp.customize.controlConstructor['kirki-image'] = wp.customize.Control.extend({
 		}
 
 		control.container.on( 'click', '.image-upload-button', function( e ) {
-			var image = wp.media({ multiple: false }).open().on( 'select', function() {
+			var image = wp.media( { multiple: false } ).open().on( 'select', function() {
 
 					// This will return the selected image from the Media Uploader, the result is an object.
 					var uploadedImage = image.state().get( 'selection' ).first(),
-					    previewImage  = uploadedImage.toJSON().sizes.full.url;
+						jsonImg       = uploadedImage.toJSON(),
+						previewImage  = jsonImg.url;
 
-					if ( ! _.isUndefined( uploadedImage.toJSON().sizes.medium ) ) {
-						previewImage = uploadedImage.toJSON().sizes.medium.url;
-					} else if ( ! _.isUndefined( uploadedImage.toJSON().sizes.thumbnail ) ) {
-						previewImage = uploadedImage.toJSON().sizes.thumbnail.url;
+					if ( ! _.isUndefined( jsonImg.sizes ) ) {
+						previewImg = jsonImg.sizes.full.url;
+						if ( ! _.isUndefined( jsonImg.sizes.medium ) ) {
+							previewImage = jsonImg.sizes.medium.url;
+						} else if ( ! _.isUndefined( jsonImg.sizes.thumbnail ) ) {
+							previewImage = jsonImg.sizes.thumbnail.url;
+						}
 					}
 
 					if ( 'array' === saveAs ) {
-						control.saveValue( 'id', uploadedImage.toJSON().id );
-						control.saveValue( 'url', uploadedImage.toJSON().sizes.full.url );
-						control.saveValue( 'width', uploadedImage.toJSON().width );
-						control.saveValue( 'height', uploadedImage.toJSON().height );
+						control.saveValue( 'id', jsonImg.id );
+						control.saveValue( 'url', jsonImg.sizes.full.url );
+						control.saveValue( 'width', jsonImg.width );
+						control.saveValue( 'height', jsonImg.height );
 					} else if ( 'id' === saveAs ) {
-						control.saveValue( 'id', uploadedImage.toJSON().id );
+						control.saveValue( 'id', jsonImg.id );
 					} else {
-						control.saveValue( 'url', uploadedImage.toJSON().sizes.full.url );
+						control.saveValue( 'url', ( ( ! _.isUndefined( jsonImg.sizes ) ) ? jsonImg.sizes.full.url : jsonImg.url ) );
 					}
 
 					if ( preview.length ) {
@@ -88,16 +92,16 @@ wp.customize.controlConstructor['kirki-image'] = wp.customize.Control.extend({
 						removeButton.show();
 						defaultButton.hide();
 					}
-			    });
+				} );
 
 			e.preventDefault();
-		});
+		} );
 
 		control.container.on( 'click', '.image-upload-remove-button', function( e ) {
 
 			var preview,
-			    removeButton,
-			    defaultButton;
+				removeButton,
+				defaultButton;
 
 			e.preventDefault();
 
@@ -119,30 +123,30 @@ wp.customize.controlConstructor['kirki-image'] = wp.customize.Control.extend({
 					defaultButton.show();
 				}
 			}
-		});
+		} );
 
 		control.container.on( 'click', '.image-default-button', function( e ) {
 
 			var preview,
-			    removeButton,
-			    defaultButton;
+				removeButton,
+				defaultButton;
 
 			e.preventDefault();
 
-			control.saveValue( 'url', control.params['default'] );
+			control.saveValue( 'url', control.params.default );
 
 			preview       = control.container.find( '.placeholder, .thumbnail' );
 			removeButton  = control.container.find( '.image-upload-remove-button' );
 			defaultButton = control.container.find( '.image-default-button' );
 
 			if ( preview.length ) {
-				preview.removeClass().addClass( 'thumbnail thumbnail-image' ).html( '<img src="' + control.params['default'] + '" alt="" />' );
+				preview.removeClass().addClass( 'thumbnail thumbnail-image' ).html( '<img src="' + control.params.default + '" alt="" />' );
 			}
 			if ( removeButton.length ) {
 				removeButton.show();
 				defaultButton.hide();
 			}
-		});
+		} );
 	},
 
 	/**
@@ -150,8 +154,8 @@ wp.customize.controlConstructor['kirki-image'] = wp.customize.Control.extend({
 	 */
 	getValue: function() {
 		var control = this,
-		    value   = control.setting._value,
-		    saveAs  = ( ! _.isUndefined( control.params.choices ) && ! _.isUndefined( control.params.choices.save_as ) ) ? control.params.choices.save_as : 'url';
+			value   = control.setting._value,
+			saveAs  = ( ! _.isUndefined( control.params.choices ) && ! _.isUndefined( control.params.choices.save_as ) ) ? control.params.choices.save_as : 'url';
 
 		if ( 'array' === saveAs && _.isString( value ) ) {
 			value = {
@@ -166,8 +170,8 @@ wp.customize.controlConstructor['kirki-image'] = wp.customize.Control.extend({
 	 */
 	saveValue: function( property, value ) {
 		var control   = this,
-		    valueOld  = control.setting._value,
-		    saveAs    = ( ! _.isUndefined( control.params.choices ) && ! _.isUndefined( control.params.choices.save_as ) ) ? control.params.choices.save_as : 'url';
+			valueOld  = control.setting._value,
+			saveAs    = ( ! _.isUndefined( control.params.choices ) && ! _.isUndefined( control.params.choices.save_as ) ) ? control.params.choices.save_as : 'url';
 
 		if ( 'array' === saveAs ) {
 			if ( _.isString( valueOld ) ) {
@@ -181,4 +185,4 @@ wp.customize.controlConstructor['kirki-image'] = wp.customize.Control.extend({
 		control.setting.set( value );
 		control.container.find( 'button' ).trigger( 'change' );
 	}
-});
+} );

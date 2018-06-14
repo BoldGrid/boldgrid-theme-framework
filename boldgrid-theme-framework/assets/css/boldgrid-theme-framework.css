@@ -2267,14 +2267,13 @@ select {
   display: block;
 }
 
-.byline,
 .updated:not(.published) {
   display: none;
 }
 
-.single .byline,
-.group-blog .byline {
-  display: inline;
+.byline {
+  display: inline-block;
+  white-space: pre-wrap;
 }
 
 .page-links {
@@ -2487,11 +2486,6 @@ time.entry-date.updated:before {
   display: inline-block;
   text-decoration: none;
   margin-right: .5em;
-  margin-left: .3em;
-}
-
-.group-blog .byline,
-span.author.vcard {
   margin-left: .3em;
 }
 
@@ -4519,7 +4513,6 @@ footer .bgtfw-widget-row {
   }
   .flexbox .header-fixed .site-header {
     position: fixed;
-    /* set z-index lower than customizer edit buttons, but higher than site content */
     z-index: 201;
   }
 }

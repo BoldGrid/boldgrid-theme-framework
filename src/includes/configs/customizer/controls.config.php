@@ -129,9 +129,6 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '.site-header' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
@@ -153,9 +150,6 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '.site-header header' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 				),
 			),
 		),
@@ -241,9 +235,6 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
@@ -265,9 +256,6 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 				),
 			),
 		),
@@ -1150,9 +1138,6 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '#main-menu' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'right', 'label' => 'Right', 'cssProperty' => 'margin-right' ),
@@ -1186,9 +1171,6 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '#main-menu' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'padding-top' ),
 						array( 'name' => 'right', 'label' => 'Right', 'cssProperty' => 'padding-right' ),
@@ -1321,9 +1303,6 @@ return array(
 			'settings' => array(
 				'control' => array(
 					'selectors' => array( '#main-menu > li' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'right', 'label' => 'Right', 'cssProperty' => 'margin-right' ),

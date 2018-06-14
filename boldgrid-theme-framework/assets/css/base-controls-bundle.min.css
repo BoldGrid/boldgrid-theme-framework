@@ -7,12 +7,14 @@
     transition: fill 0.25s; }
     .directional-control .refresh svg:hover {
       fill: #f95b26; }
-  .directional-control .units {
-    font-size: 12px;
+  .directional-control .configs {
     position: absolute;
     right: 28px;
-    top: -10px;
-    color: currentColor; }
+    top: -10px; }
+  .directional-control .units {
+    font-size: 12px;
+    color: currentColor;
+    text-align: right; }
     .directional-control .units label {
       margin: 4px;
       cursor: pointer; }
@@ -33,7 +35,17 @@
     visibility: visible; }
   .directional-control .control-name {
     font-size: 15px;
-    margin-bottom: 5px; }
+    margin-bottom: 25px; }
+  .directional-control .delete-saved {
+    text-align: center;
+    font-size: 12px;
+    text-decoration: underline;
+    margin: 30px 0; }
+    .directional-control .delete-saved a {
+      color: black;
+      transition: color 0.25s; }
+      .directional-control .delete-saved a:hover {
+        color: #f95b26; }
 
 .boldgrid-control.slider-control label {
   font-size: 13px;
@@ -75,6 +87,32 @@
   transition: background 0.25s; }
   .boldgrid-control .ui-slider-handle.ui-state-focus {
     background-color: #121212; }
+
+.boldgrid-control .device {
+  position: relative;
+  text-align: right; }
+  .boldgrid-control .device ul {
+    list-style: none;
+    margin: 10px 0;
+    padding: 0; }
+  .boldgrid-control .device .selection-text {
+    position: absolute;
+    right: 0;
+    top: -20px;
+    font-size: 12px; }
+  .boldgrid-control .device li {
+    display: inline;
+    margin: 10px 4px; }
+  .boldgrid-control .device input {
+    display: none; }
+    .boldgrid-control .device input + label {
+      cursor: pointer; }
+    .boldgrid-control .device input:checked + label svg {
+      fill: #f95b26; }
+    .boldgrid-control .device input:checked + label {
+      color: #f95b26; }
+  .boldgrid-control .device svg {
+    width: 20px; }
 
 .mdc-switch {
   display: inline-block;

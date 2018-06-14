@@ -120,7 +120,11 @@ export class Control {
 	 */
 	_bindChangeEvent( wpControl, bgControl ) {
 		let throttled = _.throttle( ( settings ) => {
-			settings.values = JSON.stringify( settings.values );
+
+console.log( settings );
+
+			// settings.values = JSON.stringify( settings.values );
+
 			wpControl.setting.set( settings );
 		}, 50 );
 

@@ -33,10 +33,14 @@ export class Preview {
 	bindControl( wpControl ) {
 		wp.customize( wpControl.id, value => {
 			value.bind( setting => {
-				this.preview.updateDynamicStyles(
-					wpControl.id + '-bgcontrol-inline-css',
-					setting.css
-				);
+
+				// If value is not truthy, we are reverting to defaults.
+				if ( setting ) {
+					this.preview.updateDynamicStyles(
+						wpControl.id + '-bgcontrol-inline-css',
+						setting.css
+					);
+				}
 			} );
 		} );
 	}

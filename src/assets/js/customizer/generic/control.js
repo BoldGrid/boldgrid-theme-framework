@@ -106,6 +106,9 @@ export class Control {
 
 				// This dummy input removes orginal handlers, and serves as a honeypot for DOM queries.
 				$input.replaceWith( $( '<input type="text">' ).hide() );
+
+				// Setup the delete event after render for optimization.
+				this._bindDeleteEvent( wpControl, bgControl );
 			} );
 		} );
 	}
@@ -127,5 +130,17 @@ export class Control {
 		}, 50 );
 
 		bgControl.events.on( 'change', throttled );
+	}
+
+	/**
+	 * When the user deletes their settings, unset the WP control setting.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  {object} wpControl WordPress control instance.
+	 * @param  {object} bgControl BoldGrid control instance.
+	 */
+	_bindDeleteEvent( wpControl, bgControl ) {
+		bgControl.events.on( 'deleteSettings', () => wpControl.setting.set( null ) );
 	}
 }

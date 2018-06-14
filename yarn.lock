@@ -6487,9 +6487,9 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
 
-"kirki-toolkit@https://github.com/aristath/kirki.git#3.0.25":
-  version "3.0.21"
-  resolved "https://github.com/aristath/kirki.git#a1cec513cdc5614f3b802bd3b9b82a5b9879fe4c"
+"kirki-toolkit@https://github.com/aristath/kirki.git#develop":
+  version "3.0.27"
+  resolved "https://github.com/aristath/kirki.git#78e8c0e9499a601c421e161c4a6564794f75ddc0"
 
 lazy-req@^1.0.0:
   version "1.1.0"

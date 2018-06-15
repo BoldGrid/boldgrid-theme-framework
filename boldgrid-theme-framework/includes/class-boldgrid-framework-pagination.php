@@ -84,6 +84,19 @@ class BoldGrid_Framework_Pagination {
 			$output = $dom->saveHTML();
 		}
 
-		echo $output;
+		$allowed = [
+			'ul' => [ 'class' => [] ],
+			'li' => [ 'class' => [] ],
+			'a' =>[
+				'class' => [],
+				'href' => [],
+			],
+			'span' => [
+				'class' => [],
+				'aria-current' => [],
+			],
+		];
+
+		echo wp_kses( $output, $allowed );
 	}
 }

@@ -181,6 +181,7 @@ gulp.task('phpDeps', function () {
   // Leafo SCSSPHP Compiler
   gulp.src([
     '!' + config.node_modules + '/scssphp/tests',
+    '!' + config.node_modules + '/scssphp/example/**',
     '!' + config.node_modules + '/scssphp/tests/**',
     config.node_modules + '/scssphp/**/*.php'
   ]).pipe(gulp.dest(config.dist + '/includes/scssphp'));

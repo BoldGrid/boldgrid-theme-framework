@@ -910,7 +910,7 @@ class BoldGrid_Framework {
 	 */
 	private function pagination() {
 		$pagination = new BoldGrid_Framework_Pagination();
-		$this->loader->add_action( 'woocommerce_pagination_display', $pagination, 'create' );
+		$this->loader->add_action( 'bgtfw_pagination_display', $pagination, 'create' );
 	}
 
 	/**

@@ -223,7 +223,7 @@ var BoldGrid = BoldGrid || {};
 						headerHeight = naviHeight + 2;
 					}
 
-					headerHeight += $( '#secondary-menu' ).outerHeight();
+					headerHeight = headerHeight + $( '#secondary-menu' ).outerHeight();
 				}
 
 				$( '.wp-custom-header' ).css( 'height', headerHeight );

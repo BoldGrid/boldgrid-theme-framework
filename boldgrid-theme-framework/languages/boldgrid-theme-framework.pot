@@ -44,6 +44,11 @@ msgstr ""
 msgid "Password:"
 msgstr ""
 
+#: src/includes/class-boldgrid-framework-api.php:873
+msgctxt "post password form"
+msgid "Enter"
+msgstr ""
+
 #: src/includes/class-boldgrid-framework-comments.php:64
 msgctxt "comments title"
 msgid "One thought on &ldquo;%s&rdquo;"
@@ -1038,7 +1043,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:397, src/includes/customizer/class-boldgrid-framework-customizer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:615
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:397, src/includes/customizer/class-boldgrid-framework-customizer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:617
 msgid "Background"
 msgstr ""
 
@@ -1477,19 +1482,19 @@ msgstr ""
 msgid "Hover Style"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:601
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:603
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:621
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:623
 msgid "CSS/JS Editor"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:625
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:627
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:726
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:728
 msgid "Menu Tutorial"
 msgstr ""
 

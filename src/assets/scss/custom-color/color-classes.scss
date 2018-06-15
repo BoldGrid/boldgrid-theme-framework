@@ -326,10 +326,11 @@ mark, .mark {
 }
 
 /** WooCommerce overrides **/
-.woocommerce div.product {
-	.stock,
-	span.price,
-	p.price {
+.woocommerce {
+	ul.products li.product .price,
+	div.product .stock,
+	div.product span.price,
+	div.product p.price {
 		color: $palette-primary_1;
 	}
 }

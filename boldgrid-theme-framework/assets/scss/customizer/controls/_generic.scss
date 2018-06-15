@@ -1,22 +1,28 @@
-.boldgrid-control input {
-	width: 16px;
-}
-
-.boldgrid-control.slider-control {
-	.number,
-	.slider {
-		background-color: white;
+.boldgrid-control {
+	input {
+		width: 16px;
 	}
 
-	.slider .ui-slider-handle {
-		transform: translateY(-50%) translateX(-50%);
+	&.slider-control {
+		.number,
+		.slider {
+			background-color: white;
+		}
+
+		.slider .ui-slider-handle {
+			transform: translateY(-50%) translateX(-50%);
+		}
 	}
-}
 
-.boldgrid-control .pluto-color-control + .iris-picker {
-	min-width: 280px;
-}
+	.pluto-color-control + .iris-picker {
+		min-width: 280px;
+	}
 
-.bg-control-switch.boldgrid-control .mdc-switch {
-	top: 5px;
+	&.bg-control-switch .mdc-switch {
+		top: 5px;
+	}
+
+	&.directional-control {
+		margin: 20px 0;
+	}
 }

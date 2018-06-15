@@ -3,6 +3,7 @@ import { Margin } from '@boldgrid/controls/src/controls/margin';
 import { Padding } from '@boldgrid/controls/src/controls/padding';
 import { BoxShadow } from '@boldgrid/controls/src/controls/box-shadow';
 import { Border } from './border';
+import { DevicePreview } from './device-preview';
 import { MultiSlider } from '@boldgrid/controls/src/controls/multi-slider';
 import '../../../scss/customizer/controls/_generic.scss';
 
@@ -27,7 +28,12 @@ export class Control {
 	 * @since 2.0.0
 	 */
 	init() {
-		$( () => this._bindConfigs() );
+		$( () => {
+			this.devicePreview = new DevicePreview();
+
+			this._bindConfigs();
+		} );
+
 		return this;
 	}
 
@@ -80,9 +86,9 @@ export class Control {
 			controlSettings.defaults = defaults;
 
 			try {
-				controlSettings.defaults.values = JSON.parse( controlSettings.defaults.values ) || {};
+				controlSettings.defaults.media = JSON.parse( controlSettings.defaults.media ) || {};
 			} catch ( e ) {
-				controlSettings.defaults.values = {};
+				controlSettings.defaults.media = {};
 			}
 		}
 	}
@@ -106,6 +112,11 @@ export class Control {
 
 				// This dummy input removes orginal handlers, and serves as a honeypot for DOM queries.
 				$input.replaceWith( $( '<input type="text">' ).hide() );
+
+				// Setup the delete event after render for optimization.
+				this._bindDeleteEvent( wpControl, bgControl );
+
+				this.devicePreview.setupControl( bgControl );
 			} );
 		} );
 	}
@@ -120,10 +131,25 @@ export class Control {
 	 */
 	_bindChangeEvent( wpControl, bgControl ) {
 		let throttled = _.throttle( ( settings ) => {
-			settings.values = JSON.stringify( settings.values );
-			wpControl.setting.set( settings );
+			let controlSettings = { ...settings };
+
+			controlSettings.media = JSON.stringify( controlSettings.media );
+
+			wpControl.setting.set( controlSettings );
 		}, 50 );
 
 		bgControl.events.on( 'change', throttled );
+	}
+
+	/**
+	 * When the user deletes their settings, unset the WP control setting.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  {object} wpControl WordPress control instance.
+	 * @param  {object} bgControl BoldGrid control instance.
+	 */
+	_bindDeleteEvent( wpControl, bgControl ) {
+		bgControl.events.on( 'deleteSettings', () => wpControl.setting.set( null ) );
 	}
 }

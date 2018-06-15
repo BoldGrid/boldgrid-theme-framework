@@ -584,9 +584,9 @@
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/@boldgrid/components/-/components-2.14.0.tgz#c6aec6618c965ea90ef6df6b09d0752510e5bd09"
 
-"@boldgrid/controls@^0.15.0":
+"@boldgrid/controls@https://github.com/BoldGrid/controls/#dev":
   version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@boldgrid/controls/-/controls-0.15.0.tgz#2906cb7aff028b3ba7cafff7fc3c1335a8f87384"
+  resolved "https://github.com/BoldGrid/controls/#9d4d6ccfe9ed91b576b3a6e8907c2d1ff11146bb"
   dependencies:
     "@boldgrid/components" "^2.14.0"
     "@material/switch" "^0.35.0"

@@ -127,11 +127,9 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '.site-header' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
@@ -151,11 +149,9 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Padding',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '.site-header header' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 				),
 			),
 		),
@@ -171,6 +167,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '.site-header header' ),
 				),
@@ -202,6 +199,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BoxShadow',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '.site-header header' ),
 				),
@@ -219,6 +217,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BorderRadius',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '.site-header header', '.wp-custom-header' ),
 				),
@@ -239,11 +238,9 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
@@ -263,11 +260,9 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Padding',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 				),
 			),
 		),
@@ -283,6 +278,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
 				),
@@ -314,6 +310,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BoxShadow',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
 				),
@@ -331,6 +328,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BorderRadius',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#colophon.site-footer' ),
 				),
@@ -1163,11 +1161,9 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#main-menu' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'right', 'label' => 'Right', 'cssProperty' => 'margin-right' ),
@@ -1199,11 +1195,9 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Padding',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#main-menu' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'padding-top' ),
 						array( 'name' => 'right', 'label' => 'Right', 'cssProperty' => 'padding-right' ),
@@ -1238,6 +1232,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#main-menu' ),
 				),
@@ -1268,6 +1263,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BorderRadius',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#main-menu' ),
 				),
@@ -1287,6 +1283,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#main-menu > li:not(.current-menu-item)' ),
 				),
@@ -1317,6 +1314,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BorderRadius',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#main-menu > li:not(.current-menu-item)' ),
 				),
@@ -1334,11 +1332,9 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#main-menu > li' ),
-					'linkable' => array(
-						'isLinked' => false,
-					),
 					'sliders' => array(
 						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
 						array( 'name' => 'right', 'label' => 'Right', 'cssProperty' => 'margin-right' ),
@@ -1512,6 +1508,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#main-menu > li.current-menu-item' ),
 				),
@@ -1542,6 +1539,7 @@ return array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BorderRadius',
 			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$deviceSizes,
 				'control' => array(
 					'selectors' => array( '#main-menu > li.current-menu-item' ),
 				),

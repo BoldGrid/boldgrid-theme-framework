@@ -361,6 +361,7 @@ return array(
 		'default'     => 'no-sidebar',
 		'priority'    => 10,
 		'choices'     => array(),
+		'sanitize_callback' => 'esc_attr',
 	),
 	'bgtfw_pages_display_title' => array(
 		'type' => 'switch',
@@ -884,6 +885,9 @@ return array(
 			'step' => 1,
 		),
 		'section'     => 'bgtfw_pages_blog_blog_page_layout',
+		'sanitize_callback' => function( $value, $setting ) {
+			return is_int( $value ) && 6 <= absint( $value ) ? absint( $value ) : $setting->default;
+		},
 	),
 	'bgtfw_pages_blog_blog_page_layout_featimg' => array(
 		'type'        => 'switch',
@@ -906,6 +910,9 @@ return array(
 			'content' => esc_attr__( 'Full Content', 'bgtfw' ),
 		),
 		'section' => 'bgtfw_pages_blog_blog_page_layout',
+		'sanitize_callback' => function( $value, $settings ) {
+			return 'excerpt' === $value || 'content' === $value ? $value : $settings->default;
+		},
 	),
 	'bgtfw_pages_blog_posts_layout_layout' => array(
 		'settings' => 'bgtfw_pages_blog_posts_layout_layout',
@@ -919,6 +926,9 @@ return array(
 			'container-fluid' => esc_attr__( 'Full Width', 'bgtfw' ),
 		),
 		'section' => 'bgtfw_pages_blog_posts_layout',
+		'sanitize_callback' => function( $value, $settings ) {
+			return 'container' === $value || 'container-fluid' === $value ? $value : $settings->default;
+		},
 	),
 	'bgtfw_layout_blog' => array(
 		'settings' => 'bgtfw_layout_blog',
@@ -928,6 +938,7 @@ return array(
 		'default'   => 'no-sidebar',
 		'choices'     => array(),
 		'section'     => 'bgtfw_pages_blog_posts_sidebar',
+		'sanitize_callback' => 'sanitize_html_class',
 	),
 	'bgtfw_blog_blog_page_settings' => array(
 		'settings' => 'bgtfw_blog_blog_page_settings',
@@ -937,6 +948,7 @@ return array(
 		'default'   => 'no-sidebar',
 		'choices'     => array(),
 		'section'     => 'bgtfw_blog_blog_page_settings',
+		'sanitize_callback' => 'sanitize_html_class',
 	),
 	'bgtfw_blog_layout' => array(
 		'settings' => 'bgtfw_blog_layout',
@@ -952,6 +964,9 @@ return array(
 			'design-4' => esc_attr__( 'Design 4', 'bgtfw' ),
 		),
 		'section' => 'bgtfw_pages_blog_blog_page_layout',
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'design-1', 'design-2', 'design-3', 'design-4' ], true ) ? $value : $settings->default;
+		},
 	),
 	'bgtfw_blog_blog_page_sidebar' => array(
 		'settings' => 'bgtfw_blog_blog_page_sidebar',
@@ -964,6 +979,7 @@ return array(
 		'active_callback' => function() {
 			return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
 		},
+		'sanitize_callback' => 'sanitize_html_class',
 	),
 	'bgtfw_blog_blog_page_sidebar2' => array(
 		'setting' => 'bgtfw_blog_blog_page_sidebar2',
@@ -974,6 +990,7 @@ return array(
 		'default'   => 'no-sidebar',
 		'choices'     => array(),
 		'section'     => 'bgtfw_blog_blog_page_panel_sidebar',
+		'sanitize_callback' => 'sanitize_html_class',
 	),
 	'bgtfw_layout_blog_layout' => array(
 		'settings' => 'bgtfw_layout_blog_layout',
@@ -994,6 +1011,7 @@ return array(
 		'active_callback' => function() {
 			return get_option( 'show_on_front', 'posts' ) === 'posts' ? true : false;
 		},
+		'sanitize_callback' => 'sanitize_html_class',
 	),
 	'bgtfw_layout_blog_layout' => array(
 		'settings' => 'bgtfw_layout_blog_layout',
@@ -1011,6 +1029,7 @@ return array(
 			'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
 		),
 		'section' => 'bgtfw_layout_blog',
+		'sanitize_callback' => 'sanitize_html_class',
 	),
 	'bgtfw_header_top_layouts' => array(
 		'settings' => 'bgtfw_header_top_layouts',
@@ -1028,6 +1047,7 @@ return array(
 			'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
 		),
 		'section'     => 'bgtfw_header_layout',
+		'sanitize_callback' => 'sanitize_html_class',
 	),
 	'header_container' => array(
 		'settings' => 'header_container',
@@ -1041,6 +1061,9 @@ return array(
 			'container' => esc_attr__( 'Fixed Width', 'bgtfw' ),
 		),
 		'section'     => 'bgtfw_header_layout',
+		'sanitize_callback' => function( $value, $settings ) {
+			return '' === $value || 'container' === $value ? $value : $settings->default;
+		},
 	),
 	'bgtfw_footer_layouts' => array(
 		'settings' => 'bgtfw_footer_layouts',
@@ -1060,6 +1083,7 @@ return array(
 			'layout-8' => esc_attr__( 'Layout 8', 'bgtfw' ),
 		),
 		'section'     => 'boldgrid_footer_panel',
+		'sanitize_callback' => 'sanitize_html_class',
 	),
 	'footer_container' => array(
 		'settings' => 'footer_container',
@@ -1073,6 +1097,9 @@ return array(
 			'container' => esc_attr__( 'Fixed Width', 'bgtfw' ),
 		),
 		'section'     => 'boldgrid_footer_panel',
+		'sanitize_callback' => function( $value, $settings ) {
+			return '' === $value || 'container' === $value ? $value : $settings->default;
+		},
 	),
 	'bgtfw_header_layout_position' => array(
 		'settings' => 'bgtfw_header_layout_position',
@@ -1087,6 +1114,7 @@ return array(
 			'header-right' => esc_attr__( 'Header on Right', 'bgtfw' ),
 		),
 		'section' => 'bgtfw_header_layout',
+		'sanitize_callback' => 'sanitize_html_class',
 	),
 
 	/*** Start: Dynamic Menu Controls ***/
@@ -1118,6 +1146,7 @@ return array(
 		'type' => 'bgtfw-menu-hamburgers',
 		'default' => 'hamburger--collapse',
 		'section' => 'bgtfw_menu_hamburgers_main',
+		'sanitize_callback' => 'sanitize_html_class',
 	),
 
 	/* Start: Main Menu Background Controls */
@@ -1367,6 +1396,7 @@ return array(
 		'label'       => esc_attr__( 'Hover Effect', 'bgtfw' ),
 		'section'     => 'bgtfw_menu_items_hover_item_main',
 		'default'     => 'hvr-underline-reveal',
+		'sanitize_callback' => 'sanitize_html_class',
 		'choices'     => array(
 
 			/** No Effects */

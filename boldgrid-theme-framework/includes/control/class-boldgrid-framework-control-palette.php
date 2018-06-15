@@ -79,7 +79,7 @@ class Boldgrid_Framework_Control_Palette extends WP_Customize_Control {
 			<li class='boldgrid-palette-colors'>
 				<?php
 				foreach ( $color_palette['colors'] as $key => $color ) :  ?>
-					<span data-color="<?php esc_attr_e( $color ); ?>" style="background: <?php esc_attr_e( $color ); ?>"></span>
+					<span data-color="<?php echo esc_attr( $color ); ?>" style="background: <?php echo esc_attr( $color ); ?>"></span>
 				<?php endforeach; ?>
 				<div class='boldgrid-duplicate-dashicons'>
 					<span class="dashicons dashicons-admin-post boldgrid-copy-palette" title="<?php esc_attr_e( 'Save Palette', 'bgtfw' ); ?>"></span>

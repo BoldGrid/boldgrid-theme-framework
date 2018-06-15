@@ -888,7 +888,7 @@ class BoldGrid {
 	 */
 	public static function add_class( $element = '', $class = '' ) {
 		$el = new Boldgrid_Framework_Element_Class( $element, $class );
-		echo $el->html;
+		echo ( string ) $el->html;
 	}
 
 	/**

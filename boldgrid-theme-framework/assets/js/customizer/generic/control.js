@@ -3,6 +3,7 @@ import { Margin } from '@boldgrid/controls/src/controls/margin';
 import { Padding } from '@boldgrid/controls/src/controls/padding';
 import { BoxShadow } from '@boldgrid/controls/src/controls/box-shadow';
 import { Border } from './border';
+import { DevicePreview } from './device-preview';
 import { MultiSlider } from '@boldgrid/controls/src/controls/multi-slider';
 import '../../../scss/customizer/controls/_generic.scss';
 
@@ -27,7 +28,12 @@ export class Control {
 	 * @since 2.0.0
 	 */
 	init() {
-		$( () => this._bindConfigs() );
+		$( () => {
+			this.devicePreview = new DevicePreview();
+
+			this._bindConfigs();
+		} );
+
 		return this;
 	}
 
@@ -109,6 +115,8 @@ export class Control {
 
 				// Setup the delete event after render for optimization.
 				this._bindDeleteEvent( wpControl, bgControl );
+
+				this.devicePreview.setupControl( bgControl );
 			} );
 		} );
 	}

@@ -8,6 +8,14 @@
 			z-index: 202;
 		}
 	}
+	&.header-fixed {
+		&.header-left, &.header-right {
+			.site-header {
+				z-index: 200;
+			}
+		}
+	}
+
 	.sm-clean {
 		background: transparent;
 	}

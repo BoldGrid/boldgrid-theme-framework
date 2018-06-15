@@ -554,7 +554,7 @@ class BoldGrid_Framework {
 		$layouts = new Boldgrid_Framework_Layouts_Post_Meta( $this->configs );
 
 		/* Adds our custom meta box to page/post editor. */
-		$this->loader->add_action( 'add_meta_boxes', $layouts, 'add_meta_box' );
+		$this->loader->add_action( 'add_meta_boxes', $layouts, 'add' );
 
 		/* Adds our styles/scripts for the custom meta box on the new post and edit post screens only. */
 		$this->loader->add_action( 'admin_head-post.php', $layouts, 'styles' );

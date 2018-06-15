@@ -71,6 +71,9 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 			'default' => false,
 			'capability' => 'edit_theme_options',
 			'transport' => 'postMessage',
+			'sanitize_callback' => function( $value ) {
+				return $value === true ? true : false;
+			},
 		) );
 	}
 

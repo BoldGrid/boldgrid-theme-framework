@@ -657,10 +657,12 @@ HTML;
 		$wp_customize->add_setting( 'boldgrid_light_text', array(
 			'default'    => $this->configs['customizer-options']['colors']['light_text'],
 			'type' => 'theme_mod',
+			'sanitize_callback' => 'sanitize_hex_color',
 		) );
 		$wp_customize->add_setting( 'boldgrid_dark_text', array(
 			'default'    => $this->configs['customizer-options']['colors']['dark_text'],
 			'type' => 'theme_mod',
+			'sanitize_callback' => 'sanitize_hex_color',
 		) );
 	}
 

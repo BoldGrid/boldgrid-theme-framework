@@ -191,8 +191,23 @@ class Boldgrid_Framework_Activate {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 		foreach ( $configs['tgm']['renamed_plugins'] as $renamed ) {
-			if ( is_plugin_active( $renamed['old_name'] . '/' . $renamed['old_name'] . '.php' ) ) {
-				$configs['tgm']['plugins'] = $this->remove_recommended_plugin( $configs, $renamed['new_name'] );
+
+			// Check for renamed plugins.
+			$plugins = get_plugins();
+
+			foreach ( $plugins as $plugin => $args ) {
+
+				// Check if old name matches installed plugins.
+				$name = strtolower( str_replace( '-', ' ', $renamed['old_name'] ) );
+				if ( isset( $args['Name'] ) && ( $name === strtolower( $args['Name'] ) ) ) {
+
+					// Check if plugin is active.
+					if ( class_exists( str_replace( ' ', '_', ucwords( $name ) ) ) ) {
+
+						// Remove recommended plugin from configs.
+						$configs['tgm']['plugins'] = $this->remove_recommended_plugin( $configs, $renamed['new_name'] );
+					}
+				}
 			}
 		}
 

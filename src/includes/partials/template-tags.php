@@ -352,8 +352,11 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	if ( ! empty( $help ) ) {
 		$tmp = true;
 	}
+
+	global $wp;
+
 	// Link to the widgets section in the customizer.
-	$current_page = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$current_page = add_query_arg( $_GET, home_url( $wp->request ) );
 	$link = esc_url(
 		add_query_arg(
 			array(

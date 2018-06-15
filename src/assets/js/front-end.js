@@ -222,6 +222,8 @@ var BoldGrid = BoldGrid || {};
 					} else {
 						headerHeight = naviHeight + 2;
 					}
+
+					headerHeight += $( '#secondary-menu' ).outerHeight();
 				}
 
 				$( '.wp-custom-header' ).css( 'height', headerHeight );

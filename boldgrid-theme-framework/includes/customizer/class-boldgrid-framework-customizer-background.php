@@ -118,12 +118,18 @@ class Boldgrid_Framework_Customizer_Background {
 
 		$wp_customize->add_setting(
 			'boldgrid_background_vertical_position',
-			array( 'type' => 'theme_mod' )
+			array(
+				'type' => 'theme_mod',
+				'sanitize_callback' => 'absint',
+			)
 		);
 
 		$wp_customize->add_setting(
 			'boldgrid_background_horizontal_position',
-			array( 'type' => 'theme_mod' )
+			array(
+				'type' => 'theme_mod',
+				'sanitize_callback' => 'absint',
+			)
 		);
 
 		$wp_customize->remove_control( 'background_position_x' );
@@ -183,6 +189,9 @@ class Boldgrid_Framework_Customizer_Background {
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
+				'sanitize_callback' => function( $value, $setting ) {
+					return in_array( $value, [ 'cover', 'contain', '100% auto', 'auto 100%', 'inherit', 'auto' ], true ) ? $value : $setting->default;
+				},
 			)
 		);
 
@@ -218,6 +227,24 @@ class Boldgrid_Framework_Customizer_Background {
 			'boldgrid_background_color',
 			array(
 				'type' => 'theme_mod',
+				'sanitize_callback' => function( $color ) {
+
+					// If empty, return empty.
+					if ( empty( $color ) ) {
+						return '';
+					}
+
+					// If transparent, return 'transparent'.
+					if ( is_string( $color ) && 'transparent' == trim( $color ) ) {
+						return 'transparent';
+					}
+
+					// Instantiate the object.
+					$color_obj = ariColor::newColor( $color );
+
+					// Return a CSS value, using the auto-detected mode.
+					return $color_obj->toCSS( $color_obj->mode );
+				},
 			)
 		);
 		$configs = $this->configs;
@@ -267,6 +294,9 @@ class Boldgrid_Framework_Customizer_Background {
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
+				'sanitize_callback' => function( $value ) {
+					return in_array( $value, [ 'image', 'pattern' ], true ) ? $value : 'pattern';
+				},
 			)
 		);
 
@@ -401,6 +431,20 @@ class Boldgrid_Framework_Customizer_Background {
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
+				'sanitize_callback' => function( $value ) {
+					if ( empty( $value ) || ! is_string( $value ) ) {
+						return '';
+					}
+
+					preg_match( '/url\(\"(.+)\"\)/', $value, $matches );
+
+					if ( ! empty( $matches ) ) {
+						$url = esc_url_raw( $matches[1] );
+						return 'url("' . $url . '")';
+					} else {
+						return '';
+					}
+				},
 			)
 		);
 

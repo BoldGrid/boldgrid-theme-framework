@@ -3,14 +3,13 @@
 	display: block;
 }
 
-.byline,
 .updated:not(.published){
 	display: none;
 }
 
-.single .byline,
-.group-blog .byline {
-	display: inline;
+.byline {
+	display: inline-block;
+	white-space: pre-wrap;
 }
 
 .page-links {

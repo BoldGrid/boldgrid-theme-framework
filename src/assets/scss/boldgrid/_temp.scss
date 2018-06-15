@@ -79,8 +79,8 @@
 	}
 	.flexbox .header-fixed .site-header {
 		position: fixed;
-		/* set z-index lower than customizer edit buttons, but higher than site content */
-		z-index: 200;
+		// Set z-index lower than customizer edit buttons @ 210.
+		z-index: 201;
 	}
 }
 /** Header on Right **/

@@ -218,10 +218,12 @@ var BoldGrid = BoldGrid || {};
 					menu = $( '#main-menu' );
 
 					if ( menu.is( ':visible' ) ) {
-						headerHeight = naviHeight - menu.outerHeight() + 2;
+						headerHeight = naviHeight - menu.outerHeight();
 					} else {
-						headerHeight = naviHeight + 2;
+						headerHeight = naviHeight;
 					}
+
+					headerHeight = headerHeight + $( '#secondary-menu' ).outerHeight();
 				}
 
 				$( '.wp-custom-header' ).css( 'height', headerHeight );
@@ -291,6 +293,7 @@ var BoldGrid = BoldGrid || {};
 						$( menu ).removeClass( 'show-animation' ).addClass( 'hide-animation' );
 					}
 					}).on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', 'ul', function( e ) {
+						BoldGrid.custom_header.calc();
 						$( this ).removeClass( 'show-animation hide-animation' );
 						e.stopPropagation();
 				} );

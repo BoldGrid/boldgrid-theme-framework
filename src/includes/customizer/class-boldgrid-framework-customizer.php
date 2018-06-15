@@ -269,16 +269,20 @@ class BoldGrid_Framework_Customizer {
 							$setting['theme_supports'] = $control['theme_supports'];
 							unset( $control['theme_supports'] );
 						}
+
 						if ( isset( $control['sanitize_callback'] ) ) {
-							$setting['sanitize_callback'] = $control['sanitize_callback'];
+							$sanitize = $control['sanitize_callback'];
 							unset( $control['sanitize_callback'] );
+						} else {
+							$sanitize = 'sanitize_html_class';
 						}
+
 						if ( isset( $control['sanitize_js_callback'] ) ) {
 							$setting['sanitize_js_callback'] = $control['sanitize_js_callback'];
 							unset( $control['sanitize_js_callback'] );
 						}
 
-						$wp_customize->add_setting( $control['settings'], $setting );
+						$wp_customize->add_setting( $control['settings'], array_merge( $setting, [ 'sanitize_callback' => $sanitize ] ) );
 
 						$setting['setting'] = isset( $control['setting'] ) ? $control['setting'] : $control['settings'];
 						unset( $control['setting'] );
@@ -657,10 +661,12 @@ HTML;
 		$wp_customize->add_setting( 'boldgrid_light_text', array(
 			'default'    => $this->configs['customizer-options']['colors']['light_text'],
 			'type' => 'theme_mod',
+			'sanitize_callback' => 'sanitize_hex_color',
 		) );
 		$wp_customize->add_setting( 'boldgrid_dark_text', array(
 			'default'    => $this->configs['customizer-options']['colors']['dark_text'],
 			'type' => 'theme_mod',
+			'sanitize_callback' => 'sanitize_hex_color',
 		) );
 	}
 

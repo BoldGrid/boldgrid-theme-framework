@@ -870,7 +870,7 @@ class BoldGrid {
 			<div class="container">
 				<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="form-inline post-password-form" method="post">
 					<p>' . __( 'This content is password protected. To view it please enter your password below:', 'bgtfw' ) . '</p>
-					<label for="' . $label . '">' . __( 'Password:', 'bgtfw' ) . ' <input name="post_password" id="' . $label . '" type="password" size="20" class="form-control" /></label><button type="submit" name="Submit" class="button-primary">' . esc_attr_x( 'Enter', 'post password form' ) . '</button>
+					<label for="' . esc_attr( $label ) . '">' . __( 'Password:', 'bgtfw' ) . ' <input name="post_password" id="' . esc_attr( $label ) . '" type="password" size="20" class="form-control" /></label><button type="submit" name="Submit" class="button-primary">' . esc_attr_x( 'Enter', 'post password form', 'bgtfw' ) . '</button>
 				</form>
 			</div>
 		</div>';
@@ -888,7 +888,7 @@ class BoldGrid {
 	 */
 	public static function add_class( $element = '', $class = '' ) {
 		$el = new Boldgrid_Framework_Element_Class( $element, $class );
-		echo $el->html;
+		echo ( string ) $el->html;
 	}
 
 	/**

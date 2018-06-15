@@ -1,12 +1,23 @@
 .standard-menu-enabled {
-	.sm-clean {
-		background: transparent;
-		&.sm {
-			z-index: 200;
-			&#secondary-menu {
-				z-index: 201;
+	.site-footer .sm-clean {
+		z-index: 200;
+	}
+	.site-header .sm-clean {
+		z-index: 201;
+		&#secondary-menu {
+			z-index: 202;
+		}
+	}
+	&.header-fixed {
+		&.header-left, &.header-right {
+			.site-header {
+				z-index: 200;
 			}
 		}
+	}
+
+	.sm-clean {
+		background: transparent;
 	}
 	.sm-clean a,
 	.sm-clean a:hover,
@@ -335,6 +346,10 @@
 		cursor: pointer;
 		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 		z-index: 2;
+	}
+
+	input.hidden + label[id$="-menu-btn"] {
+		display: none;
 	}
 
 	/* hide menu state checkbox (keep it visible to screen readers) */

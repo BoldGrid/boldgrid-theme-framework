@@ -999,6 +999,30 @@ msgstr ""
 msgid "Primary Sidebar"
 msgstr ""
 
+#: src/includes/control/class-boldgrid-framework-control-palette.php:54
+msgid "Active Palette"
+msgstr ""
+
+#: src/includes/control/class-boldgrid-framework-control-palette.php:85
+msgid "Save Palette"
+msgstr ""
+
+#: src/includes/control/class-boldgrid-framework-control-palette.php:86
+msgid "Remove Palette"
+msgstr ""
+
+#: src/includes/control/class-boldgrid-framework-control-palette.php:94
+msgid "Suggest Palettes"
+msgstr ""
+
+#: src/includes/control/class-boldgrid-framework-control-palette.php:100
+msgid "Suggested Palettes"
+msgstr ""
+
+#: src/includes/control/class-boldgrid-framework-control-palette.php:107
+msgid "Saved Palettes"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-background.php:202
 msgid "Background Image Size"
 msgstr ""

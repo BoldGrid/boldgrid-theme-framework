@@ -199,7 +199,7 @@ class Boldgrid_Framework_Activate {
 
 				// Check if old name matches installed plugins.
 				$name = strtolower( str_replace( '-', ' ', $renamed['old_name'] ) );
-				if ( isset( $args['Name'] ) && ( $name === strtolower( $args['Name'] ) ) ) {
+				if ( isset( $args['Name'] ) && ( strtolower( $args['Name'] === $name ) ) ) {
 
 					// Check if plugin is active.
 					if ( class_exists( str_replace( ' ', '_', ucwords( $name ) ) ) ) {
@@ -219,9 +219,9 @@ class Boldgrid_Framework_Activate {
 	 *
 	 * @since 1.5.4
 	 *
-	 * @param  array $configs                BGTFW Configs.
-	 * @param  array $disabled_plugin_names  List of disabled names.
-	 * @return array                         BGTFW Configs.
+	 * @param  array $configs              BGTFW Configs.
+	 * @param  array $disabled_plugin_name List of disabled names.
+	 * @return array $configs              BGTFW Configs.
 	 */
 	public function remove_recommended_plugin( $configs, $disabled_plugin_name ) {
 		$plugins = array();

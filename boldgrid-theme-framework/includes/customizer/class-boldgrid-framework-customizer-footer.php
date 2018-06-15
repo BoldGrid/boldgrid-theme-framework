@@ -92,8 +92,8 @@ class Boldgrid_Framework_Customizer_Footer {
 				'target' => [],
 			],
 			'span' => [
-				'class'=> []
-			]
+				'class' => [],
+			],
 		];
 		?>
 		<span class="attribution-theme-mods"><?php echo wp_kses( $theme_mods, $allowed ); ?></span>

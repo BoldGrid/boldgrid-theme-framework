@@ -87,7 +87,7 @@ class BoldGrid_Framework_Pagination {
 		$allowed = [
 			'ul' => [ 'class' => [] ],
 			'li' => [ 'class' => [] ],
-			'a' =>[
+			'a' => [
 				'class' => [],
 				'href' => [],
 			],

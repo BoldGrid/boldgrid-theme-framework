@@ -295,8 +295,8 @@ class Boldgrid_Framework_Customizer_Background {
 				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
 				'sanitize_callback' => function( $value ) {
-					return in_array( $value, [ 'image', 'pattern'], true ) ? $value : 'pattern';
-				}
+					return in_array( $value, [ 'image', 'pattern' ], true ) ? $value : 'pattern';
+				},
 			)
 		);
 

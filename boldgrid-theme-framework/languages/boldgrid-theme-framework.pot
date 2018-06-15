@@ -1586,91 +1586,79 @@ msgstr ""
 msgid "To hide the title on this page, you'll need to leave the Customizer and go to the Page Editor."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:26
-msgid "Posts navigation"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:30
-msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:34
-msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:63
+#: src/includes/partials/template-tags.php:44
 msgid "Post navigation"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:66
+#: src/includes/partials/template-tags.php:47
 msgctxt "Previous post link"
 msgid "<span class=\"meta-nav\">&larr;</span>&nbsp;%title"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:67
+#: src/includes/partials/template-tags.php:48
 msgctxt "Next post link"
 msgid "%title&nbsp;<span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:100
+#: src/includes/partials/template-tags.php:81
 msgctxt "%s = human-readable time difference"
 msgid "Posted %s ago"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:107
+#: src/includes/partials/template-tags.php:88
 msgctxt "post date"
 msgid "Posted on %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:113
+#: src/includes/partials/template-tags.php:94
 msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:131, src/includes/partials/template-tags.php:137
+#: src/includes/partials/template-tags.php:112, src/includes/partials/template-tags.php:118
 msgid ", "
 msgstr ""
 
-#: src/includes/partials/template-tags.php:133
+#: src/includes/partials/template-tags.php:114
 msgid "Posted in %1$s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:139
+#: src/includes/partials/template-tags.php:120
 msgid "Tagged %1$s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:145
+#: src/includes/partials/template-tags.php:126
 msgid "Leave a comment"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:145
+#: src/includes/partials/template-tags.php:126
 msgid "1 Comment"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:145
+#: src/includes/partials/template-tags.php:126
 msgid "% Comments"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:216
+#: src/includes/partials/template-tags.php:197
 msgid "Click to edit %s."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:228
+#: src/includes/partials/template-tags.php:209
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:403
+#: src/includes/partials/template-tags.php:384
 msgid "Empty Sidebar"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:405
+#: src/includes/partials/template-tags.php:386
 msgid "This sidebar doesn't have any widgets assigned to it yet."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:406
+#: src/includes/partials/template-tags.php:387
 msgid "Add widgets here."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:410
+#: src/includes/partials/template-tags.php:391
 msgid "Add another widget."
 msgstr ""

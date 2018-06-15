@@ -225,7 +225,6 @@ class Boldgrid_Framework_Customizer_Typography {
 		}
 
 		$css .= $this->generate_headings_color_css( 'bgtfw_headings_color', '', $selectors );
-		$css .= $this->generate_headings_color_css( 'bgtfw_header_headings_color', '.site-header :not(.bgtfw-widget-row)', $selectors );
 		$css .= $this->generate_headings_color_css( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)', $selectors );
 
 		return $css;

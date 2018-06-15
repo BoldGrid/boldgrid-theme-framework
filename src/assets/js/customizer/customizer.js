@@ -660,7 +660,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		}
 
 		new Toggle( 'bgtfw_header_width', calc );
-		new Toggle( 'bgtfw_header_headings_color', () => headingsColorOutput( 'bgtfw_header_headings_color', '#navi-wrap > :not(.bgtfw-widget-row)' ) );
 		new Toggle( 'bgtfw_footer_headings_color', () => headingsColorOutput( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)' ) );
 		new Toggle( 'blogname', ( to ) => $( '.site-title a' ).text( to ) && calc() );
 		new Toggle( 'blogdescription', ( to ) => {

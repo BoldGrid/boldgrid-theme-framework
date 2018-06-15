@@ -1043,7 +1043,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:397, src/includes/customizer/class-boldgrid-framework-customizer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:617
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:397, src/includes/customizer/class-boldgrid-framework-customizer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:619
 msgid "Background"
 msgstr ""
 
@@ -1482,19 +1482,19 @@ msgstr ""
 msgid "Hover Style"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:603
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:605
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:623
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:625
 msgid "CSS/JS Editor"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:627
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:629
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:728
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:730
 msgid "Menu Tutorial"
 msgstr ""
 
@@ -1627,122 +1627,26 @@ msgstr ""
 msgid "% Comments"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:166
-msgid "Category: %s"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:168
-msgid "Tag: %s"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:170
-msgid "Author: %s"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:172
-msgid "Year: %s"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:172
-msgctxt "yearly archives date format"
-msgid "Y"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:174
-msgid "Month: %s"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:174
-msgctxt "monthly archives date format"
-msgid "F Y"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:176
-msgid "Day: %s"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:176
-msgctxt "daily archives date format"
-msgid "F j, Y"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:178
-msgctxt "post format archive title"
-msgid "Asides"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:180
-msgctxt "post format archive title"
-msgid "Galleries"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:182
-msgctxt "post format archive title"
-msgid "Images"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:184
-msgctxt "post format archive title"
-msgid "Videos"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:186
-msgctxt "post format archive title"
-msgid "Quotes"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:188
-msgctxt "post format archive title"
-msgid "Links"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:190
-msgctxt "post format archive title"
-msgid "Statuses"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:192
-msgctxt "post format archive title"
-msgid "Audio"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:194
-msgctxt "post format archive title"
-msgid "Chats"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:196
-msgid "Archives: %s"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:200
-msgid "%1$s: %2$s"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:202
-msgid "Archives"
-msgstr ""
-
-#: src/includes/partials/template-tags.php:308
+#: src/includes/partials/template-tags.php:216
 msgid "Click to edit %s."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:320
+#: src/includes/partials/template-tags.php:228
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:492
+#: src/includes/partials/template-tags.php:400
 msgid "Empty Sidebar"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:494
+#: src/includes/partials/template-tags.php:402
 msgid "This sidebar doesn't have any widgets assigned to it yet."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:495
+#: src/includes/partials/template-tags.php:403
 msgid "Add widgets here."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:499
+#: src/includes/partials/template-tags.php:407
 msgid "Add another widget."
 msgstr ""

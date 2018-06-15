@@ -269,12 +269,14 @@ class BoldGrid_Framework_Customizer {
 							$setting['theme_supports'] = $control['theme_supports'];
 							unset( $control['theme_supports'] );
 						}
+
 						if ( isset( $control['sanitize_callback'] ) ) {
 							$sanitize = $control['sanitize_callback'];
 							unset( $control['sanitize_callback'] );
 						} else {
 							$sanitize = 'sanitize_html_class';
 						}
+
 						if ( isset( $control['sanitize_js_callback'] ) ) {
 							$setting['sanitize_js_callback'] = $control['sanitize_js_callback'];
 							unset( $control['sanitize_js_callback'] );

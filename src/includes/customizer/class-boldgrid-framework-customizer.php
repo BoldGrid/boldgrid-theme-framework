@@ -149,6 +149,16 @@ class BoldGrid_Framework_Customizer {
 						);
 
 						Kirki::add_section(
+							"bgtfw_menu_visibility_$location",
+							array(
+								'title' => __( 'Device Visibility', 'bgtfw' ),
+								'panel' => "bgtfw_menu_location_$location",
+								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-welcome-view-site',
+							)
+						);
+
+						Kirki::add_section(
 							"bgtfw_menu_items_standard_item_$location",
 							array(
 								'title' => __( 'Standard Display', 'bgtfw' ),

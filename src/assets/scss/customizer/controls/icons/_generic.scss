@@ -29,4 +29,10 @@
 			content: "\f531";
 		}
 	}
+	&[id*="visibility_section"] {
+		> .accordion-section-title:before {
+			@include dashicons;
+			content: "\f115";
+		}
+	}
 }

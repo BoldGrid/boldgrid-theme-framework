@@ -1220,6 +1220,24 @@ return array(
 	),
 	/* End: Main Menu Spacing Controls */
 
+	'bgtfw_menu_visibility_main' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_menu_visibility_main',
+		'settings'    => 'bgtfw_menu_visibility_main',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'DeviceVisibility',
+			'settings' => array(
+				'control' => array(
+					'selectors' => array( '#main-menu' ),
+				),
+			),
+		),
+	),
+
 	/* Start: Main Menu Border */
 	'bgtfw_menu_border_main' => array(
 		'type'        => 'kirki-generic',

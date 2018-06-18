@@ -26,7 +26,7 @@ class Boldgrid_Framework_Customizer_Generic {
 	 *
 	 * @var array
 	 */
-	public static $deviceSizes = array(
+	public static $device_sizes = array(
 
 		// Phone size from 0 to 767px.
 		'phone' => 767,
@@ -39,6 +39,13 @@ class Boldgrid_Framework_Customizer_Generic {
 
 		// Large 1200 +++.
 	);
+
+	/**
+	 * Range configuration.
+	 *
+	 * @var $range_config
+	 */
+	protected $range_config;
 
 	/**
 	 * BGTFW Configs
@@ -55,6 +62,8 @@ class Boldgrid_Framework_Customizer_Generic {
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
+
+		$this->range_config = $this->create_range_configuration();
 	}
 
 	/**
@@ -65,15 +74,94 @@ class Boldgrid_Framework_Customizer_Generic {
 	public function add_styles() {
 		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			$name = ! empty( $control['choices']['name'] ) ? $control['choices']['name'] : null;
-			if ( 'boldgrid_controls' === $name ) {
 
+			if ( 'boldgrid_controls' === $name ) {
+				$style_id = $control['settings'] . '-bgcontrol';
 				$theme_mod_val = get_theme_mod( $control['settings'] );
-				if ( $theme_mod_val && ! empty( $theme_mod_val['css'] ) ) {
-					$style_id = $control['settings'] . '-bgcontrol';
-					$this->add_inline_style( $style_id, wp_specialchars_decode( $theme_mod_val['css'], $quote_style = ENT_QUOTES ) );
+
+				// If theme mod is set, use it to create styles.
+				if ( $theme_mod_val ) {
+					$css = ! empty( $theme_mod_val['css'] ) ? $theme_mod_val['css'] : false;
+
+				// If theme mod is not set, try to generate styles from default settings.
+				} else {
+					$css = $this->get_default_styles( $control );
+				}
+
+				// Enqueue any css if applicable.
+				if ( $css ) {
+					$this->add_inline_style( $style_id, wp_specialchars_decode( $css, $quote_style = ENT_QUOTES ) );
 				}
 			}
 		}
+	}
+
+	/**
+	 * Get the default styles for a control.
+	 *
+	 * If the user has not customized this control, we will use any values defined in the
+	 * defaults to generate css.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  array $control Controls Configuration.
+	 * @return string         Added ability to define device visibility defaults.
+	 */
+	public function get_default_styles( $control ) {
+		$media_css = '';
+
+		if ( 'DeviceVisibility' === $control['choices']['type'] ) {
+			$media_css .= $this->device_visibility_styles( $control ) ?: '';
+		} else {
+			// @todo generic slider controls styles.
+		}
+
+		return $media_css;
+	}
+
+	/**
+	 * Create styles for device visibility.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  array $control Control Configuration.
+	 * @return string         CSS to display.
+	 */
+	public function device_visibility_styles( $control ) {
+		$css = '';
+		foreach ( $control['choices']['settings']['setting'] as $device ) {
+			$selector = implode( ',', $control['choices']['settings']['control']['selectors'] );
+			$css .= $this->create_media_prefix( $device );
+			$css .= $css ? "{ ${selector} { display: none !important;} }" : '';
+		}
+
+		return $css;
+	}
+
+	/**
+	 * Create a media query for a given device.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $device Device name (phone, tablet, desktop, large).
+	 * @return string         Media prefix.
+	 */
+	public function create_media_prefix( $device ) {
+		$prefix = '';
+		$range = $this->range_config[ $device ];
+		if ( ! $range ) {
+			return $prefix;
+		}
+
+		if ( ! empty( $range['min'] ) && ! empty( $range['max'] ) ) {
+			$prefix = "@media only screen and (max-width: {$range['max']}px) and (min-width: {$range['min']}px)";
+		} else if ( ! empty( $range['min'] ) && empty( $range['max'] ) ) {
+			$prefix = "@media only screen and ( min-width: {$range['min']}px )";
+		} else if ( empty( $range['min'] ) && ! empty( $range['max'] ) ) {
+			$prefix = "@media only screen and ( max-width: {$range['max']}px )";
+		}
+
+		return $prefix;
 	}
 
 	/**
@@ -89,4 +177,35 @@ class Boldgrid_Framework_Customizer_Generic {
 		wp_enqueue_style( $id );
 		wp_add_inline_style( $id, $css );
 	}
+
+	/**
+	 * Create an object of ranges tpo be used for creating media queries.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array Ranges per devices.
+	 */
+	protected function create_range_configuration() {
+		$device_config = self::$device_sizes;
+
+		$ranges = [
+			'phone' => [
+				'max' => $device_config['phone'],
+			],
+			'tablet' => [
+				'min' => $device_config['phone'] + 1,
+				'max' => $device_config['tablet'],
+			],
+			'desktop' => [
+				'min' => $device_config['tablet'] + 1,
+				'max' => $device_config['desktop'],
+			],
+			'large' => [
+				'min' => $device_config['desktop'] + 1,
+			]
+		];
+
+		return $ranges;
+	}
+
 }

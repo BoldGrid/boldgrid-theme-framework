@@ -3,4 +3,7 @@
 }
 .search .post {
 	margin: 0;
+	& > h2 {
+		width: 100%;
+	}
 }

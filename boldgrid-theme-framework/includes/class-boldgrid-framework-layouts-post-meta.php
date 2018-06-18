@@ -43,7 +43,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	 *
 	 * @param String $post_type The post type being modified.
 	 */
-	public function add_meta_box( $post_type ) {
+	public function add( $post_type ) {
 
 		// remove the default
 		remove_meta_box( 'pageparentdiv', array( 'page', 'post' ), 'side' );

@@ -2289,8 +2289,7 @@ select {
 }
 
 /** Post Format: Aside **/
-.blog .format-aside .entry-title,
-.archive .format-aside .entry-title {
+main > article.post.format-aside .entry-header {
   display: none;
 }
 
@@ -2502,6 +2501,10 @@ time.entry-date.updated:before {
 
 .search .post {
   margin: 0;
+}
+
+.search .post > h2 {
+  width: 100%;
 }
 
 /*--------------------------------------------------------------

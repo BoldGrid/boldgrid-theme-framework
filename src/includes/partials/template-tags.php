@@ -12,31 +12,12 @@ if ( ! function_exists( 'boldgrid_paging_nav' ) ) :
  * Display navigation to next/previous set of posts when applicable.
  */
 function boldgrid_paging_nav() {
-	global $boldgrid_theme_framework;
-	$configs = $boldgrid_theme_framework->get_configs();
-
-	// Don't print empty markup if there's only one page.
-	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
+	global $wp_query;
+	if ( $wp_query->max_num_pages <= 1 ) {
 		return;
 	}
-	$nav_classes = $configs['template']['post_navigation']['paging_nav_classes'];
 
-	?>
-	<nav class="navigation paging-navigation" role="navigation">
-		<h2 class="sr-only"><?php _e( 'Posts navigation', 'bgtfw' ); ?></h2>
-		<div class="nav-links">
-
-			<?php if ( get_next_posts_link() ) : ?>
-			<div class="<?php echo esc_attr( $nav_classes['next'] ) ?>"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'bgtfw' ) ); ?></div>
-			<?php endif; ?>
-
-			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="<?php echo esc_attr( $nav_classes['previous'] ) ?>"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'bgtfw' ) ); ?></div>
-			<?php endif; ?>
-
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
+	do_action( 'bgtfw_pagination_display' );
 }
 endif;
 

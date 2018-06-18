@@ -191,6 +191,8 @@ gulp.task('phpDeps', function () {
     '!' + config.node_modules + '/kirki-toolkit/assets/**',
     '!' + config.node_modules + '/kirki-toolkit/tests',
     '!' + config.node_modules + '/kirki-toolkit/tests/**',
+    '!' + config.node_modules + '/kirki-toolkit/docs',
+    '!' + config.node_modules + '/kirki-toolkit/docs/**',
     config.node_modules + '/kirki-toolkit/**',
   ])
     .pipe(replace('kirki-logo.svg', 'boldgrid-logo.svg'))

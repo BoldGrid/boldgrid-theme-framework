@@ -233,7 +233,15 @@ var BoldGrid = BoldGrid || {};
 
 		// Sticky/Fixed Header.
 		'header_fixed': {
+
 			init: function() {
+
+				// Setup anchors.
+				$( 'a[name]' ).css( {
+					'padding-top': $( '.site-header' ).outerHeight( true ) + 'px',
+					'margin-top': '-' + $( '.site-header' ).outerHeight( true ) + 'px',
+					'display': 'inline-block'
+				} );
 
 				window.addEventListener( 'scroll', function() {
 					var distanceY, shrinkOn, header;

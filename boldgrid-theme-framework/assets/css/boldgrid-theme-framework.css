@@ -2452,9 +2452,6 @@ fieldset[disabled] a#commentform #submit {
   #commentform p.form-submit {
     width: 75%;
   }
-  #commentform p.form-submit {
-    margin: 0;
-  }
 }
 
 .post .entry-footer .bgtfw-edit-link a {

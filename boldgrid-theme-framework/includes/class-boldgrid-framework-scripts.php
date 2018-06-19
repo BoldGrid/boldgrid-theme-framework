@@ -204,6 +204,16 @@ class BoldGrid_Framework_Scripts {
 		);
 
 		wp_enqueue_script( 'boldgrid-front-end-scripts' );
+
+		if ( is_customize_preview() ) {
+			wp_enqueue_script(
+				'boldgrid-theme-helper-brehaut-color-js',
+				$this->configs['framework']['js_dir'] . 'color-js/color' . $suffix . '.js',
+				array(),
+				$this->configs['version'],
+				false
+			);
+		}
 	}
 
 	/**

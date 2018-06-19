@@ -204,7 +204,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	$customStyles = $( '#boldgrid-override-styles' );
 
 	colorPreview = new ColorPreview().init();
-	new BackgroundPreview().init();
+	let backgroundPreview = new BackgroundPreview().init();
 	new GenericPreview().bindEvents();
 	new HeaderPreview().bindEvents();
 	new TypographyPreview().bindEvents();
@@ -352,24 +352,26 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		updateColorAndPatterns = function() {
 			var backgroundPattern;
 
-			backgroundPattern = api( 'boldgrid_background_pattern' )();
+			if ( 'pattern' === api( 'boldgrid_background_type' )() ) {
+				backgroundPattern = api( 'boldgrid_background_pattern' )();
 
-			if ( ! backgroundPattern ) {
-				backgroundPattern = 'none';
+				if ( ! backgroundPattern ) {
+					backgroundPattern = 'none';
+				}
+
+				$customStyles.remove();
+
+				$body.css( {
+					'background-image': backgroundPattern,
+					'background-size': 'auto',
+					'background-repeat': 'repeat',
+					'background-attachment': 'scroll'
+				} );
+
+				colorPreview.outputColor( 'boldgrid_background_color', 'body', [
+					'background-color', 'text-default'
+				] );
 			}
-
-			$customStyles.remove();
-
-			$body.css( {
-				'background-image': backgroundPattern,
-				'background-size': 'auto',
-				'background-repeat': 'repeat',
-				'background-attachment': 'scroll'
-			} );
-
-			colorPreview.outputColor( 'boldgrid_background_color', 'body', [
-				'background-color', 'text-default'
-			] );
 		};
 
 		backgroundRepeatUpdate = function( ) {
@@ -394,6 +396,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				bgImgSize = api( 'boldgrid_background_image_size' )();
 				backgroundAttachmentUpdate( bgAttach );
 				backgroundSizeUpdate( bgImgSize );
+				backgroundPreview.setImage();
 
 				if ( 'parallax' !== bgAttach ) {
 					setBackgroundVerticalPosition();

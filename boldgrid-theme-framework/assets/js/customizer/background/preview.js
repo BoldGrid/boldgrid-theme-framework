@@ -91,9 +91,6 @@ export class Preview {
 	_setupImageChange() {
 		api(
 			'bgtfw_background_overlay_alpha',
-
-			// 'boldgrid_background_type',
-
 			'bgtfw_background_overlay',
 			'bgtfw_background_overlay_color',
 			'background_image',

@@ -59,6 +59,7 @@ export class Preview {
 	 * @since 2.0.0
 	 */
 	_onLoad() {
+		this.setImage();
 		this._setupImageChange();
 	}
 

@@ -537,6 +537,6 @@ gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'f
 
 gulp.task('watch', function () {
 	gulp.start( 'sass:watch' );
-	gulp.watch(config.src + '/**/*.{php,txt,json,css,mo,po,pot}', ['frameworkFiles']);
+	gulp.watch(config.src + '/**/*.{php,txt,json,css,mo,po,pot}', ['frameworkFiles', 'translate']);
 	gulp.watch(config.src + '/**/*.js', ['framework-js']);
 });

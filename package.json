@@ -9,6 +9,7 @@
     "php-codesniffer": "npm run phpcs-installStandards && php ./node_modules/PHP_CodeSniffer/scripts/phpcs -p -s -v -n ./src --standard=./phpcs.ruleset.xml --ignore=*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php",
     "build": "gulp build",
     "build-webpack": "webpack --color",
+    "build-webpack-dev": "cross-env NODE_ENV=development webpack --color",
     "dev": "gulp watch",
     "quick-build": "gulp qbuild"
   },
@@ -31,6 +32,7 @@
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0-beta",
     "babel-preset-minify": "^0.4.3",
+    "cross-env": "^5.2.0",
     "cssnano": "^3.10.0",
     "del": "^2.2.0",
     "ejs-loader": "^0.3.1",

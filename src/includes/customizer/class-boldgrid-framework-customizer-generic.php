@@ -202,7 +202,7 @@ class Boldgrid_Framework_Customizer_Generic {
 			],
 			'large' => [
 				'min' => $device_config['desktop'] + 1,
-			]
+			],
 		];
 
 		return $ranges;

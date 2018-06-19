@@ -196,7 +196,7 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @return string $css CSS for headings styles.
 	 */
 	public function generate_headings_css( $css = '' ) {
-		$headings_font = get_theme_mod( 'bgtfw_headings_typography', $this->configs['customizer-options']['typography']['defaults']['headings_font_size'] );
+		$headings_font = get_theme_mod( 'bgtfw_headings_typography' );
 
 		$headings_font_size = ! empty( $headings_font['font-size'] ) ? $headings_font['font-size'] : $this->configs['customizer-options']['typography']['defaults']['headings_font_size'];
 

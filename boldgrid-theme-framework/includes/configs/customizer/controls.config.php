@@ -1226,13 +1226,12 @@ return array(
 		'section'     => 'bgtfw_menu_visibility_main',
 		'settings'    => 'bgtfw_menu_visibility_main',
 		'label'       => '',
-		'default'     => '',
+		'default'     => [],
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'DeviceVisibility',
 			'settings' => array(
 				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
-				'setting' => [],
 				'control' => array(
 					'selectors' => array( '#main-menu' ),
 				),

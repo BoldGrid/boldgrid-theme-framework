@@ -6,7 +6,8 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	'use strict';
 
 	BOLDGRID.CUSTOMIZER.Background = {};
-	var self = BOLDGRID.CUSTOMIZER.Background;
+	var self = BOLDGRID.CUSTOMIZER.Background,
+		api = wp.customize;
 
 	var $window = $( window );
 
@@ -184,18 +185,14 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 				wp.customize.control( 'boldgrid_background_horizontal_position' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_vertical_position' ).deactivate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_image_size' ).deactivate( { duration: 0 } );
-				wp.customize.control( 'bgtfw_background_overlay' ).deactivate( { duration: 0 } );
-				toggleOverlay();
 				getAttachmentControl().deactivate( { duration: 0 } );
 				wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
 			} else {
 				wp.customize.control( 'boldgrid_background_horizontal_position' ).activate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_vertical_position' ).activate( { duration: 0 } );
-				wp.customize.control( 'bgtfw_background_overlay' ).activate( { duration: 0 } );
 				wp.customize.control( 'boldgrid_background_image_size' ).activate( { duration: 0 } );
 				getAttachmentControl().activate( { duration: 0 } );
 				wp.customize.control( 'background_repeat' ).activate( { duration: 0 } );
-				toggleOverlay();
 			}
 
 			if ( bg_attach === 'parallax' ) {
@@ -205,6 +202,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			}
 		}
 
+		toggleOverlay( bg_type );
 	};
 
 	/**
@@ -212,14 +210,20 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	 *
 	 * @since 2.0.0
 	 */
-	var toggleOverlay = function () {
-		if ( wp.customize('bgtfw_background_overlay')() ) {
-			wp.customize.control( 'bgtfw_background_overlay_color' ).activate( { duration: 0 } );
-			wp.customize.control( 'bgtfw_background_overlay_alpha' ).activate( { duration: 0 } );
-		} else {
-			wp.customize.control( 'bgtfw_background_overlay_color' ).deactivate( { duration: 0 } );
-			wp.customize.control( 'bgtfw_background_overlay_alpha' ).deactivate( { duration: 0 } );
-		}
+	var toggleOverlay = function ( bgType ) {
+		var state,
+			opts = { duration: 0 },
+			overlayControl = api.control( 'bgtfw_background_overlay' ),
+			backgroundImage = api( 'background_image' ),
+			overlayColorControl = api.control( 'bgtfw_background_overlay_color' ),
+			overlayAlphaControl = api.control( 'bgtfw_background_overlay_alpha' );
+
+		state = bgType === 'pattern' || ! backgroundImage() ? 'deactivate' : 'activate';
+		overlayControl[ state ]( opts );
+
+		state = overlayControl.setting() && overlayControl.active() ? 'activate' : 'deactivate';
+		overlayColorControl[ state ]( opts );
+		overlayAlphaControl[ state ]( opts );
 	};
 
 	var getAttachmentControl = function() {

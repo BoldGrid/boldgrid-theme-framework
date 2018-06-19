@@ -41,16 +41,18 @@ export class Preview {
 	* @since 2.0.0
 	*/
 	setImage() {
-		const backgroundImage = api( 'background_image' )();
+		if ( 'image' === api( 'boldgrid_background_type' )() ) {
+			const backgroundImage = api( 'background_image' )();
 
-		let css = '';
-		if ( backgroundImage && api( 'bgtfw_background_overlay' )() ) {
-			css = this._getOverlayCss( backgroundImage );
-		} else if ( backgroundImage ) {
-			css = `url("${backgroundImage}")`;
+			let css = '';
+			if ( backgroundImage && api( 'bgtfw_background_overlay' )() ) {
+				css = this._getOverlayCss( backgroundImage );
+			} else if ( backgroundImage ) {
+				css = `url("${backgroundImage}")`;
+			}
+
+			this.$body.css( 'background-image', css );
 		}
-
-		this.$body.css( 'background-image', css );
 	}
 
 	/**
@@ -59,7 +61,6 @@ export class Preview {
 	 * @since 2.0.0
 	 */
 	_onLoad() {
-		this.setImage();
 		this._setupImageChange();
 	}
 

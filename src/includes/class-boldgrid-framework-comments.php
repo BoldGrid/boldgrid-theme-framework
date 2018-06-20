@@ -81,11 +81,12 @@ class BoldGrid_Framework_Comments {
 			</header>
 
 			<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-			<nav id="comment-nav-above" class="comment-navigation" role="navigation">
-				<h1 class="sr-only"><?php _e( 'Comment navigation', 'bgtfw' ); ?></h1>
-				<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'bgtfw' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'bgtfw' ) ); ?></div>
-			</nav><!-- #comment-nav-above -->
+			<div id="comment-nav-above" class="comment-navigation" role="navigation">
+				<?php
+					$paginate = new BoldGrid_Framework_Pagination();
+					$paginate->comments();
+				?>
+			</div><!-- #comment-nav-above -->
 			<?php endif; // end comment navigation ?>
 
 			<ol class="comment-list">
@@ -106,11 +107,12 @@ class BoldGrid_Framework_Comments {
 			</ol><!-- .comment-list -->
 
 			<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-			<nav id="comment-nav-below" class="comment-navigation" role="navigation">
-				<h1 class="sr-only"><?php _e( 'Comment navigation', 'bgtfw' ); ?></h1>
-				<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'bgtfw' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'bgtfw' ) ); ?></div>
-			</nav><!-- #comment-nav-below -->
+			<div id="comment-nav-below" class="comment-navigation">
+				<?php
+					$paginate = new BoldGrid_Framework_Pagination();
+					$paginate->comments();
+				?>
+			</div><!-- #comment-nav-below -->
 			<?php endif; // check for comment navigation ?>
 
 		<?php endif; // have_comments() ?>

@@ -287,12 +287,12 @@ $names: color background background-color border-color;
 
 .panel {
 	&-default {
-		border-color: $palette-primary_1;
+		border-color: $palette-primary_2;
 	}
 	&-footer, &-default > &-heading {
-		background-color: $palette-primary_1;
-		color: $text-contrast-palette-primary_1;
-		border-color: $palette-primary_1;
+		background-color: $palette-primary_2;
+		color: $text-contrast-palette-primary_2;
+		border-color: $palette-primary_2;
 	}
 }
 

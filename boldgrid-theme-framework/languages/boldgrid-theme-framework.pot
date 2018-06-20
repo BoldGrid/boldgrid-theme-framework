@@ -61,85 +61,73 @@ msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/includes/class-boldgrid-framework-comments.php:85, src/includes/class-boldgrid-framework-comments.php:110
-msgid "Comment navigation"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-comments.php:86, src/includes/class-boldgrid-framework-comments.php:111
-msgid "&larr; Older Comments"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-comments.php:87, src/includes/class-boldgrid-framework-comments.php:112
-msgid "Newer Comments &rarr;"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-comments.php:124
+#: src/includes/class-boldgrid-framework-comments.php:126
 msgid "Comments are closed."
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:130
+#: src/includes/class-boldgrid-framework-comments.php:132
 msgid "Leave a Reply"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:131
+#: src/includes/class-boldgrid-framework-comments.php:133
 msgid "Leave a Reply to %s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:132
+#: src/includes/class-boldgrid-framework-comments.php:134
 msgid "Cancel Reply"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:133
+#: src/includes/class-boldgrid-framework-comments.php:135
 msgid "Post Comment"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:137
+#: src/includes/class-boldgrid-framework-comments.php:139
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:159
+#: src/includes/class-boldgrid-framework-comments.php:161
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:159, src/includes/class-boldgrid-framework-layouts-post-meta.php:179, src/includes/class-boldgrid-framework-title.php:100
+#: src/includes/class-boldgrid-framework-comments.php:161, src/includes/class-boldgrid-framework-layouts-post-meta.php:179, src/includes/class-boldgrid-framework-title.php:100
 msgid "Edit"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:176
+#: src/includes/class-boldgrid-framework-comments.php:178
 msgid "%s <span class=\"says\">says:</span>"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:184
+#: src/includes/class-boldgrid-framework-comments.php:186
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:189
+#: src/includes/class-boldgrid-framework-comments.php:191
 msgid "<span style=\"margin-left: 5px;\" class=\"fa fa-edit\"></span> Edit"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:194
+#: src/includes/class-boldgrid-framework-comments.php:196
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:236
+#: src/includes/class-boldgrid-framework-comments.php:238
 msgid "Name"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:242
+#: src/includes/class-boldgrid-framework-comments.php:244
 msgid "Email"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:249
+#: src/includes/class-boldgrid-framework-comments.php:251
 msgid "Website"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:259
+#: src/includes/class-boldgrid-framework-comments.php:261
 msgctxt "noun"
 msgid "Comment"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:263
+#: src/includes/class-boldgrid-framework-comments.php:265
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
 msgstr ""
 

@@ -54,8 +54,8 @@ return array(
 				'requireText' => true,
 			),
 			array(
-				'control' => 'boldgrid_logo_setting',
-				'selector' => '.logo-site-title img',
+				'control' => 'custom_logo',
+				'selector' => '.custom-logo-link',
 				'isParentColumn' => true,
 			),
 			array(

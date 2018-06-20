@@ -1,6 +1,7 @@
 .single {
 	.post {
 		flex-direction: column;
+		flex-wrap: nowrap;
 		.entry-header {
 			.entry-title {
 				margin: 2.4rem 0;

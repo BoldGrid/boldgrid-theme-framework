@@ -1,11 +1,24 @@
 .comments {
-	.comment-list, .comment {
+	.comment-list {
+		padding-left: 0;
+	}
+
+	.comment {
 		display: block;
 	}
-}
 
-.comment-content a {
-	word-wrap: break-word;
+	.comment-content {
+		display: grid;
+
+		a {
+			word-wrap: break-word;
+		}
+	}
+	.comment-notes {
+		#email-notes {
+			display: block;
+		}
+	}
 }
 
 .bypostauthor {
@@ -105,20 +118,6 @@ fieldset[disabled] a#commentform #submit {
 			text-align: left;
 			margin-bottom: 0;
 			padding-top: 7px;
-		}
-		.form-group-lg .control-label {
-			padding-top: 14.333333px;
-			font-size: 18px;
-		}
-		.form-group-sm .control-label {
-			padding-top: 6px;
-			font-size: 12px;
-		}
-		p.form-submit {
-			width: 75%;
-		}
-		p.form-submit {
-			margin: 0;
 		}
 	}
 }

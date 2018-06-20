@@ -1187,6 +1187,8 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 
 .single .post .entry-header .entry-title {
@@ -2327,12 +2329,24 @@ main > article.post.format-aside .entry-header {
 /*--------------------------------------------------------------
 # Comments
 --------------------------------------------------------------*/
-.comments .comment-list, .comments .comment {
+.comments .comment-list {
+  padding-left: 0;
+}
+
+.comments .comment {
   display: block;
 }
 
-.comment-content a {
+.comments .comment-content {
+  display: grid;
+}
+
+.comments .comment-content a {
   word-wrap: break-word;
+}
+
+.comments .comment-notes #email-notes {
+  display: block;
 }
 
 .bypostauthor {
@@ -2440,20 +2454,6 @@ fieldset[disabled] a#commentform #submit {
     text-align: left;
     margin-bottom: 0;
     padding-top: 7px;
-  }
-  #commentform .form-group-lg .control-label {
-    padding-top: 14.333333px;
-    font-size: 18px;
-  }
-  #commentform .form-group-sm .control-label {
-    padding-top: 6px;
-    font-size: 12px;
-  }
-  #commentform p.form-submit {
-    width: 75%;
-  }
-  #commentform p.form-submit {
-    margin: 0;
   }
 }
 

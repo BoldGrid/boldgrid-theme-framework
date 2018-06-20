@@ -66,12 +66,28 @@ export class Control {
 			controlSettings = wpControl.params.choices.settings || {};
 
 		this._setDefaults( wpControl, controlSettings );
+		this._setSavedValues( wpControl, controlSettings );
 		bgControl = new this.classes[ wpControl.params.choices.type ]( controlSettings, wpControl );
 
 		this._bindRender( wpControl, bgControl );
 		this._bindChangeEvent( wpControl, bgControl );
 	}
 
+	/**
+	 * Pass the defaults value from params into the setting option of the control.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  {object} wpControl       Wordpress control.
+	 * @param  {object} controlSettings Current Control settings.
+	 */
+	_setDefaults( wpControl, controlSettings ) {
+		const defaults = wpControl.params.default;
+
+		if ( defaults ) {
+			controlSettings.control.setting = defaults;
+		}
+	}
 
 	/**
 	 * Get the default values defined by the theme mod.
@@ -81,10 +97,10 @@ export class Control {
 	 * @param  {object} wpControl       Wordpress control.
 	 * @param  {object} controlSettings Current Control settings.
 	 */
-	_setDefaults( wpControl, controlSettings ) {
+	_setSavedValues( wpControl, controlSettings ) {
 		let defaults = wpControl.setting.get() || false;
 
-		if ( _.isObject( defaults ) ) {
+		if ( _.isObject( defaults ) && defaults.media ) {
 			controlSettings.defaults = defaults;
 
 			try {

@@ -80,7 +80,7 @@ class Boldgrid_Framework_Customizer_Generic {
 				$theme_mod_val = get_theme_mod( $control['settings'] );
 
 				// If theme mod is set, use it to create styles.
-				if ( $theme_mod_val ) {
+				if ( $theme_mod_val && ! empty( $theme_mod_val['media'] ) ) {
 					$css = ! empty( $theme_mod_val['css'] ) ? $theme_mod_val['css'] : false;
 
 				// If theme mod is not set, try to generate styles from default settings.
@@ -129,7 +129,10 @@ class Boldgrid_Framework_Customizer_Generic {
 	 */
 	public function device_visibility_styles( $control ) {
 		$css = '';
-		foreach ( $control['choices']['settings']['setting'] as $device ) {
+		$defaults = get_theme_mod( $control['settings'] );
+		$defaults = is_array( $defaults ) ? $defaults : [];
+
+		foreach ( $defaults as $device ) {
 			$selector = implode( ',', $control['choices']['settings']['control']['selectors'] );
 			$css .= $this->create_media_prefix( $device );
 			$css .= $css ? "{ ${selector} { display: none !important;} }" : '';

@@ -735,8 +735,11 @@ label svg {
       .border-type-control ul li input {
         margin: 0 7px; }
 
-.boldgrid-control input {
+.boldgrid-control input[type="radio"] {
   width: 16px; }
+
+.boldgrid-control input[type="checkbox"] {
+  height: 100%; }
 
 .boldgrid-control.slider-control .number,
 .boldgrid-control.slider-control .slider {

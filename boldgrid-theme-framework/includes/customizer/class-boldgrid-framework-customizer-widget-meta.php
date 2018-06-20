@@ -437,7 +437,6 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		// Footer sidebars defaults.
 		} elseif ( strpos( $sidebar_id, 'footer' ) !== false ) {
 			$settings[ $sidebar_id ]['background_color'] = get_theme_mod( 'bgtfw_footer_color', $this->get_control_default( 'bgtfw_footer_color' ) );
-			$settings[ $sidebar_id ]['headings_color'] = get_theme_mod( 'bgtfw_footer_headings_color', $this->get_control_default( 'bgtfw_footer_headings_color' ) );
 			$settings[ $sidebar_id ]['links_color'] = get_theme_mod( 'bgtfw_footer_links', $this->get_control_default( 'bgtfw_footer_links' ) );
 
 		// All other sidebar defaults.

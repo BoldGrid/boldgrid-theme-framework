@@ -26,7 +26,6 @@ return array(
 		'bgtfw_footer_layouts',
 		'footer_container',
 		'bgtfw_footer_color',
-		'bgtfw_footer_headings_color',
 		'bgtfw_footer_links',
 	),
 	'bgtfw_header_overlay' => array(

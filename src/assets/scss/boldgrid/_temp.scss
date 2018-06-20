@@ -580,3 +580,20 @@ nav.navigation.posts-navigation {
 	min-height: 100%;
 	flex-direction: column;
 }
+
+
+// Featured Img Pages.
+body.page .has-post-thumbnail .entry-header {
+	margin-left: -2.8rem;
+	margin-right: -2.8rem;
+	padding: 2.8rem;
+	.entry-title {
+		text-align: center;
+		a {
+			color: currentColor;
+			&:hover, &:focus {
+				text-decoration: none;
+			}
+		}
+	}
+}

@@ -5173,3 +5173,21 @@ nav.navigation.posts-navigation {
       -ms-flex-direction: column;
           flex-direction: column;
 }
+
+body.page .has-post-thumbnail .entry-header {
+  margin-left: -2.8rem;
+  margin-right: -2.8rem;
+  padding: 2.8rem;
+}
+
+body.page .has-post-thumbnail .entry-header .entry-title {
+  text-align: center;
+}
+
+body.page .has-post-thumbnail .entry-header .entry-title a {
+  color: currentColor;
+}
+
+body.page .has-post-thumbnail .entry-header .entry-title a:hover, body.page .has-post-thumbnail .entry-header .entry-title a:focus {
+  text-decoration: none;
+}

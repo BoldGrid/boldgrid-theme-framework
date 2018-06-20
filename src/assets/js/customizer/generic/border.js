@@ -33,7 +33,7 @@ export class Border extends BaseBorder {
 
 		// If an associated color control is found bind events for it.
 		if ( this.colorControl ) {
-			this.toggleVisibility( this.getSettings() );
+			this.toggleVisibility();
 			this._bindBorderColor();
 			this._bindParentChange();
 			this._bindCustomizerRefresh();
@@ -47,11 +47,11 @@ export class Border extends BaseBorder {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  {object} settings Settings.
 	 * @return {boolean}         Was the control state changed.
 	 */
-	toggleVisibility( settings ) {
-		return ! settings.type ? this.colorControl.deactivate() : this.colorControl.activate();
+	toggleVisibility() {
+		return ! this.settings.media || ! this.settings.media[ this.getSelectedDevice() ].type ?
+			this.colorControl.deactivate() : this.colorControl.activate();
 	}
 
 	/**
@@ -82,7 +82,7 @@ export class Border extends BaseBorder {
 	 */
 	_bindCustomizerRefresh() {
 		$( window ).on( 'boldgrid_customizer_refresh', () => {
-			this.toggleVisibility( this.getSettings() );
+			this.toggleVisibility();
 		} );
 	}
 
@@ -92,7 +92,7 @@ export class Border extends BaseBorder {
 	 * @since 2.0.0
 	 */
 	_bindBorderColor() {
-		this.colorControl.setting.bind( () => this.events.emit( 'change', this.getSettings() ) );
+		this.colorControl.setting.bind( () => this._triggerChangeEvent() );
 	}
 
 	/**
@@ -101,6 +101,6 @@ export class Border extends BaseBorder {
 	 * @since 2.0.0
 	 */
 	_bindParentChange() {
-		this.events.on( 'change', ( settings ) => this.toggleVisibility( settings ) );
+		this.events.on( 'change', () => this.toggleVisibility() );
 	}
 }

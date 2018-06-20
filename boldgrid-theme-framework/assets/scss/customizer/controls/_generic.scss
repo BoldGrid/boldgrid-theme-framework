@@ -1,6 +1,10 @@
 .boldgrid-control {
-	input {
+	input[type="radio"] {
 		width: 16px;
+	}
+
+	input[type="checkbox"] {
+		height: 100%;
 	}
 
 	&.slider-control {

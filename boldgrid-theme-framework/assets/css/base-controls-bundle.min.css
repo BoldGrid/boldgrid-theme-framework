@@ -1,12 +1,5 @@
 .directional-control {
   position: relative; }
-  .directional-control .refresh svg {
-    width: 19px;
-    margin: 0 20px;
-    position: absolute;
-    transition: fill 0.25s; }
-    .directional-control .refresh svg:hover {
-      fill: #f95b26; }
   .directional-control .configs {
     position: absolute;
     right: 28px;
@@ -14,7 +7,8 @@
   .directional-control .units {
     font-size: 12px;
     color: currentColor;
-    text-align: right; }
+    text-align: right;
+    margin-top: -5px; }
     .directional-control .units label {
       margin: 4px;
       cursor: pointer; }
@@ -37,15 +31,25 @@
     font-size: 15px;
     margin-bottom: 25px; }
   .directional-control .delete-saved {
-    text-align: center;
     font-size: 12px;
-    text-decoration: underline;
-    margin: 30px 0; }
+    margin: 15px 0;
+    text-align: center; }
     .directional-control .delete-saved a {
-      color: black;
+      text-decoration: underline;
       transition: color 0.25s; }
-      .directional-control .delete-saved a:hover {
-        color: #f95b26; }
+      .directional-control .delete-saved a:first-of-type::after {
+        content: ' | ';
+        margin: 0 6px;
+        display: inline-block;
+        color: #7a7a7a; }
+      .directional-control .delete-saved a.undo {
+        color: black; }
+        .directional-control .delete-saved a.undo:hover {
+          color: #f95b26; }
+      .directional-control .delete-saved a.remove {
+        color: red; }
+        .directional-control .delete-saved a.remove:hover {
+          color: red; }
 
 .boldgrid-control.slider-control label {
   font-size: 13px;
@@ -91,6 +95,10 @@
 .boldgrid-control .device {
   position: relative;
   text-align: right; }
+  .boldgrid-control .device [value="base"] + label svg {
+    vertical-align: top;
+    transform: scale(1.4);
+    margin-right: 6px; }
   .boldgrid-control .device ul {
     list-style: none;
     margin: 10px 0;
@@ -102,7 +110,7 @@
     font-size: 12px; }
   .boldgrid-control .device li {
     display: inline;
-    margin: 10px 4px; }
+    margin: 10px 3px; }
   .boldgrid-control .device input {
     display: none; }
     .boldgrid-control .device input + label {

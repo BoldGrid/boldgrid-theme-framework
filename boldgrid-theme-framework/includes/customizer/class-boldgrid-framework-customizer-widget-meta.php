@@ -394,8 +394,9 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 			$selectors = array();
 
 			foreach ( $this->configs['customizer-options']['typography']['selectors'] as $selector => $options ) {
-				if ( 'headings' === $options['type'] ) {
-					$selectors[] = "#{$sidebar_id} {$selector}";
+				$exploded = explode( ',', $selector );
+				foreach( $exploded as $explode ){
+					$selectors[] = "#{$sidebar_id} {$explode}";
 				}
 			}
 

@@ -2333,6 +2333,16 @@ main > article.post.format-aside .entry-header {
   padding-left: 0;
 }
 
+.comments .comment-list .children {
+  padding-left: 20px;
+}
+
+@media only screen and (min-width: 480px) {
+  .comments .comment-list .children {
+    padding-left: 60px;
+  }
+}
+
 .comments .comment {
   display: block;
 }
@@ -2347,6 +2357,10 @@ main > article.post.format-aside .entry-header {
 
 .comments .comment-notes #email-notes {
   display: block;
+}
+
+.comments .media > .pull-left {
+  padding-bottom: 10px;
 }
 
 .bypostauthor {

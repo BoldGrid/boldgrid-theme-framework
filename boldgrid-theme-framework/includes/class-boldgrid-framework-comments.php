@@ -174,9 +174,9 @@ class BoldGrid_Framework_Comments {
 				<div class="media-body">
 					<div class="media-body-wrap panel panel-default">
 						<div class="panel-heading">
-							<h5 class="media-heading">
+							<div class="media-heading">
 								<?php printf( __( '%s <span class="says">says:</span>', 'bgtfw' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link( ) ) ); ?>
-							</h5>
+							</div>
 
 							<div class="comment-meta">
 

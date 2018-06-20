@@ -11,6 +11,9 @@
 
 	.comment {
 		display: block;
+		.panel-heading a {
+			color: currentColor;
+		}
 	}
 
 	.comment-content {

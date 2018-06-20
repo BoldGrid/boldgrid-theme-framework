@@ -2347,6 +2347,10 @@ main > article.post.format-aside .entry-header {
   display: block;
 }
 
+.comments .comment .panel-heading a {
+  color: currentColor;
+}
+
 .comments .comment-content {
   display: grid;
 }

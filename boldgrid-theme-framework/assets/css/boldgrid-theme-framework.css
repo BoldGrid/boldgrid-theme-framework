@@ -603,22 +603,14 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .blog main > article.post .entry-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 auto;
-          flex: 1 0 auto;
   padding-left: 15px;
   padding-right: 15px;
   width: 100%;
   word-break: break-word;
+}
+
+.blog main > article.post .entry-content h1, .blog main > article.post .entry-content .h1, .blog main > article.post .entry-content h2, .blog main > article.post .entry-content .h2, .blog main > article.post .entry-content h3, .blog main > article.post .entry-content .h3, .blog main > article.post .entry-content h4, .blog main > article.post .entry-content .h4, .blog main > article.post .entry-content h5, .blog main > article.post .entry-content .h5, .blog main > article.post .entry-content h6, .blog main > article.post .entry-content .h6 {
+  color: currentColor;
 }
 
 .blog main > article.post .entry-content > :first-child:not(.boldgrid-section) {
@@ -628,6 +620,8 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .blog main > article.post .entry-content .boldgrid-section {
   margin-left: -15px;
   margin-right: -15px;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
   width: calc( 100% + 30px);
 }
 
@@ -826,7 +820,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 @media only screen and (max-width: 480px) {
-  .blog[class*="col"] main > article.post:not(.sticky) {
+  .blog[class*="col"] main > article.post {
     width: calc((100% / 1 - .5vw) - 2vw);
   }
 }
@@ -953,22 +947,14 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .archive main > article.post .entry-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 auto;
-          flex: 1 0 auto;
   padding-left: 15px;
   padding-right: 15px;
   width: 100%;
   word-break: break-word;
+}
+
+.archive main > article.post .entry-content h1, .archive main > article.post .entry-content .h1, .archive main > article.post .entry-content h2, .archive main > article.post .entry-content .h2, .archive main > article.post .entry-content h3, .archive main > article.post .entry-content .h3, .archive main > article.post .entry-content h4, .archive main > article.post .entry-content .h4, .archive main > article.post .entry-content h5, .archive main > article.post .entry-content .h5, .archive main > article.post .entry-content h6, .archive main > article.post .entry-content .h6 {
+  color: currentColor;
 }
 
 .archive main > article.post .entry-content > :first-child:not(.boldgrid-section) {
@@ -978,6 +964,8 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .archive main > article.post .entry-content .boldgrid-section {
   margin-left: -15px;
   margin-right: -15px;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
   width: calc( 100% + 30px);
 }
 
@@ -1176,7 +1164,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 @media only screen and (max-width: 480px) {
-  .archive[class*="col"] main > article.post:not(.sticky) {
+  .archive[class*="col"] main > article.post {
     width: calc((100% / 1 - .5vw) - 2vw);
   }
 }

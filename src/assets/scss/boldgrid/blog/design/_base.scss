@@ -86,12 +86,17 @@ main {
 			padding-right: 15px;
 			width: 100%;
 			word-break: break-word;
+			h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+				color: currentColor;
+			}
 			> :first-child:not(.boldgrid-section) {
 				margin: 1.4rem 0 0 0;
 			}
 			.boldgrid-section {
 				margin-left: -15px;
 				margin-right: -15px;
+				padding-top: 1.4rem;
+				padding-bottom: 1.4rem;
 				width: calc( 100% + 30px );
 				> .container {
 					width: auto;

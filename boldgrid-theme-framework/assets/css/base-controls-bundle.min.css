@@ -1,5 +1,6 @@
 .directional-control {
-  position: relative; }
+  position: relative;
+  margin-top: 40px; }
   .directional-control .configs {
     position: absolute;
     right: 28px;
@@ -98,11 +99,49 @@
   .boldgrid-control .device [value="base"] + label svg {
     vertical-align: top;
     transform: scale(1.4);
-    margin-right: 6px; }
+    margin-right: 6px;
+    position: relative;
+    top: 3px; }
   .boldgrid-control .device ul {
     list-style: none;
     margin: 10px 0;
     padding: 0; }
+  .boldgrid-control .device input:checked ~ .relationship {
+    display: block; }
+  .boldgrid-control .device ul li:first-of-type input:checked ~ .relationship {
+    display: none; }
+  .boldgrid-control .device .relationship {
+    display: none;
+    user-select: none;
+    background: black;
+    position: absolute;
+    top: -45px;
+    border-radius: 4px;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 80px;
+    cursor: pointer;
+    text-align: center; }
+    .boldgrid-control .device .relationship::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 7px solid #121212;
+      position: absolute;
+      bottom: -7px;
+      left: 50%;
+      transform: translateX(-50%); }
+    .boldgrid-control .device .relationship svg {
+      padding: 0 2px;
+      vertical-align: -webkit-baseline-middle;
+      vertical-align: -moz-middle-with-baseline;
+      fill: white; }
+    .boldgrid-control .device .relationship > svg:last-of-type {
+      width: 15px;
+      position: relative;
+      top: -2px; }
   .boldgrid-control .device .selection-text {
     position: absolute;
     right: 0;
@@ -110,10 +149,12 @@
     font-size: 12px; }
   .boldgrid-control .device li {
     display: inline;
-    margin: 10px 3px; }
+    margin: 10px 0;
+    position: relative; }
   .boldgrid-control .device input {
     display: none; }
     .boldgrid-control .device input + label {
+      display: table-cell;
       cursor: pointer;
       vertical-align: top; }
     .boldgrid-control .device input:checked + label svg {
@@ -121,7 +162,26 @@
     .boldgrid-control .device input:checked + label {
       color: #f95b26; }
   .boldgrid-control .device svg {
+    padding: 0 5px;
     width: 20px; }
+  .boldgrid-control .device .relationship-unlinked,
+  .boldgrid-control .device .relationship-linked {
+    display: none; }
+  .boldgrid-control .device .relationship-unlinked svg {
+    transform: scale(1.3) translateY(1px) translateX(0); }
+  .boldgrid-control .device .relationship-linked svg {
+    transform: rotateZ(-45deg);
+    width: 14px; }
+  .boldgrid-control .device[data-relationship-linked="1"] .relationship-linked {
+    display: inline; }
+  .boldgrid-control .device[data-relationship-linked="0"] .relationship-unlinked {
+    display: inline; }
+  .boldgrid-control .device[data-relationship-linked="0"] .relationship svg {
+    padding: 0; }
+  .boldgrid-control .device[data-relationship-linked="0"] .relationship {
+    background: rgba(0, 0, 0, 0.23); }
+    .boldgrid-control .device[data-relationship-linked="0"] .relationship::after {
+      border-top-color: rgba(0, 0, 0, 0.23); }
 
 .mdc-switch {
   display: inline-block;
@@ -763,5 +823,5 @@ label svg {
   top: 5px; }
 
 .boldgrid-control.directional-control {
-  margin: 20px 0; }
+  margin: 40px 0 20px; }
 

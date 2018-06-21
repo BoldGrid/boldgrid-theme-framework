@@ -139,12 +139,12 @@ main {
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
-	&[class*="col"]:not(.col1) main > article.post {
+	&[class*="col"]:not(.col1) main > article.post:not(.sticky) {
 		width: calc((100% / 2 - .5vw) - 2vw);
 	}
 }
 @media only screen and (max-width : 480px) {
-	&[class*="col"] main > article.post {
+	&[class*="col"] main > article.post:not(.sticky) {
 		width: calc((100% / 1 - .5vw) - 2vw);
 	}
 }

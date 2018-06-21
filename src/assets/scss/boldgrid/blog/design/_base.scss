@@ -82,10 +82,6 @@ main {
 			padding-left: 15px;
 		}
 		.entry-content {
-			display: flex;
-			flex-wrap: wrap;
-			flex-direction: column;
-			flex: 1 0 auto;
 			padding-left: 15px;
 			padding-right: 15px;
 			width: 100%;
@@ -144,7 +140,7 @@ main {
 	}
 }
 @media only screen and (max-width : 480px) {
-	&[class*="col"] main > article.post:not(.sticky) {
+	&[class*="col"] main > article.post {
 		width: calc((100% / 1 - .5vw) - 2vw);
 	}
 }

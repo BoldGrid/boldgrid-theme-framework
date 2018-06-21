@@ -51,7 +51,7 @@ export class Border extends BaseBorder {
 	 */
 	toggleVisibility() {
 		return ! this.settings.media || ! this.settings.media[ this.getSelectedDevice() ].type ?
-			this.colorControl.deactivate() : this.colorControl.activate();
+			this.colorControl.deactivate( { duration: 0 } ) : this.colorControl.activate( { duration: 0 } );
 	}
 
 	/**
@@ -61,19 +61,48 @@ export class Border extends BaseBorder {
 	 *
 	 * @return {object} Settings.
 	 */
+	getCssRule() {
+		let rules = super.getCssRule();
+
+		if ( this.colorControl && this.colorControl.setting() ) {
+			rules += 'border-color:' + this.paletteSelector.getColor( this.colorControl.setting() ) + ';';
+		}
+
+		return rules;
+	}
+
+	/**
+	 * Given an object of settings, change the inputs.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param  {object} settings Settings for control.
+	 */
+	applySettings( settings ) {
+		super.applySettings( settings );
+
+		if ( this.colorControl ) {
+			this.colorControl.setting( settings.color || null );
+		}
+	}
+
+	/**
+	 * Get the current settings.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return {object} Settings for a control.
+	 */
 	getSettings() {
 		let settings = super.getSettings();
 
 		if ( this.colorControl ) {
-			let valueValue = this.paletteSelector.getColor( this.colorControl.setting() ),
-				colorCSS = this.controlOptions.control.selectors.join( ',' ) +
-					'{border-color:' + valueValue + '}';
-
-			settings.css += colorCSS;
+			settings.color = this.colorControl.setting();
 		}
 
 		return settings;
 	}
+
 
 	/**
 	 * When the customizer is refreshed update the visibility of the color control.

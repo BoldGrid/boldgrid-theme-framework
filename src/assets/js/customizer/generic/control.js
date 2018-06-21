@@ -124,7 +124,7 @@ export class Control {
 		wpControl.deferred.embedded.done( () => {
 			setTimeout( () => {
 				const $el = $( wpControl.selector ),
-					$input = $el.find( 'input' );
+					$input = $el.find( 'label' );
 
 				$input.after( bgControl.render() );
 

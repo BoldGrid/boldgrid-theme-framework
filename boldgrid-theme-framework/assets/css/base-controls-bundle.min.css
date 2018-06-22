@@ -164,7 +164,7 @@
     .boldgrid-control .device input:checked + label {
       color: #f95b26; }
   .boldgrid-control .device svg {
-    padding: 0 5px;
+    padding: 0 2px;
     width: 20px; }
   .boldgrid-control .device .relationship-unlinked,
   .boldgrid-control .device .relationship-linked {

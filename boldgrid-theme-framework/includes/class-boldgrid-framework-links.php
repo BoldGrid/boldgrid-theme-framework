@@ -19,6 +19,13 @@
  */
 class Boldgrid_Framework_Links {
 
+	/**
+	 * BGTFW Configs.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @var array Configs.
+	 */
 	protected $configs;
 
 	/**
@@ -83,7 +90,8 @@ class Boldgrid_Framework_Links {
 		$decoration_hover = $decoration_hover ? 'underline' : 'none';
 		$excludes = ':not(.btn):not(.button-primary):not(.button-secondary)';
 
-		$selectors = self::$defaultLinkSelectors;
+		// Grab the filtered selectors.
+		$selectors = $this->configs['customizer']['controls']['bgtfw_body_link_color']['choices']['selectors'];
 
 		$css = '';
 		foreach ( $selectors as $selector ) {

@@ -637,6 +637,7 @@ return array(
 		'section'    => 'bgtfw_body_link_design',
 		'default'    => 'color-1',
 		'choices'    => array(
+			'selectors' => Boldgrid_Framework_Links::$defaultLinkSelectors,
 			'colors' => $formatted_palette,
 			'size'   => $palette->get_palette_size( $formatted_palette ),
 		),

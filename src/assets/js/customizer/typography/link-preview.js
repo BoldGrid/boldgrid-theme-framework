@@ -2,6 +2,7 @@ import { Preview as PreviewUtility } from '../preview';
 import PaletteSelector from '../color/palette-selector';
 
 const api = wp.customize;
+const $ = jQuery;
 
 export class LinkPreview {
 
@@ -11,6 +12,8 @@ export class LinkPreview {
 	constructor() {
 		this.previewUtility = new PreviewUtility();
 		this.paletteSelector = new PaletteSelector();
+
+		this.selectors = [];
 	}
 
 	/**
@@ -19,6 +22,8 @@ export class LinkPreview {
 	 * @since 2.0.0
 	 */
 	bindEvents() {
+		$( () => this.selectors = this.getSelectors() );
+
 		api(
 			'bgtfw_body_link_color',
 			'bgtfw_body_link_color_hover',
@@ -33,6 +38,22 @@ export class LinkPreview {
 	}
 
 	/**
+	 * Get the selectors for links.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return {array} Selectors to use.
+	 */
+	getSelectors() {
+		let selectors = [ '#content a' ];
+		if ( parent.wp.customize.control && parent.wp.customize.control( 'bgtfw_body_link_color' ) ) {
+			selectors = parent.wp.customize.control( 'bgtfw_body_link_color' ).params.choices.selectors;
+		}
+
+		return selectors;
+	}
+
+	/**
 	 * Update the styles for the content.
 	 *
 	 * @since 2.0.0
@@ -43,7 +64,7 @@ export class LinkPreview {
 			decoration = this._getDecoration( 'bgtfw_body_link_decoration' ),
 			decorationHover = this._getDecoration( 'bgtfw_body_link_decoration_hover' ),
 			excludes = ':not(.btn):not(.button-primary):not(.button-secondary)',
-			selectors = [ '#content a' ],
+			selectors = this.selectors,
 			css = '';
 
 		for ( let selector of selectors ) {

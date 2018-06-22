@@ -90,7 +90,7 @@ class Boldgrid_Framework_Customizer_Generic {
 
 				// Enqueue any css if applicable.
 				if ( $css ) {
-					$this->add_inline_style( $style_id, wp_specialchars_decode( $css, $quote_style = ENT_QUOTES ) );
+					self::add_inline_style( $style_id, wp_specialchars_decode( $css, $quote_style = ENT_QUOTES ) );
 				}
 			}
 		}
@@ -175,7 +175,7 @@ class Boldgrid_Framework_Customizer_Generic {
 	 * @param string $id  Desired ID, will have a suffix of -inline-style.
 	 * @param string $css CSS to output.
 	 */
-	public function add_inline_style( $id, $css ) {
+	public static function add_inline_style( $id, $css ) {
 		wp_register_style( $id, false );
 		wp_enqueue_style( $id );
 		wp_add_inline_style( $id, $css );

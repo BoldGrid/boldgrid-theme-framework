@@ -270,12 +270,11 @@ class BoldGrid_Framework_Styles {
 	public function hover_css() {
 		global $boldgrid_theme_framework;
 		$config = $boldgrid_theme_framework->get_configs();
-		$generic = new Boldgrid_Framework_Customizer_Generic( $config );
 		$menus = get_registered_nav_menus();
 		foreach ( $menus as $location => $description ) {
-			$generic->add_inline_style( "hover-{$location}", $this->hover_generate( $location ) );
-			$generic->add_inline_style( "active-link-color-{$location}", $this->active_link_generate( $location ) );
-			$generic->add_inline_style( "menu-colors-{$location}", $this->menu_css( $location ) );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "hover-{$location}", $this->hover_generate( $location ) );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "active-link-color-{$location}", $this->active_link_generate( $location ) );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "menu-colors-{$location}", $this->menu_css( $location ) );
 		}
 	}
 
@@ -401,6 +400,9 @@ class BoldGrid_Framework_Styles {
 		wp_enqueue_style( 'hover.css' );
 
 		$this->hover_css();
+
+		$links = new Boldgrid_Framework_Links( $this->configs );
+		$links->add_styles_frontend();
 
 		/* Component Styles */
 		wp_enqueue_style(

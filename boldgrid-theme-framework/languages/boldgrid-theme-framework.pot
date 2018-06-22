@@ -135,11 +135,11 @@ msgstr ""
 msgid "Default Header Image"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-custom-header.php:216
+#: src/includes/class-boldgrid-framework-custom-header.php:214
 msgid "Play background video"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-custom-header.php:217
+#: src/includes/class-boldgrid-framework-custom-header.php:215
 msgid "Pause background video"
 msgstr ""
 

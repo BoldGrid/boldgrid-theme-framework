@@ -668,7 +668,7 @@ return array(
 		'label'       => esc_html__( 'Hover - Text Underline', 'bgtfw' ),
 		'type'        => 'toggle',
 		'section'     => 'bgtfw_body_link_design',
-		'default'     => true,
+		'default'     => false,
 	),
 	/** End Link Design **/
 

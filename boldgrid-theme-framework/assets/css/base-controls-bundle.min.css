@@ -122,6 +122,8 @@
     width: 80px;
     cursor: pointer;
     text-align: center; }
+    .boldgrid-control .device .relationship:hover {
+      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3); }
     .boldgrid-control .device .relationship::after {
       content: '';
       width: 0;

@@ -3,6 +3,7 @@ import ColorPreview from './color/preview';
 import { Preview as GenericPreview } from './generic/preview.js';
 import { Preview as HeaderPreview } from './header-layout/preview.js';
 import { Preview as BackgroundPreview } from './background/preview.js';
+import { LinkPreview } from './typography/link-preview.js';
 import Toggle from './toggle/toggle';
 import ToggleValue from './toggle/value';
 import ToggleClass from './toggle/class';
@@ -208,6 +209,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	new GenericPreview().bindEvents();
 	new HeaderPreview().bindEvents();
 	new TypographyPreview().bindEvents();
+	new LinkPreview().bindEvents();
 
 	$( function() {
 		var updateColorAndPatterns,

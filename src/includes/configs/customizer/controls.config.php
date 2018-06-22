@@ -627,6 +627,51 @@ return array(
 			),
 		),
 	),
+
+	/** Start Link Design **/
+	'bgtfw_body_link_color' => array(
+		'type'       => 'bgtfw-palette-selector',
+		'transport'  => 'postMessage',
+		'settings'   => 'bgtfw_body_link_color',
+		'label'      => esc_attr__( 'Link Color', 'bgtfw' ),
+		'section'    => 'bgtfw_body_link_design',
+		'default'    => 'color-1',
+		'choices'    => array(
+			'colors' => $formatted_palette,
+			'size'   => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_body_link_decoration' => array(
+		'settings'    => 'bgtfw_body_link_decoration',
+		'transport'   => 'postMessage',
+		'label'       => esc_html__( 'Text Underline', 'bgtfw' ),
+		'type'        => 'toggle',
+		'section'     => 'bgtfw_body_link_design',
+		'default'     => false,
+	),
+	'bgtfw_body_link_color_hover' => array(
+		'type'       => 'bgtfw-palette-selector',
+		'transport'  => 'postMessage',
+		'settings'   => 'bgtfw_body_link_color_hover',
+		'label'      => esc_attr__( 'Hover - Link Color', 'bgtfw' ),
+		'section'    => 'bgtfw_body_link_design',
+		'default'    => 'color-2',
+		'choices'    => array(
+			'colors' => $formatted_palette,
+			'size'   => $palette->get_palette_size( $formatted_palette ),
+		)
+	),
+	'bgtfw_body_link_decoration_hover' => array(
+		'settings'    => 'bgtfw_body_link_decoration_hover',
+		'transport'   => 'postMessage',
+		'label'       => esc_html__( 'Hover - Text Underline', 'bgtfw' ),
+		'type'        => 'toggle',
+		'section'     => 'bgtfw_body_link_design',
+		'default'     => true,
+	),
+	/** End Link Design **/
+
 	'boldgrid_attribution_heading' => array(
 		'type'        => 'custom',
 		'settings'     => 'boldgrid_attribution_heading',

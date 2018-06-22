@@ -104,6 +104,10 @@ return array(
 		'title' => __( 'Headings', 'bgtfw' ),
 		'panel' => 'boldgrid_typography',
 	),
+	'bgtfw_body_link_design' => array(
+		'title' => __( 'Links', 'bgtfw' ),
+		'panel' => 'boldgrid_typography',
+	),
 	'bgtfw_pages_blog_blog_page_layout' => array(
 		'title' => 'Layout',
 		'panel' => 'bgtfw_blog_blog_page_panel',

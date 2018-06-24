@@ -125,11 +125,11 @@ class BoldGrid_Framework_Pagination {
 			'total' => $max_page,
 			'current' => max( 1, get_query_var( 'cpage' ) ),
 			'echo' => true,
-			'add_fragment' => '#comments'
+			'add_fragment' => '#comments',
 		);
 
 		if ( $wp_rewrite->using_permalinks() ) {
-			$defaults['base'] = user_trailingslashit( trailingslashit( get_permalink()) . $wp_rewrite->comments_pagination_base . '-%#%', 'commentpaged' );
+			$defaults['base'] = user_trailingslashit( trailingslashit( get_permalink() ) . $wp_rewrite->comments_pagination_base . '-%#%', 'commentpaged' );
 		}
 
 		$args = wp_parse_args( $args, $defaults );

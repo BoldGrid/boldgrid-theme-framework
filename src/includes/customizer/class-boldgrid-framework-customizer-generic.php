@@ -194,7 +194,7 @@ class Boldgrid_Framework_Customizer_Generic {
 		switch ( $control_type ) {
 			case 'Margin':
 			case 'Padding':
-				$css_property = strtolower( $control_type ) .  '-' .  $slider_name;
+				$css_property = strtolower( $control_type ) . '-' . $slider_name;
 				break;
 			case 'BorderRadius':
 				$css_property = 'border-' . $slider_name . '-radius';

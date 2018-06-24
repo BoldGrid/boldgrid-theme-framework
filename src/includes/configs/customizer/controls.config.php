@@ -628,7 +628,7 @@ return array(
 		),
 	),
 
-	/** Start Link Design **/
+	/* Start Link Design */
 	'bgtfw_body_link_color' => array(
 		'type'       => 'bgtfw-palette-selector',
 		'transport'  => 'postMessage',
@@ -637,7 +637,7 @@ return array(
 		'section'    => 'bgtfw_body_link_design',
 		'default'    => 'color-1',
 		'choices'    => array(
-			'selectors' => Boldgrid_Framework_Links::$defaultLinkSelectors,
+			'selectors' => Boldgrid_Framework_Links::$default_link_selectors,
 			'colors' => $formatted_palette,
 			'size'   => $palette->get_palette_size( $formatted_palette ),
 		),
@@ -661,7 +661,7 @@ return array(
 		'choices'    => array(
 			'colors' => $formatted_palette,
 			'size'   => $palette->get_palette_size( $formatted_palette ),
-		)
+		),
 	),
 	'bgtfw_body_link_decoration_hover' => array(
 		'settings'    => 'bgtfw_body_link_decoration_hover',
@@ -671,7 +671,7 @@ return array(
 		'section'     => 'bgtfw_body_link_design',
 		'default'     => false,
 	),
-	/** End Link Design **/
+	/* End Link Design */
 
 	'boldgrid_attribution_heading' => array(
 		'type'        => 'custom',

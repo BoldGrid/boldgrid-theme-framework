@@ -106,7 +106,7 @@ return array(
 	),
 	'bgtfw_body_link_design' => array(
 		'title' => __( 'Links', 'bgtfw' ),
-		'panel' => 'boldgrid_typography',
+		'panel' => 'bgtfw_site_content',
 	),
 	'bgtfw_pages_blog_blog_page_layout' => array(
 		'title' => 'Layout',

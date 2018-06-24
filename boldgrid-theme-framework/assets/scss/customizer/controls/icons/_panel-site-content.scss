@@ -1,0 +1,12 @@
+/* Site Content */
+#sub-accordion-panel-bgtfw_site_content > li {
+	&[id^="accordion-section-"] > h3:before {
+		@include dashicons;
+		content: "\f111";
+	}
+	&#accordion-section- {
+		&bgtfw_body_link_design > h3:before {
+			content: "\f103";
+		}
+	}
+}

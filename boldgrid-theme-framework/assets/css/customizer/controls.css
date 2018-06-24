@@ -1117,6 +1117,16 @@
   content: "\e927";
 }
 
+#sub-accordion-panel-bgtfw_design_panel > li#accordion-panel-bgtfw_site_content > h3:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f116";
+}
+
 #sub-accordion-panel-bgtfw_design_panel > li#accordion-panel-bgtfw_footer > h3:before {
   display: inline;
   font-family: icomoon;
@@ -1263,6 +1273,21 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
   content: "\f128";
 }
 
+/* Site Content */
+#sub-accordion-panel-bgtfw_site_content > li[id^="accordion-section-"] > h3:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f111";
+}
+
+#sub-accordion-panel-bgtfw_site_content > li#accordion-section-bgtfw_body_link_design > h3:before {
+  content: "\f103";
+}
+
 /* Footer Panel */
 #sub-accordion-panel-bgtfw_footer > li[id^="accordion-section-"] > h3:before {
   display: inline;
@@ -1362,7 +1387,6 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
   /* Menu Typography Section */
   /* Headings Section */
   /* Main Text Section */
-  /* links */
 }
 
 #sub-accordion-panel-boldgrid_typography > li#accordion-section-navigation_typography > h3:before {
@@ -1384,10 +1408,6 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
   padding: .5em;
   content: "\f1dd";
   padding: 0.65em;
-}
-
-#sub-accordion-panel-boldgrid_typography > li#accordion-section-bgtfw_body_link_design > h3:before {
-  content: "\f103";
 }
 
 #customize-theme-controls .accordion-section li[id*="margin_section"] > .accordion-section-title:before {

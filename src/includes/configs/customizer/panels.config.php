@@ -25,14 +25,19 @@ return array(
 		'priority' => 1,
 		'panel' => 'bgtfw_design_panel',
 	),
+	'bgtfw_site_content' => array(
+		'title' => __( 'Site Content', 'bgtfw' ),
+		'priority' => 2,
+		'panel' => 'bgtfw_design_panel',
+	),
 	'bgtfw_footer' => array(
 		'title' => __( 'Footer', 'bgtfw' ),
-		'priority' => 2,
+		'priority' => 3,
 		'panel' => 'bgtfw_design_panel',
 	),
 	'bgtfw_blog_panel' => array(
 		'title' => __( 'Blog', 'bgtfw' ),
-		'priority' => 4,
+		'priority' => 5,
 		'panel' => 'bgtfw_design_panel',
 	),
 	'bgtfw_blog_blog_page_panel' => array(
@@ -46,7 +51,7 @@ return array(
 	),
 	'bgtfw_menus_panel' => array(
 		'title' => __( 'Menus', 'bgtfw' ),
-		'priority' => 3,
+		'priority' => 4,
 		'panel' => 'bgtfw_design_panel',
 	),
 	'bgtfw_blog_posts_panel' => array(

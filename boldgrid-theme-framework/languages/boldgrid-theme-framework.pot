@@ -712,26 +712,30 @@ msgid "Header"
 msgstr ""
 
 #: src/includes/configs/customizer/panels.config.php:29
+msgid "Site Content"
+msgstr ""
+
+#: src/includes/configs/customizer/panels.config.php:34
 msgid "Footer"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:34, src/includes/configs/customizer/sections.config.php:15
+#: src/includes/configs/customizer/panels.config.php:39, src/includes/configs/customizer/sections.config.php:15
 msgid "Blog"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:39
+#: src/includes/configs/customizer/panels.config.php:44
 msgid "Blog Page"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:43, src/includes/configs/customizer/sections.config.php:21
+#: src/includes/configs/customizer/panels.config.php:48, src/includes/configs/customizer/sections.config.php:21
 msgid "Pages"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:48, src/includes/configs/customizer/sections.config.php:96
+#: src/includes/configs/customizer/panels.config.php:53, src/includes/configs/customizer/sections.config.php:96
 msgid "Menus"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:53
+#: src/includes/configs/customizer/panels.config.php:58
 msgid "Posts"
 msgstr ""
 

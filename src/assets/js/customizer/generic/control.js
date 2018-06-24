@@ -83,9 +83,17 @@ export class Control {
 	 */
 	_setDefaults( wpControl, controlSettings ) {
 		const defaults = wpControl.params.default;
-
 		if ( defaults ) {
-			controlSettings.control.setting = defaults;
+
+			// The method for passing in defaults needs to be standardized.
+			if ( 'DeviceVisibility' === wpControl.params.choices.type ) {
+				controlSettings.control.setting = defaults;
+			} else {
+				controlSettings.setting = {
+					css: '',
+					settings: defaults
+				};
+			}
 		}
 	}
 

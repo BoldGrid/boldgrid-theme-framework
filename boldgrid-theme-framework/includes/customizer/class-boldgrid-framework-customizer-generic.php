@@ -41,6 +41,19 @@ class Boldgrid_Framework_Customizer_Generic {
 	);
 
 	/**
+	 * A list of default.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @var array
+	 */
+	public static $supported_defaults = [
+		'Margin',
+		'Padding',
+		'BorderRadius',
+	];
+
+	/**
 	 * Range configuration.
 	 *
 	 * @var $range_config
@@ -108,15 +121,90 @@ class Boldgrid_Framework_Customizer_Generic {
 	 * @return string         Added ability to define device visibility defaults.
 	 */
 	public function get_default_styles( $control ) {
-		$media_css = '';
+		$css = '';
 
 		if ( 'DeviceVisibility' === $control['choices']['type'] ) {
-			$media_css .= $this->device_visibility_styles( $control ) ?: '';
-		} else {
-			// @todo generic slider controls styles.
+			$css .= $this->device_visibility_styles( $control ) ?: '';
+		} else if ( in_array( $control['choices']['type'], self::$supported_defaults ) ) {
+			$css .= $this->directional_control_styles( $control ) ?: '';
 		}
 
-		return $media_css;
+		return $css;
+	}
+
+	/**
+	 * Create a set of default rules for a directional control with its defaults.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  array $control Configs for a control.
+	 * @return string         CSS for the control.
+	 */
+	public function directional_control_styles( $control ) {
+		$defaults = get_theme_mod( $control['settings'] );
+		$defaults = is_array( $defaults ) ? $defaults : [];
+
+		$css = '';
+		$selector = implode( ',', $control['choices']['settings']['control']['selectors'] );
+		foreach ( $defaults as $config_set ) {
+			foreach ( $config_set['media'] as $media_device ) {
+				$media_prefix = $this->create_media_prefix( $media_device );
+				$control_css = $this->get_directional_css( $control, $config_set );
+				$control_css = $control_css ? "${selector} { ${control_css} }" : '';
+				$control_css = $media_prefix && $control_css ? "${media_prefix} { ${control_css} }" : $control_css;
+
+				$css .= $control_css;
+			}
+		}
+
+		return $css;
+	}
+
+	/**
+	 * Get the css for a single directional control setting.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  array $control Configs for a control.
+	 * @param  array $config  A single set of control configs.
+	 * @return string          CSS for directional control.
+	 */
+	public function get_directional_css( $control, $config ) {
+		$css = '';
+		foreach ( $config['values'] as $direction => $value ) {
+			$css .= $this->get_control_property( $control['choices']['type'], $direction ) .
+				':' . $value . $config['unit'] . ';';
+		}
+
+		return $css;
+	}
+
+	/**
+	 * For a given control and a slider name, get the css property.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $control_type Control Type name.
+	 * @param  string $slider_name  Slider Name.
+	 * @return string               Css property to set for a slider.
+	 */
+	protected function get_control_property( $control_type, $slider_name ) {
+		$css_property = '';
+
+		switch ( $control_type ) {
+			case 'Margin':
+			case 'Padding':
+				$css_property = strtolower( $control_type ) .  '-' .  $slider_name;
+				break;
+			case 'BorderRadius':
+				$css_property = 'border-' . $slider_name . '-radius';
+				break;
+			default:
+				$css_property = $slider_name;
+				break;
+		}
+
+		return $css_property;
 	}
 
 	/**
@@ -134,8 +222,8 @@ class Boldgrid_Framework_Customizer_Generic {
 
 		foreach ( $defaults as $device ) {
 			$selector = implode( ',', $control['choices']['settings']['control']['selectors'] );
-			$css .= $this->create_media_prefix( $device );
-			$css .= $css ? "{ ${selector} { display: none !important;} }" : '';
+			$media_prefix = $this->create_media_prefix( $device );
+			$css .= $media_prefix ? "${media_prefix} { ${selector} { display: none !important;} }" : '';
 		}
 
 		return $css;
@@ -151,7 +239,7 @@ class Boldgrid_Framework_Customizer_Generic {
 	 */
 	public function create_media_prefix( $device ) {
 		$prefix = '';
-		$range = $this->range_config[ $device ];
+		$range = ! empty( $this->range_config[ $device ] ) ? $this->range_config[ $device ] : null;
 		if ( ! $range ) {
 			return $prefix;
 		}

@@ -3,6 +3,7 @@ import PaletteSelector from '../color/palette-selector';
 
 const api = wp.customize;
 const $ = jQuery;
+const colorLib = window.net.brehaut;
 
 export class LinkPreview {
 
@@ -60,12 +61,16 @@ export class LinkPreview {
 	 */
 	updateStyles() {
 		let linkColor = this._getColor( 'bgtfw_body_link_color' ),
-			linkColorHover = this._getColor( 'bgtfw_body_link_color_hover' ),
+			linkColorHover = api( 'bgtfw_body_link_color_hover' )() || 0,
 			decoration = this._getDecoration( 'bgtfw_body_link_decoration' ),
 			decorationHover = this._getDecoration( 'bgtfw_body_link_decoration_hover' ),
 			excludes = ':not(.btn):not(.button-primary):not(.button-secondary)',
 			selectors = this.selectors,
+			shiftedColorVal,
 			css = '';
+
+		linkColorHover = parseInt( linkColorHover, 10 ) / 100;
+		shiftedColorVal = colorLib.Color( linkColor ).lightenByAmount( linkColorHover ).toCSS();
 
 		for ( let selector of selectors ) {
 			selector = selector + excludes;
@@ -75,7 +80,7 @@ export class LinkPreview {
 					text-decoration: ${decoration};
 				}
 				${selector}:hover {
-					color: ${linkColorHover};
+					color: ${shiftedColorVal};
 					text-decoration: ${decorationHover};
 				}
 			`;

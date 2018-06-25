@@ -81,12 +81,15 @@ class Boldgrid_Framework_Links {
 	 */
 	public function get_styles() {
 		$color = get_theme_mod( 'bgtfw_body_link_color' ) ?: '';
-		$color_hover = get_theme_mod( 'bgtfw_body_link_color_hover' ) ?: '';
+		$color_hover = get_theme_mod( 'bgtfw_body_link_color_hover' ) ?: 0;
 		$decoration = get_theme_mod( 'bgtfw_body_link_decoration' );
 		$decoration_hover = get_theme_mod( 'bgtfw_body_link_decoration_hover' );
 
 		$color = explode( ':', $color )[1];
-		$color_hover = explode( ':', $color_hover )[1];
+		$ari_color = ariColor::newColor( $color );
+		$lightness = min( $ari_color->lightness + $color_hover, 100 );
+		$lightness = max( $lightness, 0 );
+		$color_hover = $ari_color->getNew( 'lightness', $lightness )->toCSS( 'rgba' );
 		$decoration = $decoration ? 'underline' : 'none';
 		$decoration_hover = $decoration_hover ? 'underline' : 'none';
 		$excludes = ':not(.btn):not(.button-primary):not(.button-secondary)';

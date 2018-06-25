@@ -652,15 +652,16 @@ return array(
 		'default'     => false,
 	),
 	'bgtfw_body_link_color_hover' => array(
-		'type'       => 'bgtfw-palette-selector',
-		'transport'  => 'postMessage',
-		'settings'   => 'bgtfw_body_link_color_hover',
-		'label'      => esc_attr__( 'Hover - Link Color', 'bgtfw' ),
-		'section'    => 'bgtfw_body_link_design',
-		'default'    => 'color-1',
-		'choices'    => array(
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+		'type'        => 'slider',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_body_link_color_hover',
+		'label'       => esc_attr__( 'Hover - Color Brightness', 'bgtfw' ),
+		'section'     => 'bgtfw_body_link_design',
+		'default'     => 0,
+		'choices'     => array(
+			'min'  => '-25',
+			'max'  => '25',
+			'step' => '1',
 		),
 	),
 	'bgtfw_body_link_decoration_hover' => array(

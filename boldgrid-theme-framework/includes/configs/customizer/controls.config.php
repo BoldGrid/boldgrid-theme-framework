@@ -657,7 +657,7 @@ return array(
 		'settings'   => 'bgtfw_body_link_color_hover',
 		'label'      => esc_attr__( 'Hover - Link Color', 'bgtfw' ),
 		'section'    => 'bgtfw_body_link_design',
-		'default'    => 'color-2',
+		'default'    => 'color-1',
 		'choices'    => array(
 			'colors' => $formatted_palette,
 			'size'   => $palette->get_palette_size( $formatted_palette ),
@@ -669,7 +669,7 @@ return array(
 		'label'       => esc_html__( 'Hover - Text Underline', 'bgtfw' ),
 		'type'        => 'toggle',
 		'section'     => 'bgtfw_body_link_design',
-		'default'     => false,
+		'default'     => true,
 	),
 	/* End Link Design */
 

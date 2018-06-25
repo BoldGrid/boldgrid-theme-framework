@@ -939,11 +939,11 @@ return array(
 		'default'   => 'container',
 		'choices'     => array(
 			'container' => esc_attr__( 'Contained', 'bgtfw' ),
-			'container-fluid' => esc_attr__( 'Full Width', 'bgtfw' ),
+			'' => esc_attr__( 'Full Width', 'bgtfw' ),
 		),
 		'section' => 'bgtfw_pages_blog_posts_layout',
 		'sanitize_callback' => function( $value, $settings ) {
-			return 'container' === $value || 'container-fluid' === $value ? $value : $settings->default;
+			return 'container' === $value || '' === $value ? $value : $settings->default;
 		},
 	),
 	'bgtfw_layout_blog' => array(

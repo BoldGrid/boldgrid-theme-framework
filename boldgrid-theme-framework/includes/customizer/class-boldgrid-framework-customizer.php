@@ -546,12 +546,23 @@ class BoldGrid_Framework_Customizer {
 			true
 		);
 
+		wp_register_script(
+			'bgtfw_pages_blog_posts_layout_layout',
+			$this->configs['framework']['js_dir'] . 'customizer/layout/blog/posts/layout/layout' . $suffix . '.js',
+			array(
+				'boldgrid-theme-customizer'
+			),
+			$this->configs['version'],
+			true
+		);
+
 		wp_enqueue_script( 'boldgrid-theme-customizer' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-live-preview' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-layout-columns' );
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-header-background' );
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-header-container' );
 		wp_enqueue_script( 'bgtfw-customizer-footer-layout-footer-container' );
+		wp_enqueue_script( 'bgtfw_pages_blog_posts_layout_layout' );
 
 		wp_enqueue_style(
 			'boldgrid-theme-framework-customizer-css',

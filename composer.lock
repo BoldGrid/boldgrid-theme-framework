@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "boldgrid/library",
-            "version": "2.3.3",
+            "version": "2.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BoldGrid/library.git",
-                "reference": "fa13062b0812ecb9c913f8ac47b619211b2699de"
+                "reference": "8d8519c848722afa9a872984cceca8bf587916f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BoldGrid/library/zipball/fa13062b0812ecb9c913f8ac47b619211b2699de",
-                "reference": "fa13062b0812ecb9c913f8ac47b619211b2699de",
+                "url": "https://api.github.com/repos/BoldGrid/library/zipball/8d8519c848722afa9a872984cceca8bf587916f0",
+                "reference": "8d8519c848722afa9a872984cceca8bf587916f0",
                 "shasum": ""
             },
             "type": "library",
@@ -53,7 +53,7 @@
                 }
             ],
             "description": "The BoldGrid Library for shared code used in official BoldGrid plugins and themes.",
-            "time": "2018-05-08T13:27:34+00:00"
+            "time": "2018-06-26T13:55:05+00:00"
         },
         {
             "name": "boldgrid/theme-updater",

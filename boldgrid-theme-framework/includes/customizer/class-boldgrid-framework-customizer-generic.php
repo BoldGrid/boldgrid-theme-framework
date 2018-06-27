@@ -183,10 +183,10 @@ class Boldgrid_Framework_Customizer_Generic {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  string $css    CSS to add to media device.
-	 * @param  array $control Control Configs.
-	 * @param  array $config  Device Settings.
-	 * @return string         CSS for the border.
+	 * @param string $css    CSS to add to media device.
+	 * @param array  $control Control Configs.
+	 * @param array  $config  Device Settings.
+	 * @return string        CSS for the border.
 	 */
 	public function border_css( $css, $control, $config ) {
 		$color = get_theme_mod( $control['settings'] . '_color' ) ?: '';
@@ -202,25 +202,25 @@ class Boldgrid_Framework_Customizer_Generic {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  string $css    CSS to add to media device.
-	 * @param  array $control Control Configs.
-	 * @param  array $config  Device Settings.
-	 * @return string         CSS for the box shadow.
+	 * @param string $css    CSS to add to media device.
+	 * @param array  $control Control Configs.
+	 * @param array  $config  Device Settings.
+	 * @return string        CSS for the box shadow.
 	 */
 	public function box_shadow_css( $css, $control, $config ) {
 		$val = $config['values'];
 		$properties = [];
 
-		$getVal = function ( $prop, $default ) use ( $val ) {
+		$get_val = function ( $prop, $default ) use ( $val ) {
 			return ( ! empty( $val[ $prop ] ) ? $val[ $prop ] : $default  ) . 'px';
 		};
 
 		if ( $val['horizontal-position'] || $val['vertical-position'] || $val['blur-radius'] || $val['spread-radius'] ) {
 			$properties[] = isset( $config['type'] ) ? $config['type'] : '';
-			$properties[] = $getVal( 'horizontal-position', 0 );
-			$properties[] = $getVal( 'vertical-position', 0 );
-			$properties[] = $getVal( 'blur-radius', 0 );
-			$properties[] = $getVal( 'spread-radius', 0 );
+			$properties[] = $get_val( 'horizontal-position', 0 );
+			$properties[] = $get_val( 'vertical-position', 0 );
+			$properties[] = $get_val( 'blur-radius', 0 );
+			$properties[] = $get_val( 'spread-radius', 0 );
 			$properties[] = ! empty( $config['color'] ) ? $config['color'] : '#cccccc';
 		}
 

@@ -89,10 +89,7 @@ export class Control {
 			if ( 'DeviceVisibility' === wpControl.params.choices.type ) {
 				controlSettings.control.setting = defaults;
 			} else {
-				controlSettings.setting = {
-					css: '',
-					settings: defaults
-				};
+				controlSettings.defaults = defaults;
 			}
 		}
 	}
@@ -106,15 +103,15 @@ export class Control {
 	 * @param  {object} controlSettings Current Control settings.
 	 */
 	_setSavedValues( wpControl, controlSettings ) {
-		let defaults = wpControl.setting.get() || false;
+		let saved = wpControl.setting.get() || false;
 
-		if ( _.isObject( defaults ) && defaults.media ) {
-			controlSettings.defaults = defaults;
+		if ( _.isObject( saved ) && saved.media ) {
+			controlSettings.saved = saved;
 
 			try {
-				controlSettings.defaults.media = JSON.parse( controlSettings.defaults.media ) || {};
+				controlSettings.saved.media = JSON.parse( controlSettings.saved.media ) || {};
 			} catch ( e ) {
-				controlSettings.defaults.media = {};
+				controlSettings.saved.media = {};
 			}
 		}
 	}

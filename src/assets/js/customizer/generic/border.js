@@ -61,8 +61,8 @@ export class Border extends BaseBorder {
 	 *
 	 * @return {object} Settings.
 	 */
-	getCssRule() {
-		let rules = super.getCssRule();
+	getCssRule( settings ) {
+		let rules = super.getCssRule( settings );
 
 		if ( this.colorControl && this.colorControl.setting() ) {
 			rules += 'border-color:' + this.paletteSelector.getColor( this.colorControl.setting() ) + ';';

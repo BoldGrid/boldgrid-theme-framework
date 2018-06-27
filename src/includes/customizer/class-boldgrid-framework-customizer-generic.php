@@ -41,19 +41,6 @@ class Boldgrid_Framework_Customizer_Generic {
 	);
 
 	/**
-	 * A list of default.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @var array
-	 */
-	public static $supported_defaults = [
-		'Margin',
-		'Padding',
-		'BorderRadius',
-	];
-
-	/**
 	 * Range configuration.
 	 *
 	 * @var $range_config
@@ -125,7 +112,7 @@ class Boldgrid_Framework_Customizer_Generic {
 
 		if ( 'DeviceVisibility' === $control['choices']['type'] ) {
 			$css .= $this->device_visibility_styles( $control ) ?: '';
-		} else if ( in_array( $control['choices']['type'], self::$supported_defaults ) ) {
+		} else {
 			$css .= $this->directional_control_styles( $control ) ?: '';
 		}
 
@@ -172,9 +159,73 @@ class Boldgrid_Framework_Customizer_Generic {
 	public function get_directional_css( $control, $config ) {
 		$css = '';
 		foreach ( $config['values'] as $direction => $value ) {
+			$unit = ! empty( $config['unit'] ) ? $config['unit'] : 'px';
 			$css .= $this->get_control_property( $control['choices']['type'], $direction ) .
-				':' . $value . $config['unit'] . ';';
+				':' . $value . $unit . ';';
 		}
+
+		/**
+		 * Override the CSS for a control.
+		 *
+		 * @since 2.0.0
+		 *
+		 * @param  string $css    CSS to add to media device.
+		 * @param  array $control Control Configs.
+		 * @param  array $config  Device Settings.
+		 */
+		$css = apply_filters( 'bgtfw_generic_css_' . $control['choices']['type'], $css, $control, $config );
+
+		return $css;
+	}
+
+	/**
+	 * Create the css needed for border css.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $css    CSS to add to media device.
+	 * @param  array $control Control Configs.
+	 * @param  array $config  Device Settings.
+	 * @return string         CSS for the border.
+	 */
+	public function border_css( $css, $control, $config ) {
+		$color = get_theme_mod( $control['settings'] . '_color' ) ?: '';
+		$color = explode( ':', $color )[1];
+		$css .= ! empty( $color ) ? 'border-color: ' . $color . ';' : '';
+		$css .= ! empty( $config['type'] ) ? 'border-style: ' . $config['type'] . ';' : '';
+
+		return $css;
+	}
+
+	/**
+	 * Create the css needed for box shadows.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $css    CSS to add to media device.
+	 * @param  array $control Control Configs.
+	 * @param  array $config  Device Settings.
+	 * @return string         CSS for the box shadow.
+	 */
+	public function box_shadow_css( $css, $control, $config ) {
+		$val = $config['values'];
+		$properties = [];
+
+		$getVal = function ( $prop, $default ) use ( $val ) {
+			return ( ! empty( $val[ $prop ] ) ? $val[ $prop ] : $default  ) . 'px';
+		};
+
+		if ( $val['horizontal-position'] || $val['vertical-position'] || $val['blur-radius'] || $val['spread-radius'] ) {
+			$properties[] = isset( $config['type'] ) ? $config['type'] : '';
+			$properties[] = $getVal( 'horizontal-position', 0 );
+			$properties[] = $getVal( 'vertical-position', 0 );
+			$properties[] = $getVal( 'blur-radius', 0 );
+			$properties[] = $getVal( 'spread-radius', 0 );
+			$properties[] = ! empty( $config['color'] ) ? $config['color'] : '#cccccc';
+		}
+
+		$css = implode( ' ', $properties );
+		$css = $css ? 'box-shadow: ' . $css : $css;
 
 		return $css;
 	}
@@ -198,6 +249,9 @@ class Boldgrid_Framework_Customizer_Generic {
 				break;
 			case 'BorderRadius':
 				$css_property = 'border-' . $slider_name . '-radius';
+				break;
+			case 'Border':
+				$css_property = 'border-' . $slider_name;
 				break;
 			default:
 				$css_property = $slider_name;

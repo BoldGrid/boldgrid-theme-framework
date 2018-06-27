@@ -459,6 +459,8 @@ class BoldGrid_Framework {
 
 		$generic = new Boldgrid_Framework_Customizer_Generic( $this->configs );
 		$this->loader->add_action( 'wp_enqueue_scripts', $generic, 'add_styles' );
+		$this->loader->add_action( 'bgtfw_generic_css_BoxShadow', $generic, 'box_shadow_css', 10, 3 );
+		$this->loader->add_action( 'bgtfw_generic_css_Border', $generic, 'border_css', 10, 3 );
 
 		if ( ! empty( $this->configs['starter-content'] ) ) {
 			$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );

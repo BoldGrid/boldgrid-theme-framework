@@ -439,6 +439,7 @@ class BoldGrid_Framework_Customizer {
 		$initialize .= 'BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};';
 		$initialize .= 'BOLDGRID.CUSTOMIZER.data';
 
+		$posts = wp_get_recent_posts( array( 'numposts' => 1 ) );
 		$data = [
 			'customizerOptions' => $this->configs['customizer-options'],
 			'menu' => [
@@ -447,7 +448,7 @@ class BoldGrid_Framework_Customizer {
 			'design' => [
 				'blog' => [
 					'posts' => [
-						'mostRecentPost' => wp_get_recent_posts( array( 'numposts' => 1 ) )[0]['ID'],
+						'mostRecentPost' => ! empty( $posts[0]['ID'] ) ? $posts[0]['ID'] : null,
 					],
 				],
 			],

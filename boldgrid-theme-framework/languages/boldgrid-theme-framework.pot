@@ -1071,7 +1071,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:397, src/includes/customizer/class-boldgrid-framework-customizer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:640
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:397, src/includes/customizer/class-boldgrid-framework-customizer.php:114, src/includes/customizer/class-boldgrid-framework-customizer.php:641
 msgid "Background"
 msgstr ""
 
@@ -1514,19 +1514,19 @@ msgstr ""
 msgid "Hover Style"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:626
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:627
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:646
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:647
 msgid "CSS/JS Editor"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:650
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:651
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:751
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:752
 msgid "Menu Tutorial"
 msgstr ""
 

@@ -16,7 +16,7 @@
 	min-height: 15px;
 }
 .entry-content {
-	.boldgrid-section {
+	&:not(.mce-content-body) .boldgrid-section {
 		margin-left: -2.8rem;
 		margin-right: -2.8rem;
 	}

@@ -7,6 +7,8 @@
  * @requires jquery-ui-dialog
  */
 
+/* global _,jQuery,wp, */
+
 var BOLDGRID = BOLDGRID || {};
 BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
@@ -14,9 +16,10 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 	'use strict';
 
-	var self, bg, api;
+	var self, bg, $body, api;
 
 	bg = BOLDGRID;
+	$body = $( 'body' );
 	api = parent.wp.customize;
 
 	/**
@@ -349,8 +352,17 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$overlay.toggleClass( 'preview-only' );
 			}
 
-			// Page title or page content.
-			if ( 'entry-content' === dataControl || 'entry-title' === dataControl ) {
+			// Page title.
+			if ( 'entry-title' === dataControl ) {
+				if( $body.hasClass( 'page' ) ) {
+					dataControl = 'bgtfw_pages_display_title';
+				} else if ( $body.hasClass( 'single-post' ) ) {
+					dataControl = 'bgtfw_posts_display_title';
+				}
+			}
+
+			// Page content.
+			if ( 'entry-content' === dataControl ) {
 				$( '#' + dataControl ).dialog( dialogSettings );
 				return;
 
@@ -395,6 +407,11 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					focused = $( '.customize-control-nav_menu_name', parent.document );
 				}
 
+				// Kirki switches cannot be bounced, target the li instead.
+				if ( focused.closest( 'div' ).hasClass( 'switch' ) ) {
+					focused = focused.closest( 'li' );
+				}
+
 				/*
 				* Elements with a transition do not bounce correctly. Below, take note of the initial
 				* transition effect. We'll remove the transition, and restore the initial after the
@@ -413,7 +430,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				}, 'slow', function() {
 					$( this ).css( 'transition', initialTransition );
 				} );
-			}, 500 );
+			}, 750 );
 		},
 
 		/**
@@ -865,7 +882,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				dataFixedAncestor = ( $fixedAncestors.length > 0 ? '1' : '0' ),
 				position = 'absolute',
 				buttonLeft = self.right( $parentsContainer ),
-				bodyWidth = $( 'body' ).outerWidth( true ),
+				bodyWidth = $body.outerWidth( true ),
 				zIndex,
 				top;
 
@@ -1306,7 +1323,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				isEmptyNav = $parent.hasClass( 'empty-menu' );
 
 			// If the button already exists, abort.
-			if ( 0 !== $( 'body' ).find( '[data-selector="' + config.selector + '"]' ).length ) {
+			if ( 0 !== $body.find( '[data-selector="' + config.selector + '"]' ).length ) {
 				return;
 			}
 
@@ -1347,7 +1364,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$button.attr( 'data-object-type', config.objectType );
 			}
 
-			$( 'body' ).append( $button );
+			$body.append( $button );
 
 			/*
 			* If a button has contextual help, like "New Menu", we need to calculate the width of

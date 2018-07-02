@@ -45,6 +45,8 @@ return array(
 		 *                            take when edit button is clicked. For example, a control within
 		 *                            a panel can be bounced to bring attention to it, but you don't
 		 *                            want to bounce a section / panel.
+		 * @param postType array      @since 2.0.0 An array of post types a setting should be displayed
+		 *                            for. Optional.
 		 */
 		'general' => array(
 			array(
@@ -74,6 +76,7 @@ return array(
 			array(
 				'control' => 'entry-title',
 				'selector' => '.entry-title',
+				'postType' => array( 'page', 'post' ),
 			),
 			array(
 				'control' => 'blogdescription',

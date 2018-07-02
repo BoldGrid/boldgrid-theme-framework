@@ -220,6 +220,11 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			// Add our general buttons.
 			_( self.i18n.config.buttons.general ).each( function( button ) {
 
+				// Some buttons are only displayed for certain post types.
+				if ( button.postType && ! button.postType.includes( self.i18n.postType ) ) {
+					return;
+				}
+
 				// Ensure the element exists before adding a button for it.
 				if ( 1 === $( button.selector ).length ) {
 					self.addButton( button );
@@ -354,9 +359,9 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 			// Page title.
 			if ( 'entry-title' === dataControl ) {
-				if( $body.hasClass( 'page' ) ) {
+				if( 'page' === self.i18n.postType ) {
 					dataControl = 'bgtfw_pages_display_title';
-				} else if ( $body.hasClass( 'single-post' ) ) {
+				} else if ( 'post' === self.i18n.postType ) {
 					dataControl = 'bgtfw_posts_display_title';
 				}
 			}

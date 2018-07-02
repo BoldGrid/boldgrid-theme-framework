@@ -118,6 +118,7 @@ class Boldgrid_Framework_Customizer_Edit {
 					'goThereNow'	=> __( 'Go there now', 'bgtfw' ),
 					'menu'			=> __( 'Menu', 'bgtfw' ),
 					'config'		=> $this->configs['customizer-options']['edit'],
+					'postType'      => get_post_type(),
 				)
 			);
 

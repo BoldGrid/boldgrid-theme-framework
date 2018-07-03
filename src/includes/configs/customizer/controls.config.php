@@ -1432,7 +1432,7 @@ return array(
 		'label'       => esc_attr__( 'Hover Effect', 'bgtfw' ),
 		'section'     => 'bgtfw_menu_items_hover_item_main',
 		'default'     => 'hvr-underline-reveal',
-		'sanitize_callback' => 'sanitize_html_class',
+		'sanitize_callback' => 'esc_attr',
 		'choices'     => array(
 
 			/** No Effects */

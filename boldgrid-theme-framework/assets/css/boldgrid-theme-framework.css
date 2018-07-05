@@ -2364,6 +2364,10 @@ main > article.post.format-aside .entry-header {
   padding-bottom: 10px;
 }
 
+.comments .pingback + .comment {
+  margin-top: 2.8rem;
+}
+
 .bypostauthor {
   display: block;
 }

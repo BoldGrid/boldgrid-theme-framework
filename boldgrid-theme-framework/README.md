@@ -26,9 +26,6 @@ user guide for more information.
 
 ## Changelog ##
 
-### 1.5.10 In progress ###
-* Update: Changed license API to version 2.  Added deactivation method.
-
 ### 1.5.5 ###
 * Update: Change Post and Page Builder url.
 

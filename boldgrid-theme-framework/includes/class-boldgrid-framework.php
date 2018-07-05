@@ -488,7 +488,6 @@ class BoldGrid_Framework {
 
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $activate, 'do_activate' );
-			$this->loader->add_action( 'switch_theme', $activate, 'do_deactivate' );
 		}
 
 		// Stop Wordpress from assigning widgets to our areas.

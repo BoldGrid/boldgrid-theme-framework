@@ -20,6 +20,13 @@
 			.bgtfw-edit-link a {
 				left: -3px;
 			}
+			.cat-links, .tags-links {
+				padding: .5em 0;
+			}
+		}
+		.wp-post-image {
+			display: block;
+			margin: 0 auto 2.8rem auto;
 		}
 	}
 }

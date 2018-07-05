@@ -1199,6 +1199,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   left: -3px;
 }
 
+.single .post .entry-footer .cat-links, .single .post .entry-footer .tags-links {
+  padding: .5em 0;
+}
+
 .single .post .wp-post-image {
   display: block;
   margin: 0 auto 2.8rem auto;

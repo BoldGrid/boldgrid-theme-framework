@@ -256,4 +256,13 @@ class Boldgrid_Framework_Activate {
 	public function register_required_plugins() {
 		tgmpa( $this->configs['tgm']['plugins'], $this->configs['tgm']['configs'] );
 	}
+
+	/**
+	 * Perform tasks on deactivation.
+	 *
+	 * @since 1.5.10
+	 */
+	public function do_deactivate() {
+		delete_site_transient( 'bg_license_data' );
+	}
 }

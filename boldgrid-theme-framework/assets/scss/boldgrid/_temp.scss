@@ -455,16 +455,12 @@
 .column-3 .post {
 	width: calc((100% / 3 - .5vw) - 2vw);
 }
-.home.blog .post .entry-content {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
-	width: 100%;
-}
+
 .single .post {
 	margin-top: 0;
 	margin-bottom: 0;
 }
+
 /* Post navigation */
 
 nav.navigation.posts-navigation {

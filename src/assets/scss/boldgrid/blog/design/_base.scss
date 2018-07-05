@@ -17,6 +17,9 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-content: flex-start;
+		.entry-content {
+			display: block;
+		}
 	}
 	&:not(.col1) main .entry-content .row {
 		[class*="col-xs"],

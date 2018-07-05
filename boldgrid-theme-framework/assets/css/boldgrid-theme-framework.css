@@ -512,6 +512,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
       align-content: flex-start;
 }
 
+.blog[class*="col"] main > article .entry-content {
+  display: block;
+}
+
 .blog[class*="col"]:not(.col1) main .entry-content .row [class*="col-xs"],
 .blog[class*="col"]:not(.col1) main .entry-content .row [class*="col-sm"],
 .blog[class*="col"]:not(.col1) main .entry-content .row [class*="col-md"],
@@ -858,6 +862,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
       flex-wrap: wrap;
   -ms-flex-line-pack: start;
       align-content: flex-start;
+}
+
+.archive[class*="col"] main > article .entry-content {
+  display: block;
 }
 
 .archive[class*="col"]:not(.col1) main .entry-content .row [class*="col-xs"],
@@ -5011,19 +5019,6 @@ footer .bgtfw-widget-row {
 
 .column-3 .post {
   width: calc((100% / 3 - .5vw) - 2vw);
-}
-
-.home.blog .post .entry-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 100%;
 }
 
 .single .post {

@@ -111,13 +111,13 @@ function boldgrid_entry_footer() {
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( __( ', ', 'bgtfw' ) );
 		if ( $categories_list && boldgrid_categorized_blog() ) {
-			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'bgtfw' ) . '</span>', $categories_list );
+			printf( '<span class="cat-links"><i class="fa fa-folder-open" aria-hidden="true"></i> %1$s</span>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
 		$tags_list = get_the_tag_list( '', __( ', ', 'bgtfw' ) );
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'bgtfw' ) . '</span>', $tags_list );
+			printf( '<span class="tags-links"><i class="fa fa-hashtag" aria-hidden="true"></i> %1$s</span>', $tags_list );
 		}
 	}
 

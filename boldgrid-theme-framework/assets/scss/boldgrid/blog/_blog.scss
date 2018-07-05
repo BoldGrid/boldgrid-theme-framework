@@ -1,3 +1,7 @@
 .blog {
 	@import "design/base";
 }
+
+.entry-footer .tags-links, .entry-footer .cat-links {
+	display: block;
+}

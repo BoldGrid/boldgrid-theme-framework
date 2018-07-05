@@ -109,13 +109,13 @@ function boldgrid_entry_footer() {
 	if ( 'post' == get_post_type() ) {
 
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'bgtfw' ) );
+		$categories_list = get_the_category_list( ', ' );
 		if ( $categories_list && boldgrid_categorized_blog() ) {
 			printf( '<span class="cat-links"><i class="fa fa-folder-open" aria-hidden="true"></i> %1$s</span>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', __( ', ', 'bgtfw' ) );
+		$tags_list = get_the_tag_list( '', ', ' );
 		if ( $tags_list ) {
 			printf( '<span class="tags-links"><i class="fa fa-hashtag" aria-hidden="true"></i> %1$s</span>', $tags_list );
 		}

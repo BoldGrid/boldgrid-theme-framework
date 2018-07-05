@@ -1623,10 +1623,6 @@ msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:112, src/includes/partials/template-tags.php:118
-msgid ", "
-msgstr ""
-
 #: src/includes/partials/template-tags.php:126
 msgid "Leave a comment"
 msgstr ""

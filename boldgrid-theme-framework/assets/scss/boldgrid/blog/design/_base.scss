@@ -11,6 +11,11 @@
 	width: calc( 100% - 1em );
 }
 
+.read-more {
+	padding-top: 15px;
+	float: right;
+}
+
 &[class*="col"] {
 	main > article {
 		margin: .5em;

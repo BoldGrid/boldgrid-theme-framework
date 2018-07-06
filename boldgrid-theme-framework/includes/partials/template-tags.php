@@ -421,3 +421,11 @@ function bgtfw_get_featured_img_bg( $post_id ) {
 function bgtfw_featured_img_bg( $post_id ) {
 	echo bgtfw_get_featured_img_bg( $post_id );
 }
+
+// Changing excerpt more.
+function bgtfw_excerpt_more( $more ) {
+	global $post;
+	return '… <div class="read-more"><a class="btn button-primary" href="'. get_permalink( $post->ID ) . '">' . 'Continue Reading &raquo;' . '</a></div>';
+}
+
+add_filter( 'excerpt_more', 'bgtfw_excerpt_more' );

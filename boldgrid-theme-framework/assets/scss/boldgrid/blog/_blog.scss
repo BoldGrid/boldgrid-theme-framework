@@ -2,6 +2,8 @@
 	@import "design/base";
 }
 
-.entry-footer .tags-links, .entry-footer .cat-links {
-	display: block;
+.entry-footer {
+	.tags-links, .cat-links, .comments-link {
+		display: block;
+	}
 }

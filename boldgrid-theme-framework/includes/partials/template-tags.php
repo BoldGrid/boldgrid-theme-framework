@@ -121,8 +121,22 @@ function boldgrid_entry_footer() {
 		}
 	}
 
-	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+	$comment_count = get_comments_number();
+
+	if ( ! is_single() && ! post_password_required() && ( comments_open() || $comment_count ) ) {
+
 		echo '<span class="comments-link">';
+		$icon = '';
+		if ( $comment_count === '1' ) {
+			$icon = '<i class="fa fa-comment" aria-hidden="true"></i> ';
+		}
+
+		if ( $comment_count > 1 ) {
+			$icon = '<i class="fa fa-comments" aria-hidden="true"></i> ';
+		}
+
+		echo $icon;
+
 		comments_popup_link( __( 'Leave a comment', 'bgtfw' ), __( '1 Comment', 'bgtfw' ), __( '% Comments', 'bgtfw' ) );
 		echo '</span>';
 	}

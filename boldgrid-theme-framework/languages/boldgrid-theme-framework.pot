@@ -1623,38 +1623,38 @@ msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:126
+#: src/includes/partials/template-tags.php:140
 msgid "Leave a comment"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:126
+#: src/includes/partials/template-tags.php:140
 msgid "1 Comment"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:126
+#: src/includes/partials/template-tags.php:140
 msgid "% Comments"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:197
+#: src/includes/partials/template-tags.php:211
 msgid "Click to edit %s."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:209
+#: src/includes/partials/template-tags.php:223
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:384
+#: src/includes/partials/template-tags.php:398
 msgid "Empty Sidebar"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:386
+#: src/includes/partials/template-tags.php:400
 msgid "This sidebar doesn't have any widgets assigned to it yet."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:387
+#: src/includes/partials/template-tags.php:401
 msgid "Add widgets here."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:391
+#: src/includes/partials/template-tags.php:405
 msgid "Add another widget."
 msgstr ""

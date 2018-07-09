@@ -326,6 +326,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   display: flex;
   padding: .5em;
   white-space: pre-wrap;
+  width: 100%;
 }
 
 .entry-footer span:last-child:not(.comments-link) {
@@ -651,8 +652,6 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -834,7 +833,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   }
 }
 
-.entry-footer .tags-links, .entry-footer .cat-links {
+.entry-footer .tags-links, .entry-footer .cat-links, .entry-footer .comments-link {
   display: block;
 }
 
@@ -1008,8 +1007,6 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -2502,16 +2499,6 @@ fieldset[disabled] a#commentform #submit {
   left: .25em;
 }
 
-span.comments-link > a:before {
-  content: "\f075";
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  display: inline-block;
-  text-decoration: none;
-  margin-right: .5em;
-}
-
 time.entry-date.published:before,
 time.entry-date.updated:before {
   content: "\f073";
@@ -2522,6 +2509,10 @@ time.entry-date.updated:before {
   text-decoration: none;
   margin-right: .5em;
   margin-left: .3em;
+}
+
+.comments-link {
+  display: block;
 }
 
 /*--------------------------------------------------------------

@@ -143,17 +143,6 @@ fieldset[disabled] a#commentform #submit {
 	left: .25em;
 }
 
-// Link Spacing
-span.comments-link > a:before {
-	content: "\f075";
-	font-family: FontAwesome;
-	font-weight: normal;
-	font-style: normal;
-	display: inline-block;
-	text-decoration: none;
-	margin-right: .5em;
-}
-
 time.entry-date.published:before,
 time.entry-date.updated:before {
 	content: "\f073";
@@ -164,4 +153,8 @@ time.entry-date.updated:before {
 	text-decoration: none;
 	margin-right: .5em;
 	margin-left: .3em;
+}
+
+.comments-link {
+	display: block;
 }

@@ -917,6 +917,22 @@ return array(
 		'default'     => false,
 		'priority'    => 45,
 	),
+	'bgtfw_blog_page_container' => array(
+		'settings' => 'bgtfw_blog_page_container',
+		'transport'   => 'postMessage',
+		'label'       => esc_html__( 'Container', 'bgtfw' ),
+		'type'        => 'radio',
+		'priority'    => 35,
+		'default'   => 'container',
+		'choices'     => array(
+			'container' => esc_attr__( 'Contained', 'bgtfw' ),
+			'' => esc_attr__( 'Full Width', 'bgtfw' ),
+		),
+		'section' => 'bgtfw_pages_blog_blog_page_layout',
+		'sanitize_callback' => function( $value, $settings ) {
+			return 'container' === $value || '' === $value ? $value : $settings->default;
+		},
+	),
 	'bgtfw_pages_blog_blog_page_layout_content' => array(
 		'type'        => 'radio',
 		'settings' => 'bgtfw_pages_blog_blog_page_layout_content',

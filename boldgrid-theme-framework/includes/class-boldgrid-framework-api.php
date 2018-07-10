@@ -191,6 +191,24 @@ class BoldGrid {
 	}
 
 	/**
+	 * Add blog page container classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $classes Classes added to .main element.
+	 *
+	 * @return array $classes Filter classes on .main element.
+	 */
+	public function blog_page_container( $classes ) {
+		global $post;
+		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
+			$classes[] = get_theme_mod( 'bgtfw_blog_page_container' );
+		}
+
+		return $classes;
+	}
+
+	/**
 	 * Print the container class.
 	 *
 	 * @since 1.2

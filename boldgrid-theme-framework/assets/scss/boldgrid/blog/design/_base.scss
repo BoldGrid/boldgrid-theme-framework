@@ -126,6 +126,8 @@ main {
 				flex-wrap: wrap;
 				&.bgtfw-edit-link {
 					margin-top: calc( -1em + -15px );
+					max-width: 62px;
+					left: calc( 100% - 62px );
 				}
 			}
 		}

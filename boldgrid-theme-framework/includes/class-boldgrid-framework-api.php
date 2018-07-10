@@ -689,6 +689,7 @@ class BoldGrid {
 		global $post;
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
 			$classes[] = get_theme_mod( 'bgtfw_blog_layout' );
+			$classes = array_merge( $classes, [ 'wow', 'fadeIn' ] );
 		}
 
 		return $classes;

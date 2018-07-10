@@ -455,14 +455,17 @@ var BoldGrid = BoldGrid || {};
 				this.loadWow();
 			},
 			loadWow: function() {
-				var wow = new WOW({
+				var wow = new WOW( {
 					boxClass: _wowJsOptions.boxClass,
 					animateClass: _wowJsOptions.animateClass,
 					offset: _wowJsOptions.offset,
 					mobile: _wowJsOptions.mobile,
 					live: _wowJsOptions.live
-				});
-				wow.init();
+				} );
+
+				$( function() {
+					wow.init();
+				} );
 			}
 		},
 		'nicescroll_enabled': {

@@ -15,14 +15,14 @@
 return array(
 	'boldgrid-sticky-nav'     => false,
 	'boldgrid-sticky-footer'  => false,
-	'wow-js'                  => false,
+	'wow-js'                  => true,
 	'animate-css'             => false,
 	'options' => array(
 		'wow-js' => array(
 			'enabled'      => false,
 			'boxClass'     => 'wow',
 			'animateClass' => 'animated',
-			'offset'       => 0,
+			'offset'       => -200,
 			'mobile'       => true,
 			'live'         => true,
 		),

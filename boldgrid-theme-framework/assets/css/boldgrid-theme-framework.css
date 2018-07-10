@@ -324,7 +324,8 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: .5em;
+  padding-left: 15px;
+  padding-right: 15px;
   white-space: pre-wrap;
   width: 100%;
 }
@@ -336,11 +337,11 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
-  padding-right: .5em;
+  padding-right: 15px;
 }
 
 .entry-footer span:first-child {
-  padding-left: .5em;
+  padding-left: 15px;
 }
 
 @-webkit-keyframes bgtfw-edit-link-bounce-appear {
@@ -668,11 +669,11 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .blog main > article.post .entry-footer span:first-child {
-  padding-left: .5em;
+  padding-left: 15px;
 }
 
 .blog main > article.post .entry-footer span:last-child {
-  padding-right: .5em;
+  padding-right: 15px;
 }
 
 .blog main > article.post .entry-footer .bgtfw-edit-link a {
@@ -1022,11 +1023,11 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .archive main > article.post .entry-footer span:first-child {
-  padding-left: .5em;
+  padding-left: 15px;
 }
 
 .archive main > article.post .entry-footer span:last-child {
-  padding-right: .5em;
+  padding-right: 15px;
 }
 
 .archive main > article.post .entry-footer .bgtfw-edit-link a {

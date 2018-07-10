@@ -254,11 +254,9 @@ $names: color background background-color border-color;
 		}
 		&.design-1 {
 			.entry-meta {
-				.posted-on {
-					background-color: rgba( $palette-primary_2, 0.8 );
-					color: $text-contrast-palette-primary_2;
-				}
-				.posted-on a {
+				background-color: rgba( $palette-primary_2, 0.8 );
+				color: $text-contrast-palette-primary_2;
+				a {
 					color: $text-contrast-palette-primary_2;
 				}
 			}

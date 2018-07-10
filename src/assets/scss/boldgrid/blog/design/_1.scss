@@ -8,12 +8,16 @@
 	}
 	.entry-title {
 		margin-right: 3rem;
+		margin-top: .75em;
+		margin-bottom: .75em;
 	}
-	.entry-header .entry-meta .posted-on {
-		padding: 7.5px;
+	.entry-header .entry-meta {
+		display: block;
+		padding: .75em;
 		text-align: right;
-		padding-right: 15px;
-		padding-left: 15px;
+		max-width: 100%;
+		width: auto;
+		float: right;
 	}
 	.featured-imgage-header {
 		border-top-left-radius: 3rem;

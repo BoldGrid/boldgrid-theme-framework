@@ -528,6 +528,8 @@ var BoldGrid = BoldGrid || {};
 
 			// Initialize.
 			init: function() {
+				var arrowColor = _goupOptions.arrowColor ? _goupOptions.arrowColor : BoldGrid.goup_enabled.getArrowColor();
+
 				$.goup({
 					location: _goupOptions.location,
 					locationOffset: _goupOptions.locationOffset,
@@ -537,7 +539,7 @@ var BoldGrid = BoldGrid || {};
 					containerClass: _goupOptions.containerClass,
 					arrowClass: _goupOptions.arrowClass,
 					containerColor: _goupOptions.containerColor,
-					arrowColor: _goupOptions.arrowColor,
+					arrowColor: arrowColor,
 					trigger: _goupOptions.trigger,
 					entryAnimation: _goupOptions.entryAnimation,
 					alwaysVisible: _goupOptions.alwaysVisible,
@@ -548,6 +550,28 @@ var BoldGrid = BoldGrid || {};
 					titleAsTextClass: _goupOptions.titleAsTextClass,
 					zIndex: _goupOptions.zIndex
 				});
+			},
+
+			// Convert color RGB to hex format.
+			rgb2hex: function( rgb ) {
+				rgb = rgb.match( /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/ );
+				function hex( x ) {
+					return ( '0' + parseInt( x ).toString( 16 ) ).slice( -2 );
+				}
+
+				return '#' + hex( rgb[1] ) + hex( rgb[2] ) + hex( rgb[3] );
+			},
+
+			getArrowColor: function() {
+				var color, test = document.createElement( 'div' );
+
+				test.className = 'color-1-text-contrast';
+				test.id = 'goup-color-test';
+				document.body.appendChild( test );
+				color = $( test ).css( 'color' );
+				$( '#goup-color-test' ).remove();
+
+				return BoldGrid.goup_enabled.rgb2hex( color );
 			},
 
 			// Destroy scroll to top buttons.

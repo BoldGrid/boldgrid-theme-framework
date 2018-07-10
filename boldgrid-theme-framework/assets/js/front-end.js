@@ -530,7 +530,7 @@ var BoldGrid = BoldGrid || {};
 			init: function() {
 				var arrowColor = _goupOptions.arrowColor ? _goupOptions.arrowColor : BoldGrid.goup_enabled.getArrowColor();
 
-				$.goup({
+				$.goup( {
 					location: _goupOptions.location,
 					locationOffset: _goupOptions.locationOffset,
 					bottomOffset: _goupOptions.bottomOffset,
@@ -549,7 +549,7 @@ var BoldGrid = BoldGrid || {};
 					titleAsText: _goupOptions.titleAsText,
 					titleAsTextClass: _goupOptions.titleAsTextClass,
 					zIndex: _goupOptions.zIndex
-				});
+				} );
 			},
 
 			// Convert color RGB to hex format.
@@ -562,6 +562,7 @@ var BoldGrid = BoldGrid || {};
 				return '#' + hex( rgb[1] ) + hex( rgb[2] ) + hex( rgb[3] );
 			},
 
+			// Get color of arrow if not specified in configs.
 			getArrowColor: function() {
 				var color, test = document.createElement( 'div' );
 

@@ -1,12 +1,6 @@
 .directional-control {
-  position: relative; }
-  .directional-control .refresh svg {
-    width: 19px;
-    margin: 0 20px;
-    position: absolute;
-    transition: fill 0.25s; }
-    .directional-control .refresh svg:hover {
-      fill: #f95b26; }
+  position: relative;
+  margin-top: 40px; }
   .directional-control .configs {
     position: absolute;
     right: 28px;
@@ -14,7 +8,8 @@
   .directional-control .units {
     font-size: 12px;
     color: currentColor;
-    text-align: right; }
+    text-align: right;
+    margin-top: -5px; }
     .directional-control .units label {
       margin: 4px;
       cursor: pointer; }
@@ -37,15 +32,25 @@
     font-size: 15px;
     margin-bottom: 25px; }
   .directional-control .delete-saved {
-    text-align: center;
     font-size: 12px;
-    text-decoration: underline;
-    margin: 30px 0; }
+    margin: 18px 0;
+    text-align: center; }
     .directional-control .delete-saved a {
-      color: black;
+      text-decoration: underline;
       transition: color 0.25s; }
-      .directional-control .delete-saved a:hover {
-        color: #f95b26; }
+      .directional-control .delete-saved a:first-of-type::after {
+        content: ' | ';
+        margin: 0 6px;
+        display: inline-block;
+        color: #7a7a7a; }
+      .directional-control .delete-saved a.undo {
+        color: black; }
+        .directional-control .delete-saved a.undo:hover {
+          color: #f95b26; }
+      .directional-control .delete-saved a.remove {
+        color: red; }
+        .directional-control .delete-saved a.remove:hover {
+          color: red; }
 
 .boldgrid-control.slider-control label {
   font-size: 13px;
@@ -91,10 +96,54 @@
 .boldgrid-control .device {
   position: relative;
   text-align: right; }
+  .boldgrid-control .device [value="base"] + label svg {
+    vertical-align: top;
+    transform: scale(1.4);
+    margin-right: 6px;
+    position: relative;
+    top: 3px; }
   .boldgrid-control .device ul {
     list-style: none;
     margin: 10px 0;
     padding: 0; }
+  .boldgrid-control .device input:checked ~ .relationship {
+    display: block; }
+  .boldgrid-control .device ul li:first-of-type input:checked ~ .relationship {
+    display: none; }
+  .boldgrid-control .device .relationship {
+    display: none;
+    user-select: none;
+    background: black;
+    position: absolute;
+    top: -45px;
+    border-radius: 4px;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 80px;
+    cursor: pointer;
+    text-align: center; }
+    .boldgrid-control .device .relationship:hover {
+      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3); }
+    .boldgrid-control .device .relationship::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 7px solid #121212;
+      position: absolute;
+      bottom: -7px;
+      left: 50%;
+      transform: translateX(-50%); }
+    .boldgrid-control .device .relationship svg {
+      padding: 0 2px;
+      vertical-align: -webkit-baseline-middle;
+      vertical-align: -moz-middle-with-baseline;
+      fill: white; }
+    .boldgrid-control .device .relationship > svg:last-of-type {
+      width: 15px;
+      position: relative;
+      top: -2px; }
   .boldgrid-control .device .selection-text {
     position: absolute;
     right: 0;
@@ -102,10 +151,12 @@
     font-size: 12px; }
   .boldgrid-control .device li {
     display: inline;
-    margin: 10px 4px; }
+    margin: 10px 0;
+    position: relative; }
   .boldgrid-control .device input {
     display: none; }
     .boldgrid-control .device input + label {
+      display: table-cell;
       cursor: pointer;
       vertical-align: top; }
     .boldgrid-control .device input:checked + label svg {
@@ -113,7 +164,26 @@
     .boldgrid-control .device input:checked + label {
       color: #f95b26; }
   .boldgrid-control .device svg {
+    padding: 0 2px;
     width: 20px; }
+  .boldgrid-control .device .relationship-unlinked,
+  .boldgrid-control .device .relationship-linked {
+    display: none; }
+  .boldgrid-control .device .relationship-unlinked svg {
+    transform: scale(1.3) translateY(1px) translateX(0); }
+  .boldgrid-control .device .relationship-linked svg {
+    transform: rotateZ(-45deg);
+    width: 14px; }
+  .boldgrid-control .device[data-relationship-linked="1"] .relationship-linked {
+    display: inline; }
+  .boldgrid-control .device[data-relationship-linked="0"] .relationship-unlinked {
+    display: inline; }
+  .boldgrid-control .device[data-relationship-linked="0"] .relationship svg {
+    padding: 0; }
+  .boldgrid-control .device[data-relationship-linked="0"] .relationship {
+    background: rgba(0, 0, 0, 0.23); }
+    .boldgrid-control .device[data-relationship-linked="0"] .relationship::after {
+      border-top-color: rgba(0, 0, 0, 0.23); }
 
 .mdc-switch {
   display: inline-block;
@@ -268,12 +338,10 @@
     display: block;
     margin: 10px auto; }
 
-.box-shadow-control {
-  margin-bottom: 20px; }
-
-.box-shadow-outline-switch {
+.boldgrid-control.box-shadow-control .box-shadow-outline-switch {
   font-size: 14px;
-  user-select: none; }
+  user-select: none;
+  margin-top: 25px; }
 
 @keyframes mdc-ripple-fg-radius-in {
   from {
@@ -696,8 +764,10 @@
 label svg {
   width: 20px; }
 
-.border-width-control {
+.border-width-control .slider-group {
   display: none; }
+  .border-width-control .slider-group .control-name {
+    margin-bottom: 10px; }
 
 .border-type-control {
   margin-bottom: 30px; }

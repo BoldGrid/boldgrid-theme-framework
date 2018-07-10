@@ -19,7 +19,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 	var self, bg, $body, api;
 
 	bg = BOLDGRID;
-	$body = $( 'body' );
 	api = parent.wp.customize;
 
 	/**
@@ -89,6 +88,8 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 		_onLoad: function() {
 			$( window ).on( 'load', function() {
+				$body = $( 'body' );
+
 				self.start();
 				self._customizer();
 

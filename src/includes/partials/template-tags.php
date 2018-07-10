@@ -127,7 +127,7 @@ function boldgrid_entry_footer() {
 
 		echo '<span class="comments-link">';
 		$icon = '';
-		if ( $comment_count === '1' ) {
+		if ( '1' === $comment_count ) {
 			$icon = '<i class="fa fa-comment" aria-hidden="true"></i> ';
 		}
 
@@ -436,10 +436,17 @@ function bgtfw_featured_img_bg( $post_id ) {
 	echo bgtfw_get_featured_img_bg( $post_id );
 }
 
-// Changing excerpt more.
+/**
+ * Changing excerpt more.
+ *
+ * @since 2.0.0
+ *
+ * @param  string $more The string shown within the more link.
+ * @return string
+ */
 function bgtfw_excerpt_more( $more ) {
 	global $post;
-	return '… <div class="read-more"><a class="btn button-primary" href="'. get_permalink( $post->ID ) . '">' . 'Continue Reading &raquo;' . '</a></div>';
+	return '… <div class="read-more"><a class="btn button-primary" href="' . get_permalink( $post->ID ) . '">' . 'Continue Reading &raquo;' . '</a></div>';
 }
 
 add_filter( 'excerpt_more', 'bgtfw_excerpt_more' );

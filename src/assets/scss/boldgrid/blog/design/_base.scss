@@ -124,11 +124,8 @@ main {
 			justify-content: flex-start;
 			span {
 				flex-wrap: wrap;
-				&:first-child {
-					padding-left: 15px;
-				}
-				&:last-child {
-					padding-right: 15px;
+				&.bgtfw-edit-link {
+					margin-top: calc( -1em + -15px );
 				}
 			}
 		}
@@ -147,6 +144,7 @@ main {
 		@import "1";
 		@import "2";
 		@import "3";
+		@import "4";
 	}
 }
 

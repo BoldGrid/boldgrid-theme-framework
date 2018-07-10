@@ -668,12 +668,8 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
       flex-wrap: wrap;
 }
 
-.blog main > article.post .entry-footer span:first-child {
-  padding-left: 15px;
-}
-
-.blog main > article.post .entry-footer span:last-child {
-  padding-right: 15px;
+.blog main > article.post .entry-footer span.bgtfw-edit-link {
+  margin-top: calc( -1em + -15px);
 }
 
 .blog main > article.post .entry-footer .bgtfw-edit-link a {
@@ -810,7 +806,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   -ms-flex-item-align: auto;
       align-self: auto;
   max-width: 50%;
-  padding-bottom: 8px;
+  padding-bottom: 15px;
 }
 
 .blog main > article.post.design-3 {
@@ -823,6 +819,14 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .blog main > article.post.design-3 .entry-footer {
   padding-top: 2rem;
+}
+
+.blog main > article.post.design-4 .entry-header .entry-meta {
+  padding-bottom: .75em;
+}
+
+.blog main > article.post.design-4 .entry-footer {
+  padding: 15px 0;
 }
 
 @media only screen and (max-width: 768px) {
@@ -1026,12 +1030,8 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
       flex-wrap: wrap;
 }
 
-.archive main > article.post .entry-footer span:first-child {
-  padding-left: 15px;
-}
-
-.archive main > article.post .entry-footer span:last-child {
-  padding-right: 15px;
+.archive main > article.post .entry-footer span.bgtfw-edit-link {
+  margin-top: calc( -1em + -15px);
 }
 
 .archive main > article.post .entry-footer .bgtfw-edit-link a {
@@ -1168,7 +1168,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   -ms-flex-item-align: auto;
       align-self: auto;
   max-width: 50%;
-  padding-bottom: 8px;
+  padding-bottom: 15px;
 }
 
 .archive main > article.post.design-3 {
@@ -1181,6 +1181,14 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .archive main > article.post.design-3 .entry-footer {
   padding-top: 2rem;
+}
+
+.archive main > article.post.design-4 .entry-header .entry-meta {
+  padding-bottom: .75em;
+}
+
+.archive main > article.post.design-4 .entry-footer {
+  padding: 15px 0;
 }
 
 @media only screen and (max-width: 768px) {

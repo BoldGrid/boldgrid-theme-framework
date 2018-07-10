@@ -2,4 +2,7 @@
 	display: flex;
 	flex-basis: 100%;
 	justify-content: center;
+	a:not(.btn):not(.button-primary):not(.button-secondary) {
+		text-decoration: none;
+	}
 }

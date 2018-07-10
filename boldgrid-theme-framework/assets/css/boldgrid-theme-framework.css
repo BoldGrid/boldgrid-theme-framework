@@ -3937,6 +3937,10 @@ img.alignright {
           justify-content: center;
 }
 
+.palette-primary .pagination a:not(.btn):not(.button-primary):not(.button-secondary) {
+  text-decoration: none;
+}
+
 .palette-primary.woocommerce, .palette-primary.woocommerce-page {
   /* Base Buttons */
   /* Cross Sells */

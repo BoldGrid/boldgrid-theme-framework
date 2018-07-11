@@ -68,7 +68,8 @@ class Boldgrid_Framework_Welcome {
 	 * @since 2.0.0
 	 */
 	public function add_admin_menu() {
-		add_menu_page(
+		add_submenu_page(
+			null,
 			__( 'Crio', 'bgtfw' ),
 			__( 'Crio', 'bgtfw' ),
 			'manage_options',

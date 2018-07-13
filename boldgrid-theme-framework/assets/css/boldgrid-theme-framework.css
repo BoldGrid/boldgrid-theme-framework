@@ -4854,6 +4854,9 @@ img.alignright {
         -ms-flex-pack: start;
             justify-content: flex-start;
   }
+  .header-top .layout-2 .container .site-branding {
+    margin-left: -15px;
+  }
   .header-top .layout-2 .site-branding {
     -webkit-box-align: start;
         -ms-flex-align: start;
@@ -4861,7 +4864,6 @@ img.alignright {
     -ms-flex-preferred-size: 50%;
         flex-basis: 50%;
     padding-left: 0;
-    margin-left: -15px;
   }
   .header-top .layout-2 #main-menu {
     -ms-flex-line-pack: end;

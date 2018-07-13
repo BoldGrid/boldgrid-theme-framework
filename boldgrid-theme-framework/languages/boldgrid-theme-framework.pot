@@ -231,6 +231,10 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
+#: src/includes/class-boldgrid-framework-welcome.php:73, src/includes/class-boldgrid-framework-welcome.php:74
+msgid "Crio"
+msgstr ""
+
 #: src/includes/configs/customizer/controls.config.php:30
 msgid "JS code"
 msgstr ""

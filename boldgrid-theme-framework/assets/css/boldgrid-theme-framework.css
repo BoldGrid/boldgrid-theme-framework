@@ -4860,6 +4860,8 @@ img.alignright {
             align-items: flex-start;
     -ms-flex-preferred-size: 50%;
         flex-basis: 50%;
+    padding-left: 0;
+    margin-left: -15px;
   }
   .header-top .layout-2 #main-menu {
     -ms-flex-line-pack: end;

@@ -991,7 +991,7 @@ return array(
 		'label'       => esc_html__( 'Design', 'bgtfw' ),
 		'type'        => 'radio',
 		'priority'    => 40,
-		'default'   => 'layout-1',
+		'default'   => 'design-5',
 		'choices'     => array(
 			'design-1' => esc_attr__( 'Design 1', 'bgtfw' ),
 			'design-2' => esc_attr__( 'Design 2', 'bgtfw' ),

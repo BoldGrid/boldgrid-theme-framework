@@ -1,4 +1,10 @@
 .single {
+	.site-content.container {
+		padding-left: 0;
+		.main {
+			padding-left: 0;
+		}
+	}
 	.post {
 		flex-direction: column;
 		flex-wrap: nowrap;

@@ -22,7 +22,7 @@ return array(
 	// Theme mod, determines if title should display on posts.
 	'post' => 'bgtfw_posts_display_title',
 
-	'default_page' => '0',
+	'default_page' => '1',
 	'default_post' => '1',
 
 	// Editor meta box controls.

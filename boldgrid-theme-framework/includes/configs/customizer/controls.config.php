@@ -997,10 +997,11 @@ return array(
 			'design-2' => esc_attr__( 'Design 2', 'bgtfw' ),
 			'design-3' => esc_attr__( 'Design 3', 'bgtfw' ),
 			'design-4' => esc_attr__( 'Design 4', 'bgtfw' ),
+			'design-5' => esc_attr__( 'Design 5', 'bgtfw' ),
 		),
 		'section' => 'bgtfw_pages_blog_blog_page_layout',
 		'sanitize_callback' => function( $value, $settings ) {
-			return in_array( $value, [ 'design-1', 'design-2', 'design-3', 'design-4' ], true ) ? $value : $settings->default;
+			return in_array( $value, [ 'design-1', 'design-2', 'design-3', 'design-4', 'design-5' ], true ) ? $value : $settings->default;
 		},
 	),
 	'bgtfw_blog_blog_page_sidebar' => array(

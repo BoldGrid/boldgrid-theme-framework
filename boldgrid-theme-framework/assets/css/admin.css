@@ -78,3 +78,9 @@
 #tgmpa-plugins .tablenav.bottom small {
   display: none;
 }
+
+/* BoldGrid Crio admin menu item icon. */
+#toplevel_page_crio-welcome .wp-menu-image:before {
+  content: "\e600";
+  font-family: 'boldgrid';
+}

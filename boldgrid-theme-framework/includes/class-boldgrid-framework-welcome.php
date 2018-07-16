@@ -68,13 +68,42 @@ class Boldgrid_Framework_Welcome {
 	 * @since 2.0.0
 	 */
 	public function add_admin_menu() {
-		add_submenu_page(
-			null,
-			__( 'Crio', 'bgtfw' ),
-			__( 'Crio', 'bgtfw' ),
+		add_menu_page(
+			__( 'BoldGrid Crio', 'bgtfw' ),
+			__( 'BoldGrid Crio', 'bgtfw' ),
 			'manage_options',
 			$this->menu_slug,
+			array( $this, 'page_welcome' ),
+			'none',
+			2
+		);
+
+		add_submenu_page(
+			$this->menu_slug,
+			__( 'Registration', 'bgtfw' ),
+			__( 'Registration', 'bgtfw' ),
+			'manage_options',
+			'boldgrid-connect.php',
 			array( $this, 'page_welcome' )
+		);
+	}
+
+	/**
+	 * Set BoldGrid Crio > Registration as active menu item.
+	 *
+	 * Hook into library's Boldgrid\Library\Library\Page\Connect\addScripts action and add js to
+	 * set 'Registration' as active menu item.
+	 *
+	 * @since 2.0.0
+	 */
+	public function connect_scripts() {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		wp_enqueue_script(
+			'boldgrid-framework-registration',
+			$this->configs['framework']['js_dir'] . 'registration' . $suffix . '.js',
+			array( 'jquery' ),
+			$this->configs['version']
 		);
 	}
 

@@ -68,6 +68,8 @@ class Boldgrid_Framework_Welcome {
 	 * @since 2.0.0
 	 */
 	public function add_admin_menu() {
+
+		// Parent menu item: BoldGrid Crio.
 		add_menu_page(
 			__( 'BoldGrid Crio', 'bgtfw' ),
 			__( 'BoldGrid Crio', 'bgtfw' ),
@@ -78,6 +80,19 @@ class Boldgrid_Framework_Welcome {
 			2
 		);
 
+		// Override first item and change it to: Welcome.
+		add_submenu_page(
+			$this->menu_slug,
+			__( 'Welcome', 'bgtfw' ),
+			__( 'Welcome', 'bgtfw' ),
+			'manage_options',
+			$this->menu_slug,
+			array( $this, 'page_welcome' ),
+			'none',
+			2
+		);
+
+		// Sub menu page: Registration.
 		add_submenu_page(
 			$this->menu_slug,
 			__( 'Registration', 'bgtfw' ),

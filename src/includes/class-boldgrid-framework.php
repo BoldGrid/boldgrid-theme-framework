@@ -160,6 +160,7 @@ class BoldGrid_Framework {
 			'comments',
 			'compile-colors',
 			'container',
+			'content',
 			'custom-header',
 			'editor',
 			'edit-post-links',

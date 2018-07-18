@@ -51,11 +51,10 @@ class Boldgrid_Framework_Content {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  string $text
+	 * @param  string $text The original text.
 	 * @return string
 	 */
 	public static function add_spaces( $text ) {
-
 		/*
 		 * We could simply change '>' to '> ', but we could get false positives like
 		 * 'text</a>,'

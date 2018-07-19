@@ -20,10 +20,9 @@ return array(
 	 */
 	'plugins' => array(
 		array(
-			'name'      => 'Post and Page Builder',
+			'name'      => 'BoldGrid Post and Page Builder',
 			'slug'      => 'post-and-page-builder',
-			'source'    => 'https://downloads.wordpress.org/plugin/post-and-page-builder.zip',
-			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
+			'required'  => true, // If false, the plugin is only 'recommended' instead of required.
 		),
 	),
 
@@ -50,7 +49,7 @@ return array(
 		'id'           => 'bgtfw',                 // Unique ID for hashing notices for multiple instances of TGMPA.
 		'default_path' => '',                      // Default absolute path to bundled plugins.
 		'menu'         => 'bgtfw-install-plugins', // Menu slug.
-		'parent_slug'  => 'plugins.php',            // Parent menu slug.
+		'parent_slug'  => 'crio-welcome',          // Parent menu slug.
 		'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
 		'has_notices'  => true,                    // Show admin notices or not.
 		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.

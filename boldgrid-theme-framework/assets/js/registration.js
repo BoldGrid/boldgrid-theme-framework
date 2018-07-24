@@ -10,5 +10,5 @@
 			.addClass( 'wp-not-current-submenu' )
 			.removeClass( 'wp-has-current-submenu' )
 			.find( 'a' ).first().removeClass( 'wp-has-current-submenu', 'wp-menu-open' );
-	});
-})( jQuery );
+	} );
+} )( jQuery );

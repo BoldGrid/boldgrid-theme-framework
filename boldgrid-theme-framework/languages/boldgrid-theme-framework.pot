@@ -231,8 +231,12 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-welcome.php:73, src/includes/class-boldgrid-framework-welcome.php:74
-msgid "Crio"
+#: src/includes/class-boldgrid-framework-welcome.php:72, src/includes/class-boldgrid-framework-welcome.php:73
+msgid "BoldGrid Crio"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-welcome.php:83, src/includes/class-boldgrid-framework-welcome.php:84
+msgid "Registration"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:30
@@ -899,11 +903,11 @@ msgstr ""
 msgid "Change the border radius of your site's footer."
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:61
+#: src/includes/configs/tgm.config.php:60
 msgid "Recommended Plugins"
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:62
+#: src/includes/configs/tgm.config.php:61
 msgid "Install Recommended Plugins"
 msgstr ""
 

@@ -296,9 +296,10 @@ class Boldgrid_Framework_Menu {
 		$color = array_shift( $color );
 
 		$background_color = null;
+		$is_transparent = strpos( $menu['menu_class'], 'transparent' ) !== false;
 
 		// Check if a transparent BG has been applied.
-		if ( strpos( $menu['menu_class'], 'transparent' ) !== false ) {
+		if ( $is_transparent ) {
 			$background_color = 'header';
 
 			if ( in_array( $menu['theme_location'], $this->configs['menu']['footer_menus'], true ) ) {
@@ -314,7 +315,7 @@ class Boldgrid_Framework_Menu {
 		$classes = explode( ' ', $menu['menu_class'] );
 
 		if ( ! empty( $color ) ) {
-			if ( ! is_null( $background_color ) ) {
+			if ( ! is_null( $background_color ) && ! $is_transparent ) {
 				$background_color = explode( ':', $background_color );
 				$background_color = array_shift( $background_color );
 
@@ -324,6 +325,7 @@ class Boldgrid_Framework_Menu {
 					$classes[] = str_replace( '-', '', $background_color ) . '-background-color';
 				}
 			}
+
 			$classes[] = $color . '-link-color';
 		}
 

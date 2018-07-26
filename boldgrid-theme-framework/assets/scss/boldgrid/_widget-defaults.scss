@@ -1,18 +1,90 @@
-// Default Widget Styles
+// Default Widget Styles.
+.bgtfw-widget-row {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	flex: 1 0 100%;
+	z-index: 1;
+
+	// Chrome bug - this forces widget areas to repaint when they are inside of fixed positioned areas.
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+}
+
+.bgtfw-widget-row:first-child {
+	margin-top: -1.5em;
+}
+
+.bgtfw-widget-row:first-child:after,
+.bgtfw-widget-row:last-child:after {
+	content: "";
+	position: relative;
+	flex: 0 0 100%;
+	padding-bottom: 1.5em;
+}
+
+.bgtfw-widget-row:last-child {
+	margin-bottom: -1.5em;
+}
+
+.header-top:not(.header-fixed) {
+	#navi.container {
+		flex: 1 0 auto;
+		@media only screen and (min-width: 768px) {
+			flex: 0 1 auto;
+		}
+	}
+	.bgtfw-widget-row:last-child {
+		margin-bottom: 0;
+	}
+	.bgtfw-widget-row:first-child:after,
+	.bgtfw-widget-row:last-child:after {
+		padding-bottom: 0;
+	}
+}
+
+// Footer Widget Row Styles.
+#footer-widget-area.bgtfw-widget-row:last-child:after {
+	padding-bottom: 0;
+}
+
+// Mobile First.
+.bgtfw-widget-row > .sidebar {
+	flex: 1 0 100%;
+}
+
+// Small Devices, Tablets.
+@media only screen and (min-width: 768px) {
+	.bgtfw-widget-row > .sidebar {
+		flex: 1 0 50%;
+	}
+}
+
+// Medium Devices, Desktops.
+@media only screen and (min-width: 992px) {
+	.bgtfw-widget-row > .sidebar {
+		flex: 1 0 0;
+	}
+}
+
 .widget {
 	margin: 0 0 1.5em;
-	/* Make sure select elements fit in widgets. */
+
+	// Make sure select elements fit in widgets.
 	select {
 		max-width: 100%;
 	}
 }
+
 select[name="archive-dropdown"] {
 	width: auto;
 }
+
 .footer-company-details .textwidget {
 	text-align: center;
 	color: white;
 }
+
 .widget.well{
 	color: #333;
 	a, .site-info a{
@@ -28,7 +100,7 @@ select[name="archive-dropdown"] {
 	}
 }
 
-// Default Sidebar Message
+// Default Sidebar Message.
 .empty-sidebar-message {
 	display: inline-block;
 	a:hover {
@@ -39,7 +111,7 @@ select[name="archive-dropdown"] {
 	text-decoration: none;
 }
 
-// Search Widgets
+// Search Widgets.
 .widget_search {
 	.button-primary {
 		height: auto;

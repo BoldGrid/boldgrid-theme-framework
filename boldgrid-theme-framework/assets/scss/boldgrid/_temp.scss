@@ -1,6 +1,4 @@
-/* Header Position Styles */
-
-/** Header on top specific styles (this is the default style) **/
+// Header on top specific styles (this is the default style).
 @media only screen and (min-width: 768px) {
 	.flexbox .header-fixed.header-top .wp-custom-header {
 		-webkit-transform: translateZ(0);
@@ -13,128 +11,7 @@
 	}
 }
 
-/** Header on left **/
-
-/* admin bar on mobile header fixed */
-@media screen and (max-width: 782px) {
-	.admin-bar.header-fixed{
-		.header-left, .header-right {
-			top: 46px;
-		}
-	}
-}
-@media only screen and (min-width: 768px) {
-	.flexbox .header-left #boldgrid-sticky-wrap {
-		flex-direction: row;
-	}
-	.flexbox .header-left.header-fixed #boldgrid-sticky-filler {
-		flex: 0 0 auto;
-	}
-	.header-right, .header-left {
-		.wp-custom-header,
-		.site-header,
-		#masthead {
-			will-change: height, display, z-index, position;
-			width: 400px;
-		}
-		#secondary-menu {
-			justify-content: center;
-		}
-		&.header-fixed {
-			.site-header {
-				overflow-x: hidden;
-				overflow-y: auto;
-				height: 100vh;
-				-webkit-transform: translateZ(0);
-				transform: translateZ(0);
-			}
-		}
-	}
-
-	.flexbox .header-left .site-header {
-		display: flex;
-		flex: 0 0 400px;
-	}
-	.flexbox .header-left .site-content {
-		width: calc(100% - 400px);
-	}
-	.flexbox .site-header {
-		width: 100%;
-	}
-	/* Header adjustments */
-	.flexbox .header-left.header-fixed .site-header {
-		width: 400px;
-		height: 100vh;
-	}
-	.flexbox .admin-bar.header-left.header-fixed .site-header {
-		height: calc(100vh - 32px);
-	}
-	/* Footer Adjustment */
-	.flexbox .header-left.header-fixed .site-footer {
-		width: calc(100% - 400px);
-		margin-left: 400px;
-	}
-	.flexbox .header-left.header-fixed .site-content {
-		margin-left: 400px;
-	}
-	.flexbox .header-fixed .site-header {
-		position: fixed;
-		// Set z-index lower than customizer edit buttons @ 210.
-		z-index: 201;
-	}
-}
-/** Header on Right **/
-@media only screen and (min-width: 768px) {
-	.flexbox .header-right #boldgrid-sticky-wrap {
-		flex-direction: row-reverse;
-	}
-	.flexbox .header-right.header-fixed #boldgrid-sticky-filler {
-		flex: 0 0 auto;
-	}
-	.flexbox .header-right .site-header {
-		display: flex;
-		flex: 0 0 400px;
-	}
-	.flexbox .header-right .site-content {
-		width: calc(100% - 400px);
-	}
-	/** Menu Styles */
-	.flexbox .header-left .site-header input:checked ~ .sm-clean,
-	.flexbox .header-left .site-header input:not(:checked):not(.hidden) ~ .sm-clean,
-	.flexbox .header-right .site-header input:checked ~ .sm-clean,
-	.flexbox .header-right .site-header input:not(:checked):not(.hidden) ~ .sm-clean {
-		display: block;
-	}
-	/** Left w/ fixed position **/
-	/* Header adjustments */
-	.flexbox .header-right.header-fixed .site-header {
-		position: fixed;
-		width: 400px;
-		height: 100vh;
-	}
-	/** Left w/ fixed position **/
-	/* Header adjustments */
-	.flexbox .admin-bar.header-right.header-fixed .site-header {
-		height: calc(100vh - 32px);
-	}
-	/* Footer Adjustment */
-	.flexbox .header-right.header-fixed .site-footer {
-		width: calc(100% - 400px);
-		margin-right: 400px;
-	}
-	.flexbox .header-right.header-fixed .site-content {
-		margin-right: 400px;
-	}
-	.flexbox .header-fixed.header-left .wp-custom-header video,
-	.flexbox .header-fixed.header-right .wp-custom-header video {
-		min-height: 100vh;
-		object-fit: cover;
-		width: 100%;
-		overflow: hidden;
-	}
-}
-
-/** Youtube video iframe background styles **/
+// Youtube video iframe background styles.
 .has-youtube-header .wp-custom-header {
 	background: #eee;
 	height: 100%;
@@ -174,7 +51,7 @@
 	}
 }
 
-/* Set up header for flex styles */
+// Set up header for flex styles.
 #masthead {
 	backface-visibility: hidden;
 	display: flex;
@@ -218,7 +95,7 @@
 	}
 }
 
-/** Allow box shadow display **/
+// Allow box shadow display.
 .site-header {
 	z-index: 1;
 }
@@ -227,7 +104,8 @@
 	position: absolute;
 	overflow: hidden;
 	max-width: 100%;
-	/** Fixes bug with video background adding gaps on scroll with object-fit cover on chrome. **/
+
+	// Fixes bug with video background adding gaps on scroll with object-fit cover on chrome.
 	width: 100%;
 	height: calc( 100% + 2px );
 	margin-top: -2px;
@@ -280,150 +158,7 @@
 	}
 }
 
-// Header Layouts.
-// Header Top Layouts.
-.header-top {
-	@media (min-width: 768px) {
-		.layout {
-
-			/** Header Top layout-1 **/
-			&-1 {
-				#main-menu, #secondary-menu {
-					align-items: flex-start;
-					justify-content: flex-start;
-				}
-			}
-
-			/** Header Top layout-2 **/
-			&-2 {
-				#navi {
-					flex-direction: row;
-				}
-				#secondary-menu {
-					align-content: flex-start;
-					justify-content: flex-start;
-				}
-				.container .site-branding {
-					margin-left: -15px;
-				}
-				.site-branding {
-					align-items: flex-start;
-					flex-basis: 50%;
-					padding-left: 0;
-				}
-				#main-menu {
-					align-content: flex-end;
-					align-items: flex-end;
-					justify-content: flex-end;
-				}
-			}
-
-			/** Header Top layout-3 **/
-			&-3 {
-				#navi {
-					flex-direction: row-reverse;
-				}
-				#main-menu {
-					align-items: flex-end;
-					justify-content: flex-start;
-				}
-				.site-branding {
-					align-items: flex-end;
-					flex-basis: 50%;
-				}
-			}
-
-			/** Header Top layout-4 **/
-			&-4 {
-				.site-branding {
-					align-items: center;
-				}
-				#main-menu, #secondary-menu {
-					align-items: center;
-					justify-content: center;
-				}
-			}
-
-			/** Header Top layout-5 **/
-			&-5 {
-				#secondary-menu, #main-menu {
-					align-items: center;
-					justify-content: center;
-				}
-				#navi {
-					flex-direction: column-reverse;
-				}
-			}
-
-			/** Header Top layout-6 **/
-			&-6 {
-				#secondary-menu {
-					align-items: center;
-					justify-content: center;
-				}
-			}
-		}
-	}
-}
-.header-fixed {
-	&.header-top {
-		.sm, .sm ul, .sm li {
-			width: 100%;
-			@media (min-width: 768px) {
-				width: auto;
-			}
-		}
-	}
-}
-
-.header-left, .header-right {
-	.site-header {
-		.sm.sm-clean {
-			padding-left: 0;
-			padding-right: 0;
-			width: 100%;
-			height: auto;
-		}
-		#navi-wrap {
-			display: block;
-		}
-	}
-}
-
-/* Logo above menu */
-
-@media only screen and (min-width: 768px) {}
-/* Site Footer */
-/* Attribution Link Additions */
-
-.attribution-theme-mods {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-}
-.attribution-theme-mods.center {
-	justify-content: center;
-}
-.attribution-theme-mods.left {
-	justify-content: flex-start;
-}
-.attribution-theme-mods.right {
-	justify-content: flex-end;
-}
-@media only screen and (min-width: 768px) {
-	.attribution-theme-mods .link:first-of-type {
-		padding-left: 0;
-	}
-}
-/* 404: No Results Found */
-.no-results,
-.not-found {
-	display: flex;
-	justify-content: center;
-	flex: 1 0 100%;
-}
-
-/* 404 Page */
+// Site content.
 .home.blog.no-sidebar .site-content {
 	display: flex;
 	flex-direction: column;
@@ -431,7 +166,7 @@
 	justify-content: flex-start;
 }
 
-/* Archive Pages */
+// Archive Pages.
 .home.blog .main > .row > div {
 	display: flex;
 	flex-wrap: wrap;
@@ -465,103 +200,14 @@
 	margin-bottom: 0;
 }
 
-/* Post navigation */
-
+// Post navigation.
 nav.navigation.posts-navigation {
 	display: flex;
 	width: 100%;
 	padding: 0 3.5vw;
 }
-/** Widget Styles **/
 
-/* Base Styles */
-.bgtfw-widget-row {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	flex: 1 0 100%;
-	z-index: 1;
-	/* Chrome bug - this forces widget areas to repaint when they are inside of fixed positioned areas. */
-	-webkit-transform: translateZ(0);
-	transform: translateZ(0);
-}
-.bgtfw-widget-row:first-child {
-	margin-top: -1.5em;
-}
-.bgtfw-widget-row:first-child:after,
-.bgtfw-widget-row:last-child:after {
-	content: "";
-	position: relative;
-	flex: 0 0 100%;
-	padding-bottom: 1.5em;
-}
-
-.bgtfw-widget-row:last-child {
-	margin-bottom: -1.5em;
-}
-
-.header-top:not(.header-fixed) {
-	#navi.container {
-		flex: 1 0 auto;
-		@media only screen and (min-width: 768px) {
-			flex: 0 1 auto;
-		}
-	}
-	.bgtfw-widget-row:last-child {
-		margin-bottom: 0;
-	}
-	.bgtfw-widget-row:first-child:after,
-	.bgtfw-widget-row:last-child:after {
-		padding-bottom: 0;
-	}
-}
-
-/* Footer Widget Row Styles */
-#footer-widget-area.bgtfw-widget-row:last-child:after {
-	padding-bottom: 0;
-}
-
-/* Mobile First */
-.bgtfw-widget-row > .sidebar {
-	flex: 1 0 100%;
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
-	.bgtfw-widget-row > .sidebar {
-		flex: 1 0 50%;
-	}
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-	.bgtfw-widget-row > .sidebar {
-		flex: 1 0 0;
-	}
-}
-
-/* header-left and header-right style for sidebar area in header */
-.header-left,
-.header-right {
-	#header-widget-area {
-		flex: 0;
-		flex-direction: column;
-		flex-wrap: nowrap;
-		> .sidebar {
-			margin-left: 0;
-			margin-right: 0;
-		}
-	}
-}
-.header-left, .header-right {
-	#header-widget-area {
-		&.bgtfw-widget-row:first-child:after,
-		&.bgtfw-widget-row:last-child:after {
-			padding-bottom: 0;
-		}
-	}
-}
-/** * No JS sticky header to preserve style. */
+// No JS sticky header to preserve style.
 .no-js.flexbox .header-fixed .bgtfw-layout {
 	display: flex;
 	flex: 1 1 0;

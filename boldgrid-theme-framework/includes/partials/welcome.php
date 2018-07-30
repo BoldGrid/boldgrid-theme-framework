@@ -12,30 +12,110 @@ if ( ! defined( 'WPINC' ) ) {
 
 <div class="wrap about-wrap">
 
-	<h1>Welcome to BoldGrid Crio!</h1>
+	<h1>Welcome to Crio!</h1>
 
-	<p class="about-text">You have successfully installed BoldGrid Crio, and are now ready to start building an amazing site.
-	Head to <a href="http://www.boldgrid.com/support/boldgrid-crio" target="_blank">BoldGrid.com</a> to learn more about what Crio can do in our support center.</p>
+	<div class="wp-badge" style="background:#000 url(http://via.placeholder.com/80x80) no-repeat;background-size: 80px 80px;background-position: center 25px;width:130px;">Version 2.0.0</div>
 
-	<h2 class="nav-tab-wrapper wp-clearfix">
-		<a href="<?php echo admin_url( '?page=' . $this->menu_slug ); ?>" class="nav-tab nav-tab-active">Getting Started</a>
-	</h2>
+	<p style="padding-right:150px;min-height:100px;">Congratulations! You've successfully installed BoldGrid Crio. BoldGrid Crio is a powerful tool that enables you to build beautiful websites without boundaries or limitations. Before you begin, <strong>please scroll down and read over the following steps</strong> to maximize the creative potential of BoldGrid Crio.</p>
 
-	<p>We recommend following these steps to get the most out of BoldGrid Crio:</p>
+	<div class="welcome-panel">
+		<div class="welcome-panel-content">
+			<div class="welcome-panel-column-container">
+				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
+					<h3>Register Your Account With BoldGrid Central</h3>
+					<p>BoldGrid Central will allow you to generate your connect key, which will unlock all the features of your BoldGrid Crio purchase. Central also allows you to submit personalized support requests.</p>
+					<p>
+						<a href="" class="button button-primary button-hero">Register</a>
+						or
+						<a href="">See Support Documents...</a>
+					</p>
+				</div>
+				<div class="welcome-panel-column" style="width:50%;">
+					<img style="width:100%;" src="http://via.placeholder.com/350x150" />
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<ol>
-		<li>
-			Register your account.  You will be taken to BoldGrid Central to link your theme purchase and generate a connect key.  This key will unlock all of the features of your theme, and allows you to submit personalized support requests.
-		</li>
-		<li>
-			Add your connect key to your BoldGrid Crio install.  You will be prompted to enter the connect key you just generated when you login to WordPress admin.
-		</li>
-		<li>
-			Install and activate your included copy of the BoldGrid Post and Page Builder premium plugin.  This adds premium Block layouts and advanced page design controls.
-		</li>
-		<li>
-			(Recommended) Check out the great BoldGrid starter content included with your theme purchase.  If you are looking for a great starting point for your site - or are just looking for some inspiration - install the BoldFresh prebuilt website to jumpstart your site building process.
-		</li>
-	</ol>
+	<div class="welcome-panel">
+		<div class="welcome-panel-content">
+			<div class="welcome-panel-column-container">
+				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
+					<h3>Activate the Included Post and Page Builder Plugin</h3>
+					<p>The BoldGrid Page and Post Builder provides a true WYSIWYG experience while allowing full control over your content. Easily try out new icons, section backgrounds, column and row designs, text settings and more. You can even customize our preset icons, images, and backgrounds within the editor to make them your own.</p>
+					<p>
+						<a href="" class="button button-primary button-hero">Install</a>
+						or
+						<a href="">See Support Documents...</a>
+					</p>
+				</div>
+				<div class="welcome-panel-column" style="width:50%;">
+					<img style="width:100%;" src="http://via.placeholder.com/350x150" />
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<div class="welcome-panel">
+		<div class="welcome-panel-content">
+			<div class="welcome-panel-column-container">
+				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
+					<img src="http://via.placeholder.com/45x45" />
+					<p>The Post and Page Builder plugin also gives you access to blocks. Blocks are pre-built professionally designed sections of content.</p>
+				</div>
+				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
+					<img src="http://via.placeholder.com/45x45" />
+					<p>Block layouts consist of rows and columns that are pre-populated with content relevant to your industry.</p>
+				</div>
+				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
+					<img src="http://via.placeholder.com/45x45" />
+					<p>Blocks can be managed visually in the Editor using drag and drop functionality, or using text view to access the HTML and CSS.</p>
+				</div>
+				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
+					<img src="http://via.placeholder.com/45x45" />
+					<p>Our advanced image controls help you change images while keeping the layout intact.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="welcome-panel">
+		<div class="welcome-panel-content">
+			<div class="welcome-panel-column-container">
+				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
+					<h3>Activate the Included BoldGrid Backup Premium Plugin</h3>
+					<p>BoldGrid Backup will backup your entire WordPress site with just a couple of clicks right in your WordPress dashboard. Just select a time and day for backups to run automatically. Or manually create a backup at any time with a single click. You can also create offsite backups at Amazon S3 or a web server of your choosing.</p>
+					<p>
+						<a href="" class="button button-primary button-hero">Install</a>
+						or
+						<a href="">See Support Documents...</a>
+					</p>
+				</div>
+				<div class="welcome-panel-column" style="width:50%;">
+					<img style="width:100%;" src="http://via.placeholder.com/350x150" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="welcome-panel">
+		<div class="welcome-panel-content">
+			<div class="welcome-panel-column-container">
+				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
+					<h3>Active the Included BoldGrid SEO Plugin</h3>
+					<p>BoldGrid SEO analyzes your page content in real-time and makes recommendations to help you maintain best SEO practices while writing content. Just set your target keyword or phrase and the BoldGrid SEO dashboard will update your stats on all important on-page SEO factors.</p>
+					<p>
+						<a href="" class="button button-primary button-hero">Install</a>
+						or
+						<a href="">See Support Documents...</a>
+					</p>
+				</div>
+				<div class="welcome-panel-column" style="width:50%;">
+					<img style="width:100%;" src="http://via.placeholder.com/350x150" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<p style="text-align:center;">Check out the great BoldGrid Starter Content included with your theme purchase. If you're looking for a great starting point for your site - or you just need some inspirations - install the <strong>pre-built website to jumpstart the process.</strong></p>
 </div>

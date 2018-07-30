@@ -78,6 +78,18 @@ class Boldgrid_Framework_Welcome {
 			2
 		);
 
+		// Override first item and change it to: Welcome.
+		add_submenu_page(
+			$this->menu_slug,
+			__( 'Welcome', 'bgtfw' ),
+			__( 'Welcome', 'bgtfw' ),
+			'manage_options',
+			$this->menu_slug,
+			array( $this, 'page_welcome' ),
+			'none',
+			2
+		);
+
 		add_submenu_page(
 			$this->menu_slug,
 			__( 'Registration', 'bgtfw' ),
@@ -113,6 +125,14 @@ class Boldgrid_Framework_Welcome {
 	 * @since 2.0.0
 	 */
 	public function page_welcome() {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		// Enqueue style used for Welcome Panel on the Dashboard.
+		wp_enqueue_style(
+			'wp-dashboard',
+			admin_url( 'css/dashboard' . $suffix . '.css' )
+		);
+
 		include $this->configs['framework']['includes_dir'] . 'partials/welcome.php';
 	}
 }

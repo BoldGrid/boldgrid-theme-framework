@@ -235,7 +235,11 @@ msgstr ""
 msgid "BoldGrid Crio"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-welcome.php:83, src/includes/class-boldgrid-framework-welcome.php:84
+#: src/includes/class-boldgrid-framework-welcome.php:84, src/includes/class-boldgrid-framework-welcome.php:85
+msgid "Welcome"
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-welcome.php:95, src/includes/class-boldgrid-framework-welcome.php:96
 msgid "Registration"
 msgstr ""
 

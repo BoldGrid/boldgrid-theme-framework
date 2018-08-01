@@ -20,20 +20,20 @@ $allowed_html = array(
 $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 ?>
 
-<div class="wrap about-wrap">
+<div class="wrap about-wrap bgtfw-about-wrap">
 
 	<h1><?php esc_html_e( 'Welcome to Crio!', 'bgtfw' ); ?></h1>
 
-	<div class="wp-badge" style="background:#000 url(http://via.placeholder.com/80x80) no-repeat;background-size: 80px 80px;background-position: center 25px;width:130px;"><?php esc_html_e( 'Version', 'bgtfw' ); ?> 2.0.0</div>
+	<div class="wp-badge"><?php esc_html_e( 'Version', 'bgtfw' ); ?> 2.0.0</div>
 
-	<p style="padding-right:150px;min-height:100px;">
+	<p>
 		<?php esc_html_e( 'Congratulations! You\'ve successfully installed BoldGrid Crio. BoldGrid Crio is a powerful tool that enables you to build beautiful websites without boundaries or limitations. Before you begin, please scroll down and read over the following steps to maximize the creative potential of BoldGrid Crio.', 'bgtfw' ); ?>
 	</p>
 
 	<div class="welcome-panel">
 		<div class="welcome-panel-content">
-			<div class="welcome-panel-column-container">
-				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
+			<div class="welcome-panel-column-container two-col">
+				<div class="welcome-panel-column">
 					<h3><?php esc_html_e( 'Register Your Account With BoldGrid Central', 'bgtfw' ); ?></h3>
 					<p><?php esc_html_e( 'BoldGrid Central will allow you to generate your connect key, which will unlock all the features of your BoldGrid Crio purchase. Central also allows you to submit personalized support requests.', 'bgtfw' ); ?></p>
 					<p>
@@ -42,7 +42,7 @@ $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 						<a href="https://www.boldgrid.com/central"><?php esc_html_e( 'Login to BoldGrid Central', 'bgtfw' ); ?></a>
 					</p>
 				</div>
-				<div class="welcome-panel-column" style="width:50%;">
+				<div class="welcome-panel-column">
 					<img style="width:100%;" src="http://via.placeholder.com/350x150" />
 				</div>
 			</div>
@@ -51,8 +51,8 @@ $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 
 	<div class="welcome-panel">
 		<div class="welcome-panel-content">
-			<div class="welcome-panel-column-container">
-				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
+			<div class="welcome-panel-column-container two-col">
+				<div class="welcome-panel-column">
 					<h3><?php esc_html_e( 'Activate the Included Post and Page Builder Plugin', 'bgtfw' ); ?></h3>
 					<p><?php
 						printf(
@@ -69,7 +69,7 @@ $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 						<a href="https://www.boldgrid.com/support/post-page-builder-plugin"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
 					</p>
 				</div>
-				<div class="welcome-panel-column" style="width:50%;">
+				<div class="welcome-panel-column">
 					<img style="width:100%;" src="http://via.placeholder.com/350x150" />
 				</div>
 			</div>
@@ -78,20 +78,20 @@ $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 
 	<div class="welcome-panel">
 		<div class="welcome-panel-content">
-			<div class="welcome-panel-column-container">
-				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
+			<div class="welcome-panel-column-container four-col">
+				<div class="welcome-panel-column">
 					<img src="http://via.placeholder.com/45x45" />
 					<p><?php esc_html_e( 'The Post and Page Builder plugin also gives you access to blocks. Blocks are pre-built professionally designed sections of content.', 'bgtfw' ); ?></p>
 				</div>
-				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
+				<div class="welcome-panel-column">
 					<img src="http://via.placeholder.com/45x45" />
 					<p><?php esc_html_e( 'Block layouts consist of rows and columns that are pre-populated with content relevant to your industry.', 'bgtfw' ); ?></p>
 				</div>
-				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
+				<div class="welcome-panel-column">
 					<img src="http://via.placeholder.com/45x45" />
 					<p><?php esc_html_e( 'Blocks can be managed visually in the Editor using drag and drop functionality, or using text view to access the HTML and CSS.', 'bgtfw' ); ?></p>
 				</div>
-				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
+				<div class="welcome-panel-column">
 					<img src="http://via.placeholder.com/45x45" />
 					<p><?php esc_html_e( 'Our advanced image controls help you change images while keeping the layout intact.', 'bgtfw' ); ?></p>
 				</div>
@@ -101,8 +101,8 @@ $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 
 	<div class="welcome-panel">
 		<div class="welcome-panel-content">
-			<div class="welcome-panel-column-container">
-				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
+			<div class="welcome-panel-column-container two-col">
+				<div class="welcome-panel-column">
 					<h3><?php esc_html_e( 'Activate the Included BoldGrid Backup Premium Plugin', 'bgtfw' ); ?></h3>
 					<p><?php
 						printf(
@@ -118,7 +118,7 @@ $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 						<a href="https://www.boldgrid.com/support/backup-plugin"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
 					</p>
 				</div>
-				<div class="welcome-panel-column" style="width:50%;">
+				<div class="welcome-panel-column">
 					<img style="width:100%;" src="http://via.placeholder.com/350x150" />
 				</div>
 			</div>
@@ -127,8 +127,8 @@ $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 
 	<div class="welcome-panel">
 		<div class="welcome-panel-content">
-			<div class="welcome-panel-column-container">
-				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
+			<div class="welcome-panel-column-container two-col">
+				<div class="welcome-panel-column">
 					<h3><?php esc_html_e( 'Activate the Included BoldGrid SEO Plugin', 'bgtfw' ); ?></h3>
 					<p><?php
 						printf(
@@ -144,7 +144,7 @@ $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 						<a href="https://www.boldgrid.com/support/seo-plugin"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
 					</p>
 				</div>
-				<div class="welcome-panel-column" style="width:50%;">
+				<div class="welcome-panel-column">
 					<img style="width:100%;" src="http://via.placeholder.com/350x150" />
 				</div>
 			</div>

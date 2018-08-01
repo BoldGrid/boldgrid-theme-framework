@@ -133,6 +133,9 @@ class Boldgrid_Framework_Welcome {
 			admin_url( 'css/dashboard' . $suffix . '.css' )
 		);
 
+		wp_enqueue_style( 'boldgrid-customizer-controls-base',
+			$this->configs['framework']['css_dir'] . 'welcome.css' );
+
 		include $this->configs['framework']['includes_dir'] . 'partials/welcome.php';
 	}
 }

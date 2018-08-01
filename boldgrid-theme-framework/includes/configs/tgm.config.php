@@ -24,6 +24,16 @@ return array(
 			'slug'      => 'post-and-page-builder',
 			'required'  => true, // If false, the plugin is only 'recommended' instead of required.
 		),
+		array(
+			'name'      => 'BoldGrid Backup',
+			'slug'      => 'boldgrid-backup',
+			'required'  => false,
+		),
+		array(
+			'name'      => 'BoldGrid Easy SEO',
+			'slug'      => 'boldgrid-easy-seo',
+			'required'  => false,
+		),
 	),
 
 	/*

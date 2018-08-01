@@ -8,26 +8,38 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+// Allowed html for wp_kses usage on this page.
+$allowed_html = array(
+	'a' => array(
+		'href' => array(),
+	),
+);
+
+// URL to our TMG Recommended Plugins page, used several times on this page.
+$tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 ?>
 
 <div class="wrap about-wrap">
 
-	<h1>Welcome to Crio!</h1>
+	<h1><?php esc_html_e( 'Welcome to Crio!', 'bgtfw' ); ?></h1>
 
-	<div class="wp-badge" style="background:#000 url(http://via.placeholder.com/80x80) no-repeat;background-size: 80px 80px;background-position: center 25px;width:130px;">Version 2.0.0</div>
+	<div class="wp-badge" style="background:#000 url(http://via.placeholder.com/80x80) no-repeat;background-size: 80px 80px;background-position: center 25px;width:130px;"><?php esc_html_e( 'Version', 'bgtfw' ); ?> 2.0.0</div>
 
-	<p style="padding-right:150px;min-height:100px;">Congratulations! You've successfully installed BoldGrid Crio. BoldGrid Crio is a powerful tool that enables you to build beautiful websites without boundaries or limitations. Before you begin, <strong>please scroll down and read over the following steps</strong> to maximize the creative potential of BoldGrid Crio.</p>
+	<p style="padding-right:150px;min-height:100px;">
+		<?php esc_html_e( 'Congratulations! You\'ve successfully installed BoldGrid Crio. BoldGrid Crio is a powerful tool that enables you to build beautiful websites without boundaries or limitations. Before you begin, please scroll down and read over the following steps to maximize the creative potential of BoldGrid Crio.', 'bgtfw' ); ?>
+	</p>
 
 	<div class="welcome-panel">
 		<div class="welcome-panel-content">
 			<div class="welcome-panel-column-container">
 				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
-					<h3>Register Your Account With BoldGrid Central</h3>
-					<p>BoldGrid Central will allow you to generate your connect key, which will unlock all the features of your BoldGrid Crio purchase. Central also allows you to submit personalized support requests.</p>
+					<h3><?php esc_html_e( 'Register Your Account With BoldGrid Central', 'bgtfw' ); ?></h3>
+					<p><?php esc_html_e( 'BoldGrid Central will allow you to generate your connect key, which will unlock all the features of your BoldGrid Crio purchase. Central also allows you to submit personalized support requests.', 'bgtfw' ); ?></p>
 					<p>
-						<a href="" class="button button-primary button-hero">Register</a>
-						or
-						<a href="">See Support Documents...</a>
+						<a href="https://www.boldgrid.com/central/code/envato" class="button button-primary button-hero"><?php esc_html_e( 'Register', 'bgtfw' ); ?></a>
+						<?php esc_html_e( 'or', 'bgtfw' ); ?>
+						<a href="https://www.boldgrid.com/central"><?php esc_html_e( 'Login to BoldGrid Central', 'bgtfw' ); ?></a>
 					</p>
 				</div>
 				<div class="welcome-panel-column" style="width:50%;">
@@ -41,12 +53,20 @@ if ( ! defined( 'WPINC' ) ) {
 		<div class="welcome-panel-content">
 			<div class="welcome-panel-column-container">
 				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
-					<h3>Activate the Included Post and Page Builder Plugin</h3>
-					<p>The BoldGrid Page and Post Builder provides a true WYSIWYG experience while allowing full control over your content. Easily try out new icons, section backgrounds, column and row designs, text settings and more. You can even customize our preset icons, images, and backgrounds within the editor to make them your own.</p>
+					<h3><?php esc_html_e( 'Activate the Included Post and Page Builder Plugin', 'bgtfw' ); ?></h3>
+					<p><?php
+						printf(
+							wp_kses(
+								__( 'The <a href="%1$s">BoldGrid Page and Post Builder</a> provides a true WYSIWYG experience while allowing full control over your content. Easily try out new icons, section backgrounds, column and row designs, text settings and more. You can even customize our preset icons, images, and backgrounds within the editor to make them your own.', 'bgtfw' ),
+								$allowed_html
+							),
+							esc_url( 'https://www.boldgrid.com/wordpress-page-builder-by-boldgrid/' )
+						);
+					?></p>
 					<p>
-						<a href="" class="button button-primary button-hero">Install</a>
-						or
-						<a href="">See Support Documents...</a>
+						<a href="<?php echo $tgm_url; ?>" class="button button-primary button-hero"><?php esc_html_e( 'Install', 'bgtfw' ); ?></a>
+						<?php esc_html_e( 'or', 'bgtfw' ); ?>
+						<a href="https://www.boldgrid.com/support/post-page-builder-plugin"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
 					</p>
 				</div>
 				<div class="welcome-panel-column" style="width:50%;">
@@ -61,19 +81,19 @@ if ( ! defined( 'WPINC' ) ) {
 			<div class="welcome-panel-column-container">
 				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
 					<img src="http://via.placeholder.com/45x45" />
-					<p>The Post and Page Builder plugin also gives you access to blocks. Blocks are pre-built professionally designed sections of content.</p>
+					<p><?php esc_html_e( 'The Post and Page Builder plugin also gives you access to blocks. Blocks are pre-built professionally designed sections of content.', 'bgtfw' ); ?></p>
 				</div>
 				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
 					<img src="http://via.placeholder.com/45x45" />
-					<p>Block layouts consist of rows and columns that are pre-populated with content relevant to your industry.</p>
+					<p><?php esc_html_e( 'Block layouts consist of rows and columns that are pre-populated with content relevant to your industry.', 'bgtfw' ); ?></p>
 				</div>
 				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
 					<img src="http://via.placeholder.com/45x45" />
-					<p>Blocks can be managed visually in the Editor using drag and drop functionality, or using text view to access the HTML and CSS.</p>
+					<p><?php esc_html_e( 'Blocks can be managed visually in the Editor using drag and drop functionality, or using text view to access the HTML and CSS.', 'bgtfw' ); ?></p>
 				</div>
 				<div class="welcome-panel-column" style="min-width:unset;width:21%;text-align:center;padding:2%;">
 					<img src="http://via.placeholder.com/45x45" />
-					<p>Our advanced image controls help you change images while keeping the layout intact.</p>
+					<p><?php esc_html_e( 'Our advanced image controls help you change images while keeping the layout intact.', 'bgtfw' ); ?></p>
 				</div>
 			</div>
 		</div>
@@ -83,12 +103,19 @@ if ( ! defined( 'WPINC' ) ) {
 		<div class="welcome-panel-content">
 			<div class="welcome-panel-column-container">
 				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
-					<h3>Activate the Included BoldGrid Backup Premium Plugin</h3>
-					<p>BoldGrid Backup will backup your entire WordPress site with just a couple of clicks right in your WordPress dashboard. Just select a time and day for backups to run automatically. Or manually create a backup at any time with a single click. You can also create offsite backups at Amazon S3 or a web server of your choosing.</p>
+					<h3><?php esc_html_e( 'Activate the Included BoldGrid Backup Premium Plugin', 'bgtfw' ); ?></h3>
+					<p><?php
+						printf(
+							wp_kses(
+								__( '<a href="%1$s">BoldGrid Backup</a> will backup your entire WordPress site with just a couple of clicks right in your WordPress dashboard. Just select a time and day for backups to run automatically. Or manually create a backup at any time with a single click. You can also create offsite backups at Amazon S3 or a web server of your choosing.', 'bgtfw' ),
+								$allowed_html ),
+							esc_url( 'https://www.boldgrid.com/wordpress-backup-plugin/' )
+						);
+					?></p>
 					<p>
-						<a href="" class="button button-primary button-hero">Install</a>
-						or
-						<a href="">See Support Documents...</a>
+						<a href="<?php echo $tgm_url; ?>" class="button button-primary button-hero"><?php esc_html_e( 'Install', 'bgtfw' ); ?></a>
+						<?php esc_html_e( 'or', 'bgtfw' ); ?>
+						<a href="https://www.boldgrid.com/support/backup-plugin"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
 					</p>
 				</div>
 				<div class="welcome-panel-column" style="width:50%;">
@@ -102,12 +129,19 @@ if ( ! defined( 'WPINC' ) ) {
 		<div class="welcome-panel-content">
 			<div class="welcome-panel-column-container">
 				<div class="welcome-panel-column" style="width:45%;padding-right:5%;">
-					<h3>Active the Included BoldGrid SEO Plugin</h3>
-					<p>BoldGrid SEO analyzes your page content in real-time and makes recommendations to help you maintain best SEO practices while writing content. Just set your target keyword or phrase and the BoldGrid SEO dashboard will update your stats on all important on-page SEO factors.</p>
+					<h3><?php esc_html_e( 'Activate the Included BoldGrid SEO Plugin', 'bgtfw' ); ?></h3>
+					<p><?php
+						printf(
+							wp_kses(
+								__( '<a href="%1$s">BoldGrid SEO</a> analyzes your page content in real-time and makes recommendations to help you maintain best SEO practices while writing content. Just set your target keyword or phrase and the BoldGrid SEO dashboard will update your stats on all important on-page SEO factors.', 'bgtfw' ),
+								$allowed_html ),
+							esc_url( 'https://www.boldgrid.com/wordpress-seo-plugin/' )
+						);
+					?></p>
 					<p>
-						<a href="" class="button button-primary button-hero">Install</a>
-						or
-						<a href="">See Support Documents...</a>
+						<a href="<?php echo $tgm_url; ?>" class="button button-primary button-hero"><?php esc_html_e( 'Install', 'bgtfw' ); ?></a>
+						<?php esc_html_e( 'or', 'bgtfw' ); ?>
+						<a href="https://www.boldgrid.com/support/seo-plugin"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
 					</p>
 				</div>
 				<div class="welcome-panel-column" style="width:50%;">
@@ -117,5 +151,5 @@ if ( ! defined( 'WPINC' ) ) {
 		</div>
 	</div>
 
-	<p style="text-align:center;">Check out the great BoldGrid Starter Content included with your theme purchase. If you're looking for a great starting point for your site - or you just need some inspirations - install the <strong>pre-built website to jumpstart the process.</strong></p>
+	<p style="text-align:center;"><?php esc_html_e( 'Check out the great BoldGrid Starter Content included with your theme purchase. If you\'re looking for a great starting point for your site - or you just need some inspirations - install the pre-built website to jumpstart the process.', 'bgtfw' ); ?></p>
 </div>

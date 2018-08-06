@@ -98,6 +98,15 @@ class Boldgrid_Framework_Welcome {
 			'boldgrid-connect.php',
 			array( $this, 'page_welcome' )
 		);
+
+		add_submenu_page(
+			$this->menu_slug,
+			__( 'Starter Content', 'bgtfw' ),
+			__( 'Starter Content', 'bgtfw' ),
+			'manage_options',
+			'crio-starter-content',
+			array( $this, 'page_starter_content' )
+		);
 	}
 
 	/**
@@ -117,6 +126,15 @@ class Boldgrid_Framework_Welcome {
 			array( 'jquery' ),
 			$this->configs['version']
 		);
+	}
+
+	/**
+	* Display starter content page.
+	*
+	* @since 2.0.0
+	*/
+	public function page_starter_content() {
+		include $this->configs['framework']['includes_dir'] . 'partials/starter-content.php';
 	}
 
 	/**

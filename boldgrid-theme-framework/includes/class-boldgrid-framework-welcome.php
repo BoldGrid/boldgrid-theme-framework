@@ -57,7 +57,7 @@ class Boldgrid_Framework_Welcome {
 		global $pagenow;
 
 		if ( 'themes.php' === $pagenow && is_admin() && isset( $_GET['activated'] ) ) {
-			wp_safe_redirect( admin_url( '?page=' . $this->menu_slug ) );
+			wp_safe_redirect( admin_url( 'admin.php?page=' . $this->menu_slug ) );
 			exit();
 		}
 	}

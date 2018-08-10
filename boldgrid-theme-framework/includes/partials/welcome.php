@@ -17,7 +17,9 @@ $allowed_html = array(
 );
 
 // URL to our TMG Recommended Plugins page, used several times on this page.
-$tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
+$tgm_url = admin_url( 'admin.php?page=bgtfw-install-plugins' );
+
+$customizer_url = admin_url( 'customize.php' );
 ?>
 
 <div class="wrap about-wrap bgtfw-about-wrap">
@@ -103,6 +105,27 @@ $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 		<div class="welcome-panel-content">
 			<div class="welcome-panel-column-container two-col">
 				<div class="welcome-panel-column">
+					<h3><?php esc_html_e( 'You\'re Ready to Start Building', 'bgtfw' ); ?></h3>
+					<p><?php esc_html_e( 'BoldGrid Crio\'s advanced customization options are completely integrated with the WordPress Customizer API. Our integration gives you granular control over many elements straight from the customizer.', 'bgtfw' ); ?></p>
+					<p><?php esc_html_e( 'Use the "Suggest Palette" feature to have BoldGrid Crio automatically recommend beautiful color schemes that you can apply to your entire website with a few clicks.', 'bgtfw' ); ?></p>
+					<p><?php esc_html_e( 'Adjust fonts, headers and sizes across your entire website with just a few clicks. See your changes live in the customizer preview area.', 'bgtfw' ); ?></p>
+					<p>
+						<a href="<?php echo $customizer_url; ?>" class="button button-primary button-hero"><?php esc_html_e( 'Get Started', 'bgtfw' ); ?></a>
+						<?php esc_html_e( 'or', 'bgtfw' ); ?>
+						<a href="https://www.boldgrid.com/support/"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
+					</p>
+				</div>
+				<div class="welcome-panel-column">
+					<img style="width:100%;" src="http://via.placeholder.com/350x150" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="welcome-panel">
+		<div class="welcome-panel-content">
+			<div class="welcome-panel-column-container two-col">
+				<div class="welcome-panel-column">
 					<h3><?php esc_html_e( 'Activate the Included BoldGrid Backup Premium Plugin', 'bgtfw' ); ?></h3>
 					<p><?php
 						printf(
@@ -148,6 +171,19 @@ $tgm_url = get_admin_url( null, 'admin.php?page=bgtfw-install-plugins' );
 					<img style="width:100%;" src="http://via.placeholder.com/350x150" />
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<div class="two-col">
+		<div class="welcome-panel col">
+			<h3><?php esc_html_e( 'Submit Feature Requests and Feedback', 'bgtfw' ); ?></h3>
+			<p><?php esc_html_e( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, please let us know by visiting our:', 'bgtfw' ); ?></p>
+			<p><a href="https://www.boldgrid.com/feedback/communities/8-feature-request" class="button button-primary button-hero"><?php esc_html_e( 'Feature Request', 'bgtfw' ); ?></a></p>
+		</div>
+		<div class="welcome-panel col">
+			<h3><?php esc_html_e( 'Submit Bugs and Issues', 'bgtfw' ); ?></h3>
+			<p><?php esc_html_e( 'Our team is quick at confirming bugs and communicating updates. To submit your bug report or present issues, please visit our:', 'bgtfw' ); ?></p>
+			<p><a href="https://www.boldgrid.com/feedback/communities/10-bug-reports" class="button button-primary button-hero"><?php esc_html_e( 'Bug Report', 'bgtfw' ); ?></a></p>
 		</div>
 	</div>
 

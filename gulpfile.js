@@ -327,6 +327,7 @@ gulp.task('scssDeps', function () {
   gulp.src(config.node_modules + '/bootstrap-sass/assets/stylesheets/**/*')
     .pipe(replace(/@import "bootstrap\/buttons";/, '//@import "bootstrap/buttons";'))
     .pipe(replace(/@import "bootstrap\/button-groups";/, '//@import "bootstrap/button-groups";'))
+    .pipe(replace(/@import "bootstrap\/glyphicons";/, '//@import "bootstrap/glyphicons";'))
     .pipe(gulp.dest(config.dist + '/assets/scss/bootstrap'));
   // Font-Awesome
   gulp.src(config.node_modules + '/font-awesome/scss/**/*.scss')

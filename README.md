@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.5.10 ###
+* Update: Removed reference from bootstrap css to glyphicons since they are unused in bgtfw.
+
 ### 1.5.9 ###
 * Update: Removing the spinner's arrows from the quantity number inputs.
 

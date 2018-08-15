@@ -24,6 +24,7 @@
 		align-content: flex-start;
 		.entry-content {
 			display: block;
+			flex-grow: 1;
 		}
 	}
 	&:not(.col1) main .entry-content .row {
@@ -126,9 +127,9 @@ main {
 			span {
 				flex-wrap: wrap;
 				&.bgtfw-edit-link {
-					margin-top: calc( -1em + -15px );
 					max-width: 62px;
-					left: calc( 100% - 62px );
+					align-self: flex-end;
+					left: 0;
 				}
 			}
 		}

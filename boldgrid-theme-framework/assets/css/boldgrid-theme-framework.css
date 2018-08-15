@@ -521,6 +521,9 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .blog[class*="col"] main > article .entry-content {
   display: block;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .blog[class*="col"]:not(.col1) main .entry-content .row [class*="col-xs"],
@@ -672,9 +675,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .blog main > article.post .entry-footer span.bgtfw-edit-link {
-  margin-top: calc( -1em + -15px);
   max-width: 62px;
-  left: calc( 100% - 62px);
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  left: 0;
 }
 
 .blog main > article.post .entry-footer .bgtfw-edit-link a {
@@ -856,6 +860,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .entry-footer .tags-links, .entry-footer .cat-links, .entry-footer .comments-link {
   display: block;
+  width: calc( 100% - 62px);
 }
 
 /* Archive Styles */
@@ -896,6 +901,9 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .archive[class*="col"] main > article .entry-content {
   display: block;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .archive[class*="col"]:not(.col1) main .entry-content .row [class*="col-xs"],
@@ -1047,9 +1055,10 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .archive main > article.post .entry-footer span.bgtfw-edit-link {
-  margin-top: calc( -1em + -15px);
   max-width: 62px;
-  left: calc( 100% - 62px);
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  left: 0;
 }
 
 .archive main > article.post .entry-footer .bgtfw-edit-link a {

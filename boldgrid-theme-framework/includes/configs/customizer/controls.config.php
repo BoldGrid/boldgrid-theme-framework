@@ -1151,15 +1151,6 @@ return array(
 		'sanitize_callback' => 'sanitize_html_class',
 	),
 
-	'bgtfw_site_content_advanced_goup_enabled' => array(
-		'type' => 'switch',
-		'settings' => 'bgtfw_site_content_advanced_goup_enabled',
-		'transport' => 'postMessage',
-		'label' => esc_html__( 'Enable Scroll To Top', 'bgtfw' ),
-		'section' => 'bgtfw_site_content_advanced_goup',
-		'default' => true,
-	),
-
 	/*** Start: Dynamic Menu Controls ***/
 	'bgtfw_menu_hamburger_main_toggle' => array(
 		'type' => 'switch',

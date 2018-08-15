@@ -2861,24 +2861,6 @@ html.admin-bar {
           justify-content: flex-start;
 }
 
-.attribution-theme-mods .center {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.attribution-theme-mods .right {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.attribution-theme-mods .left {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
 .attribution-theme-mods .link {
   padding: .5em;
 }
@@ -2904,6 +2886,12 @@ html.admin-bar {
 
 @media only screen and (min-width: 768px) {
   .attribution-theme-mods {
+    padding-left: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .attribution-theme-mods .link:first-of-type {
     padding-left: 0;
   }
 }
@@ -4990,59 +4978,6 @@ img.alignright {
   display: block;
 }
 
-/* Logo above menu */
-/* Site Footer */
-/* Attribution Link Additions */
-.attribution-theme-mods {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.attribution-theme-mods.center {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.attribution-theme-mods.left {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.attribution-theme-mods.right {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-@media only screen and (min-width: 768px) {
-  .attribution-theme-mods .link:first-of-type {
-    padding-left: 0;
-  }
-}
-
-/* 404: No Results Found */
-.no-results,
-.not-found {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 100%;
-          flex: 1 0 100%;
-}
-
-/* 404 Page */
 .home.blog.no-sidebar .site-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5058,7 +4993,6 @@ img.alignright {
           justify-content: flex-start;
 }
 
-/* Archive Pages */
 .home.blog .main > .row > div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5111,7 +5045,6 @@ img.alignright {
   margin-bottom: 0;
 }
 
-/* Post navigation */
 nav.navigation.posts-navigation {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5120,8 +5053,6 @@ nav.navigation.posts-navigation {
   padding: 0 3.5vw;
 }
 
-/** Widget Styles **/
-/* Base Styles */
 .bgtfw-widget-row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5136,7 +5067,6 @@ nav.navigation.posts-navigation {
       -ms-flex: 1 0 100%;
           flex: 1 0 100%;
   z-index: 1;
-  /* Chrome bug - this forces widget areas to repaint when they are inside of fixed positioned areas. */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
@@ -5182,19 +5112,16 @@ nav.navigation.posts-navigation {
   padding-bottom: 0;
 }
 
-/* Footer Widget Row Styles */
 #footer-widget-area.bgtfw-widget-row:last-child:after {
   padding-bottom: 0;
 }
 
-/* Mobile First */
 .bgtfw-widget-row > .sidebar {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 100%;
           flex: 1 0 100%;
 }
 
-/* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
   .bgtfw-widget-row > .sidebar {
     -webkit-box-flex: 1;
@@ -5203,7 +5130,6 @@ nav.navigation.posts-navigation {
   }
 }
 
-/* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
   .bgtfw-widget-row > .sidebar {
     -webkit-box-flex: 1;
@@ -5212,7 +5138,6 @@ nav.navigation.posts-navigation {
   }
 }
 
-/* header-left and header-right style for sidebar area in header */
 .header-left #header-widget-area,
 .header-right #header-widget-area {
   -webkit-box-flex: 0;
@@ -5232,11 +5157,12 @@ nav.navigation.posts-navigation {
   margin-right: 0;
 }
 
-.header-left #header-widget-area.bgtfw-widget-row:first-child:after, .header-left #header-widget-area.bgtfw-widget-row:last-child:after, .header-right #header-widget-area.bgtfw-widget-row:first-child:after, .header-right #header-widget-area.bgtfw-widget-row:last-child:after {
+.header-left #header-widget-area.bgtfw-widget-row:first-child:after, .header-left #header-widget-area.bgtfw-widget-row:last-child:after,
+.header-right #header-widget-area.bgtfw-widget-row:first-child:after,
+.header-right #header-widget-area.bgtfw-widget-row:last-child:after {
   padding-bottom: 0;
 }
 
-/** * No JS sticky header to preserve style. */
 .no-js.flexbox .header-fixed .bgtfw-layout {
   display: -webkit-box;
   display: -ms-flexbox;

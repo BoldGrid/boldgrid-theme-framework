@@ -365,13 +365,12 @@
 		}
 	}
 }
-.header-fixed {
-	&.header-top {
-		.sm, .sm ul, .sm li {
-			width: 100%;
-			@media (min-width: 768px) {
-				width: auto;
-			}
+.header-fixed.header-top {
+	.sm, .sm ul, .sm li {
+		width: 100%;
+
+		@media (min-width: 768px) {
+			width: auto;
 		}
 	}
 }
@@ -390,52 +389,19 @@
 	}
 }
 
-/* Logo above menu */
-
-@media only screen and (min-width: 768px) {}
-/* Site Footer */
-/* Attribution Link Additions */
-
-.attribution-theme-mods {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-}
-.attribution-theme-mods.center {
-	justify-content: center;
-}
-.attribution-theme-mods.left {
-	justify-content: flex-start;
-}
-.attribution-theme-mods.right {
-	justify-content: flex-end;
-}
-@media only screen and (min-width: 768px) {
-	.attribution-theme-mods .link:first-of-type {
-		padding-left: 0;
+// Site Content.
+.home.blog {
+	&.no-sidebar .site-content {
+		display: flex;
+		flex-direction: column;
+		align-content: center;
+		justify-content: flex-start;
 	}
-}
-/* 404: No Results Found */
-.no-results,
-.not-found {
-	display: flex;
-	justify-content: center;
-	flex: 1 0 100%;
-}
-
-/* 404 Page */
-.home.blog.no-sidebar .site-content {
-	display: flex;
-	flex-direction: column;
-	align-content: center;
-	justify-content: flex-start;
-}
-
-/* Archive Pages */
-.home.blog .main > .row > div {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: flex-start;
+	& .main > .row > div {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+	}
 }
 
 .post {
@@ -465,29 +431,30 @@
 	margin-bottom: 0;
 }
 
-/* Post navigation */
-
+// Post navigation.
 nav.navigation.posts-navigation {
 	display: flex;
 	width: 100%;
 	padding: 0 3.5vw;
 }
-/** Widget Styles **/
 
-/* Base Styles */
+// Widget Styles.
 .bgtfw-widget-row {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	flex: 1 0 100%;
 	z-index: 1;
-	/* Chrome bug - this forces widget areas to repaint when they are inside of fixed positioned areas. */
+
+	// Chrome bug - this forces widget areas to repaint when they are inside of fixed positioned areas.
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
 }
+
 .bgtfw-widget-row:first-child {
 	margin-top: -1.5em;
 }
+
 .bgtfw-widget-row:first-child:after,
 .bgtfw-widget-row:last-child:after {
 	content: "";
@@ -501,46 +468,49 @@ nav.navigation.posts-navigation {
 }
 
 .header-top:not(.header-fixed) {
+
 	#navi.container {
 		flex: 1 0 auto;
 		@media only screen and (min-width: 768px) {
 			flex: 0 1 auto;
 		}
 	}
+
 	.bgtfw-widget-row:last-child {
 		margin-bottom: 0;
 	}
+
 	.bgtfw-widget-row:first-child:after,
 	.bgtfw-widget-row:last-child:after {
 		padding-bottom: 0;
 	}
 }
 
-/* Footer Widget Row Styles */
+// Footer Widget Row Styles.
 #footer-widget-area.bgtfw-widget-row:last-child:after {
 	padding-bottom: 0;
 }
 
-/* Mobile First */
+// Mobile First.
 .bgtfw-widget-row > .sidebar {
 	flex: 1 0 100%;
 }
 
-/* Small Devices, Tablets */
+// Small Devices, Tablets.
 @media only screen and (min-width: 768px) {
 	.bgtfw-widget-row > .sidebar {
 		flex: 1 0 50%;
 	}
 }
 
-/* Medium Devices, Desktops */
+// Medium Devices, Desktops.
 @media only screen and (min-width: 992px) {
 	.bgtfw-widget-row > .sidebar {
 		flex: 1 0 0;
 	}
 }
 
-/* header-left and header-right style for sidebar area in header */
+// .header-left and .header-right style for sidebar area in header.
 .header-left,
 .header-right {
 	#header-widget-area {
@@ -551,17 +521,14 @@ nav.navigation.posts-navigation {
 			margin-left: 0;
 			margin-right: 0;
 		}
-	}
-}
-.header-left, .header-right {
-	#header-widget-area {
 		&.bgtfw-widget-row:first-child:after,
 		&.bgtfw-widget-row:last-child:after {
 			padding-bottom: 0;
 		}
 	}
 }
-/** * No JS sticky header to preserve style. */
+
+// No JS sticky header to preserve style.
 .no-js.flexbox .header-fixed .bgtfw-layout {
 	display: flex;
 	flex: 1 1 0;

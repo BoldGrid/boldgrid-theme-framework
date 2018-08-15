@@ -3,15 +3,6 @@
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: flex-start;
-	.center {
-		justify-content: center;
-	}
-	.right {
-		justify-content: flex-end;
-	}
-	.left {
-		justify-content: flex-start;
-	}
 	.link {
 		padding: .5em;
 		&:after {
@@ -32,6 +23,12 @@
 		}
 	}
 	@media only screen and (min-width : 768px) {
+		padding-left: 0;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.attribution-theme-mods .link:first-of-type {
 		padding-left: 0;
 	}
 }

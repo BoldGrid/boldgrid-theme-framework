@@ -1,27 +1,119 @@
-.bgtfw-about-wrap .wp-badge {
-  background: #000 url(http://via.placeholder.com/80x80) no-repeat;
-  background-size: 80px 80px;
-  background-position: center 25px;
-  width: 130px;
+.bgtfw-about-wrap > div:first-child {
+	background-image: url(../img/welcome/bg-crio-gradient.png), linear-gradient( to right, #f95c27, #9d7770 );
+	color: #fff;
+	margin: -25px 0px 0px -40px;
+	padding: 15px 160px 15px 45px;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
-.bgtfw-about-wrap > p:first-of-type {
-  padding-right: 150px;
-  min-height: 100px;
+.bgtfw-about-wrap > div:first-child h1 {
+	color: #fff;
+	margin: 0px;
+}
+
+.bgtfw-about-wrap > div:first-child p {
+	margin-bottom:0px;
+}
+
+.bgtfw-about-wrap .wp-badge {
+	background: url(../img/welcome/bg-crio-logo.png) no-repeat;
+	background-size: 100px 100px;
+	background-position: center 10px;
+	box-shadow: none;
+	padding-top: 115px;
+	margin-top: 0px;
+}
+
+.welcome-panel-column h2 {
+	text-align: left;
 }
 
 .bgtfw-about-wrap .two-col .welcome-panel-column:first-of-type {
-  width: calc( 50% - 15px);
-  padding-right: 15px;
+	width: calc( 50% - 15px );
+	padding-right: 15px;
 }
 
 .bgtfw-about-wrap .two-col .welcome-panel-column:nth-of-type(2) {
-  width: 50%;
+	width: 50%;
+}
+
+.bgtfw-about-wrap .two-col .col {
+	margin-top:0px;
 }
 
 .bgtfw-about-wrap .four-col .welcome-panel-column {
-  min-width: unset;
-  width: 21%;
-  padding: 2%;
-  text-align: center;
+	min-width: unset;
+	width: 21%;
+	padding: 2%;
+	text-align: center;
+}
+
+.nowrap {
+	white-space: nowrap;
+	margin-top: 10px;
+	display: inline-block;
+}
+
+@media only screen and (min-width: 501px) and (max-width: 989px) {
+	.bgtfw-about-wrap .two-col .col {
+		max-width: calc( 50% - 25px ) !important;
+		min-width: calc( 50% - 25px ) !important;
+	}
+}
+
+@media only screen and (max-width: 782px) {
+	
+	.bgtfw-about-wrap .four-col .welcome-panel-column {
+		width: 46%;
+	}
+	
+		div.bgtfw-about-wrap .two-col .welcome-panel-column:first-of-type,
+		div.bgtfw-about-wrap .two-col .welcome-panel-column:nth-of-type(2) {
+		width: 100%;
+		padding: inherit;
+	}
+	
+	.bgtfw-about-wrap .two-col .col {
+		/* max-width: 100%; */
+	}
+}
+
+@media only screen and (max-width: 500px) {
+
+	.bgtfw-about-wrap > div:first-child {
+	    margin: -25px -20px 0px -20px;
+	    padding: 20px;
+	}
+
+	.bgtfw-about-wrap > div:first-child h1 {
+		text-align: center;
+	}
+	
+	.bgtfw-about-wrap .wp-badge {
+		margin-top: 15px;
+		margin-bottom: -20px; 
+	}
+	
+	div.bgtfw-about-wrap .two-col .welcome-panel-column:first-of-type,
+	div.bgtfw-about-wrap .two-col .welcome-panel-column:nth-of-type(2) {
+		width: 100%;
+		padding: inherit;
+	}
+	
+	.bgtfw-about-wrap .four-col .welcome-panel-column {
+		width: 100%;
+	}
+	
+	.bgtfw-about-wrap .four-col img {
+		float: left;
+		width: 40px;
+		margin-top: 8px;
+	}
+	
+	.bgtfw-about-wrap .four-col p {
+		text-align: left;
+    	float: right;
+    	width: calc( 100% - 55px );
+	}
 }

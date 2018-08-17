@@ -3,15 +3,6 @@
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: flex-start;
-	.center {
-		justify-content: center;
-	}
-	.right {
-		justify-content: flex-end;
-	}
-	.left {
-		justify-content: flex-start;
-	}
 	.link {
 		padding: .5em;
 		&:after {

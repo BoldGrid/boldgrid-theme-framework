@@ -23,6 +23,8 @@ $active_palette = $palette->get_active_palette();
 $formatted_palette = $palette->color_format( $active_palette );
 $sanitize = new Boldgrid_Framework_Customizer_Color_Sanitize();
 
+$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
+
 return array(
 	'custom_theme_js' => array(
 		'type'        => 'code',
@@ -433,11 +435,7 @@ return array(
 			'text-transform' => 'none',
 		),
 		'priority'    => 20,
-		'output'      => array(
-			array(
-				'element'  => implode( ', ', array_keys( $this->configs['customizer-options']['typography']['selectors'] ) ),
-			),
-		),
+		'output'      => $typography->get_output_values( $this->configs ),
 	),
 	'bgtfw_tagline_color' => array(
 		'type'        => 'bgtfw-palette-selector',
@@ -1151,15 +1149,6 @@ return array(
 		),
 		'section' => 'bgtfw_header_layout',
 		'sanitize_callback' => 'sanitize_html_class',
-	),
-
-	'bgtfw_site_content_advanced_goup_enabled' => array(
-		'type' => 'switch',
-		'settings' => 'bgtfw_site_content_advanced_goup_enabled',
-		'transport' => 'postMessage',
-		'label' => esc_html__( 'Enable Scroll To Top', 'bgtfw' ),
-		'section' => 'bgtfw_site_content_advanced_goup',
-		'default' => true,
 	),
 
 	/*** Start: Dynamic Menu Controls ***/

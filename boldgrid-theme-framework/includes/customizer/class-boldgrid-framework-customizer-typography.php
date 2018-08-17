@@ -268,4 +268,29 @@ class Boldgrid_Framework_Customizer_Typography {
 
 		return $css;
 	}
+
+	/**
+	 * Retrieves formatted output configs for headings selectors.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  string $configs BGTFW Configurations.
+	 *
+	 * @return string $values  Formatted output configs.
+	 */
+	public function get_output_values( $configs ) {
+		$elements = implode( ', ', array_keys( $configs['customizer-options']['typography']['selectors'] ) );
+		$props = [ 'font-family', 'line-height', 'text-transform', 'font-weight', 'font-style' ];
+		$values = [];
+
+		foreach ( $props as $prop ) {
+			$values[] = [
+				'element' => $elements,
+				'property' => $prop,
+				'choice' => $prop,
+			];
+		}
+
+		return $values;
+	}
 }

@@ -108,14 +108,6 @@ return array(
 		'title' => __( 'Links', 'bgtfw' ),
 		'panel' => 'bgtfw_site_content',
 	),
-	'bgtfw_site_content_advanced' => array(
-		'title' => __( 'Advanced', 'bgtfw' ),
-		'panel' => 'bgtfw_site_content',
-	),
-	'bgtfw_site_content_advanced_goup' => array(
-		'title' => __( 'Scroll To Top', 'bgtfw' ),
-		'section' => 'bgtfw_site_content_advanced',
-	),
 	'bgtfw_pages_blog_blog_page_layout' => array(
 		'title' => 'Layout',
 		'panel' => 'bgtfw_blog_blog_page_panel',

@@ -42,6 +42,10 @@
 	margin-top:0px;
 }
 
+.bgtfw-about-wrap .two-col .col h2 {
+	text-align: left;
+}
+
 .bgtfw-about-wrap .four-col .welcome-panel-column {
 	min-width: unset;
 	width: 21%;

@@ -137,6 +137,19 @@ $customizer_url = admin_url( 'customize.php' );
 		</div>
 	</div>
 
+	<div class="two-col">
+		<div class="welcome-panel col">
+			<h2><?php esc_html_e( 'Feature Requests and Bug Reports', 'bgtfw' ); ?></h2>
+			<p><?php esc_html_e( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit:', 'bgtfw' ); ?></p>
+			<p><a href="https://boldgrid.com/feedback/" class="button button-primary button-hero"><?php esc_html_e( 'BoldGrid Community Portal', 'bgtfw' ); ?></a></p>
+		</div>
+		<div class="welcome-panel col">
+			<h2><?php esc_html_e( '1 on 1 Support', 'bgtfw' ); ?></h2>
+			<p><?php esc_html_e( 'Need help with BoldGrid Crio? Contact a member of our knowledgable support team:', 'bgtfw' ); ?></p>
+			<p><a href="https://www.boldgrid.com/central" class="button button-primary button-hero"><?php esc_html_e( 'BoldGrid Central', 'bgtfw' ); ?></a></p>
+		</div>
+	</div>
+
 	<h2>
 		<?php esc_html_e( 'Follow these steps to maximize your BoldGrid License!', 'bgtfw' ); ?>
 	</h2>
@@ -202,19 +215,6 @@ $customizer_url = admin_url( 'customize.php' );
 					<img style="width:100%;" src="<?php echo esc_url( get_bloginfo( 'template_directory' ) . '/inc/boldgrid-theme-framework/assets/img/welcome/seo-plugin.png' ); ?>" />
 				</div>
 			</div>
-		</div>
-	</div>
-
-	<div class="two-col">
-		<div class="welcome-panel col">
-			<h2><?php esc_html_e( 'Submit Feature Requests and Feedback', 'bgtfw' ); ?></h2>
-			<p><?php esc_html_e( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, please let us know by visiting our:', 'bgtfw' ); ?></p>
-			<p><a href="https://www.boldgrid.com/feedback/communities/8-feature-request" class="button button-primary button-hero"><?php esc_html_e( 'Feature Request', 'bgtfw' ); ?></a></p>
-		</div>
-		<div class="welcome-panel col">
-			<h2><?php esc_html_e( 'Submit Bugs and Issues', 'bgtfw' ); ?></h2>
-			<p><?php esc_html_e( 'Our team is quick at confirming bugs and communicating updates. To submit your bug report or present issues, please visit our:', 'bgtfw' ); ?></p>
-			<p><a href="https://www.boldgrid.com/feedback/communities/10-bug-reports" class="button button-primary button-hero"><?php esc_html_e( 'Bug Report', 'bgtfw' ); ?></a></p>
 		</div>
 	</div>
 

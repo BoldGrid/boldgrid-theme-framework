@@ -1,10 +1,16 @@
 .single {
-	.site-content.container {
-		padding-left: 0;
-		.main {
+
+	@media only screen and (min-width : 768px) {
+		.site-content.container {
 			padding-left: 0;
+			padding-right: 0;
+			.main {
+				padding-left: 0;
+				padding-right: 0;
+			}
 		}
 	}
+
 	.post {
 		flex-direction: column;
 		flex-wrap: nowrap;

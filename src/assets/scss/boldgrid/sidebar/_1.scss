@@ -54,6 +54,10 @@ $adjust: multiply-use-first-unit( $padding, 2 );
 			max-width: 325px;
 			padding: 0 #{$adjust};
 		}
+
+		.site-content.container .main {
+			width: calc((100% * (2/3)) + #{$adjust} - 30px);
+		}
 	}
 
 	/* Sidebar Template Specific Styles */

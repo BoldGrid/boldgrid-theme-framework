@@ -45,7 +45,7 @@ $adjust: multiply-use-first-unit( $padding, 2 );
 @media only screen and (min-width : 992px) {
 	.has-sidebar {
 		.main {
-			flex: 1;
+			flex: 1 1 auto;
 			width: calc((100% * (2/3)) + #{$adjust});
 		}
 		.main + aside {

@@ -378,6 +378,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'language_attributes', $scripts, 'modernizr' );
 
 		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'homepage_sidebar' );
+		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'archive_sidebar' );
 
 		// Setup Header Metadata.
 		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_meta_charset',  105 );
@@ -573,7 +574,7 @@ class BoldGrid_Framework {
 
 		$this->loader->add_action( 'customize_controls_print_styles', $layouts, 'styles' );
 		$this->loader->add_action( 'customize_controls_print_scripts', $layouts, 'scripts' );
-		
+
 		/* Handle edit, ok, and cancel options within our custom meta box. */
 		$this->loader->add_action( 'admin_enqueue_scripts', $layouts, 'enqueue_scripts' );
 	}

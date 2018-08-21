@@ -36,15 +36,15 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:908
+#: src/includes/class-boldgrid-framework-api.php:928
 msgid "This content is password protected. To view it please enter your password below:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:909
+#: src/includes/class-boldgrid-framework-api.php:929
 msgid "Password:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:909
+#: src/includes/class-boldgrid-framework-api.php:929
 msgctxt "post password form"
 msgid "Enter"
 msgstr ""
@@ -89,7 +89,7 @@ msgstr ""
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:161, src/includes/class-boldgrid-framework-layouts-post-meta.php:179, src/includes/class-boldgrid-framework-title.php:100
+#: src/includes/class-boldgrid-framework-comments.php:161, src/includes/class-boldgrid-framework-layouts-post-meta.php:200, src/includes/class-boldgrid-framework-title.php:100
 msgid "Edit"
 msgstr ""
 
@@ -151,43 +151,43 @@ msgstr ""
 msgid "Post Attributes"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:95
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:116
 msgid "Theme Customizer Default"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:98
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:119
 msgid "Global Theme Default"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:165
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:186
 msgid "Template"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:179
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:200
 msgid "Edit template"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:184
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:205
 msgid "OK"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:185
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:206
 msgid "Cancel"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:205
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:226
 msgid "(no parent)"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:223
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:244
 msgid "Parent"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:230
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:251
 msgid "Order"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:233
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:254
 msgid "Need help? Use the Help tab above the screen title."
 msgstr ""
 

@@ -315,7 +315,7 @@ class Boldgrid_Framework_Menu {
 		$classes = explode( ' ', $menu['menu_class'] );
 
 		if ( ! empty( $color ) ) {
-			if ( ! is_null( $background_color ) && ! $is_transparent ) {
+			if ( ! is_null( $background_color ) ) {
 				$background_color = explode( ':', $background_color );
 				$background_color = array_shift( $background_color );
 

@@ -2358,6 +2358,17 @@ select {
   display: block;
 }
 
+.sticky .entry-title > a:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f249";
+  margin-right: 1.5rem;
+}
+
 .updated:not(.published) {
   display: none;
 }

@@ -92,5 +92,11 @@ BOLDGRID.BGTFW = BOLDGRID.BGTFW || {};
 		$( 'body' ).on( 'click', '.bgtfw-misc-pub-section a.button-cancel', BOLDGRID.BGTFW.Attributes.onClickCancel );
 		$( 'body' ).on( 'click', '.bgtfw-misc-pub-section a.button', BOLDGRID.BGTFW.Attributes.onClickOk );
 		BOLDGRID.BGTFW.Attributes.initValueDisplayed();
+
+		// Handle click of "Advanced Options".
+		$( '#bgtfw-attributes-meta-box .advanced-toggle' ).on( 'click', function() {
+			$( '.post-attributes-advanced-wrap' ).slideToggle();
+			$( this ).toggleClass( 'open' );
+		});
 	} );
 })( jQuery );

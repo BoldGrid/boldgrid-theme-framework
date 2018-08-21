@@ -470,39 +470,4 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 		</style>
 		<?php
 	}
-
-	/**
-	 * Scripts for page attributes meta box.
-	 *
-	 * @since 2.0.0
-	 */
-	public function scripts() {
-		?>
-		<script type="text/javascript">
-			jQuery( document ).ready( function( $ ) {
-				$( '.theme-layout-input' ).click( function() {
-					/* if it's already selected, remove it and select default. */
-					if ( $( this ).parent( '.theme-layout-label' ).hasClass( 'layout-selected' ) ){
-						$( '.layout-default .theme-layout-input' ).attr( 'checked', 'checked' );
-						$( this ).parent( '.theme-layout-label' ).removeClass( 'layout-selected' );
-					} else{
-						$( this ).parent( '.theme-layout-label' ).siblings( '.theme-layout-label' ).removeClass( 'layout-selected' );
-						$( this ).parent( '.theme-layout-label' ).addClass( 'layout-selected' );
-					}
-					/* if a layout is selected, add wrapper class */
-					if ( $( '.layout-selected' ).length ) {
-						$( '.post-layout' ).addClass( 'post-layout-selected' );
-					} else {
-						$( '.post-layout' ).removeClass( 'post-layout-selected' );
-					}
-				});
-				$( '#bgtfw-attributes-meta-box .advanced-toggle' ).on( 'click', function() {
-					$( '.post-attributes-advanced-wrap' ).slideToggle();
-					$( this ).toggleClass( 'open' );
-
-				});
-			});
-		</script>
-		<?php
-	}
 }

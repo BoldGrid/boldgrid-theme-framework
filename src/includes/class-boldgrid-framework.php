@@ -573,7 +573,7 @@ class BoldGrid_Framework {
 
 		$this->loader->add_action( 'customize_controls_print_styles', $layouts, 'styles' );
 		$this->loader->add_action( 'customize_controls_print_scripts', $layouts, 'scripts' );
-		
+
 		/* Handle edit, ok, and cancel options within our custom meta box. */
 		$this->loader->add_action( 'admin_enqueue_scripts', $layouts, 'enqueue_scripts' );
 	}

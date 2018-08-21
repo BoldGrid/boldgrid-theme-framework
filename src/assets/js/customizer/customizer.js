@@ -600,7 +600,8 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		 */
 		let menuContrastColor = ( location, menuId ) => {
 			let type = `bgtfw_menu_background_${location}`;
-			if ( api( type )().includes( 'transparent' ) ) {
+			let isTransparent = api( type )().includes( 'transparent' );
+			if ( isTransparent ) {
 				type = 'header';
 
 				if ( BOLDGRID.CUSTOMIZER.data.menu.footerMenus.includes( location ) ) {
@@ -610,7 +611,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				type = `bgtfw_${type}_color`;
 			}
 
-			new ColorPreview().outputColor( type, `#${menuId}`, [ 'background-color' ] );
+			new ColorPreview().outputColor( type, `#${menuId}`, [ 'background-color' ], isTransparent );
 		};
 
 		// Setup menu controls.

@@ -57,7 +57,7 @@ export class Preview  {
 	 * @param string selector CSS selector to apply classes to.
 	 * @param array  list of properties to add.
 	 */
-	outputColor( themeMod, selector, properties ) {
+	outputColor( themeMod, selector, properties, isTransparent ) {
 		let colorClassPrefix,
 			$selector = $( selector ),
 			regex = new RegExp( '(color-?([\\d]|neutral)|transparent)-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
@@ -86,6 +86,19 @@ export class Preview  {
 
 			return prefix + '-' + property;
 		} ).join( ' ' ) );
+
+		if ( isTransparent ) {
+			$selector.addClass( _.map( properties, ( property ) => {
+				let prefix = colorClassPrefix;
+
+				// If neutral or link-color, do not remove color hyphen.
+				if ( -1 === colorClassPrefix.indexOf( 'neutral' ) && -1 === property.indexOf( 'link-color' ) ) {
+					prefix = colorClassPrefix.replace( '-', '' );
+				}
+
+				return prefix + '-' + property + ' transparent-' + property;
+			} ).join( ' ' ) );
+		}
 	}
 
 	/**

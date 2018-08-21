@@ -60,6 +60,27 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	}
 
 	/**
+	 * Enqueue admin scripts.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $hook Hook.
+	 */
+	public function enqueue_scripts( $hook ) {
+		if ( 'post-new.php' === $hook || 'post.php' === $hook ) {
+			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+			wp_enqueue_script(
+				'boldgird-theme-helper-attributes',
+				$this->configs['framework']['js_dir'] . 'attributes' . $suffix . '.js',
+				array(),
+				$this->configs['version'],
+				false
+			);
+		}
+	}
+
+	/**
 	 * Renders the page/post layout radio selection controls in the metabox.
 	 *
 	 * @since 2.0.0

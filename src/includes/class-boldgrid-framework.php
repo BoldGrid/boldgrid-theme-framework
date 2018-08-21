@@ -568,11 +568,8 @@ class BoldGrid_Framework {
 		/* Adds our styles/scripts for the custom meta box on the new post and edit post screens only. */
 		$this->loader->add_action( 'admin_head-post.php', $layouts, 'styles' );
 		$this->loader->add_action( 'admin_head-post-new.php', $layouts, 'styles' );
-		$this->loader->add_action( 'admin_footer-post.php', $layouts, 'scripts' );
-		$this->loader->add_action( 'admin_footer-post-new.php', $layouts, 'scripts' );
 
 		$this->loader->add_action( 'customize_controls_print_styles', $layouts, 'styles' );
-		$this->loader->add_action( 'customize_controls_print_scripts', $layouts, 'scripts' );
 
 		/* Handle edit, ok, and cancel options within our custom meta box. */
 		$this->loader->add_action( 'admin_enqueue_scripts', $layouts, 'enqueue_scripts' );

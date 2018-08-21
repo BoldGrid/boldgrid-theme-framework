@@ -37,7 +37,7 @@ export class Locations {
 						$this = $( menuLocation );
 						if ( ! $this.find( '.edit-menu-design' ).length ) {
 							location = $this.find( '.create-menu' ).data( 'locationId' );
-							html = `<a href="javascript:wp.customize.panel( 'bgtfw_menus_panel' ).expand({ allowMultiple: true }) && wp.customize.panel( 'bgtfw_menu_location_${location}' ).expand();" type="button" class="button-link edit-menu-design" aria-label="Edit Menu Design">Edit Menu Design</a>`;
+							html = `<a href="#" onClick="event.preventDefault(); wp.customize.panel( 'bgtfw_menus_panel' ).expand({ allowMultiple: true }); wp.customize.panel( 'bgtfw_menu_location_${location}' ).expand();" type="button" class="button-link edit-menu-design" aria-label="Edit Menu Design">Edit Menu Design</a>`;
 							$( html ).insertAfter( $this.find( '.edit-menu' ) );
 						}
 					} );

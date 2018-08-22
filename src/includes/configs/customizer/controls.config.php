@@ -516,6 +516,12 @@ return array(
 				'value_pattern' => '1 0 calc(100% - $px)',
 			),
 			array(
+				'media_query' => '@media only screen and (min-width: 992px)',
+				'element'  => '.flexbox .header-left.has-sidebar .main, .flexbox .header-right.has-sidebar .main',
+				'property' => 'width',
+				'value_pattern' => 'calc((100% * (2/3)) - $px + 1em)',
+			),
+			array(
 				'media_query' => '@media only screen and (min-width : 768px)',
 				'element'  => ' .flexbox .header-left.header-fixed .site-footer, .flexbox .header-right.header-fixed .site-footer',
 				'property' => 'width',

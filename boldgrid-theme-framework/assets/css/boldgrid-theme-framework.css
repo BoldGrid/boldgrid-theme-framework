@@ -2672,11 +2672,6 @@ time.entry-date.updated:before {
   width: 100%;
 }
 
-/* Adjust Containers in Content */
-.has-sidebar .site-content .container, .header-right .site-content .container, .header-left .site-content .container {
-  width: 100%;
-}
-
 @media only screen and (min-width: 992px) {
   .has-sidebar .main {
     -webkit-box-flex: 1;

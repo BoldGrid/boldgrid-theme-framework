@@ -4,7 +4,7 @@
 		// Search Form Display.
 		#searchform {
 			.form-group {
-				width: calc(100% - 60px);
+				width: calc(100% - 40px - 5px); /* 5px From margin on .form-control. */
 			}
 			input.form-control {
 				width: 100%;

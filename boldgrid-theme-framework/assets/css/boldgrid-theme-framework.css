@@ -2639,7 +2639,8 @@ time.entry-date.updated:before {
 --------------------------------------------------------------*/
 @media only screen and (min-width: 768px) {
   .sidebar #searchform .form-group {
-    width: calc(100% - 60px);
+    width: calc(100% - 40px - 5px);
+    /* 5px From margin on .form-control. */
   }
   .sidebar #searchform input.form-control {
     width: 100%;

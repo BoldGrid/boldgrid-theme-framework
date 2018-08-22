@@ -57,7 +57,8 @@ body button[data-control] {
   opacity: 0.75;
   border-radius: 4px;
   border: 0px;
-  z-index: 210;
+  /* Sticky header's z-index set to 201, we'll go one lower. */
+  z-index: 200;
   position: absolute;
   top: 0px;
   right: 0px;

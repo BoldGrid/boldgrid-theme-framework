@@ -368,7 +368,7 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	);
 
 	// Add some padding just for the background color to be visible in certain situations.
-	$style = 'padding-top: 5px; padding-bottom: 5px;';
+	$style = 'padding-top: 15px; padding-bottom: 15px;';
 	$sidebar_meta = get_theme_mod( 'sidebar_meta' );
 
 	$color_class = '';

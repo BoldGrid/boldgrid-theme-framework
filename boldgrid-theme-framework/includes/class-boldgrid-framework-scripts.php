@@ -168,7 +168,7 @@ class BoldGrid_Framework_Scripts {
 		if ( true === $this->configs['scripts']['options']['goup']['enabled'] ) {
 			wp_enqueue_script(
 				'boldgrid-goup-js',
-				$this->configs['framework']['js_dir'] . 'goup/jquery.goup' . $suffix . '.js',
+				$this->configs['framework']['js_dir'] . 'goup/jquery.goup.js',
 				array( 'boldgrid-front-end-scripts' ),
 				$this->configs['version']
 			);

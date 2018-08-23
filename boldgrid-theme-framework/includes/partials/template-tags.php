@@ -374,6 +374,14 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	$color_class = '';
 	$classes = array();
 
+	if ( empty( $sidebar_meta[ $sidebar_id ] ) ) {
+		global $boldgrid_theme_framework;
+		$configs = $boldgrid_theme_framework->get_configs();
+
+		$meta = new Boldgrid_Framework_Customizer_Widget_Meta( $configs );
+		$sidebar_meta[ $sidebar_id ] = $meta->get_sidebar_defaults( $sidebar_id );
+	}
+
 	if ( ! empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ) {
 		$color = $sidebar_meta[ $sidebar_id ]['background_color'];
 		$color_class = strtok( $color, ':' );

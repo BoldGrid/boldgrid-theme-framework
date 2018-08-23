@@ -489,6 +489,14 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 				// The highlight should be aligned top the same as the parent element.
 				.css( 'top', top )
+				
+				/*
+				 * Sometimes an edit button's z-index is changed dynamically so that the button remains
+				 * atop of an element (such as a sticky header). In those cases, the $targetHighlight
+				 * needs to have the button's z-index as well, otherwise it could fall under the element
+				 * (sticky header) and not be seen.
+				 */
+				.css( 'z-index', $button.css( 'z-index' ) )
 
 				// The highlight should be aligned left with the col.
 				.css( 'left', containerOffset.left )

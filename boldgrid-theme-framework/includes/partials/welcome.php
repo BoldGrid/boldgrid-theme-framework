@@ -21,6 +21,9 @@ $allowed_html = array(
 $tgm_url = admin_url( 'admin.php?page=bgtfw-install-plugins' );
 
 $customizer_url = admin_url( 'customize.php' );
+
+global $boldgrid_theme_framework;
+$configs = $boldgrid_theme_framework->get_configs();
 ?>
 
 <div class="wrap about-wrap bgtfw-about-wrap">
@@ -52,7 +55,7 @@ $customizer_url = admin_url( 'customize.php' );
 					</p>
 				</div>
 				<div class="welcome-panel-column">
-					<img style="width:100%;" src="<?php echo esc_url( get_bloginfo( 'template_directory' ) . '/inc/boldgrid-theme-framework/assets/img/welcome/bg-central.png' ); ?>" />
+					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-central.png' ); ?>" />
 				</div>
 			</div>
 		</div>
@@ -84,7 +87,7 @@ $customizer_url = admin_url( 'customize.php' );
 					</p>
 				</div>
 				<div class="welcome-panel-column">
-					<img style="width:100%;" src="<?php echo esc_url( get_bloginfo( 'template_directory' ) . '/inc/boldgrid-theme-framework/assets/img/welcome/bg-pape.png' ); ?>" />
+					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-pape.png' ); ?>" />
 				</div>
 			</div>
 		</div>
@@ -95,19 +98,19 @@ $customizer_url = admin_url( 'customize.php' );
 			<h2><?php esc_html_e( 'Here\'s a few things to know', 'bgtfw' ); ?></h2>
 			<div class="welcome-panel-column-container four-col">
 				<div class="welcome-panel-column">
-					<img src="<?php echo esc_url( get_bloginfo( 'template_directory' ) . '/inc/boldgrid-theme-framework/assets/img/welcome/bg-lightbulb-icon.png' ); ?>" />
+					<img src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-lightbulb-icon.png' ); ?>" />
 					<p><?php esc_html_e( 'The Post and Page Builder plugin also gives you access to blocks. Blocks are pre-built professionally designed sections of content.', 'bgtfw' ); ?></p>
 				</div>
 				<div class="welcome-panel-column">
-					<img src="<?php echo esc_url( get_bloginfo( 'template_directory' ) . '/inc/boldgrid-theme-framework/assets/img/welcome/bg-lightbulb-icon.png' ); ?>" />
+					<img src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-lightbulb-icon.png' ); ?>" />
 					<p><?php esc_html_e( 'Block layouts consist of rows and columns that are pre-populated with content relevant to your industry.', 'bgtfw' ); ?></p>
 				</div>
 				<div class="welcome-panel-column">
-					<img src="<?php echo esc_url( get_bloginfo( 'template_directory' ) . '/inc/boldgrid-theme-framework/assets/img/welcome/bg-lightbulb-icon.png' ); ?>" />
+					<img src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-lightbulb-icon.png' ); ?>" />
 					<p><?php esc_html_e( 'Blocks can be managed visually in the Editor using drag and drop functionality, or using text view to access the HTML and CSS.', 'bgtfw' ); ?></p>
 				</div>
 				<div class="welcome-panel-column">
-					<img src="<?php echo esc_url( get_bloginfo( 'template_directory' ) . '/inc/boldgrid-theme-framework/assets/img/welcome/bg-lightbulb-icon.png' ); ?>" />
+					<img src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-lightbulb-icon.png' ); ?>" />
 					<p><?php esc_html_e( 'Our advanced image controls help you change images while keeping the layout intact.', 'bgtfw' ); ?></p>
 				</div>
 			</div>
@@ -131,7 +134,7 @@ $customizer_url = admin_url( 'customize.php' );
 					</p>
 				</div>
 				<div class="welcome-panel-column">
-					<img style="width:100%;" src="<?php echo esc_url( get_bloginfo( 'template_directory' ) . '/inc/boldgrid-theme-framework/assets/img/welcome/bg-customizer.png' ); ?>" />
+					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-customizer.png' ); ?>" />
 				</div>
 			</div>
 		</div>
@@ -180,7 +183,7 @@ $customizer_url = admin_url( 'customize.php' );
 					</p>
 				</div>
 				<div class="welcome-panel-column">
-					<img style="width:100%;" src="<?php echo esc_url( get_bloginfo( 'template_directory' ) . '/inc/boldgrid-theme-framework/assets/img/welcome/bg-backup.png' ); ?>" />
+					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-backup.png' ); ?>" />
 				</div>
 			</div>
 		</div>
@@ -212,7 +215,7 @@ $customizer_url = admin_url( 'customize.php' );
 					</p>
 				</div>
 				<div class="welcome-panel-column">
-					<img style="width:100%;" src="<?php echo esc_url( get_bloginfo( 'template_directory' ) . '/inc/boldgrid-theme-framework/assets/img/welcome/seo-plugin.png' ); ?>" />
+					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/seo-plugin.png' ); ?>" />
 				</div>
 			</div>
 		</div>

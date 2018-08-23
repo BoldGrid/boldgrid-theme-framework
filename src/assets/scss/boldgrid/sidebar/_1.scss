@@ -43,7 +43,7 @@ $adjust: multiply-use-first-unit( $padding, 2 );
 		}
 		.main + aside {
 			min-width: 300px;
-			width: calc((100% * (1/3)) + #{$adjust});
+			width: calc((100% * (1/3)) + #{$adjust} - 5.6rem);
 			max-width: 325px;
 			padding: 0 #{$adjust};
 		}

@@ -116,7 +116,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					$default_title = __( 'Theme Customizer Default', 'bgtfw' );
 					$global_template = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', $default_title );
 				} else {
-					$default_title = __( 'Global Theme Default', 'bgtfw' );
+					$default_title = __( 'Use Global Setting', 'bgtfw' );
 					$type = 'page' === $post->post_type ? $post->post_type : 'blog';
 					$global_template = get_theme_mod( 'bgtfw_layout_' . $type, $default_title );
 				}
@@ -129,8 +129,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 
 				if ( $global_template !== $default_title ) {
 					$k = array_search( $global_template, $templates );
-					$title = '<div class="template-name">' . esc_html( $k ) . '</div>';
-					$subtitle = '<div class="template-subtitle">' . esc_html( $default_title ) . '</div>';
+					$title = '<div class="template-name">' . esc_html( $default_title ) . '</div>';
+					$subtitle = '<div class="template-subtitle">' . esc_html( $k ) . '</div>';
 				}
 			?>
 			<label class="theme-layout-label layout-default layout-selected">

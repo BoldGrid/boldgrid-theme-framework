@@ -429,7 +429,17 @@ function bgtfw_get_featured_img_bg( $post_id ) {
 	$style = '';
 	if ( has_post_thumbnail( $post_id ) ) {
 		$img = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
-		$style = 'style="background-image: url(' . $img[0] . ');background-size: cover;background-position: center center;"';
+
+		// Get user defined header color.
+		$color = get_theme_mod( 'bgtfw_blog_header_background_color' );
+		$color = explode( ':', $color );
+		$color = array_pop( $color );
+
+		// Instantiate the object.
+		$color = ariColor::newColor( $color );
+		$color = $color->getNew( 'alpha', .7 )->toCSS( 'rgba' );
+
+		$style = 'style="background: linear-gradient(' . $color . ', ' . $color . ' ), url(' . $img[0] . ');background-size: cover;background-position: center center;"';
 	}
 
 	return $style;

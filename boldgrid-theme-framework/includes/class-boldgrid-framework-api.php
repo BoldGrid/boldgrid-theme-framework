@@ -688,8 +688,23 @@ class BoldGrid {
 	public function post_class( $classes ) {
 		global $post;
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
-			$classes[] = get_theme_mod( 'bgtfw_blog_layout' );
-			$classes = array_merge( $classes, [ 'wow', 'fadeIn' ] );
+			$classes = array_merge( $classes, [ 'design-1', 'wow', 'fadeIn' ], $this->get_background_color( 'bgtfw_blog_post_background_color' ) );
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Adds custom classes to the array of entry-header classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array $classes array of classes to be applied to the .entry-header element.
+	 */
+	public function entry_header_classes( $classes ) {
+		global $post;
+		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
+			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_blog_header_background_color' ) );
 		}
 
 		return $classes;

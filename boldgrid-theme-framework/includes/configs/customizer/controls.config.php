@@ -989,25 +989,6 @@ return array(
 		'section'     => 'bgtfw_blog_blog_page_settings',
 		'sanitize_callback' => 'sanitize_html_class',
 	),
-	'bgtfw_blog_layout' => array(
-		'settings' => 'bgtfw_blog_layout',
-		'transport'   => 'postMessage',
-		'label'       => esc_html__( 'Design', 'bgtfw' ),
-		'type'        => 'radio',
-		'priority'    => 40,
-		'default'   => 'design-5',
-		'choices'     => array(
-			'design-1' => esc_attr__( 'Design 1', 'bgtfw' ),
-			'design-2' => esc_attr__( 'Design 2', 'bgtfw' ),
-			'design-3' => esc_attr__( 'Design 3', 'bgtfw' ),
-			'design-4' => esc_attr__( 'Design 4', 'bgtfw' ),
-			'design-5' => esc_attr__( 'Design 5', 'bgtfw' ),
-		),
-		'section' => 'bgtfw_pages_blog_blog_page_layout',
-		'sanitize_callback' => function( $value, $settings ) {
-			return in_array( $value, [ 'design-1', 'design-2', 'design-3', 'design-4', 'design-5' ], true ) ? $value : $settings->default;
-		},
-	),
 	'bgtfw_blog_blog_page_sidebar' => array(
 		'settings' => 'bgtfw_blog_blog_page_sidebar',
 		'label'       => esc_html__( 'Homepage Sidebar Display', 'bgtfw' ),
@@ -1647,4 +1628,145 @@ return array(
 	),
 
 	/*** End: Dynamic Menu Controls ***/
+
+	'bgtfw_blog_margin' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_blog_margin_section',
+		'settings'    => 'bgtfw_blog_margin',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Margin',
+			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
+				'control' => array(
+					'selectors' => array( '.palette-primary.archive .post, .palette-primary.blog .post' ),
+					'sliders' => array(
+						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
+						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
+					),
+				),
+			),
+		),
+	),
+	'bgtfw_blog_padding' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_blog_padding_section',
+		'settings'    => 'bgtfw_blog_padding',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Padding',
+			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
+				'control' => array(
+					'selectors' => array( '.palette-primary.archive .post, .palette-primary.blog .post' ),
+				),
+			),
+		),
+	),
+	'bgtfw_blog_border' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_blog_border_section',
+		'settings'    => 'bgtfw_blog_border',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'Border',
+			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
+				'control' => array(
+					'selectors' => array( '.palette-primary.archive .post, .palette-primary.blog .post' ),
+				),
+			),
+		),
+	),
+	'bgtfw_blog_border_color' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_blog_border_color',
+		'label'       => esc_attr__( 'Border Color', 'bgtfw' ),
+		'section'     => 'bgtfw_blog_border_section',
+		'priority'    => 20,
+		'default'     => 'color-1',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_blog_shadow' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_blog_shadow_section',
+		'settings'    => 'bgtfw_blog_shadow',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'BoxShadow',
+			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
+				'control' => array(
+					'selectors' => array( '.palette-primary.archive .post, .palette-primary.blog .post' ),
+				),
+			),
+		),
+	),
+	'bgtfw_blog_radius' => array(
+		'type'        => 'kirki-generic',
+		'transport'   => 'postMessage',
+		'section'     => 'bgtfw_blog_radius_section',
+		'settings'    => 'bgtfw_blog_radius',
+		'label'       => '',
+		'default'     => '',
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'BorderRadius',
+			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
+				'control' => array(
+					'selectors' => array( '.palette-primary.archive .post, .palette-primary.blog .post, .blog main > article.post .featured-imgage-header, .blog main > article.post .entry-header' ),
+				),
+			),
+		),
+	),
+
+	'bgtfw_blog_post_background_color' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport' => 'postMessage',
+		'settings'    => 'bgtfw_blog_post_background_color',
+		'label' => esc_attr__( 'Background Color', 'bgtfw' ),
+		'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
+		'section'     => 'bgtfw_blog_colors_section',
+		'priority' => 1,
+		'default'     => 'color-neutral',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_blog_header_background_color' => array(
+		'type'        => 'bgtfw-palette-selector',
+		'transport' => 'postMessage',
+		'settings'    => 'bgtfw_blog_header_background_color',
+		'label' => esc_attr__( 'Header Color', 'bgtfw' ),
+		'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
+		'section'     => 'bgtfw_blog_colors_section',
+		'priority' => 1,
+		'default'     => 'color-1',
+		'choices'     => array(
+			'colors' => $formatted_palette,
+			'size' => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+
 );

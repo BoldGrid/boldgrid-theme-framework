@@ -68,10 +68,33 @@ class BoldGrid_Framework_Starter_Content {
 	 */
 	public function set_default( $config ) {
 
-		// Default palette to use for palette selector controls.
-		$default = array_filter( $config['customizer-options']['colors']['defaults'], function( $palette ) {
-			return ! empty( $palette['default'] );
-		} );
+		$palette = new Boldgrid_Framework_Compile_Colors( $this->configs );
+		$active = $palette->get_active_palette();
+		if ( ! empty( $active ) ) {
+			$colors = [];
+			foreach( $active as $key => $value ) {
+				if ( strpos( $key, 'neutral' ) === false ) {
+					$colors[] = $value;
+				}
+			}
+			$default = array(
+				array(
+					'default' => true,
+					'format' => 'palette-primary',
+					'colors' => $colors,
+				)
+			);
+			if ( ! empty( $active['palette-primary-neutral-color'] ) ) {
+				$default[0]['neutral-color'] = $active['palette-primary-neutral-color'];
+			}
+
+		} else {
+
+			// Default palette to use for palette selector controls.
+			$default = array_filter( $config['customizer-options']['colors']['defaults'], function( $palette ) {
+				return ! empty( $palette['default'] );
+			} );
+		}
 
 		// Convert default colors to RGBs if alternate format was passed in configs.
 		foreach ( $default[0]['colors'] as $index => $color ) {

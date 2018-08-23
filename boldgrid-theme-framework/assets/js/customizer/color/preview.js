@@ -26,6 +26,16 @@ export class Preview  {
 				properties: [ 'color' ]
 			},
 			{
+				name: 'bgtfw_blog_post_background_color',
+				selector: '.palette-primary.archive .post, .palette-primary.blog .post',
+				properties: [ 'background-color', 'text-default' ]
+			},
+			{
+				name: 'bgtfw_blog_header_background_color',
+				selector: '.palette-primary.archive .post .entry-header, .palette-primary.blog .post .entry-header',
+				properties: [ 'background-color', 'text-default' ]
+			},
+			{
 				name: 'bgtfw_footer_links',
 				selector: '.footer-content',
 				properties: [ 'link-color' ]
@@ -381,6 +391,23 @@ export class Preview  {
 	}
 
 	/**
+	 * Set .entry-header colors.
+	 *
+	 * @since 2.0.0
+	 */
+	setEntryHeader() {
+		const selector = new PaletteSelector(),
+		color = selector.getColor( wp.customize( 'bgtfw_blog_header_background_color' )() ),
+		brehautColor = parent.net.brehaut.Color( color ),
+		updatedColor = brehautColor.setAlpha( 0.7 ).toString();
+
+		let background = $( '.has-post-thumbnail .entry-header').css( 'background' );
+		let updatedBackground = background.replace( /rgba\(([0-9]+), ([0-9]+), ([0-9]+), ([0-9|.]+)\)/g, updatedColor );
+
+		$( '.has-post-thumbnail .entry-header').css( 'background', updatedBackground );
+	}
+
+	/**
 	 * Loop over registered nav menu instances and their arguments
 	 * to handle the CSS color controls for hamburgers on each.
 	 *
@@ -433,6 +460,18 @@ export class Preview  {
 		this._bindConfiguredControls();
 		this._bindHeadingColor();
 		this._bindHeaderOverlay();
+		this._bindEntryHeader();
+	}
+
+	/**
+	 * Bind the event of the .entry-headers changing colors.
+	 *
+	 * @since 2.0.0
+	 */
+	_bindEntryHeader() {
+		wp.customize( 'bgtfw_blog_header_background_color', ( ...args ) => {
+			args.map( ( control ) => control.bind( () => this.setEntryHeader() ) );
+		} );
 	}
 
 	/**

@@ -215,5 +215,51 @@ return array(
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
-	// End: Generic Footer Controls
+	// End: Generic Footer Controls.
+
+	// Start: Generic Blog Design Controls.
+	'bgtfw_blog_colors_section' => array(
+		'title' => __( 'Colors', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_design',
+		'description' => esc_attr__( 'Change the colors used on your blog post page.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+		'priority' => 10,
+	),
+	'bgtfw_blog_margin_section' => array(
+		'title' => __( 'Margin', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_design',
+		'description' => esc_html__( 'Change the margin of your blog posts.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+		'priority' => 70,
+	),
+	'bgtfw_blog_padding_section' => array(
+		'title' => __( 'Padding', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_design',
+		'description' => esc_html__( 'Change the padding of your blog posts.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+		'priority' => 70,
+	),
+	'bgtfw_blog_border_section' => array(
+		'title' => __( 'Border', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_design',
+		'description' => esc_html__( 'Change the border of your blog posts.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+		'priority' => 70,
+	),
+	'bgtfw_blog_shadow_section' => array(
+		'title' => __( 'Box Shadow', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_design',
+		'description' => esc_html__( 'Change the box shadow of your blog posts.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+		'priority' => 70,
+	),
+	'bgtfw_blog_radius_section' => array(
+		'title' => __( 'Border Radius', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_design',
+		'description' => esc_html__( 'Change the border radius of your blog posts.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+		'priority' => 70,
+	),
+
+	// End: Generic Blog Design Controls.
 );

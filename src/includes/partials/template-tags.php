@@ -374,28 +374,27 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	$color_class = '';
 	$classes = array();
 
-	if ( empty( $sidebar_meta[ $sidebar_id ] ) ) {
-		global $boldgrid_theme_framework;
-		$configs = $boldgrid_theme_framework->get_configs();
+	global $boldgrid_theme_framework;
+	$configs = $boldgrid_theme_framework->get_configs();
 
-		$meta = new Boldgrid_Framework_Customizer_Widget_Meta( $configs );
+	$meta = new Boldgrid_Framework_Customizer_Widget_Meta( $configs );
+
+	if ( empty( $sidebar_meta[ $sidebar_id ] ) ) {
 		$sidebar_meta[ $sidebar_id ] = $meta->get_sidebar_defaults( $sidebar_id );
 	}
 
-	if ( ! empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ) {
-		$color = $sidebar_meta[ $sidebar_id ]['background_color'];
-		$color_class = strtok( $color, ':' );
-		if ( strpos( $color_class, 'neutral' ) === false ) {
-			$color_class = str_replace( '-', '', $color_class );
-		}
-		$classes[] = $color_class . '-background-color';
-		$classes[] = $color_class . '-text-default';
+	$color = empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ? $meta->get_sidebar_defaults( $sidebar_id, 'background_color' ) : $sidebar_meta[ $sidebar_id ]['background_color'] ;
+	$color_class = strtok( $color, ':' );
+	if ( strpos( $color_class, 'neutral' ) === false ) {
+		$color_class = str_replace( '-', '', $color_class );
 	}
-	if ( ! empty( $sidebar_meta[ $sidebar_id ]['links_color'] ) ) {
-		$color = $sidebar_meta[ $sidebar_id ]['links_color'];
-		$color_class = strtok( $color, ':' );
-		$classes[] = $color_class . '-link-color';
-	}
+	$classes[] = $color_class . '-background-color';
+	$classes[] = $color_class . '-text-default';
+
+	$color = empty( $sidebar_meta[ $sidebar_id ]['links_color'] ) ? $meta->get_sidebar_defaults( $sidebar_id, 'links_color' ) : $sidebar_meta[ $sidebar_id ]['links_color'];
+	$color_class = strtok( $color, ':' );
+	$classes[] = $color_class . '-link-color';
+
 ?>
 	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid <?php echo esc_attr( implode( ' ', $classes ) ); ?>" role="complementary" style="<?php echo esc_attr( $style ); ?>">
 		<?php dynamic_sidebar( $sidebar_id ); ?>

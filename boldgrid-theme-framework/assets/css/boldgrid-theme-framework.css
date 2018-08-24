@@ -731,6 +731,11 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   }
 }
 
+.entry-content .featured-image {
+  text-align: center;
+  padding-bottom: 15px;
+}
+
 .entry-footer .tags-links, .entry-footer .cat-links, .entry-footer .comments-link {
   display: block;
   width: calc( 100% - 62px);

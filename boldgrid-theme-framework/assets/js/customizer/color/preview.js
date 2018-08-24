@@ -415,33 +415,35 @@ export class Preview  {
 	 */
 	menus() {
 		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+			if ( props.theme_location ) {
 
-			// Set menu border colors.
-			this.setMenuConfigs( props.theme_location, props.menu_id );
+				// Set menu border colors.
+				this.setMenuConfigs( props.theme_location, props.menu_id );
 
-			// Set Defaults.
-			this.setHamburgerColors( props.theme_location, props.menu_id );
+				// Set Defaults.
+				this.setHamburgerColors( props.theme_location, props.menu_id );
 
-			// Set Defaults.
-			this.setHoverColors( props.theme_location );
+				// Set Defaults.
+				this.setHoverColors( props.theme_location );
 
-			// Set active link colors.
-			this.setActiveLinkColor( props.theme_location, props.menu_id );
+				// Set active link colors.
+				this.setActiveLinkColor( props.theme_location, props.menu_id );
 
-			// Set supplementary menu CSS.
-			this.setMenuColors( props.theme_location );
+				// Set supplementary menu CSS.
+				this.setMenuColors( props.theme_location );
 
-			// Setup event handlers.
-			this._bindHoverColors( props.theme_location );
+				// Setup event handlers.
+				this._bindHoverColors( props.theme_location );
 
-			// Setup event handlers.
-			this._bindMenuColors( props.theme_location );
+				// Setup event handlers.
+				this._bindMenuColors( props.theme_location );
 
-			// Setup active link color even handlers.
-			this._bindActiveLinkColors( props.theme_location, props.menu_id );
+				// Setup active link color even handlers.
+				this._bindActiveLinkColors( props.theme_location, props.menu_id );
 
-			// Setup event handlers.
-			this._bindHamburgerColors( props.theme_location, props.menu_id );
+				// Setup event handlers.
+				this._bindHamburgerColors( props.theme_location, props.menu_id );
+			}
 		}
 	}
 
@@ -485,7 +487,7 @@ export class Preview  {
 		} );
 	}
 
-		/**
+	/**
 	 * Bind the event of the overlay changing colors.
 	 *
 	 * @since 2.0.0

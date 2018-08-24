@@ -617,54 +617,58 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		// Setup menu controls.
 		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
 
-			// Setup current menu items.
-			setupCurrentMenuItems( props.menu_id );
+			if ( props.theme_location ) {
 
-			// Setup partials.
-			new ToggleValue( `bgtfw_menu_hamburger_${props.theme_location}_toggle`, `#${props.menu_id}`, () => {
-				let id = `nav_menu_instance[${props.args_hmac}]`;
-				if ( wp.customize.selectiveRefresh.partial( id ) ) {
+				// Setup current menu items.
+				setupCurrentMenuItems( props.menu_id );
 
-					// before triggering a refresh destroy the instance.
-					$( `#${props.menu_id}` ).smartmenus( 'destroy' );
-					wp.customize.selectiveRefresh.partial( id ).refresh();
-				}
-			} );
+				// Setup partials.
+				new ToggleValue( `bgtfw_menu_hamburger_${props.theme_location}_toggle`, `#${props.menu_id}`, () => {
+					let id = `nav_menu_instance[${props.args_hmac}]`;
+					if ( wp.customize.selectiveRefresh.partial( id ) ) {
 
-			// Setup hamburger menus.
-			new ToggleValue( `bgtfw_menu_hamburger_${props.theme_location}`, `#${props.menu_id}-hamburger`, hamburgerFn );
-
-			// Setup hamburger menu enable/disable.
-			new Toggle( `bgtfw_menu_hamburger_${props.theme_location}_toggle`, ( to ) => {
-
-				// If disabled, ensure the hamburger is forced open, and active state is set.
-				let menu = document.getElementById( `${props.menu_id}-state` );
-				let hamburger = document.getElementById( `${props.menu_id}-hamburger` );
-				if ( ! to ) {
-					if ( ! menu.checked ) {
-						$( menu ).click();
-						hamburger.classList.remove( 'is-active' );
+						// before triggering a refresh destroy the instance.
+						$( `#${props.menu_id}` ).smartmenus( 'destroy' );
+						wp.customize.selectiveRefresh.partial( id ).refresh();
 					}
-				}
+				} );
 
-				if ( to ) {
-					if ( menu.checked ) {
-						$( menu ).click();
-						hamburger.classList.remove( 'is-active' );
+				// Setup hamburger menus.
+				new ToggleValue( `bgtfw_menu_hamburger_${props.theme_location}`, `#${props.menu_id}-hamburger`, hamburgerFn );
+
+				// Setup hamburger menu enable/disable.
+				new Toggle( `bgtfw_menu_hamburger_${props.theme_location}_toggle`, ( to ) => {
+
+					// If disabled, ensure the hamburger is forced open, and active state is set.
+					let menu = document.getElementById( `${props.menu_id}-state` );
+					let hamburger = document.getElementById( `${props.menu_id}-hamburger` );
+					if ( ! to ) {
+						if ( ! menu.checked ) {
+							$( menu ).click();
+							hamburger.classList.remove( 'is-active' );
+						}
 					}
-				}
 
-				// Toggle hidden classes for display.
-				$( `#${props.menu_id}-hamburger, #${props.menu_id}-state` ).toggleClass( 'hidden', ! to ) && calc();
-			} );
+					if ( to ) {
+						if ( menu.checked ) {
+							$( menu ).click();
+							hamburger.classList.remove( 'is-active' );
+						}
+					}
 
-			// Bind menu items hover effects.
-			new ToggleValue( `bgtfw_menu_items_hover_effect_${props.theme_location}`, `#${props.menu_id} > li:not(.current-menu-item)`, hoverFn );
+					// Toggle hidden classes for display.
+					$( `#${props.menu_id}-hamburger, #${props.menu_id}-state` ).toggleClass( 'hidden', ! to ) && calc();
+				} );
 
-			// Bind menu background contrast for link colors.
-			api( `bgtfw_menu_background_${props.theme_location}`, 'bgtfw_header_color', 'bgtfw_footer_color', ( ...args ) => {
-				args.map( control => control.bind( () => menuContrastColor( props.theme_location, props.menu_id ) ) );
-			} );
+				// Bind menu items hover effects.
+				new ToggleValue( `bgtfw_menu_items_hover_effect_${props.theme_location}`, `#${props.menu_id} > li:not(.current-menu-item)`, hoverFn );
+
+				// Bind menu background contrast for link colors.
+				api( `bgtfw_menu_background_${props.theme_location}`, 'bgtfw_header_color', 'bgtfw_footer_color', ( ...args ) => {
+					args.map( control => control.bind( () => menuContrastColor( props.theme_location, props.menu_id ) ) );
+				} );
+			}
+
 		}
 
 		new Toggle( 'bgtfw_header_width', calc );

@@ -428,7 +428,6 @@ return array(
 		'default'     => array(
 			'font-family'    => 'Roboto',
 			'variant'        => 'regular',
-			'font-size'      => '14px',
 			'line-height'    => '1.5',
 			'letter-spacing' => '0',
 			'subsets'        => array( 'latin-ext' ),
@@ -436,6 +435,20 @@ return array(
 		),
 		'priority'    => 20,
 		'output'      => $typography->get_output_values( $this->configs ),
+	),
+	'bgtfw_headings_font_size' => array(
+		'type'        => 'slider',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_headings_font_size',
+		'label'       => esc_attr__( 'Font Size', 'bgtfw' ),
+		'section'     => 'headings_typography',
+		'default'     => '14',
+		'choices'     => array(
+			'min'  => '6',
+			'max'  => '42',
+			'step' => '1',
+		),
+		'priority'    => 30,
 	),
 	'bgtfw_tagline_color' => array(
 		'type'        => 'bgtfw-palette-selector',

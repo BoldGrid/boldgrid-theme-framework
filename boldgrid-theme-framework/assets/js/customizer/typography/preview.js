@@ -36,16 +36,8 @@ export class Preview {
 			to = JSON.parse( to );
 		}
 
-		let size = to['font-size'];
-		let base = size.replace( /[^0-9.]/gi, '' );
-		let unit = size.replace( /[^a-z]/gi, '' );
-
-		let validUnits = [ 'fr', 'rem', 'em', 'ex', '%', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ch', 'vh', 'vw', 'vmin', 'vmax' ];
-
-		// Check for valid units, default to pixels otherwise.
-		if ( ( 'auto' !== unit && 'inherit' !== unit && 'initial' !== unit && -1 === $.inArray( unit, validUnits ) ) || _.isEmpty( unit ) ) {
-			unit = 'px';
-		}
+		let base = api( 'bgtfw_headings_font_size' )();
+		let unit = 'px';
 
 		// Build CSS.
 		let css = '';
@@ -106,5 +98,6 @@ export class Preview {
 	_bindTypography() {
 		this.addStyle( this.getCSS( api( 'bgtfw_headings_typography' )() ) );
 		api( 'bgtfw_headings_typography', value => value.bind( to => this.addStyle( this.getCSS( to ) ) ) );
+		api( 'bgtfw_headings_font_size', value => value.bind( to => this.addStyle( this.getCSS( to ) ) ) );
 	}
 }

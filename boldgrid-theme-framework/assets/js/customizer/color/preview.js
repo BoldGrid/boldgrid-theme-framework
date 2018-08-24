@@ -401,10 +401,10 @@ export class Preview  {
 		brehautColor = parent.net.brehaut.Color( color ),
 		updatedColor = brehautColor.setAlpha( 0.7 ).toString();
 
-		let background = $( '.has-post-thumbnail .entry-header').css( 'background' );
+		let background = $( '.has-post-thumbnail .entry-header' ).css( 'background' );
 		let updatedBackground = background.replace( /rgba\(([0-9]+), ([0-9]+), ([0-9]+), ([0-9|.]+)\)/g, updatedColor );
 
-		$( '.has-post-thumbnail .entry-header').css( 'background', updatedBackground );
+		$( '.has-post-thumbnail .entry-header' ).css( 'background', updatedBackground );
 	}
 
 	/**

@@ -99,7 +99,7 @@ return array(
 				'control' => 'bgtfw_blog_blog_page_panel',
 				'selector' => '.blog .main, .archive .main',
 				'parentColumn' => 'main',
-				'objectType' => 'section',
+				'objectType' => 'panel',
 			),
 		),
 	),

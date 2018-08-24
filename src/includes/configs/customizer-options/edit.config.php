@@ -95,6 +95,12 @@ return array(
 				'isParentColumn' => true,
 				'objectType' => 'section',
 			),
+			array(
+				'control' => 'bgtfw_blog_blog_page_panel',
+				'selector' => '.blog .main, .archive .main',
+				'parentColumn' => 'main',
+				'objectType' => 'section',
+			),
 		),
 	),
 );

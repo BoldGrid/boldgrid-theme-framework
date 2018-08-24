@@ -368,11 +368,19 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	);
 
 	// Add some padding just for the background color to be visible in certain situations.
-	$style = 'padding-top: 5px; padding-bottom: 5px;';
+	$style = 'padding-top: 15px; padding-bottom: 15px;';
 	$sidebar_meta = get_theme_mod( 'sidebar_meta' );
 
 	$color_class = '';
 	$classes = array();
+
+	if ( empty( $sidebar_meta[ $sidebar_id ] ) ) {
+		global $boldgrid_theme_framework;
+		$configs = $boldgrid_theme_framework->get_configs();
+
+		$meta = new Boldgrid_Framework_Customizer_Widget_Meta( $configs );
+		$sidebar_meta[ $sidebar_id ] = $meta->get_sidebar_defaults( $sidebar_id );
+	}
 
 	if ( ! empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ) {
 		$color = $sidebar_meta[ $sidebar_id ]['background_color'];
@@ -421,7 +429,17 @@ function bgtfw_get_featured_img_bg( $post_id ) {
 	$style = '';
 	if ( has_post_thumbnail( $post_id ) ) {
 		$img = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
-		$style = 'style="background-image: url(' . $img[0] . ');background-size: cover;background-position: center center;"';
+
+		// Get user defined header color.
+		$color = get_theme_mod( 'bgtfw_blog_header_background_color' );
+		$color = explode( ':', $color );
+		$color = array_pop( $color );
+
+		// Instantiate the object.
+		$color = ariColor::newColor( $color );
+		$color = $color->getNew( 'alpha', .7 )->toCSS( 'rgba' );
+
+		$style = 'style="background: linear-gradient(' . $color . ', ' . $color . ' ), url(' . $img[0] . ');background-size: cover;background-position: center center;"';
 	}
 
 	return $style;

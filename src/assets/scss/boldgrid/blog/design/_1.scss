@@ -1,39 +1,15 @@
 &.design-1 {
-	border-top-left-radius: 3rem;
-	border-bottom-right-radius: 3rem;
-	.entry-title,
-	.entry-meta {
-		padding-right: 0;
-		padding-left: 0;
-	}
-	.entry-title {
-		margin-right: 3rem;
-		margin-top: .75em;
-		margin-bottom: .75em;
-	}
-	.entry-header .entry-meta {
-		display: block;
-		padding: .75em;
-		text-align: right;
-		max-width: 100%;
-		width: auto;
-		float: right;
-	}
-	.featured-imgage-header {
-		border-top-left-radius: 3rem;
-		height: 100%;
-		padding-left: 3rem;
-		padding-bottom: 0;
-	}
-	.entry-header,
-	&.has-post-thumbnail .featured-imgage-header {
-		border-top-left-radius: 3rem;
+	.entry-header {
+		.entry-meta {
+			padding-bottom: .75em;
+		}
 	}
 	.entry-footer {
-		padding-top: 15px;
-		padding-bottom: 15px;
-		span:last-child {
-			padding-right: 15px;
-		}
+		padding: 15px 0;
+	}
+	.entry-header,
+	.featured-imgage-header {
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
 	}
 }

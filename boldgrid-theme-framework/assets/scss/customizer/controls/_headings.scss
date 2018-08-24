@@ -1,0 +1,34 @@
+#customize-control-bgtfw_headings_typography {
+	margin-bottom: 0;
+	.font-size {
+		display: none;
+	}
+	.line-height input[type="text"] {
+		height: 44px !important;
+	}
+	.kirki-host-font-locally {
+		padding-top: 10px;
+	}
+	.wrapper {
+		border-bottom: none;
+	}
+}
+#customize-control-bgtfw_headings_font_size {
+	.customize-control-title {
+		color: #555d66;
+		font-size: 0.83em;
+		margin: 0 0 -1.5em 0;
+		font-weight: 600;
+	}
+	> label {
+		padding: 0 10px 5px 10px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		border-top: none;
+	}
+	.wrapper {
+		flex-basis: 100%;
+	}
+}

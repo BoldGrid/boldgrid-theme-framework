@@ -230,58 +230,6 @@ $names: color background background-color border-color;
 	}
 }
 
-/** Blog Design Colours **/
-.palette-primary.archive,
-.palette-primary.blog {
-	.post {
-		background-color: $palette-primary_3;
-		color: $text-contrast-palette-primary_3;
-		a {
-			color: $text-contrast-palette-primary_3;
-		}
-		.featured-imgage-header {
-			background-color: $palette-primary_1;
-			.entry-title > a {
-				color: $text-contrast-palette-primary_1;
-			}
-			.entry-meta,
-			.entry-meta a {
-				color: $text-contrast-palette-primary_1;
-			}
-		}
-		&.has-post-thumbnail .featured-imgage-header {
-			background-color: rgba( $palette-primary_1, 0.7 );
-		}
-		&.design-1 {
-			.entry-meta {
-				background-color: rgba( $palette-primary_2, 0.8 );
-				color: $text-contrast-palette-primary_2;
-				a {
-					color: $text-contrast-palette-primary_2;
-				}
-			}
-		}
-		&.design-2 {
-			.entry-content,
-			.entry-footer {
-				background-color: $palette-primary-neutral-color;
-				color: $text-contrast-palette-primary-neutral-color;
-			}
-			a {
-				color: $text-contrast-palette-primary-neutral-color;
-			}
-		}
-		&.design-3 {
-			background-color: $palette-primary_2;
-			color: $text-contrast-palette-primary_2;
-			box-shadow: -3px 3px 0 0 $palette-primary_3;
-			a {
-				color: $text-contrast-palette-primary-2;
-			}
-		}
-	}
-}
-
 .panel {
 	&-default {
 		border-color: $palette-primary_2;

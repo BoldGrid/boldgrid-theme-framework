@@ -75,7 +75,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 * @access public
 		 * @property int
 		 */
-		defaultZindex: 210,
+		defaultZindex: 200,
 
 		init: function() {
 			self._onReady();
@@ -489,6 +489,14 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 				// The highlight should be aligned top the same as the parent element.
 				.css( 'top', top )
+				
+				/*
+				 * Sometimes an edit button's z-index is changed dynamically so that the button remains
+				 * atop of an element (such as a sticky header). In those cases, the $targetHighlight
+				 * needs to have the button's z-index as well, otherwise it could fall under the element
+				 * (sticky header) and not be seen.
+				 */
+				.css( 'z-index', $button.css( 'z-index' ) )
 
 				// The highlight should be aligned left with the col.
 				.css( 'left', containerOffset.left )
@@ -1158,37 +1166,37 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					$parent = $( $button.attr( 'data-selector' ) );
 
 				/*
-				* IF the parent's top is in view, move the button DOWN to it.
-				*
-				* ==================================
-				* ==                  (BTN-FIXED) ==
-				* ==                      ▼       ==
-				* ==                      ▼       ==
-				* ==  --------------- (BTN-ABS)   ==
-				* ==  - PARENT      -             ==
-				* ==  -             -             ==
-				* ==  -             -             ==
-				* ==  -             -             ==
-				* ==  ---------------             ==
-				* ==================================
-				*
-				* ELSE, move the button UP to it.
-				*
-				*     --------------- (BTN-ABS)
-				*     - PARENT      -      ▲
-				*     -             -      ▲
-				* =========================▲========
-				* ==  -             - (BTN-FIXED) ==
-				* ==  -             -             ==
-				* ==  -             -             ==
-				* ==  ---------------             ==
-				* ==                              ==
-				* ==                              ==
-				* ==       ☝                      ==
-				* ==                              ==
-				* ==                              ==
-				* ==================================
-				*/
+				 * IF the parent's top is in view, move the button DOWN to it.
+				 *
+				 * ==================================
+				 * ==                  (BTN-FIXED) ==
+				 * ==                      ▼       ==
+				 * ==                      ▼       ==
+				 * ==  --------------- (BTN-ABS)   ==
+				 * ==  - PARENT      -             ==
+				 * ==  -             -             ==
+				 * ==  -             -             ==
+				 * ==  -             -             ==
+				 * ==  ---------------             ==
+				 * ==================================
+				 *
+				 * ELSE, move the button UP to it.
+				 *
+				 *     --------------- (BTN-ABS)
+				 *     - PARENT      -      ^
+				 *     -             -      ^
+				 * =========================^========
+				 * ==  -             - (BTN-FIXED) ==
+				 * ==  -             -             ==
+				 * ==  -             -             ==
+				 * ==  ---------------             ==
+				 * ==                              ==
+				 * ==                              ==
+				 * ==       M                      ==
+				 * ==                              ==
+				 * ==                              ==
+				 * ==================================
+				 */
 
 				$button
 					.css( 'position', 'absolute' )
@@ -1228,26 +1236,26 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				buttonIsFixed = ( 'fixed' === $button.css( 'position' ) );
 
 				/*
-				* If the button is fixed and its parent's top is in view, put the button at absolute positioning
-				* and place it.
-				*
-				*           BEFORE SCROLL                        AFTER SCROLL
-				*
-				*     ---------------
-				*     - PARENT      -
-				*     -             -
-				* ================================     ====================================
-				* ==  -          ☀(BTN-FIXED)☀  ==     ==                ☀(BTN-FIXED)☀  ==
-				* ==  -             -           ==     ==                    ▼          ==
-				* ==  -             -           ==     ==                    ▼          ==
-				* ==  -             -           ==     ==  --------------- (BTN-ABS)    ==
-				* ==  -             -           ==     ==  - PARENT      -              ==
-				* ==  -     ☝       -           ==     ==  -      ☝      -              ==
-				* ==  -             -           ==     ==  -             -              ==
-				* ==  ---------------           ==     ==  -             -              ==
-				* ==                            ==     ==  ---------------              ==
-				* ================================     ===================================
-				*/
+				 * If the button is fixed and its parent's top is in view, put the button at absolute
+				 * positioning and place it.
+				 *
+				 *           BEFORE SCROLL                        AFTER SCROLL
+				 *
+				 *     ---------------
+				 *     - PARENT      -
+				 *     -             -
+				 * ================================     ====================================
+				 * ==  -          *(BTN-FIXED)*  ==     ==                 *(BTN-FIXED)*  ==
+				 * ==  -             -           ==     ==                    v           ==
+				 * ==  -             -           ==     ==                    v           ==
+				 * ==  -             -           ==     ==  --------------- (BTN-ABS)     ==
+				 * ==  -             -           ==     ==  - PARENT      -               ==
+				 * ==  -     M       -           ==     ==  -      M      -               ==
+				 * ==  -             -           ==     ==  -             -               ==
+				 * ==  ---------------           ==     ==  -             -               ==
+				 * ==                            ==     ==  ---------------               ==
+				 * ================================     ====================================
+				 */
 				if ( self.topInView( $parent ) && buttonIsFixed ) {
 					$button
 						.attr( 'data-last-animation', 'animation-b' )
@@ -1262,26 +1270,26 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				}
 
 				/*
-				* If we have a highlighted button but the button has gone out of view, fix it to the top
-				* of the page.
-				*
-				*           BEFORE SCROLL                        AFTER SCROLL
-				*
-				*                                           --------------- ☀(BTN-ABS)☀
-				*                                           - PARENT      -      ▼
-				*                                           -             -      ▼
-				* ==================================    =========================▼==========
-				* ==                              ==    ==  -             - ☀(BTN-FIXED)☀ ==
-				* ==  --------------- ☀(BTN-ABS)☀ ==    ==  -             -               ==
-				* ==  - PARENT      -             ==    ==  -             -               ==
-				* ==  -             -             ==    ==  -        ☝    -               ==
-				* ==  -             -             ==    ==  -             -               ==
-				* ==  -             -             ==    ==  ---------------               ==
-				* ==  -             -             ==    ==                                ==
-				* ==  -             -             ==    ==                                ==
-				* ==  ---------------             ==    ==                                ==
-				* ==================================    ====================================
-				*/
+				 * If we have a highlighted button but the button has gone out of view, fix it to the top
+				 * of the page.
+				 *
+				 *           BEFORE SCROLL                        AFTER SCROLL
+				 *
+				 *                                           --------------- *(BTN-ABS)*
+				 *                                           - PARENT      -      v
+				 *                                           -             -      v
+				 * ==================================    =========================v==========
+				 * ==                              ==    ==  -             - *(BTN-FIXED)* == 
+				 * ==  --------------- *(BTN-ABS)* ==    ==  -             -               ==
+				 * ==  - PARENT      -             ==    ==  -             -               ==
+				 * ==  -             -             ==    ==  -        M    -               ==
+				 * ==  -             -             ==    ==  -             -               ==
+				 * ==  -             -             ==    ==  ---------------               ==
+				 * ==  -             -             ==    ==                                ==
+				 * ==  -             -             ==    ==                                ==
+				 * ==  ---------------             ==    ==                                ==
+				 * ==================================    ====================================
+				 */
 				if ( ! self.topInView( $parent ) && ! buttonIsFixed ) {
 					$button
 						.stop( true )

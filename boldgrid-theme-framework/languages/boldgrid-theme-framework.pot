@@ -36,15 +36,15 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:908
+#: src/includes/class-boldgrid-framework-api.php:943
 msgid "This content is password protected. To view it please enter your password below:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:909
+#: src/includes/class-boldgrid-framework-api.php:944
 msgid "Password:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:909
+#: src/includes/class-boldgrid-framework-api.php:944
 msgctxt "post password form"
 msgid "Enter"
 msgstr ""
@@ -89,7 +89,7 @@ msgstr ""
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:161, src/includes/class-boldgrid-framework-layouts-post-meta.php:179, src/includes/class-boldgrid-framework-title.php:100
+#: src/includes/class-boldgrid-framework-comments.php:161, src/includes/class-boldgrid-framework-layouts-post-meta.php:200, src/includes/class-boldgrid-framework-title.php:100
 msgid "Edit"
 msgstr ""
 
@@ -151,43 +151,43 @@ msgstr ""
 msgid "Post Attributes"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:95
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:116
 msgid "Theme Customizer Default"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:98
-msgid "Global Theme Default"
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:119, src/includes/class-boldgrid-framework-title.php:77
+msgid "Use Global Setting"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:165
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:186
 msgid "Template"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:179
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:200
 msgid "Edit template"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:184
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:205
 msgid "OK"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:185
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:206
 msgid "Cancel"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:205
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:226
 msgid "(no parent)"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:223
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:244
 msgid "Parent"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:230
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:251
 msgid "Order"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:233
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:254
 msgid "Need help? Use the Help tab above the screen title."
 msgstr ""
 
@@ -217,10 +217,6 @@ msgstr ""
 
 #: src/includes/class-boldgrid-framework-title.php:73
 msgid "Title"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-title.php:77
-msgid "Use Global Setting"
 msgstr ""
 
 #: src/includes/class-boldgrid-framework-title.php:80, src/includes/class-boldgrid-framework-title.php:83
@@ -255,11 +251,11 @@ msgstr ""
 msgid "Add custom javascript for this theme."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:48, src/includes/configs/customizer/controls.config.php:411, src/includes/configs/customizer/controls.config.php:444, src/includes/configs/customizer/controls.config.php:574, src/includes/configs/customizer/controls.config.php:1542, src/includes/configs/customizer/controls.config.php:1557, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:131
+#: src/includes/configs/customizer/controls.config.php:48, src/includes/configs/customizer/controls.config.php:411, src/includes/configs/customizer/controls.config.php:457, src/includes/configs/customizer/controls.config.php:593, src/includes/configs/customizer/controls.config.php:1542, src/includes/configs/customizer/controls.config.php:1557, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:131
 msgid "Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:49, src/includes/configs/customizer/controls.config.php:867
+#: src/includes/configs/customizer/controls.config.php:49, src/includes/configs/customizer/controls.config.php:886, src/includes/configs/customizer/controls.config.php:1759, src/includes/configs/customizer/controls.config.php:1774
 msgid "Choose a color from your palette to use."
 msgstr ""
 
@@ -275,23 +271,23 @@ msgstr ""
 msgid "Add an overlay to give your text readability over an image."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:86, src/includes/configs/customizer/controls.config.php:829, src/includes/customizer/class-boldgrid-framework-customizer-effects.php:75
+#: src/includes/configs/customizer/controls.config.php:86, src/includes/configs/customizer/controls.config.php:848, src/includes/customizer/class-boldgrid-framework-customizer-effects.php:75
 msgid "Enable"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:87, src/includes/configs/customizer/controls.config.php:830, src/includes/customizer/class-boldgrid-framework-customizer-effects.php:76
+#: src/includes/configs/customizer/controls.config.php:87, src/includes/configs/customizer/controls.config.php:849, src/includes/customizer/class-boldgrid-framework-customizer-effects.php:76
 msgid "Disable"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:94, src/includes/configs/customizer/controls.config.php:837
+#: src/includes/configs/customizer/controls.config.php:94, src/includes/configs/customizer/controls.config.php:856
 msgid "Overlay Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:108, src/includes/configs/customizer/controls.config.php:851
+#: src/includes/configs/customizer/controls.config.php:108, src/includes/configs/customizer/controls.config.php:870
 msgid "Overlay Opacity"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:183, src/includes/configs/customizer/controls.config.php:294, src/includes/configs/customizer/controls.config.php:1315
+#: src/includes/configs/customizer/controls.config.php:183, src/includes/configs/customizer/controls.config.php:294, src/includes/configs/customizer/controls.config.php:1315, src/includes/configs/customizer/controls.config.php:1707
 msgid "Border Color"
 msgstr ""
 
@@ -323,180 +319,160 @@ msgstr ""
 msgid "Headings Typography"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:458, src/includes/configs/customizer/controls.config.php:588, src/includes/configs/customizer/controls.config.php:611, src/includes/configs/customizer/controls.config.php:1624
+#: src/includes/configs/customizer/controls.config.php:443, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:122
+msgid "Font Size"
+msgstr ""
+
+#: src/includes/configs/customizer/controls.config.php:471, src/includes/configs/customizer/controls.config.php:607, src/includes/configs/customizer/controls.config.php:630, src/includes/configs/customizer/controls.config.php:1624
 msgid "Typography"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:481
+#: src/includes/configs/customizer/controls.config.php:494
 msgid "Sticky Header"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:490
+#: src/includes/configs/customizer/controls.config.php:503
 msgid "Header Width"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:560, src/includes/configs/customizer/controls.config.php:866, src/includes/configs/customizer/controls.config.php:1191, src/includes/customizer/class-boldgrid-framework-customizer-background.php:258, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:74, src/includes/customizer/class-boldgrid-framework-customizer.php:196
+#: src/includes/configs/customizer/controls.config.php:579, src/includes/configs/customizer/controls.config.php:885, src/includes/configs/customizer/controls.config.php:1191, src/includes/configs/customizer/controls.config.php:1758, src/includes/customizer/class-boldgrid-framework-customizer-background.php:258, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:74, src/includes/customizer/class-boldgrid-framework-customizer.php:196
 msgid "Background Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:636, src/includes/configs/customizer/controls.config.php:881, src/includes/configs/customizer/controls.config.php:1527, src/includes/customizer/class-boldgrid-framework-customizer.php:186, src/includes/customizer/class-boldgrid-framework-customizer.php:226
+#: src/includes/configs/customizer/controls.config.php:655, src/includes/configs/customizer/controls.config.php:900, src/includes/configs/customizer/controls.config.php:1527, src/includes/customizer/class-boldgrid-framework-customizer.php:186, src/includes/customizer/class-boldgrid-framework-customizer.php:226
 msgid "Link Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:649
+#: src/includes/configs/customizer/controls.config.php:668
 msgid "Text Underline"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:658
+#: src/includes/configs/customizer/controls.config.php:677
 msgid "Hover - Color Brightness"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:670
+#: src/includes/configs/customizer/controls.config.php:689
 msgid "Hover - Text Underline"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:680
+#: src/includes/configs/customizer/controls.config.php:699
 msgid "Attribution Control"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:689
+#: src/includes/configs/customizer/controls.config.php:708
 msgid "Hide BoldGrid Attribution"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:698
+#: src/includes/configs/customizer/controls.config.php:717
 msgid "Hide WordPress Attribution"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:705, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:54
+#: src/includes/configs/customizer/controls.config.php:724, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:54
 msgid "Contact Details"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:711, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:60
+#: src/includes/configs/customizer/controls.config.php:730, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:60
 msgid "Contact Block"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:731, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:67
+#: src/includes/configs/customizer/controls.config.php:750, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:67
 msgid "Text"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:732, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:68
+#: src/includes/configs/customizer/controls.config.php:751, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:68
 msgid "Enter the text to display in your contact details"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:740, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:140
+#: src/includes/configs/customizer/controls.config.php:759, src/includes/customizer/class-boldgrid-framework-customizer-footer.php:140
 msgid "Enable Footer"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:749, src/includes/configs/customizer/controls.config.php:789
+#: src/includes/configs/customizer/controls.config.php:768, src/includes/configs/customizer/controls.config.php:808
 msgid "Continue to Widgets Section"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:751
+#: src/includes/configs/customizer/controls.config.php:770
 msgid "You can add widgets to your footer from the widgets section."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:761
+#: src/includes/configs/customizer/controls.config.php:780
 msgid "Footer Widget Areas"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:762
+#: src/includes/configs/customizer/controls.config.php:781
 msgid "Select the number of footer widget columns you wish to display."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:791
+#: src/includes/configs/customizer/controls.config.php:810
 msgid "You can add widgets to your header from the widgets section."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:794
+#: src/includes/configs/customizer/controls.config.php:813
 msgid "Header Widget Areas"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:795
+#: src/includes/configs/customizer/controls.config.php:814
 msgid "Select the number of header widget columns you wish to display."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:823
+#: src/includes/configs/customizer/controls.config.php:842
 msgid "Header Overlay"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:824
+#: src/includes/configs/customizer/controls.config.php:843
 msgid "Add an overlay to give your text readability over an image or video."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:892
+#: src/includes/configs/customizer/controls.config.php:911
 msgid "Columns"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:893
+#: src/includes/configs/customizer/controls.config.php:912
 msgid "Select the number of columns you wish to display on your blog page."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:912
+#: src/includes/configs/customizer/controls.config.php:931
 msgid "Featured Images"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:913
+#: src/includes/configs/customizer/controls.config.php:932
 msgid "Display the featured image for posts in the full post content."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:921
+#: src/includes/configs/customizer/controls.config.php:940
 msgid "Container"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:926, src/includes/configs/customizer/controls.config.php:958
+#: src/includes/configs/customizer/controls.config.php:945, src/includes/configs/customizer/controls.config.php:977
 msgid "Contained"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:927, src/includes/configs/customizer/controls.config.php:959, src/includes/configs/customizer/controls.config.php:1094, src/includes/configs/customizer/controls.config.php:1130, src/includes/customizer/class-boldgrid-framework-customizer-background.php:210
+#: src/includes/configs/customizer/controls.config.php:946, src/includes/configs/customizer/controls.config.php:978, src/includes/configs/customizer/controls.config.php:1094, src/includes/configs/customizer/controls.config.php:1130, src/includes/customizer/class-boldgrid-framework-customizer-background.php:210
 msgid "Full Width"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:938
+#: src/includes/configs/customizer/controls.config.php:957
 msgid "Post Content Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:942
+#: src/includes/configs/customizer/controls.config.php:961
 msgid "Post Excerpt"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:943
+#: src/includes/configs/customizer/controls.config.php:962
 msgid "Full Content"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:953, src/includes/configs/customizer/controls.config.php:1053, src/includes/configs/customizer/controls.config.php:1071, src/includes/configs/customizer/controls.config.php:1105, src/includes/configs/customizer/sections.config.php:28, src/includes/configs/customizer/sections.config.php:56
+#: src/includes/configs/customizer/controls.config.php:972, src/includes/configs/customizer/controls.config.php:1053, src/includes/configs/customizer/controls.config.php:1071, src/includes/configs/customizer/controls.config.php:1105, src/includes/configs/customizer/sections.config.php:28, src/includes/configs/customizer/sections.config.php:56
 msgid "Layout"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:968
+#: src/includes/configs/customizer/controls.config.php:987
 msgid "Sidebar Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:978, src/includes/configs/customizer/controls.config.php:1007
+#: src/includes/configs/customizer/controls.config.php:997, src/includes/configs/customizer/controls.config.php:1007
 msgid "Homepage Sidebar Display"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:989, src/includes/configs/customizer/panels.config.php:15
-msgid "Design"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:994
-msgid "Design 1"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:995
-msgid "Design 2"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:996
-msgid "Design 3"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:997
-msgid "Design 4"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:998
-msgid "Design 5"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1021
@@ -731,6 +707,14 @@ msgstr ""
 msgid "Overline From Right"
 msgstr ""
 
+#: src/includes/configs/customizer/controls.config.php:1773
+msgid "Header Color"
+msgstr ""
+
+#: src/includes/configs/customizer/panels.config.php:15, src/includes/configs/customizer/panels.config.php:48
+msgid "Design"
+msgstr ""
+
 #: src/includes/configs/customizer/panels.config.php:19
 msgid "Fonts"
 msgstr ""
@@ -755,15 +739,15 @@ msgstr ""
 msgid "Blog Page"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:48, src/includes/configs/customizer/sections.config.php:21
+#: src/includes/configs/customizer/panels.config.php:52, src/includes/configs/customizer/sections.config.php:21
 msgid "Pages"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:53, src/includes/configs/customizer/sections.config.php:96
+#: src/includes/configs/customizer/panels.config.php:57, src/includes/configs/customizer/sections.config.php:96
 msgid "Menus"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:58
+#: src/includes/configs/customizer/panels.config.php:62
 msgid "Posts"
 msgstr ""
 
@@ -779,7 +763,7 @@ msgstr ""
 msgid "Change the layout of your site's footer."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:35, src/includes/configs/customizer/sections.config.php:76
+#: src/includes/configs/customizer/sections.config.php:35, src/includes/configs/customizer/sections.config.php:76, src/includes/configs/customizer/sections.config.php:222
 msgid "Colors"
 msgstr ""
 
@@ -847,7 +831,7 @@ msgstr ""
 msgid "Sidebar"
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:134, src/includes/configs/customizer/sections.config.php:178, src/includes/customizer/class-boldgrid-framework-customizer.php:134
+#: src/includes/configs/customizer/sections.config.php:134, src/includes/configs/customizer/sections.config.php:178, src/includes/configs/customizer/sections.config.php:229, src/includes/customizer/class-boldgrid-framework-customizer.php:134
 msgid "Margin"
 msgstr ""
 
@@ -855,7 +839,7 @@ msgstr ""
 msgid "Change the margin of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:142, src/includes/configs/customizer/sections.config.php:186, src/includes/customizer/class-boldgrid-framework-customizer.php:144
+#: src/includes/configs/customizer/sections.config.php:142, src/includes/configs/customizer/sections.config.php:186, src/includes/configs/customizer/sections.config.php:236, src/includes/customizer/class-boldgrid-framework-customizer.php:144
 msgid "Padding"
 msgstr ""
 
@@ -863,7 +847,7 @@ msgstr ""
 msgid "Change the padding of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:150, src/includes/configs/customizer/sections.config.php:194, src/includes/customizer/class-boldgrid-framework-customizer.php:124, src/includes/customizer/class-boldgrid-framework-customizer.php:206, src/includes/customizer/class-boldgrid-framework-customizer.php:236
+#: src/includes/configs/customizer/sections.config.php:150, src/includes/configs/customizer/sections.config.php:194, src/includes/configs/customizer/sections.config.php:243, src/includes/customizer/class-boldgrid-framework-customizer.php:124, src/includes/customizer/class-boldgrid-framework-customizer.php:206, src/includes/customizer/class-boldgrid-framework-customizer.php:236
 msgid "Border"
 msgstr ""
 
@@ -871,7 +855,7 @@ msgstr ""
 msgid "Change the border of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:158, src/includes/configs/customizer/sections.config.php:202
+#: src/includes/configs/customizer/sections.config.php:158, src/includes/configs/customizer/sections.config.php:202, src/includes/configs/customizer/sections.config.php:250
 msgid "Box Shadow"
 msgstr ""
 
@@ -879,7 +863,7 @@ msgstr ""
 msgid "Change the box shadow of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:167, src/includes/configs/customizer/sections.config.php:211
+#: src/includes/configs/customizer/sections.config.php:167, src/includes/configs/customizer/sections.config.php:211, src/includes/configs/customizer/sections.config.php:257
 msgid "Border Radius"
 msgstr ""
 
@@ -905,6 +889,30 @@ msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:214
 msgid "Change the border radius of your site's footer."
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:224
+msgid "Change the colors used on your blog post page."
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:231
+msgid "Change the margin of your blog posts."
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:238
+msgid "Change the padding of your blog posts."
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:245
+msgid "Change the border of your blog posts."
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:252
+msgid "Change the box shadow of your blog posts."
+msgstr ""
+
+#: src/includes/configs/customizer/sections.config.php:259
+msgid "Change the border radius of your blog posts."
 msgstr ""
 
 #: src/includes/configs/tgm.config.php:70
@@ -1334,10 +1342,6 @@ msgstr ""
 msgid "Font Family"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:122
-msgid "Font Size"
-msgstr ""
-
 #: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:123
 msgid "Font Weight"
 msgstr ""
@@ -1663,158 +1667,158 @@ msgstr ""
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:398
+#: src/includes/partials/template-tags.php:406
 msgid "Empty Sidebar"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:400
+#: src/includes/partials/template-tags.php:408
 msgid "This sidebar doesn't have any widgets assigned to it yet."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:401
+#: src/includes/partials/template-tags.php:409
 msgid "Add widgets here."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:405
+#: src/includes/partials/template-tags.php:413
 msgid "Add another widget."
 msgstr ""
 
-#: src/includes/partials/welcome.php:30
+#: src/includes/partials/welcome.php:33
 msgid "Welcome to Crio!"
 msgstr ""
 
-#: src/includes/partials/welcome.php:32
+#: src/includes/partials/welcome.php:35
 msgid "Version"
 msgstr ""
 
-#: src/includes/partials/welcome.php:35
+#: src/includes/partials/welcome.php:38
 msgid "Congratulations! You've successfully installed BoldGrid Crio. BoldGrid Crio is a powerful tool that enables you to build beautiful websites without boundaries or limitations."
 msgstr ""
 
-#: src/includes/partials/welcome.php:44
+#: src/includes/partials/welcome.php:47
 msgid "Register Your Account With BoldGrid Central"
 msgstr ""
 
-#: src/includes/partials/welcome.php:45
+#: src/includes/partials/welcome.php:48
 msgid "BoldGrid Central will allow you to generate your connect key, which will unlock all the features of your BoldGrid Crio purchase. Central also allows you to submit personalized support requests."
 msgstr ""
 
-#: src/includes/partials/welcome.php:47
+#: src/includes/partials/welcome.php:50
 msgid "Register"
 msgstr ""
 
-#: src/includes/partials/welcome.php:49, src/includes/partials/welcome.php:81, src/includes/partials/welcome.php:128, src/includes/partials/welcome.php:177, src/includes/partials/welcome.php:209
+#: src/includes/partials/welcome.php:52, src/includes/partials/welcome.php:84, src/includes/partials/welcome.php:131, src/includes/partials/welcome.php:180, src/includes/partials/welcome.php:212
 msgid "or"
 msgstr ""
 
-#: src/includes/partials/welcome.php:50
+#: src/includes/partials/welcome.php:53
 msgid "Login to BoldGrid Central"
 msgstr ""
 
-#: src/includes/partials/welcome.php:65
+#: src/includes/partials/welcome.php:68
 msgid "Activate the Included Post and Page Builder Plugin"
 msgstr ""
 
-#: src/includes/partials/welcome.php:71
+#: src/includes/partials/welcome.php:74
 msgid "The <a href=\"%1$s\">BoldGrid Page and Post Builder</a> provides a true WYSIWYG experience while allowing full control over your content. Easily try out new icons, section backgrounds, column and row designs, text settings and more. You can even customize our preset icons, images, and backgrounds within the editor to make them your own."
 msgstr ""
 
-#: src/includes/partials/welcome.php:79
+#: src/includes/partials/welcome.php:82
 msgid "Activate"
 msgstr ""
 
-#: src/includes/partials/welcome.php:82, src/includes/partials/welcome.php:129, src/includes/partials/welcome.php:178, src/includes/partials/welcome.php:210
+#: src/includes/partials/welcome.php:85, src/includes/partials/welcome.php:132, src/includes/partials/welcome.php:181, src/includes/partials/welcome.php:213
 msgid "See Support Documents..."
 msgstr ""
 
-#: src/includes/partials/welcome.php:95
+#: src/includes/partials/welcome.php:98
 msgid "Here's a few things to know"
 msgstr ""
 
-#: src/includes/partials/welcome.php:99
+#: src/includes/partials/welcome.php:102
 msgid "The Post and Page Builder plugin also gives you access to blocks. Blocks are pre-built professionally designed sections of content."
 msgstr ""
 
-#: src/includes/partials/welcome.php:103
+#: src/includes/partials/welcome.php:106
 msgid "Block layouts consist of rows and columns that are pre-populated with content relevant to your industry."
 msgstr ""
 
-#: src/includes/partials/welcome.php:107
+#: src/includes/partials/welcome.php:110
 msgid "Blocks can be managed visually in the Editor using drag and drop functionality, or using text view to access the HTML and CSS."
 msgstr ""
 
-#: src/includes/partials/welcome.php:111
+#: src/includes/partials/welcome.php:114
 msgid "Our advanced image controls help you change images while keeping the layout intact."
 msgstr ""
 
-#: src/includes/partials/welcome.php:121
+#: src/includes/partials/welcome.php:124
 msgid "You're Ready to Start Building"
 msgstr ""
 
-#: src/includes/partials/welcome.php:122
+#: src/includes/partials/welcome.php:125
 msgid "BoldGrid Crio's advanced customization options are completely integrated with the WordPress Customizer API. Our integration gives you granular control over many elements straight from the customizer."
 msgstr ""
 
-#: src/includes/partials/welcome.php:123
+#: src/includes/partials/welcome.php:126
 msgid "Use the \"Suggest Palette\" feature to have BoldGrid Crio automatically recommend beautiful color schemes that you can apply to your entire website with a few clicks."
 msgstr ""
 
-#: src/includes/partials/welcome.php:124
+#: src/includes/partials/welcome.php:127
 msgid "Adjust fonts, headers and sizes across your entire website with just a few clicks. See your changes live in the customizer preview area."
 msgstr ""
 
-#: src/includes/partials/welcome.php:126
+#: src/includes/partials/welcome.php:129
 msgid "Get Started"
 msgstr ""
 
-#: src/includes/partials/welcome.php:142
+#: src/includes/partials/welcome.php:145
 msgid "Feature Requests and Bug Reports"
 msgstr ""
 
-#: src/includes/partials/welcome.php:143
+#: src/includes/partials/welcome.php:146
 msgid "Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit:"
 msgstr ""
 
-#: src/includes/partials/welcome.php:144
+#: src/includes/partials/welcome.php:147
 msgid "BoldGrid Community Portal"
 msgstr ""
 
-#: src/includes/partials/welcome.php:147
+#: src/includes/partials/welcome.php:150
 msgid "1 on 1 Support"
 msgstr ""
 
-#: src/includes/partials/welcome.php:148
+#: src/includes/partials/welcome.php:151
 msgid "Need help with BoldGrid Crio? Contact a member of our knowledgable support team:"
 msgstr ""
 
-#: src/includes/partials/welcome.php:149
+#: src/includes/partials/welcome.php:152
 msgid "BoldGrid Central"
 msgstr ""
 
-#: src/includes/partials/welcome.php:154
+#: src/includes/partials/welcome.php:157
 msgid "Follow these steps to maximize your BoldGrid License!"
 msgstr ""
 
-#: src/includes/partials/welcome.php:161
+#: src/includes/partials/welcome.php:164
 msgid "Activate the Included BoldGrid Backup Premium Plugin"
 msgstr ""
 
-#: src/includes/partials/welcome.php:167
+#: src/includes/partials/welcome.php:170
 msgid "<a href=\"%1$s\">BoldGrid Backup</a> will backup your entire WordPress site with just a couple of clicks right in your WordPress dashboard. Just select a time and day for backups to run automatically. Or, manually create a backup at any time with a single click. You can also create offsite backups at Amazon S3 or a web server of your choosing."
 msgstr ""
 
-#: src/includes/partials/welcome.php:175, src/includes/partials/welcome.php:207
+#: src/includes/partials/welcome.php:178, src/includes/partials/welcome.php:210
 msgid "Install"
 msgstr ""
 
-#: src/includes/partials/welcome.php:193
+#: src/includes/partials/welcome.php:196
 msgid "Activate the Included BoldGrid SEO Plugin"
 msgstr ""
 
-#: src/includes/partials/welcome.php:199
+#: src/includes/partials/welcome.php:202
 msgid "<a href=\"%1$s\">BoldGrid SEO</a> analyzes your page content in real-time and makes recommendations to help you maintain best SEO practices while writing content. Just set your target keyword or phrase and the BoldGrid SEO dashboard will update your stats on all important on-page SEO factors."
 msgstr ""
 
-#: src/includes/partials/welcome.php:221
+#: src/includes/partials/welcome.php:224
 msgid "Check out the great BoldGrid Starter Content included with your theme purchase. If you're looking for a great starting point for your site - or you just need some inspirations - install the pre-built website to jumpstart the process."
 msgstr ""

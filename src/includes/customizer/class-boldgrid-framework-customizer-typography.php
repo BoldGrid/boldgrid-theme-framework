@@ -197,12 +197,8 @@ class Boldgrid_Framework_Customizer_Typography {
 	 */
 	public function generate_headings_css( $css = '' ) {
 		$headings_font = get_theme_mod( 'bgtfw_headings_typography' );
-
-		$headings_font_size = ! empty( $headings_font['font-size'] ) ? $headings_font['font-size'] : $this->configs['customizer-options']['typography']['defaults']['headings_font_size'];
-
-		$headings_base = ( int ) preg_replace( '/[^0-9]./', '', $headings_font_size );
-		$headings_unit = preg_replace( '/[^a-z]/i', '', $headings_font_size );
-		$headings_unit = empty( $headings_unit ) ? 'px' : $headings_unit;
+		$headings_base = get_theme_mod( 'bgtfw_headings_font_size' );
+		$headings_unit = 'px';
 
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 

@@ -44,6 +44,10 @@ return array(
 		'title' => __( 'Blog Page', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_panel',
 	),
+	'bgtfw_blog_blog_page_design' => array(
+		'title' => __( 'Design', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_panel',
+	),
 	'bgtfw_pages_panel' => array(
 		'title' => __( 'Pages', 'bgtfw' ),
 		'priority' => 2,

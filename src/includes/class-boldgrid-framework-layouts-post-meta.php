@@ -60,6 +60,27 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	}
 
 	/**
+	 * Enqueue admin scripts.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $hook Hook.
+	 */
+	public function enqueue_scripts( $hook ) {
+		if ( 'post-new.php' === $hook || 'post.php' === $hook ) {
+			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+			wp_enqueue_script(
+				'boldgird-theme-helper-attributes',
+				$this->configs['framework']['js_dir'] . 'attributes' . $suffix . '.js',
+				array(),
+				$this->configs['version'],
+				false
+			);
+		}
+	}
+
+	/**
 	 * Renders the page/post layout radio selection controls in the metabox.
 	 *
 	 * @since 2.0.0
@@ -95,7 +116,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					$default_title = __( 'Theme Customizer Default', 'bgtfw' );
 					$global_template = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', $default_title );
 				} else {
-					$default_title = __( 'Global Theme Default', 'bgtfw' );
+					$default_title = __( 'Use Global Setting', 'bgtfw' );
 					$type = 'page' === $post->post_type ? $post->post_type : 'blog';
 					$global_template = get_theme_mod( 'bgtfw_layout_' . $type, $default_title );
 				}
@@ -108,8 +129,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 
 				if ( $global_template !== $default_title ) {
 					$k = array_search( $global_template, $templates );
-					$title = '<div class="template-name">' . esc_html( $k ) . '</div>';
-					$subtitle = '<div class="template-subtitle">' . esc_html( $default_title ) . '</div>';
+					$title = '<div class="template-name">' . esc_html( $default_title ) . '</div>';
+					$subtitle = '<div class="template-subtitle">' . esc_html( $k ) . '</div>';
 				}
 			?>
 			<label class="theme-layout-label layout-default layout-selected">
@@ -447,41 +468,6 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				margin: 6px -6px 0 6px;
 			}
 		</style>
-		<?php
-	}
-
-	/**
-	 * Scripts for page attributes meta box.
-	 *
-	 * @since 2.0.0
-	 */
-	public function scripts() {
-		?>
-		<script type="text/javascript">
-			jQuery( document ).ready( function( $ ) {
-				$( '.theme-layout-input' ).click( function() {
-					/* if it's already selected, remove it and select default. */
-					if ( $( this ).parent( '.theme-layout-label' ).hasClass( 'layout-selected' ) ){
-						$( '.layout-default .theme-layout-input' ).attr( 'checked', 'checked' );
-						$( this ).parent( '.theme-layout-label' ).removeClass( 'layout-selected' );
-					} else{
-						$( this ).parent( '.theme-layout-label' ).siblings( '.theme-layout-label' ).removeClass( 'layout-selected' );
-						$( this ).parent( '.theme-layout-label' ).addClass( 'layout-selected' );
-					}
-					/* if a layout is selected, add wrapper class */
-					if ( $( '.layout-selected' ).length ) {
-						$( '.post-layout' ).addClass( 'post-layout-selected' );
-					} else {
-						$( '.post-layout' ).removeClass( 'post-layout-selected' );
-					}
-				});
-				$( '#bgtfw-attributes-meta-box .advanced-toggle' ).on( 'click', function() {
-					$( '.post-attributes-advanced-wrap' ).slideToggle();
-					$( this ).toggleClass( 'open' );
-
-				});
-			});
-		</script>
 		<?php
 	}
 }

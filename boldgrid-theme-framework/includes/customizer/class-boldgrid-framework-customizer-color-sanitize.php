@@ -33,7 +33,7 @@ class Boldgrid_Framework_Customizer_Color_Sanitize {
 	public function sanitize_palette_selector( $color ) {
 
 		// If no color specified.
-		if ( empty( $color ) || is_string( $color ) && 'transparent' == trim( $color ) ) {
+		if ( empty( $color ) || is_string( $color ) && 'transparent' == trim( strtolower( $color ) ) ) {
 			return 'transparent';
 		}
 
@@ -53,6 +53,6 @@ class Boldgrid_Framework_Customizer_Color_Sanitize {
 		$color = ariColor::newColor( strtok( ':' ) );
 
 		// Return a CSS value, using the auto-detected mode
-		return $class . ':' . $color->toCSS( $color->mode );
+		return strtolower( $class . ':' . $color->toCSS( $color->mode ) );
 	}
 }

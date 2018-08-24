@@ -2137,3 +2137,52 @@ h3.accordion-section-title span.section-title-extended {
   float: right;
   margin-top: 5px;
 }
+
+/*--------------------------------------------------------------
+# Headings
+--------------------------------------------------------------*/
+#customize-control-bgtfw_headings_typography {
+  margin-bottom: 0;
+}
+
+#customize-control-bgtfw_headings_typography .font-size {
+  display: none;
+}
+
+#customize-control-bgtfw_headings_typography .line-height input[type="text"] {
+  height: 44px !important;
+}
+
+#customize-control-bgtfw_headings_typography .kirki-host-font-locally {
+  padding-top: 10px;
+}
+
+#customize-control-bgtfw_headings_typography .wrapper {
+  border-bottom: none;
+}
+
+#customize-control-bgtfw_headings_font_size .customize-control-title {
+  color: #555d66;
+  font-size: 0.83em;
+  margin: 0 0 -1.5em 0;
+  font-weight: 600;
+}
+
+#customize-control-bgtfw_headings_font_size > label {
+  padding: 0 10px 5px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: none;
+}
+
+#customize-control-bgtfw_headings_font_size .wrapper {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}

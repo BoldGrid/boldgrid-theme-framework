@@ -97,15 +97,11 @@ main {
 			padding-left: 15px;
 		}
 		.entry-content {
-			padding-left: 15px;
-			padding-right: 15px;
+			padding: 15px 15px 0 15px;
 			width: 100%;
 			word-break: break-word;
 			h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 				color: currentColor;
-			}
-			> :first-child:not(.boldgrid-section) {
-				margin: 1.4rem 0 0 0;
 			}
 			.boldgrid-section {
 				margin-left: -15px;
@@ -146,10 +142,6 @@ main {
 			flex: 1 1 auto;
 		}
 		@import "1";
-		@import "2";
-		@import "3";
-		@import "4";
-		@import "5";
 	}
 }
 

@@ -1,4 +1,6 @@
-/* Header Position Styles */
+.palette-primary .transparent-background-color {
+	background-color: transparent !important;
+}
 
 /** Header on top specific styles (this is the default style) **/
 @media only screen and (min-width: 768px) {

@@ -26,6 +26,16 @@ export class Preview  {
 				properties: [ 'color' ]
 			},
 			{
+				name: 'bgtfw_blog_post_background_color',
+				selector: '.palette-primary.archive .post, .palette-primary.blog .post',
+				properties: [ 'background-color', 'text-default' ]
+			},
+			{
+				name: 'bgtfw_blog_header_background_color',
+				selector: '.palette-primary.archive .post .entry-header, .palette-primary.blog .post .entry-header',
+				properties: [ 'background-color', 'text-default' ]
+			},
+			{
 				name: 'bgtfw_footer_links',
 				selector: '.footer-content',
 				properties: [ 'link-color' ]
@@ -57,7 +67,7 @@ export class Preview  {
 	 * @param string selector CSS selector to apply classes to.
 	 * @param array  list of properties to add.
 	 */
-	outputColor( themeMod, selector, properties ) {
+	outputColor( themeMod, selector, properties, isTransparent ) {
 		let colorClassPrefix,
 			$selector = $( selector ),
 			regex = new RegExp( '(color-?([\\d]|neutral)|transparent)-(' + properties.join( '|' ) + ')(\\s+|$)', 'g' );
@@ -86,6 +96,19 @@ export class Preview  {
 
 			return prefix + '-' + property;
 		} ).join( ' ' ) );
+
+		if ( isTransparent ) {
+			$selector.addClass( _.map( properties, ( property ) => {
+				let prefix = colorClassPrefix;
+
+				// If neutral or link-color, do not remove color hyphen.
+				if ( -1 === colorClassPrefix.indexOf( 'neutral' ) && -1 === property.indexOf( 'link-color' ) ) {
+					prefix = colorClassPrefix.replace( '-', '' );
+				}
+
+				return prefix + '-' + property + ' transparent-' + property;
+			} ).join( ' ' ) );
+		}
 	}
 
 	/**
@@ -368,6 +391,23 @@ export class Preview  {
 	}
 
 	/**
+	 * Set .entry-header colors.
+	 *
+	 * @since 2.0.0
+	 */
+	setEntryHeader() {
+		const selector = new PaletteSelector(),
+		color = selector.getColor( wp.customize( 'bgtfw_blog_header_background_color' )() ),
+		brehautColor = parent.net.brehaut.Color( color ),
+		updatedColor = brehautColor.setAlpha( 0.7 ).toString();
+
+		let background = $( '.has-post-thumbnail .entry-header' ).css( 'background' );
+		let updatedBackground = background.replace( /rgba\(([0-9]+), ([0-9]+), ([0-9]+), ([0-9|.]+)\)/g, updatedColor );
+
+		$( '.has-post-thumbnail .entry-header' ).css( 'background', updatedBackground );
+	}
+
+	/**
 	 * Loop over registered nav menu instances and their arguments
 	 * to handle the CSS color controls for hamburgers on each.
 	 *
@@ -375,33 +415,35 @@ export class Preview  {
 	 */
 	menus() {
 		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+			if ( props.theme_location ) {
 
-			// Set menu border colors.
-			this.setMenuConfigs( props.theme_location, props.menu_id );
+				// Set menu border colors.
+				this.setMenuConfigs( props.theme_location, props.menu_id );
 
-			// Set Defaults.
-			this.setHamburgerColors( props.theme_location, props.menu_id );
+				// Set Defaults.
+				this.setHamburgerColors( props.theme_location, props.menu_id );
 
-			// Set Defaults.
-			this.setHoverColors( props.theme_location );
+				// Set Defaults.
+				this.setHoverColors( props.theme_location );
 
-			// Set active link colors.
-			this.setActiveLinkColor( props.theme_location, props.menu_id );
+				// Set active link colors.
+				this.setActiveLinkColor( props.theme_location, props.menu_id );
 
-			// Set supplementary menu CSS.
-			this.setMenuColors( props.theme_location );
+				// Set supplementary menu CSS.
+				this.setMenuColors( props.theme_location );
 
-			// Setup event handlers.
-			this._bindHoverColors( props.theme_location );
+				// Setup event handlers.
+				this._bindHoverColors( props.theme_location );
 
-			// Setup event handlers.
-			this._bindMenuColors( props.theme_location );
+				// Setup event handlers.
+				this._bindMenuColors( props.theme_location );
 
-			// Setup active link color even handlers.
-			this._bindActiveLinkColors( props.theme_location, props.menu_id );
+				// Setup active link color even handlers.
+				this._bindActiveLinkColors( props.theme_location, props.menu_id );
 
-			// Setup event handlers.
-			this._bindHamburgerColors( props.theme_location, props.menu_id );
+				// Setup event handlers.
+				this._bindHamburgerColors( props.theme_location, props.menu_id );
+			}
 		}
 	}
 
@@ -420,6 +462,18 @@ export class Preview  {
 		this._bindConfiguredControls();
 		this._bindHeadingColor();
 		this._bindHeaderOverlay();
+		this._bindEntryHeader();
+	}
+
+	/**
+	 * Bind the event of the .entry-headers changing colors.
+	 *
+	 * @since 2.0.0
+	 */
+	_bindEntryHeader() {
+		wp.customize( 'bgtfw_blog_header_background_color', ( ...args ) => {
+			args.map( ( control ) => control.bind( () => this.setEntryHeader() ) );
+		} );
 	}
 
 	/**
@@ -433,7 +487,7 @@ export class Preview  {
 		} );
 	}
 
-		/**
+	/**
 	 * Bind the event of the overlay changing colors.
 	 *
 	 * @since 2.0.0

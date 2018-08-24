@@ -47,7 +47,7 @@ class Boldgrid_Framework_Links {
 	 * @var array
 	 */
 	public static $default_link_selectors = [
-		'.site-content a',
+		'.main a',
 		'.mce-content-body a',
 	];
 

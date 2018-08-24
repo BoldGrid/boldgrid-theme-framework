@@ -598,7 +598,7 @@ class BoldGrid {
 
 		$classes[] = get_theme_mod( 'bgtfw_header_layout_position' );
 
-		if ( is_home() ) {
+		if ( is_home() || is_archive() ) {
 			$classes[] = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', get_theme_mod( 'bgtfw_layout_blog', 'no-sidebar' ) );
 		} else {
 			$layout = get_page_template_slug();
@@ -688,8 +688,23 @@ class BoldGrid {
 	public function post_class( $classes ) {
 		global $post;
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
-			$classes[] = get_theme_mod( 'bgtfw_blog_layout' );
-			$classes = array_merge( $classes, [ 'wow', 'fadeIn' ] );
+			$classes = array_merge( $classes, [ 'design-1', 'wow', 'fadeIn' ], $this->get_background_color( 'bgtfw_blog_post_background_color' ) );
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Adds custom classes to the array of entry-header classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array $classes array of classes to be applied to the .entry-header element.
+	 */
+	public function entry_header_classes( $classes ) {
+		global $post;
+		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
+			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_blog_header_background_color' ) );
 		}
 
 		return $classes;
@@ -865,12 +880,32 @@ class BoldGrid {
 			$homepage_sidebar = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', false );
 
 			if ( empty( $homepage_sidebar ) ) {
+
 				// Nothing was saved, so check if there's a default global blog page setting set.
 				$global_sidebar = get_theme_mod( 'bgtfw_layout_blog', false );
 				$homepage_sidebar = empty( $global_sidebar ) ? 'no-sidebar' : $global_sidebar;
 			}
 
 			if ( 'no-sidebar' !== $homepage_sidebar ) {
+				$display = true;
+			}
+		}
+
+		return $display;
+	}
+
+	/**
+	 * Determine if user has set archive to NOT display the sidebar.
+	 *
+	 * @since 2.0.0
+	 * @link https://codex.wordpress.org/Conditional_Tags
+	 *
+	 * @return Boolean $display Whether or not to display the sidebar on queried post.
+	 */
+	public function archive_sidebar( $display ) {
+
+		if ( is_archive() ) {
+			if ( 'no-sidebar' !== get_theme_mod( 'bgtfw_blog_blog_page_sidebar' ) ) {
 				$display = true;
 			}
 		}

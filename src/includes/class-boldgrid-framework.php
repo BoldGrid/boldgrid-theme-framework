@@ -378,6 +378,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'language_attributes', $scripts, 'modernizr' );
 
 		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'homepage_sidebar' );
+		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'archive_sidebar' );
 
 		// Setup Header Metadata.
 		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_meta_charset',  105 );
@@ -395,6 +396,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'body_class',                    $boldgrid_theme,   'body_classes' );
 		$this->loader->add_filter( 'post_class', $boldgrid_theme, 'post_class' );
 
+		$this->loader->add_filter( 'bgtfw_entry_header_classes', $boldgrid_theme, 'entry_header_classes' );
 		$this->loader->add_filter( 'bgtfw_header_classes', $boldgrid_theme, 'header_classes' );
 		$this->loader->add_filter( 'bgtfw_footer_classes', $boldgrid_theme, 'footer_classes' );
 		$this->loader->add_filter( 'bgtfw_navi_wrap_classes', $boldgrid_theme, 'inner_header_classes' );
@@ -568,11 +570,11 @@ class BoldGrid_Framework {
 		/* Adds our styles/scripts for the custom meta box on the new post and edit post screens only. */
 		$this->loader->add_action( 'admin_head-post.php', $layouts, 'styles' );
 		$this->loader->add_action( 'admin_head-post-new.php', $layouts, 'styles' );
-		$this->loader->add_action( 'admin_footer-post.php', $layouts, 'scripts' );
-		$this->loader->add_action( 'admin_footer-post-new.php', $layouts, 'scripts' );
 
 		$this->loader->add_action( 'customize_controls_print_styles', $layouts, 'styles' );
-		$this->loader->add_action( 'customize_controls_print_scripts', $layouts, 'scripts' );
+
+		/* Handle edit, ok, and cancel options within our custom meta box. */
+		$this->loader->add_action( 'admin_enqueue_scripts', $layouts, 'enqueue_scripts' );
 	}
 
 	/**

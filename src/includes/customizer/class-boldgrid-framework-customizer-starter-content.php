@@ -53,28 +53,9 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 
 		// Check for valid starter-content being passed before loading.
 		if ( is_array( $content ) && ! empty( $content[0] ) && is_array( $content[0] ) && ( bool ) array_filter( $content[0] ) ) {
-			$this->starter_content_settings();
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue' ) );
-			add_action( 'customize_controls_print_footer_scripts', array( $this, 'print_templates' ) );
 			add_action( 'wp_ajax_load_starter_content', array( $this, 'load_starter_content' ) );
 		}
-	}
-
-	/**
-	 * Register starter content settings.
-	 *
-	 * @since 2.0.0
-	 */
-	public function starter_content_settings() {
-		global $wp_customize;
-		$wp_customize->add_setting( 'bgtfw_starter_content_loaded', array(
-			'default' => false,
-			'capability' => 'edit_theme_options',
-			'transport' => 'postMessage',
-			'sanitize_callback' => function( $value ) {
-				return true === $value ? true : false;
-			},
-		) );
 	}
 
 	/**
@@ -93,22 +74,6 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 			array( 'customize-controls' ),
 			$this->configs['version']
 		);
-	}
-
-	/**
-	 * Print template for the "Import Starter Content" button.
-	 *
-	 * @since 2.0.0
-	 */
-	public function print_templates() {
-		?>
-		<script type="text/html" id="tmpl-customize-starter-content-actions">
-			<div class="theme-starter-content-actions">
-				<!-- @todo Add a button for each set of sample data? -->
-				<button type="button" class="button button-secondary dashicons-before dashicons-migrate"><?php _e( 'Import Starter Content', 'bgtfw' ) ?></button>
-			</div>
-		</script>
-		<?php
 	}
 
 	/**

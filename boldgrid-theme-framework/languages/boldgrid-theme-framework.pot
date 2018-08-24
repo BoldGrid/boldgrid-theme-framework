@@ -1506,10 +1506,6 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:108
-msgid "Import Starter Content"
-msgstr ""
-
 #: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:214
 msgid "Title:"
 msgstr ""

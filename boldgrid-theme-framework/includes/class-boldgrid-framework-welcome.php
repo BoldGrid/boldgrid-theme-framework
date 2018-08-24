@@ -134,6 +134,17 @@ class Boldgrid_Framework_Welcome {
 	* @since 2.0.0
 	*/
 	public function page_starter_content() {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		// Enqueue style used for Welcome Panel on the Dashboard.
+		wp_enqueue_style(
+			'wp-dashboard',
+			admin_url( 'css/dashboard' . $suffix . '.css' )
+			);
+
+		wp_enqueue_style( 'boldgrid-customizer-controls-base',
+			$this->configs['framework']['css_dir'] . 'welcome.css' );
+
 		include $this->configs['framework']['includes_dir'] . 'partials/starter-content.php';
 	}
 

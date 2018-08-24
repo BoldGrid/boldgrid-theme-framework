@@ -239,6 +239,10 @@ msgstr ""
 msgid "Registration"
 msgstr ""
 
+#: src/includes/class-boldgrid-framework-welcome.php:104, src/includes/class-boldgrid-framework-welcome.php:105
+msgid "Starter Content"
+msgstr ""
+
 #: src/includes/configs/customizer/controls.config.php:32
 msgid "JS code"
 msgstr ""
@@ -1618,6 +1622,10 @@ msgstr ""
 msgid "This section is part of an individual page of your site. The Customizer (where you are now) is for editing the header and footer or an overall setting of your site like colors and fonts. To edit this section, you'll need to leave the Customizer and go to the Page Editor."
 msgstr ""
 
+#: src/includes/partials/starter-content.php:21, src/includes/partials/welcome.php:178, src/includes/partials/welcome.php:210
+msgid "Install"
+msgstr ""
+
 #: src/includes/partials/template-tags.php:44
 msgid "Post navigation"
 msgstr ""
@@ -1805,10 +1813,6 @@ msgstr ""
 
 #: src/includes/partials/welcome.php:170
 msgid "<a href=\"%1$s\">BoldGrid Backup</a> will backup your entire WordPress site with just a couple of clicks right in your WordPress dashboard. Just select a time and day for backups to run automatically. Or, manually create a backup at any time with a single click. You can also create offsite backups at Amazon S3 or a web server of your choosing."
-msgstr ""
-
-#: src/includes/partials/welcome.php:178, src/includes/partials/welcome.php:210
-msgid "Install"
 msgstr ""
 
 #: src/includes/partials/welcome.php:196

@@ -387,7 +387,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		$css = '';
 		$sidebar_meta = get_theme_mod( 'sidebar_meta' );
 		if ( is_active_sidebar( $sidebar_id ) || ! empty( $sidebar_meta[ $sidebar_id ]['title'] ) || current_user_can( 'edit_theme_options' ) ) {
-			$headings_color = empty( $sidebar_meta[ $sidebar_id ]['headings_color'] ) ? '' : $sidebar_meta[ $sidebar_id ]['headings_color'];
+			$headings_color = empty( $sidebar_meta[ $sidebar_id ]['headings_color'] ) ? $this->get_sidebar_defaults( $sidebar_id, 'headings_color' ) : $sidebar_meta[ $sidebar_id ]['headings_color'];
 			$headings_color = explode( ':', $headings_color );
 			$headings_color = array_pop( $headings_color );
 
@@ -438,13 +438,15 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		} elseif ( strpos( $sidebar_id, 'footer' ) !== false ) {
 			$settings[ $sidebar_id ]['background_color'] = get_theme_mod( 'bgtfw_footer_color', $this->get_control_default( 'bgtfw_footer_color' ) );
 			$settings[ $sidebar_id ]['links_color'] = get_theme_mod( 'bgtfw_footer_links', $this->get_control_default( 'bgtfw_footer_links' ) );
-
-		// All other sidebar defaults.
-		} else {
-			$settings[ $sidebar_id ]['background_color'] = 'color-1:' . preg_replace( '/\s+/', '', $formatted_palette['color-1'] );
-			$settings[ $sidebar_id ]['headings_color'] = 'color-2:' . preg_replace( '/\s+/', '', $formatted_palette['color-2'] );
-			$settings[ $sidebar_id ]['links_color'] = 'color-3:' . preg_replace( '/\s+/', '', $formatted_palette['color-3'] );
 		}
+		// All other sidebar defaults.
+		$defaults = [];
+		$defaults[ $sidebar_id ]['background_color'] = 'color-1:' . preg_replace( '/\s+/', '', $formatted_palette['color-1'] );
+		$defaults[ $sidebar_id ]['headings_color'] = 'color-2:' . preg_replace( '/\s+/', '', $formatted_palette['color-2'] );
+		$defaults[ $sidebar_id ]['links_color'] = 'color-3:' . preg_replace( '/\s+/', '', $formatted_palette['color-3'] );
+
+		$settings[ $sidebar_id ] = array_filter( $settings[ $sidebar_id ] );
+		$settings[ $sidebar_id ] = array_merge( $defaults[ $sidebar_id ], $settings[ $sidebar_id ] );
 
 		return false !== $type ? $settings[ $sidebar_id ][ $type ] : $settings[ $sidebar_id ];
 	}

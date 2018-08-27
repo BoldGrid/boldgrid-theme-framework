@@ -323,7 +323,9 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$collapseSidebar = $( '.collapse-sidebar', parent.document ),
 				$previewToggleControls = $( '.customize-controls-preview-toggle .controls', parent.document ),
 				$overlay = $( '.wp-full-overlay', parent.document ),
+				dataType = $button.attr( 'data-object-type' ),
 				navMenuLocation;
+
 
 			/*
 			* When clicking on the page title or the page content, the user will be prompted to
@@ -373,8 +375,8 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				return;
 
 			// Sections
-			} else if ( 'section' === $button.attr( 'data-object-type' ) ) {
-				api.section( dataControl ).focus();
+			} else if ( 'section' === dataType || 'panel' === dataType ) {
+				api[ dataType ]( dataControl ).focus();
 				return;
 
 			// Empty menu locations.
@@ -489,7 +491,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 				// The highlight should be aligned top the same as the parent element.
 				.css( 'top', top )
-				
+
 				/*
 				 * Sometimes an edit button's z-index is changed dynamically so that the button remains
 				 * atop of an element (such as a sticky header). In those cases, the $targetHighlight
@@ -1279,7 +1281,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				 *                                           - PARENT      -      v
 				 *                                           -             -      v
 				 * ==================================    =========================v==========
-				 * ==                              ==    ==  -             - *(BTN-FIXED)* == 
+				 * ==                              ==    ==  -             - *(BTN-FIXED)* ==
 				 * ==  --------------- *(BTN-ABS)* ==    ==  -             -               ==
 				 * ==  - PARENT      -             ==    ==  -             -               ==
 				 * ==  -             -             ==    ==  -        M    -               ==

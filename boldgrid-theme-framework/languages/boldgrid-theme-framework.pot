@@ -1699,19 +1699,19 @@ msgstr ""
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:406
+#: src/includes/partials/template-tags.php:405
 msgid "Empty Sidebar"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:408
+#: src/includes/partials/template-tags.php:407
 msgid "This sidebar doesn't have any widgets assigned to it yet."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:409
+#: src/includes/partials/template-tags.php:408
 msgid "Add widgets here."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:413
+#: src/includes/partials/template-tags.php:412
 msgid "Add another widget."
 msgstr ""
 

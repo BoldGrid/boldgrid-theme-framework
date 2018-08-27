@@ -850,8 +850,15 @@ class BoldGrid_Framework {
 	private function customizer_starter_content() {
 		$starter_content = new Boldgrid_Framework_Customizer_Starter_Content( $this->configs );
 		$query = new Boldgrid_Framework_Customizer_Starter_Content_Query();
+		$suggest = new Boldgrid_Framework_Customizer_Starter_Content_Suggest( $this->configs );
 		$this->loader->add_action( 'customize_preview_init', $query, 'make_auto_drafts_queryable' );
 		$this->loader->add_action( 'customize_register', $starter_content, 'add_hooks' );
+
+		// Suggest the user load starter content.
+		$this->loader->add_action( 'wp_footer', $suggest, 'wp_footer' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $suggest, 'wp_enqueue_scripts' );
+		$this->loader->add_action( 'wp_ajax_bgtfw_starter_content_suggested', $suggest, 'ajax_suggested' );
+		$this->loader->add_action( 'customize_register', $suggest, 'customize_register' );
 	}
 
 	/**

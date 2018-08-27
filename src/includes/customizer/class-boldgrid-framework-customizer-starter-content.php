@@ -49,10 +49,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	 * @since 2.0.0
 	 */
 	public function add_hooks() {
-		$content = get_theme_support( 'starter-content' );
-
-		// Check for valid starter-content being passed before loading.
-		if ( is_array( $content ) && ! empty( $content[0] ) && is_array( $content[0] ) && ( bool ) array_filter( $content[0] ) ) {
+		if ( self::has_valid_content() ) {
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue' ) );
 			add_action( 'wp_ajax_load_starter_content', array( $this, 'load_starter_content' ) );
 		}
@@ -74,6 +71,18 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 			array( 'customize-controls' ),
 			$this->configs['version']
 		);
+	}
+
+	/**
+	 * Determine whether or not the theme has valid starter content.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return bool
+	 */
+	public static function has_valid_content() {
+		$content = get_theme_support( 'starter-content' );
+		return is_array( $content ) && ! empty( $content[0] ) && is_array( $content[0] ) && ( bool ) array_filter( $content[0] );
 	}
 
 	/**

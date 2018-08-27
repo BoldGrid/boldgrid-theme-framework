@@ -14,7 +14,7 @@
 			data,
 			starterContent = /starter_content=([^&]+)/.exec( window.location.search );
 
-		if( starterContent[1] ) {
+		if( starterContent && starterContent[1] ) {
 			data = wp.customize.previewer.query();
 			data.starter_content = starterContent[1];
 

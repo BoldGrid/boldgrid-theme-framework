@@ -1506,6 +1506,22 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:51
+msgid "Invalid nonce."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:55
+msgid "Permission denied."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:153
+msgid "Yes"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:154
+msgid "No"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:214
 msgid "Title:"
 msgstr ""
@@ -1616,6 +1632,18 @@ msgstr ""
 
 #: src/includes/partials/customizer-edit.php:10
 msgid "This section is part of an individual page of your site. The Customizer (where you are now) is for editing the header and footer or an overall setting of your site like colors and fonts. To edit this section, you'll need to leave the Customizer and go to the Page Editor."
+msgstr ""
+
+#: src/includes/partials/customizer-suggest.php:9
+msgid "Welcome to the Customizer!"
+msgstr ""
+
+#: src/includes/partials/customizer-suggest.php:10
+msgid "To get a head start customizing your website, we recommend that you install starter content. Starter content is a pre built demo website. Many users find it easier editing an existing site and making it their own, vs starting off with a blank site."
+msgstr ""
+
+#: src/includes/partials/customizer-suggest.php:11
+msgid "Would you like to exit the Customizer and access the Starter Content in your Dashboard?"
 msgstr ""
 
 #: src/includes/partials/starter-content.php:21, src/includes/partials/welcome.php:178, src/includes/partials/welcome.php:210

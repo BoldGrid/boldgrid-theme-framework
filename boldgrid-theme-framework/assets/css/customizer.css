@@ -97,7 +97,29 @@ body button[data-control].highlight-button {
   line-height: 20px;
 }
 
-/* Simulate wp-core-ui's button-primary */
+/* Mimic the close button in Dashboard > Appearance > Themes > Theme Details. */
+.ui-dialog-titlebar-close {
+  height: 100%;
+  float: right;
+  background: transparent;
+  margin-right: -35px;
+  border: 0px;
+  border-left: 1px solid #ddd;
+}
+
+/* Mimic wp-core-ui's button-primary */
+.ui-dialog-buttonset button {
+  font-size: 13px;
+  line-height: 26px;
+  height: 28px;
+  margin: 0;
+  padding: 0 10px 1px;
+  border-width: 1px;
+  -webkit-appearance: none;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
 .ui-dialog-buttonset button:first-of-type {
   background: #0085ba;
   border-color: #0073aa #006799 #006799;
@@ -106,6 +128,7 @@ body button[data-control].highlight-button {
   color: #fff;
   text-decoration: none;
   text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+  margin-right: 5px;
 }
 
 /* Images used within the dialog, such as the 'Show page title' image when editing a page title. */
@@ -117,6 +140,13 @@ body button[data-control].highlight-button {
 causing undesired effects. Below, override color settings set by ".palette-primary button". */
 .ui-dialog .ui-button {
   color: #555;
+}
+
+.bgtfw-dialog-question {
+  text-align: center;
+  font-style: italic;
+  color: #555d66;
+  margin-top: 26px;
 }
 
 /**

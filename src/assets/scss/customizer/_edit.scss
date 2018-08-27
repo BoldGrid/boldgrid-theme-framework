@@ -54,7 +54,8 @@ body button[data-control].highlight-button {
 */
 /* By default, ensure the dialog is hidden. */
 .dialog-hidden {
-  display: none; }
+  display: none;
+}
 
 /* Generic settings to ensure a theme's css does not interfere with dialog. */
 .ui-dialog {
@@ -63,9 +64,31 @@ body button[data-control].highlight-button {
   font-family: Helvetica;
   font-weight: normal;
   font-size: 14px;
-  line-height: 20px; }
+  line-height: 20px;
+}
 
-/* Simulate wp-core-ui's button-primary */
+/* Mimic the close button in Dashboard > Appearance > Themes > Theme Details. */
+.ui-dialog-titlebar-close {
+	height: 100%;
+	float: right;
+	background: transparent;
+	margin-right: -35px;
+	border: 0px;
+	border-left: 1px solid #ddd;
+}
+
+/* Mimic wp-core-ui's button-primary */
+.ui-dialog-buttonset button {
+    font-size: 13px;
+    line-height: 26px;
+    height: 28px;
+    margin: 0;
+    padding: 0 10px 1px;
+    border-width: 1px;
+    -webkit-appearance: none;
+    border-radius: 3px;
+    white-space: nowrap;
+}
 .ui-dialog-buttonset button:first-of-type {
   background: #0085ba;
   border-color: #0073aa #006799 #006799;
@@ -73,16 +96,26 @@ body button[data-control].highlight-button {
   box-shadow: 0 1px 0 #006799;
   color: #fff;
   text-decoration: none;
-  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799; }
+  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+  margin-right: 5px;
+}
 
 /* Images used within the dialog, such as the 'Show page title' image when editing a page title. */
 #entry-title img {
-  margin: 10px 0px; }
+  margin: 10px 0px;
+}
 
 /* By defualt, a .ui-button color is #555. The ".palette-primary button" class may override this,
-causing undesired effects. Below, override color settings set by ".palette-primary button". */ 
+causing undesired effects. Below, override color settings set by ".palette-primary button". */
 .ui-dialog .ui-button {
-	color: #555;
+  color: #555;
+}
+
+.bgtfw-dialog-question {
+	text-align: center;
+	font-style: italic;
+	color: #555d66;
+	margin-top: 26px;
 }
 
 /**

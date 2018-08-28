@@ -89,7 +89,7 @@ msgstr ""
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:161, src/includes/class-boldgrid-framework-layouts-post-meta.php:200, src/includes/class-boldgrid-framework-title.php:100
+#: src/includes/class-boldgrid-framework-comments.php:161, src/includes/class-boldgrid-framework-layouts-post-meta.php:207, src/includes/class-boldgrid-framework-title.php:100
 msgid "Edit"
 msgstr ""
 
@@ -159,35 +159,35 @@ msgstr ""
 msgid "Use Global Setting"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:186
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:193
 msgid "Template"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:200
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:207
 msgid "Edit template"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:205
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:212
 msgid "OK"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:206
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:213
 msgid "Cancel"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:226
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:233
 msgid "(no parent)"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:244
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:251
 msgid "Parent"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:251
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:258
 msgid "Order"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:254
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:261
 msgid "Need help? Use the Help tab above the screen title."
 msgstr ""
 

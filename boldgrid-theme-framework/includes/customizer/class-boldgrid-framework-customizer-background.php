@@ -217,55 +217,6 @@ class Boldgrid_Framework_Customizer_Background {
 	}
 
 	/**
-	 * Add controls to change the background color
-	 *
-	 * @param     array $wp_customize WP_Customize object.
-	 * @since     1.0.0
-	 */
-	public function add_color_picker( $wp_customize ) {
-		$wp_customize->add_setting(
-			'boldgrid_background_color',
-			array(
-				'type' => 'theme_mod',
-				'sanitize_callback' => function( $color ) {
-
-					// If empty, return empty.
-					if ( empty( $color ) ) {
-						return '';
-					}
-
-					// If transparent, return 'transparent'.
-					if ( is_string( $color ) && 'transparent' == trim( $color ) ) {
-						return 'transparent';
-					}
-
-					// Instantiate the object.
-					$color_obj = ariColor::newColor( $color );
-
-					// Return a CSS value, using the auto-detected mode.
-					return $color_obj->toCSS( $color_obj->mode );
-				},
-			)
-		);
-		$configs = $this->configs;
-
-		// Add Background Color Control to Pattern&Color of Background Image Section.
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type' => 'color',
-				'settings' => 'boldgrid_background_color',
-				'label' => __( 'Background Color', 'bgtfw' ),
-				'section' => 'background_image',
-				'transport' => 'postMessage',
-				'default' => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
-				'priority' => 1,
-				'choices' => array(),
-			)
-		);
-	}
-
-	/**
 	 * Add scripts to the preview window
 	 *
 	 * @since     1.0.0

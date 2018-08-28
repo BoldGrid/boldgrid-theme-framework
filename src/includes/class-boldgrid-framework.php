@@ -610,7 +610,6 @@ class BoldGrid_Framework {
 		$background = new Boldgrid_Framework_Customizer_Background( $this->configs );
 		$this->loader->add_action( 'customize_register', $background, 'add_patterns' );
 		// $this->loader->add_action( 'customize_register', $background, 'add_position' );
-		// $this->loader->add_action( 'customize_register', $background, 'add_color_picker' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_size' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_type' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_crop', 11 );

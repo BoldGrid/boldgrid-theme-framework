@@ -41,6 +41,13 @@ return array(
 			'height'   => 100,
 		),
 	),
+	'bgtfw_background_description' => array(
+		'type'        => 'custom',
+		'settings'    => 'bgtfw_background_description',
+		'section'     => 'background_image',
+		'default'     => '<div class="bgtfw-description"><p>' . esc_html__ ( 'Change the appearance of your site\'s background.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-your-site-background-in-boldgrid-crio/" target="_blank"><span class="dashicons dashicons-editor-help"></span>Help</a></div></div>',
+		'priority' => 1,
+	),
 	'boldgrid_background_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
@@ -49,7 +56,7 @@ return array(
 		'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
 		'tooltip' => 'testing what a tool tip looks like',
 		'section'     => 'background_image',
-		'priority' => 1,
+		'priority' => 2,
 		'default'     => '',
 		'choices'     => array(
 			'colors' => $formatted_palette,
@@ -767,7 +774,6 @@ return array(
 		'section'     => 'bgtfw_footer_widgets',
 		'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
 		'priority'    => 10,
-		'description' => __( 'You can add widgets to your footer from the widgets section.', 'bgtfw' ),
 		'required' => array(
 			array(
 				'settings' => 'boldgrid_enable_footer',
@@ -807,7 +813,6 @@ return array(
 		'section'     => 'bgtfw_header_widgets',
 		'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
 		'priority'    => 10,
-		'description' => __( 'You can add widgets to your header from the widgets section.', 'bgtfw' ),
 	),
 	'boldgrid_header_widgets' => array(
 		'label'       => __( 'Header Widget Areas', 'bgtfw' ),

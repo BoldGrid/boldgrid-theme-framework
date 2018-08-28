@@ -118,7 +118,14 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				} else {
 					$default_title = __( 'Use Global Setting', 'bgtfw' );
 					$type = 'page' === $post->post_type ? $post->post_type : 'blog';
-					$global_template = get_theme_mod( 'bgtfw_layout_' . $type, $default_title );
+
+					// Get the default value from the config's customizer controls.
+					$global_default = $default_title;
+					if ( ! empty( $this->configs['customizer']['controls']['bgtfw_layout_' . $type]['default'] ) ) {
+						$global_default = $this->configs['customizer']['controls']['bgtfw_layout_' . $type]['default'];
+					}
+
+					$global_template = get_theme_mod( 'bgtfw_layout_' . $type, $global_default );
 				}
 
 				$default_title = apply_filters( 'default_page_template_title', $default_title, 'meta-box' );

@@ -7,6 +7,10 @@
 		height: 100%;
 	}
 
+	&.directional-control .control-name {
+		border-color: white;
+	}
+
 	&.slider-control {
 		.number,
 		.slider {
@@ -27,6 +31,6 @@
 	}
 
 	&.directional-control {
-		margin: 40px 0 20px;
+		margin: 0;
 	}
 }

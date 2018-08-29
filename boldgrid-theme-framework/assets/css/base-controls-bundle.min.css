@@ -821,10 +821,13 @@ label svg {
   transform: translateY(-50%) translateX(-50%); }
 
 .boldgrid-control .pluto-color-control + .iris-picker {
-  min-width: 280px; }
+  min-width: 253px; }
 
 .boldgrid-control.bg-control-switch .mdc-switch {
   top: 5px; }
+
+.boldgrid-control .iris-slider.iris-slider {
+  margin-left: 10px !important; }
 
 .boldgrid-control.directional-control {
   margin: 0; }

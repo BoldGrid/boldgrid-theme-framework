@@ -23,11 +23,15 @@
 	}
 
 	.pluto-color-control + .iris-picker {
-		min-width: 280px;
+		min-width: 253px;
 	}
 
 	&.bg-control-switch .mdc-switch {
 		top: 5px;
+	}
+
+	.iris-slider.iris-slider {
+		margin-left: 10px !important;
 	}
 
 	&.directional-control {

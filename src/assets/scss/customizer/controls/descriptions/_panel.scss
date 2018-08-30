@@ -1,0 +1,9 @@
+ul[id^="sub-accordion-panel-"] {
+	.bgtfw-description {
+		.help a .dashicons {
+			&:before {
+				content: "\f504";
+			}
+		}
+	}
+}

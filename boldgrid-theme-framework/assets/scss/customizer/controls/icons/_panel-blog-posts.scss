@@ -11,3 +11,31 @@
 		}
 	}
 }
+#sub-accordion-panel-bgtfw_blog_blog_page_panel {
+	> li#accordion-panel-bgtfw_ {
+		&blog_blog_page_design {
+			h3:before {
+				@include dashicons;
+				content: "\f100";
+			}
+		}
+		&blog_colors_section {
+			h3:before {
+				@include dashicons;
+				content: "\f309";
+			}
+		}
+		&pages_blog_blog_page_layout {
+			h3:before {
+				@include dashicons;
+				content: "\f489";
+			}
+		}
+		&blog_blog_page_panel_sidebar {
+			h3:before {
+				@include bgtfwIcons;
+				content: "\e91b";
+			}
+		}
+	}
+}

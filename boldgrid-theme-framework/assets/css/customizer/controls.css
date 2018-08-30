@@ -1372,6 +1372,46 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
   content: "\e91b";
 }
 
+#sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-panel-bgtfw_blog_blog_page_design h3:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f100";
+}
+
+#sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-panel-bgtfw_blog_colors_section h3:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f309";
+}
+
+#sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-panel-bgtfw_pages_blog_blog_page_layout h3:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f489";
+}
+
+#sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-panel-bgtfw_blog_blog_page_panel_sidebar h3:before {
+  display: inline;
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e91b";
+}
+
 /* Typography Panel */
 #sub-accordion-panel-boldgrid_typography > li[id^="accordion-section-"] > h3:before {
   display: inline;
@@ -2131,13 +2171,12 @@ h3.accordion-section-title span.section-title-extended {
 }
 
 /*--------------------------------------------------------------
-# Section Descriptions
+# Section/Panel Descriptions
 --------------------------------------------------------------*/
 .bgtfw-description {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-bottom: 1em;
 }
 
 .bgtfw-description p {
@@ -2169,6 +2208,18 @@ h3.accordion-section-title span.section-title-extended {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+ul[id^="sub-accordion-section-"] .bgtfw-description {
+  padding-bottom: 1em;
+}
+
+ul[id^="sub-accordion-section-"] .bgtfw-description .help a .dashicons:before {
+  content: "\f223";
+}
+
+ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
+  content: "\f504";
 }
 
 /*--------------------------------------------------------------

@@ -150,14 +150,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var $widgetAreaBottom = $( '#sub-accordion-panel-widgets, #accordion-panel-widgets .accordion-sub-container' ),
 			$navMenuBottom = $( '#sub-accordion-panel-nav_menus, #accordion-panel-nav_menus .accordion-sub-container' );
 
-		// TODO: Move this markup into php and localize.
-		$( '#accordion-panel-widgets, #sub-accordion-panel-widgets' ).find( '.customize-info.accordion-section' )
-			.after( '<p class="boldgrid-subdescription">A Widget is a small block that performs' +
-				' a specific function. We have provided some prefilled widget areas for you. ' +
-				'You can hover over the Widget Areas below to see where they are located on the page.</p>'
-			);
-
-		// If no header or footer widgets, change wording to add more widgets.
+		// TODO: Move this markup into php and localize. If no header or footer widgets, change wording to add more widgets.
 		if ( ! _.isUndefined( wp.customize( 'boldgrid_footer_widgets' ) ) &&
 			! _.isUndefined( wp.customize( 'boldgrid_header_widgets' ) ) &&
 			wp.customize( 'boldgrid_footer_widgets' ).get() !== '0' &&

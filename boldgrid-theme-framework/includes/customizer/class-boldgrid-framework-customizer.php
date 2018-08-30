@@ -233,7 +233,7 @@ class BoldGrid_Framework_Customizer {
 							"bgtfw_menu_items_link_color_$location",
 							array(
 								'title' => __( 'Link Color', 'bgtfw' ),
-								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the main link color in your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-menu-link-styles/" target="_blank"><span class="dashicons dashicons-editor-help"></span>Help</a></div></div>',
+								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the primary color for links in your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-menu-link-styles/" target="_blank"><span class="dashicons dashicons-editor-help"></span>Help</a></div></div>',
 								'panel' => "bgtfw_menu_items_$location",
 								'capability' => 'edit_theme_options',
 								'icon' => 'dashicons-art',

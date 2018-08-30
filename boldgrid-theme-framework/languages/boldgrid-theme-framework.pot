@@ -1599,7 +1599,7 @@ msgid "Change the hover style for links in your %s location."
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:236
-msgid "Change the main link color in your %s location."
+msgid "Change the primary color for links in your %s location."
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:247

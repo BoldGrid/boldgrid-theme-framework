@@ -438,7 +438,7 @@ function bgtfw_get_featured_img_bg( $post_id ) {
 		$color = ariColor::newColor( $color );
 		$color = $color->getNew( 'alpha', .7 )->toCSS( 'rgba' );
 
-		$style = 'style="background: linear-gradient(' . $color . ', ' . $color . ' ), url(' . $img[0] . ');background-size: cover;background-position: center center;"';
+		$style = 'style="background: linear-gradient(' . $color . ', ' . $color . '), url(' . $img[0] . '); background-size: cover; background-position: center center;"';
 	}
 
 	return $style;

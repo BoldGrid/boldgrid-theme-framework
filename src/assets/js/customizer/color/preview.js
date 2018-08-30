@@ -401,10 +401,61 @@ export class Preview  {
 		brehautColor = parent.net.brehaut.Color( color ),
 		updatedColor = brehautColor.setAlpha( 0.7 ).toString();
 
-		let background = $( '.has-post-thumbnail .entry-header' ).css( 'background' );
-		let updatedBackground = background.replace( /rgba\(([0-9]+), ([0-9]+), ([0-9]+), ([0-9|.]+)\)/g, updatedColor );
+		let parse = ( string ) => {
+			var token = /((?:[^"']|".*?"|'.*?')*?)([(,)]|$)/g;
+			return ( function recurse() {
+				var result;
+				for ( let array = [];; ) {
+					result = token.exec( string );
+					if ( '(' === result[2] ) {
+						array.push( result[1].trim() + '(' + recurse().join( ', ' ) + ')' );
+						result = token.exec( string );
+					} else {
+						array.push( result[1].trim() );
+					}
+					if ( ',' !== result[2] ) {
+						return array;
+					} else if ( ',' === result[2] && '%' === result[1][ result[1].length - 1 ] ) {
+						array[ array.length - 1 ] += result[1];
+					}
+				}
+			} )( );
+		};
 
-		$( '.has-post-thumbnail .entry-header' ).css( 'background', updatedBackground );
+		let colorRegex = /rgba\(\s?([0-9]+),\s?([0-9]+),\s?([0-9]+),\s?([0-9|.]+)\s?\)/g;
+		let headers = $( '.has-post-thumbnail .entry-header' );
+
+		_.each( headers, function( header ) {
+			header = $( header );
+
+			let background = header.css( 'background-image' );
+			let updatedBackground = false;
+
+			// Parse background-image properties into an array.
+			let props = parse( background );
+
+			// Check for linear-gradient being applied.
+			let linearGradient = props.filter( prop => prop.includes( 'linear-gradient' ) );
+
+			// Replace the new color in gradient.
+			if ( 0 < linearGradient.length && colorRegex.test( linearGradient[0] ) ) {
+				let newLinearGradient = linearGradient[0].replace( /\s+/g, '' );
+				newLinearGradient = newLinearGradient.replace( colorRegex, updatedColor );
+				updatedBackground = background.replace( linearGradient[0], newLinearGradient );
+			} else {
+				let hasImage = props.filter( prop => prop.includes( 'url(' ) );
+
+				// If a url is specified, then construct a new linear-gradient if one wasn't found.
+				if ( hasImage ) {
+					updatedBackground = 'linear-gradient(' + updatedColor + ', ' + updatedColor + '), ' + background;
+				}
+			}
+
+			// Update the background-image property.
+			if ( updatedBackground ) {
+				header.css( 'background-image', updatedBackground );
+			}
+		} );
 	}
 
 	/**

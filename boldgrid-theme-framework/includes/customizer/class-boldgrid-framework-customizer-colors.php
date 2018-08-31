@@ -369,7 +369,20 @@ class Boldgrid_Framework_Customizer_Colors {
 
 		foreach ( $this->color_palettes['palettes'] as $key => $palette ) {
 			$this->color_palettes['palettes'][ $key ]['copy_on_mod'] = true;
+
+			// Convert preset palettes to RGB as our standard.
+			foreach( $this->color_palettes['palettes'][ $key ]['colors'] as $i => $color ) {
+				$color = ariColor::newColor( $this->color_palettes['palettes'][ $key ]['colors'][ $i ] );
+				$this->color_palettes['palettes'][ $key ]['colors'][ $i ] = $color->toCSS( 'rgb' );
+			}
+
+			// Do the same for neutral color.
+			if ( ! empty( $this->color_palettes['palettes'][ $key ]['neutral-color'] ) ) {
+				$color = ariColor::newColor( $this->color_palettes['palettes'][ $key ]['neutral-color'] );
+				$this->color_palettes['palettes'][ $key ]['neutral-color'] = $color->toCSS( 'rgb' );
+			}
 		}
+
 		$this->color_palettes['palette_formats'] = $this->get_color_formats( $this->color_palettes['palettes'] );
 		$this->color_palettes['saved_palettes'] = $this->get_saved_color_settings();
 

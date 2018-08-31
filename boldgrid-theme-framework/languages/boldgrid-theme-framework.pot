@@ -1143,7 +1143,7 @@ msgstr ""
 msgid "Background Image"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-colors.php:558
+#: src/includes/customizer/class-boldgrid-framework-customizer-colors.php:571
 msgid "BoldGrid Color Palettes"
 msgstr ""
 

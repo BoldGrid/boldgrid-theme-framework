@@ -31,6 +31,11 @@ export class Preview  {
 				properties: [ 'background-color', 'text-default' ]
 			},
 			{
+				name: 'bgtfw_blog_post_header_title_color',
+				selector: '.archive .post .entry-title .link, .blog .post .entry-title .link',
+				properties: [ 'color', 'color-hover' ]
+			},
+			{
 				name: 'bgtfw_blog_header_background_color',
 				selector: '.palette-primary.archive .post .entry-header, .palette-primary.blog .post .entry-header',
 				properties: [ 'background-color', 'text-default' ]

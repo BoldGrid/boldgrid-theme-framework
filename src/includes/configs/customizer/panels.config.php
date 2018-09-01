@@ -45,10 +45,6 @@ return array(
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the display of your site\'s blog page.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-your-blog-page-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'panel' => 'bgtfw_blog_panel',
 	),
-	'bgtfw_blog_blog_page_design' => array(
-		'title' => __( 'Design', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_panel',
-	),
 	'bgtfw_pages_panel' => array(
 		'title' => __( 'Pages', 'bgtfw' ),
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the display of your site\'s pages', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-page-layout-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',

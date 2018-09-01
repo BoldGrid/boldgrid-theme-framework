@@ -198,11 +198,11 @@ gulp.task('phpDeps', function () {
     .pipe(replace('kirki-logo.svg', 'boldgrid-logo.svg'))
     .pipe(gulp.dest(config.dist + '/includes/kirki'));
   // Get Kirki CSS.
-  gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{css,map}')
+  gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{css,map,json}')
     .pipe(replace('Button styles **/', 'Button styles **', true))
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets'));
   // Get Kirki Assets.
-  gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{png,scss,js}')
+  gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{png,scss,js,json}')
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets'));
   gulp.src(config.src + "/assets/json/webfonts.json")
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets/json'));

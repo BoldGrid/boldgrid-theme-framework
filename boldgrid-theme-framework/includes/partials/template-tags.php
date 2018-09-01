@@ -58,8 +58,6 @@ if ( ! function_exists( 'boldgrid_posted_on' ) ) :
  * Prints HTML with meta information for the current post-date/time and author.
  */
 function boldgrid_posted_on() {
-	global $boldgrid_theme_framework;
-	$configs = $boldgrid_theme_framework->get_configs();
 
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
@@ -74,12 +72,12 @@ function boldgrid_posted_on() {
 	);
 
 	// Posted on date format.
-	$format = ! empty( $configs['template']['archives']['posted-on']['format'] ) ? $configs['template']['archives']['posted-on']['format'] : 'date';
+	$format = get_theme_mod( 'bgtfw_blog_post_header_meta_format' );
 
 	if ( 'timeago' === $format ) {
 		$posted_on = sprintf(
 			_x( 'Posted %s ago', '%s = human-readable time difference', 'bgtfw' ),
-			human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) )
+			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . '</a>'
 		);
 	}
 
@@ -110,14 +108,33 @@ function boldgrid_entry_footer() {
 
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( ', ' );
+		$categories_count = count( explode( ', ', $categories_list ) );
 		if ( $categories_list && boldgrid_categorized_blog() ) {
-			printf( '<span class="cat-links"><i class="fa fa-folder-open" aria-hidden="true"></i> %1$s</span>', $categories_list );
+			$class = 'singular';
+			$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_cat_icon' ) . '" aria-hidden="true"></i>';
+
+			if ( $categories_count > 1 ) {
+				$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_cats_icon' ) . '" aria-hidden="true"></i>';
+				$class = 'multiple';
+			}
+
+			printf( '<span class="cat-links %1$s">%2$s %3$s</span>', $class, $icon, $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
 		$tags_list = get_the_tag_list( '', ', ' );
+
 		if ( $tags_list ) {
-			printf( '<span class="tags-links"><i class="fa fa-hashtag" aria-hidden="true"></i> %1$s</span>', $tags_list );
+			$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_tag_icon' ) . '" aria-hidden="true"></i>';
+			$class = 'singular';
+			$tags_count = count( explode( ', ', $tags_list ) );
+
+			if ( $tags_count > 1 ) {
+				$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_tags_icon' ) . '" aria-hidden="true"></i>';
+				$class = 'multiple';
+			}
+
+			printf( '<span class="tags-links %1$s">%2$s %3$s</span>', $class, $icon, $tags_list );
 		}
 	}
 
@@ -125,15 +142,18 @@ function boldgrid_entry_footer() {
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || $comment_count ) ) {
 
-		echo '<span class="comments-link">';
 		$icon = '';
-		if ( '1' === $comment_count ) {
-			$icon = '<i class="fa fa-comment" aria-hidden="true"></i> ';
-		}
+		$class = 'comments-link';
 
 		if ( $comment_count > 1 ) {
-			$icon = '<i class="fa fa-comments" aria-hidden="true"></i> ';
+			$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_comments_icon' ) . '" aria-hidden="true"></i> ';
+			$class = ' multiple';
+		} else {
+			$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_comment_icon' ) . '" aria-hidden="true"></i> ';
+			$class .= ' singular';
 		}
+
+		echo '<span class="' . $class . '">';
 
 		echo $icon;
 
@@ -424,21 +444,41 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
  *
  * @return string $style The inline styles to apply to an element.
  */
-function bgtfw_get_featured_img_bg( $post_id ) {
+function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
+	global $wp_query;
 	$style = '';
 	if ( has_post_thumbnail( $post_id ) ) {
 		$img = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
+		if ( $wp_query->is_posts_page || is_archive() ) {
+			if ( true === $theme_mod && 'show' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_display' ) ) {
+				if ( 'background' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_position' ) ) {
 
-		// Get user defined header color.
-		$color = get_theme_mod( 'bgtfw_blog_header_background_color' );
-		$color = explode( ':', $color );
-		$color = array_pop( $color );
+					// Get user defined header color.
+					$color = get_theme_mod( 'bgtfw_blog_header_background_color' );
+					$color = explode( ':', $color );
+					$color = array_pop( $color );
 
-		// Instantiate the object.
-		$color = ariColor::newColor( $color );
-		$color = $color->getNew( 'alpha', .7 )->toCSS( 'rgba' );
+					// Instantiate the object.
+					$color = ariColor::newColor( $color );
+					$color = $color->getNew( 'alpha', .7 )->toCSS( 'rgba' );
 
-		$style = 'style="background: linear-gradient(' . $color . ', ' . $color . '), url(' . $img[0] . '); background-size: cover; background-position: center center;"';
+					$style = 'style="background: linear-gradient(' . $color . ', ' . $color . '), url(' . $img[0] . '); background-size: cover; background-position: center center;"';
+				} else {
+					$style = 'style="background: url(' . $img[0] . '); background-size: cover; background-position: center center;"';
+				}
+			}
+		} else {
+			// Get user defined header color.
+			$color = get_theme_mod( 'bgtfw_blog_header_background_color' );
+			$color = explode( ':', $color );
+			$color = array_pop( $color );
+
+			// Instantiate the object.
+			$color = ariColor::newColor( $color );
+			$color = $color->getNew( 'alpha', .7 )->toCSS( 'rgba' );
+
+			$style = 'style="background: linear-gradient(' . $color . ', ' . $color . '), url(' . $img[0] . '); background-size: cover; background-position: center center;"';
+		}
 	}
 
 	return $style;
@@ -449,8 +489,8 @@ function bgtfw_get_featured_img_bg( $post_id ) {
  *
  * @since 2.0.0
  */
-function bgtfw_featured_img_bg( $post_id ) {
-	echo bgtfw_get_featured_img_bg( $post_id );
+function bgtfw_featured_img_bg( $post_id, $theme_mod = false ) {
+	echo bgtfw_get_featured_img_bg( $post_id, $theme_mod );
 }
 
 /**
@@ -463,7 +503,7 @@ function bgtfw_featured_img_bg( $post_id ) {
  */
 function bgtfw_excerpt_more( $more ) {
 	global $post;
-	return '… <div class="read-more"><a class="btn button-primary" href="' . get_permalink( $post->ID ) . '">' . 'Continue Reading &raquo;' . '</a></div>';
+	return '… <div class="read-more"><a class="' . get_theme_mod( 'bgtfw_blog_post_readmore_type' ) . '" href="' . get_permalink( $post->ID ) . '">' . get_theme_mod( 'bgtfw_blog_post_readmore_text' ) . '</a></div>';
 }
 
 add_filter( 'excerpt_more', 'bgtfw_excerpt_more' );

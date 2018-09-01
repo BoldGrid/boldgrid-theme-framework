@@ -405,7 +405,6 @@
 		align-items: flex-start;
 	}
 }
-
 .post {
 	display: flex;
 	flex-wrap: wrap;
@@ -413,6 +412,7 @@
 	width: calc((100% / 1 - .5vw) - 2vw);
 	margin: 1vw;
 }
+.page .page,
 .single .post {
 	width: auto;
 	margin: 0;
@@ -428,9 +428,19 @@
 	width: calc((100% / 3 - .5vw) - 2vw);
 }
 
+.page .page,
 .single .post {
 	margin-top: 0;
 	margin-bottom: 0;
+}
+
+.site-content.container {
+	padding-left: 0;
+	padding-right: 0;
+	.main {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 }
 
 // Post navigation.
@@ -552,8 +562,8 @@ nav.navigation.posts-navigation {
 
 // Featured Img Pages.
 body.page .has-post-thumbnail .entry-header {
-	margin-left: -2.8rem;
-	margin-right: -2.8rem;
+	margin-left: -15px;
+	margin-right: -15px;
 	padding: 2.8rem;
 	.entry-title {
 		text-align: center;

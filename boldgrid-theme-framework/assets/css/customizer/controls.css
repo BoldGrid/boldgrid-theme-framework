@@ -2278,3 +2278,20 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
 }
+
+/*--------------------------------------------------------------
+# Radio Buttonset Icons
+--------------------------------------------------------------*/
+.customize-control-kirki-radio-buttonset .switch-label .dashicons, .customize-control-kirki-radio-buttonset .switch-label .fa, .customize-control-kirki-radio-buttonset .switch-label [class^="icon-"], .customize-control-kirki-radio-buttonset .switch-label [class*=" icon-"] {
+  padding-right: 5px;
+}
+
+.customize-control-kirki-radio-buttonset .switch-label .fa {
+  font-size: 16px;
+  vertical-align: bottom;
+}
+
+.customize-control-kirki-radio-buttonset .switch-label [class^="icon-"], .customize-control-kirki-radio-buttonset .switch-label [class*=" icon-"] {
+  font-size: 16px;
+  vertical-align: text-bottom;
+}

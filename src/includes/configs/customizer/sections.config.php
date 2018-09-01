@@ -110,20 +110,67 @@ return array(
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Control the display of links used in your site\'s content.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/site-content-design-tools-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'panel' => 'bgtfw_site_content',
 	),
+	'bgtfw_blog_colors_section' => array(
+		'title' => __( 'Colors', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_blog_blog_page_design',
+		'description' => esc_attr__( 'Change the colors used on your blog post page.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+		'priority' => 10,
+	),
 	'bgtfw_pages_blog_blog_page_layout' => array(
 		'title' => 'Layout',
 		'panel' => 'bgtfw_blog_blog_page_panel',
-		'priority' => 2,
+		'priority' => 1,
+	),
+	'bgtfw_blog_blog_page_design' => array(
+		'title' => __( 'Design', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_panel',
+	),
+	'bgtfw_pages_blog_blog_page_post_content' => array(
+		'title' => 'Post List Settings',
+		'panel' => 'bgtfw_blog_blog_page_panel',
 	),
 	'bgtfw_blog_blog_page_panel_sidebar' => array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
-		'priority' => 4,
 	),
-	'bgtfw_pages_blog_posts_layout' => array(
-		'title' => 'Layout',
-		'panel' => 'bgtfw_blog_posts_panel',
-		'priority' => 2,
+	'bgtfw_pages_blog_blog_page_titles' => array(
+		'title' => 'Titles',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+	),
+	'bgtfw_pages_blog_blog_page_featured_images' => array(
+		'title' => 'Featured Images',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+	),
+	'bgtfw_pages_blog_blog_page_links' => array(
+		'title' => 'Links',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+	),
+	'bgtfw_pages_blog_blog_page_post_meta' => array(
+		'title' => 'Post Meta',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_pages_blog_blog_page_links',
+	),
+	'bgtfw_pages_blog_blog_page_read_more' => array(
+		'title' => 'Read More Links',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_pages_blog_blog_page_links',
+	),
+	'bgtfw_pages_blog_blog_page_tags_links' => array(
+		'title' => 'Tag Links',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_pages_blog_blog_page_links',
+	),
+	'bgtfw_pages_blog_blog_page_cat_links' => array(
+		'title' => 'Category Links',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_pages_blog_blog_page_links',
+	),
+	'bgtfw_pages_blog_blog_page_comment_links' => array(
+		'title' => 'Comment Links',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_pages_blog_blog_page_links',
 	),
 	'bgtfw_pages_blog_posts_sidebar' => array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
@@ -220,48 +267,59 @@ return array(
 	// End: Generic Footer Controls.
 
 	// Start: Generic Blog Design Controls.
-	'bgtfw_blog_colors_section' => array(
+	'bgtfw_blog_page_colors_section' => array(
 		'title' => __( 'Colors', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_design',
-		'description' => esc_attr__( 'Change the colors used on your blog post page.', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_blog_blog_page_design',
+		'description' => esc_attr__( 'Change the layout for your blog page posts\' headers.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
-		'priority' => 10,
+	),
+	'bgtfw_blog_header_color_section' => array(
+		'title' => __( 'Header Colors', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_blog_page_colors_section',
+		'capability' => 'edit_theme_options',
+	),
+	'bgtfw_blog_content_color_section' => array(
+		'title' => __( 'Content Colors', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_blog_page_colors_section',
+		'capability' => 'edit_theme_options',
 	),
 	'bgtfw_blog_margin_section' => array(
 		'title' => __( 'Margin', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_design',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_blog_blog_page_design',
 		'description' => esc_html__( 'Change the margin of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
-		'priority' => 70,
 	),
 	'bgtfw_blog_padding_section' => array(
 		'title' => __( 'Padding', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_design',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_blog_blog_page_design',
 		'description' => esc_html__( 'Change the padding of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
-		'priority' => 70,
 	),
 	'bgtfw_blog_border_section' => array(
 		'title' => __( 'Border', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_design',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_blog_blog_page_design',
 		'description' => esc_html__( 'Change the border of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
-		'priority' => 70,
 	),
 	'bgtfw_blog_shadow_section' => array(
 		'title' => __( 'Box Shadow', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_design',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_blog_blog_page_design',
 		'description' => esc_html__( 'Change the box shadow of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
-		'priority' => 70,
 	),
 	'bgtfw_blog_radius_section' => array(
 		'title' => __( 'Border Radius', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_design',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+		'section' => 'bgtfw_blog_blog_page_design',
 		'description' => esc_html__( 'Change the border radius of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
-		'priority' => 70,
 	),
-
 	// End: Generic Blog Design Controls.
 );

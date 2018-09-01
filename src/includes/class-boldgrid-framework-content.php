@@ -81,4 +81,14 @@ class Boldgrid_Framework_Content {
 		the_excerpt();
 		remove_filter( 'the_content', $method );
 	}
+
+	/**
+	 * Filter the except length to 20 words.
+	 *
+	 * @param int $length Excerpt length.
+	 * @return int (Maybe) modified excerpt length.
+	 */
+	public static function excerpt_length( $length ) {
+		return get_theme_mod( 'bgtfw_pages_blog_blog_page_layout_excerpt_length' );
+	}
 }

@@ -2435,7 +2435,7 @@ return array(
 		},
 		'output' => array(
 			array(
-				'element'  => '.blog .post .entry-footer .comments-links .fa, .archive .post .entry-footer .comments-links .fa',
+				'element'  => '.blog .post .entry-footer .comments-link .fa, .archive .post .entry-footer .comments-link .fa',
 				'property' => 'display',
 			),
 		),
@@ -2456,7 +2456,7 @@ return array(
 		'default' => 'comment',
 		'js_vars' => array(
 			array(
-				'element' => '.blog .post .comments-links.singular .fa, .archive .post .comments-links.singular .fa',
+				'element' => '.blog .post .comments-link.singular .fa, .archive .post .comments-link.singular .fa',
 				'function' => 'html',
 				'attr' => 'class',
 				'value_pattern' => 'fa fa-$',
@@ -2484,7 +2484,7 @@ return array(
 		'default' => 'comments',
 		'js_vars' => array(
 			array(
-				'element' => '.blog .post .comments-links.multiple .fa, .archive .post .comments-links.multiple .fa',
+				'element' => '.blog .post .comments-link.multiple .fa, .archive .post .comments-link.multiple .fa',
 				'function' => 'html',
 				'attr' => 'class',
 				'value_pattern' => 'fa fa-$',

@@ -36,6 +36,16 @@ export class Preview  {
 				properties: [ 'color', 'color-hover' ]
 			},
 			{
+				name: 'bgtfw_posts_title_color',
+				selector: '.single .entry-header .entry-title .link',
+				properties: [ 'color', 'color-hover' ]
+			},
+			{
+				name: 'bgtfw_pages_title_color',
+				selector: '.page .entry-header .entry-title .link',
+				properties: [ 'color', 'color-hover' ]
+			},
+			{
 				name: 'bgtfw_blog_header_background_color',
 				selector: '.palette-primary.archive .post .entry-header, .palette-primary.blog .post .entry-header',
 				properties: [ 'background-color', 'text-default' ]

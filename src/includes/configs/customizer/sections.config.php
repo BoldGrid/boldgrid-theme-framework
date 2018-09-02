@@ -172,8 +172,8 @@ return array(
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'section' => 'bgtfw_pages_blog_blog_page_links',
 	),
-	'bgtfw_pages_blog_posts_layout' => array(
-		'title' => 'Layout',
+	'bgtfw_pages_blog_posts_title' => array(
+		'title' => __( 'Title', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
 		'priority' => 2,
 	),

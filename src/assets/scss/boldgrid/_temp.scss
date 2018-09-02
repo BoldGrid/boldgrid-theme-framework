@@ -566,7 +566,6 @@ body.page .has-post-thumbnail .entry-header {
 	margin-right: -2.8rem;
 	padding: 2.8rem;
 	.entry-title {
-		text-align: center;
 		a {
 			color: currentColor;
 			&:hover, &:focus {
@@ -574,4 +573,8 @@ body.page .has-post-thumbnail .entry-header {
 			}
 		}
 	}
+}
+body.page .site-content.container .has-post-thumbnail .entry-header {
+	margin-left: -15px;
+	margin-right: -15px;
 }

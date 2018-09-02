@@ -363,9 +363,9 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			// Page title.
 			if ( 'entry-title' === dataControl ) {
 				if( 'page' === self.i18n.postType ) {
-					dataControl = 'bgtfw_pages_display_title';
+					dataControl = 'bgtfw_pages_title_display';
 				} else if ( 'post' === self.i18n.postType ) {
-					dataControl = 'bgtfw_posts_display_title';
+					dataControl = 'bgtfw_posts_title_display';
 				}
 			}
 

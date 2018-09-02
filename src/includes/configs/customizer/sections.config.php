@@ -24,6 +24,27 @@ return array(
 		'capability' => 'edit_theme_options',
 		'priority' => 1,
 	),
+	'bgtfw_layout_page_title' => array(
+		'title' => __( 'Title', 'bgtfw' ),
+		'panel' => 'bgtfw_design_panel',
+		'section' => 'bgtfw_layout_page',
+		'description' => esc_html__( 'This section controls the appearance of titles on your pages.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+	),
+	'bgtfw_layout_page_container' => array(
+		'title' => __( 'Container', 'bgtfw' ),
+		'panel' => 'bgtfw_design_panel',
+		'section' => 'bgtfw_layout_page',
+		'description' => esc_html__( 'This section controls the container for your pages.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+	),
+	'bgtfw_layout_page_sidebar' => array(
+		'title' => __( 'Sidebar', 'bgtfw' ),
+		'panel' => 'bgtfw_design_panel',
+		'section' => 'bgtfw_layout_page',
+		'description' => esc_html__( 'This section controls the container for your pages.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+	),
 	'boldgrid_footer_panel' => array(
 		'title' => __( 'Layout', 'bgtfw' ),
 		'panel' => 'bgtfw_footer',

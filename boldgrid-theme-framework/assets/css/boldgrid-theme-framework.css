@@ -4971,14 +4971,15 @@ body.page .has-post-thumbnail .entry-header {
   padding: 2.8rem;
 }
 
-body.page .has-post-thumbnail .entry-header .entry-title {
-  text-align: center;
-}
-
 body.page .has-post-thumbnail .entry-header .entry-title a {
   color: currentColor;
 }
 
 body.page .has-post-thumbnail .entry-header .entry-title a:hover, body.page .has-post-thumbnail .entry-header .entry-title a:focus {
   text-decoration: none;
+}
+
+body.page .site-content.container .has-post-thumbnail .entry-header {
+  margin-left: -15px;
+  margin-right: -15px;
 }

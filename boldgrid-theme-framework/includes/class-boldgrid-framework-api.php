@@ -756,8 +756,7 @@ class BoldGrid {
 	 * @return array $classes Array of classes to add to posts.
 	 */
 	public function post_title_classes( $classes ) {
-		global $post;
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
+		if ( is_single() || is_attachment() ) {
 			$classes = array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_posts_title_color' ), [ 'color', 'color-hover' ] ) );
 		}
 

@@ -561,18 +561,22 @@ nav.navigation.posts-navigation {
 }
 
 // Featured Img Pages.
-body.page .has-post-thumbnail .entry-header {
-	margin-left: -2.8rem;
-	margin-right: -2.8rem;
-	padding: 2.8rem;
-	.entry-title {
-		a {
+body.page,
+body.single {
+	.entry-header .entry-title {
+		.link {
 			color: currentColor;
 			&:hover, &:focus {
 				text-decoration: none;
 			}
 		}
 	}
+}
+
+body.page .has-post-thumbnail .entry-header {
+	margin-left: -2.8rem;
+	margin-right: -2.8rem;
+	padding: 2.8rem;
 }
 body.page .site-content.container .has-post-thumbnail .entry-header {
 	margin-left: -15px;

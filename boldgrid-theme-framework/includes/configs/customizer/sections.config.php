@@ -196,12 +196,14 @@ return array(
 	'bgtfw_pages_blog_posts_title' => array(
 		'title' => __( 'Title', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
-		'priority' => 2,
+	),
+	'bgtfw_pages_blog_posts_container' => array(
+		'title' => __( 'Container', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_posts_panel',
 	),
 	'bgtfw_pages_blog_posts_sidebar' => array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
-		'priority' => 4,
 	),
 
 	/*  Start: Generic Header Controls */

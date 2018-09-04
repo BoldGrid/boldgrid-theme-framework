@@ -403,7 +403,12 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bgtfw_navi_classes', $boldgrid_theme, 'navi_classes' );
 		$this->loader->add_filter( 'bgtfw_footer_content_classes', $boldgrid_theme, 'inner_footer_classes' );
 		$this->loader->add_filter( 'bgtfw_site_content_classes', $boldgrid_theme, 'blog_container' );
-		$this->loader->add_filter( 'bgtfw_site_content_classes', $boldgrid_theme, 'blog_page_container' );
+		$this->loader->add_filter( 'bgtfw_site_content_classes', $boldgrid_theme, 'page_container' );
+		$this->loader->add_filter( 'bgtfw_blog_page_post_title_classes', $boldgrid_theme, 'blog_page_post_title_classes' );
+		$this->loader->add_filter( 'bgtfw_posts_title_classes', $boldgrid_theme, 'post_title_classes' );
+		$this->loader->add_filter( 'bgtfw_pages_title_classes', $boldgrid_theme, 'page_title_classes' );
+
+
 
 		$this->loader->add_filter( 'wp_page_menu_args',             $boldgrid_theme,   'page_menu_args' );
 		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );
@@ -462,6 +467,9 @@ class BoldGrid_Framework {
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
 		$boldgrid_ppb = new Boldgrid_Framework_PPB( $this->configs );
+
+		$content = new Boldgrid_Framework_Content( $this->configs );
+		$this->loader->add_filter( 'excerpt_length', $content, 'excerpt_length', 999 );
 
 		$generic = new Boldgrid_Framework_Customizer_Generic( $this->configs );
 		$this->loader->add_action( 'wp_enqueue_scripts', $generic, 'add_styles' );
@@ -610,7 +618,6 @@ class BoldGrid_Framework {
 		$background = new Boldgrid_Framework_Customizer_Background( $this->configs );
 		$this->loader->add_action( 'customize_register', $background, 'add_patterns' );
 		// $this->loader->add_action( 'customize_register', $background, 'add_position' );
-		// $this->loader->add_action( 'customize_register', $background, 'add_color_picker' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_size' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_type' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_crop', 11 );

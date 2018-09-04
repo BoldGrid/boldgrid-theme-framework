@@ -384,7 +384,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 	 * Allow user to click on a link inside the help screen to select the first color.
 	 */
 	colorPalette.bind_help_link = function() {
-		self.$palette_control_wrapper.on( 'click', '[data-action="open-color-picker"]', function( e ) {
+		$( '#sub-accordion-section-colors' ).on( 'click', '[data-action="open-color-picker"]', function( e ) {
 			e.stopPropagation();
 			var $element = self.$palette_control_wrapper.find( '.boldgrid-active-palette .boldgrid-palette-colors:first' );
 			colorPalette.activate_color( null, $element );

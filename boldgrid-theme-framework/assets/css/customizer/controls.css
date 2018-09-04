@@ -1372,6 +1372,46 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
   content: "\e91b";
 }
 
+#sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-panel-bgtfw_blog_blog_page_design h3:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f100";
+}
+
+#sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-panel-bgtfw_blog_colors_section h3:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f309";
+}
+
+#sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-panel-bgtfw_pages_blog_blog_page_layout h3:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f489";
+}
+
+#sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-panel-bgtfw_blog_blog_page_panel_sidebar h3:before {
+  display: inline;
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e91b";
+}
+
 /* Typography Panel */
 #sub-accordion-panel-boldgrid_typography > li[id^="accordion-section-"] > h3:before {
   display: inline;
@@ -2131,6 +2171,58 @@ h3.accordion-section-title span.section-title-extended {
 }
 
 /*--------------------------------------------------------------
+# Section/Panel Descriptions
+--------------------------------------------------------------*/
+.bgtfw-description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.bgtfw-description p {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin: 0;
+}
+
+.bgtfw-description .help {
+  padding-left: 1em;
+}
+
+.bgtfw-description .help a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-decoration: none;
+}
+
+.bgtfw-description .help a .dashicons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+ul[id^="sub-accordion-section-"] .bgtfw-description {
+  padding-bottom: 1em;
+}
+
+ul[id^="sub-accordion-section-"] .bgtfw-description .help a .dashicons:before {
+  content: "\f223";
+}
+
+ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
+  content: "\f504";
+}
+
+/*--------------------------------------------------------------
 # Menu Locations
 --------------------------------------------------------------*/
 #sub-accordion-section-menu_locations li[id^="customize-control-nav_menu_locations-"] a.edit-menu-design {
@@ -2185,4 +2277,21 @@ h3.accordion-section-title span.section-title-extended {
 #customize-control-bgtfw_headings_font_size .wrapper {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
+}
+
+/*--------------------------------------------------------------
+# Radio Buttonset Icons
+--------------------------------------------------------------*/
+.customize-control-kirki-radio-buttonset .switch-label .dashicons, .customize-control-kirki-radio-buttonset .switch-label .fa, .customize-control-kirki-radio-buttonset .switch-label [class^="icon-"], .customize-control-kirki-radio-buttonset .switch-label [class*=" icon-"] {
+  padding-right: 5px;
+}
+
+.customize-control-kirki-radio-buttonset .switch-label .fa {
+  font-size: 16px;
+  vertical-align: bottom;
+}
+
+.customize-control-kirki-radio-buttonset .switch-label [class^="icon-"], .customize-control-kirki-radio-buttonset .switch-label [class*=" icon-"] {
+  font-size: 16px;
+  vertical-align: text-bottom;
 }

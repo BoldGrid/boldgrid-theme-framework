@@ -12,7 +12,6 @@
 
 .read-more {
 	padding-top: 15px;
-	float: right;
 }
 
 &[class*="col"] {
@@ -79,15 +78,19 @@ main {
 			.entry-title {
 				margin-top: .5em;
 				margin-bottom: 0;
+				.link {
+					&, &:hover, &:focus {
+						text-decoration: none;
+					}
+				}
 			}
 			.entry-meta {
-				display: inline-block;
 				padding-top: 1.5em;
-				text-align: right;
 				width: 100%;
 			}
 		}
 		.featured-imgage-header {
+			margin: 0 auto;
 			width: 100%
 		}
 		.entry-title,

@@ -1,10 +1,6 @@
 .directional-control {
   position: relative;
   margin-top: 40px; }
-  .directional-control .configs {
-    position: absolute;
-    right: 28px;
-    top: -10px; }
   .directional-control .units {
     font-size: 12px;
     color: currentColor;
@@ -30,7 +26,9 @@
     visibility: visible; }
   .directional-control .control-name {
     font-size: 15px;
-    margin-bottom: 25px; }
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #f1f1f1; }
   .directional-control .delete-saved {
     font-size: 12px;
     margin: 18px 0;
@@ -772,7 +770,8 @@ label svg {
 .border-type-control {
   margin-bottom: 30px; }
   .border-type-control .control-title {
-    font-size: 15px; }
+    font-size: 15px;
+    margin-top: 0; }
   .border-type-control ul {
     list-style: none;
     padding-left: 5px;
@@ -811,6 +810,9 @@ label svg {
 .boldgrid-control input[type="checkbox"] {
   height: 100%; }
 
+.boldgrid-control.directional-control .control-name {
+  border-color: white; }
+
 .boldgrid-control.slider-control .number,
 .boldgrid-control.slider-control .slider {
   background-color: white; }
@@ -819,11 +821,14 @@ label svg {
   transform: translateY(-50%) translateX(-50%); }
 
 .boldgrid-control .pluto-color-control + .iris-picker {
-  min-width: 280px; }
+  min-width: 253px; }
 
 .boldgrid-control.bg-control-switch .mdc-switch {
   top: 5px; }
 
+.boldgrid-control .iris-slider.iris-slider {
+  margin-left: 10px !important; }
+
 .boldgrid-control.directional-control {
-  margin: 40px 0 20px; }
+  margin: 0; }
 

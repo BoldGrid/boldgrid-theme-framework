@@ -276,7 +276,7 @@ class Boldgrid_Framework_Customizer_Typography {
 	 */
 	public function get_output_values( $configs ) {
 		$elements = implode( ', ', array_keys( $configs['customizer-options']['typography']['selectors'] ) );
-		$props = [ 'font-family', 'line-height', 'text-transform', 'font-weight', 'font-style' ];
+		$props = [ 'font-family', 'line-height', 'text-transform', 'variant', 'font-style' ];
 		$values = [];
 
 		foreach ( $props as $prop ) {

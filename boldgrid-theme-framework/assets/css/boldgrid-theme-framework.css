@@ -96,7 +96,7 @@
 }
 
 body.page .main,
-body.post .main {
+body.single .main {
   padding: 0 2.8rem;
 }
 
@@ -505,7 +505,6 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .blog .read-more {
   padding-top: 15px;
-  float: right;
 }
 
 .blog[class*="col"] main > article {
@@ -607,14 +606,17 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   margin-bottom: 0;
 }
 
+.blog main > article.post .entry-header .entry-title .link, .blog main > article.post .entry-header .entry-title .link:hover, .blog main > article.post .entry-header .entry-title .link:focus {
+  text-decoration: none;
+}
+
 .blog main > article.post .entry-header .entry-meta {
-  display: inline-block;
   padding-top: 1.5em;
-  text-align: right;
   width: 100%;
 }
 
 .blog main > article.post .featured-imgage-header {
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -701,8 +703,9 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   padding: 15px 0;
 }
 
-.blog main > article.post.design-1 .entry-header,
-.blog main > article.post.design-1 .featured-imgage-header {
+.blog main > article.post.design-1 .entry-header.above, .blog main > article.post.design-1 .entry-header.above .featured-imgage-header,
+.blog main > article.post.design-1 .entry-header.background,
+.blog main > article.post.design-1 .entry-header.background .featured-imgage-header {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -754,7 +757,6 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .archive .read-more {
   padding-top: 15px;
-  float: right;
 }
 
 .archive[class*="col"] main > article {
@@ -856,14 +858,17 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   margin-bottom: 0;
 }
 
+.archive main > article.post .entry-header .entry-title .link, .archive main > article.post .entry-header .entry-title .link:hover, .archive main > article.post .entry-header .entry-title .link:focus {
+  text-decoration: none;
+}
+
 .archive main > article.post .entry-header .entry-meta {
-  display: inline-block;
   padding-top: 1.5em;
-  text-align: right;
   width: 100%;
 }
 
 .archive main > article.post .featured-imgage-header {
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -950,8 +955,9 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   padding: 15px 0;
 }
 
-.archive main > article.post.design-1 .entry-header,
-.archive main > article.post.design-1 .featured-imgage-header {
+.archive main > article.post.design-1 .entry-header.above, .archive main > article.post.design-1 .entry-header.above .featured-imgage-header,
+.archive main > article.post.design-1 .entry-header.background,
+.archive main > article.post.design-1 .entry-header.background .featured-imgage-header {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -969,16 +975,6 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 /* Single Post Styles */
-.single .site-content.container {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.single .site-content.container .main {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
 .single .post {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -4771,6 +4767,7 @@ img.alignright {
   margin: 1vw;
 }
 
+.page .page,
 .single .post {
   width: auto;
   margin: 0;
@@ -4794,9 +4791,20 @@ img.alignright {
   width: calc((100% / 3 - .5vw) - 2vw);
 }
 
+.page .page,
 .single .post {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.site-content.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.site-content.container .main {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 nav.navigation.posts-navigation {
@@ -4957,20 +4965,24 @@ nav.navigation.posts-navigation {
           flex-direction: column;
 }
 
+body.page .entry-header .entry-title .link,
+body.single .entry-header .entry-title .link {
+  color: currentColor;
+}
+
+body.page .entry-header .entry-title .link:hover, body.page .entry-header .entry-title .link:focus,
+body.single .entry-header .entry-title .link:hover,
+body.single .entry-header .entry-title .link:focus {
+  text-decoration: none;
+}
+
 body.page .has-post-thumbnail .entry-header {
   margin-left: -2.8rem;
   margin-right: -2.8rem;
   padding: 2.8rem;
 }
 
-body.page .has-post-thumbnail .entry-header .entry-title {
-  text-align: center;
-}
-
-body.page .has-post-thumbnail .entry-header .entry-title a {
-  color: currentColor;
-}
-
-body.page .has-post-thumbnail .entry-header .entry-title a:hover, body.page .has-post-thumbnail .entry-header .entry-title a:focus {
-  text-decoration: none;
+body.page .site-content.container .has-post-thumbnail .entry-header {
+  margin-left: -15px;
+  margin-right: -15px;
 }

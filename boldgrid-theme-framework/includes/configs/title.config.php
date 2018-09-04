@@ -17,10 +17,10 @@ return array(
 	'hide' => 'boldgrid_hide_page_title',
 
 	// Theme mod, determines if title should display on pages.
-	'page' => 'bgtfw_pages_display_title',
+	'page' => 'bgtfw_pages_title_display',
 
 	// Theme mod, determines if title should display on posts.
-	'post' => 'bgtfw_posts_display_title',
+	'post' => 'bgtfw_posts_title_display',
 
 	'default_page' => '1',
 	'default_post' => '1',

@@ -191,6 +191,23 @@ class BoldGrid {
 	}
 
 	/**
+	 * Add page container classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $classes Classes added to .site-content element.
+	 *
+	 * @return array $classes Filter classes on .site-content element.
+	 */
+	public function page_container( $classes ) {
+		if ( is_page() ) {
+			$classes[] = get_theme_mod( 'bgtfw_pages_container' );
+		}
+
+		return $classes;
+	}
+
+	/**
 	 * Add blog page container classes.
 	 *
 	 * @since 2.0.0
@@ -695,6 +712,58 @@ class BoldGrid {
 	}
 
 	/**
+	 * Apply the blog design to posts page.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $classes Array of classes to add to posts.
+	 *
+	 * @return array $classes Array of classes to add to posts.
+	 */
+	public function blog_page_post_title_classes( $classes ) {
+		global $post;
+		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
+			$classes = array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_blog_post_header_title_color' ), [ 'color', 'color-hover' ] ) );
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Apply page title classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $classes Array of classes to add to posts.
+	 *
+	 * @return array $classes Array of classes to add to posts.
+	 */
+	public function page_title_classes( $classes ) {
+		if ( is_page() ) {
+			$classes = array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_pages_title_color' ), [ 'color', 'color-hover' ] ) );
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Apply post title classes.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $classes Array of classes to add to posts.
+	 *
+	 * @return array $classes Array of classes to add to posts.
+	 */
+	public function post_title_classes( $classes ) {
+		if ( is_single() || is_attachment() ) {
+			$classes = array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_posts_title_color' ), [ 'color', 'color-hover' ] ) );
+		}
+
+		return $classes;
+	}
+
+	/**
 	 * Adds custom classes to the array of entry-header classes.
 	 *
 	 * @since 2.0.0
@@ -957,9 +1026,13 @@ class BoldGrid {
 	 * @param string       $element Element class is being added to.
 	 * @param string|array $class   One or more classes to add to the class list.
 	 */
-	public static function add_class( $element = '', $class = '' ) {
+	public static function add_class( $element = '', $class = '', $echo = true ) {
 		$el = new Boldgrid_Framework_Element_Class( $element, $class );
-		echo ( string ) $el->html;
+		if ( $echo ) {
+			echo ( string ) $el->html;
+		} else {
+			return ( string ) $el->html;
+		}
 	}
 
 	/**

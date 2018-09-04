@@ -111,10 +111,13 @@ function boldgrid_entry_footer() {
 		$categories_count = count( explode( ', ', $categories_list ) );
 		if ( $categories_list && boldgrid_categorized_blog() ) {
 			$class = 'singular';
-			$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_cat_icon' ) . '" aria-hidden="true"></i>';
+
+			$icon = is_single() ? get_theme_mod( 'bgtfw_posts_cat_icon' ) : get_theme_mod( 'bgtfw_blog_post_cat_icon' );
+			$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 
 			if ( $categories_count > 1 ) {
-				$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_cats_icon' ) . '" aria-hidden="true"></i>';
+				$icon = is_single() ? get_theme_mod( 'bgtfw_posts_cats_icon' ) : get_theme_mod( 'bgtfw_blog_post_cats_icon' );
+				$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 				$class = 'multiple';
 			}
 
@@ -125,12 +128,14 @@ function boldgrid_entry_footer() {
 		$tags_list = get_the_tag_list( '', ', ' );
 
 		if ( $tags_list ) {
-			$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_tag_icon' ) . '" aria-hidden="true"></i>';
+			$icon = is_single() ? get_theme_mod( 'bgtfw_posts_tag_icon' ) : get_theme_mod( 'bgtfw_blog_post_tag_icon' );
+			$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 			$class = 'singular';
 			$tags_count = count( explode( ', ', $tags_list ) );
 
 			if ( $tags_count > 1 ) {
-				$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_tags_icon' ) . '" aria-hidden="true"></i>';
+				$icon = is_single() ? get_theme_mod( 'bgtfw_posts_tags_icon' ) : get_theme_mod( 'bgtfw_blog_post_tags_icon' );
+				$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 				$class = 'multiple';
 			}
 
@@ -146,10 +151,10 @@ function boldgrid_entry_footer() {
 		$class = 'comments-link';
 
 		if ( $comment_count > 1 ) {
-			$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_comments_icon' ) . '" aria-hidden="true"></i> ';
+			$icon = '<i class="fa fa-fw fa-' . get_theme_mod( 'bgtfw_blog_post_comments_icon' ) . '" aria-hidden="true"></i> ';
 			$class = ' multiple';
 		} else {
-			$icon = '<i class="fa fa-' . get_theme_mod( 'bgtfw_blog_post_comment_icon' ) . '" aria-hidden="true"></i> ';
+			$icon = '<i class="fa fa-fw fa-' . get_theme_mod( 'bgtfw_blog_post_comment_icon' ) . '" aria-hidden="true"></i> ';
 			$class .= ' singular';
 		}
 

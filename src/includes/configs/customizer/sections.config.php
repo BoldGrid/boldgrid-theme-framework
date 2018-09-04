@@ -197,10 +197,6 @@ return array(
 		'title' => __( 'Title', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
 	),
-	'bgtfw_pages_blog_posts_meta' => array(
-		'title' => __( 'Post Meta', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_posts_panel',
-	),
 	'bgtfw_pages_blog_posts_container' => array(
 		'title' => __( 'Container', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
@@ -208,6 +204,25 @@ return array(
 	'bgtfw_pages_blog_posts_sidebar' => array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
+	),
+	'bgtfw_pages_blog_posts_links' => array(
+		'title' => 'Links',
+		'panel' => 'bgtfw_blog_posts_panel',
+	),
+	'bgtfw_pages_blog_posts_meta' => array(
+		'title' => __( 'Post Meta', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_posts_panel',
+		'section' => 'bgtfw_pages_blog_posts_links',
+	),
+	'bgtfw_pages_blog_posts_tags_links' => array(
+		'title' => 'Tag Links',
+		'panel' => 'bgtfw_blog_posts_panel',
+		'section' => 'bgtfw_pages_blog_posts_links',
+	),
+	'bgtfw_pages_blog_posts_cat_links' => array(
+		'title' => 'Category Links',
+		'panel' => 'bgtfw_blog_posts_panel',
+		'section' => 'bgtfw_pages_blog_posts_links',
 	),
 
 	/*  Start: Generic Header Controls */

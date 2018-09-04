@@ -757,7 +757,212 @@ return array(
 		),
 	),
 
-	// End: Posts Meta Controls.
+	// Start: Post Links Controls.
+	'bgtfw_posts_tags_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_posts_tags_display',
+		'label' => esc_attr__( 'Display', 'bgtfw' ),
+		'tooltip' => __( 'Toggle the display of your tags on the blog roll and archive pages.', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_tags_links',
+		'default' => 'block',
+		'choices' => array(
+			'block' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'none' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'block', 'none' ], true ) ? $value : $settings->default;
+		},
+		'output' => array(
+			array(
+				'element'  => '.single .entry-footer .tags-links',
+				'property' => 'display',
+			),
+		),
+	),
+	'bgtfw_posts_tags_icon_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_posts_tags_icon_display',
+		'label' => esc_attr__( 'Icon Display', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_tags_links',
+		'default' => 'inline-block',
+		'choices' => array(
+			'inline-block' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'none' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'inline-block', 'none' ], true ) ? $value : $settings->default;
+		},
+		'output' => array(
+			array(
+				'element'  => '.single .entry-footer .tags-links .fa',
+				'property' => 'display',
+			),
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_tags_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
+	),
+	'bgtfw_posts_tag_icon' => array(
+		'type' => 'fontawesome',
+		'transport' => 'postMessage',
+		'settings' => 'bgtfw_posts_tag_icon',
+		'label' => esc_attr__( 'Single Tag Icon', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_tags_links',
+		'default' => 'hashtag',
+		'js_vars' => array(
+			array(
+				'element' => '.single .tags-links.singular .fa',
+				'function' => 'html',
+				'attr' => 'class',
+				'value_pattern' => 'fa fa-fw fa-$',
+			),
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_tags_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_tags_icon_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
+	),
+	'bgtfw_posts_tags_icon' => array(
+		'type' => 'fontawesome',
+		'transport' => 'postMessage',
+		'settings' => 'bgtfw_posts_tags_icon',
+		'label' => esc_attr__( 'Multiple Tags Icon', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_tags_links',
+		'default' => 'hashtag',
+		'js_vars' => array(
+			array(
+				'element' => '.single .tags-links.multiple .fa',
+				'function' => 'html',
+				'attr' => 'class',
+				'value_pattern' => 'fa fa-fw fa-$',
+			),
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_tags_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_tags_icon_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
+	),
+	'bgtfw_posts_cats_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_posts_cats_display',
+		'label' => esc_attr__( 'Display', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_cat_links',
+		'default' => 'block',
+		'choices' => array(
+			'block' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'none' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'block', 'none' ], true ) ? $value : $settings->default;
+		},
+		'output' => array(
+			array(
+				'element'  => '.single .entry-footer .cat-links',
+				'property' => 'display',
+			),
+		),
+	),
+	'bgtfw_posts_cats_icon_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_posts_cats_icon_display',
+		'label' => esc_attr__( 'Icon Display', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_cat_links',
+		'default' => 'inline-block',
+		'choices' => array(
+			'inline-block' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'none' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'inline-block', 'none' ], true ) ? $value : $settings->default;
+		},
+		'output' => array(
+			array(
+				'element'  => '.single .entry-footer .cat-links .fa',
+				'property' => 'display',
+			),
+		),
+	),
+	'bgtfw_posts_cat_icon' => array(
+		'type' => 'fontawesome',
+		'transport' => 'postMessage',
+		'settings' => 'bgtfw_posts_cat_icon',
+		'label' => esc_attr__( 'Single Category Icon', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_cat_links',
+		'default' => 'folder',
+		'js_vars' => array(
+			array(
+				'element' => '.single .cat-links.singular .fa',
+				'function' => 'html',
+				'attr' => 'class',
+				'value_pattern' => 'fa fa-fw fa-$',
+			),
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_cats_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_cats_icon_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
+	),
+	'bgtfw_posts_cats_icon' => array(
+		'type' => 'fontawesome',
+		'transport' => 'postMessage',
+		'settings' => 'bgtfw_posts_cats_icon',
+		'label' => esc_attr__( 'Icon', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_cat_links',
+		'default' => 'folder-open',
+		'js_vars' => array(
+			array(
+				'element' => '.single .cat-links.multiple .fa',
+				'function' => 'html',
+				'attr' => 'class',
+				'value_pattern' => 'fa fa-fw fa-$',
+			),
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_cats_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_cats_icon_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
+	),
+
 	'bgtfw_headings_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport'   => 'postMessage',
@@ -2579,7 +2784,7 @@ return array(
 				'element' => '.blog .post .tags-links.singular .fa, .archive .post .tags-links.singular .fa',
 				'function' => 'html',
 				'attr' => 'class',
-				'value_pattern' => 'fa fa-$',
+				'value_pattern' => 'fa fa-fw fa-$',
 			),
 		),
 		'active_callback'    => array(
@@ -2607,7 +2812,7 @@ return array(
 				'element' => '.blog .post .tags-links.multiple .fa, .archive .post .tags-links.multiple .fa',
 				'function' => 'html',
 				'attr' => 'class',
-				'value_pattern' => 'fa fa-$',
+				'value_pattern' => 'fa fa-fw fa-$',
 			),
 		),
 		'active_callback'    => array(
@@ -2677,7 +2882,7 @@ return array(
 				'element' => '.blog .post .cat-links.singular .fa, .archive .post .cat-links.singular .fa',
 				'function' => 'html',
 				'attr' => 'class',
-				'value_pattern' => 'fa fa-$',
+				'value_pattern' => 'fa fa-fw fa-$',
 			),
 		),
 		'active_callback'    => array(
@@ -2705,7 +2910,7 @@ return array(
 				'element' => '.blog .post .cat-links.multiple .fa, .archive .post .cat-links.multiple .fa',
 				'function' => 'html',
 				'attr' => 'class',
-				'value_pattern' => 'fa fa-$',
+				'value_pattern' => 'fa fa-fw fa-$',
 			),
 		),
 		'active_callback'    => array(
@@ -2782,7 +2987,7 @@ return array(
 				'element' => '.blog .post .comments-link.singular .fa, .archive .post .comments-link.singular .fa',
 				'function' => 'html',
 				'attr' => 'class',
-				'value_pattern' => 'fa fa-$',
+				'value_pattern' => 'fa fa-fw fa-$',
 			),
 		),
 		'active_callback'    => array(
@@ -2810,7 +3015,7 @@ return array(
 				'element' => '.blog .post .comments-link.multiple .fa, .archive .post .comments-link.multiple .fa',
 				'function' => 'html',
 				'attr' => 'class',
-				'value_pattern' => 'fa fa-$',
+				'value_pattern' => 'fa fa-fw fa-$',
 			),
 		),
 		'active_callback'    => array(

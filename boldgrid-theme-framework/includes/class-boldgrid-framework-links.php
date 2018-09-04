@@ -101,7 +101,7 @@ class Boldgrid_Framework_Links {
 		foreach ( $selectors as $selector ) {
 			$selector = $selector . $excludes;
 			$css .= "${selector} {color: ${color};text-decoration: ${decoration};}";
-			$css .= "${selector}:hover {color: ${color_hover};text-decoration: ${decoration_hover};}";
+			$css .= "${selector}:hover, ${selector}:focus {color: ${color_hover};text-decoration: ${decoration_hover};}";
 		}
 
 		return $css;

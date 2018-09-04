@@ -79,7 +79,8 @@ export class LinkPreview {
 					color: ${linkColor};
 					text-decoration: ${decoration};
 				}
-				${selector}:hover {
+				${selector}:hover,
+				${selector}:focus {
 					color: ${shiftedColorVal};
 					text-decoration: ${decorationHover};
 				}

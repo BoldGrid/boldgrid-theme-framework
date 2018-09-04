@@ -13,8 +13,10 @@ export class LinkPreview {
 	constructor() {
 		this.previewUtility = new PreviewUtility();
 		this.paletteSelector = new PaletteSelector();
-
-		this.selectors = [];
+		this.prefixes = [
+			'bgtfw_body'
+		];
+		this.selectors = {};
 	}
 
 	/**
@@ -23,19 +25,23 @@ export class LinkPreview {
 	 * @since 2.0.0
 	 */
 	bindEvents() {
-		$( () => this.selectors = this.getSelectors() );
-
-		api(
-			'bgtfw_body_link_color',
-			'bgtfw_body_link_color_hover',
-			'bgtfw_body_link_decoration',
-			'bgtfw_body_link_decoration_hover',
-			( ...args ) => {
-				args.map( control => {
-					control.bind( () => this.updateStyles() );
-				} );
+		$( () => {
+			let prefixes = this.prefixes;
+			for ( let prefix of prefixes ) {
+				this.selectors[ prefix ] = this.getSelectors( prefix );
+				api(
+					`${prefix}_link_color`,
+					`${prefix}_link_color_hover`,
+					`${prefix}_link_decoration`,
+					`${prefix}_link_decoration_hover`,
+					( ...args ) => {
+						args.map( control => {
+							control.bind( () => this.updateStyles( prefix) );
+						} );
+					}
+				);
 			}
-		);
+		} );
 	}
 
 	/**
@@ -45,10 +51,10 @@ export class LinkPreview {
 	 *
 	 * @return {array} Selectors to use.
 	 */
-	getSelectors() {
-		let selectors = [ '#content a' ];
-		if ( parent.wp.customize.control && parent.wp.customize.control( 'bgtfw_body_link_color' ) ) {
-			selectors = parent.wp.customize.control( 'bgtfw_body_link_color' ).params.choices.selectors;
+	getSelectors( prefix ) {
+		let selectors = [];
+		if ( parent.wp.customize.control && parent.wp.customize.control( `${prefix}_link_color` ) ) {
+			selectors = parent.wp.customize.control( `${prefix}_link_color` ).params.choices.selectors;
 		}
 
 		return selectors;
@@ -59,13 +65,13 @@ export class LinkPreview {
 	 *
 	 * @since 2.0.0
 	 */
-	updateStyles() {
-		let linkColor = this._getColor( 'bgtfw_body_link_color' ),
-			linkColorHover = api( 'bgtfw_body_link_color_hover' )() || 0,
-			decoration = this._getDecoration( 'bgtfw_body_link_decoration' ),
-			decorationHover = this._getDecoration( 'bgtfw_body_link_decoration_hover' ),
+	updateStyles( prefix ) {
+		let linkColor = this._getColor( `${prefix}_link_color` ),
+			linkColorHover = api( `${prefix}_link_color_hover` )() || 0,
+			decoration = this._getDecoration( `${prefix}_link_decoration` ),
+			decorationHover = this._getDecoration( `${prefix}_link_decoration_hover` ),
 			excludes = '',
-			selectors = this.selectors,
+			selectors = this.selectors[ prefix ],
 			shiftedColorVal,
 			css = '';
 
@@ -87,7 +93,8 @@ export class LinkPreview {
 			`;
 		}
 
-		this.previewUtility.updateDynamicStyles( 'bgtfw-body-link-inline-css', css );
+		let inlineName = prefix.replace( /_/g, '-' );
+		this.previewUtility.updateDynamicStyles( `${prefix}-link-inline-css`, css );
 	}
 
 	/**

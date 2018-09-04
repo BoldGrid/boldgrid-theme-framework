@@ -52,12 +52,26 @@ class Boldgrid_Framework_Links {
 	];
 
 	/**
+	 * Prefixes for theme mods.
+	 *
+	 * NOTE: do not use this directly. Only set in here for passing into config.
+	 *
+	 * @var array
+	 */
+	public static $prefixes = [
+		'bgtfw_body',
+	];
+
+	/**
 	 * Add the styles to the front end.
 	 *
 	 * @since 2.0.0
 	 */
 	public function add_styles_frontend() {
-		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'bgtfw-body-link', $this->get_styles() );
+		foreach ( self::$prefixes as $prefix ) {
+			$cssPrefix = str_replace( '_', '-', $prefix );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "${cssPrefix}-link", $this->get_styles( $prefix ) );
+		}
 	}
 
 	/**
@@ -68,7 +82,9 @@ class Boldgrid_Framework_Links {
 	 * @param string $css CSS for the content.
 	 */
 	public function add_styles_editor( $css ) {
-		$css .= $this->get_styles();
+		foreach ( self::$prefixes as $prefix ) {
+			$css .= $this->get_styles( $prefix );
+		}
 		return $css;
 	}
 
@@ -79,11 +95,11 @@ class Boldgrid_Framework_Links {
 	 *
 	 * @return string CSS for the styling links.
 	 */
-	public function get_styles() {
-		$color = get_theme_mod( 'bgtfw_body_link_color' ) ?: '';
-		$color_hover = get_theme_mod( 'bgtfw_body_link_color_hover' ) ?: 0;
-		$decoration = get_theme_mod( 'bgtfw_body_link_decoration' );
-		$decoration_hover = get_theme_mod( 'bgtfw_body_link_decoration_hover' );
+	public function get_styles( $prefix ) {
+		$color = get_theme_mod( "${prefix}_link_color" ) ?: '';
+		$color_hover = get_theme_mod( "${prefix}_link_color_hover" ) ?: 0;
+		$decoration = get_theme_mod( "${prefix}_link_decoration" );
+		$decoration_hover = get_theme_mod( "${prefix}_link_decoration_hover" );
 
 		$color = explode( ':', $color )[1];
 		$ari_color = ariColor::newColor( $color );
@@ -95,7 +111,7 @@ class Boldgrid_Framework_Links {
 		$excludes = '';
 
 		// Grab the filtered selectors.
-		$selectors = $this->configs['customizer']['controls']['bgtfw_body_link_color']['choices']['selectors'];
+		$selectors = $this->configs['customizer']['controls']["${prefix}_link_color"]['choices']['selectors'];
 
 		$css = '';
 		foreach ( $selectors as $selector ) {

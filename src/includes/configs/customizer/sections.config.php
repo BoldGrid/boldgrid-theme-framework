@@ -224,6 +224,11 @@ return array(
 		'panel' => 'bgtfw_blog_posts_panel',
 		'section' => 'bgtfw_pages_blog_posts_links',
 	),
+	'bgtfw_pages_blog_posts_navigation_links' => array(
+		'title' => 'Post Navigation Links',
+		'panel' => 'bgtfw_blog_posts_panel',
+		'section' => 'bgtfw_pages_blog_posts_links',
+	),
 
 	/*  Start: Generic Header Controls */
 	'boldgrid_header_margin_section' => array(

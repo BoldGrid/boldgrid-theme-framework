@@ -962,6 +962,27 @@ return array(
 			),
 		),
 	),
+	'bgtfw_posts_navigation_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_posts_navigation_display',
+		'label' => esc_attr__( 'Display', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_navigation_links',
+		'default' => 'flex',
+		'choices' => array(
+			'flex' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'none' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'flex', 'none' ], true ) ? $value : $settings->default;
+		},
+		'output' => array(
+			array(
+				'element'  => '.single .post-navigation',
+				'property' => 'display',
+			),
+		),
+	),
 
 	'bgtfw_headings_color' => array(
 		'type'        => 'bgtfw-palette-selector',

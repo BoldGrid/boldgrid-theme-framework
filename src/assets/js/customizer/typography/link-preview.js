@@ -64,7 +64,7 @@ export class LinkPreview {
 			linkColorHover = api( 'bgtfw_body_link_color_hover' )() || 0,
 			decoration = this._getDecoration( 'bgtfw_body_link_decoration' ),
 			decorationHover = this._getDecoration( 'bgtfw_body_link_decoration_hover' ),
-			excludes = ':not(.btn):not(.button-primary):not(.button-secondary)',
+			excludes = '',
 			selectors = this.selectors,
 			shiftedColorVal,
 			css = '';

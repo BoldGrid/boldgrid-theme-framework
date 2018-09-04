@@ -92,7 +92,7 @@ class Boldgrid_Framework_Links {
 		$color_hover = $ari_color->getNew( 'lightness', $lightness )->toCSS( 'rgba' );
 		$decoration = $decoration ? 'underline' : 'none';
 		$decoration_hover = $decoration_hover ? 'underline' : 'none';
-		$excludes = ':not(.btn):not(.button-primary):not(.button-secondary)';
+		$excludes = '';
 
 		// Grab the filtered selectors.
 		$selectors = $this->configs['customizer']['controls']['bgtfw_body_link_color']['choices']['selectors'];

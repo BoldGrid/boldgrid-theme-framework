@@ -57,7 +57,7 @@ class Boldgrid_Framework_Links {
 	 * @since 2.0.0
 	 */
 	public function add_styles_frontend() {
-		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'bgftw-body-link', $this->get_styles() );
+		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'bgtfw-body-link', $this->get_styles() );
 	}
 
 	/**

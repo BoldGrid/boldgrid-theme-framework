@@ -86,7 +86,7 @@ export class LinkPreview {
 			`;
 		}
 
-		this.previewUtility.updateDynamicStyles( 'bgftw-body-link-inline-css', css );
+		this.previewUtility.updateDynamicStyles( 'bgtfw-body-link-inline-css', css );
 	}
 
 	/**

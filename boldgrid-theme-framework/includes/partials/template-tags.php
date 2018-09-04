@@ -72,7 +72,7 @@ function boldgrid_posted_on() {
 	);
 
 	// Posted on date format.
-	$format = get_theme_mod( 'bgtfw_blog_post_header_meta_format' );
+	$format = is_single() ? get_theme_mod( 'bgtfw_posts_meta_format' ) : get_theme_mod( 'bgtfw_blog_post_header_meta_format' );
 
 	if ( 'timeago' === $format ) {
 		$posted_on = sprintf(

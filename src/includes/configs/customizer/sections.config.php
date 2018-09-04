@@ -197,6 +197,10 @@ return array(
 		'title' => __( 'Title', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
 	),
+	'bgtfw_pages_blog_posts_meta' => array(
+		'title' => __( 'Post Meta', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_posts_panel',
+	),
 	'bgtfw_pages_blog_posts_container' => array(
 		'title' => __( 'Container', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',

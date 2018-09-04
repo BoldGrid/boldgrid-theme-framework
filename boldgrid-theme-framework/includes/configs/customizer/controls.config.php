@@ -621,7 +621,143 @@ return array(
 		),
 	),
 
-	// End: Post Title Controls.
+	// Start: Posts Meta Controls
+	'bgtfw_posts_meta_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_posts_meta_display',
+		'label' => esc_attr__( 'Display', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_meta',
+		'default' => 'inline-block',
+		'choices' => array(
+			'inline-block' => '<span class="dashicons dashicons-minus"></span>' . __( 'Inline', 'bgtfw' ),
+			'block' => '<span class="dashicons dashicons-menu"></span>' . __( 'New Lines', 'bgtfw' ),
+			'none' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'inherit', 'none' ], true ) ? $value : $settings->default;
+		},
+		'output' => array(
+			array(
+				'element' => '.single .entry-header .entry-meta',
+				'property' => 'display',
+			),
+		),
+	),
+	'bgtfw_posts_meta_position' => array(
+		'type'        => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings'    => 'bgtfw_posts_meta_position',
+		'label' => esc_attr__( 'Position', 'bgtfw' ),
+		'section'     => 'bgtfw_pages_blog_posts_meta',
+		'default'     => 'left',
+		'choices'     => array(
+			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' .esc_attr__( 'Left', 'bgtfw' ),
+			'center' => '<span class="dashicons dashicons-editor-aligncenter"></span>' . esc_attr__( 'Center', 'bgtfw' ),
+			'right'  => '<span class="dashicons dashicons-editor-alignright"></span>' . esc_attr__( 'Right', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'left', 'center', 'right' ], true ) ? $value : $settings->default;
+		},
+		'output' => array(
+			array(
+				'element' => '.single .entry-header .entry-meta',
+				'property' => 'text-align',
+			),
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_meta_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
+	),
+	'bgtfw_posts_date_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_posts_date_display',
+		'label' => esc_attr__( 'Post Date Display', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_meta',
+		'default' => 'inherit',
+		'choices' => array(
+			'inherit' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'none' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'inherit', 'none' ], true ) ? $value : $settings->default;
+		},
+		'output' => array(
+			array(
+				'element' => '.single .entry-header .entry-meta .posted-on',
+				'property' => 'display',
+			),
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_meta_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
+	),
+	'bgtfw_posts_meta_format' => array(
+		'type'        => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings'    => 'bgtfw_posts_meta_format',
+		'label' => esc_attr__( 'Format', 'bgtfw' ),
+		'section'     => 'bgtfw_pages_blog_posts_meta',
+		'default'     => 'timeago',
+		'choices'     => array(
+			'timeago'   => '<i class="fa fa-cc" aria-hidden="true"></i>' . esc_attr__( 'Human Readable', 'bgtfw' ),
+			'date' => '<i class="fa fa-calendar" aria-hidden="true"></i>' . esc_attr__( 'Date', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'timeago', 'date' ], true ) ? $value : $settings->default;
+		},
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_meta_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_date_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
+	),
+	'bgtfw_posts_byline_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_posts_byline_display',
+		'label' => esc_attr__( 'Author Display', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_meta',
+		'default' => 'inherit',
+		'choices' => array(
+			'inherit' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'none' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'inherit', 'none' ], true ) ? $value : $settings->default;
+		},
+		'output' => array(
+			array(
+				'element' => '.single .entry-header .entry-meta .byline',
+				'property' => 'display',
+			),
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_meta_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
+	),
+
+	// End: Posts Meta Controls.
 	'bgtfw_headings_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport'   => 'postMessage',

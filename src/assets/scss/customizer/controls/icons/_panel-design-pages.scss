@@ -20,10 +20,6 @@
 			padding: 0 .5em;
 			transform: rotate(-90deg);
 		}
-		&bgtfw_pages_blog_posts_links > h3.accordion-section-title:before {
-			@include dashicons;
-			content: "\f103";
-		}
 	}
 }
 
@@ -48,6 +44,97 @@
 		}
 		&bgtfw_pages_blog_posts_navigation_links > h3.accordion-section-title:before {
 			content: "\f333";
+		}
+	}
+}
+
+// Design > Blog Page
+#sub-accordion-panel-bgtfw_blog_blog_page_panel > li {
+
+	&[id^="accordion-section-"] > h3:before {
+		@include dashicons;
+		content: "\f111";
+	}
+
+	&#accordion-section- {
+
+		&bgtfw_pages_blog_blog_page_post_content > h3.accordion-section-title:before {
+			content: "\f175";
+		}
+		&bgtfw_blog_blog_page_panel_sidebar > h3.accordion-section-title:before {
+			@include bgtfwIcons;
+			content: "\e927";
+			display: inline-block;
+			padding: 0 .5em;
+			transform: rotate(-90deg);
+		}
+		&bgtfw_blog_blog_page_design > h3.accordion-section-title:before {
+			content: "\f100";
+		}
+		&bgtfw_pages_blog_blog_page_titles > h3.accordion-section-title:before {
+			@include bgtfwIcons;
+			content: "\e927";
+		}
+		&bgtfw_pages_blog_blog_page_featured_images > h3.accordion-section-title:before {
+			content: "\f161";
+		}
+		&bgtfw_pages_blog_blog_page_links > h3.accordion-section-title:before {
+			@include dashicons;
+			content: "\f103";
+		}
+	}
+}
+
+#sub-accordion-section-bgtfw_pages_blog_blog_page_links > li {
+	&[id^="accordion-section-"] > h3:before {
+		@include dashicons;
+		content: "\f111";
+	}
+
+	&#accordion-section- {
+		&bgtfw_pages_blog_blog_page_post_meta > h3.accordion-section-title:before {
+			@include FontAwesome;
+			content: "\f2c3";
+		}
+		&bgtfw_pages_blog_blog_page_read_more > h3.accordion-section-title:before {
+			@include FontAwesome;
+			content: "\f141";
+			padding-left: .75em;
+		}
+		&bgtfw_pages_blog_blog_page_tags_links > h3.accordion-section-title:before {
+			content: "\f323";
+		}
+		&bgtfw_pages_blog_blog_page_cat_links > h3.accordion-section-title:before {
+			content: "\f318";
+		}
+		&bgtfw_pages_blog_blog_page_comment_links > h3.accordion-section-title:before {
+			@include FontAwesome;
+			content: "\f0e6";
+		}
+	}
+}
+
+// Design > Pages Menu.
+#sub-accordion-section-bgtfw_layout_page > li {
+	&[id^="accordion-section-"] > h3:before {
+		@include dashicons;
+		content: "\f111";
+	}
+	&#accordion-section- {
+		&bgtfw_layout_page_title > h3.accordion-section-title:before {
+			@include bgtfwIcons;
+			content: "\e927";
+		}
+		&bgtfw_layout_page_container > h3.accordion-section-title:before {
+			@include bgtfwIcons;
+			content: "\e610";
+		}
+		&bgtfw_layout_page_sidebar > h3.accordion-section-title:before {
+			@include bgtfwIcons;
+			content: "\e927";
+			display: inline-block;
+			padding: 0 .5em;
+			transform: rotate(-90deg);
 		}
 	}
 }

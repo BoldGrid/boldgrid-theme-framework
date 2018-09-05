@@ -1440,8 +1440,8 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
           transform: rotate(-90deg);
 }
 
-#sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-section-bgtfw_blog_blog_page_design > h3.accordion-section-title:before {
-  content: "\f100";
+#sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-section-bgtfw_blog_blog_page_colors > h3.accordion-section-title:before {
+  content: "\f309";
 }
 
 #sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-section-bgtfw_pages_blog_blog_page_titles > h3.accordion-section-title:before {

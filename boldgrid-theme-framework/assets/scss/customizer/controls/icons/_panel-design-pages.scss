@@ -71,8 +71,8 @@
 			padding: 0 .5em;
 			transform: rotate(-90deg);
 		}
-		&bgtfw_blog_blog_page_design > h3.accordion-section-title:before {
-			content: "\f100";
+		&bgtfw_blog_blog_page_colors > h3.accordion-section-title:before {
+			content: "\f309";
 		}
 		&bgtfw_pages_blog_blog_page_titles > h3.accordion-section-title:before {
 			@include bgtfwIcons;

@@ -1330,6 +1330,90 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
   content: "\f109";
 }
 
+#sub-accordion-panel-bgtfw_blog_posts_panel > li[id^="accordion-section-"] > h3:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f111";
+}
+
+#sub-accordion-panel-bgtfw_blog_posts_panel > li#accordion-section-bgtfw_pages_blog_posts_title > h3.accordion-section-title:before {
+  display: inline;
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e927";
+}
+
+#sub-accordion-panel-bgtfw_blog_posts_panel > li#accordion-section-bgtfw_pages_blog_posts_container > h3.accordion-section-title:before {
+  display: inline;
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e610";
+}
+
+#sub-accordion-panel-bgtfw_blog_posts_panel > li#accordion-section-bgtfw_pages_blog_posts_sidebar > h3.accordion-section-title:before {
+  display: inline;
+  font-family: icomoon;
+  font-size: 1.4em;
+  font-weight: 400;
+  padding: .5em;
+  vertical-align: middle;
+  content: "\e927";
+  display: inline-block;
+  padding: 0 .5em;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+#sub-accordion-panel-bgtfw_blog_posts_panel > li#accordion-section-bgtfw_pages_blog_posts_links > h3.accordion-section-title:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f103";
+}
+
+#sub-accordion-section-bgtfw_pages_blog_posts_links > li[id^="accordion-section-"] > h3:before {
+  display: inline;
+  font-family: dashicons;
+  padding: .4em;
+  vertical-align: middle;
+  font-size: 1.6em;
+  font-weight: 400;
+  content: "\f111";
+}
+
+#sub-accordion-section-bgtfw_pages_blog_posts_links > li#accordion-section-bgtfw_pages_blog_posts_meta > h3.accordion-section-title:before {
+  display: inline;
+  font-family: FontAwesome;
+  font-size: 1.4em;
+  padding: .5em;
+  content: "\f2c3";
+}
+
+#sub-accordion-section-bgtfw_pages_blog_posts_links > li#accordion-section-bgtfw_pages_blog_posts_tags_links > h3.accordion-section-title:before {
+  content: "\f323";
+}
+
+#sub-accordion-section-bgtfw_pages_blog_posts_links > li#accordion-section-bgtfw_pages_blog_posts_cat_links > h3.accordion-section-title:before {
+  content: "\f318";
+}
+
+#sub-accordion-section-bgtfw_pages_blog_posts_links > li#accordion-section-bgtfw_pages_blog_posts_navigation_links > h3.accordion-section-title:before {
+  content: "\f333";
+}
+
 /* Blog Page Panel */
 #accordion-panel-bgtfw_blog_blog_page_panel > li #accordion-section-bgtfw_pages_blog_blog_page_layout > h3:before {
   display: inline;

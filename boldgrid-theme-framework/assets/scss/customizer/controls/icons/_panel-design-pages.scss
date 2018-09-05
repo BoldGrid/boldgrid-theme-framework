@@ -1,0 +1,53 @@
+// Design > Posts Menu.
+#sub-accordion-panel-bgtfw_blog_posts_panel > li {
+	&[id^="accordion-section-"] > h3:before {
+		@include dashicons;
+		content: "\f111";
+	}
+	&#accordion-section- {
+		&bgtfw_pages_blog_posts_title > h3.accordion-section-title:before {
+			@include bgtfwIcons;
+			content: "\e927";
+		}
+		&bgtfw_pages_blog_posts_container > h3.accordion-section-title:before {
+			@include bgtfwIcons;
+			content: "\e610";
+		}
+		&bgtfw_pages_blog_posts_sidebar > h3.accordion-section-title:before {
+			@include bgtfwIcons;
+			content: "\e927";
+			display: inline-block;
+			padding: 0 .5em;
+			transform: rotate(-90deg);
+		}
+		&bgtfw_pages_blog_posts_links > h3.accordion-section-title:before {
+			@include dashicons;
+			content: "\f103";
+		}
+	}
+}
+
+// Design > Posts > Links
+#sub-accordion-section-bgtfw_pages_blog_posts_links > li {
+
+	&[id^="accordion-section-"] > h3:before {
+		@include dashicons;
+		content: "\f111";
+	}
+
+	&#accordion-section- {
+		&bgtfw_pages_blog_posts_meta > h3.accordion-section-title:before {
+			@include FontAwesome;
+			content: "\f2c3";
+		}
+		&bgtfw_pages_blog_posts_tags_links > h3.accordion-section-title:before {
+			content: "\f323";
+		}
+		&bgtfw_pages_blog_posts_cat_links > h3.accordion-section-title:before {
+			content: "\f318";
+		}
+		&bgtfw_pages_blog_posts_navigation_links > h3.accordion-section-title:before {
+			content: "\f333";
+		}
+	}
+}

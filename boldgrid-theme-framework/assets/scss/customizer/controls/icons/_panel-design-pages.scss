@@ -20,6 +20,9 @@
 			padding: 0 .5em;
 			transform: rotate(-90deg);
 		}
+		&bgtfw_pages_blog_posts_links > h3.accordion-section-title:before {
+			content: "\f103";
+		}
 	}
 }
 
@@ -79,7 +82,6 @@
 			content: "\f161";
 		}
 		&bgtfw_pages_blog_blog_page_links > h3.accordion-section-title:before {
-			@include dashicons;
 			content: "\f103";
 		}
 	}

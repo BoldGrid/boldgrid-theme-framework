@@ -1378,6 +1378,10 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
           transform: rotate(-90deg);
 }
 
+#sub-accordion-panel-bgtfw_blog_posts_panel > li#accordion-section-bgtfw_pages_blog_posts_links > h3.accordion-section-title:before {
+  content: "\f103";
+}
+
 #sub-accordion-section-bgtfw_pages_blog_posts_links > li[id^="accordion-section-"] > h3:before {
   display: inline;
   font-family: dashicons;
@@ -1455,12 +1459,6 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 }
 
 #sub-accordion-panel-bgtfw_blog_blog_page_panel > li#accordion-section-bgtfw_pages_blog_blog_page_links > h3.accordion-section-title:before {
-  display: inline;
-  font-family: dashicons;
-  padding: .4em;
-  vertical-align: middle;
-  font-size: 1.6em;
-  font-weight: 400;
   content: "\f103";
 }
 

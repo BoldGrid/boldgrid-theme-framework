@@ -20,6 +20,9 @@
 			padding: 0 .5em;
 			transform: rotate(-90deg);
 		}
+		&bgtfw_pages_blog_posts_links > h3.accordion-section-title:before {
+			content: "\f103";
+		}
 	}
 }
 
@@ -48,7 +51,7 @@
 	}
 }
 
-// Design > Blog Page
+// Design > Blog Page Menu.
 #sub-accordion-panel-bgtfw_blog_blog_page_panel > li {
 
 	&[id^="accordion-section-"] > h3:before {
@@ -79,12 +82,12 @@
 			content: "\f161";
 		}
 		&bgtfw_pages_blog_blog_page_links > h3.accordion-section-title:before {
-			@include dashicons;
 			content: "\f103";
 		}
 	}
 }
 
+// Design > Blog Page > Links Menu.
 #sub-accordion-section-bgtfw_pages_blog_blog_page_links > li {
 	&[id^="accordion-section-"] > h3:before {
 		@include dashicons;

@@ -3956,7 +3956,7 @@ return array(
 		'settings' => 'bgtfw_blog_post_tag_icon',
 		'label' => esc_attr__( 'Single Tag Icon', 'bgtfw' ),
 		'section' => 'bgtfw_pages_blog_blog_page_tags_links',
-		'default' => 'hashtag',
+		'default' => 'tag',
 		'js_vars' => array(
 			array(
 				'element' => '.blog .post .tags-links.singular .fa, .archive .post .tags-links.singular .fa',
@@ -3984,7 +3984,7 @@ return array(
 		'settings' => 'bgtfw_blog_post_tags_icon',
 		'label' => esc_attr__( 'Multiple Tags Icon', 'bgtfw' ),
 		'section' => 'bgtfw_pages_blog_blog_page_tags_links',
-		'default' => 'hashtag',
+		'default' => 'tags',
 		'js_vars' => array(
 			array(
 				'element' => '.blog .post .tags-links.multiple .fa, .archive .post .tags-links.multiple .fa',

@@ -198,6 +198,14 @@ blockquote p {
 }
 
 /* Support for button wrapping classes. */
+.main .btn:hover, .main .btn:focus,
+.main .button-primary:hover,
+.main .button-primary:focus,
+.main .button-secondary:hover,
+.main .button-secondary:focus {
+  text-decoration: none;
+}
+
 div.btn, div.button-primary, div.button-secondary {
   position: relative;
 }
@@ -4980,7 +4988,8 @@ body.single .entry-header .entry-title .link {
   color: currentColor;
 }
 
-body.page .entry-header .entry-title .link:hover, body.page .entry-header .entry-title .link:focus,
+body.page .entry-header .entry-title .link, body.page .entry-header .entry-title .link:hover, body.page .entry-header .entry-title .link:focus,
+body.single .entry-header .entry-title .link,
 body.single .entry-header .entry-title .link:hover,
 body.single .entry-header .entry-title .link:focus {
   text-decoration: none;

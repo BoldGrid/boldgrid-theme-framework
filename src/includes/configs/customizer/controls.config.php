@@ -1400,16 +1400,23 @@ return array(
 	'bgtfw_body_link_decoration' => array(
 		'settings'    => 'bgtfw_body_link_decoration',
 		'transport'   => 'postMessage',
-		'label'       => esc_html__( 'Text Underline', 'bgtfw' ),
-		'type'        => 'toggle',
+		'label'       => esc_html__( 'Text Style', 'bgtfw' ),
+		'type'        => 'radio-buttonset',
 		'section'     => 'bgtfw_body_link_design',
-		'default'     => false,
+		'default' => 'underline',
+		'choices' => array(
+			'none' => '<span class="dashicons dashicons-editor-textcolor"></span>' . __( 'None', 'bgtfw' ),
+			'underline' => '<span class="dashicons dashicons-editor-underline"></span>' . __( 'Underline', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'none', 'underline' ], true ) ? $value : $settings->default;
+		},
 	),
 	'bgtfw_body_link_color_hover' => array(
 		'type'        => 'slider',
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_body_link_color_hover',
-		'label'       => esc_attr__( 'Hover - Color Brightness', 'bgtfw' ),
+		'label'       => esc_attr__( 'Hover Color Brightness', 'bgtfw' ),
 		'section'     => 'bgtfw_body_link_design',
 		'default'     => 0,
 		'choices'     => array(
@@ -1421,10 +1428,17 @@ return array(
 	'bgtfw_body_link_decoration_hover' => array(
 		'settings'    => 'bgtfw_body_link_decoration_hover',
 		'transport'   => 'postMessage',
-		'label'       => esc_html__( 'Hover - Text Underline', 'bgtfw' ),
-		'type'        => 'toggle',
+		'label'       => esc_html__( 'Hover Text Style', 'bgtfw' ),
+		'type'        => 'radio-buttonset',
 		'section'     => 'bgtfw_body_link_design',
-		'default'     => true,
+		'default' => 'underline',
+		'choices' => array(
+			'none' => '<span class="dashicons dashicons-editor-textcolor"></span>' . __( 'None', 'bgtfw' ),
+			'underline' => '<span class="dashicons dashicons-editor-underline"></span>' . __( 'Underline', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'none', 'underline' ], true ) ? $value : $settings->default;
+		},
 	),
 	/* End Link Design */
 

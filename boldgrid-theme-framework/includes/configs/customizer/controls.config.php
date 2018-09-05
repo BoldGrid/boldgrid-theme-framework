@@ -3076,9 +3076,9 @@ return array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
 		'settings'    => 'bgtfw_blog_header_background_color',
-		'label' => esc_attr__( 'Background Color', 'bgtfw' ),
+		'label' => esc_attr__( 'Post Header', 'bgtfw' ),
 		'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
-		'section'     => 'bgtfw_blog_header_color_section',
+		'section'     => 'bgtfw_blog_blog_page_colors',
 		'priority' => 1,
 		'default'     => 'color-neutral',
 		'choices'     => array(
@@ -3091,9 +3091,9 @@ return array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
 		'settings'    => 'bgtfw_blog_post_background_color',
-		'label' => esc_attr__( 'Background Color', 'bgtfw' ),
+		'label' => esc_attr__( 'Post Content', 'bgtfw' ),
 		'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
-		'section'     => 'bgtfw_blog_content_color_section',
+		'section'     => 'bgtfw_blog_blog_page_colors',
 		'priority' => 1,
 		'default'     => 'color-neutral',
 		'choices'     => array(

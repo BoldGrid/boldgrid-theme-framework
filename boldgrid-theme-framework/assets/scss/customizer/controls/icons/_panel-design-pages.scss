@@ -51,7 +51,7 @@
 	}
 }
 
-// Design > Blog Page
+// Design > Blog Page Menu.
 #sub-accordion-panel-bgtfw_blog_blog_page_panel > li {
 
 	&[id^="accordion-section-"] > h3:before {
@@ -87,6 +87,7 @@
 	}
 }
 
+// Design > Blog Page > Links Menu.
 #sub-accordion-section-bgtfw_pages_blog_blog_page_links > li {
 	&[id^="accordion-section-"] > h3:before {
 		@include dashicons;

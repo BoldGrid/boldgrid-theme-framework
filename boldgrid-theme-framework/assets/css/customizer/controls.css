@@ -2309,7 +2309,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 [id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_decoration"],
 [id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_decoration_hover"] {
   margin-top: -12px;
-  width: calc( 100% - 27px);
+  width: calc( 100% - 26px);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   padding: 0 12px;

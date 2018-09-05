@@ -144,12 +144,12 @@ return array(
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'priority' => 1,
 	),
-	'bgtfw_blog_blog_page_design' => array(
-		'title' => __( 'Design', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_panel',
-	),
 	'bgtfw_pages_blog_blog_page_post_content' => array(
 		'title' => 'Post List Settings',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+	),
+	'bgtfw_blog_blog_page_design' => array(
+		'title' => __( 'Design', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
 	),
 	'bgtfw_blog_blog_page_panel_sidebar' => array(

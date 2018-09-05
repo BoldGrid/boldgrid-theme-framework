@@ -62,6 +62,14 @@ class Boldgrid_Framework_Links {
 		'bgtfw_body',
 		'bgtfw_posts_date',
 		'bgtfw_posts_byline',
+		'bgtfw_posts_tags',
+		'bgtfw_posts_cats',
+		'bgtfw_posts_navigation',
+		'bgtfw_blog_post_header_byline',
+		'bgtfw_blog_post_header_date',
+		'bgtfw_blog_post_tags',
+		'bgtfw_blog_post_cats',
+		'bgtfw_blog_post_comments',
 	];
 
 	/**

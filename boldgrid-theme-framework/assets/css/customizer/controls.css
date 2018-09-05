@@ -1628,7 +1628,7 @@ ul.customize-pane-parent > li#accordion-section-custom_css > h3:before {
 
 .customize-control-bgtfw-palette-selector .colors-wrapper {
   max-height: 300px;
-  padding: 10px;
+  padding: 10px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2294,4 +2294,51 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 .customize-control-kirki-radio-buttonset .switch-label [class^="icon-"], .customize-control-kirki-radio-buttonset .switch-label [class*=" icon-"] {
   font-size: 16px;
   vertical-align: text-bottom;
+}
+
+/*--------------------------------------------------------------
+# Link Color Controls
+--------------------------------------------------------------*/
+[id^="customize-control-bgtfw_"][id$="_link_color"]:not([id$="_link_color_display"]),
+[id^="customize-control-bgtfw_"][id$="_link_color"] ~ [id$="_link_color"],
+[id^="customize-control-bgtfw_"][id$="_link_color"] ~ [id$="_link_color_hover"],
+[id^="customize-control-bgtfw_"][id$="_link_color"] ~ [id$="_link_decoration"],
+[id^="customize-control-bgtfw_"][id$="_link_color"] ~ [id$="_link_decoration_hover"], [id^="customize-control-bgtfw_"][id$="_link_color_display"]:not([id$="_link_color_display"]),
+[id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_color"],
+[id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_color_hover"],
+[id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_decoration"],
+[id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_decoration_hover"] {
+  margin-top: -12px;
+  width: calc( 100% - 27px);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 12px;
+  margin-right: -28px;
+}
+
+[id^="customize-control-bgtfw_"][id$="_link_color"]:not([id$="_link_color_display"]) .customize-control-title,
+[id^="customize-control-bgtfw_"][id$="_link_color"] ~ [id$="_link_color"] .customize-control-title,
+[id^="customize-control-bgtfw_"][id$="_link_color"] ~ [id$="_link_color_hover"] .customize-control-title,
+[id^="customize-control-bgtfw_"][id$="_link_color"] ~ [id$="_link_decoration"] .customize-control-title,
+[id^="customize-control-bgtfw_"][id$="_link_color"] ~ [id$="_link_decoration_hover"] .customize-control-title, [id^="customize-control-bgtfw_"][id$="_link_color_display"]:not([id$="_link_color_display"]) .customize-control-title,
+[id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_color"] .customize-control-title,
+[id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_color_hover"] .customize-control-title,
+[id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_decoration"] .customize-control-title,
+[id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_decoration_hover"] .customize-control-title {
+  margin: 0.67em 0 0;
+  font-size: 0.83em;
+  color: #555d66;
+}
+
+[id^="customize-control-bgtfw_"][id$="_link_color"] ~ [id$="_link_decoration_hover"], [id^="customize-control-bgtfw_"][id$="_link_color_display"] ~ [id$="_link_decoration_hover"] {
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[id^="customize-control-bgtfw_"][id$="_link_color"][id$="_link_color"], [id^="customize-control-bgtfw_"][id$="_link_color_display"][id$="_link_color"] {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[id^="customize-control-bgtfw_"][id$="_link_color"][id$="_link_color_display"] + [id^="customize-control-bgtfw_"][id$="_link_color"][id$="_link_color"], [id^="customize-control-bgtfw_"][id$="_link_color_display"][id$="_link_color_display"] + [id^="customize-control-bgtfw_"][id$="_link_color"][id$="_link_color"], [id^="customize-control-bgtfw_"][id$="_link_color"][id$="_link_color_display"] + [id^="customize-control-bgtfw_"][id$="_link_color_display"][id$="_link_color"], [id^="customize-control-bgtfw_"][id$="_link_color_display"][id$="_link_color_display"] + [id^="customize-control-bgtfw_"][id$="_link_color_display"][id$="_link_color"] {
+  border-top: none;
 }

@@ -728,6 +728,161 @@ return array(
 			),
 		),
 	),
+
+	// Post Date Link Colors.
+	'bgtfw_posts_date_link_color_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'postMessage',
+		'settings' => 'bgtfw_posts_date_link_color_display',
+		'label' => esc_attr__( 'Post Date Link Color', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_meta',
+		'default' => 'inherit',
+		'choices' => array(
+			'inherit' => '<span class="dashicons dashicons-admin-site"></span>' . __( 'Global Color', 'bgtfw' ),
+			'custom' => '<span class="dashicons dashicons-admin-customizer"></span>' . __( 'Custom', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'inherit', 'custom' ], true ) ? $value : $settings->default;
+		},
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_meta_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_date_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
+	),
+	'bgtfw_posts_date_link_color' => array(
+		'type'       => 'bgtfw-palette-selector',
+		'transport'  => 'postMessage',
+		'settings'   => 'bgtfw_posts_date_link_color',
+		'label'      => esc_attr__( 'Custom Link Color', 'bgtfw' ),
+		'section'    => 'bgtfw_pages_blog_posts_meta',
+		'default'    => 'color-1',
+		'choices'    => array(
+			'selectors' => [ '.single .entry-header .entry-meta .posted-on a' ],
+			'colors' => $formatted_palette,
+			'size'   => $palette->get_palette_size( $formatted_palette ),
+		),
+		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_meta_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_date_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_date_link_color_display',
+				'operator' => '!==',
+				'value'    => 'inherit',
+			),
+		),
+	),
+	'bgtfw_posts_date_link_decoration' => array(
+		'settings'    => 'bgtfw_posts_date_link_decoration',
+		'transport'   => 'postMessage',
+		'label'       => esc_html__( 'Text Style', 'bgtfw' ),
+		'type' => 'radio-buttonset',
+		'section'     => 'bgtfw_pages_blog_posts_meta',
+		'default' => 'none',
+		'choices' => array(
+			'none' => '<span class="dashicons dashicons-editor-textcolor"></span>' . __( 'Normal', 'bgtfw' ),
+			'underline' => '<span class="dashicons dashicons-editor-underline"></span>' . __( 'Underline', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'none', 'underline' ], true ) ? $value : $settings->default;
+		},
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_meta_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_date_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_date_link_color_display',
+				'operator' => '!==',
+				'value'    => 'inherit',
+			),
+		),
+	),
+	'bgtfw_posts_date_link_color_hover' => array(
+		'type'        => 'slider',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_posts_date_link_color_hover',
+		'label'       => esc_attr__( 'Hover - Color Brightness', 'bgtfw' ),
+		'section'     => 'bgtfw_pages_blog_posts_meta',
+		'default'     => 0,
+		'choices'     => array(
+			'min'  => '-25',
+			'max'  => '25',
+			'step' => '1',
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_meta_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_date_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_date_link_color_display',
+				'operator' => '!==',
+				'value'    => 'inherit',
+			),
+		),
+	),
+	'bgtfw_posts_date_decoration_hover' => array(
+		'settings'    => 'bgtfw_posts_date_link_decoration_hover',
+		'transport'   => 'postMessage',
+		'label'       => esc_html__( 'Hover Text Style', 'bgtfw' ),
+		'type'        => 'radio-buttonset',
+		'section'     => 'bgtfw_pages_blog_posts_meta',
+		'default' => 'underline',
+		'choices' => array(
+			'none' => '<span class="dashicons dashicons-editor-textcolor"></span>' . __( 'None', 'bgtfw' ),
+			'underline' => '<span class="dashicons dashicons-editor-underline"></span>' . __( 'Underline', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'none', 'underline' ], true ) ? $value : $settings->default;
+		},
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_posts_meta_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_date_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_posts_date_link_color_display',
+				'operator' => '!==',
+				'value'    => 'inherit',
+			),
+		),
+	),
+
 	'bgtfw_posts_byline_display' => array(
 		'type' => 'radio-buttonset',
 		'transport' => 'auto',

@@ -14,7 +14,8 @@ export class LinkPreview {
 		this.previewUtility = new PreviewUtility();
 		this.paletteSelector = new PaletteSelector();
 		this.prefixes = [
-			'bgtfw_body'
+			'bgtfw_body',
+			'bgtfw_posts_date'
 		];
 		this.selectors = {};
 	}
@@ -30,13 +31,14 @@ export class LinkPreview {
 			for ( let prefix of prefixes ) {
 				this.selectors[ prefix ] = this.getSelectors( prefix );
 				api(
+					`${prefix}_link_color_display`,
 					`${prefix}_link_color`,
 					`${prefix}_link_color_hover`,
 					`${prefix}_link_decoration`,
 					`${prefix}_link_decoration_hover`,
 					( ...args ) => {
 						args.map( control => {
-							control.bind( () => this.updateStyles( prefix) );
+							control.bind( () => this.updateStyles( prefix ) );
 						} );
 					}
 				);
@@ -66,35 +68,37 @@ export class LinkPreview {
 	 * @since 2.0.0
 	 */
 	updateStyles( prefix ) {
-		let linkColor = this._getColor( `${prefix}_link_color` ),
-			linkColorHover = api( `${prefix}_link_color_hover` )() || 0,
-			decoration = this._getDecoration( `${prefix}_link_decoration` ),
-			decorationHover = this._getDecoration( `${prefix}_link_decoration_hover` ),
-			excludes = '',
-			selectors = this.selectors[ prefix ],
-			shiftedColorVal,
-			css = '';
+		let css = '';
+		if ( ! api( `${prefix}_link_color_display` ) || 'inherit' !== api( `${prefix}_link_color_display` )() ) {
+			let linkColor = this._getColor( `${prefix}_link_color` ),
+				linkColorHover = api( `${prefix}_link_color_hover` )() || 0,
+				decoration = this._getDecoration( `${prefix}_link_decoration` ),
+				decorationHover = this._getDecoration( `${prefix}_link_decoration_hover` ),
+				excludes = '',
+				selectors = this.selectors[ prefix ],
+				shiftedColorVal;
 
-		linkColorHover = parseInt( linkColorHover, 10 ) / 100;
-		shiftedColorVal = colorLib.Color( linkColor ).lightenByAmount( linkColorHover ).toCSS();
+			linkColorHover = parseInt( linkColorHover, 10 ) / 100;
+			shiftedColorVal = colorLib.Color( linkColor ).lightenByAmount( linkColorHover ).toCSS();
 
-		for ( let selector of selectors ) {
-			selector = selector + excludes;
-			css += `
-				${selector} {
-					color: ${linkColor};
-					text-decoration: ${decoration};
-				}
-				${selector}:hover,
-				${selector}:focus {
-					color: ${shiftedColorVal};
-					text-decoration: ${decorationHover};
-				}
-			`;
+			for ( let selector of selectors ) {
+				selector = selector + excludes;
+				css += `
+					${selector} {
+						color: ${linkColor};
+						text-decoration: ${decoration};
+					}
+					${selector}:hover,
+					${selector}:focus {
+						color: ${shiftedColorVal};
+						text-decoration: ${decorationHover};
+					}
+				`;
+			}
 		}
 
 		let inlineName = prefix.replace( /_/g, '-' );
-		this.previewUtility.updateDynamicStyles( `${prefix}-link-inline-css`, css );
+		this.previewUtility.updateDynamicStyles( `${inlineName}-link-inline-css`, css );
 	}
 
 	/**
@@ -106,7 +110,7 @@ export class LinkPreview {
 	 * @return {string}         CSS value.
 	 */
 	_getDecoration( setting ) {
-		return api( setting )() ? 'underline' : 'none';
+		return api( setting )();
 	}
 
 	/**

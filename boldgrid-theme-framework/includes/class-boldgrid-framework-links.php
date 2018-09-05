@@ -60,6 +60,7 @@ class Boldgrid_Framework_Links {
 	 */
 	public static $prefixes = [
 		'bgtfw_body',
+		'bgtfw_posts_date',
 	];
 
 	/**
@@ -96,28 +97,30 @@ class Boldgrid_Framework_Links {
 	 * @return string CSS for the styling links.
 	 */
 	public function get_styles( $prefix ) {
-		$color = get_theme_mod( "${prefix}_link_color" ) ?: '';
-		$color_hover = get_theme_mod( "${prefix}_link_color_hover" ) ?: 0;
-		$decoration = get_theme_mod( "${prefix}_link_decoration" );
-		$decoration_hover = get_theme_mod( "${prefix}_link_decoration_hover" );
-
-		$color = explode( ':', $color )[1];
-		$ari_color = ariColor::newColor( $color );
-		$lightness = min( $ari_color->lightness + $color_hover, 100 );
-		$lightness = max( $lightness, 0 );
-		$color_hover = $ari_color->getNew( 'lightness', $lightness )->toCSS( 'rgba' );
-		$decoration = $decoration ? 'underline' : 'none';
-		$decoration_hover = $decoration_hover ? 'underline' : 'none';
-		$excludes = '';
-
-		// Grab the filtered selectors.
-		$selectors = $this->configs['customizer']['controls']["${prefix}_link_color"]['choices']['selectors'];
-
 		$css = '';
-		foreach ( $selectors as $selector ) {
-			$selector = $selector . $excludes;
-			$css .= "${selector} {color: ${color};text-decoration: ${decoration};}";
-			$css .= "${selector}:hover, ${selector}:focus {color: ${color_hover};text-decoration: ${decoration_hover};}";
+		if ( empty( $this->configs['customizer']['controls']["${prefix}_link_color_display"] ) || 'custom' === get_theme_mod( "${prefix}_link_color_display" ) ) {
+			$color = get_theme_mod( "${prefix}_link_color" ) ?: '';
+			$color_hover = get_theme_mod( "${prefix}_link_color_hover" ) ?: 0;
+			$decoration = get_theme_mod( "${prefix}_link_decoration" );
+			$decoration_hover = get_theme_mod( "${prefix}_link_decoration_hover" );
+
+			$color = explode( ':', $color )[1];
+			$ari_color = ariColor::newColor( $color );
+			$lightness = min( $ari_color->lightness + $color_hover, 100 );
+			$lightness = max( $lightness, 0 );
+			$color_hover = $ari_color->getNew( 'lightness', $lightness )->toCSS( 'rgba' );
+			$decoration = $decoration;
+			$decoration_hover = $decoration_hover;
+			$excludes = '';
+
+			// Grab the filtered selectors.
+			$selectors = $this->configs['customizer']['controls']["${prefix}_link_color"]['choices']['selectors'];
+
+			foreach ( $selectors as $selector ) {
+				$selector = $selector . $excludes;
+				$css .= "${selector} {color: ${color};text-decoration: ${decoration};}";
+				$css .= "${selector}:hover, ${selector}:focus {color: ${color_hover};text-decoration: ${decoration_hover};}";
+			}
 		}
 
 		return $css;

@@ -61,6 +61,7 @@ class Boldgrid_Framework_Links {
 	public static $prefixes = [
 		'bgtfw_body',
 		'bgtfw_posts_date',
+		'bgtfw_posts_byline',
 	];
 
 	/**

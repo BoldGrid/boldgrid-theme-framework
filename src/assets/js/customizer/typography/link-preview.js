@@ -15,7 +15,8 @@ export class LinkPreview {
 		this.paletteSelector = new PaletteSelector();
 		this.prefixes = [
 			'bgtfw_body',
-			'bgtfw_posts_date'
+			'bgtfw_posts_date',
+			'bgtfw_posts_byline'
 		];
 		this.selectors = {};
 	}

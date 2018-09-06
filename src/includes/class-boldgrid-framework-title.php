@@ -41,6 +41,35 @@ class Boldgrid_Framework_Title {
 	}
 
 	/**
+	 * Enqueue scripts for the customizer.
+	 *
+	 * @since 2.0.0
+	 */
+	public function customize_controls_enqueue_scripts() {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		/*
+		 * Currently, we're enqueuing homepage.js, which handles dynamically adding
+		 * "Configure Posts Page" links to Customizer > Design > Homepage.
+		 */
+		$handle = 'bgtfw-customizer-homepage';
+		wp_register_script(
+			$handle,
+			$this->configs['framework']['js_dir'] . 'customizer/homepage' . $suffix . '.js',
+			array(
+				'jquery',
+			),
+			false,
+			true
+		);
+		wp_enqueue_script( $handle );
+		wp_localize_script( $handle, 'boldgridFrameworkCustomizerHomepage', array(
+			'Configure' => __( 'Configure', 'bgtfw' ),
+			'ConfigurePostsPage' => __( 'Configure Posts Page', 'bgtfw' ),
+		));
+	}
+
+	/**
 	 * Get theme mod value for displaying title.
 	 *
 	 * @since 2.0.0
@@ -67,6 +96,8 @@ class Boldgrid_Framework_Title {
 			return;
 		}
 
+		$is_posts_page = $post->ID === get_option( 'page_for_posts' );
+
 		$post_meta = get_post_meta( $post->ID, $this->configs['title']['hide'], true );
 		$global = $this->get_global( $post->post_type );
 
@@ -92,6 +123,21 @@ class Boldgrid_Framework_Title {
 				'post_text' => $this->configs['title']['meta_box'][ $post->post_type ]['hide_post_text'],
 			),
 		);
+
+		/*
+		 * For posts, the decision to show / hide the title is based on post meta. For the page_for_posts,
+		 * the decision is based on a theme mod.
+		 *
+		 * If we are on the page_for_posts, make necessary adjustments to our $options.
+		 */
+		if ( $is_posts_page ) {
+			$show_title = true === get_theme_mod( $this->configs['title']['page_for_posts'], $this->configs['title']['default_page_for_posts'] );
+
+			array_shift( $options );
+
+			$options[0]['checked'] = $show_title;
+			$options[1]['checked'] = ! $show_title;
+		}
 		?>
 
 		<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-page-title">
@@ -124,10 +170,26 @@ class Boldgrid_Framework_Title {
 	 */
 	public function post_updated( $post_id ) {
 		if ( isset( $_POST[ $this->configs['title']['hide'] ] ) ) {
-			delete_post_meta( $post_id, $this->configs['title']['hide'] );
 
-			if ( in_array( $_POST[ $this->configs['title']['hide'] ], array( '0', '1' ), true ) ) {
-				update_post_meta( $post_id, $this->configs['title']['hide'], $_POST[ $this->configs['title']['hide'] ] );
+			// Validate "show title" post meta, and abort on failure.
+			$value = $_POST[ $this->configs['title']['hide'] ];
+			if ( ! in_array( $value, array( '0', '1' ), true ) ) {
+				return;
+			}
+
+			$is_posts_page = $post_id === (int) get_option( 'page_for_posts' );
+
+			/*
+			 * Update our value.
+			 *
+			 * Posts actually use post meta, and the page_for_posts page uses a theme mod.
+			 */
+			if( $is_posts_page ) {
+				$value = $value ? 'inherit' : 'none';
+				set_theme_mod( $this->configs['title']['page_for_posts'], $value );
+			} else {
+				delete_post_meta( $post_id, $this->configs['title']['hide'] );
+				update_post_meta( $post_id, $this->configs['title']['hide'], $value );
 			}
 		}
 	}

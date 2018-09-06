@@ -997,6 +997,7 @@ class BoldGrid_Framework {
 
 		$this->loader->add_action( 'post_updated', $title, 'post_updated' );
 		$this->loader->add_filter( 'the_title', $title, 'show_title', 10, 2 );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $title, 'customize_controls_enqueue_scripts' );
 	}
 
 	/**

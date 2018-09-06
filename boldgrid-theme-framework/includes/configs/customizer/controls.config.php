@@ -1172,6 +1172,34 @@ return array(
 		),
 		'section' => 'bgtfw_pages_blog_blog_page_post_content',
 	),
+	'bgtfw_pages_blog_blog_page_layout_show_title' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_pages_blog_blog_page_layout_show_title',
+		'label' => esc_attr__( 'Title Display', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_blog_page_post_content',
+		'default' => $configs['title']['default_page_for_posts'],
+		'choices' => array(
+				'initial' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+				'none' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+			),
+		'sanitize_callback' => function( $value, $settings ) {
+				return in_array( $value, [ 'initial', 'none' ], true ) ? $value : $configs['title']['default_page_for_posts'];
+			},
+		'output' => array(
+			array(
+				'element' => '.blog .page-header, .archive .page-header',
+				'property' => 'display',
+			),
+		),
+		'active_callback' => array(
+			array(
+				'setting'  => 'show_on_front',
+				'operator' => '===',
+				'value'    => 'page',
+			),
+		),
+	),
 	'bgtfw_pages_blog_blog_page_layout_content' => array(
 		'type'        => 'radio-buttonset',
 		'settings' => 'bgtfw_pages_blog_blog_page_layout_content',

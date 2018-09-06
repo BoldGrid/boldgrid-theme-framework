@@ -566,7 +566,7 @@ body.single {
 	.entry-header .entry-title {
 		.link {
 			color: currentColor;
-			&:hover, &:focus {
+			&, &:hover, &:focus {
 				text-decoration: none;
 			}
 		}

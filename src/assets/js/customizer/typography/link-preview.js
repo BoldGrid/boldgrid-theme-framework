@@ -13,8 +13,20 @@ export class LinkPreview {
 	constructor() {
 		this.previewUtility = new PreviewUtility();
 		this.paletteSelector = new PaletteSelector();
-
-		this.selectors = [];
+		this.prefixes = [
+			'bgtfw_body',
+			'bgtfw_posts_date',
+			'bgtfw_posts_byline',
+			'bgtfw_posts_tags',
+			'bgtfw_posts_cats',
+			'bgtfw_posts_navigation',
+			'bgtfw_blog_post_header_byline',
+			'bgtfw_blog_post_header_date',
+			'bgtfw_blog_post_cats',
+			'bgtfw_blog_post_tags',
+			'bgtfw_blog_post_comments'
+		];
+		this.selectors = {};
 	}
 
 	/**
@@ -23,19 +35,24 @@ export class LinkPreview {
 	 * @since 2.0.0
 	 */
 	bindEvents() {
-		$( () => this.selectors = this.getSelectors() );
-
-		api(
-			'bgtfw_body_link_color',
-			'bgtfw_body_link_color_hover',
-			'bgtfw_body_link_decoration',
-			'bgtfw_body_link_decoration_hover',
-			( ...args ) => {
-				args.map( control => {
-					control.bind( () => this.updateStyles() );
-				} );
+		$( () => {
+			let prefixes = this.prefixes;
+			for ( let prefix of prefixes ) {
+				this.selectors[ prefix ] = this.getSelectors( prefix );
+				api(
+					`${prefix}_link_color_display`,
+					`${prefix}_link_color`,
+					`${prefix}_link_color_hover`,
+					`${prefix}_link_decoration`,
+					`${prefix}_link_decoration_hover`,
+					( ...args ) => {
+						args.map( control => {
+							control.bind( () => this.updateStyles( prefix ) );
+						} );
+					}
+				);
 			}
-		);
+		} );
 	}
 
 	/**
@@ -45,10 +62,10 @@ export class LinkPreview {
 	 *
 	 * @return {array} Selectors to use.
 	 */
-	getSelectors() {
-		let selectors = [ '#content a' ];
-		if ( parent.wp.customize.control && parent.wp.customize.control( 'bgtfw_body_link_color' ) ) {
-			selectors = parent.wp.customize.control( 'bgtfw_body_link_color' ).params.choices.selectors;
+	getSelectors( prefix ) {
+		let selectors = [];
+		if ( parent.wp.customize.control && parent.wp.customize.control( `${prefix}_link_color` ) ) {
+			selectors = parent.wp.customize.control( `${prefix}_link_color` ).params.choices.selectors;
 		}
 
 		return selectors;
@@ -59,34 +76,38 @@ export class LinkPreview {
 	 *
 	 * @since 2.0.0
 	 */
-	updateStyles() {
-		let linkColor = this._getColor( 'bgtfw_body_link_color' ),
-			linkColorHover = api( 'bgtfw_body_link_color_hover' )() || 0,
-			decoration = this._getDecoration( 'bgtfw_body_link_decoration' ),
-			decorationHover = this._getDecoration( 'bgtfw_body_link_decoration_hover' ),
-			excludes = ':not(.btn):not(.button-primary):not(.button-secondary)',
-			selectors = this.selectors,
-			shiftedColorVal,
-			css = '';
+	updateStyles( prefix ) {
+		let css = '';
+		if ( ! api( `${prefix}_link_color_display` ) || 'inherit' !== api( `${prefix}_link_color_display` )() ) {
+			let linkColor = this._getColor( `${prefix}_link_color` ),
+				linkColorHover = api( `${prefix}_link_color_hover` )() || 0,
+				decoration = this._getDecoration( `${prefix}_link_decoration` ),
+				decorationHover = this._getDecoration( `${prefix}_link_decoration_hover` ),
+				excludes = '',
+				selectors = this.selectors[ prefix ],
+				shiftedColorVal;
 
-		linkColorHover = parseInt( linkColorHover, 10 ) / 100;
-		shiftedColorVal = colorLib.Color( linkColor ).lightenByAmount( linkColorHover ).toCSS();
+			linkColorHover = parseInt( linkColorHover, 10 ) / 100;
+			shiftedColorVal = colorLib.Color( linkColor ).lightenByAmount( linkColorHover ).toCSS();
 
-		for ( let selector of selectors ) {
-			selector = selector + excludes;
-			css += `
-				${selector} {
-					color: ${linkColor};
-					text-decoration: ${decoration};
-				}
-				${selector}:hover {
-					color: ${shiftedColorVal};
-					text-decoration: ${decorationHover};
-				}
-			`;
+			for ( let selector of selectors ) {
+				selector = selector + excludes;
+				css += `
+					${selector} {
+						color: ${linkColor};
+						text-decoration: ${decoration};
+					}
+					${selector}:hover,
+					${selector}:focus {
+						color: ${shiftedColorVal};
+						text-decoration: ${decorationHover};
+					}
+				`;
+			}
 		}
 
-		this.previewUtility.updateDynamicStyles( 'bgftw-body-link-inline-css', css );
+		let inlineName = prefix.replace( /_/g, '-' );
+		this.previewUtility.updateDynamicStyles( `${inlineName}-link-inline-css`, css );
 	}
 
 	/**
@@ -98,7 +119,7 @@ export class LinkPreview {
 	 * @return {string}         CSS value.
 	 */
 	_getDecoration( setting ) {
-		return api( setting )() ? 'underline' : 'none';
+		return api( setting )();
 	}
 
 	/**

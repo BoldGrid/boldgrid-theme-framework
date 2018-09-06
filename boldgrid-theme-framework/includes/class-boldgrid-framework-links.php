@@ -52,12 +52,36 @@ class Boldgrid_Framework_Links {
 	];
 
 	/**
+	 * Prefixes for theme mods.
+	 *
+	 * NOTE: do not use this directly. Only set in here for passing into config.
+	 *
+	 * @var array
+	 */
+	public static $prefixes = [
+		'bgtfw_body',
+		'bgtfw_posts_date',
+		'bgtfw_posts_byline',
+		'bgtfw_posts_tags',
+		'bgtfw_posts_cats',
+		'bgtfw_posts_navigation',
+		'bgtfw_blog_post_header_byline',
+		'bgtfw_blog_post_header_date',
+		'bgtfw_blog_post_tags',
+		'bgtfw_blog_post_cats',
+		'bgtfw_blog_post_comments',
+	];
+
+	/**
 	 * Add the styles to the front end.
 	 *
 	 * @since 2.0.0
 	 */
 	public function add_styles_frontend() {
-		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'bgftw-body-link', $this->get_styles() );
+		foreach ( self::$prefixes as $prefix ) {
+			$cssPrefix = str_replace( '_', '-', $prefix );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "${cssPrefix}-link", $this->get_styles( $prefix ) );
+		}
 	}
 
 	/**
@@ -68,7 +92,9 @@ class Boldgrid_Framework_Links {
 	 * @param string $css CSS for the content.
 	 */
 	public function add_styles_editor( $css ) {
-		$css .= $this->get_styles();
+		foreach ( self::$prefixes as $prefix ) {
+			$css .= $this->get_styles( $prefix );
+		}
 		return $css;
 	}
 
@@ -79,29 +105,31 @@ class Boldgrid_Framework_Links {
 	 *
 	 * @return string CSS for the styling links.
 	 */
-	public function get_styles() {
-		$color = get_theme_mod( 'bgtfw_body_link_color' ) ?: '';
-		$color_hover = get_theme_mod( 'bgtfw_body_link_color_hover' ) ?: 0;
-		$decoration = get_theme_mod( 'bgtfw_body_link_decoration' );
-		$decoration_hover = get_theme_mod( 'bgtfw_body_link_decoration_hover' );
-
-		$color = explode( ':', $color )[1];
-		$ari_color = ariColor::newColor( $color );
-		$lightness = min( $ari_color->lightness + $color_hover, 100 );
-		$lightness = max( $lightness, 0 );
-		$color_hover = $ari_color->getNew( 'lightness', $lightness )->toCSS( 'rgba' );
-		$decoration = $decoration ? 'underline' : 'none';
-		$decoration_hover = $decoration_hover ? 'underline' : 'none';
-		$excludes = ':not(.btn):not(.button-primary):not(.button-secondary)';
-
-		// Grab the filtered selectors.
-		$selectors = $this->configs['customizer']['controls']['bgtfw_body_link_color']['choices']['selectors'];
-
+	public function get_styles( $prefix ) {
 		$css = '';
-		foreach ( $selectors as $selector ) {
-			$selector = $selector . $excludes;
-			$css .= "${selector} {color: ${color};text-decoration: ${decoration};}";
-			$css .= "${selector}:hover {color: ${color_hover};text-decoration: ${decoration_hover};}";
+		if ( empty( $this->configs['customizer']['controls']["${prefix}_link_color_display"] ) || 'custom' === get_theme_mod( "${prefix}_link_color_display" ) ) {
+			$color = get_theme_mod( "${prefix}_link_color" ) ?: '';
+			$color_hover = get_theme_mod( "${prefix}_link_color_hover" ) ?: 0;
+			$decoration = get_theme_mod( "${prefix}_link_decoration" );
+			$decoration_hover = get_theme_mod( "${prefix}_link_decoration_hover" );
+
+			$color = explode( ':', $color )[1];
+			$ari_color = ariColor::newColor( $color );
+			$lightness = min( $ari_color->lightness + $color_hover, 100 );
+			$lightness = max( $lightness, 0 );
+			$color_hover = $ari_color->getNew( 'lightness', $lightness )->toCSS( 'rgba' );
+			$decoration = $decoration;
+			$decoration_hover = $decoration_hover;
+			$excludes = '';
+
+			// Grab the filtered selectors.
+			$selectors = $this->configs['customizer']['controls']["${prefix}_link_color"]['choices']['selectors'];
+
+			foreach ( $selectors as $selector ) {
+				$selector = $selector . $excludes;
+				$css .= "${selector} {color: ${color};text-decoration: ${decoration};}";
+				$css .= "${selector}:hover, ${selector}:focus {color: ${color_hover};text-decoration: ${decoration_hover};}";
+			}
 		}
 
 		return $css;

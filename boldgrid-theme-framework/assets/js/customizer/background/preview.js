@@ -1,4 +1,5 @@
 import PaletteSelector from '../color/palette-selector';
+import ColorPreview from '../color/preview';
 
 const $ = jQuery;
 const api = wp.customize;
@@ -19,6 +20,7 @@ export class Preview {
 	 */
 	constructor() {
 		this.selector = new PaletteSelector();
+		this.colorPreview = new ColorPreview().init();
 		this.$body = $( 'body' );
 	}
 
@@ -52,6 +54,21 @@ export class Preview {
 			}
 
 			this.$body.css( 'background-image', css );
+		}
+	}
+
+	/**
+	 * Set the body color classes.
+	 *
+	 * @since 2.0.0
+	 */
+	setBodyClasses() {
+		if ( 'image' === api( 'boldgrid_background_type' )() ) {
+			if ( api( 'background_image' )() && api( 'bgtfw_background_overlay' )() ) {
+				this.colorPreview.outputColor( 'bgtfw_background_overlay_color', 'body', [
+					'background-color', 'text-default'
+				] );
+			}
 		}
 	}
 
@@ -94,9 +111,13 @@ export class Preview {
 			'bgtfw_background_overlay',
 			'bgtfw_background_overlay_color',
 			'background_image',
+			'boldgrid_background_type',
 			( ...args ) => {
 				args.map( control =>
-					control.bind( () => this.setImage() )
+					control.bind( () => {
+						this.setImage();
+						this.setBodyClasses();
+					} )
 				);
 			}
 		);

@@ -1,0 +1,32 @@
+[id^="customize-control-bgtfw_"] {
+	&[id$="_link_color"],
+	&[id$="_link_color_display"] {
+		&:not( [id$="_link_color_display"] ),
+		~ [id$="_link_color"],
+		~ [id$="_link_color_hover"],
+		~ [id$="_link_decoration"],
+		~ [id$="_link_decoration_hover"] {
+			margin-top: -12px;
+			width: calc( 100% - 26px );
+			border-right: 1px solid rgba(0, 0, 0, 0.1);
+			border-left: 1px solid rgba(0, 0, 0, 0.1);
+			padding: 0 12px;
+			margin-right: -28px;
+			.customize-control-title {
+				margin: 0.67em 0 0;
+				font-size: 0.83em;
+				color: #555d66;
+			}
+		}
+		~ [id$="_link_decoration_hover"] {
+			padding-bottom: 12px;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		}
+		&[id$="_link_color"] {
+			border-top: 1px solid rgba(0, 0, 0, 0.1);
+		}
+		&[id$="_link_color_display"] + &[id$="_link_color"] {
+			border-top: none;
+		}
+	}
+}

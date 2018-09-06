@@ -198,6 +198,14 @@ blockquote p {
 }
 
 /* Support for button wrapping classes. */
+.main .btn:hover, .main .btn:focus,
+.main .button-primary:hover,
+.main .button-primary:focus,
+.main .button-secondary:hover,
+.main .button-secondary:focus {
+  text-decoration: none;
+}
+
 div.btn, div.button-primary, div.button-secondary {
   position: relative;
 }
@@ -989,15 +997,21 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .single .post .entry-header .entry-meta {
+  width: 100%;
   margin-bottom: 2.4rem;
 }
 
+.single .post .entry-footer {
+  padding-top: 2.8rem;
+}
+
 .single .post .entry-footer ~ .navigation.post-navigation {
-  margin-top: 4rem;
+  margin-top: 1.4rem;
 }
 
 .single .post .entry-footer .cat-links ~ .bgtfw-edit-link {
-  margin-top: 2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .single .post .entry-footer .bgtfw-edit-link a {
@@ -1005,7 +1019,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .single .post .entry-footer .cat-links, .single .post .entry-footer .tags-links {
-  padding: .5em 0;
+  padding: 0;
 }
 
 .single .post .wp-post-image {
@@ -2272,6 +2286,10 @@ main > article.post.format-aside .entry-header {
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+#commentform #commentsubmit {
+  margin-bottom: 2.8rem;
 }
 
 #commentform #submit.disabled,
@@ -4970,7 +4988,8 @@ body.single .entry-header .entry-title .link {
   color: currentColor;
 }
 
-body.page .entry-header .entry-title .link:hover, body.page .entry-header .entry-title .link:focus,
+body.page .entry-header .entry-title .link, body.page .entry-header .entry-title .link:hover, body.page .entry-header .entry-title .link:focus,
+body.single .entry-header .entry-title .link,
 body.single .entry-header .entry-title .link:hover,
 body.single .entry-header .entry-title .link:focus {
   text-decoration: none;

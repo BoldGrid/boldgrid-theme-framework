@@ -34,7 +34,7 @@
 		// Customizer has fully loaded. Allow for interaction.
 		$( window ).one( 'boldgrid_customizer_refresh', function() {
 			$body.removeClass( 'pre-initial-refresh' );
-			$themeControls.removeAttr( 'title', '' );
+			$themeControls.removeAttr( 'title' );
 		});
 		
 		$( document ).on( 'click', '.open-widgets-section', function() {

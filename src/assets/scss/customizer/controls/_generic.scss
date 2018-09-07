@@ -38,3 +38,16 @@
 		margin: 0;
 	}
 }
+
+// Prevent interaction with panels until Customizer fully loads.
+body.pre-initial-refresh #customize-theme-controls {
+	cursor: wait;
+	
+	li.accordion-section {
+		pointer-events: none;
+	}
+	
+	h3.accordion-section-title {
+		color: #ccc;
+	}
+}

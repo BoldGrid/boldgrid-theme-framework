@@ -465,6 +465,7 @@ class BoldGrid_Framework_Customizer {
 				],
 			],
 			'hoverColors' => include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php',
+			'loadingTitle' => __( 'Please wait while the Customizer loads...', 'bgtfw' ),
 		];
 
 		wp_localize_script( 'bgtfw-customizer-base-controls', $initialize, $data );

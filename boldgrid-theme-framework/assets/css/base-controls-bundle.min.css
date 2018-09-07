@@ -837,6 +837,7 @@ body.pre-initial-refresh #customize-theme-controls {
   cursor: wait; }
   body.pre-initial-refresh #customize-theme-controls li.accordion-section {
     pointer-events: none; }
+  body.pre-initial-refresh #customize-theme-controls h3:after,
   body.pre-initial-refresh #customize-theme-controls h3.accordion-section-title {
     color: #ccc; }
 

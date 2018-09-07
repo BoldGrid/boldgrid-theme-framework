@@ -1702,6 +1702,26 @@ msgstr ""
 msgid "No"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:81
+msgid "Installing Starter Content"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:85
+msgid "Starter Content Installed!"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:89
+msgid "To make this preview website your own, make any customizations you would like and then <strong>Save Draft</strong> or <strong>Publish</strong>."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:92
+msgid "Help"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:96
+msgid "If you'd rather not keep these changes, <a href=\"%1$s\">exit without saving</a> and return to your dashboard."
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:214
 msgid "Title:"
 msgstr ""

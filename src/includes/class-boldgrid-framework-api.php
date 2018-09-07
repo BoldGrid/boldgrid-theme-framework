@@ -631,7 +631,7 @@ class BoldGrid {
 		$background_theme_mod = 'boldgrid_background_color';
 
 		if ( 'image' === get_theme_mod( 'boldgrid_background_type' ) &&
-			'' !== get_theme_mod( 'background_image' ) &&
+			! empty( get_theme_mod( 'background_image' ) ) &&
 			true === get_theme_mod( 'bgtfw_background_overlay' ) ) {
 			$background_theme_mod = 'bgtfw_background_overlay_color';
 		}
@@ -747,7 +747,8 @@ class BoldGrid {
 	 * @return array $classes Array of classes to add to posts.
 	 */
 	public function page_title_classes( $classes ) {
-		if ( is_page() ) {
+		$post_id = get_the_ID();
+		if ( $post_id === ( int ) get_option( 'page_for_posts', true ) || is_page( $post_id ) || is_archive( $post_id ) ) {
 			$classes = array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_pages_title_color' ), [ 'color', 'color-hover' ] ) );
 		}
 

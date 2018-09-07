@@ -415,7 +415,17 @@ return array(
 				'selector' => '.page .page .featured-imgage-header',
 				'render_callback' => function() {
 					if ( 'show' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
-						the_title( sprintf( '<p class="entry-title page-title ' . get_theme_mod( 'bgtfw_pages_title_size' ) . '"><a ' . BoldGrid::add_class( 'pages_title', [ 'link' ], false ) . ' href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></p>' );
+						if ( ! is_front_page() && is_home() ) {
+							printf(
+								'<header class="page-header"><p class="page-title %1$s"><a %2$s href="%3$s" rel="bookmark">%4$s</a></p></header>',
+								get_theme_mod( 'bgtfw_pages_title_size' ),
+								BoldGrid::add_class( 'pages_title', [ 'link' ], false ),
+								esc_url( get_permalink( get_option( 'page_for_posts', true ) ) ),
+								get_the_title( get_option( 'page_for_posts', true ) )
+							);
+						} else {
+							the_title( sprintf( '<p class="entry-title page-title ' . get_theme_mod( 'bgtfw_pages_title_size' ) . '"><a ' . BoldGrid::add_class( 'pages_title', [ 'link' ], false ) . ' href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></p>' );
+						}
 					}
 					return;
 				},
@@ -493,7 +503,7 @@ return array(
 		},
 		'output' => array(
 			array(
-				'element'  => '.page .entry-header .entry-title',
+				'element'  => '.page .entry-header .entry-title, .blog .page-header .page-title, .archive .page-header .page-title',
 				'property' => 'text-align',
 			),
 		),

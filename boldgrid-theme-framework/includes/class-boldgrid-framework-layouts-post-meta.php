@@ -77,6 +77,13 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				$this->configs['version'],
 				false
 			);
+
+			wp_enqueue_style(
+				'boldgird-theme-helper-attributes',
+				$this->configs['framework']['css_dir'] . 'attributes' . $suffix . '.css',
+				array(),
+				$this->configs['version']
+			);
 		}
 	}
 

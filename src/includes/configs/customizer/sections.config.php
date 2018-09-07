@@ -144,16 +144,16 @@ return array(
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'priority' => 1,
 	),
-	'bgtfw_blog_blog_page_design' => array(
-		'title' => __( 'Design', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_panel',
-	),
 	'bgtfw_pages_blog_blog_page_post_content' => array(
 		'title' => 'Post List Settings',
 		'panel' => 'bgtfw_blog_blog_page_panel',
 	),
 	'bgtfw_blog_blog_page_panel_sidebar' => array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_blog_page_panel',
+	),
+	'bgtfw_blog_blog_page_colors' => array(
+		'title' => __( 'Background Colors', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
 	),
 	'bgtfw_pages_blog_blog_page_titles' => array(
@@ -166,6 +166,10 @@ return array(
 	),
 	'bgtfw_pages_blog_blog_page_links' => array(
 		'title' => 'Links',
+		'panel' => 'bgtfw_blog_blog_page_panel',
+	),
+	'bgtfw_pages_blog_blog_page_advanced' => array(
+		'title' => 'Advanced',
 		'panel' => 'bgtfw_blog_blog_page_panel',
 	),
 	'bgtfw_pages_blog_blog_page_post_meta' => array(
@@ -204,6 +208,30 @@ return array(
 	'bgtfw_pages_blog_posts_sidebar' => array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
+	),
+	'bgtfw_pages_blog_posts_links' => array(
+		'title' => 'Links',
+		'panel' => 'bgtfw_blog_posts_panel',
+	),
+	'bgtfw_pages_blog_posts_meta' => array(
+		'title' => __( 'Post Meta', 'bgtfw' ),
+		'panel' => 'bgtfw_blog_posts_panel',
+		'section' => 'bgtfw_pages_blog_posts_links',
+	),
+	'bgtfw_pages_blog_posts_tags_links' => array(
+		'title' => 'Tag Links',
+		'panel' => 'bgtfw_blog_posts_panel',
+		'section' => 'bgtfw_pages_blog_posts_links',
+	),
+	'bgtfw_pages_blog_posts_cat_links' => array(
+		'title' => 'Category Links',
+		'panel' => 'bgtfw_blog_posts_panel',
+		'section' => 'bgtfw_pages_blog_posts_links',
+	),
+	'bgtfw_pages_blog_posts_navigation_links' => array(
+		'title' => 'Post Navigation Links',
+		'panel' => 'bgtfw_blog_posts_panel',
+		'section' => 'bgtfw_pages_blog_posts_links',
 	),
 
 	/*  Start: Generic Header Controls */
@@ -295,57 +323,38 @@ return array(
 	// End: Generic Footer Controls.
 
 	// Start: Generic Blog Design Controls.
-	'bgtfw_blog_page_colors_section' => array(
-		'title' => __( 'Colors', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_panel',
-		'section' => 'bgtfw_blog_blog_page_design',
-		'description' => esc_attr__( 'Change the layout for your blog page posts\' headers.', 'bgtfw' ),
-		'capability' => 'edit_theme_options',
-	),
-	'bgtfw_blog_header_color_section' => array(
-		'title' => __( 'Header Colors', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_panel',
-		'section' => 'bgtfw_blog_page_colors_section',
-		'capability' => 'edit_theme_options',
-	),
-	'bgtfw_blog_content_color_section' => array(
-		'title' => __( 'Content Colors', 'bgtfw' ),
-		'panel' => 'bgtfw_blog_blog_page_panel',
-		'section' => 'bgtfw_blog_page_colors_section',
-		'capability' => 'edit_theme_options',
-	),
 	'bgtfw_blog_margin_section' => array(
 		'title' => __( 'Margin', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
-		'section' => 'bgtfw_blog_blog_page_design',
+		'section' => 'bgtfw_pages_blog_blog_page_advanced',
 		'description' => esc_html__( 'Change the margin of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
 	'bgtfw_blog_padding_section' => array(
 		'title' => __( 'Padding', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
-		'section' => 'bgtfw_blog_blog_page_design',
+		'section' => 'bgtfw_pages_blog_blog_page_advanced',
 		'description' => esc_html__( 'Change the padding of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
 	'bgtfw_blog_border_section' => array(
 		'title' => __( 'Border', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
-		'section' => 'bgtfw_blog_blog_page_design',
+		'section' => 'bgtfw_pages_blog_blog_page_advanced',
 		'description' => esc_html__( 'Change the border of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
 	'bgtfw_blog_shadow_section' => array(
 		'title' => __( 'Box Shadow', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
-		'section' => 'bgtfw_blog_blog_page_design',
+		'section' => 'bgtfw_pages_blog_blog_page_advanced',
 		'description' => esc_html__( 'Change the box shadow of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
 	'bgtfw_blog_radius_section' => array(
 		'title' => __( 'Border Radius', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
-		'section' => 'bgtfw_blog_blog_page_design',
+		'section' => 'bgtfw_pages_blog_blog_page_advanced',
 		'description' => esc_html__( 'Change the border radius of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),

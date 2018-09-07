@@ -1,70 +1,27 @@
-.bgtfw-misc-pub-section {
-
-	:before {
-
-		/* Taken from wp-admin/css/edit.css */
-		font: normal 20px/1 dashicons;
-		speak: none;
-		display: inline-block;
-		margin-left: -1px;
-		vertical-align: top;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		color: #82878c;
-	}
-
-	.bgtfw-page-title:before {
-		content: "\f495";
-	}
-
-	.options {
-		margin: 10px 0px;
-		display: none;
-
-		> label {
-			display: block;
-		}
-	}
-
-	.value-displayed {
-		font-weight: bold;
-	}
-}
-
-.bgtfw-misc-pub-section .value-displayed .template-subtitle,
-.bgtfw-page-title .template-subtitle {
-	display: inline;
-	margin: 0;
-}
-
-#bgtfw-attributes-meta-box div.inside {
-	margin: 0px;
-	padding: 0px;
-}
-
 .post-attributes-advanced-wrap {
-	padding: 0px 12px;
+  padding: 0px 12px;
 }
 
 /** Gutenberg Styles **/
 .gutenberg {
+  /** 100% - ( offset + 16px scrollbar probability ) **/
+  /* Inherit bgtfw fonts instead of using Gutenberg defaults. */
+}
 
-	/** 100% - ( offset + 16px scrollbar probability ) **/
-	.edit-post-visual-editor .editor-post-title__block,
-	.edit-post-visual-editor .editor-block-list__block {
-		max-width: calc( 100% - 58px)
-	}
+.gutenberg .edit-post-visual-editor .editor-post-title__block,
+.gutenberg .edit-post-visual-editor .editor-block-list__block {
+  max-width: calc( 100% - 58px);
+}
 
-	/* Inherit bgtfw fonts instead of using Gutenberg defaults. */
-	.edit-post-visual-editor, .edit-post-visual-editor p {
-		font-family: inherit;
-		font-size: inherit;
-		font-weight: inherit;
-		letter-spacing: inherit;
-		text-transform: inherit;
-	}
-	.wp-block-freeform.core-blocks-rich-text__tinymce li,
-	.wp-block-freeform.core-blocks-rich-text__tinymce p {
-		line-height: inherit;
-	}
+.gutenberg .edit-post-visual-editor, .gutenberg .edit-post-visual-editor p {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+.gutenberg .wp-block-freeform.core-blocks-rich-text__tinymce li,
+.gutenberg .wp-block-freeform.core-blocks-rich-text__tinymce p {
+  line-height: inherit;
 }

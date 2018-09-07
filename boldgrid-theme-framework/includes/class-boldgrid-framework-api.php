@@ -628,7 +628,15 @@ class BoldGrid {
 			$classes[] = sanitize_html_class( $layout );
 		}
 
-		$background_color = get_theme_mod( 'boldgrid_background_color' );
+		$background_theme_mod = 'boldgrid_background_color';
+
+		if ( 'image' === get_theme_mod( 'boldgrid_background_type' ) &&
+			'' !== get_theme_mod( 'background_image' ) &&
+			true === get_theme_mod( 'bgtfw_background_overlay' ) ) {
+			$background_theme_mod = 'bgtfw_background_overlay_color';
+		}
+
+		$background_color = get_theme_mod( $background_theme_mod );
 		$background_color = explode( ':', $background_color );
 		$background_color = array_shift( $background_color );
 

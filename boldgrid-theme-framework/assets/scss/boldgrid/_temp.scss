@@ -594,6 +594,15 @@ body.single {
 		}
 	}
 }
+.archive {
+	.page-header {
+		margin: 0;
+		margin-top: -2.8rem;
+	}
+	.taxonomy-description {
+		margin-top: -2.8rem;
+	}
+}
 body.page .has-post-thumbnail .entry-header {
 	margin-left: -2.8rem;
 	margin-right: -2.8rem;

@@ -65,12 +65,42 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 		// Minify if script debug is off.
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		wp_enqueue_script(
-			'bgtfw-customizer-starter-content',
+		$handle = 'bgtfw-customizer-starter-content';
+
+		wp_register_script(
+			$handle,
 			$this->configs['framework']['js_dir'] . 'customizer/starter-content' . $suffix . '.js',
 			array( 'customize-controls' ),
 			$this->configs['version']
 		);
+
+		wp_localize_script( $handle, 'bgtfwCustomizerStarterContent', array(
+			'notificationInstalling' => '
+				<p>
+					<span class="spinner" style="visibility: visible; float: none; vertical-align: bottom;"></span>
+					' . esc_html__( 'Installing Starter Content', 'bgtfw' ) . '
+				</p>',
+			'notificationComplete' => '
+				<p>
+					<strong>' . esc_html__( 'Starter Content Installed!', 'bgtfw' ) . '</strong>
+				</p>
+				<p>
+					' . wp_kses(
+							__( 'To make this preview website your own, make any customizations you would like and then <strong>Save Draft</strong> or <strong>Publish</strong>.', 'bgtfw' ),
+							array( 'strong' => array(), )
+						) . '
+					<span class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/saving-a-draft-and-publishing-with-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></span>
+				</p>
+				<p>
+					' . wp_kses(
+						sprintf( __( 'If you\'d rather not keep these changes, <a href="%1$s">exit without saving</a> and return to your dashboard.', 'bgtfw' ), admin_url( 'admin.php?page=crio-starter-content' ) ),
+						array( 'a' => array( 'href' => array(), ), )
+					) . '
+				</p>
+				',
+		));
+
+		wp_enqueue_script( $handle );
 	}
 
 	/**

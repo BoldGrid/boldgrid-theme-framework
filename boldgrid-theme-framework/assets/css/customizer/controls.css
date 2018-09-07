@@ -2218,6 +2218,7 @@ ul[id^="sub-accordion-section-"] .bgtfw-description .help a .dashicons:before {
   content: "\f223";
 }
 
+#customize-notifications-area .help a .dashicons:before,
 ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   content: "\f504";
 }

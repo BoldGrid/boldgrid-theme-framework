@@ -5022,6 +5022,7 @@ body.single .entry-header .entry-title .link:focus {
 .archive .page-header {
   margin: 0;
   margin-top: -2.8rem;
+  padding: 2.8rem;
 }
 
 .archive .taxonomy-description {

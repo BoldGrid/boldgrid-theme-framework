@@ -412,12 +412,12 @@ return array(
 		},
 		'partial_refresh' => array(
 			'bgtfw_pages_title_display' => array(
-				'selector' => '.page .page .featured-imgage-header',
+				'selector' => '.page .page .featured-imgage-header, .blog .page-header .featured-imgage-header, .archive .page-header .featured-imgage-header',
 				'render_callback' => function() {
 					if ( 'show' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
 						if ( ! is_front_page() && is_home() ) {
 							printf(
-								'<header class="page-header"><p class="page-title %1$s"><a %2$s href="%3$s" rel="bookmark">%4$s</a></p></header>',
+								'<p class="page-title %1$s"><a %2$s href="%3$s" rel="bookmark">%4$s</a></p>',
 								get_theme_mod( 'bgtfw_pages_title_size' ),
 								BoldGrid::add_class( 'pages_title', [ 'link' ], false ),
 								esc_url( get_permalink( get_option( 'page_for_posts', true ) ) ),
@@ -472,7 +472,7 @@ return array(
 		},
 		'js_vars' => array(
 			array(
-				'element' => '.page .entry-header .entry-title',
+				'element' => '.page .entry-header .entry-title, .blog .page-header .page-title, .archive .page-header .page-title',
 				'function' => 'html',
 				'attr' => 'class',
 				'value_pattern' => 'entry-title page-title $',

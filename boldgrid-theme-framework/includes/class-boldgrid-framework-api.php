@@ -747,12 +747,7 @@ class BoldGrid {
 	 * @return array $classes Array of classes to add to posts.
 	 */
 	public function page_title_classes( $classes ) {
-		$post_id = get_the_ID();
-		if ( $post_id === ( int ) get_option( 'page_for_posts', true ) || is_page( $post_id ) || is_archive( $post_id ) ) {
-			$classes = array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_pages_title_color' ), [ 'color', 'color-hover' ] ) );
-		}
-
-		return $classes;
+		return array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_pages_title_color' ), [ 'color', 'color-hover' ] ) );
 	}
 
 	/**

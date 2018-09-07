@@ -4995,6 +4995,10 @@ body.single .entry-header .entry-title .link:focus {
   text-decoration: none;
 }
 
+.blog .page-header, .archive .page-header {
+  margin: -2.8rem -2.8rem 0 -2.8rem;
+}
+
 .blog .page-header .page-title, .archive .page-header .page-title {
   margin: 2.4rem 0;
   padding-top: 2.8rem;

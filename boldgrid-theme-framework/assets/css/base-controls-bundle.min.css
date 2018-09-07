@@ -1,6 +1,10 @@
 .directional-control {
   position: relative;
   margin-top: 40px; }
+  .directional-control .configs {
+    position: absolute;
+    right: 28px;
+    top: -10px; }
   .directional-control .units {
     font-size: 12px;
     color: currentColor;
@@ -26,9 +30,7 @@
     visibility: visible; }
   .directional-control .control-name {
     font-size: 15px;
-    margin-bottom: 0;
-    padding-bottom: 10px;
-    border-bottom: 3px solid #f1f1f1; }
+    margin-bottom: 25px; }
   .directional-control .delete-saved {
     font-size: 12px;
     margin: 18px 0;
@@ -770,8 +772,7 @@ label svg {
 .border-type-control {
   margin-bottom: 30px; }
   .border-type-control .control-title {
-    font-size: 15px;
-    margin-top: 0; }
+    font-size: 15px; }
   .border-type-control ul {
     list-style: none;
     padding-left: 5px;
@@ -831,4 +832,11 @@ label svg {
 
 .boldgrid-control.directional-control {
   margin: 0; }
+
+body.pre-initial-refresh #customize-theme-controls {
+  cursor: wait; }
+  body.pre-initial-refresh #customize-theme-controls li.accordion-section {
+    pointer-events: none; }
+  body.pre-initial-refresh #customize-theme-controls h3.accordion-section-title {
+    color: #ccc; }
 

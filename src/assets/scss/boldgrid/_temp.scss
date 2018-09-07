@@ -561,6 +561,7 @@ nav.navigation.posts-navigation {
 }
 
 // Featured Img Pages.
+
 body.page,
 body.single {
 	.entry-header .entry-title {
@@ -572,7 +573,26 @@ body.single {
 		}
 	}
 }
-
+.blog, .archive {
+	.page-header {
+		.page-title {
+			margin: 2.4rem 0;
+			padding-top: 2.8rem;
+			padding-bottom: 2.8rem;
+			.link {
+				color: currentColor;
+				&, &:hover, &:focus {
+					text-decoration: none;
+				}
+			}
+		}
+		&.has-featured-image-header {
+			margin: -2.8rem -2.8rem 0 -2.8rem;
+			padding: 2.8rem;
+			width: 100vw;
+		}
+	}
+}
 body.page .has-post-thumbnail .entry-header {
 	margin-left: -2.8rem;
 	margin-right: -2.8rem;

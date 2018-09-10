@@ -56,6 +56,31 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	}
 
 	/**
+	 * Determine whether or not a specific changeset includes starter content.
+	 *
+	 * This is done by looking for any "'starter_content' => true" values within the post_content
+	 * (https://pastebin.com/DkeimVYw) that indicate the customize_changeset has starter content.
+	 *
+	 * @param  string  $uuid customize_changeset id.
+	 * @return boolean
+	 */
+	public static function changeset_has_starter( $uuid ) {
+		$changeset = get_page_by_path( $uuid, OBJECT, 'customize_changeset' );
+
+		if ( $changeset instanceof WP_Post ) {
+			$post_content = json_decode( $changeset->post_content, true );
+
+			foreach( $post_content as $data ) {
+				if( ! empty( $data['starter_content'] ) ) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Enqueue scripts in customizer.
 	 *
 	 * @since 2.0.0
@@ -74,7 +99,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 			$this->configs['version']
 		);
 
-		wp_localize_script( $handle, 'bgtfwCustomizerStarterContent', array(
+		$translations = array(
 			'notificationInstalling' => '
 				<p>
 					<span class="spinner" style="visibility: visible; float: none; vertical-align: bottom;"></span>
@@ -86,8 +111,8 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 				</p>
 				<p>
 					' . wp_kses(
-							__( 'To make this preview website your own, make any customizations you would like and then <strong>Save Draft</strong> or <strong>Publish</strong>.', 'bgtfw' ),
-							array( 'strong' => array(), )
+						__( 'To make this preview website your own, make any customizations you would like and then <strong>Save Draft</strong> or <strong>Publish</strong>.', 'bgtfw' ),
+						array( 'strong' => array(), )
 						) . '
 					<span class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/saving-a-draft-and-publishing-with-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></span>
 				</p>
@@ -95,10 +120,18 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 					' . wp_kses(
 						sprintf( __( 'If you\'d rather not keep these changes, <a href="%1$s">exit without saving</a> and return to your dashboard.', 'bgtfw' ), admin_url( 'admin.php?page=crio-starter-content' ) ),
 						array( 'a' => array( 'href' => array(), ), )
-					) . '
+						) . '
 				</p>
 				',
-		));
+		);
+
+		if( ! empty( $_POST['starter_content'] ) ) {
+			$translations['post'] = array(
+				'starter_content' => $_POST['starter_content'],
+			);
+		}
+
+		wp_localize_script( $handle, 'bgtfwCustomizerStarterContent', $translations );
 
 		wp_enqueue_script( $handle );
 	}

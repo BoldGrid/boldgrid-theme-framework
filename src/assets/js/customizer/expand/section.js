@@ -3,9 +3,10 @@ import Expand from './expand';
 
 export class ExpandSection extends Expand {
 
-	constructor( { type = 'section' } = {} ) {
+	constructor( { type = 'section', previousRedirect = false } = {} ) {
 		super( ...arguments );
 		this.type = type;
+		this.previousRedirect = previousRedirect;
 	}
 }
 

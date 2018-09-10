@@ -70,6 +70,7 @@ class Boldgrid_Framework_Links {
 		'bgtfw_blog_post_tags',
 		'bgtfw_blog_post_cats',
 		'bgtfw_blog_post_comments',
+		'bgtfw_blog_post_readmore',
 	];
 
 	/**

@@ -48,11 +48,11 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 	 */
 	public function ajax_suggested() {
 		if ( ! check_ajax_referer( 'starter_content_suggested', 'security', false ) ) {
-			wp_send_json_error( __( 'Invalid nonce.', 'bgtfw' ) ) ;
+			wp_send_json_error( __( 'Invalid nonce.', 'bgtfw' ) );
 		}
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( __( 'Permission denied.', 'bgtfw' ) ) ;
+			wp_send_json_error( __( 'Permission denied.', 'bgtfw' ) );
 		}
 
 		$this->has_been_suggested( true );
@@ -68,7 +68,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 	public function customize_register() {
 
 		// If the user is installing starter content, no need to suggest they do it in the future.
-		if( ! empty( $_GET['starter_content'] ) ) {
+		if ( ! empty( $_GET['starter_content'] ) ) {
 			$this->has_been_suggested( true );
 		}
 	}
@@ -86,7 +86,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 	public function has_been_suggested( $value = null ) {
 		$option_name = 'bgtfw_starter_content_suggested';
 
-		if( ! is_null( $value ) ) {
+		if ( ! is_null( $value ) ) {
 			$value = (bool) $value;
 			update_option( $option_name, $value );
 			return $value;
@@ -106,11 +106,11 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 	public function maybe_suggest() {
 
 		// Determine if our referer is /wp-admin/customize.php (IE in customizer iframe).
-		$str = '/wp-admin/customize.php';
-		$referer_path = parse_url( wp_get_referer(), PHP_URL_PATH );
+		$str                = '/wp-admin/customize.php';
+		$referer_path       = parse_url( wp_get_referer(), PHP_URL_PATH );
 		$customizer_referer = $str === substr( $referer_path, -1 * strlen( $str ) );
 
-		if( ! ( is_customize_preview() && $customizer_referer ) ) {
+		if ( ! ( is_customize_preview() && $customizer_referer ) ) {
 			return false;
 		}
 
@@ -119,11 +119,11 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 			return false;
 		}
 
-		if( $this->has_been_suggested() ) {
+		if ( $this->has_been_suggested() ) {
 			return false;
 		}
 
-		if( ! BoldGrid_Framework_Customizer_Starter_Content::has_valid_content() ) {
+		if ( ! BoldGrid_Framework_Customizer_Starter_Content::has_valid_content() ) {
 			return false;
 		}
 
@@ -136,7 +136,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 	 * @since 2.0.0
 	 */
 	public function wp_enqueue_scripts() {
-		if( $this->maybe_suggest() ) {
+		if ( $this->maybe_suggest() ) {
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 			$handle = 'bgtfw-customizer-starter-content-suggest';
@@ -146,12 +146,14 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 				array( 'jquery', 'jquery-ui-dialog' ),
 				$this->configs['version']
 			);
-			wp_localize_script( $handle, 'boldgridFrameworkCustomizerSuggest', array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'starterContentUrl' => admin_url( 'admin.php?page=crio-starter-content' ),
-				'yes' => __( 'Yes', 'bgtfw' ),
-				'no' => __( 'No', 'bgtfw' ),
-			));
+			wp_localize_script(
+				$handle, 'boldgridFrameworkCustomizerSuggest', array(
+					'ajaxurl'           => admin_url( 'admin-ajax.php' ),
+					'starterContentUrl' => admin_url( 'admin.php?page=crio-starter-content' ),
+					'yes'               => __( 'Yes', 'bgtfw' ),
+					'no'                => __( 'No', 'bgtfw' ),
+				)
+			);
 			wp_enqueue_script( $handle );
 		}
 	}

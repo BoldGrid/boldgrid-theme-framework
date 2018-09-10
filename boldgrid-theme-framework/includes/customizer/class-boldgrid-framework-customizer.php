@@ -42,7 +42,7 @@ class BoldGrid_Framework_Customizer {
 	public function __construct( $configs ) {
 
 		// Ensure defaults are processed on customize load.
-		$format = new BoldGrid_Framework_Starter_Content( $configs );
+		$format        = new BoldGrid_Framework_Starter_Content( $configs );
 		$this->configs = $format->set_configs( $configs );
 	}
 
@@ -68,8 +68,8 @@ class BoldGrid_Framework_Customizer {
 							$wp_customize,
 							"bgtfw_menu_location_$location",
 							array(
-								'title' => $description,
-								'panel' => 'bgtfw_menus_panel',
+								'title'      => $description,
+								'panel'      => 'bgtfw_menus_panel',
 								'capability' => 'edit_theme_options',
 							)
 						);
@@ -80,8 +80,8 @@ class BoldGrid_Framework_Customizer {
 							$wp_customize,
 							"bgtfw_menu_items_$location",
 							array(
-								'title' => __( 'Menu Items', 'bgtfw' ),
-								'panel' => "bgtfw_menu_location_$location",
+								'title'      => __( 'Menu Items', 'bgtfw' ),
+								'panel'      => "bgtfw_menu_location_$location",
 								'capability' => 'edit_theme_options',
 							)
 						);
@@ -91,85 +91,85 @@ class BoldGrid_Framework_Customizer {
 						Kirki::add_section(
 							"bgtfw_menu_hamburgers_$location",
 							array(
-								'title' => __( 'Hamburger Style', 'bgtfw' ),
+								'title'       => __( 'Hamburger Style', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the hamburger menu style for your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-mobile-menu-button-style/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_location_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-menu',
+								'panel'       => "bgtfw_menu_location_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-menu',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_typography_$location",
 							array(
-								'title' => __( 'Font', 'bgtfw' ),
+								'title'       => __( 'Font', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the font for your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-menus-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_location_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-editor-textcolor',
+								'panel'       => "bgtfw_menu_location_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-editor-textcolor',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_background_$location",
 							array(
-								'title' => __( 'Background', 'bgtfw' ),
+								'title'       => __( 'Background', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the background for your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-menu-background/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_location_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-format-image',
+								'panel'       => "bgtfw_menu_location_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-format-image',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_border_$location",
 							array(
-								'title' => __( 'Border', 'bgtfw' ),
+								'title'       => __( 'Border', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the border of your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-menu-border/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_location_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-grid-view',
+								'panel'       => "bgtfw_menu_location_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-grid-view',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_margin_$location",
 							array(
-								'title' => __( 'Margin', 'bgtfw' ),
+								'title'       => __( 'Margin', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the margins of your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/adding-margins-to-menu-locations/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_location_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-editor-outdent',
+								'panel'       => "bgtfw_menu_location_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-editor-outdent',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_padding_$location",
 							array(
-								'title' => __( 'Padding', 'bgtfw' ),
+								'title'       => __( 'Padding', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the padding of your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-adjust-the-menu-padding/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_location_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-editor-indent',
+								'panel'       => "bgtfw_menu_location_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-editor-indent',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_visibility_$location",
 							array(
-								'title' => __( 'Device Visibility', 'bgtfw' ),
+								'title'       => __( 'Device Visibility', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Adjust what devices can see your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-use-device-visibility-with-menus/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_location_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-welcome-view-site',
+								'panel'       => "bgtfw_menu_location_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-welcome-view-site',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_items_standard_item_$location",
 							array(
-								'title' => __( 'Standard Display', 'bgtfw' ),
-								'panel' => "bgtfw_menu_items_$location",
+								'title'      => __( 'Standard Display', 'bgtfw' ),
+								'panel'      => "bgtfw_menu_items_$location",
 								'capability' => 'edit_theme_options',
 
 							)
@@ -179,10 +179,10 @@ class BoldGrid_Framework_Customizer {
 							$wp_customize,
 							"bgtfw_menu_items_active_item_$location",
 							array(
-								'title' => __( 'Active Link Style', 'bgtfw' ),
+								'title'       => __( 'Active Link Style', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the active link style for your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-active-link-style-in-menus/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_items_$location",
-								'capability' => 'edit_theme_options',
+								'panel'       => "bgtfw_menu_items_$location",
+								'capability'  => 'edit_theme_options',
 							)
 						);
 
@@ -191,74 +191,74 @@ class BoldGrid_Framework_Customizer {
 						Kirki::add_section(
 							"bgtfw_menu_items_active_link_color_$location",
 							array(
-								'title' => __( 'Link Color', 'bgtfw' ),
-								'panel' => "bgtfw_menu_items_active_item_$location",
+								'title'      => __( 'Link Color', 'bgtfw' ),
+								'panel'      => "bgtfw_menu_items_active_item_$location",
 								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-art',
+								'icon'       => 'dashicons-art',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_items_active_link_background_$location",
 							array(
-								'title' => __( 'Background Color', 'bgtfw' ),
-								'panel' => "bgtfw_menu_items_active_item_$location",
+								'title'      => __( 'Background Color', 'bgtfw' ),
+								'panel'      => "bgtfw_menu_items_active_item_$location",
 								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-format-image',
+								'icon'       => 'dashicons-format-image',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_items_active_link_border_$location",
 							array(
-								'title' => __( 'Border', 'bgtfw' ),
-								'panel' => "bgtfw_menu_items_active_item_$location",
+								'title'      => __( 'Border', 'bgtfw' ),
+								'panel'      => "bgtfw_menu_items_active_item_$location",
 								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-grid-view',
+								'icon'       => 'dashicons-grid-view',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_items_hover_item_$location",
 							array(
-								'title' => __( 'Hover Style', 'bgtfw' ),
+								'title'       => __( 'Hover Style', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the hover style for links in your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-menu-link-styles/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_items_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-admin-links',
+								'panel'       => "bgtfw_menu_items_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-admin-links',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_items_link_color_$location",
 							array(
-								'title' => __( 'Link Color', 'bgtfw' ),
+								'title'       => __( 'Link Color', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the primary color for links in your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-menu-link-styles/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_items_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-art',
+								'panel'       => "bgtfw_menu_items_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-art',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_items_border_$location",
 							array(
-								'title' => __( 'Border', 'bgtfw' ),
+								'title'       => __( 'Border', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the menu borders in your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-menu-link-styles/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_items_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-grid-view',
+								'panel'       => "bgtfw_menu_items_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-grid-view',
 							)
 						);
 
 						Kirki::add_section(
 							"bgtfw_menu_items_spacing_$location",
 							array(
-								'title' => __( 'Spacing', 'bgtfw' ),
+								'title'       => __( 'Spacing', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the menu spacing in your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-spacing-for-menu-links/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-								'panel' => "bgtfw_menu_items_$location",
-								'capability' => 'edit_theme_options',
-								'icon' => 'dashicons-editor-outdent',
+								'panel'       => "bgtfw_menu_items_$location",
+								'capability'  => 'edit_theme_options',
+								'icon'        => 'dashicons-editor-outdent',
 							)
 						);
 					}
@@ -272,7 +272,7 @@ class BoldGrid_Framework_Customizer {
 
 						// Configs are set before page templates available can be determined, so check the controls and update choices.
 						if ( empty( $control['choices'] ) && strpos( $control['default'], 'sidebar' ) !== false ) {
-							$type = ( strpos( $control['settings'], 'blog' ) !== false ) ? 'post' : 'page';
+							$type               = ( strpos( $control['settings'], 'blog' ) !== false ) ? 'post' : 'page';
 							$control['choices'] = array_flip( get_page_templates( null, $type ) );
 						}
 
@@ -353,11 +353,15 @@ class BoldGrid_Framework_Customizer {
 
 		wp_enqueue_style( 'bgtfw-menu-hamburgers' );
 
-		wp_enqueue_style( 'boldgrid-customizer-controls-base',
-			$this->configs['framework']['css_dir'] . 'customizer/font-family-controls.min.css' );
+		wp_enqueue_style(
+			'boldgrid-customizer-controls-base',
+			$this->configs['framework']['css_dir'] . 'customizer/font-family-controls.min.css'
+		);
 
-		wp_enqueue_style( 'boldgrid-customizer-controls-bundle',
-			$this->configs['framework']['css_dir'] . 'base-controls-bundle.min.css' );
+		wp_enqueue_style(
+			'boldgrid-customizer-controls-bundle',
+			$this->configs['framework']['css_dir'] . 'base-controls-bundle.min.css'
+		);
 	}
 
 	/**
@@ -385,7 +389,7 @@ class BoldGrid_Framework_Customizer {
 			'boldgrid-customizer-controls-base',
 			$this->configs['framework']['js_dir'] . 'customizer/controls' . $suffix . '.js',
 			array(
-				'bgtfw-customizer-base-controls'
+				'bgtfw-customizer-base-controls',
 			),
 			false,
 			true
@@ -395,9 +399,9 @@ class BoldGrid_Framework_Customizer {
 			'boldgrid-customizer-controls-base',
 			'Boldgrid_Thememod_Markup',
 			array(
-				'html' => $this->get_transferred_theme_mod_markup(),
+				'html'                   => $this->get_transferred_theme_mod_markup(),
 				'transferred_theme_mods' => get_theme_mod( 'transferred_theme_mods', array() ),
-				'siteurl' => get_option( 'siteurl' ),
+				'siteurl'                => get_option( 'siteurl' ),
 			)
 		);
 
@@ -447,25 +451,25 @@ class BoldGrid_Framework_Customizer {
 
 		wp_enqueue_script( 'bgtfw-customizer-base-controls' );
 
-		$initialize = 'BOLDGRID = BOLDGRID || {};';
+		$initialize  = 'BOLDGRID = BOLDGRID || {};';
 		$initialize .= 'BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};';
 		$initialize .= 'BOLDGRID.CUSTOMIZER.data';
 
 		$posts = wp_get_recent_posts( array( 'numposts' => 1 ) );
-		$data = [
+		$data  = [
 			'customizerOptions' => $this->configs['customizer-options'],
-			'menu' => [
+			'menu'              => [
 				'footerMenus' => $this->configs['menu']['footer_menus'],
 			],
-			'design' => [
+			'design'            => [
 				'blog' => [
 					'posts' => [
 						'mostRecentPost' => ! empty( $posts[0]['ID'] ) ? $posts[0]['ID'] : null,
 					],
 				],
 			],
-			'hoverColors' => include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php',
-			'loadingTitle' => __( 'Please wait while the Customizer loads...', 'bgtfw' ),
+			'hoverColors'       => include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php',
+			'loadingTitle'      => __( 'Please wait while the Customizer loads...', 'bgtfw' ),
 		];
 
 		wp_localize_script( 'bgtfw-customizer-base-controls', $initialize, $data );
@@ -496,16 +500,16 @@ class BoldGrid_Framework_Customizer {
 			true
 		);
 
-		$initialize = 'BOLDGRID = BOLDGRID || {};';
+		$initialize  = 'BOLDGRID = BOLDGRID || {};';
 		$initialize .= 'BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};';
 		$initialize .= 'BOLDGRID.CUSTOMIZER.data';
 
 		$data = [
 			'customizerOptions' => $this->configs['customizer-options'],
-			'menu' => [
+			'menu'              => [
 				'footerMenus' => $this->configs['menu']['footer_menus'],
 			],
-			'hoverColors' => include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php',
+			'hoverColors'       => include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php',
 		];
 
 		wp_localize_script( 'boldgrid-theme-customizer', $initialize, $data );
@@ -514,7 +518,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw-customizer-layout-blog-blog-page-live-preview',
 			$this->configs['framework']['js_dir'] . 'customizer/layout/blog/blog-page/layout/live-preview' . $suffix . '.js',
 			array(
-				'boldgrid-theme-customizer'
+				'boldgrid-theme-customizer',
 			),
 			$this->configs['version'],
 			true
@@ -524,7 +528,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw-customizer-layout-blog-blog-page-layout-columns',
 			$this->configs['framework']['js_dir'] . 'customizer/layout/blog/blog-page/layout/columns' . $suffix . '.js',
 			array(
-				'boldgrid-theme-customizer'
+				'boldgrid-theme-customizer',
 			),
 			$this->configs['version'],
 			true
@@ -534,7 +538,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw-customizer-header-layout-header-background',
 			$this->configs['framework']['js_dir'] . 'customizer/header-layout/header-background' . $suffix . '.js',
 			array(
-				'boldgrid-theme-customizer'
+				'boldgrid-theme-customizer',
 			),
 			$this->configs['version'],
 			true
@@ -544,7 +548,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw-customizer-header-layout-header-container',
 			$this->configs['framework']['js_dir'] . 'customizer/header-layout/header-container' . $suffix . '.js',
 			array(
-				'boldgrid-theme-customizer'
+				'boldgrid-theme-customizer',
 			),
 			$this->configs['version'],
 			true
@@ -554,7 +558,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw-customizer-footer-layout-footer-container',
 			$this->configs['framework']['js_dir'] . 'customizer/footer-layout/footer-container' . $suffix . '.js',
 			array(
-				'boldgrid-theme-customizer'
+				'boldgrid-theme-customizer',
 			),
 			$this->configs['version'],
 			true
@@ -564,7 +568,7 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw_pages_blog_posts_layout_layout',
 			$this->configs['framework']['js_dir'] . 'customizer/layout/blog/posts/layout/layout' . $suffix . '.js',
 			array(
-				'boldgrid-theme-customizer'
+				'boldgrid-theme-customizer',
 			),
 			$this->configs['version'],
 			true
@@ -630,10 +634,10 @@ HTML;
 
 		// Move Homepage Settings to the Layouts Panel.
 		if ( $section = $wp_customize->get_section( 'static_front_page' ) ) {
-			$section->title = esc_html__( 'Homepage', 'bgtfw' );
+			$section->title       = esc_html__( 'Homepage', 'bgtfw' );
 			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s Homepage settings', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-page-layout-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
-			$section->priority = 5;
-			$section->panel = 'bgtfw_design_panel';
+			$section->priority    = 5;
+			$section->panel       = 'bgtfw_design_panel';
 		}
 
 		// Add colors section description.
@@ -643,10 +647,10 @@ HTML;
 
 		// Move and Rename Site Identity to Site Title & Logo.
 		if ( $section = $wp_customize->get_section( 'title_tagline' ) ) {
-			$section->title = esc_html__( 'Logo & Icon', 'bgtfw' );
-			$section->description = '<div class="bgtfw-description"><p>' . esc_html__ ( 'Change your site\'s logo and favicon.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
-			$section->panel = 'bgtfw_header';
-			$section->priority = 7;
+			$section->title       = esc_html__( 'Logo & Icon', 'bgtfw' );
+			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s logo and favicon.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
+			$section->panel       = 'bgtfw_header';
+			$section->priority    = 7;
 		}
 
 		// Change tagline control's section.
@@ -661,21 +665,21 @@ HTML;
 
 		// Move and rename wp custom header_image section.
 		if ( $section = $wp_customize->get_section( 'header_image' ) ) {
-			$section->title = esc_html__( 'Background', 'bgtfw' );
-			$section->description = '<div class="bgtfw-description"><p>' . esc_html__ ( 'Change the background of your site\'s custom header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-header-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
-			$section->panel = 'bgtfw_header';
-			$section->priority = 12;
+			$section->title       = esc_html__( 'Background', 'bgtfw' );
+			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change the background of your site\'s custom header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-header-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
+			$section->panel       = 'bgtfw_header';
+			$section->priority    = 12;
 		}
 
 		// Change custom_css section title to add JS editor.
 		if ( $section = $wp_customize->get_section( 'custom_css' ) ) {
-			$section->title = esc_html__( 'CSS/JS Editor', 'bgtfw' );
+			$section->title       = esc_html__( 'CSS/JS Editor', 'bgtfw' );
 			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Manage custom CSS and JS code for your site.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/using-the-custom-css-and-js-editor-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 		}
 
 		// Add menus panel description.
 		if ( $panel = $wp_customize->get_panel( 'menus' ) ) {
-			$panel->description = '<div class="bgtfw-description"><p>' . esc_html__ ( 'Manage the menus used on your site.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-menus-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
+			$panel->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Manage the menus used on your site.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-menus-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 		}
 
 		// Add widgets panel description.
@@ -717,16 +721,20 @@ HTML;
 	 * @since  1.0.0
 	 */
 	public function set_text_contrast( $wp_customize ) {
-		$wp_customize->add_setting( 'boldgrid_light_text', array(
-			'default'    => $this->configs['customizer-options']['colors']['light_text'],
-			'type' => 'theme_mod',
-			'sanitize_callback' => 'sanitize_hex_color',
-		) );
-		$wp_customize->add_setting( 'boldgrid_dark_text', array(
-			'default'    => $this->configs['customizer-options']['colors']['dark_text'],
-			'type' => 'theme_mod',
-			'sanitize_callback' => 'sanitize_hex_color',
-		) );
+		$wp_customize->add_setting(
+			'boldgrid_light_text', array(
+				'default'           => $this->configs['customizer-options']['colors']['light_text'],
+				'type'              => 'theme_mod',
+				'sanitize_callback' => 'sanitize_hex_color',
+			)
+		);
+		$wp_customize->add_setting(
+			'boldgrid_dark_text', array(
+				'default'           => $this->configs['customizer-options']['colors']['dark_text'],
+				'type'              => 'theme_mod',
+				'sanitize_callback' => 'sanitize_hex_color',
+			)
+		);
 	}
 
 	/**
@@ -764,11 +772,13 @@ HTML;
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Palette_Selector' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers' );
 
-		add_filter( 'kirki_control_types', function( $controls ) {
-			$controls['bgtfw-palette-selector'] = 'Boldgrid_Framework_Customizer_Control_Palette_Selector';
-			$controls['bgtfw-menu-hamburgers'] = 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers';
-			return $controls;
-		} );
+		add_filter(
+			'kirki_control_types', function( $controls ) {
+				$controls['bgtfw-palette-selector'] = 'Boldgrid_Framework_Customizer_Control_Palette_Selector';
+				$controls['bgtfw-menu-hamburgers']  = 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers';
+				return $controls;
+			}
+		);
 	}
 
 	/**
@@ -781,9 +791,9 @@ HTML;
 	public function add_menu_description( $wp_customize ) {
 		$menus = wp_get_nav_menus();
 		foreach ( $menus as $menu ) {
-			$menu_id = $menu->term_id;
+			$menu_id    = $menu->term_id;
 			$section_id = 'nav_menu[' . $menu_id . ']';
-			$section = $wp_customize->get_section( $section_id );
+			$section    = $wp_customize->get_section( $section_id );
 
 			if ( $section ) {
 				$section->description = '<a target="_blank" class="boldgrid-icon-newtab" href="https://www.boldgrid.com/support/working-with-menus-in-boldgrid/">' . __( 'Menu Tutorial', 'bgtfw' ) . '</a>';
@@ -805,7 +815,7 @@ HTML;
 	 * see example in Boldgrid_Framework_Customizer_Background::apply_background_styles
 	 *
 	 * WARNING: These styles are currently being removed when the customizer loads
-	 * Doing this to prevent overrides to wordpress styles onchange
+	 * Doing this to prevent overrides to WordPress styles onchange
 	 *
 	 * @since 1.0.0
 	 */

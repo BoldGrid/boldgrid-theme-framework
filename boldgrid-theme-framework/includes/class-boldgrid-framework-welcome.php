@@ -129,10 +129,10 @@ class Boldgrid_Framework_Welcome {
 	}
 
 	/**
-	* Display starter content page.
-	*
-	* @since 2.0.0
-	*/
+	 * Display starter content page.
+	 *
+	 * @since 2.0.0
+	 */
 	public function page_starter_content() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 

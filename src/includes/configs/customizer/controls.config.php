@@ -2991,7 +2991,17 @@ return array(
 		'section'     => 'bgtfw_blog_margin_section',
 		'settings'    => 'bgtfw_blog_margin',
 		'label'       => '',
-		'default'     => '',
+		'default'     => [
+			[
+				'media' => [ 'base' ],
+				'unit' => 'em',
+				'isLinked' => true,
+				'values' => [
+					'bottom' => 0.5,
+					'top' => 0.5,
+				],
+			],
+		],
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',

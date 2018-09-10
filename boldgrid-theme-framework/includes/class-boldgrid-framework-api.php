@@ -959,9 +959,7 @@ class BoldGrid {
 				$homepage_sidebar = empty( $global_sidebar ) ? 'no-sidebar' : $global_sidebar;
 			}
 
-			if ( 'no-sidebar' !== $homepage_sidebar ) {
-				$display = true;
-			}
+			$display = 'no-sidebar' !== $homepage_sidebar;
 		}
 
 		return $display;
@@ -976,11 +974,8 @@ class BoldGrid {
 	 * @return Boolean $display Whether or not to display the sidebar on queried post.
 	 */
 	public function archive_sidebar( $display ) {
-
 		if ( is_archive() ) {
-			if ( 'no-sidebar' !== get_theme_mod( 'bgtfw_blog_blog_page_sidebar' ) ) {
-				$display = true;
-			}
+			$display = 'no-sidebar' !== get_theme_mod( 'bgtfw_blog_blog_page_sidebar' );
 		}
 
 		return $display;

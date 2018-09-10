@@ -4199,6 +4199,18 @@ return array(
 				'property' => 'display',
 			),
 		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_blog_post_cats_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+			array(
+				'setting'  => 'bgtfw_blog_post_cats_icon_display',
+				'operator' => '!==',
+				'value'    => 'none',
+			),
+		),
 	),
 	'bgtfw_blog_post_cat_icon' => array(
 		'type' => 'fontawesome',

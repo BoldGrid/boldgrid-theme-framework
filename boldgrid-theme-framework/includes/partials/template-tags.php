@@ -152,7 +152,7 @@ function boldgrid_entry_footer() {
 
 		if ( $comment_count > 1 ) {
 			$icon = '<i class="fa fa-fw fa-' . get_theme_mod( 'bgtfw_blog_post_comments_icon' ) . '" aria-hidden="true"></i> ';
-			$class = ' multiple';
+			$class .= ' multiple';
 		} else {
 			$icon = '<i class="fa fa-fw fa-' . get_theme_mod( 'bgtfw_blog_post_comment_icon' ) . '" aria-hidden="true"></i> ';
 			$class .= ' singular';

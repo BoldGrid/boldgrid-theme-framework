@@ -24,7 +24,8 @@ export class LinkPreview {
 			'bgtfw_blog_post_header_date',
 			'bgtfw_blog_post_cats',
 			'bgtfw_blog_post_tags',
-			'bgtfw_blog_post_comments'
+			'bgtfw_blog_post_comments',
+			'bgtfw_blog_post_readmore'
 		];
 		this.selectors = {};
 	}

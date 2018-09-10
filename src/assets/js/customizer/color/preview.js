@@ -42,7 +42,7 @@ export class Preview  {
 			},
 			{
 				name: 'bgtfw_pages_title_color',
-				selector: '.page .entry-header .entry-title .link',
+				selector: '.page .entry-header .entry-title .link, .blog .page-header .page-title .link, .archive .page-header .page-title .link',
 				properties: [ 'color', 'color-hover' ]
 			},
 			{

@@ -152,7 +152,7 @@ function boldgrid_entry_footer() {
 
 		if ( $comment_count > 1 ) {
 			$icon = '<i class="fa fa-fw fa-' . get_theme_mod( 'bgtfw_blog_post_comments_icon' ) . '" aria-hidden="true"></i> ';
-			$class = ' multiple';
+			$class .= ' multiple';
 		} else {
 			$icon = '<i class="fa fa-fw fa-' . get_theme_mod( 'bgtfw_blog_post_comment_icon' ) . '" aria-hidden="true"></i> ';
 			$class .= ' singular';
@@ -452,14 +452,31 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
 	global $wp_query;
 	$style = '';
+	$post_id = ( int ) $post_id;
+
 	if ( has_post_thumbnail( $post_id ) ) {
 		$img = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
 		if ( $wp_query->is_posts_page || is_archive() ) {
 			if ( true === $theme_mod && 'show' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_display' ) ) {
-				if ( 'background' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_position' ) ) {
+				if ( ( 'background' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_position' ) ) || $post_id === ( int ) get_option( 'page_for_posts', true ) ) {
 
 					// Get user defined header color.
-					$color = get_theme_mod( 'bgtfw_blog_header_background_color' );
+					$theme_mod = 'bgtfw_blog_header_background_color';
+
+					if ( $post_id === ( int ) get_option( 'page_for_posts', true ) || is_page( $post_id ) || is_archive( $post_id ) ) {
+
+						// Use background color setting for page as the header background by default.
+						$theme_mod = 'boldgrid_background_color';
+
+						// Check ifthe background color is overridden by an overlay color.
+						if ( 'image' === get_theme_mod( 'boldgrid_background_type' ) &&
+							'' !== get_theme_mod( 'background_image' ) &&
+							true === get_theme_mod( 'bgtfw_background_overlay' ) ) {
+								$theme_mod = 'bgtfw_background_overlay_color';
+						}
+					}
+
+					$color = get_theme_mod( $theme_mod );
 					$color = explode( ':', $color );
 					$color = array_pop( $color );
 

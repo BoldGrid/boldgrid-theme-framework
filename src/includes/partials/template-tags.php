@@ -458,12 +458,12 @@ function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
 		$img = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
 		if ( $wp_query->is_posts_page || is_archive() ) {
 			if ( true === $theme_mod && 'show' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_display' ) ) {
-				if ( ( 'background' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_position' ) ) || $post_id === ( int ) get_option( 'page_for_posts', true ) ) {
+				if ( ( 'background' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_position' ) ) || ( int ) get_option( 'page_for_posts', true ) === $post_id ) {
 
 					// Get user defined header color.
 					$theme_mod = 'bgtfw_blog_header_background_color';
 
-					if ( $post_id === ( int ) get_option( 'page_for_posts', true ) || is_page( $post_id ) || is_archive( $post_id ) ) {
+					if ( ( int ) get_option( 'page_for_posts', true ) === $post_id || is_page( $post_id ) || is_archive( $post_id ) ) {
 
 						// Use background color setting for page as the header background by default.
 						$theme_mod = 'boldgrid_background_color';

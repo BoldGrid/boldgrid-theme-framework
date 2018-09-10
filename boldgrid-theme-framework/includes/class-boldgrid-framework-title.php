@@ -96,7 +96,7 @@ class Boldgrid_Framework_Title {
 			return;
 		}
 
-		$is_posts_page = $post->ID === get_option( 'page_for_posts' );
+		$is_posts_page = (int) get_option( 'page_for_posts' ) === $post->ID;
 
 		$post_meta = get_post_meta( $post->ID, $this->configs['title']['hide'], true );
 		$global = $this->get_global( $post->post_type );
@@ -131,7 +131,7 @@ class Boldgrid_Framework_Title {
 		 * If we are on the page_for_posts, make necessary adjustments to our $options.
 		 */
 		if ( $is_posts_page ) {
-			$show_title = true === get_theme_mod( $this->configs['title']['page_for_posts'], $this->configs['title']['default_page_for_posts'] );
+			$show_title = get_theme_mod( $this->configs['title']['page_for_posts'], $this->configs['title']['default_page_for_posts'] ) === true;
 
 			array_shift( $options );
 
@@ -177,14 +177,14 @@ class Boldgrid_Framework_Title {
 				return;
 			}
 
-			$is_posts_page = $post_id === (int) get_option( 'page_for_posts' );
+			$is_posts_page = (int) get_option( 'page_for_posts' ) === $post_id;
 
 			/*
 			 * Update our value.
 			 *
 			 * Posts actually use post meta, and the page_for_posts page uses a theme mod.
 			 */
-			if( $is_posts_page ) {
+			if ( $is_posts_page ) {
 				$value = $value ? 'inherit' : 'none';
 				set_theme_mod( $this->configs['title']['page_for_posts'], $value );
 			} else {

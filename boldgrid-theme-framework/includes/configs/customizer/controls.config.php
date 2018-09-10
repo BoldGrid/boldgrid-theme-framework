@@ -45,7 +45,7 @@ return array(
 		'type'        => 'custom',
 		'settings'    => 'bgtfw_background_description',
 		'section'     => 'background_image',
-		'default'     => '<div class="bgtfw-description"><p>' . esc_html__ ( 'Change the appearance of your site\'s background.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-your-site-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
+		'default'     => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the appearance of your site\'s background.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-your-site-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'priority' => 1,
 	),
 	'boldgrid_background_color' => array(
@@ -505,7 +505,7 @@ return array(
 		'section'     => 'bgtfw_layout_page_title',
 		'default'     => 'center',
 		'choices'     => array(
-			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' .esc_attr__( 'Left', 'bgtfw' ),
+			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' . esc_attr__( 'Left', 'bgtfw' ),
 			'center' => '<span class="dashicons dashicons-editor-aligncenter"></span>' . esc_attr__( 'Center', 'bgtfw' ),
 			'right'  => '<span class="dashicons dashicons-editor-alignright"></span>' . esc_attr__( 'Right', 'bgtfw' ),
 		),
@@ -620,7 +620,7 @@ return array(
 		'section'     => 'bgtfw_pages_blog_posts_title',
 		'default'     => 'center',
 		'choices'     => array(
-			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' .esc_attr__( 'Left', 'bgtfw' ),
+			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' . esc_attr__( 'Left', 'bgtfw' ),
 			'center' => '<span class="dashicons dashicons-editor-aligncenter"></span>' . esc_attr__( 'Center', 'bgtfw' ),
 			'right'  => '<span class="dashicons dashicons-editor-alignright"></span>' . esc_attr__( 'Right', 'bgtfw' ),
 		),
@@ -673,7 +673,7 @@ return array(
 		'section'     => 'bgtfw_pages_blog_posts_meta',
 		'default'     => 'left',
 		'choices'     => array(
-			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' .esc_attr__( 'Left', 'bgtfw' ),
+			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' . esc_attr__( 'Left', 'bgtfw' ),
 			'center' => '<span class="dashicons dashicons-editor-aligncenter"></span>' . esc_attr__( 'Center', 'bgtfw' ),
 			'right'  => '<span class="dashicons dashicons-editor-alignright"></span>' . esc_attr__( 'Right', 'bgtfw' ),
 		),
@@ -3216,7 +3216,7 @@ return array(
 		'section'     => 'bgtfw_pages_blog_blog_page_titles',
 		'default'     => 'left',
 		'choices'     => array(
-			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' .esc_attr__( 'Left', 'bgtfw' ),
+			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' . esc_attr__( 'Left', 'bgtfw' ),
 			'center' => '<span class="dashicons dashicons-editor-aligncenter"></span>' . esc_attr__( 'Center', 'bgtfw' ),
 			'right'  => '<span class="dashicons dashicons-editor-alignright"></span>' . esc_attr__( 'Right', 'bgtfw' ),
 		),
@@ -3267,7 +3267,7 @@ return array(
 		'section'     => 'bgtfw_pages_blog_blog_page_post_meta',
 		'default'     => 'left',
 		'choices'     => array(
-			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' .esc_attr__( 'Left', 'bgtfw' ),
+			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' . esc_attr__( 'Left', 'bgtfw' ),
 			'center' => '<span class="dashicons dashicons-editor-aligncenter"></span>' . esc_attr__( 'Center', 'bgtfw' ),
 			'right'  => '<span class="dashicons dashicons-editor-alignright"></span>' . esc_attr__( 'Right', 'bgtfw' ),
 		),
@@ -4693,7 +4693,7 @@ return array(
 		'section'     => 'bgtfw_pages_blog_blog_page_read_more',
 		'default'     => 'right',
 		'choices'     => array(
-			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' .esc_attr__( 'Left', 'bgtfw' ),
+			'left'   => '<span class="dashicons dashicons-editor-alignleft"></span>' . esc_attr__( 'Left', 'bgtfw' ),
 			'center' => '<span class="dashicons dashicons-editor-aligncenter"></span>' . esc_attr__( 'Center', 'bgtfw' ),
 			'right'  => '<span class="dashicons dashicons-editor-alignright"></span>' . esc_attr__( 'Right', 'bgtfw' ),
 		),

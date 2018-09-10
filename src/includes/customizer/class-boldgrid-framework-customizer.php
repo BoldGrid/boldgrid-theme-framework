@@ -643,7 +643,7 @@ HTML;
 		// Move and Rename Site Identity to Site Title & Logo.
 		if ( $section = $wp_customize->get_section( 'title_tagline' ) ) {
 			$section->title = esc_html__( 'Logo & Icon', 'bgtfw' );
-			$section->description = '<div class="bgtfw-description"><p>' . esc_html__ ( 'Change your site\'s logo and favicon.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
+			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s logo and favicon.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 			$section->panel = 'bgtfw_header';
 			$section->priority = 7;
 		}
@@ -661,7 +661,7 @@ HTML;
 		// Move and rename wp custom header_image section.
 		if ( $section = $wp_customize->get_section( 'header_image' ) ) {
 			$section->title = esc_html__( 'Background', 'bgtfw' );
-			$section->description = '<div class="bgtfw-description"><p>' . esc_html__ ( 'Change the background of your site\'s custom header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-header-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
+			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change the background of your site\'s custom header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-header-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 			$section->panel = 'bgtfw_header';
 			$section->priority = 12;
 		}
@@ -674,7 +674,7 @@ HTML;
 
 		// Add menus panel description.
 		if ( $panel = $wp_customize->get_panel( 'menus' ) ) {
-			$panel->description = '<div class="bgtfw-description"><p>' . esc_html__ ( 'Manage the menus used on your site.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-menus-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
+			$panel->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Manage the menus used on your site.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-menus-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 		}
 
 		// Add widgets panel description.

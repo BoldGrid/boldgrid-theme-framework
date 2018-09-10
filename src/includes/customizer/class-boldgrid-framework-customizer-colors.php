@@ -371,7 +371,7 @@ class Boldgrid_Framework_Customizer_Colors {
 			$this->color_palettes['palettes'][ $key ]['copy_on_mod'] = true;
 
 			// Convert preset palettes to RGB as our standard.
-			foreach( $this->color_palettes['palettes'][ $key ]['colors'] as $i => $color ) {
+			foreach ( $this->color_palettes['palettes'][ $key ]['colors'] as $i => $color ) {
 				$color = ariColor::newColor( $this->color_palettes['palettes'][ $key ]['colors'][ $i ] );
 				$this->color_palettes['palettes'][ $key ]['colors'][ $i ] = $color->toCSS( 'rgb' );
 			}

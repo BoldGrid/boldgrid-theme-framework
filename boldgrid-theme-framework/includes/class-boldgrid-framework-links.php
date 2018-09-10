@@ -80,8 +80,8 @@ class Boldgrid_Framework_Links {
 	 */
 	public function add_styles_frontend() {
 		foreach ( self::$prefixes as $prefix ) {
-			$cssPrefix = str_replace( '_', '-', $prefix );
-			Boldgrid_Framework_Customizer_Generic::add_inline_style( "${cssPrefix}-link", $this->get_styles( $prefix ) );
+			$css_prefix = str_replace( '_', '-', $prefix );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "${css_prefix}-link", $this->get_styles( $prefix ) );
 		}
 	}
 
@@ -108,7 +108,7 @@ class Boldgrid_Framework_Links {
 	 */
 	public function get_styles( $prefix ) {
 		$css = '';
-		if ( empty( $this->configs['customizer']['controls']["${prefix}_link_color_display"] ) || 'custom' === get_theme_mod( "${prefix}_link_color_display" ) ) {
+		if ( empty( $this->configs['customizer']['controls'][ "${prefix}_link_color_display" ] ) || 'custom' === get_theme_mod( "${prefix}_link_color_display" ) ) {
 			$color = get_theme_mod( "${prefix}_link_color" ) ?: '';
 			$color_hover = get_theme_mod( "${prefix}_link_color_hover" ) ?: 0;
 			$decoration = get_theme_mod( "${prefix}_link_decoration" );
@@ -124,7 +124,7 @@ class Boldgrid_Framework_Links {
 			$excludes = '';
 
 			// Grab the filtered selectors.
-			$selectors = $this->configs['customizer']['controls']["${prefix}_link_color"]['choices']['selectors'];
+			$selectors = $this->configs['customizer']['controls'][ "${prefix}_link_color" ]['choices']['selectors'];
 
 			foreach ( $selectors as $selector ) {
 				$selector = $selector . $excludes;

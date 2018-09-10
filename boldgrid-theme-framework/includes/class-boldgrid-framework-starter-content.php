@@ -72,7 +72,7 @@ class BoldGrid_Framework_Starter_Content {
 		$active = $palette->get_active_palette();
 		if ( ! empty( $active ) ) {
 			$colors = [];
-			foreach( $active as $key => $value ) {
+			foreach ( $active as $key => $value ) {
 				if ( strpos( $key, 'neutral' ) === false ) {
 					$colors[] = $value;
 				}
@@ -82,12 +82,12 @@ class BoldGrid_Framework_Starter_Content {
 					'default' => true,
 					'format' => 'palette-primary',
 					'colors' => $colors,
-				)
+				),
 			);
+
 			if ( ! empty( $active['palette-primary-neutral-color'] ) ) {
 				$default[0]['neutral-color'] = $active['palette-primary-neutral-color'];
 			}
-
 		} else {
 
 			// Default palette to use for palette selector controls.

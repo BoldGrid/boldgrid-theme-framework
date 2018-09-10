@@ -83,7 +83,7 @@ return array(
 	'bgtfw_site_title' => array(
 		'title' => esc_attr__( 'Site Title', 'bgtfw' ),
 		'panel' => 'bgtfw_header',
-		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s title and it\'s appearance.', 'bgtfw' ). '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s title and it\'s appearance.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'capability' => 'edit_theme_options',
 		'priority' => 6,
 	),
@@ -320,7 +320,6 @@ return array(
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
-	// End: Generic Footer Controls.
 
 	// Start: Generic Blog Design Controls.
 	'bgtfw_blog_margin_section' => array(

@@ -1738,31 +1738,31 @@ msgstr ""
 msgid "Permission denied."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:153
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:152
 msgid "Yes"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:154
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:153
 msgid "No"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:81
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:106
 msgid "Installing Starter Content"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:85
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:110
 msgid "Starter Content Installed!"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:89
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:114
 msgid "To make this preview website your own, make any customizations you would like and then <strong>Save Draft</strong> or <strong>Publish</strong>."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:92
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:117
 msgid "Help"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:96
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:121
 msgid "If you'd rather not keep these changes, <a href=\"%1$s\">exit without saving</a> and return to your dashboard."
 msgstr ""
 
@@ -1974,7 +1974,7 @@ msgstr ""
 msgid "Would you like to exit the Customizer and access the Starter Content in your Dashboard?"
 msgstr ""
 
-#: src/includes/partials/starter-content.php:21, src/includes/partials/welcome.php:178, src/includes/partials/welcome.php:210
+#: src/includes/partials/starter-content.php:36, src/includes/partials/welcome.php:178, src/includes/partials/welcome.php:210
 msgid "Install"
 msgstr ""
 

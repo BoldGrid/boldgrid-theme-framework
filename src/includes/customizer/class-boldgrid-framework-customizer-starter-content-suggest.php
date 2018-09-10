@@ -115,8 +115,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 		}
 
 		// If the user is already loading starter content.
-		parse_str( parse_url( wp_get_referer(), PHP_URL_QUERY ), $query );
-		if( ! empty( $query['starter_content'] ) ) {
+		if ( ! empty( $_GET['customize_changeset_uuid'] ) && BoldGrid_Framework_Customizer_Starter_Content::changeset_has_starter( $_GET['customize_changeset_uuid'] ) ) {
 			return false;
 		}
 

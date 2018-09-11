@@ -5,7 +5,8 @@
 	var api = wp.customize,
 		i18n = bgtfwCustomizerStarterContent,
 		notificationComplete,
-		notificationInstalling;
+		notificationInstalling,
+		notificationFail;
 	
 	// Configure our "Installing..." notification.
 	notificationInstalling = new api.Notification(
@@ -26,6 +27,16 @@
 			type: 'success'
 		}
 	);
+	
+	// Configure our "Failed" notification.
+	notificationFail = new api.Notification(
+		'starter_content_fail',
+		{
+			dismissible: true,
+			message: i18n.notificationFail,
+			type: 'error'
+		}
+	);
 
 	/*
 	 * Load starter content.
@@ -43,17 +54,25 @@
 			// Ajax call to install starter content.
 			data = api.previewer.query();
 			data.starter_content = i18n.post.starter_content;
-			
+
 			request = wp.ajax.post( 'load_starter_content', data );
+		
+			// On success.
 			request.done( function() {
 				api.previewer.refresh();
+				
+				// Adjust the notices after the preview is loaded.
+				$( window ).one( 'boldgrid_customizer_refresh', function() {
+					api.notifications.remove( 'loading_starter_content' );
+					api.notifications.add( notificationComplete );
+				} );
 			} );
 			
-			// Adjust the notices after the preview is loaded.
-			$( window ).one( 'boldgrid_customizer_refresh', function() {
+			// On failure.
+			request.fail( function() {
 				api.notifications.remove( 'loading_starter_content' );
-				api.notifications.add( notificationComplete );
-			} );
+				api.notifications.add( notificationFail );
+			});
 		}
 	});
 } )();

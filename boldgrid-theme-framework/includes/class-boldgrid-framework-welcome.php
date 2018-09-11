@@ -145,6 +145,13 @@ class Boldgrid_Framework_Welcome {
 		wp_enqueue_style( 'boldgrid-customizer-controls-base',
 			$this->configs['framework']['css_dir'] . 'welcome.css' );
 
+		wp_enqueue_script(
+			'bgtfw-customizer-starter-content-plugins',
+			$this->configs['framework']['js_dir'] . 'customizer/starter-content-plugins' . $suffix . '.js',
+			array( 'customize-controls' ),
+			$this->configs['version']
+		);
+
 		include $this->configs['framework']['includes_dir'] . 'partials/starter-content.php';
 	}
 

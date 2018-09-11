@@ -456,7 +456,7 @@ function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
 
 	if ( has_post_thumbnail( $post_id ) ) {
 		$img = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
-		if ( $wp_query->is_posts_page || is_archive() ) {
+		if ( is_home() || is_archive() ) {
 			if ( true === $theme_mod && 'show' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_display' ) ) {
 				if ( ( 'background' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_position' ) ) || ( int ) get_option( 'page_for_posts', true ) === $post_id ) {
 

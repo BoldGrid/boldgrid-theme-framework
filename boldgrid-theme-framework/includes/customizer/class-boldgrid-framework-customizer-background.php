@@ -356,12 +356,16 @@ class Boldgrid_Framework_Customizer_Background {
 	 *
 	 * @param array $configs BoldGrid Theme Framework config.
 	 * @since 1.0.4
-	 * @return string Example: "url(https://domain.com/wp-content/themes/boldgrid-theme/
-	 * 		inc/boldgrid-theme-framework/assets/img/patterns/60-lines.png)"
+	 * @return string Example: "url(https://domain.com/wp-content/themes/boldgrid-theme/inc/boldgrid-theme-framework/assets/img/patterns/60-lines.png)"
 	 */
 	public static function get_default_pattern_mod( $configs ) {
-		return 'url(' . $configs['framework']['admin_asset_dir'] . 'img/patterns/'
-			. $configs['customizer-options']['background']['defaults']['boldgrid_background_pattern'] . ')';
+		$default = 'none';
+
+		if ( ! empty( $configs['customizer-options']['background']['defaults']['boldgrid_background_pattern'] ) ) {
+			$default = 'url(' . $configs['framework']['admin_asset_dir'] . 'img/patterns/' . $configs['customizer-options']['background']['defaults']['boldgrid_background_pattern'] . ')';
+		}
+
+		return $default;
 	}
 
 	/**

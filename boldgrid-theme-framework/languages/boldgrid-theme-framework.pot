@@ -1351,11 +1351,11 @@ msgstr ""
 msgid "Background"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:407
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:411
 msgid "Subtle Patterns"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:666, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:75
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:670, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:75
 msgid "Background Image"
 msgstr ""
 

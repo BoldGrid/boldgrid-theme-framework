@@ -778,7 +778,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 					_.delay( () => setupCurrentMenuItems( params.newContainer ), _wpCustomizeSettings.timeouts.selectiveRefresh );
 
 					// Initialize SmartMenu on the updated container and params.
-					BoldGrid.standard_menu_enabled.init( params.newContainer );
+					if ( ! _.isUndefined( params.wpNavArgs.theme_location ) && ! _.isEmpty( params.wpNavArgs.theme_location ) ) {
+						BoldGrid.standard_menu_enabled.init( params.newContainer );
+					}
 				}
 			}
 		} );

@@ -2176,6 +2176,7 @@ return array(
 					$widget_area = new Boldgrid_Framework_Customizer_Widget_Areas();
 					$widget_area->header_html();
 				},
+				'container_inclusive' => true,
 			),
 		),
 	),

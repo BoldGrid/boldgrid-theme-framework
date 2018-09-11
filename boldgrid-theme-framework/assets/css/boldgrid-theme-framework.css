@@ -4895,6 +4895,11 @@ nav.navigation.posts-navigation {
   padding-bottom: 0;
 }
 
+#footer-widget-area.bgtfw-widget-row.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #footer-widget-area.bgtfw-widget-row:last-child:after {
   padding-bottom: 0;
 }

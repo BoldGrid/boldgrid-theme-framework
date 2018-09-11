@@ -499,8 +499,14 @@ nav.navigation.posts-navigation {
 }
 
 // Footer Widget Row Styles.
-#footer-widget-area.bgtfw-widget-row:last-child:after {
-	padding-bottom: 0;
+#footer-widget-area.bgtfw-widget-row {
+	&.container {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	&:last-child:after {
+		padding-bottom: 0;
+	}
 }
 
 // Mobile First.

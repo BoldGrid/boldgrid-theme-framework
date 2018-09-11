@@ -2117,6 +2117,37 @@ return array(
 			),
 		),
 	),
+	'footer_widgets_container' => array(
+		'settings' => 'footer_widgets_container',
+		'transport'   => 'postMessage',
+		'label'       => esc_html__( 'Widget Area Container', 'bgtfw' ),
+		'type'        => 'radio-buttonset',
+		'priority'    => 20,
+		'default'   => 'container',
+		'choices'     => array(
+			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
+			'' => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+		),
+		'section'     => 'bgtfw_footer_widgets',
+		'sanitize_callback' => function( $value, $settings ) {
+			return '' === $value || 'container' === $value ? $value : $settings->default;
+		},
+		'js_vars' => array(
+			array(
+				'element' => '#footer-widget-area',
+				'function' => 'html',
+				'attr' => 'class',
+				'value_pattern' => 'bgtfw-widget-row $',
+			),
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'boldgrid_footer_widgets',
+				'operator' => '>',
+				'value'    => 0,
+			),
+		),
+	),
 	'bgtfw_header_widget_help' => array(
 		'type'        => 'custom',
 		'settings'     => 'bgtfw_header_widget_help',

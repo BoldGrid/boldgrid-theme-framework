@@ -55,11 +55,7 @@ class BoldGrid_Framework_Customizer {
 		global $wp_customize;
 
 		foreach ( $this->configs['customizer']['controls'] as $control ) {
-			if ( ! isset( $control['type'] ) ) {
-				return;
-			}
-
-			if ( 'radio' !== $control['type'] ) {
+			if ( isset( $control['type'] ) && 'radio' !== $control['type'] ) {
 				Kirki::add_field( 'bgtfw', $control );
 
 				if ( strpos( $control['settings'], 'bgtfw_menu_' ) !== false &&
@@ -269,7 +265,7 @@ class BoldGrid_Framework_Customizer {
 				}
 			} else {
 				if ( $wp_customize ) {
-					if ( 'radio' === $control['type'] ) {
+					if ( isset( $control['type'] ) && 'radio' === $control['type'] ) {
 						$setting = array();
 
 						$setting['default'] = isset( $control['default'] ) ? $control['default'] : false;

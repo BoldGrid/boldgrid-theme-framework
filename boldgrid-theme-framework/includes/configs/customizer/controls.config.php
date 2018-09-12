@@ -2382,7 +2382,7 @@ return array(
 		'label'       => esc_html__( 'Homepage Sidebar Display', 'bgtfw' ),
 		'type'        => 'radio',
 		'priority'    => 30,
-		'default'   => 'no-sidebar',
+		'default'   => '',
 		'choices'     => array(),
 		'section'     => 'static_front_page',
 		'active_callback' => function() {
@@ -2396,7 +2396,7 @@ return array(
 		'label'       => esc_html__( 'Sidebar Options', 'bgtfw' ),
 		'type'        => 'radio',
 		'priority'    => 10,
-		'default'   => 'no-sidebar',
+		'default'   => '',
 		'choices'     => array(),
 		'section'     => 'bgtfw_blog_blog_page_panel_sidebar',
 		'sanitize_callback' => 'sanitize_html_class',

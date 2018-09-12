@@ -3613,6 +3613,22 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 								$this->upgrader->strings['skin_before_update_header'] = __( 'Installing Plugin %1$s (%2$d/%3$d)', 'tgmpa' );
 							}
 						}
+
+						/*
+						 * Fix 'skin_update_successful'.
+						 *
+						 * https://forums.envato.com/t/wp-4-8-tgm-plug/110603
+						 *
+						 * As of WordPress 4.8, this string only needs 1 param, rather than 2.
+						 *
+						 * 4.7: https://github.com/markjaquith/WordPress/blob/4.7/wp-admin/includes/class-bulk-upgrader-skin.php#L46
+						 * 4.8: https://github.com/markjaquith/WordPress/blob/4.8/wp-admin/includes/class-bulk-upgrader-skin.php#L46
+						 */
+						global $wp_version;
+						if ( version_compare( $wp_version, '4.8', '>=' ) ) {
+							/* translators: 1: Title of an update */
+							$this->upgrader->strings['skin_update_successful'] = __( '%1$s updated successfully.' );
+						}
 					}
 
 					/**

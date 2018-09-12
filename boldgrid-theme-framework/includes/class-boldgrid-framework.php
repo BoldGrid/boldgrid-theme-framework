@@ -873,6 +873,8 @@ class BoldGrid_Framework {
 
 		$this->loader->add_action( 'wp_ajax_tgmpa-bulk-install', $plugins, 'tgmpa_bulk_install' );
 		$this->loader->add_action( 'wp_ajax_tgmpa-bulk-activate', $plugins, 'tgmpa_bulk_install' );
+		$this->loader->add_action( 'tgmpa_register', $plugins, 'tgmpa_register' );
+		$this->loader->add_filter( 'tgmpa_load', $plugins, 'tgmpa_load' );
 	}
 
 	/**

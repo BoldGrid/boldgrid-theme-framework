@@ -2,6 +2,10 @@
 /**
  * This file contains the "Welcome" markup displayed after Crio is activated.
  *
+ * As we get more starter content sets in the future, this system will become much more structured.
+ * For example, we'll have a config file, maybe some fancy loops, etc. For now, we have 1 set of
+ * starter content, so markup is basic.
+ *
  * @package Boldgrid_Theme_Framework
  * @since 2.0.0
  */
@@ -9,24 +13,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/*
- * Generate "install starter content" button.
- *
- * As we get more starter content sets in the future, this system will become much more structured.
- * For example, we'll have a config file, maybe some fancy loops, etc. For now, we have 1 set of starter
- * content, so markup is basic.
- */
-
 wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-install' );
 wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-activate' );
-
-// Configure our array of plugins that need to be installed.
-$plugins = array();
-if( ! empty( $this->configs['starter-content']['plugins'] ) ) {
-	foreach( $this->configs['starter-content']['plugins'] as $plugin ) {
-		$plugins[] = $plugin['slug'];
-	}
-}
 
 ?>
 
@@ -38,8 +26,6 @@ if( ! empty( $this->configs['starter-content']['plugins'] ) ) {
 		<div class="welcome-panel-content">
 			<form method="post" action="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="starter-content-install">
 				<input type="hidden" name="starter_content" value="default" />
-				<input type="hidden" name="plugins" value='<?php echo esc_attr( json_encode( $plugins ) );?>' />
-
 
 				<div class="welcome-panel-column-container two-col">
 					<div class="welcome-panel-column">

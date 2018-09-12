@@ -145,12 +145,20 @@ class Boldgrid_Framework_Welcome {
 		wp_enqueue_style( 'boldgrid-customizer-controls-base',
 			$this->configs['framework']['css_dir'] . 'welcome.css' );
 
-		wp_enqueue_script(
-			'bgtfw-customizer-starter-content-plugins',
+		$handle = 'bgtfw-customizer-starter-content-plugins';
+		wp_register_script(
+			$handle,
 			$this->configs['framework']['js_dir'] . 'customizer/starter-content-plugins' . $suffix . '.js',
 			array( 'customize-controls' ),
 			$this->configs['version']
 		);
+		// We need to know which plugins need to be install, and which need to be activated.
+		$starter_content_plugins = ! empty( $this->configs['starter-content']['plugins'] ) ? $this->configs['starter-content']['plugins'] : array();
+		$translations = array(
+			'pluginData' => BoldGrid_Framework_Customizer_Starter_Content_Plugins::get_plugin_info( $starter_content_plugins ),
+		);
+		wp_localize_script( $handle, 'bgtfwCustomizerStarterContentPlugins', $translations );
+		wp_enqueue_script( $handle );
 
 		include $this->configs['framework']['includes_dir'] . 'partials/starter-content.php';
 	}

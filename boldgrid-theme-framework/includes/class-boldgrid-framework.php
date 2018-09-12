@@ -377,8 +377,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $scripts, 'boldgrid_enqueue_scripts' );
 		$this->loader->add_filter( 'language_attributes', $scripts, 'modernizr' );
 
-		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'homepage_sidebar' );
-		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'archive_sidebar' );
+		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'post_list_sidebar' );
 
 		// Setup Header Metadata.
 		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_meta_charset',  105 );

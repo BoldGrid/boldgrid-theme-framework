@@ -616,7 +616,7 @@ class BoldGrid {
 		$classes[] = get_theme_mod( 'bgtfw_header_layout_position' );
 
 		if ( is_home() || is_archive() ) {
-			$classes[] = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', get_theme_mod( 'bgtfw_layout_blog', 'no-sidebar' ) );
+			$classes[] = get_theme_mod( 'bgtfw_blog_blog_page_sidebar' );
 		} else {
 			$layout = get_page_template_slug();
 
@@ -945,36 +945,8 @@ class BoldGrid {
 	 *
 	 * @return Boolean $display Whether or not to display the sidebar on queried post.
 	 */
-	public function homepage_sidebar( $display ) {
-
-		if ( is_front_page() && is_home() ) {
-
-			// Check if a setting has been saved for blog homepages.
-			$homepage_sidebar = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', false );
-
-			if ( empty( $homepage_sidebar ) ) {
-
-				// Nothing was saved, so check if there's a default global blog page setting set.
-				$global_sidebar = get_theme_mod( 'bgtfw_layout_blog', false );
-				$homepage_sidebar = empty( $global_sidebar ) ? 'no-sidebar' : $global_sidebar;
-			}
-
-			$display = 'no-sidebar' !== $homepage_sidebar;
-		}
-
-		return $display;
-	}
-
-	/**
-	 * Determine if user has set archive to NOT display the sidebar.
-	 *
-	 * @since 2.0.0
-	 * @link https://codex.wordpress.org/Conditional_Tags
-	 *
-	 * @return Boolean $display Whether or not to display the sidebar on queried post.
-	 */
-	public function archive_sidebar( $display ) {
-		if ( is_archive() ) {
+	public function post_list_sidebar( $display ) {
+		if ( is_home() || is_archive() ) {
 			$display = 'no-sidebar' !== get_theme_mod( 'bgtfw_blog_blog_page_sidebar' );
 		}
 

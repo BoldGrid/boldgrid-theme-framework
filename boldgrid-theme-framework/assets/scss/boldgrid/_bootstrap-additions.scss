@@ -22,9 +22,17 @@
 	}
 }
 .entry-content {
-	&:not(.mce-content-body) .boldgrid-section {
-		margin-left: -2.8rem;
-		margin-right: -2.8rem;
+	&:not(.mce-content-body) {
+		.boldgrid-section-wrap,
+		.boldgrid-section {
+			margin-left: -2.8rem;
+			margin-right: -2.8rem;
+		}
+
+		.boldgrid-section-wrap .boldgrid-section {
+			margin-left: 0;
+			margin-right: 0;
+		}
 	}
 	.row {
 		display:flex;

@@ -153,6 +153,10 @@ class BoldGrid_Framework_Starter_Content {
 	 */
 	public function set_configs( $config ) {
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
+			if ( strpos( $index, 'sidebar_meta' ) !== false ) {
+				return $config;
+			}
+
 			$config = $this->set_menus( $config, $index, $control );
 			$config = $this->set_colors( $config, $index, $control );
 		}
@@ -290,6 +294,10 @@ class BoldGrid_Framework_Starter_Content {
 		$config = $this->set_configs( $config );
 
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
+			if ( strpos( $index, 'sidebar_meta' ) !== false ) {
+				return;
+			}
+
 			$settings = $control['settings'];
 
 			add_filter( "theme_mod_{$settings}", function( $setting ) use ( $control ) {

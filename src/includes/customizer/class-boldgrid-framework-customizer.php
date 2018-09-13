@@ -647,17 +647,10 @@ HTML;
 
 		// Move and Rename Site Identity to Site Title & Logo.
 		if ( $section = $wp_customize->get_section( 'title_tagline' ) ) {
-<<<<<<< HEAD
-			$section->title       = esc_html__( 'Logo & Icon', 'bgtfw' );
-			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s logo and favicon.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
-			$section->panel       = 'bgtfw_header';
-			$section->priority    = 7;
-=======
 			$section->title = esc_html__( 'Logo & Icon', 'bgtfw' );
 			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s logo and favicon.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 			$section->panel = 'bgtfw_header';
 			$section->priority = 7;
->>>>>>> d1bf6309f529a8afc54991cd65613f2409ebe00f
 		}
 
 		// Change tagline control's section.
@@ -672,17 +665,10 @@ HTML;
 
 		// Move and rename wp custom header_image section.
 		if ( $section = $wp_customize->get_section( 'header_image' ) ) {
-<<<<<<< HEAD
-			$section->title       = esc_html__( 'Background', 'bgtfw' );
-			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change the background of your site\'s custom header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-header-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
-			$section->panel       = 'bgtfw_header';
-			$section->priority    = 12;
-=======
 			$section->title = esc_html__( 'Background', 'bgtfw' );
 			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change the background of your site\'s custom header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-header-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 			$section->panel = 'bgtfw_header';
 			$section->priority = 12;
->>>>>>> d1bf6309f529a8afc54991cd65613f2409ebe00f
 		}
 
 		// Change custom_css section title to add JS editor.

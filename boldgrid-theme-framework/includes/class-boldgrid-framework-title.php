@@ -96,11 +96,7 @@ class Boldgrid_Framework_Title {
 			return;
 		}
 
-<<<<<<< HEAD
-		$is_posts_page = ( $post->ID === get_option( 'page_for_posts' ) );
-=======
 		$is_posts_page = (int) get_option( 'page_for_posts' ) === $post->ID;
->>>>>>> d1bf6309f529a8afc54991cd65613f2409ebe00f
 
 		$post_meta = get_post_meta( $post->ID, $this->configs['title']['hide'], true );
 		$global = $this->get_global( $post->post_type );
@@ -135,11 +131,7 @@ class Boldgrid_Framework_Title {
 		 * If we are on the page_for_posts, make necessary adjustments to our $options.
 		 */
 		if ( $is_posts_page ) {
-<<<<<<< HEAD
-			$show_title = ( true === get_theme_mod( $this->configs['title']['page_for_posts'], $this->configs['title']['default_page_for_posts'] ) );
-=======
 			$show_title = get_theme_mod( $this->configs['title']['page_for_posts'], $this->configs['title']['default_page_for_posts'] ) === true;
->>>>>>> d1bf6309f529a8afc54991cd65613f2409ebe00f
 
 			array_shift( $options );
 

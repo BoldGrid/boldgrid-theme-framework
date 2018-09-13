@@ -129,11 +129,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					// Get the default value from the config's customizer controls.
 					$global_default = $default_title;
 					if ( ! empty( $this->configs['customizer']['controls'][ 'bgtfw_layout_' . $type ]['default'] ) ) {
-<<<<<<< HEAD
-						$global_default = $this->configs['customizer']['controls'][ 'bgtfw_layout_' . $type]['default' ];
-=======
 						$global_default = $this->configs['customizer']['controls'][ 'bgtfw_layout_' . $type ]['default'];
->>>>>>> d1bf6309f529a8afc54991cd65613f2409ebe00f
 					}
 
 					$global_template = get_theme_mod( 'bgtfw_layout_' . $type, $global_default );

@@ -80,15 +80,8 @@ class Boldgrid_Framework_Links {
 	 */
 	public function add_styles_frontend() {
 		foreach ( self::$prefixes as $prefix ) {
-<<<<<<< HEAD
-			// phpcs:disable
-			$cssPrefix = str_replace( '_', '-', $prefix );
-			Boldgrid_Framework_Customizer_Generic::add_inline_style( "${cssPrefix}-link", $this->get_styles( $prefix ) );
-			// phpcs:enable
-=======
 			$css_prefix = str_replace( '_', '-', $prefix );
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "${css_prefix}-link", $this->get_styles( $prefix ) );
->>>>>>> d1bf6309f529a8afc54991cd65613f2409ebe00f
 		}
 	}
 

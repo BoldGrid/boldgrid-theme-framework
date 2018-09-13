@@ -320,11 +320,7 @@ return array(
 		'capability' => 'edit_theme_options',
 		'priority' => 70,
 	),
-<<<<<<< HEAD
-	// End: Generic Footer Controls.
-=======
 
->>>>>>> d1bf6309f529a8afc54991cd65613f2409ebe00f
 	// Start: Generic Blog Design Controls.
 	'bgtfw_blog_margin_section' => array(
 		'title' => __( 'Margin', 'bgtfw' ),

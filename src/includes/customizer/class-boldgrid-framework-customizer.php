@@ -271,8 +271,8 @@ class BoldGrid_Framework_Customizer {
 						$setting['default'] = isset( $control['default'] ) ? $control['default'] : false;
 
 						// Configs are set before page templates available can be determined, so check the controls and update choices.
-						if ( empty( $control['choices'] ) && strpos( $control['default'], 'sidebar' ) !== false ) {
-							$type               = ( strpos( $control['settings'], 'blog' ) !== false ) ? 'post' : 'page';
+						if ( empty( $control['choices'] ) && ( strpos( $control['section'], 'sidebar' ) !== false || strpos( $control['settings'], 'sidebar' ) !== false ) ) {
+							$type = ( strpos( $control['settings'], 'blog' ) !== false ) ? 'post' : 'page';
 							$control['choices'] = array_flip( get_page_templates( null, $type ) );
 						}
 

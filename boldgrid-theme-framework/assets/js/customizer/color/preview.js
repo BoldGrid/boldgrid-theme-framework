@@ -36,19 +36,19 @@ export class Preview  {
 				properties: [ 'color', 'color-hover' ]
 			},
 			{
-				name: 'bgtfw_posts_title_color',
-				selector: '.single .entry-header .entry-title .link',
-				properties: [ 'color', 'color-hover' ]
-			},
-			{
-				name: 'bgtfw_pages_title_color',
-				selector: '.page .entry-header .entry-title .link, .blog .page-header .page-title .link, .archive .page-header .page-title .link',
-				properties: [ 'color', 'color-hover' ]
-			},
-			{
 				name: 'bgtfw_blog_header_background_color',
 				selector: '.palette-primary.archive .post .entry-header, .palette-primary.blog .post .entry-header',
 				properties: [ 'background-color', 'text-default' ]
+			},
+			{
+				name: 'bgtfw_global_title_background_color',
+				selector: '.page-header',
+				properties: [ 'background-color', 'text-default' ]
+			},
+			{
+				name: 'bgtfw_global_title_color',
+				selector: '.page-header .entry-title .link, .page-header .page-title .link',
+				properties: [ 'color', 'color-hover' ]
 			},
 			{
 				name: 'bgtfw_footer_links',
@@ -410,9 +410,9 @@ export class Preview  {
 	 *
 	 * @since 2.0.0
 	 */
-	setEntryHeader() {
+	setPageTitles( themeMod, selectors ) {
 		const selector = new PaletteSelector(),
-		color = selector.getColor( wp.customize( 'bgtfw_blog_header_background_color' )() ),
+		color = selector.getColor( wp.customize( themeMod )() ),
 		brehautColor = parent.net.brehaut.Color( color ),
 		updatedColor = brehautColor.setAlpha( 0.7 ).toString();
 
@@ -438,7 +438,7 @@ export class Preview  {
 		};
 
 		let colorRegex = /rgba\(\s?([0-9]+),\s?([0-9]+),\s?([0-9]+),\s?([0-9|.]+)\s?\)/g;
-		let headers = $( '.has-post-thumbnail .entry-header' );
+		let headers = $( selectors );
 
 		_.each( headers, function( header ) {
 			header = $( header );
@@ -529,6 +529,7 @@ export class Preview  {
 		this._bindHeadingColor();
 		this._bindHeaderOverlay();
 		this._bindEntryHeader();
+		this._bindGlobalPageTitles();
 	}
 
 	/**
@@ -538,7 +539,18 @@ export class Preview  {
 	 */
 	_bindEntryHeader() {
 		wp.customize( 'bgtfw_blog_header_background_color', ( ...args ) => {
-			args.map( ( control ) => control.bind( () => this.setEntryHeader() ) );
+			args.map( ( control ) => control.bind( () => this.setPageTitles( 'bgtfw_blog_header_background_color', '.has-post-thumbnail .entry-header:not(.page-header)' ) ) );
+		} );
+	}
+
+	/**
+	 * Bind the event of the .entry-headers changing colors.
+	 *
+	 * @since 2.0.0
+	 */
+	_bindGlobalPageTitles() {
+		wp.customize( 'bgtfw_global_title_background_color', ( ...args ) => {
+			args.map( ( control ) => control.bind( () => this.setPageTitles( 'bgtfw_global_title_background_color', '.page-header.has-featured-image-header' ) ) );
 		} );
 	}
 

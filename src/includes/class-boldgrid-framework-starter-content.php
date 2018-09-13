@@ -230,8 +230,17 @@ class BoldGrid_Framework_Starter_Content {
 		}
 
 		if ( 'bgtfw-palette-selector' === $control['type'] && strpos( $control['default'], ':' ) === false ) {
-			if ( empty( $control['default'] ) ) {
 
+			// Allow designers to set 'color-1' instead of needing to know the actual color for each control.
+			if ( preg_match( '/^color-([\d]|neutral)/', $control['default'], $color ) ) {
+				if ( 'neutral' === $color[1] ) {
+					$config['customizer']['controls'][ $index ]['default'] = $control['default'] . ':' . $this->default[0]['neutral-color'];
+				} else {
+					$config['customizer']['controls'][ $index ]['default'] = $control['default'] . ':' . $this->default[0]['colors'][ $color[1] - 1 ];
+				}
+			}
+
+			if ( empty( $control['default'] ) ) {
 				// Headings default.
 				if ( strpos( $control['settings'], 'headings' ) !== false ) {
 					$config['customizer']['controls'][ $index ]['default'] = 'color-2:' . $this->default[0]['colors'][1];
@@ -247,14 +256,6 @@ class BoldGrid_Framework_Starter_Content {
 				// All other background color defaults.
 				} else {
 					$config['customizer']['controls'][ $index ]['default'] = 'color-1:' . $this->default[0]['colors'][0];
-				}
-
-			// Allow designers to set 'color-1' instead of needing to know the actual color for each control.
-			} elseif ( preg_match( '/^color-([\d]|neutral)/', $control['default'], $color ) ) {
-				if ( 'neutral' === $color[1] ) {
-					$config['customizer']['controls'][ $index ]['default'] = $control['default'] . ':' . $this->default[0]['neutral-color'];
-				} else {
-					$config['customizer']['controls'][ $index ]['default'] = $control['default'] . ':' . $this->default[0]['colors'][ $color[1] - 1 ];
 				}
 			}
 		}

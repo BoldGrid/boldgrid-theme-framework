@@ -126,6 +126,11 @@ return array(
 		'title' => __( 'Headings', 'bgtfw' ),
 		'panel' => 'boldgrid_typography',
 	),
+	'bgtfw_global_page_titles' => array(
+		'title' => __( 'Page Titles', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Control the display of page titles displayed on your site.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/site-content-design-tools-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
+		'panel' => 'bgtfw_site_content',
+	),
 	'bgtfw_body_link_design' => array(
 		'title' => __( 'Links', 'bgtfw' ),
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Control the display of links used in your site\'s content.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/site-content-design-tools-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',

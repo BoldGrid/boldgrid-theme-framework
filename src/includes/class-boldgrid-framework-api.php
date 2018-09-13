@@ -629,9 +629,10 @@ class BoldGrid {
 		}
 
 		$background_theme_mod = 'boldgrid_background_color';
+		$background_image = get_theme_mod( 'background_image' );
 
 		if ( 'image' === get_theme_mod( 'boldgrid_background_type' ) &&
-			! empty( get_theme_mod( 'background_image' ) ) &&
+			! empty( $background_image ) &&
 			true === get_theme_mod( 'bgtfw_background_overlay' ) ) {
 			$background_theme_mod = 'bgtfw_background_overlay_color';
 		}
@@ -649,6 +650,9 @@ class BoldGrid {
 				$classes[] = str_replace( '-', '', $background_color ) . '-text-default';
 			}
 		}
+
+		// Add helper class for global page title positioning.
+		$classes[] = 'page-title-' . get_theme_mod( 'bgtfw_global_title_position' );
 
 		return array_unique( $classes );
 	}
@@ -728,6 +732,19 @@ class BoldGrid {
 	 *
 	 * @return array $classes Array of classes to add to posts.
 	 */
+	public function page_title_background_class( $classes ) {
+		return array_merge( $classes, $this->get_background_color( 'bgtfw_global_title_background_color' ) );
+	}
+
+	/**
+	 * Apply the blog design to posts page.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $classes Array of classes to add to posts.
+	 *
+	 * @return array $classes Array of classes to add to posts.
+	 */
 	public function blog_page_post_title_classes( $classes ) {
 		global $post;
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
@@ -747,7 +764,7 @@ class BoldGrid {
 	 * @return array $classes Array of classes to add to posts.
 	 */
 	public function page_title_classes( $classes ) {
-		return array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_pages_title_color' ), [ 'color', 'color-hover' ] ) );
+		return array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_global_title_color' ), [ 'color', 'color-hover' ] ) );
 	}
 
 	/**
@@ -761,7 +778,7 @@ class BoldGrid {
 	 */
 	public function post_title_classes( $classes ) {
 		if ( is_single() || is_attachment() ) {
-			$classes = array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_posts_title_color' ), [ 'color', 'color-hover' ] ) );
+			$classes = array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_global_title_color' ), [ 'color', 'color-hover' ] ) );
 		}
 
 		return $classes;

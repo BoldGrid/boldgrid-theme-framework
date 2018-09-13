@@ -418,27 +418,48 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	public function get_sidebar_defaults( $sidebar_id, $type = false ) {
 		global $boldgrid_theme_framework;
 		$config = $boldgrid_theme_framework->get_configs();
+		$settings = [];
 
-		$settings = array();
-		$active_palette = $this->palette->get_active_palette();
-		$formatted_palette = $this->palette->color_format( $active_palette );
-
-		$settings[ $sidebar_id ] = array(
+		$default_sidebar_settings = array(
 			'title' => '',
 			'background_color' => '',
 			'headings_color' => '',
 			'links_color' => '',
 		);
+		// Check for defaults from configs.
+		if ( ! empty( $config['customizer']['controls']['sidebar_meta'] ) && ! empty( $config['customizer']['controls']['sidebar_meta'][ $sidebar_id ] ) ) {
+			$settings = $config['customizer']['controls']['sidebar_meta'];
+			if ( ! empty( $settings[ $sidebar_id ] ) ) {
+				$settings[ $sidebar_id ] = array_merge( $default_sidebar_settings, $settings[ $sidebar_id ] );
+			}
+		} else {
+			$settings[ $sidebar_id ] = $default_sidebar_settings;
+		}
+
+		$active_palette = $this->palette->get_active_palette();
+		$formatted_palette = $this->palette->color_format( $active_palette );
+
+		// Check for defaults set from configs.
+		foreach ( $settings[ $sidebar_id ] as $key => $value ) {
+			if ( strpos( $key, '_color' ) !== false && strpos( $value, ':' ) === false && ! empty( $formatted_palette[ $value ] ) ) {
+				$settings[ $sidebar_id ][ $key ] = $value . ':' . $formatted_palette[ $value ];
+			}
+		}
 
 		// Header sidebars defaults.
-		if ( strpos( $sidebar_id, 'header' ) !== false ) {
+		if ( strpos( $sidebar_id, 'header' ) !== false && empty( $settings[ $sidebar_id ]['background_color'] ) ) {
 			$settings[ $sidebar_id ]['background_color'] = get_theme_mod( 'bgtfw_header_color', $this->get_control_default( 'bgtfw_header_color' ) );
 
 		// Footer sidebars defaults.
 		} elseif ( strpos( $sidebar_id, 'footer' ) !== false ) {
-			$settings[ $sidebar_id ]['background_color'] = get_theme_mod( 'bgtfw_footer_color', $this->get_control_default( 'bgtfw_footer_color' ) );
-			$settings[ $sidebar_id ]['links_color'] = get_theme_mod( 'bgtfw_footer_links', $this->get_control_default( 'bgtfw_footer_links' ) );
+			if ( empty( $settings[ $sidebar_id ]['background_color'] ) ) {
+				$settings[ $sidebar_id ]['background_color'] = get_theme_mod( 'bgtfw_footer_color', $this->get_control_default( 'bgtfw_footer_color' ) );
+			}
+			if ( empty( $settings[ $sidebar_id ]['links_color'] ) ) {
+				$settings[ $sidebar_id ]['links_color'] = get_theme_mod( 'bgtfw_footer_links', $this->get_control_default( 'bgtfw_footer_links' ) );
+			}
 		}
+
 		// All other sidebar defaults.
 		$defaults = [];
 		$defaults[ $sidebar_id ]['background_color'] = 'color-1:' . preg_replace( '/\s+/', '', $formatted_palette['color-1'] );
@@ -462,7 +483,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 */
 	public function get_control_default( $settings ) {
 		$control = array_filter( $this->configs['customizer']['controls'], function( $setting ) use ( $settings ) {
-			return $setting['settings'] === $settings;
+			return isset( $setting['settings'] ) && $setting['settings'] === $settings;
 		} );
 
 		return isset( $control['default'] ) ? $control['default'] : false;

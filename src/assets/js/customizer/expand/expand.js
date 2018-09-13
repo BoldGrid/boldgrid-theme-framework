@@ -82,7 +82,7 @@ export class Expand {
 	 */
 	collapsed() {
 		this.preview.unbind( this.clear );
-		this.previousUrl && this.preview.set( this.previousUrl );
+		this.previousRedirect && this.previousUrl && this.preview.set( this.previousUrl );
 	}
 
 	/**

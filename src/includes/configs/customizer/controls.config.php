@@ -2117,6 +2117,37 @@ return array(
 			),
 		),
 	),
+	'footer_widgets_container' => array(
+		'settings' => 'footer_widgets_container',
+		'transport'   => 'postMessage',
+		'label'       => esc_html__( 'Widget Area Container', 'bgtfw' ),
+		'type'        => 'radio-buttonset',
+		'priority'    => 20,
+		'default'   => 'container',
+		'choices'     => array(
+			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
+			'' => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+		),
+		'section'     => 'bgtfw_footer_widgets',
+		'sanitize_callback' => function( $value, $settings ) {
+			return '' === $value || 'container' === $value ? $value : $settings->default;
+		},
+		'js_vars' => array(
+			array(
+				'element' => '#footer-widget-area',
+				'function' => 'html',
+				'attr' => 'class',
+				'value_pattern' => 'bgtfw-widget-row $',
+			),
+		),
+		'active_callback'    => array(
+			array(
+				'setting'  => 'boldgrid_footer_widgets',
+				'operator' => '>',
+				'value'    => 0,
+			),
+		),
+	),
 	'bgtfw_header_widget_help' => array(
 		'type'        => 'custom',
 		'settings'     => 'bgtfw_header_widget_help',
@@ -2145,6 +2176,7 @@ return array(
 					$widget_area = new Boldgrid_Framework_Customizer_Widget_Areas();
 					$widget_area->header_html();
 				},
+				'container_inclusive' => true,
 			),
 		),
 	),
@@ -2350,7 +2382,7 @@ return array(
 		'label'       => esc_html__( 'Homepage Sidebar Display', 'bgtfw' ),
 		'type'        => 'radio',
 		'priority'    => 30,
-		'default'   => 'no-sidebar',
+		'default'   => '',
 		'choices'     => array(),
 		'section'     => 'static_front_page',
 		'active_callback' => function() {
@@ -2364,7 +2396,7 @@ return array(
 		'label'       => esc_html__( 'Sidebar Options', 'bgtfw' ),
 		'type'        => 'radio',
 		'priority'    => 10,
-		'default'   => 'no-sidebar',
+		'default'   => '',
 		'choices'     => array(),
 		'section'     => 'bgtfw_blog_blog_page_panel_sidebar',
 		'sanitize_callback' => 'sanitize_html_class',
@@ -2991,7 +3023,17 @@ return array(
 		'section'     => 'bgtfw_blog_margin_section',
 		'settings'    => 'bgtfw_blog_margin',
 		'label'       => '',
-		'default'     => '',
+		'default'     => [
+			[
+				'media' => [ 'base' ],
+				'unit' => 'em',
+				'isLinked' => true,
+				'values' => [
+					'bottom' => 0.5,
+					'top' => 0.5,
+				],
+			],
+		],
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
@@ -4202,11 +4244,6 @@ return array(
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_blog_post_cats_display',
-				'operator' => '!==',
-				'value'    => 'none',
-			),
-			array(
-				'setting'  => 'bgtfw_blog_post_cats_icon_display',
 				'operator' => '!==',
 				'value'    => 'none',
 			),

@@ -1792,7 +1792,7 @@ return array(
 		'tooltip' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
 		'section'     => 'bgtfw_global_page_titles',
 		'priority' => 1,
-		'default'     => 'color-neutral',
+		'default'     => '',
 		'choices'     => array(
 			'colors' => $formatted_palette,
 			'size' => $palette->get_palette_size( $formatted_palette ),
@@ -1805,7 +1805,7 @@ return array(
 		'settings'    => 'bgtfw_global_title_color',
 		'label' => esc_attr__( 'Title Color', 'bgtfw' ),
 		'section'     => 'bgtfw_global_page_titles',
-		'default'     => 'color-1',
+		'default'     => '',
 		'choices'     => array(
 			'colors' => $formatted_palette,
 			'size' => $palette->get_palette_size( $formatted_palette ),

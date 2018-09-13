@@ -230,11 +230,6 @@ div.btn a:after, div.button-primary a:after, div.button-secondary a:after {
   width: 100%;
 }
 
-.page .entry-title {
-  margin: 0;
-  padding-top: 2.8rem;
-}
-
 #wp-custom-header::after {
   content: '';
   position: absolute;
@@ -992,17 +987,6 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
           flex-direction: column;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-}
-
-.single .post .entry-header .entry-title {
-  margin: 0;
-  padding-top: 2.8rem;
-}
-
-.single .post .entry-header .entry-meta {
-  width: 100%;
-  padding-top: 1.4rem;
-  padding-bottom: 1.4rem;
 }
 
 .single .post .entry-footer {
@@ -1963,6 +1947,24 @@ select[name="archive-dropdown"] {
 /*--------------------------------------------------------------
 # Page Titles
 --------------------------------------------------------------*/
+.entry-meta {
+  width: 100%;
+}
+
+.page-header {
+  padding-bottom: 0;
+}
+
+/* Link Color */
+.page-header-wrapper .page-title .link, .page-header-wrapper .entry-title .link {
+  color: currentColor;
+}
+
+.page-header-wrapper .page-title .link, .page-header-wrapper .page-title .link:hover, .page-header-wrapper .page-title .link:focus, .page-header-wrapper .entry-title .link, .page-header-wrapper .entry-title .link:hover, .page-header-wrapper .entry-title .link:focus {
+  text-decoration: none;
+}
+
+/* Alignment */
 .page-title-above .page,
 .page-title-above .post,
 .page-title-above.blog .main,
@@ -2023,11 +2025,6 @@ select[name="archive-dropdown"] {
   margin-bottom: 0;
 }
 
-.blog .page-header-wrapper,
-.archive .page-header-wrapper {
-  margin-top: -2.8rem;
-}
-
 .page-header-wrapper.container {
   max-width: none !important;
 }
@@ -2048,10 +2045,6 @@ select[name="archive-dropdown"] {
   margin-left: calc(50% - 50vw + 7.5px);
   margin-right: calc(50% - 50vw + 7.5px);
   width: auto;
-}
-
-.page-title-above .page-header-wrapper.full-width .entry-header {
-  padding: 0 0 2.8rem 0;
 }
 
 /** Container in container. **/
@@ -2093,6 +2086,11 @@ select[name="archive-dropdown"] {
   align-content: flex-start;
   padding-top: 15px;
   max-width: 100%;
+}
+
+.entry-content .boldgrid-section:first-child,
+.entry-content .boldgrid-slider:first-child {
+  margin-top: -15px;
 }
 
 .has-sidebar.page-title-above .article-wrapper + aside {
@@ -2140,6 +2138,35 @@ select[name="archive-dropdown"] {
   margin-left: -2.8rem;
   margin-right: -2.8rem;
   width: calc(100% + 5.6rem);
+}
+
+.page-header-wrapper .page-header {
+  border-bottom: none;
+}
+
+.page-header-wrapper .page-header .featured-imgage-header {
+  padding-top: 2.8rem;
+  padding-bottom: 2.8rem;
+}
+
+.page-header-wrapper .entry-meta,
+.page-header-wrapper .entry-title {
+  margin: 0;
+  padding: 0;
+}
+
+.single .page-header-wrapper .entry-title .entry-meta,
+.archive .page-header-wrapper .page-title .taxonomy-description {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.single .page-header-wrapper .entry-title + .entry-meta,
+.archive .page-header-wrapper .page-title + .taxonomy-description {
+  margin: 0;
+  padding: 0;
+  padding-top: 1.4rem;
+  padding-bottom: 9px;
 }
 
 /*--------------------------------------------------------------
@@ -5182,50 +5209,4 @@ nav.navigation.posts-navigation {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-
-body.page .entry-header .entry-title .link,
-body.single .entry-header .entry-title .link {
-  color: currentColor;
-}
-
-body.page .entry-header .entry-title .link, body.page .entry-header .entry-title .link:hover, body.page .entry-header .entry-title .link:focus,
-body.single .entry-header .entry-title .link,
-body.single .entry-header .entry-title .link:hover,
-body.single .entry-header .entry-title .link:focus {
-  text-decoration: none;
-}
-
-.blog .page-header .page-title, .archive .page-header .page-title {
-  margin: 0;
-}
-
-.blog .page-header .page-title .link, .archive .page-header .page-title .link {
-  color: currentColor;
-}
-
-.blog .page-header .page-title .link, .blog .page-header .page-title .link:hover, .blog .page-header .page-title .link:focus, .archive .page-header .page-title .link, .archive .page-header .page-title .link:hover, .archive .page-header .page-title .link:focus {
-  text-decoration: none;
-}
-
-.blog .page-header.has-featured-image-header, .archive .page-header.has-featured-image-header {
-  padding: 1.4rem 2.8rem;
-}
-
-.archive .page-header {
-  margin: 0;
-  margin-top: -2.8rem;
-  padding: 2.8rem;
-}
-
-.archive .taxonomy-description {
-  margin-top: -2.8rem;
-}
-
-.single .entry-header {
-  padding: 2.8rem;
-}
-
-body.page .has-post-thumbnail .entry-header {
-  padding: 2.8rem;
 }

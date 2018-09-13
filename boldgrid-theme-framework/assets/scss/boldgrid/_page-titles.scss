@@ -1,3 +1,23 @@
+.entry-meta {
+	width: 100%;
+}
+.page-header {
+	padding-bottom: 0;
+}
+
+/* Link Color */
+.page-header-wrapper {
+	.page-title, .entry-title {
+		.link {
+			color: currentColor;
+			&, &:hover, &:focus {
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+/* Alignment */
 .page-title-above .page,
 .page-title-above .post,
 .page-title-above.blog .main,
@@ -46,11 +66,6 @@
 	margin-bottom: 0;
 }
 
-.blog .page-header-wrapper,
-.archive .page-header-wrapper {
-	margin-top: -2.8rem;
-}
-
 .page-header-wrapper.container {
 	max-width: none !important;
 }
@@ -68,10 +83,6 @@
 	margin-left: calc(50% - 50vw + 7.5px);
 	margin-right: calc(50% - 50vw + 7.5px);
 	width: auto;
-}
-
-.page-title-above .page-header-wrapper.full-width .entry-header {
-	padding: 0 0 2.8rem 0;
 }
 
 /** Container in container. **/
@@ -111,6 +122,12 @@
 	align-content: flex-start;
 	padding-top: 15px;
 	max-width: 100%;
+}
+
+// Adjust known BG Editor elements to account for user spacing of the 15px wrapper.
+.entry-content .boldgrid-section:first-child,
+.entry-content .boldgrid-slider:first-child {
+	margin-top: -15px;
 }
 
 .has-sidebar.page-title-above .article-wrapper + aside {
@@ -153,4 +170,31 @@
 	margin-left: -2.8rem;
 	margin-right: -2.8rem;
 	width: calc(100% + 5.6rem);
+}
+
+.page-header-wrapper {
+	.page-header {
+		border-bottom: none;
+		.featured-imgage-header {
+			padding-top: 2.8rem;
+			padding-bottom: 2.8rem;
+		}
+	}
+	.entry-meta,
+	.entry-title {
+		margin: 0;
+		padding: 0;
+	}
+}
+.single .page-header-wrapper .entry-title .entry-meta,
+.archive .page-header-wrapper .page-title .taxonomy-description {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.single .page-header-wrapper .entry-title + .entry-meta,
+.archive .page-header-wrapper .page-title + .taxonomy-description {
+	margin: 0;
+	padding: 0;
+	padding-top: 1.4rem;
+	padding-bottom: 9px;
 }

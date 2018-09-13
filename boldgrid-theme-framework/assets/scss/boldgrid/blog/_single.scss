@@ -2,17 +2,6 @@
 	.post {
 		flex-direction: column;
 		flex-wrap: nowrap;
-		.entry-header {
-			.entry-title {
-				margin: 0;
-				padding-top: 2.8rem;
-			}
-			.entry-meta {
-				width: 100%;
-				padding-top: 1.4rem;
-				padding-bottom: 1.4rem;
-			}
-		}
 		.entry-footer {
 			padding-top: 2.8rem;
 			~ .navigation.post-navigation {

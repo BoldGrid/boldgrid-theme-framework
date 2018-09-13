@@ -123,6 +123,13 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 						) . '
 				</p>
 				',
+			'notificationFail' => '
+				<p>
+					<strong>' . esc_html( 'Starter Content Failed to Install', 'bgtfw' ) . '</strong>
+				</p>
+				<p>
+					' . esc_html__( 'Sorry, an unknown error occurred when trying to install the Starter Content.', 'bgtfw' ) . '
+				</p>',
 		);
 
 		if( ! empty( $_POST['starter_content'] ) ) {

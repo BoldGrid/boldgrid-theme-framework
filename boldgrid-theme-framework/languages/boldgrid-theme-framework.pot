@@ -1726,6 +1726,10 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-plugins.php:159
+msgid "Not allowed"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:51
 msgid "Invalid nonce."
 msgstr ""
@@ -1760,6 +1764,10 @@ msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:121
 msgid "If you'd rather not keep these changes, <a href=\"%1$s\">exit without saving</a> and return to your dashboard."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:131
+msgid "Sorry, an unknown error occurred when trying to install the Starter Content."
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-widget-meta.php:214
@@ -1970,8 +1978,16 @@ msgstr ""
 msgid "Would you like to exit the Customizer and access the Starter Content in your Dashboard?"
 msgstr ""
 
-#: src/includes/partials/starter-content.php:36, src/includes/partials/welcome.php:178, src/includes/partials/welcome.php:210
+#: src/includes/partials/starter-content.php:35, src/includes/partials/welcome.php:178, src/includes/partials/welcome.php:210
 msgid "Install"
+msgstr ""
+
+#: src/includes/partials/starter-content.php:40
+msgid "Unable to install Starter Content."
+msgstr ""
+
+#: src/includes/partials/starter-content.php:43
+msgid "An unknown error occurred when trying to install this Starter Content's required plugins."
 msgstr ""
 
 #: src/includes/partials/template-tags.php:44

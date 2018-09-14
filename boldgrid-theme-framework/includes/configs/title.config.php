@@ -22,9 +22,6 @@ return array(
 	// Theme mod, determines if title should display on posts.
 	'post' => 'bgtfw_posts_title_display',
 
-	// Theme mod, determines whether or not to show title on blog page.
-	'page_for_posts' => 'bgtfw_pages_blog_blog_page_layout_show_title',
-
 	'default_page' => '1',
 	'default_post' => '1',
 	'default_page_for_posts' => 'initial',
@@ -37,7 +34,7 @@ return array(
 		),
 		'page' => array(
 			'show_post_text' => '',
-			'hide_post_text' => __( 'recommended', 'bgtfw' ),
+			'hide_post_text' => '',
 		),
 	),
 );

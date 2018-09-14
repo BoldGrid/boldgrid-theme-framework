@@ -36,15 +36,15 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:1000
+#: src/includes/class-boldgrid-framework-api.php:1024
 msgid "This content is password protected. To view it please enter your password below:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:1001
+#: src/includes/class-boldgrid-framework-api.php:1025
 msgid "Password:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:1001
+#: src/includes/class-boldgrid-framework-api.php:1025
 msgctxt "post password form"
 msgid "Enter"
 msgstr ""
@@ -89,7 +89,7 @@ msgstr ""
 msgid "Pingback:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:161, src/includes/class-boldgrid-framework-layouts-post-meta.php:214, src/includes/class-boldgrid-framework-title.php:146
+#: src/includes/class-boldgrid-framework-comments.php:161, src/includes/class-boldgrid-framework-layouts-post-meta.php:214, src/includes/class-boldgrid-framework-title.php:129
 msgid "Edit"
 msgstr ""
 
@@ -155,7 +155,7 @@ msgstr ""
 msgid "Theme Customizer Default"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:126, src/includes/class-boldgrid-framework-title.php:108
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:126, src/includes/class-boldgrid-framework-title.php:106
 msgid "Use Global Setting"
 msgstr ""
 
@@ -167,11 +167,11 @@ msgstr ""
 msgid "Edit template"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:219
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:219, src/includes/class-boldgrid-framework-title.php:140
 msgid "OK"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-layouts-post-meta.php:220
+#: src/includes/class-boldgrid-framework-layouts-post-meta.php:220, src/includes/class-boldgrid-framework-title.php:141
 msgid "Cancel"
 msgstr ""
 
@@ -215,23 +215,23 @@ msgstr ""
 msgid "Configure Posts Page"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:104
+#: src/includes/class-boldgrid-framework-title.php:102
 msgid "Post"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:104
+#: src/includes/class-boldgrid-framework-title.php:102
 msgid "Page"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:104, src/includes/configs/customizer/sections.config.php:28, src/includes/configs/customizer/sections.config.php:206
+#: src/includes/class-boldgrid-framework-title.php:102, src/includes/configs/customizer/sections.config.php:28, src/includes/configs/customizer/sections.config.php:206
 msgid "Title"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:111, src/includes/class-boldgrid-framework-title.php:114, src/includes/configs/customizer/controls.config.php:407, src/includes/configs/customizer/controls.config.php:456, src/includes/configs/customizer/controls.config.php:538, src/includes/configs/customizer/controls.config.php:748, src/includes/configs/customizer/controls.config.php:933, src/includes/configs/customizer/controls.config.php:1085, src/includes/configs/customizer/controls.config.php:1170, src/includes/configs/customizer/controls.config.php:1322, src/includes/configs/customizer/controls.config.php:1400, src/includes/configs/customizer/controls.config.php:3171, src/includes/configs/customizer/controls.config.php:3326, src/includes/configs/customizer/controls.config.php:3536, src/includes/configs/customizer/controls.config.php:3721, src/includes/configs/customizer/controls.config.php:3840, src/includes/configs/customizer/controls.config.php:3991, src/includes/configs/customizer/controls.config.php:4075, src/includes/configs/customizer/controls.config.php:4227, src/includes/configs/customizer/controls.config.php:4311, src/includes/configs/customizer/controls.config.php:4463
+#: src/includes/class-boldgrid-framework-title.php:109, src/includes/class-boldgrid-framework-title.php:112, src/includes/configs/customizer/controls.config.php:407, src/includes/configs/customizer/controls.config.php:456, src/includes/configs/customizer/controls.config.php:538, src/includes/configs/customizer/controls.config.php:748, src/includes/configs/customizer/controls.config.php:933, src/includes/configs/customizer/controls.config.php:1085, src/includes/configs/customizer/controls.config.php:1170, src/includes/configs/customizer/controls.config.php:1322, src/includes/configs/customizer/controls.config.php:1400, src/includes/configs/customizer/controls.config.php:3171, src/includes/configs/customizer/controls.config.php:3326, src/includes/configs/customizer/controls.config.php:3536, src/includes/configs/customizer/controls.config.php:3721, src/includes/configs/customizer/controls.config.php:3840, src/includes/configs/customizer/controls.config.php:3991, src/includes/configs/customizer/controls.config.php:4075, src/includes/configs/customizer/controls.config.php:4227, src/includes/configs/customizer/controls.config.php:4311, src/includes/configs/customizer/controls.config.php:4463
 msgid "Show"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:111, src/includes/class-boldgrid-framework-title.php:120, src/includes/configs/customizer/controls.config.php:408, src/includes/configs/customizer/controls.config.php:457, src/includes/configs/customizer/controls.config.php:489, src/includes/configs/customizer/controls.config.php:539, src/includes/configs/customizer/controls.config.php:749, src/includes/configs/customizer/controls.config.php:934, src/includes/configs/customizer/controls.config.php:1086, src/includes/configs/customizer/controls.config.php:1171, src/includes/configs/customizer/controls.config.php:1323, src/includes/configs/customizer/controls.config.php:1401, src/includes/configs/customizer/controls.config.php:3172, src/includes/configs/customizer/controls.config.php:3277, src/includes/configs/customizer/controls.config.php:3327, src/includes/configs/customizer/controls.config.php:3537, src/includes/configs/customizer/controls.config.php:3722, src/includes/configs/customizer/controls.config.php:3841, src/includes/configs/customizer/controls.config.php:3992, src/includes/configs/customizer/controls.config.php:4076, src/includes/configs/customizer/controls.config.php:4228, src/includes/configs/customizer/controls.config.php:4312, src/includes/configs/customizer/controls.config.php:4464
+#: src/includes/class-boldgrid-framework-title.php:109, src/includes/class-boldgrid-framework-title.php:118, src/includes/configs/customizer/controls.config.php:408, src/includes/configs/customizer/controls.config.php:457, src/includes/configs/customizer/controls.config.php:489, src/includes/configs/customizer/controls.config.php:539, src/includes/configs/customizer/controls.config.php:749, src/includes/configs/customizer/controls.config.php:934, src/includes/configs/customizer/controls.config.php:1086, src/includes/configs/customizer/controls.config.php:1171, src/includes/configs/customizer/controls.config.php:1323, src/includes/configs/customizer/controls.config.php:1401, src/includes/configs/customizer/controls.config.php:3172, src/includes/configs/customizer/controls.config.php:3277, src/includes/configs/customizer/controls.config.php:3327, src/includes/configs/customizer/controls.config.php:3537, src/includes/configs/customizer/controls.config.php:3722, src/includes/configs/customizer/controls.config.php:3841, src/includes/configs/customizer/controls.config.php:3992, src/includes/configs/customizer/controls.config.php:4076, src/includes/configs/customizer/controls.config.php:4228, src/includes/configs/customizer/controls.config.php:4312, src/includes/configs/customizer/controls.config.php:4464
 msgid "Hide"
 msgstr ""
 
@@ -1209,10 +1209,6 @@ msgstr ""
 
 #: src/includes/configs/tgm.config.php:71
 msgid "Install Recommended Plugins"
-msgstr ""
-
-#: src/includes/configs/title.config.php:40
-msgid "recommended"
 msgstr ""
 
 #: src/includes/configs/tooltips.config.php:16

@@ -678,6 +678,34 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			$( '.site-description' ).text( to ).toggleClass( 'invisible', ! to ) && calc();
 		} );
 
+		// Toggle page title wrapper containers.
+		let toggleTitleFn = ( condition, classes ) => {
+			let body = $( 'body' );
+			if ( ! body.hasClass( 'page-header-hidden' ) ) {
+				for ( let className of classes ) {
+					if ( body.hasClass( className ) ) {
+						body.toggleClass( 'customizer-page-header-hidden', condition );
+						break;
+					}
+				}
+			}
+		};
+
+		api( 'bgtfw_pages_title_display', value => value.bind( to => {
+			let condition = 'hide' === to;
+			toggleTitleFn( condition, [ 'page', 'blog', 'archive' ] );
+		} ) );
+
+		api( 'bgtfw_posts_title_display', value => value.bind( to => {
+			let condition = 'hide' === to && 'none' === api( 'bgtfw_posts_meta_display' )();
+			toggleTitleFn( condition, [ 'single', 'post-template-default' ] );
+		} ) );
+
+		api( 'bgtfw_posts_meta_display', value => value.bind( to => {
+			let condition = 'none' === to && 'hide' === api( 'bgtfw_posts_title_display' )();
+			toggleTitleFn( condition, [ 'single', 'post-template-default' ] );
+		} ) );
+
 		new Toggle( 'boldgrid_background_vertical_position', setBackgroundVerticalPosition );
 		new Toggle( 'boldgrid_background_horizontal_position', setBackgroundHorizontalPosition );
 		new Toggle( 'boldgrid_background_pattern', updateColorAndPatterns );

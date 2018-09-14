@@ -5,4 +5,8 @@
 		flex-wrap: wrap;
 		justify-content: center;
 	}
+	input.hidden:not(:checked) ~ .sm-clean {
+		width: auto;
+		margin: 0 auto;
+	}
 }

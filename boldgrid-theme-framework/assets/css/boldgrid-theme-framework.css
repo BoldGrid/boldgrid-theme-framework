@@ -3033,6 +3033,11 @@ footer .bgtfw-widget-row {
           justify-content: center;
 }
 
+.site-footer.layout-3 input.hidden:not(:checked) ~ .sm-clean {
+  width: auto;
+  margin: 0 auto;
+}
+
 @media only screen and (min-width: 768px) {
   .site-footer.layout-4 .social-menu-wrapper {
     -ms-flex-preferred-size: 30%;

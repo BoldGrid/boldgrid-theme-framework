@@ -195,7 +195,7 @@ class BoldGrid_Framework_Starter_Content {
 
 							// If used in CSS replace underscores with hyphens.
 							if ( strpos( $value, '#main' ) !== false ) {
-								$value = str_replace( 'main',str_replace( '_', '-', $location ), $value );
+								$value = str_replace( 'main', str_replace( '_', '-', $location ), $value );
 							} else {
 								$value = str_replace( 'main', $location, $value );
 							}
@@ -296,7 +296,7 @@ class BoldGrid_Framework_Starter_Content {
 
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
 			if ( strpos( $index, 'sidebar_meta' ) !== false ) {
-				return;
+				continue;
 			}
 
 			$settings = $control['settings'];

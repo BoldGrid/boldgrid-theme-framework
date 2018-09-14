@@ -482,6 +482,7 @@ class BoldGrid_Framework {
 			$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
 			$this->loader->add_action( 'after_setup_theme', $starter_content, 'add_theme_support' );
 			$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'add_post_meta', 10, 2 );
+			$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'post_content_callbacks' );
 		}
 
 		// Edit post links.

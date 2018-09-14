@@ -130,6 +130,27 @@ class BoldGrid_Framework_Starter_Content {
 	}
 
 	/**
+	 * Convert HTML closures into markup.
+	 *
+	 * This allows us to defer starter content processes until needed
+	 * instead of each page load.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  string $content Content.
+	 * @return array           Configuration.
+	 */
+	public function post_content_callbacks( $content ) {
+		foreach ( $content['posts'] as &$post ) {
+			if ( ! empty( $post['post_content'] ) && is_callable( $post['post_content'] ) ) {
+				$post['post_content'] = call_user_func( $post['post_content'] );
+			}
+		}
+
+		return $content;
+	}
+
+	/**
 	 * Declares theme support for starter content using the array of starter
 	 * content found in the BGTFW configurations.
 	 *

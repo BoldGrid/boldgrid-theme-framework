@@ -154,7 +154,7 @@ class BoldGrid_Framework_Starter_Content {
 	public function set_configs( $config ) {
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
 			if ( strpos( $index, 'sidebar_meta' ) !== false ) {
-				return $config;
+				continue;
 			}
 
 			$config = $this->set_menus( $config, $index, $control );

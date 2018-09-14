@@ -214,7 +214,7 @@ class BoldGrid_Framework_Starter_Content {
 
 						// Check if a default has been set for the toggle control.
 						if ( strpos( $new_key, '_toggle' ) !== false && isset( $config['customizer']['controls'][ $new_key ]['default'] ) ) {
-							if ( true !== $config['customizer']['controls'][ $new_key ]['default'] ) {
+							if ( true === $config['customizer']['controls'][ $new_key ]['default'] ) {
 								$toggle_default = true;
 							}
 						}
@@ -241,7 +241,7 @@ class BoldGrid_Framework_Starter_Content {
 					} );
 
 					// Only enable hamburgers on main menu unless otherwise explicitly set in configs.
-					if ( strpos( $new_key, '_toggle' ) !== false && true === $toggle_default ) {
+					if ( strpos( $new_key, '_toggle' ) !== false && true !== $toggle_default ) {
 						$config['customizer']['controls'][ $new_key ]['default'] = false;
 					}
 				}

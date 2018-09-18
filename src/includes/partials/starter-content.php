@@ -35,19 +35,23 @@ wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-activate' );
 							<input class="button button-primary button-hero" type="submit" value="<?php esc_attr_e( 'Install', 'bgtfw' ); ?>" />
 							<span class="spinner"></span>
 						</p>
-						<div class="notice notice-error inline">
-							<p>
-								<strong><?php esc_html_e( 'Unable to install Starter Content.', 'bgtfw' ); ?></strong>
-							</p>
-							<p>
-								<?php esc_html_e( 'An unknown error occurred when trying to install this Starter Content\'s required plugins.', 'bgtfw' ); ?>
-							</p>
-						</div>
 					</div>
 					<div class="welcome-panel-column">
 						<img style="width:100%;" src="https://via.placeholder.com/646x395">
 					</div>
 				</div>
+
+				<div class="starter-content-messages hidden">
+					<p>
+						<strong><?php esc_html_e( 'Unable to install Starter Content.', 'bgtfw' ); ?></strong>
+					</p>
+					<div class="starter-content-error">
+						<div class="notice notice-error inline">
+							<?php esc_html_e( 'An unknown error occurred when trying to install this Starter Content\'s required plugins.', 'bgtfw' ); ?>
+						</div>
+					</div>
+				</div>
+
 			</form>
 		</div>
 	</div>

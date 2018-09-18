@@ -254,7 +254,27 @@ class Boldgrid_Framework_Activate {
 	 * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
 	 */
 	public function register_required_plugins() {
-		tgmpa( $this->configs['tgm']['plugins'], $this->configs['tgm']['configs'] );
+
+		/**
+		 * Whether or not to register our configured tgmpa plugins.
+		 *
+		 * The theme may configure a set of base plugins (in tgm.config.php), and our starter content
+		 * may configure an additional set of plugins (specific to that starter content).
+		 *
+		 * The main purpose of this filter is to prevent issues in which the theme and the starter
+		 * content both configure the same plugins.
+		 *
+		 * For example, if the theme is requiring p&pb(version 1.7, stable, from the repo), yet the
+		 * starter cotnent is requiring p&pb(version 1.8, rc, from external URL), the plugins from
+		 * the starter content should take precedence from the plugins reuqired for the theme only.
+		 *
+		 * @since 2.0.0
+		 */
+		$register = apply_filters( 'bgtfw_register_tgmpa', true );
+
+		if( $register ) {
+			tgmpa( $this->configs['tgm']['plugins'], $this->configs['tgm']['configs'] );
+		}
 	}
 
 	/**

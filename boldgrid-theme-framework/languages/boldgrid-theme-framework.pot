@@ -251,6 +251,14 @@ msgstr ""
 msgid "Starter Content"
 msgstr ""
 
+#: src/includes/class-boldgrid-framework-welcome.php:159
+msgid "No response from server when attempting to install plugins."
+msgstr ""
+
+#: src/includes/class-boldgrid-framework-welcome.php:160
+msgid "No response from server when attempting to activate plugins."
+msgstr ""
+
 #: src/includes/configs/customizer/controls.config.php:32
 msgid "JS code"
 msgstr ""
@@ -1774,7 +1782,7 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-plugins.php:159
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-plugins.php:182
 msgid "Not allowed"
 msgstr ""
 
@@ -2030,11 +2038,11 @@ msgstr ""
 msgid "Install"
 msgstr ""
 
-#: src/includes/partials/starter-content.php:40
+#: src/includes/partials/starter-content.php:46
 msgid "Unable to install Starter Content."
 msgstr ""
 
-#: src/includes/partials/starter-content.php:43
+#: src/includes/partials/starter-content.php:50
 msgid "An unknown error occurred when trying to install this Starter Content's required plugins."
 msgstr ""
 
@@ -2237,4 +2245,8 @@ msgstr ""
 
 #: src/includes/partials/welcome.php:224
 msgid "Check out the great BoldGrid Starter Content included with your theme purchase. If you're looking for a great starting point for your site - or you just need some inspirations - install the pre-built website to jumpstart the process."
+msgstr ""
+
+#: src/includes/tgm/class-tgm-plugin-activation.php:1674
+msgid "Error installing plugin, <strong>%1$s</strong>: %2$s"
 msgstr ""

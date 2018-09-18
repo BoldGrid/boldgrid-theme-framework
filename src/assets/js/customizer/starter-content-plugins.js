@@ -34,6 +34,16 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 		$installButton : null,
 
 		/**
+		 * Our messages container.
+		 *
+		 * If there are any errors when installing starter content, this container will have error
+		 * messages added to it.
+		 *
+		 * @since 2.0.0
+		 */
+		$messages : null,
+
+		/**
 		 * Install plugins.
 		 * 
 		 * Make an ajax call to install plugins. When done "installing" them, make a call to
@@ -58,18 +68,31 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 				self.$form.submit();
 			};
 			
-			onSuccess = function() {
-				self.installPluginsSuccess = true;
-				self.activatePlugins();
+			onSuccess = function( response ) {
+				response = response === undefined ? self.i18n.noResponseInstall : response;
+
+				var $response = $( '<div>' + response + '</div>' ),
+					$errors = $response.find( '.error' );
+
+				if( $errors.length > 0 ) {
+					self.$messages
+						.show()
+						.find( '.starter-content-error' )
+							.empty()
+							.append( $errors );
+					onFail();
+				} else {
+					self.installPluginsSuccess = true;
+					self.activatePlugins();
+				}
 			};
 	
 			self.$installButton.addClass( 'disabled' ).css( 'pointer-events', 'none' );
 			self.$spinner.css( 'visibility', 'visible' ).css( 'float', 'none' ).css( 'margin-left', '0px' );
 			
-			
 			if( 0 === data.plugin.length ) {
 				// At this point, there were no plugins to install. Go check if any need to be activated.
-				onSuccess();	
+				onSuccess( 'No plugins to install.' );	
 			} else {
 				// Ajax call to install necessary plugins (data.plugin).
 				request = $.post( ajaxurl + '?page=bgtfw-install-plugins', data );
@@ -96,13 +119,27 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 				onFail,
 				onSuccess,
 				onAlways;
-			
+
 			onFail = function() {
 				self.activatePluginsSuccess = false;
 			};
-			
-			onSuccess = function() {
-				self.activatePluginsSuccess = true;
+
+			onSuccess = function( response ) {
+				response = response === undefined ? self.i18n.noResponseActivate : response;
+				
+				var $response = $( '<div>' + response + '</div>' ),
+					$errors = $response.find( '.error' );
+				
+				if( $errors.length > 0 ) {
+					self.$messages
+						.show()
+						.find( '.starter-content-error' )
+							.empty()
+							.append( $errors );
+					onFail();
+				} else {
+					self.activatePluginsSuccess = true;
+				}
 			};
 			
 			/*
@@ -116,7 +153,7 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 
 			if( 0 === data.plugin.length ) {
 				// At this point, there were no plugins to activate. We're done.
-				onSuccess();
+				self.activatePluginsSuccess = true;
 				onAlways();
 			} else {
 				// Ajax call to activate necessary plugins (data.plugin).
@@ -150,6 +187,7 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 	
 			self.$spinner = self.$form.find( '.spinner' );
 			self.$installButton = self.$form.find( '.button' );
+			self.$messages = self.$form.find( '.starter-content-messages' );
 
 			/*
 			 * The first time we submit the form, ! self.done, we make an attempt to install and activate

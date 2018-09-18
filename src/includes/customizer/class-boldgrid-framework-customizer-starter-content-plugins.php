@@ -69,6 +69,25 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	}
 
 	/**
+	 * Determine whether or not the tgmpa plugins defined by the bgtfw should be registered.
+	 *
+	 * We don't want to register them in the actual ajax calls made to this method to install plugins.
+	 * See defintion of filter for more info.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  bool $register
+	 * @return bool
+	 */
+	public function bgtfw_register_tgmpa( $register ) {
+		if( $this->in_ajax_call ) {
+			$register = false;
+		}
+
+		return $register;
+	}
+
+	/**
 	 * Helper function to extract the file path of the plugin file from the plugin slug, if the plugin
 	 * is installed.
 	 *
@@ -105,17 +124,19 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 		$data = array(
 			'to_install' => array(),
 			'to_activate' => array(),
+			'installed' => array(),
+			'activated' => array(),
 		);
 
 		if( $starter_content_plugins ) {
-			$plugins = get_plugins();
-			$active_plugins = get_option( 'active_plugins', array() );
+			$data['installed'] = get_plugins();
+			$data['activated'] = get_option( 'active_plugins', array() );
 
 			foreach( $starter_content_plugins as $plugin ) {
 				$path = self::get_plugin_basename_from_slug( $plugin['slug'] );
 
-				$is_installed = array_key_exists( $path, $plugins );
-				$is_active = in_array( $path, $active_plugins, true );
+				$is_installed = array_key_exists( $path, $data['installed'] );
+				$is_active = in_array( $path, $data['activated'], true );
 
 				if( ! $is_installed ) {
 					$data['to_install'][] = $plugin['slug'];
@@ -152,6 +173,8 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	/**
 	 * Install a starter content's plugins using tgm.
 	 *
+	 * This method is called via AJAX. Nonce verification is handled in $tgm->process_bulk_actions.
+	 *
 	 * @since 2.0.0
 	 */
 	public function tgmpa_bulk_install() {
@@ -174,7 +197,39 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 			$this->post_activate();
 		}
 
-		wp_send_json_success();
+		/*
+		 * We are relying on tgmpa to output data. This is the standard data that's echoed when installing
+		 * plugins, such as "Installing plugin XY&Z (1/2)". If there are any errors, our JS that made
+		 * this call will parse them out and know when to fail.
+		 *
+		 * We could have a validation method here that says, "Did all the plugins that were requested
+		 * to be installed actually installed?". We could get that hard success / fail that way, but
+		 * we would be missing any error messages if it failed.
+		 *
+		 * Attempts were made to take control of the output buffering to BOTH look for tgmpa's echoed
+		 * data and to do our own validation, but that ended up being very difficult with things like
+		 * WordPress' wp_ob_end_flush_all. Workarounds were attempted, but accuracy wasn't 100%.
+		 */
+		wp_die();
+	}
+
+	/**
+	 * Determine whether or not to die when TGMPA hits an error.
+	 *
+	 * This method hooks into a filter we added to TGMPA. See class-tgm-plugin-activation.php for
+	 * more details.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  bool $die Whether or not to die on error.
+	 * @return bool
+	 */
+	public function tgmpa_die_on_api_error( $die ) {
+		if( $this->in_ajax_call ) {
+			$die = false;
+		}
+
+		return $die;
 	}
 
 	/**
@@ -203,10 +258,6 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 			return;
 		}
 
-		$config = array(
-			'id' => 'bgtfw_starter_content',
-		);
-
-		tgmpa( $this->configs['starter-content']['plugins'], $config );
+		tgmpa( $this->configs['starter-content']['plugins'], $this->configs['tgm']['configs'] );
 	}
 }

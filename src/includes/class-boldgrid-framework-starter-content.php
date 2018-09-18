@@ -206,7 +206,6 @@ class BoldGrid_Framework_Starter_Content {
 				// Add controls based on main menu's.
 				$new_key = str_replace( 'main', $location, $control['settings'] );
 
-
 				if ( 'main' !== $location ) {
 					$toggle_default = null;
 
@@ -363,13 +362,13 @@ class BoldGrid_Framework_Starter_Content {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  string $path File path.
-	 * @return string       Shortcode string.
+	 * @param  string $form_path File path.
+	 * @return string $shorcode  Shortcode string.
 	 */
-	public static function get_form_shortcode( $formPath ) {
+	public static function get_form_shortcode( $form_path ) {
 		$shortcode = '';
-		if ( file_exists( $formPath ) ) {
-			if ( $form_id = self::import_wp_form( $formPath ) ) {
+		if ( file_exists( $form_path ) ) {
+			if ( $form_id = self::import_wp_form( $form_path ) ) {
 				$shortcode = '[wpforms id="' . $form_id . '" title="false" description="false"]';
 			}
 		}

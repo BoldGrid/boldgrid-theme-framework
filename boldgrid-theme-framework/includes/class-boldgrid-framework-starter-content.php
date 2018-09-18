@@ -357,4 +357,65 @@ class BoldGrid_Framework_Starter_Content {
 			} );
 		}
 	}
+
+	/**
+	 * Get the shortcode for a given form.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $path File path.
+	 * @return string       Shortcode string.
+	 */
+	public static function get_form_shortcode( $formPath ) {
+		$shortcode = '';
+		if ( file_exists( $formPath ) ) {
+			if ( $form_id = self::import_wp_form( $formPath ) ) {
+				$shortcode = '[wpforms id="' . $form_id . '" title="false" description="false"]';
+			}
+		}
+
+		return $shortcode;
+	}
+
+	/**
+	 * Insert a WP Form given a json file path.
+	 *
+	 * Pulled from: https://github.com/BoldGrid/bgforms/blob/master/src/Form/Wpforms.php#L155
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $path File path.
+	 * @return integer      Form ID.
+	 */
+	protected static function import_wp_form( $path ) {
+		$json = file_get_contents( $path );
+		$title = esc_html( sanitize_text_field( json_decode( $json )->settings->form_title ) );
+		$post = get_page_by_title( $title, OBJECT, 'wpforms' );
+
+		// If the form already exists, then just return the form/post id.
+		if ( $post ) {
+			return $post->ID;
+		}
+
+		$form_id = wp_insert_post( [
+			'post_title' => $title,
+			'post_status' => 'publish',
+			'post_type' => 'wpforms',
+			'post_content' => $json,
+		] );
+
+		// Update the content form id with the post id.
+		$json_decoded = json_decode( $json, true );
+		$json_decoded['id'] = $form_id;
+		$json = json_encode( $json_decoded, JSON_HEX_QUOT );
+
+		$form = array(
+			'ID'           => $form_id,
+			'post_content' => $json,
+		);
+
+		$form_id = wp_update_post( $form );
+
+		return $form_id;
+	}
 }

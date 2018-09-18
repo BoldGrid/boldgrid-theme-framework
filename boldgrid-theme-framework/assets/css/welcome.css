@@ -61,6 +61,21 @@
   display: inline-block;
 }
 
+/**
+* Starter Content Messages.
+*
+* This section includes styles for the starter content messages container. By default, when a user
+* is installing starter content, no status messages are shown to the user. However, if there is an
+* error, the .starter-content-messages container will be shown and filled with error messages.
+*/
+.starter-content-messages {
+	border-top: 1px solid #ddd;
+	margin-top: 10px;
+}
+.starter-content-messages .starter-content-error div.error {
+	display: block !important;
+}
+
 @media only screen and (min-width: 501px) and (max-width: 989px) {
   .bgtfw-about-wrap .two-col .col {
     max-width: calc( 50% - 25px) !important;

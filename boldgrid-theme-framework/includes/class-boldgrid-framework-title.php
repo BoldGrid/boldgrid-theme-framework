@@ -81,7 +81,7 @@ class Boldgrid_Framework_Title {
 		$post_type = empty( $post_type ) ? get_post_type() : $post_type;
 		$post_type = isset( $this->configs['title'][ 'default_' . $post_type ] ) ? $post_type : 'post';
 
-		return 'show' === get_theme_mod( 'bgtfw_' . $post_type . 's_title_display' ) ? true : false;
+		return get_theme_mod( 'bgtfw_' . $post_type . 's_title_display' );
 	}
 
 	/**
@@ -96,8 +96,6 @@ class Boldgrid_Framework_Title {
 			return;
 		}
 
-		$is_posts_page = (int) get_option( 'page_for_posts' ) === $post->ID;
-
 		$post_meta = get_post_meta( $post->ID, $this->configs['title']['hide'], true );
 		$global = $this->get_global( $post->post_type );
 
@@ -107,8 +105,8 @@ class Boldgrid_Framework_Title {
 			array(
 				'name' => __( 'Use Global Setting', 'bgtfw' ),
 				'value' => 'global',
-				'checked' => '' === $post_meta,
-				'post_text' => true === $global ? __( 'Show', 'bgtfw' ) : __( 'Hide', 'bgtfw' ),
+				'checked' => 'global' === $post_meta || '' === $post_meta,
+				'post_text' => 'show' === $global ? __( 'Show', 'bgtfw' ) : __( 'Hide', 'bgtfw' ),
 			),
 			array(
 				'name' => __( 'Show', 'bgtfw' ),
@@ -123,39 +121,24 @@ class Boldgrid_Framework_Title {
 				'post_text' => $this->configs['title']['meta_box'][ $post->post_type ]['hide_post_text'],
 			),
 		);
-
-		/*
-		 * For posts, the decision to show / hide the title is based on post meta. For the page_for_posts,
-		 * the decision is based on a theme mod.
-		 *
-		 * If we are on the page_for_posts, make necessary adjustments to our $options.
-		 */
-		if ( $is_posts_page ) {
-			$show_title = get_theme_mod( $this->configs['title']['page_for_posts'], $this->configs['title']['default_page_for_posts'] ) === true;
-
-			array_shift( $options );
-
-			$options[0]['checked'] = $show_title;
-			$options[1]['checked'] = ! $show_title;
-		}
 		?>
 
 		<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-page-title">
-			<?php echo esc_html( $title ); ?>: <span class="value-displayed">...</span>
+			<?php esc_html_e( $title ); ?>: <span class="value-displayed">...</span>
 			<a class="edit" href="">
-				<span aria-hidden="true"><?php echo __( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo esc_html( $title ); ?></span>
+				<span aria-hidden="true"><?php esc_html_e( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo esc_html( $title ); ?></span>
 			</a>
 			<div class="options">
-				<?php foreach ( $options as $option ) {
-					$value_displayed = $option['name'] . ( ! empty( $option['post_text'] ) ? sprintf( ' <span class="template-subtitle">%1$s</span>', $option['post_text'] )  : '' );
-				?><label>
-					<input type="radio" name="<?php echo esc_attr( $this->configs['title']['hide'] ); ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo $option['checked'] ? '1' : '0'; ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
-					<?php echo $value_displayed; ?>
-				</label>
-				<?php } ?>
+				<?php foreach ( $options as $option ) : ?>
+					<?php $value_displayed = $option['name'] . ( ! empty( $option['post_text'] ) ? sprintf( ' <span class="template-subtitle">%1$s</span>', $option['post_text'] ) : '' ); ?>
+					<label>
+						<input type="radio" name="<?php echo esc_attr( $this->configs['title']['hide'] ); ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo $option['checked'] ? '1' : '0'; ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
+						<?php echo $value_displayed; ?>
+					</label>
+				<?php endforeach; ?>
 				<p>
-					<a href="" class="button">OK</a>
-					<a href="" class="button-cancel">Cancel</a>
+					<a href="" class="button"><?php esc_html_e( 'OK', 'bgtfw' ); ?></a>
+					<a href="" class="button-cancel"><?php esc_html_e( 'Cancel', 'bgtfw' ); ?></a>
 				</p>
 			</div>
 		</div><?php
@@ -173,24 +156,18 @@ class Boldgrid_Framework_Title {
 
 			// Validate "show title" post meta, and abort on failure.
 			$value = $_POST[ $this->configs['title']['hide'] ];
-			if ( ! in_array( $value, array( '0', '1' ), true ) ) {
+
+			if ( ! in_array( $value, array( '0', '1', 'global' ), true ) ) {
 				return;
 			}
-
-			$is_posts_page = (int) get_option( 'page_for_posts' ) === $post_id;
 
 			/*
 			 * Update our value.
 			 *
 			 * Posts actually use post meta, and the page_for_posts page uses a theme mod.
 			 */
-			if ( $is_posts_page ) {
-				$value = $value ? 'inherit' : 'none';
-				set_theme_mod( $this->configs['title']['page_for_posts'], $value );
-			} else {
-				delete_post_meta( $post_id, $this->configs['title']['hide'] );
-				update_post_meta( $post_id, $this->configs['title']['hide'], $value );
-			}
+			delete_post_meta( $post_id, $this->configs['title']['hide'] );
+			update_post_meta( $post_id, $this->configs['title']['hide'], $value );
 		}
 	}
 
@@ -224,7 +201,7 @@ class Boldgrid_Framework_Title {
 
 		$post_meta = get_post_meta( $id, $this->configs['title']['hide'], true );
 		$global = $this->get_global();
-		$show = '1' === $post_meta || ( '' === $post_meta && true === $global );
+		$show = '1' === $post_meta || ( ( 'global' === $post_meta || '' === $post_meta ) && 'show' === $global );
 
 		return $show ? $title : '';
 	}

@@ -537,11 +537,35 @@ class BoldGrid {
 			$classes[] = 'has-sidebar sidebar-1';
 		}
 
-		// Add class if post title is hidden.
-		if ( $post && ( is_page() || is_single() ) ) {
-			$post_meta = get_post_meta( $post->ID );
-			if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) && isset( $post_meta['boldgrid_hide_page_title'] ) ) {
-				$classes[] = 'post-title-hidden';
+		// Add class for page and post titles being hidden.
+		if ( is_archive() || is_home() ) {
+			if ( 'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
+				$classes[] = 'page-header-hidden';
+			}
+		} else if ( $post ) {
+			if ( is_page() ) {
+				$post_meta = get_post_meta( $post->ID );
+				if ( isset( $post_meta['boldgrid_hide_page_title'] ) ) {
+					if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) ) {
+						$classes[] = 'page-header-hidden';
+					} else if ( 'global' === $post_meta['boldgrid_hide_page_title'][0] ) {
+						if ( 'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
+							$classes[] = 'page-header-hidden';
+						}
+					}
+				}
+			} else if ( is_single() ) {
+				$post_meta = get_post_meta( $post->ID );
+				if ( isset( $post_meta['boldgrid_hide_page_title'] ) ) {
+					if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) ) {
+						$classes[] = 'page-header-hidden';
+					} else if ( 'global' === $post_meta['boldgrid_hide_page_title'][0] ) {
+						if ( 'hide' === get_theme_mod( 'bgtfw_posts_title_display' ) &&
+							'none' !== get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
+								$classes[] = 'page-header-hidden';
+						}
+					}
+				}
 			}
 		}
 

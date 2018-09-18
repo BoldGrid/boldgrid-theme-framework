@@ -130,6 +130,27 @@ class BoldGrid_Framework_Starter_Content {
 	}
 
 	/**
+	 * Convert HTML closures into markup.
+	 *
+	 * This allows us to defer starter content processes until needed
+	 * instead of each page load.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  string $content Content.
+	 * @return array           Configuration.
+	 */
+	public function post_content_callbacks( $content ) {
+		foreach ( $content['posts'] as &$post ) {
+			if ( ! empty( $post['post_content'] ) && is_callable( $post['post_content'] ) ) {
+				$post['post_content'] = call_user_func( $post['post_content'] );
+			}
+		}
+
+		return $content;
+	}
+
+	/**
 	 * Declares theme support for starter content using the array of starter
 	 * content found in the BGTFW configurations.
 	 *
@@ -154,7 +175,7 @@ class BoldGrid_Framework_Starter_Content {
 	public function set_configs( $config ) {
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
 			if ( strpos( $index, 'sidebar_meta' ) !== false ) {
-				return $config;
+				continue;
 			}
 
 			$config = $this->set_menus( $config, $index, $control );
@@ -176,7 +197,7 @@ class BoldGrid_Framework_Starter_Content {
 	 * @return array $config Array of BGTFW configuration options.
 	 */
 	public function set_menus( $config, $index, $control ) {
-		if ( strpos( $control['settings'], 'bgtfw_menu_' ) !== false && strpos( $control['settings'], 'main' ) !== false ) {
+		if ( isset( $control['settings'] ) && strpos( $control['settings'], 'bgtfw_menu_' ) !== false && strpos( $control['settings'], 'main' ) !== false ) {
 
 			$menus = $config['menu']['locations'];
 
@@ -185,17 +206,34 @@ class BoldGrid_Framework_Starter_Content {
 				// Add controls based on main menu's.
 				$new_key = str_replace( 'main', $location, $control['settings'] );
 
-				if ( 'main' !== $location && ! isset( $this->configs['customizer']['controls'][ $new_key ] ) ) {
 
-					$config['customizer']['controls'][ $new_key ] = $control;
+				if ( 'main' !== $location ) {
+					$toggle_default = null;
 
-					// Update main to location in configs.
+					if ( isset( $config['customizer']['controls'][ $new_key ] ) ) {
+
+						// Check if a default has been set for the toggle control.
+						if ( strpos( $new_key, '_toggle' ) !== false && isset( $config['customizer']['controls'][ $new_key ]['default'] ) ) {
+							if ( true === $config['customizer']['controls'][ $new_key ]['default'] ) {
+								$toggle_default = true;
+							}
+						}
+
+						// Set the passed in configs before merging in main menu dynamic configs.
+						$config['customizer']['controls'][ $new_key ] = array_merge( $control, $config['customizer']['controls'][ $new_key ] );
+					} else {
+
+						// Set the defaults for this control to main menus.
+						$config['customizer']['controls'][ $new_key ] = $control;
+					}
+
+					// Update main menu config defaults to location config defaults.
 					array_walk_recursive( $config['customizer']['controls'][ $new_key ], function ( &$value ) use ( $location ) {
 						if ( is_string( $value ) ) {
 
 							// If used in CSS replace underscores with hyphens.
 							if ( strpos( $value, '#main' ) !== false ) {
-								$value = str_replace( 'main',str_replace( '_', '-', $location ), $value );
+								$value = str_replace( 'main', str_replace( '_', '-', $location ), $value );
 							} else {
 								$value = str_replace( 'main', $location, $value );
 							}
@@ -203,7 +241,7 @@ class BoldGrid_Framework_Starter_Content {
 					} );
 
 					// Only enable hamburgers on main menu unless otherwise explicitly set in configs.
-					if ( strpos( $new_key, '_toggle' ) !== false ) {
+					if ( strpos( $new_key, '_toggle' ) !== false && true !== $toggle_default ) {
 						$config['customizer']['controls'][ $new_key ]['default'] = false;
 					}
 				}
@@ -229,7 +267,7 @@ class BoldGrid_Framework_Starter_Content {
 			$this->default = $this->set_default( $config );
 		}
 
-		if ( 'bgtfw-palette-selector' === $control['type'] && strpos( $control['default'], ':' ) === false ) {
+		if ( isset( $control['type'] ) && 'bgtfw-palette-selector' === $control['type'] && isset( $control['default'] ) && strpos( $control['default'], ':' ) === false ) {
 
 			// Allow designers to set 'color-1' instead of needing to know the actual color for each control.
 			if ( preg_match( '/^color-([\d]|neutral)/', $control['default'], $color ) ) {
@@ -296,7 +334,7 @@ class BoldGrid_Framework_Starter_Content {
 
 		foreach ( $config['customizer']['controls'] as $index => $control ) {
 			if ( strpos( $index, 'sidebar_meta' ) !== false ) {
-				return;
+				continue;
 			}
 
 			$settings = $control['settings'];

@@ -1,3 +1,23 @@
+.entry-meta {
+	width: 100%;
+}
+.page-header {
+	padding-bottom: 0;
+}
+
+/* Link Color */
+.page-header-wrapper {
+	.page-title, .entry-title {
+		.link {
+			color: currentColor;
+			&, &:hover, &:focus {
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+/* Alignment */
 .page-title-above .page,
 .page-title-above .post,
 .page-title-above.blog .main,
@@ -29,7 +49,11 @@
 	padding-left: 15px;
 	padding-right: 15px;
 }
-
+.page-title-above.archive .page-header-wrapper.full-width .page-header .featured-imgage-header,
+.page-title-above.blog .page-header-wrapper.full-width .page-header .featured-imgage-header {
+	padding-left: 2.8rem;
+	padding-right: 2.8rem;
+}
 .page-title-above .page-header-wrapper.full-width .entry-header .featured-imgage-header {
 	width: auto;
 	padding-left: 2.8rem;
@@ -46,19 +70,14 @@
 	margin-bottom: 0;
 }
 
-.blog .page-header-wrapper,
-.archive .page-header-wrapper {
-	margin-top: -2.8rem;
-}
-
 .page-header-wrapper.container {
 	max-width: none !important;
 }
 
 .blog .page-header-wrapper.container,
 .archive .page-header-wrapper.container {
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: -30px;
+	margin-right: -30px;
 }
 
 .page-title-above .page-header-wrapper,
@@ -70,12 +89,9 @@
 	width: auto;
 }
 
-.page-title-above .page-header-wrapper.full-width .entry-header {
-	padding: 0 0 2.8rem 0;
-}
-
 /** Container in container. **/
 @media (min-width: 768px) {
+	.page-title-above .page-header-wrapper .featured-imgage-header.container,
 	.page-title-above .container .page-header-wrapper.container .entry-header,
 	.page-title-above .page-header-wrapper.full-width .entry-header .featured-imgage-header.container {
 		width: 750px !important;
@@ -85,6 +101,7 @@
 	}
 }
 @media (min-width: 992px) {
+	.page-title-above .page-header-wrapper .featured-imgage-header.container,
 	.page-title-above .container .page-header-wrapper.container .entry-header,
 	.page-title-above .page-header-wrapper.full-width .entry-header .featured-imgage-header.container {
 		width: 970px !important;
@@ -94,6 +111,7 @@
 	}
 }
 @media (min-width: 1200px) {
+	.page-title-above .page-header-wrapper .featured-imgage-header.container,
 	.page-title-above .container .page-header-wrapper.container .entry-header,
 	.page-title-above .page-header-wrapper.full-width .entry-header .featured-imgage-header.container {
 		width: 1170px !important;
@@ -111,6 +129,12 @@
 	align-content: flex-start;
 	padding-top: 15px;
 	max-width: 100%;
+}
+
+// Adjust known BG Editor elements to account for user spacing of the 15px wrapper.
+.entry-content .boldgrid-section:first-child,
+.entry-content .boldgrid-slider:first-child {
+	margin-top: -15px;
 }
 
 .has-sidebar.page-title-above .article-wrapper + aside {
@@ -153,4 +177,39 @@
 	margin-left: -2.8rem;
 	margin-right: -2.8rem;
 	width: calc(100% + 5.6rem);
+}
+
+.page-header-wrapper {
+	.page-header {
+		border-bottom: none;
+		.featured-imgage-header {
+			padding-top: 2.8rem;
+			padding-bottom: 2.8rem;
+		}
+	}
+	.entry-meta,
+	.entry-title,
+	.page-title {
+		margin: 0;
+		padding: 0;
+	}
+}
+.single .page-header-wrapper .entry-title .entry-meta,
+.archive .page-header-wrapper .page-title .taxonomy-description {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.single .page-header-wrapper .entry-title + .entry-meta,
+.archive .page-header-wrapper .page-title + .taxonomy-description {
+	margin: 0;
+	padding: 0;
+	padding-top: 1.4rem;
+	padding-bottom: 9px;
+}
+
+.page-header-hidden,
+.customizer-page-header-hidden {
+	.page-header-wrapper {
+		display: none;
+	}
 }

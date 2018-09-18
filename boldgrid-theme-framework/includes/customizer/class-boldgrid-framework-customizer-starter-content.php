@@ -173,6 +173,16 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 			wp_send_json_error( 'invalid_nonce' );
 		}
 
+		/**
+		 * Take action before any starter content is installed.
+		 *
+		 * At this point, we're in an AJAX call to install the starter content. Any required plugins
+		 * for the starter content have already been installed.
+		 *
+		 * @since 2.0.0
+		 */
+		do_action( 'bgtfw_pre_load_starter_content' );
+
 		$starter_content_applied = 0;
 		$wp_customize->import_theme_starter_content();
 		foreach ( $wp_customize->changeset_data() as $setting_id => $setting_params ) {

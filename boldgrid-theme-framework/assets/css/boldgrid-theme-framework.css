@@ -1955,6 +1955,10 @@ select[name="archive-dropdown"] {
   padding-bottom: 0;
 }
 
+.article-wrapper {
+  padding-top: 15px;
+}
+
 /* Link Color */
 .page-header-wrapper .page-title .link, .page-header-wrapper .entry-title .link {
   color: currentColor;
@@ -2094,7 +2098,6 @@ select[name="archive-dropdown"] {
   flex: 1 0 100%;
   -ms-flex-line-pack: start;
   align-content: flex-start;
-  padding-top: 15px;
   max-width: 100%;
 }
 

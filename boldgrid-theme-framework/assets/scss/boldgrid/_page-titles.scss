@@ -5,6 +5,10 @@
 	padding-bottom: 0;
 }
 
+.article-wrapper {
+	padding-top: 15px;
+}
+
 /* Link Color */
 .page-header-wrapper {
 	.page-title, .entry-title {
@@ -128,7 +132,6 @@
 	flex: 1 0 100%;
 	-ms-flex-line-pack: start;
 	align-content: flex-start;
-	padding-top: 15px;
 	max-width: 100%;
 }
 

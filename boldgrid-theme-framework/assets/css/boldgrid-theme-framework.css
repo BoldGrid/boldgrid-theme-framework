@@ -2039,7 +2039,10 @@ select[name="archive-dropdown"] {
   max-width: none !important;
 }
 
-.page-title-above .page-header-wrapper.container {
+.single .page-header-wrapper.container,
+.page .page-header-wrapper.container,
+.blog .page-header-wrapper.container,
+.archive .page-header-wrapper.container {
   margin-left: -30px;
   margin-right: -30px;
 }

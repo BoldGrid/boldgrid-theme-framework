@@ -64,6 +64,11 @@ select[name="archive-dropdown"] {
 	}
 }
 
+// Post and Page Builder widgets styles
 .bgc-single-article .read-more {
     margin-top: 2em;
+}
+
+.boldgrid-shortcode .bgc-postlist .bgc-single-article {
+	box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.05);
 }

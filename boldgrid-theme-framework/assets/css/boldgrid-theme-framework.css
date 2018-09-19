@@ -1287,6 +1287,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .site-title a {
   width: 100%;
   word-break: break-word;
+  font-style: normal;
 }
 
 [class*="color"].site-title a {
@@ -1305,6 +1306,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 .site-description {
   word-break: break-word;
   margin: 0;
+  font-style: normal;
 }
 
 /*--------------------------------------------------------------
@@ -1947,6 +1949,11 @@ select[name="archive-dropdown"] {
 
 .bgc-single-article .read-more {
   margin-top: 2em;
+}
+
+.boldgrid-shortcode .bgc-postlist .bgc-single-article {
+  -webkit-box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.05);
 }
 
 /*--------------------------------------------------------------

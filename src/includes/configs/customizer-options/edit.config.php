@@ -106,6 +106,27 @@ return array(
 				'postType' => array( 'post' ),
 				'objectType' => 'section',
 			),
+			// Post navigation links.
+			array(
+				'control' => 'bgtfw_pages_blog_posts_navigation_links',
+				'selector' => '.post-navigation',
+				'postType' => array( 'post' ),
+				'objectType' => 'section',
+			),
+			// Post category links.
+			array(
+				'control' => 'bgtfw_pages_blog_posts_cat_links',
+				'selector' => '.cat-links',
+				'postType' => array( 'post' ),
+				'objectType' => 'section',
+			),
+			// Post tag links.
+			array(
+				'control' => 'bgtfw_pages_blog_posts_tags_links',
+				'selector' => '.tags-links',
+				'postType' => array( 'post' ),
+				'objectType' => 'section',
+			),
 			array(
 				'control' => 'blogdescription',
 				'selector' => '.site-description',

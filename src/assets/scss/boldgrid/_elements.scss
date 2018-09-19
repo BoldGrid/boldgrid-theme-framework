@@ -19,13 +19,13 @@ body.custom-background {
 
 .site-content {
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
 	flex: 1 0 auto;
 }
 @media only screen and (min-width: 768px) {
 	.site-content {
 		flex-direction: row;
-		flex-wrap: wrap-reverse;
+		flex-wrap: wrap;
 	}
 }
 

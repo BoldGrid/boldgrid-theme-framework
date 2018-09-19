@@ -99,6 +99,13 @@ return array(
 				'postType' => array( 'post' ),
 				'objectType' => 'section',
 			),
+			// Article wrapper for posts.
+			array(
+				'control' => 'bgtfw_pages_blog_posts_container',
+				'selector' => '.article-wrapper',
+				'postType' => array( 'post' ),
+				'objectType' => 'section',
+			),
 			array(
 				'control' => 'blogdescription',
 				'selector' => '.site-description',

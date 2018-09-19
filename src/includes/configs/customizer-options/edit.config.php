@@ -68,15 +68,29 @@ return array(
 				'control' => 'hide_boldgrid_attribution',
 				'selector' => '.attribution-theme-mods',
 			),
+			// Entry header, contains title and meta data.
+			array(
+				'control' => 'bgtfw_global_page_titles',
+				'selector' => '.entry-header',
+				'postType' => array( 'page', 'post' ),
+				'objectType' => 'section',
+			),
 			array(
 				'control' => 'entry-content',
 				'selector' => '.entry-content',
 				'isParentColumn' => true,
 			),
+			// Entry title, for pages.
 			array(
-				'control' => 'entry-title',
+				'control' => 'bgtfw_pages_title_display',
 				'selector' => '.entry-title',
-				'postType' => array( 'page', 'post' ),
+				'postType' => array( 'page' ),
+			),
+			// Entry title, for posts.
+			array(
+				'control' => 'bgtfw_posts_title_display',
+				'selector' => '.entry-title',
+				'postType' => array( 'post' ),
 			),
 			array(
 				'control' => 'blogdescription',

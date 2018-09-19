@@ -92,6 +92,13 @@ return array(
 				'selector' => '.entry-title',
 				'postType' => array( 'post' ),
 			),
+			// Post entry meta.
+			array(
+				'control' => 'bgtfw_pages_blog_posts_meta',
+				'selector' => '.entry-meta',
+				'postType' => array( 'post' ),
+				'objectType' => 'section',
+			),
 			array(
 				'control' => 'blogdescription',
 				'selector' => '.site-description',

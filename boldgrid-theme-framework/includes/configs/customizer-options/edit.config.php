@@ -71,7 +71,7 @@ return array(
 			array(
 				'control' => 'entry-content',
 				'selector' => '.entry-content',
-				'parentColumn' => 'main',
+				'isParentColumn' => true,
 			),
 			array(
 				'control' => 'entry-title',

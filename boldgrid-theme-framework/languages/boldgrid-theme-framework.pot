@@ -247,6 +247,98 @@ msgstr ""
 msgid "Registration"
 msgstr ""
 
+#: src/includes/configs/customizer-options/edit.config.php:57, src/includes/configs/customizer/sections.config.php:84
+msgid "Site Title"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:63
+msgid "Logo"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:68
+msgid "Contact Blocks"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:73
+msgid "Attribution"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:81
+msgid "Title Design"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:87
+msgid "Page Content"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:94
+msgid "Page Title Display"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:101
+msgid "Post Title Display"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:109, src/includes/configs/customizer-options/edit.config.php:156, src/includes/configs/customizer/sections.config.php:222
+msgid "Post Meta"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:117, src/includes/configs/customizer-options/edit.config.php:125
+msgid "Page Container"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:133
+msgid "Navigation Links"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:141
+msgid "Category Links"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:149, src/includes/configs/customizer-options/edit.config.php:170
+msgid "Tag Links"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:163
+msgid "Read More"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:177
+msgid "Categorey Links"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:184
+msgid "Comments"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:191
+msgid "Page Title"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:197, src/includes/configs/customizer-options/edit.config.php:203, src/includes/configs/customizer/controls.config.php:1715, src/includes/configs/customizer/controls.config.php:1791, src/includes/configs/customizer/controls.config.php:2227, src/includes/configs/customizer/controls.config.php:2561, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:74, src/includes/customizer/class-boldgrid-framework-customizer.php:204
+msgid "Background Color"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:210, src/includes/configs/customizer/sections.config.php:70, src/includes/configs/customizer/sections.config.php:112
+msgid "Advanced"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:216, src/includes/configs/customizer/sections.config.php:91
+msgid "Tagline"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:223
+msgid "Header Layout"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:230, src/includes/configs/customizer/panels.config.php:34
+msgid "Footer"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:237, src/includes/configs/customizer/panels.config.php:44
+msgid "Blog Page"
+msgstr ""
+
 #: src/includes/configs/customizer/controls.config.php:32
 msgid "JS code"
 msgstr ""
@@ -469,10 +561,6 @@ msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1639
 msgid "Header Width"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1715, src/includes/configs/customizer/controls.config.php:1791, src/includes/configs/customizer/controls.config.php:2227, src/includes/configs/customizer/controls.config.php:2561, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:74, src/includes/customizer/class-boldgrid-framework-customizer.php:204
-msgid "Background Color"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1806
@@ -975,16 +1063,8 @@ msgstr ""
 msgid "Site Content"
 msgstr ""
 
-#: src/includes/configs/customizer/panels.config.php:34
-msgid "Footer"
-msgstr ""
-
 #: src/includes/configs/customizer/panels.config.php:39, src/includes/configs/customizer/sections.config.php:15
 msgid "Blog"
-msgstr ""
-
-#: src/includes/configs/customizer/panels.config.php:44
-msgid "Blog Page"
 msgstr ""
 
 #: src/includes/configs/customizer/panels.config.php:45
@@ -1047,10 +1127,6 @@ msgstr ""
 msgid "Adjust the widget areas for your footer below, or continue to the widgets section to add widgets to them."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:70, src/includes/configs/customizer/sections.config.php:112
-msgid "Advanced"
-msgstr ""
-
 #: src/includes/configs/customizer/sections.config.php:71
 msgid "Advanced settings for the appearance of your site's footer."
 msgstr ""
@@ -1059,16 +1135,8 @@ msgstr ""
 msgid "Manage the layout of your site's header."
 msgstr ""
 
-#: src/includes/configs/customizer/sections.config.php:84
-msgid "Site Title"
-msgstr ""
-
 #: src/includes/configs/customizer/sections.config.php:86
 msgid "Change your site's title and it's appearance."
-msgstr ""
-
-#: src/includes/configs/customizer/sections.config.php:91
-msgid "Tagline"
 msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:93
@@ -1117,10 +1185,6 @@ msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:161
 msgid "Background Colors"
-msgstr ""
-
-#: src/includes/configs/customizer/sections.config.php:222
-msgid "Post Meta"
 msgstr ""
 
 #: src/includes/configs/customizer/sections.config.php:244, src/includes/configs/customizer/sections.config.php:288, src/includes/configs/customizer/sections.config.php:331, src/includes/customizer/class-boldgrid-framework-customizer.php:138

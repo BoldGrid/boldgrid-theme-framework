@@ -102,7 +102,7 @@ return array(
 			// Article wrapper for posts.
 			array(
 				'control' => 'bgtfw_pages_blog_posts_container',
-				'selector' => '.article-wrapper',
+				'selector' => '.single-post .article-wrapper',
 				'postType' => array( 'post' ),
 				'objectType' => 'section',
 			),
@@ -125,6 +125,58 @@ return array(
 				'control' => 'bgtfw_pages_blog_posts_tags_links',
 				'selector' => '.tags-links',
 				'postType' => array( 'post' ),
+				'objectType' => 'section',
+			),
+			// Posts page - individual post - post meta.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_post_meta',
+				'selector' => '.blog .main .entry-meta:first, .archive .main .entry-meta:first',
+				'objectType' => 'section',
+			),
+			// Posts page - individual post - read more.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_read_more',
+				'selector' => '.blog .main .read-more:first, .archive .main .read-more:first',
+				'objectType' => 'section',
+			),
+			// Posts page - individual post - tags.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_tags_links',
+				'selector' => '.blog .main .tags-links:first, .archive .main .tags-links:first',
+				'objectType' => 'section',
+			),
+			// Posts page - individual post - categories.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_cat_links',
+				'selector' => '.blog .main .cat-links:first, .archive .main .cat-links:first',
+				'objectType' => 'section',
+			),
+			// Posts page - individual post - comments.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_comment_links',
+				'selector' => '.blog .main .comments-link:first, .archive .main .comments-link:first',
+				'objectType' => 'section',
+			),
+			// Posts page - individual post - title.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_titles',
+				'selector' => '.blog .main .entry-title:first, .archive .main .entry-title:first',
+				'objectType' => 'section',
+			),
+			// Posts page - individual post - entry header.
+			array(
+				'control' => 'bgtfw_blog_header_background_color',
+				'selector' => '.blog .main .entry-header:first, .archive .main .entry-header:first',
+			),
+			// Posts page - individual post - entry content.
+			array(
+				'control' => 'bgtfw_blog_post_background_color',
+				'selector' => '.blog .main .entry-content:first, .archive .main .entry-content:first',
+			),
+			// Posts page - individual post - entry content.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_advanced',
+				'selector' => '.blog .main article:first, .archive .main article:first',
 				'objectType' => 'section',
 			),
 			array(

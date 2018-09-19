@@ -116,9 +116,10 @@ class Boldgrid_Framework_Customizer_Edit {
 				array(
 					'editPostLink'	=> $edit_post_link,
 					'goThereNow'	=> __( 'Go there now', 'bgtfw' ),
-					'menu'			=> __( 'Menu', 'bgtfw' ),
+					'menu'			=> esc_attr__( 'Menu', 'bgtfw' ),
 					'config'		=> $this->configs['customizer-options']['edit'],
 					'postType'      => get_post_type(),
+					'widgetArea'    => esc_attr__( 'Widget Area' ),
 				)
 			);
 

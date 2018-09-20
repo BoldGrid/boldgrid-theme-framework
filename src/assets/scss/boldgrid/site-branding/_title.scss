@@ -8,6 +8,7 @@
 	a {
 		width: 100%;
 		word-break: break-word;
+		font-style: normal;
 
 		// Disable any link colors when site title has color.
 		@at-root #{selector-append('[class*="color"]', &)} {

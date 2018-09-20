@@ -8,5 +8,9 @@
 		&bgtfw_body_link_design > h3:before {
 			content: "\f103";
 		}
+		&bgtfw_global_page_titles > h3:before {
+			@include bgtfwIcons;
+			content: "\e927";
+		}
 	}
 }

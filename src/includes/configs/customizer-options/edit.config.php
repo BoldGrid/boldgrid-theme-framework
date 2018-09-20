@@ -54,52 +54,200 @@ return array(
 				'selector' => '.site-title a',
 				'parentColumn' => '.site-title',
 				'requireText' => true,
+				'title' => esc_attr__( 'Site Title', 'bgtfw' ),
 			),
 			array(
 				'control' => 'custom_logo',
 				'selector' => '.custom-logo-link',
 				'isParentColumn' => true,
+				'title' => esc_attr__( 'Logo', 'bgtfw' ),
 			),
 			array(
 				'control' => 'boldgrid_contact_details_setting',
 				'selector' => '.bgtfw.contact-block',
+				'title' => esc_attr__( 'Contact Blocks', 'bgtfw' ),
 			),
 			array(
 				'control' => 'hide_boldgrid_attribution',
 				'selector' => '.attribution-theme-mods',
+				'title' => esc_attr__( 'Attribution', 'bgtfw' ),
+			),
+			// Entry header, contains title and meta data.
+			array(
+				'control' => 'bgtfw_global_page_titles',
+				'selector' => '.page .entry-header, .single .entry-header, .blog .page-header, .archive .page-header',
+				'postType' => array( 'page', 'post' ),
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Title Design', 'bgtfw' ),
+			),
+
+			/*
+			 * The next two entries are for page and post content. If the user clicks these edit buttons,
+			 * they will be prompted to go to the editor.
+			 */
+			array(
+				'control' => 'entry-content',
+				'selector' => '.entry-content',
+				'isParentColumn' => true,
+				'title' => esc_attr__( 'Page Content', 'bgtfw' ),
+				'postType' => array( 'page' ),
 			),
 			array(
 				'control' => 'entry-content',
 				'selector' => '.entry-content',
-				'parentColumn' => 'main',
+				'isParentColumn' => true,
+				'title' => esc_attr__( 'Post Content', 'bgtfw' ),
+				'postType' => array( 'post' ),
 			),
+
+			// Entry title, for pages.
 			array(
-				'control' => 'entry-title',
-				'selector' => '.entry-title',
-				'postType' => array( 'page', 'post' ),
+				'control' => 'bgtfw_pages_title_display',
+				'selector' => '.page .entry-title, .blog .page-title',
+				'title' => esc_attr__( 'Page Title Display', 'bgtfw' ),
+			),
+			// Entry title, for single post.
+			array(
+				'control' => 'bgtfw_posts_title_display',
+				'selector' => '.single .entry-title',
+				'postType' => array( 'post' ),
+				'title' => esc_attr__( 'Post Title Display', 'bgtfw' ),
+			),
+			// Post entry meta.
+			array(
+				'control' => 'bgtfw_pages_blog_posts_meta',
+				'selector' => '.single .entry-meta',
+				'postType' => array( 'post' ),
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Post Meta', 'bgtfw' ),
+			),
+			// Article wrapper for posts.
+			array(
+				'control' => 'bgtfw_pages_blog_posts_container',
+				'selector' => '.single article',
+				'postType' => array( 'post' ),
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Post Container', 'bgtfw' ),
+			),
+			// Article wrapper for pages.
+			array(
+				'control' => 'bgtfw_layout_page_container',
+				'selector' => '.page article',
+				'postType' => array( 'page' ),
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Page Container', 'bgtfw' ),
+			),
+			// Post navigation links.
+			array(
+				'control' => 'bgtfw_pages_blog_posts_navigation_links',
+				'selector' => '.post-navigation',
+				'postType' => array( 'post' ),
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Navigation Links', 'bgtfw' ),
+			),
+			// Post category links.
+			array(
+				'control' => 'bgtfw_pages_blog_posts_cat_links',
+				'selector' => '.single .cat-links',
+				'postType' => array( 'post' ),
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Category Links', 'bgtfw' ),
+			),
+			// Post tag links.
+			array(
+				'control' => 'bgtfw_pages_blog_posts_tags_links',
+				'selector' => '.single .tags-links',
+				'postType' => array( 'post' ),
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Tag Links', 'bgtfw' ),
+			),
+			// Posts page - individual post - post meta.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_post_meta',
+				'selector' => '.blog .main .entry-meta, .archive .main .entry-meta',
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Post Meta', 'bgtfw' ),
+			),
+			// Posts page - individual post - read more.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_read_more',
+				'selector' => '.blog .main .read-more:first, .archive .main .read-more:first',
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Read More', 'bgtfw' ),
+			),
+			// Posts page - individual post - tags.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_tags_links',
+				'selector' => '.blog .main .tags-links:first, .archive .main .tags-links:first',
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Tag Links', 'bgtfw' ),
+			),
+			// Posts page - individual post - categories.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_cat_links',
+				'selector' => '.blog .main .cat-links:first, .archive .main .cat-links:first',
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Category Links', 'bgtfw' ),
+			),
+			// Posts page - individual post - comments.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_comment_links',
+				'selector' => '.blog .main .comments-link:first, .archive .main .comments-link:first',
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Comments', 'bgtfw' ),
+			),
+			// Posts page - individual post - title.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_titles',
+				'selector' => '.blog .main .entry-title:first, .archive .main .entry-title:first',
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Post Title Design', 'bgtfw' ),
+			),
+			// Posts page - individual post - entry header.
+			array(
+				'control' => 'bgtfw_blog_header_background_color',
+				'selector' => '.blog .main .entry-header:first, .archive .main .entry-header:first',
+				'title' => esc_attr__( 'Background Color', 'bgtfw' ),
+			),
+			// Posts page - individual post - entry content.
+			array(
+				'control' => 'bgtfw_blog_post_background_color',
+				'selector' => '.blog .main .entry-content, .archive .main .entry-content',
+				'title' => esc_attr__( 'Background Color', 'bgtfw' ),
+			),
+			// Posts page - individual post - entry content.
+			array(
+				'control' => 'bgtfw_pages_blog_blog_page_advanced',
+				'selector' => '.blog .main article, .archive .main article',
+				'objectType' => 'section',
+				'title' => esc_attr__( 'Advanced', 'bgtfw' ),
 			),
 			array(
 				'control' => 'blogdescription',
 				'selector' => '.site-description',
 				'isParentColumn' => true,
+				'title' => esc_attr__( 'Tagline', 'bgtfw' ),
 			),
 			array(
 				'control' => 'bgtfw_header_layout',
 				'selector' => '#masthead',
 				'isParentColumn' => true,
 				'objectType' => 'section',
+				'title' => esc_attr__( 'Header Layout', 'bgtfw' ),
 			),
 			array(
 				'control' => 'boldgrid_footer_panel',
 				'selector' => '#colophon',
 				'isParentColumn' => true,
 				'objectType' => 'section',
+				'title' => esc_attr__( 'Footer', 'bgtfw' ),
 			),
 			array(
 				'control' => 'bgtfw_blog_blog_page_panel',
 				'selector' => '.blog .main, .archive .main',
 				'parentColumn' => 'main',
 				'objectType' => 'panel',
+				'title' => esc_attr__( 'Blog Page', 'bgtfw' ),
 			),
 		),
 	),

@@ -15,7 +15,13 @@
 }
 
 &[class*="col"] {
-	main > article {
+	&.page-title-above {
+		.article-wrapper {
+			display: inline-flex;
+			flex-wrap: wrap;
+		}
+	}
+	main article {
 		margin-left: .5em;
 		margin-right: .5em;
 		display: flex;
@@ -35,22 +41,22 @@
 		}
 	}
 }
-&.col1 main > article {
+&.col1 main article {
 	width: calc( ( 100% / 1 ) - 1em );
 }
-&.col2 main > article {
+&.col2 main article {
 	width: calc( ( 100% / 2 ) - 1em );
 }
-&.col3 main > article {
+&.col3 main article {
 	width: calc( ( 100% / 3 ) - 1em );
 }
-&.col4 main > article {
+&.col4 main article {
 	width: calc( ( 100% / 4 ) - 1em );
 }
-&.col5 main > article {
+&.col5 main article {
 	width: calc( ( 100% / 5 ) - 1em );
 }
-&.col6 main > article {
+&.col6 main article {
 	width: calc( ( 100% / 6 ) - 1em );
 }
 
@@ -150,12 +156,12 @@ main {
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
-	&[class*="col"]:not(.col1) main > article.post:not(.sticky) {
+	&[class*="col"]:not(.col1) main article.post:not(.sticky) {
 		width: calc((100% / 2 - .5vw) - 2vw);
 	}
 }
 @media only screen and (max-width : 480px) {
-	&[class*="col"] main > article.post {
+	&[class*="col"] main article.post {
 		width: calc((100% / 1 - .5vw) - 2vw);
 	}
 }

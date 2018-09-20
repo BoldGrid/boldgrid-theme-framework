@@ -227,7 +227,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				}
 
 				// Ensure the element exists before adding a button for it.
-				if ( 1 === $( button.selector ).length ) {
+				if ( 0 !== $( button.selector ).length ) {
 					self.addButton( button );
 				}
 			} );
@@ -239,7 +239,8 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					control : widgetArea.id,
 					selector : '#' + widgetArea.idSplit[1] + '.sidebar',
 					objectType: 'section',
-					isParentColumn: true
+					isParentColumn: true,
+					title : self.i18n.widgetArea
 				};
 
 				self.addButton( button );
@@ -262,7 +263,8 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					button = {
 						type : 'nav_menu',
 						control : menu.setting._value,
-						selector : '#' + menuId
+						selector : '#' + menuId,
+						title: self.i18n.menu
 					};
 
 					self.addButton( button );
@@ -1375,6 +1377,11 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					'data-moves': 0,
 					'data-fixed-ancestor': dataFixedAncestor
 				} );
+			
+			// If this button has a title, add it.
+			if( config.title ) {
+				$button.prop( 'title', config.title );
+			}
 
 			if( config.objectType ) {
 				$button.attr( 'data-object-type', config.objectType );

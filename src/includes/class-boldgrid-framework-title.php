@@ -124,7 +124,7 @@ class Boldgrid_Framework_Title {
 		?>
 
 		<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-page-title">
-			<?php esc_html_e( $title ); ?>: <span class="value-displayed">...</span>
+			<?php echo esc_html( $title ); ?>: <span class="value-displayed">...</span>
 			<a class="edit" href="">
 				<span aria-hidden="true"><?php esc_html_e( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo esc_html( $title ); ?></span>
 			</a>

@@ -510,7 +510,15 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   padding-top: 15px;
 }
 
-.blog[class*="col"] main > article {
+.blog[class*="col"].page-title-above .article-wrapper {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.blog[class*="col"] main article {
   margin-left: .5em;
   margin-right: .5em;
   display: -webkit-box;
@@ -522,7 +530,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
       align-content: flex-start;
 }
 
-.blog[class*="col"] main > article .entry-content {
+.blog[class*="col"] main article .entry-content {
   display: block;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -536,27 +544,27 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   width: 100%;
 }
 
-.blog.col1 main > article {
+.blog.col1 main article {
   width: calc( ( 100% / 1 ) - 1em);
 }
 
-.blog.col2 main > article {
+.blog.col2 main article {
   width: calc( ( 100% / 2 ) - 1em);
 }
 
-.blog.col3 main > article {
+.blog.col3 main article {
   width: calc( ( 100% / 3 ) - 1em);
 }
 
-.blog.col4 main > article {
+.blog.col4 main article {
   width: calc( ( 100% / 4 ) - 1em);
 }
 
-.blog.col5 main > article {
+.blog.col5 main article {
   width: calc( ( 100% / 5 ) - 1em);
 }
 
-.blog.col6 main > article {
+.blog.col6 main article {
   width: calc( ( 100% / 6 ) - 1em);
 }
 
@@ -715,13 +723,13 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 @media only screen and (max-width: 768px) {
-  .blog[class*="col"]:not(.col1) main > article.post:not(.sticky) {
+  .blog[class*="col"]:not(.col1) main article.post:not(.sticky) {
     width: calc((100% / 2 - .5vw) - 2vw);
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .blog[class*="col"] main > article.post {
+  .blog[class*="col"] main article.post {
     width: calc((100% / 1 - .5vw) - 2vw);
   }
 }
@@ -763,7 +771,15 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   padding-top: 15px;
 }
 
-.archive[class*="col"] main > article {
+.archive[class*="col"].page-title-above .article-wrapper {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.archive[class*="col"] main article {
   margin-left: .5em;
   margin-right: .5em;
   display: -webkit-box;
@@ -775,7 +791,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
       align-content: flex-start;
 }
 
-.archive[class*="col"] main > article .entry-content {
+.archive[class*="col"] main article .entry-content {
   display: block;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -789,27 +805,27 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   width: 100%;
 }
 
-.archive.col1 main > article {
+.archive.col1 main article {
   width: calc( ( 100% / 1 ) - 1em);
 }
 
-.archive.col2 main > article {
+.archive.col2 main article {
   width: calc( ( 100% / 2 ) - 1em);
 }
 
-.archive.col3 main > article {
+.archive.col3 main article {
   width: calc( ( 100% / 3 ) - 1em);
 }
 
-.archive.col4 main > article {
+.archive.col4 main article {
   width: calc( ( 100% / 4 ) - 1em);
 }
 
-.archive.col5 main > article {
+.archive.col5 main article {
   width: calc( ( 100% / 5 ) - 1em);
 }
 
-.archive.col6 main > article {
+.archive.col6 main article {
   width: calc( ( 100% / 6 ) - 1em);
 }
 
@@ -968,13 +984,13 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 @media only screen and (max-width: 768px) {
-  .archive[class*="col"]:not(.col1) main > article.post:not(.sticky) {
+  .archive[class*="col"]:not(.col1) main article.post:not(.sticky) {
     width: calc((100% / 2 - .5vw) - 2vw);
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .archive[class*="col"] main > article.post {
+  .archive[class*="col"] main article.post {
     width: calc((100% / 1 - .5vw) - 2vw);
   }
 }

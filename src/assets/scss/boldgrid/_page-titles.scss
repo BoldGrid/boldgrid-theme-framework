@@ -159,7 +159,7 @@
 
 // Adjust known BG Editor elements to account for user spacing of the 15px wrapper.
 .entry-content .boldgrid-section:first-child,
-.entry-content .boldgrid-slider:first-child {
+.entry-content .boldgrid-section-wrap:first-child {
 	margin-top: -15px;
 }
 

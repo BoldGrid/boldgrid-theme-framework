@@ -34,8 +34,8 @@
 }
 
 // Alignment.
-.page-title-above .page,
-.page-title-above .post,
+.page-title-above.page .page,
+.page-title-above.single .post,
 .page-title-above.blog .main,
 .page-title-above.archive .main {
 	display: flex;
@@ -43,14 +43,14 @@
 }
 
 // Sidebar Arrangement.
-.page-title-above.right-sidebar .page,
-.page-title-above.right-sidebar .post,
+.page-title-above.page.right-sidebar .page,
+.page-title-above.single.right-sidebar .post,
 .page-title-above.blog.right-sidebar .main,
 .page-title-above.archive.right-sidebar .main {
 	flex-direction: row;
 }
-.page-title-above.left-sidebar .page,
-.page-title-above.left-sidebar .post,
+.page-title-above.page.left-sidebar .page,
+.page-title-above.single.left-sidebar .post,
 .page-title-above.blog.left-sidebar .main,
 .page-title-above.archive.left-sidebar .main {
 	flex-direction: row-reverse;

@@ -267,75 +267,79 @@ msgstr ""
 msgid "Title Design"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:87
+#: src/includes/configs/customizer-options/edit.config.php:92
 msgid "Page Content"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:94
+#: src/includes/configs/customizer-options/edit.config.php:99, src/includes/configs/customizer/controls.config.php:3152
+msgid "Post Content"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:107
 msgid "Page Title Display"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:101
+#: src/includes/configs/customizer-options/edit.config.php:114
 msgid "Post Title Display"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:109, src/includes/configs/customizer-options/edit.config.php:156, src/includes/configs/customizer/sections.config.php:222
+#: src/includes/configs/customizer-options/edit.config.php:122, src/includes/configs/customizer-options/edit.config.php:169, src/includes/configs/customizer/sections.config.php:222
 msgid "Post Meta"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:117, src/includes/configs/customizer-options/edit.config.php:125
+#: src/includes/configs/customizer-options/edit.config.php:130
+msgid "Post Container"
+msgstr ""
+
+#: src/includes/configs/customizer-options/edit.config.php:138
 msgid "Page Container"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:133
+#: src/includes/configs/customizer-options/edit.config.php:146
 msgid "Navigation Links"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:141
+#: src/includes/configs/customizer-options/edit.config.php:154, src/includes/configs/customizer-options/edit.config.php:190
 msgid "Category Links"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:149, src/includes/configs/customizer-options/edit.config.php:170
+#: src/includes/configs/customizer-options/edit.config.php:162, src/includes/configs/customizer-options/edit.config.php:183
 msgid "Tag Links"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:163
+#: src/includes/configs/customizer-options/edit.config.php:176
 msgid "Read More"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:177
-msgid "Categorey Links"
-msgstr ""
-
-#: src/includes/configs/customizer-options/edit.config.php:184
+#: src/includes/configs/customizer-options/edit.config.php:197
 msgid "Comments"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:191
-msgid "Page Title"
+#: src/includes/configs/customizer-options/edit.config.php:204
+msgid "Post Title Design"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:197, src/includes/configs/customizer-options/edit.config.php:203, src/includes/configs/customizer/controls.config.php:1715, src/includes/configs/customizer/controls.config.php:1791, src/includes/configs/customizer/controls.config.php:2227, src/includes/configs/customizer/controls.config.php:2561, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:74, src/includes/customizer/class-boldgrid-framework-customizer.php:204
+#: src/includes/configs/customizer-options/edit.config.php:210, src/includes/configs/customizer-options/edit.config.php:216, src/includes/configs/customizer/controls.config.php:1715, src/includes/configs/customizer/controls.config.php:1791, src/includes/configs/customizer/controls.config.php:2227, src/includes/configs/customizer/controls.config.php:2561, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:74, src/includes/customizer/class-boldgrid-framework-customizer.php:204
 msgid "Background Color"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:210, src/includes/configs/customizer/sections.config.php:70, src/includes/configs/customizer/sections.config.php:112
+#: src/includes/configs/customizer-options/edit.config.php:223, src/includes/configs/customizer/sections.config.php:70, src/includes/configs/customizer/sections.config.php:112
 msgid "Advanced"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:216, src/includes/configs/customizer/sections.config.php:91
+#: src/includes/configs/customizer-options/edit.config.php:229, src/includes/configs/customizer/sections.config.php:91
 msgid "Tagline"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:223
+#: src/includes/configs/customizer-options/edit.config.php:236
 msgid "Header Layout"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:230, src/includes/configs/customizer/panels.config.php:34
+#: src/includes/configs/customizer-options/edit.config.php:243, src/includes/configs/customizer/panels.config.php:34
 msgid "Footer"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:237, src/includes/configs/customizer/panels.config.php:44
+#: src/includes/configs/customizer-options/edit.config.php:250, src/includes/configs/customizer/panels.config.php:44
 msgid "Blog Page"
 msgstr ""
 
@@ -973,10 +977,6 @@ msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:3137
 msgid "Post Header"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:3152
-msgid "Post Content"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:3717

@@ -2151,7 +2151,7 @@ select[name="archive-dropdown"] {
 }
 
 .entry-content .boldgrid-section:first-child,
-.entry-content .boldgrid-slider:first-child {
+.entry-content .boldgrid-section-wrap:first-child {
   margin-top: -15px;
 }
 

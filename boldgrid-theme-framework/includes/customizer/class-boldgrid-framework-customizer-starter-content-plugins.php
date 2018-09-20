@@ -258,6 +258,9 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 			return;
 		}
 
-		tgmpa( $this->configs['starter-content']['plugins'], $this->configs['tgm']['configs'] );
+		$configs = $this->configs['tgm']['configs'];
+		$configs['is_automatic'] = false;
+
+		tgmpa( $this->configs['starter-content']['plugins'], $configs );
 	}
 }

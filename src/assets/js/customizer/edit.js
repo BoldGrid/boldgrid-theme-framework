@@ -227,7 +227,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				}
 
 				// Ensure the element exists before adding a button for it.
-				if ( 1 === $( button.selector ).length ) {
+				if ( 0 !== $( button.selector ).length ) {
 					self.addButton( button );
 				}
 			} );

@@ -2094,15 +2094,15 @@ msgstr ""
 msgid "Would you like to exit the Customizer and access the Starter Content in your Dashboard?"
 msgstr ""
 
-#: src/includes/partials/starter-content.php:35, src/includes/partials/welcome.php:193, src/includes/partials/welcome.php:225
+#: src/includes/partials/starter-content.php:38, src/includes/partials/welcome.php:193, src/includes/partials/welcome.php:225
 msgid "Install"
 msgstr ""
 
-#: src/includes/partials/starter-content.php:46
+#: src/includes/partials/starter-content.php:49
 msgid "Unable to install Starter Content."
 msgstr ""
 
-#: src/includes/partials/starter-content.php:50
+#: src/includes/partials/starter-content.php:53
 msgid "An unknown error occurred when trying to install this Starter Content's required plugins."
 msgstr ""
 

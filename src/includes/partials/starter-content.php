@@ -29,8 +29,11 @@ wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-activate' );
 
 				<div class="welcome-panel-column-container two-col">
 					<div class="welcome-panel-column">
-						<h2><strong>Bold</strong>Fresh</h2>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+						<h2><strong>Bold</strong>Business</h2>
+						<p>
+							We created this default starter content set to show off the power and flexibility of BoldGrid Crio.
+							This set is a design for a business site. All standard and Premium functionality is compatible with this starter content.
+						</p>
 						<p>
 							<input class="button button-primary button-hero" type="submit" value="<?php esc_attr_e( 'Install', 'bgtfw' ); ?>" />
 							<span class="spinner"></span>

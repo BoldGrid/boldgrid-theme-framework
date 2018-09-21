@@ -40,18 +40,22 @@ export class LinkPreview {
 			let prefixes = this.prefixes;
 			for ( let prefix of prefixes ) {
 				this.selectors[ prefix ] = this.getSelectors( prefix );
-				api(
-					`${prefix}_link_color_display`,
+
+				let controls = [
 					`${prefix}_link_color`,
 					`${prefix}_link_color_hover`,
 					`${prefix}_link_decoration`,
-					`${prefix}_link_decoration_hover`,
-					( ...args ) => {
-						args.map( control => {
-							control.bind( () => this.updateStyles( prefix ) );
-						} );
-					}
-				);
+					`${prefix}_link_decoration_hover`
+				];
+
+				// Body links don't have a _link_color_display option.
+				if ( 'bgtfw_body' !== prefix ) {
+					controls.push( `${prefix}_link_color_display` );
+				}
+
+				api( ...controls, ( ...args ) => {
+					args.map( control => control.bind( () => this.updateStyles( prefix ) ) );
+				} );
 			}
 		} );
 	}
@@ -79,7 +83,7 @@ export class LinkPreview {
 	 */
 	updateStyles( prefix ) {
 		let css = '';
-		if ( ! api( `${prefix}_link_color_display` ) || 'inherit' !== api( `${prefix}_link_color_display` )() ) {
+		if ( false === _.isFunction( api( `${prefix}_link_color_display` ) ) || 'inherit' !== api( `${prefix}_link_color_display` )() ) {
 			let linkColor = this._getColor( `${prefix}_link_color` ),
 				linkColorHover = api( `${prefix}_link_color_hover` )() || 0,
 				decoration = this._getDecoration( `${prefix}_link_decoration` ),

@@ -34,12 +34,13 @@ class Boldgrid_Framework_Customizer_Widget_Areas {
 	 */
 	public function widget_row( $prefix, $columns = null ) {
 		if ( is_null( $columns ) ) {
-			$columns = get_theme_mod( "boldgrid_{$prefix}_widgets", 0 );
+			$columns = get_theme_mod( "boldgrid_{$prefix}_widgets" );
 		}
 
 		if ( $columns > 0 ) {
+			$container = false !== get_theme_mod( "{$prefix}_widgets_container" ) ? get_theme_mod( "{$prefix}_widgets_container" ) : '';
 			?>
-				<div id="<?php echo esc_attr( $prefix ); ?>-widget-area" class="bgtfw-widget-row <?php echo get_theme_mod( "{$prefix}_widgets_container", '' ) ?>">
+				<div id="<?php echo esc_attr( $prefix ); ?>-widget-area" class="bgtfw-widget-row <?php echo esc_attr( $container ); ?>">
 					<?php
 						for ( $i = 1; $i <= $columns; $i++ ) {
 							bgtfw_widget( "{$prefix}-{$i}", true );

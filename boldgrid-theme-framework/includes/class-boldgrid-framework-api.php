@@ -1071,4 +1071,33 @@ class BoldGrid {
 		$container = new Boldgrid_Framework_Container( $location );
 		return $container->classes;
 	}
+
+	/**
+	 * Set the order for blog posts and archive pages by default.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param WP_Query $query The WP_Query instance.
+	 */
+	public function set_main_query( WP_Query $query ) {
+		if ( ( $query->is_archive() || $query->is_home() ) && $query->is_main_query() ) {
+			$query->set( 'orderby', 'date' );
+			$query->set( 'order', 'desc' );
+		}
+
+		return $query;
+	}
+
+	/**
+	 * Make sure that the posts_where filter will be applied.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $args WP_Query args.
+	 */
+	public function set_recent_posts_query( $args ) {
+		$args['orderby'] = 'date';
+		$args['order'] = 'desc';
+		return $args;
+	}
 }

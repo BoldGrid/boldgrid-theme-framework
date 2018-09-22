@@ -391,8 +391,10 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'boldgrid_footer_before', $boldgrid_theme, 'boldgrid_sticky_bottom', 15 );
 
 		// Additional theme functionality.
-		$this->loader->add_action( 'wp',                            $boldgrid_theme,   'setup_author' );
-		$this->loader->add_filter( 'body_class',                    $boldgrid_theme,   'body_classes' );
+		$this->loader->add_action( 'wp', $boldgrid_theme, 'setup_author' );
+		$this->loader->add_action( 'pre_get_posts', $boldgrid_theme, 'set_main_query' );
+		$this->loader->add_filter( 'widget_posts_args', $boldgrid_theme, 'set_recent_posts_query' );
+		$this->loader->add_filter( 'body_class', $boldgrid_theme, 'body_classes' );
 		$this->loader->add_filter( 'post_class', $boldgrid_theme, 'post_class' );
 
 		$this->loader->add_filter( 'bgtfw_entry_header_classes', $boldgrid_theme, 'entry_header_classes' );

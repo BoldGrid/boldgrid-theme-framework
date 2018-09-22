@@ -58,6 +58,7 @@ if ( ! function_exists( 'boldgrid_posted_on' ) ) :
  * Prints HTML with meta information for the current post-date/time and author.
  */
 function boldgrid_posted_on() {
+	global $post;
 
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
@@ -77,7 +78,7 @@ function boldgrid_posted_on() {
 	if ( 'timeago' === $format ) {
 		$posted_on = sprintf(
 			_x( 'Posted %s ago', '%s = human-readable time difference', 'bgtfw' ),
-			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . '</a>'
+			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . human_time_diff( get_the_time( 'U', $post->ID ), current_time( 'U' ) ) . '</a>'
 		);
 	}
 

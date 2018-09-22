@@ -2120,54 +2120,54 @@ msgctxt "Next post link"
 msgid "%title&nbsp;<span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:79
+#: src/includes/partials/template-tags.php:80
 msgctxt "%s = human-readable time difference"
 msgid "Posted %s ago"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:86
+#: src/includes/partials/template-tags.php:87
 msgctxt "post date"
 msgid "Posted on %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:92
+#: src/includes/partials/template-tags.php:93
 msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:165
+#: src/includes/partials/template-tags.php:166
 msgid "Leave a comment"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:165
+#: src/includes/partials/template-tags.php:166
 msgid "1 Comment"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:165
+#: src/includes/partials/template-tags.php:166
 msgid "% Comments"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:236
+#: src/includes/partials/template-tags.php:237
 msgid "Click to edit %s."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:248
+#: src/includes/partials/template-tags.php:249
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:430
+#: src/includes/partials/template-tags.php:431
 msgid "Empty Sidebar"
 msgstr ""
 
-#: src/includes/partials/template-tags.php:432
+#: src/includes/partials/template-tags.php:433
 msgid "This sidebar doesn't have any widgets assigned to it yet."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:433
+#: src/includes/partials/template-tags.php:434
 msgid "Add widgets here."
 msgstr ""
 
-#: src/includes/partials/template-tags.php:437
+#: src/includes/partials/template-tags.php:438
 msgid "Add another widget."
 msgstr ""
 

@@ -1081,7 +1081,7 @@ class BoldGrid {
 	 */
 	public function set_main_query( WP_Query $query ) {
 		if ( ( $query->is_archive() || $query->is_home() ) && $query->is_main_query() ) {
-			$query->set( 'orderby', 'date' );
+			$query->set( 'orderby', 'date modified title' );
 			$query->set( 'order', 'desc' );
 		}
 
@@ -1096,7 +1096,7 @@ class BoldGrid {
 	 * @param array $args WP_Query args.
 	 */
 	public function set_recent_posts_query( $args ) {
-		$args['orderby'] = 'date';
+		$args['orderby'] = 'date modified title';
 		$args['order'] = 'desc';
 		return $args;
 	}

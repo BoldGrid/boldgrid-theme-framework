@@ -184,9 +184,13 @@ class Boldgrid_Framework_Title {
 	 */
 	public function show_title( $title, $id ) {
 
-		// This method only needs to be ran if we're looking at a single page / post.
-		$is_single_post = is_page() || is_single();
-		if ( ! $is_single_post ) {
+		// This method only needs to be ran if we're looking at a page, post, archive, or blog.
+		$is_single = is_page() || is_single();
+		$is_multi = is_home() || is_archive();
+
+		$allowed = $is_single || $is_multi;
+
+		if ( ! $allowed ) {
 			return $title;
 		}
 
@@ -195,11 +199,12 @@ class Boldgrid_Framework_Title {
 		 * is ran and can change a page's title in the nav. We're only interested in adjusting the
 		 * title when displaying a post.
 		 */
-		if ( ! in_the_loop() ) {
+		if ( ( $is_multi && in_the_loop() ) || ( $is_single && ! in_the_loop() ) ) {
 			return $title;
 		}
 
 		$post_meta = get_post_meta( $id, $this->configs['title']['hide'], true );
+
 		$global = $this->get_global();
 		$show = '1' === $post_meta || ( ( 'global' === $post_meta || '' === $post_meta ) && 'show' === $global );
 

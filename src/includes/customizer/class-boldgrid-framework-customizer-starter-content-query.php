@@ -84,7 +84,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 		* Compare this with WP_Customize_Nav_Menus::make_auto_draft_status_previewable(),
 		* which apparently did not go far enough.
 		*/
-		$wp_post_statuses['auto-draft']->public = true;
+		//$wp_post_statuses['auto-draft']->public = true;
 
 		add_action( 'pre_get_posts', array( $this, 'prevent_filter_suppression' ), 100, 2 );
 		add_filter( 'posts_where', array( $this, 'posts_where' ) );
@@ -113,11 +113,17 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 	 */
 	public function posts_where( $where ) {
 		global $wpdb;
+		$type = "'auto-draft'";
+		$posts = $this->changeset_auto_draft_post_ids;
 
-		$autodrafts = "{$wpdb->posts}.post_status = 'auto-draft'";
+		if ( ( ! empty( $_REQUEST['customize_changeset_uuid'] ) ) ) {
+			$type = "'draft'";
+		}
+
+		$autodrafts = "{$wpdb->posts}.post_status = {$type}";
 		$posts_in = sprintf(
 			" {$wpdb->posts}.ID IN ( %s )",
-			join( ', ', array_map( 'intval', $this->changeset_auto_draft_post_ids ) )
+			join( ', ', array_map( 'intval', $posts ) )
 		);
 
 		if ( strpos( $where, "{$autodrafts}" ) !== false ) {
@@ -125,7 +131,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 			$new_condition = "({$old_condition} AND {$posts_in})";
 		} else {
 			$old_condition = "{$wpdb->posts}.post_status = 'publish'";
-			$new_condition = "({$old_condition} OR ({$autodrafts} AND {$posts_in}))";
+			$new_condition = "({$old_condition} OR {$posts_in})";
 		}
 
 		$where = str_replace( $old_condition, $new_condition, $where );

@@ -3277,7 +3277,7 @@ return array(
 			'none' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
 		),
 		'sanitize_callback' => function( $value, $settings ) {
-			return in_array( $value, [ 'inherit', 'none' ], true ) ? $value : $settings->default;
+			return in_array( $value, [ 'inline-block', 'block', 'none' ], true ) ? $value : $settings->default;
 		},
 		'output' => array(
 			array(

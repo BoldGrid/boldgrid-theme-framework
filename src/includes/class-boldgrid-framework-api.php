@@ -546,13 +546,14 @@ class BoldGrid {
 			if ( is_page() ) {
 				if ( in_array( 'boldgrid_hide_page_title', get_post_custom_keys( $post->ID ), true ) ) {
 					$post_meta = get_post_meta( $post->ID );
-					if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) ||
-						( 'global' === $post_meta['boldgrid_hide_page_title'][0] &&
-						'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) ) {
-							$classes[] = 'page-header-hidden';
+					if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) ) {
+						$classes[] = 'page-header-hidden';
+					} else if ( 'global' === $post_meta['boldgrid_hide_page_title'][0] &&
+						'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
+							$classes[] = 'customizer-page-header-hidden';
 					}
 				} else if ( 'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
-					$classes[] = 'page-header-hidden';
+					$classes[] = 'customizer-page-header-hidden';
 				}
 			} else if ( is_single() ) {
 
@@ -563,20 +564,20 @@ class BoldGrid {
 					// If the post meta is empty and global display for post titles is off, hide the header.
 					if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) ) {
 						if ( 'none' === get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
-							$classes[] = 'page-header-hidden';
+							$classes[] = 'customizer-page-header-hidden';
 						}
 
 					// If the post meta is set to use the global settings check those and hide the header.
 					} else if ( 'global' === $post_meta['boldgrid_hide_page_title'][0] ) {
 						if ( 'hide' === get_theme_mod( 'bgtfw_posts_title_display' ) &&
 							'none' === get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
-								$classes[] = 'page-header-hidden';
+								$classes[] = 'customizer-page-header-hidden';
 						}
 					}
 
 				// Otherwise only rely on global settings for post title and meta.
 				} else if ( 'hide' === get_theme_mod( 'bgtfw_posts_title_display' ) && 'none' === get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
-					$classes[] = 'page-header-hidden';
+					$classes[] = 'customizer-page-header-hidden';
 				}
 			}
 		}

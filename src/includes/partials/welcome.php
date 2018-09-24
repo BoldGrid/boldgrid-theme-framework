@@ -130,13 +130,34 @@ $configs = $boldgrid_theme_framework->get_configs();
 	<div class="two-col">
 		<div class="welcome-panel col">
 			<h2><?php esc_html_e( 'Feature Requests and Bug Reports', 'bgtfw' ); ?></h2>
-			<p><?php esc_html_e( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit:', 'bgtfw' ); ?></p>
-			<p><a href="https://boldgrid.com/feedback/" target="_blank" class="button button-primary button-hero"><?php esc_html_e( 'BoldGrid Community Portal', 'bgtfw' ); ?></a></p>
+			<p>
+			<?php
+				printf(
+					wp_kses(
+						/* translators: The Url to submit feature requests and bug reports. */
+						__( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit our <a href="%1$s" target="_blank">BoldGrid Community Portal</a>', 'bgtfw' ),
+						$allowed_html
+					),
+					esc_url( 'https://boldgrid.com/feedback/' )
+				);
+			?>
+			</p>
 		</div>
 		<div class="welcome-panel col">
 			<h2><?php esc_html_e( '1 on 1 Support', 'bgtfw' ); ?></h2>
-			<p><?php esc_html_e( 'Need help with BoldGrid Crio? Contact a member of our knowledgeable support team:', 'bgtfw' ); ?></p>
-			<p><a href="https://www.boldgrid.com/central" target="_blank" class="button button-primary button-hero"><?php esc_html_e( 'BoldGrid Central', 'bgtfw' ); ?></a></p>
+			<p>
+			<?php
+				printf(
+					wp_kses(
+						/* translators: 1 is the Url for Crio support, 2 is the Url to BoldGrid Central. */
+						__( 'Need help with Crio that you didn\'t see in our <a href="%1$s" target="_blank">Crio Support Documentation</a>? Contact our knowledgeable Support Team from within <a href="%2$s" target="_blank">BoldGrid Central</a>.', 'bgtfw' ),
+						$allowed_html
+					),
+					esc_url( 'https://www.boldgrid.com/support/boldgrid-crio' ),
+					esc_url( 'https://www.boldgrid.com/central' )
+				);
+			?>
+			</p>
 		</div>
 	</div>
 
@@ -154,7 +175,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 						printf(
 							wp_kses(
 								/* translators: The Url to the Post and Page Builder on boldgrid.com */
-								__( 'The <a href="%1$s" target="_blank">BoldGrid Page and Post Builder</a> provides a true WYSIWYG experience while allowing full control over your content. Easily try out new icons, section backgrounds, column and row designs, text settings and more. You can even customize our preset icons, images, and backgrounds within the editor to make them your own.', 'bgtfw' ),
+								__( 'The <a href="%1$s" target="_blank">BoldGrid Post and Page Builder</a> provides a true WYSIWYG experience while allowing full control over your content. Easily try out new icons, section backgrounds, column and row designs, text settings and more. You can even customize our preset icons, images, and backgrounds within the editor to make them your own.', 'bgtfw' ),
 								$allowed_html
 							),
 							esc_url( 'https://www.boldgrid.com/wordpress-page-builder-by-boldgrid/' )
@@ -240,7 +261,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					?>
 					</p>
 					<p>
-						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Install', 'bgtfw' ); ?></a>
+						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
 							<a href="https://www.boldgrid.com/support/seo-plugin" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
@@ -288,6 +309,4 @@ $configs = $boldgrid_theme_framework->get_configs();
 			</div>
 		</div>
 	</div>
-
-	<p style="text-align:center;"><?php esc_html_e( 'Check out the great BoldGrid Starter Content included with your theme purchase. If you\'re looking for a great starting point for your site - or you just need some inspirations - install the pre-built website to jumpstart the process.', 'bgtfw' ); ?></p>
 </div>

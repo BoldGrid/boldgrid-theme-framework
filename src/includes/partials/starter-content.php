@@ -28,8 +28,9 @@ if ( ! defined( 'WPINC' ) ) {
 					<div class="welcome-panel-column">
 						<h2><strong>Bold</strong>Business</h2>
 						<p>
-							We created this default starter content set to show off the power and flexibility of BoldGrid Crio.
-							This set is a design for a business site. All standard and Premium functionality is compatible with this starter content.
+						<?php
+							esc_html_e( 'We created this default starter content set to show off the power and flexibility of BoldGrid Crio. This set is a design for a business site. All standard and Premium functionality is compatible with this starter content.', 'bgtfw' );
+						?>
 						</p>
 						<p>
 							<input class="button button-primary button-hero" type="submit" value="<?php esc_attr_e( 'Install', 'bgtfw' ); ?>" />
@@ -37,7 +38,7 @@ if ( ! defined( 'WPINC' ) ) {
 						</p>
 					</div>
 					<div class="welcome-panel-column">
-						<img style="width:100%;" src="https://via.placeholder.com/646x395">
+						<img style="width:100%;" src="<?php echo bloginfo( 'template_directory' ); ?>/starter-content/corporate/screenshot.jpg">
 					</div>
 				</div>
 

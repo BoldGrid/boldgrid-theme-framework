@@ -13,9 +13,6 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-install' );
-wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-activate' );
-
 ?>
 
 <div class="wrap about-wrap bgtfw-about-wrap">
@@ -44,16 +41,7 @@ wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-activate' );
 					</div>
 				</div>
 
-				<div class="starter-content-messages hidden">
-					<p>
-						<strong><?php esc_html_e( 'Unable to install Starter Content.', 'bgtfw' ); ?></strong>
-					</p>
-					<div class="starter-content-error">
-						<div class="notice notice-error inline">
-							<?php esc_html_e( 'An unknown error occurred when trying to install this Starter Content\'s required plugins.', 'bgtfw' ); ?>
-						</div>
-					</div>
-				</div>
+				<?php require_once $this->configs['framework']['includes_dir'] . '/partials/starter-content-messages.php'; ?>
 
 			</form>
 		</div>

@@ -54,8 +54,7 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 		installPlugins : function() {
 			var request,
 				data = {
-					_wpnonce : $('[name="bgtfw-bulk-install"]').val(),
-					_wp_http_referer: $('[name="_wp_http_referer"]').val(),
+					_wpnonce : self.i18n.bulkPluginsNonce,
 					action : 'tgmpa-bulk-install',
 					plugin : self.i18n.pluginData.to_install
 				},
@@ -111,8 +110,7 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 		activatePlugins : function() {
 			var request,
 				data = {
-					_wpnonce : $('[name="bgtfw-bulk-activate"]').val(),
-					_wp_http_referer: $('[name="_wp_http_referer"]').val(),
+					_wpnonce : self.i18n.bulkPluginsNonce,
 					action : 'tgmpa-bulk-activate',
 					plugin : self.i18n.pluginData.to_activate
 				},

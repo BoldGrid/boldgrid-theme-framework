@@ -528,7 +528,10 @@ class BoldGrid {
 	public function body_classes( $classes ) {
 		global $post;
 
-		$post_id = $post->ID;
+		if ( is_object( $post ) ) {
+			$post_id = absint( $post->ID );
+		}
+
 
 		if ( ! is_front_page() && is_home() ) {
 			$post_id = ( int ) get_option( 'page_for_posts' );

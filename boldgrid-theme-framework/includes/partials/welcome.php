@@ -27,6 +27,8 @@ $customizer_url = admin_url( 'customize.php' );
 
 $registraton_url = admin_url( 'admin.php?page=boldgrid-connect.php' );
 
+$starter_content_url = admin_url( 'admin.php?page=crio-starter-content' );
+
 global $boldgrid_theme_framework;
 $configs = $boldgrid_theme_framework->get_configs();
 ?>
@@ -80,7 +82,66 @@ $configs = $boldgrid_theme_framework->get_configs();
 		<div class="welcome-panel-content">
 			<div class="welcome-panel-column-container two-col">
 				<div class="welcome-panel-column">
-					<h2><?php esc_html_e( 'Activate the Included Post and Page Builder Plugin', 'bgtfw' ); ?></h2>
+					<h2><?php esc_html_e( 'Let\'s Start Building your New Site!', 'bgtfw' ); ?></h2>
+					<p>
+					<?php
+						printf(
+							wp_kses(
+								/* translators: The Url to the Post and Page Builder on boldgrid.com */
+								__( 'Crio gives you control over layouts and macro "Style Guide" design elements straight from the Customizer. The <a href="%1$s" target="_blank">Post and Page Builder Premium</a>, included with your Crio purchase, natively inherits this Style Guide. For example, using Crio\'s Color Palette System you can create beautiful color schemes that apply to your entire website. This same Palette is available on the Page and Post level to inherit or override as you see fit. This saves time and helps keep your site within your Style Guide.', 'bgtfw' ),
+								$allowed_html
+							),
+							esc_url( 'https://www.boldgrid.com/support/boldgrid-post-and-page-builder/post-and-page-builder/' )
+						);
+					?>
+					</p>
+					<p>
+					<?php
+						esc_html_e( 'Your Crio purchase also comes with a set of Starter Content including a Form Builder Plugin. The Post and Page Builder Premium gives you access to pre-built professionally designed Premium Blocks. With your Crio license, these Blocks and Starter Content are included for you to adapt and publish as your own.', 'bgtfw' );
+					?>
+					</p>
+					<p>
+						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Auto Configure and Start Designing', 'bgtfw' ); ?></a>
+						<span class="nowrap">
+							<?php esc_html_e( 'or', 'bgtfw' ); ?>
+							<a href="https://www.boldgrid.com/support/boldgrid-crio/getting-started-with-boldgrid-crio/" target="_blank"><?php esc_html_e( 'Learn More', 'bgtfw' ); ?></a>
+						</span>
+					</p>
+					<p>
+					<?php
+						esc_html_e( 'You can also manually install the components under Manual Install and Optional Plugins at the end of this page.', 'bgtfw' );
+					?>
+					</p>
+				</div>
+				<div class="welcome-panel-column">
+					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-pape.png' ); ?>" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="two-col">
+		<div class="welcome-panel col">
+			<h2><?php esc_html_e( 'Feature Requests and Bug Reports', 'bgtfw' ); ?></h2>
+			<p><?php esc_html_e( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit:', 'bgtfw' ); ?></p>
+			<p><a href="https://boldgrid.com/feedback/" target="_blank" class="button button-primary button-hero"><?php esc_html_e( 'BoldGrid Community Portal', 'bgtfw' ); ?></a></p>
+		</div>
+		<div class="welcome-panel col">
+			<h2><?php esc_html_e( '1 on 1 Support', 'bgtfw' ); ?></h2>
+			<p><?php esc_html_e( 'Need help with BoldGrid Crio? Contact a member of our knowledgeable support team:', 'bgtfw' ); ?></p>
+			<p><a href="https://www.boldgrid.com/central" target="_blank" class="button button-primary button-hero"><?php esc_html_e( 'BoldGrid Central', 'bgtfw' ); ?></a></p>
+		</div>
+	</div>
+
+	<h2>
+		<?php esc_html_e( 'Manual Install and Optional Plugins', 'bgtfw' ); ?>
+	</h2>
+
+	<div class="welcome-panel">
+		<div class="welcome-panel-content">
+			<div class="welcome-panel-column-container two-col">
+				<div class="welcome-panel-column">
+					<h2><?php esc_html_e( 'Required for Best Performance: Post and Page Builder Plugin', 'bgtfw' ); ?></h2>
 					<p>
 					<?php
 						printf(
@@ -94,10 +155,10 @@ $configs = $boldgrid_theme_framework->get_configs();
 						?>
 					</p>
 					<p>
-						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Activate', 'bgtfw' ); ?></a>
+						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
-							<a href="https://www.boldgrid.com/support/post-page-builder-plugin" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
+							<a href="https://www.boldgrid.com/support/boldgrid-post-and-page-builder/post-and-page-builder/" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
 						</span>
 					</p>
 				</div>
@@ -106,9 +167,6 @@ $configs = $boldgrid_theme_framework->get_configs();
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="welcome-panel">
 		<div class="welcome-panel-content">
 			<h2><?php esc_html_e( 'Here\'s a few things to know', 'bgtfw' ); ?></h2>
 			<div class="welcome-panel-column-container four-col">
@@ -136,61 +194,14 @@ $configs = $boldgrid_theme_framework->get_configs();
 		<div class="welcome-panel-content">
 			<div class="welcome-panel-column-container two-col">
 				<div class="welcome-panel-column">
-					<h2><?php esc_html_e( 'You\'re Ready to Start Building', 'bgtfw' ); ?></h2>
-					<p><?php esc_html_e( 'BoldGrid Crio\'s advanced customization options are completely integrated with the WordPress Customizer API. Our integration gives you granular control over many elements straight from the customizer.', 'bgtfw' ); ?></p>
-					<p><?php esc_html_e( 'Use the "Suggest Palette" feature to have BoldGrid Crio automatically recommend beautiful color schemes that you can apply to your entire website with a few clicks.', 'bgtfw' ); ?></p>
-					<p><?php esc_html_e( 'Adjust fonts, headers and sizes across your entire website with just a few clicks. See your changes live in the customizer preview area.', 'bgtfw' ); ?></p>
-					<p>
-						<a href="<?php echo esc_url( $customizer_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Get Started', 'bgtfw' ); ?></a>
-						<span class="nowrap">
-							<?php esc_html_e( 'or', 'bgtfw' ); ?>
-							<a href="https://www.boldgrid.com/support/" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
-						</span>
-					</p>
-				</div>
-				<div class="welcome-panel-column">
-					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-customizer.png' ); ?>" />
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="two-col">
-		<div class="welcome-panel col">
-			<h2><?php esc_html_e( 'Feature Requests and Bug Reports', 'bgtfw' ); ?></h2>
-			<p><?php esc_html_e( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit:', 'bgtfw' ); ?></p>
-			<p><a href="https://boldgrid.com/feedback/" target="_blank" class="button button-primary button-hero"><?php esc_html_e( 'BoldGrid Community Portal', 'bgtfw' ); ?></a></p>
-		</div>
-		<div class="welcome-panel col">
-			<h2><?php esc_html_e( '1 on 1 Support', 'bgtfw' ); ?></h2>
-			<p><?php esc_html_e( 'Need help with BoldGrid Crio? Contact a member of our knowledgable support team:', 'bgtfw' ); ?></p>
-			<p><a href="https://www.boldgrid.com/central" target="_blank" class="button button-primary button-hero"><?php esc_html_e( 'BoldGrid Central', 'bgtfw' ); ?></a></p>
-		</div>
-	</div>
-
-	<h2>
-		<?php esc_html_e( 'Follow these steps to maximize your BoldGrid License!', 'bgtfw' ); ?>
-	</h2>
-
-	<div class="welcome-panel">
-		<div class="welcome-panel-content">
-			<div class="welcome-panel-column-container two-col">
-				<div class="welcome-panel-column">
-					<h2><?php esc_html_e( 'Activate the Included BoldGrid Backup Premium Plugin', 'bgtfw' ); ?></h2>
+					<h2><?php esc_html_e( 'Highly Recommended: BoldGrid Backup Premium Plugin', 'bgtfw' ); ?></h2>
 					<p>
 					<?php
-						printf(
-							wp_kses(
-								/* translators: URL to boldgrid backup on boldgrid.com. */
-								__( '<a href="%1$s" target="blank">BoldGrid Backup</a> will backup your entire WordPress site with just a couple of clicks right in your WordPress dashboard. Just select a time and day for backups to run automatically. Or, manually create a backup at any time with a single click. You can also create offsite backups at Amazon S3 or a web server of your choosing.', 'bgtfw' ),
-								$allowed_html
-							),
-							esc_url( 'https://www.boldgrid.com/wordpress-backup-plugin/' )
-						);
-						?>
+						esc_html_e( 'BoldGrid Backup Premium simplifies maintenance and saves you time by handling backups, upgrades, site transfers, and rollbacks. Automated scheduled backups or manual backups are simple to configure. You can also store offsite backups automatically on Amazon S3, BoldGrid Central (coming soon), Google Drive (coming soon), or a FTP server of your choosing. Rollbacks can be done in bulk or at the file level. Our industry first, Auto rollback (on manual install currently, on scheduled coming soon) protects you from the dreaded "White Screen of Death". Site transfers are easy as well including server to server moves to speed up your work.', 'bgtfw' );
+					?>
 					</p>
 					<p>
-						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Install', 'bgtfw' ); ?></a>
+						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
 							<a href="https://www.boldgrid.com/support/backup-plugin" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
@@ -208,7 +219,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 		<div class="welcome-panel-content">
 			<div class="welcome-panel-column-container two-col">
 				<div class="welcome-panel-column">
-					<h2><?php esc_html_e( 'Activate the Included BoldGrid SEO Plugin', 'bgtfw' ); ?></h2>
+					<h2><?php esc_html_e( 'Recommended: BoldGrid Easy SEO', 'bgtfw' ); ?></h2>
 					<p>
 					<?php
 						printf(
@@ -219,7 +230,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 							),
 							esc_url( 'https://www.boldgrid.com/wordpress-seo-plugin/' )
 						);
-						?>
+					?>
 					</p>
 					<p>
 						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Install', 'bgtfw' ); ?></a>
@@ -231,6 +242,41 @@ $configs = $boldgrid_theme_framework->get_configs();
 				</div>
 				<div class="welcome-panel-column">
 					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/seo-plugin.png' ); ?>" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="welcome-panel">
+		<div class="welcome-panel-content">
+			<div class="welcome-panel-column-container two-col">
+				<div class="welcome-panel-column">
+					<h2><?php esc_html_e( 'You\'re Ready to Start Building', 'bgtfw' ); ?></h2>
+					<p><?php esc_html_e( 'BoldGrid Crio\'s advanced customization options are completely integrated with the WordPress Customizer API. Our integration gives you granular control over many elements straight from the customizer.', 'bgtfw' ); ?></p>
+					<p><?php esc_html_e( 'Use the "Suggest Palette" feature to have BoldGrid Crio automatically recommend beautiful color schemes that you can apply to your entire website with a few clicks.', 'bgtfw' ); ?></p>
+					<p><?php esc_html_e( 'Adjust fonts, headers and sizes across your entire website with just a few clicks. See your changes live in the customizer preview area.', 'bgtfw' ); ?></p>
+					<p>
+						<a href="<?php echo esc_url( $customizer_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Get Started', 'bgtfw' ); ?></a>
+						<span class="nowrap">
+							<?php esc_html_e( 'or', 'bgtfw' ); ?>
+							<a href="https://www.boldgrid.com/support/" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
+						</span>
+					</p>
+					<p>
+					<?php
+						printf(
+							wp_kses(
+								/* translators: url to Starter Content. */
+								__( 'You can still import the <a href="%1$s">Starter Content</a> but please note it may install other plugins based on the requirements of the Content itself.', 'bgtfw' ),
+								$allowed_html
+							),
+							esc_url( $starter_content_url )
+						);
+					?>
+					</p>
+				</div>
+				<div class="welcome-panel-column">
+					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-customizer.png' ); ?>" />
 				</div>
 			</div>
 		</div>

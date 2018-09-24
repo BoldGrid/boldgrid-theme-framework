@@ -2098,7 +2098,7 @@ msgstr ""
 msgid "Would you like to exit the Customizer and access the Starter Content in your Dashboard?"
 msgstr ""
 
-#: src/includes/partials/starter-content.php:38, src/includes/partials/welcome.php:193, src/includes/partials/welcome.php:225
+#: src/includes/partials/starter-content.php:38, src/includes/partials/welcome.php:236
 msgid "Install"
 msgstr ""
 
@@ -2175,143 +2175,171 @@ msgstr ""
 msgid "Add another widget."
 msgstr ""
 
-#: src/includes/partials/welcome.php:38
+#: src/includes/partials/welcome.php:40
 msgid "Welcome to Crio!"
 msgstr ""
 
-#: src/includes/partials/welcome.php:40
+#: src/includes/partials/welcome.php:42
 msgid "Version"
 msgstr ""
 
-#: src/includes/partials/welcome.php:43
+#: src/includes/partials/welcome.php:45
 msgid "Congratulations! You've successfully installed BoldGrid Crio. BoldGrid Crio is a powerful tool that enables you to build beautiful websites without boundaries or limitations."
 msgstr ""
 
-#: src/includes/partials/welcome.php:52
+#: src/includes/partials/welcome.php:54
 msgid "Register and Verify Your Purchase"
 msgstr ""
 
-#: src/includes/partials/welcome.php:53
+#: src/includes/partials/welcome.php:55
 msgid "To claim your Premium Connect Key we need to verify your Envato purchase and setup your BoldGrid Central account.  To do this automatically we need access to read the purchase record in your Envato Account.  You can also do this manually by signing up for BoldGrid Central and providing your Envato purchase code to our Support Team in a ticket."
 msgstr ""
 
-#: src/includes/partials/welcome.php:55
+#: src/includes/partials/welcome.php:57
 msgid "Envato Auto Verify"
 msgstr ""
 
-#: src/includes/partials/welcome.php:57, src/includes/partials/welcome.php:99, src/includes/partials/welcome.php:146, src/includes/partials/welcome.php:195, src/includes/partials/welcome.php:227
+#: src/includes/partials/welcome.php:59, src/includes/partials/welcome.php:106, src/includes/partials/welcome.php:160, src/includes/partials/welcome.php:206, src/includes/partials/welcome.php:238, src/includes/partials/welcome.php:261
 msgid "or"
 msgstr ""
 
-#: src/includes/partials/welcome.php:58
+#: src/includes/partials/welcome.php:60
 msgid "Manually Setup and Verify"
 msgstr ""
 
-#: src/includes/partials/welcome.php:65
+#: src/includes/partials/welcome.php:67
 msgid "Have your Connect Key? Go to <a href=\"%1$s\">Registration</a>."
 msgstr ""
 
-#: src/includes/partials/welcome.php:83
-msgid "Activate the Included Post and Page Builder Plugin"
+#: src/includes/partials/welcome.php:85
+msgid "Let's Start Building your New Site!"
 msgstr ""
 
-#: src/includes/partials/welcome.php:89
-msgid "The <a href=\"%1$s\" target=\"_blank\">BoldGrid Page and Post Builder</a> provides a true WYSIWYG experience while allowing full control over your content. Easily try out new icons, section backgrounds, column and row designs, text settings and more. You can even customize our preset icons, images, and backgrounds within the editor to make them your own."
+#: src/includes/partials/welcome.php:91
+msgid "Crio gives you control over layouts and macro \"Style Guide\" design elements straight from the Customizer. The <a href=\"%1$s\" target=\"_blank\">Post and Page Builder Premium</a>, included with your Crio purchase, natively inherits this Style Guide. For example, using Crio's Color Palette System you can create beautiful color schemes that apply to your entire website. This same Palette is available on the Page and Post level to inherit or override as you see fit. This saves time and helps keep your site within your Style Guide."
 msgstr ""
 
-#: src/includes/partials/welcome.php:97
-msgid "Activate"
+#: src/includes/partials/welcome.php:100
+msgid "Your Crio purchase also comes with a set of Starter Content including a Form Builder Plugin. The Post and Page Builder Premium gives you access to pre-built professionally designed Premium Blocks. With your Crio license, these Blocks and Starter Content are included for you to adapt and publish as your own."
 msgstr ""
 
-#: src/includes/partials/welcome.php:100, src/includes/partials/welcome.php:147, src/includes/partials/welcome.php:196, src/includes/partials/welcome.php:228
-msgid "See Support Documents..."
+#: src/includes/partials/welcome.php:104
+msgid "Auto Configure and Start Designing"
 msgstr ""
 
-#: src/includes/partials/welcome.php:113
-msgid "Here's a few things to know"
+#: src/includes/partials/welcome.php:107
+msgid "Learn More"
 msgstr ""
 
-#: src/includes/partials/welcome.php:117
-msgid "The Post and Page Builder plugin also gives you access to blocks. Blocks are pre-built professionally designed sections of content."
-msgstr ""
-
-#: src/includes/partials/welcome.php:121
-msgid "Block layouts consist of rows and columns that are pre-populated with content relevant to your industry."
+#: src/includes/partials/welcome.php:112
+msgid "You can also manually install the components under Manual Install and Optional Plugins at the end of this page."
 msgstr ""
 
 #: src/includes/partials/welcome.php:125
-msgid "Blocks can be managed visually in the Editor using drag and drop functionality, or using text view to access the HTML and CSS."
-msgstr ""
-
-#: src/includes/partials/welcome.php:129
-msgid "Our advanced image controls help you change images while keeping the layout intact."
-msgstr ""
-
-#: src/includes/partials/welcome.php:139
-msgid "You're Ready to Start Building"
-msgstr ""
-
-#: src/includes/partials/welcome.php:140
-msgid "BoldGrid Crio's advanced customization options are completely integrated with the WordPress Customizer API. Our integration gives you granular control over many elements straight from the customizer."
-msgstr ""
-
-#: src/includes/partials/welcome.php:141
-msgid "Use the \"Suggest Palette\" feature to have BoldGrid Crio automatically recommend beautiful color schemes that you can apply to your entire website with a few clicks."
-msgstr ""
-
-#: src/includes/partials/welcome.php:142
-msgid "Adjust fonts, headers and sizes across your entire website with just a few clicks. See your changes live in the customizer preview area."
-msgstr ""
-
-#: src/includes/partials/welcome.php:144
-msgid "Get Started"
-msgstr ""
-
-#: src/includes/partials/welcome.php:160
 msgid "Feature Requests and Bug Reports"
 msgstr ""
 
-#: src/includes/partials/welcome.php:161
+#: src/includes/partials/welcome.php:126
 msgid "Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit:"
 msgstr ""
 
-#: src/includes/partials/welcome.php:162
+#: src/includes/partials/welcome.php:127
 msgid "BoldGrid Community Portal"
 msgstr ""
 
-#: src/includes/partials/welcome.php:165
+#: src/includes/partials/welcome.php:130
 msgid "1 on 1 Support"
 msgstr ""
 
-#: src/includes/partials/welcome.php:166
-msgid "Need help with BoldGrid Crio? Contact a member of our knowledgable support team:"
+#: src/includes/partials/welcome.php:131
+msgid "Need help with BoldGrid Crio? Contact a member of our knowledgeable support team:"
 msgstr ""
 
-#: src/includes/partials/welcome.php:167
+#: src/includes/partials/welcome.php:132
 msgid "BoldGrid Central"
 msgstr ""
 
-#: src/includes/partials/welcome.php:172
-msgid "Follow these steps to maximize your BoldGrid License!"
+#: src/includes/partials/welcome.php:137
+msgid "Manual Install and Optional Plugins"
+msgstr ""
+
+#: src/includes/partials/welcome.php:144
+msgid "Required for Best Performance: Post and Page Builder Plugin"
+msgstr ""
+
+#: src/includes/partials/welcome.php:150
+msgid "The <a href=\"%1$s\" target=\"_blank\">BoldGrid Page and Post Builder</a> provides a true WYSIWYG experience while allowing full control over your content. Easily try out new icons, section backgrounds, column and row designs, text settings and more. You can even customize our preset icons, images, and backgrounds within the editor to make them your own."
+msgstr ""
+
+#: src/includes/partials/welcome.php:158, src/includes/partials/welcome.php:204
+msgid "Plugin Installer"
+msgstr ""
+
+#: src/includes/partials/welcome.php:161, src/includes/partials/welcome.php:207, src/includes/partials/welcome.php:239, src/includes/partials/welcome.php:262
+msgid "See Support Documents..."
+msgstr ""
+
+#: src/includes/partials/welcome.php:171
+msgid "Here's a few things to know"
+msgstr ""
+
+#: src/includes/partials/welcome.php:175
+msgid "The Post and Page Builder plugin also gives you access to blocks. Blocks are pre-built professionally designed sections of content."
 msgstr ""
 
 #: src/includes/partials/welcome.php:179
-msgid "Activate the Included BoldGrid Backup Premium Plugin"
+msgid "Block layouts consist of rows and columns that are pre-populated with content relevant to your industry."
 msgstr ""
 
-#: src/includes/partials/welcome.php:185
-msgid "<a href=\"%1$s\" target=\"blank\">BoldGrid Backup</a> will backup your entire WordPress site with just a couple of clicks right in your WordPress dashboard. Just select a time and day for backups to run automatically. Or, manually create a backup at any time with a single click. You can also create offsite backups at Amazon S3 or a web server of your choosing."
+#: src/includes/partials/welcome.php:183
+msgid "Blocks can be managed visually in the Editor using drag and drop functionality, or using text view to access the HTML and CSS."
 msgstr ""
 
-#: src/includes/partials/welcome.php:211
-msgid "Activate the Included BoldGrid SEO Plugin"
+#: src/includes/partials/welcome.php:187
+msgid "Our advanced image controls help you change images while keeping the layout intact."
 msgstr ""
 
-#: src/includes/partials/welcome.php:217
+#: src/includes/partials/welcome.php:197
+msgid "Highly Recommended: BoldGrid Backup Premium Plugin"
+msgstr ""
+
+#: src/includes/partials/welcome.php:200
+msgid "BoldGrid Backup Premium simplifies maintenance and saves you time by handling backups, upgrades, site transfers, and rollbacks. Automated scheduled backups or manual backups are simple to configure. You can also store offsite backups automatically on Amazon S3, BoldGrid Central (coming soon), Google Drive (coming soon), or a FTP server of your choosing. Rollbacks can be done in bulk or at the file level. Our industry first, Auto rollback (on manual install currently, on scheduled coming soon) protects you from the dreaded \"White Screen of Death\". Site transfers are easy as well including server to server moves to speed up your work."
+msgstr ""
+
+#: src/includes/partials/welcome.php:222
+msgid "Recommended: BoldGrid Easy SEO"
+msgstr ""
+
+#: src/includes/partials/welcome.php:228
 msgid "<a href=\"%1$s\" target=\"_blank\">BoldGrid SEO</a> analyzes your page content in real-time and makes recommendations to help you maintain best SEO practices while writing content. Just set your target keyword or phrase and the BoldGrid SEO dashboard will update your stats on all important on-page SEO factors."
 msgstr ""
 
-#: src/includes/partials/welcome.php:239
+#: src/includes/partials/welcome.php:254
+msgid "You're Ready to Start Building"
+msgstr ""
+
+#: src/includes/partials/welcome.php:255
+msgid "BoldGrid Crio's advanced customization options are completely integrated with the WordPress Customizer API. Our integration gives you granular control over many elements straight from the customizer."
+msgstr ""
+
+#: src/includes/partials/welcome.php:256
+msgid "Use the \"Suggest Palette\" feature to have BoldGrid Crio automatically recommend beautiful color schemes that you can apply to your entire website with a few clicks."
+msgstr ""
+
+#: src/includes/partials/welcome.php:257
+msgid "Adjust fonts, headers and sizes across your entire website with just a few clicks. See your changes live in the customizer preview area."
+msgstr ""
+
+#: src/includes/partials/welcome.php:259
+msgid "Get Started"
+msgstr ""
+
+#: src/includes/partials/welcome.php:270
+msgid "You can still import the <a href=\"%1$s\">Starter Content</a> but please note it may install other plugins based on the requirements of the Content itself."
+msgstr ""
+
+#: src/includes/partials/welcome.php:285
 msgid "Check out the great BoldGrid Starter Content included with your theme purchase. If you're looking for a great starting point for your site - or you just need some inspirations - install the pre-built website to jumpstart the process."
 msgstr ""
 

@@ -203,6 +203,20 @@ class Boldgrid_Framework_Title {
 			return $title;
 		}
 
+		// Handle the title existing outside of the loop.
+		if ( $is_multi ) {
+
+			// Check that filter is being applied only inside of our main content area.
+			if ( ! did_action( 'boldgrid_main_top' ) || did_action( 'boldgrid_main_bottom' ) ) {
+				return $title;
+			}
+
+			// Check for widget areas displayed within the main content and don't modify those.
+			if ( did_action( 'dynamic_sidebar_before' ) && ! did_action( 'dynamic_sidebar_after' ) ) {
+				return $title;
+			}
+		}
+
 		$post_meta = get_post_meta( $id, $this->configs['title']['hide'], true );
 
 		$global = $this->get_global();

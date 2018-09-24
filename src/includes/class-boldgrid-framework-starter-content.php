@@ -417,4 +417,17 @@ class BoldGrid_Framework_Starter_Content {
 
 		return $form_id;
 	}
+
+	public function add_post_preview_link_changeset( $link, $post ) {
+
+		// Short circuit if link already has changeset uuid applied.
+		if ( strpos( $link, 'customize_changeset_uuid' ) === false && ( 'draft' === $post->post_status || 'auto-draft' === $post->post_status ) ) {
+			$changeset_uuid = get_post_meta( $post->ID, '_customize_changeset_uuid', true );
+			if ( ! empty( $changeset_uuid ) ) {
+				$link = esc_url( add_query_arg( 'customize_changeset_uuid', $changeset_uuid, $link ) );
+			}
+		}
+
+		return $link;
+	}
 }

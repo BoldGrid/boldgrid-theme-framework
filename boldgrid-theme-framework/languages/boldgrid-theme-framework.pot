@@ -259,6 +259,10 @@ msgstr ""
 msgid "No response from server when attempting to activate plugins."
 msgstr ""
 
+#: src/includes/class-boldgrid-framework-widgets.php:163
+msgid "Inactive"
+msgstr ""
+
 #: src/includes/configs/customizer-options/edit.config.php:57, src/includes/configs/customizer/sections.config.php:84
 msgid "Site Title"
 msgstr ""

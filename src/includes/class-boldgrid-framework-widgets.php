@@ -106,4 +106,70 @@ class Boldgrid_Framework_Widgets {
 		add_action( 'dynamic_sidebar_before',  $before_function, 10, 2 );
 		add_action( 'dynamic_sidebar_after',  $after_function, 10, 2 );
 	}
+
+	/**
+	 * Adds CSS for hiding sidebar areas in the admin widgets.php page.
+	 *
+	 * @since 2.0.0
+	 */
+	public function admin_sidebar_display() {
+		$inactive_sidebars = $this->get_inactive_column_sidebars( [ 'header', 'footer' ] );
+		$css = $this->generate_css( $inactive_sidebars );
+
+		wp_register_style( 'bgtfw-widgets-display', false );
+		wp_enqueue_style( 'bgtfw-widgets-display' );
+		wp_add_inline_style( 'bgtfw-widgets-display', $css );
+	}
+
+	/**
+	 * Get inactive column sidebar IDs from theme_mods.
+	 *
+	 * @param string $type Type of area to generate CSS for ( header or footer ).
+	 *
+	 * @return array $ids  Inactive widget column IDs.
+	 */
+	public function get_inactive_column_sidebars( $types ) {
+		$ids = [];
+		foreach( $types as $type ) {
+			$columns = get_theme_mod( "boldgrid_{$type}_widgets" );
+			$columns = absint( $columns );
+			$max = absint( $this->configs['customizer']['controls'][ "boldgrid_{$type}_widgets" ]['choices']['max'] );
+			$difference = $max - $columns;
+
+			for ( $i = 0; $i < $difference; $i++ ) {
+				$id = $max - $i;
+				$ids[] = "{$type}-{$id}";
+			}
+		}
+
+		return $ids;
+	}
+
+	/**
+	 * Generate CSS to hide widget areas in the admin.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $sidebars Sidebar IDs to generate CSS for.
+	 *
+	 * @return string $css Generated CSS.
+	 */
+	public function generate_css( $sidebars ) {
+		$css = '';
+
+		if ( ! empty( $sidebars ) ) {
+			foreach ( $sidebars as $sidebar ) {
+				$css .= "#{$sidebar} .sidebar-name h2:after {
+					content: \"" . wp_filter_nohtml_kses( __( 'Inactive', 'bgtfw' ) ) . "\";
+					float: right;
+					font-style: italic;
+					font-weight: 400;
+					font-size: .75em;
+					color: red;
+				}";
+			}
+		}
+
+		return $css;
+	}
 }

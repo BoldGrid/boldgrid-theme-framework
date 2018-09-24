@@ -536,6 +536,7 @@ class BoldGrid_Framework {
 		$widgets = new Boldgrid_Framework_Widgets( $this->configs );
 		$this->loader->add_action( 'widgets_init', $widgets, 'create_config_widgets' );
 		$this->loader->add_action( 'customize_preview_init', $widgets, 'wrap_widget_areas' );
+		$this->loader->add_action( 'admin_head-widgets.php', $widgets, 'admin_sidebar_display' );
 	}
 
 	/**

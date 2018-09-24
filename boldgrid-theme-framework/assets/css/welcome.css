@@ -61,6 +61,10 @@
   display: inline-block;
 }
 
+.welcome-panel > .welcome-panel-content:not(:first-child) {
+  margin-top: 15px;
+}
+
 /**
 * Starter Content Messages.
 *

@@ -100,13 +100,20 @@ $configs = $boldgrid_theme_framework->get_configs();
 						esc_html_e( 'Your Crio purchase also comes with a set of Starter Content including a Form Builder Plugin. The Post and Page Builder Premium gives you access to pre-built professionally designed Premium Blocks. With your Crio license, these Blocks and Starter Content are included for you to adapt and publish as your own.', 'bgtfw' );
 					?>
 					</p>
-					<p>
-						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Auto Configure and Start Designing', 'bgtfw' ); ?></a>
-						<span class="nowrap">
-							<?php esc_html_e( 'or', 'bgtfw' ); ?>
-							<a href="https://www.boldgrid.com/support/boldgrid-crio/getting-started-with-boldgrid-crio/" target="_blank"><?php esc_html_e( 'Learn More', 'bgtfw' ); ?></a>
-						</span>
-					</p>
+					<form method="post" action="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="starter-content-install">
+						<input type="hidden" name="starter_content" value="default" />
+						<p>
+							<input type="submit" class="button button-primary button-hero" value="<?php esc_attr_e( 'Auto Configure and Start Designing', 'bgtfw' ); ?>" />
+							<span class="spinner"></span>
+							<span class="nowrap">
+								<?php esc_html_e( 'or', 'bgtfw' ); ?>
+								<a href="https://www.boldgrid.com/support/boldgrid-crio/getting-started-with-boldgrid-crio/" target="_blank"><?php esc_html_e( 'Learn More', 'bgtfw' ); ?></a>
+							</span>
+						</p>
+
+						<?php require_once $this->configs['framework']['includes_dir'] . '/partials/starter-content-messages.php'; ?>
+
+					</form>
 					<p>
 					<?php
 						esc_html_e( 'You can also manually install the components under Manual Install and Optional Plugins at the end of this page.', 'bgtfw' );

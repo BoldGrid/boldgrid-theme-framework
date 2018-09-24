@@ -145,22 +145,8 @@ class Boldgrid_Framework_Welcome {
 		wp_enqueue_style( 'boldgrid-customizer-controls-base',
 			$this->configs['framework']['css_dir'] . 'welcome.css' );
 
-		$handle = 'bgtfw-customizer-starter-content-plugins';
-		wp_register_script(
-			$handle,
-			$this->configs['framework']['js_dir'] . 'customizer/starter-content-plugins' . $suffix . '.js',
-			array( 'customize-controls' ),
-			$this->configs['version']
-		);
-		// We need to know which plugins need to be install, and which need to be activated.
-		$starter_content_plugins = ! empty( $this->configs['starter-content']['plugins'] ) ? $this->configs['starter-content']['plugins'] : array();
-		$translations = array(
-			'pluginData' => BoldGrid_Framework_Customizer_Starter_Content_Plugins::get_plugin_info( $starter_content_plugins ),
-			'NoResponseInstall' => '<div class="error">' . __( 'No response from server when attempting to install plugins.', 'bgtfw' ) . '</div>',
-			'NoResponseActivate' => '<div class="error">' . __( 'No response from server when attempting to activate plugins.', 'bgtfw' ) . '</div>',
-		);
-		wp_localize_script( $handle, 'bgtfwCustomizerStarterContentPlugins', $translations );
-		wp_enqueue_script( $handle );
+		$starter_content_plugins = new BoldGrid_Framework_Customizer_Starter_Content_Plugins( $this->configs );
+		$starter_content_plugins->enqueue();
 
 		include $this->configs['framework']['includes_dir'] . 'partials/starter-content.php';
 	}
@@ -181,6 +167,9 @@ class Boldgrid_Framework_Welcome {
 
 		wp_enqueue_style( 'boldgrid-customizer-controls-base',
 			$this->configs['framework']['css_dir'] . 'welcome.css' );
+
+		$starter_content_plugins = new BoldGrid_Framework_Customizer_Starter_Content_Plugins( $this->configs );
+		$starter_content_plugins->enqueue();
 
 		$theme = wp_get_theme();
 

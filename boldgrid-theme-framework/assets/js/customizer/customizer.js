@@ -681,7 +681,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		// Toggle page title wrapper containers.
 		let toggleTitleFn = ( condition, classes ) => {
 			let body = $( 'body' );
-			if ( ! body.hasClass( 'page-header-hidden' ) ) {
+			if ( ! body.hasClass( 'page-header-hidden' ) && ! body.hasClass( 'page-header-shown' ) ) {
 				for ( let className of classes ) {
 					if ( body.hasClass( className ) ) {
 						body.toggleClass( 'customizer-page-header-hidden', condition );

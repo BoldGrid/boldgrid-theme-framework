@@ -528,6 +528,12 @@ class BoldGrid {
 	public function body_classes( $classes ) {
 		global $post;
 
+		$post_id = $post->ID;
+
+		if ( ! is_front_page() && is_home() ) {
+			$post_id = ( int ) get_option( 'page_for_posts' );
+		}
+
 		// Adds a class of group-blog to blogs with more than 1 published author.
 		if ( is_multi_author( ) ) {
 			$classes[] = 'group-blog';
@@ -538,19 +544,21 @@ class BoldGrid {
 		}
 
 		// Add class for page and post titles being hidden.
-		if ( is_archive() || is_home() ) {
+		if ( is_archive() ) {
 			if ( 'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
 				$classes[] = 'page-header-hidden';
 			}
 		} else if ( $post ) {
-			if ( is_page() ) {
-				if ( in_array( 'boldgrid_hide_page_title', get_post_custom_keys( $post->ID ), true ) ) {
-					$post_meta = get_post_meta( $post->ID );
+			if ( is_page() || ( ! is_front_page() && is_home() ) ) {
+				if ( in_array( 'boldgrid_hide_page_title', get_post_custom_keys( $post_id ), true ) ) {
+					$post_meta = get_post_meta( $post_id );
 					if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) ) {
 						$classes[] = 'page-header-hidden';
 					} else if ( 'global' === $post_meta['boldgrid_hide_page_title'][0] &&
 						'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
 							$classes[] = 'customizer-page-header-hidden';
+					} else if ( 1 === absint( $post_meta['boldgrid_hide_page_title'][0] ) ) {
+						$classes[] = 'page-header-shown';
 					}
 				} else if ( 'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
 					$classes[] = 'customizer-page-header-hidden';
@@ -558,8 +566,8 @@ class BoldGrid {
 			} else if ( is_single() ) {
 
 				// Check if the key is set for the post meta.
-				if ( in_array( 'boldgrid_hide_page_title', get_post_custom_keys( $post->ID ), true ) ) {
-					$post_meta = get_post_meta( $post->ID );
+				if ( in_array( 'boldgrid_hide_page_title', get_post_custom_keys( $post_id ), true ) ) {
+					$post_meta = get_post_meta( $post_id );
 
 					// If the post meta is empty and global display for post titles is off, hide the header.
 					if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) ) {
@@ -573,6 +581,8 @@ class BoldGrid {
 							'none' === get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
 								$classes[] = 'customizer-page-header-hidden';
 						}
+					} else if ( 1 === absint( $post_meta['boldgrid_hide_page_title'][0] ) ) {
+						$classes[] = 'page-header-shown';
 					}
 
 				// Otherwise only rely on global settings for post title and meta.

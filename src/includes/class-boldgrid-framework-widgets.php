@@ -172,4 +172,31 @@ class Boldgrid_Framework_Widgets {
 
 		return $css;
 	}
+
+	/**
+	 * Sort the display of sidebars in widgets.php
+	 *
+	 * This sorts the sidebars, so all the inactive areas are
+	 * moved to the end.
+	 *
+	 * @since 2.0.0
+	 */
+	public function sort_sidebars() {
+		global $wp_registered_sidebars;
+		$inactive_sidebars = $this->get_inactive_column_sidebars( [ 'header', 'footer' ] );
+
+		// Alphabetical sort of inactive_sidebar IDs.
+		sort( $inactive_sidebars );
+
+		// Check each sidebar in global wp_registered_sidebars to see if it's inactive.
+		uksort( $wp_registered_sidebars, function( $a, $b ) use ( $inactive_sidebars ) {
+			$a = in_array( $a, $inactive_sidebars, true );
+			$b = in_array( $b, $inactive_sidebars, true );
+
+			return strcasecmp( $a, $b );
+		} );
+
+		// Set primary sidebar as first in array.
+		$wp_registered_sidebars = [ 'primary-sidebar' => $wp_registered_sidebars['primary-sidebar'] ] + $wp_registered_sidebars;
+	}
 }

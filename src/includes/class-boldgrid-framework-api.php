@@ -217,7 +217,7 @@ class BoldGrid {
 	 * @return array $classes Filter classes on .main element.
 	 */
 	public function blog_page_container( $classes ) {
-		global $post;
+		global $wp_query;
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
 			$classes[] = get_theme_mod( 'bgtfw_blog_page_container' );
 		}

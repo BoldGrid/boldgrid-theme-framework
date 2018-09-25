@@ -1834,6 +1834,10 @@ msgstr ""
 msgid "Invalid Value"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-panel.php:79, src/includes/customizer/class-boldgrid-framework-customizer-panel.php:82, src/includes/customizer/class-boldgrid-framework-customizer-panel.php:89, src/includes/customizer/class-boldgrid-framework-customizer-section.php:65
+msgid "Home"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-search.php:73
 msgid "Search"
 msgstr ""

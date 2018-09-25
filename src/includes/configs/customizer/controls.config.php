@@ -1360,7 +1360,7 @@ return array(
 		'type' => 'fontawesome',
 		'transport' => 'postMessage',
 		'settings' => 'bgtfw_posts_cats_icon',
-		'label' => esc_attr__( 'Icon', 'bgtfw' ),
+		'label' => esc_attr__( 'Multiple Categories Icon', 'bgtfw' ),
 		'section' => 'bgtfw_pages_blog_posts_cat_links',
 		'default' => 'folder-open',
 		'js_vars' => array(
@@ -4272,7 +4272,7 @@ return array(
 		'type' => 'fontawesome',
 		'transport' => 'postMessage',
 		'settings' => 'bgtfw_blog_post_cats_icon',
-		'label' => esc_attr__( 'Icon', 'bgtfw' ),
+		'label' => esc_attr__( 'Multiple Categories Icon', 'bgtfw' ),
 		'section' => 'bgtfw_pages_blog_blog_page_cat_links',
 		'default' => 'folder-open',
 		'js_vars' => array(

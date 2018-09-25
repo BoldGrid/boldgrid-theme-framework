@@ -528,6 +528,9 @@ class BoldGrid_Framework {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'admin_enqueue_scripts' );
 		$this->loader->add_filter( 'tiny_mce_before_init', $editor, 'tinymce_body_class' );
+
+		// If installing a plugin via tgmpa, then remove custom plugins_api hooks.
+		$this->loader->add_action( 'init', $admin, 'remove_hooks' );
 	}
 
 	/**
@@ -799,6 +802,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'admin_init', $welcome, 'redirect_on_activation' );
 		$this->loader->add_action( 'admin_menu', $welcome, 'add_admin_menu' );
 		$this->loader->add_action( 'Boldgrid\Library\Library\Page\Connect\addScripts', $welcome, 'connect_scripts' );
+		$this->loader->add_action( 'custom_menu_order', $welcome, 'custom_menu_order' );
 	}
 
 	/**

@@ -107,6 +107,54 @@ class Boldgrid_Framework_Welcome {
 			'crio-starter-content',
 			array( $this, 'page_starter_content' )
 		);
+
+		add_submenu_page(
+			$this->menu_slug,
+			__( 'Customize', 'bgtfw' ),
+			__( 'Customize', 'bgtfw' ),
+			'manage_options',
+			'customize.php'
+		);
+	}
+
+	/**
+	 * Customize the order of BoldGrid Crio's sub menu items.
+	 *
+	 * We hook into WP's custom_menu_order filter, which simply determines whether or not custom
+	 * ordering is enabled. This filter is for top level menu items, not sub menu ordering. So,
+	 * while we're here, we'll adjust the sub menu ordering.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @global array $submenu WordPress dashboard menu.
+	 *
+	 * @param bool $custom Whether custom ordering is enabled. Default false.
+	 */
+	public function custom_menu_order( $custom ) {
+		global $submenu;
+
+		// Move the "Customize" link to the bottom of the "BoldGrid Crio" navigation menu.
+		if ( isset( $submenu[$this->menu_slug] ) ) {
+			$customize_key = false;
+			$customize_menu_item = false;
+
+			// Find our "customize.php" menu item.
+			foreach( $submenu[$this->menu_slug] as $key => $menu_item ) {
+				if( 'customize.php' === $menu_item[2] ) {
+					$customize_key = $key;
+					$customize_menu_item = $menu_item;
+					break;
+				}
+			}
+
+			// Move our "customize.php" menu item to the end of the menu.
+			if( $customize_key && $customize_menu_item ) {
+				unset( $submenu[$this->menu_slug][$customize_key] );
+				$submenu[$this->menu_slug][] = $customize_menu_item;
+			}
+		}
+
+		return $custom;
 	}
 
 	/**
@@ -145,22 +193,8 @@ class Boldgrid_Framework_Welcome {
 		wp_enqueue_style( 'boldgrid-customizer-controls-base',
 			$this->configs['framework']['css_dir'] . 'welcome.css' );
 
-		$handle = 'bgtfw-customizer-starter-content-plugins';
-		wp_register_script(
-			$handle,
-			$this->configs['framework']['js_dir'] . 'customizer/starter-content-plugins' . $suffix . '.js',
-			array( 'customize-controls' ),
-			$this->configs['version']
-		);
-		// We need to know which plugins need to be install, and which need to be activated.
-		$starter_content_plugins = ! empty( $this->configs['starter-content']['plugins'] ) ? $this->configs['starter-content']['plugins'] : array();
-		$translations = array(
-			'pluginData' => BoldGrid_Framework_Customizer_Starter_Content_Plugins::get_plugin_info( $starter_content_plugins ),
-			'NoResponseInstall' => '<div class="error">' . __( 'No response from server when attempting to install plugins.', 'bgtfw' ) . '</div>',
-			'NoResponseActivate' => '<div class="error">' . __( 'No response from server when attempting to activate plugins.', 'bgtfw' ) . '</div>',
-		);
-		wp_localize_script( $handle, 'bgtfwCustomizerStarterContentPlugins', $translations );
-		wp_enqueue_script( $handle );
+		$starter_content_plugins = new BoldGrid_Framework_Customizer_Starter_Content_Plugins( $this->configs );
+		$starter_content_plugins->enqueue();
 
 		include $this->configs['framework']['includes_dir'] . 'partials/starter-content.php';
 	}
@@ -182,7 +216,14 @@ class Boldgrid_Framework_Welcome {
 		wp_enqueue_style( 'boldgrid-customizer-controls-base',
 			$this->configs['framework']['css_dir'] . 'welcome.css' );
 
+		$starter_content_plugins = new BoldGrid_Framework_Customizer_Starter_Content_Plugins( $this->configs );
+		$starter_content_plugins->enqueue();
+
 		$theme = wp_get_theme();
+
+		$starter_content_previewed = get_option( 'bgtfw_starter_content_previewed' );
+
+		$is_premium = true === apply_filters( 'Boldgrid\Library\License\isPremium', 'envato-prime' );
 
 		include $this->configs['framework']['includes_dir'] . 'partials/welcome.php';
 	}

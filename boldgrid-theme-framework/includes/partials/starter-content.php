@@ -13,9 +13,6 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-install' );
-wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-activate' );
-
 ?>
 
 <div class="wrap about-wrap bgtfw-about-wrap">
@@ -31,8 +28,9 @@ wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-activate' );
 					<div class="welcome-panel-column">
 						<h2><strong>Bold</strong>Business</h2>
 						<p>
-							We created this default starter content set to show off the power and flexibility of BoldGrid Crio.
-							This set is a design for a business site. All standard and Premium functionality is compatible with this starter content.
+						<?php
+							esc_html_e( 'We created this default starter content set to show off the power and flexibility of BoldGrid Crio. This set is a design for a business site. All standard and Premium functionality is compatible with this starter content.', 'bgtfw' );
+						?>
 						</p>
 						<p>
 							<input class="button button-primary button-hero" type="submit" value="<?php esc_attr_e( 'Install', 'bgtfw' ); ?>" />
@@ -40,20 +38,11 @@ wp_nonce_field( 'bulk-plugins', 'bgtfw-bulk-activate' );
 						</p>
 					</div>
 					<div class="welcome-panel-column">
-						<img style="width:100%;" src="https://via.placeholder.com/646x395">
+						<img style="width:100%;" src="<?php echo bloginfo( 'template_directory' ); ?>/starter-content/corporate/screenshot.jpg">
 					</div>
 				</div>
 
-				<div class="starter-content-messages hidden">
-					<p>
-						<strong><?php esc_html_e( 'Unable to install Starter Content.', 'bgtfw' ); ?></strong>
-					</p>
-					<div class="starter-content-error">
-						<div class="notice notice-error inline">
-							<?php esc_html_e( 'An unknown error occurred when trying to install this Starter Content\'s required plugins.', 'bgtfw' ); ?>
-						</div>
-					</div>
-				</div>
+				<?php require_once $this->configs['framework']['includes_dir'] . '/partials/starter-content-messages.php'; ?>
 
 			</form>
 		</div>

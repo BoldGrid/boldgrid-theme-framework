@@ -1360,7 +1360,7 @@ return array(
 		'type' => 'fontawesome',
 		'transport' => 'postMessage',
 		'settings' => 'bgtfw_posts_cats_icon',
-		'label' => esc_attr__( 'Icon', 'bgtfw' ),
+		'label' => esc_attr__( 'Multiple Categories Icon', 'bgtfw' ),
 		'section' => 'bgtfw_pages_blog_posts_cat_links',
 		'default' => 'folder-open',
 		'js_vars' => array(
@@ -4272,7 +4272,7 @@ return array(
 		'type' => 'fontawesome',
 		'transport' => 'postMessage',
 		'settings' => 'bgtfw_blog_post_cats_icon',
-		'label' => esc_attr__( 'Icon', 'bgtfw' ),
+		'label' => esc_attr__( 'Multiple Categories Icon', 'bgtfw' ),
 		'section' => 'bgtfw_pages_blog_blog_page_cat_links',
 		'default' => 'folder-open',
 		'js_vars' => array(
@@ -4604,7 +4604,7 @@ return array(
 		'section'    => 'bgtfw_pages_blog_blog_page_read_more',
 		'default'    => 'color-1',
 		'choices'    => array(
-			'selectors' => [ '.blog .post .read-more .link', '.archive .post .read-more .link' ],
+			'selectors' => [ '.read-more .link' ],
 			'colors' => $formatted_palette,
 			'size'   => $palette->get_palette_size( $formatted_palette ),
 		),
@@ -4720,7 +4720,7 @@ return array(
 		},
 		'output' => array(
 			array(
-				'element' => '.blog .post .entry-content .read-more, .archive .post .entry-content .read-more',
+				'element' => '.read-more',
 				'property' => 'text-align',
 			),
 		),

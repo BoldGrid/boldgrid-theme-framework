@@ -88,6 +88,36 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	}
 
 	/**
+	 * Enqueue scripts needed for installing starter content plugins.
+	 *
+	 * Currently starter content can be installed from either the "Welcome" page or the "Starter Content"
+	 * page.
+	 *
+	 * @since 2.0.0
+	 */
+	public function enqueue() {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		$handle = 'bgtfw-customizer-starter-content-plugins';
+		wp_register_script(
+			$handle,
+			$this->configs['framework']['js_dir'] . 'customizer/starter-content-plugins' . $suffix . '.js',
+			array( 'jquery' ),
+			$this->configs['version']
+		);
+		// We need to know which plugins need to be install, and which need to be activated.
+		$starter_content_plugins = ! empty( $this->configs['starter-content']['plugins'] ) ? $this->configs['starter-content']['plugins'] : array();
+		$translations = array(
+			'pluginData' => self::get_plugin_info( $starter_content_plugins ),
+			'NoResponseInstall' => '<div class="error">' . __( 'No response from server when attempting to install plugins.', 'bgtfw' ) . '</div>',
+			'NoResponseActivate' => '<div class="error">' . __( 'No response from server when attempting to activate plugins.', 'bgtfw' ) . '</div>',
+			'bulkPluginsNonce' => wp_create_nonce( 'bulk-plugins' ),
+		);
+		wp_localize_script( $handle, 'bgtfwCustomizerStarterContentPlugins', $translations );
+		wp_enqueue_script( $handle );
+	}
+
+	/**
 	 * Helper function to extract the file path of the plugin file from the plugin slug, if the plugin
 	 * is installed.
 	 *

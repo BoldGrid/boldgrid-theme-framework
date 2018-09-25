@@ -194,6 +194,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 		if ( 0 === $starter_content_applied ) {
 			wp_send_json_error( 'no_starter_content' );
 		} else {
+			update_option( 'bgtfw_starter_content_previewed', true );
 			wp_send_json_success();
 		}
 	}

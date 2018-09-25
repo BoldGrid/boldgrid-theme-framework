@@ -251,6 +251,10 @@ msgstr ""
 msgid "Starter Content"
 msgstr ""
 
+#: src/includes/class-boldgrid-framework-welcome.php:113, src/includes/class-boldgrid-framework-welcome.php:114
+msgid "Customize"
+msgstr ""
+
 #: src/includes/class-boldgrid-framework-widgets.php:163
 msgid "Inactive"
 msgstr ""
@@ -552,7 +556,7 @@ msgid "Single Category Icon"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1363, src/includes/configs/customizer/controls.config.php:4275
-msgid "Icon"
+msgid "Multiple Categories Icon"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:1558
@@ -1275,11 +1279,11 @@ msgstr ""
 msgid "Change the border radius of your blog posts."
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:70
+#: src/includes/configs/tgm.config.php:82
 msgid "Recommended Plugins"
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:71
+#: src/includes/configs/tgm.config.php:83
 msgid "Install Recommended Plugins"
 msgstr ""
 
@@ -2244,7 +2248,7 @@ msgid "Feature Requests and Bug Reports"
 msgstr ""
 
 #: src/includes/partials/welcome.php:138
-msgid "Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit our <a href=\"%1$s\" target=\"_blank\">BoldGrid Community Portal</a>"
+msgid "Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit our <a href=\"%1$s\" target=\"_blank\">BoldGrid Community Portal</a>."
 msgstr ""
 
 #: src/includes/partials/welcome.php:147

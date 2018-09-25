@@ -121,7 +121,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					</p>
 				</div>
 				<div class="welcome-panel-column">
-					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-pape.png' ); ?>" />
+					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-customizer.png' ); ?>" />
 				</div>
 			</div>
 		</div>
@@ -135,7 +135,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 				printf(
 					wp_kses(
 						/* translators: The Url to submit feature requests and bug reports. */
-						__( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit our <a href="%1$s" target="_blank">BoldGrid Community Portal</a>', 'bgtfw' ),
+						__( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit our <a href="%1$s" target="_blank">BoldGrid Community Portal</a>.', 'bgtfw' ),
 						$allowed_html
 					),
 					esc_url( 'https://boldgrid.com/feedback/' )
@@ -183,7 +183,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 						?>
 					</p>
 					<p>
-						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
+						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-secondary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
 							<a href="https://www.boldgrid.com/support/boldgrid-post-and-page-builder/post-and-page-builder/" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
@@ -229,7 +229,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					?>
 					</p>
 					<p>
-						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
+						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-secondary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
 							<a href="https://www.boldgrid.com/support/backup-plugin" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
@@ -261,7 +261,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					?>
 					</p>
 					<p>
-						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
+						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-secondary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
 							<a href="https://www.boldgrid.com/support/seo-plugin" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>

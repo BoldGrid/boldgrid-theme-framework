@@ -221,6 +221,8 @@ class Boldgrid_Framework_Welcome {
 
 		$theme = wp_get_theme();
 
+		$starter_content_previewed = get_option( 'bgtfw_starter_content_previewed' );
+
 		include $this->configs['framework']['includes_dir'] . 'partials/welcome.php';
 	}
 }

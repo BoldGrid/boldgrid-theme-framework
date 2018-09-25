@@ -103,7 +103,20 @@ $configs = $boldgrid_theme_framework->get_configs();
 					<form method="post" action="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="starter-content-install">
 						<input type="hidden" name="starter_content" value="default" />
 						<p>
+						<?php
+							/*
+							 * Adjust starter content button based on whether or not it has been previewed.
+							 *
+							 * The $starter_content_previewed value is true when the user has accessed
+							 * the Customizer and the starter content has been loaded. It doesn't mean
+							 * the user has published, but it does mean the starter content plugins
+							 * have been installed and the user has seen the starter content.
+							 */
+						if( ! $starter_content_previewed ) { ?>
 							<input type="submit" class="button button-primary button-hero" value="<?php esc_attr_e( 'Auto Configure and Start Designing', 'bgtfw' ); ?>" />
+						<?php } else { ?>
+							<input type="submit" class="button button-primary button-hero" value="<?php esc_attr_e( 'Configured!', 'bgtfw' ); ?>" disabled="disabled" />
+						<?php } ?>
 							<span class="spinner"></span>
 							<span class="nowrap">
 								<?php esc_html_e( 'or', 'bgtfw' ); ?>

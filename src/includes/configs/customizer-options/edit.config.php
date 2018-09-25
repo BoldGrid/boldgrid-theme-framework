@@ -229,17 +229,17 @@ return array(
 				'title' => esc_attr__( 'Tagline', 'bgtfw' ),
 			),
 			array(
-				'control' => 'bgtfw_header_layout',
+				'control' => 'bgtfw_header',
 				'selector' => '#masthead',
 				'isParentColumn' => true,
-				'objectType' => 'section',
-				'title' => esc_attr__( 'Header Layout', 'bgtfw' ),
+				'objectType' => 'panel',
+				'title' => esc_attr__( 'Header', 'bgtfw' ),
 			),
 			array(
-				'control' => 'boldgrid_footer_panel',
+				'control' => 'bgtfw_footer',
 				'selector' => '#colophon',
 				'isParentColumn' => true,
-				'objectType' => 'section',
+				'objectType' => 'panel',
 				'title' => esc_attr__( 'Footer', 'bgtfw' ),
 			),
 			array(

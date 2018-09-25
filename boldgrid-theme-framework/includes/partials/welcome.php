@@ -140,6 +140,19 @@ $configs = $boldgrid_theme_framework->get_configs();
 
 					</form>
 					<p>
+						<img src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/outline-cloud-24px.svg' ); ?>" style="margin:0px;margin-bottom:-4px;width:40px;vertical-align:text-bottom;" />
+						<?php
+						printf(
+							wp_kses(
+								/* translators: The Url to the BoldGrid Central Cloud. */
+								__( 'Are you looking to create a new Crio based website or need to test some changes? You can use your complimentary <a href="%1$s" target="_blank">Cloud WordPress</a> to test, develop, and share new designs before publishing to permanent hosting.', 'bgtfw' ),
+								$allowed_html
+							),
+							esc_url( 'https://www.boldgrid.com/central/get-it-now' )
+						);
+						?>
+					</p>
+					<p>
 					<?php
 						esc_html_e( 'You can also manually install the components under Manual Install and Optional Plugins at the end of this page.', 'bgtfw' );
 					?>

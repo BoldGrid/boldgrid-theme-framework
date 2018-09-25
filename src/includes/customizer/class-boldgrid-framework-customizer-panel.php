@@ -105,10 +105,10 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 		 */
 		public function get_panel_link( $id, $title, $section_id = '' ) {
 			if ( ! empty( $section_id ) ) {
-				$js = ' wp.customize.section( \'' . esc_js( $section_id ) . '\' ).collapse();';
+				$section_id = ' wp.customize.section( \'' . esc_js( $section_id ) . '\' ).collapse();';
 			}
 
-			return '<a href="#" title="' . esc_attr( $title ) . '" onclick="event.preventDefault();' . $js . ' wp.customize.panel( \'' . esc_js( $id ) . '\' ).expand();">' . esc_html( $title ) . '</a>';
+			return '<a href="#" title="' . esc_attr( $title ) . '" onclick="event.preventDefault();' . $section_id . ' wp.customize.panel( \'' . esc_js( $id ) . '\' ).expand();">' . esc_html( $title ) . '</a>';
 		}
 
 		/**

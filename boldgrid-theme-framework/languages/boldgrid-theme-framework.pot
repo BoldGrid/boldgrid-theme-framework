@@ -343,8 +343,8 @@ msgstr ""
 msgid "Tagline"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:236
-msgid "Header Layout"
+#: src/includes/configs/customizer-options/edit.config.php:236, src/includes/configs/customizer/panels.config.php:24
+msgid "Header"
 msgstr ""
 
 #: src/includes/configs/customizer-options/edit.config.php:243, src/includes/configs/customizer/panels.config.php:34
@@ -1065,10 +1065,6 @@ msgstr ""
 
 #: src/includes/configs/customizer/panels.config.php:20
 msgid "Manage your site's typography settings."
-msgstr ""
-
-#: src/includes/configs/customizer/panels.config.php:24
-msgid "Header"
 msgstr ""
 
 #: src/includes/configs/customizer/panels.config.php:29

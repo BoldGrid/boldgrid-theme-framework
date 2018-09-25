@@ -103,6 +103,19 @@ class Boldgrid_Framework_Admin {
 		$bgtfw_styles = new BoldGrid_Framework_Styles( $this->configs );
 		$bgtfw_styles->enqueue_buttons( array( 'editor-css-imhwpb' ) );
 		$bgtfw_styles->enqueue_colors( array( 'editor-css-imhwpb' ) );
+	}
 
+	/**
+	 * Remove hooks.
+	 *
+	 * Remove custom plugins_api hooks added by BoldGrid private update classes, as they have a
+	 * conflict with the tgmpa plugin installer.
+	 *
+	 * @since 2.0.0
+	 */
+	public function remove_hooks() {
+		if ( ! empty( $_GET['tgmpa-install'] ) ) {
+			remove_all_filters( 'plugins_api', 11 );
+		}
 	}
 }

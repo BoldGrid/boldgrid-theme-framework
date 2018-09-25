@@ -25,8 +25,20 @@ return array(
 			'required'  => true, // If false, the plugin is only 'recommended' instead of required.
 		),
 		array(
+			'name'      => 'BoldGrid Post and Page Builder Premium',
+			'slug'      => 'post-and-page-builder-premium',
+			'source'    => 'https://repo.boldgrid.com/post-and-page-builder-premium.zip',
+			'required'  => true,
+		),
+		array(
 			'name'      => 'BoldGrid Backup',
 			'slug'      => 'boldgrid-backup',
+			'required'  => false,
+		),
+		array(
+			'name'      => 'BoldGrid Backup Premium',
+			'slug'      => 'boldgrid-backup-premium',
+			'source'    => 'https://repo.boldgrid.com/boldgrid-backup-premium.zip',
 			'required'  => false,
 		),
 		array(

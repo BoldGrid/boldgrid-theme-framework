@@ -223,6 +223,8 @@ class Boldgrid_Framework_Welcome {
 
 		$starter_content_previewed = get_option( 'bgtfw_starter_content_previewed' );
 
+		$is_premium = true === apply_filters( 'Boldgrid\Library\License\isPremium', 'envato-prime' );
+
 		include $this->configs['framework']['includes_dir'] . 'partials/welcome.php';
 	}
 }

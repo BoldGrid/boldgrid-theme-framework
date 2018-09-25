@@ -54,7 +54,19 @@ $configs = $boldgrid_theme_framework->get_configs();
 					<h2><?php esc_html_e( 'Register and Verify Your Purchase', 'bgtfw' ); ?></h2>
 					<p><?php esc_html_e( 'To claim your Premium Connect Key we need to verify your Envato purchase and setup your BoldGrid Central account.  To do this automatically we need access to read the purchase record in your Envato Account.  You can also do this manually by signing up for BoldGrid Central and providing your Envato purchase code to our Support Team in a ticket.', 'bgtfw' ); ?></p>
 					<p>
+					<?php
+					/*
+					 * Adjust the "Envato Auto Verify" button dynamically.
+					 *
+					 * If the user has premium envato-prime, then update the button to instead say
+					 * "Registered!".
+					 */
+					if ( ! $is_premium ) {
+					?>
 						<a href="https://www.boldgrid.com/central/code/envato" class="button button-primary button-hero" target="_blank"><?php esc_html_e( 'Envato Auto Verify', 'bgtfw' ); ?></a>
+					<?php } else { ?>
+						<a class="button button-primary button-hero" disabled="disabled"><?php esc_html_e( 'Registered!', 'bgtfw' ); ?></a>
+					<?php } // End $is_premium check. ?>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
 							<a href="https://www.boldgrid.com/central" target="_blank"><?php esc_html_e( 'Manually Setup and Verify', 'bgtfw' ); ?></a>
@@ -104,19 +116,19 @@ $configs = $boldgrid_theme_framework->get_configs();
 						<input type="hidden" name="starter_content" value="default" />
 						<p>
 						<?php
-							/*
-							 * Adjust starter content button based on whether or not it has been previewed.
-							 *
-							 * The $starter_content_previewed value is true when the user has accessed
-							 * the Customizer and the starter content has been loaded. It doesn't mean
-							 * the user has published, but it does mean the starter content plugins
-							 * have been installed and the user has seen the starter content.
-							 */
-						if( ! $starter_content_previewed ) { ?>
+						/*
+						 * Adjust starter content button based on whether or not it has been previewed.
+						 *
+						 * The $starter_content_previewed value is true when the user has accessed
+						 * the Customizer and the starter content has been loaded. It doesn't mean
+						 * the user has published, but it does mean the starter content plugins
+						 * have been installed and the user has seen the starter content.
+						 */
+						if ( ! $starter_content_previewed ) { ?>
 							<input type="submit" class="button button-primary button-hero" value="<?php esc_attr_e( 'Auto Configure and Start Designing', 'bgtfw' ); ?>" />
 						<?php } else { ?>
 							<input type="submit" class="button button-primary button-hero" value="<?php esc_attr_e( 'Configured!', 'bgtfw' ); ?>" disabled="disabled" />
-						<?php } ?>
+						<?php } // End $starter_content_previewed check. ?>
 							<span class="spinner"></span>
 							<span class="nowrap">
 								<?php esc_html_e( 'or', 'bgtfw' ); ?>

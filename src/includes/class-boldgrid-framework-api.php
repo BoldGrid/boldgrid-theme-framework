@@ -553,7 +553,8 @@ class BoldGrid {
 			}
 		} else if ( $post ) {
 			if ( is_page() || ( ! is_front_page() && is_home() ) ) {
-				if ( in_array( 'boldgrid_hide_page_title', get_post_custom_keys( $post_id ), true ) ) {
+				$keys = get_post_custom_keys( $post_id );
+				if ( is_array( $keys ) && in_array( 'boldgrid_hide_page_title', $keys, true ) ) {
 					$post_meta = get_post_meta( $post_id );
 					if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) ) {
 						$classes[] = 'page-header-hidden';
@@ -569,7 +570,8 @@ class BoldGrid {
 			} else if ( is_single() ) {
 
 				// Check if the key is set for the post meta.
-				if ( in_array( 'boldgrid_hide_page_title', get_post_custom_keys( $post_id ), true ) ) {
+				$keys = get_post_custom_keys( $post_id );
+				if ( is_array( $keys ) && in_array( 'boldgrid_hide_page_title', $keys, true ) ) {
 					$post_meta = get_post_meta( $post_id );
 
 					// If the post meta is empty and global display for post titles is off, hide the header.

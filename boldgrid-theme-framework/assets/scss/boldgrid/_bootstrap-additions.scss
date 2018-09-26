@@ -87,3 +87,16 @@
 		}
 	}
 }
+
+// Nav menu.
+.nav > li {
+	padding: 10px 15px;
+	&.cat-item > a {
+		display: inline-block;
+	}
+	& > a {
+		position: relative;
+		display: block;
+		padding: 0;
+	}
+}

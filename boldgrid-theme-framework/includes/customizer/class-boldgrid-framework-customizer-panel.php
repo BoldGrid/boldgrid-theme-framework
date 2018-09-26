@@ -74,19 +74,9 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 		 */
 		public function get_breadcrumb() {
 			if ( ! empty( $this->panel ) && ! empty( $this->manager->get_panel( $this->panel )->breadcrumb ) ) {
-
-				// Remove Home translation string when more breadcrumbs follow.
-				$position = strpos( $this->manager->get_panel( $this->panel )->breadcrumb, __( 'Home', 'bgtfw' ) );
-
-				if ( $position !== false ) {
-					$formatted = substr_replace( $this->manager->get_panel( $this->panel )->breadcrumb, '', $position, strlen( __( 'Home', 'bgtfw' ) ) );
-				} else {
-					$formatted = $this->manager->get_panel( $this->panel )->breadcrumb;
-				}
-
-				$this->breadcrumb = rtrim( $formatted ) . ' &#9656; ' . $this->get_panel_link( $this->manager->get_panel( $this->panel )->id, $this->manager->get_panel( $this->panel )->title );
+				$this->breadcrumb = rtrim( $this->manager->get_panel( $this->panel )->breadcrumb ) . ' &#9656; ' . $this->get_panel_link( $this->manager->get_panel( $this->panel )->id, $this->manager->get_panel( $this->panel )->title );
 			} else {
-				$this->breadcrumb = '<span class="dashicons dashicons-admin-home"></span> ' . esc_html__( 'Home', 'bgtfw' );
+				$this->breadcrumb = '<span class="dashicons dashicons-admin-home"></span>';
 			}
 
 			return $this->breadcrumb;

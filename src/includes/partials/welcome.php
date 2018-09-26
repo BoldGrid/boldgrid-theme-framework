@@ -152,11 +152,11 @@ $configs = $boldgrid_theme_framework->get_configs();
 						<?php
 						printf(
 							wp_kses(
-								/* translators: The Url to the BoldGrid Central Cloud. */
+								/* translators: The Url to the BoldGrid Central. */
 								__( 'Are you looking to create a new Crio based website or need to test some changes? You can use your complimentary <a href="%1$s" target="_blank">Cloud WordPress</a> to test, develop, and share new designs before publishing to permanent hosting.', 'bgtfw' ),
 								$allowed_html
 							),
-							esc_url( 'https://www.boldgrid.com/central/get-it-now' )
+							esc_url( 'https://www.boldgrid.com/central' )
 						);
 						?>
 					</p>

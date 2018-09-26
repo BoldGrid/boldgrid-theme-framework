@@ -2580,13 +2580,16 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 # Customizer Breadcrumbs
 --------------------------------------------------------------*/
 .control-panel-bgtfw_panel .preview-notice, .control-section-bgtfw_section .customize-action {
+  display: block;
   font-size: 13px;
   line-height: 24px;
   margin: 1px 0;
+  width: calc( 100% - 22px);
 }
 
 .control-panel-bgtfw_panel .preview-notice a, .control-panel-bgtfw_panel .preview-notice .dashicons.dashicons-admin-home, .control-section-bgtfw_section .customize-action a, .control-section-bgtfw_section .customize-action .dashicons.dashicons-admin-home {
   color: currentColor;
+  cursor: pointer;
   text-decoration: none;
   -webkit-transition-property: border, background, color;
   transition-property: border, background, color;
@@ -2594,7 +2597,6 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
           transition-duration: .05s;
   -webkit-transition-timing-function: ease-in-out;
           transition-timing-function: ease-in-out;
-  cursor: pointer;
 }
 
 .control-panel-bgtfw_panel .preview-notice a:hover, .control-panel-bgtfw_panel .preview-notice .dashicons.dashicons-admin-home:hover, .control-section-bgtfw_section .customize-action a:hover, .control-section-bgtfw_section .customize-action .dashicons.dashicons-admin-home:hover {

@@ -144,6 +144,24 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	}
 
 	/**
+	 * Whether or not the Starter Content has been previewed.
+	 *
+	 * When the ajax call is made to load the starter content, after (1) the plugins have been installed
+	 * and (2) the Starter Content has been loaded, we flag 'bgtfw_starter_content_previewed' as being
+	 * true. We don't know if the user went on to publish the Starter Content, but they've definately
+	 * installed the plugins and previewed it.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return bool
+	 */
+	public static function has_been_previewed() {
+		$previewed = get_option( 'bgtfw_starter_content_previewed' );
+
+		return ! empty( $previewed );
+	}
+
+	/**
 	 * Determine whether or not the theme has valid starter content.
 	 *
 	 * @since 2.0.0

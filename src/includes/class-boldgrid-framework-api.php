@@ -532,7 +532,6 @@ class BoldGrid {
 			$post_id = absint( $post->ID );
 		}
 
-
 		if ( ! is_front_page() && is_home() ) {
 			$post_id = ( int ) get_option( 'page_for_posts' );
 		}

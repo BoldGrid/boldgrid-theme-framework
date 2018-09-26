@@ -221,7 +221,19 @@ $configs = $boldgrid_theme_framework->get_configs();
 						?>
 					</p>
 					<p>
+					<?php
+					/*
+					 * "Plugin Installer" button for BoldGrid Post & Page Builder plugin.
+					 *
+					 * If we don't need to install or activate the plugin, don't link to the recommended
+					 * plugins page.
+					 */
+					if ( ! class_exists( 'Boldgrid_Editor' ) || ! defined( 'BGPPB_PREMIUM_VERSION' ) ) {
+					?>
 						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-secondary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
+					<?php } else { ?>
+						<a class="button button-secondary button-hero" disabled="disabled"><?php esc_html_e( 'Installed!', 'bgtfw' ); ?></a>
+					<?php } ?>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
 							<a href="https://www.boldgrid.com/support/boldgrid-post-and-page-builder/post-and-page-builder/" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
@@ -267,7 +279,19 @@ $configs = $boldgrid_theme_framework->get_configs();
 					?>
 					</p>
 					<p>
+					<?php
+					/*
+					 * "Plugin Installer" button for BoldGrid Backup plugin.
+					 *
+					 * If we don't need to install or activate the plugin, don't link to the recommended
+					 * plugins page.
+					 */
+					if ( ! class_exists( 'Boldgrid_Backup' ) || ! class_exists( 'Boldgrid_Backup_Premium' ) ) {
+					?>
 						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-secondary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
+					<?php } else { ?>
+						<a class="button button-secondary button-hero" disabled="disabled"><?php esc_html_e( 'Installed!', 'bgtfw' ); ?></a>
+					<?php } ?>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
 							<a href="https://www.boldgrid.com/support/backup-plugin" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
@@ -299,7 +323,19 @@ $configs = $boldgrid_theme_framework->get_configs();
 					?>
 					</p>
 					<p>
+					<?php
+					/*
+					 * "Plugin Installer" button for BoldGrid Easy SEO plugin.
+					 *
+					 * If we don't need to install or activate the plugin, don't link to the recommended
+					 * plugins page.
+					 */
+					if ( ! class_exists( 'Boldgrid_Seo' ) ) {
+					?>
 						<a href="<?php echo esc_url( $tgm_url ); ?>" class="button button-secondary button-hero"><?php esc_html_e( 'Plugin Installer', 'bgtfw' ); ?></a>
+					<?php } else { ?>
+						<a class="button button-secondary button-hero" disabled="disabled"><?php esc_html_e( 'Installed!', 'bgtfw' ); ?></a>
+					<?php } ?>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
 							<a href="https://www.boldgrid.com/support/seo-plugin" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>

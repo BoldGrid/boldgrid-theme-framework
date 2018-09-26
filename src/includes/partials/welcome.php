@@ -175,36 +175,40 @@ $configs = $boldgrid_theme_framework->get_configs();
 	</div>
 
 	<div class="two-col">
-		<div class="welcome-panel col">
-			<h2><?php esc_html_e( 'Feature Requests and Bug Reports', 'bgtfw' ); ?></h2>
-			<p>
-			<?php
-				printf(
-					wp_kses(
-						/* translators: The Url to submit feature requests and bug reports. */
-						__( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit our <a href="%1$s" target="_blank">BoldGrid Community Portal</a>.', 'bgtfw' ),
-						$allowed_html
-					),
-					esc_url( 'https://boldgrid.com/feedback/' )
-				);
-			?>
-			</p>
+		<div class="welcome-panel col welcome-panel-column">
+			<div class="welcome-panel-content">
+				<h2><?php esc_html_e( 'Feature Requests and Bug Reports', 'bgtfw' ); ?></h2>
+				<p>
+				<?php
+					printf(
+						wp_kses(
+							/* translators: The Url to submit feature requests and bug reports. */
+							__( 'Help us make BoldGrid Crio better. To submit your product ideas or feedback about current features, or to report bugs and issues, please visit our <a href="%1$s" target="_blank">BoldGrid Community Portal</a>.', 'bgtfw' ),
+							$allowed_html
+						),
+						esc_url( 'https://boldgrid.com/feedback/' )
+					);
+				?>
+				</p>
+			</div>
 		</div>
-		<div class="welcome-panel col">
-			<h2><?php esc_html_e( '1 on 1 Support', 'bgtfw' ); ?></h2>
-			<p>
-			<?php
-				printf(
-					wp_kses(
-						/* translators: 1 is the Url for Crio support, 2 is the Url to BoldGrid Central. */
-						__( 'Need help with Crio that you didn\'t see in our <a href="%1$s" target="_blank">Crio Support Documentation</a>? Contact our knowledgeable Support Team from within <a href="%2$s" target="_blank">BoldGrid Central</a>.', 'bgtfw' ),
-						$allowed_html
-					),
-					esc_url( 'https://www.boldgrid.com/support/boldgrid-crio' ),
-					esc_url( 'https://www.boldgrid.com/central' )
-				);
-			?>
-			</p>
+		<div class="welcome-panel col welcome-panel-column">
+			<div class="welcome-panel-content">
+				<h2><?php esc_html_e( '1 on 1 Support', 'bgtfw' ); ?></h2>
+				<p>
+				<?php
+					printf(
+						wp_kses(
+							/* translators: 1 is the Url for Crio support, 2 is the Url to BoldGrid Central. */
+							__( 'Need help with Crio that you didn\'t see in our <a href="%1$s" target="_blank">Crio Support Documentation</a>? Contact our knowledgeable Support Team from within <a href="%2$s" target="_blank">BoldGrid Central</a>.', 'bgtfw' ),
+							$allowed_html
+						),
+						esc_url( 'https://www.boldgrid.com/support/boldgrid-crio' ),
+						esc_url( 'https://www.boldgrid.com/central' )
+					);
+				?>
+				</p>
+			</div>
 		</div>
 	</div>
 

@@ -2175,7 +2175,7 @@ select[name="archive-dropdown"] {
 
 @media only screen and (min-width: 992px) {
   .page-title-above.has-sidebar.right-sidebar .site-content.container .entry-content:not(.mce-content-body) .boldgrid-section-wrap,
-  .page-title-above.has-sidebar.right-sidebar .site-content.container .entry-content:not(.mce-content-body) :not(.boldgrid-section-wrap) .boldgrid-section {
+  .page-title-above.has-sidebar.right-sidebar .site-content.container .entry-content:not(.mce-content-body) .boldgrid-section {
     margin-left: -15px;
     margin-right: auto;
   }
@@ -2184,7 +2184,7 @@ select[name="archive-dropdown"] {
     margin-right: -15px;
   }
   .page-title-above.has-sidebar.left-sidebar .site-content.container .entry-content:not(.mce-content-body) .boldgrid-section-wrap,
-  .page-title-above.has-sidebar.left-sidebar .site-content.container .entry-content:not(.mce-content-body) :not(.boldgrid-section-wrap) .boldgrid-section {
+  .page-title-above.has-sidebar.left-sidebar .site-content.container .entry-content:not(.mce-content-body) .boldgrid-section {
     margin-left: auto;
     margin-right: -15px;
   }
@@ -2193,7 +2193,7 @@ select[name="archive-dropdown"] {
     margin-right: auto;
   }
   .page-title-above.has-sidebar.right-sidebar .site-content .entry-content:not(.mce-content-body) .boldgrid-section-wrap,
-  .page-title-above.has-sidebar.right-sidebar .site-content .entry-content:not(.mce-content-body) :not(.boldgrid-section-wrap) .boldgrid-section {
+  .page-title-above.has-sidebar.right-sidebar .site-content .entry-content:not(.mce-content-body) .boldgrid-section {
     margin-left: -2.8rem;
     margin-right: auto;
   }
@@ -2202,7 +2202,7 @@ select[name="archive-dropdown"] {
     margin-right: -2.8rem;
   }
   .page-title-above.has-sidebar.left-sidebar .site-content .entry-content:not(.mce-content-body) .boldgrid-section-wrap,
-  .page-title-above.has-sidebar.left-sidebar .site-content .entry-content:not(.mce-content-body) :not(.boldgrid-section-wrap) .boldgrid-section {
+  .page-title-above.has-sidebar.left-sidebar .site-content .entry-content:not(.mce-content-body) .boldgrid-section {
     margin-left: auto;
     margin-right: -2.8rem;
   }

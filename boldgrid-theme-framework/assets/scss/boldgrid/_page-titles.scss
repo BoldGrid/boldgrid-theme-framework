@@ -170,10 +170,6 @@
 
 @media only screen and (min-width: 992px) {
 	.page-title-above.has-sidebar.right-sidebar .site-content.container {
-		.entry-content:not(.mce-content-body) :not(.boldgrid-section-wrap) .boldgrid-section {
-			margin-left: -15px;
-			margin-right: auto;
-		}
 		.article-wrapper {
 			padding-left: 15px;
 			padding-right: 15px;
@@ -186,10 +182,6 @@
 		}
 	}
 	.page-title-above.has-sidebar.right-sidebar .site-content {
-		.entry-content:not(.mce-content-body) :not(.boldgrid-section-wrap) .boldgrid-section {
-			margin-left: -2.8rem;
-			margin-right: auto;
-		}
 		.article-wrapper {
 			padding-left: 2.8rem;
 			padding-right: 2.8rem;

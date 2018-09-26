@@ -2174,10 +2174,6 @@ select[name="archive-dropdown"] {
 }
 
 @media only screen and (min-width: 992px) {
-  .page-title-above.has-sidebar.right-sidebar .site-content.container .entry-content:not(.mce-content-body) :not(.boldgrid-section-wrap) .boldgrid-section {
-    margin-left: -15px;
-    margin-right: auto;
-  }
   .page-title-above.has-sidebar.right-sidebar .site-content.container .article-wrapper {
     padding-left: 15px;
     padding-right: 15px;
@@ -2187,10 +2183,6 @@ select[name="archive-dropdown"] {
   .page-title-above.has-sidebar.right-sidebar .site-content.container .article-wrapper + aside {
     margin-left: auto;
     margin-right: -15px;
-  }
-  .page-title-above.has-sidebar.right-sidebar .site-content .entry-content:not(.mce-content-body) :not(.boldgrid-section-wrap) .boldgrid-section {
-    margin-left: -2.8rem;
-    margin-right: auto;
   }
   .page-title-above.has-sidebar.right-sidebar .site-content .article-wrapper {
     padding-left: 2.8rem;

@@ -36,15 +36,15 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:1052
+#: src/includes/class-boldgrid-framework-api.php:1051
 msgid "This content is password protected. To view it please enter your password below:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:1053
+#: src/includes/class-boldgrid-framework-api.php:1052
 msgid "Password:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:1053
+#: src/includes/class-boldgrid-framework-api.php:1052
 msgctxt "post password form"
 msgid "Enter"
 msgstr ""
@@ -1862,11 +1862,11 @@ msgstr ""
 msgid "Permission denied."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:153
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:159
 msgid "Yes"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:154
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:160
 msgid "No"
 msgstr ""
 

@@ -119,7 +119,13 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 			return false;
 		}
 
+		// If we've already suggested, don't suggest again.
 		if ( $this->has_been_suggested() ) {
+			return false;
+		}
+
+		// If they've already previewed the starter content, no need to suggest, they know the deal.
+		if ( BoldGrid_Framework_Customizer_Starter_Content::has_been_previewed() ) {
 			return false;
 		}
 

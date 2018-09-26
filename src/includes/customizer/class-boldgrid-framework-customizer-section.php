@@ -62,7 +62,7 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 			if ( ! empty( $this->panel ) ) {
 				$array['customizeAction'] = rtrim( $this->manager->get_panel( $this->panel )->breadcrumb ) . ' &#9656; ' . $this->manager->get_panel( $this->panel )->get_panel_link( $this->manager->get_panel( $this->panel )->id, $this->manager->get_panel( $this->panel )->title, $this->id );
 			} else {
-				$array['customizeAction'] = sprintf( '<span class="dashicons dashicons-admin-home"></span> %1$s ', __( 'Home', 'bgtfw' ) );
+				$array['customizeAction'] = '<span class="dashicons dashicons-admin-home"></span>';
 			}
 
 			return $array;

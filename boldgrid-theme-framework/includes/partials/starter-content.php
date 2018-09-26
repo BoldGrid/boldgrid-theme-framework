@@ -29,7 +29,12 @@ if ( ! defined( 'WPINC' ) ) {
 						<h2><strong>Bold</strong>Business</h2>
 						<p>
 						<?php
-							esc_html_e( 'We created this default starter content set to show off the power and flexibility of BoldGrid Crio. This set is a design for a business site. All standard and Premium functionality is compatible with this starter content.', 'bgtfw' );
+							esc_html_e( 'This Starter Content is included to help you get moving quickly while showing off the power and flexibility of Crio and its integrated plugins.  It includes headers, footers, menus, several pages, contact forms, and a blog roll with several posts.  You can also quickly create new pages and posts by using the Add Block functionality to import Premium Blocks from within the Editor.', 'bgtfw' );
+						?>
+						</p>
+						<p>
+						<?php
+							esc_html_e( 'This Install requires the Post and Page Builder Premium and WP Forms plugins.  These plugins will be installed automatically if you do not already have them.', 'bgtfw' );
 						?>
 						</p>
 						<p>

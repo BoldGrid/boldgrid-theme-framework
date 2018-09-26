@@ -62,6 +62,34 @@ import { Locations as MenuLocations } from './menus/locations';
 			var parentContainer = $( '#sub-accordion-panel-' + panel.params.panel );
 			parentContainer.children( '.panel-meta' ).after( panel.headContainer );
 		} );
+
+		// Handle home icon click.
+		$( '.customize-action > .dashicons-admin-home, .preview-notice > .dashicons-admin-home' ).on( 'click', function( event ) {
+			var baseId,
+				el = event.delegateTarget,
+				links = $( $( el ).siblings( 'a' ) ).get().reverse();
+
+			_.each( links, function( link ) {
+				if ( _.isFunction( link.onclick ) ) {
+					link.onclick.call( link, event );
+				}
+			} );
+
+			// Detect if whatever is currently open is a section or panel.
+			if ( $( '.control-panel-bgtfw_panel.current-panel' ).length ) {
+				baseId = $( '.control-panel-bgtfw_panel.current-panel' );
+				baseId = baseId.attr( 'id' ).replace( 'sub-accordion-panel-', '' );
+				if ( wp.customize.panel( baseId ) ) {
+					wp.customize.panel( baseId ).collapse();
+				}
+			} else if ( $( '.control-section-bgtfw_section.open' ).length ) {
+				baseId = $( '.control-section-bgtfw_section.open' );
+				baseId = baseId.attr( 'id' ).replace( 'sub-accordion-section-', '' );
+				if ( wp.customize.section( baseId ) ) {
+					wp.customize.section( baseId ).collapse();
+				}
+			}
+		} );
 	} );
 
 

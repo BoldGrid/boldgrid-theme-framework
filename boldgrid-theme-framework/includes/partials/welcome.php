@@ -139,6 +139,14 @@ $configs = $boldgrid_theme_framework->get_configs();
 						<?php require_once $this->configs['framework']['includes_dir'] . '/partials/starter-content-messages.php'; ?>
 
 					</form>
+					<?php
+					/*
+					 * Give a plug to BoldGrid Central's Cloud WordPress.
+					 *
+					 * Only give the plug however after the user has "previewed" the Starter Content.
+					 */
+					if ( BoldGrid_Framework_Customizer_Starter_Content::has_been_previewed() ) {
+					?>
 					<p>
 						<img src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/outline-cloud-24px.svg' ); ?>" style="margin:0px;margin-bottom:-4px;width:40px;vertical-align:text-bottom;" />
 						<?php
@@ -152,6 +160,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 						);
 						?>
 					</p>
+					<?php } // End Cloud WordPress plug. ?>
 					<p>
 					<?php
 						esc_html_e( 'You can also manually install the components under Manual Install and Optional Plugins at the end of this page.', 'bgtfw' );

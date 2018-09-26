@@ -42,6 +42,8 @@
 	}
 }
 &.col1 main article {
+	margin-left: auto;
+	margin-right: auto;
 	width: calc( ( 100% / 1 ) - 1em );
 }
 &.col2 main article {

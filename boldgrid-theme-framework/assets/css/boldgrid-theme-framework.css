@@ -545,6 +545,8 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .blog.col1 main article {
+  margin-left: auto;
+  margin-right: auto;
   width: calc( ( 100% / 1 ) - 1em);
 }
 
@@ -806,6 +808,8 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .archive.col1 main article {
+  margin-left: auto;
+  margin-right: auto;
   width: calc( ( 100% / 1 ) - 1em);
 }
 

@@ -216,4 +216,35 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 			wp_send_json_success();
 		}
 	}
+
+	/**
+	 * Starter Content's hook for pre_get_posts.
+	 *
+	 * This method is ONLY ran on wp-admin/customize.php when we are requesting Starter Content be
+	 * loaded. Checks for this scenario are in the BoldGrid_Framework class, rather than here, to
+	 * prevent this method from being triggered far too many times.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param WP_Query $query
+	 */
+	public function pre_get_posts( $query ) {
+		$post_type = ! empty( $query->query['post_type'] ) ? $query->query['post_type'] : null;
+
+		/*
+		 * Prevent Customize Changesets from being returned.
+		 *
+		 * If we are in the Customizer and requesting that Starter Content be loaded, we will run
+		 * into problems if an existing draft / changeset is found. What the user wants is a fresh
+		 * preview of Starter Content, but if an existing draft / changeset is found, then the resulting
+		 * preview cannot be guaranteed.
+		 *
+		 * To ensure a fresh preview of Starter Content, ensure NO previous drafts / changesets are
+		 * found. If this query is looking for a customize_changeset, sabatoge and tell it to look
+		 * for another post type.
+		 */
+		if( 'customize_changeset' === $post_type ) {
+			$query->query_vars['post_type'] = 'return_nothing';
+		}
+	}
 }

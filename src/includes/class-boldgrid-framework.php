@@ -872,8 +872,12 @@ class BoldGrid_Framework {
 	 *
 	 * @since    2.0.0
 	 * @access   private
+	 *
+	 * @global string $pagenow
 	 */
 	private function customizer_starter_content() {
+		global $pagenow;
+
 		$starter_content = new Boldgrid_Framework_Customizer_Starter_Content( $this->configs );
 		$query = new Boldgrid_Framework_Customizer_Starter_Content_Query();
 		$suggest = new Boldgrid_Framework_Customizer_Starter_Content_Suggest( $this->configs );
@@ -893,6 +897,11 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'tgmpa_load', $plugins, 'tgmpa_load' );
 		$this->loader->add_filter( 'tgmpa_die_on_api_error', $plugins, 'tgmpa_die_on_api_error' );
 		$this->loader->add_filter( 'bgtfw_register_tgmpa', $plugins, 'bgtfw_register_tgmpa' );
+
+		// Filters to run if we are in the Customizer and requesting Starter Content be loaded.
+		if ( 'customize.php' === $pagenow && ! empty( $_POST['starter_content'] ) ) {
+			add_filter( 'pre_get_posts', array( $starter_content, 'pre_get_posts' ) );
+		}
 	}
 
 	/**

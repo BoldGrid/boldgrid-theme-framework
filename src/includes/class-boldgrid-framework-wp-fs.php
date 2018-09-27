@@ -34,6 +34,8 @@ class Boldgrid_Framework_Wp_Fs {
 			require_once ABSPATH . '/wp-admin/includes/file.php';
 			WP_Filesystem();
 		}
+
+		return $wp_filesystem;
 	}
 
 	/**

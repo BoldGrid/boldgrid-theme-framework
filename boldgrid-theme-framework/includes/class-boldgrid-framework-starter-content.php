@@ -387,7 +387,9 @@ class BoldGrid_Framework_Starter_Content {
 	 * @return integer      Form ID.
 	 */
 	protected static function import_wp_form( $path ) {
-		$json = file_get_contents( $path );
+		$wp_fs = new Boldgrid_Framework_Wp_Fs();
+		$json = $wp_fs->init()->get_contents( $path );
+
 		$title = esc_html( sanitize_text_field( json_decode( $json )->settings->form_title ) );
 		$post = get_page_by_title( $title, OBJECT, 'wpforms' );
 

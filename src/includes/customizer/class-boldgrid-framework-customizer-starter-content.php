@@ -56,6 +56,23 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	}
 
 	/**
+	 * Actions to take during after_switch_theme hook.
+	 *
+	 * @since 2.0.0
+	 */
+	public function after_switch_theme() {
+
+		/*
+		 * Prevent Starter Cotnent from loading due to simply having a fresh site.
+		 *
+		 * By default, the Customizer will load Starter Content if the user has a fresh site. We don't
+		 * want this to happen, otherwise the user will get our Starter Content loaded without us
+		 * first installing a few plugins and doing some other things.
+		 */
+		update_option( 'fresh_site', '0' );
+	}
+
+	/**
 	 * Determine whether or not a specific changeset includes starter content.
 	 *
 	 * This is done by looking for any "'starter_content' => true" values within the post_content

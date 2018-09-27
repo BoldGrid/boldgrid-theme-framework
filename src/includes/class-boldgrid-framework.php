@@ -884,6 +884,7 @@ class BoldGrid_Framework {
 		$plugins = new Boldgrid_Framework_Customizer_Starter_Content_Plugins( $this->configs );
 		$this->loader->add_action( 'customize_preview_init', $query, 'make_auto_drafts_queryable' );
 		$this->loader->add_action( 'customize_register', $starter_content, 'add_hooks' );
+		$this->loader->add_action( 'after_switch_theme', $starter_content, 'after_switch_theme' );
 
 		// Suggest the user load starter content.
 		$this->loader->add_action( 'wp_footer', $suggest, 'wp_footer' );

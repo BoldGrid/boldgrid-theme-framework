@@ -273,7 +273,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				} );
 
 				$body.data( 'stellar-background-ratio', '0.2' );
-				$body.stellar();
+				$body.stellar( {
+					horizontalScrolling: false
+				} );
 
 				if ( $body.data( 'plugin_stellar' ) ) {
 					$body.data( 'plugin_stellar' ).init();

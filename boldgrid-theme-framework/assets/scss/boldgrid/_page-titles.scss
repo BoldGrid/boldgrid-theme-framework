@@ -300,3 +300,20 @@
 		display: none;
 	}
 }
+
+.header-left, .header-right {
+	&.page-title-above .site-content .page-header-wrapper.full-width {
+		margin-right: -2.8rem;
+		margin-left: -2.8rem;
+		max-width: 100% !important;
+		width: 100% !important;
+	}
+}
+.header-left, .header-right {
+	&.page-title-above .site-content .page-header-wrapper.full-width .entry-header {
+		margin-right: auto;
+		margin-left: -5.6rem !important;
+		max-width: calc( 100% + 5.6rem ) !important;
+		width: calc( 100% + 5.6rem ) !important;
+	}
+}

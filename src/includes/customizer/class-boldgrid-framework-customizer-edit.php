@@ -119,7 +119,7 @@ class Boldgrid_Framework_Customizer_Edit {
 					'menu'			=> esc_attr__( 'Menu', 'bgtfw' ),
 					'config'		=> $this->configs['customizer-options']['edit'],
 					'postType'      => get_post_type(),
-					'widgetArea'    => esc_attr__( 'Widget Area' ),
+					'widgetArea'    => esc_attr__( 'Widget Area', 'bgtfw' ),
 				)
 			);
 

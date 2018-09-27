@@ -148,10 +148,10 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				}
 			?>
 			<label class="theme-layout-label layout-default layout-selected">
-				<input type="radio" name="page_template" class="theme-layout-input" value="default" <?php echo $checked; ?> data-value-displayed="<?php echo esc_attr( strip_tags( $title ) . ' ' . $subtitle ); ?>" data-default-option="<?php echo $checked ? '1' : '0'; ?>" />
-				<?php echo $title; ?>
+				<input type="radio" name="page_template" class="theme-layout-input" value="default" <?php echo esc_html( $checked ); ?> data-value-displayed="<?php echo esc_attr( strip_tags( $title ) . ' ' . $subtitle ); ?>" data-default-option="<?php echo esc_attr( $checked ? '1' : '0' ); ?>" />
+				<?php echo esc_html( $title ); ?>
 			</label>
-			<?php echo $subtitle; ?>
+			<?php echo esc_html( $subtitle ); ?>
 		<?php
 		foreach ( array_keys( $templates ) as $template ) {
 
@@ -174,8 +174,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 			$layout_label = $template;
 			?>
 			<label class="<?php echo esc_attr( $label_class ); ?>">
-				<input type="radio" name="page_template" class="theme-layout-input" value="<?php echo esc_attr( $templates[ $template ] ); ?>" <?php checked( $post_layout, $layout_value ); ?> data-value-displayed="<?php echo esc_attr( $template ); ?>" data-default-option="<?php echo $post_layout === $layout_value ? '1' : '0'; ?>" />
-				<?php echo $template; ?>
+				<input type="radio" name="page_template" class="theme-layout-input" value="<?php echo esc_attr( $templates[ $template ] ); ?>" <?php checked( $post_layout, $layout_value ); ?> data-value-displayed="<?php echo esc_attr( $template ); ?>" data-default-option="<?php echo esc_attr( $post_layout === $layout_value ? '1' : '0' ); ?>" />
+				<?php echo esc_html( $template ); ?>
 			</label>
 	<?php }?>
 	</div>
@@ -256,7 +256,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				$pages = wp_dropdown_pages( $dropdown_args );
 				if ( ! empty( $pages ) ) : ?>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php _e( 'Parent', 'bgtfw' ); ?></label></p>
-					<?php echo $pages; ?>
+					<?php echo esc_html( $pages ); ?>
 					<?php
 				endif; // end empty pages check
 			endif;  // end hierarchical check.

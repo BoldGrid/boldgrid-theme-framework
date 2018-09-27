@@ -161,7 +161,7 @@ function boldgrid_entry_footer() {
 
 		echo '<span class="' . $class . '">';
 
-		echo $icon;
+		echo esc_html( $icon );
 
 		comments_popup_link( __( 'Leave a comment', 'bgtfw' ), __( '1 Comment', 'bgtfw' ), __( '% Comments', 'bgtfw' ) );
 		echo '</span>';

@@ -114,14 +114,14 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 		protected function content_template() {
 			?>
 			<li class="panel-meta customize-info accordion-section <# if ( ! data.description ) { #> cannot-expand<# } #>">
-				<button class="customize-panel-back" tabindex="-1"><span class="screen-reader-text"><?php _e( 'Back' ); ?></span></button>
+				<button class="customize-panel-back" tabindex="-1"><span class="screen-reader-text"><?php _e( 'Back', 'bgtfw' ); ?></span></button>
 				<div class="accordion-section-title">
 					<span class="preview-notice">
 						{{{ data.breadcrumb }}}
 						<strong class="panel-title">{{ data.title }}</strong>
 					</span>
 					<# if ( data.description ) { #>
-						<button type="button" class="customize-help-toggle dashicons dashicons-editor-help" aria-expanded="false"><span class="screen-reader-text"><?php _e( 'Help' ); ?></span></button>
+						<button type="button" class="customize-help-toggle dashicons dashicons-editor-help" aria-expanded="false"><span class="screen-reader-text"><?php _e( 'Help', 'bgtfw' ); ?></span></button>
 					<# } #>
 				</div>
 				<# if ( data.description ) { #>

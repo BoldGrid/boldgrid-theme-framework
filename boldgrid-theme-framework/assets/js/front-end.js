@@ -441,7 +441,9 @@ var BoldGrid = BoldGrid || {};
 				var $body = $( 'body.boldgrid-customizer-parallax' );
 				if ( $body.stellar ) {
 					$body.attr( 'data-stellar-background-ratio', '0.2' );
-					$body.stellar();
+					$body.stellar( {
+						horizontalScrolling: false
+					} );
 				}
 			}
 		},

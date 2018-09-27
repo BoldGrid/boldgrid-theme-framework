@@ -249,7 +249,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					<?php } ?>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
-							<a href="https://www.boldgrid.com/support/boldgrid-post-and-page-builder/post-and-page-builder/" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
+							<a href="https://www.boldgrid.com/support/boldgrid-post-and-page-builder/" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
 						</span>
 					</p>
 				</div>
@@ -307,7 +307,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					<?php } ?>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
-							<a href="https://www.boldgrid.com/support/backup-plugin" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
+							<a href="https://www.boldgrid.com/support/boldgrid-backup/" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
 						</span>
 					</p>
 				</div>
@@ -374,7 +374,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 						<a href="<?php echo esc_url( $customizer_url ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Get Started', 'bgtfw' ); ?></a>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
-							<a href="https://www.boldgrid.com/support/" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
+							<a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-your-new-crio-website/" target="_blank"><?php esc_html_e( 'See Support Documents...', 'bgtfw' ); ?></a>
 						</span>
 					</p>
 					<p>

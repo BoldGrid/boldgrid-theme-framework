@@ -1275,11 +1275,11 @@ msgstr ""
 msgid "Change the border radius of your blog posts."
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:82
+#: src/includes/configs/tgm.config.php:84
 msgid "Recommended Plugins"
 msgstr ""
 
-#: src/includes/configs/tgm.config.php:83
+#: src/includes/configs/tgm.config.php:85
 msgid "Install Recommended Plugins"
 msgstr ""
 

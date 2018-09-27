@@ -103,7 +103,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 								__( 'Crio gives you control over layouts and macro "Style Guide" design elements straight from the Customizer. The <a href="%1$s" target="_blank">Post and Page Builder Premium</a>, included with your Crio purchase, natively inherits this Style Guide. For example, using Crio\'s Color Palette System you can create beautiful color schemes that apply to your entire website. This same Palette is available on the Page and Post level to inherit or override as you see fit. This saves time and helps keep your site within your Style Guide.', 'bgtfw' ),
 								$allowed_html
 							),
-							esc_url( 'https://www.boldgrid.com/support/boldgrid-post-and-page-builder/post-and-page-builder/' )
+							esc_url( 'https://www.boldgrid.com/support/boldgrid-post-and-page-builder/' )
 						);
 					?>
 					</p>

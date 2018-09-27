@@ -248,7 +248,7 @@ class BoldGrid {
 			}
 		}
 
-		print $class;
+		print esc_attr( $class );
 	}
 
 	/**

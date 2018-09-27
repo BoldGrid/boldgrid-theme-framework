@@ -195,7 +195,7 @@ class BoldGrid_Framework_Pagination {
 		$page_links = wp_kses( $output, $allowed );
 
 		if ( $args['echo'] ) {
-			echo $page_links;
+			echo esc_html( $page_links );
 		} else {
 			return $page_links;
 		}

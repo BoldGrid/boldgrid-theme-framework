@@ -102,9 +102,11 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	};
 
 	var highlight_widget_area = function( $matching_area ) {
-		var position = $matching_area[0].getBoundingClientRect();
-		var largest_height = $matching_area.outerHeight( true );
-		var largest_width = $matching_area.outerWidth( true );
+		var position = $matching_area[0].getBoundingClientRect(),
+			largest_height = $matching_area.outerHeight( true ),
+			largest_width = $matching_area.outerWidth( true ),
+			areaOffset;
+
 		$matching_area.find( '*' ).each( function() {
 			var $this = $( this );
 			var outer_height = $this.outerHeight( true );
@@ -124,8 +126,14 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			'top': $matching_area.offset().top
 		}).removeClass( 'hidden' );
 
+		areaOffset = $matching_area.offset().top - 65;
+
+		if ( wp.customize( 'bgtfw_fixed_header' )() && 'header-top' === wp.customize( 'bgtfw_header_layout_position' )() ) {
+			areaOffset -= self.$previewer.find( '.site-header' ).outerHeight();
+		}
+
 		self.$previewer.find( 'html, body' ).stop().animate({
-			scrollTop: $matching_area.offset().top - 65
+			scrollTop: areaOffset
 		}, 750 );
 	};
 

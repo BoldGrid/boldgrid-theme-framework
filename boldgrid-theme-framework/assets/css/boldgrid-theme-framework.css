@@ -3209,6 +3209,10 @@ footer .bgtfw-widget-row {
   text-align: center;
 }
 
+.site-footer.layout-5 .social-menu-wrapper .sm-clean li {
+  float: right;
+}
+
 @media only screen and (min-width: 768px) {
   .site-footer.layout-5 .social-menu-wrapper {
     -ms-flex-preferred-size: 40%;
@@ -3301,6 +3305,10 @@ footer .bgtfw-widget-row {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
+}
+
+.site-footer.layout-7 .social-menu-wrapper .sm-clean li {
+  float: right;
 }
 
 .site-footer.layout-7 .contact-block-wrapper {

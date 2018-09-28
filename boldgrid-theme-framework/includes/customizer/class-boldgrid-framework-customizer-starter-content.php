@@ -56,11 +56,15 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	}
 
 	/**
-	 * Actions to take during after_switch_theme hook.
+	 * Actions to take for "get_theme_starter_content" filter.
 	 *
 	 * @since 2.0.0
+	 *
+	 * @param  array $content Array of starter content.
+	 * @param  array $config  Array of theme-specific starter content configuration.
+	 * @return array
 	 */
-	public function after_switch_theme() {
+	public function get_theme_starter_content( $content, $config ) {
 
 		/*
 		 * Prevent Starter Cotnent from loading due to simply having a fresh site.
@@ -68,8 +72,16 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 		 * By default, the Customizer will load Starter Content if the user has a fresh site. We don't
 		 * want this to happen, otherwise the user will get our Starter Content loaded without us
 		 * first installing a few plugins and doing some other things.
+		 *
+		 * Our initial approach to solving this issue was to simply update the fresh_site value:
+		 * update_option( 'fresh_site', '0' );
+		 * This had undesired consequences however. The Customizer would end up loading with the save
+		 * button reading "Published" and being disabled.
+		 *
+		 * Current appreach is to return empty starter cotent UNLESS the user is actually requesting
+		 * the starter content be loaded, self::maybe_load_content().
 		 */
-		update_option( 'fresh_site', '0' );
+		return self::maybe_load_content() ? $content : array();
 	}
 
 	/**
@@ -232,6 +244,24 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 			update_option( 'bgtfw_starter_content_previewed', true );
 			wp_send_json_success();
 		}
+	}
+
+	/**
+	 * Whether or not we should load starter content.
+	 *
+	 * Starter Content should only be loaded if the user explicity clicked on an "install" type button.
+	 * This button should $_POST a specific 'starter_content' set to the customizer.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @global string $pagenow
+	 *
+	 * @return bool
+	 */
+	public static function maybe_load_content() {
+		global $pagenow;
+
+		return 'customize.php' === $pagenow && ! empty( $_POST['starter_content'] );
 	}
 
 	/**

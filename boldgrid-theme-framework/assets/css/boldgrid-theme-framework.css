@@ -2161,10 +2161,10 @@ select[name="archive-dropdown"] {
 
 .page-title-above .article-wrapper {
   -webkit-box-flex: 1;
-  -ms-flex: 1 0 100%;
-  flex: 1 0 100%;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
   -ms-flex-line-pack: start;
-  align-content: flex-start;
+      align-content: flex-start;
   max-width: 100%;
 }
 

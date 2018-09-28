@@ -872,19 +872,15 @@ class BoldGrid_Framework {
 	 *
 	 * @since    2.0.0
 	 * @access   private
-	 *
-	 * @global string $pagenow
 	 */
 	private function customizer_starter_content() {
-		global $pagenow;
-
 		$starter_content = new Boldgrid_Framework_Customizer_Starter_Content( $this->configs );
 		$query = new Boldgrid_Framework_Customizer_Starter_Content_Query();
 		$suggest = new Boldgrid_Framework_Customizer_Starter_Content_Suggest( $this->configs );
 		$plugins = new Boldgrid_Framework_Customizer_Starter_Content_Plugins( $this->configs );
 		$this->loader->add_action( 'customize_preview_init', $query, 'make_auto_drafts_queryable' );
 		$this->loader->add_action( 'customize_register', $starter_content, 'add_hooks' );
-		$this->loader->add_action( 'after_switch_theme', $starter_content, 'after_switch_theme' );
+		$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'get_theme_starter_content', 10, 2 );
 
 		// Suggest the user load starter content.
 		$this->loader->add_action( 'wp_footer', $suggest, 'wp_footer' );
@@ -900,7 +896,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bgtfw_register_tgmpa', $plugins, 'bgtfw_register_tgmpa' );
 
 		// Filters to run if we are in the Customizer and requesting Starter Content be loaded.
-		if ( 'customize.php' === $pagenow && ! empty( $_POST['starter_content'] ) ) {
+		if ( BoldGrid_Framework_Customizer_Starter_Content::maybe_load_content() ) {
 			add_filter( 'pre_get_posts', array( $starter_content, 'pre_get_posts' ) );
 		}
 	}

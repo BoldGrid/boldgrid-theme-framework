@@ -20,8 +20,32 @@
 					} );
 				}
 			} );
-
 		} );
+
+		if ( hasPPBEnabled() ) {
+			bindPPB();
+		}
 	} );
+
+	function bindPPB() {
+		var BGE = window.BOLDGRID.EDITOR;
+
+		BGE.$window.on( 'boldgrid_editor_loaded', function() {
+
+			BGE.Service.event.on( 'widgetUpdated', function( node ) {
+				var $node = $( node );
+
+				$node.find( '.widget_rss ul' ).addClass( 'media-list' );
+
+				$node.find( '.widget_meta ul, .widget_recent_entries ul, .widget_archive ul, .widget_categories ul, .widget_nav_menu ul, .widget_pages ul' )
+					.addClass( 'nav' );
+			} );
+		} );
+	}
+
+	function hasPPBEnabled() {
+		var BOLDGRID = window.BOLDGRID;
+		return BOLDGRID && BOLDGRID.EDITOR && BOLDGRID.EDITOR.Service && BOLDGRID.EDITOR.$window;
+	}
 
 })( jQuery );

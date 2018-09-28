@@ -682,7 +682,7 @@ class BoldGrid {
 		$background_theme_mod = 'boldgrid_background_color';
 		$background_image = get_theme_mod( 'background_image' );
 
-		if ( 'image' === get_theme_mod( 'boldgrid_background_type' ) &&
+		if ( 'pattern' !== get_theme_mod( 'boldgrid_background_type' ) &&
 			! empty( $background_image ) &&
 			true === get_theme_mod( 'bgtfw_background_overlay' ) ) {
 			$background_theme_mod = 'bgtfw_background_overlay_color';

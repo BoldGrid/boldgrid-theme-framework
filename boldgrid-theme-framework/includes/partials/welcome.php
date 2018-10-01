@@ -69,7 +69,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					<?php } // End $is_premium check. ?>
 						<span class="nowrap">
 							<?php esc_html_e( 'or', 'bgtfw' ); ?>
-							<a href="https://www.boldgrid.com/central" target="_blank"><?php esc_html_e( 'Manually Setup and Verify', 'bgtfw' ); ?></a>
+							<a href="https://www.boldgrid.com/central/" target="_blank"><?php esc_html_e( 'Manually Setup and Verify', 'bgtfw' ); ?></a>
 						</span>
 					</p>
 					<p><?php
@@ -156,7 +156,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 								__( 'Are you looking to create a new Crio based website or need to test some changes? You can use your complimentary <a href="%1$s" target="_blank">Cloud WordPress</a> to test, develop, and share new designs before publishing to permanent hosting.', 'bgtfw' ),
 								$allowed_html
 							),
-							esc_url( 'https://www.boldgrid.com/central' )
+							esc_url( 'https://www.boldgrid.com/central/' )
 						);
 						?>
 					</p>
@@ -203,8 +203,8 @@ $configs = $boldgrid_theme_framework->get_configs();
 							__( 'Need help with Crio that you didn\'t see in our <a href="%1$s" target="_blank">Crio Support Documentation</a>? Contact our knowledgeable Support Team from within <a href="%2$s" target="_blank">BoldGrid Central</a>.', 'bgtfw' ),
 							$allowed_html
 						),
-						esc_url( 'https://www.boldgrid.com/support/boldgrid-crio' ),
-						esc_url( 'https://www.boldgrid.com/central' )
+						esc_url( 'https://www.boldgrid.com/support/boldgrid-crio/' ),
+						esc_url( 'https://www.boldgrid.com/central/' )
 					);
 				?>
 				</p>

@@ -109,8 +109,9 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 		$starter_content_plugins = ! empty( $this->configs['starter-content']['plugins'] ) ? $this->configs['starter-content']['plugins'] : array();
 		$translations = array(
 			'pluginData' => self::get_plugin_info( $starter_content_plugins ),
-			'NoResponseInstall' => '<div class="error">' . __( 'No response from server when attempting to install plugins.', 'bgtfw' ) . '</div>',
-			'NoResponseActivate' => '<div class="error">' . __( 'No response from server when attempting to activate plugins.', 'bgtfw' ) . '</div>',
+			'NoResponseInstall' => '<div class="error">' . esc_html__( 'No response from server when attempting to install plugins.', 'bgtfw' ) . '</div>',
+			'NoResponseActivate' => '<div class="error">' . esc_html__( 'No response from server when attempting to activate plugins.', 'bgtfw' ) . '</div>',
+			'unknownPostError' => '<div class="error">' . esc_html__( 'Unknown error after activating plugins.', 'bgtfw' ) . '</div>',
 			'bulkPluginsNonce' => wp_create_nonce( 'bulk-plugins' ),
 		);
 		wp_localize_script( $handle, 'bgtfwCustomizerStarterContentPlugins', $translations );
@@ -198,6 +199,61 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 					break;
 			}
 		}
+	}
+
+	/**
+	 * Actions to take after Starter Content plugins have been installed and activated.
+	 *
+	 * Within the dashboard when a user clicks to install starter content, we make 3 ajax calls before
+	 * redirecting to the Customizer. The first 2 ajax calls are to (1) install any required plugins
+	 * and (2) activate those plugins. The third ajax call is made to this action, bgtfw-post-plugin-setup,
+	 * which handles any final actions BEFORE the user is finally redirected to the Customizer.
+	 *
+	 * @since 2.0.0
+	 */
+	public function post_plugin_setup() {
+		if( ! check_ajax_referer( 'bulk-plugins', '_wpnonce', false ) ) {
+			wp_die( sprintf(
+				'<div class="error">%1$s</div>',
+				esc_html__( 'Access denined running post plugin activcation scripts.', 'bgtfw')
+			));
+		}
+
+		/*
+		 * In order for any starter content to be installed, we need to have a fresh site.
+		 * Please see: https://github.com/WordPress/WordPress/blob/master/wp-includes/class-wp-customize-manager.php#L588-L595
+		 */
+		update_option( 'fresh_site', '1' );
+
+		/*
+		 * This option confirms that the bgtfw says we're good to install starter content. IE, all
+		 * necessary plugins have been installed and activated.
+		 *
+		 * If we have a 'fresh_site' BUT this option isn't set, we will not return any starter content
+		 * to WordPress. Please see BoldGrid_Framework_Customizer_Starter_Content::get_theme_starter_content.
+		 */
+		update_option( 'bgtfw_install_starter_content', '1' );
+
+		/**
+		 * Take action before any starter content is installed.
+		 *
+		 * Any required plugins for the starter content have already been installed.
+		 *
+		 * @since 2.0.0
+		 */
+		do_action( 'bgtfw_pre_load_starter_content' );
+
+		/*
+		 * The prior 2 ajax calls before this used tgmpa to install / acticated plugins. Those requests
+		 * were not clean ajax requests, and did not use wp_send_json_success or wp_send_json_error.
+		 * They instead echoed the results of the plugin installer skin.
+		 *
+		 * This 3rd ajax request therefore is following the same structure. If there is an error, like
+		 * in the invalid nonce above, we die with a "<div class='error'>". If a response is given
+		 * and no error classes are found, then we've got success. This is why we are dying with a
+		 * string below.
+		 */
+		wp_die( 'Success' );
 	}
 
 	/**

@@ -1,5 +1,15 @@
-var $ = jQuery;
+const $ = jQuery;
+const api = wp.customize;
 
+/**
+ * Customizer Devices
+ *
+ * This class handle the various device previews in the WordPress customizer.
+ *
+ * @since 2.0.0
+ *
+ * @type {Devices}
+ */
 export class Devices {
 
 	/**
@@ -8,7 +18,28 @@ export class Devices {
 	 * @since 2.0.0
 	 */
 	constructor() {
-		this.container = wp.customize.previewer.preview.container;
+		this.devices = {
+			large: {
+				name: 'large',
+				breakpoint: 1200
+			},
+			desktop: {
+				name: 'desktop',
+				breakpoint: 992
+			},
+			tablet: {
+				name: 'tablet',
+				breakpoint: 768
+			},
+			mobile: {
+				name: 'mobile',
+				breakpoint: 0
+			}
+		};
+		this.shouldChange = true;
+		this.currentDevice = '';
+		this.previewedDevice = '';
+		this.container = null;
 		this.window = $( window );
 		this.regex = /(^|\s)previewed-from-(?=desktop|mobile|large|tablet)\S+/g;
 	}
@@ -28,10 +59,137 @@ export class Devices {
 	 * @since 2.0.0
 	 */
 	_attachEvents() {
-		this.window.on( 'resize', () => {
-			let device = this.detectDevice();
-			this.toggleClass( device );
+		this._customizerReady();
+	}
+
+	/**
+	 * Bind to customizer on ready event.
+	 *
+	 * This makes sure that the customizer is loaded and ready
+	 * before we interact with it.
+	 *
+	 * @since 2.0.0
+	 */
+	_customizerReady() {
+		api.bind( 'ready', () => this._previewerReady() );
+	}
+
+	/**
+	 * Bind to previewer on ready event.
+	 *
+	 * This makes sure that the preview iframe is loaded before
+	 * we interact with it.
+	 *
+	 * @since 2.0.0
+	 */
+	_previewerReady() {
+		api.previewer.bind( 'ready', () => {
+			this.onLoad();
+			this._resize();
+			this._click();
 		} );
+	}
+
+	/**
+	 * Handles resize event.
+	 *
+	 * @since 2.0.0
+	 */
+	_resize() {
+		$( window ).on( 'resize', _.debounce( () => {
+			this.detectDevice();
+
+			if ( this.previewedDevice === this.currentDevice ) {
+				this.shouldChange = true;
+			}
+
+			if ( this.shouldChange ) {
+				this.toggleClass( this.currentDevice );
+				this.setDevice( this.currentDevice, false );
+			}
+		}, 300 ) );
+	}
+
+	/**
+	 * Handles click events for device preview buttons.
+	 *
+	 * @since 2.0.0
+	 */
+	_click() {
+		$( '.devices > button' ).on( 'click', ( event, data ) => {
+			if ( _.isUndefined( data ) || ! _.isUndefined( data.internal ) && ! data.internal ) {
+				this.shouldChange = false;
+			}
+
+			this.previewedDevice = $( event.currentTarget ).data( 'device' );
+
+			wp.customize.previewer.preview.container.one( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', () => this.setBodyHeight() );
+
+			this.detectDevice();
+		} );
+	}
+
+	/**
+	 * Things to do on load of customizer previewer.
+	 *
+	 * @since 2.0.0
+	 */
+	onLoad() {
+		this.container = api.previewer.preview.container;
+		this.detectDevice();
+
+		if ( ! this.hasClass() ) {
+			this.toggleClass( this.currentDevice );
+			this.setDevice( this.currentDevice, false );
+			$( '.devices > button' ).blur();
+			this.shouldChange = true;
+		}
+
+		this.setupScroll();
+	}
+
+	/**
+	 * Setup scrolling bugs.
+	 *
+	 * @since 2.0.0
+	 */
+	setupScroll() {
+		let preview = api.previewer.preview.iframe[0];
+
+		// Set seamless for html5.
+		preview.seamless = true;
+
+		// Set overflow since scrolling attribute is not valid for HTML5.
+		document.body.style.overflow = 'auto';
+		frames[ preview.name ].document.body.style.overflow = 'hidden';
+
+		// Set the body height.
+		this.setBodyHeight();
+
+		// On resize recalc the height offsets.
+
+		$( window ).on( 'resize', _.debounce( () => {
+			this.setBodyHeight();
+		}, 300 ) );
+
+		// Scroll syncing ** Do Not Debounce **.
+		$( window ).on( 'scroll', () => {
+			let name = api.previewer.preview.iframe[0].name;
+			let doc = frames[ name ].document;
+			doc.documentElement.scrollTop = window.pageYOffset;
+			doc.body.scrollTop = window.pageYOffset; // Google Chrome, Safari, documents without valid doctype.
+			$( '.wp-customizer .wp-full-overlay' ).scrollLeft( window.pageXOffset );
+		} );
+
+	}
+
+	setBodyHeight() {
+		let name = api.previewer.preview.iframe[0].name;
+		document.body.style.height = frames[ name ].document.body.offsetHeight + 'px';
+
+		let previewWidth = frames[ name ].document.body.offsetWidth;
+		let controlWidth = document.getElementById( 'customize-controls' ).offsetWidth;
+		document.body.style.width = Math.abs( previewWidth + controlWidth ) + 'px';
 	}
 
 	/**
@@ -42,19 +200,19 @@ export class Devices {
 	 * @return {String} device The device size entering customizer.
 	 */
 	detectDevice() {
-		let width = this.window.outerWidth() - $( '#customize-controls' ).outerWidth();
+		let width = window.innerWidth - $( '#customize-controls' ).outerWidth();
 
-		let	device = 'large';
-
-		if ( 768 > width ) {
-			device = 'mobile';
-		} else if ( 768 <= width && 992 >= width ) {
-			device = 'tablet';
-		} else if ( 992 < width && 1200 >= width ) {
-			device = 'desktop';
+		if ( this.devices.tablet.breakpoint > width ) {
+			this.currentDevice = this.devices.mobile.name;
+		} else if ( this.devices.tablet.breakpoint <= width && this.devices.desktop.breakpoint >= width ) {
+			this.currentDevice = this.devices.tablet.name;
+		} else if ( this.devices.desktop.breakpoint < width && this.devices.large.breakpoint >= width ) {
+			this.currentDevice = this.devices.desktop.name;
+		} else {
+			this.currentDevice = this.devices.large.name;
 		}
 
-		return device;
+		return this.currentDevice;
 	}
 
 	/**
@@ -63,9 +221,15 @@ export class Devices {
 	 * @since 2.0.0
 	 *
 	 * @param {String} device The device size to set for previewer.
+	 * @param {Bool} focus Should focus be applied?
 	 */
 	setDevice( device ) {
-		$( `.devices > [data-device="${device}"]` ).click();
+		let button = $( `.devices > [data-device="${device}"]` );
+
+		// Remove focus from currently focused buttons.
+		$( '.devices > button' ).blur();
+
+		button.trigger( 'click', [ { internal: true } ] ).blur();
 	}
 
 	/**
@@ -74,10 +238,14 @@ export class Devices {
 	 * @since 2.0.0
 	 *
 	 * @param {String} device The device size to set for previewer.
+	 * @param {Function} callback Optional callback method.
 	 */
-	toggleClass( device ) {
+	toggleClass( device, callback ) {
 		this.removeClass();
+
 		this.container.addClass( `previewed-from-${device}` );
+		document.body.className += ` bgtfw-is-${device}`;
+		'function' === typeof( callback ) && callback();
 	}
 
 	/**
@@ -86,6 +254,7 @@ export class Devices {
 	 * @since 2.0.0
 	 */
 	removeClass() {
+		document.body.className = document.body.className.replace( /(^|\s)bgtfw-is-(?=desktop|mobile|large|tablet)\S+/g, '' );
 		this.container.removeClass( ( index, className ) => {
 			return ( className.match( this.regex ) || [] ).join( ' ' );
 		} );

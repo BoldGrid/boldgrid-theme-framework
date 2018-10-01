@@ -118,6 +118,9 @@ class Boldgrid_Framework_Device_Preview {
 	public function adjust_customizer_responsive_sizes() {
 		?>
 		<style>
+			.wp-customizer .wp-full-overlay {
+				overflow: hidden;
+			}
 			.wp-customizer .preview-mobile .wp-full-overlay-main.previewed-from-mobile,
 			.wp-customizer .preview-tablet .wp-full-overlay-main.previewed-from-tablet,
 			.wp-customizer .preview-desktop .wp-full-overlay-main.previewed-from-desktop,

@@ -10,20 +10,8 @@ import HoverBackgroundToggle from './menus/hover-background-toggle';
 import { Locations as MenuLocations } from './menus/locations';
 import { Devices } from './devices';
 
-
-wp.customize.bind( 'ready', () => {
-	wp.customize.previewer.bind( 'ready', () => {
-		let devices = new Devices();
-		devices.init();
-
-		let device = devices.detectDevice();
-
-		if ( ! devices.hasClass() ) {
-			devices.toggleClass( device );
-			devices.setDevice( device );
-		}
-	} );
-} );
+let devices = new Devices();
+devices.init();
 
 ( function( $ ) {
 	var api, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;

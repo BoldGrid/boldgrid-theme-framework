@@ -149,9 +149,9 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 			?>
 			<label class="theme-layout-label layout-default layout-selected">
 				<input type="radio" name="page_template" class="theme-layout-input" value="default" <?php echo esc_html( $checked ); ?> data-value-displayed="<?php echo esc_attr( strip_tags( $title ) . ' ' . $subtitle ); ?>" data-default-option="<?php echo esc_attr( $checked ? '1' : '0' ); ?>" />
-				<?php echo esc_html( $title ); ?>
+				<?php echo '<span>' . $title . '</span>'; ?>
 			</label>
-			<?php echo esc_html( $subtitle ); ?>
+			<?php echo '<span>' . $subtitle . '</span>'; ?>
 		<?php
 		foreach ( array_keys( $templates ) as $template ) {
 
@@ -256,7 +256,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				$pages = wp_dropdown_pages( $dropdown_args );
 				if ( ! empty( $pages ) ) : ?>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php _e( 'Parent', 'bgtfw' ); ?></label></p>
-					<?php echo esc_html( $pages ); ?>
+					<?php echo '<span>' . $pages . '</span>'; ?>
 					<?php
 				endif; // end empty pages check
 			endif;  // end hierarchical check.

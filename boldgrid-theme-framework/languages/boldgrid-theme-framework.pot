@@ -1878,11 +1878,11 @@ msgstr ""
 msgid "Permission denied."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:159
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:146
 msgid "Yes"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:160
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-suggest.php:147
 msgid "No"
 msgstr ""
 

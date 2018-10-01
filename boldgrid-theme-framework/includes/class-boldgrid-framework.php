@@ -888,7 +888,6 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_footer', $suggest, 'wp_footer' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $suggest, 'wp_enqueue_scripts' );
 		$this->loader->add_action( 'wp_ajax_bgtfw_starter_content_suggested', $suggest, 'ajax_suggested' );
-		$this->loader->add_action( 'customize_register', $suggest, 'customize_register' );
 
 		// Allow plugins to be installed before starter content is imported.
 		$this->loader->add_action( 'wp_ajax_tgmpa-bulk-install', $plugins, 'tgmpa_bulk_install' );

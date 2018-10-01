@@ -261,7 +261,7 @@ class Boldgrid_Framework_Device_Preview {
 			}
 			.wp-customizer .preview-tablet .wp-full-overlay-main.previewed-from-mobile {
 				margin: auto;
-				width: 768px;
+				min-width: 768px;
 				height: 100%;
 				left: 0;
 				-webkit-transform: translateX(0);
@@ -273,6 +273,12 @@ class Boldgrid_Framework_Device_Preview {
 				}
 				.wp-customizer .wp-full-overlay-footer .devices {
 					display: none;
+				}
+				.wp-customizer .preview-mobile .wp-full-overlay-main.previewed-from-mobile,
+				.wp-customizer .preview-tablet .wp-full-overlay-main.previewed-from-tablet,
+				.wp-customizer .preview-desktop .wp-full-overlay-main.previewed-from-desktop,
+				.wp-customizer .preview-large .wp-full-overlay-main.previewed-from-large {
+					width: 100%;
 				}
 			}
 			@media screen and (max-width: 1024px) {

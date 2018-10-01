@@ -1834,7 +1834,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-panel.php:124, src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:146
+#: src/includes/customizer/class-boldgrid-framework-customizer-panel.php:124, src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:181
 msgid "Help"
 msgstr ""
 
@@ -1858,7 +1858,15 @@ msgstr ""
 msgid "No response from server when attempting to activate plugins."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-plugins.php:212
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-plugins.php:114
+msgid "Unknown error after activating plugins."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-plugins.php:218
+msgid "Access denined running post plugin activcation scripts."
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content-plugins.php:268
 msgid "Not allowed"
 msgstr ""
 
@@ -1878,23 +1886,23 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:135
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:170
 msgid "Installing Starter Content"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:139
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:174
 msgid "Starter Content Installed!"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:143
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:178
 msgid "To make this preview website your own, make any customizations you would like and then <strong>Save Draft</strong> or <strong>Publish</strong>."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:150
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:185
 msgid "If you'd rather not keep these changes, <a href=\"%1$s\">exit without saving</a> and return to your dashboard."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:160
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:195
 msgid "Sorry, an unknown error occurred when trying to install the Starter Content."
 msgstr ""
 

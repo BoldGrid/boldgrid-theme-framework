@@ -152,16 +152,16 @@ function boldgrid_entry_footer() {
 		$class = 'comments-link';
 
 		if ( $comment_count > 1 ) {
-			$icon = '<i class="fa fa-fw fa-' . get_theme_mod( 'bgtfw_blog_post_comments_icon' ) . '" aria-hidden="true"></i> ';
+			$icon = get_theme_mod( 'bgtfw_blog_post_comments_icon' );
 			$class .= ' multiple';
 		} else {
-			$icon = '<i class="fa fa-fw fa-' . get_theme_mod( 'bgtfw_blog_post_comment_icon' ) . '" aria-hidden="true"></i> ';
+			$icon = get_theme_mod( 'bgtfw_blog_post_comment_icon' );
 			$class .= ' singular';
 		}
 
 		echo '<span class="' . $class . '">';
 
-		echo esc_html( $icon );
+		echo '<i class="fa fa-fw fa-' . esc_attr( $icon ) . '" aria-hidden="true"></i> ';
 
 		comments_popup_link( __( 'Leave a comment', 'bgtfw' ), __( '1 Comment', 'bgtfw' ), __( '% Comments', 'bgtfw' ) );
 		echo '</span>';

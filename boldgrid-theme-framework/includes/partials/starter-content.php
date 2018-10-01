@@ -38,7 +38,7 @@ if ( ! defined( 'WPINC' ) ) {
 						?>
 						</p>
 						<p>
-							<input class="button button-primary button-hero" type="submit" value="<?php esc_attr_e( 'Install', 'bgtfw' ); ?>" />
+							<input class="button button-primary button-hero" type="submit" value="<?php esc_attr_e( 'Auto Configure and Start Designing', 'bgtfw' ); ?>" />
 							<span class="spinner"></span>
 						</p>
 					</div>

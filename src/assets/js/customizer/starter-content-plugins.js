@@ -25,6 +25,15 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 		
 		activatePluginsSuccess : false,
 		
+		/**
+		 * Success status of our ajax call post plugin installs and activation.
+		 *
+		 * @since    2.0.0
+		 * @type     bool
+		 * @memberof BOLDGRID.StarterContentPlugins
+		 */
+		postPluginsSuccess : false,
+
 		done : false,
 		
 		$form : null,
@@ -74,11 +83,7 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 					$errors = $response.find( '.error' );
 
 				if( $errors.length > 0 ) {
-					self.$messages
-						.show()
-						.find( '.starter-content-error' )
-							.empty()
-							.append( $errors );
+					self.showErrors( $errors );
 					onFail();
 				} else {
 					self.installPluginsSuccess = true;
@@ -94,9 +99,9 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 				onSuccess( 'No plugins to install.' );	
 			} else {
 				// Ajax call to install necessary plugins (data.plugin).
-				request = $.post( ajaxurl + '?page=bgtfw-install-plugins', data );
-				request.done( onSuccess );
-				request.fail( onFail );	
+				request = $.post( ajaxurl + '?page=bgtfw-install-plugins', data )
+					.done( onSuccess )
+					.fail( onFail );
 			}
 		},
 	
@@ -115,53 +120,79 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 					plugin : self.i18n.pluginData.to_activate
 				},
 				onFail,
-				onSuccess,
-				onAlways;
+				onSuccess;
 
 			onFail = function() {
 				self.activatePluginsSuccess = false;
+				self.done = true;
+				self.$form.submit();
 			};
 
 			onSuccess = function( response ) {
-				response = response === undefined ? self.i18n.noResponseActivate : response;
+				response = ( response === undefined ) ? self.i18n.noResponseActivate : response;
 				
 				var $response = $( '<div>' + response + '</div>' ),
 					$errors = $response.find( '.error' );
 				
 				if( $errors.length > 0 ) {
-					self.$messages
-						.show()
-						.find( '.starter-content-error' )
-							.empty()
-							.append( $errors );
+					self.showErrors( $errors );
 					onFail();
 				} else {
 					self.activatePluginsSuccess = true;
+					self.postPluginSetup();
 				}
 			};
-			
-			/*
-			 * This is the last step of the (1/2) install / (2/2) activate process. No matter what at
-			 * this point, we're "always" done - it's time to submit the form again.
-			 */
+
+			if( 0 === data.plugin.length ) {
+				// At this point, there were no plugins to activate. Go ahead and run post plugin setup.
+				onSuccess( 'No plugins to install.' );
+			} else {
+				// Ajax call to activate necessary plugins (data.plugin).
+				request = $.post( ajaxurl + '?page=bgtfw-install-plugins', data )
+					.done( onSuccess )
+					.fail( onFail );
+			}
+		},
+		
+		/**
+		 * Post plugin setup.
+		 *
+		 * Actions to take after all plugins have been installed and activated.
+		 *
+		 * @since 2.0.0
+		 */
+		postPluginSetup: function() {
+			var request,
+				data = {
+					action : 'bgtfw-post-plugin-setup',
+					_wpnonce : self.i18n.bulkPluginsNonce
+				},
+				onAlways,
+				onSuccess;
+
+			onSuccess = function( response ) {
+				response = ( response === undefined || '0' === response ) ? self.i18n.unknownPostError : response;
+						
+				var $response = $( '<div>' + response + '</div>' ),
+					$errors = $response.find( '.error' );
+
+				if( $errors.length > 0 ) {
+					self.showErrors( $errors );
+				} else {
+					self.postPluginsSuccess = true;
+				}
+			};
+
 			onAlways = function() {
 				self.done = true;
 				self.$form.submit();
 			};
 
-			if( 0 === data.plugin.length ) {
-				// At this point, there were no plugins to activate. We're done.
-				self.activatePluginsSuccess = true;
-				onAlways();
-			} else {
-				// Ajax call to activate necessary plugins (data.plugin).
-				request = $.post( ajaxurl + '?page=bgtfw-install-plugins', data );
-				request.done( onSuccess );
-				request.fail( onFail );
-				request.always( onAlways );	
-			}
+			request = $.post( ajaxurl, data )
+				.done( onSuccess )
+				.always( onAlways );
 		},
-		
+
 		/**
 		 * Init.
 		 * 
@@ -194,7 +225,7 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 			if( self.done ) {
 
 				// If we failed, show some errors. Otherwise, return true and off to the Customizer!
-				if( ! self.installPluginsSuccess || ! self.activatePluginsSuccess ) {
+				if( ! self.installPluginsSuccess || ! self.activatePluginsSuccess || ! self.postPluginsSuccess ) {
 					
 					// Show the error, hide the spinner, and stop.
 					self.$form.find( '.notice-error' ).attr( 'style', 'display:block !important' );
@@ -212,6 +243,25 @@ BOLDGRID.StarterContentPlugins = BOLDGRID.StarterContentPlugins || {};
 			}
 		},
 		
+		/**
+		 * Show errors.
+		 *
+		 * Due to the nature of the beast, our ajax calls don't get pretty wp_send_json_success / error
+		 * responses. Instead, we get raw output. If we've found any elements within the response having
+		 * .error as the class, we'll send those elements here to get them displayed.
+		 *
+		 * @since 2.0.0
+		 *
+		 * @param jQuery object $errors
+		 */
+		showErrors: function( $errors ) {
+			self.$messages
+				.show()
+				.find( '.starter-content-error' )
+					.empty()
+					.append( $errors );
+		},
+
 		/**
 		 * Action to take on document ready.
 		 * 

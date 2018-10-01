@@ -34,13 +34,29 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	protected $configs;
 
 	/**
+	 * Whether or not we are in the wp-admin/customize.php installing starter content.
+	 *
+	 * @since  2.0.0
+	 * @access public
+	 * @var    bool
+	 */
+	public static $fresh_site_customize = false;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @param     string $configs       The BoldGrid Theme Framework configurations.
 	 * @since     2.0.0
+	 *
+	 * @global string $pagenow
+	 *
+	 * @param     string $configs       The BoldGrid Theme Framework configurations.
 	 */
 	public function __construct( $configs ) {
+		global $pagenow;
+
 		$this->configs = $configs;
+
+		self::$fresh_site_customize =  get_option( 'fresh_site' ) && 'customize.php' === $pagenow;
 	}
 
 	/**
@@ -51,37 +67,56 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	public function add_hooks() {
 		if ( self::has_valid_content() ) {
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue' ) );
-			add_action( 'wp_ajax_load_starter_content', array( $this, 'load_starter_content' ) );
 		}
 	}
 
 	/**
-	 * Actions to take for "get_theme_starter_content" filter.
+	 * Actions to take in wp-admin/customize.php's customize_controls_print_footer_scripts action.
+	 *
+	 * This is the last action in that file, and we are hooking in this late to run any final actions.
+	 *
+	 * This action is only added when self::$fresh_site_customize is true.
+	 */
+	public function post_import() {
+		$install = get_option( 'bgtfw_install_starter_content' );
+
+		/*
+		 * Delete the bgtfw_install_starter_content option.
+		 *
+		 * It is only supposed to be a temporary option signifying that on this particular page load
+		 * we are ok to install the starter content.
+		 */
+		if( $install ) {
+			delete_option( 'bgtfw_install_starter_content' );
+		}
+	}
+
+	/**
+	 * Filter get_theme_starter_content.
 	 *
 	 * @since 2.0.0
 	 *
 	 * @param  array $content Array of starter content.
-	 * @param  array $config  Array of theme-specific starter content configuration.
+     * @param  array $config  Array of theme-specific starter content configuration.
 	 * @return array
 	 */
 	public function get_theme_starter_content( $content, $config ) {
+		if ( self::$fresh_site_customize ) {
 
-		/*
-		 * Prevent Starter Cotnent from loading due to simply having a fresh site.
-		 *
-		 * By default, the Customizer will load Starter Content if the user has a fresh site. We don't
-		 * want this to happen, otherwise the user will get our Starter Content loaded without us
-		 * first installing a few plugins and doing some other things.
-		 *
-		 * Our initial approach to solving this issue was to simply update the fresh_site value:
-		 * update_option( 'fresh_site', '0' );
-		 * This had undesired consequences however. The Customizer would end up loading with the save
-		 * button reading "Published" and being disabled.
-		 *
-		 * Current appreach is to return empty starter cotent UNLESS the user is actually requesting
-		 * the starter content be loaded, self::maybe_load_content().
-		 */
-		return self::maybe_load_content() ? $content : array();
+			/*
+			 * Check with the bgtfw. Ensure we should be installing Starter Content.
+			 * Please see: BoldGrid_Framework_Customizer_Starter_Content_Plugins::post_plugin_setup.
+			 */
+			$install = get_option( 'bgtfw_install_starter_content' );
+
+			if( $install ) {
+				update_option( 'bgtfw_starter_content_previewed', true );
+			}
+
+			return $install ? $content : array();
+		}
+
+		return $content;
 	}
 
 	/**
@@ -159,13 +194,8 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 				<p>
 					' . esc_html__( 'Sorry, an unknown error occurred when trying to install the Starter Content.', 'bgtfw' ) . '
 				</p>',
+			'install' => get_option( 'bgtfw_install_starter_content' ),
 		);
-
-		if( ! empty( $_POST['starter_content'] ) ) {
-			$translations['post'] = array(
-				'starter_content' => $_POST['starter_content'],
-			);
-		}
 
 		wp_localize_script( $handle, 'bgtfwCustomizerStarterContent', $translations );
 
@@ -200,68 +230,6 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	public static function has_valid_content() {
 		$content = get_theme_support( 'starter-content' );
 		return is_array( $content ) && ! empty( $content[0] ) && is_array( $content[0] ) && ( bool ) array_filter( $content[0] );
-	}
-
-	/**
-	 * Handles ajax request for loading starter content.
-	 *
-	 * @since 2.0.0
-	 */
-	public function load_starter_content() {
-		global $wp_customize;
-		if ( ! is_user_logged_in() ) {
-			wp_send_json_error( 'unauthenticated' );
-		}
-		if ( empty( $wp_customize ) || ! $wp_customize->is_preview() ) {
-			wp_send_json_error( 'not_preview' );
-		}
-		$action = 'preview-customize_' . $wp_customize->get_stylesheet();
-		if ( ! check_ajax_referer( $action, 'nonce', false ) ) {
-			wp_send_json_error( 'invalid_nonce' );
-		}
-
-		/**
-		 * Take action before any starter content is installed.
-		 *
-		 * At this point, we're in an AJAX call to install the starter content. Any required plugins
-		 * for the starter content have already been installed.
-		 *
-		 * @since 2.0.0
-		 */
-		do_action( 'bgtfw_pre_load_starter_content' );
-
-		$starter_content_applied = 0;
-		$wp_customize->import_theme_starter_content();
-		foreach ( $wp_customize->changeset_data() as $setting_id => $setting_params ) {
-			if ( ! empty( $setting_params['starter_content'] ) ) {
-				$starter_content_applied += 1;
-			}
-		}
-
-		if ( 0 === $starter_content_applied ) {
-			wp_send_json_error( 'no_starter_content' );
-		} else {
-			update_option( 'bgtfw_starter_content_previewed', true );
-			wp_send_json_success();
-		}
-	}
-
-	/**
-	 * Whether or not we should load starter content.
-	 *
-	 * Starter Content should only be loaded if the user explicity clicked on an "install" type button.
-	 * This button should $_POST a specific 'starter_content' set to the customizer.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @global string $pagenow
-	 *
-	 * @return bool
-	 */
-	public static function maybe_load_content() {
-		global $pagenow;
-
-		return 'customize.php' === $pagenow && ! empty( $_POST['starter_content'] );
 	}
 
 	/**

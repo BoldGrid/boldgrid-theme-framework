@@ -61,19 +61,6 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 	}
 
 	/**
-	 * Actions to take within customize_register hook.
-	 *
-	 * @since 2.0.0
-	 */
-	public function customize_register() {
-
-		// If the user is installing starter content, no need to suggest they do it in the future.
-		if ( ! empty( $_GET['starter_content'] ) ) {
-			$this->has_been_suggested( true );
-		}
-	}
-
-	/**
 	 * Get / set that the user has been suggested to user starter content.
 	 *
 	 * If no params passed in, then get the value. Otherwise, set it.

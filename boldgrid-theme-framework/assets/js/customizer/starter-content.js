@@ -45,34 +45,14 @@
 	 * ready, make a request to load that specific set of starter content.
 	 */
 	api.bind( 'ready', function () {
-		var request,
-			data;
-
-		if( i18n.post && i18n.post.starter_content ) {
+		if( i18n.install ) {
 			api.notifications.add( notificationInstalling );
 			
-			// Ajax call to install starter content.
-			data = api.previewer.query();
-			data.starter_content = i18n.post.starter_content;
-
-			request = wp.ajax.post( 'load_starter_content', data );
-		
-			// On success.
-			request.done( function() {
-				api.previewer.refresh();
-				
-				// Adjust the notices after the preview is loaded.
-				$( window ).one( 'boldgrid_customizer_refresh', function() {
-					api.notifications.remove( 'loading_starter_content' );
-					api.notifications.add( notificationComplete );
-				} );
-			} );
-			
-			// On failure.
-			request.fail( function() {
+			// Adjust the notices after the preview is loaded.
+			$( window ).one( 'boldgrid_customizer_refresh', function() {
 				api.notifications.remove( 'loading_starter_content' );
-				api.notifications.add( notificationFail );
-			});
+				api.notifications.add( notificationComplete );
+			} );
 		}
 	});
 } )();

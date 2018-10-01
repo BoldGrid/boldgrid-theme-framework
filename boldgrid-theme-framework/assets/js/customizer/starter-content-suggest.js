@@ -47,12 +47,15 @@ BOLDGRID.StarterContentSuggest = BOLDGRID.StarterContentSuggest || {};
 		 */
 		onClickYes: function() {
 			parent.window.location = self.i18n.starterContentUrl;
-			self.setSuggested();
 		},
 		
 		/**
 		 * Flag that we have suggested to the user to install starter content.
 		 * 
+		 * Once this flag is set, we won't suggest Starter Content again to the user. Currently, we
+		 * will only set this flag when the user chooses, "No, I don't want to exit the Customizer
+		 * and access the Starter Content."
+		 *
 		 * @since 2.0.0
 		 */
 		setSuggested: function() {

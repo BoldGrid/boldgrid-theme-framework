@@ -2130,8 +2130,8 @@ msgstr ""
 msgid "This Install requires the Post and Page Builder Premium and WP Forms plugins.  These plugins will be installed automatically if you do not already have them."
 msgstr ""
 
-#: src/includes/partials/starter-content.php:41
-msgid "Install"
+#: src/includes/partials/starter-content.php:41, src/includes/partials/welcome.php:128
+msgid "Auto Configure and Start Designing"
 msgstr ""
 
 #: src/includes/partials/template-tags.php:44
@@ -2249,10 +2249,6 @@ msgstr ""
 
 #: src/includes/partials/welcome.php:112
 msgid "Your Crio purchase also comes with a set of Starter Content including a Form Builder Plugin. The Post and Page Builder Premium gives you access to pre-built professionally designed Premium Blocks. With your Crio license, these Blocks and Starter Content are included for you to adapt and publish as your own."
-msgstr ""
-
-#: src/includes/partials/welcome.php:128
-msgid "Auto Configure and Start Designing"
 msgstr ""
 
 #: src/includes/partials/welcome.php:130

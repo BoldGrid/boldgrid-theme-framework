@@ -123,6 +123,7 @@ export class Devices {
 
 			this.previewedDevice = $( event.currentTarget ).data( 'device' );
 
+			// Wait for frame resize transition since it uses transforms.
 			wp.customize.previewer.preview.container.one( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', () => this.setBodyHeight() );
 
 			this.detectDevice();
@@ -160,7 +161,6 @@ export class Devices {
 		preview.seamless = true;
 
 		// Set overflow since scrolling attribute is not valid for HTML5.
-		document.body.style.overflow = 'auto';
 		frames[ preview.name ].document.body.style.overflow = 'hidden';
 
 		// Set the body height.

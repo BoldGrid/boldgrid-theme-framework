@@ -267,6 +267,19 @@ class Boldgrid_Framework_Device_Preview {
 				-webkit-transform: translateX(0);
 				transform: translateX(0);
 			}
+			@media screen and (max-width: 600px) {
+				body.wp-customizer {
+					overflow-x: hidden;
+				}
+				.wp-customizer .wp-full-overlay-footer .devices {
+					display: none;
+				}
+			}
+			@media screen and (max-width: 1024px) {
+				.wp-customizer .wp-full-overlay-footer .devices {
+					display: block;
+				}
+			}
 		</style>
 		<?php
 	}

@@ -102,7 +102,7 @@ class Boldgrid_Framework_Device_Preview {
 	public function customize_previewable_devices( $devices ) {
 		$large = [
 			'large' => [
-				'label' => __( 'Enter large display preview mode' ),
+				'label' => __( 'Enter large display preview mode', 'bgtfw' ),
 			],
 		];
 		$devices = array_merge( $large, $devices );

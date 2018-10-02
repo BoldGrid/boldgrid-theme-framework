@@ -1479,6 +1479,10 @@ msgstr ""
 msgid "BoldGrid Color Palettes"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-device-preview.php:105
+msgid "Enter large display preview mode"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer-edit.php:118
 msgid "Go there now"
 msgstr ""

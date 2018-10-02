@@ -176,6 +176,39 @@ import { Locations as MenuLocations } from './menus/locations';
 			} );
 
 			return ( 0 !== activeCount );
+		},
+
+		/**
+		 * Collapse all child sections.
+		 *
+		 * @since 2.0.0
+		 */
+		collapseChildren: function() {
+			var children = this._children( 'panel', 'section' );
+
+			_( children ).each( function( child ) {
+				if ( child.expanded() ) {
+					child.collapse();
+				}
+			} );
+		},
+
+		/**
+		 * Wrapper function for the focus() method.
+		 *
+		 * Because of nested panels, the focus() method does not always work. If you're in a nested
+		 * section, it won't focus on the parent panel correctly.
+		 *
+		 * @since 2.0.0
+		 */
+		bgtfwFocus: function() {
+			var panel = this;
+
+			if ( panel.expanded() ) {
+				panel.collapseChildren();
+			} else {
+				panel.focus();
+			}
 		}
 	} );
 

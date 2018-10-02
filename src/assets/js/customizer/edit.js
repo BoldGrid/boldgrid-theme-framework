@@ -376,9 +376,14 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$( '#' + dataControl ).dialog( dialogSettings );
 				return;
 
-			// Sections
-			} else if ( 'section' === dataType || 'panel' === dataType ) {
+			// Sections.
+			} else if ( 'section' === dataType ) {
 				api[ dataType ]( dataControl ).focus();
+				return;
+
+			// Panels.
+			} else if ( 'panel' === dataType ) {
+				api[ dataType ]( dataControl ).bgtfwFocus();
 				return;
 
 			// Empty menu locations.

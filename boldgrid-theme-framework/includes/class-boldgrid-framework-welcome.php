@@ -174,6 +174,17 @@ class Boldgrid_Framework_Welcome {
 			array( 'jquery' ),
 			$this->configs['version']
 		);
+
+		/*
+		 * Hide notices on the Dashboard > BoldGrid Crio > Registration page. The user's primary goal
+		 * on this page is to enter their key, and we do not want to distract them with other notices,
+		 * such as TGMPA notices.
+		 */
+		$css = '
+		.settings_page_boldgrid-connect .wrap > .notice {
+			display: none;
+		}';
+		wp_add_inline_style( 'bglib-api-notice-css', $css );
 	}
 
 	/**

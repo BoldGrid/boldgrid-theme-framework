@@ -92,8 +92,8 @@ class Boldgrid_Framework_Welcome {
 
 		add_submenu_page(
 			$this->menu_slug,
-			__( 'Registration', 'bgtfw' ),
-			__( 'Registration', 'bgtfw' ),
+			__( 'Connect Key', 'bgtfw' ),
+			__( 'Connect Key', 'bgtfw' ),
 			'manage_options',
 			'boldgrid-connect.php',
 			array( $this, 'page_welcome' )

@@ -803,6 +803,11 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'admin_menu', $welcome, 'add_admin_menu' );
 		$this->loader->add_action( 'Boldgrid\Library\Library\Page\Connect\addScripts', $welcome, 'connect_scripts' );
 		$this->loader->add_action( 'custom_menu_order', $welcome, 'custom_menu_order' );
+
+		// Don't show the key prompt notice on the welcome page.
+		if( Boldgrid_Framework_Welcome::is_welcome_page() ) {
+			add_filter( 'Boldgrid\Library\Library\Notice\KeyPrompt_display', '__return_false' );
+		}
 	}
 
 	/**

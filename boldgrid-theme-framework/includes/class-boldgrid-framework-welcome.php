@@ -158,6 +158,23 @@ class Boldgrid_Framework_Welcome {
 	}
 
 	/**
+	 * Whether or not we are on the welcome page.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @global string $pagenow
+	 *
+	 * @return bool
+	 */
+	public static function is_welcome_page() {
+		global $pagenow;
+
+		$page = empty( $_GET['page'] ) ? null : $_GET['page'];
+
+		return 'admin.php' === $pagenow && 'crio-welcome' === $page;
+	}
+
+	/**
 	 * Set BoldGrid Crio > Registration as active menu item.
 	 *
 	 * Hook into library's Boldgrid\Library\Library\Page\Connect\addScripts action and add js to
@@ -235,6 +252,9 @@ class Boldgrid_Framework_Welcome {
 		$starter_content_previewed = get_option( 'bgtfw_starter_content_previewed' );
 
 		$is_premium = true === apply_filters( 'Boldgrid\Library\License\isPremium', 'envato-prime' );
+
+		// Whether or not the user has entered / saved an API key already.
+		$has_api_key = false !== apply_filters( 'Boldgrid\Library\License\getApiKey', false );
 
 		include $this->configs['framework']['includes_dir'] . 'partials/welcome.php';
 	}

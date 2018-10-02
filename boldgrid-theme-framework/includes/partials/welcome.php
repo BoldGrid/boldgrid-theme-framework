@@ -72,16 +72,17 @@ $configs = $boldgrid_theme_framework->get_configs();
 							<a href="https://www.boldgrid.com/central/" target="_blank"><?php esc_html_e( 'Manually Setup and Verify', 'bgtfw' ); ?></a>
 						</span>
 					</p>
-					<p><?php
-						printf(
-							wp_kses(
-								/* translators: The Url to the Post and Page Builder on boldgrid.com */
-								__( 'Have your Connect Key? Go to <a href="%1$s">Registration</a>.', 'bgtfw' ),
-								$allowed_html
-							),
-							esc_url( $registraton_url )
-						);
-					?></p>
+					<?php
+					// If the user does not have an api key saved, prompt them to enter it.
+					if ( ! $has_api_key ) {
+					?>
+					<p>
+						<strong><?php esc_html_e( 'Have your Connect Key?', 'bgtfw' ); ?></strong>
+						<?php esc_html_e( 'Enter it below:', 'bgtfw' ); ?>
+					</p>
+					<?php
+						Boldgrid\Library\Library\Views\KeyPromptMini::displayForm();
+					} // End conditional based on $has_api_key. ?>
 				</div>
 				<div class="welcome-panel-column">
 					<img style="width:100%;" src="<?php echo esc_url( $configs['framework']['admin_asset_dir'] . 'img/welcome/bg-central.png' ); ?>" />

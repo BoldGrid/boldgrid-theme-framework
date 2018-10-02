@@ -24,16 +24,11 @@ export class DevicePreview {
 	 */
 	_setupDeviceChange( control ) {
 		control.events.on( 'deviceChange', ( device ) => {
-			let changeTo = 'desktop',
-				$button;
-
-			if ( 'tablet' === device ) {
-				changeTo = device;
-			} else if ( 'phone' === device ) {
-				changeTo = 'mobile';
+			if ( 'phone' === device ) {
+				device = 'mobile';
 			}
 
-			$button = this.$devices.find( `[data-device="${changeTo}"]` );
+			let $button = this.$devices.find( `[data-device="${device}"]` );
 
 			if ( $button.length ) {
 				$button.click();

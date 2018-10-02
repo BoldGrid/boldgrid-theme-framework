@@ -917,14 +917,17 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function device_preview() {
+		$device_preview = new Boldgrid_Framework_Device_Preview( $this->configs );
+
+		$this->loader->add_filter( 'customize_previewable_devices', $device_preview, 'customize_previewable_devices' );
+		$this->loader->add_action( 'customize_controls_print_styles', $device_preview, 'adjust_customizer_responsive_sizes' );
+
 		// We don't need device previews if user is running on a mobile device or newer WP.
 		$wp_version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>' );
 
 		if ( wp_is_mobile() || $wp_version ) {
 			return;
 		}
-
-		$device_preview = new Boldgrid_Framework_Device_Preview( $this->configs );
 
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $device_preview, 'enqueue_scripts' );
 		$this->loader->add_action( 'customize_controls_print_footer_scripts', $device_preview, 'print_templates' );

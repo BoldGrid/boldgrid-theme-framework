@@ -10,6 +10,6 @@
 return array(
 	'versions' => array(
 		'font-awesome' => '4.7',
-		'boldgrid-components' => '2.15.0',
+		'boldgrid-components' => '2.15.1',
 	),
 );

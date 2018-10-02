@@ -8,6 +8,10 @@ import SectionExtendTitle from './menus/extend-title';
 import HamburgerControlToggle from './menus/hamburger-control-toggle';
 import HoverBackgroundToggle from './menus/hover-background-toggle';
 import { Locations as MenuLocations } from './menus/locations';
+import { Devices } from './devices';
+
+let devices = new Devices();
+devices.init();
 
 ( function( $ ) {
 	var api, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;

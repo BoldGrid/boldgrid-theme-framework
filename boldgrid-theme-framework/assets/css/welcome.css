@@ -81,6 +81,17 @@
   display: block !important;
 }
 
+/**
+* Styles for the mini connect prompt.
+*/
+div#container_boldgrid_api_key_notice {
+  max-width: 100%;
+}
+
+p#boldgrid_api_key_notice_message {
+  margin-left: 0px;
+}
+
 @media only screen and (min-width: 501px) and (max-width: 989px) {
   .bgtfw-about-wrap .two-col .col {
     max-width: calc( 50% - 25px) !important;

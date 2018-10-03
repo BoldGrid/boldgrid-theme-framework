@@ -107,13 +107,11 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 			 * Check with the bgtfw. Ensure we should be installing Starter Content.
 			 * Please see: BoldGrid_Framework_Customizer_Starter_Content_Plugins::post_plugin_setup.
 			 */
-			$install = get_option( 'bgtfw_install_starter_content' );
-
-			if( $install ) {
+			if ( get_option( 'bgtfw_install_starter_content' ) ) {
 				update_option( 'bgtfw_starter_content_previewed', true );
+			} else {
+				$content = array();
 			}
-
-			return $install ? $content : array();
 		}
 
 		return $content;

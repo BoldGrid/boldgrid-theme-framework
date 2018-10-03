@@ -124,13 +124,13 @@ class Boldgrid_Framework_Widgets {
 	/**
 	 * Get inactive column sidebar IDs from theme_mods.
 	 *
-	 * @param string $type Type of area to generate CSS for ( header or footer ).
+	 * @param array $types Widget area types.
 	 *
 	 * @return array $ids  Inactive widget column IDs.
 	 */
 	public function get_inactive_column_sidebars( $types ) {
 		$ids = [];
-		foreach( $types as $type ) {
+		foreach ( $types as $type ) {
 			$columns = get_theme_mod( "boldgrid_{$type}_widgets" );
 			$columns = absint( $columns );
 			$max = absint( $this->configs['customizer']['controls'][ "boldgrid_{$type}_widgets" ]['choices']['max'] );
@@ -156,11 +156,11 @@ class Boldgrid_Framework_Widgets {
 	 */
 	public function generate_css( $sidebars ) {
 		$css = '';
-
+		$inactive_translated = wp_filter_nohtml_kses( __( 'Inactive', 'bgtfw' ) );
 		if ( ! empty( $sidebars ) ) {
 			foreach ( $sidebars as $sidebar ) {
 				$css .= "#{$sidebar} .sidebar-name h2:after {
-					content: \"" . wp_filter_nohtml_kses( __( 'Inactive', 'bgtfw' ) ) . "\";
+					content: \"{$inactive_translated}\";
 					float: right;
 					font-style: italic;
 					font-weight: 400;

@@ -255,7 +255,7 @@ msgstr ""
 msgid "Customize"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-widgets.php:163
+#: src/includes/class-boldgrid-framework-widgets.php:159
 msgid "Inactive"
 msgstr ""
 

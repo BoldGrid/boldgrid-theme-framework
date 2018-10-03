@@ -1834,11 +1834,11 @@ msgstr ""
 msgid "Invalid Value"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-panel.php:117
+#: src/includes/customizer/class-boldgrid-framework-customizer-panel.php:125
 msgid "Back"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-panel.php:124, src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:179
+#: src/includes/customizer/class-boldgrid-framework-customizer-panel.php:132, src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:179
 msgid "Help"
 msgstr ""
 

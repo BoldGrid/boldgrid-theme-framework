@@ -43,6 +43,14 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 		 */
 		public $type = 'bgtfw_panel';
 
+		/**
+		 * Panel breadcrumb
+		 *
+		 * @since 2.0.0
+		 *
+		 * @access public
+		 * @var    string The full breadcrumb.
+		 */
 		public $breadcrumb = '';
 
 

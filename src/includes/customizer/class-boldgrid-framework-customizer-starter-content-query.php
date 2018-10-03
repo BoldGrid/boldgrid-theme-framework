@@ -82,10 +82,10 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 		* to have a public post status in in WP_Query::get_posts(), at:
 		* https://github.com/WordPress/wordpress-develop/blob/4.7.3/src/wp-includes/class-wp-query.php#L2351-L2357
 		* Compare this with WP_Customize_Nav_Menus::make_auto_draft_status_previewable(),
-		* which apparently did not go far enough.
+		* which apparently did not go far enough:
+		*
+		* $wp_post_statuses['auto-draft']->public = true;
 		*/
-		//$wp_post_statuses['auto-draft']->public = true;
-
 		add_action( 'pre_get_posts', array( $this, 'prevent_filter_suppression' ), 100, 2 );
 		add_filter( 'posts_where', array( $this, 'posts_where' ) );
 	}

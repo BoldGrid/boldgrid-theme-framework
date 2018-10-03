@@ -37,7 +37,7 @@ class Boldgrid_Framework_Customizer_Widget_Areas {
 			$columns = get_theme_mod( "boldgrid_{$prefix}_widgets" );
 		}
 
-		if ( $columns > 0 ) {
+		if ( 1 <= $columns && 4 >= $columns ) {
 			$container = false !== get_theme_mod( "{$prefix}_widgets_container" ) ? get_theme_mod( "{$prefix}_widgets_container" ) : '';
 			?>
 				<div id="<?php echo esc_attr( $prefix ); ?>-widget-area" class="bgtfw-widget-row <?php echo esc_attr( $container ); ?>">

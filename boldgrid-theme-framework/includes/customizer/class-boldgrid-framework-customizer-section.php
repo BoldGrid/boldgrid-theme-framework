@@ -43,6 +43,14 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 		 */
 		public $type = 'bgtfw_section';
 
+		/**
+		 * Section breadcrumb
+		 *
+		 * @since 2.0.0
+		 *
+		 * @access public
+		 * @var    string The full breadcrumb.
+		 */
 		public $breadcrumb = '';
 
 		/**

@@ -26,6 +26,14 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.0.0 In progress ###
+* New Feature: Layout Selection - Allow users to select between a full width content area or fixed width within the Customizer.
+* New Feature: Header and Footer Layouts - Multiple header and footer styles, which can be selected from within the Customizer.
+* New Feature: Background Video Support - Homepage background video for your header from Youtube or Vimeo.
+* New Feature: Dynamic Content Layout Support - Allow users to select between multiple different blog styles, and change elements such as title, metadata and the overall look and feel with much more precision than ever before.
+* New Feature: Improved Font Controls - Users now have much more control over the fonts elements independently, allowing granular control of the typography.
+* New Feature: Improved Color Controls - Users have much more control over the colors individual elements use, to allow for greater customization of their website's look and feel.
+
 ### 1.5.5 ###
 * Update: Change Post and Page Builder url.
 

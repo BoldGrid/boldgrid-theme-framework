@@ -3607,6 +3607,13 @@ img.alignright {
 }
 
 /*--------------------------------------------------------------
+# Post and Page Builder
+--------------------------------------------------------------*/
+body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
+  display: none;
+}
+
+/*--------------------------------------------------------------
 # WooCommerce
 --------------------------------------------------------------*/
 .palette-primary.woocommerce, .palette-primary.woocommerce-page {

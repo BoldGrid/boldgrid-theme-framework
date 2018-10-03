@@ -272,7 +272,7 @@ class Boldgrid_Framework_Activate {
 		 */
 		$register = apply_filters( 'bgtfw_register_tgmpa', true );
 
-		if( $register ) {
+		if ( $register ) {
 			tgmpa( $this->configs['tgm']['plugins'], $this->configs['tgm']['configs'] );
 		}
 	}

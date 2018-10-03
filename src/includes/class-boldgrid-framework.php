@@ -805,7 +805,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'custom_menu_order', $welcome, 'custom_menu_order' );
 
 		// Don't show the key prompt notice on the welcome page.
-		if( Boldgrid_Framework_Welcome::is_welcome_page() ) {
+		if ( Boldgrid_Framework_Welcome::is_welcome_page() ) {
 			add_filter( 'Boldgrid\Library\Library\Notice\KeyPrompt_display', '__return_false' );
 		}
 	}

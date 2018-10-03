@@ -432,7 +432,7 @@ class BoldGrid_Framework_Styles {
 		// Add animate.css for animation effects if a theme requests it.
 		if ( true === $this->configs['scripts']['animate-css'] ) {
 			wp_enqueue_style(
-				'boldgrid-animate-css',
+				'animatecss',
 				$this->configs['framework']['css_dir'] . 'animate-css/animate' . $suffix . '.css',
 				array(),
 				$this->configs['version']

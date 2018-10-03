@@ -56,7 +56,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 
 		$this->configs = $configs;
 
-		self::$fresh_site_customize =  get_option( 'fresh_site' ) && 'customize.php' === $pagenow;
+		self::$fresh_site_customize = get_option( 'fresh_site' ) && 'customize.php' === $pagenow;
 	}
 
 	/**
@@ -86,7 +86,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 		 * It is only supposed to be a temporary option signifying that on this particular page load
 		 * we are ok to install the starter content.
 		 */
-		if( $install ) {
+		if ( $install ) {
 			delete_option( 'bgtfw_install_starter_content' );
 		}
 	}
@@ -97,12 +97,11 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	 * @since 2.0.0
 	 *
 	 * @param  array $content Array of starter content.
-     * @param  array $config  Array of theme-specific starter content configuration.
+	 * @param  array $config  Array of theme-specific starter content configuration.
 	 * @return array
 	 */
 	public function get_theme_starter_content( $content, $config ) {
 		if ( self::$fresh_site_customize ) {
-
 			/*
 			 * Check with the bgtfw. Ensure we should be installing Starter Content.
 			 * Please see: BoldGrid_Framework_Customizer_Starter_Content_Plugins::post_plugin_setup.
@@ -123,7 +122,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	 * This is done by looking for any "'starter_content' => true" values within the post_content
 	 * (https://pastebin.com/DkeimVYw) that indicate the customize_changeset has starter content.
 	 *
-	 * @param  string  $uuid customize_changeset id.
+	 * @param string $uuid customize_changeset id.
 	 * @return boolean
 	 */
 	public static function changeset_has_starter( $uuid ) {
@@ -132,8 +131,8 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 		if ( $changeset instanceof WP_Post ) {
 			$post_content = json_decode( $changeset->post_content, true );
 
-			foreach( $post_content as $data ) {
-				if( ! empty( $data['starter_content'] ) ) {
+			foreach ( $post_content as $data ) {
+				if ( ! empty( $data['starter_content'] ) ) {
 					return true;
 				}
 			}
@@ -174,14 +173,14 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 				<p>
 					' . wp_kses(
 						__( 'To make this preview website your own, make any customizations you would like and then <strong>Save Draft</strong> or <strong>Publish</strong>.', 'bgtfw' ),
-						array( 'strong' => array(), )
+						array( 'strong' => array() )
 						) . '
 					<span class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/saving-a-draft-and-publishing-with-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></span>
 				</p>
 				<p>
 					' . wp_kses(
 						sprintf( __( 'If you\'d rather not keep these changes, <a href="%1$s">exit without saving</a> and return to your dashboard.', 'bgtfw' ), admin_url( 'admin.php?page=crio-starter-content' ) ),
-						array( 'a' => array( 'href' => array(), ), )
+						array( 'a' => array( 'href' => array() ) )
 						) . '
 				</p>
 				',
@@ -239,7 +238,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param WP_Query $query
+	 * @param WP_Query $query WP Query.
 	 */
 	public function pre_get_posts( $query ) {
 		$post_type = ! empty( $query->query['post_type'] ) ? $query->query['post_type'] : null;
@@ -256,7 +255,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 		 * found. If this query is looking for a customize_changeset, sabatoge and tell it to look
 		 * for another post type.
 		 */
-		if( 'customize_changeset' === $post_type ) {
+		if ( 'customize_changeset' === $post_type ) {
 			$query->query_vars['post_type'] = 'return_nothing';
 		}
 	}

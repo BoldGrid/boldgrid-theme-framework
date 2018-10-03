@@ -1667,7 +1667,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					 * @since bgtfw 2.0.0
 					 */
 					$die_on_api_error = apply_filters( 'tgmpa_die_on_api_error', true );
-					if( $die_on_api_error ) {
+					if ( $die_on_api_error ) {
 						wp_die( esc_html( $this->strings['oops'] ) );
 					} else {
 						echo '<div class="error">' . wp_kses(
@@ -1681,7 +1681,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 							) . '</div>';
 						return false;
 					}
-					//wp_die( esc_html( $this->strings['oops'] ) );
+					// wp_die( esc_html( $this->strings['oops'] ) );
 				} else {
 					$api[ $slug ] = $response;
 				}

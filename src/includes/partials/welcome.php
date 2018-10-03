@@ -55,6 +55,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					<p><?php esc_html_e( 'To claim your Premium Connect Key we need to verify your Envato purchase and setup your BoldGrid Central account.  To do this automatically we need access to read the purchase record in your Envato Account.  You can also do this manually by signing up for BoldGrid Central and providing your Envato purchase code to our Support Team in a ticket.', 'bgtfw' ); ?></p>
 					<p>
 					<?php
+
 					/*
 					 * Adjust the "Envato Auto Verify" button dynamically.
 					 *
@@ -117,6 +118,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 						<input type="hidden" name="starter_content" value="default" />
 						<p>
 						<?php
+
 						/*
 						 * Adjust starter content button based on whether or not it has been previewed.
 						 *
@@ -141,6 +143,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 
 					</form>
 					<?php
+
 					/*
 					 * Give a plug to BoldGrid Central's Cloud WordPress.
 					 *
@@ -236,6 +239,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					</p>
 					<p>
 					<?php
+
 					/*
 					 * "Plugin Installer" button for BoldGrid Post & Page Builder plugin.
 					 *
@@ -294,6 +298,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					</p>
 					<p>
 					<?php
+
 					/*
 					 * "Plugin Installer" button for BoldGrid Backup plugin.
 					 *
@@ -338,6 +343,7 @@ $configs = $boldgrid_theme_framework->get_configs();
 					</p>
 					<p>
 					<?php
+
 					/*
 					 * "Plugin Installer" button for BoldGrid Easy SEO plugin.
 					 *

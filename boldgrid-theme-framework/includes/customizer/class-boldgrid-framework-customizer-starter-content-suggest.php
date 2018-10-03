@@ -95,7 +95,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 		// Determine if our referer is /wp-admin/customize.php (IE in customizer iframe).
 		$str                = '/wp-admin/customize.php';
 		$referer_path       = parse_url( wp_get_referer(), PHP_URL_PATH );
-		$customizer_referer = $str === substr( $referer_path, -1 * strlen( $str ) );
+		$customizer_referer = ( substr( $referer_path, -1 * strlen( $str ) ) === $str );
 
 		if ( ! ( is_customize_preview() && $customizer_referer ) ) {
 			return false;

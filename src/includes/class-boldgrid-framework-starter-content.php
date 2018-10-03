@@ -424,6 +424,15 @@ class BoldGrid_Framework_Starter_Content {
 		return $form_id;
 	}
 
+	/**
+	 * Add post preview link changeset.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string  $link Link.
+	 * @param  WP_Post $post Post.
+	 * @return string
+	 */
 	public function add_post_preview_link_changeset( $link, $post ) {
 
 		// Short circuit if link already has changeset uuid applied.

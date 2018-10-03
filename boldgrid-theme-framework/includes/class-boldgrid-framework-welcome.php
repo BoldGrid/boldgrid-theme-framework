@@ -134,13 +134,13 @@ class Boldgrid_Framework_Welcome {
 		global $submenu;
 
 		// Move the "Customize" link to the bottom of the "BoldGrid Crio" navigation menu.
-		if ( isset( $submenu[$this->menu_slug] ) ) {
+		if ( isset( $submenu[ $this->menu_slug ] ) ) {
 			$customize_key = false;
 			$customize_menu_item = false;
 
 			// Find our "customize.php" menu item.
-			foreach( $submenu[$this->menu_slug] as $key => $menu_item ) {
-				if( 'customize.php' === $menu_item[2] ) {
+			foreach ( $submenu[ $this->menu_slug ] as $key => $menu_item ) {
+				if ( 'customize.php' === $menu_item[2] ) {
 					$customize_key = $key;
 					$customize_menu_item = $menu_item;
 					break;
@@ -148,9 +148,9 @@ class Boldgrid_Framework_Welcome {
 			}
 
 			// Move our "customize.php" menu item to the end of the menu.
-			if( $customize_key && $customize_menu_item ) {
-				unset( $submenu[$this->menu_slug][$customize_key] );
-				$submenu[$this->menu_slug][] = $customize_menu_item;
+			if ( $customize_key && $customize_menu_item ) {
+				unset( $submenu[ $this->menu_slug ][ $customize_key ] );
+				$submenu[ $this->menu_slug ][] = $customize_menu_item;
 			}
 		}
 
@@ -251,10 +251,10 @@ class Boldgrid_Framework_Welcome {
 
 		$starter_content_previewed = get_option( 'bgtfw_starter_content_previewed' );
 
-		$is_premium = true === apply_filters( 'Boldgrid\Library\License\isPremium', 'envato-prime' );
+		$is_premium = ( true === apply_filters( 'Boldgrid\Library\License\isPremium', 'envato-prime' ) );
 
 		// Whether or not the user has entered / saved an API key already.
-		$has_api_key = false !== apply_filters( 'Boldgrid\Library\License\getApiKey', false );
+		$has_api_key = ( false !== apply_filters( 'Boldgrid\Library\License\getApiKey', false ) );
 
 		include $this->configs['framework']['includes_dir'] . 'partials/welcome.php';
 	}

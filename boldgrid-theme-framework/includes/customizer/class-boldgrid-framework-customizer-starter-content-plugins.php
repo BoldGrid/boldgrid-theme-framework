@@ -76,11 +76,11 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  bool $register
+	 * @param  bool $register Whether or not to register.
 	 * @return bool
 	 */
 	public function bgtfw_register_tgmpa( $register ) {
-		if( $this->in_ajax_call ) {
+		if ( $this->in_ajax_call ) {
 			$register = false;
 		}
 
@@ -148,7 +148,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  array Starter content plugin config.
+	 * @param  array $starter_content_plugins Starter content plugin config.
 	 * @return array
 	 */
 	public static function get_plugin_info( $starter_content_plugins ) {
@@ -159,21 +159,21 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 			'activated' => array(),
 		);
 
-		if( $starter_content_plugins ) {
+		if ( $starter_content_plugins ) {
 			$data['installed'] = get_plugins();
 			$data['activated'] = get_option( 'active_plugins', array() );
 
-			foreach( $starter_content_plugins as $plugin ) {
+			foreach ( $starter_content_plugins as $plugin ) {
 				$path = self::get_plugin_basename_from_slug( $plugin['slug'] );
 
 				$is_installed = array_key_exists( $path, $data['installed'] );
 				$is_active = in_array( $path, $data['activated'], true );
 
-				if( ! $is_installed ) {
+				if ( ! $is_installed ) {
 					$data['to_install'][] = $plugin['slug'];
 				}
 
-				if( ! $is_active ) {
+				if ( ! $is_active ) {
 					$data['to_activate'][] = $plugin['slug'];
 				}
 			}
@@ -190,10 +190,10 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	public function post_activate() {
 		$post_activate_actions = ! empty( $this->configs['starter-content']['plugins_post_activate'] ) ? $this->configs['starter-content']['plugins_post_activate'] : array();
 
-		foreach( $post_activate_actions as $action => $value ) {
+		foreach ( $post_activate_actions as $action => $value ) {
 
 			// For now, the only action configurable is delete_transient.
-			switch( $action ) {
+			switch ( $action ) {
 				case 'delete_transient':
 					delete_transient( $value );
 					break;
@@ -212,10 +212,10 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	 * @since 2.0.0
 	 */
 	public function post_plugin_setup() {
-		if( ! check_ajax_referer( 'bulk-plugins', '_wpnonce', false ) ) {
+		if ( ! check_ajax_referer( 'bulk-plugins', '_wpnonce', false ) ) {
 			wp_die( sprintf(
 				'<div class="error">%1$s</div>',
-				esc_html__( 'Access denined running post plugin activcation scripts.', 'bgtfw')
+				esc_html__( 'Access denined running post plugin activcation scripts.', 'bgtfw' )
 			));
 		}
 
@@ -264,7 +264,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	 * @since 2.0.0
 	 */
 	public function tgmpa_bulk_install() {
-		if( ! $this->in_ajax_call ) {
+		if ( ! $this->in_ajax_call ) {
 			wp_send_json_error( __( 'Not allowed', 'bgtfw' ) );
 		}
 
@@ -279,7 +279,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 		$tgm->process_bulk_actions();
 
 		// Post activate actions.
-		if( 'tgmpa-bulk-activate' === $this->action ) {
+		if ( 'tgmpa-bulk-activate' === $this->action ) {
 			$this->post_activate();
 		}
 
@@ -311,7 +311,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	 * @return bool
 	 */
 	public function tgmpa_die_on_api_error( $die ) {
-		if( $this->in_ajax_call ) {
+		if ( $this->in_ajax_call ) {
 			$die = false;
 		}
 
@@ -326,8 +326,8 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	 * @param  bool $load Whether or not to load tgmpa in ajax.
 	 * @return true
 	 */
-	public function tgmpa_load( $load ){
-		if( $this->in_ajax_call ) {
+	public function tgmpa_load( $load ) {
+		if ( $this->in_ajax_call ) {
 			$load = true;
 		}
 
@@ -340,7 +340,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	 * @since 2.0.0
 	 */
 	public function tgmpa_register() {
-		if( ! $this->in_ajax_call ) {
+		if ( ! $this->in_ajax_call ) {
 			return;
 		}
 

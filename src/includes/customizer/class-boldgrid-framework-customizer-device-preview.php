@@ -124,6 +124,9 @@ class Boldgrid_Framework_Device_Preview {
 			.wp-customizer .wp-full-overlay {
 				overflow: hidden;
 			}
+			_::-webkit-full-page-media, _:future, :root .wp-cusotomizer .wp-full-overlay {
+				overflow: visible;
+			}
 			.wp-customizer .preview-mobile .wp-full-overlay-main.previewed-from-mobile,
 			.wp-customizer .preview-tablet .wp-full-overlay-main.previewed-from-tablet,
 			.wp-customizer .preview-desktop .wp-full-overlay-main.previewed-from-desktop,

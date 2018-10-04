@@ -1838,7 +1838,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-panel.php:132, src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:155
+#: src/includes/customizer/class-boldgrid-framework-customizer-panel.php:132, src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:160
 msgid "Help"
 msgstr ""
 
@@ -1890,23 +1890,23 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:144
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:149
 msgid "Installing Starter Content"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:148
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:153
 msgid "Starter Content Installed!"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:152
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:157
 msgid "To make this preview website your own, make any customizations you would like and then <strong>Save Draft</strong> or <strong>Publish</strong>."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:159
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:164
 msgid "If you'd rather not keep these changes, <a href=\"%1$s\">exit without saving</a> and return to your dashboard."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:169
+#: src/includes/customizer/class-boldgrid-framework-customizer-starter-content.php:174
 msgid "Sorry, an unknown error occurred when trying to install the Starter Content."
 msgstr ""
 

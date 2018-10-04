@@ -36,6 +36,11 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	/**
 	 * Whether or not we are in the wp-admin/customize.php installing starter content.
 	 *
+	 * This value tells us whether or not we're good to go ahead and install our starter content. For
+	 * example, if we're in customize.php with a changeset_uuid in the url, it's NOT safe to install
+	 * the starter content because the user is actually trying to load a previously saved customization
+	 * draft.
+	 *
 	 * @since  2.0.0
 	 * @access public
 	 * @var    bool
@@ -56,7 +61,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 
 		$this->configs = $configs;
 
-		self::$fresh_site_customize = get_option( 'fresh_site' ) && 'customize.php' === $pagenow;
+		self::$fresh_site_customize = get_option( 'fresh_site' ) && 'customize.php' === $pagenow && empty( $_GET['changeset_uuid'] );
 	}
 
 	/**

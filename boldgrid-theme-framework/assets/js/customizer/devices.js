@@ -173,7 +173,8 @@ export class Devices {
 
 		// Scroll syncing ** Do Not Debounce **.
 		$( window ).on( 'scroll', () => {
-			let doc = frames[ preview.name ].document;
+			let name = api.previewer.preview.iframe[0].name;
+			let doc = frames[ name ].document;
 			doc.documentElement.scrollTop = window.pageYOffset;
 			doc.body.scrollTop = window.pageYOffset; // Google Chrome, Safari, documents without valid doctype.
 			$( '.wp-customizer .wp-full-overlay' ).scrollLeft( window.pageXOffset );

@@ -183,6 +183,25 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 	}
 
 	/**
+	 * Whether or not plugin setup is complete.
+	 *
+	 * This method returns true when all Starter Content plugins are both installed and activated.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  array $starter_content_plugins An array containing required plugins for Starter Content.
+	 * @return bool
+	 */
+	public static function is_setup_complete( $starter_content_plugins = array() ) {
+		$plugin_info = self::get_plugin_info( $starter_content_plugins );
+
+		$all_installed = empty( $plugin_info['to_activate'] );
+		$all_activated = empty( $plugin_info['to_install'] );
+
+		return $all_installed && $all_activated;
+	}
+
+	/**
 	 * Actions to take after plugins have been activated.
 	 *
 	 * @since 2.0.0
@@ -224,15 +243,6 @@ class BoldGrid_Framework_Customizer_Starter_Content_Plugins {
 		 * Please see: https://github.com/WordPress/WordPress/blob/master/wp-includes/class-wp-customize-manager.php#L588-L595
 		 */
 		update_option( 'fresh_site', '1' );
-
-		/*
-		 * This option confirms that the bgtfw says we're good to install starter content. IE, all
-		 * necessary plugins have been installed and activated.
-		 *
-		 * If we have a 'fresh_site' BUT this option isn't set, we will not return any starter content
-		 * to WordPress. Please see BoldGrid_Framework_Customizer_Starter_Content::get_theme_starter_content.
-		 */
-		update_option( 'bgtfw_install_starter_content', '1' );
 
 		/**
 		 * Take action before any starter content is installed.

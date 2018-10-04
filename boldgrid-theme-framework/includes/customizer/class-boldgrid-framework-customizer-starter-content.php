@@ -71,27 +71,6 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	}
 
 	/**
-	 * Actions to take in wp-admin/customize.php's customize_controls_print_footer_scripts action.
-	 *
-	 * This is the last action in that file, and we are hooking in this late to run any final actions.
-	 *
-	 * This action is only added when self::$fresh_site_customize is true.
-	 */
-	public function post_import() {
-		$install = get_option( 'bgtfw_install_starter_content' );
-
-		/*
-		 * Delete the bgtfw_install_starter_content option.
-		 *
-		 * It is only supposed to be a temporary option signifying that on this particular page load
-		 * we are ok to install the starter content.
-		 */
-		if ( $install ) {
-			delete_option( 'bgtfw_install_starter_content' );
-		}
-	}
-
-	/**
 	 * Filter get_theme_starter_content.
 	 *
 	 * @since 2.0.0
@@ -102,11 +81,9 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	 */
 	public function get_theme_starter_content( $content, $config ) {
 		if ( self::$fresh_site_customize ) {
-			/*
-			 * Check with the bgtfw. Ensure we should be installing Starter Content.
-			 * Please see: BoldGrid_Framework_Customizer_Starter_Content_Plugins::post_plugin_setup.
-			 */
-			if ( get_option( 'bgtfw_install_starter_content' ) ) {
+
+			// Starter Content should only be installed if all required plugins are setup too.
+			if ( $this->is_plugin_setup_complete() ) {
 				update_option( 'bgtfw_starter_content_previewed', true );
 			} else {
 				$content = array();
@@ -191,7 +168,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 				<p>
 					' . esc_html__( 'Sorry, an unknown error occurred when trying to install the Starter Content.', 'bgtfw' ) . '
 				</p>',
-			'install' => get_option( 'bgtfw_install_starter_content' ),
+			'install' => self::$fresh_site_customize && $this->is_plugin_setup_complete(),
 		);
 
 		wp_localize_script( $handle, 'bgtfwCustomizerStarterContent', $translations );
@@ -227,6 +204,23 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	public static function has_valid_content() {
 		$content = get_theme_support( 'starter-content' );
 		return is_array( $content ) && ! empty( $content[0] ) && is_array( $content[0] ) && ( bool ) array_filter( $content[0] );
+	}
+
+	/**
+	 * Whether or not our Starter Content plugins are setup and complete.
+	 *
+	 * This is a wrapper function to the BoldGrid_Framework_Customizer_Starter_Content_Plugins
+	 * Class' is_setup_complete static function. It exists in THIS method as the logic is needed in
+	 * multiple methods.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return bool
+	 */
+	public function is_plugin_setup_complete() {
+		$starter_content_plugins = ! empty( $this->configs['starter-content']['plugins'] ) ? $this->configs['starter-content']['plugins'] : array();
+
+		return BoldGrid_Framework_Customizer_Starter_Content_Plugins::is_setup_complete( $starter_content_plugins );
 	}
 
 	/**

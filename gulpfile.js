@@ -382,6 +382,7 @@ gulp.task('scssCompile', function () {
     .pipe(postcss(plugins))
     .pipe(gulp.dest(config.dist + '/assets/css'))
     .pipe(cssnano({
+      safe: true,
       discardComments: { removeAll: true },
       zindex: false
     }))
@@ -394,7 +395,7 @@ gulp.task('bootstrapCompile', function () {
     .pipe(sass())
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(gulp.dest(config.dist + '/assets/css/bootstrap'))
-    .pipe(cssnano({ discardComments: { removeAll: true } }))
+    .pipe(cssnano({ discardComments: { removeAll: true }, safe: true }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(config.dist + '/assets/css/bootstrap'))
   //  .pipe( notify( { message: 'SCSS compile complete', onLast: true } ) );
@@ -478,6 +479,7 @@ gulp.task('hoverColors', function() {
   ];
   return gulp.src(config.node_modules + '/hover.css/css/hover.css')
       .pipe(cssnano({
+        safe: true,
         discardComments: { removeAll: true }}))
       .pipe(postcss(plugins))
       .pipe(replace('#fff', '%2$s'))

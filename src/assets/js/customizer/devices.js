@@ -167,20 +167,22 @@ export class Devices {
 		this.setBodyHeight();
 
 		// On resize recalc the height offsets.
-
 		$( window ).on( 'resize', _.debounce( () => {
 			this.setBodyHeight();
 		}, 300 ) );
 
 		// Scroll syncing ** Do Not Debounce **.
 		$( window ).on( 'scroll', () => {
-			let name = api.previewer.preview.iframe[0].name;
-			let doc = frames[ name ].document;
+			let doc = frames[ preview.name ].document;
 			doc.documentElement.scrollTop = window.pageYOffset;
 			doc.body.scrollTop = window.pageYOffset; // Google Chrome, Safari, documents without valid doctype.
 			$( '.wp-customizer .wp-full-overlay' ).scrollLeft( window.pageXOffset );
 		} );
 
+		// Sync scroll in iframe back to parent.
+		$( frames[ preview.name ] ).on( 'scroll', () => {
+			window.document.scrollingElement.scrollTop = preview.contentWindow.pageYOffset;
+		} );
 	}
 
 	setBodyHeight() {

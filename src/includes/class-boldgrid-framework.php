@@ -905,7 +905,6 @@ class BoldGrid_Framework {
 
 		// Filters to run if we are in the Customizer and requesting Starter Content be loaded.
 		if ( BoldGrid_Framework_Customizer_Starter_Content::$fresh_site_customize ) {
-			$this->loader->add_action( 'customize_controls_print_footer_scripts', $starter_content, 'post_import' );
 			$this->loader->add_filter( 'pre_get_posts', $starter_content, 'pre_get_posts' );
 		}
 	}

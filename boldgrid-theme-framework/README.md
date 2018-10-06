@@ -34,6 +34,21 @@ user guide for more information.
 * New Feature: Improved Font Controls - Users now have much more control over the fonts elements independently, allowing granular control of the typography.
 * New Feature: Improved Color Controls - Users have much more control over the colors individual elements use, to allow for greater customization of their website's look and feel.
 
+### 1.5.10 ###
+* Update: Removed reference from bootstrap css to glyphicons since they are unused in bgtfw.
+
+### 1.5.9 ###
+* Update: Removing the spinner's arrows from the quantity number inputs.
+
+### 1.5.8 ###
+* Update: Added styles for 3.4.0 WooCommerce changes.
+
+### 1.5.7 ###
+* Update: Updating WooCommerce templates to latest stable version.
+
+### 1.5.6 ###
+* Bug fix: Fixing issue with .site-title line-height conflict from WP4.7 changes.
+
 ### 1.5.5 ###
 * Update: Change Post and Page Builder url.
 

@@ -60,6 +60,22 @@ class Kirki_Field {
 	protected $input_attrs = array();
 
 	/**
+	 * Preset choices.
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $preset = array();
+
+	/**
+	 * CSS Variables.
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $css_vars = array();
+
+	/**
 	 * Use "theme_mod" or "option".
 	 *
 	 * @access protected
@@ -239,7 +255,7 @@ class Kirki_Field {
 		if ( is_array( $config_id ) && empty( $args ) ) {
 			/* translators: %1$s represents the field ID where the error occurs. %2$s is the URL in the documentation site. */
 			_doing_it_wrong( __METHOD__, sprintf( esc_attr__( 'Config not defined for field %1$s - See %2$s for details on how to properly add fields.', 'kirki' ), esc_attr( $args['settings'] ), 'https://aristath.github.io/kirki/docs/getting-started/fields.html' ), '3.0.10' );
-			$args = $config_id;
+			$args      = $config_id;
 			$config_id = 'global';
 		}
 
@@ -463,7 +479,7 @@ class Kirki_Field {
 		}
 
 		if ( ! empty( $this->required ) ) {
-			$this->active_callback = array( 'Kirki_Active_Callback', 'evaluate' );
+			$this->active_callback = '__return_true';
 			return;
 		}
 		// No need to proceed any further if we're using the default value.
@@ -560,8 +576,17 @@ class Kirki_Field {
 			if ( isset( $output['element'] ) && is_array( $output['element'] ) ) {
 				$this->output[ $key ]['element'] = array_unique( $this->output[ $key ]['element'] );
 				sort( $this->output[ $key ]['element'] );
+
+				// Trim each element in the array.
+				foreach ( $this->output[ $key ]['element'] as $index => $element ) {
+					$this->output[ $key ]['element'][ $index ] = trim( $element );
+				}
 				$this->output[ $key ]['element'] = implode( ',', $this->output[ $key ]['element'] );
 			}
+
+			// Fix for https://github.com/aristath/kirki/issues/1659#issuecomment-346229751.
+			$this->output[ $key ]['element'] = str_replace( array( "\t", "\n", "\r", "\0", "\x0B" ), ' ', $this->output[ $key ]['element'] );
+			$this->output[ $key ]['element'] = trim( preg_replace( '/\s+/', ' ', $this->output[ $key ]['element'] ) );
 		}
 	}
 
@@ -632,7 +657,7 @@ class Kirki_Field {
 	protected function set_variables() {
 
 		if ( ! is_array( $this->variables ) ) {
-			$variable = ( is_string( $this->variables ) && ! empty( $this->variables ) ) ? $this->variables : false;
+			$variable        = ( is_string( $this->variables ) && ! empty( $this->variables ) ) ? $this->variables : false;
 			$this->variables = array();
 			if ( $variable && empty( $this->variables ) ) {
 				$this->variables[0]['name'] = $variable;
@@ -672,5 +697,24 @@ class Kirki_Field {
 	protected function set_priority() {
 
 		$this->priority = absint( $this->priority );
+	}
+
+	/**
+	 * Sets the $css_vars
+	 *
+	 * @access protected
+	 */
+	protected function set_css_vars() {
+		if ( is_string( $this->css_vars ) ) {
+			$this->css_vars = array( $this->css_vars );
+		}
+		if ( isset( $this->css_vars[0] ) && is_string( $this->css_vars[0] ) ) {
+			$this->css_vars = array( $this->css_vars );
+		}
+		foreach ( $this->css_vars as $key => $val ) {
+			if ( ! isset( $val[1] ) ) {
+				$this->css_vars[ $key ][1] = '$';
+			}
+		}
 	}
 }

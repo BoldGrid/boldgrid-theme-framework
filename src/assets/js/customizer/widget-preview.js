@@ -12,7 +12,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	self.hover_bound = false;
 	self.section_click_bound = false;
 	$( function() {
-		$window.on( 'boldgrid_customizer_refresh',  onload  );
+		$window.on( 'boldgrid_customizer_refresh', onload );
 		add_widget_description();
 	} );
 
@@ -23,9 +23,10 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		bind_force_mouse_leave();
 
 		self.$widget_overlay = $( '<div id="boldgrid-widget-area-overlay" class="widget-area-overlay hidden"><h2>Widget Area</h2></div>' );
-		self.$previewer
-			.find( 'body' )
-			.append( self.$widget_overlay );
+		if ( ! self.$previewer.find( 'body' ).find( '#boldgrid-widget-area-overlay' ).length ) {
+			self.$previewer.find( 'body' ).append( self.$widget_overlay );
+		}
+		self.$widget_overlay = self.$previewer.find( 'body' ).find( '#boldgrid-widget-area-overlay' );
 	};
 
 	var bind_force_mouse_leave = function() {
@@ -101,9 +102,11 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	};
 
 	var highlight_widget_area = function( $matching_area ) {
-		var position = $matching_area[0].getBoundingClientRect();
-		var largest_height = $matching_area.outerHeight( true );
-		var largest_width = $matching_area.outerWidth( true );
+		var position = $matching_area[0].getBoundingClientRect(),
+			largest_height = $matching_area.outerHeight( true ),
+			largest_width = $matching_area.outerWidth( true ),
+			areaOffset;
+
 		$matching_area.find( '*' ).each( function() {
 			var $this = $( this );
 			var outer_height = $this.outerHeight( true );
@@ -123,8 +126,14 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			'top': $matching_area.offset().top
 		}).removeClass( 'hidden' );
 
+		areaOffset = $matching_area.offset().top - 65;
+
+		if ( wp.customize( 'bgtfw_fixed_header' )() && 'header-top' === wp.customize( 'bgtfw_header_layout_position' )() ) {
+			areaOffset -= self.$previewer.find( '.site-header' ).outerHeight();
+		}
+
 		self.$previewer.find( 'html, body' ).stop().animate({
-			scrollTop: $matching_area.offset().top - 65
+			scrollTop: areaOffset
 		}, 750 );
 	};
 
@@ -149,20 +158,15 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var $widgetAreaBottom = $( '#sub-accordion-panel-widgets, #accordion-panel-widgets .accordion-sub-container' ),
 			$navMenuBottom = $( '#sub-accordion-panel-nav_menus, #accordion-panel-nav_menus .accordion-sub-container' );
 
-		// TODO: Move this markup into php and localize.
-		$( '#accordion-panel-widgets, #sub-accordion-panel-widgets' ).find( '.customize-info.accordion-section' )
-			.after( '<p class="boldgrid-subdescription">A Widget is a small block that performs' +
-				' a specific function. We have provided some prefilled widget areas for you. ' +
-				'You can hover over the Widget Areas below to see where they are located on the page.</p>'
-			);
-
-		// If no header or footer widgets, change wording to add more widgets.
-		if ( wp.customize( 'boldgrid_footer_widgets' ).get(  ) &&
-			 wp.customize( 'boldgrid_header_widgets' ).get(  ) !== '0' ) {
-			$widgetAreaBottom
-				.append( '<p class="boldgrid-subdescription bottom-description">To change the number of columns in your header or footer, use the following buttons. </p>' )
-				.append( '<div class="boldgrid-subdescription"><button  type="button" data-focus-control="boldgrid_header_widgets" class="button">Header Columns</button><button class="button" type="button" data-focus-control="boldgrid_footer_widgets">Footer Columns</button><div>' )
-				.append( '<div class="boldgrid-subdescription edit-in-admin"><a href="' + Boldgrid_Thememod_Markup.siteurl + '/wp-admin/widgets.php" type="button" class="button">Edit in Admin</a><div>' );
+		// TODO: Move this markup into php and localize. If no header or footer widgets, change wording to add more widgets.
+		if ( ! _.isUndefined( wp.customize( 'boldgrid_footer_widgets' ) ) &&
+			! _.isUndefined( wp.customize( 'boldgrid_header_widgets' ) ) &&
+			wp.customize( 'boldgrid_footer_widgets' ).get() !== '0' &&
+			wp.customize( 'boldgrid_header_widgets' ).get() !== '0' ) {
+				$widgetAreaBottom
+					.append( '<p class="boldgrid-subdescription bottom-description">To change the number of columns in your header or footer, use the following buttons. </p>' )
+					.append( '<div class="boldgrid-subdescription"><button  type="button" data-focus-control="boldgrid_header_widgets" class="button">Header Columns</button><button class="button" type="button" data-focus-control="boldgrid_footer_widgets">Footer Columns</button><div>' )
+					.append( '<div class="boldgrid-subdescription edit-in-admin"><a href="' + Boldgrid_Thememod_Markup.siteurl + '/wp-admin/widgets.php" type="button" class="button">Edit in Admin</a><div>' );
 		} else {
 			$widgetAreaBottom
 				.append( '<p class="boldgrid-subdescription bottom-description">You can add more widget areas in your header or footer, just use the following buttons: </p>' )

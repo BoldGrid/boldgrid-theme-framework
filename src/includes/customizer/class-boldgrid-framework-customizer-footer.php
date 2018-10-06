@@ -48,173 +48,6 @@ class Boldgrid_Framework_Customizer_Footer {
 	}
 
 	/**
-	 * Add the Footer Panel to the WordPress Customizer.  This also
-	 * adds the controls we need for the custom CSS and custom JS
-	 * textareas.
-	 *
-	 * @since     1.0.0
-	 *
-	 * @param array $wp_customize WordPress customizer object.
-	 */
-	public function footer_panel( $wp_customize ) {
-
-		$config = $this->configs['customizer-options']['footer_panel'];
-
-		if ( true === $config ) {
-
-			// It really doesn't matter if another plugin or the theme adds
-			// the same section; they will merge.
-			$wp_customize->add_section(
-				'boldgrid_footer_panel',
-				array(
-					'title'    => __( 'Footer Settings', 'bgtfw' ),
-					'priority' => 130, // After all core sections.
-					'panel' => 'boldgrid_other',
-					'description' => __( 'This section allows you to modify features that are not menus or widgets.', 'bgtfw' ),
-				)
-			);
-
-			$footer_widget_control = $this->configs['customizer-options']['footer_controls']['widgets'];
-
-			if ( true === $footer_widget_control ) {
-				// 'theme_mod's are stored with the theme, so different themes can have
-				// unique custom css rules with basically no extra effort.
-				$wp_customize->add_setting(
-					'boldgrid_footer_widgets',
-					array(
-						'type'      => 'theme_mod',
-						'default'   => '0',
-						'transport' => 'refresh',
-					)
-				);
-				// Uses the 'radio' type in WordPress.
-				$wp_customize->add_control(
-					'boldgrid_footer_widgets',
-					array(
-						'label'       => __( 'Footer Widget Columns', 'bgtfw' ),
-						'description' => __( 'Select the number of footer widget columns you wish to display.', 'bgtfw' ),
-						'type'        => 'radio',
-						'priority'    => 70,
-						'choices'     => array(
-							'0'   => '0',
-							'1'   => '1',
-							'2'   => '2',
-							'3'   => '3',
-							'4'   => '4',
-						),
-						'section'     => 'boldgrid_footer_panel',
-					)
-				);
-				Kirki::add_field(
-					'',
-					array(
-						'type'        => 'custom',
-						'settings'     => 'boldgrid_footer_widget_help',
-						'section'     => 'boldgrid_footer_panel',
-						'default'     => '<a class="button button-primary open-widgets-section">' . __( 'Continue to Widgets Section', 'bgtfw' ) . '</a>',
-						'priority'    => 80,
-						'description' => __( 'You can add widgets to your footer from the widgets section.', 'bgtfw' ),
-					)
-				);
-				Kirki::add_field(
-					'',
-					array(
-						'type'        => 'custom',
-						'settings'     => 'boldgrid_edit_footer_widget_help',
-						'section'     => 'boldgrid_footer_panel',
-						'default'     => '<a data-focus-section="sidebar-widgets-boldgrid-widget-3" class="button button-primary" href="#">' .
-							__( 'Edit Footer Widgets', 'bgtfw' ) . '</a>',
-						'priority'    => 60,
-						'description' => __( 'You can edit your default footer widgets from the widget panel.', 'bgtfw' ),
-						'required' => array(
-							array(
-								'settings' => 'boldgrid_enable_footer',
-								'operator' => '==',
-								'value' => true,
-							),
-						),
-					)
-				);
-			}
-
-			$header_custom_html = $this->configs['customizer-options']['footer_controls']['custom_html'];
-
-			if ( true === $header_custom_html ) {
-				// 'theme_mod's are stored with the theme, so different themes
-				// can have unique custom css rules with basically no extra effort.
-				$wp_customize->add_setting(
-					'boldgrid_footer_html',
-					array(
-						'type'      => 'theme_mod',
-						'transport' => 'refresh',
-					)
-				);
-				// Uses the `textarea` type added in WordPress 4.0.
-				$wp_customize->add_control(
-					'boldgrid_footer_html',
-					array(
-						'label'       => __( 'Custom Footer HTML', 'bgtfw' ),
-						'description' => __( 'Add your custom HTML for your footer here', 'bgtfw' ),
-						'type'        => 'textarea',
-						'priority'    => 90,
-						'section'     => 'boldgrid_footer_panel',
-					)
-				);
-			}
-		}
-
-	}
-
-	/**
-	 * This adds the group of controls in the customizer that are
-	 * responsible for showing/hiding/editing the footer attribution
-	 * links at the bottom of a user's page.
-	 *
-	 * @since 1.0.1
-	 *
-	 * @param array $wp_customize WordPress customizer object.
-	 */
-	public function add_attrbution_control( $wp_customize ) {
-
-		$configs = $this->configs;
-		Kirki::add_field(
-			'',
-			array(
-				'type'        => 'custom',
-				'settings'     => 'boldgrid_attribution_heading',
-				'label'       => __( 'Attribution Control', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => '',
-				'priority'    => 20,
-			)
-		);
-		Kirki::add_field(
-			'',
-			array(
-				'type'        => 'checkbox',
-				'settings'     => 'hide_boldgrid_attribution',
-				'transport'   => 'refresh',
-				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => false,
-				'priority'    => 30,
-			)
-		);
-		Kirki::add_field(
-			'',
-			array(
-				'type'        => 'checkbox',
-				'settings'     => 'hide_wordpress_attribution',
-				'transport'   => 'refresh',
-				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => false,
-				'priority'    => 40,
-			)
-		);
-	}
-
-	/**
 	 *  Responsible for adding the attribution links to the footer of a BoldGrid theme.
 	 *
 	 *  @since     1.0.0
@@ -250,9 +83,20 @@ class Boldgrid_Framework_Customizer_Footer {
 		$additional_links = '';
 		$additional_links = apply_filters( 'bgtfw_attribution_links', $additional_links );
 		$theme_mods .= $additional_links;
-		?>
 
-		<span class="attribution-theme-mods"><?php echo $theme_mods ?></span>
+		$allowed = [
+			'a' => [
+				'href' => [],
+				'title' => [],
+				'rel' => [],
+				'target' => [],
+			],
+			'span' => [
+				'class' => [],
+			],
+		];
+		?>
+		<span class="attribution-theme-mods"><?php echo wp_kses( $theme_mods, $allowed ); ?></span>
 		<?php
 	}
 
@@ -289,7 +133,7 @@ class Boldgrid_Framework_Customizer_Footer {
 	 */
 	public function add_enable_control() {
 		Kirki::add_field(
-			'',
+			'bgtfw',
 			array(
 				'type' => 'switch',
 				'settings' => 'boldgrid_enable_footer',

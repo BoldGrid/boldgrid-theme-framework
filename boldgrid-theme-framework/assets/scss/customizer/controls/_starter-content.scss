@@ -1,0 +1,19 @@
+#customize-theme-controls .control-panel-themes.has-starter-content {
+	margin-bottom: 15px;
+	> .accordion-section-title {
+		margin-bottom: 0;
+	}
+	.theme-starter-content-actions {
+		background: white;
+		padding: 10px 12px 10px 12px;
+		button.dashicons-before:before {
+			margin-right: 5px;
+			vertical-align: middle;
+		}
+		button.dashicons-before.loading:before {
+			content: "\f463";
+			-webkit-animation: rotation 2s infinite linear;
+			animation: rotation 2s infinite linear;
+		}
+	}
+}

@@ -1,0 +1,54 @@
+.boldgrid-control {
+	input[type="radio"] {
+		width: 16px;
+	}
+
+	input[type="checkbox"] {
+		height: 100%;
+	}
+
+	&.directional-control .control-name {
+		border-color: white;
+	}
+
+	&.slider-control {
+		.number,
+		.slider {
+			background-color: white;
+		}
+
+		.slider .ui-slider-handle {
+			transform: translateY(-50%) translateX(-50%);
+		}
+	}
+
+	.pluto-color-control + .iris-picker {
+		min-width: 253px;
+	}
+
+	&.bg-control-switch .mdc-switch {
+		top: 5px;
+	}
+
+	.iris-slider.iris-slider {
+		margin-left: 10px !important;
+	}
+
+	&.directional-control {
+		margin: 0;
+	}
+}
+
+// Prevent interaction with panels until Customizer fully loads.
+body.pre-initial-refresh #customize-theme-controls {
+	cursor: wait;
+	
+	li.accordion-section {
+		pointer-events: none;
+	}
+	
+	h3:after,
+	h3.accordion-section-title {
+		color: #ccc;
+	}
+}

@@ -1,22 +1,25 @@
 /** **/
 .sticky {
 	display: block;
+	& .entry-title > a:before {
+		display: inline-block;
+		font: normal normal normal 14px/1 FontAwesome;
+		font-size: inherit;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		content: "\f249";
+		margin-right: 1.5rem;
+	}
 }
 
-.byline,
 .updated:not(.published){
 	display: none;
 }
 
-.single .byline,
-.group-blog .byline {
-	display: inline;
-}
-
-.page-content,
-.entry-content,
-.entry-summary {
-	margin: 1.5em 0 0;
+.byline {
+	display: inline-block;
+	white-space: pre-wrap;
 }
 
 .page-links {
@@ -25,8 +28,8 @@
 }
 
 /** Post Format: Aside **/
-.blog .format-aside .entry-title,
-.archive .format-aside .entry-title {
+
+main > article.post.format-aside .entry-header {
 	display: none;
 }
 
@@ -35,9 +38,21 @@
 }
 .paging-navigation,
 .post-navigation {
-	margin: 1.5em auto;
+	display: flex;
+	flex-basis: 100%;
+	padding: 1em 0;
 	.nav-links {
 		display: flex;
-		justify-content: space-between;
+		flex-basis: 100%;
+	}
+}
+.paging-navigation {
+	.nav-previous {
+		margin-left: auto;
+	}
+}
+.post-navigation {
+	.nav-next {
+		margin-left: auto;
 	}
 }

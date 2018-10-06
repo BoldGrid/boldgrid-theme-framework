@@ -1,0 +1,15 @@
+#customize-controls {
+	.control-panel-bgtfw_panel > li:not(.customize-info) > h3.accordion-section-title:before {
+		@include dashicons;
+	}
+
+	[id^="accordion-panel-bgtfw_menu_items_"] > h3.accordion-section-title:before {
+		content: "\f325";
+	}
+	[id^="accordion-panel-bgtfw_menu_items_active_item_"] > h3.accordion-section-title:before {
+		content: "\f103";
+	}
+	[id^="accordion-section-bgtfw_menu_items_hover_item_"] > h3.accordion-section-title:before {
+		text-decoration: underline;
+	}
+}

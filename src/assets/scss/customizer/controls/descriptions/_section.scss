@@ -1,0 +1,10 @@
+ul[id^="sub-accordion-section-"] {
+	.bgtfw-description {
+		padding-bottom: 1em;
+		.help a .dashicons {
+			&:before {
+				content: "\f223";
+			}
+		}
+	}
+}

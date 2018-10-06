@@ -45,14 +45,14 @@ class Boldgrid_Framework_Control_Palette extends WP_Customize_Control {
 		$has_neutral_color = ! empty( $color_palettes['palettes'][0]['neutral-color'] );
 		$color_palatte_columns = $color_palettes['color-palette-size'] + ( (int) $has_neutral_color );
 		?>
-	<span class="customize-control-title"><?php echo $this->label; ?></span>
+	<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 
 	<?php if ( ! empty( $this->description ) ) : ?>
-		<span class="description customize-control-description"><?php echo $this->description; ?></span>
+		<span class="description customize-control-description"><?php echo wp_kses_post( $this->description ); ?></span>
 	<?php endif; ?>
 
-<h3>Active Palette</h3>
-<div class='boldgrid-color-palette-wrapper color-palette-columns-<?php echo $color_palatte_columns;?>'
+<h3><?php echo esc_html__( 'Active Palette', 'bgtfw' ); ?></h3>
+<div class='boldgrid-color-palette-wrapper color-palette-columns-<?php echo esc_attr( $color_palatte_columns );?>'
 	 data-color-formats='<?php echo json_encode( $color_palettes['palette_formats'] ); ?>'
 	 data-has-neutral='<?php echo esc_attr( $has_neutral_color ); ?>'
 	 data-num-colors='<?php echo esc_attr( $color_palatte_columns ); ?>'
@@ -82,8 +82,8 @@ class Boldgrid_Framework_Control_Palette extends WP_Customize_Control {
 					<span data-color="<?php echo esc_attr( $color ); ?>" style="background: <?php echo esc_attr( $color ); ?>"></span>
 				<?php endforeach; ?>
 				<div class='boldgrid-duplicate-dashicons'>
-					<span class="dashicons dashicons-admin-post boldgrid-copy-palette" title="Save Palette"></span>
-					<span class="dashicons dashicons-no boldgrid-remove-palette" title="Remove Palette"></span>
+					<span class="dashicons dashicons-admin-post boldgrid-copy-palette" title="<?php esc_attr_e( 'Save Palette', 'bgtfw' ); ?>"></span>
+					<span class="dashicons dashicons-no boldgrid-remove-palette" title="<?php esc_attr_e( 'Remove Palette', 'bgtfw' ); ?>"></span>
 				</div>
 			</li>
 		</ul>
@@ -91,20 +91,20 @@ class Boldgrid_Framework_Control_Palette extends WP_Customize_Control {
 	<?php endforeach; ?>
 		<div class='palette-action-buttons hidden'>
 
-		<button class='button button-primary palette-creator-button palette-generator-button' type='button'>Suggest Palettes</button>
+		<button class='button button-primary palette-creator-button palette-generator-button' type='button'><?php echo esc_html__( 'Suggest Palettes', 'bgtfw' ); ?></button>
 
 		<input type="text" value="#ffffff" class='pluto-color-control' data-palette="true" />
 		<input type="textarea" class='hidden palette-option-field' <?php echo esc_attr( $this->link() ); ?> val='<?php echo esc_attr( $this->value() ); ?>'/>
 
 			<div class='generate-palettes-selection-section'>
-				<h3>Suggested Palettes</h3>
+				<h3><?php echo esc_html__( 'Suggested Palettes', 'bgtfw' ); ?></h3>
 				<div class='generated-palettes-container'>
 				</div>
 				<input type="button" class="button cancel-generated-palettes-button" value="Done">
 			</div>
 
 			<div class='saved-palettes-divider'>
-				<h3>Saved Palettes</h3>
+				<h3><?php echo esc_html__( 'Saved Palettes', 'bgtfw' ); ?></h3>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,44 @@
+/* Primary Menu */
+ul.customize-pane-parent > li {
+	&[id^="accordion-panel-"]:not(.control-panel-themes) > h3:before,
+	&[id^="accordion-section-"]:not(.control-panel-themes) > h3:before {
+		@include dashicons;
+		content: "\f111";
+	}
+	&#accordion-panel- {
+		&bgtfw_design_panel > h3:before {
+			content: "\f100";
+		}
+		&bgtfw_header > h3:before {
+			@include bgtfwIcons;
+			content: "\e927";
+		}
+		&bgtfw_footer > h3:before {
+			@include bgtfwIcons;
+			content: "\e924";
+		}
+		&bgtfw_layout > h3:before {
+			content: "\f489";
+		}
+		&widgets > h3:before {
+			content: "\f538";
+		}
+		&boldgrid_typography > h3:before {
+			content: "\f215";
+		}
+		&nav_menus > h3:before {
+			content: "\f333";
+		}
+	}
+	&#accordion-section- {
+		&colors > h3:before {
+			content: "\f309";
+		}
+		&background_image > h3:before {
+			content: "\f128";
+		}
+		&custom_css > h3:before {
+			content: "\f475";
+		}
+	}
+}

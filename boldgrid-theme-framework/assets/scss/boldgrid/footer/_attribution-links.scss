@@ -1,4 +1,8 @@
 .attribution-theme-mods {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-start;
 	.link {
 		padding: .5em;
 		&:after {
@@ -14,5 +18,17 @@
 				border: 0;
 			}
 		}
+		&:first-child {
+			padding-left: 0;
+		}
+	}
+	@media only screen and (min-width : 768px) {
+		padding-left: 0;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.attribution-theme-mods .link:first-of-type {
+		padding-left: 0;
 	}
 }

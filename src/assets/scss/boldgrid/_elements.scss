@@ -1,7 +1,39 @@
+/* Main Padding */
+.main {
+	flex: 1 0 100%;
+	align-content: flex-start;
+	padding: 0 2.8rem;
+	max-width: 100%;
+}
+body.page,
+body.single {
+	.main {
+		padding: 0 2.8rem;
+	}
+}
+
+/* Fixes background scrolling on chrome in iframe */
+body.custom-background {
+	backface-visibility: hidden;
+}
+
+.site-content {
+	display: flex;
+	flex-direction: column;
+	flex: 1 0 auto;
+}
+@media only screen and (min-width: 768px) {
+	.site-content {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+}
+
 /** Headings **/
 .palette-primary {
 	@include headings() {
-		line-height: 1.1;
+		word-wrap: break-word;
+		hyphens: auto;
 	}
 }
 
@@ -29,6 +61,17 @@ blockquote {
 }
 
 /* Support for button wrapping classes. */
+.main {
+	.btn,
+	.button-primary,
+	.button-secondary {
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+	}
+}
+
 div {
 	&.btn,
 	&.button-primary,
@@ -50,6 +93,24 @@ div {
 	}
 }
 
+.page-header {
+	display: block;
+	margin: 0;
+	width: 100%;
+}
+
+// Header overlay element.
+#wp-custom-header {
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
 /* Post/Page password protected styles */
 .post-password-form .button-primary {
 	margin-left: 9px;
@@ -63,10 +124,10 @@ div {
 
 /* Edit Post Links */
 .bgtfw-edit-link {
-	position: absolute;
+	position: relative;
+	width: auto;
+	height: auto;
 	float: left;
-	width: 1px; /* required to have a size to be focusable in Safari */
-	height: 1px;
 	padding: 0;
 	margin: -1px 0 0 -1px;
 	border: 0;
@@ -75,7 +136,7 @@ div {
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	outline: none;
-	z-index: 5;
+	z-index: 199;
 }
 
 .bgtfw-edit-link a {
@@ -89,7 +150,7 @@ div {
 	min-height: 30px;
 	line-height: 1em !important;
 	font-size: 18px;
-	z-index: 5;
+	z-index: 201;
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	border: 2px solid #fff;
@@ -134,6 +195,22 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 
 .bgtfw-edit-link-hidden .bgtfw-edit-link a {
 	visibility: hidden;
+}
+
+.entry-footer span {
+	display: flex;
+	padding-left: 15px;
+	padding-right: 15px;
+	white-space: pre-wrap;
+	width: 100%;
+	&:last-child:not(.comments-link) {
+		justify-content: flex-end;
+		flex: 1 0 auto;
+		padding-right: 15px;
+	}
+	&:first-child {
+		padding-left: 15px;
+	}
 }
 
 @-webkit-keyframes bgtfw-edit-link-bounce-appear {

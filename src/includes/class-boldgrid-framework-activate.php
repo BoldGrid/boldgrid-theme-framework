@@ -50,14 +50,9 @@ class Boldgrid_Framework_Activate {
 	 * Removing any menu locations and widget locations
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param bool $active Are we resetting an active installation.
 	 */
-	public function reset( $active = true ) {
-
-		$this->widgets->remove_saved_widgets();
+	public function reset() {
 		$this->menus->reset_nav_locations();
-		$this->menus->remove_saved_menus( $active );
 
 		// Delete Option indicating that the framework needs to be setup.
 		delete_option( 'boldgrid_framework_init' );
@@ -80,10 +75,6 @@ class Boldgrid_Framework_Activate {
 		$this->reset();
 
 		$this->widgets->empty_widget_areas();
-		$this->widgets->set_widget_areas();
-
-		// Create Default Menus.
-		$this->menus->create_default_menus();
 
 		// Then update the menu_check option to make sure this code only runs once.
 		update_option( 'boldgrid_framework_init', true );
@@ -145,6 +136,21 @@ class Boldgrid_Framework_Activate {
 
 		// If there's not a palette set by user, then set it.
 		if ( ! array_key_exists( 'boldgrid_color_palette', $options ) && $enabled && $palette ) {
+
+			// Normalize default passed in palettes from configs to RGB.
+			foreach ( $palette as $index => $settings ) {
+
+				// Convert default colors to RGBs if alternate format was passed in configs.
+				foreach ( $palette[ $index ]['colors'] as $color_index => $color ) {
+					$palette[ $index ]['colors'][ $color_index ] = ariColor::newColor( $color )->toCSS( 'rgb' );
+				}
+
+				// Convert neutral color to RGB if alternate format was passed in configs.
+				if ( isset( $palette[ $index ]['neutral-color'] ) ) {
+					$palette[ $index ]['neutral-color'] = ariColor::newColor( $palette[ $index ]['neutral-color'] )->toCSS( 'rgb' );
+				}
+			}
+
 			// Initizalize $theme_mod array.
 			$theme_mod = array();
 			// Get assigned default palette for category/theme.
@@ -185,8 +191,23 @@ class Boldgrid_Framework_Activate {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 		foreach ( $configs['tgm']['renamed_plugins'] as $renamed ) {
-			if ( is_plugin_active( $renamed['old_name'] . '/' . $renamed['old_name'] . '.php' ) ) {
-				$configs['tgm']['plugins'] = $this->remove_recommended_plugin( $configs, $renamed['new_name'] );
+
+			// Check for renamed plugins.
+			$plugins = get_plugins();
+
+			foreach ( $plugins as $plugin => $args ) {
+
+				// Check if old name matches installed plugins.
+				$name = strtolower( str_replace( '-', ' ', $renamed['old_name'] ) );
+				if ( isset( $args['Name'] ) && ( strtolower( $args['Name'] === $name ) ) ) {
+
+					// Check if plugin is active.
+					if ( class_exists( str_replace( ' ', '_', ucwords( $name ) ) ) ) {
+
+						// Remove recommended plugin from configs.
+						$configs['tgm']['plugins'] = $this->remove_recommended_plugin( $configs, $renamed['new_name'] );
+					}
+				}
 			}
 		}
 
@@ -198,9 +219,9 @@ class Boldgrid_Framework_Activate {
 	 *
 	 * @since 1.5.4
 	 *
-	 * @param  array $configs                BGTFW Configs.
-	 * @param  array $disabled_plugin_name   List of disabled names.
-	 * @return array                         BGTFW Configs.
+	 * @param  array $configs              BGTFW Configs.
+	 * @param  array $disabled_plugin_name List of disabled names.
+	 * @return array $configs              BGTFW Configs.
 	 */
 	public function remove_recommended_plugin( $configs, $disabled_plugin_name ) {
 		$plugins = array();
@@ -233,6 +254,35 @@ class Boldgrid_Framework_Activate {
 	 * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
 	 */
 	public function register_required_plugins() {
-		tgmpa( $this->configs['tgm']['plugins'], $this->configs['tgm']['configs'] );
+
+		/**
+		 * Whether or not to register our configured tgmpa plugins.
+		 *
+		 * The theme may configure a set of base plugins (in tgm.config.php), and our starter content
+		 * may configure an additional set of plugins (specific to that starter content).
+		 *
+		 * The main purpose of this filter is to prevent issues in which the theme and the starter
+		 * content both configure the same plugins.
+		 *
+		 * For example, if the theme is requiring p&pb(version 1.7, stable, from the repo), yet the
+		 * starter cotnent is requiring p&pb(version 1.8, rc, from external URL), the plugins from
+		 * the starter content should take precedence from the plugins reuqired for the theme only.
+		 *
+		 * @since 2.0.0
+		 */
+		$register = apply_filters( 'bgtfw_register_tgmpa', true );
+
+		if ( $register ) {
+			tgmpa( $this->configs['tgm']['plugins'], $this->configs['tgm']['configs'] );
+		}
+	}
+
+	/**
+	 * Perform tasks on deactivation.
+	 *
+	 * @since 1.5.10
+	 */
+	public function do_deactivate() {
+		delete_site_transient( 'bg_license_data' );
 	}
 }

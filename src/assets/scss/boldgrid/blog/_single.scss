@@ -1,0 +1,26 @@
+.single {
+	.post {
+		flex-direction: column;
+		flex-wrap: nowrap;
+		.entry-footer {
+			padding-top: 2.8rem;
+			~ .navigation.post-navigation {
+				margin-top: 1.4rem;
+			}
+			.cat-links ~ .bgtfw-edit-link {
+				margin-top: 0;
+				margin-bottom: 1rem;
+			}
+			.bgtfw-edit-link a {
+				left: -3px;
+			}
+			.cat-links, .tags-links {
+				padding: 0;
+			}
+		}
+		.wp-post-image {
+			display: block;
+			margin: 0 auto 2.8rem auto;
+		}
+	}
+}

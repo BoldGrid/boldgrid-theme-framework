@@ -15,15 +15,14 @@
 return array(
 	'boldgrid-sticky-nav'     => false,
 	'boldgrid-sticky-footer'  => false,
-	'wow-js'                  => false,
+	'wow-js'                  => true,
 	'animate-css'             => false,
-	'offcanvas-menu'          => false,
 	'options' => array(
 		'wow-js' => array(
 			'enabled'      => false,
 			'boxClass'     => 'wow',
 			'animateClass' => 'animated',
-			'offset'       => 0,
+			'offset'       => -200,
 			'mobile'       => true,
 			'live'         => true,
 		),
@@ -83,16 +82,16 @@ return array(
 			'disablemutationobserver'    => false, // Force MutationObserver disabled.
 		),
 		'goup' => array(
-			'enabled'          => false, // Enable jQuery Go Up Plugin ( Scroll To Top ).
+			'enabled'          => true, // Enable jQuery Go Up Plugin ( Scroll To Top ).
 			'location'         => 'right', // On which side the button will be shown ("left" or "right").
 			'locationOffset'   => 20, // Pixels from the button is distant from the edge of the screen, based on set location..
 			'bottomOffset'     => 10, // Pixels from the bottom edge of screen.
 			'containerSize'    => 40, // The width and height of the button (minimum is 20).
 			'containerRadius'  => 10, // Let you transform a square in a circle.
-			'containerClass'   => 'goup-container', // The class name given to the button container.
+			'containerClass'   => 'goup-container color1-background-color color-1-text-contrast', // The class name given to the button container.
 			'arrowClass'       => 'goup-arrow', // The class name given to the arrow container
 			'containerColor'   => '#000', // The color of the container (in hex format).
-			'arrowColor'       => '#fff', // The color of the container (in hex format).
+			'arrowColor'       => false, // The color of the container (in hex format).
 			'trigger'          => 500, // After how many scrolled down pixels the button must be shown (bypassed by alwaysVisible).
 			'entryAnimation'   => 'fade', // The animation of the show and hide events of the button ("slide" or "fade").
 			'alwaysVisible'    => false, // Set to true if u want the button to be always visible (bypass trigger).

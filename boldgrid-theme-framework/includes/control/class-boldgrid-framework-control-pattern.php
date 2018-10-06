@@ -38,13 +38,13 @@ class Boldgrid_Framework_Control_Pattern extends WP_Customize_Control {
 		<div class='boldgrid-pattern-wrapper' data-pattern-selected="<?php echo (bool) $this->value(); ?>">
 			<div class='boldgrid-pattern-selection-heading'>
 				<label>
-						<span class="customize-control-title">Background Pattern</span>
+						<span class="customize-control-title">Pattern</span>
 				</label>
 				<div>
 					<a <?php echo ( ! $this->value()) ? 'disabled="disabled"' : ''; ?>class='button remove-selected-pattern'></a>
 				</div>
 			</div>
-			<div id="<?php echo $this->id ?>" class='pattern-wrapper'>
+			<div id="<?php echo esc_attr( $this->id ); ?>" class='pattern-wrapper'>
 				<div class='pattern-preview-wrapper'>
 				<?php foreach ( $this->choices['patterns'] as $pattern ) {
 					$active_class = '';
@@ -52,7 +52,8 @@ class Boldgrid_Framework_Control_Pattern extends WP_Customize_Control {
 						$active_class = 'active-pattern';
 					}
 					?>
-					<div class="patternpreview <?php echo $active_class; ?>" style='background-image:url("<?php echo esc_attr( $pattern['uri'] )?>")'></div>
+					<div class="patternpreview <?php echo esc_attr( $active_class ); ?>"
+							data-background="<?php echo esc_attr( $pattern['uri'] )?>"></div>
 				<?php } ?>
 
 				</div>

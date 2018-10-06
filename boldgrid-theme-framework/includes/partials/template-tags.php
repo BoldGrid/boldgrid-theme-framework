@@ -6,36 +6,18 @@
  *
  * @package BoldGrid
  */
+
 if ( ! function_exists( 'boldgrid_paging_nav' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.
  */
 function boldgrid_paging_nav() {
-	global $boldgrid_theme_framework;
-	$configs = $boldgrid_theme_framework->get_configs();
-
-	// Don't print empty markup if there's only one page.
-	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
+	global $wp_query;
+	if ( $wp_query->max_num_pages <= 1 ) {
 		return;
 	}
-	$nav_classes = $configs['template']['post_navigation']['paging_nav_classes'];
 
-	?>
-	<nav class="navigation paging-navigation" role="navigation">
-		<h2 class="sr-only"><?php _e( 'Posts navigation', 'bgtfw' ); ?></h2>
-		<div class="nav-links">
-
-			<?php if ( get_next_posts_link() ) : ?>
-			<div class="<?php echo $nav_classes['next'] ?>"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'bgtfw' ) ); ?></div>
-			<?php endif; ?>
-
-			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="<?php echo $nav_classes['previous'] ?>"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'bgtfw' ) ); ?></div>
-			<?php endif; ?>
-
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
+	do_action( 'bgtfw_pagination_display' );
 }
 endif;
 
@@ -76,11 +58,10 @@ if ( ! function_exists( 'boldgrid_posted_on' ) ) :
  * Prints HTML with meta information for the current post-date/time and author.
  */
 function boldgrid_posted_on() {
-	global $boldgrid_theme_framework;
-	$configs = $boldgrid_theme_framework->get_configs();
+	global $post;
 
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+	if ( get_the_time( 'U', $post->ID ) !== get_the_modified_time( 'U', $post->ID ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
 	}
 
@@ -92,12 +73,12 @@ function boldgrid_posted_on() {
 	);
 
 	// Posted on date format.
-	$format = ! empty( $configs['template']['archives']['posted-on']['format'] ) ? $configs['template']['archives']['posted-on']['format'] : 'date';
+	$format = is_single() ? get_theme_mod( 'bgtfw_posts_meta_format' ) : get_theme_mod( 'bgtfw_blog_post_header_meta_format' );
 
 	if ( 'timeago' === $format ) {
 		$posted_on = sprintf(
 			_x( 'Posted %s ago', '%s = human-readable time difference', 'bgtfw' ),
-			human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) )
+			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . human_time_diff( get_the_time( 'U', $post->ID ), current_time( 'U' ) ) . '</a>'
 		);
 	}
 
@@ -127,117 +108,66 @@ function boldgrid_entry_footer() {
 	if ( 'post' == get_post_type() ) {
 
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'bgtfw' ) );
+		$categories_list = get_the_category_list( ', ' );
+		$categories_count = count( explode( ', ', $categories_list ) );
 		if ( $categories_list && boldgrid_categorized_blog() ) {
-			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'bgtfw' ) . '</span>', $categories_list );
+			$class = 'singular';
+
+			$icon = is_single() ? get_theme_mod( 'bgtfw_posts_cat_icon' ) : get_theme_mod( 'bgtfw_blog_post_cat_icon' );
+			$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
+
+			if ( $categories_count > 1 ) {
+				$icon = is_single() ? get_theme_mod( 'bgtfw_posts_cats_icon' ) : get_theme_mod( 'bgtfw_blog_post_cats_icon' );
+				$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
+				$class = 'multiple';
+			}
+
+			printf( '<span class="cat-links %1$s">%2$s %3$s</span>', $class, $icon, $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', __( ', ', 'bgtfw' ) );
+		$tags_list = get_the_tag_list( '', ', ' );
+
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'bgtfw' ) . '</span>', $tags_list );
+			$icon = is_single() ? get_theme_mod( 'bgtfw_posts_tag_icon' ) : get_theme_mod( 'bgtfw_blog_post_tag_icon' );
+			$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
+			$class = 'singular';
+			$tags_count = count( explode( ', ', $tags_list ) );
+
+			if ( $tags_count > 1 ) {
+				$icon = is_single() ? get_theme_mod( 'bgtfw_posts_tags_icon' ) : get_theme_mod( 'bgtfw_blog_post_tags_icon' );
+				$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
+				$class = 'multiple';
+			}
+
+			printf( '<span class="tags-links %1$s">%2$s %3$s</span>', $class, $icon, $tags_list );
 		}
 	}
 
-	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link">';
+	$comment_count = get_comments_number();
+
+	if ( ! is_single() && ! post_password_required() && ( comments_open() || $comment_count ) ) {
+
+		$icon = '';
+		$class = 'comments-link';
+
+		if ( $comment_count > 1 ) {
+			$icon = get_theme_mod( 'bgtfw_blog_post_comments_icon' );
+			$class .= ' multiple';
+		} else {
+			$icon = get_theme_mod( 'bgtfw_blog_post_comment_icon' );
+			$class .= ' singular';
+		}
+
+		echo '<span class="' . $class . '">';
+
+		echo '<i class="fa fa-fw fa-' . esc_attr( $icon ) . '" aria-hidden="true"></i> ';
+
 		comments_popup_link( __( 'Leave a comment', 'bgtfw' ), __( '1 Comment', 'bgtfw' ), __( '% Comments', 'bgtfw' ) );
 		echo '</span>';
 	}
 
 	bgtfw_edit_post_link();
-}
-endif;
-
-if ( ! function_exists( 'the_archive_title' ) ) :
-/**
- * Shim for `the_archive_title()`.
- *
- * Display the archive title based on the queried object.
- *
- * @todo Remove this function when WordPress 4.3 is released.
- *
- * @param string $before Optional. Content to prepend to the title. Default empty.
- * @param string $after  Optional. Content to append to the title. Default empty.
- */
-function the_archive_title( $before = '', $after = '' ) {
-	if ( is_category() ) {
-		$title = sprintf( __( 'Category: %s', 'bgtfw' ), single_cat_title( '', false ) );
-	} elseif ( is_tag() ) {
-		$title = sprintf( __( 'Tag: %s', 'bgtfw' ), single_tag_title( '', false ) );
-	} elseif ( is_author() ) {
-		$title = sprintf( __( 'Author: %s', 'bgtfw' ), '<span class="vcard">' . get_the_author() . '</span>' );
-	} elseif ( is_year() ) {
-		$title = sprintf( __( 'Year: %s', 'bgtfw' ), get_the_date( _x( 'Y', 'yearly archives date format', 'bgtfw' ) ) );
-	} elseif ( is_month() ) {
-		$title = sprintf( __( 'Month: %s', 'bgtfw' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'bgtfw' ) ) );
-	} elseif ( is_day() ) {
-		$title = sprintf( __( 'Day: %s', 'bgtfw' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'bgtfw' ) ) );
-	} elseif ( is_tax( 'post_format', 'post-format-aside' ) ) {
-		$title = _x( 'Asides', 'post format archive title', 'bgtfw' );
-	} elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) {
-		$title = _x( 'Galleries', 'post format archive title', 'bgtfw' );
-	} elseif ( is_tax( 'post_format', 'post-format-image' ) ) {
-		$title = _x( 'Images', 'post format archive title', 'bgtfw' );
-	} elseif ( is_tax( 'post_format', 'post-format-video' ) ) {
-		$title = _x( 'Videos', 'post format archive title', 'bgtfw' );
-	} elseif ( is_tax( 'post_format', 'post-format-quote' ) ) {
-		$title = _x( 'Quotes', 'post format archive title', 'bgtfw' );
-	} elseif ( is_tax( 'post_format', 'post-format-link' ) ) {
-		$title = _x( 'Links', 'post format archive title', 'bgtfw' );
-	} elseif ( is_tax( 'post_format', 'post-format-status' ) ) {
-		$title = _x( 'Statuses', 'post format archive title', 'bgtfw' );
-	} elseif ( is_tax( 'post_format', 'post-format-audio' ) ) {
-		$title = _x( 'Audio', 'post format archive title', 'bgtfw' );
-	} elseif ( is_tax( 'post_format', 'post-format-chat' ) ) {
-		$title = _x( 'Chats', 'post format archive title', 'bgtfw' );
-	} elseif ( is_post_type_archive() ) {
-		$title = sprintf( __( 'Archives: %s', 'bgtfw' ), post_type_archive_title( '', false ) );
-	} elseif ( is_tax() ) {
-		$tax = get_taxonomy( get_queried_object()->taxonomy );
-		/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
-		$title = sprintf( __( '%1$s: %2$s', 'bgtfw' ), $tax->labels->singular_name, single_term_title( '', false ) );
-	} else {
-		$title = __( 'Archives', 'bgtfw' );
-	}
-
-	/**
-	 * Filter the archive title.
-	 *
-	 * @param string $title Archive title to be displayed.
-	 */
-	$title = apply_filters( 'get_the_archive_title', $title );
-
-	if ( ! empty( $title ) ) {
-		echo $before . $title . $after;
-	}
-}
-endif;
-
-if ( ! function_exists( 'the_archive_description' ) ) :
-/**
- * Shim for `the_archive_description()`.
- *
- * Display category, tag, or term description.
- *
- * @todo Remove this function when WordPress 4.3 is released.
- *
- * @param string $before Optional. Content to prepend to the description. Default empty.
- * @param string $after  Optional. Content to append to the description. Default empty.
- */
-function the_archive_description( $before = '', $after = '' ) {
-	$description = apply_filters( 'get_the_archive_description', term_description() );
-
-	if ( ! empty( $description ) ) {
-		/**
-		 * Filter the archive description.
-		 *
-		 * @see term_description()
-		 *
-		 * @param string $description Archive description to be displayed.
-		 */
-		echo $before . $description . $after;
-	}
 }
 endif;
 
@@ -405,3 +335,191 @@ function woocommerce_widget_shopping_cart_proceed_to_checkout() {
 		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="btn button-primary checkout wc-forward"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
 	<?php
 }
+
+/**
+ * Provides a template tag to check for template including a sidebar layout or not.
+ *
+ * @since 2.0.0
+ */
+function is_not_bgtfw_sidebar_layout() {
+	if ( is_home() ) {
+		// Default homepage
+		$layout = get_theme_mod( 'bgtfw_blog_blog_page_sidebar', get_theme_mod( 'bgtfw_layout_blog', 'no-sidebar' ) );
+	} else {
+		$layout = get_page_template_slug();
+
+		if ( empty( $layout ) ) {
+			$type = 'page' === get_post_type() ? 'page' : 'blog';
+			$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
+		}
+
+		$classes[] = sanitize_html_class( $layout );
+	}
+
+	return ( 'no-sidebar' === $layout ) || empty( $layout ) ? true : false;
+}
+
+/**
+ * Responsible for displaying sidebar/widget areas in a bgtfw theme.
+ *
+ * @since 2.0.0
+ *
+ * @param string $sidebar_id The sidebar ID to create an area for.
+ * @param bool   $help       Whether or not to display help text inside of widget area.
+ *
+ * @return void Prints the sidebar markup.
+ */
+function bgtfw_widget( $sidebar_id, $help = null ) {
+	if ( ! empty( $help ) ) {
+		$tmp = true;
+	}
+
+	global $wp;
+
+	// Link to the widgets section in the customizer.
+	$current_page = add_query_arg( $_GET, home_url( $wp->request ) );
+	$link = esc_url(
+		add_query_arg(
+			array(
+				'url' => urlencode( $current_page ),
+				array(
+					'autofocus' => array(
+						'control' => 'sidebars_widgets[' . $sidebar_id . ']',
+					),
+				),
+				'return' => $current_page,
+			),
+			wp_customize_url()
+		)
+	);
+
+	// Add some padding just for the background color to be visible in certain situations.
+	$style = 'padding-top: 15px; padding-bottom: 15px;';
+	$sidebar_meta = get_theme_mod( 'sidebar_meta' );
+
+	$color_class = '';
+	$classes = array();
+
+	global $boldgrid_theme_framework;
+	$configs = $boldgrid_theme_framework->get_configs();
+
+	$meta = new Boldgrid_Framework_Customizer_Widget_Meta( $configs );
+
+	if ( empty( $sidebar_meta[ $sidebar_id ] ) ) {
+		$sidebar_meta[ $sidebar_id ] = $meta->get_sidebar_defaults( $sidebar_id );
+	}
+
+	$color = empty( $sidebar_meta[ $sidebar_id ]['background_color'] ) ? $meta->get_sidebar_defaults( $sidebar_id, 'background_color' ) : $sidebar_meta[ $sidebar_id ]['background_color'] ;
+	$color_class = strtok( $color, ':' );
+	if ( strpos( $color_class, 'neutral' ) === false ) {
+		$color_class = str_replace( '-', '', $color_class );
+	}
+	$classes[] = $color_class . '-background-color';
+	$classes[] = $color_class . '-text-default';
+
+	$color = empty( $sidebar_meta[ $sidebar_id ]['links_color'] ) ? $meta->get_sidebar_defaults( $sidebar_id, 'links_color' ) : $sidebar_meta[ $sidebar_id ]['links_color'];
+	$color_class = strtok( $color, ':' );
+	$classes[] = $color_class . '-link-color';
+
+?>
+	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid <?php echo esc_attr( implode( ' ', $classes ) ); ?>" role="complementary" style="<?php echo esc_attr( $style ); ?>">
+		<?php dynamic_sidebar( $sidebar_id ); ?>
+		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
+			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>
+				<div class="empty-sidebar-message">
+					<?php if ( empty( $sidebar_meta[ $sidebar_id ]['title'] ) ) : ?>
+						<h2><?php _e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
+					<?php endif; ?>
+					<p><?php _e( "This sidebar doesn't have any widgets assigned to it yet.", 'bgtfw' ); ?></p>
+					<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add widgets here.', 'bgtfw' ) ?></a></p>
+				</div>
+				<?php elseif ( is_active_sidebar( $sidebar_id ) ) : ?>
+					<div class="add-widget-message">
+						<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add another widget.', 'bgtfw' ) ?></a></p>
+					</div>
+			<?php endif; ?>
+		<?php endif; ?>
+	</aside>
+<?php
+}
+
+/**
+ * Gets the styles for a feature image set as a background image on an element.
+ *
+ * @since 2.0.0
+ *
+ * @return string $style The inline styles to apply to an element.
+ */
+function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
+	$style = '';
+	$post_id = ( int ) $post_id;
+
+	if ( has_post_thumbnail( $post_id ) ) {
+
+		$color = '';
+		$img = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
+		$opt = 'bgtfw_global_title_background_color';
+
+		if ( is_home() || is_archive() ) {
+			if ( true === $theme_mod && 'show' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_display' ) ) {
+				if ( ( 'background' === get_theme_mod( 'bgtfw_blog_post_header_feat_image_position' ) ) || ( int ) get_option( 'page_for_posts', true ) === $post_id ) {
+
+					// Get user defined header background color for posts.
+					$opt = 'bgtfw_blog_header_background_color';
+
+					// Query still runs for main page title, so double check and set the global color.
+					if ( ( int ) get_option( 'page_for_posts', true ) === $post_id ) {
+
+						// Use background color setting for page as the header background by default.
+						$opt = 'bgtfw_global_title_background_color';
+					}
+				} else {
+					$opt = null;
+				}
+			}
+		}
+
+		if ( ! is_null( $opt ) ) {
+			$color = get_theme_mod( $opt ) ? get_theme_mod( $opt ) : '';
+
+			if ( ! empty( $color ) ) {
+				$color = explode( ':', $color );
+				$color = array_pop( $color );
+
+				// Instantiate the object.
+				$color = ariColor::newColor( $color );
+				$color = $color->getNew( 'alpha', .7 )->toCSS( 'rgba' );
+
+				$color = 'linear-gradient(' . $color . ', ' . $color . '), ';
+			}
+		}
+
+		$style = 'style="background: ' . $color . 'url(' . $img[0] . '); background-size: cover; background-position: center center;"';
+	}
+
+	return $style;
+}
+
+/**
+ * Echos the style for a feature image set as a background image on an element.
+ *
+ * @since 2.0.0
+ */
+function bgtfw_featured_img_bg( $post_id, $theme_mod = false ) {
+	echo bgtfw_get_featured_img_bg( $post_id, $theme_mod );
+}
+
+/**
+ * Changing excerpt more.
+ *
+ * @since 2.0.0
+ *
+ * @param  string $more The string shown within the more link.
+ * @return string
+ */
+function bgtfw_excerpt_more( $more ) {
+	global $post;
+	return '… <div class="read-more"><a class="' . get_theme_mod( 'bgtfw_blog_post_readmore_type' ) . '" href="' . get_permalink( $post->ID ) . '">' . get_theme_mod( 'bgtfw_blog_post_readmore_text' ) . '</a></div>';
+}
+
+add_filter( 'excerpt_more', 'bgtfw_excerpt_more' );

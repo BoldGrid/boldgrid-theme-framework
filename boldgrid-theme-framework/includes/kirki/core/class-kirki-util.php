@@ -60,7 +60,7 @@ class Kirki_Util {
 		include_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 		// Extra logic in case the plugin is installed but not activated.
-		if ( $_plugin && ! is_plugin_active( $_plugin ) ) {
+		if ( $_plugin && is_plugin_inactive( $_plugin ) ) {
 			return false;
 		}
 		return $is_plugin;
@@ -108,8 +108,8 @@ class Kirki_Util {
 			}
 		}
 
-		// Pass the variables through a filter ('kirki/variable') and return the array of variables.
-		return apply_filters( 'kirki/variable', $variables );
+		// Pass the variables through a filter ('kirki_variable') and return the array of variables.
+		return apply_filters( 'kirki_variable', $variables );
 
 	}
 

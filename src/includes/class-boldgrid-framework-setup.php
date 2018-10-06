@@ -67,6 +67,7 @@ class BoldGrid_Framework_Setup {
 		$this->jetpack_setup( );
 		$this->woo_commerce_setup( );
 		$this->header_image_setup( );
+		$this->custom_logo_setup();
 	}
 
 	/**
@@ -234,5 +235,29 @@ class BoldGrid_Framework_Setup {
 			);
 			add_theme_support( 'custom-header', $this->configs['customizer-options']['header-image']['defaults'] );
 		}
+	}
+
+	/**
+	 * Add support for custom logo.
+	 *
+	 * @since 2.0.0
+	 */
+	public function custom_logo_setup() {
+		add_theme_support(
+			'custom-logo',
+			apply_filters(
+				'bgtfw_custom_logo_args',
+				array(
+					'height'      => 100,
+					'width'       => 400,
+					'flex-height' => true,
+					'flex-width'  => true,
+					'header-text' => array(
+						'site-title',
+						'site-description',
+					),
+				)
+			)
+		);
 	}
 }

@@ -45,175 +45,6 @@ class Boldgrid_Framework_Widgets {
 	}
 
 	/**
-	 * Get the type of widget from the id
-	 *
-	 * @param string $id Id of widget to get the base ID of.
-	 * @return string
-	 * @since 1.0.0
-	 */
-	public function get_widget_id_base( $id ) {
-		return preg_replace( '/-[0-9]+$/', '', $id );
-	}
-
-	/**
-	 * Get the id num of a widget from widget string id
-	 *
-	 * @param string $id Id of widget to get the key of.
-	 * @return array
-	 * @since 1.0.0
-	 */
-	public function get_widget_key( $id ) {
-		preg_match( '/-([0-9]+$)/', $id, $matches );
-		return $matches;
-	}
-
-	/**
-	 * Delete all widgets that were created automatically
-	 *
-	 * @since 1.0.0
-	 */
-	public function remove_saved_widgets() {
-		// Remove only created widgets.
-		// Grab all widget data and update in a temp array.
-		$widgets = array();
-		$sidebar_widgets = get_option( 'sidebars_widgets', array() );
-
-		foreach ( get_option( 'boldgrid_widgets_created', array() ) as $widget_id ) {
-			// Example: black-studio-tinymce-102.
-			$widget_name = $this->get_widget_id_base( $widget_id );
-			// Example: black-studio-tinymce.
-			$widget_key = $this->get_widget_key( $widget_id );
-			// Example: 102.
-			$widget_key = $widget_key[1];
-
-			// If we havn't grabbed the widgets of this type, for example $widgets['black-studio-tinymce'].
-			if ( empty( $widgets[ $widget_name ] ) ) {
-				// Then grab and set those widgets.
-				$widgets[ $widget_name ] = get_option( 'widget_' . $widget_name, array() );
-			}
-
-			// Remove this widget from all widget areas, including inactive widgets.
-			foreach ( $sidebar_widgets as $widget_area => $widgets_in_area ) {
-				// If there are no widgets in this widget area, continue.
-				if ( ! is_array( $sidebar_widgets[ $widget_area ] ) ) {
-					continue;
-				}
-
-				// Search for our widget in this widget area. If it exists, remove it.
-				$key = array_search( $widget_id, $sidebar_widgets[ $widget_area ] );
-				if ( false !== $key ) {
-					unset( $sidebar_widgets[ $widget_area ][ $key ] );
-				}
-			}
-
-			// Unset the Widget Key.
-			unset( $widgets[ $widget_name ][ $widget_key ] );
-		}
-
-		// Save the temp array of widget data.
-		foreach ( $widgets as $widget_name => $widget_update_data ) {
-			update_option( 'widget_' . $widget_name, $widget_update_data );
-		}
-		update_option( 'sidebars_widgets', $sidebar_widgets );
-		$sidebar_widgets = get_option( 'sidebars_widgets', array() );
-
-		// Clear cleanup storage.
-		update_option( 'boldgrid_widgets_created', array() );
-	}
-
-	/**
-	 * Set widget areas
-	 *
-	 * Can create multiple widgets in one area.
-	 *
-	 * @since 1.0.0
-	 */
-	public function set_widget_areas() {
-
-		$auto_created_widget_ids = array();
-
-		global $_wp_sidebars_widgets;
-		global $wp_registered_widgets;
-
-		$ids_created = array();
-
-		foreach ( $this->configs['widget']['widget_instances'] as $location => $widget_single ) {
-			if ( false === is_array( $widget_single ) ) {
-				continue;
-			}
-
-			foreach ( $widget_single as $widget_data ) {
-				if ( ! is_array( $widget_data ) || empty( $widget_data['label'] ) ) {
-					continue;
-				}
-
-				// Create a "boldgrid_widgets_created" key for this widget based on widget title.
-				$widget_key = ( isset( $widget_data['title'] ) ? $widget_data['title'] : 'unknown' );
-				$widget_key = trim( strtolower( $widget_key ) );
-				$widget_key = preg_replace( '/[^A-Za-z0-9]/', '_', $widget_key );
-
-				$widget_label = $widget_data['label'];
-
-				$widgets = get_option( 'widget_' . $widget_label );
-				$widgets[] = $widget_data;
-				end( $widgets );
-				$counter = key( $widgets );
-
-				update_option( 'widget_' . $widget_label, $widgets );
-
-				$sidebar_widgets = get_option( 'sidebars_widgets', array() );
-				$ids_created[] = $counter;
-				$new_widget_id = "$widget_label-$counter";
-				$sidebar_widgets[ $location ][] = $new_widget_id;
-				$auto_created_widget_ids[ $widget_key ] = $new_widget_id;
-
-				update_option( 'sidebars_widgets', $sidebar_widgets );
-
-				$_wp_sidebars_widgets = $sidebar_widgets;
-			}
-		}
-
-		/**
-		 * TODO: Address this issue
-		 * This is a hack fix to make sure that widgets display properly
-		 * If we wanted to programmatically create any other type of widget, we would
-		 * need to fix this issue
-		 *
-		 * The problem is that on first load widgets are not displaying. It takes 2 page laods for
-		 * widgets to appear
-		 *
-		 * This issue is prominent on inspiration previews.
-		 *
-		 * @since 1.0.0
-		 */
-		if ( 'disabled' !== $this->configs['template']['call-to-action'] ) {
-			foreach ( $ids_created as $id ) {
-				$black_studio = new WP_Widget_Black_Studio_TinyMCE();
-				$black_studio->id = 'black-studio-tinymce-' . $id;
-				$black_studio->number = $id;
-				$wp_registered_widgets[ "black-studio-tinymce-{$id}" ] = array(
-					'name' => __( 'Visual Editor', 'bgtfw' ),
-					'id' => 'black-studio-tinymce-' . $id,
-					'callback' => array(
-						$black_studio,
-						'display_callback',
-					),
-					'params' => array(
-						array(
-							'number' => $id,
-						),
-					),
-					'classname' => 'widget_black_studio_tinymce',
-					'description' => __( 'Arbitrary text or HTML with visual editor', 'bgtfw' ),
-				);
-			}
-
-			$widgets_created = get_option( 'boldgrid_widgets_created', array() );
-			update_option( 'boldgrid_widgets_created', array_merge( $widgets_created, $auto_created_widget_ids ) );
-		}
-	}
-
-	/**
 	 * Clear all Widget areas
 	 *
 	 * @since 1.0.0
@@ -243,7 +74,6 @@ class Boldgrid_Framework_Widgets {
 
 	/**
 	 * Create sidebars based on config file
-	 * WP_Widget_Black_Studio_TinyMCE
 	 *
 	 * @since     1.0.0
 	 */
@@ -252,28 +82,6 @@ class Boldgrid_Framework_Widgets {
 		foreach ( $this->configs['widget']['sidebars'] as $config ) {
 			register_sidebar( $config );
 		}
-
-	}
-
-	/**
-	 * Wrap BG widgets with additional markup.
-	 *
-	 * @param    array $params Additional parameters to wrap.
-	 * @return   array
-	 * @since    1.0.0
-	 */
-	public function wrap_bg_widgets( $params ) {
-		$boldgrid_widgets = get_option( 'boldgrid_widgets_created', array() );
-		foreach ( $params as &$param ) {
-			if ( ! empty( $param['widget_id'] ) && in_array( $param['widget_id'], $boldgrid_widgets, true ) ) {
-				if ( ! empty( $param['before_bg_widget'] ) && ! empty( $param['after_bg_widget'] ) ) {
-					$param['before_widget'] = sprintf( $param['before_bg_widget'], $param['widget_id'], 'boldgrid-widget' );
-					$param['after_widget'] = $param['after_bg_widget'];
-				}
-			}
-		}
-
-		return $params;
 	}
 
 	/**
@@ -297,5 +105,98 @@ class Boldgrid_Framework_Widgets {
 
 		add_action( 'dynamic_sidebar_before',  $before_function, 10, 2 );
 		add_action( 'dynamic_sidebar_after',  $after_function, 10, 2 );
+	}
+
+	/**
+	 * Adds CSS for hiding sidebar areas in the admin widgets.php page.
+	 *
+	 * @since 2.0.0
+	 */
+	public function admin_sidebar_display() {
+		$inactive_sidebars = $this->get_inactive_column_sidebars( [ 'header', 'footer' ] );
+		$css = $this->generate_css( $inactive_sidebars );
+
+		wp_register_style( 'bgtfw-widgets-display', false );
+		wp_enqueue_style( 'bgtfw-widgets-display' );
+		wp_add_inline_style( 'bgtfw-widgets-display', $css );
+	}
+
+	/**
+	 * Get inactive column sidebar IDs from theme_mods.
+	 *
+	 * @param array $types Widget area types.
+	 *
+	 * @return array $ids  Inactive widget column IDs.
+	 */
+	public function get_inactive_column_sidebars( $types ) {
+		$ids = [];
+		foreach ( $types as $type ) {
+			$columns = get_theme_mod( "boldgrid_{$type}_widgets" );
+			$columns = absint( $columns );
+			$max = absint( $this->configs['customizer']['controls'][ "boldgrid_{$type}_widgets" ]['choices']['max'] );
+			$difference = $max - $columns;
+
+			for ( $i = 0; $i < $difference; $i++ ) {
+				$id = $max - $i;
+				$ids[] = "{$type}-{$id}";
+			}
+		}
+
+		return $ids;
+	}
+
+	/**
+	 * Generate CSS to hide widget areas in the admin.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $sidebars Sidebar IDs to generate CSS for.
+	 *
+	 * @return string $css Generated CSS.
+	 */
+	public function generate_css( $sidebars ) {
+		$css = '';
+		$inactive_translated = wp_filter_nohtml_kses( __( 'Inactive', 'bgtfw' ) );
+		if ( ! empty( $sidebars ) ) {
+			foreach ( $sidebars as $sidebar ) {
+				$css .= "#{$sidebar} .sidebar-name h2:after {
+					content: \"{$inactive_translated}\";
+					float: right;
+					font-style: italic;
+					font-weight: 400;
+					font-size: .75em;
+					color: red;
+				}";
+			}
+		}
+
+		return $css;
+	}
+
+	/**
+	 * Sort the display of sidebars in widgets.php
+	 *
+	 * This sorts the sidebars, so all the inactive areas are
+	 * moved to the end.
+	 *
+	 * @since 2.0.0
+	 */
+	public function sort_sidebars() {
+		global $wp_registered_sidebars;
+		$inactive_sidebars = $this->get_inactive_column_sidebars( [ 'header', 'footer' ] );
+
+		// Alphabetical sort of inactive_sidebar IDs.
+		sort( $inactive_sidebars );
+
+		// Check each sidebar in global wp_registered_sidebars to see if it's inactive.
+		uksort( $wp_registered_sidebars, function( $a, $b ) use ( $inactive_sidebars ) {
+			$a = in_array( $a, $inactive_sidebars, true );
+			$b = in_array( $b, $inactive_sidebars, true );
+
+			return strcasecmp( $a, $b );
+		} );
+
+		// Set primary sidebar as first in array.
+		$wp_registered_sidebars = [ 'primary-sidebar' => $wp_registered_sidebars['primary-sidebar'] ] + $wp_registered_sidebars;
 	}
 }

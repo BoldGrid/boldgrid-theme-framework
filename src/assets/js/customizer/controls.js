@@ -5,55 +5,56 @@
  * @param $
  */
 ( function( $ ) {
-	var refresh_event = $.Event( 'boldgrid_customizer_refresh' );
+	var refreshEvent = $.Event( 'boldgrid_customizer_refresh' ),
+		$body = $( 'body' ),
+		$themeControls = $( '#customize-theme-controls' );
 	$window = $( window );
 
 	$window.on( 'message', function( e ) {
-
-		var event = e.originalEvent;
+		var message,
+			event = e.originalEvent;
 
 		// Ensure we have a string that's JSON.parse-able.
-		if ( typeof event.data !== 'string' || event.data[ 0 ] !== '{' ) {
+		if ( 'string' !== typeof event.data || '{' !== event.data[0] ) {
 			return;
 		}
 
-		var message = JSON.parse( event.data );
-		if ( message.id === 'synced' ) {
-			$window.trigger( refresh_event, message );
-			setup_customizer_diagram();
+		message = JSON.parse( event.data );
+		if ( 'synced' === message.id ) {
+			$window.trigger( refreshEvent, message );
 		}
 	} );
+	
+	// Prevent interaction with panels until Customizer fully loads.
+	$body.addClass( 'pre-initial-refresh' );
+	$themeControls.prop( 'title', BOLDGRID.CUSTOMIZER.data.loadingTitle );
 
 	$( function() {
+		
+		// Customizer has fully loaded. Allow for interaction.
+		$( window ).one( 'boldgrid_customizer_refresh', function() {
+			$body.removeClass( 'pre-initial-refresh' );
+			$themeControls.removeAttr( 'title' );
+		});
+		
 		$( document ).on( 'click', '.open-widgets-section', function() {
 			wp.customize.panel( 'widgets' ).focus();
-		});
+		} );
+
 		$( document ).on( 'click', '[data-focus-control]', function() {
 			var control = $( this ).data( 'focus-control' );
-			var customizer_control = wp.customize.control( control );
-			if ( customizer_control ) {
-				customizer_control.focus();
+			var customizerControl = wp.customize.control( control );
+			if ( customizerControl ) {
+				customizerControl.focus();
 			}
-		});
+		} );
+
 		$( document ).on( 'click', '[data-focus-section]', function() {
 			var control = $( this ).data( 'focus-section' );
-			var customizer_control = wp.customize.section( control );
-			if ( customizer_control ) {
-				customizer_control.focus();
+			var customizerControl = wp.customize.section( control );
+			if ( customizerControl ) {
+				customizerControl.focus();
 			}
-		});
-	});
-
-	var setup_customizer_diagram = function() {
-		var help, overlay, highlight;
-		help = $( '#accordion-section-boldgrid_customizer_help' );
-		overlay = wp.customize.previewer.container.find( 'iframe' ).contents().find( '.overlay-help' );
-		highlight = function() {
-			overlay.fadeToggle();
-			help.toggleClass( 'active' );
-		};
-		help.on( 'click', function() {
-			highlight();
-		});
-	};
-})( jQuery );
+		} );
+	} );
+} )( jQuery );

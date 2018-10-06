@@ -1,9 +1,46 @@
-.comment-content a {
-	word-wrap: break-word;
+.comments {
+	.comment-list {
+		padding-left: 0;
+		.children {
+			padding-left: 10px;
+			@media only screen and (min-width : 480px) {
+				padding-left: 60px;
+			}
+		}
+	}
+
+	.comment {
+		display: block;
+		.panel-heading a {
+			color: currentColor;
+		}
+	}
+
+	.comment-content {
+		display: grid;
+
+		a {
+			word-wrap: break-word;
+		}
+	}
+	.comment-notes {
+		#email-notes {
+			display: block;
+		}
+	}
+	.media > .pull-left {
+		padding-bottom: 10px;
+	}
+
+	.pingback + .comment {
+		margin-top: 2.8rem;
+	}
 }
+
 .bypostauthor {
 	display: block;
 }
+
 #commentform {
 	// Comment Form Clearings
 	.form-group:before,
@@ -75,6 +112,9 @@
 		-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 		box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 	}
+	#commentsubmit {
+		margin-bottom: 2.8rem;
+	}
 }
 
 #commentform #submit.disabled,
@@ -98,46 +138,12 @@ fieldset[disabled] a#commentform #submit {
 			margin-bottom: 0;
 			padding-top: 7px;
 		}
-		.form-group-lg .control-label {
-			padding-top: 14.333333px;
-			font-size: 18px;
-		}
-		.form-group-sm .control-label {
-			padding-top: 6px;
-			font-size: 12px;
-		}
-		p.form-submit {
-			width: 75%;
-		}
-		p.form-submit {
-			margin: 0;
-		}
 	}
 }
 
 // Link Spacing
-.entry-footer span {
-    padding: 0 0.5em;
-}
-.entry-footer span:first-child {
-    padding-left: 0;
-}
-.entry-footer span:last-child {
-    padding-right: 0;
-}
 .post .entry-footer .bgtfw-edit-link a {
 	left: .25em;
-}
-
-// Link Spacing
-span.comments-link > a:before {
-	content: "\f075";
-	font-family: FontAwesome;
-	font-weight: normal;
-	font-style: normal;
-	display: inline-block;
-	text-decoration: none;
-	margin-right: .5em;
 }
 
 time.entry-date.published:before,
@@ -151,7 +157,7 @@ time.entry-date.updated:before {
 	margin-right: .5em;
 	margin-left: .3em;
 }
-.group-blog .byline,
-span.author.vcard {
-	margin-left: .3em;
+
+.comments-link {
+	display: block;
 }

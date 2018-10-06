@@ -15,15 +15,36 @@
 .entry-content .row .row [class*="col-lg"] {
 	min-height: 15px;
 }
-.entry-content .row > * {
-	max-width: 100%;
+.site-content.container .entry-content {
+	.boldgrid-section-wrap,
+	.boldgrid-section {
+		margin-left: -15px;
+		margin-right: -15px;
+	}
 }
-.entry-content .row {
-	display:flex;
-	flex-wrap: wrap;
-	&:before,
-	&:after {
-		width: 0;
+.entry-content {
+	&:not(.mce-content-body) {
+		.boldgrid-section-wrap,
+		.boldgrid-section {
+			margin-left: -2.8rem;
+			margin-right: -2.8rem;
+		}
+
+		.boldgrid-section-wrap .boldgrid-section {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+	.row {
+		display:flex;
+		flex-wrap: wrap;
+		&:before,
+		&:after {
+			width: 0;
+		}
+		> * {
+			max-width: 100%;
+		}
 	}
 }
 .full-width-column {
@@ -64,5 +85,18 @@
 			border: 1px solid currentColor;
 			border-bottom-color: transparent;
 		}
+	}
+}
+
+// Nav menu.
+.nav > li {
+	padding: 10px 15px;
+	&.cat-item > a {
+		display: inline-block;
+	}
+	& > a {
+		position: relative;
+		display: block;
+		padding: 0;
 	}
 }

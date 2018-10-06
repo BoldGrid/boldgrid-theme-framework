@@ -9,9 +9,10 @@ return array(
 	'header' => '',
 	'footer' => '',
 	'navbar-search-form' => '',
+	'site-title-tag' => 'h1',
+	'site-title-classes' => 'site-title',
 	'tagline' => '<h3 class="site-description %s">%s</h3>',
 	'tagline-classes' => 'alt-font',
-	'call-to-action' => 'none',
 	'entry-header' => '',
 	'entry-footer' => '',
 	'post_navigation' => array(
@@ -35,7 +36,6 @@ return array(
 		'blog' => 'container',
 		'global' => array(
 			'header' => 'container',
-			'call-to-action' => '',
 			'footer' => 'container',
 		),
 		'default' => array(
@@ -76,9 +76,7 @@ return array(
 	'sidebar' => array(
 		'is_404',
 		'is_search',
-		'is_front_page',
-		'[default]is_page_template',
-		'[page_home.php]is_page_template',
+		'is_not_bgtfw_sidebar_layout',
 	),
 	'archives' => array(
 		'posted-on' => array(

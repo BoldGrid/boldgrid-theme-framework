@@ -51,8 +51,18 @@ class Boldgrid_Framework_Compile_Colors {
 
 		if ( ! empty( $palettes ) ) {
 			$current_palette = $palettes['state']['active-palette'];
-			$colors = is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ?
-				$palettes['state']['palettes'][ $current_palette ]['colors'] : array();
+
+			$colors = array();
+
+			if ( empty( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ) {
+				$activate = new Boldgrid_Framework_Activate( $this->configs );
+				$option = 'theme_mods_' . get_stylesheet();
+				$activate->set_palette( $option );
+			}
+
+			if ( is_array( $palettes['state']['palettes'][ $current_palette ]['colors'] ) ) {
+				$colors = $palettes['state']['palettes'][ $current_palette ]['colors'];
+			}
 
 			$i = 0;
 			foreach ( $colors as $color ) {
@@ -81,12 +91,12 @@ class Boldgrid_Framework_Compile_Colors {
 		$palettes = json_decode( $palette, true );
 
 		if ( empty( $palettes ) ) {
-			$defaults = $this->configs['customizer-options']['colors']['defaults'];
-			$active_palette = Boldgrid_Framework_Customizer_Colors::get_simplified_external_palettes( $defaults );
-			$palette_class = key( $active_palette );
-			$state['active-palette'] = $active_palette[ $palette_class ]['format'];
-			$state['palettes'] = $active_palette;
-			$palettes['state'] = $state;
+			$activate = new Boldgrid_Framework_Activate( $this->configs );
+			$option = 'theme_mods_' . get_stylesheet();
+			$activate->set_palette( $option );
+			$palette = ! empty( $boldgrid_theme_framework->palette_changeset ) ?
+			$boldgrid_theme_framework->palette_changeset : get_theme_mod( 'boldgrid_color_palette' );
+			$palettes = json_decode( $palette, true );
 		}
 
 		return $palettes;
@@ -363,5 +373,136 @@ class Boldgrid_Framework_Compile_Colors {
 		$files = array_unique( $files );
 
 		return $files;
+	}
+
+	/**
+	 * Normalizes hex, rgb, and rgba colors to rgba.
+	 *
+	 * This is mainly used for conversion to rgba, and running
+	 * comparisons on colors used.
+	 *
+	 * Examples:
+	 *
+	 * rgb( 255, 255, 255 )
+	 * rgba(0,0,0,.1)
+	 * #fff
+	 * #B4D455
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $color Hex, rgb, or rgba strings to normalize.
+	 *
+	 * @return string $normalized Normalized color string (or empty).
+	 */
+	public function normalize( $color ) {
+		$normalized = '';
+
+		// Prepare color strings to normalize for comparison.
+		$test = preg_replace( '/\s+/', '', $color );
+
+		// Hex normalization.
+		if ( false !== strpos( $test, '#' ) ) {
+			$rgb = $this->convert_hex_to_rgb( $test );
+			$normalized = "rgba({$rgb[0]},{$rgb[1]},{$rgb[2]},1)";
+		}
+
+		// RGB normalization and validation.
+		if ( preg_match( '/rgb\((?:\s*\d+\s*,){2}\s*[\d]+\)/', $test ) ) {
+			$normalized = str_replace( 'rgb', 'rgba', str_replace( ')', ',1)', $test ) );
+		}
+
+		// RGBA validation.
+		if ( preg_match( '/rgba\((\s*\d+\s*,){3}[\d\.]+\)/', $test ) ) {
+			$normalized = $test;
+		}
+
+		return $normalized;
+	}
+
+	/**
+	 * Get color class associated with a color passed in.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $color a color to check if in palette and obtain color class for it.
+	 * @param string $type CSS property to get color class for. Eg. 'background-color'.
+	 *
+	 * @return mixed $class String containing color class found for color or false.
+	 */
+	public function get_color_class( $color, $type ) {
+		$class = '';
+		$palette = $this->get_palette();
+		$current_palette = $palette['state']['active-palette'];
+		$colors = is_array( $palette['state']['palettes'][ $current_palette ]['colors'] ) ? $palette['state']['palettes'][ $current_palette ]['colors'] : array();
+		$neutral_color = $this->get_neutral_color();
+
+		// Check palette colors.
+		foreach ( $colors as $k => $v ) {
+			if ( $this->normalize( $v ) === $color ) {
+				$class = 'color' . abs( $k + 1 ) . '-' . $type;
+			}
+		}
+
+		// Check neutral color.
+		if ( ! empty( $neutral_color ) ) {
+			$neutral_color = $neutral_color[ $current_palette . '-neutral-color' ];
+			$neutral_color = $this->normalize( $neutral_color );
+			if ( $neutral_color === $color ) {
+				$class = 'color-neutral-' . $type;
+			}
+		}
+
+		return '' !== $class ? $class : false;
+	}
+
+	/**
+	 * Format color palette to easily get color classes to apply.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  string $colors Palette to format.
+	 *
+	 * @return array  $formatted Fromatted color palette.
+	 */
+	public function color_format( $colors ) {
+		$formatted = array();
+		$active_palette = get_theme_mod( 'boldgrid_palette_class', 'palette-primary' );
+
+		foreach ( $colors as $k => $v ) {
+			if ( $k === $active_palette . '-neutral-color' ) {
+				$formatted['color-neutral'] = $v;
+			} elseif ( strpos( $k, $active_palette ) !== false ) {
+				$formatted[ 'color-' . preg_replace( '/[^0-9]/', '', $k ) ] = $v;
+			} else {
+				$formatted[ $k ] = $v;
+			}
+		}
+
+		return $formatted;
+	}
+
+	/**
+	 * Gets the size of the palette control to add.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $palette     The active palette to get the size of.
+	 * @param bool  $transparent Palette selector allows transparency option?.
+	 *
+	 * @return string            Size of each palette square.
+	 */
+	public function get_palette_size( $palette, $transparent = false ) {
+		$colors = 0;
+		$max_size = 225;
+
+		if ( ! empty( $palette ) ) {
+			$colors = count( $palette );
+		}
+
+		if ( true === $transparent ) {
+			$colors += 1;
+		}
+
+		return 0 !== $colors ? ( string ) floor( $max_size / $colors ) : '0';
 	}
 }

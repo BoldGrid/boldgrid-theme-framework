@@ -1,12 +1,29 @@
 /* Products */
 &.archive main {
-	justify-content: space-between;
-	align-items: center;
+	display: block;
 	.page-title,
 	.woocommerce-result-count,
 	.woocommerce-ordering {
 		margin: 20px 0;
 	}
+}
+span.onsale {
+	height: 3.236em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3.236em;
+	padding: .202em;
+	font-weight: 700;
+	position: absolute;
+	text-align: center;
+	line-height: 3.236;
+	top: -0.75em;
+	left: -.75em;
+	margin: 0;
+	border-radius: 100%;
+	font-size: .857em;
+	z-index: 9;
 }
 ul.products {
 	display: flex;
@@ -17,11 +34,34 @@ ul.products {
 	li.product {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		flex-direction: column;
 		margin: 0;
 		margin-top: 2em;
 		padding: 1em;
 		@include grid( 4 );
+		img {
+			width: auto;
+			margin-top: 0;
+		}
+		.onsale {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			top: -1.618em;
+			left: -1.618em;
+			height: 3.236em;
+			width: 3.236em;
+			margin: 0;
+			padding: 1em 0.636em;
+			+ img {
+				margin-top: -2.8em;
+			}
+		}
+		a.btn {
+			width: 100%;
+		}
 	}
 	@for $i from 1 through 12 {
 		&.columns-#{$i} li.product {

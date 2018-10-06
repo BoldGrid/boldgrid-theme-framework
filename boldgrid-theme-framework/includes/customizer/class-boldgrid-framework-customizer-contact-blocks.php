@@ -52,7 +52,7 @@ class Boldgrid_Framework_Customizer_Contact_Blocks {
 			array(
 				'type'        => 'repeater',
 				'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
+				'section'     => 'bgtfw_footer_layout',
 				'priority'    => 10,
 				'row_label' => array(
 					'field' => 'contact_block',
@@ -79,8 +79,8 @@ class Boldgrid_Framework_Customizer_Contact_Blocks {
 	 * @since 1.3.5
 	 */
 	public function contact_block_html() {
-		if ( get_theme_mod( 'boldgrid_enable_footer', true ) ) {
-			echo $this->generate_html();
+		if ( get_theme_mod( 'boldgrid_enable_footer' ) && isset( $this->configs['customizer']['controls']['boldgrid_contact_details_setting'] ) ) {
+			echo wp_kses_post( $this->generate_html() );
 		}
 	}
 

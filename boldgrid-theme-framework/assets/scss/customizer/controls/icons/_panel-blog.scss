@@ -1,0 +1,15 @@
+/* Blog Panel */
+#sub-accordion-panel-bgtfw_blog_panel > li {
+	&[id^="accordion-panel-"] > h3:before {
+		@include dashicons;
+		content: "\f111";
+	}
+	&#accordion-panel- {
+		&bgtfw_blog_blog_page_panel > h3:before {
+			content: "\f497";
+		}
+		&bgtfw_blog_posts_panel > h3:before {
+			content: "\f109";
+		}
+	}
+}

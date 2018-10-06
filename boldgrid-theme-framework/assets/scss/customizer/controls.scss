@@ -1,6 +1,20 @@
+/************
+ * Branding *
+ ************/
+#customize-info img {
+	margin: -12px -15px -19px -15px;
+}
+
 /*****************************************************
 ************General BoldGrid Rules****************
 ******************************************************/
+.in-sub-panel #customize-theme-controls .customize-pane-child.current-panel-parent,
+#customize-theme-controls .customize-pane-child.current-section-parent {
+	-webkit-transform: translateX(-100%);
+	-ms-transform: translateX(-100%);
+	transform: translateX(-100%);
+}
+
 .boldgrid-icon-newtab {
 	background: url(../../img/icon-newpage.png) no-repeat right center;
 	display: inline;
@@ -32,7 +46,7 @@
 }
 
 .preview-tablet .wp-full-overlay-main {
-	width: 767px;
+	width: 768px;
 }
 
 #customize-control-boldgrid_compiled_css {
@@ -47,7 +61,7 @@
 ************Kirki Control Rules****************
 ******************************************************/
 #customize-theme-controls {
-	.control-section.open .accordion-section-title {
+	.control-section.open:not(.control-section-bgtfw_section) .accordion-section-title {
 		color: #fff !important;
 		&:after{
 			color: #fff;
@@ -104,6 +118,10 @@
   width: 220px !important;
   line-height: 44px !important;
   height: 100% !important; }
+
+.customize-control-kirki-typography .select2-container--default .select2-selection--single [id^="select2-kirki-typography-text-transform-"].select2-selection__rendered {
+	display: inline;
+}
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   line-height: 44px!important;
@@ -567,12 +585,12 @@
 ************Background Type Controls****************
 ******************************************************/
 .background-type-controls {
-	width: calc(100% + 15px);
+	width: calc(100% + 16px);
 	height: 40px;
 	background-color: white;
 	padding: 4px;
 	position: relative;
-	left: -10px;
+	left: -12px;
 	top: -15px;
 	border-bottom:1px solid lightgrey;
 	.ui-button {
@@ -582,9 +600,11 @@
 		font-size: 14px;
 		line-height: 20px;
 		height: 34px;
-		&set{
-			width:224px;
+		&set {
+			width: 100%;
+			text-align: center;
 			margin: 6px auto 0 auto;
+			padding-top:3px;
 			label {
 				margin: -3px;
 			}
@@ -607,9 +627,12 @@
 	}
 }
 
-#customize-control-boldgrid-background-type .tooltip {
-	top: -10px;
-	right:-5px !important;
+#customize-control-boldgrid-background-type {
+	margin-bottom: 0;
+	.tooltip {
+		top: -10px;
+		right:-5px !important;
+	}
 }
 
 /*****************************************************
@@ -620,29 +643,42 @@
 	.background-type-controls,
 	.boldgrid-pattern-selection-heading {
 		z-index: 9999;
-		width: 273px;
-		left: 2px;
+		width: 276px;
+		left: 0px;
 		background-color: white;
 		border-bottom: 1px solid lightgrey;
 		transition: background-color .25s;
+		padding-top: 5px;
 		position: fixed;
 	}
 	#customize-control-boldgrid_background_color {
-		top: 95px;
+		top: 96px;
 		padding: 4px;
+		margin-bottom: 0;
 	}
 	.background-type-controls {
 		top: 46px;
 	}
 	.boldgrid-pattern-selection-heading {
-		top: 161px;
+		top: 153px;
 		z-index: 9998;
-		padding: 4px;
+		padding: 6px 4px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+
+		.customize-control-title {
+			padding-left: 15px;
+		}
+		.button.remove-selected-pattern {
+			margin-right: 15px;
+		}
 	}
 }
 
 
-@media (max-width: 640px) {
+@media screen and (max-width: 600px) {
 	.expanded .boldgrid-sticky-customizer .background-type-controls,
 	.expanded .boldgrid-sticky-customizer #customize-control-boldgrid_background_color,
 	.expanded .boldgrid-sticky-customizer .boldgrid-pattern-selection-heading {
@@ -779,7 +815,7 @@
 		width: 4px;
 		height: 3px;
 		top: -9px;
-		z-index: 99;
+		z-index: 1;
 		-webkit-transform: translate(7px,0px); /* Safari */
 		-moz-transform: translate(7px,0px); /* Firefox */
 		-ms-transform: translate(7px,0px); /* IE 9 */
@@ -876,3 +912,88 @@
 		}
 	}
 }
+
+/* WordPress Custom CSS Editor styles */
+.customize-section-description-container + #customize-control-custom_css .customize-control-title.screen-reader-text {
+	margin-left: 0;
+	width: auto;
+	height: auto;
+	position: relative;
+	clip: auto;
+	clip-path: none;
+	-webkit-clip-path: none;
+}
+
+.customize-control-title {
+	color: #23282d;
+}
+
+/*--------------------------------------------------------------
+# Customizer Sidebar Controls
+--------------------------------------------------------------*/
+@import "controls/sidebar";
+
+/*--------------------------------------------------------------
+# Customizer Panel/Section Icons
+--------------------------------------------------------------*/
+@import "controls/icons";
+
+/*--------------------------------------------------------------
+# Customizer Widget Meta Controls
+--------------------------------------------------------------*/
+@import "controls/widget-meta";
+
+/*--------------------------------------------------------------
+# Customizer Import Starter Content Controls
+--------------------------------------------------------------*/
+@import "controls/starter-content";
+
+/*--------------------------------------------------------------
+# Customizer Palette Selector Controls
+--------------------------------------------------------------*/
+@import "controls/palette-selector";
+
+/*--------------------------------------------------------------
+# Customizer Search Controls
+--------------------------------------------------------------*/
+@import "controls/search";
+
+/*--------------------------------------------------------------
+# Menu Hamburger Controls
+--------------------------------------------------------------*/
+@import "controls/hamburgers";
+
+/*--------------------------------------------------------------
+# Section Orginization
+--------------------------------------------------------------*/
+@import "controls/sections.scss";
+
+/*--------------------------------------------------------------
+# Section/Panel Descriptions
+--------------------------------------------------------------*/
+@import "controls/descriptions.scss";
+
+/*--------------------------------------------------------------
+# Menu Locations
+--------------------------------------------------------------*/
+@import "controls/menu-locations.scss";
+
+/*--------------------------------------------------------------
+# Headings
+--------------------------------------------------------------*/
+@import "controls/headings.scss";
+
+/*--------------------------------------------------------------
+# Radio Buttonset Icons
+--------------------------------------------------------------*/
+@import "controls/switch-icons.scss";
+
+/*--------------------------------------------------------------
+# Link Color Controls
+--------------------------------------------------------------*/
+@import "controls/link-colors.scss";
+
+/*--------------------------------------------------------------
+# Customizer Breadcrumbs
+--------------------------------------------------------------*/
+@import "controls/breadcrumbs.scss";

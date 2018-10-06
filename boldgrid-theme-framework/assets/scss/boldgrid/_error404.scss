@@ -1,4 +1,10 @@
-/* 404 page */
+.no-results,
+.not-found {
+	display: flex;
+	justify-content: center;
+	flex: 1 0 100%;
+}
+
 .no-results.not-found,
 .error404 {
 	.jumbotron {

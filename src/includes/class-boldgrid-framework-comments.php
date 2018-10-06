@@ -50,75 +50,75 @@ class BoldGrid_Framework_Comments {
 	 * @since 1.0.0
 	 */
 	public function boldgrid_comments() {
-
 		if ( have_comments( ) ) : ?>
-			<div id="comments" class="comments-area">
-				<header>
-					<h2 class="comments-title">
+			<header>
+				<h2 class="comments-title">
 
-						<?php
-							$comments_number = get_comments_number();
-							if ( 1 === $comments_number ) {
-								printf(
-									/* translators: %s: post title */
-									esc_html_x( 'One thought on &ldquo;%s&rdquo;', 'comments title', 'bgtfw' ),
-									'<span>' . get_the_title() . '</span>'
-								);
-							} else {
-								printf( // WPCS: XSS OK.
-									/* translators: 1: number of comments, 2: post title */
-									esc_html( _nx(
-										'%1$s thought on &ldquo;%2$s&rdquo;',
-										'%1$s thoughts on &ldquo;%2$s&rdquo;',
-										$comments_number,
-										'comments title',
-										'bgtfw'
-									) ),
-									number_format_i18n( $comments_number ),
-									'<span>' . get_the_title() . '</span>'
-								);
-							}
-						?>
-					</h2>
-				</header>
-
-				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-				<nav id="comment-nav-above" class="comment-navigation" role="navigation">
-					<h1 class="sr-only"><?php _e( 'Comment navigation', 'bgtfw' ); ?></h1>
-					<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'bgtfw' ) ); ?></div>
-					<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'bgtfw' ) ); ?></div>
-				</nav><!-- #comment-nav-above -->
-				<?php endif; // end comment navigation ?>
-
-				<ol class="comment-list">
 					<?php
-						/**
-						 * Loop through and list the comments. Tell wp_list_comments()
-						 * to use boldgrid_bootstrap_comment(  ) to format the comments.
-						 * If you want to overload this in a child theme then you can
-						 * define boldgrid_bootstrap_comment(  ) and that will be used instead.
-						 */
-						wp_list_comments(
-							array(
-								'callback' => array( $this, 'boldgrid_bootstrap_comment' ),
-								'avatar_size' => 50,
-							)
-						);
+						$comments_number = get_comments_number();
+						if ( 1 === $comments_number ) {
+							printf(
+								/* translators: %s: post title */
+								esc_html_x( 'One thought on &ldquo;%s&rdquo;', 'comments title', 'bgtfw' ),
+								'<span>' . get_the_title() . '</span>'
+							);
+						} else {
+							printf( // WPCS: XSS OK.
+								/* translators: 1: number of comments, 2: post title */
+								esc_html( _nx(
+									'%1$s thought on &ldquo;%2$s&rdquo;',
+									'%1$s thoughts on &ldquo;%2$s&rdquo;',
+									$comments_number,
+									'comments title',
+									'bgtfw'
+								) ),
+								number_format_i18n( $comments_number ),
+								'<span>' . get_the_title() . '</span>'
+							);
+						}
 					?>
-				</ol><!-- .comment-list -->
+				</h2>
+			</header>
 
-				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-				<nav id="comment-nav-below" class="comment-navigation" role="navigation">
-					<h1 class="sr-only"><?php _e( 'Comment navigation', 'bgtfw' ); ?></h1>
-					<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'bgtfw' ) ); ?></div>
-					<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'bgtfw' ) ); ?></div>
-				</nav><!-- #comment-nav-below -->
-				<?php endif; // check for comment navigation ?>
+			<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+			<div id="comment-nav-above" class="comment-navigation" role="navigation">
+				<?php
+					$paginate = new BoldGrid_Framework_Pagination();
+					$paginate->comments();
+				?>
+			</div><!-- #comment-nav-above -->
+			<?php endif; // end comment navigation ?>
 
-			<?php endif; // have_comments() ?>
+			<ol class="comment-list">
+				<?php
+					/**
+					 * Loop through and list the comments. Tell wp_list_comments()
+					 * to use boldgrid_bootstrap_comment(  ) to format the comments.
+					 * If you want to overload this in a child theme then you can
+					 * define boldgrid_bootstrap_comment(  ) and that will be used instead.
+					 */
+					wp_list_comments(
+						array(
+							'callback' => array( $this, 'boldgrid_bootstrap_comment' ),
+							'avatar_size' => 50,
+						)
+					);
+				?>
+			</ol><!-- .comment-list -->
 
-			<?php
-				// If comments are closed and there are comments
+			<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+			<div id="comment-nav-below" class="comment-navigation">
+				<?php
+					$paginate = new BoldGrid_Framework_Pagination();
+					$paginate->comments();
+				?>
+			</div><!-- #comment-nav-below -->
+			<?php endif; // check for comment navigation ?>
+
+		<?php endif; // have_comments() ?>
+
+		<?php
+			// If comments are closed and there are comments.
 			if ( ! comments_open()
 					&& '0' != get_comments_number()
 					&& post_type_supports( get_post_type(), 'comments' ) ) :
@@ -139,7 +139,6 @@ class BoldGrid_Framework_Comments {
 			__( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:', 'bgtfw' ) .
 			'</p><div class="alert alert-info">' . allowed_tags() . '</div>',
 		) );
-
 	}
 
 	/**
@@ -175,9 +174,9 @@ class BoldGrid_Framework_Comments {
 				<div class="media-body">
 					<div class="media-body-wrap panel panel-default">
 						<div class="panel-heading">
-							<h5 class="media-heading">
+							<div class="media-heading">
 								<?php printf( __( '%s <span class="says">says:</span>', 'bgtfw' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link( ) ) ); ?>
-							</h5>
+							</div>
 
 							<div class="comment-meta">
 

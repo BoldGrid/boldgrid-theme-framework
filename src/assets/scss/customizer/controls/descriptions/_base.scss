@@ -1,0 +1,19 @@
+.bgtfw-description {
+	display: flex;
+	p {
+		flex-grow: 1;
+		margin: 0;
+	}
+	.help {
+		padding-left: 1em;
+		a {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			text-decoration: none;
+			.dashicons {
+				display: flex;
+			}
+		}
+	}
+}

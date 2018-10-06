@@ -63,6 +63,37 @@ class BoldGrid_Framework_Styles {
 		);
 
 		$files = apply_filters( 'local_editor_styles', $files );
+
+		// Enqueue styles for Gutenberg.
+		$config = $this->configs;
+		add_action( 'enqueue_block_editor_assets', function() use ( $files, $config ) {
+			$gutenberg = array();
+			foreach ( $files as $file ) {
+				$handle = explode( '?', basename( $file ) );
+				$handle = basename( basename( $handle[0], '.css' ), '.min' );
+				$query = $handle[1];
+				parse_str( $handle[1] );
+				$gutenberg[] = array(
+					'handle' => $handle,
+					'file' => $file,
+					'version' => ! empty( $version ) ? $version : null,
+				);
+			}
+
+			foreach ( $gutenberg as $ss ) {
+				wp_enqueue_style( $ss['handle'], $ss['file'], ! is_null( $ss['version'] ) && $ss['version'] );
+			}
+
+			// Add Kirki dynamically generated styles.
+			$kirki_css = Kirki_Modules_CSS::get_instance();
+			$styles = apply_filters( 'kirki_bgtfw_dynamic_css', $kirki_css::loop_controls( 'bgtfw' ) );
+			$styles = apply_filters( 'boldgrid_mce_inline_styles', $styles );
+
+			wp_register_style( 'bgtfw-dynamic', false );
+			wp_add_inline_style( 'bgtfw-dynamic', $styles );
+			wp_enqueue_style( 'bgtfw-dynamic' );
+		} );
+
 		return $files;
 	}
 
@@ -96,15 +127,24 @@ class BoldGrid_Framework_Styles {
 			if ( $last_mod ) {
 				$version = $last_mod;
 			}
-			if ( false === $this->configs['framework']['inline_styles'] && empty( $_REQUEST['customize_changeset_uuid'] ) ) {
-				// Add BoldGrid Theme Helper stylesheet.
-				wp_enqueue_style( 'boldgrid-color-palettes',
-					Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
-					$deps,  $last_mod );
+
+			$handle = 'boldgrid-color-palettes';
+			$inline_override = true === $this->configs['framework']['inline_styles'];
+			$is_changeset = ! empty( $_REQUEST['customize_changeset_uuid'] ) && ! is_customize_preview();
+
+			if ( $inline_override || $is_changeset || is_customize_preview() ) {
+				wp_register_style( $handle, false );
+				wp_enqueue_style( $handle );
+				$css = get_theme_mod( 'boldgrid_compiled_css', '' );
+				wp_add_inline_style( $handle, $css );
 			} else {
-				// Add inline styles.
-				$inline_css = get_theme_mod( 'boldgrid_compiled_css' );
-				wp_add_inline_style( 'style', $inline_css );
+				wp_register_style(
+					$handle,
+					Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
+					$deps,
+					$last_mod
+				);
+				wp_enqueue_style( $handle );
 			}
 		}
 
@@ -139,29 +179,166 @@ class BoldGrid_Framework_Styles {
 				}
 			}
 
-			$edit_links = '.bgtfw-edit-link a{background:' . $background . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
-			$edit_links .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
-			$edit_links .= '.bgtfw-edit-link a svg{fill:' . $color . '!important;';
-			wp_add_inline_style( 'style', $edit_links );
+			$inline_css = '.bgtfw-edit-link a{background:' . $background . '!important;border:2px solid ' . $color . '!important;color:' . $color . '!important;}';
+			$inline_css .= '.bgtfw-edit-link a:focus{-webkit-box-shadow: 0 0 0 2px ' . $color . '!important;box-shadow: 0 0 0 2px ' . $color . '!important;}';
+			$inline_css .= '.bgtfw-edit-link a svg{fill:' . $color . '!important;}';
+
+			wp_add_inline_style( 'style', $inline_css );
 		}
+	}
+
+	/**
+	 * Adds custom CSS for hamburger menu locations.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $css CSS string being filtered.
+	 *
+	 * @return string $css Modified CSS to add to front end.
+	 */
+	public function hamburgers_css( $css = '' ) {
+		$menus = get_registered_nav_menus();
+
+		foreach ( $menus as $location => $description ) {
+			$color = get_theme_mod( "bgtfw_menu_hamburger_{$location}_color" );
+			$color = explode( ':', $color );
+			$color = array_pop( $color );
+			$location = str_replace( '_', '-', $location );
+			$css .= ".{$location}-menu-btn .hamburger-inner,.{$location}-menu-btn .hamburger-inner:before,.{$location}-menu-btn .hamburger-inner:after {background-color: {$color};}";
+		}
+
+		return $css;
+	}
+
+	/**
+	 * Generate hover color CSS for nav menu locations.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $location Nav menu location to generate CSS for.
+	 *
+	 * @return string $css Generated CSS for nav menu location.
+	 */
+	public function hover_generate( $location = '' ) {
+		if ( empty( $location ) ) {
+			$location = 'main';
+		}
+
+		$color = get_theme_mod( "bgtfw_menu_items_hover_color_{$location}" );
+		$color = explode( ':', $color );
+		$color = array_pop( $color );
+
+		$background_color = get_theme_mod( "bgtfw_menu_items_hover_background_{$location}" );
+		$background_color = explode( ':', $background_color );
+		$background_color = array_pop( $background_color );
+
+		$location = str_replace( '_', '-', $location );
+		$menu_id = "#{$location}-menu";
+
+		$css = include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php';
+		$css = sprintf( $css, $menu_id, $background_color, $color, $background_color );
+
+		return $css;
+	}
+
+	/**
+	 * Generate active link color CSS for nav menu locations.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $location Nav menu location to generate CSS for.
+	 *
+	 * @return string $css Generated CSS for nav menu location.
+	 */
+	public function active_link_generate( $location ) {
+		$color = get_theme_mod( "bgtfw_menu_items_active_link_color_{$location}" );
+		$color = explode( ':', $color );
+		$color = array_pop( $color );
+
+		$location = str_replace( '_', '-', $location );
+		$menu_id = "#{$location}-menu";
+		$css = "{$menu_id} .current-menu-item > a,{$menu_id} .current-menu-ancestor > a,{$menu_id} .current-menu-parent > a { color: {$color}; }";
+
+		return $css;
+	}
+
+	/**
+	 * Adds custom CSS for hamburger menu locations.
+	 *
+	 * @since 2.0.0
+	 */
+	public function hover_css() {
+		global $boldgrid_theme_framework;
+		$config = $boldgrid_theme_framework->get_configs();
+		$menus = get_registered_nav_menus();
+		foreach ( $menus as $location => $description ) {
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "hover-{$location}", $this->hover_generate( $location ) );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "active-link-color-{$location}", $this->active_link_generate( $location ) );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "menu-colors-{$location}", $this->menu_css( $location ) );
+		}
+	}
+
+	/**
+	 * Adds custom CSS for main menu based on header color/link color selections by user.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $location Menu location to generate CSS for.
+	 *
+	 * @return string $css Modified CSS to add to front end.
+	 */
+	public function menu_css( $location ) {
+		$background_color = get_theme_mod( "bgtfw_menu_background_{$location}" );
+		$in_footer = false;
+		if ( strpos( $background_color, 'transparent' ) !== false ) {
+			$background_color = 'header';
+
+			if ( in_array( $location, $this->configs['menu']['footer_menus'], true ) ) {
+				$background_color = 'footer';
+				$in_footer = true;
+			}
+
+			$background_color = get_theme_mod( "bgtfw_{$background_color}_color" );
+		} else {
+			$background_color = get_theme_mod( "bgtfw_menu_background_{$location}" );
+		}
+
+		$background_color = explode( ':', $background_color );
+		$background_color = array_pop( $background_color );
+
+		$color_obj = ariColor::newColor( $background_color );
+
+		$css = '';
+
+		$location = str_replace( '_', '-', $location );
+
+		if ( false === $in_footer ) {
+			$css .= ".header-left #{$location}-menu, .header-right #{$location}-menu { background-color: " . $color_obj->toCSS( 'rgba' ) . '; }';
+		}
+		$color_obj->alpha = 0.7;
+		$css .= '@media (min-width: 768px) {';
+
+		$color_obj->alpha = 0.4;
+		$css .= "#{$location}-menu.sm-clean ul {background-color: {$background_color};}";
+		$css .= "#{$location}-menu.sm-clean ul a, #{$location}-menu.sm-clean ul a:hover, #{$location}-menu.sm-clean ul a:focus, #{$location}-menu.sm-clean ul a:active, #{$location}-menu.sm-clean ul a.highlighted, #{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, #{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover { background-color:" . $color_obj->toCSS( 'rgba' ) . ';}';
+		$css .= "#{$location}-menu.sm-clean ul { border: 1px solid " . $color_obj->toCSS( 'rgba' ) . ';}';
+		$css .= "#{$location}-menu.sm-clean > li > ul:before, #{$location}-menu.sm-clean > li > ul:after { border-color: transparent transparent {$background_color} transparent;}";
+		$css .= '}';
+
+		return $css;
 	}
 
 	/**
 	 * Enqueue the styles for our BoldGrid Theme.
 	 *
-	 * @since     1.0.0
+	 * @since 1.0.0
 	 */
 	public function boldgrid_enqueue_styles() {
 		$configs = $this->configs;
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		/* Font Awesome */
-		wp_enqueue_style(
-			'font-awesome',
-			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
-			array(),
-			$this->configs['styles']['versions']['font-awesome']
-		);
+		/* Enqueue Fontawesome */
+		$this->enqueue_fontawesome();
 
 		/* Bootstrap */
 		$bootstrap = get_stylesheet_directory_uri() . '/css/bootstrap.css';
@@ -201,6 +378,32 @@ class BoldGrid_Framework_Styles {
 			$this->configs['version']
 		);
 
+		/* Framework Base Styles */
+		wp_register_style(
+			'bgtfw-hamburgers',
+			$this->configs['framework']['css_dir'] . 'hamburgers/hamburgers' . $suffix . '.css',
+			array( 'boldgrid-theme-framework' ),
+			$this->configs['version']
+		);
+
+		wp_add_inline_style( 'bgtfw-hamburgers', $this->hamburgers_css() );
+
+		wp_enqueue_style( 'bgtfw-hamburgers' );
+
+		wp_register_style(
+			'hover.css',
+			$this->configs['framework']['css_dir'] . 'hover.css/hover' . str_replace( '.', '-', $suffix ) . '.css',
+			array( 'boldgrid-theme-framework' ),
+			$this->configs['version']
+		);
+
+		wp_enqueue_style( 'hover.css' );
+
+		$this->hover_css();
+
+		$links = new Boldgrid_Framework_Links( $this->configs );
+		$links->add_styles_frontend();
+
 		/* Component Styles */
 		wp_enqueue_style(
 			'boldgrid-components',
@@ -229,18 +432,8 @@ class BoldGrid_Framework_Styles {
 		// Add animate.css for animation effects if a theme requests it.
 		if ( true === $this->configs['scripts']['animate-css'] ) {
 			wp_enqueue_style(
-				'boldgrid-animate-css',
+				'animatecss',
 				$this->configs['framework']['css_dir'] . 'animate-css/animate' . $suffix . '.css',
-				array(),
-				$this->configs['version']
-			);
-		}
-
-		// Add offcanvas styles.
-		if ( true === $this->configs['scripts']['offcanvas-menu'] ) {
-			wp_enqueue_style(
-				'boldgrid-offcanvas-css',
-				$this->configs['framework']['css_dir'] . 'offcanvas' . $suffix . '.css',
 				array(),
 				$this->configs['version']
 			);
@@ -298,6 +491,8 @@ class BoldGrid_Framework_Styles {
 			$css .= sprintf( '%s { %s }', $rule, $def );
 		}
 
+		$css = apply_filters( "$id-content", $css );
+
 		return "<style id='{$id}' type='text/css'>{$css}</style>";
 	}
 
@@ -354,11 +549,36 @@ class BoldGrid_Framework_Styles {
 						$style = $added_query_arg;
 					}
 				}
-}
+			}
 
 			$mce_css[] = $style;
 		}
 
 		return implode( ',', $mce_css );
 	}
+
+	/**
+	 * Enqueue Font Awesome
+	 *
+	 * @since     1.0.0
+	 */
+	public function enqueue_fontawesome() {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		/* Font Awesome */
+		wp_enqueue_style(
+			'font-awesome',
+			$this->configs['framework']['css_dir'] . 'font-awesome/font-awesome' . $suffix . '.css',
+			array(),
+			$this->configs['styles']['versions']['font-awesome']
+		);
+		/* Custom Icons */
+		wp_enqueue_style(
+			'icomoon',
+			$this->configs['framework']['css_dir'] . 'icomoon/style' . $suffix . '.css',
+			array(),
+			'1.0.0'
+		);
+	}
+
 }

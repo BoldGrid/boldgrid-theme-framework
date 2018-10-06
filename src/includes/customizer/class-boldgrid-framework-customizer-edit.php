@@ -70,34 +70,10 @@ class Boldgrid_Framework_Customizer_Edit {
 	 * @param array $menu An array of menu settings.
 	 */
 	public static function fallback_cb( $menu ) {
-		printf( "<%s id='%s' class='empty-menu' data-theme-location='%s'></%s>",
-			$menu['container'],
-			$menu['container_id'],
-			$menu['theme_location'],
-			$menu['container']
+		printf( "<div id='%s' class='empty-menu' data-theme-location='%s'></div>",
+			$menu['menu_id'],
+			$menu['theme_location']
 		);
-	}
-
-	/**
-	 * Return true for ALL has_nav_menu() calls.
-	 *
-	 * This is done however ONLY if we're in the customizer and edit_buttons are enabled.
-	 *
-	 * For further details as to why we're doing this, please see:
-	 * Boldgrid_Framework_Menu::add_dynamic_actions
-	 *
-	 * @since 1.1.7
-	 *
-	 * @param  bool   $has_nav_menu Whether there is a menu assigned to a location.
-	 * @param  string $location     Menu location.
-	 * @return bool   $has_nav_menu
-	 */
-	public function has_nav_menu( $has_nav_menu, $location ) {
-		if ( is_customize_preview() && true === $this->enabled ) {
-			return true;
-		} else {
-			return $has_nav_menu;
-		}
 	}
 
 	/**
@@ -140,9 +116,10 @@ class Boldgrid_Framework_Customizer_Edit {
 				array(
 					'editPostLink'	=> $edit_post_link,
 					'goThereNow'	=> __( 'Go there now', 'bgtfw' ),
-					'widget'		=> __( 'Widget', 'bgtfw' ),
-					'menu'			=> __( 'Menu', 'bgtfw' ),
-					'buttons'		=> $this->configs['customizer-options']['edit']['buttons'],
+					'menu'			=> esc_attr__( 'Menu', 'bgtfw' ),
+					'config'		=> $this->configs['customizer-options']['edit'],
+					'postType'      => get_post_type(),
+					'widgetArea'    => esc_attr__( 'Widget Area', 'bgtfw' ),
 				)
 			);
 

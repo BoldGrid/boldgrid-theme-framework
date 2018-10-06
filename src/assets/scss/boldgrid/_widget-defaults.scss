@@ -6,6 +6,9 @@
 		max-width: 100%;
 	}
 }
+.primary-sidebar .widget-title {
+	margin-top: 0;
+}
 select[name="archive-dropdown"] {
 	width: auto;
 }
@@ -31,6 +34,12 @@ select[name="archive-dropdown"] {
 // Default Sidebar Message
 .empty-sidebar-message {
 	display: inline-block;
+	a:hover {
+		text-decoration: none;
+	}
+}
+.add-widget-message a:hover {
+	text-decoration: none;
 }
 
 // Search Widgets
@@ -43,4 +52,23 @@ select[name="archive-dropdown"] {
 		line-height: 3;
 		font-size: 14px;
 	}
+}
+
+.widget_calendar {
+	caption {
+		color: currentColor;
+	}
+	td, th {
+		padding: 8px;
+		text-align: center;
+	}
+}
+
+// Post and Page Builder widgets styles
+.bgc-single-article .read-more {
+    margin-top: 2em;
+}
+
+.boldgrid-shortcode .bgc-postlist .bgc-single-article {
+	box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.05);
 }

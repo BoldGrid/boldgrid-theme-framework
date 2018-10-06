@@ -71,14 +71,14 @@ class Kirki_Modules_PostMessage {
 	 */
 	public function postmessage() {
 
-		wp_enqueue_script( 'kirki_auto_postmessage', trailingslashit( Kirki::$url ) . 'modules/postmessage/postmessage.js', array( 'jquery', 'customize-preview' ), false, true );
+		wp_enqueue_script( 'kirki_auto_postmessage', trailingslashit( Kirki::$url ) . 'modules/postmessage/postmessage.js', array( 'jquery', 'customize-preview' ), KIRKI_VERSION, true );
 		$fields = Kirki::$fields;
 		foreach ( $fields as $field ) {
 			if ( isset( $field['transport'] ) && 'postMessage' === $field['transport'] && isset( $field['js_vars'] ) && ! empty( $field['js_vars'] ) && is_array( $field['js_vars'] ) && isset( $field['settings'] ) ) {
 				$this->script .= $this->script( $field );
 			}
 		}
-		$this->script = apply_filters( 'kirki/postmessage/script', $this->script );
+		$this->script = apply_filters( 'kirki_postmessage_script', $this->script );
 		wp_add_inline_script( 'kirki_auto_postmessage', $this->script, 'after' );
 
 	}
@@ -106,7 +106,7 @@ class Kirki_Modules_PostMessage {
 			// append unique style tag if not exist
 			// The style ID.
 			$style_id = 'kirki-postmessage-' . str_replace( array( '[', ']' ), '', $args['settings'] );
-			$script .= 'if(null===document.getElementById(\'' . $style_id . '\')||\'undefined\'===typeof document.getElementById(\'' . $style_id . '\')){jQuery(\'head\').append(\'<style id="' . $style_id . '"></style>\');}';
+			$script  .= 'if(null===document.getElementById(\'' . $style_id . '\')||\'undefined\'===typeof document.getElementById(\'' . $style_id . '\')){jQuery(\'head\').append(\'<style id="' . $style_id . '"></style>\');}';
 		}
 
 		// Add anything we need before the main script.
@@ -121,7 +121,7 @@ class Kirki_Modules_PostMessage {
 			// Skip styles if "exclude" is defined and value is excluded.
 			if ( isset( $js_var['exclude'] ) ) {
 				$js_var['exclude'] = (array) $js_var['exclude'];
-				$script .= 'exclude=false;';
+				$script           .= 'exclude=false;';
 				foreach ( $js_var['exclude'] as $exclussion ) {
 					$script .= "if(newval=='{$exclussion}'||(''==='{$exclussion}'&&_.isObject(newval)&&_.isEmpty(newval))){exclude=true;}";
 				}
@@ -129,7 +129,6 @@ class Kirki_Modules_PostMessage {
 			if ( isset( $js_var['element'] ) ) {
 				// Array to string.
 				if ( is_array( $js_var['element'] ) ) {
-					$js_var['element'] = array_unique( $js_var['element'] );
 					$js_var['element'] = implode( ',', $js_var['element'] );
 				}
 				// Replace single quotes with double quotes to avoid issues with the compiled JS.
@@ -140,7 +139,7 @@ class Kirki_Modules_PostMessage {
 				continue;
 			}
 			$js_var['index_key'] = $key;
-			$callback = $this->get_callback( $args );
+			$callback            = $this->get_callback( $args );
 			if ( is_callable( $callback ) ) {
 				$field['scripts'][ $key ] = call_user_func_array( $callback, array( $js_var, $args ) );
 				continue;
@@ -155,14 +154,12 @@ class Kirki_Modules_PostMessage {
 		}
 		$text = ( 'css' === $combo_css_script ) ? 'css' : '\'' . $combo_css_script . '\'';
 
-		$script .= $combo_extra_script;
-		$script .= "var cssContent={$text};";
+		$script .= $combo_extra_script . "var cssContent={$text};";
 		if ( isset( $js_var['exclude'] ) ) {
 			$script .= 'if(true===exclude){cssContent="";}';
 		}
 		if ( $add_css ) {
-			$script .= "jQuery('#{$style_id}').text(cssContent);";
-			$script .= "jQuery('#{$style_id}').appendTo('head');";
+			$script .= "jQuery('#{$style_id}').text(cssContent);jQuery('#{$style_id}').appendTo('head');";
 		}
 		$script .= '});});';
 		return $script;
@@ -177,7 +174,7 @@ class Kirki_Modules_PostMessage {
 	 */
 	protected function script_html_var( $args ) {
 
-		$script  = ( isset( $args['choice'] ) ) ? "newval=newval['{$args['choice']}'];" : '';
+		$script = ( isset( $args['choice'] ) ) ? "newval=newval['{$args['choice']}'];" : '';
 
 		// Apply the value_pattern.
 		if ( isset( $args['value_pattern'] ) && '' !== $args['value_pattern'] ) {
@@ -200,10 +197,10 @@ class Kirki_Modules_PostMessage {
 	 * @param array $args  The arguments for this js_var.
 	 */
 	protected function script_var( $args ) {
-		$script = '';
+		$script          = '';
 		$property_script = '';
 
-		$value_key = 'newval' . $args['index_key'];
+		$value_key        = 'newval' . $args['index_key'];
 		$property_script .= $value_key . '=newval;';
 
 		$args = $this->get_args( $args );
@@ -247,13 +244,13 @@ class Kirki_Modules_PostMessage {
 	 */
 	protected function script_var_array( $args ) {
 
-		$script = ( 0 === $args['index_key'] ) ? 'css=\'\';' : '';
+		$script          = ( 0 === $args['index_key'] ) ? 'css=\'\';' : '';
 		$property_script = '';
 
 		// Define choice.
-		$choice  = ( isset( $args['choice'] ) && '' !== $args['choice'] ) ? $args['choice'] : '';
+		$choice = ( isset( $args['choice'] ) && '' !== $args['choice'] ) ? $args['choice'] : '';
 
-		$value_key = 'newval' . $args['index_key'];
+		$value_key        = 'newval' . $args['index_key'];
 		$property_script .= $value_key . '=newval;';
 
 		$args = $this->get_args( $args );
@@ -271,9 +268,7 @@ class Kirki_Modules_PostMessage {
 
 		// Tweak to add url() for background-images.
 		if ( '' === $choice || 'background-image' === $choice ) {
-			$script .= 'if(\'background-image\'===\'' . $args['property'] . '\'||\'background-image\'===subKey){';
-			$script .= 'if(-1===subValue.indexOf(\'url(\')){subValue=\'url("\'+subValue+\'")\';}';
-			$script .= '}';
+			$script .= 'if(\'background-image\'===\'' . $args['property'] . '\'||\'background-image\'===subKey){if(-1===subValue.indexOf(\'url(\')){subValue=\'url("\'+subValue+\'")\';}}';
 		}
 
 		// Apply prefix.
@@ -288,17 +283,16 @@ class Kirki_Modules_PostMessage {
 		// Allows us to apply this just for a specific choice in the array of the values.
 		if ( '' !== $choice ) {
 			$choice_is_direction = ( false !== strpos( $choice, 'top' ) || false !== strpos( $choice, 'bottom' ) || false !== strpos( $choice, 'left' ) || false !== strpos( $choice, 'right' ) );
+			// The script.
 			$script .= 'if(\'' . $choice . '\'===subKey){';
 			$script .= ( $choice_is_direction ) ? $direction_script . 'else{' : '';
 			$script .= 'css+=\'' . $args['element'] . '{' . $args['property'] . ':\'+subValue+\';}\';';
 			$script .= ( $choice_is_direction ) ? '}' : '';
 			$script .= '}';
 		} else {
-			$script .= $direction_script . 'else{';
 
 			// This is where most object-based fields will go.
-			$script .= 'css+=\'' . $args['element'] . '{\'+subKey+\':\'+subValue+\'' . $args['units'] . $args['suffix'] . ';}\';';
-			$script .= '}';
+			$script .= $direction_script . 'else{css+=\'' . $args['element'] . '{\'+subKey+\':\'+subValue+\'' . $args['units'] . $args['suffix'] . ';}\';}';
 		}
 		$script .= '});';
 
@@ -329,23 +323,24 @@ class Kirki_Modules_PostMessage {
 
 		// Load the font using WenFontloader.
 		// This is a bit ugly because wp_add_inline_script doesn't allow adding <script> directly.
-		$webfont_loader = 'sc=\'a\';jQuery(\'head\').append(sc.replace(\'a\',\'<\')+\'script>if(!_.isUndefined(WebFont)&&fontFamily){WebFont.load({google:{families:["\'+fontFamily.replace( /\"/g, \'&quot;\' )+\':\'+variant+subsetsString+\'"]}});}\'+sc.replace(\'a\',\'<\')+\'/script>\');';
+		$webfont_loader = 'sc=\'a\';jQuery(\'head\').append(sc.replace(\'a\',\'<\')+\'script>if(!_.isUndefined(WebFont)&&fontFamily){WebFont.load({google:{families:["\'+fontFamily.replace( /\"/g, \'&quot;\' )+\':\'+variant+\'cyrillic,cyrillic-ext,devanagari,greek,greek-ext,khmer,latin,latin-ext,vietnamese,hebrew,arabic,bengali,gujarati,tamil,telugu,thai"]}});}\'+sc.replace(\'a\',\'<\')+\'/script>\');';
 
 		// Add the css.
-		$css_build_array = array(
-			'font-family'    => 'fontFamily',
-			'font-size'      => 'fontSize',
-			'line-height'    => 'lineHeight',
-			'letter-spacing' => 'letterSpacing',
-			'word-spacing'   => 'wordSpacing',
-			'text-align'     => 'textAlign',
-			'text-transform' => 'textTransform',
-			'color'          => 'color',
-			'font-weight'    => 'fontWeight',
-			'font-style'     => 'fontStyle',
+		$css_build_array  = array(
+			'font-family'     => 'fontFamily',
+			'font-size'       => 'fontSize',
+			'line-height'     => 'lineHeight',
+			'letter-spacing'  => 'letterSpacing',
+			'word-spacing'    => 'wordSpacing',
+			'text-align'      => 'textAlign',
+			'text-transform'  => 'textTransform',
+			'text-decoration' => 'textDecoration',
+			'color'           => 'color',
+			'font-weight'     => 'fontWeight',
+			'font-style'      => 'fontStyle',
 		);
 		$choice_condition = ( isset( $args['choice'] ) && '' !== $args['choice'] && isset( $css_build_array[ $args['choice'] ] ) );
-		$script .= ( ! $choice_condition ) ? $webfont_loader : '';
+		$script          .= ( ! $choice_condition ) ? $webfont_loader : '';
 		foreach ( $css_build_array as $property => $var ) {
 			if ( $choice_condition && $property !== $args['choice'] ) {
 				continue;
@@ -359,6 +354,7 @@ class Kirki_Modules_PostMessage {
 				( 'word-spacing' === $property && ! isset( $field['default']['word-spacing'] ) ) ||
 				( 'text-align' === $property && ! isset( $field['default']['text-align'] ) ) ||
 				( 'text-transform' === $property && ! isset( $field['default']['text-transform'] ) ) ||
+				( 'text-decoration' === $property && ! isset( $field['default']['text-decoration'] ) ) ||
 				( 'color' === $property && ! isset( $field['default']['color'] ) ) ||
 				( 'font-weight' === $property && ! isset( $field['default']['variant'] ) && ! isset( $field['default']['font-weight'] ) ) ||
 				( 'font-style' === $property && ! isset( $field['default']['variant'] ) && ! isset( $field['default']['font-style'] ) )
@@ -369,9 +365,9 @@ class Kirki_Modules_PostMessage {
 
 			if ( 'font-family' === $property || ( isset( $args['choice'] ) && 'font-family' === $args['choice'] ) ) {
 				$css .= 'fontFamilyCSS=fontFamily;if(0<fontFamily.indexOf(\' \')&&-1===fontFamily.indexOf(\'"\')){fontFamilyCSS=\'"\'+fontFamily+\'"\';}';
-				$var = 'fontFamilyCSS';
+				$var  = 'fontFamilyCSS';
 			}
-			$var = ( ( empty( $args['prefix'] ) ) ? '' : '\'' . $args['prefix'] . '\'+' ) . $var . ( ( empty( $args['units'] ) ) ? '' : '+\'' . $args['units'] . '\'' ) . ( ( empty( $args['suffix'] ) ) ? '' : '+\'' . $args['suffix'] . '\'' );
+			$var  = ( ( empty( $args['prefix'] ) ) ? '' : '\'' . $args['prefix'] . '\'+' ) . $var . ( ( empty( $args['units'] ) ) ? '' : '+\'' . $args['units'] . '\'' ) . ( ( empty( $args['suffix'] ) ) ? '' : '+\'' . $args['suffix'] . '\'' );
 			$css .= 'css+=(\'\'!==' . $var . ')?\'' . $args['element'] . '\'+\'{' . $property . ':\'+' . $var . '+\';}\':\'\';';
 		}
 
@@ -415,22 +411,7 @@ class Kirki_Modules_PostMessage {
 		if ( isset( $args['type'] ) ) {
 			switch ( $args['type'] ) {
 				case 'kirki-typography':
-					$script .= 'fontFamily=(_.isUndefined(newval[\'font-family\']))?\'\':newval[\'font-family\'];';
-					$script .= 'variant=(_.isUndefined(newval.variant))?\'400\':newval.variant;';
-					$script .= 'subsets=(_.isUndefined(newval.subsets))?[]:newval.subsets;';
-					$script .= 'subsetsString=(_.isObject(newval.subsets))?\':\'+newval.subsets.join(\',\'):\'\';';
-					$script .= 'fontSize=(_.isUndefined(newval[\'font-size\']))?\'\':newval[\'font-size\'];';
-					$script .= 'lineHeight=(_.isUndefined(newval[\'line-height\']))?\'\':newval[\'line-height\'];';
-					$script .= 'letterSpacing=(_.isUndefined(newval[\'letter-spacing\']))?\'\':newval[\'letter-spacing\'];';
-					$script .= 'wordSpacing=(_.isUndefined(newval[\'word-spacing\']))?\'\':newval[\'word-spacing\'];';
-					$script .= 'textAlign=(_.isUndefined(newval[\'text-align\']))?\'\':newval[\'text-align\'];';
-					$script .= 'textTransform=(_.isUndefined(newval[\'text-transform\']))?\'\':newval[\'text-transform\'];';
-					$script .= 'color=(_.isUndefined(newval.color))?\'\':newval.color;';
-
-					$script .= 'fw=(!_.isString(newval.variant))?\'400\':newval.variant.match(/\d/g);';
-					$script .= 'fontWeight=(!_.isObject(fw))?400:fw.join(\'\');';
-					$script .= 'fontStyle=(-1!==variant.indexOf(\'italic\'))?\'italic\':\'normal\';';
-					$script .= 'css=\'\';';
+					$script .= 'fontFamily=(_.isUndefined(newval[\'font-family\']))?\'\':newval[\'font-family\'];variant=(_.isUndefined(newval.variant))?\'400\':newval.variant;fontSize=(_.isUndefined(newval[\'font-size\']))?\'\':newval[\'font-size\'];lineHeight=(_.isUndefined(newval[\'line-height\']))?\'\':newval[\'line-height\'];letterSpacing=(_.isUndefined(newval[\'letter-spacing\']))?\'\':newval[\'letter-spacing\'];wordSpacing=(_.isUndefined(newval[\'word-spacing\']))?\'\':newval[\'word-spacing\'];textAlign=(_.isUndefined(newval[\'text-align\']))?\'\':newval[\'text-align\'];textTransform=(_.isUndefined(newval[\'text-transform\']))?\'\':newval[\'text-transform\'];textDecoration=(_.isUndefined(newval[\'text-decoration\']))?\'\':newval[\'text-decoration\'];color=(_.isUndefined(newval.color))?\'\':newval.color;fw=(!_.isString(newval.variant))?\'400\':newval.variant.match(/\d/g);fontWeight=(!_.isObject(fw))?400:fw.join(\'\');fontStyle=(variant&&-1!==variant.indexOf(\'italic\'))?\'italic\':\'normal\';css=\'\';';
 					break;
 			}
 		}
@@ -448,15 +429,17 @@ class Kirki_Modules_PostMessage {
 	private function get_args( $args ) {
 
 		// Make sure everything is defined to avoid "undefined index" errors.
-		$args = wp_parse_args( $args, array(
-			'element'       => '',
-			'property'      => '',
-			'prefix'        => '',
-			'suffix'        => '',
-			'units'         => '',
-			'js_callback'   => array( '', '' ),
-			'value_pattern' => '',
-		));
+		$args = wp_parse_args(
+			$args, array(
+				'element'       => '',
+				'property'      => '',
+				'prefix'        => '',
+				'suffix'        => '',
+				'units'         => '',
+				'js_callback'   => array( '', '' ),
+				'value_pattern' => '',
+			)
+		);
 
 		// Element should be a string.
 		if ( is_array( $args['element'] ) ) {
@@ -466,6 +449,10 @@ class Kirki_Modules_PostMessage {
 		// Make sure arguments that are passed-on to callbacks are strings.
 		if ( is_array( $args['js_callback'] ) && isset( $args['js_callback'][1] ) && is_array( $args['js_callback'][1] ) ) {
 			$args['js_callback'][1] = wp_json_encode( $args['js_callback'][1] );
+		}
+
+		if ( ! isset( $args['js_callback'][1] ) ) {
+			$args['js_callback'][1] = '';
 		}
 		return $args;
 
@@ -491,8 +478,8 @@ class Kirki_Modules_PostMessage {
 			$script .= 'settings=window.wp.customize.get();';
 			foreach ( $js_vars['pattern_replace'] as $search => $replace ) {
 				$replace = '\'+settings["' . $replace . '"]+\'';
-				$value = str_replace( $search, $replace, $js_vars['value_pattern'] );
-				$value = trim( $value, '+' );
+				$value   = str_replace( $search, $replace, $js_vars['value_pattern'] );
+				$value   = trim( $value, '+' );
 			}
 		}
 		$value_compiled = str_replace( '$', '\'+' . $alias . '+\'', $value );

@@ -6,23 +6,54 @@
  * Only fires on body classes that match. If a body class contains a dash,
  * replace the dash with an underscore when adding it to the object below.
  * ======================================================================== */
+
+// Setup our object.
+var BoldGrid = BoldGrid || {};
+
 ( function( $ ) {
 
 	'use strict';
 
+	var UTIL;
+
 	// Use this variable to set up the common and DOM based specific functionality.
-	var BoldGrid = {
+	BoldGrid = {
 
 		// Scripts to fire on all pages.
 		'common': {
 
 			// JavaScript to be fired on all pages.
 			init: function() {
+				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
 				this.skipLink();
 			},
 
 			// JavaScript to be fired on all pages, after page specific JS is fired.
-			finalize: function() {},
+			finalize: function() {
+				$( ':root' ).removeClass( 'bgtfw-loading' ).addClass( 'bgtfw-loaded' );
+				$( '#boldgrid-sticky-wrap' ).one( BoldGrid.common.detectAnimationEvent(), function() {
+					BoldGrid.custom_header.calc();
+				} );
+			},
+
+			detectAnimationEvent: function() {
+				var i, el, animations;
+
+				el = document.createElement( 'fakeelement' );
+
+				animations = {
+					'animation': 'animationend',
+					'OAnimation': 'oAnimationEnd',
+					'MozAnimation': 'animationend',
+					'WebkitAnimation': 'webkitAnimationEnd'
+				};
+
+				for ( i in animations ) {
+					if ( undefined !== el.style[i] ) {
+						return animations[i];
+					}
+				}
+			},
 
 			// JavaScript for the skip link functionality.
 			skipLink: function() {
@@ -46,90 +77,285 @@
 						}
 					}, false );
 				}
+			},
+			sideHeaderHandler: function() {
+				var header;
+
+				header = $( '.site-header' );
+				header.bind( 'scroll', function() {
+					if ( 0 !== header.scrollLeft() ) {
+						header.scrollLeft( 0 );
+					}
+				} );
+			}
+		},
+
+		// Header Top.
+		'custom_header': {
+			init: function() {
+
+				// Check for custom header image.
+				this.checkImg();
+
+				// Check for video background embed type.
+				$( document ).on( 'wp-custom-header-video-loaded', this.checkType );
+
+				// Initial calc.
+				BoldGrid.custom_header.calc();
+
+				// Listen for resize events to retrigger calculations.
+				$( window ).resize( this.calc );
+			},
+
+			/**
+			 * Performs check of video background type as native video or youtube embed.
+			 *
+			 * @since 2.0.0
+			 *
+			 * @return null
+			 */
+			checkType: function() {
+				var timer, body, youtube, nativeVideo, video, i = 0;
+
+				timer = setTimeout( function loadVideo() {
+					i++;
+					body = document.body.classList;
+					youtube = ( ( ( wp || {} ).customHeader || {} ).handlers || {} ).youtube;
+					nativeVideo = ( ( ( wp || {} ).customHeader || {} ).handlers || {} ).nativeVideo;
+
+					// ~ 3sec with 50ms delays between load attempts.
+					if ( i > 60 ) {
+						clearTimeout( timer );
+					}
+
+					// jscs:disable requireYodaConditions
+					if ( youtube.player == null && nativeVideo.video == null ) {
+						timer = setTimeout( loadVideo, 50 );
+					} else {
+
+						// YouTube player found and YT handler is loaded.
+						if ( nativeVideo.video == null && typeof youtube.player.stopVideo === 'function' ) {
+							body.add( 'has-youtube-header' );
+							body.remove( 'has-header-image' );
+							body.remove( 'has-video-header' );
+							BoldGrid.custom_header.calc();
+
+						// HTML5 video player found and native handler is loaded.
+						} else if ( youtube.player == null && $( nativeVideo.video ).length ) {
+							body.add( 'has-video-header' );
+							body.remove( 'has-header-image' );
+							body.remove( 'has-youtube-header' );
+
+							video = document.getElementById( 'wp-custom-header-video' );
+
+							if ( !! video ) {
+
+								// Check  ready state of video player before attempting to reflow layout.
+								if ( 4 === video.readyState ) {
+									BoldGrid.custom_header.calc();
+								} else {
+
+									// Setup event listener for loadeddata to indicate video has loaded and can be played.
+									video.addEventListener( 'loadeddata', function() {
+										BoldGrid.custom_header.calc();
+									}, false );
+								}
+							}
+						} else {
+							timer = setTimeout( loadVideo, 50 );
+						}
+
+					// jscs:enable requireYodaConditions
+					}
+				}, 50 );
+			},
+
+			checkImg: function() {
+				var customHeader, body;
+
+				body = document.body.classList;
+				body.remove( 'has-header-image' );
+				body.remove( 'has-video-header' );
+				customHeader = document.getElementById( 'wp-custom-header' );
+
+				if ( customHeader && customHeader.firstChild && 'IMG' === customHeader.firstChild.nodeName ) {
+					body.add( 'has-header-image' );
+				}
+			},
+
+			calc: function() {
+				var classes, headerHeight, siteMargin, naviHeight, menu;
+
+				classes = document.body.classList;
+
+				headerHeight = '';
+				siteMargin = 0;
+				naviHeight = $( '#navi-wrap' ).outerHeight();
+
+				// Desktop view.
+				if ( window.innerWidth >= 768 ) {
+
+					// Fixed Headers
+					if ( classes.contains( 'header-fixed' ) ) {
+
+						// Header on left, or header on right.
+						if ( classes.contains( 'header-top' ) ) {
+							siteMargin = $( '.site-header' ).outerHeight();
+						}
+
+					// Non-fixed headers.
+					} else {
+						if ( classes.contains( 'header-top' ) ) {
+
+							if ( classes.contains( 'has-youtube-header' ) ) {
+								siteMargin = siteMargin + $( '#header-widget-area' ).outerHeight();
+							}
+						}
+					}
+
+				// Mobile.
+				} else {
+					menu = $( '#main-menu' );
+
+					if ( menu.is( ':visible' ) ) {
+						headerHeight = naviHeight - menu.outerHeight();
+					} else {
+						headerHeight = naviHeight;
+					}
+
+					headerHeight = headerHeight + $( '#secondary-menu' ).outerHeight();
+				}
+
+				$( '.wp-custom-header' ).css( 'height', headerHeight );
+				$( '.site-header + *' ).css( 'margin-top', siteMargin );
+			}
+		},
+
+		// Sticky/Fixed Header.
+		'header_fixed': {
+
+			init: function() {
+
+				// Setup anchors.
+				$( 'a[name]' ).css( {
+					'padding-top': $( '.site-header' ).outerHeight( true ) + 'px',
+					'margin-top': '-' + $( '.site-header' ).outerHeight( true ) + 'px',
+					'display': 'inline-block'
+				} );
+
+				window.addEventListener( 'scroll', function() {
+					var distanceY, shrinkOn, header;
+
+					distanceY = window.pageYOffset || document.documentElement.scrollTop,
+					shrinkOn = 100,
+					header = document.getElementById( 'masthead' );
+					distanceY > shrinkOn ? header.classList.add( 'smaller' ) : header.classList.remove( 'smaller' );
+				} );
+			},
+
+			calc: function() {
+				BoldGrid.custom_header.calc();
+			}
+		},
+
+		'header_left': {
+			init: function() {
+				BoldGrid.common.sideHeaderHandler();
+			}
+		},
+
+		'header_right': {
+			init: function() {
+				BoldGrid.common.sideHeaderHandler();
 			}
 		},
 
 		// Default bootstrap menu handling.
 		'standard_menu_enabled': {
-			init: function() {
-				this.dropdowns();
-			},
-			dropdowns: function() {
-				var dropdown    = $( '.no-collapse li.dropdown' ),
-					breakpoint  = 768;
-				dropdown
-					.on( 'mouseover', function( e ) {
 
-						// Set ARIA expanded to true for screen readers.
-						this.firstChild.setAttribute( 'aria-expanded', 'true' );
-
-						// Add open class.
-						$( e.currentTarget ).addClass( 'open' );
-
-							// Prevent clicking on the dropdown's parent link.
-							$( e.currentTarget ).on( 'click', function( e ) {
-
-								// Only do this if window is mobile size.
-								if ( window.innerWidth <= breakpoint ) {
-									if ( e.target === this || e.target.parentNode === this ) {
-										e.preventDefault(  );
-									}
-								} else {
-									return true;
-								}
-							} );
-						} )
-					.on( 'mouseleave', function( e ) {
-
-						// Set ARIA expanded to falsefor screen readers.
-						this.firstChild.setAttribute( 'aria-expanded', 'false' );
-
-						// Remove all open classes on dropdowns.
-						dropdown.removeClass( 'open' );
-
-						// If the window is smaller than the 768 bootstrap breakpoint.
-						if ( window.innerWidth <= breakpoint ) {
-							if ( e.target === this || e.target.parentNode === this ) {
-								return true;
-							}
-						}
+			init: function( sm ) {
+				if ( null != sm ) {
+					BoldGrid.standard_menu_enabled.setupMenu( sm );
+				} else {
+					$.each( $( '.sm' ), function( index, menu ) {
+						BoldGrid.standard_menu_enabled.setupMenu( $( menu ) );
 					} );
-
-				// Check if device support touch events.
-				if ( 'ontouchstart' in document.documentElement ) {
-					dropdown.each( function(  ) {
-						var $this = $( this );
-
-						// Listen for the touch event.
-						this.addEventListener( 'touchstart', function( e ) {
-							if ( 1 === e.touches.length ) {
-
-								// Prevent touch events within dropdown bubbling tp dpcument.
-								e.stopPropagation(  );
-
-								// Toggle hover.
-								if ( ! $this.hasClass( 'open' ) ) {
-
-									// Prevent link on first touch.
-									if ( e.target === this || e.target.parentNode === this ) {
-										e.preventDefault(  );
-									}
-
-									// Hide other open dropdowns.
-									dropdown.removeClass( 'open' );
-									$this.addClass( 'open' );
-
-									// Hide dropdown on touch outside of dropdown menu.
-									document.addEventListener( 'touchstart', close_dropdown = function( e ) {
-										e.stopPropagation(  );
-										$this.removeClass( 'open' );
-										document.removeEventListener( 'touchstart', close_dropdown );
-									});
-								}
-							}
-						}, false );
-					});
 				}
+			},
+
+			// Setup main navigation.
+			setupMenu: function( sm ) {
+				sm.smartmenus( {
+					mainMenuSubOffsetX: -1,
+					mainMenuSubOffsetY: 4,
+					subMenusSubOffsetX: 6,
+					subMenusSubOffsetY: -6
+				} );
+
+				// Adds event handling for CSS animated sub menus - toggle animation classes on sub menus show/hide.
+				sm.bind( {
+					'show.smapi': function( e, menu ) {
+						$( menu ).removeClass( 'hide-animation' ).addClass( 'show-animation' );
+					},
+					'hide.smapi': function( e, menu ) {
+						$( menu ).removeClass( 'show-animation' ).addClass( 'hide-animation' );
+					}
+					}).on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', 'ul', function( e ) {
+						BoldGrid.custom_header.calc();
+						$( this ).removeClass( 'show-animation hide-animation' );
+						e.stopPropagation();
+				} );
+
+				$( window ).on( 'resize', function() {
+					var $mainMenuState = sm.siblings( 'input' ),
+						screen_width = $( window ).width() + 16;
+					if ( screen_width >= 768 && $mainMenuState.length ) {
+						if ( $mainMenuState[0].checked ) {
+							$mainMenuState.prop( 'checked', false ).trigger( 'change' );
+						}
+					}
+				});
+
+				$( function() {
+					var $mainMenuState = sm.siblings( 'input' );
+					if ( $mainMenuState.length ) {
+
+						// Animate mobile menu.
+						$mainMenuState.change( function( e ) {
+							var $menu = $( e.currentTarget ).siblings( '.sm' );
+							this.checked ? BoldGrid.standard_menu_enabled.collapse( $menu ) : BoldGrid.standard_menu_enabled.expand( $menu );
+						});
+
+						// Hide mobile menu beforeunload.
+						$( window ).bind( 'beforeunload unload', function() {
+							if ( $mainMenuState[0].checked ) {
+								$mainMenuState[0].click();
+							}
+						});
+					}
+				});
+			},
+
+			// Collpase the main navigation.
+			collapse: function( $menu ) {
+				if ( $menu.length < 1 ) {
+					return;
+				}
+				$menu.siblings( 'label' ).find( '.hamburger' ).addClass( 'is-active' );
+				$menu.hide().slideDown( 220, function() {
+					$menu.css( 'display', '' );
+				} );
+			},
+
+			// Expand the main navigation.
+			expand: function( $menu ) {
+				if ( $menu.length < 1 ) {
+					return;
+				}
+				$menu.siblings( 'label' ).find( '.hamburger' ).removeClass( 'is-active' );
+				$menu.show().slideUp( 220, function() {
+					$menu.css( 'display', '' );
+				} );
 			}
 		},
 
@@ -155,7 +381,16 @@
 				}
 			},
 			flexSupport: function() {
+				var wrap, filler, push;
+
 				if ( ! Modernizr.flexbox ) {
+					wrap = document.getElementById( 'boldgrid-sticky-wrap' );
+					filler = document.createElement( 'DIV' );
+					filler.id = 'boldgrid-sticky-filler';
+					push = document.createElement( 'DIV' );
+					push.id = 'boldgrid-sticky-push';
+					wrap.appendChild( filler );
+					wrap.appendChild( push );
 					this.stickyFooter();
 				}
 			},
@@ -206,7 +441,9 @@
 				var $body = $( 'body.boldgrid-customizer-parallax' );
 				if ( $body.stellar ) {
 					$body.attr( 'data-stellar-background-ratio', '0.2' );
-					$body.stellar();
+					$body.stellar( {
+						horizontalScrolling: false
+					} );
 				}
 			}
 		},
@@ -220,14 +457,17 @@
 				this.loadWow();
 			},
 			loadWow: function() {
-				var wow = new WOW({
+				var wow = new WOW( {
 					boxClass: _wowJsOptions.boxClass,
 					animateClass: _wowJsOptions.animateClass,
 					offset: _wowJsOptions.offset,
 					mobile: _wowJsOptions.mobile,
 					live: _wowJsOptions.live
-				});
-				wow.init();
+				} );
+
+				$( function() {
+					wow.init();
+				} );
 			}
 		},
 		'nicescroll_enabled': {
@@ -287,9 +527,15 @@
 				});
 			}
 		},
+
+		// Scroll to top button is enabled.
 		'goup_enabled': {
+
+			// Initialize.
 			init: function() {
-				$.goup({
+				var arrowColor = _goupOptions.arrowColor ? _goupOptions.arrowColor : BoldGrid.goup_enabled.getArrowColor();
+
+				$.goup( {
 					location: _goupOptions.location,
 					locationOffset: _goupOptions.locationOffset,
 					bottomOffset: _goupOptions.bottomOffset,
@@ -298,7 +544,7 @@
 					containerClass: _goupOptions.containerClass,
 					arrowClass: _goupOptions.arrowClass,
 					containerColor: _goupOptions.containerColor,
-					arrowColor: _goupOptions.arrowColor,
+					arrowColor: arrowColor,
 					trigger: _goupOptions.trigger,
 					entryAnimation: _goupOptions.entryAnimation,
 					alwaysVisible: _goupOptions.alwaysVisible,
@@ -308,7 +554,55 @@
 					titleAsText: _goupOptions.titleAsText,
 					titleAsTextClass: _goupOptions.titleAsTextClass,
 					zIndex: _goupOptions.zIndex
-				});
+				} );
+			},
+
+			// Convert color RGB to hex format.
+			rgb2hex: function( rgb ) {
+				rgb = rgb.match( /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/ );
+				function hex( x ) {
+					return ( '0' + parseInt( x ).toString( 16 ) ).slice( -2 );
+				}
+
+				return '#' + hex( rgb[1] ) + hex( rgb[2] ) + hex( rgb[3] );
+			},
+
+			// Get color of arrow if not specified in configs.
+			getArrowColor: function() {
+				var color, test = document.createElement( 'div' );
+
+				test.className = 'color-1-text-contrast';
+				test.id = 'goup-color-test';
+				document.body.appendChild( test );
+				color = $( test ).css( 'color' );
+				$( '#goup-color-test' ).remove();
+
+				return BoldGrid.goup_enabled.rgb2hex( color );
+			},
+
+			// Destroy scroll to top buttons.
+			destroy: function() {
+				$( '.goup-container, .goup-text' ).remove();
+			}
+		},
+		'woocommerce_demo_store': {
+			finalize: function() {
+				if ( 'undefined' !== typeof wp ) {
+					if ( 'undefined' === typeof wp.customize ) {
+
+						// Remove margin-top when notice is dismissed.
+						$( '.woocommerce-store-notice__dismiss-link' ).click( function() {
+							$( '.header-fixed.header-top.woocommerce-demo-store' ).css( 'margin-top', '0' );
+						} );
+
+						// Check the value of that cookie and show/hide the notice accordingly
+						if ( 'hidden' === Cookies.get( 'store_notice' ) ) {
+							$( '.header-fixed.header-top.woocommerce-demo-store' ).css( 'margin-top', '0' );
+						} else {
+							$( '.header-fixed.header-top.woocommerce-demo-store' ).css( 'margin-top', $( '.woocommerce-store-notice' ).outerHeight() );
+						}
+					}
+				}
 			}
 		}
 	};
@@ -317,7 +611,7 @@
 	 * The routing fires all common scripts, followed by the DOM specific
 	 * scripts.  Additional events can be added for more control over timing.
 	 */
-	var UTIL = {
+	UTIL = {
 		fire: function( func, funcname, args ) {
 			var fire, namespace = BoldGrid;
 			funcname = ( undefined === funcname ) ? 'init' : funcname;

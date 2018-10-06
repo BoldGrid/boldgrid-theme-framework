@@ -1,6 +1,6 @@
 /*!
- * modernizr v3.5.0
- * Build https://modernizr.com/download?-flexbox-flexwrap-inlinesvg-svg-target-touchevents-setclasses-dontmin
+ * modernizr v3.6.0
+ * Build https://modernizr.com/download?-checked-contains-flexbox-flexwrap-inlinesvg-svg-touchevents-video-setclasses-dontmin
  *
  * Copyright (c)
  *  Faruk Ates
@@ -36,7 +36,7 @@
 
   var ModernizrProto = {
     // The current version, dummy
-    _version: '3.5.0',
+    _version: '3.6.0',
 
     // Any settings that don't work as separate modules
     // can go in here as configuration.
@@ -1053,36 +1053,102 @@ Detects support for inline SVG in HTML (not within XHTML).
 
 /*!
 {
-  "name": "CSS :target pseudo-class",
-  "caniuse": "css-sel3",
-  "property": "target",
-  "tags": ["css"],
-  "notes": [{
-    "name": "MDN documentation",
-    "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/:target"
-  }],
-  "authors": ["@zachleat"],
-  "warnings": ["Opera Mini supports :target but doesn't update the hash for anchor links."]
+  "name": "HTML5 Video",
+  "property": "video",
+  "caniuse": "video",
+  "tags": ["html5"],
+  "knownBugs": [
+    "Without QuickTime, `Modernizr.video.h264` will be `undefined`; https://github.com/Modernizr/Modernizr/issues/546"
+  ],
+  "polyfills": [
+    "html5media",
+    "mediaelementjs",
+    "sublimevideo",
+    "videojs",
+    "leanbackplayer",
+    "videoforeverybody"
+  ]
 }
 !*/
 /* DOC
-Detects support for the ':target' CSS pseudo-class.
+Detects support for the video element, as well as testing what types of content it supports.
+
+Subproperties are provided to describe support for `ogg`, `h264` and `webm` formats, e.g.:
+
+```javascript
+Modernizr.video         // true
+Modernizr.video.ogg     // 'probably'
+```
 */
 
-  // querySelector
-  Modernizr.addTest('target', function() {
-    var doc = window.document;
-    if (!('querySelectorAll' in doc)) {
-      return false;
-    }
+  // Codec values from : github.com/NielsLeenheer/html5test/blob/9106a8/index.html#L845
+  //                     thx to NielsLeenheer and zcorpan
 
+  // Note: in some older browsers, "no" was a return value instead of empty string.
+  //   It was live in FF3.5.0 and 3.5.1, but fixed in 3.5.2
+  //   It was also live in Safari 4.0.0 - 4.0.4, but fixed in 4.0.5
+
+  Modernizr.addTest('video', function() {
+    var elem = createElement('video');
+    var bool = false;
+
+    // IE9 Running on Windows Server SKU can cause an exception to be thrown, bug #224
     try {
-      doc.querySelectorAll(':target');
-      return true;
-    } catch (e) {
-      return false;
-    }
+      bool = !!elem.canPlayType
+      if (bool) {
+        bool = new Boolean(bool);
+        bool.ogg = elem.canPlayType('video/ogg; codecs="theora"').replace(/^no$/, '');
+
+        // Without QuickTime, this value will be `undefined`. github.com/Modernizr/Modernizr/issues/546
+        bool.h264 = elem.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/, '');
+
+        bool.webm = elem.canPlayType('video/webm; codecs="vp8, vorbis"').replace(/^no$/, '');
+
+        bool.vp9 = elem.canPlayType('video/webm; codecs="vp9"').replace(/^no$/, '');
+
+        bool.hls = elem.canPlayType('application/x-mpegURL; codecs="avc1.42E01E"').replace(/^no$/, '');
+      }
+    } catch (e) {}
+
+    return bool;
   });
+
+/*!
+{
+  "name": "CSS :checked pseudo-selector",
+  "caniuse": "css-sel3",
+  "property": "checked",
+  "tags": ["css"],
+  "notes": [{
+    "name": "Related Github Issue",
+    "href": "https://github.com/Modernizr/Modernizr/pull/879"
+  }]
+}
+!*/
+
+  Modernizr.addTest('checked', function() {
+    return testStyles('#modernizr {position:absolute} #modernizr input {margin-left:10px} #modernizr :checked {margin-left:20px;display:block}', function(elem) {
+      var cb = createElement('input');
+      cb.setAttribute('type', 'checkbox');
+      cb.setAttribute('checked', 'checked');
+      elem.appendChild(cb);
+      return cb.offsetLeft === 20;
+    });
+  });
+
+/*!
+{
+  "name": "ES5 String.prototype.contains",
+  "property": "contains",
+  "authors": ["Robert Kowalski"],
+  "tags": ["es6"]
+}
+!*/
+/* DOC
+Check if browser implements ECMAScript 6 `String.prototype.contains` per specification.
+*/
+
+  Modernizr.addTest('contains', is(String.prototype.contains, 'function'));
 
 
   // Run each test

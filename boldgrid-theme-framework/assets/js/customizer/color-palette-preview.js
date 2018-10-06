@@ -8,9 +8,8 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
  */
 ( function( $ ) {
 	'use strict';
-	var self = BOLDGRID.COLOR_PALETTE.Preview;
 
-	self.$new_style = null;
+	var self = BOLDGRID.COLOR_PALETTE.Preview;
 
 	// OnLoad.
 	$( function() {
@@ -30,59 +29,22 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 	 * This function attaches a new css file to the DOM
 	 */
 	self.update_css = function( to ) {
+		var style, data, classes, modify;
+
 		if ( ! to ) {
 			return;
 		}
 
-		var new_palette_data = JSON.parse( to );
-		var $body = $( 'body' );
+		data = JSON.parse( to );
+		modify = parent.BOLDGRID.COLOR_PALETTE.Modify;
+		classes = _.isArray( modify.body_classes ) ? modify.body_classes.join( ' ' ) : '';
 
-		// Create a string of body classes to remove.
+		// Update body class.
+		$( 'body:not(.' + data.state['active-palette'] + ')' ).removeClass( classes ).addClass( data.state['active-palette'] );
 
-		// TODO: Do this once, not everytime.
-		var body_classes = parent.BOLDGRID.COLOR_PALETTE.Modify.body_classes;
-		var body_classes_string = '';
-		if ( body_classes ) {
-			$.each( body_classes, function() {
-				body_classes_string += this + ' ';
-			});
-		}
-
-		// Remove all existing palette classes.
-		$body.removeClass( body_classes_string )
-			 .addClass( new_palette_data.state['active-palette'] )
-			 .data( 'current-body-class', new_palette_data.state['active-palette'] );
-
-		// New blank stylesheet.
-		var style = document.createElement( 'style' );
-		style.type = 'text/css';
-		style.innerHTML = parent.BOLDGRID.COLOR_PALETTE.Modify.compiled_css;
-
-		// Find the matching stylesheet.
-		var regex = new RegExp( parent.BOLDGRIDSass.output_css_filename, 'i' );
-		var enqueue_found = false;
-		$( 'head link[href]' ).each( function() {
-			if ( $( this ).attr( 'href' ) && $( this ).attr( 'href' ) .match( regex ) ) {
-				enqueue_found = true;
-
-				if ( self.$new_style ) {
-					self.$new_style.remove();
-				}
-
-				self.$new_style = $( style );
-				self.$new_style.insertAfter( $( this ) );
-			}
-		});
-
-		// This generally happens if color palettes.css was not found.
-		if ( false === enqueue_found ) {
-			if ( self.$new_style ) {
-				self.$new_style.remove();
-			}
-
-			self.$new_style = $( style );
-			$( 'head' ).append( self.$new_style );
-		}
+		// Update styles.
+		style = document.getElementById( 'boldgrid-color-palettes-inline-css' );
+		style.innerHTML = modify.compiled_css;
 	};
 
 	/**

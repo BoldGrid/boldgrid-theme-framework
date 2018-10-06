@@ -6,12 +6,19 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	'use strict';
 
 	BOLDGRID.CUSTOMIZER.Background = {};
-	var self = BOLDGRID.CUSTOMIZER.Background;
+	var self = BOLDGRID.CUSTOMIZER.Background,
+		api = wp.customize;
 
 	var $window = $( window );
 
 	$( function() {
+
+		/**
+		 * @todo This needs to be refactored. All these events should not be each time
+		 * preview iframe is refreshed.
+		 */
 		$window.on( 'boldgrid_customizer_refresh', onload_procedure );
+		loadPatterns();
 	} );
 
 	var onload_procedure = function() {
@@ -26,15 +33,11 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var $boldgrid_pattern_wrapper = $pattern_background.find( '.boldgrid-pattern-wrapper' );
 		var $remove_selected_pattern = $pattern_background.find( '.remove-selected-pattern' );
 
-		$flat_color_background.find( '.wp-picker-clear' ).on( 'click', function() {
-			wp.customize.control( 'boldgrid_background_color' ).setting( '' );
-			validate_background_color_setting();
-		});
-
 		// Bind Events.
 		validate_background_color_setting();
 		append_head_styles();
 		bind_background_color_change();
+		bind_palette_change();
 
 		$remove_selected_pattern.on( 'click', function() {
 			$boldgrid_pattern_wrapper.removeAttr( 'data-pattern-selected' );
@@ -80,6 +83,26 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		$background_type.find( 'input:checked' ).change();
 	};
 
+	/**
+	 * When the background panel is opened, load available background patterns.
+	 *
+	 * @since 2.0.0
+	 */
+	var loadPatterns = function() {
+		var loaded = false;
+
+		wp.customize.section( 'background_image' ).expanded.bind( function( isExpanded ) {
+			if ( isExpanded && ! loaded ) {
+				loaded = true;
+
+				$( '.patternpreview' ).each( function() {
+					var $el = $( this );
+					$el.css( 'background-image', 'url(' + $el.data( 'background' ) + ')' );
+				} );
+			}
+		} );
+	};
+
 	var validate_background_color_setting = function() {
 		var $container = $( wp.customize.previewer.container );
 		var to = wp.customize( 'boldgrid_background_color' )();
@@ -102,7 +125,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		if ( to ) {
 			var style = '';
 			style += '<style id="customizer_boldgrid_background_color">';
-			style += '#customize-control-boldgrid_background_pattern .patternpreview{background-color:' + to + ';}';
+			style += '#customize-control-boldgrid_background_pattern .patternpreview{background-color:' + to.split( ':' ).pop() + ';}';
 			style += '</style>';
 
 			$( 'head' ).append( $( style ) );
@@ -115,6 +138,14 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	 */
 	var bind_background_color_change = function() {
 		wp.customize( 'boldgrid_background_color', function( value ) {
+			value.bind( function() {
+				append_head_styles();
+			} );
+		} );
+	};
+
+	var bind_palette_change = function() {
+		wp.customize( 'boldgrid_color_palette', function( value ) {
 			value.bind( function() {
 				append_head_styles();
 			} );
@@ -171,6 +202,28 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			}
 		}
 
+		toggleOverlay( bg_type );
+	};
+
+	/**
+	 * Hide or show the background overlay controls.
+	 *
+	 * @since 2.0.0
+	 */
+	var toggleOverlay = function ( bgType ) {
+		var state,
+			opts = { duration: 0 },
+			overlayControl = api.control( 'bgtfw_background_overlay' ),
+			backgroundImage = api( 'background_image' ),
+			overlayColorControl = api.control( 'bgtfw_background_overlay_color' ),
+			overlayAlphaControl = api.control( 'bgtfw_background_overlay_alpha' );
+
+		state = bgType === 'pattern' || ! backgroundImage() ? 'deactivate' : 'activate';
+		overlayControl[ state ]( opts );
+
+		state = overlayControl.setting() && overlayControl.active() ? 'activate' : 'deactivate';
+		overlayColorControl[ state ]( opts );
+		overlayAlphaControl[ state ]( opts );
 	};
 
 	var getAttachmentControl = function() {
@@ -186,6 +239,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		    'background_image',
 		    'background_attachment',
 		    'background_repeat',
+		    'bgtfw_background_overlay',
 		    'boldgrid_background_image_size',
 		    'boldgrid_background_horizontal_position',
 		    'boldgrid_background_type',
@@ -312,10 +366,12 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		var message = JSON.parse( event.data );
 
 		if ( message.id === 'synced' ) {
-			_shadow_toggle(  );
-			_logo_toggle(  );
-			_font_toggle(  );
-			_position_toggle(   );
+			if ( typeof _bgtfwTypography !== 'undefined' ) {
+				_shadow_toggle();
+				_logo_toggle();
+				_font_toggle();
+				_position_toggle();
+			}
 		}
 	});
 })( jQuery );

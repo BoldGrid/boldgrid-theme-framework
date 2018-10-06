@@ -37,108 +37,6 @@ class Boldgrid_Framework_Editor {
 	}
 
 	/**
-	 * Save page title toggle via ajax call.
-	 *
-	 * @since 1.0.7
-	 */
-	public function update_page_title_toggle( $post_id, $post ) {
-		$post_id = ! empty( $post_id ) ? $post_id : null;
-
-		// If this is a revision, get real post ID.
-		if ( $parent_id = wp_is_post_revision( $post_id ) ) {
-			$post_id = $parent_id;
-		}
-
-		$status = isset( $_POST['boldgrid-display-post-title'] ) ? intval( $_POST['boldgrid-display-post-title'] ) : null;
-		if ( $post_id && false == is_null( $status ) ) {
-			$post_meta = get_post_meta( $post_id );
-			if ( ! empty( $post_meta ) ) {
-				// Save post meta.
-				update_post_meta( $post_id, 'boldgrid_hide_page_title', $status );
-			}
-		}
-
-	}
-
-	/**
-	 * Display a post title display control on the page and post editor.
-	 *
-	 * @since 1.0.7
-	 */
-	public function add_post_title_toggle() {
-		global $pagenow;
-
-		$post_id = ! empty( $_REQUEST['post'] ) ? $_REQUEST['post'] : null;
-
-		if ( in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) ) {
-
-			$template_file = null;
-
-			if ( false == empty( $post_id ) ) {
-				$post = get_post( $post_id );
-
-				if ( ! $post ) {
-					return;
-				}
-
-				// If the post type is not page or post that do not display.
-				if ( false == in_array( $post->post_type, array( 'post', 'page' ) ) ) {
-					return;
-				}
-
-				$post_meta = get_post_meta( $post->ID );
-				$display_page_title = ! empty( $post_meta['boldgrid_hide_page_title'][0] ) || ! isset( $post_meta['boldgrid_hide_page_title'] );
-				$template_file = get_post_meta( $post->ID, '_wp_page_template', true );
-
-				// Don't allow modification on home page.
-				$disabled = '';
-				if ( 'page_home.php' == $template_file ) {
-					$display_page_title = false;
-					$disabled = 'disabled="disabled"';
-				}
-
-				$post_type = 'page';
-				if ( 'post' == $post->post_type ) {
-					$post_type = 'post';
-				}
-			} else {
-				$post_type = ! empty( $_REQUEST['post_type'] ) ? $_REQUEST['post_type'] : null;
-				if ( 'page' != $post_type ) {
-					$post_type = 'post';
-				}
-
-				$display_page_title = true;
-				$disabled = '';
-			}
-
-			add_action( 'edit_form_after_title',
-				function () use ( $post_type, $display_page_title, $disabled, $template_file ) {
-					$checked = checked( $display_page_title, true, false );
-					$message = "The {$post_type} title displays as a heading at the top of your {$post_type}. Your BoldGrid theme supports this feature.";
-					if ( 'page_home.php' === $template_file ) {
-						$message = 'The Home template does not support adding a page title.  You can change the template from the dropdown box in the Page Attributes section.';
-					}
-					echo <<<HTML
-						<div id="boldgrid-hide-post-title">
-							<input style='display:none' type='checkbox' value='0' checked='checked' name='boldgrid-display-post-title'>
-							<label>
-							<input value="1" name="boldgrid-display-post-title" {$checked} {$disabled} type='checkbox'> Display
-							 $post_type  title </label><span class="dashicons dashicons-editor-help"></span>
-							<span class="spinner"></span>
-							<div class='boldgrid-tooltip'>
-								<div class="boldgrid-tooltip-arrow">
-								</div>
-								<div class="boldgrid-tooltip-inner">
-									{$message}
-								</div>
-							</div>
-						</div>
-HTML;
-			} );
-		}
-	}
-
-	/**
 	 * Theme framework mce plugin responsible for adding inline styles to editor.
 	 *
 	 * @param array $plugin_array Array of tinymce plugins.
@@ -157,12 +55,12 @@ HTML;
 		$valid_post_types = array(
 			'page',
 			'post',
+			'bg_block',
 		);
 
 		if ( ! empty( $pagenow ) && ! in_array( $pagenow, $valid_pages ) ) {
 			return;
 		}
-
 		// Currently only pages and posts are supported. @since 1.3.1
 		if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 			if ( ! in_array( $this->get_post_type(), $valid_post_types ) ) {
@@ -185,6 +83,12 @@ HTML;
 		$editor_js_file = $this->configs['framework']['admin_asset_dir'] . 'js/editor.js';
 
 		$plugin_array['boldgrid_theme_framework'] = $editor_js_file;
+
+		// This call could be moved elsewhere. Essentially, load this css when edit any array( 'page', 'post' ).
+		wp_enqueue_style(
+			'editor',
+			$this->configs['framework']['css_dir'] . 'editor.css'
+		);
 
 		return $plugin_array;
 	}
@@ -233,17 +137,44 @@ HTML;
 	}
 
 	/**
-	 * Set Kirki's Google Font load method.
+	 * Call kirki to load fonts using the webfont loader.
 	 *
-	 * This tells Kirki to embed googlefonts in styles instead of loading
-	 * separate link.
+	 * This will load the fonts in the primary document, the styles are then copied into
+	 * tinymce after loaded.
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return string Name of method of adding the necessary Google Fonts styles.
+	 * @global string $pagenow
 	 */
-	public function kirki_load_method() {
-		return 'embed';
+	public function enqueue_webfonts() {
+		global $pagenow;
+
+		// Don't add styles on non editor.
+		if ( $pagenow && ! in_array( $pagenow, array( 'post-new.php', 'post.php' ) ) ) {
+			return;
+		}
+
+		foreach ( array_keys( Kirki::$config ) as $config_id ) {
+			$web_fonts = Kirki_Modules_Webfont_Loader::get_instance();
+			Kirki_Modules_Webfont_Loader::$load = true;
+			$web_fonts->enqueue_scripts();
+
+			$async = new Kirki_Modules_Webfonts_Async(
+				$config_id,
+				Kirki_Modules_Webfonts::get_instance(),
+				Kirki_Fonts_Google::get_instance()
+			);
+
+			$async->webfont_loader();
+			$async->webfont_loader_script();
+
+			$local_fonts = new Kirki_Modules_Webfonts_Local(
+				Kirki_Modules_Webfonts::get_instance(),
+				Kirki_Fonts_Google::get_instance()
+			);
+
+			$local_fonts->add_styles();
+		}
 	}
 
 	/**
@@ -260,7 +191,6 @@ HTML;
 			$mce_css .= ',';
 		}
 		$upload_dir = wp_upload_dir();
-
 		return $mce_css . esc_url_raw( $upload_dir['baseurl'] . '/kirki-css/styles.css' );
 	}
 
@@ -276,7 +206,20 @@ HTML;
 	 */
 	public function tinymce_body_class( $mce ) {
 		$palette = get_theme_mod( 'boldgrid_palette_class' );
-		$mce['body_class'] .= " $palette";
+		$pattern = get_theme_mod( 'boldgrid_background_pattern' );
+
+		if ( ! isset( $mce['body_class'] ) ) {
+			$mce['body_class'] = $palette;
+		} else {
+			$mce['body_class'] .= " $palette";
+		}
+
+		$api = new BoldGrid( $this->configs );
+		$mce['body_class'] .= ' ' . implode( ' ', $api->get_background_color( 'boldgrid_background_color' ) );
+
+		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( $pattern ) ) {
+			$mce['body_class'] .= ' custom-background';
+		}
 
 		// Get the current post, check if it's a page and add our body classes.
 		if ( $post = get_post() ) {

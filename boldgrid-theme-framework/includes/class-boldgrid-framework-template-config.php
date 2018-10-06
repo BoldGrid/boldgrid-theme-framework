@@ -345,48 +345,6 @@ class BoldGrid_Framework_Template_Config {
 	}
 
 	/**
-	 * Remove theme container if the page meta value is boldgrid_in_page_containers.
-	 *
-	 * We do this in a filter because because themes can opt out of this conditional by
-	 * hooking into the filter process at a later priority. In the future we could change the
-	 * way a theme "hard codes" their container so this could be done out side of a filter.
-	 *
-	 * @since 1.2.7
-	 *
-	 * @param array $configs BGTFW Configs.
-	 *
-	 * @return array $configs BGTFW Configs.
-	 */
-	public function remove_theme_container( $configs ) {
-		if ( empty( $_SERVER['HTTP_HOST'] ) ) {
-			return $configs;
-		}
-
-		// Get Page Id.
-		$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		$the_id = url_to_postid( $actual_link );
-		if ( 0 === $the_id ) {
-			$the_id = get_option( 'page_on_front' );
-		}
-
-		$post_meta = get_post_meta( $the_id );
-
-		$in_page_containers = null;
-		if ( ! empty( $post_meta['boldgrid_in_page_containers'][0] ) ) {
-			$in_page_containers = $post_meta['boldgrid_in_page_containers'][0];
-		}
-
-		// If boldgrid_in_page_containers is true, remove container.
-		if ( $in_page_containers ) {
-			$configs['template']['pages']['page_home.php']['entry-content'] = '';
-			$configs['template']['pages']['default']['entry-content'] = '';
-		}
-
-		return $configs;
-	}
-
-	/**
 	 * Setup the ability to use action configs.
 	 *
 	 * @since 1.1.1
@@ -415,7 +373,7 @@ class BoldGrid_Framework_Template_Config {
 						do_action( 'boldgrid_menu_' . $name );
 						break;
 					case '[widget]':
-						dynamic_sidebar( $name );
+						bgtfw_widget( $name, true );
 						break;
 					default:
 					case '[action]':
@@ -424,5 +382,23 @@ class BoldGrid_Framework_Template_Config {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Adds the sidebar templates for pages and posts to the
+	 * page/post attributes dropdowns in the WordPress editor.
+	 *
+	 * @since 2.0
+	 *
+	 * @param array $templates Array of available templates to choose from.
+	 *
+	 * @return array $templates The modified $templates array.
+	 */
+	public function templates( $templates ) {
+		$templates['no-sidebar'] = 'No Sidebar';
+		$templates['right-sidebar'] = 'Right Sidebar';
+		$templates['left-sidebar'] = 'Left Sidebar';
+
+		return $templates;
 	}
 }

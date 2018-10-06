@@ -1,14 +1,8 @@
 // Headings Styles
 @mixin headings($from: 1, $to: 6){
 	@for $i from $from through $to{
-		@if $i == 1 {
-			h#{$i}:not(.site-title), .h#{$i}:not(.site-title) {
-				@content
-			}
-		} @else {
-			h#{$i}, .h#{$i} {
-				@content
-			}
+		h#{$i}, .h#{$i} {
+			@content
 		}
 	}
 }
@@ -36,4 +30,18 @@
 // Clear after (not all clearfix need this also)
 @mixin clearfix-after() {
 	clear: both;
+}
+
+// Helper method to strip unit suffixes from numbers for calculations.
+@function strip-unit( $number ) {
+	@if type-of( $number ) == 'number' and not unitless( $number ) {
+		@return $number / ( $number * 0 + 1 );
+	}
+
+	@return $number;
+}
+
+// Helper method to use first unit suffix of $value1 for multiplication calculations.
+@function multiply-use-first-unit( $value1, $value2 ) {
+	@return $value1 * strip-unit( $value2 );
 }

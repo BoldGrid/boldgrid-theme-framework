@@ -19,6 +19,9 @@ if ( defined( 'BGTFW_PATH' ) ) {
 	$theme_framework_uri = get_site_url() . BGTFW_PATH;
 }
 
+$theme_data = wp_get_theme();
+$theme_parent = is_child_theme() ? $theme_data->template : $theme_data->stylesheet;
+
 return array(
 
 	// Temp configs rolling out to themes.
@@ -27,9 +30,9 @@ return array(
 	),
 
 	// Required From Theme - these are defaults.
-	'theme_name' => 'boldgrid-theme',
-	'theme-parent-name' => 'prime',
-	'version' => wp_get_theme()->Version,
+	'theme_name' => $theme_data->stylesheet,
+	'theme-parent-name' => $theme_parent,
+	'version' => $theme_data->version,
 	'framework-version' => implode( get_file_data( $theme_framework_dir . '/boldgrid-theme-framework.php', array( 'Version' ), 'plugin' ), '' ),
 	'theme_id' => null,
 	'boldgrid-parent-theme' => false,
@@ -48,7 +51,6 @@ return array(
 	'framework' => array(
 		'asset_dir'       => $theme_framework_dir . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR,
 		'includes_dir'    => $theme_framework_dir . '/includes/',
-		'black_studio'    => $theme_framework_uri . '/includes/black-studio-tinymce-widget/',
 		'root_uri'        => $theme_framework_uri . '/',
 		'admin_asset_dir' => $theme_framework_uri . '/assets/',
 		'js_dir'          => $theme_framework_uri . '/assets/js/',

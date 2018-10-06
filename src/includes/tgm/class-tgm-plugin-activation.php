@@ -7,6 +7,9 @@
  * for the support of your plugin or theme. Please contact the plugin
  * or theme author for support.
  *
+ * BoldGrid has made several additions to this file. Those additions can be found by searching this
+ * file for "BoldGrid".
+ *
  * @package   TGM-Plugin-Activation
  * @version   2.6.1
  * @link      http://tgmpluginactivation.com/
@@ -1653,7 +1656,32 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				$api[ $slug ] = false;
 
 				if ( is_wp_error( $response ) ) {
-					wp_die( esc_html( $this->strings['oops'] ) );
+
+					/**
+					 * Determine action to take on error.
+					 *
+					 * TGMPA default behaviour is to die on error.
+					 *
+					 * This filter, and the resulting conditional, are added by BoldGrid.
+					 *
+					 * @since bgtfw 2.0.0
+					 */
+					$die_on_api_error = apply_filters( 'tgmpa_die_on_api_error', true );
+					if ( $die_on_api_error ) {
+						wp_die( esc_html( $this->strings['oops'] ) );
+					} else {
+						echo '<div class="error">' . wp_kses(
+								sprintf( __( 'Error installing plugin, <strong>%1$s</strong>: %2$s', 'bgtfw' ), $slug, implode( ' - ', $response->get_error_messages() ) ),
+								array(
+									'a' => array(
+										'href' => array(),
+									),
+									'strong' => array(),
+								)
+							) . '</div>';
+						return false;
+					}
+					// wp_die( esc_html( $this->strings['oops'] ) );
 				} else {
 					$api[ $slug ] = $response;
 				}
@@ -3612,6 +3640,24 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 								/* translators: 1: plugin name, 2: action number 3: total number of actions. */
 								$this->upgrader->strings['skin_before_update_header'] = __( 'Installing Plugin %1$s (%2$d/%3$d)', 'tgmpa' );
 							}
+						}
+
+						/*
+						 * Fix 'skin_update_successful'.
+						 *
+						 * https://forums.envato.com/t/wp-4-8-tgm-plug/110603
+						 *
+						 * As of WordPress 4.8, this string only needs 1 param, rather than 2.
+						 *
+						 * 4.7: https://github.com/markjaquith/WordPress/blob/4.7/wp-admin/includes/class-bulk-upgrader-skin.php#L46
+						 * 4.8: https://github.com/markjaquith/WordPress/blob/4.8/wp-admin/includes/class-bulk-upgrader-skin.php#L46
+						 *
+						 * This conditional has been added by BoldGrid.
+						 */
+						global $wp_version;
+						if ( version_compare( $wp_version, '4.8', '>=' ) ) {
+							/* translators: 1: Title of an update */
+							$this->upgrader->strings['skin_update_successful'] = __( '%1$s updated successfully.' );
 						}
 					}
 

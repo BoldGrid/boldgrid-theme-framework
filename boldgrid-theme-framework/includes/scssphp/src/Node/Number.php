@@ -2,7 +2,7 @@
 /**
  * SCSSPHP
  *
- * @copyright 2012-2015 Leaf Corcoran
+ * @copyright 2012-2018 Leaf Corcoran
  *
  * @license http://opensource.org/licenses/MIT MIT
  *
@@ -31,15 +31,15 @@ class Number extends Node implements \ArrayAccess
     /**
      * @var integer
      */
-    static public $precision = 5;
+    static public $precision = 10;
 
     /**
      * @see http://www.w3.org/TR/2012/WD-css3-values-20120308/
      *
      * @var array
      */
-    static protected $unitTable = array(
-        'in' => array(
+    static protected $unitTable = [
+        'in' => [
             'in' => 1,
             'pc' => 6,
             'pt' => 72,
@@ -47,27 +47,27 @@ class Number extends Node implements \ArrayAccess
             'cm' => 2.54,
             'mm' => 25.4,
             'q'  => 101.6,
-        ),
-        'turn' => array(
+        ],
+        'turn' => [
             'deg'  => 360,
             'grad' => 400,
             'rad'  => 6.28318530717958647692528676, // 2 * M_PI
             'turn' => 1,
-        ),
-        's' => array(
+        ],
+        's' => [
             's'  => 1,
             'ms' => 1000,
-        ),
-        'Hz' => array(
+        ],
+        'Hz' => [
             'Hz'  => 1,
             'kHz' => 0.001,
-        ),
-        'dpi' => array(
+        ],
+        'dpi' => [
             'dpi'  => 1,
             'dpcm' => 2.54,
             'dppx' => 96,
-        ),
-    );
+        ],
+    ];
 
     /**
      * @var integer|float
@@ -91,8 +91,8 @@ class Number extends Node implements \ArrayAccess
         $this->dimension = $dimension;
         $this->units     = is_array($initialUnit)
             ? $initialUnit
-            : ($initialUnit ? array($initialUnit => 1)
-                            : array());
+            : ($initialUnit ? [$initialUnit => 1]
+                            : []);
     }
 
     /**
@@ -110,7 +110,7 @@ class Number extends Node implements \ArrayAccess
 
         $dimension = $this->dimension;
 
-        foreach (self::$unitTable['in'] as $unit => $conv) {
+        foreach (static::$unitTable['in'] as $unit => $conv) {
             $from       = isset($this->units[$unit]) ? $this->units[$unit] : 0;
             $to         = isset($units[$unit]) ? $units[$unit] : 0;
             $factor     = pow($conv, $from - $to);
@@ -128,7 +128,7 @@ class Number extends Node implements \ArrayAccess
     public function normalize()
     {
         $dimension = $this->dimension;
-        $units     = array();
+        $units     = [];
 
         $this->normalizeUnits($dimension, $units, 'in');
 
@@ -238,8 +238,8 @@ class Number extends Node implements \ArrayAccess
      */
     public function unitStr()
     {
-        $numerators = array();
-        $denominators = array();
+        $numerators   = [];
+        $denominators = [];
 
         foreach ($this->units as $unit => $unitSize) {
             if ($unitSize > 0) {
@@ -265,20 +265,19 @@ class Number extends Node implements \ArrayAccess
      */
     public function output(Compiler $compiler = null)
     {
-        $dimension = round($this->dimension, self::$precision);
+        $dimension = round($this->dimension, static::$precision);
 
         $units = array_filter($this->units, function ($unitSize) {
             return $unitSize;
         });
 
-        // @todo refactor normalize()
         if (count($units) > 1 && array_sum($units) === 0) {
             $dimension = $this->dimension;
-            $units     = array();
+            $units     = [];
 
             $this->normalizeUnits($dimension, $units, 'in');
 
-            $dimension = round($dimension, self::$precision);
+            $dimension = round($dimension, static::$precision);
             $units     = array_filter($units, function ($unitSize) {
                 return $unitSize;
             });
@@ -291,9 +290,10 @@ class Number extends Node implements \ArrayAccess
         }
 
         reset($units);
-        list($unit, ) = each($units);
+        $unit = key($units);
+        $dimension = number_format($dimension, static::$precision, '.', '');
 
-        return (string) $dimension . $unit;
+        return (static::$precision ? rtrim(rtrim($dimension, '0'), '.') : $dimension) . $unit;
     }
 
     /**
@@ -314,11 +314,11 @@ class Number extends Node implements \ArrayAccess
     private function normalizeUnits(&$dimension, &$units, $baseUnit = 'in')
     {
         $dimension = $this->dimension;
-        $units = array();
+        $units     = [];
 
         foreach ($this->units as $unit => $exp) {
-            if (isset(self::$unitTable[$baseUnit][$unit])) {
-                $factor = pow(self::$unitTable[$baseUnit][$unit], $exp);
+            if (isset(static::$unitTable[$baseUnit][$unit])) {
+                $factor = pow(static::$unitTable[$baseUnit][$unit], $exp);
 
                 $unit = $baseUnit;
                 $dimension /= $factor;

@@ -1,0 +1,16 @@
+.blog {
+	@import "design/base";
+}
+.entry-content {
+	.featured-image {
+		text-align: center;
+		padding-bottom: 15px;
+	}
+}
+.entry-footer {
+	width: 100%;
+	.tags-links, .cat-links, .comments-link {
+		display: block;
+		width: calc( 100% - 62px );
+	}
+}

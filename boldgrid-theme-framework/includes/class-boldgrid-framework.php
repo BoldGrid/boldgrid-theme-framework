@@ -73,12 +73,12 @@ class BoldGrid_Framework {
 		$this->load_theme_configs();
 		$this->set_doing_cron();
 		$this->upgrade();
-		$this->cta();
 
 		$this->define_theme_hooks();
 		$this->define_admin_hooks();
 		$this->define_global_hooks();
 		$this->boldgrid_theme_setup();
+		$this->layouts();
 		$this->setup_menus();
 		$this->boldgrid_widget_areas();
 		$this->theme_customizer();
@@ -89,6 +89,8 @@ class BoldGrid_Framework {
 		$this->pagination();
 		$this->ninja_forms();
 		$this->woocommerce();
+		$this->title();
+		$this->welcome();
 	}
 
 	/**
@@ -157,13 +159,20 @@ class BoldGrid_Framework {
 			'api',
 			'comments',
 			'compile-colors',
+			'container',
+			'content',
+			'custom-header',
 			'editor',
 			'edit-post-links',
+			'element-class',
 			'i18n',
+			'layouts-post-meta',
+			'links',
 			'loader',
 			'menu',
 			'ninja-forms',
 			'pagination',
+			'ppb',
 			'pointer',
 			'schema-markup',
 			'scripts',
@@ -173,9 +182,12 @@ class BoldGrid_Framework {
 			'setup',
 			'social-media-icons',
 			'staging',
+			'starter-content',
 			'styles',
 			'template-config',
+			'title',
 			'upgrade',
+			'welcome',
 			'widgets',
 			'woocommerce',
 			'wp-fs',
@@ -188,14 +200,6 @@ class BoldGrid_Framework {
 
 		// Load Customizer Files.
 		$this->load_customizer_files();
-
-		/**
-		 * Load the WP Bootstrap Custom Nav Walker.
-		 *
-		 * @link https://github.com/twittem/wp-bootstrap-navwalker
-		 * @since 1.0.0
-		 */
-		require_once trailingslashit( __DIR__ ) . 'partials/wp_bootstrap_navwalker.php';
 
 		/**
 		 * Include the TGM_Plugin_Activation class.
@@ -239,6 +243,7 @@ class BoldGrid_Framework {
 		// Assign configs.
 		$this->assign_configs();
 		$this->assign_configs( 'customizer-options' );
+		$this->assign_configs( 'customizer' );
 		$this->assign_configs( 'components' );
 	}
 
@@ -250,22 +255,30 @@ class BoldGrid_Framework {
 	 */
 	public function add_config_filters() {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
-		$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
 		$template_config = new Boldgrid_Framework_Template_Config( $this->configs );
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
+		$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
+		$custom_header = new Boldgrid_Framework_Custom_Header( $this->configs );
 
 		// Set the is_editing_boldgrid_theme filter to true for any theme using BGTFW.
-		add_filter( 'is_editing_boldgrid_theme', '__return_true' );
+		add_filter( 'is_editing_boldgrid_theme', '__return_true', 20 );
+		add_action( 'after_setup_theme', array( $starter_content, 'dynamic_theme_mod_filter' ) );
 
+		// Add changeset UUIDs to post preview links.
+		$this->loader->add_action( 'preview_post_link', $starter_content, 'add_post_preview_link_changeset', 10, 2 );
+
+		add_filter( 'boldgrid_theme_framework_config', array( $starter_content, 'set_configs' ), 15 );
 		add_filter( 'boldgrid_theme_framework_config', array( $effects, 'enable_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $template_config, 'pagination_style' ), 20 );
-		add_filter( 'boldgrid_theme_framework_config', array( $typography, 'set_configs' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $activate, 'tgm_override' ), 20 );
+		add_filter( 'boldgrid_theme_framework_config', array( $custom_header, 'add_color_classes' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', 'BoldGrid::get_inspiration_configs', 5 );
 
-		if ( ! is_admin() ) {
-			add_filter( 'boldgrid_theme_framework_config', array( $template_config, 'remove_theme_container' ), 50 );
-		}
+		// Adds the sidebar options to the page template selections.
+		add_filter( 'theme_page_templates', array( $template_config, 'templates' ) );
+
+		// Adds the sidebar options to the post template selections.
+		add_filter( 'theme_post_templates', array( $template_config, 'templates' ) );
 	}
 
 	/**
@@ -337,18 +350,6 @@ class BoldGrid_Framework {
 	}
 
 	/**
-	 * Call to Action Functionality from BSTW.
-	 *
-	 * @since    1.3.6
-	 * @access   public
-	 */
-	public function cta() {
-		if ( 'disabled' !== $this->configs['template']['call-to-action'] ) {
-			require_once $this->configs['framework']['includes_dir'] . 'black-studio-tinymce-widget/black-studio-tinymce-widget.php';
-		}
-	}
-
-	/**
 	 * This defines the core functionality of the themes and associated template actions.
 	 *
 	 * @since    1.0.0
@@ -368,10 +369,10 @@ class BoldGrid_Framework {
 
 		// Register Locations.
 		$this->loader->add_action( 'boldgrid-theme-location', $template, 'do_location_action', 10, 2 );
-		$this->loader->add_action( 'wp_footer', $template, 'print_styles', 10, 2 );
 
 		// Add Theme Styles.
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $styles, 'enqueue_fontawesome' );
 		$this->loader->add_action( 'after_setup_theme',  $styles, 'add_editor_styling' );
 		$this->loader->add_filter( 'mce_css', $styles, 'add_cache_busting' );
 		$this->loader->add_filter( 'local_editor_styles', $styles, 'enqueue_editor_buttons' );
@@ -379,6 +380,8 @@ class BoldGrid_Framework {
 		// Add Theme Scripts.
 		$this->loader->add_action( 'wp_enqueue_scripts', $scripts, 'boldgrid_enqueue_scripts' );
 		$this->loader->add_filter( 'language_attributes', $scripts, 'modernizr' );
+
+		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'post_list_sidebar' );
 
 		// Setup Header Metadata.
 		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_meta_charset',  105 );
@@ -392,20 +395,55 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'boldgrid_footer_before', $boldgrid_theme, 'boldgrid_sticky_bottom', 15 );
 
 		// Additional theme functionality.
-		$this->loader->add_action( 'wp',                            $boldgrid_theme,   'setup_author' );
-		$this->loader->add_filter( 'body_class',                    $boldgrid_theme,   'body_classes' );
+		$this->loader->add_action( 'wp', $boldgrid_theme, 'setup_author' );
+		$this->loader->add_action( 'pre_get_posts', $boldgrid_theme, 'set_main_query' );
+		$this->loader->add_filter( 'widget_posts_args', $boldgrid_theme, 'set_recent_posts_query' );
+		$this->loader->add_filter( 'body_class', $boldgrid_theme, 'body_classes' );
+		$this->loader->add_filter( 'post_class', $boldgrid_theme, 'post_class' );
+
+		$this->loader->add_filter( 'bgtfw_entry_header_classes', $boldgrid_theme, 'entry_header_classes' );
+		$this->loader->add_filter( 'bgtfw_header_classes', $boldgrid_theme, 'header_classes' );
+		$this->loader->add_filter( 'bgtfw_footer_classes', $boldgrid_theme, 'footer_classes' );
+		$this->loader->add_filter( 'bgtfw_navi_wrap_classes', $boldgrid_theme, 'inner_header_classes' );
+		$this->loader->add_filter( 'bgtfw_navi_classes', $boldgrid_theme, 'navi_classes' );
+		$this->loader->add_filter( 'bgtfw_footer_content_classes', $boldgrid_theme, 'inner_footer_classes' );
+		$this->loader->add_filter( 'bgtfw_site_content_classes', $boldgrid_theme, 'blog_container' );
+		$this->loader->add_filter( 'bgtfw_site_content_classes', $boldgrid_theme, 'page_container' );
+		$this->loader->add_filter( 'bgtfw_site_content_classes', $boldgrid_theme, 'blog_page_container' );
+		$this->loader->add_filter( 'bgtfw_blog_page_post_title_classes', $boldgrid_theme, 'blog_page_post_title_classes' );
+		$this->loader->add_filter( 'bgtfw_posts_title_classes', $boldgrid_theme, 'post_title_classes' );
+		$this->loader->add_filter( 'bgtfw_pages_title_classes', $boldgrid_theme, 'page_title_classes' );
+		$this->loader->add_filter( 'bgtfw_single_page_title_classes', $boldgrid_theme, 'page_title_background_class' );
+		$this->loader->add_filter( 'bgtfw_page_page_title_classes', $boldgrid_theme, 'page_title_background_class' );
+		$this->loader->add_filter( 'bgtfw_blog_page_title_classes', $boldgrid_theme, 'page_title_background_class' );
+		$this->loader->add_filter( 'bgtfw_archive_page_title_classes', $boldgrid_theme, 'page_title_background_class' );
+
 		$this->loader->add_filter( 'wp_page_menu_args',             $boldgrid_theme,   'page_menu_args' );
 		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );
-		$this->loader->add_filter( 'bolgrid_call_to_action',        $boldgrid_theme,   'call_to_action' );
-		$this->loader->add_filter( 'bolgrid_call_to_action_button', $boldgrid_theme,   'cta_button' );
-		$this->loader->add_filter( 'boldgrid_contact_phone',        $boldgrid_theme,   'contact_phone' );
-		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_logo_or_title' );
+		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_title' );
 		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
 		$this->loader->add_filter( 'boldgrid_primary_navigation',   $boldgrid_theme,   'print_primary_navigation' );
 		$this->loader->add_filter( 'boldgrid_print_menu', $boldgrid_theme, 'print_menu' );
 
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
+
+		// Register dynamic menu hooks.
+		$boldgrid_theme->menu_border_color( $this->configs );
+
+		// Load Custom Header.
+		$this->custom_header();
+	}
+
+	/**
+	 * This contains hooks for our theme's custom header implementation.
+	 *
+	 * @since 2.0.0
+	 */
+	private function custom_header() {
+		$header  = new Boldgrid_Framework_Custom_Header( $this->configs );
+		$this->loader->add_action( 'after_setup_theme', $header, 'custom_header_setup' );
+		$this->loader->add_filter( 'header_video_settings', $header, 'video_controls' );
 	}
 
 	/**
@@ -436,12 +474,31 @@ class BoldGrid_Framework {
 		$admin = new BoldGrid_Framework_Admin( $this->configs );
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
+		$boldgrid_ppb = new Boldgrid_Framework_PPB( $this->configs );
+
+		$content = new Boldgrid_Framework_Content( $this->configs );
+		$this->loader->add_filter( 'excerpt_length', $content, 'excerpt_length', 999 );
+
+		$generic = new Boldgrid_Framework_Customizer_Generic( $this->configs );
+		$this->loader->add_action( 'wp_enqueue_scripts', $generic, 'add_styles' );
+		$this->loader->add_action( 'bgtfw_generic_css_BoxShadow', $generic, 'box_shadow_css', 10, 3 );
+		$this->loader->add_action( 'bgtfw_generic_css_Border', $generic, 'border_css', 10, 3 );
+
+		if ( ! empty( $this->configs['starter-content'] ) ) {
+			$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
+			$this->loader->add_action( 'after_setup_theme', $starter_content, 'add_theme_support' );
+			$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'add_post_meta', 10, 2 );
+			$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'post_content_callbacks' );
+		}
 
 		// Edit post links.
 		if ( true === $this->configs['edit-post-links']['enabled'] ) {
 			$links = new Boldgrid_Framework_Edit_Post_Links( $this->configs );
 			$this->loader->add_filter( 'edit_post_link', $links, 'get_link', 10, 3 );
 		}
+
+		// BoldGrid Post and Page Builder Support.
+		$this->loader->add_filter( 'BoldgridEditor\PageBuilder', $boldgrid_ppb, 'set_theme_fonts' );
 
 		// Actions.
 		$this->loader->add_action( 'boldgrid_activate_framework', $activate, 'do_activate' );
@@ -454,6 +511,7 @@ class BoldGrid_Framework {
 
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $activate, 'do_activate' );
+			$this->loader->add_action( 'switch_theme', $activate, 'do_deactivate' );
 		}
 
 		// Stop Wordpress from assigning widgets to our areas.
@@ -463,15 +521,16 @@ class BoldGrid_Framework {
 
 		// Add Kirki Fonts to WordPress Page/Post Editor.
 		if ( true === $this->configs['customizer-options']['typography']['enabled'] && is_admin() ) {
-			$this->loader->add_filter( 'kirki/dynamic_css/method', $editor, 'add_styles_method' );
-			$this->loader->add_filter( 'kirki/googlefonts_load_method', $editor, 'kirki_load_method' );
+			$this->loader->add_filter( 'kirki_dynamic_css_method', $editor, 'add_styles_method' );
 			$this->loader->add_filter( 'mce_css', $editor, 'add_google_fonts' );
+			$this->loader->add_action( 'admin_enqueue_scripts', $editor, 'enqueue_webfonts' );
 		}
 
-		$this->loader->add_action( 'init', $editor, 'add_post_title_toggle' );
-		$this->loader->add_action( 'save_post', $editor, 'update_page_title_toggle', 10, 2 );
 		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'admin_enqueue_scripts' );
 		$this->loader->add_filter( 'tiny_mce_before_init', $editor, 'tinymce_body_class' );
+
+		// If installing a plugin via tgmpa, then remove custom plugins_api hooks.
+		$this->loader->add_action( 'init', $admin, 'remove_hooks' );
 	}
 
 	/**
@@ -484,7 +543,8 @@ class BoldGrid_Framework {
 		$widgets = new Boldgrid_Framework_Widgets( $this->configs );
 		$this->loader->add_action( 'widgets_init', $widgets, 'create_config_widgets' );
 		$this->loader->add_action( 'customize_preview_init', $widgets, 'wrap_widget_areas' );
-		$this->loader->add_action( 'dynamic_sidebar_params', $widgets, 'wrap_bg_widgets' );
+		$this->loader->add_action( 'admin_head-widgets.php', $widgets, 'admin_sidebar_display' );
+		$this->loader->add_action( 'sidebar_admin_setup', $widgets, 'sort_sidebars' );
 	}
 
 	/**
@@ -518,6 +578,28 @@ class BoldGrid_Framework {
 	}
 
 	/**
+	 * This defines the core functionality of the framework's Layout section in the editor screens.
+	 *
+	 * @since    3.0.0
+	 * @access   private
+	 */
+	private function layouts() {
+		$layouts = new Boldgrid_Framework_Layouts_Post_Meta( $this->configs );
+
+		/* Adds our custom meta box to page/post editor. */
+		$this->loader->add_action( 'add_meta_boxes', $layouts, 'add' );
+
+		/* Adds our styles/scripts for the custom meta box on the new post and edit post screens only. */
+		$this->loader->add_action( 'admin_head-post.php', $layouts, 'styles' );
+		$this->loader->add_action( 'admin_head-post-new.php', $layouts, 'styles' );
+
+		$this->loader->add_action( 'customize_controls_print_styles', $layouts, 'styles' );
+
+		/* Handle edit, ok, and cancel options within our custom meta box. */
+		$this->loader->add_action( 'admin_enqueue_scripts', $layouts, 'enqueue_scripts' );
+	}
+
+	/**
 	 * This defines the core functionality of the framework's customizer options.
 	 *
 	 * @since    1.0.0
@@ -525,6 +607,7 @@ class BoldGrid_Framework {
 	 */
 	private function theme_customizer() {
 		self::customizer_base();
+		self::widget_areas();
 		self::customizer_background_controls();
 		self::device_preview();
 		self::customizer_edit_buttons();
@@ -534,6 +617,9 @@ class BoldGrid_Framework {
 		self::contact_blocks();
 		self::customizer_kirki();
 		self::customizer_effects();
+		self::customizer_widget_meta();
+		self::customizer_starter_content();
+		self::customizer_search();
 	}
 
 	/**
@@ -546,7 +632,6 @@ class BoldGrid_Framework {
 		$background = new Boldgrid_Framework_Customizer_Background( $this->configs );
 		$this->loader->add_action( 'customize_register', $background, 'add_patterns' );
 		// $this->loader->add_action( 'customize_register', $background, 'add_position' );
-		// $this->loader->add_action( 'customize_register', $background, 'add_color_picker' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_size' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_type' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_crop', 11 );
@@ -554,6 +639,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'admin_enqueue_scripts', $background, 'register_control_scripts' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $background, 'register_front_end_scripts' );
 		$this->loader->add_filter( 'boldgrid_add_head_styles', $background, 'add_head_styles_filter' );
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $background, 'add_editor_styles' );
 
 		// Only do this on 4.7 and above.
 		if ( version_compare( get_bloginfo( 'version' ), '4.6.2', '>=' ) ) {
@@ -574,7 +660,6 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $edit, 'wp_enqueue_scripts' );
 		$this->loader->add_action( 'wp_footer', $edit, 'wp_footer' );
 		$this->loader->add_action( 'wp_nav_menu_args', $edit, 'wp_nav_menu_args' );
-		$this->loader->add_filter( 'has_nav_menu', $edit, 'has_nav_menu', 10, 2 );
 	}
 
 	/**
@@ -585,24 +670,13 @@ class BoldGrid_Framework {
 	 */
 	private function customizer_typography() {
 		$typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
-		// Add Typography Controls.
-		if ( true === $this->configs['customizer-options']['typography']['enabled'] ) {
-			$this->loader->add_action( 'customize_controls_enqueue_scripts', $typography, 'enqueue_scripts' );
-			$this->loader->add_action( 'customize_register', $typography, 'typography_panel' );
-			$this->loader->add_filter( 'kirki/controls', $typography, 'headings_typography_controls' );
-			$this->loader->add_filter( 'kirki/controls', $typography, 'alternate_headings_typography_controls' );
-			$this->loader->add_filter( 'kirki/controls', $typography, 'navigation_typography_controls' );
-			$this->loader->add_filter( 'kirki/controls', $typography, 'body_typography_controls' );
-			$this->loader->add_action( 'wp_head', $typography, 'headings_font_size_css' );
-			$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'headings_editor_styles' );
-		}
-		// Add Site title typography controls.
-		$this->loader->add_action( 'customize_preview_init', $typography, 'live_preview' );
-		$this->loader->add_filter( 'kirki/controls', $typography, 'site_identity_controls' );
-		$this->loader->add_action( 'wp_head', $typography, 'title_text_shadow' );
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
+		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
+
+		$links = new BoldGrid_Framework_Links( $this->configs );
+		$this->loader->add_filter( 'wp_enqueue_scripts', $links, 'add_styles_frontend' );
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $links, 'add_styles_editor' );
 	}
-
-
 
 	/**
 	 * This defines the core functionality of the framework's customizer color controls.
@@ -667,10 +741,7 @@ class BoldGrid_Framework {
 	 */
 	private function contact_blocks() {
 		$contact_blocks = new Boldgrid_Framework_Customizer_Contact_Blocks( $this->configs );
-		// If contact blocks is enabled and BSTW widget is disabled add contact blocks.
-		if ( 'disabled' == $this->configs['template']['call-to-action'] ) {
-			$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
-		}
+		$this->loader->add_action( 'boldgrid_display_contact_block', $contact_blocks, 'contact_block_html' );
 	}
 
 	/**
@@ -696,38 +767,58 @@ class BoldGrid_Framework {
 
 		// Load the default Kirki Configuration.
 		$this->loader->add_action( 'init', $base, 'kirki_controls' );
-
-		$this->loader->add_action( 'customize_register', $base, 'site_logo' );
+		$this->loader->add_action( 'customize_register', $base, 'add_panels' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_name' );
 		$this->loader->add_action( 'customize_register', $base, 'blog_description' );
-		// $this->loader->add_action( 'customize_register', $base, 'advanced_panel' );
 		$this->loader->add_action( 'customize_register', $base, 'header_panel' );
-		// $this->loader->add_action( 'customize_register', $base, 'init_help' );
 		$this->loader->add_action( 'customize_register', $base, 'customizer_reorganization' );
 		$this->loader->add_action( 'customize_register', $base, 'set_text_contrast' );
 		$this->loader->add_action( 'customize_register', $base, 'add_menu_description', 20 );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'custom_customize_enqueue' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'enqueue_styles' );
-		if ( is_customize_preview() ) {
-			$this->loader->add_action( 'wp_footer', $base, 'add_help_overlay' );
-		}
+		$this->loader->add_action( 'customize_controls_print_styles', $base, 'control_styles' );
 
-		// Output custom CSS and JS to live site.
-		$this->loader->add_action( 'wp_head', $base, 'custom_css_output' );
 		// This hook can be used to add any styles to the head.
-		$this->loader->add_action( 'wp_head',   $base, 'add_head_styles', 9001 );
+		$this->loader->add_action( 'wp_head', $base, 'add_head_styles', 9001 );
+
+		// Output custom JS to live site.
 		$this->loader->add_action( 'wp_footer', $base, 'custom_js_output' );
-		// Custom Hooks for preview mode and live site.
-		$this->loader->add_action( 'wp_head', $base, 'boldgrid_preview_hooks', 9999, 0 );
-		// Display Widgets.
-		$this->loader->add_action( 'boldgrid_footer_top',   $base, 'footer_widget_html' );
-		$this->loader->add_action( 'boldgrid_header_bottom',   $base, 'header_widget_html' );
-		// Display HTML.
-		$this->loader->add_action( 'boldgrid_header_top', $base, 'display_header_html' );
-		$this->loader->add_action( 'boldgrid_footer_bottom', $base, 'display_footer_html' );
+
 		// Enqueue live preview javascript in Theme Customizer admin screen.
 		$this->loader->add_action( 'customize_preview_init', $base, 'live_preview' );
-		$this->loader->add_action( 'customize_register', $base, 'remove_css_section', 15 );
+	}
+
+	/**
+	 * Welcome.
+	 *
+	 * This method sets up the Welcome screen displayed after theme is activated.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 */
+	private function welcome() {
+		$welcome = new BoldGrid_Framework_Welcome( $this->configs );
+
+		$this->loader->add_action( 'admin_init', $welcome, 'redirect_on_activation' );
+		$this->loader->add_action( 'admin_menu', $welcome, 'add_admin_menu' );
+		$this->loader->add_action( 'Boldgrid\Library\Library\Page\Connect\addScripts', $welcome, 'connect_scripts' );
+		$this->loader->add_action( 'custom_menu_order', $welcome, 'custom_menu_order' );
+
+		// Don't show the key prompt notice on the welcome page.
+		if ( Boldgrid_Framework_Welcome::is_welcome_page() ) {
+			add_filter( 'Boldgrid\Library\Library\Notice\KeyPrompt_display', '__return_false' );
+		}
+	}
+
+	/**
+	 * Responsible for creating the dynamic widget area markup.
+	 *
+	 * @since 2.0.0
+	 */
+	private function widget_areas() {
+		$widget_areas = new Boldgrid_Framework_Customizer_Widget_Areas();
+		$this->loader->add_action( 'boldgrid_footer_top', $widget_areas, 'footer_html' );
+		$this->loader->add_action( 'boldgrid_header_bottom', $widget_areas, 'header_html' );
 	}
 
 	/**
@@ -740,6 +831,82 @@ class BoldGrid_Framework {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		// Add Page Effects Controls.
 		// $this->loader->add_action( 'customize_register', $effects, 'add_controls' );
+	}
+
+
+	/**
+	 * Add hooks to customizer register action.
+	 *
+	 * @since 2.0.0
+	 */
+	private function customizer_search() {
+		$search = new Boldgrid_Framework_Customizer_Search( $this->configs );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $search, 'enqueue' );
+		$this->loader->add_action( 'customize_controls_print_footer_scripts', $search, 'print_templates' );
+	}
+
+	/**
+	 * This defines the core functionality of the extended widget meta controls for
+	 * adding color and title fields to widget areas.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 */
+	private function customizer_widget_meta() {
+		$widget_meta = new  Boldgrid_Framework_Customizer_Widget_Meta( $this->configs );
+		$this->loader->add_action( 'customize_register', $widget_meta, 'customize_register' );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $widget_meta, 'customize_controls_enqueue_scripts' );
+		$this->loader->add_action( 'customize_controls_print_footer_scripts', $widget_meta, 'customize_controls_print_footer_scripts' );
+		$this->loader->add_action( 'customize_preview_init', $widget_meta, 'customize_preview_init' );
+
+		if ( ! is_admin() ) {
+			$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_start_tag', 5 );
+			$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_title', 9 );
+			$this->loader->add_action( 'dynamic_sidebar_after', $widget_meta, 'render_sidebar_end_tag', 15 );
+		}
+
+		if ( is_customize_preview() ) {
+			$this->loader->add_filter( 'dynamic_sidebar_before', $widget_meta, 'add_customizer_sidebar_styles', 1 );
+		} else {
+			$this->loader->add_filter( 'bgtfw_inline_css', $widget_meta, 'add_frontend_sidebar_styles' );
+		}
+	}
+
+	/**
+	 * This defines the core functionality of the framework's customizer start content import button.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 */
+	private function customizer_starter_content() {
+		$starter_content = new Boldgrid_Framework_Customizer_Starter_Content( $this->configs );
+		$query = new Boldgrid_Framework_Customizer_Starter_Content_Query();
+		$suggest = new Boldgrid_Framework_Customizer_Starter_Content_Suggest( $this->configs );
+		$plugins = new Boldgrid_Framework_Customizer_Starter_Content_Plugins( $this->configs );
+
+		// Import the starter content.
+		$this->loader->add_action( 'customize_preview_init', $query, 'make_auto_drafts_queryable' );
+		$this->loader->add_action( 'customize_register', $starter_content, 'add_hooks' );
+		$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'get_theme_starter_content', 10, 2 );
+
+		// Suggest the user load starter content.
+		$this->loader->add_action( 'wp_footer', $suggest, 'wp_footer' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $suggest, 'wp_enqueue_scripts' );
+		$this->loader->add_action( 'wp_ajax_bgtfw_starter_content_suggested', $suggest, 'ajax_suggested' );
+
+		// Allow plugins to be installed before starter content is imported.
+		$this->loader->add_action( 'wp_ajax_tgmpa-bulk-install', $plugins, 'tgmpa_bulk_install' );
+		$this->loader->add_action( 'wp_ajax_tgmpa-bulk-activate', $plugins, 'tgmpa_bulk_install' );
+		$this->loader->add_action( 'tgmpa_register', $plugins, 'tgmpa_register' );
+		$this->loader->add_filter( 'tgmpa_load', $plugins, 'tgmpa_load' );
+		$this->loader->add_filter( 'tgmpa_die_on_api_error', $plugins, 'tgmpa_die_on_api_error' );
+		$this->loader->add_filter( 'bgtfw_register_tgmpa', $plugins, 'bgtfw_register_tgmpa' );
+		$this->loader->add_action( 'wp_ajax_bgtfw-post-plugin-setup', $plugins, 'post_plugin_setup' );
+
+		// Filters to run if we are in the Customizer and requesting Starter Content be loaded.
+		if ( BoldGrid_Framework_Customizer_Starter_Content::$fresh_site_customize ) {
+			$this->loader->add_filter( 'pre_get_posts', $starter_content, 'pre_get_posts' );
+		}
 	}
 
 	/**
@@ -755,6 +922,10 @@ class BoldGrid_Framework {
 	 */
 	private function device_preview() {
 		$device_preview = new Boldgrid_Framework_Device_Preview( $this->configs );
+
+		$this->loader->add_filter( 'customize_previewable_devices', $device_preview, 'customize_previewable_devices' );
+		$this->loader->add_action( 'customize_controls_print_styles', $device_preview, 'adjust_customizer_responsive_sizes' );
+
 		// We don't need device previews if user is running on a mobile device or newer WP.
 		$wp_version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>' );
 
@@ -828,7 +999,7 @@ class BoldGrid_Framework {
 	 */
 	private function pagination() {
 		$pagination = new BoldGrid_Framework_Pagination();
-		$this->loader->add_action( 'woocommerce_pagination_display', $pagination, 'create' );
+		$this->loader->add_action( 'bgtfw_pagination_display', $pagination, 'create' );
 	}
 
 	/**
@@ -840,13 +1011,40 @@ class BoldGrid_Framework {
 	private function woocommerce() {
 		$woo = new Boldgrid_Framework_Woocommerce( $this->configs );
 		$this->loader->add_action( 'wp_loaded', $woo, 'remove_template_warnings', 99 );
+		$this->loader->add_filter( 'customize_register', $woo, 'customizer', 20 );
 		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $woo, 'buttons' );
 		$this->loader->add_filter( 'woocommerce_sale_flash', $woo, 'woocommerce_custom_sale_text', 10, 3 );
 		$this->loader->add_filter( 'woocommerce_form_field_args', $woo, 'wc_form_field_args', 10, 3 );
 		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'select2_style' );
 		$this->loader->add_filter( 'woocommerce_breadcrumb_defaults', $woo, 'breadcrumbs' );
 		$this->loader->add_filter( 'woocommerce_dropdown_variation_attribute_options_args', $woo, 'variation_dropdown' );
-		add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );
+		add_filter( 'loop_shop_per_page', function( $cols ) {
+			return 12;
+		}, 20 );
+		if ( function_exists( 'woocommerce_demo_store' ) ) {
+			add_action( 'boldgrid_main_top', 'woocommerce_demo_store', 5 );
+			remove_action( 'wp_footer', 'woocommerce_demo_store', 10 );
+		}
+		add_action( 'template_redirect', function() use ( $woo ) {
+			if ( $woo->is_woocommerce_page() ) {
+				add_action( 'boldgrid_main_top' , array( $woo, 'add_container_open' ) );
+				add_action( 'boldgrid_main_bottom' , array( $woo, 'add_container_close' ) );
+			}
+		});
+	}
+
+	/**
+	 * Adds in page title functionality for bgtfw.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 */
+	private function title() {
+		$title = new BoldGrid_Framework_Title( $this->configs );
+
+		$this->loader->add_action( 'post_updated', $title, 'post_updated' );
+		$this->loader->add_filter( 'the_title', $title, 'show_title', 10, 2 );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $title, 'customize_controls_enqueue_scripts' );
 	}
 
 	/**

@@ -1,0 +1,38 @@
+#customize-theme-controls .accordion-section li {
+	&[id*="margin_section"] {
+		> .accordion-section-title:before {
+			@include dashicons;
+			content: "\f221";
+		}
+	}
+	&[id*="padding_section"] {
+		> .accordion-section-title:before {
+			@include dashicons;
+			content: "\f222";
+		}
+	}
+	&[id*="border_section"] {
+		> .accordion-section-title:before {
+			@include dashicons;
+			content: "\f509";
+		}
+	}
+	&[id*="shadow_section"] {
+		> .accordion-section-title:before {
+			@include dashicons;
+			content: "\f161";
+		}
+	}
+	&[id*="radius_section"] {
+		> .accordion-section-title:before {
+			@include dashicons;
+			content: "\f531";
+		}
+	}
+	&[id*="visibility_section"] {
+		> .accordion-section-title:before {
+			@include dashicons;
+			content: "\f115";
+		}
+	}
+}

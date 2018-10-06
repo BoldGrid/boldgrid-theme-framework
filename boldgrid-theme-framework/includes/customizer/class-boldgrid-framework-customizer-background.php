@@ -97,10 +97,15 @@ class Boldgrid_Framework_Customizer_Background {
 	 * @since     1.0.0
 	 */
 	public function register_control_scripts() {
-		wp_register_script( 'boldgrid-framework-customizer-background',
+		wp_register_script(
+			'boldgrid-framework-customizer-background',
 			$this->configs['framework']['js_dir'] . 'customizer/background-controls.js',
-			array( 'jquery', 'jquery-ui-button' ),
-		$this->configs['version'], true );
+			array(
+				'jquery',
+				'jquery-ui-button',
+			),
+			$this->configs['version'], true
+		);
 	}
 
 	/**
@@ -110,13 +115,21 @@ class Boldgrid_Framework_Customizer_Background {
 	 * @since     1.0.0
 	 */
 	public function add_position( $wp_customize ) {
-		/* Custom Background */
-		$wp_customize->add_setting( 'boldgrid_background_vertical_position',
-			array( 'type' => 'theme_mod' )
+
+		$wp_customize->add_setting(
+			'boldgrid_background_vertical_position',
+			array(
+				'type' => 'theme_mod',
+				'sanitize_callback' => 'absint',
+			)
 		);
 
-		$wp_customize->add_setting( 'boldgrid_background_horizontal_position',
-			array( 'type' => 'theme_mod' )
+		$wp_customize->add_setting(
+			'boldgrid_background_horizontal_position',
+			array(
+				'type' => 'theme_mod',
+				'sanitize_callback' => 'absint',
+			)
 		);
 
 		$wp_customize->remove_control( 'background_position_x' );
@@ -124,7 +137,9 @@ class Boldgrid_Framework_Customizer_Background {
 		$configs = $this->configs;
 
 		// Add Background Vertical Position Control.
-		Kirki::add_field( '', array(
+		Kirki::add_field(
+			'bgtfw',
+			array(
 				'type' => 'slider',
 				'settings' => 'boldgrid_background_vertical_position',
 				'label' => __( 'Vertical Background Position', 'bgtfw' ),
@@ -141,7 +156,9 @@ class Boldgrid_Framework_Customizer_Background {
 		);
 
 		// Add Background Horizontal Position Control.
-		Kirki::add_field( '', array(
+		Kirki::add_field(
+			'bgtfw',
+			array(
 				'type' => 'slider',
 				'settings' => 'boldgrid_background_horizontal_position',
 				'label' => __( 'Horizontal Background Position', 'bgtfw' ),
@@ -156,7 +173,6 @@ class Boldgrid_Framework_Customizer_Background {
 				),
 			)
 		);
-
 	}
 
 	/**
@@ -173,6 +189,9 @@ class Boldgrid_Framework_Customizer_Background {
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
+				'sanitize_callback' => function( $value, $setting ) {
+					return in_array( $value, [ 'cover', 'contain', '100% auto', 'auto 100%', 'inherit', 'auto' ], true ) ? $value : $setting->default;
+				},
 			)
 		);
 
@@ -193,34 +212,6 @@ class Boldgrid_Framework_Customizer_Background {
 					'inherit' => __( 'Default', 'bgtfw' ),
 					'auto' => __( 'Do Not Resize', 'bgtfw' ),
 				),
-			)
-		);
-	}
-
-	/**
-	 * Add controls to change the background color
-	 *
-	 * @param     array $wp_customize WP_Customize object.
-	 * @since     1.0.0
-	 */
-	public function add_color_picker( $wp_customize ) {
-		$wp_customize->add_setting(
-			'boldgrid_background_color',
-			array(
-				'type' => 'theme_mod',
-			)
-		);
-		$configs = $this->configs;
-		// Add Background Color Control to Pattern&Color of Background Image Section.
-		Kirki::add_field( '', array(
-			'type' => 'color',
-			'settings' => 'boldgrid_background_color',
-			'label' => __( 'Background Color', 'bgtfw' ),
-			'section' => 'background_image',
-			'transport' => 'postMessage',
-			'default' => $configs['customizer-options']['background']['defaults']['boldgrid_background_color'],
-			'priority' => 1,
-			'choices' => array(),
 			)
 		);
 	}
@@ -254,22 +245,25 @@ class Boldgrid_Framework_Customizer_Background {
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
+				'sanitize_callback' => function( $value ) {
+					return in_array( $value, [ 'image', 'pattern' ], true ) ? $value : 'pattern';
+				},
 			)
 		);
 
-			$wp_customize->add_control(
-				new Boldgrid_Framework_Control_Background_Type(
-					$wp_customize,
-					'boldgrid-background-type',
-					array(
-						'label' => __( 'Background Type', 'bgtfw' ),
-						'section' => 'background_image',
-						'settings' => 'boldgrid_background_type',
-						'priority' => 0,
-						'choices' => array(),
-					)
+		$wp_customize->add_control(
+			new Boldgrid_Framework_Control_Background_Type(
+				$wp_customize,
+				'boldgrid-background-type',
+				array(
+					'label' => __( 'Background Type', 'bgtfw' ),
+					'section' => 'background_image',
+					'settings' => 'boldgrid_background_type',
+					'priority' => 0,
+					'choices' => array(),
 				)
-			);
+			)
+		);
 	}
 
 	/**
@@ -362,12 +356,16 @@ class Boldgrid_Framework_Customizer_Background {
 	 *
 	 * @param array $configs BoldGrid Theme Framework config.
 	 * @since 1.0.4
-	 * @return string Example: "url(https://domain.com/wp-content/themes/boldgrid-theme/
-	 * 		inc/boldgrid-theme-framework/assets/img/patterns/60-lines.png)"
+	 * @return string Example: "url(https://domain.com/wp-content/themes/boldgrid-theme/inc/boldgrid-theme-framework/assets/img/patterns/60-lines.png)"
 	 */
 	public static function get_default_pattern_mod( $configs ) {
-		return 'url(' . $configs['framework']['admin_asset_dir'] . 'img/patterns/'
-			. $configs['customizer-options']['background']['defaults']['boldgrid_background_pattern'] . ')';
+		$default = 'none';
+
+		if ( ! empty( $configs['customizer-options']['background']['defaults']['boldgrid_background_pattern'] ) ) {
+			$default = 'url(' . $configs['framework']['admin_asset_dir'] . 'img/patterns/' . $configs['customizer-options']['background']['defaults']['boldgrid_background_pattern'] . ')';
+		}
+
+		return $default;
 	}
 
 	/**
@@ -388,24 +386,38 @@ class Boldgrid_Framework_Customizer_Background {
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
 				'transport' => 'postMessage',
+				'sanitize_callback' => function( $value ) {
+					if ( empty( $value ) || ! is_string( $value ) ) {
+						return '';
+					}
+
+					preg_match( '/url\(\"(.+)\"\)/', $value, $matches );
+
+					if ( ! empty( $matches ) ) {
+						$url = esc_url_raw( $matches[1] );
+						return 'url("' . $url . '")';
+					} else {
+						return '';
+					}
+				},
 			)
 		);
 
-			$wp_customize->add_control(
-				new Boldgrid_Framework_Control_Pattern(
-					$wp_customize,
-					'boldgrid_background_pattern',
-					array(
-						'label' => __( 'Subtle Patterns', 'bgtfw' ),
-						'section' => 'background_image',
-						'settings' => 'boldgrid_background_pattern',
-						'priority' => 3,
-						'choices' => array(
-							'patterns' => $patterns,
-						),
-					)
+		$wp_customize->add_control(
+			new Boldgrid_Framework_Control_Pattern(
+				$wp_customize,
+				'boldgrid_background_pattern',
+				array(
+					'label' => __( 'Subtle Patterns', 'bgtfw' ),
+					'section' => 'background_image',
+					'settings' => 'boldgrid_background_pattern',
+					'priority' => 3,
+					'choices' => array(
+						'patterns' => $patterns,
+					),
 				)
-			);
+			)
+		);
 	}
 
 	/**
@@ -429,6 +441,7 @@ class Boldgrid_Framework_Customizer_Background {
 		$theme_mods = get_theme_mods();
 		$background_options = $this->configs['customizer-options']['background'];
 
+		$bg_image = ! empty( $theme_mods['background_image'] ) ? $theme_mods['background_image'] : null;
 		$bg_type = ! empty( $theme_mods['boldgrid_background_type'] ) ? $theme_mods['boldgrid_background_type'] : null;
 		$bg_pattern = ! empty( $theme_mods['boldgrid_background_pattern'] ) ? $theme_mods['boldgrid_background_pattern'] : 'none';
 		$bg_x_pos = isset( $theme_mods['boldgrid_background_horizontal_position'] ) ? $theme_mods['boldgrid_background_horizontal_position'] : null;
@@ -480,6 +493,12 @@ class Boldgrid_Framework_Customizer_Background {
 			}
 		}
 
+		if ( ! $bg_image ) {
+			if ( ! empty( $background_options['defaults']['background_image'] ) ) {
+				$bg_image = $background_options['defaults']['background_image'];
+			}
+		}
+
 		$css_rules = array();
 
 		if ( 'pattern' === $bg_type ) {
@@ -489,28 +508,19 @@ class Boldgrid_Framework_Customizer_Background {
 					'background-size' => 'auto',
 					'background-repeat' => 'repeat',
 					'background-attachment' => 'scroll',
-					'pattern' => '/** Background pattern from subtlepatterns.com & http://www.transparenttextures.com/ **/',
 				),
 			);
-
-			if ( ! empty( $bg_color ) ) {
-				$css_rules['body.custom-background']['background-color'] = esc_attr( $bg_color );
-			}
 		} else {
 			if ( false === is_null( $bg_x_pos ) || false === is_null( $bg_y_pos ) ) {
 				// If the user has used the tool to position BG image use those cords even if they are 0.
-				$bg_x_pos = $bg_x_pos ?: 0;
-				$bg_y_pos = $bg_y_pos ?: 0;
+				$bg_x_pos = $bg_x_pos ? : 0;
+				$bg_y_pos = $bg_y_pos ? : 0;
 
 				$css_rules = array(
 					'body.custom-background' => array(
-						'background-position' => ( $bg_x_pos * 5 ) . 'px ' . ($bg_y_pos * 5) . 'px',
+						'background-position' => ( $bg_x_pos * 5 ) . 'px ' . ( $bg_y_pos * 5 ) . 'px',
 					),
 				);
-			}
-
-			if ( ! empty( $bg_color ) ) {
-				$css_rules['body.custom-background']['background-color'] = esc_attr( $bg_color );
 			}
 
 			if ( 'parallax' === $bg_attach ) {
@@ -531,12 +541,16 @@ class Boldgrid_Framework_Customizer_Background {
 				wp_enqueue_script( 'boldgrid-stellar-parallax' );
 			}
 
+			if ( $bg_image ) {
+				$css_rules['body.custom-background']['background-image'] = $this->create_overlay_css( $bg_image );
+			}
+
 			if ( $bg_image_size ) {
 				$css_rules['body.custom-background']['background-size'] = esc_attr( $bg_image_size );
 			}
 		}
 
-		if ( count( $css_rules ) ) {
+		if ( ! empty( $css_rules ) ) {
 			$custom_background = function ( $array ) {
 				$array[] = 'custom-background';
 				return $array;
@@ -549,6 +563,42 @@ class Boldgrid_Framework_Customizer_Background {
 	}
 
 	/**
+	 * Create a CSS rule for background image.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param  string $image Image URL value from theme mod or config.
+	 * @return string        A CSS rule for the background image.
+	 */
+	public function create_overlay_css( $image ) {
+		$controls = $this->configs['customizer']['controls'];
+
+		// Get the related theme mods.
+		$enabled = get_theme_mod( 'bgtfw_background_overlay',
+			$controls['bgtfw_background_overlay']['default'] );
+		$color = get_theme_mod( 'bgtfw_background_overlay_color',
+			$controls['bgtfw_background_overlay_color']['default'] );
+		$alpha = get_theme_mod( 'bgtfw_background_overlay_alpha',
+			$controls['bgtfw_background_overlay_alpha']['default'] );
+
+		$rule = '';
+		if ( $enabled && $color && $alpha ) {
+
+			// Create an rgba given palette color and alpha.
+			$color = explode( ':', $color );
+			$color = array_pop( $color );
+			$color_obj = ariColor::newColor( $color );
+			$color_obj->alpha = $alpha;
+			$color = esc_attr( $color_obj->toCSS( 'rgba' ) );
+
+			$rule = 'linear-gradient(to right, ' . $color . ', ' . $color .
+				' ), url("' . esc_attr( $image ) . '")';
+		}
+
+		return $rule;
+	}
+
+	/**
 	 * Append BG styles to Head rules
 	 *
 	 * @param     array $cur_rules Current rules.
@@ -558,6 +608,36 @@ class Boldgrid_Framework_Customizer_Background {
 	public function add_head_styles_filter( $cur_rules ) {
 		$css_rules  = $this->create_background_styles();
 		return array_merge( $cur_rules, $css_rules );
+	}
+
+	/**
+	 * Add editor styles.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @param  array $css CSS to add to editor.
+	 *
+	 * @return array $css Modified CSS to add to editor.
+	 */
+	public function add_editor_styles( $css ) {
+		$pattern = get_theme_mod( 'boldgrid_background_pattern' );
+		$styles = array();
+
+		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( $pattern ) ) {
+			$styles = $this->create_background_styles();
+		}
+
+		// Convert array to css.
+		foreach ( $styles as $rule => $definitions ) {
+			$def = '';
+			foreach ( $definitions as $prop => $definition ) {
+				$def .= $prop . ':' . $definition . ';';
+			}
+
+			$css .= sprintf( '%s { %s }', $rule, $def );
+		}
+
+		return $css;
 	}
 
 	/**
@@ -581,14 +661,20 @@ class Boldgrid_Framework_Customizer_Background {
 
 		$wp_customize->remove_control( 'background_image' );
 
-		$wp_customize->add_control( new Boldgrid_Framework_Background_Crop( $wp_customize, 'background_image', array(
-			'section'     => 'background_image',
-			'label'       => __( 'Background Image', 'bgtfw' ),
-			'priority'    => 9,
-			'flex_width'  => true,
-			'flex_height' => true,
-			'width'       => $this->configs['customizer-options']['background']['defaults']['recommended_image_width'],
-			'height'      => $this->configs['customizer-options']['background']['defaults']['recommended_image_height'],
-		) ) );
+		$wp_customize->add_control(
+			new Boldgrid_Framework_Background_Crop(
+				$wp_customize,
+				'background_image',
+				array(
+					'section'     => 'background_image',
+					'label'       => __( 'Background Image', 'bgtfw' ),
+					'priority'    => 9,
+					'flex_width'  => true,
+					'flex_height' => true,
+					'width'       => $this->configs['customizer-options']['background']['defaults']['recommended_image_width'],
+					'height'      => $this->configs['customizer-options']['background']['defaults']['recommended_image_height'],
+				)
+			)
+		);
 	}
 }

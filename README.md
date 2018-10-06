@@ -2,13 +2,13 @@
 
 [![Build Status](https://api.travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=master)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
 [![License](https://img.shields.io/badge/license-GPL--2.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE)
-[![PHP Version](https://img.shields.io/badge/PHP-5.3%2B-blue.svg)](https://php.net)
+[![PHP Version](https://img.shields.io/badge/PHP-5.4%2B-blue.svg)](https://php.net)
 [![Code Climate](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework/badges/gpa.svg)](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework)
 
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.4
-* **Tested up to:** 4.9.1
+* **Tested up to:** 4.9
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,14 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.0.0 In progress ###
+* New Feature: Layout Selection - Allow users to select between a full width content area or fixed width within the Customizer.
+* New Feature: Header and Footer Layouts - Multiple header and footer styles, which can be selected from within the Customizer.
+* New Feature: Background Video Support - Homepage background video for your header from Youtube or Vimeo.
+* New Feature: Dynamic Content Layout Support - Allow users to select between multiple different blog styles, and change elements such as title, metadata and the overall look and feel with much more precision than ever before.
+* New Feature: Improved Font Controls - Users now have much more control over the fonts elements independently, allowing granular control of the typography.
+* New Feature: Improved Color Controls - Users have much more control over the colors individual elements use, to allow for greater customization of their website's look and feel.
 
 ### 1.5.10 ###
 * Update: Removed reference from bootstrap css to glyphicons since they are unused in bgtfw.

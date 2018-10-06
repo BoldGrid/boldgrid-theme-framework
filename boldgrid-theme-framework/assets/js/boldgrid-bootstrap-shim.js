@@ -15,7 +15,6 @@ jQuery( document ).ready( function( $ ) {
 
 	$( '.widget_recent_comments ul#recentcomments li' ).css( 'padding', '5px 15px' );
 
-	$( 'table#wp-calendar' ).addClass( 'table table-striped' );
 	$( '.sidebar select, select[name="archive-dropdown"]' ).addClass( 'form-control' );
 	$( '.sidebar .button' ).removeClass( 'button' ).addClass( 'btn button-primary' );
 

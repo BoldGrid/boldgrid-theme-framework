@@ -1,0 +1,17 @@
+&.design-1 {
+	.entry-header {
+		.entry-meta {
+			padding-bottom: .75em;
+		}
+	}
+	.entry-footer {
+		padding: 15px 0;
+	}
+	.entry-header.above,
+	.entry-header.background {
+		&, & .featured-imgage-header {
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
+}

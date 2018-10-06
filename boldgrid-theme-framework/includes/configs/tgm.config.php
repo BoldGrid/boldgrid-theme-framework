@@ -20,16 +20,33 @@ return array(
 	 */
 	'plugins' => array(
 		array(
-			'name'      => 'BoldGrid Inspirations',
-			'slug'      => 'boldgrid-inspirations',
-			'source'    => 'https://repo.boldgrid.com/boldgrid-inspirations.zip',
-			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
+			'name'      => 'BoldGrid Post and Page Builder',
+			'slug'      => 'post-and-page-builder',
+			'required'  => true,
+			// This is temporary. Please keep bgtfw and prime's builder version in sync.
+			'source'    => 'https://downloads.wordpress.org/plugin/post-and-page-builder.1.8.0-rc.4.zip',
 		),
 		array(
-			'name'      => 'Post and Page Builder',
-			'slug'      => 'post-and-page-builder',
-			'source'    => 'https://downloads.wordpress.org/plugin/post-and-page-builder.zip',
-			'required'  => false, // If false, the plugin is only 'recommended' instead of required.
+			'name'      => 'BoldGrid Post and Page Builder Premium',
+			'slug'      => 'post-and-page-builder-premium',
+			'source'    => 'https://repo.boldgrid.com/post-and-page-builder-premium.zip',
+			'required'  => true,
+		),
+		array(
+			'name'      => 'BoldGrid Backup',
+			'slug'      => 'boldgrid-backup',
+			'required'  => false,
+		),
+		array(
+			'name'      => 'BoldGrid Backup Premium',
+			'slug'      => 'boldgrid-backup-premium',
+			'source'    => 'https://repo.boldgrid.com/boldgrid-backup-premium.zip',
+			'required'  => false,
+		),
+		array(
+			'name'      => 'BoldGrid Easy SEO',
+			'slug'      => 'boldgrid-easy-seo',
+			'required'  => false,
 		),
 	),
 
@@ -56,12 +73,12 @@ return array(
 		'id'           => 'bgtfw',                 // Unique ID for hashing notices for multiple instances of TGMPA.
 		'default_path' => '',                      // Default absolute path to bundled plugins.
 		'menu'         => 'bgtfw-install-plugins', // Menu slug.
-		'parent_slug'  => 'plugins.php',            // Parent menu slug.
+		'parent_slug'  => 'crio-welcome',          // Parent menu slug.
 		'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
 		'has_notices'  => true,                    // Show admin notices or not.
 		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
 		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
-		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+		'is_automatic' => true,                    // Automatically activate plugins after installation or not.
 		'message'      => '',                      // Message to output right before the plugins table.
 		'strings' => array(
 			'menu_title'   => __( 'Recommended Plugins', 'bgtfw' ),

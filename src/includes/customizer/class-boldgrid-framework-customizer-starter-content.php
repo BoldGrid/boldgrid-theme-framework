@@ -161,7 +161,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 				</p>
 				<p>
 					' . wp_kses(
-						sprintf( __( 'If you\'d rather not keep these changes, <a href="%1$s">exit without saving</a> and return to your dashboard.', 'bgtfw' ), $this->configs['customizer']['starter-content']['return_to_dashboard'] ),
+						sprintf( __( 'If you\'d rather not keep these changes, <a href="%1$s">exit without saving</a> and return to your dashboard.', 'bgtfw' ), $this->configs['starter-content-installer']['return_to_dashboard'] ),
 						array( 'a' => array( 'href' => array() ) )
 						) . '
 				</p>

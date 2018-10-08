@@ -92,7 +92,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 	 */
 	public function maybe_suggest() {
 		// If we don't have a "Starter Content Page" to redirect the user to, abort.
-		if ( empty( $this->configs['customizer']['starter-content']['dashboard_url'] ) ) {
+		if ( empty( $this->configs['starter-content-suggest']['dashboard_url'] ) ) {
 			return false;
 		}
 
@@ -146,7 +146,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Suggest {
 			wp_localize_script(
 				$handle, 'boldgridFrameworkCustomizerSuggest', array(
 					'ajaxurl'           => admin_url( 'admin-ajax.php' ),
-					'starterContentUrl' => $this->congins['customizer']['starter-content']['dashboard_url'],
+					'starterContentUrl' => $this->configs['starter-content-suggest']['dashboard_url'],
 					'yes'               => __( 'Yes', 'bgtfw' ),
 					'no'                => __( 'No', 'bgtfw' ),
 				)

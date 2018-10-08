@@ -878,6 +878,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'tgmpa_die_on_api_error', $plugins, 'tgmpa_die_on_api_error' );
 		$this->loader->add_filter( 'bgtfw_register_tgmpa', $plugins, 'bgtfw_register_tgmpa' );
 		$this->loader->add_action( 'wp_ajax_bgtfw-post-plugin-setup', $plugins, 'post_plugin_setup' );
+		$this->loader->add_action( 'bgtfw_enqueue_starter_content_plugins', $plugins, 'enqueue' );
 
 		// Filters to run if we are in the Customizer and requesting Starter Content be loaded.
 		if ( BoldGrid_Framework_Customizer_Starter_Content::$fresh_site_customize ) {

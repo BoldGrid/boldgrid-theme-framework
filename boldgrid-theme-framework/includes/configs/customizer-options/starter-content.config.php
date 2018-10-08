@@ -2,11 +2,11 @@
 /**
  * Customizer Starter Content Configs.
  *
- * configs['starter-cotnent']               These configs make up the actual starter content, such as
- * 											posts, widgets, etc. These ARE NOT those configs.
+ * configs['starter-content']               These configs make up the actual starter content, such as
+ *                                          posts, widgets, etc. These ARE NOT those configs.
  * configs['customizer']['starter-content'] These configs are for setting up admin related Starter
- * 											Conent pages, such as "starter content suggest". These
- * 											ARE those configs.
+ *                                          Content pages, such as "starter content suggest". These
+ *                                          ARE those configs.
  *
  * @package Boldgrid_Theme_Framework
  * @subpackage Boldgrid_Theme_Framework\Configs

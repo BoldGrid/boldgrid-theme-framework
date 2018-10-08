@@ -229,7 +229,11 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 	}
 
 	/**
+	 * Include markup for messages.
 	 *
+	 * Includes necessary markup for displaying feedback when user clicks install Starter Content.
+	 *
+	 * @since x.x.x
 	 */
 	public function messages() {
 		require_once $this->configs['framework']['includes_dir'] . '/partials/starter-content-messages.php';

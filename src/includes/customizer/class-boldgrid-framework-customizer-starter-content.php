@@ -161,7 +161,7 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 				</p>
 				<p>
 					' . wp_kses(
-						sprintf( __( 'If you\'d rather not keep these changes, <a href="%1$s">exit without saving</a> and return to your dashboard.', 'bgtfw' ), admin_url( 'admin.php?page=crio-starter-content' ) ),
+						sprintf( __( 'If you\'d rather not keep these changes, <a href="%1$s">exit without saving</a> and return to your dashboard.', 'bgtfw' ), $this->configs['customizer']['starter-content']['return_to_dashboard'] ),
 						array( 'a' => array( 'href' => array() ) )
 						) . '
 				</p>
@@ -226,6 +226,13 @@ class BoldGrid_Framework_Customizer_Starter_Content {
 		$starter_content_plugins = ! empty( $this->configs['starter-content']['plugins'] ) ? $this->configs['starter-content']['plugins'] : array();
 
 		return BoldGrid_Framework_Customizer_Starter_Content_Plugins::is_setup_complete( $starter_content_plugins );
+	}
+
+	/**
+	 *
+	 */
+	public function messages() {
+		require_once $this->configs['framework']['includes_dir'] . '/partials/starter-content-messages.php';
 	}
 
 	/**

@@ -1,0 +1,146 @@
+// Base form styles.
+$float-labels: () !default;
+
+$float-labels-defaults: (
+	base-height             : 24px,
+	base-padding            : 6px,
+	border-radius           : 3px,
+	border-width            : 1px,
+	margin-bottom           : 24px,
+	color-background        : #fff,
+	color-background-active : #fff,
+	color-background-focus  : #fff,
+	color-border            : #dfdfdf,
+	color-border-active     : #dfdfdf,
+	color-border-focus      : #1976D2,
+	color-placeholder       : #bbb,
+	color-required          : #D32F2F,
+	color-text              : #444,
+	color-text-focus        : #1976D2,
+	line-height             : 1.5,
+	font-size               : 16px,
+	font-size-small         : 12px,
+	font-weight             : 400,
+	parent                  : '',
+	prefix                  : 'fl-',
+	transition-easing       : ease-in-out,
+	transition-speed        : 0.2s,
+);
+
+@function fl($value) {
+	@return map-get(map-merge($float-labels-defaults, $float-labels), $value);
+}
+
+@function str-replace($string, $search, $replace: '') {
+	$index: str-index($string, $search);
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+	@return $string;
+}
+
+form {
+	position: relative;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+input,
+select,
+textarea {
+	width: 100%;
+	outline: 0;
+	font-size: fl(font-size);
+	line-height: fl(line-height);
+	border-radius: fl(border-radius);
+	border: fl(border-width) solid fl(color-border);
+	background-color: fl(color-background);
+	box-sizing: border-box;
+	transition: all fl(transition-speed) fl(transition-easing);
+	margin-bottom: fl(margin-bottom);
+	padding: fl(base-padding)*2;
+
+	&:-moz-placeholder {
+		color: fl(color-placeholder);
+	}
+	&::-moz-placeholder {
+		color: fl(color-placeholder);
+	}
+	&:-ms-input-placeholder {
+		color: fl(color-placeholder);
+	}
+	&::-webkit-input-placeholder {
+		color: fl(color-placeholder);
+	}
+}
+
+select {
+	position: relative;
+	height: fl(base-height) + fl(base-padding)*4 + fl(border-width)*2;
+	color: fl(color-placeholder);
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	&::-ms-expand {
+		display: none;
+	}
+}
+
+input:active,
+select:active,
+textarea:active {
+	color: fl(color-text);
+	background-color: fl(color-background-active);
+	border-color: fl(color-border-active);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	background-color: fl(color-background-focus);
+	border-color: fl(color-border-focus);
+}
+
+:required:before {
+	opacity: 1;
+	content: '*';
+	display: block;
+	position: absolute;
+	top: fl(border-width);
+	right: fl(base-height)/2 + fl(base-padding)/2;
+	font-size: fl(font-size);
+	line-height: 1.75;
+	color: fl(color-required);
+	transition: all fl(transition-speed) fl(transition-easing);
+	padding: fl(base-padding) 0 0;
+	z-index: 1;
+}
+
+:required:active:before {
+	opacity: 0;
+}
+
+label {
+	top: fl(border-width);
+	left: fl(border-width) + fl(base-padding)*1.5;
+	padding: fl(base-padding) fl(base-padding)/2 fl(base-padding)/2;
+}
+:required:before {
+	padding-top: fl(base-padding)*2;
+}
+
+
+#{fl(parent)}.#{fl(prefix)}form .#{fl(prefix)}wrap-select:after {
+	content: '';
+	position: absolute;
+	display: block;
+	top: fl(border-width);
+	right: 6px;
+	height: calc(100% - #{fl(border-width)*2});
+	width: fl(base-height)/2;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 16'%3E%3Cpath fill='#{str-replace(#{fl(color-placeholder)},'#','%23')}' d='M 4 0 L 0 6.5 L 8 6.5 L 4 0 z M 0 9.5 L 4 16 L 4 16 L 8 9.5 z'/%3E%3C/svg%3E") no-repeat;
+	background-position: 100% 50%;
+	background-size: 7px 14px;
+	z-index: 2;
+}

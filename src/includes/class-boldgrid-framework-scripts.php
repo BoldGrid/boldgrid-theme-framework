@@ -103,6 +103,14 @@ class BoldGrid_Framework_Scripts {
 			true
 		);
 
+		wp_register_script(
+			'float-labels',
+			$this->configs['framework']['js_dir'] . 'float-labels.js/float-labels' . $suffix . '.js',
+			array(),
+			$this->configs['version'],
+			true
+		);
+
 		/**
 		 * Hide/Show Author Box
 		 */
@@ -204,7 +212,7 @@ class BoldGrid_Framework_Scripts {
 		);
 
 		wp_enqueue_script( 'boldgrid-front-end-scripts' );
-
+		wp_enqueue_script( 'float-labels' );
 		if ( is_customize_preview() ) {
 			wp_enqueue_script(
 				'boldgrid-theme-helper-brehaut-color-js',

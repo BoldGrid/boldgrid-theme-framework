@@ -153,6 +153,11 @@ gulp.task('jsDeps', function () {
   // sass.js - Check
   gulp.src(config.node_modules + '/sass.js/dist/**/*')
     .pipe(gulp.dest(config.jsDest + '/sass-js'));
+  // float-labels.js
+  gulp.src(config.node_modules + '/float-labels.js/dist/float-labels.min.js')
+    .pipe(gulp.dest(config.jsDest + '/float-labels.js'));
+  gulp.src(config.node_modules + '/float-labels.js/src/float-labels.js')
+    .pipe(gulp.dest(config.jsDest + '/float-labels.js'));
   // Wowjs - Check
   gulp.src(config.node_modules + '/wowjs/dist/**/*')
     .pipe(gulp.dest(config.jsDest + '/wow'));
@@ -326,6 +331,8 @@ gulp.task('scssDeps', function () {
   // Bootstrap
   gulp.src(config.node_modules + '/bootstrap-sass/assets/stylesheets/**/*')
     .pipe(replace(/@import "bootstrap\/buttons";/, '//@import "bootstrap/buttons";'))
+    .pipe(replace(/@import "bootstrap\/forms";/, '//@import "bootstrap/forms";'))
+    .pipe(replace(/@import "bootstrap\/navbar";/, '//@import "bootstrap/navbar";'))
     .pipe(replace(/@import "bootstrap\/button-groups";/, '//@import "bootstrap/button-groups";'))
     .pipe(replace(/@import "bootstrap\/glyphicons";/, '//@import "bootstrap/glyphicons";'))
     .pipe(gulp.dest(config.dist + '/assets/scss/bootstrap'));
@@ -360,6 +367,9 @@ gulp.task('scssDeps', function () {
   // hamburgers.
   gulp.src(config.node_modules + '/hamburgers/dist/*.css')
     .pipe(gulp.dest(config.dist + '/assets/css/hamburgers'));
+  // forms.
+  gulp.src(config.node_modules + '/float-labels.js/src/float-labels.scss')
+    .pipe(gulp.dest(config.dist + '/assets/scss/float-labels.js'));
 });
 
 // Compile SCSS

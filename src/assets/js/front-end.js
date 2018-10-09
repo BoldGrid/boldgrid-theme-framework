@@ -26,6 +26,7 @@ var BoldGrid = BoldGrid || {};
 			init: function() {
 				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
 				this.skipLink();
+				this.forms();
 			},
 
 			// JavaScript to be fired on all pages, after page specific JS is fired.
@@ -57,9 +58,9 @@ var BoldGrid = BoldGrid || {};
 
 			// JavaScript for the skip link functionality.
 			skipLink: function() {
-				var isWebkit  =  navigator.userAgent.toLowerCase(  ).indexOf( 'webkit' ) > -1,
-				    isOpera   =  navigator.userAgent.toLowerCase(  ).indexOf( 'opera' )  > -1,
-				    isIE      =  navigator.userAgent.toLowerCase(  ).indexOf( 'msie' )   > -1;
+				var isWebkit  =  navigator.userAgent.toLowerCase().indexOf( 'webkit' ) > -1,
+				    isOpera   =  navigator.userAgent.toLowerCase().indexOf( 'opera' )  > -1,
+				    isIE      =  navigator.userAgent.toLowerCase().indexOf( 'msie' )   > -1;
 
 				if ( ( isWebkit || isOpera || isIE ) && document.getElementById && window.addEventListener ) {
 					window.addEventListener( 'hashchange', function(  ) {
@@ -78,6 +79,18 @@ var BoldGrid = BoldGrid || {};
 					}, false );
 				}
 			},
+
+			// Handle forms.
+			forms: function() {
+				new FloatLabels(
+					'form', {
+						prefix: 'bgtfw-',
+						style: 2
+					}
+				);
+			},
+
+			// Side header handling.
 			sideHeaderHandler: function() {
 				var header;
 

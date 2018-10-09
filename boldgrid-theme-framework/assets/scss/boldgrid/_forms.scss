@@ -1,20 +1,7 @@
-// Base form styles.
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"],
-input[type="number"],
-input[type="tel"],
-input[type="range"],
-input[type="date"],
-input[type="month"],
-input[type="week"],
-input[type="time"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="color"],
-textarea,
-select {
-	color: #555;
-}
+$float-labels: (
+	parent: '#boldgrid-sticky-wrap '
+);
+
+@import "../float-labels.js/float-labels";
+@import "forms/base";
+@import "forms/wp-forms";

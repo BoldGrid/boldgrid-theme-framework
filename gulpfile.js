@@ -158,6 +158,9 @@ gulp.task('jsDeps', function () {
     .pipe(gulp.dest(config.jsDest + '/float-labels.js'));
   gulp.src(config.node_modules + '/float-labels.js/src/float-labels.js')
     .pipe(gulp.dest(config.jsDest + '/float-labels.js'));
+  // Headhesive.
+  gulp.src(config.node_modules + '/headhesive/dist/*.js')
+    .pipe(gulp.dest(config.jsDest + '/headhesive'));
   // Wowjs - Check
   gulp.src(config.node_modules + '/wowjs/dist/**/*')
     .pipe(gulp.dest(config.jsDest + '/wow'));

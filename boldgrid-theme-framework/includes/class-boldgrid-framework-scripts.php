@@ -211,6 +211,14 @@ class BoldGrid_Framework_Scripts {
 			true
 		);
 
+		wp_enqueue_script(
+			'headhesive',
+			$this->configs['framework']['js_dir'] . 'headhesive/headhesive' . $suffix . '.js',
+			array(),
+			$this->configs['version'],
+			true
+		);
+
 		wp_enqueue_script( 'boldgrid-front-end-scripts' );
 		wp_enqueue_script( 'float-labels' );
 		if ( is_customize_preview() ) {

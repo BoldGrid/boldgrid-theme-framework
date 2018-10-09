@@ -75,6 +75,10 @@ textarea {
 	}
 }
 
+input[type=submit] {
+	width: auto;
+}
+
 select {
 	position: relative;
 	height: fl(base-height) + fl(base-padding)*4 + fl(border-width)*2;

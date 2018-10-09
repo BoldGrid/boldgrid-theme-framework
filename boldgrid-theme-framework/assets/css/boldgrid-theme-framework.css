@@ -2694,6 +2694,10 @@ textarea::-webkit-input-placeholder {
   color: #bbb;
 }
 
+input[type=submit] {
+  width: auto;
+}
+
 select {
   position: relative;
   height: 50px;
@@ -5976,6 +5980,10 @@ input::-webkit-input-placeholder,
 select::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   color: #bbb;
+}
+
+input[type=submit] {
+  width: auto;
 }
 
 select {

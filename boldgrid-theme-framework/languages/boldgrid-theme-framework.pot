@@ -93,42 +93,21 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:178
+#: src/includes/class-boldgrid-framework-comments.php:174
 msgid "%s <span class=\"says\">says:</span>"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:186
+#: src/includes/class-boldgrid-framework-comments.php:179
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:191
+#: src/includes/class-boldgrid-framework-comments.php:182
 msgid "<span style=\"margin-left: 5px;\" class=\"fa fa-edit\"></span> Edit"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-comments.php:196
+#: src/includes/class-boldgrid-framework-comments.php:186
 msgid "Your comment is awaiting moderation."
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-comments.php:238
-msgid "Name"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-comments.php:244
-msgid "Email"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-comments.php:251
-msgid "Website"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-comments.php:261
-msgctxt "noun"
-msgid "Comment"
-msgstr ""
-
-#: src/includes/class-boldgrid-framework-comments.php:265
-msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
 msgstr ""
 
 #: src/includes/class-boldgrid-framework-custom-header.php:93

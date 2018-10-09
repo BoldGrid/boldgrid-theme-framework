@@ -160,36 +160,26 @@ class BoldGrid_Framework_Comments {
 			<div class="comment-body">
 				<?php _e( 'Pingback:', 'bgtfw' ); ?> <?php comment_author_link( ); ?> <?php edit_comment_link( __( 'Edit', 'bgtfw' ), '<span class="edit-link">', '</span>' ); ?>
 			</div>
-
 		<?php else : ?>
-
 		<li id="comment-<?php comment_ID(); ?>"
 			<?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
 			<article id="div-comment-<?php comment_ID( ); ?>" class="comment-body media">
-
 				<a class="pull-left" href="#">
 					<?php if ( 0 != $args['avatar_size'] ) { echo get_avatar( $comment, $args['avatar_size'] ); } ?>
 				</a>
-
 				<div class="media-body">
 					<div class="media-body-wrap panel panel-default">
 						<div class="panel-heading">
 							<div class="media-heading">
 								<?php printf( __( '%s <span class="says">says:</span>', 'bgtfw' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link( ) ) ); ?>
 							</div>
-
 							<div class="comment-meta">
-
 								<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-
 									<time datetime="<?php comment_time( 'c' ); ?>">
 										<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'bgtfw' ), get_comment_date( ), get_comment_time( ) ); ?>
 									</time>
-
 								</a>
-
 								<?php edit_comment_link( __( '<span style="margin-left: 5px;" class="fa fa-edit"></span> Edit', 'bgtfw' ), '<span class="edit-link">', '</span>' ); ?>
-
 							</div>
 						</div>
 						<?php if ( '0' == $comment->comment_approved ) : ?>
@@ -210,64 +200,10 @@ class BoldGrid_Framework_Comments {
 								)
 							)
 						); ?>
-
 					</div><!-- .panel -->
 				</div><!-- .media-body -->
 			</article> <!-- .comment-body -->
-
 		<?php
 		endif;
-
-	}
-
-	/**
-	 * Bootstrap styled Comment form.
-	 *
-	 * @since 1.0.0
-	 */
-	public function bootstrap_comment_form_defaults( $defaults ) {
-
-		$commenter = wp_get_current_commenter( );
-
-		$req = get_option( 'require_name_email' );
-
-		$aria_req = ( $req ? " aria-required='true'" : '' );
-
-		$defaults['fields'] = array(
-			'author' => '<div class="form-group comment-form-author">' .
-					'<label for="author" class="col-sm-3 control-label">' . __( 'Name', 'bgtfw' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
-					'<div class="col-sm-9">' .
-						'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '"  class="form-control"' . $aria_req . ' />' .
-					'</div>' .
-			'</div>',
-			'email'  => '<div class="form-group comment-form-email">' .
-					'<label for="email" class="col-sm-3 control-label">' . __( 'Email', 'bgtfw' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
-					'<div class="col-sm-9">' .
-						'<input id="email" name="email" type="text" value="' . esc_attr( $commenter['comment_author_email'] ) . '" class="form-control"' . $aria_req . ' />' .
-					'</div>' .
-				'</div>',
-			'url'    => '<div class="form-group comment-form-url">
-				<label for="url" class="col-sm-3 control-label"">' .
-					__( 'Website', 'bgtfw' ) .
-				'</label>
-					<div class="col-sm-9">
-						<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" class="form-control" />
-					</div>
-				</div>',
-		);
-
-		$defaults['comment_field'] = '<div class="form-group comment-form-comment">
-			<label for="comment" class="col-sm-3 control-label">' .
-			_x( 'Comment', 'noun', 'bgtfw' ) .
-			'</label>
-			<div class="col-sm-9">
-				<textarea id="comment" name="comment" aria-required="true" class="form-control" rows="8"></textarea>
-				<span class="help-block form-allowed-tags">' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s', 'bgtfw' ), ' <code>' . allowed_tags() . '</code>' ) . '</span>
-			</div>
-		</div>';
-
-		$defaults['comment_notes_after'] = '<div class="form-group comment-form-submit">';
-
-		return $defaults;
 	}
 }

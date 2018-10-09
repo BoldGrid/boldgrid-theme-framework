@@ -1,20 +1,20 @@
 /*!
  * Float Labels
- * @version: 3.3.5
+ * @version: 3.3.6
  * @author: Paul Ryley (http://geminilabs.io)
  * @url: https://geminilabs.github.io/float-labels.js
  * @license: MIT
  */
-.bgtfw-form .bgtfw-wrap {
+.fl-form .fl-wrap {
   position: relative;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bgtfw-form input.bgtfw-input,
-.bgtfw-form select.bgtfw-select,
-.bgtfw-form textarea.bgtfw-textarea {
+.fl-form input.fl-input,
+.fl-form select.fl-select,
+.fl-form textarea.fl-textarea {
   width: 100%;
   outline: 0;
   font-size: 16px;
@@ -29,31 +29,31 @@
   margin-bottom: 24px;
 }
 
-.bgtfw-form input.bgtfw-input:-moz-placeholder,
-.bgtfw-form select.bgtfw-select:-moz-placeholder,
-.bgtfw-form textarea.bgtfw-textarea:-moz-placeholder {
+.fl-form input.fl-input:-moz-placeholder,
+.fl-form select.fl-select:-moz-placeholder,
+.fl-form textarea.fl-textarea:-moz-placeholder {
   color: #bbb;
 }
 
-.bgtfw-form input.bgtfw-input::-moz-placeholder,
-.bgtfw-form select.bgtfw-select::-moz-placeholder,
-.bgtfw-form textarea.bgtfw-textarea::-moz-placeholder {
+.fl-form input.fl-input::-moz-placeholder,
+.fl-form select.fl-select::-moz-placeholder,
+.fl-form textarea.fl-textarea::-moz-placeholder {
   color: #bbb;
 }
 
-.bgtfw-form input.bgtfw-input:-ms-input-placeholder,
-.bgtfw-form select.bgtfw-select:-ms-input-placeholder,
-.bgtfw-form textarea.bgtfw-textarea:-ms-input-placeholder {
+.fl-form input.fl-input:-ms-input-placeholder,
+.fl-form select.fl-select:-ms-input-placeholder,
+.fl-form textarea.fl-textarea:-ms-input-placeholder {
   color: #bbb;
 }
 
-.bgtfw-form input.bgtfw-input::-webkit-input-placeholder,
-.bgtfw-form select.bgtfw-select::-webkit-input-placeholder,
-.bgtfw-form textarea.bgtfw-textarea::-webkit-input-placeholder {
+.fl-form input.fl-input::-webkit-input-placeholder,
+.fl-form select.fl-select::-webkit-input-placeholder,
+.fl-form textarea.fl-textarea::-webkit-input-placeholder {
   color: #bbb;
 }
 
-.bgtfw-form select.bgtfw-select {
+.fl-form select.fl-select {
   position: relative;
   color: #bbb;
   cursor: pointer;
@@ -61,26 +61,26 @@
   -moz-appearance: none;
 }
 
-.bgtfw-form select.bgtfw-select::-ms-expand {
+.fl-form select.fl-select::-ms-expand {
   display: none;
 }
 
-.bgtfw-form .bgtfw-is-active input.bgtfw-input,
-.bgtfw-form .bgtfw-is-active select.bgtfw-select,
-.bgtfw-form .bgtfw-is-active textarea.bgtfw-textarea {
+.fl-form .fl-is-active input.fl-input,
+.fl-form .fl-is-active select.fl-select,
+.fl-form .fl-is-active textarea.fl-textarea {
   color: #444;
   background-color: #fff;
   border-color: #dfdfdf;
 }
 
-.bgtfw-form .bgtfw-has-focus input.bgtfw-input,
-.bgtfw-form .bgtfw-has-focus select.bgtfw-select,
-.bgtfw-form .bgtfw-has-focus textarea.bgtfw-textarea {
+.fl-form .fl-has-focus input.fl-input,
+.fl-form .fl-has-focus select.fl-select,
+.fl-form .fl-has-focus textarea.fl-textarea {
   background-color: #fff;
   border-color: #1976D2;
 }
 
-.bgtfw-form label.bgtfw-label {
+.fl-form label.fl-label {
   opacity: 0;
   visibility: hidden;
   display: block;
@@ -91,22 +91,22 @@
   font-weight: 400;
   line-height: 1;
   color: #bbb;
-  border-radius-top-left: 3px;
+  border-top-left-radius: 3px;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   z-index: 1;
 }
 
-.bgtfw-form .bgtfw-is-active label.bgtfw-label {
+.fl-form .fl-is-active label.fl-label {
   opacity: 1;
   visibility: visible;
 }
 
-.bgtfw-form .bgtfw-has-focus label.bgtfw-label {
+.fl-form .fl-has-focus label.fl-label {
   color: #1976D2;
 }
 
-.bgtfw-form .bgtfw-is-required:before {
+.fl-form .fl-is-required:before {
   opacity: 1;
   content: '*';
   display: block;
@@ -122,34 +122,34 @@
   z-index: 1;
 }
 
-.bgtfw-form .bgtfw-is-required.bgtfw-is-active:before {
+.fl-form .fl-is-required.fl-is-active:before {
   opacity: 0;
 }
 
-.bgtfw-form.bgtfw-style-1 input.bgtfw-input,
-.bgtfw-form.bgtfw-style-1 select.bgtfw-select,
-.bgtfw-form.bgtfw-style-1 textarea.bgtfw-textarea {
+.fl-form.fl-style-1 input.fl-input,
+.fl-form.fl-style-1 select.fl-select,
+.fl-form.fl-style-1 textarea.fl-textarea {
   padding: 6px 12px;
 }
 
-.bgtfw-form.bgtfw-style-1 select.bgtfw-select {
+.fl-form.fl-style-1 select.fl-select {
   height: 38px;
 }
 
-.bgtfw-form.bgtfw-style-1 .bgtfw-is-active input.bgtfw-input,
-.bgtfw-form.bgtfw-style-1 .bgtfw-is-active select.bgtfw-select,
-.bgtfw-form.bgtfw-style-1 .bgtfw-is-active textarea.bgtfw-textarea {
+.fl-form.fl-style-1 .fl-is-active input.fl-input,
+.fl-form.fl-style-1 .fl-is-active select.fl-select,
+.fl-form.fl-style-1 .fl-is-active textarea.fl-textarea {
   padding: 6px 12px;
 }
 
-.bgtfw-form.bgtfw-style-1 label.bgtfw-label {
+.fl-form.fl-style-1 label.fl-label {
   top: 1px;
   left: 10px;
   background-color: transparent;
   padding: 12px 3px;
 }
 
-.bgtfw-form.bgtfw-style-1 label.bgtfw-label:before {
+.fl-form.fl-style-1 label.fl-label:before {
   content: '';
   display: block;
   position: absolute;
@@ -161,42 +161,42 @@
   z-index: -1;
 }
 
-.bgtfw-form.bgtfw-style-1 .bgtfw-is-active label.bgtfw-label {
+.fl-form.fl-style-1 .fl-is-active label.fl-label {
   top: -9px;
   padding: 3px;
 }
 
-.bgtfw-form.bgtfw-style-1 .bgtfw-is-active label.bgtfw-label:before {
+.fl-form.fl-style-1 .fl-is-active label.fl-label:before {
   top: 9px;
 }
 
-.bgtfw-form.bgtfw-style-2 input.bgtfw-input,
-.bgtfw-form.bgtfw-style-2 select.bgtfw-select,
-.bgtfw-form.bgtfw-style-2 textarea.bgtfw-textarea {
+.fl-form.fl-style-2 input.fl-input,
+.fl-form.fl-style-2 select.fl-select,
+.fl-form.fl-style-2 textarea.fl-textarea {
   padding: 12px;
 }
 
-.bgtfw-form.bgtfw-style-2 select.bgtfw-select {
+.fl-form.fl-style-2 select.fl-select {
   height: 50px;
 }
 
-.bgtfw-form.bgtfw-style-2 .bgtfw-is-active input.bgtfw-input,
-.bgtfw-form.bgtfw-style-2 .bgtfw-is-active select.bgtfw-select,
-.bgtfw-form.bgtfw-style-2 .bgtfw-is-active textarea.bgtfw-textarea {
+.fl-form.fl-style-2 .fl-is-active input.fl-input,
+.fl-form.fl-style-2 .fl-is-active select.fl-select,
+.fl-form.fl-style-2 .fl-is-active textarea.fl-textarea {
   padding: 18px 12px 6px;
 }
 
-.bgtfw-form.bgtfw-style-2 label.bgtfw-label {
+.fl-form.fl-style-2 label.fl-label {
   top: 1px;
   left: 10px;
   padding: 6px 3px 3px;
 }
 
-.bgtfw-form.bgtfw-style-2 .bgtfw-is-required:before {
+.fl-form.fl-style-2 .fl-is-required:before {
   padding-top: 12px;
 }
 
-.bgtfw-form .bgtfw-wrap-select:after {
+.fl-form .fl-wrap-select:after {
   content: '';
   position: absolute;
   display: block;

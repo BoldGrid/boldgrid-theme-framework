@@ -82,11 +82,12 @@ var BoldGrid = BoldGrid || {};
 
 			// Handle forms.
 			forms: function() {
-				new FloatLabels( 'form', {
-					prefix: 'bgtfw-',
-					style: 2
-				}
-			);
+				new FloatLabels(
+					'form', {
+						prefix: 'bgtfw-',
+						style: 2
+					}
+				);
 			},
 
 			// Side header handling.

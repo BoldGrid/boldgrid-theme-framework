@@ -1,6 +1,6 @@
 /*!
  * Float Labels
- * @version: 3.3.5
+ * @version: 3.3.6
  * @author: Paul Ryley (http://geminilabs.io)
  * @url: https://geminilabs.github.io/float-labels.js
  * @license: MIT
@@ -29,7 +29,7 @@ $float-labels-defaults: (
 	font-size-small         : 12px,
 	font-weight             : 400,
 	parent                  : '',
-	prefix                  : 'bgtfw-',
+	prefix                  : 'fl-',
 	transition-easing       : ease-in-out,
 	transition-speed        : 0.2s,
 );
@@ -183,7 +183,7 @@ $float-labels-defaults: (
 	font-weight: fl(font-weight);
 	line-height: 1;
 	color: fl(color-placeholder);
-	border-radius-top-left: fl(border-radius);
+	border-top-left-radius: fl(border-radius);
 	transition: all fl(transition-speed) fl(transition-easing);
 	z-index: 1;
 }

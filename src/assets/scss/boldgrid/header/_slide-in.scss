@@ -1,47 +1,49 @@
 /**
  * Header clone.
  */
-.bgtfw-header-clone {
+.header-top {
+	.bgtfw-header-clone {
 
-	// Required styles.
-	position: fixed;
-	z-index: 201;
-	top: 0;
-	left: 0;
+		// Required styles.
+		position: fixed;
+		z-index: 201;
+		top: 0;
+		left: 0;
 
-	// Additional styles.
-	background: #c95a5d;
+		// Additional styles.
+		background: #c95a5d;
 
-	// Translate -100% to move off screen.
-	-webkit-transform: translateY(-100%);
-	-ms-transform: translateY(-100%);
-	transform: translateY(-100%);
+		// Translate -100% to move off screen.
+		-webkit-transform: translateY(-100%);
+		-ms-transform: translateY(-100%);
+		transform: translateY(-100%);
 
-	// Animations.
-	-webkit-transition: all 300ms ease-in-out;
-	-moz-transition: all 300ms ease-in-out;
-	transition: all 300ms ease-in-out;
-}
-
-// Adjust for admin bar presence in WordPress.
-.admin-bar .bgtfw-header-clone {
-	top: 32px;
-}
-@media screen and (max-width: 782px) {
-	.admin-bar .bgtfw-header-clone {
-		top: 46px;
+		// Animations.
+		-webkit-transition: all 300ms ease-in-out;
+		-moz-transition: all 300ms ease-in-out;
+		transition: all 300ms ease-in-out;
 	}
+
+	// Adjust for admin bar presence in WordPress.
+	.admin-bar .bgtfw-header-clone {
+		top: 32px;
+	}
+	@media screen and (max-width: 782px) {
+		.admin-bar .bgtfw-header-clone {
+			top: 46px;
+		}
+	}
+
+	// On stick apply the transform.
+	.bgtfw-header-stick {
+
+		// Translate back to 0%.
+		-webkit-transform: translateY(0%);
+		-ms-transform: translateY(0%);
+		transform: translateY(0%);
+	}
+
+
+	// Unstuck. Empty selector left for reference.
+	.bgtfw-header-unstick {}
 }
-
-// On stick apply the transform.
-.bgtfw-header-stick {
-
-	// Translate back to 0%.
-	-webkit-transform: translateY(0%);
-	-ms-transform: translateY(0%);
-	transform: translateY(0%);
-}
-
-
-// Unstuck. Empty selector left for reference.
-.bgtfw-header-unstick {}

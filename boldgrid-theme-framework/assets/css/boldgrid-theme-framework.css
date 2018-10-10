@@ -101,12 +101,12 @@
   transition: all 300ms ease-in-out;
 }
 
-.header-top .admin-bar .bgtfw-header-clone {
+.header-top.admin-bar .bgtfw-header-clone {
   top: 32px;
 }
 
 @media screen and (max-width: 782px) {
-  .header-top .admin-bar .bgtfw-header-clone {
+  .header-top.admin-bar .bgtfw-header-clone {
     top: 46px;
   }
 }

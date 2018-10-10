@@ -25,11 +25,9 @@
 	}
 
 	// Adjust for admin bar presence in WordPress.
-	.admin-bar .bgtfw-header-clone {
+	&.admin-bar .bgtfw-header-clone {
 		top: 32px;
-	}
-	@media screen and (max-width: 782px) {
-		.admin-bar .bgtfw-header-clone {
+		@media screen and (max-width: 782px) {
 			top: 46px;
 		}
 	}

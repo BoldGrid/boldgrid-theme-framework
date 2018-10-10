@@ -37,6 +37,23 @@ var BoldGrid = BoldGrid || {};
 				} );
 			},
 
+			detectTransitionEvent: function() {
+				var i, el = document.createElement( 'fakeelement' );
+
+				var transitions = {
+					'transition': 'transitionend',
+					'OTransition': 'oTransitionEnd',
+					'MozTransition': 'transitionend',
+					'WebkitTransition': 'webkitTransitionEnd'
+				};
+
+				for ( i in transitions ) {
+					if ( undefined !== el.style[ i ] ) {
+						return transitions[ i ];
+					}
+				}
+			},
+
 			detectAnimationEvent: function() {
 				var i, el, animations;
 
@@ -280,13 +297,26 @@ var BoldGrid = BoldGrid || {};
 					// Throttle scroll event to fire every 250ms to improve performace.
 					throttle: 250,
 
-					// Called on header slide in initialization.
-					onInit: function() {
-						$( '.bgtfw-header-clone [id]' ).each( function( i, el ) {
-							var element = $( el ),
-								currentId = element.attr( 'id' );
-							element.attr( 'id', 'clone-' + currentId );
+					onStick: function() {
+						var clone = $( '.bgtfw-header-clone' ),
+							inside = $( '#masthead' );
+						inside.clone( false ).attr( 'id', 'masthead-clone' ).appendTo( '#boldgrid-sticky-wrap > .site-header' );
+						inside.detach().appendTo( clone );
+					},
+
+					onUnstick: function() {
+						$( '.bgtfw-header-clone' ).one( BoldGrid.common.detectTransitionEvent(), function() {
+							var header = $( '#boldgrid-sticky-wrap > .site-header' ),
+								inside = $( '#masthead' ).detach();
+
+							$( '#masthead-clone' ).remove();
+							inside.appendTo( header );
+
 						} );
+					},
+
+					onInit: function() {
+						$( '.bgtfw-header-clone' ).empty();
 					}
 				} ) );
 			},
@@ -295,7 +325,18 @@ var BoldGrid = BoldGrid || {};
 			 * Initialize header-slide-in.
 			 */
 			init: function() {
+				var windowPos;
+
+				// Initialize Headheasive and set reference to instace.
 				this.instance = this.header();
+
+				// Check window position.
+				windowPos = ( undefined !== window.pageYOffset ) ? window.pageYOffset : ( document.documentElement || document.body.parentNode || document.body ).scrollTop;
+
+				// Apply sticky if window is scrolled past instance's offset on load.
+				if ( windowPos > this.instance.scrollOffset ) {
+					this.instance.stick();
+				}
 			}
 		},
 

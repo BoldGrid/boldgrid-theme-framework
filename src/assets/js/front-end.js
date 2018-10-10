@@ -245,8 +245,18 @@ var BoldGrid = BoldGrid || {};
 		},
 
 		'header_slide_in': {
-			init: function() {
-				var header = new Headhesive( '.site-header', {
+			/**
+			 * Expose the instance globally for access to configurations.
+			 */
+			getInstance: function() {
+				return this.instance;
+			},
+
+			/**
+			 * Create header slide in instance.
+			 */
+			header: function() {
+				return ( new Headhesive( '.site-header', {
 
 					// Scroll offset.
 					offset: '#content',
@@ -277,8 +287,15 @@ var BoldGrid = BoldGrid || {};
 								currentId = element.attr( 'id' );
 							element.attr( 'id', 'clone-' + currentId );
 						} );
-					},
-				} );
+					}
+				} ) );
+			},
+
+			/**
+			 * Initialize header-slide-in.
+			 */
+			init: function() {
+				this.instance = this.header();
 			}
 		},
 

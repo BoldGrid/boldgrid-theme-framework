@@ -244,6 +244,61 @@ var BoldGrid = BoldGrid || {};
 			}
 		},
 
+		'header_slide_in': {
+			/**
+			 * Expose the instance globally for access to configurations.
+			 */
+			getInstance: function() {
+				return this.instance;
+			},
+
+			/**
+			 * Create header slide in instance.
+			 */
+			header: function() {
+				return ( new Headhesive( '.site-header', {
+
+					// Scroll offset.
+					offset: '#content',
+
+					// If using a DOM element, we can choose which side to use as offset (top|bottom).
+					offsetSide: 'top',
+
+					// Custom classes.
+					classes: {
+
+						// Cloned elem class.
+						clone: 'bgtfw-header-clone',
+
+						// Stick class.
+						stick: 'bgtfw-header-stick',
+
+						// Unstick class.
+						unstick: 'bgtfw-header-unstick'
+					},
+
+					// Throttle scroll event to fire every 250ms to improve performace.
+					throttle: 250,
+
+					// Called on header slide in initialization.
+					onInit: function() {
+						$( '.bgtfw-header-clone [id]' ).each( function( i, el ) {
+							var element = $( el ),
+								currentId = element.attr( 'id' );
+							element.attr( 'id', 'clone-' + currentId );
+						} );
+					}
+				} ) );
+			},
+
+			/**
+			 * Initialize header-slide-in.
+			 */
+			init: function() {
+				this.instance = this.header();
+			}
+		},
+
 		// Sticky/Fixed Header.
 		'header_fixed': {
 

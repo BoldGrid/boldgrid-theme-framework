@@ -2,6 +2,7 @@
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # Initial Preload Styles
+# Header Styles
 # Base Elements
 # Blog Layouts
 # BoldGrid Bootstrap Additions
@@ -38,6 +39,11 @@
 # Initial Preload Styles
 --------------------------------------------------------------*/
 @import "boldgrid/preload";
+
+/*--------------------------------------------------------------
+# Header Styles
+--------------------------------------------------------------*/
+@import "boldgrid/header";
 
 /*--------------------------------------------------------------
 # Base Elements

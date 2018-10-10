@@ -2,6 +2,7 @@
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # Initial Preload Styles
+# Header Styles
 # Base Elements
 # Blog Layouts
 # BoldGrid Bootstrap Additions
@@ -81,6 +82,39 @@
 /* Internet Explorer */
 
 /* Opera < 12.1 */
+
+/*--------------------------------------------------------------
+# Header Styles
+--------------------------------------------------------------*/
+/**
+ * Header clone.
+ */
+.bgtfw-header-clone {
+  position: fixed;
+  z-index: 201;
+  top: 0;
+  left: 0;
+  background: #c95a5d;
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.admin-bar .bgtfw-header-clone {
+  top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  .admin-bar .bgtfw-header-clone {
+    top: 46px;
+  }
+}
+
+.bgtfw-header-stick {
+  -webkit-transform: translateY(0%);
+  transform: translateY(0%);
+}
 
 /*--------------------------------------------------------------
 # Base Elements

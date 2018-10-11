@@ -354,8 +354,11 @@ var BoldGrid = BoldGrid || {};
 					onStick: function() {
 						var clone = $( '.bgtfw-header-clone' ),
 							inside = $( '#masthead' );
+
 						$( '#masthead-clone' ).appendTo( '#boldgrid-sticky-wrap > .site-header' );
+						document.getElementById( 'masthead-clone' ).classList = inside[0].classList;
 						inside.appendTo( clone );
+
 						if ( BOLDGRID && BOLDGRID.CustomizerEdit ) {
 							BOLDGRID.CustomizerEdit.placeButtons();
 						}
@@ -368,6 +371,7 @@ var BoldGrid = BoldGrid || {};
 								event = new Event( 'bgtfw-header-unstick' );
 
 							$( '#masthead-clone' ).appendTo( '.bgtfw-header-clone' );
+							document.getElementById( 'masthead-clone' ).classList = inside[0].classList;
 							inside.appendTo( header );
 
 							if ( BOLDGRID && BOLDGRID.CustomizerEdit ) {

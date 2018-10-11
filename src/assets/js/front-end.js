@@ -253,7 +253,7 @@ var BoldGrid = BoldGrid || {};
 				// Mobile.
 				} else {
 					if ( undefined !== BoldGrid.header_slide_in.getInstance() ) {
-						BoldGrid.header_slide_in.destroy();
+						BoldGrid.header_slide_in.destroy( true );
 					}
 
 					menu = $( '#main-menu' );
@@ -285,26 +285,21 @@ var BoldGrid = BoldGrid || {};
 			destroy: function() {
 				if ( undefined !== this.instance ) {
 
-					// Check if cloned header is visible.
-					if ( this.instance.visible ) {
-
-						// Listen for header-unstick to be complete.
-						window.addEventListener( 'bgtfw-header-unstick', function _bgtfwHeaderUnstick() {
+					// Listen for header-unstick to be complete.
+					window.addEventListener( 'bgtfw-header-unstick', function _bgtfwHeaderUnstick() {
+						if ( undefined !== BoldGrid.header_slide_in.getInstance() ) {
 							BoldGrid.header_slide_in.getInstance().destroy();
-							BoldGrid.header_slide_in.instance = null;
-							delete BoldGrid.header_slide_in.instance;
+						}
 
-							// Remove self for reinit.
-							window.removeEventListener( 'bgtfw-header-unstick', _bgtfwHeaderUnstick, false );
-						}, false );
+						BoldGrid.header_slide_in.instance = null;
+						delete BoldGrid.header_slide_in.instance;
 
-						// Unstick instance.
-						this.instance.unstick();
-					} else {
-						this.instance.destroy();
-						this.instance = null;
-						delete this.instance;
-					}
+						// Remove self for reinit.
+						window.removeEventListener( 'bgtfw-header-unstick', _bgtfwHeaderUnstick, false );
+					}, false );
+
+					// Unstick instance.
+					this.instance.unstick();
 				}
 			},
 

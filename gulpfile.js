@@ -60,6 +60,8 @@ gulp.task('fontFamilyCss', function () {
 
   for (var key in webFonts.items) {
     family = webFonts.items[key].family;
+
+    // This value needs to -40 after updating sprite.
     position = -5 + (key * -37);
 
     css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + (position + 8) + 'px;}';
@@ -75,9 +77,6 @@ gulp.task('fontFamilyCss', function () {
 });
 
 // Google Fonts image generator
-//
-// Reguires Phatnom JS - npm install -g phantomjs
-// If on windows, install python, visual studio express | c++11 compiler
 //
 // Troubleshooting:
 // # Within node_modules/googlefonts-sprint-generator/app.js use dnodeOpts: {weak: false}, as shown

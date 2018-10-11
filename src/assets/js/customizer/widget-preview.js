@@ -129,7 +129,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 		areaOffset = $matching_area.offset().top - 65;
 
 		if ( wp.customize( 'bgtfw_fixed_header' )() && 'header-top' === wp.customize( 'bgtfw_header_layout_position' )() ) {
-			areaOffset -= self.$previewer.find( '.site-header' ).outerHeight();
+			areaOffset -= self.$previewer.find( '.bgtfw-header-stick' ).outerHeight();
 		}
 
 		self.$previewer.find( 'html, body' ).stop().animate({

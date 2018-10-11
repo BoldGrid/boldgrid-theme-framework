@@ -226,7 +226,10 @@ var BoldGrid = BoldGrid || {};
 				if ( window.innerWidth >= 768 ) {
 
 					// Fixed Headers
-					if ( classes.contains( 'header-fixed' ) ) {
+					if ( classes.contains( 'header-slide-in' ) ) {
+						if ( undefined === BoldGrid.header_slide_in.getInstance() ) {
+							BoldGrid.header_slide_in.init();
+						}
 
 						// Header on left, or header on right.
 						if ( classes.contains( 'header-top' ) ) {
@@ -235,6 +238,10 @@ var BoldGrid = BoldGrid || {};
 
 					// Non-fixed headers.
 					} else {
+						if ( undefined !== BoldGrid.header_slide_in.getInstance() ) {
+							BoldGrid.header_slide_in.destroy();
+						}
+
 						if ( classes.contains( 'header-top' ) ) {
 
 							if ( classes.contains( 'has-youtube-header' ) ) {
@@ -257,7 +264,6 @@ var BoldGrid = BoldGrid || {};
 				}
 
 				$( '.wp-custom-header' ).css( 'height', headerHeight );
-				$( '.site-header + *' ).css( 'margin-top', siteMargin );
 			}
 		},
 
@@ -270,10 +276,39 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			/**
+			 * Destroy instance reference.
+			 */
+			destroy: function() {
+				if ( undefined !== this.instance ) {
+
+					// Check if cloned header is visible.
+					if ( this.instance.visible ) {
+
+						// Listen for header-unstick to be complete.
+						window.addEventListener( 'bgtfw-header-unstick', function _bgtfwHeaderUnstick() {
+							BoldGrid.header_slide_in.getInstance().destroy();
+							BoldGrid.header_slide_in.instance = null;
+							delete BoldGrid.header_slide_in.instance;
+
+							// Remove self for reinit.
+							window.removeEventListener( 'bgtfw-header-unstick', _bgtfwHeaderUnstick, false );
+						}, false );
+
+						// Unstick instance.
+						this.instance.unstick();
+					} else {
+						this.instance.destroy();
+						this.instance = null;
+						delete this.instance;
+					}
+				}
+			},
+
+			/**
 			 * Create header slide in instance.
 			 */
 			header: function() {
-				return ( new Headhesive( '.site-header', {
+				return ( this.instance = new Headhesive( '.site-header', {
 
 					// Scroll offset.
 					offset: '#content',
@@ -307,11 +342,14 @@ var BoldGrid = BoldGrid || {};
 					onUnstick: function() {
 						$( '.bgtfw-header-clone' ).one( BoldGrid.common.detectTransitionEvent(), function() {
 							var header = $( '#boldgrid-sticky-wrap > .site-header' ),
-								inside = $( '#masthead' ).detach();
+								inside = $( '#masthead' ).detach(),
+								event = new Event( 'bgtfw-header-unstick' );
 
 							$( '#masthead-clone' ).remove();
 							inside.appendTo( header );
 
+							// Dispatch event.
+							window.dispatchEvent( event );
 						} );
 					},
 
@@ -325,18 +363,14 @@ var BoldGrid = BoldGrid || {};
 			 * Initialize header-slide-in.
 			 */
 			init: function() {
-				var windowPos;
 
-				// Initialize Headheasive and set reference to instace.
-				this.instance = this.header();
-
-				// Check window position.
-				windowPos = ( undefined !== window.pageYOffset ) ? window.pageYOffset : ( document.documentElement || document.body.parentNode || document.body ).scrollTop;
-
-				// Apply sticky if window is scrolled past instance's offset on load.
-				if ( windowPos > this.instance.scrollOffset ) {
-					this.instance.stick();
+				// Initialize Headheasive and set reference to instance.
+				if ( undefined === this.instance ) {
+					this.header();
 				}
+
+				// Update position on load.
+				this.instance.update();
 			}
 		},
 
@@ -350,15 +384,6 @@ var BoldGrid = BoldGrid || {};
 					'padding-top': $( '.site-header' ).outerHeight( true ) + 'px',
 					'margin-top': '-' + $( '.site-header' ).outerHeight( true ) + 'px',
 					'display': 'inline-block'
-				} );
-
-				window.addEventListener( 'scroll', function() {
-					var distanceY, shrinkOn, header;
-
-					distanceY = window.pageYOffset || document.documentElement.scrollTop,
-					shrinkOn = 100,
-					header = document.getElementById( 'masthead' );
-					distanceY > shrinkOn ? header.classList.add( 'smaller' ) : header.classList.remove( 'smaller' );
 				} );
 			},
 
@@ -701,14 +726,14 @@ var BoldGrid = BoldGrid || {};
 
 						// Remove margin-top when notice is dismissed.
 						$( '.woocommerce-store-notice__dismiss-link' ).click( function() {
-							$( '.header-fixed.header-top.woocommerce-demo-store' ).css( 'margin-top', '0' );
+							$( '.header-slide-in.header-top.woocommerce-demo-store' ).css( 'margin-top', '0' );
 						} );
 
 						// Check the value of that cookie and show/hide the notice accordingly
 						if ( 'hidden' === Cookies.get( 'store_notice' ) ) {
-							$( '.header-fixed.header-top.woocommerce-demo-store' ).css( 'margin-top', '0' );
+							$( '.header-slide-in.header-top.woocommerce-demo-store' ).css( 'margin-top', '0' );
 						} else {
-							$( '.header-fixed.header-top.woocommerce-demo-store' ).css( 'margin-top', $( '.woocommerce-store-notice' ).outerHeight() );
+							$( '.header-slide-in.header-top.woocommerce-demo-store' ).css( 'margin-top', $( '.woocommerce-store-notice' ).outerHeight() );
 						}
 					}
 				}

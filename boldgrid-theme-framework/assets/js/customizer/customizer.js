@@ -537,7 +537,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
 		new ToggleValue( 'bgtfw_blog_page_container', '.blog .site-content, .archive .site-content', 'container', calc );
 
-		new ToggleClass( 'bgtfw_fixed_header', 'body', 'header-fixed', calc );
+		new ToggleClass( 'bgtfw_fixed_header', 'body', 'header-slide-in', calc );
 
 		let layoutFn = ( index, className ) => {
 			return ( className.match ( /(^|\s)layout-\S+/g ) || [] ).join( ' ' );

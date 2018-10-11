@@ -354,17 +354,17 @@ var BoldGrid = BoldGrid || {};
 					onStick: function() {
 						var clone = $( '.bgtfw-header-clone' ),
 							inside = $( '#masthead' );
-						inside.clone( false ).attr( 'id', 'masthead-clone' ).appendTo( '#boldgrid-sticky-wrap > .site-header' );
-						inside.detach().appendTo( clone );
+						$( '#masthead-clone' ).appendTo( '#boldgrid-sticky-wrap > .site-header' );
+						inside.appendTo( clone );
 					},
 
 					onUnstick: function() {
 						$( '.bgtfw-header-clone' ).one( BoldGrid.common.detectTransitionEvent(), function() {
 							var header = $( '#boldgrid-sticky-wrap > .site-header' ),
-								inside = $( '#masthead' ).detach(),
+								inside = $( '#masthead' ),
 								event = new Event( 'bgtfw-header-unstick' );
 
-							$( '#masthead-clone' ).remove();
+							$( '#masthead-clone' ).appendTo( '.bgtfw-header-clone' );
 							inside.appendTo( header );
 
 							// Dispatch event.
@@ -373,7 +373,7 @@ var BoldGrid = BoldGrid || {};
 					},
 
 					onInit: function() {
-						$( '.bgtfw-header-clone' ).empty();
+						$( '.bgtfw-header-clone > #masthead' ).attr( 'id', 'masthead-clone' );
 					}
 				} ) );
 			},

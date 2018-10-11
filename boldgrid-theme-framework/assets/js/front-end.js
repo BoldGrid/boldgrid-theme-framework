@@ -29,6 +29,26 @@ var BoldGrid = BoldGrid || {};
 				this.forms();
 			},
 
+			// Add debouncing for frontend.
+			debounce: function( func, wait, immediate ) {
+				var timeout;
+				return function() {
+					var context = this, args = arguments;
+					var later = function() {
+						timeout = null;
+						if ( ! immediate ) {
+							func.apply( context, args );
+						}
+					};
+					var callNow = immediate && ! timeout;
+					clearTimeout( timeout );
+					timeout = setTimeout( later, wait );
+					if ( callNow ) {
+						func.apply( context, args );
+					}
+				};
+			},
+
 			// JavaScript to be fired on all pages, after page specific JS is fired.
 			finalize: function() {
 				$( ':root' ).removeClass( 'bgtfw-loading' ).addClass( 'bgtfw-loaded' );
@@ -134,7 +154,7 @@ var BoldGrid = BoldGrid || {};
 				BoldGrid.custom_header.calc();
 
 				// Listen for resize events to retrigger calculations.
-				$( window ).resize( this.calc );
+				$( window ).resize( BoldGrid.common.debounce( this.calc, 250 ) );
 			},
 
 			/**
@@ -439,7 +459,7 @@ var BoldGrid = BoldGrid || {};
 						e.stopPropagation();
 				} );
 
-				$( window ).on( 'resize', function() {
+				$( window ).on( 'resize', BoldGrid.common.debounce( function() {
 					var $mainMenuState = sm.siblings( 'input' ),
 						screen_width = $( window ).width() + 16;
 					if ( screen_width >= 768 && $mainMenuState.length ) {
@@ -447,7 +467,7 @@ var BoldGrid = BoldGrid || {};
 							$mainMenuState.prop( 'checked', false ).trigger( 'change' );
 						}
 					}
-				});
+				}, 250 ) );
 
 				$( function() {
 					var $mainMenuState = sm.siblings( 'input' );

@@ -252,6 +252,10 @@ var BoldGrid = BoldGrid || {};
 
 				// Mobile.
 				} else {
+					if ( undefined !== BoldGrid.header_slide_in.getInstance() ) {
+						BoldGrid.header_slide_in.destroy();
+					}
+
 					menu = $( '#main-menu' );
 
 					if ( menu.is( ':visible' ) ) {

@@ -356,6 +356,9 @@ var BoldGrid = BoldGrid || {};
 							inside = $( '#masthead' );
 						$( '#masthead-clone' ).appendTo( '#boldgrid-sticky-wrap > .site-header' );
 						inside.appendTo( clone );
+						if ( BOLDGRID && BOLDGRID.CustomizerEdit ) {
+							BOLDGRID.CustomizerEdit.placeButtons();
+						}
 					},
 
 					onUnstick: function() {
@@ -366,6 +369,10 @@ var BoldGrid = BoldGrid || {};
 
 							$( '#masthead-clone' ).appendTo( '.bgtfw-header-clone' );
 							inside.appendTo( header );
+
+							if ( BOLDGRID && BOLDGRID.CustomizerEdit ) {
+								BOLDGRID.CustomizerEdit.placeButtons();
+							}
 
 							// Dispatch event.
 							window.dispatchEvent( event );

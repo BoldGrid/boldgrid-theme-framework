@@ -359,8 +359,10 @@ var BoldGrid = BoldGrid || {};
 						document.getElementById( 'masthead-clone' ).classList = inside[0].classList;
 						inside.appendTo( clone );
 
-						if ( BOLDGRID && BOLDGRID.CustomizerEdit ) {
-							BOLDGRID.CustomizerEdit.placeButtons();
+						if ( 'undefined' !== typeof BOLDGRID && BOLDGRID.CustomizerEdit ) {
+							$( '.bgtfw-header-clone' ).one( BoldGrid.common.detectTransitionEvent(), function() {
+								BOLDGRID.CustomizerEdit.placeButtons();
+							} );
 						}
 					},
 
@@ -374,7 +376,7 @@ var BoldGrid = BoldGrid || {};
 							document.getElementById( 'masthead-clone' ).classList = inside[0].classList;
 							inside.appendTo( header );
 
-							if ( BOLDGRID && BOLDGRID.CustomizerEdit ) {
+							if ( 'undefined' !== typeof BOLDGRID && BOLDGRID.CustomizerEdit ) {
 								BOLDGRID.CustomizerEdit.placeButtons();
 							}
 

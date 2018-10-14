@@ -12,9 +12,9 @@
 		$dark-text-brightness: obrightness($dark_text);
 
 		@if (abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness)) {
-			@return $light_text;
+			@return var(--light-text);
 		} @else {
-			@return $dark_text;
+			@return var(--dark-text);
 		}
 	}
 }
@@ -73,7 +73,6 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_1 ) {
 	$text-contrast-palette-primary_1: text-contrast( $palette-primary_1 );
 	:root {
-		--color-1: $palette-primary_1;
 		--color-1-text-contrast: $text-contrast-palette-primary_1;
 	}
 	$ubtn-colors: append($ubtn-colors,('color-1' $palette-primary_1 var(--color-1-text-contrast)));
@@ -85,7 +84,6 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_2  ) {
 	$text-contrast-palette-primary_2: text-contrast( $palette-primary_2 );
 	:root {
-		--color-2: $palette-primary_2;
 		--color-2-text-contrast: $text-contrast-palette-primary_2;
 	}
 	$ubtn-colors: append($ubtn-colors,('color-2' $palette-primary_2 var(--color-2-text-contrast)));
@@ -97,7 +95,6 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_3 ) {
 	$text-contrast-palette-primary_3: text-contrast( $palette-primary_3 );
 	:root {
-		--color-3: $palette-primary_3;
 		--color-3-text-contrast: $text-contrast-palette-primary_3;
 	}
 	@if $text-contrast-palette-primary_3 != null {
@@ -111,7 +108,6 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_4 ) {
 	$text-contrast-palette-primary_4: text-contrast( $palette-primary_4 );
 	:root {
-		--color-4: $palette-primary_4;
 		--color-4-text-contrast: $text-contrast-palette-primary_4;
 	}
 	@if $text-contrast-palette-primary_4 != null {
@@ -125,7 +121,6 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary_5 ) {
 	$text-contrast-palette-primary_5: text-contrast( $palette-primary_5 );
 	:root {
-		--color-5: $palette-primary_5;
 		--color-5-text-contrast: $text-contrast-palette-primary_5;
 	}
 	@if $text-contrast-palette-primary_5 != null {
@@ -139,7 +134,6 @@ $ubtn-colors: ();
 @if variable-exists( palette-primary-neutral-color ) {
 	$text-contrast-palette-primary-neutral-color: text-contrast( $palette-primary-neutral-color );
 	:root {
-		--color-neutral: $palette-primary-neutral-color;
 		--color-neutral-text-contrast: $text-contrast-palette-primary-neutral-color;
 	}
 	@if $text-contrast-palette-primary-neutral-color != null {

@@ -379,7 +379,8 @@ class BoldGrid_Framework_Styles {
 				$contrast_color = $helper->get_luminance( $value );
 				$lightness = abs( $contrast_color - $helper->get_luminance( $light ) );
 				$darkness = abs( $contrast_color - $helper->get_luminance( $dark ) );
-				$contrast_color = $lightness > $darkness ? $light : $dark;
+				$contrast_color = $lightness > $darkness ? 'light' : 'dark';
+				$contrast_color = "var(--{$contrast_color}-text)";
 
 				$inline_css .= "--{$property}:{$value};";
 				$inline_css .= "--{$property}-text-contrast:{$contrast_color};";

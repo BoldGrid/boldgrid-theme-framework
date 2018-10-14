@@ -491,6 +491,21 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			} );
 		} );
 
+		api( 'boldgrid_color_palette', function( value ) {
+			value.bind( function( to ) {
+				var colors, neutral;
+				colors = BOLDGRID.Customizer.Util.getInitialPalettes( to );
+				if ( colors ) {
+					neutral = colors.pop();
+					document.documentElement.style.setProperty( '--color-neutral', neutral );
+
+					_( colors ).each( function( color, index ) {
+						document.documentElement.style.setProperty( '--color-' + Math.abs( index + 1 ), color );
+					} );
+				}
+			} );
+		} );
+
 		/**
 		 * Update any of the color control's palettes with correct palette from color picker.
 		 */

@@ -374,7 +374,7 @@ class BoldGrid_Framework_Styles {
 
 			$inline_css .= "--light-text:{$light};";
 			$inline_css .= "--dark-text:{$dark};";
-
+			$additional_css = '';
 			foreach ( $formatted_palette as $property => $value ) {
 				$contrast_color = $helper->get_luminance( $value );
 				$lightness = abs( $contrast_color - $helper->get_luminance( $light ) );
@@ -383,10 +383,18 @@ class BoldGrid_Framework_Styles {
 
 				$inline_css .= "--{$property}:{$value};";
 				$inline_css .= "--{$property}-text-contrast:{$contrast_color};";
+				$property2 = str_replace( '-', '', $property );
+				$additional_css .= ".{$property}-text-default, .{$property2}-text-default{color: var(--{$property}-text-contrast);}";
+				$additional_css .= ".{$property}-text-contrast, .{$property2}-text-contrast, .{$property}-text-contrast-hover:hover, .{$property2}-text-contrast-hover:hover, .{$property}-text-contrast-hover:focus, .{$property2}-text-contrast-hover:focus { color: var(--{$property}-text-contrast) !important;}";
+				$additional_css .= ".{$property}-color, .{$property2}-color{color: var(--{$property}) !important;}";
+				$additional_css .= ".{$property}-background, .{$property2}-background{background: var(--{$property}) !important;}";
+				$additional_css .= ".{$property}-background-color, .{$property2}-background-color{background-color: var(--{$property}) !important;}";
+				$additional_css .= ".{$property}-border-color, .{$property2}-border-color{border-color: var(--{$property}) !important;}";
 			}
 		}
 
 		$inline_css .= '}';
+		$inline_css .= $additional_css;
 
 		wp_add_inline_style( 'boldgrid-theme-framework', $inline_css );
 

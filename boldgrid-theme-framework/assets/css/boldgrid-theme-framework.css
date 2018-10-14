@@ -1184,6 +1184,55 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
   padding: 0;
 }
 
+.panel {
+  background-color: var(--color-neutral);
+  color: var(--color-neutral-text-contrast);
+}
+
+.panel-default {
+  border-color: var(--color-2);
+}
+
+.panel-footer, .panel-default > .panel-heading {
+  background-color: var(--color-2);
+  color: var(--color-2-text-contrast);
+  border-color: var(--color-2);
+}
+
+/** Mark elements **/
+mark, .mark {
+  background-color: var(--color-3);
+  color: var(--color-3-text-contrast);
+}
+
+/** Adding minimal color definitions for default breadcrumbs **/
+.breadcrumb li a.filler {
+  background: var(--color-2);
+  color: var(--color-2-text-contrast);
+}
+
+.breadcrumb li a.filler:after {
+  border-left-color: var(--color-2);
+}
+
+.breadcrumb li a:not(.filler) {
+  color: var(--color-1-text-contrast);
+}
+
+.breadcrumb li a:not(.filler):after {
+  border-left-color: var(--color-1) !important;
+}
+
+.breadcrumb li a:not(.filler):hover, .breadcrumb li a:not(.filler):focus {
+  background: var(--color-2);
+  color: var(--color-2-text-contrast);
+}
+
+.breadcrumb li a:not(.filler):hover:after, .breadcrumb li a:not(.filler):focus:after {
+  border-left-color: var(--color-2) !important;
+  color: var(--color-2-text-contrast);
+}
+
 /*--------------------------------------------------------------
 # Customizer Styles
 --------------------------------------------------------------*/
@@ -2462,6 +2511,21 @@ object {
 .wc-gallery-captions-showon .gallery-caption,
 .wc-gallery-captions-onhover .gallery-caption {
   opacity: .8;
+}
+
+.wc-image-links .gallery-caption,
+.wc-gallery-captions-show .gallery-caption,
+.wc-gallery-captions-onhover .gallery-caption,
+.wc-gallery-captions-showon .gallery-caption {
+  background-color: var(--color-3);
+  color: var(--color-3-text-contrast);
+}
+
+.wc-image-links .gallery-caption > *,
+.wc-gallery-captions-show .gallery-caption > *,
+.wc-gallery-captions-onhover .gallery-caption > *,
+.wc-gallery-captions-showon .gallery-caption > * {
+  color: var(--color-3-text-contrast);
 }
 
 /*--------------------------------------------------------------
@@ -5049,6 +5113,22 @@ body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
       -ms-flex-pack: end;
           justify-content: flex-end;
   margin-bottom: 0;
+}
+
+/** WooCommerce overrides **/
+.woocommerce ul.products li.product .price,
+.woocommerce div.product .stock,
+.woocommerce div.product span.price,
+.woocommerce div.product p.price {
+  color: var(--color-1);
+}
+
+.woocommerce #reviews #comments ol.commentlist li .meta {
+  color: var(--color-1);
+}
+
+.woocommerce #reviews #comments ol.commentlist li .comment-text {
+  border: 1px solid var(--color-1);
 }
 
 /*--------------------------------------------------------------

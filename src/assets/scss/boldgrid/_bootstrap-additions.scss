@@ -100,3 +100,46 @@
 		padding: 0;
 	}
 }
+
+// Bootstrap Panels.
+.panel {
+	background-color: var( --color-neutral );
+	color: var( --color-neutral-text-contrast );
+	&-default {
+		border-color: var( --color-2 );
+	}
+	&-footer, &-default > &-heading {
+		background-color: var( --color-2 );
+		color: var( --color-2-text-contrast );
+		border-color: var( --color-2 );
+	}
+}
+
+/** Mark elements **/
+mark, .mark {
+	background-color: var( --color-3 );
+	color: var( --color-3-text-contrast );
+}
+
+/** Adding minimal color definitions for default breadcrumbs **/
+.breadcrumb li a.filler {
+	background: var( --color-2 );
+	color: var( --color-2-text-contrast );
+	&:after {
+		border-left-color: var( --color-2 );
+	}
+}
+.breadcrumb li a:not(.filler) {
+	color: var( --color-1-text-contrast );
+	&:after {
+		border-left-color: var( --color-1 ) !important;
+	}
+	&:hover, &:focus {
+		background: var( --color-2 );
+		color: var( --color-2-text-contrast );
+		&:after {
+			border-left-color: var( --color-2 ) !important;
+			color: var( --color-2-text-contrast );
+		}
+	}
+}

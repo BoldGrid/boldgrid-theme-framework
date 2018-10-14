@@ -1,4 +1,5 @@
 @if variable-exists( button-primary-classes ) {
+	input[type=submit],
 	.button-primary,
 	.woocommerce .button {
 		.palette-primary & {

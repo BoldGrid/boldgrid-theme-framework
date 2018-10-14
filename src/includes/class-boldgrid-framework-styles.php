@@ -355,12 +355,42 @@ class BoldGrid_Framework_Styles {
 		);
 
 		/* Framework Base Styles */
-		wp_enqueue_style(
+		wp_register_style(
 			'boldgrid-theme-framework',
 			$this->configs['framework']['css_dir'] . 'boldgrid-theme-framework' . $suffix . '.css',
 			array(),
 			$this->configs['version']
 		);
+
+		$helper = new Boldgrid_Framework_Compile_Colors( $this->configs );
+		$active_palette = $helper->get_active_palette();
+		$formatted_palette = $helper->color_format( $active_palette );
+		$inline_css = ':root {';
+
+		if ( ! empty( $formatted_palette ) ) {
+
+			$light = $this->configs['customizer-options']['colors']['light_text'];
+			$dark = $this->configs['customizer-options']['colors']['dark_text'];
+
+			$inline_css .= "--light-text:{$light};";
+			$inline_css .= "--dark-text:{$dark};";
+
+			foreach ( $formatted_palette as $property => $value ) {
+				$contrast_color = $helper->get_luminance( $value );
+				$lightness = abs( $contrast_color - $helper->get_luminance( $light ) );
+				$darkness = abs( $contrast_color - $helper->get_luminance( $dark ) );
+				$contrast_color = $lightness > $darkness ? $light : $dark;
+
+				$inline_css .= "--{$property}:{$value};";
+				$inline_css .= "--{$property}-text-contrast:{$contrast_color};";
+			}
+		}
+
+		$inline_css .= '}';
+
+		wp_add_inline_style( 'boldgrid-theme-framework', $inline_css );
+
+		wp_enqueue_style( 'boldgrid-theme-framework' );
 
 		/* Framework Base Styles */
 		wp_enqueue_style(

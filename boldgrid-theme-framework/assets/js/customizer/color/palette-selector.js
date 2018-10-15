@@ -33,12 +33,14 @@ export class PaletteSelector {
 	 *
 	 * @since 2.0.1
 	 *
+	 * @see https://jsperf.com/bgtfw-color-token-parse
+	 *
 	 * @param  {string}  themeMod Theme mod value.
 	 *
 	 * @return {string}           CSS Color Variable.
 	 */
 	getVariableValue( themeMod ) {
-		return themeMod.split( ':' ).pop();
+		return themeMod.substring( themeMod.indexOf( ':' ) + 1 );
 	}
 
 	/**
@@ -46,11 +48,14 @@ export class PaletteSelector {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param {string} themeMod Theme mod value.
+	 * @see https://jsperf.com/bgtfw-color-token-parse
+	 *
+	 * @param  {string} themeMod Theme mod value.
+	 *
 	 * @return {string} Color number.
 	 */
 	getColorNumber( themeMod ) {
-		return themeMod.split( ':' ).shift();
+		return themeMod.substring( 0, themeMod.indexOf( ':' ) );
 	}
 }
 

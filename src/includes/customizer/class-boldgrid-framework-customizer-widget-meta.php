@@ -267,16 +267,6 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		$src = $this->configs['framework']['js_dir'] . 'customizer/widget-meta/title-partial.js';
 		$deps = array( 'customize-preview', 'customize-selective-refresh' );
 		wp_enqueue_script( $handle, $src, $deps );
-
-		$handle = 'bgtfw-customizer-widget-meta-background-color-partial';
-		$src = $this->configs['framework']['js_dir'] . 'customizer/widget-meta/background-color-partial.js';
-		$deps = array( 'customize-preview', 'customize-selective-refresh' );
-		wp_enqueue_script( $handle, $src, $deps );
-
-		$handle = 'bgtfw-customizer-widget-meta-links-color-partial';
-		$src = $this->configs['framework']['js_dir'] . 'customizer/widget-meta/links-color-partial.js';
-		$deps = array( 'customize-preview', 'customize-selective-refresh' );
-		wp_enqueue_script( $handle, $src, $deps );
 	}
 
 	/**

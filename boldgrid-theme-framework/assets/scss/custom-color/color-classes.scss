@@ -1,29 +1,4 @@
-/**
- * Text Contrast
- * Compares contrast of a given color to the light/dark arguments and returns whichever is most "contrasty"
- */
-@function text-contrast( $color ) {
-	@if $color == null {
-		@return null;
-	}
-	@else {
-		$color-brightness: obrightness($color);
-		$light-text-brightness: obrightness($light_text);
-		$dark-text-brightness: obrightness($dark_text);
-
-		@if (abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness)) {
-			@return var(--light-text);
-		} @else {
-			@return var(--dark-text);
-		}
-	}
-}
-@function obrightness($color) {
-	@return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
-}
-
 @function hover($background, $color) {
-
 	$style: '';
 	$hover-color: '';
 	$color-lightness: abs(lightness($color));
@@ -51,9 +26,8 @@
 			$hover-color: darken($color, 20);
 			$style: 'darken';
 		} @else {
-		$hover-color: lighten($color, 20);
-	}
-
+			$hover-color: lighten($color, 20);
+		}
 	} @else {
 		/* Dark text on light background */
 		$style: 'darken';
@@ -71,21 +45,13 @@
 
 $ubtn-colors: ();
 @if variable-exists( palette-primary_1 ) {
-	$text-contrast-palette-primary_1: text-contrast( $palette-primary_1 );
-	:root {
-		--color-1-text-contrast: $text-contrast-palette-primary_1;
-	}
 	$ubtn-colors: append($ubtn-colors,('color-1' $palette-primary_1 var(--color-1-text-contrast)));
 	@if $ubtn-theme-color == 'palette-primary_1' {
 		$ubtn-bgcolor: $palette-primary_1;
-		$ubtn-font-color: var(--color-2-text-contrast);
+		$ubtn-font-color: var(--color-1-text-contrast);
 	}
 }
 @if variable-exists( palette-primary_2  ) {
-	$text-contrast-palette-primary_2: text-contrast( $palette-primary_2 );
-	:root {
-		--color-2-text-contrast: $text-contrast-palette-primary_2;
-	}
 	$ubtn-colors: append($ubtn-colors,('color-2' $palette-primary_2 var(--color-2-text-contrast)));
 	@if $ubtn-theme-color == 'palette-primary_2' {
 		$ubtn-bgcolor: $palette-primary_2;
@@ -93,55 +59,31 @@ $ubtn-colors: ();
 	}
 }
 @if variable-exists( palette-primary_3 ) {
-	$text-contrast-palette-primary_3: text-contrast( $palette-primary_3 );
-	:root {
-		--color-3-text-contrast: $text-contrast-palette-primary_3;
-	}
-	@if $text-contrast-palette-primary_3 != null {
-		$ubtn-colors: append($ubtn-colors,('color-3' $palette-primary_3 var(--color-3-text-contrast)));
-		@if $ubtn-theme-color == 'palette-primary_3' {
-			$ubtn-bgcolor: $palette-primary_3;
-			$ubtn-font-color: var(--color-3-text-contrast);
-		}
+	$ubtn-colors: append($ubtn-colors,('color-3' $palette-primary_3 var(--color-3-text-contrast)));
+	@if $ubtn-theme-color == 'palette-primary_3' {
+		$ubtn-bgcolor: $palette-primary_3;
+		$ubtn-font-color: var(--color-3-text-contrast);
 	}
 }
 @if variable-exists( palette-primary_4 ) {
-	$text-contrast-palette-primary_4: text-contrast( $palette-primary_4 );
-	:root {
-		--color-4-text-contrast: $text-contrast-palette-primary_4;
-	}
-	@if $text-contrast-palette-primary_4 != null {
-		$ubtn-colors: append($ubtn-colors,('color-4' $palette-primary_4 var(--color-4-text-contrast)));
-		@if $ubtn-theme-color == 'palette-primary_4' {
-			$ubtn-bgcolor: $palette-primary_4;
-			$ubtn-font-color: var(--color-4-text-contrast);
-		}
+	$ubtn-colors: append($ubtn-colors,('color-4' $palette-primary_4 var(--color-4-text-contrast)));
+	@if $ubtn-theme-color == 'palette-primary_4' {
+		$ubtn-bgcolor: $palette-primary_4;
+		$ubtn-font-color: var(--color-4-text-contrast);
 	}
 }
 @if variable-exists( palette-primary_5 ) {
-	$text-contrast-palette-primary_5: text-contrast( $palette-primary_5 );
-	:root {
-		--color-5-text-contrast: $text-contrast-palette-primary_5;
-	}
-	@if $text-contrast-palette-primary_5 != null {
-		$ubtn-colors: append($ubtn-colors,('color-5' $palette-primary_5 var(--color-5-text-contrast)));
-		@if $ubtn-theme-color == 'palette-primary_5' {
-			$ubtn-bgcolor: $palette-primary_5;
-			$ubtn-font-color: var(--color-5-text-contrast);
-		}
+	$ubtn-colors: append($ubtn-colors,('color-5' $palette-primary_5 var(--color-5-text-contrast)));
+	@if $ubtn-theme-color == 'palette-primary_5' {
+		$ubtn-bgcolor: $palette-primary_5;
+		$ubtn-font-color: var(--color-5-text-contrast);
 	}
 }
 @if variable-exists( palette-primary-neutral-color ) {
-	$text-contrast-palette-primary-neutral-color: text-contrast( $palette-primary-neutral-color );
-	:root {
-		--color-neutral-text-contrast: $text-contrast-palette-primary-neutral-color;
-	}
-	@if $text-contrast-palette-primary-neutral-color != null {
-		$ubtn-colors: append($ubtn-colors,('neutral-color' $palette-primary-neutral-color var(--color-neutral-text-contrast)));
-		@if $ubtn-theme-color == 'palette-primary-neutral-color' {
-			$ubtn-bgcolor: $palette-primary-neutral-color;
-			$ubtn-font-color: var(--color-neutral-text-contrast);
-		}
+	$ubtn-colors: append($ubtn-colors,('neutral-color' $palette-primary-neutral-color var(--color-neutral-text-contrast)));
+	@if $ubtn-theme-color == 'palette-primary-neutral-color' {
+		$ubtn-bgcolor: $palette-primary-neutral-color;
+		$ubtn-font-color: var(--color-neutral-text-contrast);
 	}
 }
 

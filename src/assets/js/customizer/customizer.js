@@ -151,6 +151,18 @@ BOLDGRID.Customizer.Util.bgtfwParseJSON = function( string ) {
 	return false;
 };
 
+BOLDGRID.Customizer.Util.getTextContrast = function( color ) {
+	const brightness = ( color ) => {
+		color = window.net.brehaut.Color( color );
+		return ( ( color.getRed() * 0.299 ) + ( color.getGreen() * 0.587 ) + ( color.getBlue() * 0.114 ) ) * 100;
+	};
+	let lightText = brightness( BOLDGRID.CUSTOMIZER.data.customizerOptions.colors.light_text );
+	let darkText = brightness( BOLDGRID.CUSTOMIZER.data.customizerOptions.colors.dark_text );
+	color = brightness( color );
+
+	return Math.abs( color - lightText ) > Math.abs( color - darkText ) ? 'var(--light-text)' : 'var(--dark-text)';
+};
+
 BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	var palette, colors, activePalette;
 
@@ -493,14 +505,18 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		api( 'boldgrid_color_palette', function( value ) {
 			value.bind( function( to ) {
-				var colors, neutral;
+				var colors,
+					neutral;
+
 				colors = BOLDGRID.Customizer.Util.getInitialPalettes( to );
 				if ( colors ) {
 					neutral = colors.pop();
-					document.documentElement.style.setProperty( '--color-neutral', neutral );
 
+					document.documentElement.style.setProperty( '--color-neutral', neutral );
+					document.documentElement.style.setProperty( '--color-neutral-text-contrast', BOLDGRID.Customizer.Util.getTextContrast( neutral ) );
 					_( colors ).each( function( color, index ) {
 						document.documentElement.style.setProperty( '--color-' + Math.abs( index + 1 ), color );
+						document.documentElement.style.setProperty( '--color-' + Math.abs( index + 1 ) + '-text-contrast', BOLDGRID.Customizer.Util.getTextContrast( color ) );
 					} );
 				}
 			} );

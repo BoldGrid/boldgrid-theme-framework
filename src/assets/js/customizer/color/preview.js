@@ -245,7 +245,12 @@ export class Preview  {
 		}
 
 		let color = wp.customize( type )();
-		color = new PaletteSelector().getColor( color );
+
+		let paletteSelector = new PaletteSelector();
+
+		let colorVariable = paletteSelector.getColor( color );
+
+		color = paletteSelector.getColor( color, true );
 
 		let alpha = parent.net.brehaut.Color( color );
 		let css = '';
@@ -257,10 +262,10 @@ export class Preview  {
 		}
 
 		css += '@media (min-width: 768px) {';
-		css += `#${location}-menu.sm-clean ul {background-color: ${color};}`;
+		css += `#${location}-menu.sm-clean ul {background-color: ${colorVariable};}`;
 		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${alpha};}`;
 		css += `#${location}-menu.sm-clean ul { border: 1px solid ${alpha};}`;
-		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${color} transparent;}`;
+		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${colorVariable} transparent;}`;
 		css += '}';
 
 		return css;
@@ -388,7 +393,7 @@ export class Preview  {
 	 */
 	setHeaderOverlay() {
 		const selector = new PaletteSelector(),
-			color = selector.getColor( wp.customize( 'bgtfw_header_overlay_color' )() ),
+			color = selector.getColor( wp.customize( 'bgtfw_header_overlay_color' )(), true ),
 			alpha = wp.customize( 'bgtfw_header_overlay_alpha' )(),
 			brehautColor = parent.net.brehaut.Color( color ),
 			rgba = brehautColor.setAlpha( alpha ).toString();
@@ -412,7 +417,7 @@ export class Preview  {
 	 */
 	setPageTitles( themeMod, selectors ) {
 		const selector = new PaletteSelector(),
-		color = selector.getColor( wp.customize( themeMod )() ),
+		color = selector.getColor( wp.customize( themeMod )(), true ),
 		brehautColor = parent.net.brehaut.Color( color ),
 		updatedColor = brehautColor.setAlpha( 0.7 ).toString();
 

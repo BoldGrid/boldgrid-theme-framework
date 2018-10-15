@@ -1,6 +1,7 @@
 /* eslint max-nested-callbacks: [ "error", 4 ], consistent-this: [ "error", "partial" ] */
 
-import { Preview } from  '../preview';
+import { Preview } from '../preview';
+import { PaletteSelector } from '../color/palette-selector';
 
 // eslint-disable-next-line camelcase
 wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_headings_color = ( function( api, $ ) {
@@ -23,10 +24,8 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_headings_color = (
 			headingsColorSetting = api( partial.params.primarySetting );
 
 			_.each( partial.placements(), function( placement ) {
-				var color,
+				var color = new PaletteSelector().getColor( headingsColorSetting.get() ),
 					id = 'dynamic-sidebar-' + placement.partial.id.match( /\[(.*?)\]/ ).pop() + '-css';
-
-				color = headingsColorSetting.get().split( ':' ).pop();
 
 				new Preview().updateDynamicStyles( id, `
 					${placement.partial.params.selector} {

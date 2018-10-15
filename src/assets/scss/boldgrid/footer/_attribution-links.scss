@@ -4,10 +4,10 @@
 	align-items: center;
 	justify-content: flex-start;
 	.link {
-		padding: .5em;
+		padding: 13px 10px;
 		&:after {
 			content: "";
-			margin-left: 1em;
+			margin-left: 20px;
 			border-left: 1px solid currentColor;
 		}
 		&.no-separator,

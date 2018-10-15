@@ -114,6 +114,10 @@ class Boldgrid_Framework_Links {
 			$decoration = get_theme_mod( "${prefix}_link_decoration" );
 			$decoration_hover = get_theme_mod( "${prefix}_link_decoration_hover" );
 
+			// Apply color as CSS variable.
+			list( $color_variable ) = explode( ':', $color );
+			$color_variable = "var(--${color_variable})";
+
 			$color = explode( ':', $color )[1];
 			$ari_color = ariColor::newColor( $color );
 			$lightness = min( $ari_color->lightness + $color_hover, 100 );
@@ -128,7 +132,7 @@ class Boldgrid_Framework_Links {
 
 			foreach ( $selectors as $selector ) {
 				$selector = $selector . $excludes;
-				$css .= "${selector} {color: ${color};text-decoration: ${decoration};}";
+				$css .= "${selector} {color: ${color_variable};text-decoration: ${decoration};}";
 				$css .= "${selector}:hover, ${selector}:focus {color: ${color_hover};text-decoration: ${decoration_hover};}";
 			}
 		}

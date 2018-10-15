@@ -190,8 +190,9 @@ class Boldgrid_Framework_Customizer_Generic {
 	 */
 	public function border_css( $css, $control, $config ) {
 		$color = get_theme_mod( $control['settings'] . '_color' ) ?: '';
-		$color = explode( ':', $color )[1];
-		$css .= ! empty( $color ) ? 'border-color: ' . $color . ';' : '';
+		list( $color_variable ) = explode( ':', $color );
+		$color_variable = "var(--{$color_variable});";
+		$css .= ! empty( $color_variable ) ? 'border-color: ' . $color_variable . ';' : '';
 		$css .= ! empty( $config['type'] ) ? 'border-style: ' . $config['type'] . ';' : '';
 
 		return $css;

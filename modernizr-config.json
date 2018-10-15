@@ -1,14 +1,16 @@
 {
   "crawl": false,
-  "customTests": [],
   "tests": [
     "svg",
     "touchevents",
     "flexbox",
     "flexwrap",
-    "inlinesvg"
+    "inlinesvg",
+    "customproperties"
   ],
+  "customTests": "./tests/modernizr/",
   "options": [
+    "addTest",
     "setClasses"
   ]
 }

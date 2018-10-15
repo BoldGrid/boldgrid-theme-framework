@@ -21,7 +21,7 @@ var gulp = require('gulp'),
   clean = require('gulp-clean'),
   fs = require('fs'),
   argv = require('yargs').argv,
-  modernizr = require('gulp-modernizr'),
+  modernizr = require('gulp-modernizr-wezom'),
   jscs = require('gulp-jscs'),
   postcss = require('gulp-postcss'),
   inject = require('gulp-inject-string');
@@ -314,10 +314,14 @@ gulp.task('modernizr', function () {
     '!' + config.src + '/assets/js/customizer/base-customizer.js',
 	])
     .pipe(modernizr(require('./modernizr-config.json')))
-    .pipe(uglify().on('error', gutil.log))
     .pipe(rename({
       suffix: '.min'
     }))
+    .pipe(uglify({
+      mangle: {
+        reserved: ['Modernizr']
+      }
+    }).on('error', gutil.log))
     .pipe(gulp.dest(config.dist + '/assets/js'));
 
   // Unminified Files.

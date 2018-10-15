@@ -88,6 +88,7 @@
     "css-loader": "^0.28.11",
     "float-labels.js": "^3.3.5",
     "font-awesome": "^4.7.0",
+    "gulp-modernizr-wezom": "^1.1.4",
     "hamburgers": "https://github.com/jonsuh/hamburgers#v0.9.3",
     "headhesive": "^1.2.4",
     "hover.css": "^2.3.1",

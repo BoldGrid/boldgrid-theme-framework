@@ -225,12 +225,12 @@ class BoldGrid_Framework_Styles {
 		}
 
 		$color = get_theme_mod( "bgtfw_menu_items_hover_color_{$location}" );
-		$color = explode( ':', $color );
-		$color = array_pop( $color );
+		list( $color ) = explode( ':', $color );
+		$color = "var(--{$color})";
 
 		$background_color = get_theme_mod( "bgtfw_menu_items_hover_background_{$location}" );
-		$background_color = explode( ':', $background_color );
-		$background_color = array_pop( $background_color );
+		list( $background_color ) = explode( ':', $background_color );
+		$background_color = "var(--{$background_color})";
 
 		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";

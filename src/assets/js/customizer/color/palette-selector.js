@@ -9,7 +9,8 @@ export class PaletteSelector {
 	 * @return {string}       HEX, RGB, RGBA value.
 	 */
 	getColor( themeMod ) {
-		return themeMod.split( ':' ).pop();
+		let colorNumber = this.getColorNumber( themeMod );
+		return `var(--${colorNumber});`;
 	}
 
 	/**

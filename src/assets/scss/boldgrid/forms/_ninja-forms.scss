@@ -1,0 +1,9 @@
+// Ninja Forms Specific Styles
+.alert.ninja-forms-response-msg {
+	&:empty {
+		display: none;
+	}
+	&.alert-success p {
+		color: #3c763d;
+	}
+}

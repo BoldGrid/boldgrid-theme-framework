@@ -2896,6 +2896,53 @@ label {
   z-index: 2;
 }
 
+@media only screen and (min-width: 768px) {
+  #searchform {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  #searchform .form-group {
+    width: 100%;
+  }
+  #searchform input {
+    margin: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  #searchform .button-primary {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    font-size: 1.6rem;
+    margin: 0;
+    width: 50px;
+    height: auto;
+    padding: 8px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  #searchform .button-primary span:last-of-type {
+    display: none;
+  }
+}
+
+.alert.ninja-forms-response-msg:empty {
+  display: none;
+}
+
+.alert.ninja-forms-response-msg.alert-success p {
+  color: #3c763d;
+}
+
 div.wpforms-container-full .wpforms-form input[type=date],
 div.wpforms-container-full .wpforms-form input[type=datetime],
 div.wpforms-container-full .wpforms-form input[type=datetime-local],
@@ -2913,17 +2960,6 @@ div.wpforms-container-full .wpforms-form input[type=week],
 div.wpforms-container-full .wpforms-form select,
 div.wpforms-container-full .wpforms-form textarea {
   height: auto;
-}
-
-/*--------------------------------------------------------------
-# Ninja Forms
---------------------------------------------------------------*/
-.alert.ninja-forms-response-msg:empty {
-  display: none;
-}
-
-.alert.ninja-forms-response-msg.alert-success p {
-  color: #3c763d;
 }
 
 /*--------------------------------------------------------------
@@ -3211,38 +3247,6 @@ time.entry-date.updated:before {
 /*--------------------------------------------------------------
 # Sidebar
 --------------------------------------------------------------*/
-@media only screen and (min-width: 768px) {
-  .sidebar #searchform .form-group {
-    width: calc(100% - 40px - 5px);
-    /* 5px From margin on .form-control. */
-  }
-  .sidebar #searchform input.form-control {
-    width: 100%;
-    margin: 0 5px 2.5px 0;
-  }
-  .sidebar #searchform .button-primary {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    font-size: 1.6rem;
-    margin: 0;
-    width: 40px;
-    height: 40px;
-    padding: 8px;
-    border-radius: 4px;
-  }
-  .sidebar #searchform .button-primary span:last-of-type {
-    display: none;
-  }
-}
-
-/** Sidebar Base Styles **/
 .has-sidebar .main + aside {
   width: 100%;
 }

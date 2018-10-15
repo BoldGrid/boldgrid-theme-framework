@@ -252,8 +252,8 @@ class BoldGrid_Framework_Styles {
 	 */
 	public function active_link_generate( $location ) {
 		$color = get_theme_mod( "bgtfw_menu_items_active_link_color_{$location}" );
-		$color = explode( ':', $color );
-		$color = array_pop( $color );
+		list( $color ) = explode( ':', $color );
+		$color = "var(--{$color})";
 
 		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";

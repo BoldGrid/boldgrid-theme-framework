@@ -388,8 +388,10 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		$sidebar_meta = get_theme_mod( 'sidebar_meta' );
 		if ( is_active_sidebar( $sidebar_id ) || ! empty( $sidebar_meta[ $sidebar_id ]['title'] ) || current_user_can( 'edit_theme_options' ) ) {
 			$headings_color = empty( $sidebar_meta[ $sidebar_id ]['headings_color'] ) ? $this->get_sidebar_defaults( $sidebar_id, 'headings_color' ) : $sidebar_meta[ $sidebar_id ]['headings_color'];
-			$headings_color = explode( ':', $headings_color );
-			$headings_color = array_pop( $headings_color );
+
+			// Get sidebar heading colors as css variables.
+			list( $headings_color ) = explode( ':', $headings_color );
+			$headings_color = "var(--{$headings_color})";
 
 			$selectors = array();
 

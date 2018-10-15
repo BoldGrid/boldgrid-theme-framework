@@ -22,6 +22,28 @@
 		-webkit-transition: all 300ms ease-in-out;
 		-moz-transition: all 300ms ease-in-out;
 		transition: all 300ms ease-in-out;
+
+		// Temp view.
+		#header-widget-area,
+		.site-description,
+		#secondary-menu-btn,
+		#secondary-menu-state,
+		#secondary-menu {
+			display: none !important;
+		}
+		.site-branding,
+		.site-title {
+			margin: 0 !important;
+		}
+		.site-branding {
+			padding: 0 !important;
+			margin-top: .75em !important;
+			justify-content: center !important;
+			margin-bottom: 1em !important;
+		}
+		#main-menu {
+			align-items: center !important;
+		}
 	}
 
 	// Adjust for admin bar presence in WordPress.
@@ -40,7 +62,6 @@
 		-ms-transform: translateY(0%);
 		transform: translateY(0%);
 	}
-
 
 	// Unstuck. Empty selector left for reference.
 	.bgtfw-header-unstick {}

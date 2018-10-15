@@ -101,6 +101,34 @@
   transition: all 300ms ease-in-out;
 }
 
+.header-top .bgtfw-header-clone #header-widget-area,
+.header-top .bgtfw-header-clone .site-description,
+.header-top .bgtfw-header-clone #secondary-menu-btn,
+.header-top .bgtfw-header-clone #secondary-menu-state,
+.header-top .bgtfw-header-clone #secondary-menu {
+  display: none !important;
+}
+
+.header-top .bgtfw-header-clone .site-branding,
+.header-top .bgtfw-header-clone .site-title {
+  margin: 0 !important;
+}
+
+.header-top .bgtfw-header-clone .site-branding {
+  padding: 0 !important;
+  margin-top: .75em !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  margin-bottom: 1em !important;
+}
+
+.header-top .bgtfw-header-clone #main-menu {
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+}
+
 .header-top.admin-bar .bgtfw-header-clone {
   top: 32px;
 }

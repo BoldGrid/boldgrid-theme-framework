@@ -244,8 +244,8 @@ class Boldgrid_Framework_Customizer_Typography {
 			return;
 		}
 
-		$theme_mod = explode( ':', $theme_mod );
-		$theme_mod = array_pop( $theme_mod );
+		list( $theme_mod ) = explode( ':', $theme_mod );
+		$theme_mod = "var(--{$theme_mod})";
 
 		if ( empty( $selectors ) ) {
 			$selectors = $this->configs['customizer-options']['typography']['selectors'];

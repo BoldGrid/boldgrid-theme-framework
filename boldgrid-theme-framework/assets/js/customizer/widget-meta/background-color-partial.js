@@ -1,5 +1,8 @@
 /* eslint max-nested-callbacks: [ "error", 4 ], consistent-this: [ "error", "partial" ] */
 
+import { PaletteSelector } from '../color/palette-selector';
+
+// eslint-disable-next-line camelcase
 wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_background_color = ( function( api, $ ) {
 	'use strict';
 
@@ -14,19 +17,18 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_background_color =
 		 * @returns {jQuery.promise}
 		 */
 		refresh: function() {
-			var partial = this, backgroundColorSetting;
+			var partial = this,
+				backgroundColorSetting;
 
 			backgroundColorSetting = api( partial.params.primarySetting );
 			_.each( partial.placements(), function( placement ) {
-				var colorClassPrefix;
+				var colorClassPrefix = new PaletteSelector().getColorNumber( backgroundColorSetting.get() );
 
-				colorClassPrefix = backgroundColorSetting.get().split( ':' ).shift();
-
-				placement.container.parent( '.sidebar' ).removeClass( function ( index, css ) {
-					return ( css.match( /(^|\s)color-?([\d]|neutral)\-(background|text)\S+/g ) || [] ).join( ' ' );
+				placement.container.parent( '.sidebar' ).removeClass( function( index, css ) {
+					return ( css.match( /(^|\s)color-?([\d]|neutral)-(background|text)\S+/g ) || [] ).join( ' ' );
 				} );
 
-				if ( ! ~ colorClassPrefix.indexOf( 'neutral' ) ) {
+				if ( ! ~colorClassPrefix.indexOf( 'neutral' ) ) {
 					colorClassPrefix = colorClassPrefix.replace( '-', '' );
 				}
 
@@ -37,4 +39,4 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_background_color =
 			return $.Deferred().resolve().promise();
 		}
 	} );
-})( wp.customize, jQuery );
+} )( wp.customize, jQuery );

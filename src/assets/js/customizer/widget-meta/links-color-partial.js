@@ -1,5 +1,8 @@
 /* eslint max-nested-callbacks: [ "error", 4 ], consistent-this: [ "error", "partial" ] */
 
+import { PaletteSelector } from '../color/palette-selector';
+
+// eslint-disable-next-line camelcase
 wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_links_color = ( function( api, $ ) {
 	'use strict';
 
@@ -14,15 +17,16 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_links_color = ( fu
 		 * @returns {jQuery.promise}
 		 */
 		refresh: function() {
-			var partial = this, linksColorSetting;
+			var partial = this,
+			linksColorSetting;
 
 			linksColorSetting = api( partial.params.primarySetting );
 
 			_.each( partial.placements(), function( placement ) {
-				var colorClass;
-				colorClass = linksColorSetting.get().split( ':' ).shift();
-				$( placement.partial.params.selector ).parent( '.sidebar' ).removeClass( function ( index, css ) {
-					return ( css.match( /(^|\s)color-?([\d]|neutral)\-(link)\S+/g ) || [] ).join( ' ' );
+				var colorClass = new PaletteSelector().getColorNumber( linksColorSetting.get() );
+
+				$( placement.partial.params.selector ).parent( '.sidebar' ).removeClass( function( index, css ) {
+					return ( css.match( /(^|\s)color-?([\d]|neutral)-(link)\S+/g ) || [] ).join( ' ' );
 				} ).addClass( colorClass + '-link-color' );
 			} );
 
@@ -30,4 +34,4 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_links_color = ( fu
 			return $.Deferred().resolve().promise();
 		}
 	} );
-})( wp.customize, jQuery );
+} )( wp.customize, jQuery );

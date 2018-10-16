@@ -62,17 +62,25 @@ textarea {
 	padding: fl(base-padding)*2;
 
 	&:-moz-placeholder {
+		filter: contrast(0%);
 		color: fl(color-placeholder);
 	}
 	&::-moz-placeholder {
+		filter: contrast(0%);
 		color: fl(color-placeholder);
 	}
 	&:-ms-input-placeholder {
+		filter: contrast(0%);
 		color: fl(color-placeholder);
 	}
 	&::-webkit-input-placeholder {
+		filter: contrast(0%);
 		color: fl(color-placeholder);
 	}
+}
+
+button, input, optgroup, select, textarea {
+	color: fl(color-text);
 }
 
 input[type=submit] {

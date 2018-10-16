@@ -2503,7 +2503,7 @@ return array(
 	),
 	'bgtfw_header_layout_position' => array(
 		'settings' => 'bgtfw_header_layout_position',
-		'transport' => 'postMessage',
+		'transport' => 'refresh',
 		'label' => __( 'Header Position', 'bgtfw' ),
 		'type' => 'radio',
 		'priority' => 10,

@@ -37,7 +37,7 @@ var BoldGrid = BoldGrid || {};
 				this.cssVarsPonyfill();
 			},
 
-			// Listens for classList changes on body element.
+			// Observe classList changes on body element.
 			observeBody: function() {
 				var observer = new MutationObserver( mutations => {
 					let changes = 0;
@@ -50,9 +50,8 @@ var BoldGrid = BoldGrid || {};
 				observer.observe( document.body, { attributes: true } );
 			},
 
-			// Trigger resize events.
+			// Vanilla trigger resize events.
 			triggerResize: function() {
-				console.log( 'resize triggered' );
 				if ( 'function' === typeof( Event ) ) {
 					window.dispatchEvent( new Event( 'resize' ) );
 				} else {

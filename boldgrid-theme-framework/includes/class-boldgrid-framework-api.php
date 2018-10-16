@@ -638,7 +638,11 @@ class BoldGrid {
 		$classes[] = 'custom-header';
 
 		if ( get_theme_mod( 'bgtfw_fixed_header' ) ) {
-			$classes[] = 'header-slide-in';
+			if ( 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) {
+				$classes[] = 'header-slide-in';
+			} else {
+				$classes[] = 'header-fixed';
+			}
 		}
 
 		if ( ! wp_is_mobile() ) {

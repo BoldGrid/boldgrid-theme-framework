@@ -6,7 +6,6 @@ import { Preview as BackgroundPreview } from './background/preview.js';
 import { LinkPreview } from './typography/link-preview.js';
 import Toggle from './toggle/toggle';
 import ToggleValue from './toggle/value';
-import ToggleClass from './toggle/class';
 import './widget-meta';
 import { Preview as TypographyPreview } from './typography/preview';
 
@@ -567,8 +566,22 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
 		new ToggleValue( 'bgtfw_blog_page_container', '.blog .site-content, .archive .site-content', 'container', calc );
-
-		new ToggleClass( 'bgtfw_fixed_header', 'body', 'header-slide-in', calc );
+		api( 'bgtfw_fixed_header', value => value.bind( to => {
+			document.body.className = document.body.className.replace( 'header-slide-in', '' );
+			document.body.className = document.body.className.replace( 'header-fixed', '' );
+			if ( to ) {
+				if ( 'header-top' === api( 'bgtfw_header_layout_position' )() ) {
+					if ( -1 === document.body.className.indexOf( 'header-slide-in' ) ) {
+						document.body.className += ' ' + 'header-slide-in';
+					}
+				} else {
+					if ( -1 === document.body.className.indexOf( 'header-fixed' ) ) {
+						document.body.className += ' ' + 'header-fixed';
+					}
+				}
+			}
+			calc();
+		} ) );
 
 		let layoutFn = ( index, className ) => {
 			return ( className.match ( /(^|\s)layout-\S+/g ) || [] ).join( ' ' );

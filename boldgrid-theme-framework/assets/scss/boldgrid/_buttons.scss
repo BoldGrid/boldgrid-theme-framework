@@ -1,7 +1,8 @@
 @if variable-exists( button-primary-classes ) {
 	input[type=submit],
 	.button-primary,
-	.woocommerce .button {
+	.woocommerce .button,
+	div.wpforms-container-full .wpforms-form button[type=submit] {
 		.palette-primary & {
 			@extend #{$button-primary-classes};
 		}

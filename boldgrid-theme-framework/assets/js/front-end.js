@@ -48,13 +48,15 @@ var BoldGrid = BoldGrid || {};
 				var timeout;
 				return function() {
 					var context = this,
-args = arguments;
+						args = arguments;
+
 					var later = function() {
 						timeout = null;
 						if ( ! immediate ) {
 							func.apply( context, args );
 						}
 					};
+
 					var callNow = immediate && ! timeout;
 					clearTimeout( timeout );
 					timeout = setTimeout( later, wait );
@@ -74,7 +76,7 @@ args = arguments;
 
 			detectTransitionEvent: function() {
 				var i,
-el = document.createElement( 'fakeelement' );
+					el = document.createElement( 'fakeelement' );
 
 				var transitions = {
 					'transition': 'transitionend',

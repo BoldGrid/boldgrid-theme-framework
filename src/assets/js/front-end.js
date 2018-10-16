@@ -31,9 +31,36 @@ var BoldGrid = BoldGrid || {};
 			// JavaScript to be fired on all pages.
 			init: function() {
 				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
+				this.observeBody();
 				this.skipLink();
 				this.forms();
 				this.cssVarsPonyfill();
+			},
+
+			// Observe classList changes on body element.
+			observeBody: function() {
+				var observer = new MutationObserver( mutations => {
+					let changes = 0;
+					mutations.forEach( mutation => 'class' === mutation.attributeName ? changes++ : changes );
+					if ( 0 !== changes ) {
+						BoldGrid.common.triggerResize();
+					}
+				} );
+
+				observer.observe( document.body, { attributes: true } );
+			},
+
+			// Vanilla trigger resize events.
+			triggerResize: function() {
+				if ( 'function' === typeof( Event ) ) {
+					window.dispatchEvent( new Event( 'resize' ) );
+				} else {
+
+					// For IE and other older browser ( causes deprecation warning in modern browsers ).
+					let event = window.document.createEvent( 'UIEvents' );
+					event.initUIEvent( 'resize', true, false, window, 0 );
+					window.dispatchEvent( event );
+				}
 			},
 
 			// Apply CSS vars ponyfill for legacy browser support.

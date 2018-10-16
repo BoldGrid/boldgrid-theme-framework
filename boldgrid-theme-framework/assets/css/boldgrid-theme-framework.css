@@ -1868,6 +1868,7 @@ mark, .mark {
 
 .standard-menu-enabled label[id$="-menu-btn"] {
   position: relative;
+  left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -85,6 +85,7 @@
     "bootstrap-sass": "~3.3.6",
     "color-js": "^1.0.1",
     "css-loader": "^0.28.11",
+    "css-vars-ponyfill": "^1.11.1",
     "float-labels.js": "^3.3.5",
     "font-awesome": "^4.7.0",
     "gulp-modernizr-wezom": "^1.1.4",

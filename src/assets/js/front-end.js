@@ -1,3 +1,5 @@
+/* global Modernizr:false, BOLDGRID:false, Headhesive:true, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, Cookies:false, FloatLabels:false */
+
 /* ========================================================================
  * DOM-based Routing
  * Based on http://www.paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/
@@ -7,9 +9,13 @@
  * replace the dash with an underscore when adding it to the object below.
  * ======================================================================== */
 
+import cssVars from 'css-vars-ponyfill';
+
 // Setup our object.
+//jscs:disable requireVarDeclFirst
 var BoldGrid = BoldGrid || {};
 
+//jscs:enable requireVarDeclFirst
 ( function( $ ) {
 
 	'use strict';
@@ -27,13 +33,22 @@ var BoldGrid = BoldGrid || {};
 				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
 				this.skipLink();
 				this.forms();
+				this.cssVarsPonyfill();
+			},
+
+			// Apply CSS vars ponyfill for legacy browser support.
+			cssVarsPonyfill: function() {
+				if ( ! Modernizr.customproperties ) {
+					cssVars();
+				}
 			},
 
 			// Add debouncing for frontend.
 			debounce: function( func, wait, immediate ) {
 				var timeout;
 				return function() {
-					var context = this, args = arguments;
+					var context = this,
+args = arguments;
 					var later = function() {
 						timeout = null;
 						if ( ! immediate ) {
@@ -58,7 +73,8 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			detectTransitionEvent: function() {
-				var i, el = document.createElement( 'fakeelement' );
+				var i,
+el = document.createElement( 'fakeelement' );
 
 				var transitions = {
 					'transition': 'transitionend',
@@ -95,9 +111,9 @@ var BoldGrid = BoldGrid || {};
 
 			// JavaScript for the skip link functionality.
 			skipLink: function() {
-				var isWebkit  =  navigator.userAgent.toLowerCase().indexOf( 'webkit' ) > -1,
-				    isOpera   =  navigator.userAgent.toLowerCase().indexOf( 'opera' )  > -1,
-				    isIE      =  navigator.userAgent.toLowerCase().indexOf( 'msie' )   > -1;
+				var isWebkit = -1 < navigator.userAgent.toLowerCase().indexOf( 'webkit' ),
+					isOpera = -1 < navigator.userAgent.toLowerCase().indexOf( 'opera' ),
+					isIE = -1 < navigator.userAgent.toLowerCase().indexOf( 'msie' );
 
 				if ( ( isWebkit || isOpera || isIE ) && document.getElementById && window.addEventListener ) {
 					window.addEventListener( 'hashchange', function(  ) {
@@ -165,7 +181,9 @@ var BoldGrid = BoldGrid || {};
 			 * @return null
 			 */
 			checkType: function() {
-				var timer, body, youtube, nativeVideo, video, i = 0;
+				var timer, body, youtube, nativeVideo, video, i;
+
+				i = 0;
 
 				timer = setTimeout( function loadVideo() {
 					i++;
@@ -174,31 +192,31 @@ var BoldGrid = BoldGrid || {};
 					nativeVideo = ( ( ( wp || {} ).customHeader || {} ).handlers || {} ).nativeVideo;
 
 					// ~ 3sec with 50ms delays between load attempts.
-					if ( i > 60 ) {
+					if ( 60 < i ) {
 						clearTimeout( timer );
 					}
 
 					// jscs:disable requireYodaConditions
-					if ( youtube.player == null && nativeVideo.video == null ) {
+					if ( null == youtube.player && null == nativeVideo.video ) {
 						timer = setTimeout( loadVideo, 50 );
 					} else {
 
 						// YouTube player found and YT handler is loaded.
-						if ( nativeVideo.video == null && typeof youtube.player.stopVideo === 'function' ) {
+						if ( null == nativeVideo.video && 'function' === typeof youtube.player.stopVideo ) {
 							body.add( 'has-youtube-header' );
 							body.remove( 'has-header-image' );
 							body.remove( 'has-video-header' );
 							BoldGrid.custom_header.calc();
 
 						// HTML5 video player found and native handler is loaded.
-						} else if ( youtube.player == null && $( nativeVideo.video ).length ) {
+						} else if ( null == youtube.player && $( nativeVideo.video ).length ) {
 							body.add( 'has-video-header' );
 							body.remove( 'has-header-image' );
 							body.remove( 'has-youtube-header' );
 
 							video = document.getElementById( 'wp-custom-header-video' );
 
-							if ( !! video ) {
+							if ( video ) {
 
 								// Check  ready state of video player before attempting to reflow layout.
 								if ( 4 === video.readyState ) {
@@ -234,16 +252,15 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			calc: function() {
-				var classes, headerHeight, siteMargin, naviHeight, menu;
+				var classes, headerHeight, naviHeight, menu;
 
 				classes = document.body.classList;
 
 				headerHeight = '';
-				siteMargin = 0;
 				naviHeight = $( '#navi-wrap' ).outerHeight();
 
 				// Desktop view.
-				if ( window.innerWidth >= 768 ) {
+				if ( 768 <= window.innerWidth ) {
 
 					// Fixed Headers
 					if ( classes.contains( 'header-slide-in' ) ) {
@@ -251,22 +268,10 @@ var BoldGrid = BoldGrid || {};
 							BoldGrid.header_slide_in.init();
 						}
 
-						// Header on left, or header on right.
-						if ( classes.contains( 'header-top' ) ) {
-							siteMargin = $( '.site-header' ).outerHeight();
-						}
-
 					// Non-fixed headers.
 					} else {
 						if ( undefined !== BoldGrid.header_slide_in.getInstance() ) {
 							BoldGrid.header_slide_in.destroy();
-						}
-
-						if ( classes.contains( 'header-top' ) ) {
-
-							if ( classes.contains( 'has-youtube-header' ) ) {
-								siteMargin = siteMargin + $( '#header-widget-area' ).outerHeight();
-							}
 						}
 					}
 
@@ -292,6 +297,7 @@ var BoldGrid = BoldGrid || {};
 		},
 
 		'header_slide_in': {
+
 			/**
 			 * Expose the instance globally for access to configurations.
 			 */
@@ -466,7 +472,7 @@ var BoldGrid = BoldGrid || {};
 					'hide.smapi': function( e, menu ) {
 						$( menu ).removeClass( 'show-animation' ).addClass( 'hide-animation' );
 					}
-					}).on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', 'ul', function( e ) {
+					} ).on( 'animationend webkitAnimationEnd oanimationend MSAnimationEnd', 'ul', function( e ) {
 						BoldGrid.custom_header.calc();
 						$( this ).removeClass( 'show-animation hide-animation' );
 						e.stopPropagation();
@@ -474,8 +480,8 @@ var BoldGrid = BoldGrid || {};
 
 				$( window ).on( 'resize', BoldGrid.common.debounce( function() {
 					var $mainMenuState = sm.siblings( 'input' ),
-						screen_width = $( window ).width() + 16;
-					if ( screen_width >= 768 && $mainMenuState.length ) {
+						screenWidth = $( window ).width() + 16;
+					if ( 768 <= screenWidth && $mainMenuState.length ) {
 						if ( $mainMenuState[0].checked ) {
 							$mainMenuState.prop( 'checked', false ).trigger( 'change' );
 						}
@@ -490,21 +496,21 @@ var BoldGrid = BoldGrid || {};
 						$mainMenuState.change( function( e ) {
 							var $menu = $( e.currentTarget ).siblings( '.sm' );
 							this.checked ? BoldGrid.standard_menu_enabled.collapse( $menu ) : BoldGrid.standard_menu_enabled.expand( $menu );
-						});
+						} );
 
 						// Hide mobile menu beforeunload.
 						$( window ).bind( 'beforeunload unload', function() {
 							if ( $mainMenuState[0].checked ) {
 								$mainMenuState[0].click();
 							}
-						});
+						} );
 					}
-				});
+				} );
 			},
 
 			// Collpase the main navigation.
 			collapse: function( $menu ) {
-				if ( $menu.length < 1 ) {
+				if ( 1 > $menu.length ) {
 					return;
 				}
 				$menu.siblings( 'label' ).find( '.hamburger' ).addClass( 'is-active' );
@@ -515,7 +521,7 @@ var BoldGrid = BoldGrid || {};
 
 			// Expand the main navigation.
 			expand: function( $menu ) {
-				if ( $menu.length < 1 ) {
+				if ( 1 > $menu.length ) {
 					return;
 				}
 				$menu.siblings( 'label' ).find( '.hamburger' ).removeClass( 'is-active' );
@@ -562,35 +568,35 @@ var BoldGrid = BoldGrid || {};
 			},
 			stickyFooter: function() {
 				var footer = $( '.site-footer' ),
-					admin_bar        = $( '#wpadminbar' ),
-					sticky_wrapper   = $( '#boldgrid-sticky-wrap' ),
-					footer_height    = footer.outerHeight(  ),
-					footer_top       = footer[0].getBoundingClientRect().top,
-					content_end      = $( '.site-content' )[0].getBoundingClientRect().bottom,
-					sticky_filler    = footer_top - content_end,
-					admin_bar_height = admin_bar.height();
+					adminBar        = $( '#wpadminbar' ),
+					stickyWrapper   = $( '#boldgrid-sticky-wrap' ),
+					footerHeight    = footer.outerHeight(  ),
+					footerTop       = footer[0].getBoundingClientRect().top,
+					contentEnd      = $( '.site-content' )[0].getBoundingClientRect().bottom,
+					stickyFiller    = footerTop - contentEnd,
+					adminBarHeight = adminBar.height();
 
 				if ( ! footer.length ) {
 					return;
 				}
 
 				// Make sure sticky footer is enabled from configs (configs add the wrapper).
-				if ( sticky_wrapper.length ) {
+				if ( stickyWrapper.length ) {
 
 					// Check if the top of footer meets our site content's end.
-					if ( !! ( sticky_filler ) ) {
+					if ( stickyFiller ) {
 
 						// Set negative margin to the wrapper's bottom.
-						sticky_wrapper.css({ 'marginBottom': ~footer_height + 1 + 'px' });
+						stickyWrapper.css( { 'marginBottom': ~footerHeight + 1 + 'px' } );
 
 						// Give the filler div a height for the remaining distance inbetween.
-						$( '#boldgrid-sticky-filler' ).css({ 'height': sticky_filler - footer_height });
+						$( '#boldgrid-sticky-filler' ).css( { 'height': stickyFiller - footerHeight } );
 
 						// If in admin keep WYSIWYG and caluculate adminbar height.
 						if ( $( '#wpadminbar' ).length ) {
-							footer.css({
-								'bottom': admin_bar_height + 'px'
-							});
+							footer.css( {
+								'bottom': adminBarHeight + 'px'
+							} );
 						}
 					} else {
 
@@ -638,7 +644,7 @@ var BoldGrid = BoldGrid || {};
 		},
 		'nicescroll_enabled': {
 			init: function() {
-				$( _niceScrollOptions.selector ).niceScroll({
+				$( _niceScrollOptions.selector ).niceScroll( {
 					cursorcolor: _niceScrollOptions.cursorcolor,
 					cursoropacitymin: _niceScrollOptions.cursoropacitymin,
 					cursoropacitymax: _niceScrollOptions.cursoropacitymax,
@@ -690,7 +696,7 @@ var BoldGrid = BoldGrid || {};
 					scriptpath: _niceScrollOptions.scriptpath,
 					preventmultitouchscrolling: _niceScrollOptions.preventmultitouchscrolling,
 					disablemutationobserver: _niceScrollOptions.disablemutationobserver
-				});
+				} );
 			}
 		},
 
@@ -735,7 +741,8 @@ var BoldGrid = BoldGrid || {};
 
 			// Get color of arrow if not specified in configs.
 			getArrowColor: function() {
-				var color, test = document.createElement( 'div' );
+				var color,
+					test = document.createElement( 'div' );
 
 				test.className = 'color-1-text-contrast';
 				test.id = 'goup-color-test';
@@ -779,7 +786,9 @@ var BoldGrid = BoldGrid || {};
 	 */
 	UTIL = {
 		fire: function( func, funcname, args ) {
-			var fire, namespace = BoldGrid;
+			var fire,
+				namespace = BoldGrid;
+
 			funcname = ( undefined === funcname ) ? 'init' : funcname;
 			fire = '' !== func;
 			fire = fire && namespace[func];
@@ -798,7 +807,7 @@ var BoldGrid = BoldGrid || {};
 			$.each( document.body.className.replace( /-/g, '_' ).split( /\s+/ ), function( i, classnm ) {
 				UTIL.fire( classnm );
 				UTIL.fire( classnm, 'finalize' );
-			});
+			} );
 
 			// Fire common finalize JS.
 			UTIL.fire( 'common', 'finalize' );
@@ -808,4 +817,5 @@ var BoldGrid = BoldGrid || {};
 	// Load Events.
 	$( document ).ready( UTIL.loadEvents );
 
-})( jQuery );
+} )( jQuery );
+window.BoldGrid = BoldGrid;

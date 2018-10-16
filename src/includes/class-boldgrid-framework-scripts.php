@@ -97,7 +97,7 @@ class BoldGrid_Framework_Scripts {
 		 */
 		wp_register_script(
 			'boldgrid-front-end-scripts',
-			$this->configs['framework']['js_dir'] . 'front-end' . $suffix . '.js',
+			$this->configs['framework']['js_dir'] . 'front-end.min.js',
 			array( 'jquery' ),
 			$this->configs['version'],
 			true

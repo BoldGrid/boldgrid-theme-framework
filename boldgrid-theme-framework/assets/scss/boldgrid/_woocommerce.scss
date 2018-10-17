@@ -208,6 +208,9 @@
 		display: block;
 		padding: 10px 15px;
 	}
+	label[for=rating] {
+		padding: 0;
+	}
 	ul.products li.product .price,
 	div.product .stock,
 	div.product span.price,

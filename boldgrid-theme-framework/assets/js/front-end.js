@@ -167,7 +167,8 @@ var BoldGrid = BoldGrid || {};
 				new FloatLabels(
 					'form', {
 						prefix: 'bgtfw-',
-						style: 2
+						style: 2,
+						exclude: '.comment-form-rating #rating'
 					}
 				);
 			},

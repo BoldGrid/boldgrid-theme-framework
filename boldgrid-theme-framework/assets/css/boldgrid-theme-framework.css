@@ -5217,6 +5217,10 @@ body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
   padding: 10px 15px;
 }
 
+.woocommerce label[for=rating] {
+  padding: 0;
+}
+
 .woocommerce ul.products li.product .price,
 .woocommerce div.product .stock,
 .woocommerce div.product span.price,

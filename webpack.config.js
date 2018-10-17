@@ -1,11 +1,12 @@
 const webpack = require( 'webpack' );
 const path = require( 'path' );
+const src = path.resolve( __dirname, 'src' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 module.exports = {
 	mode: process.env.NODE_ENV || 'production',
 
-	context: path.resolve( __dirname, 'src' ),
+	context: src,
 
 	entry: {
 		customizer: './assets/js/customizer/customizer.js',
@@ -19,6 +20,18 @@ module.exports = {
 
 	externals: {
 		jquery: 'jQuery'
+	},
+
+	devServer: {
+		contentBase: src,
+		publicPath: '/',
+		historyApiFallback: true,
+
+		port: 4009,
+		overlay: {
+			errors: true,
+			warnings: true
+		}
 	},
 
 	module: {

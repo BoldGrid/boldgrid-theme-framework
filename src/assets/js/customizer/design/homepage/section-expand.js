@@ -2,7 +2,6 @@
 import ExpandSection from '../../expand/section';
 
 const api = wp.customize;
-const $ = jQuery;
 
 /**
  * This class is responsible for setting the URL to go to, and

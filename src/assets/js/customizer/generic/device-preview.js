@@ -1,5 +1,3 @@
-const $ = jQuery;
-
 export class DevicePreview {
 
 	constructor() {

@@ -1,7 +1,6 @@
 import PaletteSelector from '../color/palette-selector';
 import ColorPreview from '../color/preview';
 
-const $ = jQuery;
 const api = wp.customize;
 
 /**

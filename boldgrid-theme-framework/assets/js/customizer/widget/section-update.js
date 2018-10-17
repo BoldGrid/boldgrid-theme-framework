@@ -1,6 +1,5 @@
 /* esversion: 6 */
-const api = wp.customize,
-	$ = window.jQuery;
+const api = wp.customize;
 
 export class WidgetSectionUpdate {
 

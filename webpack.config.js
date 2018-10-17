@@ -1,10 +1,12 @@
+const webpack = require( 'webpack' );
 const path = require( 'path' );
+const src = path.resolve( __dirname, 'src' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 module.exports = {
 	mode: process.env.NODE_ENV || 'production',
 	devtool: 'development' === process.env.NODE_ENV ? 'source-map' : false,
-	context: path.resolve( __dirname, 'src' ),
+	context: src,
 
 	entry: {
 		'assets/js/customizer/customizer': './assets/js/customizer/customizer.js',
@@ -15,6 +17,22 @@ module.exports = {
 	output: {
 		filename: './[name].min.js',
 		path: path.resolve( __dirname, 'boldgrid-theme-framework' )
+	},
+
+	externals: {
+		jquery: 'jQuery'
+	},
+
+	devServer: {
+		contentBase: src,
+		publicPath: '/',
+		historyApiFallback: true,
+
+		port: 4009,
+		overlay: {
+			errors: true,
+			warnings: true
+		}
 	},
 
 	module: {
@@ -78,6 +96,11 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin( {
 			filename: './assets/css/base-controls-bundle.min.css'
+		} ),
+
+		new webpack.ProvidePlugin( {
+			$: 'jquery',
+			jQuery: 'jquery'
 		} )
 	]
 };

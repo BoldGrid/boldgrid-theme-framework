@@ -1,8 +1,6 @@
 import { PaletteSelector } from '../color/palette-selector';
 import { Border as BaseBorder } from '@boldgrid/controls/src/controls/border';
 
-const $ = window.jQuery;
-
 export class Border extends BaseBorder {
 
 	/**

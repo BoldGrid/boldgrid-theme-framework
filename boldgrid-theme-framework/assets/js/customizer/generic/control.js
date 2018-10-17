@@ -8,8 +8,6 @@ import { DevicePreview } from './device-preview';
 import { MultiSlider } from '@boldgrid/controls/src/controls/multi-slider';
 import '../../../scss/customizer/controls/_generic.scss';
 
-var $ = window.jQuery;
-
 export class Control {
 
 	constructor() {
@@ -32,7 +30,6 @@ export class Control {
 	init() {
 		$( () => {
 			this.devicePreview = new DevicePreview();
-
 			this._bindConfigs();
 		} );
 

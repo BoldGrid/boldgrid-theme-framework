@@ -51,14 +51,14 @@ return array(
 		'general' => array(
 			array(
 				'control' => 'blogname',
-				'selector' => '.site-title a',
-				'parentColumn' => '.site-title',
+				'selector' => '#masthead .site-title a',
+				'parentColumn' => '#masthead .site-title',
 				'requireText' => true,
 				'title' => esc_attr__( 'Site Title', 'bgtfw' ),
 			),
 			array(
 				'control' => 'custom_logo',
-				'selector' => '.custom-logo-link',
+				'selector' => '#masthead .custom-logo-link',
 				'isParentColumn' => true,
 				'title' => esc_attr__( 'Logo', 'bgtfw' ),
 			),
@@ -224,7 +224,7 @@ return array(
 			),
 			array(
 				'control' => 'blogdescription',
-				'selector' => '.site-description',
+				'selector' => '#masthead .site-description',
 				'isParentColumn' => true,
 				'title' => esc_attr__( 'Tagline', 'bgtfw' ),
 			),

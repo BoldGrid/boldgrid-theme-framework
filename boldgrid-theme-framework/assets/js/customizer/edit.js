@@ -235,9 +235,14 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			// Widget locations.
 			widgetAreas = self.getSections( 'sidebar-widgets-' );
 			_( widgetAreas ).each( function( widgetArea ) {
-				var button = {
+				var button, selectorId, widgetData = widgetArea.idSplit[1];
+
+				selectorId = ~ widgetData.indexOf( 'header' ) ? '#masthead ' : '';
+				selectorId += '#' + widgetData + '.sidebar';
+
+				button = {
 					control : widgetArea.id,
-					selector : '#' + widgetArea.idSplit[1] + '.sidebar',
+					selector : selectorId,
 					objectType: 'section',
 					isParentColumn: true,
 					title : self.i18n.widgetArea
@@ -247,28 +252,30 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			} );
 
 			// Menu locations.
-			_( menus ).each(
-				function( menu ) {
-					var button;
+			_( menus ).each( function( menu ) {
+				var button, selectorId;
 
-					// Define the menuId. It will be used as the selector for our call to addButton.
-					menuId = self.getMenuId( menu );
-					if ( ! menuId ) {
-						return;
-					}
+				// Define the menuId. It will be used as the selector for our call to addButton.
+				menuId = self.getMenuId( menu );
+				if ( ! menuId ) {
+					return;
+				}
 
-					// All menu edit buttons will be aligned with the menu itself.
-					$( '#' + menuId ).attr( 'data-parent-column', '#' + menuId );
+				selectorId = $( '#masthead').find( '#' + menuId ).length ? '#masthead ' : '';
+				selectorId += '#' + menuId;
 
-					button = {
-						type : 'nav_menu',
-						control : menu.setting._value,
-						selector : '#' + menuId,
-						title: self.i18n.menu
-					};
+				// All menu edit buttons will be aligned with the menu itself.
+				$( selectorId ).attr( 'data-parent-column', selectorId );
 
-					self.addButton( button );
-				} );
+				button = {
+					type : 'nav_menu',
+					control : menu.setting._value,
+					selector : selectorId,
+					title: self.i18n.menu
+				};
+
+				self.addButton( button );
+			} );
 
 			// Empty menu locations.
 			_( $emptyMenu ).each(
@@ -1382,7 +1389,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					'data-moves': 0,
 					'data-fixed-ancestor': dataFixedAncestor
 				} );
-			
+
 			// If this button has a title, add it.
 			if( config.title ) {
 				$button.prop( 'title', config.title );

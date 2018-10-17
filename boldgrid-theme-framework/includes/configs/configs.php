@@ -52,6 +52,7 @@ return array(
 		'asset_dir'       => $theme_framework_dir . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR,
 		'includes_dir'    => $theme_framework_dir . '/includes/',
 		'root_uri'        => $theme_framework_uri . '/',
+		'webpack_server'  => 'http://localhost:4009/',
 		'admin_asset_dir' => $theme_framework_uri . '/assets/',
 		'js_dir'          => $theme_framework_uri . '/assets/js/',
 		'css_dir'         => $theme_framework_uri . '/assets/css/',

@@ -2,8 +2,6 @@
 import PaletteSelector from './palette-selector';
 import { Preview as PreviewUtility } from '../preview';
 
-const $ = jQuery;
-
 export class Preview  {
 
 	constructor() {

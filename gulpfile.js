@@ -322,7 +322,9 @@ gulp.task('modernizr', function () {
     .pipe(modernizr(require('./modernizr-config.json')))
     .pipe(gulp.dest(config.dist + '/assets/js'));
 
-	gulp.start('webpack');
+	if ( 'development' !== process.env.NODE_ENV ) {
+		gulp.start('webpack');
+	}
 });
 
 // Copy SCSS & CSS deps.

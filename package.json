@@ -12,6 +12,7 @@
     "build-webpack": "webpack --color",
     "build-webpack-dev": "cross-env NODE_ENV=development webpack --color",
     "dev": "gulp watch",
+    "dev:server": "concurrently \"cross-env NODE_ENV=development gulp watch\" \"npm run webpack-server\"",
     "quick-build": "gulp qbuild"
   },
   "keywords": [
@@ -33,6 +34,7 @@
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0-beta",
     "babel-preset-minify": "^0.4.3",
+    "concurrently": "^4.0.1",
     "cross-env": "^5.2.0",
     "cssnano": "^3.10.0",
     "del": "^2.2.0",

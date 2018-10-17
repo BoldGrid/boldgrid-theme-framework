@@ -30,7 +30,6 @@ export class Control {
 	init() {
 		$( () => {
 			this.devicePreview = new DevicePreview();
-
 			this._bindConfigs();
 		} );
 

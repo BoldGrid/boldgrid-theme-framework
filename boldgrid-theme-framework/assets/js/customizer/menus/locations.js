@@ -1,6 +1,5 @@
 /* esversion: 6 */
 const api = wp.customize;
-const $ = jQuery;
 
 /**
  * This class is responsible for collapsing the hamburger controls

@@ -2,7 +2,6 @@ import { Preview as PreviewUtility } from '../preview';
 import PaletteSelector from '../color/palette-selector';
 
 const api = wp.customize;
-const $ = jQuery;
 const colorLib = window.net.brehaut;
 
 export class LinkPreview {

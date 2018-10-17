@@ -1,8 +1,6 @@
 /* esversion: 6 */
 import ToggleValue from './value';
 
-const $ = jQuery;
-
 /**
  * This class is responsible for managing the expand and collapse
  * triggers for panels and sections in the WordPress customizer.

@@ -97,7 +97,7 @@ class BoldGrid_Framework_Scripts {
 		 */
 		wp_register_script(
 			'boldgrid-front-end-scripts',
-			$this->configs['framework']['js_dir'] . 'front-end.min.js',
+			$this->get_webpack_url( $this->configs['framework']['js_dir'], 'front-end.min.js' ),
 			array( 'jquery' ),
 			$this->configs['version'],
 			true
@@ -244,5 +244,25 @@ class BoldGrid_Framework_Scripts {
 	public function modernizr( $output ) {
 		$admin_bar = is_admin_bar_showing() ? ' admin-bar' : '';
 		return "$output class='no-bgtfw no-js{$admin_bar}'";
+	}
+
+	/**
+	 * Get an asset url conditionally based on webpack server constant.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @param  string $path Url to asset dir.
+	 * @param  string $file Filename.
+	 * @return string       Url of asset.
+	 */
+	public function get_webpack_url( $path, $file ) {
+		$webpack_server_enabled = defined( 'BGTFW_SCRIPT_DEBUG' ) && BGTFW_SCRIPT_DEBUG;
+
+		if ( $webpack_server_enabled ) {
+			$path = str_replace( $this->configs['framework']['root_uri'],
+				$this->configs['framework']['webpack_server'], $path );
+		}
+
+		return $path . $file;
 	}
 }

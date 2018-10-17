@@ -360,7 +360,7 @@ class BoldGrid_Framework_Customizer {
 
 		wp_enqueue_style(
 			'boldgrid-customizer-controls-bundle',
-			$this->getWebpackUrl( $this->configs['framework']['css_dir'], 'base-controls-bundle.min.css' )
+			$this->get_webpack_url( $this->configs['framework']['css_dir'], 'base-controls-bundle.min.css' )
 		);
 	}
 
@@ -376,7 +376,7 @@ class BoldGrid_Framework_Customizer {
 
 		wp_register_script(
 			'bgtfw-customizer-base-controls',
-			$this->getWebpackUrl( $this->configs['framework']['js_dir'], 'customizer/base-controls.min.js' ),
+			$this->get_webpack_url( $this->configs['framework']['js_dir'], 'customizer/base-controls.min.js' ),
 			array(
 				'jquery',
 				'customize-controls',
@@ -486,20 +486,18 @@ class BoldGrid_Framework_Customizer {
 	 * @since 2.0.3
 	 *
 	 * @param  string $path Url to asset dir.
-	 * @param  string $file Filename
+	 * @param  string $file Filename.
 	 * @return string       Url of asset.
 	 */
-	public function getWebpackUrl( $path, $file ) {
-		$webpackServerEnabled = defined( 'BGTFW_SCRIPT_DEBUG' ) && BGTFW_SCRIPT_DEBUG;
+	public function get_webpack_url( $path, $file ) {
+		$webpack_server_enabled = defined( 'BGTFW_SCRIPT_DEBUG' ) && BGTFW_SCRIPT_DEBUG;
 
-		if ( $webpackServerEnabled ) {
+		if ( $webpack_server_enabled ) {
 			$path = str_replace( $this->configs['framework']['root_uri'],
 				$this->configs['framework']['webpack_server'], $path );
 		}
 
-		$url = $path . $file;
-
-		return $url;
+		return $path . $file;
 	}
 
 	/**
@@ -513,7 +511,7 @@ class BoldGrid_Framework_Customizer {
 		// Force minifies file for customizer.
 		wp_register_script(
 			'boldgrid-theme-customizer',
-			$this->getWebpackUrl( $this->configs['framework']['js_dir'], 'customizer/customizer.min.js' ),
+			$this->get_webpack_url( $this->configs['framework']['js_dir'], 'customizer/customizer.min.js' ),
 			array(
 				'boldgrid-front-end-scripts',
 				'customize-preview',

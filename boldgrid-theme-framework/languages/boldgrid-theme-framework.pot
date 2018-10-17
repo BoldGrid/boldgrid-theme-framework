@@ -1442,7 +1442,7 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:348, src/includes/customizer/class-boldgrid-framework-customizer.php:116, src/includes/customizer/class-boldgrid-framework-customizer.php:690
+#: src/includes/customizer/class-boldgrid-framework-customizer-background.php:348, src/includes/customizer/class-boldgrid-framework-customizer.php:116, src/includes/customizer/class-boldgrid-framework-customizer.php:688
 msgid "Background"
 msgstr ""
 
@@ -1981,51 +1981,51 @@ msgstr ""
 msgid "Please wait while the Customizer loads..."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:659
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:657
 msgid "Homepage"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:660
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:658
 msgid "Change your site's Homepage settings"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:667
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:665
 msgid "Drag a color to a new spot to change what parts of the website are that color.<a href=\"#\" data-action=\"open-color-picker\"><span class=\"dashicons dashicons-admin-customizer\"></span><strong>Click a color</strong></a> to change it. Use the \"Suggest Palettes\" button to get new color suggestions, and press the lock icons to freeze colors in place."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:672
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:670
 msgid "Logo & Icon"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:673
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:671
 msgid "Change your site's logo and favicon."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:691
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:689
 msgid "Change the background of your site's custom header."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:698
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:696
 msgid "CSS/JS Editor"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:699
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:697
 msgid "Manage custom CSS and JS code for your site."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:704
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:702
 msgid "Manage the menus used on your site."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:709
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:707
 msgid "A Widget is a small block that performs a specific function. We have provided some prefilled widget areas for you. You can hover over the Widget Areas below to see where they are located on the page."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:714
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:712
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:821
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:819
 msgid "Menu Tutorial"
 msgstr ""
 

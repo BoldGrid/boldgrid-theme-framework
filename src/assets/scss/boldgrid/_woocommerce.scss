@@ -4,6 +4,36 @@
 .palette-primary {
 	&.woocommerce,
 	&.woocommerce-page {
+		#ship-to-different-address-checkbox {
+			width: auto;
+		}
+		a.remove:hover {
+			text-decoration: none;
+		}
+		.bgtfw-table-vertical-align {
+			height: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		#content table.cart td.actions {
+			.coupon {
+				label.bgtfw-label {
+					display: block;
+					top: 6px;
+				}
+				.bgtfw-wrap {
+					.bgtfw-input {
+						width: auto;
+						margin-top: 5px;
+						margin-bottom: 5px;
+					}
+					+ .button-primary {
+						margin-left: 1em;
+					}
+				}
+			}
+		}
 
 		/* Product Archive Styles */
 		@import "woocommerce/products";
@@ -41,7 +71,11 @@
 				padding: 11px;
 				font-size: 14px;
 				line-height: 1;
-				height: 34px;
+				height: 100%;
+			}
+			&:last-child > .btn,
+			&:last-child > .btn-group {
+				margin-left: 0;
 			}
 		}
 		/* Grouped Products */

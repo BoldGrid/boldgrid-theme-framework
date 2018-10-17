@@ -147,12 +147,16 @@ label {
 	content: '';
 	position: absolute;
 	display: block;
-	top: fl(border-width);
-	right: 6px;
-	height: calc(100% - #{fl(border-width)*2});
-	width: fl(base-height)/2;
-	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 16'%3E%3Cpath fill='#{str-replace(#{fl(color-placeholder)},'#','%23')}' d='M 4 0 L 0 6.5 L 8 6.5 L 4 0 z M 0 9.5 L 4 16 L 4 16 L 8 9.5 z'/%3E%3C/svg%3E") no-repeat;
-	background-position: 100% 50%;
-	background-size: 7px 14px;
+	background: none;
+	border-top: 7px solid currentColor;
+	border-top-color: fl(color-placeholder);
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: none;
+	top: 50%;
+	right: 12px;
+	transform: translateY(-50%);
+	width: 0;
+	height: 12px;
 	z-index: 2;
 }

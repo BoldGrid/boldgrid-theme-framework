@@ -2896,13 +2896,18 @@ label {
   content: '';
   position: absolute;
   display: block;
-  top: 1px;
-  right: 6px;
-  height: calc(100% - 2px);
-  width: 12px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 16'%3E%3Cpath fill='var(--color-neutral-text-contrast)' d='M 4 0 L 0 6.5 L 8 6.5 L 4 0 z M 0 9.5 L 4 16 L 4 16 L 8 9.5 z'/%3E%3C/svg%3E") no-repeat;
-  background-position: 100% 50%;
-  background-size: 7px 14px;
+  background: none;
+  border-top: 7px solid currentColor;
+  border-top-color: var(--color-neutral-text-contrast);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: none;
+  top: 50%;
+  right: 12px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 0;
+  height: 12px;
   z-index: 2;
 }
 
@@ -4113,6 +4118,42 @@ body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
   /* Product Search */
 }
 
+.palette-primary.woocommerce #ship-to-different-address-checkbox, .palette-primary.woocommerce-page #ship-to-different-address-checkbox {
+  width: auto;
+}
+
+.palette-primary.woocommerce a.remove:hover, .palette-primary.woocommerce-page a.remove:hover {
+  text-decoration: none;
+}
+
+.palette-primary.woocommerce .bgtfw-table-vertical-align, .palette-primary.woocommerce-page .bgtfw-table-vertical-align {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.palette-primary.woocommerce #content table.cart td.actions .coupon label.bgtfw-label, .palette-primary.woocommerce-page #content table.cart td.actions .coupon label.bgtfw-label {
+  display: block;
+  top: 6px;
+}
+
+.palette-primary.woocommerce #content table.cart td.actions .coupon .bgtfw-wrap .bgtfw-input, .palette-primary.woocommerce-page #content table.cart td.actions .coupon .bgtfw-wrap .bgtfw-input {
+  width: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.palette-primary.woocommerce #content table.cart td.actions .coupon .bgtfw-wrap + .button-primary, .palette-primary.woocommerce-page #content table.cart td.actions .coupon .bgtfw-wrap + .button-primary {
+  margin-left: 1em;
+}
+
 .palette-primary.woocommerce.archive main, .palette-primary.woocommerce-page.archive main {
   display: block;
 }
@@ -4466,7 +4507,13 @@ body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
   padding: 11px;
   font-size: 14px;
   line-height: 1;
-  height: 34px;
+  height: 100%;
+}
+
+.palette-primary.woocommerce .input-group-btn:last-child > .btn,
+.palette-primary.woocommerce .input-group-btn:last-child > .btn-group, .palette-primary.woocommerce-page .input-group-btn:last-child > .btn,
+.palette-primary.woocommerce-page .input-group-btn:last-child > .btn-group {
+  margin-left: 0;
 }
 
 .palette-primary.woocommerce div.product.product-type-grouped form.cart, .palette-primary.woocommerce-page div.product.product-type-grouped form.cart {

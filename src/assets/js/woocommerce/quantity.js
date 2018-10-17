@@ -101,6 +101,11 @@ jQuery( document ).ready( function( $ ) {
 	};
 	qtyInput();
 
+	$( '.input-number' ).trigger( 'change' );
+
+	// Table wrap fix.
+	$( '.woocommerce-cart .actions' ).wrapInner( '<div class="bgtfw-table-vertical-align"></div>' );
+
 	/* Trigger when cart updates run. */
 	$( 'body' ).on( 'updated_wc_div', qtyInput );
 });

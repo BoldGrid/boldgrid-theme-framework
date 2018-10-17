@@ -1014,10 +1014,9 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'customize_register', $woo, 'customizer', 20 );
 		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $woo, 'buttons' );
 		$this->loader->add_filter( 'woocommerce_sale_flash', $woo, 'woocommerce_custom_sale_text', 10, 3 );
-		$this->loader->add_filter( 'woocommerce_form_field_args', $woo, 'wc_form_field_args', 10, 3 );
-		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'select2_style' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'enqueue' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'remove_select2', 100 );
 		$this->loader->add_filter( 'woocommerce_breadcrumb_defaults', $woo, 'breadcrumbs' );
-		$this->loader->add_filter( 'woocommerce_dropdown_variation_attribute_options_args', $woo, 'variation_dropdown' );
 		add_filter( 'loop_shop_per_page', function( $cols ) {
 			return 12;
 		}, 20 );

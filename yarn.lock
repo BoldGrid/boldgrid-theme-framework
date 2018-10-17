@@ -9395,10 +9395,6 @@ seek-bzip@^1.0.3:
   dependencies:
     commander "~2.8.1"
 
-select2-bootstrap-css@^1.4.6:
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/select2-bootstrap-css/-/select2-bootstrap-css-1.4.6.tgz#5cfb68246f5299ca1858e01efd788804c734997e"
-
 semver-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/semver-regex/-/semver-regex-1.0.0.tgz#92a4969065f9c70c694753d55248fc68f8f652c9"

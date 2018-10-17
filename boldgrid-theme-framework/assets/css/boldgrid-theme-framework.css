@@ -4804,6 +4804,7 @@ body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
 }
 
 .palette-primary .breadcrumb > li + li:before {
+  content: "";
   padding: 0;
 }
 
@@ -5209,6 +5210,13 @@ body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
 }
 
 /** WooCommerce overrides **/
+.woocommerce .wc-tabs.nav > li > a {
+  margin-bottom: -5px;
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
 .woocommerce ul.products li.product .price,
 .woocommerce div.product .stock,
 .woocommerce div.product span.price,
@@ -5222,6 +5230,10 @@ body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
 
 .woocommerce #reviews #comments ol.commentlist li .comment-text {
   border: 1px solid var(--color-1);
+}
+
+.woocommerce form.login, .woocommerce form.register, .woocommerce form.checkout_coupon {
+  border-color: var(--color-1);
 }
 
 /*--------------------------------------------------------------

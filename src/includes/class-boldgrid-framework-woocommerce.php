@@ -80,18 +80,6 @@ class BoldGrid_Framework_Woocommerce {
 	}
 
 	/**
-	 * Add custom argument to variation dropdowns.
-	 *
-	 * @param  Array $args Arguments for variation dropdown filter.
-	 *
-	 * @return Array $args Arguments to apply to variation dropdown filter.
-	 */
-	public function variation_dropdown( $args ) {
-		$args['class'] = 'form-control';
-		return $args;
-	}
-
-	/**
 	 * Modify WooCommerce customizer controls.
 	 *
 	 * @since 2.0.0
@@ -121,6 +109,21 @@ class BoldGrid_Framework_Woocommerce {
 	 */
 	public function add_container_close() {
 		echo '</div>';
+	}
+
+	/**
+	 * Remove select2 styles and use bgtfw base style for dropdown.
+	 *
+	 * @since 2.0.0
+	 */
+	public function remove_select2() {
+		if ( class_exists( 'woocommerce' ) ) {
+			wp_dequeue_style( 'selectWoo' );
+			wp_deregister_style( 'selectWoo' );
+
+			wp_dequeue_script( 'selectWoo');
+			wp_deregister_script('selectWoo');
+		}
 	}
 
 	/**
@@ -163,25 +166,13 @@ class BoldGrid_Framework_Woocommerce {
 	 *
 	 * @since 1.4.1
 	 */
-	public function select2_style() {
+	public function enqueue() {
 		if ( class_exists( 'woocommerce' ) ) {
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 			if ( is_woocommerce() ) {
 				$style = '.palette-primary.woocommerce ul.products li.product a.btn, .palette-primary.woocommerce-page ul.products li.product a.btn { max-width: ' . get_site_option( 'woocommerce_thumbnail_image_width', 300 ) . 'px;}';
 				wp_add_inline_style( 'woocommerce-layout', $style );
-			}
-
-			/**
-			 * Only needed in checkout pages, or if the use is logged in to account.
-			 */
-			if ( is_checkout() || ( is_account_page() && is_user_logged_in() ) ) {
-				wp_enqueue_style(
-					'select2-bootstrap-css',
-					$this->configs['framework']['css_dir'] . 'select2-bootstrap/select2-bootstrap' . $suffix . '.css',
-					array( 'select2' ),
-					'1.4.6'
-				);
 			}
 
 			/**
@@ -226,139 +217,6 @@ class BoldGrid_Framework_Woocommerce {
 				wp_add_inline_style( 'customize-preview', $css );
 			}
 		}
-	}
-
-	/**
-	 * Adding .form-control for input elements in wooCommerce.
-	 *
-	 * The input elements used throughout wooCommerce should inherit
-	 * the set bootstrap styles we use throughout our themes.
-	 *
-	 * @param Array  $args Arguments to filter for form attributes.
-	 * @param string $key Not in use.
-	 * @param string $value Not in use.
-	 *
-	 * @return Array $args Our new arguments to apply to forms.
-	 */
-	public function wc_form_field_args( $args, $key, $value = null ) {
-		/**
-		 * Look for the various types of items wooCommerce uses, and tap into the
-		 * filter to conditoinally apply our required classes to match bootstrap's
-		 * expected structure.
-		 */
-		switch ( $args['type'] ) {
-			/**
-			 * Targets all select input type elements, except the country and
-			 * state select input types.
-			 */
-			case 'select' :
-				// Add a class to the field's html element wrapper - woocommerce input types (fields) are often wrapped within a <p></p> tag.
-				$args['class'][] = 'form-group';
-				// Add a class to the form input itself.
-				$args['input_class'] = array(
-					'form-control',
-					'input-lg',
-				);
-				$args['label_class'] = array(
-					'control-label',
-				);
-				// Add custom data attributes to the form input itself.
-				$args['custom_attributes'] = array(
-					'data-plugin' => 'select2',
-					'data-allow-clear' => 'true',
-					'aria-hidden' => 'true',
-				);
-				break;
-
-			/**
-			 * By default WooCommerce will populate a select with the country
-			 * names - $args defined for this specific input type targets only
-			 * the country select element.
-			 */
-			case 'country' :
-				$args['class'][] = 'form-group single-country';
-				// Add class to the form input itself.
-				$args['input_class'] = array(
-					'form-control',
-					'input-lg',
-				);
-				$args['label_class'] = array(
-					'control-label',
-				);
-				$args['custom_attributes'] = array(
-					'data-plugin' => 'select2',
-					'data-allow-clear' => 'true',
-					'aria-hidden' => 'true',
-				);
-				break;
-
-			/**
-			 * By default WooCommerce will populate a select with state names -
-			 * $args defined for this specific input type targets only the country
-			 * select element.
-			 */
-			case 'state' :
-				// Add class to the field's html element wrapper.
-				$args['class'][] = 'form-group';
-				// Add class to the form input itself.
-				$args['input_class'] = array(
-					'form-control',
-					'input-lg',
-				);
-				$args['label_class'] = array(
-					'control-label',
-				);
-				$args['custom_attributes'] = array(
-					'data-plugin' => 'select2',
-					'data-allow-clear' => 'true',
-					'aria-hidden' => 'true',
-				);
-				break;
-
-			case 'password' :
-			case 'text' :
-			case 'email' :
-			case 'tel' :
-			case 'number' :
-				$args['class'][] = 'form-group';
-				$args['input_class'] = array(
-					'form-control',
-					'input-lg',
-				);
-				$args['label_class'] = array(
-					'control-label',
-				);
-				break;
-
-			case 'textarea' :
-				$args['input_class'] = array(
-					'form-control',
-					'input-lg',
-				);
-				$args['label_class'] = array(
-					'control-label',
-				);
-				break;
-
-			case 'checkbox' :
-				break;
-
-			case 'radio' :
-				break;
-
-			default :
-				$args['class'][] = 'form-group';
-				$args['input_class'] = array(
-					'form-control',
-					'input-lg',
-				);
-				$args['label_class'] = array(
-					'control-label',
-				);
-				break;
-		}
-
-		return $args;
 	}
 
 	/**

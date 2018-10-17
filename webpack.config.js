@@ -1,3 +1,4 @@
+const webpack = require( 'webpack' );
 const path = require( 'path' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
@@ -14,6 +15,10 @@ module.exports = {
 	output: {
 		filename: './assets/js/customizer/[name].min.js',
 		path: path.resolve( __dirname, 'boldgrid-theme-framework' )
+	},
+
+	externals: {
+		jquery: 'jQuery'
 	},
 
 	module: {
@@ -77,6 +82,11 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin( {
 			filename: './assets/css/[name]-bundle.min.css'
+		} ),
+
+		new webpack.ProvidePlugin( {
+			$: 'jquery',
+			jQuery: 'jquery'
 		} )
 	]
 };

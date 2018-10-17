@@ -228,3 +228,10 @@
 		}
 	}
 }
+.woocommerce-store-notice, p.demo_store {
+	background-color: var( --color-1 );
+	color: var( --color-1-text-contrast );
+	a {
+		color: var( --color-1-text-contrast );
+	}
+}

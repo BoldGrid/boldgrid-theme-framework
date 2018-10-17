@@ -5236,6 +5236,15 @@ body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
   border-color: var(--color-1);
 }
 
+.woocommerce-store-notice, p.demo_store {
+  background-color: var(--color-1);
+  color: var(--color-1-text-contrast);
+}
+
+.woocommerce-store-notice a, p.demo_store a {
+  color: var(--color-1-text-contrast);
+}
+
 /*--------------------------------------------------------------
 # Temp
 --------------------------------------------------------------*/

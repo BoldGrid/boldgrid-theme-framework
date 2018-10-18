@@ -9,13 +9,13 @@ module.exports = {
 	context: src,
 
 	entry: {
-		'assets/js/customizer/customizer': './assets/js/customizer/customizer.js',
-		'assets/js/customizer/base-controls': './assets/js/customizer/base-controls.js',
-		'assets/js/front-end': './assets/js/front-end.js'
+		'customizer/customizer': './assets/js/customizer/customizer.js',
+		'customizer/base-controls': './assets/js/customizer/base-controls.js',
+		'front-end': './assets/js/front-end.js'
 	},
 
 	output: {
-		filename: './[name].min.js',
+		filename: './assets/js/[name].min.js',
 		path: path.resolve( __dirname, 'boldgrid-theme-framework' )
 	},
 
@@ -95,7 +95,7 @@ module.exports = {
 	},
 	plugins: [
 		new MiniCssExtractPlugin( {
-			filename: './assets/css/base-controls-bundle.min.css'
+			filename: './assets/css/[name]-bundle.min.css'
 		} ),
 
 		new webpack.ProvidePlugin( {

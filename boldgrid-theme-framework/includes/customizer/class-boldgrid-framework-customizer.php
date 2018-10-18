@@ -370,7 +370,7 @@ class BoldGrid_Framework_Customizer {
 
 		wp_enqueue_style(
 			'boldgrid-customizer-controls-bundle',
-			$this->scripts->get_webpack_url( $this->configs['framework']['css_dir'], 'base-controls-bundle.min.css' )
+			$this->scripts->get_webpack_url( $this->configs['framework']['css_dir'], 'customizer/base-controls-bundle.min.css' )
 		);
 	}
 

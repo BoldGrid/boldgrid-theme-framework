@@ -2,27 +2,20 @@ const webpack = require( 'webpack' );
 const path = require( 'path' );
 const src = path.resolve( __dirname, 'src' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const requireDesired = require( './build/modules/require-desired.js' );
+const merge = require( 'webpack-merge' );
+const localConfig = merge( requireDesired( `${__dirname}/build/config` ), requireDesired( `${__dirname}/build/config.local` ) );
 
-module.exports = {
+if ( 'development' === localConfig.mode ) {
+	process.env.NODE_ENV = 'development';
+}
+
+const webpackConfig = merge( {
 	mode: process.env.NODE_ENV || 'production',
-	devtool: 'development' === process.env.NODE_ENV ? 'source-map' : false,
 	context: src,
-
-	entry: {
-		'customizer/customizer': './assets/js/customizer/customizer.js',
-		'customizer/base-controls': './assets/js/customizer/base-controls.js',
-		'front-end': './assets/js/front-end.js'
-	},
-
 	output: {
-		filename: './assets/js/[name].min.js',
 		path: path.resolve( __dirname, 'boldgrid-theme-framework' )
 	},
-
-	externals: {
-		jquery: 'jQuery'
-	},
-
 	devServer: {
 		contentBase: src,
 		publicPath: '/',
@@ -34,7 +27,6 @@ module.exports = {
 			warnings: true
 		}
 	},
-
 	module: {
 		rules: [
 			{
@@ -104,4 +96,6 @@ module.exports = {
 			'window.jQuery': 'jquery'
 		} )
 	]
-};
+}, localConfig );
+
+module.exports = webpackConfig;

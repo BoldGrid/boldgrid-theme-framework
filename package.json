@@ -9,7 +9,7 @@
     "php-codesniffer": "npm run phpcs-installStandards && php ./node_modules/PHP_CodeSniffer/scripts/phpcs -p -s -v -n ./src --standard=./phpcs.ruleset.xml --ignore=*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php",
     "build": "gulp build",
     "webpack-server": "cross-env NODE_ENV=development webpack-dev-server",
-    "build-webpack": "webpack --color",
+    "build-webpack": "webpack",
     "build-webpack-dev": "cross-env NODE_ENV=development webpack --color",
     "dev": "gulp watch",
     "dev:server": "concurrently \"cross-env NODE_ENV=development gulp watch\" \"npm run webpack-server\"",
@@ -80,7 +80,8 @@
     "svg-inline-loader": "^0.8.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3",
-    "webpack-dev-server": "^3.1.9"
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.4"
   },
   "dependencies": {
     "@boldgrid/components": "^2.15.2",

@@ -1,0 +1,29 @@
+{
+	"entry": {
+		"customizer/customizer": "./assets/js/customizer/customizer.js",
+		"customizer/base-controls": "./assets/js/customizer/base-controls.js",
+		"front-end": "./assets/js/front-end.js"
+	},
+	"output": {
+		"filename": "./assets/js/[name].min.js"
+	},
+	"externals": {
+		"jquery": "jQuery"
+	},
+	"devtool": "source-map",
+	"stats": {
+		"assets": true,
+		"children": false,
+		"chunks": false,
+		"hash": false,
+		"modules": true,
+		"publicPath": false,
+		"timings": true,
+		"version": true,
+		"maxModules": 0,
+		"warnings": true,
+		"colors": {
+			"green": "\u001b[32m"
+		}
+	}
+}

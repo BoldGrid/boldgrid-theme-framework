@@ -55,4 +55,18 @@ class Boldgrid_Framework_Wp_Fs {
 		}
 		$wp_filesystem->put_contents( $file, $content, $chmod_file );
 	}
+
+	/**
+	 * Get file content.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @param string $file File to write to.
+	 */
+	public function get_contents( $file ) {
+		self::init();
+		global $wp_filesystem;
+
+		return $wp_filesystem->get_contents( $file );
+	}
 }

@@ -489,8 +489,10 @@ class BoldGrid_Framework {
 		if ( ! empty( $this->configs['starter-content'] ) ) {
 			$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
 			$this->loader->add_action( 'after_setup_theme', $starter_content, 'add_theme_support' );
+			$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'add_custom_logo', 9, 2 );
 			$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'add_post_meta', 10, 2 );
 			$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'post_content_callbacks' );
+			$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'remove_custom_logo', 999, 2 );
 		}
 
 		// Edit post links.

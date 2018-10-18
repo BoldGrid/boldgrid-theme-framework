@@ -110,6 +110,99 @@ class BoldGrid_Framework_Starter_Content {
 	}
 
 	/**
+	 * Handle custom_logo for get_theme_starter_content filter.
+	 *
+	 * @since  2.0.3
+	 *
+	 * @param  array $content Processed content.
+	 * @param  array $config  Starter content config.
+	 *
+	 * @return array $content Modified $content.
+	 */
+	public function add_custom_logo( $content, $config ) {
+		// Set empty arrays if not set.
+		if ( ! isset( $config['attachments'] ) || ! is_array( $config['attachments'] ) ) {
+			$config['attachments'] = [];
+		}
+
+		// Loop through each post and assign metadata.
+		foreach ( $config['attachments'] as $post => $configs ) {
+			if ( isset( $configs['meta_input'] ) && isset( $configs['meta_input']['_custom_logo'] ) ) {
+
+				// Only add a custom_logo if the user hasn't set their own logo ( still replace other starter content logos ).
+				$custom_logo = get_theme_mod( 'custom_logo' );
+
+				if ( empty( $custom_logo ) || ! get_post_meta( $custom_logo, '_custom_logo', true ) ) {
+					$parent_post_id = 0;
+					$file = get_parent_theme_file_path( $config['attachments'][ $post ]['file'] );
+					$filename = basename( $file );
+					$fs = new Boldgrid_Framework_Wp_Fs();
+					$upload_file = wp_upload_bits( $filename, null, $fs->get_contents( $file ) );
+
+					if ( ! $upload_file['error'] ) {
+						$wp_filetype = wp_check_filetype( $filename, null );
+
+						$attachment = [
+							'post_mime_type' => $wp_filetype['type'],
+							'post_parent' => $parent_post_id,
+							'post_title' => $config['attachments'][ $post ]['post_title'],
+							'post_content' => '',
+							'post_status' => 'inherit'
+						];
+
+						$attachment_id = wp_insert_attachment( $attachment, $upload_file['file'], $parent_post_id );
+
+						if ( ! is_wp_error( $attachment_id ) ) {
+
+							// Add any custom postmeta keys from configs.
+							foreach( $config['attachments'][ $post ]['meta_input'] as $key => $value ) {
+								update_post_meta( $attachment_id, $key, $value );
+							}
+
+							// Update attachment metadata.
+							if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
+								require_once( ABSPATH . 'wp-admin/includes/image.php' );
+							}
+
+							$attachment_data = wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
+							wp_update_attachment_metadata( $attachment_id, $attachment_data );
+
+							// Add custom_logo theme_mod.
+							set_theme_mod( 'custom_logo', $attachment_id );
+						}
+					}
+				}
+			}
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Handle custom_logo for get_theme_starter_content filter.
+	 *
+	 * @since  2.0.3
+	 *
+	 * @param  array $content Processed content.
+	 * @param  array $config  Starter content config.
+	 *
+	 * @return array $content Modified $content.
+	 */
+	public function remove_custom_logo( $content, $config ) {
+		if ( isset( $content['attachments'] ) ) {
+
+			// Loop through each post and assign metadata.
+			foreach ( $content['attachments'] as $post => $configs ) {
+				if ( isset( $configs['meta_input'] ) ) {
+					$content['posts'][ $post ]['meta_input'] = $configs['meta_input'];
+				}
+			}
+		}
+
+		return $content;
+	}
+
+	/**
 	 * Adds post meta to get_theme_starter_content filter.
 	 *
 	 * @since  2.0.0
@@ -120,8 +213,27 @@ class BoldGrid_Framework_Starter_Content {
 	 * @return array $content Modified $content.
 	 */
 	public function add_post_meta( $content, $config ) {
-		foreach ( $config['posts'] as $post => $configs ) {
+
+		// Set empty arrays if not set.
+		if ( ! isset( $config['attachments'] ) || ! is_array( $config['attachments'] ) ) {
+			$config['attachments'] = [];
+		}
+		if ( ! isset( $config['posts'] ) || ! is_array( $config['posts'] ) ) {
+			$config['post'] = [];
+		}
+
+		// Merge posts and attachments for loop.
+		$posts = array_merge( $config['posts'], $config['attachments'] );
+
+		// Loop through each post and assign metadata.
+		foreach ( $posts as $post => $configs ) {
 			if ( isset( $configs['meta_input'] ) ) {
+				if ( isset( $configs['meta_input']['_custom_logo'] ) ) {
+
+					// Remove attachment from content so it's not uploaded twice.
+					unset( $content[ $post ] );
+				}
+
 				$content['posts'][ $post ]['meta_input'] = $configs['meta_input'];
 			}
 		}

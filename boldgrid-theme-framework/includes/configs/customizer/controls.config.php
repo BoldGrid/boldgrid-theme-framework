@@ -1582,6 +1582,23 @@ return array(
 		),
 		'priority'    => 30,
 	),
+	'bgtfw_tagline_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'postMessage',
+		'settings' => 'bgtfw_tagline_display',
+		'label' => esc_attr__( 'Display', 'bgtfw' ),
+		'tooltip' => __( 'Hide or show your site\'s title.', 'bgtfw' ),
+		'section' => 'bgtfw_tagline',
+		'default' => 'show',
+		'priority' => 5,
+		'choices' => array(
+			'show' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'hide' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'show', 'hide' ], true ) ? $value : $settings->default;
+		},
+	),
 	'bgtfw_tagline_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport'   => 'postMessage',
@@ -1731,6 +1748,23 @@ return array(
 			'size' => $palette->get_palette_size( $formatted_palette ),
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_site_title_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'postMessage',
+		'settings' => 'bgtfw_site_title_display',
+		'label' => esc_attr__( 'Display', 'bgtfw' ),
+		'tooltip' => __( 'Hide or show your site\'s title.', 'bgtfw' ),
+		'section' => 'bgtfw_site_title',
+		'default' => 'show',
+		'priority' => 5,
+		'choices' => array(
+			'show' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'hide' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'show', 'hide' ], true ) ? $value : $settings->default;
+		},
 	),
 	'bgtfw_site_title_typography' => array(
 		'type'        => 'typography',

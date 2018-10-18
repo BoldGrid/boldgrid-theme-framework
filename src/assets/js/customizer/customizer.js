@@ -502,6 +502,14 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			} );
 		} );
 
+		api( 'bgtfw_site_title_display', value => value.bind( to => {
+			$( '.site-title' ).toggleClass( 'screen-reader-text', 'show' !== to );
+		} ) );
+
+		api( 'bgtfw_tagline_display', value => value.bind( to => {
+			$( '.site-description' ).toggleClass( 'screen-reader-text', 'show' !== to );
+		} ) );
+
 		api( 'boldgrid_color_palette', function( value ) {
 			value.bind( function( to ) {
 				var colors,

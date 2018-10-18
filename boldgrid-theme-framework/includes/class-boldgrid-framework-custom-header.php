@@ -105,6 +105,8 @@ class Boldgrid_Framework_Custom_Header {
 	 * @since 2.0.0
 	 *
 	 * @param array $configs BGTFW Configs.
+	 *
+	 * @return array $configs BGTFW Configs.
 	 */
 	public function add_color_classes( $configs ) {
 		$title_color = get_theme_mod( 'bgtfw_site_title_color',
@@ -122,6 +124,25 @@ class Boldgrid_Framework_Custom_Header {
 			$color = BoldGrid::get_color_classes( $tagline_color, array( 'color' ) );
 			$configs['template']['tagline-classes'] .= ' ' . implode( ' ', $color );
 		}
+
+		return $configs;
+	}
+
+	/**
+	 * Add display classes to header items.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @param array $configs BGTFW Configs.
+	 *
+	 * @return array $configs BGTFW Configs.
+	 */
+	public function add_display_classes( $configs ) {
+		$title = get_theme_mod( 'bgtfw_site_title_display' );
+		$configs['template']['site-title-classes'] .= ( 'hide' !== $title ) ? '' : ' screen-reader-text';
+
+		$tagline = get_theme_mod( 'bgtfw_tagline_display' );
+		$configs['template']['tagline-classes'] .= ( 'hide' !== $tagline ) ? '' : ' screen-reader-text';
 
 		return $configs;
 	}

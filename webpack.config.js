@@ -1,4 +1,5 @@
 const webpack = require( 'webpack' );
+const FriendlyErrors = require( 'friendly-errors-webpack-plugin' );
 const path = require( 'path' );
 const src = path.resolve( __dirname, 'src' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
@@ -20,7 +21,7 @@ const webpackConfig = merge( {
 		contentBase: src,
 		publicPath: '/',
 		historyApiFallback: true,
-
+		quiet: true,
 		port: 4009,
 		overlay: {
 			errors: true,
@@ -89,12 +90,12 @@ const webpackConfig = merge( {
 		new MiniCssExtractPlugin( {
 			filename: './assets/css/[name]-bundle.min.css'
 		} ),
-
 		new webpack.ProvidePlugin( {
 			$: 'jquery',
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery'
-		} )
+		} ),
+		new FriendlyErrors()
 	]
 }, localConfig );
 

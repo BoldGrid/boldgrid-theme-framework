@@ -3,6 +3,9 @@
 }
 .main-wrapper {
 	display: flex;
+	flex: 1 0 auto;
+	flex-direction: row;
+	flex-wrap: wrap;
 	&.full-width {
 		width: 100%;
 		.page-header-wrapper {
@@ -70,7 +73,6 @@
 	padding-top: 15px;
 }
 
-
 // Link color.
 .page-header-wrapper {
 	.page-title, .entry-title {
@@ -83,7 +85,6 @@
 	}
 }
 
-
 .site-content.container .page-header-wrapper.full-width,
 .site-content.container .page-header-wrapper.container {
 	width: calc(100% + 30px) !important;
@@ -91,7 +92,6 @@
 	margin-left: -15px;
 	margin-right: -15px;
 }
-
 
 // Alignment.
 .page-title-above.page .page,

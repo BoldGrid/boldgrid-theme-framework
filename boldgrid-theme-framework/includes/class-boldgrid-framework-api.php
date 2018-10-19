@@ -184,7 +184,8 @@ class BoldGrid {
 	 */
 	public function blog_container( $classes ) {
 		if ( is_single() || is_attachment() ) {
-			$classes[] = get_theme_mod( 'bgtfw_pages_blog_posts_layout_layout' );
+			$theme_mod = get_theme_mod( 'bgtfw_pages_blog_posts_layout_layout' );
+			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 		}
 
 		return $classes;
@@ -201,7 +202,8 @@ class BoldGrid {
 	 */
 	public function page_container( $classes ) {
 		if ( is_page() ) {
-			$classes[] = get_theme_mod( 'bgtfw_pages_container' );
+			$theme_mod = get_theme_mod( 'bgtfw_pages_container' );
+			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 		}
 
 		return $classes;
@@ -219,7 +221,47 @@ class BoldGrid {
 	public function blog_page_container( $classes ) {
 		global $wp_query;
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
-			$classes[] = get_theme_mod( 'bgtfw_blog_page_container' );
+			$theme_mod = get_theme_mod( 'bgtfw_blog_page_container' );
+			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Add title container classes.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @param array $classes Classes added to .page-title-wrapper element.
+	 *
+	 * @return array $classes Filter classes on .main element.
+	 */
+	public function title_container( $classes ) {
+		if ( 'above' === get_theme_mod( 'bgtfw_global_title_position' ) ) {
+			$classes[] = get_theme_mod( 'bgtfw_global_title_background_container' );
+		} else {
+			$classes[] = 'full-width';
+		}
+
+		return $classes;
+	}
+
+
+	/**
+	 * Add title content container classes.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @param array $classes Classes added to .main element.
+	 *
+	 * @return array $classes Filter classes on .main element.
+	 */
+	public function title_content_container( $classes ) {
+		if ( 'above' === get_theme_mod( 'bgtfw_global_title_position' ) && 'full-width' === get_theme_mod( 'bgtfw_global_title_background_container' ) ) {
+			$classes[] = get_theme_mod( 'bgtfw_global_title_content_container' );
+		} else {
+			$classes[] = 'container';
 		}
 
 		return $classes;

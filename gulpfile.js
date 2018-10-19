@@ -426,6 +426,16 @@ gulp.task('sass:watch', function () {
 	} );
 } );
 
+// Watch for changes and copy php files.
+gulp.task('php:watch', function () {
+	gulp.watch(config.src + '/**/*.{php,txt,json,css,mo,po,pot}', ['frameworkFiles', 'translate']);
+} );
+
+// Watch for changes and recompile/copy js files.
+gulp.task('js:watch', function () {
+	gulp.watch(config.src + '/**/*.js', ['framework-js']);
+} );
+
 // WordPress Standard PHP Beautify
 gulp.task('phpcbf', function () {
   return gulp.src('src/**/*.php')
@@ -557,8 +567,7 @@ gulp.task('framework-js', function (cb) {
 gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate']);
 
 gulp.task('watch', function () {
-	gutil.log = () => this;
 	gulp.start( 'sass:watch' );
-	gulp.watch(config.src + '/**/*.{php,txt,json,css,mo,po,pot}', ['frameworkFiles', 'translate']);
-	gulp.watch(config.src + '/**/*.js', ['framework-js']);
+	gulp.start( 'php:watch' );
+	gulp.start( 'js:watch' );
 });

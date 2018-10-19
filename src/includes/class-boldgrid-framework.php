@@ -409,9 +409,9 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bgtfw_navi_wrap_classes', $boldgrid_theme, 'inner_header_classes' );
 		$this->loader->add_filter( 'bgtfw_navi_classes', $boldgrid_theme, 'navi_classes' );
 		$this->loader->add_filter( 'bgtfw_footer_content_classes', $boldgrid_theme, 'inner_footer_classes' );
-		$this->loader->add_filter( 'bgtfw_site_content_classes', $boldgrid_theme, 'blog_container' );
-		$this->loader->add_filter( 'bgtfw_site_content_classes', $boldgrid_theme, 'page_container' );
-		$this->loader->add_filter( 'bgtfw_site_content_classes', $boldgrid_theme, 'blog_page_container' );
+		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'blog_container' );
+		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'page_container' );
+		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'blog_page_container' );
 		$this->loader->add_filter( 'bgtfw_blog_page_post_title_classes', $boldgrid_theme, 'blog_page_post_title_classes' );
 		$this->loader->add_filter( 'bgtfw_posts_title_classes', $boldgrid_theme, 'post_title_classes' );
 		$this->loader->add_filter( 'bgtfw_pages_title_classes', $boldgrid_theme, 'page_title_classes' );
@@ -419,6 +419,12 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bgtfw_page_page_title_classes', $boldgrid_theme, 'page_title_background_class' );
 		$this->loader->add_filter( 'bgtfw_blog_page_title_classes', $boldgrid_theme, 'page_title_background_class' );
 		$this->loader->add_filter( 'bgtfw_archive_page_title_classes', $boldgrid_theme, 'page_title_background_class' );
+
+		// Title containers.
+		$this->loader->add_filter( 'bgtfw_page_header_wrapper_classes', $boldgrid_theme, 'title_container' );
+		$this->loader->add_filter( 'bgtfw_featured_image_classes', $boldgrid_theme, 'title_content_container' );
+		$this->loader->add_filter( 'bgtfw_featured_image_page_classes', $boldgrid_theme, 'title_content_container' );
+		$this->loader->add_filter( 'bgtfw_featured_image_single_classes', $boldgrid_theme, 'title_content_container' );
 
 		$this->loader->add_filter( 'wp_page_menu_args',             $boldgrid_theme,   'page_menu_args' );
 		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );

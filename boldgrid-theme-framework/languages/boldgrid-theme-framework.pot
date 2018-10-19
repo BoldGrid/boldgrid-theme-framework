@@ -32,19 +32,19 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:381
+#: src/includes/class-boldgrid-framework-api.php:423
 msgid "Skip to content"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:1055
+#: src/includes/class-boldgrid-framework-api.php:1097
 msgid "This content is password protected. To view it please enter your password below:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:1056
+#: src/includes/class-boldgrid-framework-api.php:1098
 msgid "Password:"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-api.php:1056
+#: src/includes/class-boldgrid-framework-api.php:1098
 msgctxt "post password form"
 msgid "Enter"
 msgstr ""

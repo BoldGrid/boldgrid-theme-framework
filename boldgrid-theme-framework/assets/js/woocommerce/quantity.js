@@ -63,16 +63,20 @@ jQuery( document ).ready( function( $ ) {
 			valueCurrent = parseInt( $( this ).val() );
 
 			name = $( this ).attr( 'name' );
-			if ( valueCurrent >= minValue ) {
+			if ( valueCurrent > minValue ) {
 				$( '.btn-number[data-type="minus"][data-field="' + name + '"]' ).removeAttr( 'disabled' );
 			} else {
-				alert( 'Sorry, the minimum value was reached' );
+				if ( ! $( this ).data( 'oldValue' ) ) {
+					$( this ).data( 'oldValue', 0 );
+				}
 				$( this ).val( $( this ).data( 'oldValue' ) );
 			}
-			if ( valueCurrent <= maxValue ) {
+			if ( valueCurrent < maxValue ) {
 				$( '.btn-number[data-type="plus"][data-field="' + name + '"]' ).removeAttr( 'disabled' );
 			} else {
-				alert( 'Sorry, the maximum value was reached' );
+				if ( ! $( this ).data( 'oldValue' ) ) {
+					$( this ).data( 'oldValue', 0 );
+				}
 				$( this ).val( $( this ).data( 'oldValue' ) );
 			}
 		});

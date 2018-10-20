@@ -201,6 +201,11 @@
 }
 
 /** WooCommerce overrides **/
+@media only screen and (min-width: 992px) {
+	.has-sidebar.woocommerce .main {
+		flex: 1;
+	}
+}
 .woocommerce {
 	.wc-tabs.nav > li > a {
 		margin-bottom: -5px;

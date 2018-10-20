@@ -221,6 +221,12 @@
 		display: block;
 		padding: 10px 15px;
 	}
+	div.product .woocommerce-tabs .panel {
+		border-top-left-radius: 0px;
+		padding-left: 15px;
+		padding-right: 15px;
+		padding-bottom: 1em;
+	}
 	label[for=rating] {
 		padding: 0;
 	}

@@ -1026,6 +1026,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'enqueue' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'remove_select2', 100 );
 		$this->loader->add_filter( 'woocommerce_breadcrumb_defaults', $woo, 'breadcrumbs' );
+		remove_all_actions( 'woocommerce_sidebar' );
 		add_filter( 'loop_shop_per_page', function( $cols ) {
 			return 12;
 		}, 20 );

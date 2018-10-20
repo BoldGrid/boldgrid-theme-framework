@@ -1,6 +1,6 @@
 jQuery( document ).ready( function( $ ) {
 
-	var loadVal, qtyInput = function() {
+	var qtyInput = function() {
 		$( '.btn-number' ).click( function( e ) {
 			var minValue, maxValue, fieldName, type, input, currentVal;
 
@@ -63,16 +63,20 @@ jQuery( document ).ready( function( $ ) {
 			valueCurrent = parseInt( $( this ).val() );
 
 			name = $( this ).attr( 'name' );
-			if ( valueCurrent >= minValue ) {
+
+			if ( valueCurrent === minValue ) {
+				$( '.btn-number[data-type="minus"][data-field="' + name + '"]' ).attr( 'disabled', true );
+			} else if ( valueCurrent > minValue ) {
 				$( '.btn-number[data-type="minus"][data-field="' + name + '"]' ).removeAttr( 'disabled' );
 			} else {
-				alert( 'Sorry, the minimum value was reached' );
 				$( this ).val( $( this ).data( 'oldValue' ) );
 			}
-			if ( valueCurrent <= maxValue ) {
+
+			if ( valueCurrent === maxValue ) {
+				$( '.btn-number[data-type="plus"][data-field="' + name + '"]' ).attr( 'disabled', true );
+			} else if ( valueCurrent <= maxValue ) {
 				$( '.btn-number[data-type="plus"][data-field="' + name + '"]' ).removeAttr( 'disabled' );
 			} else {
-				alert( 'Sorry, the maximum value was reached' );
 				$( this ).val( $( this ).data( 'oldValue' ) );
 			}
 		});
@@ -101,8 +105,7 @@ jQuery( document ).ready( function( $ ) {
 	};
 	qtyInput();
 
-	loadVal = $( '.input-number' ).val();
-	$( '.input-number' ).val( loadVal );
+	$( '.input-number' ).trigger( 'change' );
 
 	// Table wrap fix.
 	$( '.woocommerce-cart .actions' ).wrapInner( '<div class="bgtfw-table-vertical-align"></div>' );

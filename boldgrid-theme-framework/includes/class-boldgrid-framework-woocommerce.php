@@ -38,6 +38,7 @@ class BoldGrid_Framework_Woocommerce {
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
+		remove_all_actions( 'woocommerce_sidebar' );
 	}
 
 	/**

@@ -206,6 +206,14 @@
 		flex: 1;
 	}
 }
+
+// @todo: remove bootstrap classes from navs.
+.nav.nav-stacked > li > a {
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+}
+
 .woocommerce {
 	.wc-tabs.nav > li > a {
 		margin-bottom: -5px;

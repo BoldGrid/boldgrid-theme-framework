@@ -5120,6 +5120,12 @@ body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
   }
 }
 
+.nav.nav-stacked > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
 .woocommerce .wc-tabs.nav > li > a {
   margin-bottom: -5px;
   position: relative;

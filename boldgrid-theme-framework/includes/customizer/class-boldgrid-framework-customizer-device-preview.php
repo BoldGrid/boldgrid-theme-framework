@@ -118,15 +118,6 @@ class Boldgrid_Framework_Device_Preview {
 	public function adjust_customizer_responsive_sizes() {
 		?>
 		<style>
-			body.wp-customizer {
-				overflow: auto;
-			}
-			.wp-customizer .wp-full-overlay {
-				overflow: hidden;
-			}
-			_::-webkit-full-page-media, _:future, :root .wp-customizer .wp-full-overlay {
-				overflow: visible;
-			}
 			.wp-customizer .preview-mobile .wp-full-overlay-main.previewed-from-mobile,
 			.wp-customizer .preview-tablet .wp-full-overlay-main.previewed-from-tablet,
 			.wp-customizer .preview-desktop .wp-full-overlay-main.previewed-from-desktop,
@@ -180,14 +171,6 @@ class Boldgrid_Framework_Device_Preview {
 			.wp-full-overlay-footer .devices .preview-desktop:hover {
 				border-bottom: 4px solid #0073aa;
 			}
-			.wp-customizer .preview-large .wp-full-overlay-main.previewed-from-desktop {
-				margin: auto;
-				width: 1200px;
-				height: 100%;
-				left: 0;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
 			.wp-customizer .preview-tablet .wp-full-overlay-main.previewed-from-desktop {
 				margin: auto;
 				width: 768px;
@@ -213,22 +196,6 @@ class Boldgrid_Framework_Device_Preview {
 			.wp-full-overlay-footer .devices .preview-tablet:hover {
 				border-bottom: 4px solid #0073aa;
 			}
-			.wp-customizer .preview-large .wp-full-overlay-main.previewed-from-tablet {
-				margin: auto;
-				width: 1200px;
-				height: 100%;
-				left: 0;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
-			.wp-customizer .preview-desktop .wp-full-overlay-main.previewed-from-tablet {
-				margin: auto;
-				width: 992px;
-				height: 100%;
-				left: 0;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
 			.wp-customizer .preview-mobile .wp-full-overlay-main.previewed-from-tablet {
 				margin: auto;
 				width: 320px;
@@ -246,30 +213,7 @@ class Boldgrid_Framework_Device_Preview {
 			.wp-full-overlay-footer .devices .preview-mobile:hover {
 				border-bottom: 4px solid #0073aa;
 			}
-			.wp-customizer .preview-large .wp-full-overlay-main.previewed-from-mobile {
-				margin: auto;
-				width: 1200px;
-				height: 100%;
-				left: 0;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
-			.wp-customizer .preview-desktop .wp-full-overlay-main.previewed-from-mobile {
-				margin: auto;
-				width: 992px;
-				height: 100%;
-				left: 0;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
-			.wp-customizer .preview-tablet .wp-full-overlay-main.previewed-from-mobile {
-				margin: auto;
-				min-width: 768px;
-				height: 100%;
-				left: 0;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
+
 			@media screen and (max-width: 600px) {
 				body.wp-customizer {
 					overflow-x: hidden;

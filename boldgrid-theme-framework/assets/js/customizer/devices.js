@@ -98,7 +98,7 @@ export class Devices {
 	_resize() {
 		$( window ).on( 'resize', _.debounce( () => {
 			this.detectDevice();
-
+			this.setZoom();
 			if ( this.previewedDevice === this.currentDevice ) {
 				this.shouldChange = true;
 			}
@@ -124,8 +124,8 @@ export class Devices {
 			this.previewedDevice = $( event.currentTarget ).data( 'device' );
 
 			// Wait for frame resize transition since it uses transforms.
-			wp.customize.previewer.preview.container.one( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', () => this.setBodyHeight() );
-
+			wp.customize.previewer.preview.container.one( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', () => this.setZoom() );
+			this.setZoom();
 			this.detectDevice();
 		} );
 	}
@@ -145,54 +145,56 @@ export class Devices {
 			$( '.devices > button' ).blur();
 			this.shouldChange = true;
 		}
-
-		this.setupScroll();
 	}
 
 	/**
-	 * Setup scrolling bugs.
+	 * Set previewer zoom of content.
 	 *
 	 * @since 2.0.0
 	 */
-	setupScroll() {
-		let preview = api.previewer.preview.iframe[0];
+	setZoom() {
+		let currentDeviceWidth = this.devices[ this.currentDevice ].breakpoint,
+			previewDeviceWidth = this.devices[ this.previewedDevice ].breakpoint,
+			previewer = api.previewer.preview.iframe[0];
 
-		// Set seamless for html5.
-		preview.seamless = true;
-
-		// Set overflow since scrolling attribute is not valid for HTML5.
-		frames[ preview.name ].document.body.style.overflow = 'hidden';
-
-		// Set the body height.
-		this.setBodyHeight();
-
-		// On resize recalc the height offsets.
-		$( window ).on( 'resize', _.debounce( () => {
-			this.setBodyHeight();
-		}, 300 ) );
-
-		// Scroll syncing ** Do Not Debounce **.
-		$( window ).on( 'scroll', () => {
-			let name = api.previewer.preview.iframe[0].name;
-			let doc = frames[ name ].document;
-			doc.documentElement.scrollTop = window.pageYOffset;
-			doc.body.scrollTop = window.pageYOffset; // Google Chrome, Safari, documents without valid doctype.
-			$( '.wp-customizer .wp-full-overlay' ).scrollLeft( window.pageXOffset );
+		Object.assign( previewer.style, {
+			width: '',
+			height: '',
+			msTransform: '',
+			MozTransform: '',
+			oTransform: '',
+			webkitTransform: '',
+			transform: '',
+			msTransformOrigin: '',
+			MozTransformOrigin: '',
+			oTransformOrigin: '',
+			webkitTransformOrigin: '',
+			transformOrigin: ''
 		} );
 
-		// Sync scroll in iframe back to parent.
-		$( frames[ preview.name ] ).on( 'scroll', () => {
-			window.document.scrollingElement.scrollTop = preview.contentWindow.pageYOffset;
-		} );
-	}
+		if ( currentDeviceWidth < previewDeviceWidth ) {
 
-	setBodyHeight() {
-		let name = api.previewer.preview.iframe[0].name;
-		document.body.style.height = frames[ name ].document.body.offsetHeight + 'px';
+			let previewWidth = previewer.offsetWidth,
+				value = Math.abs( previewWidth / previewDeviceWidth ),
+				transform = 'scale(' + value.toString() + ')',
+				origin = 'top left';
 
-		let previewWidth = frames[ name ].document.body.offsetWidth;
-		let controlWidth = document.getElementById( 'customize-controls' ).offsetWidth;
-		document.body.style.width = Math.abs( previewWidth + controlWidth ) + 'px';
+			// Determine the iframe height based on the transform difference before it's transformed.
+			Object.assign( previewer.style, {
+				width: previewDeviceWidth + 'px',
+				height: Math.abs( parseInt( api.previewer.preview.iframe.outerHeight( true ) ) / value ) + 'px',
+				msTransform: transform,
+				MozTransform: transform,
+				oTransform: transform,
+				webkitTransform: transform,
+				transform: transform,
+				msTransformOrigin: origin,
+				MozTransformOrigin: origin,
+				oTransformOrigin: origin,
+				webkitTransformOrigin: origin,
+				transformOrigin: origin
+			} );
+		}
 	}
 
 	/**

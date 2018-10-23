@@ -952,7 +952,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			* Based on the parent's visibility and whether we're showing this button for the first
 			* time, determine the appropriate fade effect for the button.
 			*/
-			if ( $parent.hasClass( 'hidden' ) || $parent.hasClass( 'invisible' ) || ! $parent.is( ':visible' ) ) {
+			if ( $parent.is( '.hidden, .invisible, .screen-reader-text' ) || ! $parent.is( ':visible' ) ) {
 
 				/*
 				* This may be the first time we're showing the button, but we don't actually want

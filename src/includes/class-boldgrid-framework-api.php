@@ -157,9 +157,8 @@ class BoldGrid {
 
 		// Site title link.
 		$link = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo( 'name' ) . '</a>';
-
-		echo '<' . $title_tag . ' class="' . esc_attr( $configs['template']['site-title-classes'] )
-			. '">' . $link . '</' . $title_tag . '>';
+		$display = get_theme_mod( 'bgtfw_site_title_display' ) === 'hide' ? ' screen-reader-text' : '';
+		echo '<' . $title_tag . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . $display . '">' . $link . '</' . $title_tag . '>';
 	}
 
 	/**
@@ -342,9 +341,10 @@ class BoldGrid {
 	public function print_tagline() {
 		// Retrieve blog tagline.
 		$blog_info = get_bloginfo( 'description' );
+		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
 
-		if ( $blog_info && ! absint( get_theme_mod( 'boldgrid_logo_setting' ) ) ) {
-			printf( $this->configs['template']['tagline'], $this->configs['template']['tagline-classes'], $blog_info );
+		if ( $blog_info ) {
+			printf( $this->configs['template']['tagline'], $this->configs['template']['tagline-classes'] . $display, $blog_info );
 		} else {
 			printf( $this->configs['template']['tagline'], 'site-description invisible', $blog_info );
 		}

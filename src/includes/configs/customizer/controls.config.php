@@ -2550,6 +2550,57 @@ return array(
 		'section' => 'bgtfw_header_layout',
 		'sanitize_callback' => 'sanitize_html_class',
 	),
+	'bgtfw_header_layout' => [
+		'settings' => 'bgtfw_header_layout',
+		'transport' => 'auto',
+		'label' => __( 'Header Layout', 'bgtfw' ),
+		'type' => 'bgtfw-sortable-accordion',
+		'default' => [
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'branding',
+						'columnWidth' => 4,
+					],
+					[
+						'type' => 'main_menu',
+						'columnWidth' => 8,
+					],
+				],
+			],
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type'=> 'widget_area',
+						'columnWidth' => 12,
+					],
+				],
+			],
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'secondary_menu',
+						'columnWidth' => 12,
+					],
+				],
+			],
+		],
+		'items' => [
+			__( 'Menu', 'bgtfw' ),
+			__( 'Sidebar', 'bgtfw' ),
+			__( 'Branding', 'bgtfw' ),
+		],
+		'section' => 'bgtfw_header_layout',
+		'partial_refresh' => [
+			'bgtfw_header_layout' => [
+				'selector' => '#masthead',
+				'render_callback' => [ 'BoldGrid', 'dynamic_header' ],
+			],
+		],
+	],
 
 	/*** Start: Dynamic Menu Controls ***/
 	'bgtfw_menu_hamburger_main_toggle' => array(

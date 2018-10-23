@@ -255,6 +255,217 @@ devices.init();
 		}
 	} );
 
+	wp.customize.controlConstructor['bgtfw-sortable-accordion'] = wp.customize.Control.extend( {
+		ready: function() {
+			var control = this;
+
+			_.each( control.params.items, function( item ) {
+				$( '.sortable-actions' ).append( control.addTypes.call( this, item ) );
+			} );
+
+			control.addEvents.call( this );
+
+			// Make our Repeater fields sortable
+			control.container.find( '#sortable-' + control.id ).accordion( {
+				header: '> .sortable-wrapper > .sortable-title',
+				heightStyle: 'content',
+				collapsible: true
+			} ).sortable( {
+				handle: '> .sortable-wrapper > .sortable-title',
+				update: this.updateValues.bind( this )
+			} ).disableSelection();
+			control.container.find( '.connected-sortable' ).accordion( {
+				header: '> .repeater > .repeater-input > .repeater-title',
+				heightStyle: 'content',
+				collapsible: true
+			} ).sortable( {
+				handle: '> .repeater > .repeater-input > .repeater-title',
+				update: this.updateValues.bind( this )
+			} ).disableSelection();
+
+			control.container.find( '.resizable-columns > .resizable' ).resizable( {
+				handles: 'e',
+				create: function() {
+
+					// Hide last column handle.
+					$( '.resizable-columns .resizable:last-child .ui-resizable-handle' ).hide();
+				},
+				resize: function( e, ui ) {
+					var m,
+						originalClass,
+						originalNextClass,
+						thiscol,
+						container,
+						cellPercentWidth,
+						nextCol,
+						colnum,
+						originalColnum,
+						originalNextColnum,
+						getClosest,
+						gridSystem,
+						bsClass;
+
+					bsClass = 'col-sm-1 col-sm-2 col-sm-3 col-sm-4 col-sm-5 col-sm-6 col-sm-7 col-sm-8 col-sm-9 col-sm-10 col-sm-11 col-sm-12';
+
+					gridSystem = [
+						{
+							grid: 8.33333333,
+							col: 1
+						}, {
+							grid: 16.66666667,
+							col: 2
+						}, {
+							grid: 25,
+							col: 3
+						}, {
+							grid: 33.33333333,
+							col: 4
+						}, {
+							grid: 41.66666667,
+							col: 5
+						}, {
+							grid: 50,
+							col: 6
+						}, {
+							grid: 58.33333333,
+							col: 7
+						}, {
+							grid: 66.66666667,
+							col: 8
+						}, {
+							grid: 75,
+							col: 9
+						}, {
+							grid: 83.33333333,
+							col: 10
+						}, {
+							grid: 91.66666667,
+							col: 11
+						}, {
+							grid: 100,
+							col: 12
+						}, {
+							grid: 10000,
+							col: 10000
+						}
+					];
+
+					getClosest = function( arr, value ) {
+						var i,
+							diff,
+							closest,
+							mindiff = null;
+
+						for ( i = 0; i < arr.length; ++i ) {
+								diff = Math.abs( arr[ i ].grid - value );
+
+							if ( null === mindiff || diff < mindiff ) {
+
+								// first value or trend decreasing
+								closest = i;
+								mindiff = diff;
+							} else {
+								return arr[ closest ].col; // col number
+							}
+						}
+
+						return null;
+					};
+
+					m = ui.element[0].className.match( /\bcol-(?:md|xs|sm|lg)-[1-9][0-2]?\b/g );
+					originalClass = m ? m[0] : '';
+					m = ui.element.next()[0].className.match( /\bcol-(?:md|xs|sm|lg)-[1-9][0-2]?\b/g );
+					originalNextClass = m ? m[0] : '';
+					thiscol = $( this );
+					container = thiscol.parent();
+					cellPercentWidth = 100 * ui.originalElement.outerWidth() / container.innerWidth();
+					ui.originalElement.css( 'width', cellPercentWidth + '%' );
+					nextCol = ui.originalElement.next();
+					colnum = getClosest( gridSystem, cellPercentWidth );
+
+					originalColnum = parseInt( originalClass.match( /\d+/g ).map( Number ) );
+					originalNextColnum = parseInt( originalNextClass.match( /\d+/g ).map( Number ) );
+
+					thiscol.removeClass( bsClass ).addClass( 'col-sm-' + colnum );
+
+					thiscol.css( 'width', '' );
+					if ( originalColnum < parseInt( colnum ) ) {
+						thiscol.find( 'h3' ).text( colnum );
+						thiscol.next().find( 'h3' ).text( Math.abs( originalNextColnum - 1 ) );
+						nextCol.removeClass( bsClass ).addClass( 'col-sm-' + Math.abs( originalNextColnum - 1 ) );
+					} else if ( originalColnum > parseInt( colnum ) ) {
+						thiscol.find( 'h3' ).text( colnum );
+						thiscol.next().find( 'h3' ).text( Math.abs( originalNextColnum + 1 ) );
+						nextCol.removeClass( bsClass ).addClass( 'col-sm-' + Math.abs( originalNextColnum + 1 ) );
+					}
+				}
+			} );
+		},
+
+		addEvents: function() {
+			$( '.bgtfw-sortable' ).on( 'click', ( e ) => this.addItem( e ) );
+			$( '.bgtfw-container-control > .bgtfw-sortable-control' ).on( 'click', ( e ) => this.selectContainer( e ) );
+		},
+
+		updateValues: function() {
+			let	sortableValue,
+			values = [];
+			_.each( this.container.find( '.connected-sortable' ), ( sortable, key ) => {
+				sortableValue = $( sortable ).find( '.repeater' ).map( function() {
+					return { type: $( this ).data( 'value' ) };
+				} ).toArray();
+				values[ key ] = {
+					container: this.getContainer( sortable ),
+					items: sortableValue
+				};
+			} );
+
+			wp.customize( this.id ).set( values );
+		},
+
+		getContainer: function( sortable ) {
+			return $( sortable ).prev().find( '.bgtfw-sortable-control.selected' ).data( 'container' );
+		},
+
+		selectContainer: function( e ) {
+			let selector = $( e.currentTarget );
+
+			if ( ! selector.hasClass( 'selected' ) ) {
+				selector.siblings().removeClass( 'selected' );
+				selector.addClass( 'selected' );
+				this.updateValues();
+			}
+		},
+
+		addItem: function( e ) {
+			let selector = $( e.currentTarget ),
+				type = selector.data( 'type' ),
+				markup = this.getMarkup( type );
+
+			selector.parent().prev().append( markup );
+			this.refreshSortables();
+			this.updateValues();
+		},
+
+		refreshSortables: function() {
+			this.container.find( '#sortable-' + this.id ).sortable( 'refresh' );
+			this.container.find( '.connected-sortable' ).sortable( 'refresh' );
+		},
+
+		getMarkup: function( type ) {
+			return `<li class="repeater" data-value="${ type }">
+				<div class="repeater-input">
+					${ type }
+				</div>
+			</li>`;
+		},
+
+		addTypes: function( item ) {
+			let attribute = item.toLowerCase();
+			return '<span class="bgtfw-sortable ' + attribute + '" data-type="' +  attribute + '" aria-label="Add ' + item + '"><i class="fa fa-plus"></i>' + item + '</span>';
+		}
+	} );
+
 	// Extend Section.
 	_sectionEmbed = wp.customize.Section.prototype.embed;
 	_sectionIsContextuallyActive = wp.customize.Section.prototype.isContextuallyActive;

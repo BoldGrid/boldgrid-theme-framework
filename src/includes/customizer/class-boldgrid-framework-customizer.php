@@ -484,6 +484,8 @@ class BoldGrid_Framework_Customizer {
 
 		wp_localize_script( 'bgtfw-customizer-base-controls', $initialize, $data );
 
+		wp_enqueue_script( 'jquery-ui-accordion' );
+		wp_enqueue_script( 'jquery-ui-resizable' );
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-controls' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-featured-images' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-homepage-controls' );
@@ -781,11 +783,13 @@ HTML;
 		// Registers our custom section type and controls.
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Palette_Selector' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers' );
+		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Sortable_Accordion' );
 
 		add_filter(
 			'kirki_control_types', function( $controls ) {
 				$controls['bgtfw-palette-selector'] = 'Boldgrid_Framework_Customizer_Control_Palette_Selector';
-				$controls['bgtfw-menu-hamburgers']  = 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers';
+				$controls['bgtfw-menu-hamburgers'] = 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers';
+				$controls['bgtfw-sortable-accordion'] = 'Boldgrid_Framework_Customizer_Control_Sortable_Accordion';
 				return $controls;
 			}
 		);

@@ -1160,4 +1160,44 @@ class BoldGrid {
 		$args['order'] = 'desc';
 		return $args;
 	}
+
+	public static function dynamic_header() {
+		$markup = '';
+		$theme_mod = get_theme_mod( 'bgtfw_header_layout' );
+		foreach ( $theme_mod as $section ) {
+			$markup .= '<div class="boldgrid-section">';
+			$markup .= '<div class="' . $section['container'] . '">';
+			$markup .= '<div class="row">';
+			foreach ( $section['items'] as $col => $col_data ) {
+				$num = ( 12 / count( $section['items'] ) );
+				$markup .= '<div class="col-md-' . $num . '">';
+				ob_start();
+				switch ( $col_data['type'] ) {
+					case strpos( $col_data['type'], 'menu' ) !== false :
+						$menu = str_replace( '_menu', '', $col_data['type'] );
+						echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", [], false ) . '>';
+						do_action( "boldgrid_menu_{$menu}" );
+						echo '</div>';
+						break;
+					case 'branding' :
+						do_action( 'boldgrid_site_identity' );
+						break;
+					case 'widget_area':
+						do_action( 'bgtfw_header_widget_row' );
+						break;
+					default:
+						do_action( $col_data['type'] );
+				}
+
+				$markup .= ob_get_contents();
+				ob_end_clean();
+				$markup .= '</div>';
+			}
+
+			$markup .= '</div>';
+			$markup .= '</div>';
+			$markup .= '</div>';
+		}
+		return $markup;
+	}
 }

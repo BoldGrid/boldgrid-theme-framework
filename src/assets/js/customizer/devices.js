@@ -217,6 +217,10 @@ export class Devices {
 			this.currentDevice = this.devices.large.name;
 		}
 
+		if ( _.isEmpty( this.previewedDevice ) ) {
+			this.previewedDevice = this.currentDevice;
+		}
+
 		return this.currentDevice;
 	}
 

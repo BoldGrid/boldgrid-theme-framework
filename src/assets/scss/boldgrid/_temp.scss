@@ -462,22 +462,6 @@ nav.navigation.posts-navigation {
 	transform: translateZ(0);
 }
 
-.bgtfw-widget-row:first-child {
-	margin-top: -1.5em;
-}
-
-.bgtfw-widget-row:first-child:after,
-.bgtfw-widget-row:last-child:after {
-	content: "";
-	position: relative;
-	flex: 0 0 100%;
-	padding-bottom: 1.5em;
-}
-
-.bgtfw-widget-row:last-child {
-	margin-bottom: -1.5em;
-}
-
 .header-top:not(.header-fixed) {
 
 	#navi.container {
@@ -486,15 +470,6 @@ nav.navigation.posts-navigation {
 			flex: 0 1 auto;
 		}
 	}
-
-	.bgtfw-widget-row:last-child {
-		margin-bottom: 0;
-	}
-
-	.bgtfw-widget-row:first-child:after,
-	.bgtfw-widget-row:last-child:after {
-		padding-bottom: 0;
-	}
 }
 
 // Footer Widget Row Styles.
@@ -502,9 +477,6 @@ nav.navigation.posts-navigation {
 	&.container {
 		margin-left: auto;
 		margin-right: auto;
-	}
-	&:last-child:after {
-		padding-bottom: 0;
 	}
 }
 

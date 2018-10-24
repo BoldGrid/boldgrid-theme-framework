@@ -2465,40 +2465,6 @@ return array(
 		'section' => 'bgtfw_layout_blog',
 		'sanitize_callback' => 'sanitize_html_class',
 	),
-	'bgtfw_header_top_layouts' => array(
-		'settings' => 'bgtfw_header_top_layouts',
-		'transport'   => 'postMessage',
-		'label'       => esc_html__( 'Layout', 'bgtfw' ),
-		'type'        => 'radio',
-		'priority'    => 30,
-		'default'   => 'layout-1',
-		'choices'     => array(
-			'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
-			'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
-			'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
-			'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
-			'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
-			'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
-		),
-		'section'     => 'bgtfw_header_layout',
-		'sanitize_callback' => 'sanitize_html_class',
-	),
-	'header_container' => array(
-		'settings' => 'header_container',
-		'transport'   => 'postMessage',
-		'label'       => esc_html__( 'Header Container', 'bgtfw' ),
-		'type'        => 'radio-buttonset',
-		'priority'    => 30,
-		'default'   => '',
-		'choices'     => array(
-			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			'' => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
-		),
-		'section'     => 'bgtfw_header_layout',
-		'sanitize_callback' => function( $value, $settings ) {
-			return '' === $value || 'container' === $value ? $value : $settings->default;
-		},
-	),
 	'bgtfw_footer_layouts' => array(
 		'settings' => 'bgtfw_footer_layouts',
 		'transport'   => 'postMessage',
@@ -2560,12 +2526,10 @@ return array(
 				'container' => 'container',
 				'items' => [
 					[
-						'type' => 'branding',
-						'columnWidth' => 4,
+						'type' => 'boldgrid_site_identity'
 					],
 					[
-						'type' => 'main_menu',
-						'columnWidth' => 8,
+						'type' => 'boldgrid_menu_main'
 					],
 				],
 			],
@@ -2573,8 +2537,7 @@ return array(
 				'container' => 'container',
 				'items' => [
 					[
-						'type'=> 'widget_area',
-						'columnWidth' => 12,
+						'type'=> 'widget_area'
 					],
 				],
 			],
@@ -2582,16 +2545,24 @@ return array(
 				'container' => 'container',
 				'items' => [
 					[
-						'type' => 'secondary_menu',
-						'columnWidth' => 12,
+						'type' => 'boldgrid_menu_secondary'
 					],
 				],
 			],
 		],
 		'items' => [
-			__( 'Menu', 'bgtfw' ),
-			__( 'Sidebar', 'bgtfw' ),
-			__( 'Branding', 'bgtfw' ),
+			'menu' => [
+				'icon' => 'dashicons dashicons-menu',
+				'title' => __( 'Menu', 'bgtfw' ),
+			],
+			'boldgrid_site_identity' => [
+				'icon' => 'dashicons dashicons-store',
+				'title' => __( 'Branding', 'bgtfw' ),
+			],
+			'widget_area' => [
+				'icon' => 'dashicons dashicons-layout',
+				'title' => __( 'Sidebar', 'bgtfw' ),
+			],
 		],
 		'section' => 'bgtfw_header_layout',
 		'partial_refresh' => [

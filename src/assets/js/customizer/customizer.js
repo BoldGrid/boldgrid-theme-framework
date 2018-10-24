@@ -596,7 +596,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		};
 
 		new ToggleValue( 'bgtfw_footer_layouts', '#colophon', layoutFn );
-		new ToggleValue( 'bgtfw_header_top_layouts', '#masthead', layoutFn, calc );
 
 		// Setup hamburger menus.
 		let hamburgerFn = ( index, className ) => {

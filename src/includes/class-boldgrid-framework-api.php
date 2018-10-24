@@ -432,7 +432,6 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function header_classes( $classes ) {
-		$classes[] = get_theme_mod( 'bgtfw_header_top_layouts' );
 		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
 		return $classes;
 	}
@@ -1170,17 +1169,14 @@ class BoldGrid {
 			$markup .= '<div class="row">';
 			foreach ( $section['items'] as $col => $col_data ) {
 				$num = ( 12 / count( $section['items'] ) );
-				$markup .= '<div class="col-md-' . $num . '">';
+				$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12">';
 				ob_start();
 				switch ( $col_data['type'] ) {
-					case strpos( $col_data['type'], 'menu' ) !== false :
-						$menu = str_replace( '_menu', '', $col_data['type'] );
+					case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
+						$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
 						echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", [], false ) . '>';
-						do_action( "boldgrid_menu_{$menu}" );
+						do_action( $col_data['type'] );
 						echo '</div>';
-						break;
-					case 'branding' :
-						do_action( 'boldgrid_site_identity' );
 						break;
 					case 'widget_area':
 						do_action( 'bgtfw_header_widget_row' );

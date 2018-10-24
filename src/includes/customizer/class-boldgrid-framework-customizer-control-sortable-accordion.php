@@ -83,24 +83,16 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 											<span><?php esc_html_e( 'Full Width', 'bgtfw' ); ?></span>
 										</div>
 									</div>
-									<div class="bgtfw-column-control">
-										<div class="row resizable-columns">
-										<# _.each( repeaters.items, function( repeater ) { #>
-											<div class="col-sm-{{ repeater.columnWidth }} resizable" data-type="{{ repeater.type }}">
-												<h3 style="font-size: 14px;">{{{ repeater.columnWidth }}}</h3>
-											</div>
-										<# } ); #>
-										</div>
-									</div>
 								</div>
 								<ul id="sortable-{{ sortable }}" class="connected-sortable">
 								<# _.each( repeaters.items, function( repeater, i ) { #>
 									<li class="repeater" data-value="{{ repeater.type }}">
 										<div class="repeater-input">
-											<span class="repeater-title">{{{ repeater.type }}}</span>
-											<div class="repeater-accordion-content">
-												{{{ repeater.type }}}
+											<div class="repeater-handle">
+												<# var key = -1 !== repeater.type.indexOf( 'menu' ) ? 'menu' : repeater.type; #>
+												<span class="repeater-title"><i class="{{ data.items[ key ].icon }}"></i>{{{ data.items[ key ].title }}}</span><span class="dashicons dashicons-trash"></span>
 											</div>
+											<div class="repeater-accordion-content"></div>
 										</div>
 									</li>
 								<# } ); #>

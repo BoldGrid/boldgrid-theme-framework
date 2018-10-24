@@ -1,3 +1,4 @@
+/* eslint-disable */
 import WidgetSectionUpdate from './widget/section-update';
 import BlogPagePanelExpand from './design/blog/blog-page/panel-expand.js';
 import BlogPostsPanelExpand from './design/blog/posts/panel-expand.js';
@@ -259,11 +260,9 @@ devices.init();
 		ready: function() {
 			var control = this;
 
-			_.each( control.params.items, function( item ) {
-				$( '.sortable-actions' ).append( control.addTypes.call( this, item ) );
+			control.container[0].querySelectorAll( '.sortable-actions' ).forEach( sortableAction => {
+				_.each( control.params.items, item => sortableAction.innerHTML += control.addTypes.call( this, item ) );
 			} );
-
-			control.addEvents.call( this );
 
 			// Make our Repeater fields sortable
 			control.container.find( '#sortable-' + control.id ).accordion( {
@@ -271,140 +270,82 @@ devices.init();
 				heightStyle: 'content',
 				collapsible: true
 			} ).sortable( {
-				handle: '> .sortable-wrapper > .sortable-title',
 				update: this.updateValues.bind( this )
 			} ).disableSelection();
-			control.container.find( '.connected-sortable' ).accordion( {
-				header: '> .repeater > .repeater-input > .repeater-title',
-				heightStyle: 'content',
-				collapsible: true
-			} ).sortable( {
-				handle: '> .repeater > .repeater-input > .repeater-title',
+			control.container.find( '.connected-sortable' ).sortable( {
 				update: this.updateValues.bind( this )
 			} ).disableSelection();
 
-			control.container.find( '.resizable-columns > .resizable' ).resizable( {
-				handles: 'e',
-				create: function() {
+			this.addRepeaterControls();
+			this.updateTitles();
+			control.addEvents.call( this );
+		},
 
-					// Hide last column handle.
-					$( '.resizable-columns .resizable:last-child .ui-resizable-handle' ).hide();
-				},
-				resize: function( e, ui ) {
-					var m,
-						originalClass,
-						originalNextClass,
-						thiscol,
-						container,
-						cellPercentWidth,
-						nextCol,
-						colnum,
-						originalColnum,
-						originalNextColnum,
-						getClosest,
-						gridSystem,
-						bsClass;
+		addEvents: function() {
+			this.container.find( '.bgtfw-sortable' ).on( 'click', ( e ) => this.addItem( e ) );
+			this.container.find( '.bgtfw-container-control > .bgtfw-sortable-control' ).on( 'click', ( e ) => this.selectContainer( e ) );
+			this.container.find( '.dashicons-trash' ).on( 'click', ( e ) => this.deleteItem( e ) );
+		},
 
-					bsClass = 'col-sm-1 col-sm-2 col-sm-3 col-sm-4 col-sm-5 col-sm-6 col-sm-7 col-sm-8 col-sm-9 col-sm-10 col-sm-11 col-sm-12';
+		deleteItem: function( e ) {
+			$( e.currentTarget ).closest( '.repeater' ).remove();
+			this.updateValues();
+		},
 
-					gridSystem = [
-						{
-							grid: 8.33333333,
-							col: 1
-						}, {
-							grid: 16.66666667,
-							col: 2
-						}, {
-							grid: 25,
-							col: 3
-						}, {
-							grid: 33.33333333,
-							col: 4
-						}, {
-							grid: 41.66666667,
-							col: 5
-						}, {
-							grid: 50,
-							col: 6
-						}, {
-							grid: 58.33333333,
-							col: 7
-						}, {
-							grid: 66.66666667,
-							col: 8
-						}, {
-							grid: 75,
-							col: 9
-						}, {
-							grid: 83.33333333,
-							col: 10
-						}, {
-							grid: 91.66666667,
-							col: 11
-						}, {
-							grid: 100,
-							col: 12
-						}, {
-							grid: 10000,
-							col: 10000
+		updateMenuSelect: function( e ) {
+			let oldVal = e.currentTarget.dataset.value,
+				newVal = e.target.value;
+
+			// Update disabled selects.
+			document.querySelectorAll( `${ this.selector } option[value=${oldVal}]` ).forEach( ( option ) => option.disabled = false );
+			document.querySelectorAll( `${ this.selector } option[value=${newVal}]` ).forEach( ( option ) => option.disabled = true );
+			e.target[ e.target.options.selectedIndex ].disabled = false;
+			e.currentTarget.dataset.value = newVal;
+			this.updateValues();
+		},
+
+		addRepeaterControls: function() {
+			let repeaters = $( '.repeater' );
+
+			_.each( repeaters, ( repeater ) => {
+				let selectControl,
+					type = repeater.dataset.value;
+
+				// Menu Items.
+				if ( -1 !== type.indexOf( 'menu' ) ) {
+
+					if ( ! repeater.querySelector( '.repeater-menu-select' ) ) {
+						repeater.querySelector( '.repeater-accordion-content' ).innerHTML += this.getMenuSelect( type );
+						selectControl = repeater.querySelector( '.repeater-menu-select' );
+
+						$( repeater ).on( 'change', e => this.updateMenuSelect( e ) );
+
+						if ( 'menu' !== type ) {
+							selectControl.value = type;
+						} else {
+
+							// Newly added menu item.
+							selectControl.selectedIndex = 0;
+							repeater.dataset.value = selectControl.value;
 						}
-					];
-
-					getClosest = function( arr, value ) {
-						var i,
-							diff,
-							closest,
-							mindiff = null;
-
-						for ( i = 0; i < arr.length; ++i ) {
-								diff = Math.abs( arr[ i ].grid - value );
-
-							if ( null === mindiff || diff < mindiff ) {
-
-								// first value or trend decreasing
-								closest = i;
-								mindiff = diff;
-							} else {
-								return arr[ closest ].col; // col number
-							}
-						}
-
-						return null;
-					};
-
-					m = ui.element[0].className.match( /\bcol-(?:md|xs|sm|lg)-[1-9][0-2]?\b/g );
-					originalClass = m ? m[0] : '';
-					m = ui.element.next()[0].className.match( /\bcol-(?:md|xs|sm|lg)-[1-9][0-2]?\b/g );
-					originalNextClass = m ? m[0] : '';
-					thiscol = $( this );
-					container = thiscol.parent();
-					cellPercentWidth = 100 * ui.originalElement.outerWidth() / container.innerWidth();
-					ui.originalElement.css( 'width', cellPercentWidth + '%' );
-					nextCol = ui.originalElement.next();
-					colnum = getClosest( gridSystem, cellPercentWidth );
-
-					originalColnum = parseInt( originalClass.match( /\d+/g ).map( Number ) );
-					originalNextColnum = parseInt( originalNextClass.match( /\d+/g ).map( Number ) );
-
-					thiscol.removeClass( bsClass ).addClass( 'col-sm-' + colnum );
-
-					thiscol.css( 'width', '' );
-					if ( originalColnum < parseInt( colnum ) ) {
-						thiscol.find( 'h3' ).text( colnum );
-						thiscol.next().find( 'h3' ).text( Math.abs( originalNextColnum - 1 ) );
-						nextCol.removeClass( bsClass ).addClass( 'col-sm-' + Math.abs( originalNextColnum - 1 ) );
-					} else if ( originalColnum > parseInt( colnum ) ) {
-						thiscol.find( 'h3' ).text( colnum );
-						thiscol.next().find( 'h3' ).text( Math.abs( originalNextColnum + 1 ) );
-						nextCol.removeClass( bsClass ).addClass( 'col-sm-' + Math.abs( originalNextColnum + 1 ) );
 					}
 				}
 			} );
 		},
 
-		addEvents: function() {
-			$( '.bgtfw-sortable' ).on( 'click', ( e ) => this.addItem( e ) );
-			$( '.bgtfw-container-control > .bgtfw-sortable-control' ).on( 'click', ( e ) => this.selectContainer( e ) );
+		getMenuSelect: function( type ) {
+			let disabled,
+				markup = '<select class="repeater-menu-select">',
+				currentItems = _.map( _.flatten( _.map( this.setting.get(), data => _.values( data.items ) ) ), values => values.type );
+
+			_.each( window._wpCustomizeNavMenusSettings.locationSlugMappedToName, ( name, location ) => {
+				disabled = -1 !== currentItems.indexOf( `boldgrid_menu_${location}` ) && `boldgrid_menu_${location}` !== type ? ' disabled' : '';
+				markup += `<option value="boldgrid_menu_${location}"${disabled}>${name}</option>`;
+			} );
+
+			markup += '</select>';
+
+			return markup;
 		},
 
 		updateValues: function() {
@@ -412,7 +353,7 @@ devices.init();
 			values = [];
 			_.each( this.container.find( '.connected-sortable' ), ( sortable, key ) => {
 				sortableValue = $( sortable ).find( '.repeater' ).map( function() {
-					return { type: $( this ).data( 'value' ) };
+					return { type: this.dataset.value };
 				} ).toArray();
 				values[ key ] = {
 					container: this.getContainer( sortable ),
@@ -421,10 +362,11 @@ devices.init();
 			} );
 
 			wp.customize( this.id ).set( values );
+			this.updateTitles();
 		},
 
 		getContainer: function( sortable ) {
-			return $( sortable ).prev().find( '.bgtfw-sortable-control.selected' ).data( 'container' );
+			return sortable.previousElementSibling.querySelector( '.selected' ).dataset.container;
 		},
 
 		selectContainer: function( e ) {
@@ -438,13 +380,19 @@ devices.init();
 		},
 
 		addItem: function( e ) {
-			let selector = $( e.currentTarget ),
-				type = selector.data( 'type' ),
-				markup = this.getMarkup( type );
-
-			selector.parent().prev().append( markup );
+			let type = e.currentTarget.dataset.type;
+			e.currentTarget.parentElement.previousElementSibling.innerHTML += this.getMarkup( type );
+			this.addRepeaterControls();
 			this.refreshSortables();
 			this.updateValues();
+		},
+
+		updateTitles: function() {
+			_.each( $( '.sortable-wrapper' ), ( sortable ) => {
+				var title = [];
+				sortable.querySelectorAll( '.repeater-title' ).forEach( titles => title.push( titles.textContent ) );
+				sortable.firstElementChild.innerHTML = title.join ( '<span class="title-divider">&#9679;</span>' );
+			} );
 		},
 
 		refreshSortables: function() {
@@ -453,16 +401,22 @@ devices.init();
 		},
 
 		getMarkup: function( type ) {
+			let key = -1 !== type.indexOf( 'menu' ) ? 'menu' : type;
 			return `<li class="repeater" data-value="${ type }">
 				<div class="repeater-input">
-					${ type }
+					<div class="repeater-handle">
+						<span class="repeater-title"><i class="${ this.params.items[ key ].icon }"></i>${ this.params.items[ key ].title }</span><span class="dashicons dashicons-trash"></span>
+					</div>
+					<div class="repeater-accordion-content"></div>
 				</div>
 			</li>`;
 		},
 
 		addTypes: function( item ) {
-			let attribute = item.toLowerCase();
-			return '<span class="bgtfw-sortable ' + attribute + '" data-type="' +  attribute + '" aria-label="Add ' + item + '"><i class="fa fa-plus"></i>' + item + '</span>';
+			let attribute = item.title.toLowerCase(),
+				type = attribute === 'branding' ? 'boldgrid_site_identity' : attribute;
+
+			return '<span class="bgtfw-sortable ' + attribute + '" data-type="' +  type + '" aria-label="Add ' + item.title + '"><i class="fa fa-plus"></i>' + item.title + '</span>';
 		}
 	} );
 

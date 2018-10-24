@@ -434,7 +434,7 @@ msgstr ""
 msgid "Position"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:505, src/includes/configs/customizer/controls.config.php:1880, src/includes/configs/customizer/controls.config.php:3298, src/includes/configs/customizer/controls.config.php:3349, src/includes/configs/customizer/controls.config.php:4770, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:129
+#: src/includes/configs/customizer/controls.config.php:505, src/includes/configs/customizer/controls.config.php:1880, src/includes/configs/customizer/controls.config.php:2512, src/includes/configs/customizer/controls.config.php:3298, src/includes/configs/customizer/controls.config.php:3349, src/includes/configs/customizer/controls.config.php:4770, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:129
 msgid "Left"
 msgstr ""
 
@@ -442,7 +442,7 @@ msgstr ""
 msgid "Center"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:507, src/includes/configs/customizer/controls.config.php:1882, src/includes/configs/customizer/controls.config.php:3300, src/includes/configs/customizer/controls.config.php:3351, src/includes/configs/customizer/controls.config.php:4772, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:130
+#: src/includes/configs/customizer/controls.config.php:507, src/includes/configs/customizer/controls.config.php:1882, src/includes/configs/customizer/controls.config.php:2514, src/includes/configs/customizer/controls.config.php:3300, src/includes/configs/customizer/controls.config.php:3351, src/includes/configs/customizer/controls.config.php:4772, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:130
 msgid "Right"
 msgstr ""
 
@@ -790,16 +790,8 @@ msgstr ""
 msgid "Header Position"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2512
-msgid "Header on Top"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:2513
-msgid "Header on Left"
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:2514
-msgid "Header on Right"
+#: src/includes/configs/customizer/controls.config.php:2513, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:127
+msgid "Top"
 msgstr ""
 
 #: src/includes/configs/customizer/controls.config.php:2522
@@ -1703,10 +1695,6 @@ msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:126
 msgid "Letter Spacing"
-msgstr ""
-
-#: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:127
-msgid "Top"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:128

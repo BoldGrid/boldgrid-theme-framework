@@ -2635,7 +2635,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 14px;
+  font-size: 11px;
   padding: 10px;
 }
 
@@ -2707,6 +2707,21 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 .bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable.selected {
   background-color: #00a0d2;
   color: rgba(255, 255, 255, 0.8);
+}
+
+.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable-control.disabled,
+.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable.disabled,
+.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable-control.disabled,
+.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable.disabled {
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable-control.disabled:hover,
+.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable.disabled:hover,
+.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable-control.disabled:hover,
+.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable.disabled:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .bgtfw-sortable-accordion .repeater {

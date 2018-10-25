@@ -1178,9 +1178,6 @@ class BoldGrid {
 						do_action( $col_data['type'] );
 						echo '</div>';
 						break;
-					case 'widget_area':
-						do_action( 'bgtfw_header_widget_row' );
-						break;
 					default:
 						do_action( $col_data['type'] );
 				}

@@ -20,7 +20,15 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		public $type = 'bgtfw-sortable-accordion';
 
+		/**
+		 * Repeater items that can be added.
+		 */
 		public $items;
+
+		/**
+		 * Location repeater control is for ( header, footer ).
+		 */
+		public $location;
 
 		/**
 		 * Refresh the parameters passed to the JavaScript via JSON.
@@ -43,6 +51,9 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 			// Addable Item Types.
 			$this->json['items'] = $this->items;
+
+			// Location control is for.
+			$this->json['location'] = $this->location;
 		}
 
 		/**
@@ -86,11 +97,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 								</div>
 								<ul id="sortable-{{ sortable }}" class="connected-sortable">
 								<# _.each( repeaters.items, function( repeater, i ) { #>
-									<li class="repeater" data-value="{{ repeater.type }}">
+									<li class="repeater" data-item-type="{{ repeater.key }}" data-value="{{ repeater.type }}">
 										<div class="repeater-input">
 											<div class="repeater-handle">
-												<# var key = -1 !== repeater.type.indexOf( 'menu' ) ? 'menu' : repeater.type; #>
-												<span class="repeater-title"><i class="{{ data.items[ key ].icon }}"></i>{{{ data.items[ key ].title }}}</span><span class="dashicons dashicons-trash"></span>
+												<span class="repeater-title"><i class="{{ data.items[ repeater.key ].icon }}"></i>{{{ data.items[ repeater.key ].title }}}</span><span class="dashicons dashicons-trash"></span>
 											</div>
 											<div class="repeater-accordion-content"></div>
 										</div>

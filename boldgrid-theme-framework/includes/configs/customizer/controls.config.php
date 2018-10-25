@@ -2526,18 +2526,12 @@ return array(
 				'container' => 'container',
 				'items' => [
 					[
-						'type' => 'boldgrid_site_identity'
+						'type' => 'boldgrid_site_identity',
+						'key' => 'branding',
 					],
 					[
-						'type' => 'boldgrid_menu_main'
-					],
-				],
-			],
-			[
-				'container' => 'container',
-				'items' => [
-					[
-						'type'=> 'widget_area'
+						'type' => 'boldgrid_menu_main',
+						'key' => 'menu',
 					],
 				],
 			],
@@ -2545,7 +2539,29 @@ return array(
 				'container' => 'container',
 				'items' => [
 					[
-						'type' => 'boldgrid_menu_secondary'
+						'type' => 'bgtfw_sidebar_header-1',
+						'key' => 'sidebar',
+					],
+					[
+						'type' => 'bgtfw_sidebar_header-2',
+						'key' => 'sidebar',
+					],
+					[
+						'type' => 'bgtfw_sidebar_header-3',
+						'key' => 'sidebar',
+					],
+					[
+						'type' => 'bgtfw_sidebar_header-4',
+						'key' => 'sidebar',
+					],
+				],
+			],
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'boldgrid_menu_secondary',
+						'key' => 'menu',
 					],
 				],
 			],
@@ -2555,15 +2571,16 @@ return array(
 				'icon' => 'dashicons dashicons-menu',
 				'title' => __( 'Menu', 'bgtfw' ),
 			],
-			'boldgrid_site_identity' => [
+			'branding' => [
 				'icon' => 'dashicons dashicons-store',
 				'title' => __( 'Branding', 'bgtfw' ),
 			],
-			'widget_area' => [
+			'sidebar' => [
 				'icon' => 'dashicons dashicons-layout',
 				'title' => __( 'Sidebar', 'bgtfw' ),
 			],
 		],
+		'location' => 'header',
 		'section' => 'bgtfw_header_layout',
 		'partial_refresh' => [
 			'bgtfw_header_layout' => [

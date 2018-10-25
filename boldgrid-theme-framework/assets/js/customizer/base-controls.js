@@ -260,12 +260,14 @@ devices.init();
 		ready: function() {
 			var control = this;
 
+			this.setSortable();
+
 			control.container[0].querySelectorAll( '.sortable-actions' ).forEach( sortableAction => {
-				_.each( control.params.items, item => sortableAction.innerHTML += control.addTypes.call( this, item ) );
+				_.each( control.params.items, ( item, key ) => sortableAction.innerHTML += control.addTypes.call( this, item, key ) );
 			} );
 
 			// Make our Repeater fields sortable
-			control.container.find( '#sortable-' + control.id ).accordion( {
+			this.sortable.accordion( {
 				header: '> .sortable-wrapper > .sortable-title',
 				heightStyle: 'content',
 				collapsible: true
@@ -278,69 +280,62 @@ devices.init();
 
 			this.addRepeaterControls();
 			this.updateTitles();
+			this.updateAddTypes();
+
 			control.addEvents.call( this );
 		},
 
-		addEvents: function() {
-			this.container.find( '.bgtfw-sortable' ).on( 'click', ( e ) => this.addItem( e ) );
-			this.container.find( '.bgtfw-container-control > .bgtfw-sortable-control' ).on( 'click', ( e ) => this.selectContainer( e ) );
-			this.container.find( '.dashicons-trash' ).on( 'click', ( e ) => this.deleteItem( e ) );
+		setSortable() {
+			return this.sortable = this.container.find( `#sortable-${ this.id }` );
 		},
 
-		deleteItem: function( e ) {
+		addEvents() {
+			this.container.find( '.sortable-accordion-content' )
+				.on( 'click', '.bgtfw-sortable:not(.disabled)', ( e ) => this.addItem( e ) )
+				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', ( e ) => this.selectContainer( e ) )
+				.on( 'click', '.dashicons-trash', ( e ) => this.deleteItem( e ) )
+				.on( 'change', '.repeater-menu-select', e => this.updateMenuSelect( e ) );
+		},
+
+		deleteItem( e ) {
 			$( e.currentTarget ).closest( '.repeater' ).remove();
 			this.updateValues();
 		},
 
-		updateMenuSelect: function( e ) {
-			let oldVal = e.currentTarget.dataset.value,
-				newVal = e.target.value;
+		updateMenuSelect( e ) {
+			let el = e.currentTarget,
+				repeater = $( el ).closest( '.repeater' )[0],
+				oldVal = repeater.dataset.value,
+				newVal = el.value;
 
 			// Update disabled selects.
-			document.querySelectorAll( `${ this.selector } option[value=${oldVal}]` ).forEach( ( option ) => option.disabled = false );
-			document.querySelectorAll( `${ this.selector } option[value=${newVal}]` ).forEach( ( option ) => option.disabled = true );
-			e.target[ e.target.options.selectedIndex ].disabled = false;
-			e.currentTarget.dataset.value = newVal;
+			document.querySelectorAll( `${ this.selector } option[value=${ oldVal }]` ).forEach( ( option ) => option.disabled = false );
+			document.querySelectorAll( `${ this.selector } option[value=${ newVal }]` ).forEach( ( option ) => option.disabled = true );
+			el[ el.options.selectedIndex ].disabled = false;
+			el.dataset.value = newVal;
+			repeater.dataset.value = newVal;
 			this.updateValues();
 		},
 
-		addRepeaterControls: function() {
+		addRepeaterControls() {
 			let repeaters = $( '.repeater' );
 
 			_.each( repeaters, ( repeater ) => {
-				let selectControl,
-					type = repeater.dataset.value;
-
-				// Menu Items.
-				if ( -1 !== type.indexOf( 'menu' ) ) {
-
+				if ( 'menu' === repeater.dataset.itemType ) {
 					if ( ! repeater.querySelector( '.repeater-menu-select' ) ) {
-						repeater.querySelector( '.repeater-accordion-content' ).innerHTML += this.getMenuSelect( type );
-						selectControl = repeater.querySelector( '.repeater-menu-select' );
-
-						$( repeater ).on( 'change', e => this.updateMenuSelect( e ) );
-
-						if ( 'menu' !== type ) {
-							selectControl.value = type;
-						} else {
-
-							// Newly added menu item.
-							selectControl.selectedIndex = 0;
-							repeater.dataset.value = selectControl.value;
-						}
+						repeater.querySelector( '.repeater-accordion-content' ).innerHTML += this.getMenuSelect( repeater.dataset.value );
 					}
 				}
 			} );
 		},
 
-		getMenuSelect: function( type ) {
+		getMenuSelect( type ) {
 			let disabled,
-				markup = '<select class="repeater-menu-select">',
-				currentItems = _.map( _.flatten( _.map( this.setting.get(), data => _.values( data.items ) ) ), values => values.type );
+				markup = '<select class="repeater-menu-select">';
 
 			_.each( window._wpCustomizeNavMenusSettings.locationSlugMappedToName, ( name, location ) => {
-				disabled = -1 !== currentItems.indexOf( `boldgrid_menu_${location}` ) && `boldgrid_menu_${location}` !== type ? ' disabled' : '';
-				markup += `<option value="boldgrid_menu_${location}"${disabled}>${name}</option>`;
+				disabled = this.getCurrentItems().includes( `boldgrid_menu_${ location }` ) && `boldgrid_menu_${ location }` !== type ? ' disabled' : '';
+				markup += `<option value="boldgrid_menu_${ location }"${ disabled }>${ name }</option>`;
 			} );
 
 			markup += '</select>';
@@ -348,12 +343,15 @@ devices.init();
 			return markup;
 		},
 
-		updateValues: function() {
+		updateValues() {
 			let	sortableValue,
 			values = [];
 			_.each( this.container.find( '.connected-sortable' ), ( sortable, key ) => {
 				sortableValue = $( sortable ).find( '.repeater' ).map( function() {
-					return { type: this.dataset.value };
+					return {
+						type: this.dataset.value,
+						key: this.dataset.itemType
+					};
 				} ).toArray();
 				values[ key ] = {
 					container: this.getContainer( sortable ),
@@ -361,15 +359,16 @@ devices.init();
 				};
 			} );
 
-			wp.customize( this.id ).set( values );
+			this.setting.set( values );
 			this.updateTitles();
+			this.updateAddTypes();
 		},
 
-		getContainer: function( sortable ) {
+		getContainer( sortable ) {
 			return sortable.previousElementSibling.querySelector( '.selected' ).dataset.container;
 		},
 
-		selectContainer: function( e ) {
+		selectContainer( e ) {
 			let selector = $( e.currentTarget );
 
 			if ( ! selector.hasClass( 'selected' ) ) {
@@ -379,44 +378,116 @@ devices.init();
 			}
 		},
 
-		addItem: function( e ) {
-			let type = e.currentTarget.dataset.type;
-			e.currentTarget.parentElement.previousElementSibling.innerHTML += this.getMarkup( type );
+		addItem( e ) {
+			let dataset = e.currentTarget.dataset;
+
+			e.currentTarget.parentElement.previousElementSibling.innerHTML += this.getMarkup( dataset );
 			this.addRepeaterControls();
 			this.refreshSortables();
 			this.updateValues();
 		},
 
-		updateTitles: function() {
-			_.each( $( '.sortable-wrapper' ), ( sortable ) => {
-				var title = [];
-				sortable.querySelectorAll( '.repeater-title' ).forEach( titles => title.push( titles.textContent ) );
-				sortable.firstElementChild.innerHTML = title.join ( '<span class="title-divider">&#9679;</span>' );
+		updateTitles() {
+			_.each( this.sortable.sortable( 'instance' ).items, ( sortable ) => {
+				let el = sortable.item[0],
+					title = [];
+
+				el.querySelectorAll( '.repeater-title' ).forEach( titles => title.push( titles.textContent ) );
+				el.firstElementChild.innerHTML = title.join ( '<span class="title-divider">&#9679;</span>' );
 			} );
 		},
 
-		refreshSortables: function() {
-			this.container.find( '#sortable-' + this.id ).sortable( 'refresh' );
+		refreshSortables() {
+			this.sortable.sortable( 'refresh' );
 			this.container.find( '.connected-sortable' ).sortable( 'refresh' );
 		},
 
-		getMarkup: function( type ) {
-			let key = -1 !== type.indexOf( 'menu' ) ? 'menu' : type;
-			return `<li class="repeater" data-value="${ type }">
+		getMarkup( dataset ) {
+			return `<li class="repeater" data-item-type="${ dataset.itemType }" data-value="${ dataset.type }">
 				<div class="repeater-input">
 					<div class="repeater-handle">
-						<span class="repeater-title"><i class="${ this.params.items[ key ].icon }"></i>${ this.params.items[ key ].title }</span><span class="dashicons dashicons-trash"></span>
+						<span class="repeater-title"><i class="${ this.params.items[ dataset.itemType ].icon }"></i>${ this.params.items[ dataset.itemType ].title }</span><span class="dashicons dashicons-trash"></span>
 					</div>
 					<div class="repeater-accordion-content"></div>
 				</div>
 			</li>`;
 		},
 
-		addTypes: function( item ) {
-			let attribute = item.title.toLowerCase(),
-				type = attribute === 'branding' ? 'boldgrid_site_identity' : attribute;
+		updateAddTypes() {
+			this.sortable[0].querySelectorAll( '.bgtfw-sortable' ).forEach( button => {
+				let type = this.getNextAvailable( button.dataset.itemType );
+				if ( type ) {
+					button.classList.remove( 'disabled' );
+					button.dataset.type = this.getNextAvailable( button.dataset.itemType );
+				} else {
+					button.classList.add( 'disabled' );
+				}
+			} );
+		},
 
-			return '<span class="bgtfw-sortable ' + attribute + '" data-type="' +  type + '" aria-label="Add ' + item.title + '"><i class="fa fa-plus"></i>' + item.title + '</span>';
+		addTypes( item, key ) {
+			return `<span class="bgtfw-sortable ${ key }" data-item-type="${ key }" aria-label="Add ${ item.title }"><i class="fa fa-plus"></i>${ item.title }</span>`;
+		},
+
+		getCurrentItems() {
+			return _.map( _.flatten( _.map( this.setting.get(), data => _.values( data.items ) ) ), values => values.type );
+		},
+
+		getAllSidebarLocations() {
+			return _.pluck( window._wpCustomizeWidgetsSettings.registeredSidebars, 'id' );
+		},
+
+		getAllSidebarActions() {
+			return this.getAllSidebarLocations().map( item => `bgtfw_sidebar_${ item }` );
+		},
+
+		getFilteredSidebarActions() {
+			return _.filter( this.getAllSidebarActions(), sidebar => sidebar.includes( this.params.location ) );
+		},
+
+		getUsedSidebarActions() {
+			return _.filter( this.getCurrentItems(), actions => actions.includes( 'bgtfw_sidebar' ) );
+		},
+
+		getAvailableSidebars() {
+			return _.difference( this.getFilteredSidebarActions(), this.getUsedSidebarActions() );
+		},
+
+		getNextAvailableSidebar() {
+			return _.first( this.getAvailableSidebars() );
+		},
+
+		getAllMenuActions() {
+			return Object.keys( window._wpCustomizeNavMenusSettings.locationSlugMappedToName ).map( item => `boldgrid_menu_${item}` );
+		},
+
+		getUsedMenuActions() {
+			return _.filter( this.getCurrentItems(), actions => actions.includes( 'boldgrid_menu' ) );
+		},
+
+		getAvailableMenus() {
+			return _.difference( this.getAllMenuActions(), this.getUsedMenuActions() );
+		},
+
+		getNextAvailableMenu() {
+			return _.first( this.getAvailableMenus() );
+		},
+
+		getNextAvailable( type ) {
+			switch ( type ) {
+				case 'menu':
+					type = this.getNextAvailableMenu();
+					break;
+				case 'sidebar':
+					type = this.getNextAvailableSidebar();
+					break;
+				case 'branding':
+					type = 'boldgrid_site_identity';
+					break;
+				default:
+					break;
+			}
+			return type;
 		}
 	} );
 

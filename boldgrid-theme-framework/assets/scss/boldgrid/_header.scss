@@ -1,1 +1,11 @@
 @import "header/slide-in";
+
+#masthead .boldgrid-section .row {
+	display: flex;
+	flex-wrap: wrap;
+	aside.sidebar {
+		margin-left: -15px;
+		margin-right: -15px;
+		height: 100%;
+	}
+}

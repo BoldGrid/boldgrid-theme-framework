@@ -199,4 +199,22 @@ class Boldgrid_Framework_Widgets {
 		// Set primary sidebar as first in array.
 		$wp_registered_sidebars = [ 'primary-sidebar' => $wp_registered_sidebars['primary-sidebar'] ] + $wp_registered_sidebars;
 	}
+
+	/**
+	 * This takes each sidebar specified in the configs and creates
+	 * and action to be used.
+	 *
+	 * @since 2.0.3
+	 *
+	 */
+	public function add_dynamic_actions() {
+		foreach ( $this->configs['widget']['sidebars'] as $widget ) {
+			$action = function() use ( $widget ) {
+				bgtfw_widget( $widget['id'], true );
+			};
+
+			// Add our dynamic actions we created, so they can be hooked into ( For example: 'bgtfw_sidebar_header-1' ).
+			add_action( 'bgtfw_sidebar_' . $widget['id'], $action );
+		}
+	}
 }

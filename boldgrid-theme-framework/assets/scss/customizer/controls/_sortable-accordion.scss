@@ -22,7 +22,7 @@
 		.sortable-title {
 			display: flex;
 			align-items: center;
-			font-size: 14px;
+			font-size: 11px;
 			padding: 10px;
 			&:before {
 				margin-top: -4.5px;
@@ -73,6 +73,14 @@
 			&.selected {
 				background-color: #00a0d2;
 				color: rgba(255, 255, 255, 0.8);
+			}
+
+			&.disabled {
+				cursor: not-allowed;
+				opacity: .6;
+				&:hover {
+					background-color: rgba(0, 0, 0, 0.1);
+				}
 			}
 		}
 	}

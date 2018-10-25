@@ -257,15 +257,21 @@ devices.init();
 	} );
 
 	wp.customize.controlConstructor['bgtfw-sortable-accordion'] = wp.customize.Control.extend( {
+
+		/**
+		 * Handles the control's initialization.
+		 *
+		 * @since 2.0.3
+		 */
 		ready: function() {
 			var control = this;
 
-			control.container[0].querySelectorAll( '.sortable-actions' ).forEach( sortableAction => {
-				_.each( control.params.items, item => sortableAction.innerHTML += control.addTypes.call( this, item ) );
-			} );
+			this.setSortable();
+
+
 
 			// Make our Repeater fields sortable
-			control.container.find( '#sortable-' + control.id ).accordion( {
+			this.sortable.accordion( {
 				header: '> .sortable-wrapper > .sortable-title',
 				heightStyle: 'content',
 				collapsible: true
@@ -278,69 +284,92 @@ devices.init();
 
 			this.addRepeaterControls();
 			this.updateTitles();
+			this.updateAddTypes();
+
 			control.addEvents.call( this );
 		},
 
-		addEvents: function() {
-			this.container.find( '.bgtfw-sortable' ).on( 'click', ( e ) => this.addItem( e ) );
-			this.container.find( '.bgtfw-container-control > .bgtfw-sortable-control' ).on( 'click', ( e ) => this.selectContainer( e ) );
-			this.container.find( '.dashicons-trash' ).on( 'click', ( e ) => this.deleteItem( e ) );
+		/**
+		 * Sets a reference to the sortable selector to the parent sortable to use.
+		 *
+		 * @since 2.0.3
+		 */
+		setSortable() {
+			return this.sortable = this.container.find( `#sortable-${ this.id }` );
 		},
 
-		deleteItem: function( e ) {
+		/**
+		 * Adds the additional event handlers used in the sortable control.
+		 *
+		 * @since 2.0.3
+		 */
+		addEvents() {
+			this.container.find( '.sortable-accordion-content' )
+				.on( 'click', '.bgtfw-sortable:not(.disabled)', ( e ) => this._addItem( e ) )
+				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', ( e ) => this._selectContainer( e ) )
+				.on( 'click', '.dashicons-trash', ( e ) => this._deleteItem( e ) )
+				.on( 'change', '.repeater-menu-select', e => this._updateMenuSelect( e ) );
+		},
+
+		/**
+		 * Repeater's delete item event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_deleteItem( e ) {
 			$( e.currentTarget ).closest( '.repeater' ).remove();
 			this.updateValues();
 		},
 
-		updateMenuSelect: function( e ) {
-			let oldVal = e.currentTarget.dataset.value,
-				newVal = e.target.value;
+		/**
+		 * Menu item type's dropdown event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_updateMenuSelect( e ) {
+			let el = e.currentTarget,
+				repeater = $( el ).closest( '.repeater' )[0],
+				oldVal = repeater.dataset.value,
+				newVal = el.value;
 
 			// Update disabled selects.
-			document.querySelectorAll( `${ this.selector } option[value=${oldVal}]` ).forEach( ( option ) => option.disabled = false );
-			document.querySelectorAll( `${ this.selector } option[value=${newVal}]` ).forEach( ( option ) => option.disabled = true );
-			e.target[ e.target.options.selectedIndex ].disabled = false;
-			e.currentTarget.dataset.value = newVal;
+			document.querySelectorAll( `${ this.selector } option[value=${ oldVal }]` ).forEach( ( option ) => option.disabled = false );
+			document.querySelectorAll( `${ this.selector } option[value=${ newVal }]` ).forEach( ( option ) => option.disabled = true );
+			el[ el.options.selectedIndex ].disabled = false;
+			el.dataset.value = newVal;
+			repeater.dataset.value = newVal;
 			this.updateValues();
 		},
 
-		addRepeaterControls: function() {
+		/**
+		 * Adds any of the needed controls for the repeaters.
+		 *
+		 * @since 2.0.3
+		 */
+		addRepeaterControls() {
 			let repeaters = $( '.repeater' );
 
 			_.each( repeaters, ( repeater ) => {
-				let selectControl,
-					type = repeater.dataset.value;
-
-				// Menu Items.
-				if ( -1 !== type.indexOf( 'menu' ) ) {
-
+				if ( 'menu' === repeater.dataset.itemType ) {
 					if ( ! repeater.querySelector( '.repeater-menu-select' ) ) {
-						repeater.querySelector( '.repeater-accordion-content' ).innerHTML += this.getMenuSelect( type );
-						selectControl = repeater.querySelector( '.repeater-menu-select' );
-
-						$( repeater ).on( 'change', e => this.updateMenuSelect( e ) );
-
-						if ( 'menu' !== type ) {
-							selectControl.value = type;
-						} else {
-
-							// Newly added menu item.
-							selectControl.selectedIndex = 0;
-							repeater.dataset.value = selectControl.value;
-						}
+						repeater.querySelector( '.repeater-accordion-content' ).innerHTML += this.getMenuSelect( repeater.dataset.value );
 					}
 				}
 			} );
 		},
 
-		getMenuSelect: function( type ) {
+		/**
+		 * Gets the menu item type's dropdown menu.
+		 *
+		 * @since 2.0.3
+		 */
+		getMenuSelect( type ) {
 			let disabled,
-				markup = '<select class="repeater-menu-select">',
-				currentItems = _.map( _.flatten( _.map( this.setting.get(), data => _.values( data.items ) ) ), values => values.type );
+				markup = '<select class="repeater-menu-select">';
 
 			_.each( window._wpCustomizeNavMenusSettings.locationSlugMappedToName, ( name, location ) => {
-				disabled = -1 !== currentItems.indexOf( `boldgrid_menu_${location}` ) && `boldgrid_menu_${location}` !== type ? ' disabled' : '';
-				markup += `<option value="boldgrid_menu_${location}"${disabled}>${name}</option>`;
+				disabled = this.getCurrentItems().includes( `boldgrid_menu_${ location }` ) && `boldgrid_menu_${ location }` !== type ? ' disabled' : '';
+				markup += `<option value="boldgrid_menu_${ location }"${ disabled }>${ name }</option>`;
 			} );
 
 			markup += '</select>';
@@ -348,12 +377,32 @@ devices.init();
 			return markup;
 		},
 
-		updateValues: function() {
+		/**
+		 * Container control event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		updateValues() {
+			let values = this.getValues();
+			this.setting.set( values );
+			this.updateTitles();
+			this.updateAddTypes();
+		},
+
+		/**
+		 * Retrieves user's currently set values for control.
+		 *
+		 * @since 2.0.3
+		 */
+		getValues() {
 			let	sortableValue,
 			values = [];
 			_.each( this.container.find( '.connected-sortable' ), ( sortable, key ) => {
 				sortableValue = $( sortable ).find( '.repeater' ).map( function() {
-					return { type: this.dataset.value };
+					return {
+						type: this.dataset.value,
+						key: this.dataset.itemType
+					};
 				} ).toArray();
 				values[ key ] = {
 					container: this.getContainer( sortable ),
@@ -361,15 +410,24 @@ devices.init();
 				};
 			} );
 
-			wp.customize( this.id ).set( values );
-			this.updateTitles();
+			return values;
 		},
 
-		getContainer: function( sortable ) {
+		/**
+		 * Gets the selected value for the container control.
+		 *
+		 * @since 2.0.3
+		 */
+		getContainer( sortable ) {
 			return sortable.previousElementSibling.querySelector( '.selected' ).dataset.container;
 		},
 
-		selectContainer: function( e ) {
+		/**
+		 * Container control event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_selectContainer( e ) {
 			let selector = $( e.currentTarget );
 
 			if ( ! selector.hasClass( 'selected' ) ) {
@@ -379,44 +437,220 @@ devices.init();
 			}
 		},
 
-		addItem: function( e ) {
-			let type = e.currentTarget.dataset.type;
-			e.currentTarget.parentElement.previousElementSibling.innerHTML += this.getMarkup( type );
+		/**
+		 * Add Item event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_addItem( e ) {
+			let dataset = e.currentTarget.dataset;
+
+			e.currentTarget.parentElement.previousElementSibling.innerHTML += this.getMarkup( dataset );
 			this.addRepeaterControls();
 			this.refreshSortables();
 			this.updateValues();
 		},
 
-		updateTitles: function() {
-			_.each( $( '.sortable-wrapper' ), ( sortable ) => {
-				var title = [];
-				sortable.querySelectorAll( '.repeater-title' ).forEach( titles => title.push( titles.textContent ) );
-				sortable.firstElementChild.innerHTML = title.join ( '<span class="title-divider">&#9679;</span>' );
+		/**
+		 * Updates section titles with titles of repeaters contained inside.
+		 *
+		 * @since 2.0.3
+		 */
+		updateTitles() {
+			_.each( this.sortable.sortable( 'instance' ).items, ( sortable ) => {
+				let el = sortable.item[0],
+					title = [];
+
+				el.querySelectorAll( '.repeater-title' ).forEach( titles => title.push( titles.textContent ) );
+				el.firstElementChild.innerHTML = title.join ( '<span class="title-divider">&#9679;</span>' );
 			} );
 		},
 
-		refreshSortables: function() {
-			this.container.find( '#sortable-' + this.id ).sortable( 'refresh' );
+		/**
+		 * Refresh sortables.
+		 *
+		 * @since 2.0.3
+		 */
+		refreshSortables() {
+			this.sortable.sortable( 'refresh' );
 			this.container.find( '.connected-sortable' ).sortable( 'refresh' );
 		},
 
-		getMarkup: function( type ) {
-			let key = -1 !== type.indexOf( 'menu' ) ? 'menu' : type;
-			return `<li class="repeater" data-value="${ type }">
+		/**
+		 * Get repeater markup.
+		 *
+		 * @since 2.0.3
+		 */
+		getMarkup( dataset ) {
+			return `<li class="repeater" data-item-type="${ dataset.itemType }" data-value="${ dataset.type }">
 				<div class="repeater-input">
 					<div class="repeater-handle">
-						<span class="repeater-title"><i class="${ this.params.items[ key ].icon }"></i>${ this.params.items[ key ].title }</span><span class="dashicons dashicons-trash"></span>
+						<span class="repeater-title"><i class="${ this.params.items[ dataset.itemType ].icon }"></i>${ this.params.items[ dataset.itemType ].title }</span><span class="dashicons dashicons-trash"></span>
 					</div>
 					<div class="repeater-accordion-content"></div>
 				</div>
 			</li>`;
 		},
 
-		addTypes: function( item ) {
-			let attribute = item.title.toLowerCase(),
-				type = attribute === 'branding' ? 'boldgrid_site_identity' : attribute;
+		/**
+		 * Update add item buttons.
+		 *
+		 * @since 2.0.3
+		 */
+		updateAddTypes() {
+			this.sortable[0].querySelectorAll( '.bgtfw-sortable' ).forEach( button => {
+				let type = this.getItem( button.dataset.itemType );
+				if ( type ) {
+					button.classList.remove( 'disabled' );
+					button.dataset.type = this.getItem( button.dataset.itemType );
+				} else {
+					button.classList.add( 'disabled' );
+				}
+			} );
+		},
 
-			return '<span class="bgtfw-sortable ' + attribute + '" data-type="' +  type + '" aria-label="Add ' + item.title + '"><i class="fa fa-plus"></i>' + item.title + '</span>';
+		/**
+		 * Gets markup for add item buttons.
+		 *
+		 * @since 2.0.3
+		 */
+		addTypes() {
+			this.container[0].querySelectorAll( '.sortable-actions' ).forEach( sortableAction => {
+				_.each( this.params.items, ( item, key ) => {
+					sortableAction.innerHTML += this.getAddTypeMarkup( item, key );
+				} );
+			} );
+		},
+
+		/**
+		 * Gets markup for add item buttons.
+		 *
+		 * @since 2.0.3
+		 */
+		getAddTypeMarkup( item, key ) {
+			return `<span class="bgtfw-sortable ${ key }" data-item-type="${ key }" aria-label="Add ${ item.title }"><i class="fa fa-plus"></i>${ item.title }</span>`;
+		},
+
+		/**
+		 * Gets all current items added to location.
+		 *
+		 * @since 2.0.3
+		 */
+		getCurrentItems() {
+			return _.map( _.flatten( _.map( this.setting.get(), data => _.values( data.items ) ) ), values => values.type );
+		},
+
+		/**
+		 * Gets all registered sidebar locations.
+		 *
+		 * @since 2.0.3
+		 */
+		getAllSidebarLocations() {
+			return _.pluck( window._wpCustomizeWidgetsSettings.registeredSidebars, 'id' );
+		},
+
+		/**
+		 * Gets all sidebar action names.
+		 *
+		 * @since 2.0.3
+		 */
+		getAllSidebarActions() {
+			return this.getAllSidebarLocations().map( item => `bgtfw_sidebar_${ item }` );
+		},
+
+		/**
+		 * Gets all sidebar action names filtered by location.
+		 *
+		 * @since 2.0.3
+		 */
+		getFilteredSidebarActions() {
+			return _.filter( this.getAllSidebarActions(), sidebar => sidebar.includes( this.params.location ) );
+		},
+
+		/**
+		 * Gets all currently used sidebar actions.
+		 *
+		 * @since 2.0.3
+		 */
+		getUsedSidebarActions() {
+			return _.filter( this.getCurrentItems(), actions => actions.includes( 'bgtfw_sidebar' ) );
+		},
+
+		/**
+		 * Gets all unused sidebar actions filtered by location.
+		 *
+		 * @since 2.0.3
+		 */
+		getAvailableSidebars() {
+			return _.difference( this.getFilteredSidebarActions(), this.getUsedSidebarActions() );
+		},
+
+		/**
+		 * Gets the next available sidebar item that can be added.
+		 *
+		 * @since 2.0.3
+		 */
+		getNextAvailableSidebar() {
+			return _.first( this.getAvailableSidebars() );
+		},
+
+		/**
+		 * Gets all menu action names that can be added.
+		 *
+		 * @since 2.0.3
+		 */
+		getAllMenuActions() {
+			return Object.keys( window._wpCustomizeNavMenusSettings.locationSlugMappedToName ).map( item => `boldgrid_menu_${item}` );
+		},
+
+		/**
+		 * Gets all used menu actions.
+		 *
+		 * @since 2.0.3
+		 */
+		getUsedMenuActions() {
+			return _.filter( this.getCurrentItems(), actions => actions.includes( 'boldgrid_menu' ) );
+		},
+
+		/**
+		 * Gets all unused menu actions.
+		 *
+		 * @since 2.0.3
+		 */
+		getAvailableMenus() {
+			return _.difference( this.getAllMenuActions(), this.getUsedMenuActions() );
+		},
+
+		/**
+		 * Gets the next available menu item that can be added.
+		 *
+		 * @since 2.0.3
+		 */
+		getNextAvailableMenu() {
+			return _.first( this.getAvailableMenus() );
+		},
+
+		/**
+		 * Get item to be added to sortable based on type.
+		 *
+		 * @since 2.0.3
+		 */
+		getItem( type ) {
+			switch ( type ) {
+				case 'menu':
+					type = this.getNextAvailableMenu();
+					break;
+				case 'sidebar':
+					type = this.getNextAvailableSidebar();
+					break;
+				case 'branding':
+					type = 'boldgrid_site_identity';
+					break;
+				default:
+					break;
+			}
+
+			return type;
 		}
 	} );
 

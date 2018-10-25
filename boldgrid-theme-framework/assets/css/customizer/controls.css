@@ -2628,6 +2628,11 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   margin-top: 9px;
 }
 
+.bgtfw-sortable-accordion .sortable-wrapper .ui-state-active .sortable-title:before {
+  content: "\f0de";
+  margin-top: 9px;
+}
+
 .bgtfw-sortable-accordion .sortable-wrapper .sortable-title {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2685,42 +2690,43 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 .bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable,
 .bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable-control,
 .bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable {
-  cursor: pointer;
   -webkit-box-flex: 1;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
   text-align: center;
   padding: 0.5em 1em;
+}
+
+.bgtfw-sortable-accordion .align-wrapper > .align,
+.bgtfw-sortable-accordion .bgtfw-sortable-control,
+.bgtfw-sortable-accordion .bgtfw-sortable {
+  cursor: pointer;
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable-control:hover,
-.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable:hover,
-.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable-control:hover,
-.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable:hover {
+.bgtfw-sortable-accordion .align-wrapper > .align:hover,
+.bgtfw-sortable-accordion .bgtfw-sortable-control:hover,
+.bgtfw-sortable-accordion .bgtfw-sortable:hover {
   background-color: #fafafa;
 }
 
-.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable-control.selected,
-.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable.selected,
-.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable-control.selected,
-.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable.selected {
+.bgtfw-sortable-accordion .align-wrapper > .align.selected,
+.bgtfw-sortable-accordion .bgtfw-sortable-control.selected,
+.bgtfw-sortable-accordion .bgtfw-sortable.selected {
   background-color: #00a0d2;
   color: rgba(255, 255, 255, 0.8);
 }
 
-.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable-control.disabled,
-.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable.disabled,
-.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable-control.disabled,
-.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable.disabled {
+.bgtfw-sortable-accordion .align-wrapper > .align.disabled,
+.bgtfw-sortable-accordion .bgtfw-sortable-control.disabled,
+.bgtfw-sortable-accordion .bgtfw-sortable.disabled {
   cursor: not-allowed;
   opacity: .6;
 }
 
-.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable-control.disabled:hover,
-.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable.disabled:hover,
-.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable-control.disabled:hover,
-.bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable.disabled:hover {
+.bgtfw-sortable-accordion .align-wrapper > .align.disabled:hover,
+.bgtfw-sortable-accordion .bgtfw-sortable-control.disabled:hover,
+.bgtfw-sortable-accordion .bgtfw-sortable.disabled:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -2742,25 +2748,20 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   border-color: #999;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-title {
-  padding-left: 15px;
-}
-
 .bgtfw-sortable-accordion .repeater .repeater-title .dashicons {
-  padding-right: 15px;
+  padding-right: 10px;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-handle {
-  padding-bottom: .75em;
-  padding-top: .75em;
+.bgtfw-sortable-accordion .repeater .sortable-title {
+  padding: .25em 0 0 10px;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-handle .dashicons-trash {
   cursor: pointer;
   position: relative;
-  float: right;
   padding: 10px 10px 8px 10px;
-  margin-top: -10px;
+  margin-top: -.25em;
+  margin-left: auto;
   color: #a00;
 }
 
@@ -2772,6 +2773,8 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 100%;
   background-color: #f1f1f1;
   padding-top: .75em;
@@ -2791,4 +2794,80 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 .bgtfw-sortable-accordion .repeater .repeater-input {
   width: 100%;
   display: inline-block;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: .75em;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .repeater-control-title {
+  padding-top: .25em;
+  padding-bottom: .25em;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper {
+  background: white;
+  border: 1px solid #ddd;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper:hover {
+  border-color: #999;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: calc( 100% / 3);
+  padding: 5px 0;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align .dashicons-arrow-up:before,
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align .dashicons-arrow-down:before {
+  margin-left: -2px;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align .dashicons-marker:before {
+  position: relative;
+  font-size: 14px;
+  top: -3px;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.nw .dashicons-arrow-up, .bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.se .dashicons-arrow-up {
+  -webkit-transform: rotateZ(-45deg);
+          transform: rotateZ(-45deg);
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.ne .dashicons-arrow-down, .bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.sw .dashicons-arrow-down {
+  -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
 }

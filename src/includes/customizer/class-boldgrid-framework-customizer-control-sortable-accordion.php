@@ -75,7 +75,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				<# if ( data.description ) { #>
 					<span class="description customize-control-description">{{{ data.description }}}</span>
 				<# } #>
-				<input type="hidden" id="input-{{ data.id }}" name="{{ data.id }}" value="<# JSON.stringify( data.value ) #>" class="customize-control-drag-and-drop" {{{ data.link }}} />
+				<input type="hidden" id="input-{{ data.id }}" name="{{ data.id }}" value="{{ data.value }}" class="customize-control-drag-and-drop" {{{ data.link }}} />
 				<div id="sortable-{{ data.id }}">
 					<# _.each( data.value, function( repeaters, sortable ) { #>
 						<div id="sortable-{{ sortable }}-wrapper" class="sortable-wrapper">
@@ -97,12 +97,16 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 								</div>
 								<ul id="sortable-{{ sortable }}" class="connected-sortable">
 								<# _.each( repeaters.items, function( repeater, i ) { #>
-									<li class="repeater" data-item-type="{{ repeater.key }}" data-value="{{ repeater.type }}">
+									<li class="repeater" data-key="{{ repeater.key }}" data-type="{{ repeater.type }}" <# if ( ! _.isUndefined( repeater.align ) ) { #>data-align="{{ repeater.align }}"<# } #>>
 										<div class="repeater-input">
 											<div class="repeater-handle">
-												<span class="repeater-title"><i class="{{ data.items[ repeater.key ].icon }}"></i>{{{ data.items[ repeater.key ].title }}}</span><span class="dashicons dashicons-trash"></span>
+												<div class="sortable-title">
+													<span class="repeater-title"><i class="{{ data.items[ repeater.key ].icon }}"></i>{{{ data.items[ repeater.key ].title }}}</span><span class="dashicons dashicons-trash"></span>
+												</div>
 											</div>
-											<div class="repeater-accordion-content"></div>
+											<div class="repeater-accordion-content-wrapper">
+												<div class="repeater-accordion-content"></div>
+											</div>
 										</div>
 									</li>
 								<# } ); #>

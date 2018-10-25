@@ -257,78 +257,184 @@ devices.init();
 	} );
 
 	wp.customize.controlConstructor['bgtfw-sortable-accordion'] = wp.customize.Control.extend( {
+
+		/**
+		 * Handles the control's initialization.
+		 *
+		 * @since 2.0.3
+		 */
 		ready: function() {
-			var control = this;
-
 			this.setSortable();
-
-			control.container[0].querySelectorAll( '.sortable-actions' ).forEach( sortableAction => {
-				_.each( control.params.items, ( item, key ) => sortableAction.innerHTML += control.addTypes.call( this, item, key ) );
-			} );
-
-			// Make our Repeater fields sortable
-			this.sortable.accordion( {
-				header: '> .sortable-wrapper > .sortable-title',
-				heightStyle: 'content',
-				collapsible: true
-			} ).sortable( {
-				update: this.updateValues.bind( this )
-			} ).disableSelection();
-			control.container.find( '.connected-sortable' ).sortable( {
-				update: this.updateValues.bind( this )
-			} ).disableSelection();
-
+			this.addSortables();
+			this.addTypes();
 			this.addRepeaterControls();
 			this.updateTitles();
 			this.updateAddTypes();
-
-			control.addEvents.call( this );
+			this.addEvents();
 		},
 
+		/**
+		 * Sets a reference to the sortable selector to the parent sortable to use.
+		 *
+		 * @since 2.0.3
+		 */
 		setSortable() {
 			return this.sortable = this.container.find( `#sortable-${ this.id }` );
 		},
 
-		addEvents() {
-			this.container.find( '.sortable-accordion-content' )
-				.on( 'click', '.bgtfw-sortable:not(.disabled)', ( e ) => this.addItem( e ) )
-				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', ( e ) => this.selectContainer( e ) )
-				.on( 'click', '.dashicons-trash', ( e ) => this.deleteItem( e ) )
-				.on( 'change', '.repeater-menu-select', e => this.updateMenuSelect( e ) );
+		/**
+		 * Initializes sortables.
+		 *
+		 * @since 2.0.3
+		 */
+		addSortables() {
+			this.sortable.accordion( {
+				header: '> .sortable-wrapper > .sortable-title',
+				heightStyle: 'content',
+				collapsible: true,
+				active: false
+			} ).sortable( {
+				update: this.updateValues.bind( this )
+			} ).disableSelection();
+			this.container.find( '.connected-sortable' ).accordion( {
+				header: '.repeater-handle',
+				heightStyle: 'content',
+				collapsible: true,
+				active: false
+			} ).sortable( {
+				update: this.updateValues.bind( this )
+			} ).disableSelection();
 		},
 
-		deleteItem( e ) {
+		/**
+		 * Adds the additional event handlers used in the sortable control.
+		 *
+		 * @since 2.0.3
+		 */
+		addEvents() {
+			this.container.find( '.sortable-accordion-content' )
+				.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
+				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.alignment .align:not(.selected)', e => this._select( e ) )
+				.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
+				.on( 'change', '.repeater-menu-select', e => this._updateMenuSelect( e ) )
+				.on( 'click', '.repeater-control.alignment .align:not(.selected)', e => this._updateAlignment( e ) );
+		},
+
+		/**
+		 * Repeater's delete item event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_deleteItem( e ) {
 			$( e.currentTarget ).closest( '.repeater' ).remove();
 			this.updateValues();
 		},
 
-		updateMenuSelect( e ) {
+		/**
+		 * Menu item type's dropdown event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_updateMenuSelect( e ) {
 			let el = e.currentTarget,
 				repeater = $( el ).closest( '.repeater' )[0],
-				oldVal = repeater.dataset.value,
+				oldVal = repeater.dataset.type,
 				newVal = el.value;
 
 			// Update disabled selects.
-			document.querySelectorAll( `${ this.selector } option[value=${ oldVal }]` ).forEach( ( option ) => option.disabled = false );
-			document.querySelectorAll( `${ this.selector } option[value=${ newVal }]` ).forEach( ( option ) => option.disabled = true );
+			this.sortable[0].querySelectorAll( `option[value=${ oldVal }]` ).forEach( option => option.disabled = false );
+			this.sortable[0].querySelectorAll( `option[value=${ newVal }]` ).forEach( option => option.disabled = true );
 			el[ el.options.selectedIndex ].disabled = false;
 			el.dataset.value = newVal;
-			repeater.dataset.value = newVal;
+			repeater.dataset.type = newVal;
 			this.updateValues();
 		},
 
+		/**
+		 * Alignment controls' event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_updateAlignment( e ) {
+			let el = e.currentTarget,
+				repeater = $( el ).closest( '.repeater' )[0],
+				newVal = el.className.replace( /align|selected|\s/g, '' );
+
+			repeater.dataset.align = newVal;
+			this.updateValues();
+		},
+
+		/**
+		 * Adds any of the needed controls for the repeaters.
+		 *
+		 * @since 2.0.3
+		 */
 		addRepeaterControls() {
 			let repeaters = $( '.repeater' );
 
 			_.each( repeaters, ( repeater ) => {
-				if ( 'menu' === repeater.dataset.itemType ) {
+				let repeaterControls = repeater.querySelector( '.repeater-accordion-content' );
+				if ( 'menu' === repeater.dataset.key ) {
 					if ( ! repeater.querySelector( '.repeater-menu-select' ) ) {
-						repeater.querySelector( '.repeater-accordion-content' ).innerHTML += this.getMenuSelect( repeater.dataset.value );
+						repeaterControls.innerHTML += this.getMenuSelect( repeater.dataset.type );
+					}
+					if ( ! repeater.querySelector( '.repeater-control.alignment' ) ) {
+						repeaterControls.innerHTML += this.getAlignmentMarkup( repeater.dataset.align );
+					}
+				}
+				if ( 'branding' === repeater.dataset.key ) {
+					if ( ! repeater.querySelector( '.repeater-control.alignment' ) ) {
+						repeaterControls.innerHTML += this.getAlignmentMarkup( repeater.dataset.align );
 					}
 				}
 			} );
 		},
 
+		getAlignmentMarkup( align ) {
+			let markup = `
+			<div class="repeater-control alignment">
+				<div class="align-wrapper">
+					<div class="repeater-control-title">Alignment</div>
+					<div class="align nw">
+						<span class="dashicons dashicons-arrow-up"></span>
+					</div>
+					<div class="align n">
+						<span class="dashicons dashicons-arrow-up"></span>
+					</div>
+					<div class="align ne">
+						<span class="dashicons dashicons-arrow-up"></span>
+					</div>
+					<div class="align w">
+						<span class="dashicons dashicons-arrow-left"></span>
+					</div>
+					<div class="align c">
+						<span class="dashicons dashicons-marker"></span>
+					</div>
+					<div class="align e">
+						<span class="dashicons dashicons-arrow-right"></span>
+					</div>
+					<div class="align sw">
+						<span class="dashicons dashicons-arrow-down"></span>
+					</div>
+					<div class="align s">
+						<span class="dashicons dashicons-arrow-down"></span>
+					</div>
+					<div class="align se">
+						<span class="dashicons dashicons-arrow-down"></span>
+					</div>
+				</div>
+			</div>`;
+
+			markup = markup.replace( `"align ${ align }"`, `"align ${ align } selected"` );
+
+			return markup;
+		},
+
+		/**
+		 * Gets the menu item type's dropdown menu.
+		 *
+		 * @since 2.0.3
+		 */
 		getMenuSelect( type ) {
 			let disabled,
 				markup = '<select class="repeater-menu-select">';
@@ -343,15 +449,29 @@ devices.init();
 			return markup;
 		},
 
+		/**
+		 * Container control event handler.
+		 *
+		 * @since 2.0.3
+		 */
 		updateValues() {
+			let values = this.getValues();
+			this.setting.set( values );
+			this.updateTitles();
+			this.updateAddTypes();
+		},
+
+		/**
+		 * Retrieves user's currently set values for control.
+		 *
+		 * @since 2.0.3
+		 */
+		getValues() {
 			let	sortableValue,
 			values = [];
 			_.each( this.container.find( '.connected-sortable' ), ( sortable, key ) => {
 				sortableValue = $( sortable ).find( '.repeater' ).map( function() {
-					return {
-						type: this.dataset.value,
-						key: this.dataset.itemType
-					};
+					return Object.assign( {}, this.dataset );
 				} ).toArray();
 				values[ key ] = {
 					container: this.getContainer( sortable ),
@@ -359,26 +479,35 @@ devices.init();
 				};
 			} );
 
-			this.setting.set( values );
-			this.updateTitles();
-			this.updateAddTypes();
+			return values;
 		},
 
+		/**
+		 * Gets the selected value for the container control.
+		 *
+		 * @since 2.0.3
+		 */
 		getContainer( sortable ) {
 			return sortable.previousElementSibling.querySelector( '.selected' ).dataset.container;
 		},
 
-		selectContainer( e ) {
+		/**
+		 * Select event handler for controls.
+		 *
+		 * @since 2.0.3
+		 */
+		_select( e ) {
 			let selector = $( e.currentTarget );
-
-			if ( ! selector.hasClass( 'selected' ) ) {
-				selector.siblings().removeClass( 'selected' );
-				selector.addClass( 'selected' );
-				this.updateValues();
-			}
+			selector.siblings().removeClass( 'selected' );
+			selector.addClass( 'selected' );
 		},
 
-		addItem( e ) {
+		/**
+		 * Add Item event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_addItem( e ) {
 			let dataset = e.currentTarget.dataset;
 
 			e.currentTarget.parentElement.previousElementSibling.innerHTML += this.getMarkup( dataset );
@@ -387,6 +516,11 @@ devices.init();
 			this.updateValues();
 		},
 
+		/**
+		 * Updates section titles with titles of repeaters contained inside.
+		 *
+		 * @since 2.0.3
+		 */
 		updateTitles() {
 			_.each( this.sortable.sortable( 'instance' ).items, ( sortable ) => {
 				let el = sortable.item[0],
@@ -397,83 +531,181 @@ devices.init();
 			} );
 		},
 
+		/**
+		 * Refresh sortables.
+		 *
+		 * @since 2.0.3
+		 */
 		refreshSortables() {
 			this.sortable.sortable( 'refresh' );
 			this.container.find( '.connected-sortable' ).sortable( 'refresh' );
 		},
 
+		/**
+		 * Get repeater markup.
+		 *
+		 * @since 2.0.3
+		 */
 		getMarkup( dataset ) {
-			return `<li class="repeater" data-item-type="${ dataset.itemType }" data-value="${ dataset.type }">
+			let attributes = Object.entries( dataset ).map( data => `data-${ data[0] }="${ data[1] }"` ).join( ' ' );
+			return `<li class="repeater" ${ attributes }>
 				<div class="repeater-input">
 					<div class="repeater-handle">
-						<span class="repeater-title"><i class="${ this.params.items[ dataset.itemType ].icon }"></i>${ this.params.items[ dataset.itemType ].title }</span><span class="dashicons dashicons-trash"></span>
+						<div class="sortable-title">
+							<span class="repeater-title"><i class="${ this.params.items[ dataset.key ].icon }"></i>${ this.params.items[ dataset.key ].title }</span><span class="dashicons dashicons-trash"></span>
+						</div>
 					</div>
-					<div class="repeater-accordion-content"></div>
+					<div class="repeater-accordion-content-wrapper">
+						<div class="repeater-accordion-content"></div>
+					</div>
 				</div>
 			</li>`;
 		},
 
+		/**
+		 * Update add item buttons.
+		 *
+		 * @since 2.0.3
+		 */
 		updateAddTypes() {
 			this.sortable[0].querySelectorAll( '.bgtfw-sortable' ).forEach( button => {
-				let type = this.getNextAvailable( button.dataset.itemType );
+				let type = this.getItem( button.dataset.key );
 				if ( type ) {
 					button.classList.remove( 'disabled' );
-					button.dataset.type = this.getNextAvailable( button.dataset.itemType );
+					button.dataset.type = this.getItem( button.dataset.key );
 				} else {
 					button.classList.add( 'disabled' );
 				}
 			} );
 		},
 
-		addTypes( item, key ) {
-			return `<span class="bgtfw-sortable ${ key }" data-item-type="${ key }" aria-label="Add ${ item.title }"><i class="fa fa-plus"></i>${ item.title }</span>`;
+		/**
+		 * Handles adding the Add Item buttons to sortables.
+		 *
+		 * @since 2.0.3
+		 */
+		addTypes() {
+			this.container[0].querySelectorAll( '.sortable-actions' ).forEach( sortableAction => {
+				_.each( this.params.items, ( item, key ) => {
+					sortableAction.innerHTML += this.getAddTypeMarkup( item, key );
+				} );
+			} );
 		},
 
+		/**
+		 * Gets markup for add item buttons.
+		 *
+		 * @since 2.0.3
+		 */
+		getAddTypeMarkup( item, key ) {
+			return `<span class="bgtfw-sortable ${ key }" data-key="${ key }" aria-label="Add ${ item.title }"><i class="fa fa-plus"></i>${ item.title }</span>`;
+		},
+
+		/**
+		 * Gets all current items added to location.
+		 *
+		 * @since 2.0.3
+		 */
 		getCurrentItems() {
 			return _.map( _.flatten( _.map( this.setting.get(), data => _.values( data.items ) ) ), values => values.type );
 		},
 
+		/**
+		 * Gets all registered sidebar locations.
+		 *
+		 * @since 2.0.3
+		 */
 		getAllSidebarLocations() {
 			return _.pluck( window._wpCustomizeWidgetsSettings.registeredSidebars, 'id' );
 		},
 
+		/**
+		 * Gets all sidebar action names.
+		 *
+		 * @since 2.0.3
+		 */
 		getAllSidebarActions() {
 			return this.getAllSidebarLocations().map( item => `bgtfw_sidebar_${ item }` );
 		},
 
+		/**
+		 * Gets all sidebar action names filtered by location.
+		 *
+		 * @since 2.0.3
+		 */
 		getFilteredSidebarActions() {
 			return _.filter( this.getAllSidebarActions(), sidebar => sidebar.includes( this.params.location ) );
 		},
 
+		/**
+		 * Gets all currently used sidebar actions.
+		 *
+		 * @since 2.0.3
+		 */
 		getUsedSidebarActions() {
 			return _.filter( this.getCurrentItems(), actions => actions.includes( 'bgtfw_sidebar' ) );
 		},
 
+		/**
+		 * Gets all unused sidebar actions filtered by location.
+		 *
+		 * @since 2.0.3
+		 */
 		getAvailableSidebars() {
 			return _.difference( this.getFilteredSidebarActions(), this.getUsedSidebarActions() );
 		},
 
+		/**
+		 * Gets the next available sidebar item that can be added.
+		 *
+		 * @since 2.0.3
+		 */
 		getNextAvailableSidebar() {
 			return _.first( this.getAvailableSidebars() );
 		},
 
+		/**
+		 * Gets all menu action names that can be added.
+		 *
+		 * @since 2.0.3
+		 */
 		getAllMenuActions() {
 			return Object.keys( window._wpCustomizeNavMenusSettings.locationSlugMappedToName ).map( item => `boldgrid_menu_${item}` );
 		},
 
+		/**
+		 * Gets all used menu actions.
+		 *
+		 * @since 2.0.3
+		 */
 		getUsedMenuActions() {
 			return _.filter( this.getCurrentItems(), actions => actions.includes( 'boldgrid_menu' ) );
 		},
 
+		/**
+		 * Gets all unused menu actions.
+		 *
+		 * @since 2.0.3
+		 */
 		getAvailableMenus() {
 			return _.difference( this.getAllMenuActions(), this.getUsedMenuActions() );
 		},
 
+		/**
+		 * Gets the next available menu item that can be added.
+		 *
+		 * @since 2.0.3
+		 */
 		getNextAvailableMenu() {
 			return _.first( this.getAvailableMenus() );
 		},
 
-		getNextAvailable( type ) {
+		/**
+		 * Get item to be added to sortable based on type.
+		 *
+		 * @since 2.0.3
+		 */
+		getItem( type ) {
 			switch ( type ) {
 				case 'menu':
 					type = this.getNextAvailableMenu();
@@ -487,7 +719,12 @@ devices.init();
 				default:
 					break;
 			}
+
 			return type;
+		},
+
+		getConnectedValues() {
+			_.filter( _wpCustomizeSettings.controls, { type: this.params.type } );
 		}
 	} );
 

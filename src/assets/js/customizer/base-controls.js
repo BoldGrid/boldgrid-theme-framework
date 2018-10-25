@@ -264,29 +264,13 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		ready: function() {
-			var control = this;
-
 			this.setSortable();
-
-
-
-			// Make our Repeater fields sortable
-			this.sortable.accordion( {
-				header: '> .sortable-wrapper > .sortable-title',
-				heightStyle: 'content',
-				collapsible: true
-			} ).sortable( {
-				update: this.updateValues.bind( this )
-			} ).disableSelection();
-			control.container.find( '.connected-sortable' ).sortable( {
-				update: this.updateValues.bind( this )
-			} ).disableSelection();
-
+			this.addSortables();
+			this.addTypes();
 			this.addRepeaterControls();
 			this.updateTitles();
 			this.updateAddTypes();
-
-			control.addEvents.call( this );
+			this.addEvents();
 		},
 
 		/**
@@ -299,16 +283,41 @@ devices.init();
 		},
 
 		/**
+		 * Initializes sortables.
+		 *
+		 * @since 2.0.3
+		 */
+		addSortables() {
+			this.sortable.accordion( {
+				header: '> .sortable-wrapper > .sortable-title',
+				heightStyle: 'content',
+				collapsible: true,
+				active: false
+			} ).sortable( {
+				update: this.updateValues.bind( this )
+			} ).disableSelection();
+			this.container.find( '.connected-sortable' ).accordion( {
+				header: '.repeater-handle',
+				heightStyle: 'content',
+				collapsible: true,
+				active: false
+			} ).sortable( {
+				update: this.updateValues.bind( this )
+			} ).disableSelection();
+		},
+
+		/**
 		 * Adds the additional event handlers used in the sortable control.
 		 *
 		 * @since 2.0.3
 		 */
 		addEvents() {
 			this.container.find( '.sortable-accordion-content' )
-				.on( 'click', '.bgtfw-sortable:not(.disabled)', ( e ) => this._addItem( e ) )
-				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', ( e ) => this._selectContainer( e ) )
-				.on( 'click', '.dashicons-trash', ( e ) => this._deleteItem( e ) )
-				.on( 'change', '.repeater-menu-select', e => this._updateMenuSelect( e ) );
+				.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
+				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.alignment .align:not(.selected)', e => this._select( e ) )
+				.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
+				.on( 'change', '.repeater-menu-select', e => this._updateMenuSelect( e ) )
+				.on( 'click', '.repeater-control.alignment .align:not(.selected)', e => this._updateAlignment( e ) );
 		},
 
 		/**
@@ -329,15 +338,29 @@ devices.init();
 		_updateMenuSelect( e ) {
 			let el = e.currentTarget,
 				repeater = $( el ).closest( '.repeater' )[0],
-				oldVal = repeater.dataset.value,
+				oldVal = repeater.dataset.type,
 				newVal = el.value;
 
 			// Update disabled selects.
-			document.querySelectorAll( `${ this.selector } option[value=${ oldVal }]` ).forEach( ( option ) => option.disabled = false );
-			document.querySelectorAll( `${ this.selector } option[value=${ newVal }]` ).forEach( ( option ) => option.disabled = true );
+			this.sortable[0].querySelectorAll( `option[value=${ oldVal }]` ).forEach( option => option.disabled = false );
+			this.sortable[0].querySelectorAll( `option[value=${ newVal }]` ).forEach( option => option.disabled = true );
 			el[ el.options.selectedIndex ].disabled = false;
 			el.dataset.value = newVal;
-			repeater.dataset.value = newVal;
+			repeater.dataset.type = newVal;
+			this.updateValues();
+		},
+
+		/**
+		 * Alignment controls' event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_updateAlignment( e ) {
+			let el = e.currentTarget,
+				repeater = $( el ).closest( '.repeater' )[0],
+				newVal = el.className.replace( /align|selected|\s/g, '' );
+
+			repeater.dataset.align = newVal;
 			this.updateValues();
 		},
 
@@ -350,12 +373,61 @@ devices.init();
 			let repeaters = $( '.repeater' );
 
 			_.each( repeaters, ( repeater ) => {
-				if ( 'menu' === repeater.dataset.itemType ) {
+				let repeaterControls = repeater.querySelector( '.repeater-accordion-content' );
+				if ( 'menu' === repeater.dataset.key ) {
 					if ( ! repeater.querySelector( '.repeater-menu-select' ) ) {
-						repeater.querySelector( '.repeater-accordion-content' ).innerHTML += this.getMenuSelect( repeater.dataset.value );
+						repeaterControls.innerHTML += this.getMenuSelect( repeater.dataset.type );
+					}
+					if ( ! repeater.querySelector( '.repeater-control.alignment' ) ) {
+						repeaterControls.innerHTML += this.getAlignmentMarkup( repeater.dataset.align );
+					}
+				}
+				if ( 'branding' === repeater.dataset.key ) {
+					if ( ! repeater.querySelector( '.repeater-control.alignment' ) ) {
+						repeaterControls.innerHTML += this.getAlignmentMarkup( repeater.dataset.align );
 					}
 				}
 			} );
+		},
+
+		getAlignmentMarkup( align ) {
+			let markup = `
+			<div class="repeater-control alignment">
+				<div class="align-wrapper">
+					<div class="repeater-control-title">Alignment</div>
+					<div class="align nw">
+						<span class="dashicons dashicons-arrow-up"></span>
+					</div>
+					<div class="align n">
+						<span class="dashicons dashicons-arrow-up"></span>
+					</div>
+					<div class="align ne">
+						<span class="dashicons dashicons-arrow-up"></span>
+					</div>
+					<div class="align w">
+						<span class="dashicons dashicons-arrow-left"></span>
+					</div>
+					<div class="align c">
+						<span class="dashicons dashicons-marker"></span>
+					</div>
+					<div class="align e">
+						<span class="dashicons dashicons-arrow-right"></span>
+					</div>
+					<div class="align sw">
+						<span class="dashicons dashicons-arrow-down"></span>
+					</div>
+					<div class="align s">
+						<span class="dashicons dashicons-arrow-down"></span>
+					</div>
+					<div class="align se">
+						<span class="dashicons dashicons-arrow-down"></span>
+					</div>
+				</div>
+			</div>`;
+
+			markup = markup.replace( `"align ${ align }"`, `"align ${ align } selected"` );
+
+			return markup;
 		},
 
 		/**
@@ -399,10 +471,7 @@ devices.init();
 			values = [];
 			_.each( this.container.find( '.connected-sortable' ), ( sortable, key ) => {
 				sortableValue = $( sortable ).find( '.repeater' ).map( function() {
-					return {
-						type: this.dataset.value,
-						key: this.dataset.itemType
-					};
+					return Object.assign( {}, this.dataset );
 				} ).toArray();
 				values[ key ] = {
 					container: this.getContainer( sortable ),
@@ -423,18 +492,14 @@ devices.init();
 		},
 
 		/**
-		 * Container control event handler.
+		 * Select event handler for controls.
 		 *
 		 * @since 2.0.3
 		 */
-		_selectContainer( e ) {
+		_select( e ) {
 			let selector = $( e.currentTarget );
-
-			if ( ! selector.hasClass( 'selected' ) ) {
-				selector.siblings().removeClass( 'selected' );
-				selector.addClass( 'selected' );
-				this.updateValues();
-			}
+			selector.siblings().removeClass( 'selected' );
+			selector.addClass( 'selected' );
 		},
 
 		/**
@@ -482,12 +547,17 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		getMarkup( dataset ) {
-			return `<li class="repeater" data-item-type="${ dataset.itemType }" data-value="${ dataset.type }">
+			let attributes = Object.entries( dataset ).map( data => `data-${ data[0] }="${ data[1] }"` ).join( ' ' );
+			return `<li class="repeater" ${ attributes }>
 				<div class="repeater-input">
 					<div class="repeater-handle">
-						<span class="repeater-title"><i class="${ this.params.items[ dataset.itemType ].icon }"></i>${ this.params.items[ dataset.itemType ].title }</span><span class="dashicons dashicons-trash"></span>
+						<div class="sortable-title">
+							<span class="repeater-title"><i class="${ this.params.items[ dataset.key ].icon }"></i>${ this.params.items[ dataset.key ].title }</span><span class="dashicons dashicons-trash"></span>
+						</div>
 					</div>
-					<div class="repeater-accordion-content"></div>
+					<div class="repeater-accordion-content-wrapper">
+						<div class="repeater-accordion-content"></div>
+					</div>
 				</div>
 			</li>`;
 		},
@@ -499,10 +569,10 @@ devices.init();
 		 */
 		updateAddTypes() {
 			this.sortable[0].querySelectorAll( '.bgtfw-sortable' ).forEach( button => {
-				let type = this.getItem( button.dataset.itemType );
+				let type = this.getItem( button.dataset.key );
 				if ( type ) {
 					button.classList.remove( 'disabled' );
-					button.dataset.type = this.getItem( button.dataset.itemType );
+					button.dataset.type = this.getItem( button.dataset.key );
 				} else {
 					button.classList.add( 'disabled' );
 				}
@@ -510,7 +580,7 @@ devices.init();
 		},
 
 		/**
-		 * Gets markup for add item buttons.
+		 * Handles adding the Add Item buttons to sortables.
 		 *
 		 * @since 2.0.3
 		 */
@@ -528,7 +598,7 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		getAddTypeMarkup( item, key ) {
-			return `<span class="bgtfw-sortable ${ key }" data-item-type="${ key }" aria-label="Add ${ item.title }"><i class="fa fa-plus"></i>${ item.title }</span>`;
+			return `<span class="bgtfw-sortable ${ key }" data-key="${ key }" aria-label="Add ${ item.title }"><i class="fa fa-plus"></i>${ item.title }</span>`;
 		},
 
 		/**
@@ -651,6 +721,10 @@ devices.init();
 			}
 
 			return type;
+		},
+
+		getConnectedValues() {
+			_.filter( _wpCustomizeSettings.controls, { type: this.params.type } );
 		}
 	} );
 

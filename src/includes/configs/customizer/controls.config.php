@@ -2528,10 +2528,12 @@ return array(
 					[
 						'type' => 'boldgrid_site_identity',
 						'key' => 'branding',
+						'align' => 'w',
 					],
 					[
 						'type' => 'boldgrid_menu_main',
 						'key' => 'menu',
+						'align' => 'e'
 					],
 				],
 			],
@@ -2562,6 +2564,7 @@ return array(
 					[
 						'type' => 'boldgrid_menu_secondary',
 						'key' => 'menu',
+						'align' => 'w',
 					],
 				],
 			],

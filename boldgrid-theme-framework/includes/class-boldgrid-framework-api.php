@@ -487,9 +487,6 @@ class BoldGrid {
 	public function inner_footer_classes( $classes ) {
 		$classes = array_merge(
 			$classes,
-			array(
-				self::get_container_classes( 'footer' )
-			),
 			$this->get_background_color( 'bgtfw_footer_color' ),
 			$this->get_link_color( 'bgtfw_footer_links' )
 		);
@@ -1160,9 +1157,9 @@ class BoldGrid {
 		return $args;
 	}
 
-	public static function dynamic_header() {
+	public static function dynamic_layout( $theme_mod ) {
 		$markup = '';
-		$theme_mod = get_theme_mod( 'bgtfw_header_layout' );
+		$theme_mod = get_theme_mod( $theme_mod );
 		foreach ( $theme_mod as $section ) {
 			$markup .= '<div class="boldgrid-section">';
 			$markup .= '<div class="' . $section['container'] . '">';
@@ -1204,5 +1201,13 @@ class BoldGrid {
 			$markup .= '</div>';
 		}
 		return $markup;
+	}
+
+	public static function dynamic_header() {
+		return self::dynamic_layout( 'bgtfw_header_layout' );
+	}
+
+	public static function dynamic_footer() {
+		return self::dynamic_layout( 'bgtfw_footer_layout' );
 	}
 }

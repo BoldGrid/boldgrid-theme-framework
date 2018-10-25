@@ -2465,42 +2465,77 @@ return array(
 		'section' => 'bgtfw_layout_blog',
 		'sanitize_callback' => 'sanitize_html_class',
 	),
-	'bgtfw_footer_layouts' => array(
-		'settings' => 'bgtfw_footer_layouts',
-		'transport'   => 'postMessage',
-		'label'       => esc_html__( 'Layout', 'bgtfw' ),
-		'type'        => 'radio',
-		'priority'    => 10,
-		'default'   => 'layout-1',
-		'choices'     => array(
-			'layout-1' => esc_attr__( 'Layout 1', 'bgtfw' ),
-			'layout-2' => esc_attr__( 'Layout 2', 'bgtfw' ),
-			'layout-3' => esc_attr__( 'Layout 3', 'bgtfw' ),
-			'layout-4' => esc_attr__( 'Layout 4', 'bgtfw' ),
-			'layout-5' => esc_attr__( 'Layout 5', 'bgtfw' ),
-			'layout-6' => esc_attr__( 'Layout 6', 'bgtfw' ),
-			'layout-7' => esc_attr__( 'Layout 7', 'bgtfw' ),
-			'layout-8' => esc_attr__( 'Layout 8', 'bgtfw' ),
-		),
-		'section'     => 'boldgrid_footer_panel',
-		'sanitize_callback' => 'sanitize_html_class',
-	),
-	'footer_container' => array(
-		'settings' => 'footer_container',
-		'transport'   => 'postMessage',
-		'label'       => esc_html__( 'Footer Container', 'bgtfw' ),
-		'type'        => 'radio-buttonset',
-		'priority'    => 10,
-		'default'   => '',
-		'choices'     => array(
-			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			'' => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
-		),
-		'section'     => 'boldgrid_footer_panel',
-		'sanitize_callback' => function( $value, $settings ) {
-			return '' === $value || 'container' === $value ? $value : $settings->default;
-		},
-	),
+	'bgtfw_footer_layout' => [
+		'settings' => 'bgtfw_footer_layout',
+		'transport' => 'auto',
+		'label' => __( 'Footer Layout', 'bgtfw' ),
+		'type' => 'bgtfw-sortable-accordion',
+		'default' => [
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'bgtfw_sidebar_footer-1',
+						'key' => 'sidebar',
+					],
+					[
+						'type' => 'bgtfw_sidebar_footer-2',
+						'key' => 'sidebar',
+					],
+					[
+						'type' => 'bgtfw_sidebar_footer-3',
+						'key' => 'sidebar',
+					],
+					[
+						'type' => 'bgtfw_sidebar_footer-4',
+						'key' => 'sidebar',
+					],
+				],
+			],
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'boldgrid_menu_secondary',
+						'key' => 'menu',
+						'align' => 'w',
+					],
+				],
+			],
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'boldgrid_menu_social',
+						'key' => 'menu',
+						'align' => 'e'
+					],
+				],
+			],
+		],
+		'items' => [
+			'menu' => [
+				'icon' => 'dashicons dashicons-menu',
+				'title' => __( 'Menu', 'bgtfw' ),
+			],
+			'branding' => [
+				'icon' => 'dashicons dashicons-store',
+				'title' => __( 'Branding', 'bgtfw' ),
+			],
+			'sidebar' => [
+				'icon' => 'dashicons dashicons-layout',
+				'title' => __( 'Sidebar', 'bgtfw' ),
+			],
+		],
+		'location' => 'footer',
+		'section' => 'boldgrid_footer_panel',
+		'partial_refresh' => [
+			'bgtfw_footer_layout' => [
+				'selector' => '#colophon',
+				'render_callback' => [ 'BoldGrid', 'dynamic_footer' ],
+			],
+		],
+	],
 	'bgtfw_header_layout_position' => array(
 		'settings' => 'bgtfw_header_layout_position',
 		'transport' => 'refresh',

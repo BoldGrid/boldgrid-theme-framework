@@ -828,8 +828,6 @@ class BoldGrid_Framework {
 	 */
 	private function widget_areas() {
 		$widget_areas = new Boldgrid_Framework_Customizer_Widget_Areas();
-		$this->loader->add_action( 'boldgrid_footer_top', $widget_areas, 'footer_html' );
-		$this->loader->add_action( 'bgtfw_header_widget_row', $widget_areas, 'header_html' );
 	}
 
 	/**

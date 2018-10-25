@@ -8,6 +8,7 @@
 		padding-bottom: 1em;
 		padding-top: 1em;
 		z-index: 1;
+		@include align-control();
 	}
 	@import "title";
 	@import "description";

@@ -1,6 +1,6 @@
 // Headings Styles
 @mixin headings($from: 1, $to: 6){
-	@for $i from $from through $to{
+	@for $i from $from through $to {
 		h#{$i}, .h#{$i} {
 			@content
 		}
@@ -44,4 +44,104 @@
 // Helper method to use first unit suffix of $value1 for multiplication calculations.
 @function multiply-use-first-unit( $value1, $value2 ) {
 	@return $value1 * strip-unit( $value2 );
+}
+
+// Alignment control mixin.
+@mixin align-control() {
+	&.flex-row {
+		&.nw {
+			align-items: flex-start !important;
+			justify-content: flex-start !important;
+			@content;
+		}
+		&.n {
+			align-items: flex-start !important;
+			justify-content: center !important;
+			@content;
+		}
+		&.ne {
+			align-items: flex-start !important;
+			justify-content: flex-end !important;
+			@content;
+		}
+		&.w {
+			align-items: center !important;
+			justify-content: flex-start !important;
+			@content;
+		}
+		&.c {
+			align-items: center !important;
+			justify-content: center !important;
+			@content;
+		}
+		&.e {
+			align-items: center !important;
+			justify-content: flex-end !important;
+			@content;
+		}
+		&.sw {
+			align-items: flex-start !important;
+			justify-content: flex-end !important;
+			@content;
+		}
+		&.s {
+			align-items: flex-end !important;
+			justify-content: center !important;
+			@content;
+		}
+		&.se {
+			align-items: flex-end !important;
+			justify-content: flex-end !important;
+			@content;
+		}
+	}
+
+	&, &.flex-column {
+		&.nw {
+			align-items: flex-start !important;
+			justify-content: flex-start !important;
+			@content;
+		}
+		&.n {
+			align-items: center !important;
+			justify-content: flex-start !important;
+			@content;
+		}
+		&.ne {
+			align-items: flex-end !important;
+			justify-content: flex-start !important;
+			@content;
+		}
+		&.w {
+			align-items: flex-start !important;
+			justify-content: center !important;
+			@content;
+		}
+		&.c {
+			align-items: center !important;
+			justify-content: center !important;
+			@content;
+		}
+		&.e {
+			align-items: flex-end !important;
+			justify-content: center !important;
+			@content;
+		}
+		&.sw {
+			align-items: flex-end !important;
+			justify-content: flex-start !important;
+			@content;
+		}
+		&.s {
+			align-items: center !important;
+			justify-content: flex-end !important;
+			@content;
+		}
+		&.se {
+			align-items: flex-end !important;
+			justify-content: flex-end !important;
+			@content;
+		}
+	}
+
 }

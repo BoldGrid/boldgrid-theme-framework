@@ -357,7 +357,7 @@ class BoldGrid {
 	 */
 	public function print_title_tagline() {
 	?>
-		<div class="site-branding">
+		<div <?php BoldGrid::add_class( 'site_branding', [ 'site-branding' ] ); ?>>
 			<?php if ( function_exists( 'the_custom_logo' ) ) : ?>
 				<?php the_custom_logo(); ?>
 			<?php endif; ?>
@@ -1174,10 +1174,22 @@ class BoldGrid {
 				switch ( $col_data['type'] ) {
 					case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
 						$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
-						echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", [], false ) . '>';
-						do_action( $col_data['type'] );
+						echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap' ], false ) . '>';
+						if ( empty( $col_data[ 'align' ] ) ) {
+							$col_data[ 'align' ] = 'nw';
+						}
+						do_action( $col_data['type'], [ 'menu_class' => 'flex-row ' . $col_data[ 'align' ] ] );
 						echo '</div>';
 						break;
+					case 'boldgrid_site_identity' === $col_data['type'] :
+						$filter = function( $classes ) use ( $col_data ) {
+							if ( empty( $col_data[ 'align' ] ) ) {
+								$col_data[ 'align' ] = 'nw';
+							}
+							$classes[] = $col_data[ 'align' ];
+							return $classes;
+						};
+						add_filter( 'bgtfw_site_branding_classes', $filter, 10 );
 					default:
 						do_action( $col_data['type'] );
 				}

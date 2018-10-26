@@ -80,8 +80,8 @@
 			@content;
 		}
 		&.sw {
-			align-items: flex-start !important;
-			justify-content: flex-end !important;
+			align-items: flex-end !important;
+			justify-content: flex-start !important;
 			@content;
 		}
 		&.s {

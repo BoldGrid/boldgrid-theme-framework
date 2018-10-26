@@ -459,7 +459,7 @@ devices.init();
 				markup = '<select class="repeater-menu-select">';
 
 			_.each( window._wpCustomizeNavMenusSettings.locationSlugMappedToName, ( name, location ) => {
-				disabled = this.getCurrentItems().includes( `boldgrid_menu_${ location }` ) && `boldgrid_menu_${ location }` !== type ? ' disabled' : '';
+				disabled = this.getConnectedItems().includes( `boldgrid_menu_${ location }` ) && `boldgrid_menu_${ location }` !== type ? ' disabled' : '';
 				markup += `<option value="boldgrid_menu_${ location }"${ disabled }>${ name }</option>`;
 			} );
 
@@ -749,6 +749,15 @@ devices.init();
 		 */
 		getConnectedControls() {
 			return _.filter( window._wpCustomizeSettings.controls, { type: this.params.type } );
+		},
+
+		/**
+		 * Gets all connected items based on control type.
+		 *
+		 * @since 2.0.3
+		 */
+		getConnectedItems() {
+			return _.flatten( [].concat( _.map( this.getConnectedControls(), control => _.isUndefined( api.control( control.id ) ) ? false : api.control( control.id ).getCurrentItems() ) ) );
 		}
 	} );
 

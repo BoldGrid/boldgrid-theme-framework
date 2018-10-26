@@ -2862,12 +2862,22 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   top: -3px;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.nw .dashicons-arrow-up, .bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.se .dashicons-arrow-up {
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.nw .dashicons-arrow-up {
   -webkit-transform: rotateZ(-45deg);
           transform: rotateZ(-45deg);
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.ne .dashicons-arrow-down, .bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.sw .dashicons-arrow-down {
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.se .dashicons-arrow-down {
+  -webkit-transform: rotateZ(-45deg);
+          transform: rotateZ(-45deg);
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.ne .dashicons-arrow-up {
+  -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.sw .dashicons-arrow-down {
   -webkit-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
 }

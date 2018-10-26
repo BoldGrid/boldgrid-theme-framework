@@ -203,12 +203,22 @@
 						font-size: 14px;
 						top: -3px;
 					}
-					&.nw, &.se {
+					&.nw {
 						.dashicons-arrow-up {
 							transform: rotateZ(-45deg);
 						}
 					}
-					&.ne, &.sw {
+					&.se {
+						.dashicons-arrow-down {
+							transform: rotateZ(-45deg);
+						}
+					}
+					&.ne {
+						.dashicons-arrow-up {
+							transform: rotateZ(45deg);
+						}
+					}
+					&.sw {
 						.dashicons-arrow-down {
 							transform: rotateZ(45deg);
 						}

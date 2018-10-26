@@ -341,13 +341,32 @@ devices.init();
 				oldVal = repeater.dataset.type,
 				newVal = el.value;
 
-			// Update disabled selects.
-			this.sortable[0].querySelectorAll( `option[value=${ oldVal }]` ).forEach( option => option.disabled = false );
-			this.sortable[0].querySelectorAll( `option[value=${ newVal }]` ).forEach( option => option.disabled = true );
+			// Update the menu select controls' disabled items.
+			this.updateConnectedSelects( oldVal, newVal );
+
+			// Don't disable the currently selected item in it's own control.
 			el[ el.options.selectedIndex ].disabled = false;
+
+			// Update repeater's dataset.
 			el.dataset.value = newVal;
 			repeater.dataset.type = newVal;
 			this.updateValues();
+		},
+
+		/**
+		 * Update menu select controls.
+		 *
+		 * @since 2.0.3
+		 */
+		updateConnectedSelects( oldVal, newVal ) {
+			_.each( this.getConnectedControls(), control => {
+				let selects,
+					instance = api.control( control.id );
+				if ( ! _.isUndefined( instance ) ) {
+					instance.container[0].querySelectorAll( `.repeater-menu-select option[value=${ oldVal }]` ).forEach( option => option.disabled = false );
+					instance.container[0].querySelectorAll( `.repeater-menu-select option[value=${ newVal }]` ).forEach( option => option.disabled = true );
+				}
+			} );
 		},
 
 		/**
@@ -723,8 +742,13 @@ devices.init();
 			return type;
 		},
 
-		getConnectedValues() {
-			_.filter( _wpCustomizeSettings.controls, { type: this.params.type } );
+		/**
+		 * Get connected control instances.
+		 *
+		 * @since 2.0.3
+		 */
+		getConnectedControls() {
+			return _.filter( window._wpCustomizeSettings.controls, { type: this.params.type } );
 		}
 	} );
 

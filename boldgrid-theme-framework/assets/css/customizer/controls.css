@@ -2813,8 +2813,10 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.alignment .repeater-control-title {
+  width: 100%;
   padding-top: .25em;
   padding-bottom: .25em;
+  text-align: center;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper {

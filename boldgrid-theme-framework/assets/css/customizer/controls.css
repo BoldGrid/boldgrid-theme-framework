@@ -2796,6 +2796,27 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   display: inline-block;
 }
 
+.bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit .repeater-control-description {
+  margin-top: 0;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit .button-primary {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .bgtfw-sortable-accordion .repeater .repeater-control.alignment {
   width: 80%;
   display: -webkit-box;

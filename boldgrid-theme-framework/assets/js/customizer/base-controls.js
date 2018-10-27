@@ -433,6 +433,11 @@ devices.init();
 						repeaterControls.innerHTML += this.getAlignmentMarkup( repeater.dataset.align );
 					}
 				}
+				if ( 'sidebar' === repeater.dataset.key ) {
+					if ( ! repeater.querySelector( '.repeater-control.sidebar-edit' ) ) {
+						repeaterControls.innerHTML += this.getSidebarEditMarkup( repeater.dataset.type );
+					}
+				}
 			} );
 		},
 
@@ -474,6 +479,14 @@ devices.init();
 			markup = markup.replace( `"align ${ align }"`, `"align ${ align } selected"` );
 
 			return markup;
+		},
+
+		getSidebarEditMarkup( type ) {
+			let id = type.replace( 'bgtfw_sidebar_', '' );
+			return `<div class="repeater-control sidebar-edit">
+				<p class="repeater-control-description">Easily edit your sidebar widgets and appearance.</p>
+				<a class="button-primary" href="#" onclick="event.preventDefault(); wp.customize.section( 'sidebar-widgets-${ id }' ).focus();"><i class="dashicons dashicons-edit"></i>Edit Sidebar</a>
+			</div>`;
 		},
 
 		/**

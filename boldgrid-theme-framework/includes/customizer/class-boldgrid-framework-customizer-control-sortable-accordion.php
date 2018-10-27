@@ -95,7 +95,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 										</div>
 									</div>
 								</div>
-								<ul id="sortable-{{ sortable }}" class="connected-sortable">
+								<ul id="sortable-{{ data.id }}-{{ sortable }}" class="connected-sortable">
 								<# _.each( repeaters.items, function( repeater, i ) { #>
 									<li class="repeater" data-key="{{ repeater.key }}" data-type="{{ repeater.type }}" <# if ( ! _.isUndefined( repeater.align ) ) { #>data-align="{{ repeater.align }}"<# } #>>
 										<div class="repeater-input">

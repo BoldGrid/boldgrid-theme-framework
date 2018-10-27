@@ -264,6 +264,7 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		ready: function() {
+			this.setSelectQueue();
 			this.setSortable();
 			this.addSortables();
 			this.addTypes();
@@ -271,6 +272,14 @@ devices.init();
 			this.updateTitles();
 			this.updateAddTypes();
 			this.addEvents();
+		},
+		/**
+		 * Sets select queue for connected controls.
+		 *
+		 * @since 2.0.3
+		 */
+		setSelectQueue() {
+			return this.selectQueue = 0;
 		},
 
 		/**
@@ -312,12 +321,15 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		addEvents() {
-			this.container.find( '.sortable-accordion-content' )
-				.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
-				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.alignment .align:not(.selected)', e => this._select( e ) )
-				.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
-				.on( 'change', '.repeater-menu-select', e => this._updateMenuSelect( e ) )
-				.on( 'click', '.repeater-control.alignment .align:not(.selected)', e => this._updateAlignment( e ) );
+			api.bind( 'ready',() => {
+				$( api.OuterSection.prototype.containerParent ).on( 'bgtfw-menu-dropdown-select', _.after( this.getConnectedMenus().length, this.updateConnectedSelects( true ) ) );
+				this.container.find( '.sortable-accordion-content' )
+					.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
+					.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.alignment .align:not(.selected)', e => this._select( e ) )
+					.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
+					.on( 'change', '.repeater-menu-select', e => this._updateMenuSelect( e ) )
+					.on( 'click', '.repeater-control.alignment .align:not(.selected)', e => this._updateAlignment( e ) );
+			} );
 		},
 
 		/**
@@ -337,20 +349,14 @@ devices.init();
 		 */
 		_updateMenuSelect( e ) {
 			let el = e.currentTarget,
-				repeater = $( el ).closest( '.repeater' )[0],
-				oldVal = repeater.dataset.type,
-				newVal = el.value;
-
-			// Update the menu select controls' disabled items.
-			this.updateConnectedSelects( oldVal, newVal );
-
-			// Don't disable the currently selected item in it's own control.
-			el[ el.options.selectedIndex ].disabled = false;
+				repeater = $( el ).closest( '.repeater' )[0];
 
 			// Update repeater's dataset.
-			el.dataset.value = newVal;
-			repeater.dataset.type = newVal;
+			repeater.dataset.type = el.value;
 			this.updateValues();
+
+			// Update the menu select controls' disabled items.
+			this.updateConnectedSelects();
 		},
 
 		/**
@@ -358,15 +364,34 @@ devices.init();
 		 *
 		 * @since 2.0.3
 		 */
-		updateConnectedSelects( oldVal, newVal ) {
-			_.each( this.getConnectedControls(), control => {
-				let selects,
-					instance = api.control( control.id );
-				if ( ! _.isUndefined( instance ) ) {
-					instance.container[0].querySelectorAll( `.repeater-menu-select option[value=${ oldVal }]` ).forEach( option => option.disabled = false );
-					instance.container[0].querySelectorAll( `.repeater-menu-select option[value=${ newVal }]` ).forEach( option => option.disabled = true );
-				}
-			} );
+		updateConnectedSelects( queued ) {
+			let unqueued = _.isUndefined( queued ),
+				containers = [],
+				instance,
+				menus;
+
+			if ( ! unqueued ) {
+				this.getLastConnected().selectQueue += 1;
+			}
+
+			if ( unqueued || this.getLastConnected().selectQueue >= this.getConnectedControls().length ) {
+				menus = this.getConnectedMenus();
+				_.each( this.getConnectedControls(), control => {
+					instance = this.id === control.id ? this : api.control( control.id );
+					if ( ! _.isUndefined( instance ) ) {
+						containers.push( instance.selector );
+					}
+				} );
+
+				containers = containers.map( container => `${ api.OuterSection.prototype.containerParent } ${ container } .repeater-menu-select option` ).join( ', ' );
+				document.querySelectorAll( containers ).forEach( option => {
+					let repeater = $( option ).closest( '.repeater' )[0].dataset.type;
+					option.disabled = menus.includes( option.value ) && repeater !== option.value ? true : false;
+				} );
+
+				this.selectQueue = 0;
+			}
+
 		},
 
 		/**
@@ -389,13 +414,15 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		addRepeaterControls() {
-			let repeaters = $( '.repeater' );
+			let repeaters = this.sortable.find( '.repeater' ),
+				addedSelect = _.after( this.getUsedMenuActions().length, $( api.OuterSection.prototype.containerParent ).trigger( 'bgtfw-menu-dropdown-select' ) );
 
 			_.each( repeaters, ( repeater ) => {
 				let repeaterControls = repeater.querySelector( '.repeater-accordion-content' );
 				if ( 'menu' === repeater.dataset.key ) {
 					if ( ! repeater.querySelector( '.repeater-menu-select' ) ) {
 						repeaterControls.innerHTML += this.getMenuSelect( repeater.dataset.type );
+						addedSelect;
 					}
 					if ( ! repeater.querySelector( '.repeater-control.alignment' ) ) {
 						repeaterControls.innerHTML += this.getAlignmentMarkup( repeater.dataset.align );
@@ -455,12 +482,12 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		getMenuSelect( type ) {
-			let disabled,
+			let attr,
 				markup = '<select class="repeater-menu-select">';
 
 			_.each( window._wpCustomizeNavMenusSettings.locationSlugMappedToName, ( name, location ) => {
-				disabled = this.getConnectedItems().includes( `boldgrid_menu_${ location }` ) && `boldgrid_menu_${ location }` !== type ? ' disabled' : '';
-				markup += `<option value="boldgrid_menu_${ location }"${ disabled }>${ name }</option>`;
+				attr = `boldgrid_menu_${ location }` === type ? 'selected' : '';
+				markup += `<option value="boldgrid_menu_${ location }"${ attr }>${ name }</option>`;
 			} );
 
 			markup += '</select>';
@@ -528,7 +555,6 @@ devices.init();
 		 */
 		_addItem( e ) {
 			let dataset = e.currentTarget.dataset;
-
 			e.currentTarget.parentElement.previousElementSibling.innerHTML += this.getMarkup( dataset );
 			this.addRepeaterControls();
 			this.refreshSortables();
@@ -707,7 +733,7 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		getAvailableMenus() {
-			return _.difference( this.getAllMenuActions(), this.getUsedMenuActions() );
+			return _.difference( this.getAllMenuActions(), this.getConnectedMenus() );
 		},
 
 		/**
@@ -757,7 +783,17 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		getConnectedItems() {
-			return _.flatten( [].concat( _.map( this.getConnectedControls(), control => _.isUndefined( api.control( control.id ) ) ? false : api.control( control.id ).getCurrentItems() ) ) );
+			return _.flatten( [].concat( _.map( this.getConnectedControls(), control => this.id === control.id ? this.getCurrentItems() : _.isUndefined( api.control( control.id ) ) ? [] : api.control( control.id ).getCurrentItems() ) ) );
+		},
+
+		getConnectedMenus() {
+			return _.filter( this.getConnectedItems(), item => item.includes( 'boldgrid_menu' ) );
+		},
+
+		getLastConnected() {
+			let last = _.last( this.getConnectedControls() ),
+				id = last.id;
+			return _.isUndefined( api.control( id ) ) ? this : api.control( id );
 		}
 	} );
 

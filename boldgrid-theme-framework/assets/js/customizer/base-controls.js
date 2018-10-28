@@ -376,7 +376,6 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		_deleteItem( e ) {
-			console.log( e );
 			$( e.currentTarget ).closest( '.ui-sortable-handle' ).remove();
 			this.updateValues();
 		},

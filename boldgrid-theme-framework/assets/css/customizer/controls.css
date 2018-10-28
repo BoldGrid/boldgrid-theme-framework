@@ -2650,6 +2650,11 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   content: "\f0dd";
 }
 
+.bgtfw-sortable-accordion .sortable-wrapper .sortable-title .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .bgtfw-sortable-accordion .sortable-wrapper .sortable-title .title-divider {
   padding-left: 5px;
   padding-right: 5px;

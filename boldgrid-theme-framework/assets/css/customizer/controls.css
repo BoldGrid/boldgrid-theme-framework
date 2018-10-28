@@ -2660,6 +2660,14 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   padding: 10px;
 }
 
+.bgtfw-sortable-accordion .bgtfw-add-new-section {
+  margin-top: 15px;
+}
+
+.bgtfw-sortable-accordion .bgtfw-add-new-section .button-secondary {
+  float: right;
+}
+
 .bgtfw-sortable-accordion .bgtfw-container-control,
 .bgtfw-sortable-accordion .sortable-actions {
   display: -webkit-box;

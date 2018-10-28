@@ -341,7 +341,7 @@ devices.init();
 		addEvents() {
 			api.bind( 'ready',() => {
 				$( api.OuterSection.prototype.containerParent ).on( 'bgtfw-menu-dropdown-select', _.after( this.getConnectedMenus().length, this.updateConnectedSelects( true ) ) );
-				this.container.find( '.sortable-accordion-content' )
+				this.sortable
 					.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
 					.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.alignment .align:not(.selected)', e => this._select( e ) )
 					.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
@@ -376,7 +376,8 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		_deleteItem( e ) {
-			$( e.currentTarget ).closest( '.repeater' ).remove();
+			console.log( e );
+			$( e.currentTarget ).closest( '.ui-sortable-handle' ).remove();
 			this.updateValues();
 		},
 
@@ -451,7 +452,7 @@ devices.init();
 		 *
 		 * @since 2.0.3
 		 */
-		addRepeaterControls() {
+		addRepeaterControls( cancelled = false ) {
 			let repeaters = this.sortable.find( '.repeater' ),
 				addedSelect = _.after( this.getUsedMenuActions().length, () => $( api.OuterSection.prototype.containerParent ).trigger( 'bgtfw-menu-dropdown-select' ) );
 
@@ -460,7 +461,7 @@ devices.init();
 				if ( 'menu' === repeater.dataset.key ) {
 					if ( ! repeater.querySelector( '.repeater-menu-select' ) ) {
 						repeaterControls.innerHTML += this.getMenuSelect( repeater.dataset.type );
-						addedSelect;
+						cancelled ? this.updateConnectedSelects() : addedSelect;
 					}
 					if ( ! repeater.querySelector( '.repeater-control.alignment' ) ) {
 						repeaterControls.innerHTML += this.getAlignmentMarkup( repeater.dataset.align );
@@ -607,7 +608,7 @@ devices.init();
 		_addItem( e ) {
 			let dataset = e.currentTarget.dataset;
 			e.currentTarget.parentElement.previousElementSibling.innerHTML += this.getMarkup( dataset );
-			this.addRepeaterControls();
+			this.addRepeaterControls( true );
 			this.refreshItems();
 			this.updateValues();
 		},

@@ -11,15 +11,8 @@
 			border-color: #999;
 		}
 		.ui-state-active {
-			&.sortable-title {
-				padding: 6px 10px;
 
-				&:before {
-					content: "\f0de";
-					margin-top: 9px;
-				}
-			}
-
+			&.sortable-title:before,
 			.sortable-title:before {
 				content: "\f0de";
 				margin-top: 9px;
@@ -29,7 +22,7 @@
 			display: flex;
 			align-items: center;
 			font-size: 11px;
-			padding: 10px;
+			padding: 0 10px;
 			&:before {
 				margin-top: -4.5px;
 				margin-right: 10px;
@@ -46,6 +39,7 @@
 				padding-left: 5px;
 				padding-right: 5px;
 			}
+			margin-top: 0;
 		}
 	}
 	.connected-sortable {
@@ -96,6 +90,19 @@
 		}
 	}
 
+	.title > em,
+	.dashicons-trash {
+		color: #a00;
+		&:hover {
+			color: #dc3232;
+		}
+	}
+	.dashicons-trash {
+		cursor: pointer;
+		position: relative;
+		padding: 10px;
+		margin-left: auto;
+	}
 	.repeater {
 		background: rgba(255, 255, 255, 0.7);
 		border: 1px solid #ddd;
@@ -120,21 +127,7 @@
 			}
 		}
 		.sortable-title {
-			padding: .25em 0 0 10px;
-		}
-		.repeater-handle {
-			.dashicons-trash {
-				cursor: pointer;
-				position: relative;
-				padding: 10px 10px 8px 10px;
-				margin-top: -.25em;
-				margin-left: auto;
-				color: #a00;
-
-				&:hover {
-					color: #dc3232;
-				}
-			}
+			padding: 0 10px;
 		}
 
 		.repeater-accordion-content {

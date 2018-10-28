@@ -297,6 +297,16 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		addSortables() {
+			this.addPrimarySortables();
+			this.addRepeaterSortables();
+		},
+
+		/**
+		 * Adds primary container sortables.
+		 *
+		 * @since 2.0.3
+		 */
+		addPrimarySortables() {
 			this.sortable.accordion( {
 				header: '> .sortable-wrapper > .sortable-title',
 				heightStyle: 'content',
@@ -305,6 +315,14 @@ devices.init();
 			} ).sortable( {
 				update: this.updateValues.bind( this )
 			} ).disableSelection();
+		},
+
+		/**
+		 * Adds repeater container sortables.
+		 *
+		 * @since 2.0.3
+		 */
+		addRepeaterSortables() {
 			this.container.find( '.connected-sortable' ).accordion( {
 				header: '.repeater-handle',
 				heightStyle: 'content',
@@ -329,7 +347,27 @@ devices.init();
 					.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
 					.on( 'change', '.repeater-menu-select', e => this._updateMenuSelect( e ) )
 					.on( 'click', '.repeater-control.alignment .align:not(.selected)', e => this._updateAlignment( e ) );
+				$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );
 			} );
+		},
+
+		/**
+		 * Add new section to sortable event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		addSection( e ) {
+			e.preventDefault();
+			this.container.find( '.connected-sortable' ).sortable( 'destroy' );
+			let items = this.sortable.find( '.sortable-wrapper' );
+			let newItem = items.last().clone( true );
+			newItem.attr( 'id', `sortable-${ items.length }-wrapper` );
+			newItem.find( '.connected-sortable' ).attr( 'id', `sortable-${ this.id }-${ items.length }` );
+			newItem.find( '.connected-sortable li' ).remove();
+			newItem.appendTo( this.sortable );
+			this.addRepeaterSortables();
+			this.refreshItems();
+			this.updateValues();
 		},
 
 		/**
@@ -415,7 +453,7 @@ devices.init();
 		 */
 		addRepeaterControls() {
 			let repeaters = this.sortable.find( '.repeater' ),
-				addedSelect = _.after( this.getUsedMenuActions().length, $( api.OuterSection.prototype.containerParent ).trigger( 'bgtfw-menu-dropdown-select' ) );
+				addedSelect = _.after( this.getUsedMenuActions().length, () => $( api.OuterSection.prototype.containerParent ).trigger( 'bgtfw-menu-dropdown-select' ) );
 
 			_.each( repeaters, ( repeater ) => {
 				let repeaterControls = repeater.querySelector( '.repeater-accordion-content' );
@@ -570,7 +608,7 @@ devices.init();
 			let dataset = e.currentTarget.dataset;
 			e.currentTarget.parentElement.previousElementSibling.innerHTML += this.getMarkup( dataset );
 			this.addRepeaterControls();
-			this.refreshSortables();
+			this.refreshItems();
 			this.updateValues();
 		},
 
@@ -582,11 +620,32 @@ devices.init();
 		updateTitles() {
 			_.each( this.sortable.sortable( 'instance' ).items, ( sortable ) => {
 				let el = sortable.item[0],
+					titleContainer = el.querySelector( '.title' ),
 					title = [];
 
 				el.querySelectorAll( '.repeater-title' ).forEach( titles => title.push( titles.textContent ) );
-				el.firstElementChild.innerHTML = title.join ( '<span class="title-divider">&#9679;</span>' );
+				title = title.join ( '<span class="title-divider">&#9679;</span>' );
+				if ( _.isEmpty( title ) ) {
+					titleContainer.classList.add( 'title-empty' );
+					title = '<em>Empty Section</em>';
+				}
+				titleContainer.classList.remove( 'title-empty' );
+				titleContainer.innerHTML = title;
 			} );
+		},
+
+		/**
+		 * Refresh container active ui elements.
+		 *
+		 * @since 2.0.3
+		 *
+		 * @param {Array} types Type of ui elements to refresh.
+		 */
+		refreshItems( types = [ 'sortable', 'accordion' ] ) {
+			_.each( types, type => {
+				this.sortable[ type ]( 'refresh' );
+				this.container.find( '.connected-sortable' )[ type ]( 'refresh' );
+			} )
 		},
 
 		/**
@@ -597,6 +656,16 @@ devices.init();
 		refreshSortables() {
 			this.sortable.sortable( 'refresh' );
 			this.container.find( '.connected-sortable' ).sortable( 'refresh' );
+		},
+
+		/**
+		 * Refresh accordions.
+		 *
+		 * @since 2.0.3
+		 */
+		refreshAccordions() {
+			this.sortable.accordion( 'refresh' );
+			this.container.find( '.connected-sortable' ).accordion( 'refresh' );
 		},
 
 		/**

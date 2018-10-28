@@ -2619,15 +2619,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   border-color: #999;
 }
 
-.bgtfw-sortable-accordion .sortable-wrapper .ui-state-active.sortable-title {
-  padding: 6px 10px;
-}
-
-.bgtfw-sortable-accordion .sortable-wrapper .ui-state-active.sortable-title:before {
-  content: "\f0de";
-  margin-top: 9px;
-}
-
+.bgtfw-sortable-accordion .sortable-wrapper .ui-state-active.sortable-title:before,
 .bgtfw-sortable-accordion .sortable-wrapper .ui-state-active .sortable-title:before {
   content: "\f0de";
   margin-top: 9px;
@@ -2641,7 +2633,8 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
       -ms-flex-align: center;
           align-items: center;
   font-size: 11px;
-  padding: 10px;
+  padding: 0 10px;
+  margin-top: 0;
 }
 
 .bgtfw-sortable-accordion .sortable-wrapper .sortable-title:before {
@@ -2730,6 +2723,23 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.bgtfw-sortable-accordion .title > em,
+.bgtfw-sortable-accordion .dashicons-trash {
+  color: #a00;
+}
+
+.bgtfw-sortable-accordion .title > em:hover,
+.bgtfw-sortable-accordion .dashicons-trash:hover {
+  color: #dc3232;
+}
+
+.bgtfw-sortable-accordion .dashicons-trash {
+  cursor: pointer;
+  position: relative;
+  padding: 10px;
+  margin-left: auto;
+}
+
 .bgtfw-sortable-accordion .repeater {
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid #ddd;
@@ -2753,20 +2763,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 }
 
 .bgtfw-sortable-accordion .repeater .sortable-title {
-  padding: .25em 0 0 10px;
-}
-
-.bgtfw-sortable-accordion .repeater .repeater-handle .dashicons-trash {
-  cursor: pointer;
-  position: relative;
-  padding: 10px 10px 8px 10px;
-  margin-top: -.25em;
-  margin-left: auto;
-  color: #a00;
-}
-
-.bgtfw-sortable-accordion .repeater .repeater-handle .dashicons-trash:hover {
-  color: #dc3232;
+  padding: 0 10px;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-accordion-content {

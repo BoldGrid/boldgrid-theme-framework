@@ -1455,7 +1455,11 @@ msgid "BoldGrid Color Palettes"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:82
-msgid "Section"
+msgid "Empty Section"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:120
+msgid "Add Section"
 msgstr ""
 
 #: src/includes/customizer/class-boldgrid-framework-customizer-device-preview.php:105

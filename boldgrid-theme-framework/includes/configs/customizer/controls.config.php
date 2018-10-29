@@ -2506,9 +2506,14 @@ return array(
 				'container' => 'container',
 				'items' => [
 					[
+						'type' => 'boldgrid_display_attribution_links',
+						'key' => 'attribution',
+						'align' => 'w'
+					],
+					[
 						'type' => 'boldgrid_menu_social',
 						'key' => 'menu',
-						'align' => 'e'
+						'align' => 'w'
 					],
 				],
 			],
@@ -2538,12 +2543,21 @@ return array(
 				'title' => __( 'Sidebar', 'bgtfw' ),
 				'controls' => [],
 			],
+			'attribution' => [
+				'icon' => 'dashicons dashicons-admin-links',
+				'title' => __( 'Attribution Links', 'bgtfw' ),
+				'controls' => [
+					'align' => [
+						'default' => 'w',
+					],
+				],
+			],
 		],
 		'location' => 'footer',
 		'section' => 'boldgrid_footer_panel',
 		'partial_refresh' => [
 			'bgtfw_footer_layout' => [
-				'selector' => '#colophon',
+				'selector' => '.footer-content',
 				'render_callback' => [ 'BoldGrid', 'dynamic_footer' ],
 			],
 		],

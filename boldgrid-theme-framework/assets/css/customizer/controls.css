@@ -2703,34 +2703,34 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   padding: 0.5em 1em;
 }
 
-.bgtfw-sortable-accordion .align-wrapper > .align,
+.bgtfw-sortable-accordion .repeater-control .direction,
 .bgtfw-sortable-accordion .bgtfw-sortable-control,
 .bgtfw-sortable-accordion .bgtfw-sortable {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.bgtfw-sortable-accordion .align-wrapper > .align:hover,
+.bgtfw-sortable-accordion .repeater-control .direction:hover,
 .bgtfw-sortable-accordion .bgtfw-sortable-control:hover,
 .bgtfw-sortable-accordion .bgtfw-sortable:hover {
   background-color: #fafafa;
 }
 
-.bgtfw-sortable-accordion .align-wrapper > .align.selected,
+.bgtfw-sortable-accordion .repeater-control .direction.selected,
 .bgtfw-sortable-accordion .bgtfw-sortable-control.selected,
 .bgtfw-sortable-accordion .bgtfw-sortable.selected {
   background-color: #00a0d2;
   color: rgba(255, 255, 255, 0.8);
 }
 
-.bgtfw-sortable-accordion .align-wrapper > .align.disabled,
+.bgtfw-sortable-accordion .repeater-control .direction.disabled,
 .bgtfw-sortable-accordion .bgtfw-sortable-control.disabled,
 .bgtfw-sortable-accordion .bgtfw-sortable.disabled {
   cursor: not-allowed;
   opacity: .6;
 }
 
-.bgtfw-sortable-accordion .align-wrapper > .align.disabled:hover,
+.bgtfw-sortable-accordion .repeater-control .direction.disabled:hover,
 .bgtfw-sortable-accordion .bgtfw-sortable-control.disabled:hover,
 .bgtfw-sortable-accordion .bgtfw-sortable.disabled:hover {
   background-color: rgba(0, 0, 0, 0.1);
@@ -2771,6 +2771,11 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   border-color: #999;
 }
 
+.bgtfw-sortable-accordion .repeater .repeater-input {
+  width: 100%;
+  display: inline-block;
+}
+
 .bgtfw-sortable-accordion .repeater .repeater-title .dashicons {
   padding-right: 10px;
 }
@@ -2795,21 +2800,10 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   display: none;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-menu-select {
+.bgtfw-sortable-accordion .repeater .repeater-control {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-}
-
-.bgtfw-sortable-accordion .repeater .repeater-input {
-  width: 100%;
-  display: inline-block;
-}
-
-.bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit .repeater-control-description {
@@ -2827,8 +2821,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
           align-items: center;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment {
-  width: 80%;
+.bgtfw-sortable-accordion .repeater .repeater-control.align {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2836,21 +2829,20 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 0 auto;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   padding-top: .75em;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .repeater-control-title {
+.bgtfw-sortable-accordion .repeater .repeater-control.align .repeater-control-title {
   width: 100%;
   padding-top: .25em;
   padding-bottom: .25em;
   text-align: center;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper {
+.bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper {
   background: white;
   border: 1px solid #ddd;
   width: 50%;
@@ -2867,11 +2859,11 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
           align-items: center;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper:hover {
+.bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper:hover {
   border-color: #999;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align {
+.bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper .direction {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2884,33 +2876,33 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   padding: 5px 0;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align .dashicons-arrow-up:before,
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align .dashicons-arrow-down:before {
+.bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper .direction .dashicons-arrow-up:before,
+.bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper .direction .dashicons-arrow-down:before {
   margin-left: -2px;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align .dashicons-marker:before {
+.bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper .direction .dashicons-marker:before {
   position: relative;
   font-size: 14px;
   top: -3px;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.nw .dashicons-arrow-up {
+.bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper .direction.nw .dashicons-arrow-up {
   -webkit-transform: rotateZ(-45deg);
           transform: rotateZ(-45deg);
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.se .dashicons-arrow-down {
+.bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper .direction.se .dashicons-arrow-down {
   -webkit-transform: rotateZ(-45deg);
           transform: rotateZ(-45deg);
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.ne .dashicons-arrow-up {
+.bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper .direction.ne .dashicons-arrow-up {
   -webkit-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.alignment .align-wrapper .align.sw .dashicons-arrow-down {
+.bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper .direction.sw .dashicons-arrow-down {
   -webkit-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
 }

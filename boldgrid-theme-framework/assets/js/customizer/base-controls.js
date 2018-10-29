@@ -10,6 +10,8 @@ import HamburgerControlToggle from './menus/hamburger-control-toggle';
 import HoverBackgroundToggle from './menus/hover-background-toggle';
 import { Locations as MenuLocations } from './menus/locations';
 import { Devices } from './devices';
+import camelCase from 'lodash.camelcase';
+import kebabCase from 'lodash.kebabcase';
 
 let devices = new Devices();
 devices.init();
@@ -343,10 +345,10 @@ devices.init();
 				$( api.OuterSection.prototype.containerParent ).on( 'bgtfw-menu-dropdown-select', _.after( this.getConnectedMenus().length, this.updateConnectedSelects( true ) ) );
 				this.sortable
 					.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
-					.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.alignment .align:not(.selected)', e => this._select( e ) )
+					.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.align .direction:not(.selected)', e => this._select( e ) )
 					.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
-					.on( 'change', '.repeater-menu-select', e => this._updateMenuSelect( e ) )
-					.on( 'click', '.repeater-control.alignment .align:not(.selected)', e => this._updateAlignment( e ) );
+					.on( 'change', '.repeater-control.menu-select', e => this._updateMenuSelect( e ) )
+					.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) );
 				$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );
 			} );
 		},
@@ -421,7 +423,7 @@ devices.init();
 					}
 				} );
 
-				containers = containers.map( container => `${ api.OuterSection.prototype.containerParent } ${ container } .repeater-menu-select option` ).join( ', ' );
+				containers = containers.map( container => `${ api.OuterSection.prototype.containerParent } ${ container } .repeater-control.menu-select option` ).join( ', ' );
 				document.querySelectorAll( containers ).forEach( option => {
 					let repeater = $( option ).closest( '.repeater' )[0].dataset.type;
 					option.disabled = menus.includes( option.value ) && repeater !== option.value ? true : false;
@@ -440,7 +442,7 @@ devices.init();
 		_updateAlignment( e ) {
 			let el = e.currentTarget,
 				repeater = $( el ).closest( '.repeater' )[0],
-				newVal = el.className.replace( /align|selected|\s/g, '' );
+				newVal = el.className.replace( /direction|selected|\s/g, '' );
 
 			repeater.dataset.align = newVal;
 			this.updateValues();
@@ -455,66 +457,59 @@ devices.init();
 			let repeaters = this.sortable.find( '.repeater' ),
 				addedSelect = _.after( this.getUsedMenuActions().length, () => $( api.OuterSection.prototype.containerParent ).trigger( 'bgtfw-menu-dropdown-select' ) );
 
-			_.each( repeaters, ( repeater ) => {
-				let repeaterControls = repeater.querySelector( '.repeater-accordion-content' );
-				if ( 'menu' === repeater.dataset.key ) {
-					if ( ! repeater.querySelector( '.repeater-menu-select' ) ) {
-						repeaterControls.innerHTML += this.getMenuSelect( repeater.dataset.type );
-						cancelled ? this.updateConnectedSelects() : addedSelect;
+			_.each( repeaters, repeater => {
+				let repeaterControls = repeater.querySelector( '.repeater-accordion-content' ),
+					controls = this.params.items[ repeater.dataset.key ].controls || {},
+					setting;
+
+				_.each( controls, ( control, key ) => {
+					if ( ! repeater.querySelector( `.repeater-control.${ kebabCase( key ) }` ) ) {
+						setting = repeater.dataset[ key ] || control.defaults || repeater.dataset.type;
+						repeaterControls.innerHTML += this[ camelCase( `Get ${ key } Markup` ) ]( setting );
+						if ( key === 'menu-select' ) {
+							cancelled ? this.updateConnectedSelects() : addedSelect;
+						}
 					}
-					if ( ! repeater.querySelector( '.repeater-control.alignment' ) ) {
-						repeaterControls.innerHTML += this.getAlignmentMarkup( repeater.dataset.align );
-					}
-				}
-				if ( 'branding' === repeater.dataset.key ) {
-					if ( ! repeater.querySelector( '.repeater-control.alignment' ) ) {
-						repeaterControls.innerHTML += this.getAlignmentMarkup( repeater.dataset.align );
-					}
-				}
-				if ( 'sidebar' === repeater.dataset.key ) {
-					if ( ! repeater.querySelector( '.repeater-control.sidebar-edit' ) ) {
-						repeaterControls.innerHTML += this.getSidebarEditMarkup( repeater.dataset.type );
-					}
-				}
+				} );
 			} );
 		},
 
-		getAlignmentMarkup( align ) {
+		getAlignMarkup( align ) {
 			let markup = `
-			<div class="repeater-control alignment">
+			<div class="repeater-control align">
 				<div class="align-wrapper">
 					<div class="repeater-control-title">Alignment</div>
-					<div class="align nw">
+					<div class="direction nw">
 						<span class="dashicons dashicons-arrow-up"></span>
 					</div>
-					<div class="align n">
+					<div class="direction n">
 						<span class="dashicons dashicons-arrow-up"></span>
 					</div>
-					<div class="align ne">
+					<div class="direction ne">
 						<span class="dashicons dashicons-arrow-up"></span>
 					</div>
-					<div class="align w">
+					<div class="direction w">
 						<span class="dashicons dashicons-arrow-left"></span>
 					</div>
-					<div class="align c">
+					<div class="direction c">
 						<span class="dashicons dashicons-marker"></span>
 					</div>
-					<div class="align e">
+					<div class="direction e">
 						<span class="dashicons dashicons-arrow-right"></span>
 					</div>
-					<div class="align sw">
+					<div class="direction sw">
 						<span class="dashicons dashicons-arrow-down"></span>
 					</div>
-					<div class="align s">
+					<div class="direction s">
 						<span class="dashicons dashicons-arrow-down"></span>
 					</div>
-					<div class="align se">
+					<div class="direction se">
 						<span class="dashicons dashicons-arrow-down"></span>
 					</div>
 				</div>
 			</div>`;
 
-			markup = markup.replace( `"align ${ align }"`, `"align ${ align } selected"` );
+			markup = markup.replace( `"direction ${ align }"`, `"direction ${ align } selected"` );
 
 			return markup;
 		},
@@ -522,7 +517,7 @@ devices.init();
 		getSidebarEditMarkup( type ) {
 			let id = type.replace( 'bgtfw_sidebar_', '' );
 			return `<div class="repeater-control sidebar-edit">
-				<p class="repeater-control-description">Easily edit your sidebar widgets and appearance.</p>
+				<p class="repeater-control-description">Edit sidebar widgets and appearance in "Widgets" section.</p>
 				<a class="button-primary" href="#" onclick="event.preventDefault(); wp.customize.section( 'sidebar-widgets-${ id }' ).focus();"><i class="dashicons dashicons-edit"></i>Edit Sidebar</a>
 			</div>`;
 		},
@@ -532,9 +527,9 @@ devices.init();
 		 *
 		 * @since 2.0.3
 		 */
-		getMenuSelect( type ) {
+		getMenuSelectMarkup( type ) {
 			let attr,
-				markup = '<select class="repeater-menu-select">';
+				markup = '<select class="repeater-control menu-select">';
 
 			_.each( window._wpCustomizeNavMenusSettings.locationSlugMappedToName, ( name, location ) => {
 				attr = `boldgrid_menu_${ location }` === type ? 'selected' : '';

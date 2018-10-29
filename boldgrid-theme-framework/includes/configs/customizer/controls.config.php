@@ -2517,14 +2517,26 @@ return array(
 			'menu' => [
 				'icon' => 'dashicons dashicons-menu',
 				'title' => __( 'Menu', 'bgtfw' ),
+				'controls' => [
+					'menu-select' => [],
+					'align' => [
+						'default' => 'nw',
+					],
+				],
 			],
 			'branding' => [
 				'icon' => 'dashicons dashicons-store',
 				'title' => __( 'Branding', 'bgtfw' ),
+				'controls' => [
+					'align' => [
+						'default' => 'nw',
+					],
+				],
 			],
 			'sidebar' => [
 				'icon' => 'dashicons dashicons-layout',
 				'title' => __( 'Sidebar', 'bgtfw' ),
+				'controls' => [],
 			],
 		],
 		'location' => 'footer',
@@ -2608,14 +2620,28 @@ return array(
 			'menu' => [
 				'icon' => 'dashicons dashicons-menu',
 				'title' => __( 'Menu', 'bgtfw' ),
+				'controls' => [
+					'menu-select' => [],
+					'align' => [
+						'default' => 'nw',
+					],
+				],
 			],
 			'branding' => [
 				'icon' => 'dashicons dashicons-store',
 				'title' => __( 'Branding', 'bgtfw' ),
+				'controls' => [
+					'align' => [
+						'default' => 'nw',
+					],
+				],
 			],
 			'sidebar' => [
 				'icon' => 'dashicons dashicons-layout',
 				'title' => __( 'Sidebar', 'bgtfw' ),
+				'controls' => [
+					'sidebar-edit' => [],
+				],
 			],
 		],
 		'location' => 'header',

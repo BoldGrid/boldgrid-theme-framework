@@ -77,7 +77,7 @@ class Boldgrid_Framework_Customizer_Footer {
 				],
 			];
 			?>
-			<span class="attribution-theme-mods"><?php echo wp_kses( $theme_mods, $allowed ); ?></span>
+			<span <?php BoldGrid::add_class( 'attribution_theme_mods', [ 'attribution-theme-mods' ] ); ?>><?php echo wp_kses( $theme_mods, $allowed ); ?></span>
 		</div>
 		<?php
 	}

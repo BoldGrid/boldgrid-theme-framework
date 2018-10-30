@@ -1187,6 +1187,16 @@ class BoldGrid {
 							return $classes;
 						};
 						add_filter( 'bgtfw_site_branding_classes', $filter, 10 );
+					case 'boldgrid_display_attribution_links' === $col_data['type'] :
+						$filter = function( $classes ) use ( $col_data ) {
+							if ( empty( $col_data[ 'align' ] ) ) {
+								$col_data[ 'align' ] = 'nw';
+							}
+							$classes[] = 'flex-row';
+							$classes[] = $col_data[ 'align' ];
+							return $classes;
+						};
+						add_filter( 'bgtfw_attribution_theme_mods_classes', $filter, 10 );
 					default:
 						do_action( $col_data['type'] );
 				}

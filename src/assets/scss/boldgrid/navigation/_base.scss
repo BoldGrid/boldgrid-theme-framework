@@ -2,6 +2,7 @@
 	width: 100%;
 	height: 100%;
 	display: flex;
+	flex-direction: column;
 }
 
 .sm {
@@ -379,8 +380,7 @@
 	input:not(:checked):not(.hidden) ~ .sm-clean {
 		display: none;
 	}
-	input:checked ~ .sm-clean,
-	input.hidden:not(:checked) ~ .sm-clean {
+	input:checked ~ .sm-clean {
 		display: block;
 		width: 100%;
 	}

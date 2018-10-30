@@ -276,6 +276,7 @@ devices.init();
 			this.updateAddTypes();
 			this.addEvents();
 		},
+
 		/**
 		 * Sets select queue for connected controls.
 		 *
@@ -644,8 +645,18 @@ devices.init();
 		 * @since 2.0.3
 		 */
 		_addItem( e ) {
-			let dataset = e.currentTarget.dataset;
-			e.currentTarget.parentElement.previousElementSibling.innerHTML += this.getMarkup( dataset );
+			let dataset = e.target.dataset,
+				container = e.target.parentElement.previousElementSibling;
+
+			container.innerHTML += this.getMarkup( dataset );
+
+			// Apply control defaults to repeater for newly added items.
+			_.each( this.params.items[ e.target.dataset.key ].controls, ( control, key ) => {
+				if ( ! _.isUndefined( control.default ) ) {
+					container.lastChild.dataset[ key ] = control.default;
+				}
+			} );
+
 			this.addRepeaterControls( true );
 			this.refreshItems();
 			this.updateValues();

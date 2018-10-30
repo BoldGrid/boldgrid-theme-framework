@@ -831,6 +831,19 @@ devices.init();
 		},
 
 		/**
+		 * Gets the next available attribution item that can be added.
+		 *
+		 * Note: Using previous settings for attribution control for
+		 * backwards compat w/ inspirations plugin.  Currently this will
+		 * only allow for one attribution control to be added.
+		 *
+		 * @since 2.0.3
+		 */
+		getNextAvailableAttribution() {
+			return this.getCurrentItems().includes( 'boldgrid_display_attribution_links' ) ? null : 'boldgrid_display_attribution_links';
+		},
+
+		/**
 		 * Gets all menu action names that can be added.
 		 *
 		 * @since 2.0.3
@@ -881,6 +894,9 @@ devices.init();
 					break;
 				case 'branding':
 					type = 'boldgrid_site_identity';
+					break;
+				case 'attribution':
+					type = this.getNextAvailableAttribution();
 					break;
 				default:
 					break;

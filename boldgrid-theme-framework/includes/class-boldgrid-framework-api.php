@@ -1157,6 +1157,15 @@ class BoldGrid {
 		return $args;
 	}
 
+	/**
+	 * Outputs dynamic layout elements.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @param  string $theme_mod Theme mod to parse.
+	 *
+	 * @return string $markup    Rendered HTML for dyanmic layout element.
+	 */
 	public static function dynamic_layout( $theme_mod ) {
 		$markup = '';
 		$theme_mod = get_theme_mod( $theme_mod );
@@ -1171,29 +1180,29 @@ class BoldGrid {
 				switch ( $col_data['type'] ) {
 					case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
 						$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
-						echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap' ], false ) . '>';
-						if ( empty( $col_data[ 'align' ] ) ) {
-							$col_data[ 'align' ] = 'nw';
+						echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", ['bgtfw-menu-wrap'], false ) . '>';
+						if ( empty( $col_data['align'] ) ) {
+							$col_data['align'] = 'nw';
 						}
-						do_action( $col_data['type'], [ 'menu_class' => 'flex-row ' . $col_data[ 'align' ] ] );
+						do_action( $col_data['type'], [ 'menu_class' => 'flex-row ' . $col_data['align'] ] );
 						echo '</div>';
 						break;
 					case 'boldgrid_site_identity' === $col_data['type'] :
 						$filter = function( $classes ) use ( $col_data ) {
-							if ( empty( $col_data[ 'align' ] ) ) {
-								$col_data[ 'align' ] = 'nw';
+							if ( empty( $col_data['align'] ) ) {
+								$col_data['align'] = 'nw';
 							}
-							$classes[] = $col_data[ 'align' ];
+							$classes[] = $col_data['align'];
 							return $classes;
 						};
 						add_filter( 'bgtfw_site_branding_classes', $filter, 10 );
 					case 'boldgrid_display_attribution_links' === $col_data['type'] :
 						$filter = function( $classes ) use ( $col_data ) {
-							if ( empty( $col_data[ 'align' ] ) ) {
-								$col_data[ 'align' ] = 'nw';
+							if ( empty( $col_data['align'] ) ) {
+								$col_data['align'] = 'nw';
 							}
 							$classes[] = 'flex-row';
-							$classes[] = $col_data[ 'align' ];
+							$classes[] = $col_data['align'];
 							return $classes;
 						};
 						add_filter( 'bgtfw_attribution_theme_mods_classes', $filter, 10 );
@@ -1213,10 +1222,24 @@ class BoldGrid {
 		return $markup;
 	}
 
+	/**
+	 * Outputs dynamic header layout element.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @return string Rendered HTML for dyanmic layout element.
+	 */
 	public static function dynamic_header() {
 		return self::dynamic_layout( 'bgtfw_header_layout' );
 	}
 
+	/**
+	 * Outputs dynamic footer layout element.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @return string Rendered HTML for dyanmic layout element.
+	 */
 	public static function dynamic_footer() {
 		return self::dynamic_layout( 'bgtfw_footer_layout' );
 	}

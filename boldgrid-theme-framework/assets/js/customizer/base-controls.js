@@ -12,6 +12,7 @@ import { Locations as MenuLocations } from './menus/locations';
 import { Devices } from './devices';
 import camelCase from 'lodash.camelcase';
 import kebabCase from 'lodash.kebabcase';
+import startCase from 'lodash.startcase';
 
 let devices = new Devices();
 devices.init();
@@ -348,7 +349,8 @@ devices.init();
 					.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.align .direction:not(.selected)', e => this._select( e ) )
 					.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
 					.on( 'change', '.repeater-control.menu-select', e => this._updateMenuSelect( e ) )
-					.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) );
+					.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) )
+					.on( 'change', '.repeater-control.attribution', e => this._updateAttribution( e ) );
 				$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );
 			} );
 		},
@@ -474,6 +476,43 @@ devices.init();
 			} );
 		},
 
+		/**
+		 * Attribution controls' event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_updateAttribution( e ) {
+			api( e.target.dataset.attribution ).set( e.target.checked );
+		},
+
+		/**
+		 * Gets the attribution control's markup.
+		 *
+		 * @since 2.0.3
+		 */
+		getAttributionMarkup() {
+			let markup = '<div class="repeater-control attribution"><ul>';
+
+			_.each( this.getAttributionSettings(), setting => {
+				let id = _.uniqueId( `${ setting.id }_` ),
+					checked = api( setting.id )() ? 'checked' : '';
+
+				markup += `<li>
+					<input id="${ id }" class="attribution-link" type="checkbox" data-attribution="${ setting.id }" ${ checked }>
+					<label for="${ id }">${ startCase( setting.id ) }</label>
+				</li>`;
+			} );
+
+			markup += '</ul></div>'
+
+			return markup;
+		},
+
+		/**
+		 * Gets the alignment control's markup.
+		 *
+		 * @since 2.0.3
+		 */
 		getAlignMarkup( align ) {
 			let markup = `
 			<div class="repeater-control align">
@@ -514,6 +553,11 @@ devices.init();
 			return markup;
 		},
 
+		/**
+		 * Gets the sidebar edit button markup.
+		 *
+		 * @since 2.0.3
+		 */
 		getSidebarEditMarkup( type ) {
 			let id = type.replace( 'bgtfw_sidebar_', '' );
 			return `<div class="repeater-control sidebar-edit">
@@ -846,6 +890,16 @@ devices.init();
 		},
 
 		/**
+		 * Get registered attribution link settings.
+		 *
+		 * @since 2.0.3
+		 */
+		getAttributionSettings() {
+			return _.filter( _.mapObject( _wpCustomizeSettings.settings, ( setting, key ) => _.extend( setting, { id: key } ) ), setting => setting.id.includes( 'hide_' ) && setting.id.includes( '_attribution' ) );
+
+		},
+
+		/**
 		 * Get connected control instances.
 		 *
 		 * @since 2.0.3
@@ -863,10 +917,20 @@ devices.init();
 			return _.flatten( [].concat( _.map( this.getConnectedControls(), control => this.id === control.id ? this.getCurrentItems() : _.isUndefined( api.control( control.id ) ) ? [] : api.control( control.id ).getCurrentItems() ) ) );
 		},
 
+		/**
+		 * Gets all connected menus used in controls.
+		 *
+		 * @since 2.0.3
+		 */
 		getConnectedMenus() {
 			return _.filter( this.getConnectedItems(), item => item.includes( 'boldgrid_menu' ) );
 		},
 
+		/**
+		 * Retrieves the last found connected control or this control if none used.
+		 *
+		 * @since 2.0.3
+		 */
 		getLastConnected() {
 			let last = _.last( this.getConnectedControls() ),
 				id = last.id;

@@ -79,15 +79,4 @@ class Boldgrid_Framework_Container {
 	public function get_header_container_classes() {
 		return get_theme_mod( 'bgtfw_header_layout_position' ) === 'header-top' ? get_theme_mod( 'header_container' ) : '';
 	}
-
-	/**
-	 * Get the footer container classes from theme mods.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @return string Container classes.
-	 */
-	public function get_footer_container_classes() {
-		return get_theme_mod( 'boldgrid_enable_footer' ) === true ? get_theme_mod( 'footer_container' ) : '';
-	}
 }

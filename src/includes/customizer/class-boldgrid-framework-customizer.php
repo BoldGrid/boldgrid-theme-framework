@@ -734,6 +734,25 @@ HTML;
 				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
+
+		$wp_customize->add_setting(
+			'hide_boldgrid_attribution', array(
+				'default'           => false,
+				'type'              => 'theme_mod',
+				'sanitize_callback' => function( $checked ) {
+					return ( ( isset( $checked ) && true == $checked ) ? true : false );
+				},
+			)
+		);
+		$wp_customize->add_setting(
+			'hide_wordpress_attribution', array(
+				'default'           => false,
+				'type'              => 'theme_mod',
+				'sanitize_callback' => function( $checked ) {
+					return ( ( isset( $checked ) && true == $checked ) ? true : false );
+				},
+			)
+		);
 	}
 
 	/**

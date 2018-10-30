@@ -2035,32 +2035,6 @@ return array(
 	),
 	/* End Link Design */
 
-	'boldgrid_attribution_heading' => array(
-		'type'        => 'custom',
-		'settings'     => 'boldgrid_attribution_heading',
-		'label'       => __( 'Attribution Control', 'bgtfw' ),
-		'section'     => 'boldgrid_footer_panel',
-		'default'     => '',
-		'priority'    => 20,
-	),
-	'hide_boldgrid_attribution' => array(
-		'type'        => 'checkbox',
-		'settings'     => 'hide_boldgrid_attribution',
-		'transport'   => 'refresh',
-		'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
-		'section'     => 'boldgrid_footer_panel',
-		'default'     => false,
-		'priority'    => 30,
-	),
-	'hide_wordpress_attribution' => array(
-		'type'        => 'checkbox',
-		'settings'     => 'hide_wordpress_attribution',
-		'transport'   => 'refresh',
-		'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
-		'section'     => 'boldgrid_footer_panel',
-		'default'     => false,
-		'priority'    => 40,
-	),
 	'boldgrid_contact_details_setting' => array(
 		'type'        => 'repeater',
 		'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),
@@ -2094,14 +2068,6 @@ return array(
 				'default'     => '',
 			),
 		),
-	),
-	'boldgrid_enable_footer' => array(
-		'type' => 'switch',
-		'settings' => 'boldgrid_enable_footer',
-		'label' => __( 'Enable Footer', 'bgtfw' ),
-		'section' => 'boldgrid_footer_panel',
-		'default' => true,
-		'priority' => 5,
 	),
 	'boldgrid_footer_widget_help' => array(
 		'type'        => 'custom',
@@ -2547,6 +2513,7 @@ return array(
 				'icon' => 'dashicons dashicons-admin-links',
 				'title' => __( 'Attribution Links', 'bgtfw' ),
 				'controls' => [
+					'attribution' => [],
 					'align' => [
 						'default' => 'w',
 					],

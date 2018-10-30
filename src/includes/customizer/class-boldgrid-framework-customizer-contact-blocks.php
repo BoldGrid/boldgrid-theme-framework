@@ -79,7 +79,7 @@ class Boldgrid_Framework_Customizer_Contact_Blocks {
 	 * @since 1.3.5
 	 */
 	public function contact_block_html() {
-		if ( get_theme_mod( 'boldgrid_enable_footer' ) && isset( $this->configs['customizer']['controls']['boldgrid_contact_details_setting'] ) ) {
+		if ( isset( $this->configs['customizer']['controls']['boldgrid_contact_details_setting'] ) ) {
 			echo wp_kses_post( $this->generate_html() );
 		}
 	}

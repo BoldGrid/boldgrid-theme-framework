@@ -55,6 +55,9 @@
 		margin-top: 15px;
 		.button-secondary {
 			float: right;
+			.fa {
+				margin-right: 5px;
+			}
 		}
 	}
 
@@ -164,6 +167,12 @@
 			margin-left: auto;
 			margin-right: auto;
 			width: 80%;
+
+			&.attribution {
+				label {
+					font-weight: 400;
+				}
+			}
 
 			&.sidebar-edit {
 				.repeater-control-description {

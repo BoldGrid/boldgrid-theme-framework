@@ -104,6 +104,7 @@
     "kirki-toolkit": "https://github.com/aristath/kirki.git#develop",
     "lodash.camelcase": "^4.3.0",
     "lodash.kebabcase": "^4.1.1",
+    "lodash.startcase": "^4.4.0",
     "postcss": "^6.0.22",
     "sass.js": "~0.9.4",
     "scssphp": "https://github.com/leafo/scssphp.git#9715679e32533d61dbd1716820cea980b4014dfd",

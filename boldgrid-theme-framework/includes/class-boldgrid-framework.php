@@ -738,10 +738,8 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function customizer_footer() {
-		$footer = new BoldGrid_Framework_Customizer_Footer( $this->configs );
-		$this->loader->add_action( 'body_class', $footer, 'collapse_body_margin' );
+		$footer = new BoldGrid_Framework_Customizer_Footer();
 		$this->loader->add_action( 'boldgrid_display_attribution_links', $footer, 'attribution_display_action' );
-		$this->loader->add_action( 'boldgrid_footer_before', $footer, 'maybe_remove_all_footer_actions' );
 	}
 
 	/**

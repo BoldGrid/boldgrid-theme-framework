@@ -2,10 +2,6 @@
 	display: flex;
 	flex-wrap: wrap;
 	@include align-control();
-	&-wrapper {
-		padding-left: 15px;
-		padding-right: 15px;
-	}
 	.link {
 		padding: 13px 10px;
 		&:after {

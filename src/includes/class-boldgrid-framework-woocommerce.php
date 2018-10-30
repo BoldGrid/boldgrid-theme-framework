@@ -121,8 +121,8 @@ class BoldGrid_Framework_Woocommerce {
 			wp_dequeue_style( 'selectWoo' );
 			wp_deregister_style( 'selectWoo' );
 
-			wp_dequeue_script( 'selectWoo');
-			wp_deregister_script('selectWoo');
+			wp_dequeue_script( 'selectWoo' );
+			wp_deregister_script( 'selectWoo' );
 		}
 	}
 

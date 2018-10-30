@@ -2474,12 +2474,12 @@ return array(
 					[
 						'type' => 'boldgrid_display_attribution_links',
 						'key' => 'attribution',
-						'align' => 'w'
+						'align' => 'w',
 					],
 					[
 						'type' => 'boldgrid_menu_social',
 						'key' => 'menu',
-						'align' => 'w'
+						'align' => 'w',
 					],
 				],
 			],
@@ -2561,7 +2561,7 @@ return array(
 					[
 						'type' => 'boldgrid_menu_main',
 						'key' => 'menu',
-						'align' => 'e'
+						'align' => 'e',
 					],
 				],
 			],

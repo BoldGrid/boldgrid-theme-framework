@@ -205,7 +205,6 @@ class Boldgrid_Framework_Widgets {
 	 * and action to be used.
 	 *
 	 * @since 2.0.3
-	 *
 	 */
 	public function add_dynamic_actions() {
 		foreach ( $this->configs['widget']['sidebars'] as $widget ) {

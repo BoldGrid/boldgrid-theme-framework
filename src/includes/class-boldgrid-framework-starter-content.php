@@ -147,7 +147,7 @@ class BoldGrid_Framework_Starter_Content {
 							'post_parent' => $parent_post_id,
 							'post_title' => $config['attachments'][ $post ]['post_title'],
 							'post_content' => '',
-							'post_status' => 'inherit'
+							'post_status' => 'inherit',
 						];
 
 						$attachment_id = wp_insert_attachment( $attachment, $upload_file['file'], $parent_post_id );
@@ -155,7 +155,7 @@ class BoldGrid_Framework_Starter_Content {
 						if ( ! is_wp_error( $attachment_id ) ) {
 
 							// Add any custom postmeta keys from configs.
-							foreach( $config['attachments'][ $post ]['meta_input'] as $key => $value ) {
+							foreach ( $config['attachments'][ $post ]['meta_input'] as $key => $value ) {
 								update_post_meta( $attachment_id, $key, $value );
 							}
 

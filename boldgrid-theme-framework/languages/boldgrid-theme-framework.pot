@@ -394,7 +394,7 @@ msgstr ""
 msgid "Horizontal Background Position"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:366, src/includes/configs/customizer/controls.config.php:2269, src/includes/configs/customizer/controls.config.php:2337, src/includes/configs/customizer/sections.config.php:35, src/includes/configs/customizer/sections.config.php:210, src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:89
+#: src/includes/configs/customizer/controls.config.php:366, src/includes/configs/customizer/controls.config.php:2269, src/includes/configs/customizer/controls.config.php:2337, src/includes/configs/customizer/sections.config.php:35, src/includes/configs/customizer/sections.config.php:210, src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:115
 msgid "Container"
 msgstr ""
 
@@ -402,7 +402,7 @@ msgstr ""
 msgid "Contained"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:372, src/includes/configs/customizer/controls.config.php:1920, src/includes/configs/customizer/controls.config.php:1951, src/includes/configs/customizer/controls.config.php:2120, src/includes/configs/customizer/controls.config.php:2275, src/includes/configs/customizer/controls.config.php:2344, src/includes/customizer/class-boldgrid-framework-customizer-background.php:210, src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:94
+#: src/includes/configs/customizer/controls.config.php:372, src/includes/configs/customizer/controls.config.php:1920, src/includes/configs/customizer/controls.config.php:1951, src/includes/configs/customizer/controls.config.php:2120, src/includes/configs/customizer/controls.config.php:2275, src/includes/configs/customizer/controls.config.php:2344, src/includes/customizer/class-boldgrid-framework-customizer-background.php:210, src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:120
 msgid "Full Width"
 msgstr ""
 
@@ -1442,11 +1442,11 @@ msgstr ""
 msgid "BoldGrid Color Palettes"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:82
+#: src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:108
 msgid "Empty Section"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:120
+#: src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:146
 msgid "Add Section"
 msgstr ""
 

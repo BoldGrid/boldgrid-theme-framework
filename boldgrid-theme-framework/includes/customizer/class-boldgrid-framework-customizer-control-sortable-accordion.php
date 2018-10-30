@@ -5,28 +5,54 @@
  * This class is responsible for creating the sortable accordion
  * controls in the WordPress customizer.
  *
- * @since      2.0.0
- * @category   Customizer
- * @package    Boldgrid_Framework
- * @author     BoldGrid <support@boldgrid.com>
- * @link       https://boldgrid.com
+ * @since    2.0.3
+ * @category Customizer
+ * @package  Boldgrid_Framework
+ * @author   BoldGrid <support@boldgrid.com>
+ * @link     https://boldgrid.com
  */
 if ( class_exists( 'WP_Customize_Control' ) ) {
 
+	/**
+	 * Class: Boldgrid_Framework_Customizer_Control_Sortable_Accordion
+	 *
+	 * This class is responsible for creating the sortable accordion
+	 * controls in the WordPress customizer.
+	 *
+	 * @since 2.0.3
+	 */
 	class Boldgrid_Framework_Customizer_Control_Sortable_Accordion extends WP_Customize_Control {
 
 		/**
-		 * The type of control being rendered
+		 * The type of control being rendered.
+		 *
+		 * @since 2.0.3
+		 *
+		 * @access public
+		 *
+		 * @var string $type The type of control being rendered.
 		 */
 		public $type = 'bgtfw-sortable-accordion';
 
 		/**
 		 * Repeater items that can be added.
+		 *
+		 * @since 2.0.3
+		 *
+		 * @access public
+		 *
+		 * @var array $items Repeater items that can be added.
 		 */
 		public $items;
 
 		/**
 		 * Location repeater control is for ( header, footer ).
+		 *
+		 * @since 2.0.3
+		 *
+		 * @access public
+		 *
+		 * @var string $location Location that repeater control is for ( header, footer ).
 		 */
 		public $location;
 

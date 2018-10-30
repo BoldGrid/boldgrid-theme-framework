@@ -1470,19 +1470,19 @@ msgstr ""
 msgid "Slim Scroll Bars"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:44
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:47
 msgid "Built with"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:46
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:49
 msgid "BoldGrid"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:54
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:57
 msgid "Powered by"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:56
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:59
 msgid "WordPress"
 msgstr ""
 

@@ -351,6 +351,7 @@ devices.init();
 					.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
 					.on( 'change', '.repeater-control.menu-select', e => this._updateMenuSelect( e ) )
 					.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) )
+					.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', e => this._updateContainer() )
 					.on( 'change', '.repeater-control.attribution', e => this._updateAttribution( e ) );
 				$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );
 			} );
@@ -448,6 +449,15 @@ devices.init();
 				newVal = el.className.replace( /direction|selected|\s/g, '' );
 
 			repeater.dataset.align = newVal;
+			this.updateValues();
+		},
+
+		/**
+		 * Container controls' event handler.
+		 *
+		 * @since 2.0.3
+		 */
+		_updateContainer() {
 			this.updateValues();
 		},
 

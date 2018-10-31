@@ -1180,7 +1180,7 @@ class BoldGrid {
 				switch ( $col_data['type'] ) {
 					case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
 						$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
-						echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", ['bgtfw-menu-wrap'], false ) . '>';
+						echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap' ], false ) . '>';
 						if ( empty( $col_data['align'] ) ) {
 							$col_data['align'] = 'nw';
 						}

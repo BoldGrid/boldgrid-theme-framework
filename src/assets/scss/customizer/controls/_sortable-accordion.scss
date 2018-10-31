@@ -61,6 +61,7 @@
 		}
 	}
 
+	.repeater-control.sticky .control-wrapper,
 	.bgtfw-container-control,
 	.sortable-actions {
 		display: flex;
@@ -68,6 +69,7 @@
 		justify-content: space-between;
 
 		i,
+		.dashicons
 		.bgtfw-icon {
 			margin-right: 5px;
 		}
@@ -155,7 +157,6 @@
 			flex-wrap: wrap;
 			width: 100%;
 			background-color: #f1f1f1;
-			padding-top: .75em;
 			padding-bottom: .75em;
 
 			&:empty {
@@ -171,6 +172,26 @@
 			&.attribution {
 				label {
 					font-weight: 400;
+				}
+			}
+
+			&.sticky {
+				border-top: 1px solid #ddd;
+				border-bottom: 1px solid #ddd;
+				width: 100%;
+
+				&:hover,
+				&:hover .repeater-control-title {
+					border-color: #999;
+				}
+
+				.repeater-control-title {
+					border-bottom: 1px solid #ddd;
+					background-color: rgba(255, 255, 255, 0.7);
+					width: 100%;
+					padding-top: .25em;
+					padding-bottom: .25em;
+					text-align: center;
 				}
 			}
 

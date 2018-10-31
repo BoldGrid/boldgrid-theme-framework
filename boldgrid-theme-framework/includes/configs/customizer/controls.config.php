@@ -2557,11 +2557,13 @@ return array(
 						'type' => 'boldgrid_site_identity',
 						'key' => 'branding',
 						'align' => 'w',
+						'sticky' => 'show',
 					],
 					[
 						'type' => 'boldgrid_menu_main',
 						'key' => 'menu',
 						'align' => 'e',
+						'sticky' => 'show',
 					],
 				],
 			],
@@ -2571,18 +2573,22 @@ return array(
 					[
 						'type' => 'bgtfw_sidebar_header-1',
 						'key' => 'sidebar',
+						'sticky' => 'hide',
 					],
 					[
 						'type' => 'bgtfw_sidebar_header-2',
 						'key' => 'sidebar',
+						'sticky' => 'hide',
 					],
 					[
 						'type' => 'bgtfw_sidebar_header-3',
 						'key' => 'sidebar',
+						'sticky' => 'hide',
 					],
 					[
 						'type' => 'bgtfw_sidebar_header-4',
 						'key' => 'sidebar',
+						'sticky' => 'hide',
 					],
 				],
 			],
@@ -2593,6 +2599,7 @@ return array(
 						'type' => 'boldgrid_menu_secondary',
 						'key' => 'menu',
 						'align' => 'w',
+						'sticky' => 'hide',
 					],
 				],
 			],
@@ -2602,6 +2609,9 @@ return array(
 				'icon' => 'dashicons dashicons-menu',
 				'title' => __( 'Menu', 'bgtfw' ),
 				'controls' => [
+					'sticky' => [
+						'default' => 'hide',
+					],
 					'menu-select' => [],
 					'align' => [
 						'default' => 'nw',
@@ -2612,6 +2622,9 @@ return array(
 				'icon' => 'dashicons dashicons-store',
 				'title' => __( 'Branding', 'bgtfw' ),
 				'controls' => [
+					'sticky' => [
+						'default' => 'show',
+					],
 					'align' => [
 						'default' => 'nw',
 					],
@@ -2621,6 +2634,9 @@ return array(
 				'icon' => 'dashicons dashicons-layout',
 				'title' => __( 'Sidebar', 'bgtfw' ),
 				'controls' => [
+					'sticky' => [
+						'default' => 'show',
+					],
 					'sidebar-edit' => [],
 				],
 			],

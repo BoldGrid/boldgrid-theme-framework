@@ -2677,6 +2677,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   margin-right: 5px;
 }
 
+.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper,
 .bgtfw-sortable-accordion .bgtfw-container-control,
 .bgtfw-sortable-accordion .sortable-actions {
   display: -webkit-box;
@@ -2689,13 +2690,20 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
           justify-content: space-between;
 }
 
+.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper i,
+.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper .dashicons
+.bgtfw-icon,
 .bgtfw-sortable-accordion .bgtfw-container-control i,
-.bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-icon,
+.bgtfw-sortable-accordion .bgtfw-container-control .dashicons
+.bgtfw-icon,
 .bgtfw-sortable-accordion .sortable-actions i,
-.bgtfw-sortable-accordion .sortable-actions .bgtfw-icon {
+.bgtfw-sortable-accordion .sortable-actions .dashicons
+.bgtfw-icon {
   margin-right: 5px;
 }
 
+.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper .bgtfw-sortable-control,
+.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper .bgtfw-sortable,
 .bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable-control,
 .bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable,
 .bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable-control,
@@ -2796,7 +2804,6 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
       flex-wrap: wrap;
   width: 100%;
   background-color: #f1f1f1;
-  padding-top: .75em;
   padding-bottom: .75em;
 }
 
@@ -2812,6 +2819,26 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 
 .bgtfw-sortable-accordion .repeater .repeater-control.attribution label {
   font-weight: 400;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.sticky {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.sticky:hover,
+.bgtfw-sortable-accordion .repeater .repeater-control.sticky:hover .repeater-control-title {
+  border-color: #999;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.sticky .repeater-control-title {
+  border-bottom: 1px solid #ddd;
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  padding-top: .25em;
+  padding-bottom: .25em;
+  text-align: center;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit .repeater-control-description {

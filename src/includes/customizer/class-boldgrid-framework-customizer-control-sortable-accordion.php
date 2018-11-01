@@ -122,8 +122,15 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 									</div>
 								</div>
 								<ul id="sortable-{{ data.id }}-{{ sortable }}" class="connected-sortable">
-								<# _.each( repeaters.items, function( repeater, i ) { #>
-									<li class="repeater" data-key="{{ repeater.key }}" data-type="{{ repeater.type }}" <# if ( ! _.isUndefined( repeater.align ) ) { #>data-align="{{ repeater.align }}"<# } #>>
+								<# _.each( repeaters.items, function( repeater, i ) {
+									var bgtfwRepeaterData = _.map( repeater, ( value, key ) => {
+										if ( ! _.isString( value ) ) {
+											return `data-${ key }=${ encodeURIComponent( JSON.stringify( value ) ) }`;
+										}
+
+										return `data-${ key }='${ value }'`;
+									} ).join( ' ' ); #>
+									<li class="repeater" {{{ bgtfwRepeaterData }}}>
 										<div class="repeater-input">
 											<div class="repeater-handle">
 												<div class="sortable-title">

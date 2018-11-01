@@ -179,6 +179,7 @@
 				border-top: 1px solid #ddd;
 				border-bottom: 1px solid #ddd;
 				width: 100%;
+				margin-top: .75em;
 
 				&:hover,
 				&:hover .repeater-control-title {
@@ -192,6 +193,10 @@
 					padding-top: .25em;
 					padding-bottom: .25em;
 					text-align: center;
+				}
+
+				.control-wrapper {
+					font-weight: 400;
 				}
 			}
 

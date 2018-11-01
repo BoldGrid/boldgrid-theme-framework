@@ -2557,13 +2557,35 @@ return array(
 						'type' => 'boldgrid_site_identity',
 						'key' => 'branding',
 						'align' => 'w',
-						'sticky' => 'show',
+						'sticky' => [
+							[
+								'selector' => '.custom-logo',
+								'display' => 'show',
+								'title' => __( 'Logo: Sticky Header Display', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-title',
+								'display' => 'show',
+								'title' => __( 'Title: Sticky Header Display', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-description',
+								'display' => 'hide',
+								'title' => __( 'Tagline: Sticky Header Display', 'bgtfw' ),
+							],
+						],
 					],
 					[
 						'type' => 'boldgrid_menu_main',
 						'key' => 'menu',
 						'align' => 'e',
-						'sticky' => 'show',
+						'sticky' => [
+							[
+								'selector' => '#main-wrap',
+								'display' => 'show',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
 					],
 				],
 			],
@@ -2573,22 +2595,46 @@ return array(
 					[
 						'type' => 'bgtfw_sidebar_header-1',
 						'key' => 'sidebar',
-						'sticky' => 'hide',
+						'sticky' => [
+							[
+								'selector' => '#header-1',
+								'display' => 'hide',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
 					],
 					[
 						'type' => 'bgtfw_sidebar_header-2',
 						'key' => 'sidebar',
-						'sticky' => 'hide',
+						'sticky' => [
+							[
+								'selector' => '#header-2',
+								'display' => 'hide',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
 					],
 					[
 						'type' => 'bgtfw_sidebar_header-3',
 						'key' => 'sidebar',
-						'sticky' => 'hide',
+						'sticky' => [
+							[
+								'selector' => '#header-3',
+								'display' => 'hide',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
 					],
 					[
 						'type' => 'bgtfw_sidebar_header-4',
 						'key' => 'sidebar',
-						'sticky' => 'hide',
+						'sticky' => [
+							[
+								'selector' => '#header-4',
+								'display' => 'hide',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
 					],
 				],
 			],
@@ -2599,7 +2645,13 @@ return array(
 						'type' => 'boldgrid_menu_secondary',
 						'key' => 'menu',
 						'align' => 'w',
-						'sticky' => 'hide',
+						'sticky' => [
+							[
+								'selector' => '#secondary-wrap',
+								'display' => 'hide',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
 					],
 				],
 			],
@@ -2610,7 +2662,8 @@ return array(
 				'title' => __( 'Menu', 'bgtfw' ),
 				'controls' => [
 					'sticky' => [
-						'default' => 'hide',
+						'default' => [],
+						'title' => __( 'Sticky Header Display', 'bgtfw' ),
 					],
 					'menu-select' => [],
 					'align' => [
@@ -2623,7 +2676,23 @@ return array(
 				'title' => __( 'Branding', 'bgtfw' ),
 				'controls' => [
 					'sticky' => [
-						'default' => 'show',
+						'default' => [
+							[
+								'selector' => '.custom-logo',
+								'display' => 'show',
+								'title' => __( 'Logo: Sticky Header Display', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-title',
+								'display' => 'show',
+								'title' => __( 'Title: Sticky Header Display', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-description',
+								'display' => 'hide',
+								'title' => __( 'Tagline: Sticky Header Display', 'bgtfw' ),
+							],
+						],
 					],
 					'align' => [
 						'default' => 'nw',
@@ -2635,7 +2704,7 @@ return array(
 				'title' => __( 'Sidebar', 'bgtfw' ),
 				'controls' => [
 					'sticky' => [
-						'default' => 'show',
+						'default' => [],
 					],
 					'sidebar-edit' => [],
 				],

@@ -92,7 +92,7 @@ export default {
 			$( api.OuterSection.prototype.containerParent ).on( 'bgtfw-menu-dropdown-select', _.after( this.getConnectedMenus().length, this.updateConnectedSelects( true ) ) );
 			this.sortable
 				.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
-				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.align .direction:not(.selected)', e => this._select( e ) )
+				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.align .direction:not(.selected), .repeater-control.sticky .bgtfw-sortable-control:not(.selected)', e => this._select( e ) )
 				.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
 				.on( 'change', '.repeater-control.menu-select', e => this._updateMenuSelect( e ) )
 				.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) )
@@ -110,7 +110,7 @@ export default {
 	 */
 	_toggleSticky( to ) {
 		if ( 'header' === this.params.location ) {
-			this.container.find( '.repeater-control.sticky' ).toggleClass( 'hidden', to );
+			this.container.find( '.repeater-control.sticky' ).toggleClass( 'hidden', ! to );
 		}
 	},
 
@@ -217,6 +217,18 @@ export default {
 		this.updateValues();
 	},
 
+	isJSON( str ) {
+		try {
+			let obj = JSON.parse( decodeURIComponent( str ) );
+			if ( obj && _.isObject( obj ) ) {
+				return true;
+			}
+		} catch ( err ) {
+			return false;
+		}
+		return false;
+	},
+
 	/**
 	 * Adds any of the needed controls for the repeaters.
 	 *
@@ -228,12 +240,14 @@ export default {
 
 		_.each( repeaters, repeater => {
 			let repeaterControls = repeater.querySelector( '.repeater-accordion-content' ),
+
 				controls = this.params.items[ repeater.dataset.key ].controls || {},
 				setting;
 
 			_.each( controls, ( control, key ) => {
 				if ( ! repeater.querySelector( `.repeater-control.${ kebabCase( key ) }` ) ) {
 					setting = repeater.dataset[ key ] || control.default || repeater.dataset.type;
+					setting = this.isJSON( setting ) ? JSON.parse( decodeURIComponent( setting ) ) : setting;
 					repeaterControls.innerHTML += this[ camelCase( `Get ${ key } Markup` ) ]( setting );
 					if ( 'menu-select' === key ) {
 						cancelled ? this.updateConnectedSelects() : addedSelect;
@@ -249,19 +263,22 @@ export default {
 	 * @since 2.0.3
 	 */
 	getStickyMarkup( setting ) {
-		let markup = `<div class="repeater-control sticky">
-			<div class="repeater-control-title">Sticky Header Display</div>
-			<div class="control-wrapper">
-				<div class="bgtfw-sortable-control sticky-show" data-sticky="show">
-					<span class="dashicons dashicons-visibility"></span><span>Show</span>
+		let markup = '';
+		_.each( setting, ( control ) => {
+			let controlMarkup = `<div class="repeater-control sticky" data-selector="${ control.selector }">
+				<div class="repeater-control-title">${ control.title }</div>
+				<div class="control-wrapper">
+					<div class="bgtfw-sortable-control sticky-show" data-sticky="show">
+						<span class="dashicons dashicons-visibility"></span><span>Show</span>
+					</div>
+					<div class="bgtfw-sortable-control sticky-hide" data-sticky="hide">
+						<span class="dashicons dashicons-hidden"></span><span>Hide</span>
+					</div>
 				</div>
-				<div class="bgtfw-sortable-control sticky-hide" data-sticky="hide">
-					<span class="dashicons dashicons-hidden"></span><span>Hide</span>
-				</div>
-			</div>
-		</div>`;
-
-		markup = markup.replace( `bgtfw-sortable-control sticky-${ setting }`, `bgtfw-sortable-control sticky-${ setting } selected` );
+			</div>`;
+			controlMarkup = controlMarkup.replace( `bgtfw-sortable-control sticky-${ control.display }`, `bgtfw-sortable-control sticky-${ control.display } selected` );
+			markup += controlMarkup;
+		} );
 
 		return markup;
 	},
@@ -393,12 +410,13 @@ export default {
 	 * @since 2.0.3
 	 */
 	getValues() {
-		let	sortableValue,
-		values = [];
+		let values = [];
+
 		_.each( this.container.find( '.connected-sortable' ), ( sortable, key ) => {
-			sortableValue = $( sortable ).find( '.repeater' ).map( function() {
-				return Object.assign( {}, this.dataset );
+			let	sortableValue = $( sortable ).find( '.repeater' ).map( ( key, el ) => {
+				return Object.assign( {}, _.mapObject( el.dataset, data => this.isJSON( data ) ? JSON.parse( decodeURIComponent( data ) ) : data ) );
 			} ).toArray();
+
 			values[ key ] = {
 				container: this.getContainer( sortable ),
 				items: sortableValue
@@ -513,7 +531,13 @@ export default {
 	 * @since 2.0.3
 	 */
 	getMarkup( dataset ) {
-		let attributes = Object.entries( dataset ).map( data => `data-${ data[0] }="${ data[1] }"` ).join( ' ' );
+		let attributes = Object.entries( dataset ).map( data => {
+			if ( ! _.isString( data[1] ) ) {
+				data[1] = encodeURIComponent( JSON.stringify( data[1] ) );
+			}
+
+			return `data-${ data[0] }="${ data[1] }"`;
+		} ).join( ' ' );
 		return `<li class="repeater" ${ attributes }>
 			<div class="repeater-input">
 				<div class="repeater-handle">

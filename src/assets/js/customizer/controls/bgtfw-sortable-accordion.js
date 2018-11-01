@@ -99,7 +99,19 @@ export default {
 				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', () => this._updateContainer() )
 				.on( 'change', '.repeater-control.attribution', e => this._updateAttribution( e ) );
 			$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );
+			api( 'bgtfw_fixed_header', value => value.bind( to => this._toggleSticky( to ) ) );
 		} );
+	},
+
+	/**
+	 * Toggle sticky header control display.
+	 *
+	 * @since 2.0.3
+	 */
+	_toggleSticky( to ) {
+		if ( 'header' === this.params.location ) {
+			this.container.find( '.repeater-control.sticky' ).toggleClass( 'hidden', ! to );
+		}
 	},
 
 	/**

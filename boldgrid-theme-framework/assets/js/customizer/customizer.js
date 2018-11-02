@@ -12,6 +12,14 @@ import { Preview as TypographyPreview } from './typography/preview';
 const api = wp.customize;
 const controlApi = parent.wp.customize;
 
+api.bind( 'preview-ready', () => {
+	api.preview.bind( 'bgtfw-sortable-accordion', data => {
+		document.querySelectorAll( `.bgtfw-header-stick ${ data.selector }` ).forEach( item => {
+			'show' === data.display ? item.classList.remove( 'hidden' ) : item.classList.add( 'hidden' );
+		} );
+	} );
+} );
+
 BOLDGRID.Customizer = BOLDGRID.Customizer || {};
 BOLDGRID.Customizer.Util = BOLDGRID.Customizer.Util || {};
 BOLDGRID.Customizer.Widgets = BOLDGRID.Customizer.Widgets || {};

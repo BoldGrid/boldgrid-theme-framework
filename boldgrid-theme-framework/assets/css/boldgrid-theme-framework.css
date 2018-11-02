@@ -1571,7 +1571,7 @@ mark, .mark {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 

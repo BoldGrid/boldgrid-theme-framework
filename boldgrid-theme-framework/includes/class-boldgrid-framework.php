@@ -183,6 +183,7 @@ class BoldGrid_Framework {
 			'social-media-icons',
 			'staging',
 			'starter-content',
+			'sticky-header',
 			'styles',
 			'template-config',
 			'title',
@@ -687,6 +688,19 @@ class BoldGrid_Framework {
 		$links = new BoldGrid_Framework_Links( $this->configs );
 		$this->loader->add_filter( 'wp_enqueue_scripts', $links, 'add_styles_frontend' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $links, 'add_styles_editor' );
+
+		$this->sticky_header();
+	}
+
+	/**
+	 * This defines the core functionality of the framework's customizer sticky header.
+	 *
+	 * @since    2.0.3
+	 * @access   private
+	 */
+	private function sticky_header() {
+		$sticky = new BoldGrid_Framework_Sticky_Header( $this->configs );
+		$this->loader->add_filter( 'wp_enqueue_scripts', $sticky, 'add_styles_frontend' );
 	}
 
 	/**

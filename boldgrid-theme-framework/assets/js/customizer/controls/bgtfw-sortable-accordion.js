@@ -100,7 +100,32 @@ export default {
 				.on( 'change', '.repeater-control.attribution', e => this._updateAttribution( e ) );
 			$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );
 			api( 'bgtfw_fixed_header', value => value.bind( to => this._toggleSticky( to ) ) );
+			api.previewer.bind( 'ready', () => {
+				this.sortable.on( 'click', '.repeater-control.sticky .bgtfw-sortable-control:not(.selected)', ( e ) => this._updateSelector( e ) );
+			} );
 		} );
+	},
+
+	/**
+	 * Sticky header items' display event handler.
+	 *
+	 * @since 2.0.3
+	 */
+	_updateSelector( e ) {
+		let el = e.currentTarget,
+			repeater = $( el ).closest( '.repeater' )[0],
+			data = {
+				display: el.dataset.sticky,
+				selector: $( el ).closest( '.repeater-control.sticky' )[0].dataset.selector
+			},
+			stickyData = JSON.parse( decodeURIComponent( repeater.dataset.sticky ) ),
+			index = _.findIndex( stickyData, { selector: data.selector } );
+
+		stickyData[ index ] = _.extend( _.findWhere( stickyData, { selector: data.selector } ), data );
+
+		repeater.dataset.sticky = encodeURIComponent( JSON.stringify( stickyData ) );
+		api.previewer.send( this.params.type, data );
+		this.updateValues();
 	},
 
 	/**
@@ -217,6 +242,11 @@ export default {
 		this.updateValues();
 	},
 
+	/**
+	 * Check if string is JSON encoded.
+	 *
+	 * @since 2.0.3
+	 */
 	isJSON( str ) {
 		try {
 			let obj = JSON.parse( decodeURIComponent( str ) );

@@ -1,13 +1,17 @@
-.bgtfw-menu-wrap {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: row;
-	@include align-control();
-}
+@media only screen and (min-width: 768px) {
+	.header-top {
+		.bgtfw-menu-wrap {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: row;
+			@include align-control();
+		}
 
-.sm {
-	@include align-control();
+		.sm {
+			@include align-control();
+		}
+	}
 }
 
 .standard-menu-enabled {

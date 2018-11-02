@@ -4,10 +4,14 @@
 	justify-content: center;
 	flex: 1 0 100%;
 }
-
+.search,
 .no-results.not-found,
 .error404 {
 	.jumbotron {
 		background-color: transparent;
+	}
+	#searchform {
+		justify-content: center;
+		padding: 15px 0;
 	}
 }

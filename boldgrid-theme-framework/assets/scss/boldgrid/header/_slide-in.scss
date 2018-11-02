@@ -39,8 +39,29 @@
 		-webkit-transform: translateY(0%);
 		-ms-transform: translateY(0%);
 		transform: translateY(0%);
+
+		// @TODO: temp style.
+		.custom-logo-link {
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+			.custom-logo {
+				width: 80%;
+				height: 80%;
+			}
+		}
 	}
 
 	// Unstuck. Empty selector left for reference.
 	.bgtfw-header-unstick {}
+}
+
+.custom-logo-link {
+	margin-top: 15px;
+	margin-bottom: 15px;
+
+	.custom-logo {
+		width: 100%;
+		height: 100%;
+	}
 }

@@ -122,8 +122,9 @@ div {
 	border-bottom: none;
 }
 
-/* Edit Post Links */
+// @TODO: allow display.
 .bgtfw-edit-link {
+	display: none !important;
 	position: relative;
 	width: auto;
 	height: auto;

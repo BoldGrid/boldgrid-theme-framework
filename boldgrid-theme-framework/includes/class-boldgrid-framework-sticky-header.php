@@ -47,7 +47,6 @@ class Boldgrid_Framework_Sticky_Header {
 		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'sticky-header-display', $this->get_styles() );
 	}
 
-
 	/**
 	 * Get the CSS needed for hiding and showing sticky-header items.
 	 *

@@ -319,7 +319,7 @@ export default {
 	 * @since 2.0.3
 	 */
 	_updateAttribution( e ) {
-		api( e.target.dataset.attribution ).set( e.target.checked );
+		api( e.currentTarget.dataset.attribution ).set( e.currentTarget.checked );
 	},
 
 	/**
@@ -482,13 +482,14 @@ export default {
 	 * @since 2.0.3
 	 */
 	_addItem( e ) {
-		let dataset = e.target.dataset,
-			container = e.target.parentElement.previousElementSibling;
+		let el = e.currentTarget,
+			dataset = el.dataset,
+			container = el.parentElement.previousElementSibling;
 
 		container.innerHTML += this.getMarkup( dataset );
 
 		// Apply control defaults to repeater for newly added items.
-		_.each( this.params.items[ e.target.dataset.key ].controls, ( control, key ) => {
+		_.each( this.params.items[ el.dataset.key ].controls, ( control, key ) => {
 			if ( ! _.isUndefined( control.default ) ) {
 				container.lastChild.dataset[ key ] = control.default;
 			}

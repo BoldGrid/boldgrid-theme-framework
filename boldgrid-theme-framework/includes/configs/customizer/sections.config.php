@@ -59,13 +59,6 @@ return array(
 		'capability' => 'edit_theme_options',
 		'priority' => 2,
 	),
-	'bgtfw_footer_widgets' => array(
-		'title' => __( 'Widgets', 'bgtfw' ),
-		'panel' => 'bgtfw_footer',
-		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Adjust the widget areas for your footer below, or continue to the widgets section to add widgets to them.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-header-and-footer-widgets-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-		'capability' => 'edit_theme_options',
-		'priority' => 3,
-	),
 	'bgtfw_footer_advanced' => array(
 		'title' => __( 'Advanced', 'bgtfw' ),
 		'description' => esc_html__( 'Advanced settings for the appearance of your site\'s footer.', 'bgtfw' ),
@@ -100,13 +93,6 @@ return array(
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the colors used in your custom header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-header-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'capability' => 'edit_theme_options',
 		'priority' => 11,
-	),
-	'bgtfw_header_widgets' => array(
-		'title' => __( 'Widgets', 'bgtfw' ),
-		'panel' => 'bgtfw_header',
-		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Adjust the widget areas for your header below, or continue to the widgets section to add widgets to them.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-header-and-footer-widgets-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-		'capability' => 'edit_theme_options',
-		'priority' => 13,
 	),
 	'bgtfw_header_advanced' => array(
 		'title' => __( 'Advanced', 'bgtfw' ),

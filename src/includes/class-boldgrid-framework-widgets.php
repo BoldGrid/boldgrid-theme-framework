@@ -131,9 +131,24 @@ class Boldgrid_Framework_Widgets {
 	public function get_inactive_column_sidebars( $types ) {
 		$ids = [];
 		foreach ( $types as $type ) {
-			$columns = get_theme_mod( "boldgrid_{$type}_widgets" );
-			$columns = absint( $columns );
-			$max = absint( $this->configs['customizer']['controls'][ "boldgrid_{$type}_widgets" ]['choices']['max'] );
+			$theme_mod = get_theme_mod( "bgtfw_{$type}_layout" );
+			$columns = 0;
+
+			foreach ( $theme_mod as $section ) {
+				if ( ! empty( $section['items'] ) ) {
+					foreach ( $section['items'] as $item ) {
+						if ( false !== strpos( $item['type'], $type ) ) {
+							$columns ++;
+						}
+					}
+				}
+			}
+
+			$registered = array_filter( array_keys( $this->configs['widget']['sidebars'] ), function( $sidebar ) use ( $type ) {
+				return 0 === strpos( $sidebar, $type );
+			} );
+
+			$max = count( $registered );
 			$difference = $max - $columns;
 
 			for ( $i = 0; $i < $difference; $i++ ) {

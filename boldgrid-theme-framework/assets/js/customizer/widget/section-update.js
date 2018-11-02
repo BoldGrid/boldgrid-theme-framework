@@ -4,7 +4,7 @@ const api = wp.customize;
 export class WidgetSectionUpdate {
 
 	constructor() {
-		this.classControls = [ 'boldgrid_header_widgets', 'boldgrid_footer_widgets' ];
+		this.classControls = [ 'bgtfw_header_layout', 'bgtfw_footer_layout' ];
 	}
 
 	/**

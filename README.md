@@ -26,7 +26,14 @@ user guide for more information.
 
 ## Changelog ##
 
-### 2.0.0 In progress ###
+### 2.1.0-alpha.1 ###
+* New Feature: Adding dynamic layout controls for header/footer.
+* New Feature: Added base form support with a new style.
+* Bug fix: Fixed scrolling issues on IE, Safari, and FF in customizer.
+* Update: Removed controls for enable footer, header/footer containers.
+* Update: Change radio select controls for header position to buttonset with icons.
+
+### 2.0.0 ###
 * New Feature: Layout Selection - Allow users to select between a full width content area or fixed width within the Customizer.
 * New Feature: Header and Footer Layouts - Multiple header and footer styles, which can be selected from within the Customizer.
 * New Feature: Background Video Support - Homepage background video for your header from Youtube or Vimeo.

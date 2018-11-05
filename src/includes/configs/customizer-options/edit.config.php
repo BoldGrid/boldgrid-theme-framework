@@ -51,8 +51,8 @@ return array(
 		'general' => array(
 			array(
 				'control' => 'blogname',
-				'selector' => '#masthead .site-title a',
-				'parentColumn' => '#masthead .site-title',
+				'selector' => '#masthead .site-title',
+				'isParentColumn' => true,
 				'requireText' => true,
 				'title' => esc_attr__( 'Site Title', 'bgtfw' ),
 			),

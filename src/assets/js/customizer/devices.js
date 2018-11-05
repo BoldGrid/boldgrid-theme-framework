@@ -136,6 +136,11 @@ export class Devices {
 	 * @since 2.0.0
 	 */
 	onLoad() {
+		if ( this.previewedDevice ) {
+			this.setZoom();
+			return;
+		}
+
 		this.container = api.previewer.preview.container;
 		this.detectDevice();
 

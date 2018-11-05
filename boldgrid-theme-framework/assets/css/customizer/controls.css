@@ -2814,6 +2814,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 .bgtfw-sortable-accordion .repeater .repeater-control {
   margin-left: auto;
   margin-right: auto;
+  margin-top: .75em;
   width: 80%;
 }
 
@@ -2825,7 +2826,6 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   width: 100%;
-  margin-top: .75em;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.sticky:hover,
@@ -2872,7 +2872,6 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: .75em;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.align .repeater-control-title {

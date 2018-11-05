@@ -149,7 +149,7 @@ class BoldGrid {
 		$configs = $boldgrid_theme_framework->get_configs();
 
 		// Bug fix 9/28/15: https://codex.wordpress.org/Function_Reference/is_home.
-		if ( is_front_page( ) && 'page' === get_option( 'show_on_front' ) ) {
+		if ( ( is_front_page() && 'page' === get_option( 'show_on_front' ) ) || ( is_front_page() && is_home() ) ) {
 			$title_tag = $configs['template']['site-title-tag'];
 		} else {
 			$title_tag = 'p';

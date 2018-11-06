@@ -176,11 +176,24 @@ export default {
 	 */
 	_deleteItem( e ) {
 		let handle = $( e.currentTarget ).closest( '.ui-sortable-handle' ),
-			key = handle[0].dataset.key;
+			flagUpdate = 0;
+
+		// Main sortable is deleted.
+		if ( _.isEmpty( handle[0].dataset ) ) {
+			handle[0].querySelectorAll( '.repeater.ui-sortable-handle' ).forEach( repeater => {
+				if ( 'menu' === repeater.dataset.key ) {
+					flagUpdate++;
+				}
+			} );
+		} else {
+			if ( 'menu' === handle[0].dataset.key ) {
+				flagUpdate++;
+			}
+		}
 
 		handle.remove();
 		this.updateValues();
-		if ( 'menu' === key ) {
+		if ( 0 !== flagUpdate ) {
 			this.updateConnectedSelects();
 		}
 	},

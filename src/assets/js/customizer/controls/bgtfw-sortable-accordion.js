@@ -175,8 +175,14 @@ export default {
 	 * @since 2.0.3
 	 */
 	_deleteItem( e ) {
-		$( e.currentTarget ).closest( '.ui-sortable-handle' ).remove();
+		let handle = $( e.currentTarget ).closest( '.ui-sortable-handle' ),
+			key = handle[0].dataset.key;
+
+		handle.remove();
 		this.updateValues();
+		if ( 'menu' === key ) {
+			this.updateConnectedSelects();
+		}
 	},
 
 	/**

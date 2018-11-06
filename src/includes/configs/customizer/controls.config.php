@@ -2491,55 +2491,6 @@ return array(
 				'container' => 'container',
 				'items' => [
 					[
-						'type' => 'bgtfw_sidebar_header-1',
-						'key' => 'sidebar',
-						'sticky' => [
-							[
-								'selector' => '#header-1',
-								'display' => 'hide',
-								'title' => __( 'Sticky Header Display', 'bgtfw' ),
-							],
-						],
-					],
-					[
-						'type' => 'bgtfw_sidebar_header-2',
-						'key' => 'sidebar',
-						'sticky' => [
-							[
-								'selector' => '#header-2',
-								'display' => 'hide',
-								'title' => __( 'Sticky Header Display', 'bgtfw' ),
-							],
-						],
-					],
-					[
-						'type' => 'bgtfw_sidebar_header-3',
-						'key' => 'sidebar',
-						'sticky' => [
-							[
-								'selector' => '#header-3',
-								'display' => 'hide',
-								'title' => __( 'Sticky Header Display', 'bgtfw' ),
-							],
-						],
-					],
-					[
-						'type' => 'bgtfw_sidebar_header-4',
-						'key' => 'sidebar',
-						'sticky' => [
-							[
-								'selector' => '#header-4',
-								'display' => 'hide',
-								'title' => __( 'Sticky Header Display', 'bgtfw' ),
-							],
-						],
-					],
-				],
-			],
-			[
-				'container' => 'container',
-				'items' => [
-					[
 						'type' => 'boldgrid_menu_secondary',
 						'key' => 'menu',
 						'align' => 'w',

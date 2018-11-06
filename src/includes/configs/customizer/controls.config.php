@@ -2405,7 +2405,9 @@ return array(
 			'sidebar' => [
 				'icon' => 'dashicons dashicons-layout',
 				'title' => __( 'Sidebar', 'bgtfw' ),
-				'controls' => [],
+				'controls' => [
+					'sidebar-edit' => [],
+				],
 			],
 			'attribution' => [
 				'icon' => 'dashicons dashicons-admin-links',

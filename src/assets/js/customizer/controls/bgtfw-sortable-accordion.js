@@ -20,6 +20,7 @@ export default {
 		this.updateTitles();
 		this.updateAddTypes();
 		this.addEvents();
+		this.addUids();
 	},
 
 	/**
@@ -110,6 +111,19 @@ export default {
 			api.previewer.bind( 'ready', () => {
 				this.sortable.on( 'click', '.repeater-control.sticky .bgtfw-sortable-control:not(.selected)', ( e ) => this._updateSelector( e ) );
 			} );
+		} );
+	},
+
+	/**
+	 * Adds Unique IDs for each item.
+	 *
+	 * @since 2.0.3
+	 */
+	addUids() {
+		this.container[0].querySelectorAll( '.repeater.ui-sortable-handle' ).forEach( repeater => {
+			if ( _.isEmpty( repeater.dataset ) || _.isUndefined( repeater.dataset.uid ) ) {
+				repeater.dataset.uid = _.uniqueId( this.params.location.charAt( 0 ).toString() );
+			}
 		} );
 	},
 

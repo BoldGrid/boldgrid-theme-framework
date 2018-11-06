@@ -461,6 +461,21 @@ class BoldGrid_Framework_Starter_Content {
 							$setting = $control['default'];
 						}
 					} else {
+						if ( 'bgtfw-sortable-accordion' === $control['type'] ) {
+							$uid = $control['location'][0];
+
+							foreach ( $control['default'] as $key => $section ) {
+								$base = $uid . $key;
+								if ( ! empty( $section['items'] ) ) {
+									foreach ( $section['items'] as $k => $v ) {
+										if ( empty( $v['uid'] ) ) {
+											$control['default'][ $key ]['items'][ $k ]['uid'] = $base . $k;
+										}
+									}
+								}
+							}
+						}
+
 						$setting = $control['default'];
 					}
 				}

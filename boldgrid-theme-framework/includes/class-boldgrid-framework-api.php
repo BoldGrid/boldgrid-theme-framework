@@ -1168,14 +1168,15 @@ class BoldGrid {
 	 */
 	public static function dynamic_layout( $theme_mod ) {
 		$markup = '';
-		$theme_mod = get_theme_mod( $theme_mod );
+		$theme_mod = self::create_uids( $theme_mod );
+
 		foreach ( $theme_mod as $section ) {
 			$markup .= '<div class="boldgrid-section">';
 			$markup .= '<div class="' . $section['container'] . '">';
 			$markup .= '<div class="row">';
 			foreach ( $section['items'] as $col => $col_data ) {
 				$num = ( 12 / count( $section['items'] ) );
-				$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12">';
+				$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_data['uid'] . '">';
 				ob_start();
 				switch ( $col_data['type'] ) {
 					case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
@@ -1220,6 +1221,33 @@ class BoldGrid {
 			$markup .= '</div>';
 		}
 		return $markup;
+	}
+
+	/**
+	 * Creates UIDs for dynamic layouts if none are passed in.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @param string $theme_mod Theme mod of dynamic layout element.
+	 *
+	 * @return array $defaults Default parameters with uIDs added for items.
+	 */
+	public static function create_uids( $theme_mod ) {
+		$uid = false !== strpos( $theme_mod, 'header' ) ? 'h' : 'f';
+		$defaults = get_theme_mod( $theme_mod );
+
+		foreach ( $defaults as $key => $section ) {
+			$base = $uid . $key;
+			if ( ! empty( $section['items'] ) ) {
+				foreach ( $section['items'] as $k => $v ) {
+					if ( empty( $v['uid'] ) ) {
+						$defaults[ $key ]['items'][ $k ]['uid'] = $base . $k;
+					}
+				}
+			}
+		}
+
+		return $defaults;
 	}
 
 	/**

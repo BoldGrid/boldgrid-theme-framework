@@ -12,12 +12,26 @@ import { Preview as TypographyPreview } from './typography/preview';
 const api = wp.customize;
 const controlApi = parent.wp.customize;
 
-api.bind( 'preview-ready', () => {
-	api.preview.bind( 'bgtfw-sortable-accordion', data => {
-		document.querySelectorAll( `.bgtfw-header-stick ${ data.selector }` ).forEach( item => {
-			'show' === data.display ? item.classList.remove( 'hidden' ) : item.classList.add( 'hidden' );
+api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
+	if ( 'bgtfw_header_layout' === placement.partial.id ) {
+		let css = [];
+
+		_.each( api( 'bgtfw_header_layout' )(), sections => {
+			if ( ! _.isUndefined( sections.items ) ) {
+				_.each( sections.items, item => {
+					if ( ! _.isUndefined( item.sticky ) ) {
+						_.each( item.sticky, sticky => {
+							if ( 'hide' === sticky.display ) {
+								css.push( `.bgtfw-header-stick .${ item.uid } ${ sticky.selector }` );
+							}
+						} );
+					}
+				} );
+			}
 		} );
-	} );
+
+		document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = `${ css.join( ', ' ) } {display: none;}`;
+	}
 } );
 
 BOLDGRID.Customizer = BOLDGRID.Customizer || {};

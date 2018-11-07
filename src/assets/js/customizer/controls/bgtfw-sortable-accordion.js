@@ -143,9 +143,7 @@ export default {
 			index = _.findIndex( stickyData, { selector: data.selector } );
 
 		stickyData[ index ] = _.extend( _.findWhere( stickyData, { selector: data.selector } ), data );
-
 		repeater.dataset.sticky = encodeURIComponent( JSON.stringify( stickyData ) );
-		api.previewer.send( this.params.type, data );
 		this.updateValues();
 	},
 

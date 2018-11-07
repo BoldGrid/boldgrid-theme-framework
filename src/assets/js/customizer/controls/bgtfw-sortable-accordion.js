@@ -533,9 +533,17 @@ export default {
 		// Apply control defaults to repeater for newly added items.
 		_.each( this.params.items[ el.dataset.key ].controls, ( control, key ) => {
 			if ( ! _.isUndefined( control.default ) ) {
+				if ( ! _.isString( control.default ) ) {
+					control.default = encodeURIComponent( JSON.stringify( control.default ) );
+				}
 				container.lastChild.dataset[ key ] = control.default;
 			}
 		} );
+
+		// Add uid for new items.
+		if ( _.isUndefined( container.lastChild.dataset.uid ) ) {
+			container.lastChild.dataset.uid = _.uniqueId( this.params.location.charAt( 0 ).toString() );
+		}
 
 		this.addRepeaterControls( true );
 		this.refreshItems();

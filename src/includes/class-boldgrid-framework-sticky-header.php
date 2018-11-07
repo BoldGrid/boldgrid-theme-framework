@@ -56,17 +56,12 @@ class Boldgrid_Framework_Sticky_Header {
 	 */
 	public function get_styles() {
 		$selectors = [];
-		$theme_mod = get_theme_mod( 'bgtfw_header_layout' );
-		$uid = 'h';
+		$theme_mod = BoldGrid::create_uids( 'bgtfw_header_layout' );
 
 		foreach ( $theme_mod as $key => $section ) {
-			$base = $uid . $key;
 			if ( ! empty( $section['items'] ) ) {
 				foreach ( $section['items'] as $k => $item ) {
 					if ( ! empty( $item['sticky'] ) ) {
-						if ( empty( $item['uid'] ) ) {
-							$item['uid'] = $base . $k;
-						}
 						foreach ( $item['sticky'] as $sticky ) {
 							if ( 'show' !== $sticky['display'] ) {
 								$selectors[] = '.bgtfw-header-stick .' . $item['uid'] . ' ' . $sticky['selector'];

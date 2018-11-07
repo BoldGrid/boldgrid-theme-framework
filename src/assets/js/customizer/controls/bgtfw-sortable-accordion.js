@@ -21,6 +21,7 @@ export default {
 		this.updateAddTypes();
 		this.addEvents();
 		this.addUids();
+		this._toggleSticky();
 	},
 
 	/**
@@ -102,7 +103,7 @@ export default {
 			$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );
 
 			// Bind sticky header and header position controls to sticky header controls in dynamic layout.
-			api( 'bgtfw_fixed_header', 'bgtfw_header_layout_position', ( ...args ) => {
+			api( 'bgtfw_fixed_header', 'bgtfw_header_layout_position', 'custom_logo', ( ...args ) => {
 				args.map( ( control ) => {
 					control.bind( () => this._toggleSticky() );
 				} );
@@ -156,6 +157,9 @@ export default {
 		if ( 'header' === this.params.location ) {
 			if ( 'header-top' === api( 'bgtfw_header_layout_position' )() && true === api( 'bgtfw_fixed_header' )() ) {
 				this.container.find( '.repeater-control.sticky' ).removeClass( 'hidden' );
+				if ( _.isEmpty( api( 'custom_logo' )() ) ) {
+					this.container.find( '.repeater-control[data-selector=".custom-logo"]' ).addClass( 'hidden' );
+				}
 			} else {
 				this.container.find( '.repeater-control.sticky' ).addClass( 'hidden' );
 			}

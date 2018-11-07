@@ -2513,7 +2513,13 @@ return array(
 				'title' => __( 'Menu', 'bgtfw' ),
 				'controls' => [
 					'sticky' => [
-						'default' => [],
+						'default' => [
+							[
+								'selector' => '#main-wrap',
+								'display' => 'show',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
 						'title' => __( 'Sticky Header Display', 'bgtfw' ),
 					],
 					'menu-select' => [],

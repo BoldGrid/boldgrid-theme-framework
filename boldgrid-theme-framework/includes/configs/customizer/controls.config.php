@@ -1640,6 +1640,7 @@ return array(
 		'type'        => 'switch',
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_fixed_header',
+		'description' => __( 'You can change what items are displayed when your header is stuck to the top of the page in the <b>Header Layout</b> section below.', 'bgtfw' ),
 		'label'       => esc_attr__( 'Sticky Header', 'bgtfw' ),
 		'section'     => 'bgtfw_header_layout',
 		'default'     => false,
@@ -2561,7 +2562,13 @@ return array(
 				'title' => __( 'Sidebar', 'bgtfw' ),
 				'controls' => [
 					'sticky' => [
-						'default' => [],
+						'default' => [
+							[
+								'selector' => '#header-1',
+								'display' => 'hide',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
 					],
 					'sidebar-edit' => [],
 				],

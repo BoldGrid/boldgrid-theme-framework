@@ -61,8 +61,7 @@ export default {
 		this.sortable.accordion( {
 			header: '> .sortable-wrapper > .sortable-title',
 			heightStyle: 'content',
-			collapsible: true,
-			active: false
+			collapsible: true
 		} ).sortable( {
 			update: this.updateValues.bind( this )
 		} ).disableSelection();
@@ -77,8 +76,7 @@ export default {
 		this.container.find( '.connected-sortable' ).accordion( {
 			header: '.repeater-handle',
 			heightStyle: 'content',
-			collapsible: true,
-			active: false
+			collapsible: true
 		} ).sortable( {
 			update: this.updateValues.bind( this )
 		} ).disableSelection();
@@ -138,7 +136,7 @@ export default {
 			repeater = $( el ).closest( '.repeater' )[0],
 			data = {
 				display: el.dataset.sticky,
-				selector: $( el ).closest( '.repeater-control.sticky' )[0].dataset.selector
+				selector: this.getItemSelector( repeater.dataset )
 			},
 			stickyData = JSON.parse( decodeURIComponent( repeater.dataset.sticky ) ),
 			index = _.findIndex( stickyData, { selector: data.selector } );
@@ -149,6 +147,24 @@ export default {
 	},
 
 	/**
+	 * Gets dynamic item selectors.
+	 *
+	 * @since 2.0.3
+	 */
+	getItemSelector( data ) {
+		let selector = data.selector;
+		if ( 'menu' === data.key ) {
+			selector = this.getMenuSelector( data.type );
+		}
+
+		if ( 'sidebar' === data.key ) {
+			selector = this.getSidebarSelector( data.type );
+		}
+
+		return selector;
+	},
+
+	/**
 	 * Toggle sticky header control display.
 	 *
 	 * @since 2.0.3
@@ -156,11 +172,13 @@ export default {
 	_toggleSticky() {
 		if ( 'header' === this.params.location ) {
 			if ( 'header-top' === api( 'bgtfw_header_layout_position' )() && true === api( 'bgtfw_fixed_header' )() ) {
+				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).show();
 				this.container.find( '.repeater-control.sticky' ).removeClass( 'hidden' );
 				if ( _.isEmpty( api( 'custom_logo' )() ) ) {
 					this.container.find( '.repeater-control[data-selector=".custom-logo"]' ).addClass( 'hidden' );
 				}
 			} else {
+				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).hide();
 				this.container.find( '.repeater-control.sticky' ).addClass( 'hidden' );
 			}
 		}
@@ -665,6 +683,24 @@ export default {
 				sortableAction.innerHTML += this.getAddTypeMarkup( item, key );
 			} );
 		} );
+	},
+
+	/**
+	 * Gets menu item selector for toggling display.
+	 *
+	 * @since 2.0.3
+	 */
+	getMenuSelector( action ) {
+		return '#' + action.replace( 'boldgrid_menu_', '' );
+	},
+
+	/**
+	 * Gets sidebar item selector for toggling display.
+	 *
+	 * @since 2.0.3
+	 */
+	getSidebarSelector( action ) {
+		return '#' + action.replace( 'bgtfw_sidebar_', '' );
 	},
 
 	/**

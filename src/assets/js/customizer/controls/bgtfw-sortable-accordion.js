@@ -191,7 +191,9 @@ export default {
 	 */
 	addSection( e ) {
 		e.preventDefault();
-		this.container.find( '.connected-sortable' ).sortable( 'destroy' );
+		let instances = this.container.find( '.connected-sortable' );
+		instances.sortable( 'destroy' );
+		instances.accordion( 'destroy' );
 		let items = this.sortable.find( '.sortable-wrapper' );
 		let newItem = items.last().clone( true );
 		newItem.attr( 'id', `sortable-${ items.length }-wrapper` );

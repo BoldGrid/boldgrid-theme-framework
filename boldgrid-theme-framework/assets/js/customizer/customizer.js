@@ -30,7 +30,9 @@ api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
 			}
 		} );
 
-		document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = `${ css.join( ', ' ) } {display: none;}`;
+		css = _.isEmpty( css ) ? '' : `${ css.join( ', ' ) } { display: none; }`;
+
+		document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = css;
 	}
 } );
 

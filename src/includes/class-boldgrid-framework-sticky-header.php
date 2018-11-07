@@ -72,6 +72,8 @@ class Boldgrid_Framework_Sticky_Header {
 			}
 		}
 
-		return implode( ', ', $selectors ) . '{ display:none }';
+		$selectors = ! empty( $selectors ) ? implode( ', ', $selectors ) . '{ display: none; }' : '';
+
+		return $selectors;
 	}
 }

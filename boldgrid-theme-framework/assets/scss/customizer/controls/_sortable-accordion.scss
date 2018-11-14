@@ -1,5 +1,27 @@
-.bgtfw-sortable-accordion {
+#customize-control-bgtfw_header_layout_tabs {
+	margin-bottom: 0;
+	.bgtfw-tabs {
+		.bgtfw-tab {
+			border-top-right-radius: 5px;
+			border-top-left-radius: 5px;
+			&:first-child {
+				margin-right: 10px;
+			}
+		}
+	}
+}
+#customize-control-bgtfw_header_layout,
+#customize-control-bgtfw_sticky_header_layout {
+	background-color: white;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 10px 0;
+}
 
+.bgtfw-sortable-accordion {
+	width: calc( 100% - 20px );
+    margin: 0 auto;
 	.sortable-wrapper {
 		background-color: rgba( 255, 255, 255, .7 );
 		border: 1px solid #ddd;
@@ -52,7 +74,7 @@
 		padding: 10px;
 	}
 	.bgtfw-add-new-section {
-		margin-top: 15px;
+		margin-top: 10px;
 		.button-secondary {
 			float: right;
 			.fa {

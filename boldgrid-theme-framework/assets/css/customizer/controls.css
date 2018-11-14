@@ -2606,6 +2606,33 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 /*--------------------------------------------------------------
 # Sortable Accordion
 --------------------------------------------------------------*/
+#customize-control-bgtfw_header_layout_tabs {
+  margin-bottom: 0;
+}
+
+#customize-control-bgtfw_header_layout_tabs .bgtfw-tabs .bgtfw-tab {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+#customize-control-bgtfw_header_layout_tabs .bgtfw-tabs .bgtfw-tab:first-child {
+  margin-right: 10px;
+}
+
+#customize-control-bgtfw_header_layout,
+#customize-control-bgtfw_sticky_header_layout {
+  background-color: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 10px 0;
+}
+
+.bgtfw-sortable-accordion {
+  width: calc( 100% - 20px);
+  margin: 0 auto;
+}
+
 .bgtfw-sortable-accordion .sortable-wrapper {
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid #ddd;
@@ -2666,7 +2693,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 }
 
 .bgtfw-sortable-accordion .bgtfw-add-new-section {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .bgtfw-sortable-accordion .bgtfw-add-new-section .button-secondary {
@@ -2944,4 +2971,28 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 .bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper .direction.sw .dashicons-arrow-down {
   -webkit-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
+}
+
+/*--------------------------------------------------------------
+# Tabs
+--------------------------------------------------------------*/
+.bgtfw-tabs {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.bgtfw-tab {
+  padding: .75em;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.bgtfw-tab:hover {
+  background-color: #fafafa;
+}
+
+.bgtfw-tab.selected {
+  background-color: #00a0d2;
+  color: rgba(255, 255, 255, 0.8);
 }

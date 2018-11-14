@@ -2445,10 +2445,17 @@ return array(
 		'section' => 'bgtfw_header_layout',
 		'sanitize_callback' => 'sanitize_html_class',
 	),
+	'bgtfw_header_layout_tabs' => [
+		'type'        => 'custom',
+		'settings'    => 'bgtfw_header_layout_tabs',
+		'label'       => __( 'Header Layout', 'bgtfw' ),
+		'section'     => 'bgtfw_header_layout',
+		'default'     => '<div class="bgtfw-tabs"><div class="bgtfw-tab selected" data-tab="#customize-control-bgtfw_header_layout">' . __( 'Standard Header', 'bgtfw' ) . '</div><div class="bgtfw-tab" data-tab="#customize-control-bgtfw_sticky_header_layout">' . __( 'Sticky Header', 'bgtfw' ) . '</div></div>',
+	],
 	'bgtfw_header_layout' => [
 		'settings' => 'bgtfw_header_layout',
 		'transport' => 'auto',
-		'label' => __( 'Header Layout', 'bgtfw' ),
+		'label' => '<div class="screen-reader-text">' . __( 'Standard Header Layout', 'bgtfw' ) . '</div>',
 		'type' => 'bgtfw-sortable-accordion',
 		'default' => [
 			[
@@ -2578,6 +2585,144 @@ return array(
 		'section' => 'bgtfw_header_layout',
 		'partial_refresh' => [
 			'bgtfw_header_layout' => [
+				'selector' => '#masthead',
+				'render_callback' => [ 'BoldGrid', 'dynamic_header' ],
+			],
+		],
+	],
+	'bgtfw_sticky_header_layout' => [
+		'settings' => 'bgtfw_sticky_header_layout',
+		'transport' => 'auto',
+		'label' => '<div class="screen-reader-text">' . __( 'Sticky Header Layout', 'bgtfw' ) . '</div>',
+		'type' => 'bgtfw-sortable-accordion',
+		'default' => [
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'boldgrid_site_identity',
+						'key' => 'branding',
+						'align' => 'w',
+						'sticky' => [
+							[
+								'selector' => '.custom-logo',
+								'display' => 'show',
+								'title' => __( 'Logo: Sticky Header Display', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-title',
+								'display' => 'show',
+								'title' => __( 'Title: Sticky Header Display', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-description',
+								'display' => 'hide',
+								'title' => __( 'Tagline: Sticky Header Display', 'bgtfw' ),
+							],
+						],
+					],
+					[
+						'type' => 'boldgrid_menu_sticky-main',
+						'key' => 'menu',
+						'align' => 'e',
+						'sticky' => [
+							[
+								'selector' => '#main-wrap',
+								'display' => 'show',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
+					],
+				],
+			],
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'boldgrid_menu_sticky-secondary',
+						'key' => 'menu',
+						'align' => 'w',
+						'sticky' => [
+							[
+								'selector' => '#secondary-wrap',
+								'display' => 'hide',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
+					],
+				],
+			],
+		],
+		'items' => [
+			'menu' => [
+				'icon' => 'dashicons dashicons-menu',
+				'title' => __( 'Menu', 'bgtfw' ),
+				'controls' => [
+					'sticky' => [
+						'default' => [
+							[
+								'selector' => '#main-wrap',
+								'display' => 'show',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
+						'title' => __( 'Sticky Header Display', 'bgtfw' ),
+					],
+					'menu-select' => [],
+					'align' => [
+						'default' => 'nw',
+					],
+				],
+			],
+			'branding' => [
+				'icon' => 'dashicons dashicons-store',
+				'title' => __( 'Branding', 'bgtfw' ),
+				'controls' => [
+					'sticky' => [
+						'default' => [
+							[
+								'selector' => '.custom-logo',
+								'display' => 'show',
+								'title' => __( 'Logo: Sticky Header Display', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-title',
+								'display' => 'show',
+								'title' => __( 'Title: Sticky Header Display', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-description',
+								'display' => 'hide',
+								'title' => __( 'Tagline: Sticky Header Display', 'bgtfw' ),
+							],
+						],
+					],
+					'align' => [
+						'default' => 'nw',
+					],
+				],
+			],
+			'sidebar' => [
+				'icon' => 'dashicons dashicons-layout',
+				'title' => __( 'Sidebar', 'bgtfw' ),
+				'controls' => [
+					'sticky' => [
+						'default' => [
+							[
+								'selector' => '#header-1',
+								'display' => 'hide',
+								'title' => __( 'Sticky Header Display', 'bgtfw' ),
+							],
+						],
+					],
+					'sidebar-edit' => [],
+				],
+			],
+		],
+		'location' => 'sticky-header',
+		'section' => 'bgtfw_header_layout',
+		'partial_refresh' => [
+			'bgtfw_sticky_header_layout' => [
 				'selector' => '#masthead',
 				'render_callback' => [ 'BoldGrid', 'dynamic_header' ],
 			],

@@ -110,7 +110,15 @@ export default {
 			api.previewer.bind( 'ready', () => {
 				this.sortable.on( 'click', '.repeater-control.sticky .bgtfw-sortable-control:not(.selected)', ( e ) => this._updateSelector( e ) );
 			} );
+
+			api( 'custom_logo', value => value.bind( () => this._toggleLogo() ) );
 		} );
+	},
+
+	_toggleLogo() {
+		if ( _.isEmpty( api( 'custom_logo' )() ) ) {
+			this.container.find( '.repeater-control[data-selector=".custom-logo"]' ).addClass( 'hidden' );
+		}
 	},
 
 	/**
@@ -170,13 +178,10 @@ export default {
 	 * @since 2.0.3
 	 */
 	_toggleSticky() {
-		if ( 'header' === this.params.location ) {
+		if ( 'sticky-header' === this.params.location ) {
 			if ( 'header-top' === api( 'bgtfw_header_layout_position' )() && true === api( 'bgtfw_fixed_header' )() ) {
 				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).show();
 				this.container.find( '.repeater-control.sticky' ).removeClass( 'hidden' );
-				if ( _.isEmpty( api( 'custom_logo' )() ) ) {
-					this.container.find( '.repeater-control[data-selector=".custom-logo"]' ).addClass( 'hidden' );
-				}
 			} else {
 				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).hide();
 				this.container.find( '.repeater-control.sticky' ).addClass( 'hidden' );
@@ -211,6 +216,7 @@ export default {
 	 * @since 2.0.3
 	 */
 	_deleteItem( e ) {
+		e.preventDefault();
 		let handle = $( e.currentTarget ).closest( '.ui-sortable-handle' ),
 			flagUpdate = 0;
 
@@ -814,7 +820,9 @@ export default {
 	 * @since 2.0.3
 	 */
 	getAvailableMenus() {
-		return _.difference( this.getAllMenuActions(), this.getConnectedMenus() );
+		let menus = this.getAllMenuActions();
+		menus = 'sticky-header' === this.params.location ? menus.filter( s => ~s.indexOf( 'sticky' ) ) : menus.filter( s => ! ~s.indexOf( 'sticky' ) );
+		return _.difference( menus, this.getConnectedMenus() );
 	},
 
 	/**

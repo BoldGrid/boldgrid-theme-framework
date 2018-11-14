@@ -13,6 +13,7 @@ import { Devices } from './devices';
 import bgtfwSortableAccordion from './controls/bgtfw-sortable-accordion.js';
 import bgtfwMenuHamburgers from './controls/bgtfw-menu-hamburgers.js';
 import bgtfwTypography from './controls/kirki-typography.js';
+import bgtfwHeaderTabs from './controls/bgtfw-header-tabs.js';
 
 let devices = new Devices();
 devices.init();
@@ -34,47 +35,7 @@ devices.init();
 	new HoverBackgroundToggle();
 	new MenuLocations();
 
-	// Bind sticky header and header position controls to sticky header controls in dynamic layout.
-	api( 'bgtfw_fixed_header', 'bgtfw_header_layout_position', ( ...args ) => {
-		args.map( control => {
-			control.bind( () => {
-				const tab = $( '.bgtfw-tab[data-tab$="sticky_header_layout"]' );
-
-				if ( true === api( 'bgtfw_fixed_header' )() && 'header-top' === api( 'bgtfw_header_layout_position' )() ) {
-					tab.show();
-					api.control( 'bgtfw_sticky_header_layout' ).activate();
-				} else {
-					if ( tab.hasClass( 'selected' ) ) {
-						$( '.bgtfw-tab:not(.selected)' ).trigger( 'click' );
-					}
-					tab.hide();
-					api.control( 'bgtfw_sticky_header_layout' ).deactivate();
-				}
-			} );
-		} );
-	} );
-
-	api.bind( 'ready', () => {
-		if ( false === api( 'bgtfw_fixed_header' )() || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
-			$( '.bgtfw-tab[data-tab$="sticky_header_layout"]' ).hide();
-			api.control( 'bgtfw_sticky_header_layout' ).deactivate();
-		}
-		document.querySelectorAll( '.bgtfw-tab:not(.selected)' ).forEach( tab => {
-			$( tab.dataset.tab ).hide();
-		} );
-
-		$( '.bgtfw-tab' ).on( 'click', function( e ) {
-			if ( ! e.currentTarget.classList.contains( 'selected' ) ) {
-				document.querySelectorAll( '.bgtfw-tab' ).forEach( item => {
-					item.classList.remove( 'selected' );
-					$( item.dataset.tab ).hide();
-				} );
-
-				e.currentTarget.classList.add( 'selected' );
-				$( e.currentTarget.dataset.tab ).show();
-			}
-		} );
-	} );
+	bgtfwHeaderTabs.init();
 
 	api.bind( 'pane-contents-reflowed', function() {
 		var sections, panels;

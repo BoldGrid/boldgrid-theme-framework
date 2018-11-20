@@ -107,7 +107,10 @@ class BoldGrid_Framework {
 	 * @since 1.0.5
 	 */
 	public function set_doing_cron() {
-		$this->doing_cron = defined( 'DOING_CRON' );
+		// After Inspirations installs a site, it makes an ajax post with doing_wp_cron set.
+		$doing_wp_cron = ! empty( $_GET['doing_wp_cron'] ) && 'fire-after-theme-switch-hooks' === $_GET['doing_wp_cron'];
+
+		$this->doing_cron = defined( 'DOING_CRON' ) || $doing_wp_cron;
 	}
 
 	/**

@@ -445,7 +445,6 @@ class BoldGrid_Framework {
 			}
 		} );
 
-
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
 

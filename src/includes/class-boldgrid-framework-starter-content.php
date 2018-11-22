@@ -309,16 +309,17 @@ class BoldGrid_Framework_Starter_Content {
 	 * @return array $config Array of BGTFW configuration options.
 	 */
 	public function set_menus( $config, $index, $control ) {
-		if ( isset( $control['settings'] ) && strpos( $control['settings'], 'bgtfw_menu_' ) !== false && ( strpos( $control['settings'], 'main' ) !== false && strpos( $control['settings'], 'sticky-main' ) === false ) ) {
-
+		if ( isset( $control['settings'] ) &&
+			strpos( $control['settings'], 'bgtfw_menu_' ) !== false && ( strpos( $control['settings'], 'main' ) !== false && strpos( $control['settings'], 'sticky-main' ) === false ) ) {
 			$menus = $config['menu']['locations'];
 
 			foreach ( $menus as $location => $description ) {
 
-				// Add controls based on main menu's.
-				$new_key = str_replace( 'main', $location, $control['settings'] );
-
 				if ( 'main' !== $location ) {
+
+					// Add controls based on main menu's.
+					$new_key = str_replace( 'main', $location, $control['settings'] );
+
 					$toggle_default = null;
 
 					if ( isset( $config['customizer']['controls'][ $new_key ] ) ) {
@@ -343,10 +344,12 @@ class BoldGrid_Framework_Starter_Content {
 						if ( is_string( $value ) ) {
 
 							// If used in CSS replace underscores with hyphens.
-							if ( strpos( $value, '#main' ) !== false ) {
-								$value = str_replace( 'main', str_replace( '_', '-', $location ), $value );
-							} else {
-								$value = str_replace( 'main', $location, $value );
+							if ( strpos( $value, 'sticky-main' ) === false ) {
+								if ( strpos( $value, '#main' ) !== false ) {
+									$value = str_replace( 'main', str_replace( '_', '-', $location ), $value );
+								} else {
+									$value = str_replace( 'main', $location, $value );
+								}
 							}
 						}
 					} );

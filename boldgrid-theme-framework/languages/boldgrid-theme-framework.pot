@@ -206,11 +206,11 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:109, src/includes/class-boldgrid-framework-title.php:112, src/includes/configs/customizer/controls.config.php:407, src/includes/configs/customizer/controls.config.php:454, src/includes/configs/customizer/controls.config.php:534, src/includes/configs/customizer/controls.config.php:744, src/includes/configs/customizer/controls.config.php:929, src/includes/configs/customizer/controls.config.php:1081, src/includes/configs/customizer/controls.config.php:1166, src/includes/configs/customizer/controls.config.php:1318, src/includes/configs/customizer/controls.config.php:1396, src/includes/configs/customizer/controls.config.php:1595, src/includes/configs/customizer/controls.config.php:1763, src/includes/configs/customizer/controls.config.php:3379, src/includes/configs/customizer/controls.config.php:3534, src/includes/configs/customizer/controls.config.php:3744, src/includes/configs/customizer/controls.config.php:3929, src/includes/configs/customizer/controls.config.php:4048, src/includes/configs/customizer/controls.config.php:4199, src/includes/configs/customizer/controls.config.php:4283, src/includes/configs/customizer/controls.config.php:4435, src/includes/configs/customizer/controls.config.php:4519, src/includes/configs/customizer/controls.config.php:4671
+#: src/includes/class-boldgrid-framework-title.php:109, src/includes/class-boldgrid-framework-title.php:112, src/includes/configs/customizer/controls.config.php:407, src/includes/configs/customizer/controls.config.php:454, src/includes/configs/customizer/controls.config.php:534, src/includes/configs/customizer/controls.config.php:744, src/includes/configs/customizer/controls.config.php:929, src/includes/configs/customizer/controls.config.php:1081, src/includes/configs/customizer/controls.config.php:1166, src/includes/configs/customizer/controls.config.php:1318, src/includes/configs/customizer/controls.config.php:1396, src/includes/configs/customizer/controls.config.php:3345, src/includes/configs/customizer/controls.config.php:3500, src/includes/configs/customizer/controls.config.php:3710, src/includes/configs/customizer/controls.config.php:3895, src/includes/configs/customizer/controls.config.php:4014, src/includes/configs/customizer/controls.config.php:4165, src/includes/configs/customizer/controls.config.php:4249, src/includes/configs/customizer/controls.config.php:4401, src/includes/configs/customizer/controls.config.php:4485, src/includes/configs/customizer/controls.config.php:4637
 msgid "Show"
 msgstr ""
 
-#: src/includes/class-boldgrid-framework-title.php:109, src/includes/class-boldgrid-framework-title.php:118, src/includes/configs/customizer/controls.config.php:408, src/includes/configs/customizer/controls.config.php:455, src/includes/configs/customizer/controls.config.php:485, src/includes/configs/customizer/controls.config.php:535, src/includes/configs/customizer/controls.config.php:745, src/includes/configs/customizer/controls.config.php:930, src/includes/configs/customizer/controls.config.php:1082, src/includes/configs/customizer/controls.config.php:1167, src/includes/configs/customizer/controls.config.php:1319, src/includes/configs/customizer/controls.config.php:1397, src/includes/configs/customizer/controls.config.php:1596, src/includes/configs/customizer/controls.config.php:1764, src/includes/configs/customizer/controls.config.php:3380, src/includes/configs/customizer/controls.config.php:3485, src/includes/configs/customizer/controls.config.php:3535, src/includes/configs/customizer/controls.config.php:3745, src/includes/configs/customizer/controls.config.php:3930, src/includes/configs/customizer/controls.config.php:4049, src/includes/configs/customizer/controls.config.php:4200, src/includes/configs/customizer/controls.config.php:4284, src/includes/configs/customizer/controls.config.php:4436, src/includes/configs/customizer/controls.config.php:4520, src/includes/configs/customizer/controls.config.php:4672
+#: src/includes/class-boldgrid-framework-title.php:109, src/includes/class-boldgrid-framework-title.php:118, src/includes/configs/customizer/controls.config.php:408, src/includes/configs/customizer/controls.config.php:455, src/includes/configs/customizer/controls.config.php:485, src/includes/configs/customizer/controls.config.php:535, src/includes/configs/customizer/controls.config.php:745, src/includes/configs/customizer/controls.config.php:930, src/includes/configs/customizer/controls.config.php:1082, src/includes/configs/customizer/controls.config.php:1167, src/includes/configs/customizer/controls.config.php:1319, src/includes/configs/customizer/controls.config.php:1397, src/includes/configs/customizer/controls.config.php:3346, src/includes/configs/customizer/controls.config.php:3451, src/includes/configs/customizer/controls.config.php:3501, src/includes/configs/customizer/controls.config.php:3711, src/includes/configs/customizer/controls.config.php:3896, src/includes/configs/customizer/controls.config.php:4015, src/includes/configs/customizer/controls.config.php:4166, src/includes/configs/customizer/controls.config.php:4250, src/includes/configs/customizer/controls.config.php:4402, src/includes/configs/customizer/controls.config.php:4486, src/includes/configs/customizer/controls.config.php:4638
 msgid "Hide"
 msgstr ""
 
@@ -262,7 +262,7 @@ msgstr ""
 msgid "Page Content"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:99, src/includes/configs/customizer/controls.config.php:3360
+#: src/includes/configs/customizer-options/edit.config.php:99, src/includes/configs/customizer/controls.config.php:3326
 msgid "Post Content"
 msgstr ""
 
@@ -310,7 +310,7 @@ msgstr ""
 msgid "Post Title Design"
 msgstr ""
 
-#: src/includes/configs/customizer-options/edit.config.php:210, src/includes/configs/customizer-options/edit.config.php:216, src/includes/configs/customizer/controls.config.php:1729, src/includes/configs/customizer/controls.config.php:1822, src/includes/configs/customizer/controls.config.php:2122, src/includes/configs/customizer/controls.config.php:2769, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:74, src/includes/customizer/class-boldgrid-framework-customizer.php:214
+#: src/includes/configs/customizer-options/edit.config.php:210, src/includes/configs/customizer-options/edit.config.php:216, src/includes/configs/customizer/controls.config.php:1712, src/includes/configs/customizer/controls.config.php:1788, src/includes/configs/customizer/controls.config.php:2088, src/includes/configs/customizer/controls.config.php:2735, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:74, src/includes/customizer/class-boldgrid-framework-customizer.php:214
 msgid "Background Color"
 msgstr ""
 
@@ -350,11 +350,11 @@ msgstr ""
 msgid "Change the appearance of your site's background."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:55, src/includes/configs/customizer/controls.config.php:1543, src/includes/configs/customizer/controls.config.php:1606, src/includes/configs/customizer/controls.config.php:1743, src/includes/configs/customizer/controls.config.php:3120, src/includes/configs/customizer/controls.config.php:3135, src/includes/configs/customizer/controls.config.php:3396, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:131
+#: src/includes/configs/customizer/controls.config.php:55, src/includes/configs/customizer/controls.config.php:1543, src/includes/configs/customizer/controls.config.php:1589, src/includes/configs/customizer/controls.config.php:1726, src/includes/configs/customizer/controls.config.php:3086, src/includes/configs/customizer/controls.config.php:3101, src/includes/configs/customizer/controls.config.php:3362, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:131
 msgid "Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:56, src/includes/configs/customizer/controls.config.php:1823, src/includes/configs/customizer/controls.config.php:2123, src/includes/configs/customizer/controls.config.php:3346, src/includes/configs/customizer/controls.config.php:3361
+#: src/includes/configs/customizer/controls.config.php:56, src/includes/configs/customizer/controls.config.php:1789, src/includes/configs/customizer/controls.config.php:2089, src/includes/configs/customizer/controls.config.php:3312, src/includes/configs/customizer/controls.config.php:3327
 msgid "Choose a color from your palette to use."
 msgstr ""
 
@@ -370,23 +370,23 @@ msgstr ""
 msgid "Add an overlay to give your text readability over an image."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:93, src/includes/configs/customizer/controls.config.php:2085, src/includes/customizer/class-boldgrid-framework-customizer-effects.php:75
+#: src/includes/configs/customizer/controls.config.php:93, src/includes/configs/customizer/controls.config.php:2051, src/includes/customizer/class-boldgrid-framework-customizer-effects.php:75
 msgid "Enable"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:94, src/includes/configs/customizer/controls.config.php:2086, src/includes/customizer/class-boldgrid-framework-customizer-effects.php:76
+#: src/includes/configs/customizer/controls.config.php:94, src/includes/configs/customizer/controls.config.php:2052, src/includes/customizer/class-boldgrid-framework-customizer-effects.php:76
 msgid "Disable"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:101, src/includes/configs/customizer/controls.config.php:2093
+#: src/includes/configs/customizer/controls.config.php:101, src/includes/configs/customizer/controls.config.php:2059
 msgid "Overlay Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:115, src/includes/configs/customizer/controls.config.php:2107
+#: src/includes/configs/customizer/controls.config.php:115, src/includes/configs/customizer/controls.config.php:2073
 msgid "Overlay Opacity"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:190, src/includes/configs/customizer/controls.config.php:301, src/includes/configs/customizer/controls.config.php:2893, src/includes/configs/customizer/controls.config.php:3295
+#: src/includes/configs/customizer/controls.config.php:190, src/includes/configs/customizer/controls.config.php:301, src/includes/configs/customizer/controls.config.php:2859, src/includes/configs/customizer/controls.config.php:3261
 msgid "Border Color"
 msgstr ""
 
@@ -394,23 +394,23 @@ msgstr ""
 msgid "Horizontal Background Position"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:366, src/includes/configs/customizer/controls.config.php:2168, src/includes/configs/customizer/controls.config.php:2236, src/includes/configs/customizer/sections.config.php:35, src/includes/configs/customizer/sections.config.php:196, src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:115
+#: src/includes/configs/customizer/controls.config.php:366, src/includes/configs/customizer/controls.config.php:2134, src/includes/configs/customizer/controls.config.php:2202, src/includes/configs/customizer/sections.config.php:35, src/includes/configs/customizer/sections.config.php:196, src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:115
 msgid "Container"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:371, src/includes/configs/customizer/controls.config.php:1920, src/includes/configs/customizer/controls.config.php:1951, src/includes/configs/customizer/controls.config.php:2173, src/includes/configs/customizer/controls.config.php:2242
+#: src/includes/configs/customizer/controls.config.php:371, src/includes/configs/customizer/controls.config.php:1886, src/includes/configs/customizer/controls.config.php:1917, src/includes/configs/customizer/controls.config.php:2139, src/includes/configs/customizer/controls.config.php:2208
 msgid "Contained"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:372, src/includes/configs/customizer/controls.config.php:1921, src/includes/configs/customizer/controls.config.php:1952, src/includes/configs/customizer/controls.config.php:2174, src/includes/configs/customizer/controls.config.php:2243, src/includes/customizer/class-boldgrid-framework-customizer-background.php:210, src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:120
+#: src/includes/configs/customizer/controls.config.php:372, src/includes/configs/customizer/controls.config.php:1887, src/includes/configs/customizer/controls.config.php:1918, src/includes/configs/customizer/controls.config.php:2140, src/includes/configs/customizer/controls.config.php:2209, src/includes/customizer/class-boldgrid-framework-customizer-background.php:210, src/includes/customizer/class-boldgrid-framework-customizer-control-sortable-accordion.php:120
 msgid "Full Width"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:390, src/includes/configs/customizer/controls.config.php:2408, src/includes/configs/customizer/controls.config.php:2569, src/includes/configs/customizer/controls.config.php:2707, src/includes/configs/customizer/sections.config.php:42, src/includes/configs/customizer/sections.config.php:143, src/includes/configs/customizer/sections.config.php:200
+#: src/includes/configs/customizer/controls.config.php:390, src/includes/configs/customizer/controls.config.php:2374, src/includes/configs/customizer/controls.config.php:2535, src/includes/configs/customizer/controls.config.php:2673, src/includes/configs/customizer/sections.config.php:42, src/includes/configs/customizer/sections.config.php:143, src/includes/configs/customizer/sections.config.php:200
 msgid "Sidebar"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:402, src/includes/configs/customizer/controls.config.php:449, src/includes/configs/customizer/controls.config.php:479, src/includes/configs/customizer/controls.config.php:924, src/includes/configs/customizer/controls.config.php:1162, src/includes/configs/customizer/controls.config.php:1392, src/includes/configs/customizer/controls.config.php:1589, src/includes/configs/customizer/controls.config.php:1757, src/includes/configs/customizer/controls.config.php:3375, src/includes/configs/customizer/controls.config.php:3479, src/includes/configs/customizer/controls.config.php:3924, src/includes/configs/customizer/controls.config.php:4043, src/includes/configs/customizer/controls.config.php:4279, src/includes/configs/customizer/controls.config.php:4515
+#: src/includes/configs/customizer/controls.config.php:402, src/includes/configs/customizer/controls.config.php:449, src/includes/configs/customizer/controls.config.php:479, src/includes/configs/customizer/controls.config.php:924, src/includes/configs/customizer/controls.config.php:1162, src/includes/configs/customizer/controls.config.php:1392, src/includes/configs/customizer/controls.config.php:3341, src/includes/configs/customizer/controls.config.php:3445, src/includes/configs/customizer/controls.config.php:3890, src/includes/configs/customizer/controls.config.php:4009, src/includes/configs/customizer/controls.config.php:4245, src/includes/configs/customizer/controls.config.php:4481
 msgid "Display"
 msgstr ""
 
@@ -422,119 +422,119 @@ msgstr ""
 msgid "This is a global setting. Access the editor to toggle post titles for individual posts."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:483, src/includes/configs/customizer/controls.config.php:3483
+#: src/includes/configs/customizer/controls.config.php:483, src/includes/configs/customizer/controls.config.php:3449
 msgid "Inline"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:484, src/includes/configs/customizer/controls.config.php:3484
+#: src/includes/configs/customizer/controls.config.php:484, src/includes/configs/customizer/controls.config.php:3450
 msgid "New Lines"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:501, src/includes/configs/customizer/controls.config.php:1899, src/includes/configs/customizer/controls.config.php:3450, src/includes/configs/customizer/controls.config.php:3501, src/includes/configs/customizer/controls.config.php:3940, src/includes/configs/customizer/controls.config.php:4922
+#: src/includes/configs/customizer/controls.config.php:501, src/includes/configs/customizer/controls.config.php:1865, src/includes/configs/customizer/controls.config.php:3416, src/includes/configs/customizer/controls.config.php:3467, src/includes/configs/customizer/controls.config.php:3906, src/includes/configs/customizer/controls.config.php:4888
 msgid "Position"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:505, src/includes/configs/customizer/controls.config.php:1881, src/includes/configs/customizer/controls.config.php:2441, src/includes/configs/customizer/controls.config.php:3454, src/includes/configs/customizer/controls.config.php:3505, src/includes/configs/customizer/controls.config.php:4926, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:129
+#: src/includes/configs/customizer/controls.config.php:505, src/includes/configs/customizer/controls.config.php:1847, src/includes/configs/customizer/controls.config.php:2407, src/includes/configs/customizer/controls.config.php:3420, src/includes/configs/customizer/controls.config.php:3471, src/includes/configs/customizer/controls.config.php:4892, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:129
 msgid "Left"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:506, src/includes/configs/customizer/controls.config.php:1882, src/includes/configs/customizer/controls.config.php:3455, src/includes/configs/customizer/controls.config.php:3506, src/includes/configs/customizer/controls.config.php:4927
+#: src/includes/configs/customizer/controls.config.php:506, src/includes/configs/customizer/controls.config.php:1848, src/includes/configs/customizer/controls.config.php:3421, src/includes/configs/customizer/controls.config.php:3472, src/includes/configs/customizer/controls.config.php:4893
 msgid "Center"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:507, src/includes/configs/customizer/controls.config.php:1883, src/includes/configs/customizer/controls.config.php:2443, src/includes/configs/customizer/controls.config.php:3456, src/includes/configs/customizer/controls.config.php:3507, src/includes/configs/customizer/controls.config.php:4928, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:130
+#: src/includes/configs/customizer/controls.config.php:507, src/includes/configs/customizer/controls.config.php:1849, src/includes/configs/customizer/controls.config.php:2409, src/includes/configs/customizer/controls.config.php:3422, src/includes/configs/customizer/controls.config.php:3473, src/includes/configs/customizer/controls.config.php:4894, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:130
 msgid "Right"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:530, src/includes/configs/customizer/controls.config.php:3530
+#: src/includes/configs/customizer/controls.config.php:530, src/includes/configs/customizer/controls.config.php:3496
 msgid "Post Date Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:558, src/includes/configs/customizer/controls.config.php:3558
+#: src/includes/configs/customizer/controls.config.php:558, src/includes/configs/customizer/controls.config.php:3524
 msgid "Date Format"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:562, src/includes/configs/customizer/controls.config.php:3562
+#: src/includes/configs/customizer/controls.config.php:562, src/includes/configs/customizer/controls.config.php:3528
 msgid "Human Readable"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:563, src/includes/configs/customizer/controls.config.php:3563
+#: src/includes/configs/customizer/controls.config.php:563, src/includes/configs/customizer/controls.config.php:3529
 msgid "Date"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:587, src/includes/configs/customizer/controls.config.php:3587
+#: src/includes/configs/customizer/controls.config.php:587, src/includes/configs/customizer/controls.config.php:3553
 msgid "Date Link Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:591, src/includes/configs/customizer/controls.config.php:774, src/includes/configs/customizer/controls.config.php:952, src/includes/configs/customizer/controls.config.php:1189, src/includes/configs/customizer/controls.config.php:1419, src/includes/configs/customizer/controls.config.php:3591, src/includes/configs/customizer/controls.config.php:3774, src/includes/configs/customizer/controls.config.php:4071, src/includes/configs/customizer/controls.config.php:4306, src/includes/configs/customizer/controls.config.php:4542, src/includes/configs/customizer/controls.config.php:4797
+#: src/includes/configs/customizer/controls.config.php:591, src/includes/configs/customizer/controls.config.php:774, src/includes/configs/customizer/controls.config.php:952, src/includes/configs/customizer/controls.config.php:1189, src/includes/configs/customizer/controls.config.php:1419, src/includes/configs/customizer/controls.config.php:3557, src/includes/configs/customizer/controls.config.php:3740, src/includes/configs/customizer/controls.config.php:4037, src/includes/configs/customizer/controls.config.php:4272, src/includes/configs/customizer/controls.config.php:4508, src/includes/configs/customizer/controls.config.php:4763
 msgid "Global Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:592, src/includes/configs/customizer/controls.config.php:775, src/includes/configs/customizer/controls.config.php:953, src/includes/configs/customizer/controls.config.php:1190, src/includes/configs/customizer/controls.config.php:1420, src/includes/configs/customizer/controls.config.php:3592, src/includes/configs/customizer/controls.config.php:3775, src/includes/configs/customizer/controls.config.php:4072, src/includes/configs/customizer/controls.config.php:4307, src/includes/configs/customizer/controls.config.php:4543, src/includes/configs/customizer/controls.config.php:4798
+#: src/includes/configs/customizer/controls.config.php:592, src/includes/configs/customizer/controls.config.php:775, src/includes/configs/customizer/controls.config.php:953, src/includes/configs/customizer/controls.config.php:1190, src/includes/configs/customizer/controls.config.php:1420, src/includes/configs/customizer/controls.config.php:3558, src/includes/configs/customizer/controls.config.php:3741, src/includes/configs/customizer/controls.config.php:4038, src/includes/configs/customizer/controls.config.php:4273, src/includes/configs/customizer/controls.config.php:4509, src/includes/configs/customizer/controls.config.php:4764
 msgid "Custom"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:614, src/includes/configs/customizer/controls.config.php:797, src/includes/configs/customizer/controls.config.php:970, src/includes/configs/customizer/controls.config.php:1207, src/includes/configs/customizer/controls.config.php:1437, src/includes/configs/customizer/controls.config.php:1984, src/includes/configs/customizer/controls.config.php:2137, src/includes/configs/customizer/controls.config.php:3105, src/includes/configs/customizer/controls.config.php:3614, src/includes/configs/customizer/controls.config.php:3797, src/includes/configs/customizer/controls.config.php:4089, src/includes/configs/customizer/controls.config.php:4324, src/includes/configs/customizer/controls.config.php:4560, src/includes/configs/customizer/controls.config.php:4815, src/includes/customizer/class-boldgrid-framework-customizer.php:204, src/includes/customizer/class-boldgrid-framework-customizer.php:245
+#: src/includes/configs/customizer/controls.config.php:614, src/includes/configs/customizer/controls.config.php:797, src/includes/configs/customizer/controls.config.php:970, src/includes/configs/customizer/controls.config.php:1207, src/includes/configs/customizer/controls.config.php:1437, src/includes/configs/customizer/controls.config.php:1950, src/includes/configs/customizer/controls.config.php:2103, src/includes/configs/customizer/controls.config.php:3071, src/includes/configs/customizer/controls.config.php:3580, src/includes/configs/customizer/controls.config.php:3763, src/includes/configs/customizer/controls.config.php:4055, src/includes/configs/customizer/controls.config.php:4290, src/includes/configs/customizer/controls.config.php:4526, src/includes/configs/customizer/controls.config.php:4781, src/includes/customizer/class-boldgrid-framework-customizer.php:204, src/includes/customizer/class-boldgrid-framework-customizer.php:245
 msgid "Link Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:644, src/includes/configs/customizer/controls.config.php:827, src/includes/configs/customizer/controls.config.php:995, src/includes/configs/customizer/controls.config.php:1232, src/includes/configs/customizer/controls.config.php:1462, src/includes/configs/customizer/controls.config.php:1997, src/includes/configs/customizer/controls.config.php:3644, src/includes/configs/customizer/controls.config.php:3827, src/includes/configs/customizer/controls.config.php:4114, src/includes/configs/customizer/controls.config.php:4349, src/includes/configs/customizer/controls.config.php:4585, src/includes/configs/customizer/controls.config.php:4840
+#: src/includes/configs/customizer/controls.config.php:644, src/includes/configs/customizer/controls.config.php:827, src/includes/configs/customizer/controls.config.php:995, src/includes/configs/customizer/controls.config.php:1232, src/includes/configs/customizer/controls.config.php:1462, src/includes/configs/customizer/controls.config.php:1963, src/includes/configs/customizer/controls.config.php:3610, src/includes/configs/customizer/controls.config.php:3793, src/includes/configs/customizer/controls.config.php:4080, src/includes/configs/customizer/controls.config.php:4315, src/includes/configs/customizer/controls.config.php:4551, src/includes/configs/customizer/controls.config.php:4806
 msgid "Text Style"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:649, src/includes/configs/customizer/controls.config.php:832, src/includes/configs/customizer/controls.config.php:1000, src/includes/configs/customizer/controls.config.php:1237, src/includes/configs/customizer/controls.config.php:1467, src/includes/configs/customizer/controls.config.php:3649, src/includes/configs/customizer/controls.config.php:3832, src/includes/configs/customizer/controls.config.php:4119, src/includes/configs/customizer/controls.config.php:4354, src/includes/configs/customizer/controls.config.php:4590
+#: src/includes/configs/customizer/controls.config.php:649, src/includes/configs/customizer/controls.config.php:832, src/includes/configs/customizer/controls.config.php:1000, src/includes/configs/customizer/controls.config.php:1237, src/includes/configs/customizer/controls.config.php:1467, src/includes/configs/customizer/controls.config.php:3615, src/includes/configs/customizer/controls.config.php:3798, src/includes/configs/customizer/controls.config.php:4085, src/includes/configs/customizer/controls.config.php:4320, src/includes/configs/customizer/controls.config.php:4556
 msgid "Normal"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:650, src/includes/configs/customizer/controls.config.php:712, src/includes/configs/customizer/controls.config.php:833, src/includes/configs/customizer/controls.config.php:895, src/includes/configs/customizer/controls.config.php:1001, src/includes/configs/customizer/controls.config.php:1053, src/includes/configs/customizer/controls.config.php:1238, src/includes/configs/customizer/controls.config.php:1290, src/includes/configs/customizer/controls.config.php:1468, src/includes/configs/customizer/controls.config.php:1520, src/includes/configs/customizer/controls.config.php:2003, src/includes/configs/customizer/controls.config.php:2031, src/includes/configs/customizer/controls.config.php:3650, src/includes/configs/customizer/controls.config.php:3712, src/includes/configs/customizer/controls.config.php:3833, src/includes/configs/customizer/controls.config.php:3895, src/includes/configs/customizer/controls.config.php:4120, src/includes/configs/customizer/controls.config.php:4172, src/includes/configs/customizer/controls.config.php:4355, src/includes/configs/customizer/controls.config.php:4407, src/includes/configs/customizer/controls.config.php:4591, src/includes/configs/customizer/controls.config.php:4643, src/includes/configs/customizer/controls.config.php:4846, src/includes/configs/customizer/controls.config.php:4898
+#: src/includes/configs/customizer/controls.config.php:650, src/includes/configs/customizer/controls.config.php:712, src/includes/configs/customizer/controls.config.php:833, src/includes/configs/customizer/controls.config.php:895, src/includes/configs/customizer/controls.config.php:1001, src/includes/configs/customizer/controls.config.php:1053, src/includes/configs/customizer/controls.config.php:1238, src/includes/configs/customizer/controls.config.php:1290, src/includes/configs/customizer/controls.config.php:1468, src/includes/configs/customizer/controls.config.php:1520, src/includes/configs/customizer/controls.config.php:1969, src/includes/configs/customizer/controls.config.php:1997, src/includes/configs/customizer/controls.config.php:3616, src/includes/configs/customizer/controls.config.php:3678, src/includes/configs/customizer/controls.config.php:3799, src/includes/configs/customizer/controls.config.php:3861, src/includes/configs/customizer/controls.config.php:4086, src/includes/configs/customizer/controls.config.php:4138, src/includes/configs/customizer/controls.config.php:4321, src/includes/configs/customizer/controls.config.php:4373, src/includes/configs/customizer/controls.config.php:4557, src/includes/configs/customizer/controls.config.php:4609, src/includes/configs/customizer/controls.config.php:4812, src/includes/configs/customizer/controls.config.php:4864
 msgid "Underline"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:677, src/includes/configs/customizer/controls.config.php:860, src/includes/configs/customizer/controls.config.php:1023, src/includes/configs/customizer/controls.config.php:1260, src/includes/configs/customizer/controls.config.php:1490, src/includes/configs/customizer/controls.config.php:2013, src/includes/configs/customizer/controls.config.php:3677, src/includes/configs/customizer/controls.config.php:3860, src/includes/configs/customizer/controls.config.php:4142, src/includes/configs/customizer/controls.config.php:4377, src/includes/configs/customizer/controls.config.php:4613, src/includes/configs/customizer/controls.config.php:4868
+#: src/includes/configs/customizer/controls.config.php:677, src/includes/configs/customizer/controls.config.php:860, src/includes/configs/customizer/controls.config.php:1023, src/includes/configs/customizer/controls.config.php:1260, src/includes/configs/customizer/controls.config.php:1490, src/includes/configs/customizer/controls.config.php:1979, src/includes/configs/customizer/controls.config.php:3643, src/includes/configs/customizer/controls.config.php:3826, src/includes/configs/customizer/controls.config.php:4108, src/includes/configs/customizer/controls.config.php:4343, src/includes/configs/customizer/controls.config.php:4579, src/includes/configs/customizer/controls.config.php:4834
 msgid "Hover Color Brightness"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:706, src/includes/configs/customizer/controls.config.php:889, src/includes/configs/customizer/controls.config.php:1047, src/includes/configs/customizer/controls.config.php:1284, src/includes/configs/customizer/controls.config.php:1514, src/includes/configs/customizer/controls.config.php:2025, src/includes/configs/customizer/controls.config.php:3706, src/includes/configs/customizer/controls.config.php:3889, src/includes/configs/customizer/controls.config.php:4166, src/includes/configs/customizer/controls.config.php:4401, src/includes/configs/customizer/controls.config.php:4637, src/includes/configs/customizer/controls.config.php:4892
+#: src/includes/configs/customizer/controls.config.php:706, src/includes/configs/customizer/controls.config.php:889, src/includes/configs/customizer/controls.config.php:1047, src/includes/configs/customizer/controls.config.php:1284, src/includes/configs/customizer/controls.config.php:1514, src/includes/configs/customizer/controls.config.php:1991, src/includes/configs/customizer/controls.config.php:3672, src/includes/configs/customizer/controls.config.php:3855, src/includes/configs/customizer/controls.config.php:4132, src/includes/configs/customizer/controls.config.php:4367, src/includes/configs/customizer/controls.config.php:4603, src/includes/configs/customizer/controls.config.php:4858
 msgid "Hover Text Style"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:711, src/includes/configs/customizer/controls.config.php:894, src/includes/configs/customizer/controls.config.php:1052, src/includes/configs/customizer/controls.config.php:1289, src/includes/configs/customizer/controls.config.php:1519, src/includes/configs/customizer/controls.config.php:2002, src/includes/configs/customizer/controls.config.php:2030, src/includes/configs/customizer/controls.config.php:3711, src/includes/configs/customizer/controls.config.php:3894, src/includes/configs/customizer/controls.config.php:4171, src/includes/configs/customizer/controls.config.php:4406, src/includes/configs/customizer/controls.config.php:4642, src/includes/configs/customizer/controls.config.php:4845, src/includes/configs/customizer/controls.config.php:4897
+#: src/includes/configs/customizer/controls.config.php:711, src/includes/configs/customizer/controls.config.php:894, src/includes/configs/customizer/controls.config.php:1052, src/includes/configs/customizer/controls.config.php:1289, src/includes/configs/customizer/controls.config.php:1519, src/includes/configs/customizer/controls.config.php:1968, src/includes/configs/customizer/controls.config.php:1996, src/includes/configs/customizer/controls.config.php:3677, src/includes/configs/customizer/controls.config.php:3860, src/includes/configs/customizer/controls.config.php:4137, src/includes/configs/customizer/controls.config.php:4372, src/includes/configs/customizer/controls.config.php:4608, src/includes/configs/customizer/controls.config.php:4811, src/includes/configs/customizer/controls.config.php:4863
 msgid "None"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:740, src/includes/configs/customizer/controls.config.php:3740
+#: src/includes/configs/customizer/controls.config.php:740, src/includes/configs/customizer/controls.config.php:3706
 msgid "Author Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:770, src/includes/configs/customizer/controls.config.php:3770
+#: src/includes/configs/customizer/controls.config.php:770, src/includes/configs/customizer/controls.config.php:3736
 msgid "Author Link Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:925, src/includes/configs/customizer/controls.config.php:4044
+#: src/includes/configs/customizer/controls.config.php:925, src/includes/configs/customizer/controls.config.php:4010
 msgid "Toggle the display of your tags on the blog roll and archive pages."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:948, src/includes/configs/customizer/controls.config.php:1185, src/includes/configs/customizer/controls.config.php:1415, src/includes/configs/customizer/controls.config.php:4067, src/includes/configs/customizer/controls.config.php:4302, src/includes/configs/customizer/controls.config.php:4538, src/includes/configs/customizer/controls.config.php:4793, src/includes/configs/customizer/sections.config.php:56, src/includes/configs/customizer/sections.config.php:91, src/includes/configs/customizer/sections.config.php:126
+#: src/includes/configs/customizer/controls.config.php:948, src/includes/configs/customizer/controls.config.php:1185, src/includes/configs/customizer/controls.config.php:1415, src/includes/configs/customizer/controls.config.php:4033, src/includes/configs/customizer/controls.config.php:4268, src/includes/configs/customizer/controls.config.php:4504, src/includes/configs/customizer/controls.config.php:4759, src/includes/configs/customizer/sections.config.php:56, src/includes/configs/customizer/sections.config.php:91, src/includes/configs/customizer/sections.config.php:126
 msgid "Colors"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1077, src/includes/configs/customizer/controls.config.php:1314, src/includes/configs/customizer/controls.config.php:4195, src/includes/configs/customizer/controls.config.php:4431, src/includes/configs/customizer/controls.config.php:4667
+#: src/includes/configs/customizer/controls.config.php:1077, src/includes/configs/customizer/controls.config.php:1314, src/includes/configs/customizer/controls.config.php:4161, src/includes/configs/customizer/controls.config.php:4397, src/includes/configs/customizer/controls.config.php:4633
 msgid "Icon Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1105, src/includes/configs/customizer/controls.config.php:4223
+#: src/includes/configs/customizer/controls.config.php:1105, src/includes/configs/customizer/controls.config.php:4189
 msgid "Single Tag Icon"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1133, src/includes/configs/customizer/controls.config.php:4251
+#: src/includes/configs/customizer/controls.config.php:1133, src/includes/configs/customizer/controls.config.php:4217
 msgid "Multiple Tags Icon"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1335, src/includes/configs/customizer/controls.config.php:4459
+#: src/includes/configs/customizer/controls.config.php:1335, src/includes/configs/customizer/controls.config.php:4425
 msgid "Single Category Icon"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1363, src/includes/configs/customizer/controls.config.php:4487
+#: src/includes/configs/customizer/controls.config.php:1363, src/includes/configs/customizer/controls.config.php:4453
 msgid "Multiple Categories Icon"
 msgstr ""
 
@@ -542,487 +542,483 @@ msgstr ""
 msgid "Headings Typography"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1575, src/includes/configs/customizer/controls.config.php:3416, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:122
+#: src/includes/configs/customizer/controls.config.php:1575, src/includes/configs/customizer/controls.config.php:3382, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:122
 msgid "Font Size"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1590, src/includes/configs/customizer/controls.config.php:1758
-msgid "Hide or show your site's title."
-msgstr ""
-
-#: src/includes/configs/customizer/controls.config.php:1620, src/includes/configs/customizer/controls.config.php:1774, src/includes/configs/customizer/controls.config.php:1797, src/includes/configs/customizer/controls.config.php:3202
+#: src/includes/configs/customizer/controls.config.php:1603, src/includes/configs/customizer/controls.config.php:1740, src/includes/configs/customizer/controls.config.php:1763, src/includes/configs/customizer/controls.config.php:3168
 msgid "Typography"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1643
+#: src/includes/configs/customizer/controls.config.php:1626
 msgid "You can change what items are displayed when your header is stuck to the top of the page in the <b>Header Layout</b> section below."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1644, src/includes/configs/customizer/controls.config.php:2453
+#: src/includes/configs/customizer/controls.config.php:1627, src/includes/configs/customizer/controls.config.php:2419
 msgid "Sticky Header"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1653
+#: src/includes/configs/customizer/controls.config.php:1636
 msgid "Header Width"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1837
+#: src/includes/configs/customizer/controls.config.php:1803
 msgid "Title Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1850
+#: src/includes/configs/customizer/controls.config.php:1816
 msgid "Title Font Size"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1854, src/includes/configs/customizer/controls.config.php:3420
+#: src/includes/configs/customizer/controls.config.php:1820, src/includes/configs/customizer/controls.config.php:3386
 msgid "H1"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1855, src/includes/configs/customizer/controls.config.php:3421
+#: src/includes/configs/customizer/controls.config.php:1821, src/includes/configs/customizer/controls.config.php:3387
 msgid "H2"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1856, src/includes/configs/customizer/controls.config.php:3422
+#: src/includes/configs/customizer/controls.config.php:1822, src/includes/configs/customizer/controls.config.php:3388
 msgid "H3"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1857, src/includes/configs/customizer/controls.config.php:3423
+#: src/includes/configs/customizer/controls.config.php:1823, src/includes/configs/customizer/controls.config.php:3389
 msgid "H4"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1858, src/includes/configs/customizer/controls.config.php:3424
+#: src/includes/configs/customizer/controls.config.php:1824, src/includes/configs/customizer/controls.config.php:3390
 msgid "H5"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1859, src/includes/configs/customizer/controls.config.php:3425
+#: src/includes/configs/customizer/controls.config.php:1825, src/includes/configs/customizer/controls.config.php:3391
 msgid "H6"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1877
+#: src/includes/configs/customizer/controls.config.php:1843
 msgid "Text Position"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1900, src/includes/configs/customizer/controls.config.php:1916
+#: src/includes/configs/customizer/controls.config.php:1866, src/includes/configs/customizer/controls.config.php:1882
 msgid "Change where your page titles appear on your site."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1904
+#: src/includes/configs/customizer/controls.config.php:1870
 msgid "Above Content"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1905
+#: src/includes/configs/customizer/controls.config.php:1871
 msgid "In Content"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1915
+#: src/includes/configs/customizer/controls.config.php:1881
 msgid "Background Container"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1946
+#: src/includes/configs/customizer/controls.config.php:1912
 msgid "Content Container"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:1947
+#: src/includes/configs/customizer/controls.config.php:1913
 msgid "Set the page title content to be displayed in a container or full width of the page."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2041, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:54
+#: src/includes/configs/customizer/controls.config.php:2007, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:54
 msgid "Contact Details"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2047, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:60
+#: src/includes/configs/customizer/controls.config.php:2013, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:60
 msgid "Contact Block"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2067, src/includes/configs/customizer/controls.config.php:4754, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:67
+#: src/includes/configs/customizer/controls.config.php:2033, src/includes/configs/customizer/controls.config.php:4720, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:67
 msgid "Text"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2068, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:68
+#: src/includes/configs/customizer/controls.config.php:2034, src/includes/customizer/class-boldgrid-framework-customizer-contact-blocks.php:68
 msgid "Enter the text to display in your contact details"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2079
+#: src/includes/configs/customizer/controls.config.php:2045
 msgid "Header Overlay"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2080
+#: src/includes/configs/customizer/controls.config.php:2046
 msgid "Add an overlay to give your text readability over an image or video."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2148
+#: src/includes/configs/customizer/controls.config.php:2114
 msgid "Columns"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2149
+#: src/includes/configs/customizer/controls.config.php:2115
 msgid "Select the number of columns you wish to display on your blog page."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2182
+#: src/includes/configs/customizer/controls.config.php:2148
 msgid "Blog Posts Per Page"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2183
+#: src/includes/configs/customizer/controls.config.php:2149
 msgid "Set how many posts display per page for your blog, categories, archives, and search pages."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2200
+#: src/includes/configs/customizer/controls.config.php:2166
 msgid "Post Content Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2201
+#: src/includes/configs/customizer/controls.config.php:2167
 msgid "Choose between automatically generated post excerpts or displaying your posts' full content."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2204
+#: src/includes/configs/customizer/controls.config.php:2170
 msgid "Post Excerpt"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2205
+#: src/includes/configs/customizer/controls.config.php:2171
 msgid "Full Content"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2213
+#: src/includes/configs/customizer/controls.config.php:2179
 msgid "Excerpt Length"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2214
+#: src/includes/configs/customizer/controls.config.php:2180
 msgid "Set the length of excerpts used for your blog, categories, archives, and search pages."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2237
+#: src/includes/configs/customizer/controls.config.php:2203
 msgid "Choose if you would like your content wrapped in a container or cover the full width of the page."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2252
+#: src/includes/configs/customizer/controls.config.php:2218
 msgid "Sidebar Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2262, src/includes/configs/customizer/controls.config.php:2272
+#: src/includes/configs/customizer/controls.config.php:2228, src/includes/configs/customizer/controls.config.php:2238
 msgid "Homepage Sidebar Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2286
+#: src/includes/configs/customizer/controls.config.php:2252
 msgid "Sidebar Options"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2297
+#: src/includes/configs/customizer/controls.config.php:2263
 msgid "Homepage Blog Layout"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2302, src/includes/configs/customizer/controls.config.php:2323
+#: src/includes/configs/customizer/controls.config.php:2268, src/includes/configs/customizer/controls.config.php:2289
 msgid "Layout 1"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2303, src/includes/configs/customizer/controls.config.php:2324
+#: src/includes/configs/customizer/controls.config.php:2269, src/includes/configs/customizer/controls.config.php:2290
 msgid "Layout 2"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2304, src/includes/configs/customizer/controls.config.php:2325
+#: src/includes/configs/customizer/controls.config.php:2270, src/includes/configs/customizer/controls.config.php:2291
 msgid "Layout 3"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2305, src/includes/configs/customizer/controls.config.php:2326
+#: src/includes/configs/customizer/controls.config.php:2271, src/includes/configs/customizer/controls.config.php:2292
 msgid "Layout 4"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2306, src/includes/configs/customizer/controls.config.php:2327
+#: src/includes/configs/customizer/controls.config.php:2272, src/includes/configs/customizer/controls.config.php:2293
 msgid "Layout 5"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2307, src/includes/configs/customizer/controls.config.php:2328
+#: src/includes/configs/customizer/controls.config.php:2273, src/includes/configs/customizer/controls.config.php:2294
 msgid "Layout 6"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2318, src/includes/configs/customizer/sections.config.php:49, src/includes/configs/customizer/sections.config.php:70
+#: src/includes/configs/customizer/controls.config.php:2284, src/includes/configs/customizer/sections.config.php:49, src/includes/configs/customizer/sections.config.php:70
 msgid "Layout"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2336
+#: src/includes/configs/customizer/controls.config.php:2302
 msgid "Footer Layout"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2389, src/includes/configs/customizer/controls.config.php:2521, src/includes/configs/customizer/controls.config.php:2659, src/includes/customizer/class-boldgrid-framework-customizer-edit.php:119
+#: src/includes/configs/customizer/controls.config.php:2355, src/includes/configs/customizer/controls.config.php:2487, src/includes/configs/customizer/controls.config.php:2625, src/includes/customizer/class-boldgrid-framework-customizer-edit.php:119
 msgid "Menu"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2399, src/includes/configs/customizer/controls.config.php:2541, src/includes/configs/customizer/controls.config.php:2679
+#: src/includes/configs/customizer/controls.config.php:2365, src/includes/configs/customizer/controls.config.php:2507, src/includes/configs/customizer/controls.config.php:2645
 msgid "Branding"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2415
+#: src/includes/configs/customizer/controls.config.php:2381
 msgid "Attribution Links"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2436
+#: src/includes/configs/customizer/controls.config.php:2402
 msgid "Header Position"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2442, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:127
+#: src/includes/configs/customizer/controls.config.php:2408, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:127
 msgid "Top"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2451
+#: src/includes/configs/customizer/controls.config.php:2417
 msgid "Header Layout"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2453
+#: src/includes/configs/customizer/controls.config.php:2419
 msgid "Standard Header"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2458
+#: src/includes/configs/customizer/controls.config.php:2424
 msgid "Standard Header Layout"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2472, src/includes/configs/customizer/controls.config.php:2548, src/includes/configs/customizer/controls.config.php:2610, src/includes/configs/customizer/controls.config.php:2686
+#: src/includes/configs/customizer/controls.config.php:2438, src/includes/configs/customizer/controls.config.php:2514, src/includes/configs/customizer/controls.config.php:2576, src/includes/configs/customizer/controls.config.php:2652
 msgid "Logo: Sticky Header Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2477, src/includes/configs/customizer/controls.config.php:2553, src/includes/configs/customizer/controls.config.php:2615, src/includes/configs/customizer/controls.config.php:2691
+#: src/includes/configs/customizer/controls.config.php:2443, src/includes/configs/customizer/controls.config.php:2519, src/includes/configs/customizer/controls.config.php:2581, src/includes/configs/customizer/controls.config.php:2657
 msgid "Title: Sticky Header Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2482, src/includes/configs/customizer/controls.config.php:2558, src/includes/configs/customizer/controls.config.php:2620, src/includes/configs/customizer/controls.config.php:2696
+#: src/includes/configs/customizer/controls.config.php:2448, src/includes/configs/customizer/controls.config.php:2524, src/includes/configs/customizer/controls.config.php:2586, src/includes/configs/customizer/controls.config.php:2662
 msgid "Tagline: Sticky Header Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2494, src/includes/configs/customizer/controls.config.php:2511, src/includes/configs/customizer/controls.config.php:2528, src/includes/configs/customizer/controls.config.php:2531, src/includes/configs/customizer/controls.config.php:2576, src/includes/configs/customizer/controls.config.php:2632, src/includes/configs/customizer/controls.config.php:2649, src/includes/configs/customizer/controls.config.php:2666, src/includes/configs/customizer/controls.config.php:2669, src/includes/configs/customizer/controls.config.php:2714
+#: src/includes/configs/customizer/controls.config.php:2460, src/includes/configs/customizer/controls.config.php:2477, src/includes/configs/customizer/controls.config.php:2494, src/includes/configs/customizer/controls.config.php:2497, src/includes/configs/customizer/controls.config.php:2542, src/includes/configs/customizer/controls.config.php:2598, src/includes/configs/customizer/controls.config.php:2615, src/includes/configs/customizer/controls.config.php:2632, src/includes/configs/customizer/controls.config.php:2635, src/includes/configs/customizer/controls.config.php:2680
 msgid "Sticky Header Display"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2596
+#: src/includes/configs/customizer/controls.config.php:2562
 msgid "Sticky Header Layout"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2737
+#: src/includes/configs/customizer/controls.config.php:2703
 msgid "Enable Hamburger Menu"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2745, src/includes/configs/customizer/controls.config.php:2944, src/includes/configs/customizer/controls.config.php:2999, src/includes/configs/customizer/controls.config.php:3169
+#: src/includes/configs/customizer/controls.config.php:2711, src/includes/configs/customizer/controls.config.php:2910, src/includes/configs/customizer/controls.config.php:2965, src/includes/configs/customizer/controls.config.php:3135
 msgid "Primary Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2757, src/includes/customizer/class-boldgrid-framework-customizer.php:104
+#: src/includes/configs/customizer/controls.config.php:2723, src/includes/customizer/class-boldgrid-framework-customizer.php:104
 msgid "Hamburger Style"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3012
+#: src/includes/configs/customizer/controls.config.php:2978
 msgid "Secondary Color"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3025
+#: src/includes/configs/customizer/controls.config.php:2991
 msgid "Hover Effect"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3032
+#: src/includes/configs/customizer/controls.config.php:2998
 msgid "No Hover Effects"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3036
+#: src/includes/configs/customizer/controls.config.php:3002
 msgid "Single Color Transitions"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3044
+#: src/includes/configs/customizer/controls.config.php:3010
 msgid "Back Pulse"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3046
+#: src/includes/configs/customizer/controls.config.php:3012
 msgid "Fade"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3047
+#: src/includes/configs/customizer/controls.config.php:3013
 msgid "Sweep to Right"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3048
+#: src/includes/configs/customizer/controls.config.php:3014
 msgid "Sweep to Left"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3049
+#: src/includes/configs/customizer/controls.config.php:3015
 msgid "Sweep to Bottom"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3050
+#: src/includes/configs/customizer/controls.config.php:3016
 msgid "Sweep to Top"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3051
+#: src/includes/configs/customizer/controls.config.php:3017
 msgid "Bounce to Right"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3052
+#: src/includes/configs/customizer/controls.config.php:3018
 msgid "Bounce to Left"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3053
+#: src/includes/configs/customizer/controls.config.php:3019
 msgid "Bounce to Bottom"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3054
+#: src/includes/configs/customizer/controls.config.php:3020
 msgid "Bounce to Top"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3061
+#: src/includes/configs/customizer/controls.config.php:3027
 msgid "Two Color Transitions"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3063
+#: src/includes/configs/customizer/controls.config.php:3029
 msgid "Radial In"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3064
+#: src/includes/configs/customizer/controls.config.php:3030
 msgid "Radial Out"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3065
+#: src/includes/configs/customizer/controls.config.php:3031
 msgid "Rectangle In"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3066
+#: src/includes/configs/customizer/controls.config.php:3032
 msgid "Rectangle Out"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3067
+#: src/includes/configs/customizer/controls.config.php:3033
 msgid "Shutter In Horizontal"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3068
+#: src/includes/configs/customizer/controls.config.php:3034
 msgid "Shutter In Vertical"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3069
+#: src/includes/configs/customizer/controls.config.php:3035
 msgid "Shutter Out Horizontal"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3070
+#: src/includes/configs/customizer/controls.config.php:3036
 msgid "Shutter Out Vertical"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3076
+#: src/includes/configs/customizer/controls.config.php:3042
 msgid "Border Effects"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3078
+#: src/includes/configs/customizer/controls.config.php:3044
 msgid "Trim"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3079
+#: src/includes/configs/customizer/controls.config.php:3045
 msgid "Ripple Out"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3080
+#: src/includes/configs/customizer/controls.config.php:3046
 msgid "Ripple In"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3081
+#: src/includes/configs/customizer/controls.config.php:3047
 msgid "Outline Out"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3082
+#: src/includes/configs/customizer/controls.config.php:3048
 msgid "Outline In"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3086
+#: src/includes/configs/customizer/controls.config.php:3052
 msgid "Overline/Underline Effects"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3088
+#: src/includes/configs/customizer/controls.config.php:3054
 msgid "Underline From Left"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3089
+#: src/includes/configs/customizer/controls.config.php:3055
 msgid "Underline From Center"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3090
+#: src/includes/configs/customizer/controls.config.php:3056
 msgid "Underline From Right"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3091
+#: src/includes/configs/customizer/controls.config.php:3057
 msgid "Underline Reveal"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3092
+#: src/includes/configs/customizer/controls.config.php:3058
 msgid "Overline Reveal"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3093
+#: src/includes/configs/customizer/controls.config.php:3059
 msgid "Overline From Left"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3094
+#: src/includes/configs/customizer/controls.config.php:3060
 msgid "Overline From Center"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3095
+#: src/includes/configs/customizer/controls.config.php:3061
 msgid "Overline From Right"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3345
+#: src/includes/configs/customizer/controls.config.php:3311
 msgid "Post Header"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3925
+#: src/includes/configs/customizer/controls.config.php:3891
 msgid "Hide or show your featured image on your blog roll and archive pages."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3941
+#: src/includes/configs/customizer/controls.config.php:3907
 msgid "Change where your featured image appears on your blog roll or archive pages."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3945
+#: src/includes/configs/customizer/controls.config.php:3911
 msgid "Header Background"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3946
+#: src/includes/configs/customizer/controls.config.php:3912
 msgid "Above Header"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3947
+#: src/includes/configs/customizer/controls.config.php:3913
 msgid "Below Header"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3948
+#: src/includes/configs/customizer/controls.config.php:3914
 msgid "In Post Content"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3965, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:140
+#: src/includes/configs/customizer/controls.config.php:3931, src/includes/customizer/class-boldgrid-framework-customizer-kirki.php:140
 msgid "Height"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:3966
+#: src/includes/configs/customizer/controls.config.php:3932
 msgid "Change the height of the featured image container on your blog page and archive pages."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:4004
+#: src/includes/configs/customizer/controls.config.php:3970
 msgid "Width"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:4005
+#: src/includes/configs/customizer/controls.config.php:3971
 msgid "Change the width of the featured image container on your blog page and archive pages."
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:4695
+#: src/includes/configs/customizer/controls.config.php:4661
 msgid "Single Comment Icon"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:4723
+#: src/includes/configs/customizer/controls.config.php:4689
 msgid "Multiple Comments Icon"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:4767
+#: src/includes/configs/customizer/controls.config.php:4733
 msgid "Type"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:4771
+#: src/includes/configs/customizer/controls.config.php:4737
 msgid "Primary Button"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:4772
+#: src/includes/configs/customizer/controls.config.php:4738
 msgid "Secondary Button"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:4773
+#: src/includes/configs/customizer/controls.config.php:4739
 msgid "Link"
 msgstr ""
 

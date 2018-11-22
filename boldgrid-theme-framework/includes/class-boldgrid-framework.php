@@ -439,7 +439,14 @@ class BoldGrid_Framework {
 			if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {
 				add_action( 'boldgrid_header_before', function() {
 					echo '<div ' . BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ], false ) . '>';
+					echo '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . ' role="banner" ' . BoldGrid_Framework_Schema::header( true ) . '>';
+					do_action( 'boldgrid_header_top' );
+					echo '<div class="custom-header-media">';
+					the_custom_header_markup();
+					echo '</div>';
 					echo BoldGrid::dynamic_sticky_header();
+					do_action( 'boldgrid_header_bottom' );
+					echo '</header><!-- #masthead -->';
 					echo '</div>';
 				}, 20 );
 			}

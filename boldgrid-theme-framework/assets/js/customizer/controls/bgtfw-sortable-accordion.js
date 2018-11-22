@@ -893,7 +893,11 @@ export default {
 	 * @since 2.0.3
 	 */
 	getConnectedMenus() {
-		return _.filter( this.getConnectedItems(), item => item.includes( 'boldgrid_menu' ) );
+		let menus = _.filter( this.getConnectedItems(), item => item.includes( 'boldgrid_menu' ) );
+		if ( false === api( 'bgtfw_fixed_header' )() || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
+			menus = menus.filter( menu => ! menu.includes( 'sticky' ) );
+		}
+		return menus;
 	},
 
 	/**

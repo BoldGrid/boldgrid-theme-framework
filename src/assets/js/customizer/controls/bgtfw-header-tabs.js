@@ -2,16 +2,32 @@
 const api = wp.customize;
 
 export default {
+
+	/**
+	 * Initialize BGTFW header tab control.
+	 *
+	 * @since 2.1.0
+	 */
 	init() {
 		api.bind( 'ready', () => this.ready() );
 	},
 
+	/**
+	 * Tasks to run when customizer has entered ready state.
+	 *
+	 * @since 2.1.0
+	 */
 	ready() {
 		this.setupTabs();
 		$( '.bgtfw-tab' ).on( 'click', e => this._handleTabClicks( e ) );
 		api( 'bgtfw_fixed_header', 'bgtfw_header_layout_position', ( ...args ) => this._bindControls( ...args ) );
 	},
 
+	/**
+	 * Setup up initial state of tabs.
+	 *
+	 * @since 2.1.0
+	 */
 	setupTabs() {
 		if ( false === api( 'bgtfw_fixed_header' )() || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
 			$( '.bgtfw-tab[data-tab$="sticky_header_layout"]' ).hide();
@@ -21,12 +37,24 @@ export default {
 		this.hideTab();
 	},
 
+	/**
+	 * Hide non-select tabs.
+	 *
+	 * @since 2.1.0
+	 */
 	hideTab() {
 		document.querySelectorAll( '.bgtfw-tab:not(.selected)' ).forEach( tab => {
 			$( tab.dataset.tab ).hide();
 		} );
 	},
 
+	/**
+	 * Event handler for click on tabs.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @param {ClickEvent} e
+	 */
 	_handleTabClicks( e ) {
 		if ( ! e.currentTarget.classList.contains( 'selected' ) ) {
 			document.querySelectorAll( '.bgtfw-tab' ).forEach( item => {
@@ -39,6 +67,13 @@ export default {
 		}
 	},
 
+	/**
+	 * Processes to run when bound control settings are changed.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @param { wp.customize.Setting }
+	 */
 	_bindControls( ...args ) {
 
 		// Bind sticky header and header position controls to sticky header controls in dynamic layout.

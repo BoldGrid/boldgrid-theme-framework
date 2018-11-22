@@ -14,11 +14,10 @@ import bgtfwSortableAccordion from './controls/bgtfw-sortable-accordion.js';
 import bgtfwMenuHamburgers from './controls/bgtfw-menu-hamburgers.js';
 import bgtfwTypography from './controls/kirki-typography.js';
 import bgtfwHeaderTabs from './controls/bgtfw-header-tabs.js';
+import bgtfwMenuLocations from './controls/bgtfw-menu-locations.js';
 
 let devices = new Devices();
 devices.init();
-
-
 
 ( function( $ ) {
 	var api, _panelEmbed, _panelIsContextuallyActive, _panelAttachEvents, _sectionEmbed, _sectionIsContextuallyActive, _sectionAttachEvents;
@@ -321,5 +320,8 @@ devices.init();
 			return ( 0 !== activeCount );
 		}
 	} );
+
+	// Apply custom nav_menu_location control functionality.
+	wp.customize.controlConstructor.nav_menu_location = wp.customize.controlConstructor.nav_menu_location.extend( bgtfwMenuLocations );
 
 } )( jQuery );

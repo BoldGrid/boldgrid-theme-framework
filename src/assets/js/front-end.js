@@ -329,7 +329,17 @@ var BoldGrid = BoldGrid || {};
 			 * Initialize header-slide-in.
 			 */
 			init: function() {
+				this._scroll();
+			},
+			_scroll: function() {
+				window.addEventListener( 'scroll', () => {
+					let header = document.querySelector( '.bgtfw-header' ),
+						distanceY = window.pageYOffset || document.documentElement.scrollTop,
+						shrinkOn = header.offsetHeight,
+						classes = header.previousElementSibling.classList;
 
+					distanceY > shrinkOn ? classes.add( 'bgtfw-stick' ) : classes.remove( 'bgtfw-stick' );
+				} );
 			}
 		},
 

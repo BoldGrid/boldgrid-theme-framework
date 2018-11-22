@@ -2,16 +2,13 @@
  * Header clone.
  */
 .header-top {
-	.bgtfw-header-clone {
+	.bgtfw-sticky-header {
 
 		// Required styles.
 		position: fixed;
 		z-index: 201;
 		top: 0;
 		left: 0;
-
-		// Additional styles.
-		background: #c95a5d;
 
 		// Translate -100% to move off screen.
 		-webkit-transform: translateY(-100%);
@@ -22,37 +19,39 @@
 		-webkit-transition: all 300ms ease-in-out;
 		-moz-transition: all 300ms ease-in-out;
 		transition: all 300ms ease-in-out;
+
+		// On stick apply the transform.
+		&.bgtfw-stick {
+
+			// Translate back to 0%.
+			-webkit-transform: translateY(0%);
+			-ms-transform: translateY(0%);
+			transform: translateY(0%);
+
+			// @TODO: temp style.
+			.custom-logo-link {
+				margin-top: 10px;
+				margin-bottom: 10px;
+
+				.custom-logo {
+					width: 80%;
+				}
+			}
+		}
 	}
 
 	// Adjust for admin bar presence in WordPress.
-	&.admin-bar .bgtfw-header-clone {
+	&.admin-bar .bgtfw-sticky-header {
 		top: 32px;
 		@media screen and (max-width: 782px) {
 			top: 46px;
 		}
 	}
 
-	// On stick apply the transform.
-	.bgtfw-header-stick {
 
-		// Translate back to 0%.
-		-webkit-transform: translateY(0%);
-		-ms-transform: translateY(0%);
-		transform: translateY(0%);
-
-		// @TODO: temp style.
-		.custom-logo-link {
-			margin-top: 10px;
-			margin-bottom: 10px;
-
-			.custom-logo {
-				width: 80%;
-			}
-		}
-	}
 
 	// Unstuck. Empty selector left for reference.
-	.bgtfw-header-unstick {}
+	.bgtfw-unstick {}
 }
 
 .custom-logo-link {

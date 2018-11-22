@@ -485,6 +485,12 @@ export default {
 			markup = '<select class="repeater-control menu-select">';
 
 		_.each( window._wpCustomizeNavMenusSettings.locationSlugMappedToName, ( name, location ) => {
+			if ( 'sticky-header' !== this.params.location && location.includes( 'sticky' ) ) {
+				return;
+			}
+			if ( 'sticky-header' === this.params.location && ! location.includes( 'sticky' ) ) {
+				return;
+			}
 			attr = `boldgrid_menu_${ location }` === type ? 'selected' : '';
 			markup += `<option value="boldgrid_menu_${ location }"${ attr }>${ name }</option>`;
 		} );

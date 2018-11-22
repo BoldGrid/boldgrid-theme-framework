@@ -92,7 +92,7 @@ export default {
 			$( api.OuterSection.prototype.containerParent ).on( 'bgtfw-menu-dropdown-select', _.after( this.getConnectedMenus().length, this.updateConnectedSelects( true ) ) );
 			this.sortable
 				.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
-				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.align .direction:not(.selected), .repeater-control.sticky .bgtfw-sortable-control:not(.selected)', e => this._select( e ) )
+				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.align .direction:not(.selected)', e => this._select( e ) )
 				.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
 				.on( 'change', '.repeater-control.menu-select', e => this._updateMenuSelect( e ) )
 				.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) )
@@ -135,7 +135,7 @@ export default {
 	},
 
 	/**
-	 * Sticky header items' display event handler.
+	 * Header items' display event handler.
 	 *
 	 * @since 2.0.3
 	 */
@@ -143,14 +143,14 @@ export default {
 		let el = e.currentTarget,
 			repeater = $( el ).closest( '.repeater' )[0],
 			data = {
-				display: el.dataset.sticky,
+				display: el.dataset.display,
 				selector: this.getItemSelector( repeater.dataset )
 			},
-			stickyData = JSON.parse( decodeURIComponent( repeater.dataset.sticky ) ),
-			index = _.findIndex( stickyData, { selector: data.selector } );
+			displayData = JSON.parse( decodeURIComponent( repeater.dataset.display ) ),
+			index = _.findIndex( displayData, { selector: data.selector } );
 
-		stickyData[ index ] = _.extend( _.findWhere( stickyData, { selector: data.selector } ), data );
-		repeater.dataset.sticky = encodeURIComponent( JSON.stringify( stickyData ) );
+		displayData[ index ] = _.extend( _.findWhere( displayData, { selector: data.selector } ), data );
+		repeater.dataset.display = encodeURIComponent( JSON.stringify( displayData ) );
 		this.updateValues();
 	},
 
@@ -181,10 +181,8 @@ export default {
 		if ( 'sticky-header' === this.params.location ) {
 			if ( 'header-top' === api( 'bgtfw_header_layout_position' )() && true === api( 'bgtfw_fixed_header' )() ) {
 				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).show();
-				this.container.find( '.repeater-control.sticky' ).removeClass( 'hidden' );
 			} else {
 				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).hide();
-				this.container.find( '.repeater-control.sticky' ).addClass( 'hidden' );
 			}
 		}
 	},
@@ -364,21 +362,21 @@ export default {
 	 *
 	 * @since 2.0.3
 	 */
-	getStickyMarkup( setting ) {
+	getDisplayMarkup( setting ) {
 		let markup = '';
 		_.each( setting, ( control ) => {
-			let controlMarkup = `<div class="repeater-control sticky" data-selector="${ control.selector }">
+			let controlMarkup = `<div class="repeater-control display" data-selector="${ control.selector }">
 				<div class="repeater-control-title">${ control.title }</div>
 				<div class="control-wrapper">
-					<div class="bgtfw-sortable-control sticky-show" data-sticky="show">
+					<div class="bgtfw-sortable-control display-show" data-display="show">
 						<span class="dashicons dashicons-visibility"></span><span>Show</span>
 					</div>
-					<div class="bgtfw-sortable-control sticky-hide" data-sticky="hide">
+					<div class="bgtfw-sortable-control display-hide" data-display="hide">
 						<span class="dashicons dashicons-hidden"></span><span>Hide</span>
 					</div>
 				</div>
 			</div>`;
-			controlMarkup = controlMarkup.replace( `bgtfw-sortable-control sticky-${ control.display }`, `bgtfw-sortable-control sticky-${ control.display } selected` );
+			controlMarkup = controlMarkup.replace( `bgtfw-sortable-control display-${ control.display }`, `bgtfw-sortable-control display-${ control.display } selected` );
 			markup += controlMarkup;
 		} );
 

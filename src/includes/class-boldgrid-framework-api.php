@@ -1262,6 +1262,17 @@ class BoldGrid {
 	}
 
 	/**
+	 * Outputs dynamic header layout element.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @return string Rendered HTML for dyanmic layout element.
+	 */
+	public static function dynamic_sticky_header() {
+		return self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+	}
+
+	/**
 	 * Outputs dynamic footer layout element.
 	 *
 	 * @since 2.0.3

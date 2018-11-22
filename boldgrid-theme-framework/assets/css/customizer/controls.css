@@ -2704,7 +2704,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   margin-right: 5px;
 }
 
-.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper,
+.bgtfw-sortable-accordion .repeater-control.display .control-wrapper,
 .bgtfw-sortable-accordion .bgtfw-container-control,
 .bgtfw-sortable-accordion .sortable-actions {
   display: -webkit-box;
@@ -2717,8 +2717,8 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
           justify-content: space-between;
 }
 
-.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper i,
-.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper .dashicons
+.bgtfw-sortable-accordion .repeater-control.display .control-wrapper i,
+.bgtfw-sortable-accordion .repeater-control.display .control-wrapper .dashicons
 .bgtfw-icon,
 .bgtfw-sortable-accordion .bgtfw-container-control i,
 .bgtfw-sortable-accordion .bgtfw-container-control .dashicons
@@ -2729,8 +2729,8 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   margin-right: 5px;
 }
 
-.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper .bgtfw-sortable-control,
-.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper .bgtfw-sortable,
+.bgtfw-sortable-accordion .repeater-control.display .control-wrapper .bgtfw-sortable-control,
+.bgtfw-sortable-accordion .repeater-control.display .control-wrapper .bgtfw-sortable,
 .bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable-control,
 .bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable,
 .bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable-control,
@@ -2842,6 +2842,9 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   margin-left: auto;
   margin-right: auto;
   margin-top: .75em;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.menu-select {
   width: 80%;
 }
 
@@ -2849,18 +2852,18 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   font-weight: 400;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.sticky {
+.bgtfw-sortable-accordion .repeater .repeater-control.display {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   width: 100%;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.sticky:hover,
-.bgtfw-sortable-accordion .repeater .repeater-control.sticky:hover .repeater-control-title {
+.bgtfw-sortable-accordion .repeater .repeater-control.display:hover,
+.bgtfw-sortable-accordion .repeater .repeater-control.display:hover .repeater-control-title {
   border-color: #999;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.sticky .repeater-control-title {
+.bgtfw-sortable-accordion .repeater .repeater-control.display .repeater-control-title {
   border-bottom: 1px solid #ddd;
   background-color: rgba(255, 255, 255, 0.7);
   width: 100%;
@@ -2869,7 +2872,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   text-align: center;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.sticky .control-wrapper {
+.bgtfw-sortable-accordion .repeater .repeater-control.display .control-wrapper {
   font-weight: 400;
 }
 
@@ -2899,6 +2902,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 50%;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.align .repeater-control-title {
@@ -2911,7 +2915,6 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 .bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper {
   background: white;
   border: 1px solid #ddd;
-  width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

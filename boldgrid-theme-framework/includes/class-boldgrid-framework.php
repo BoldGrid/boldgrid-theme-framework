@@ -434,6 +434,18 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_primary_navigation',   $boldgrid_theme,   'print_primary_navigation' );
 		$this->loader->add_filter( 'boldgrid_print_menu', $boldgrid_theme, 'print_menu' );
 
+		// Sticky Header
+		add_action( 'template_redirect', function() {
+			if ( ( is_customize_preview() ) || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {
+				add_action( 'boldgrid_header_before', function() {
+					echo '<div ' . BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ], false ) . '>';
+					echo BoldGrid::dynamic_sticky_header();
+					echo '</div>';
+				}, 20 );
+			}
+		} );
+
+
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
 

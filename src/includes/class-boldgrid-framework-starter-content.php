@@ -309,7 +309,7 @@ class BoldGrid_Framework_Starter_Content {
 	 * @return array $config Array of BGTFW configuration options.
 	 */
 	public function set_menus( $config, $index, $control ) {
-		if ( isset( $control['settings'] ) && strpos( $control['settings'], 'bgtfw_menu_' ) !== false && strpos( $control['settings'], 'main' ) !== false ) {
+		if ( isset( $control['settings'] ) && strpos( $control['settings'], 'bgtfw_menu_' ) !== false && ( strpos( $control['settings'], 'main' ) !== false && strpos( $control['settings'], 'sticky-main' ) === false ) ) {
 
 			$menus = $config['menu']['locations'];
 

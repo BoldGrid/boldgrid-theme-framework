@@ -1270,7 +1270,7 @@ class BoldGrid {
 	 */
 	public static function dynamic_sticky_header() {
 		$markup = '';
-		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . ' role="banner" ' . BoldGrid_Framework_Schema::header( true ) . '>';
+		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . '>';
 		do_action( 'boldgrid_header_top' );
 		$markup .= '<div class="custom-header-media">';
 		$markup .= the_custom_header_markup();

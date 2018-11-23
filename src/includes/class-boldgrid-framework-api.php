@@ -1233,7 +1233,7 @@ class BoldGrid {
 	 * @return array $defaults Default parameters with uIDs added for items.
 	 */
 	public static function create_uids( $theme_mod ) {
-		$uid = false !== strpos( $theme_mod, 'header' ) ? 'h' : 'f';
+		$uid = false !== strpos( $theme_mod, 'header' ) ? false !== strpos( $theme_mod, 'sticky-header' ) ? 's' : 'h' : 'f';
 		$defaults = get_theme_mod( $theme_mod );
 
 		foreach ( $defaults as $key => $section ) {

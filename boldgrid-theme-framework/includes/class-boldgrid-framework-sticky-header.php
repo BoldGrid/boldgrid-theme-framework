@@ -69,7 +69,7 @@ class Boldgrid_Framework_Sticky_Header {
 						if ( ! empty( $item['display'] ) ) {
 							foreach ( $item['display'] as $display ) {
 								if ( 'show' !== $display['display'] ) {
-									$selectors[] = '.bgtfw-header-stick .' . $item['uid'] . ' ' . $display['selector'];
+									$selectors[] = '.' . $item['uid'] . ' ' . $display['selector'];
 								}
 							}
 						}

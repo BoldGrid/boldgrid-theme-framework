@@ -2838,6 +2838,20 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   display: none;
 }
 
+.bgtfw-sortable-accordion .repeater[data-key="branding"] .repeater-control {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-top: 0;
+}
+
+.bgtfw-sortable-accordion .repeater[data-key="branding"] .repeater-control.display {
+  border-right: 1px solid #ddd;
+}
+
+.bgtfw-sortable-accordion .repeater[data-key="branding"] .repeater-control.align .align-wrapper {
+  border-right: none;
+}
+
 .bgtfw-sortable-accordion .repeater .repeater-control {
   margin-left: auto;
   margin-right: auto;
@@ -2855,7 +2869,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 .bgtfw-sortable-accordion .repeater .repeater-control.display {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  width: 100%;
+  width: 50%;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.display:hover,
@@ -2874,6 +2888,11 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 
 .bgtfw-sortable-accordion .repeater .repeater-control.display .control-wrapper {
   font-weight: 400;
+  padding: .5em .75em;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.display .control-wrapper label {
+  vertical-align: top;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit .repeater-control-description {

@@ -2367,6 +2367,25 @@ return array(
 					'align' => [
 						'default' => 'nw',
 					],
+					'display' => [
+						'default' => [
+							[
+								'selector' => '.custom-logo',
+								'display' => 'show',
+								'title' => __( 'Logo', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-title',
+								'display' => 'show',
+								'title' => __( 'Title', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-description',
+								'display' => 'hide',
+								'title' => __( 'Tagline', 'bgtfw' ),
+							],
+						],
+					],
 				],
 			],
 			'sidebar' => [
@@ -2433,17 +2452,17 @@ return array(
 						'align' => 'w',
 						'display' => [
 							[
-								'selector' => '.bgtfw-header .custom-logo',
+								'selector' => '.custom-logo',
 								'display' => 'show',
 								'title' => __( 'Logo', 'bgtfw' ),
 							],
 							[
-								'selector' => '.bgtfw-header .site-title',
+								'selector' => '.site-title',
 								'display' => 'show',
 								'title' => __( 'Title', 'bgtfw' ),
 							],
 							[
-								'selector' => '.bgtfw-header .site-description',
+								'selector' => '.site-description',
 								'display' => 'hide',
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
@@ -2485,17 +2504,17 @@ return array(
 					'display' => [
 						'default' => [
 							[
-								'selector' => '.bgtfw-header .custom-logo',
+								'selector' => '.custom-logo',
 								'display' => 'show',
 								'title' => __( 'Logo', 'bgtfw' ),
 							],
 							[
-								'selector' => '.bgtfw-header .site-title',
+								'selector' => '.site-title',
 								'display' => 'show',
 								'title' => __( 'Title', 'bgtfw' ),
 							],
 							[
-								'selector' => '.bgtfw-header .site-description',
+								'selector' => '.site-description',
 								'display' => 'hide',
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
@@ -2538,17 +2557,17 @@ return array(
 						'align' => 'w',
 						'branding' => [
 							[
-								'selector' => '.bgtfw-sticky-header .custom-logo',
+								'selector' => '.custom-logo',
 								'display' => 'show',
 								'title' => __( 'Logo', 'bgtfw' ),
 							],
 							[
-								'selector' => '.bgtfw-sticky-header .site-title',
+								'selector' => '.site-title',
 								'display' => 'hide',
 								'title' => __( 'Title', 'bgtfw' ),
 							],
 							[
-								'selector' => '.bgtfw-sticky-header .site-description',
+								'selector' => '.site-description',
 								'display' => 'hide',
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
@@ -2590,17 +2609,17 @@ return array(
 					'display' => [
 						'default' => [
 							[
-								'selector' => '.bgtfw-sticky-header .custom-logo',
+								'selector' => '.custom-logo',
 								'display' => 'hide',
 								'title' => __( 'Logo', 'bgtfw' ),
 							],
 							[
-								'selector' => '.bgtfw-sticky-header .site-title',
+								'selector' => '.site-title',
 								'display' => 'hide',
 								'title' => __( 'Title', 'bgtfw' ),
 							],
 							[
-								'selector' => '.bgtfw-sticky-header .site-description',
+								'selector' => '.site-description',
 								'display' => 'hide',
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],

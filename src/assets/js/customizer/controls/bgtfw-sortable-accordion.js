@@ -1,6 +1,7 @@
 import camelCase from 'lodash.camelcase';
 import kebabCase from 'lodash.kebabcase';
 import startCase from 'lodash.startcase';
+import lowerCase from 'lodash.lowercase';
 
 const api = wp.customize;
 
@@ -97,7 +98,9 @@ export default {
 				.on( 'change', '.repeater-control.menu-select', e => this._updateMenuSelect( e ) )
 				.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) )
 				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', () => this._updateContainer() )
-				.on( 'change', '.repeater-control.attribution', e => this._updateAttribution( e ) );
+				.on( 'change', '.repeater-control.attribution', e => this._updateAttribution( e ) )
+				.on( 'change', '.display-control', e => this._updateDisplay( e ) );
+
 			$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );
 
 			// Bind sticky header and header position controls to sticky header controls in dynamic layout.
@@ -139,12 +142,17 @@ export default {
 	 *
 	 * @since 2.0.3
 	 */
-	_updateSelector( e ) {
-		let el = e.currentTarget,
-			repeater = $( el ).closest( '.repeater' )[0],
+	_updateDisplay( e ) {
+		let el = e.currentTarget;
+
+		// Set display state based on :checked.
+		el.dataset.display = el.checked ? 'hide' : 'show';
+
+		// Update repeater.
+		let repeater = $( el ).closest( '.repeater' )[0],
 			data = {
 				display: el.dataset.display,
-				selector: this.getItemSelector( repeater.dataset )
+				selector: el.dataset.selector
 			},
 			displayData = JSON.parse( decodeURIComponent( repeater.dataset.display ) ),
 			index = _.findIndex( displayData, { selector: data.selector } );
@@ -363,22 +371,29 @@ export default {
 	 * @since 2.0.3
 	 */
 	getDisplayMarkup( setting ) {
-		let markup = '';
-		_.each( setting, ( control ) => {
-			let controlMarkup = `<div class="repeater-control display" data-selector="${ control.selector }">
-				<div class="repeater-control-title">${ control.title }</div>
+		let markup = `
+		<div class="repeater-control display">
+			<div class="repeater-control-title">Display</div>
+			<div class="repeater-control-nested">
 				<div class="control-wrapper">
-					<div class="bgtfw-sortable-control display-show" data-display="show">
-						<span class="dashicons dashicons-visibility"></span><span>Show</span>
-					</div>
-					<div class="bgtfw-sortable-control display-hide" data-display="hide">
-						<span class="dashicons dashicons-hidden"></span><span>Hide</span>
-					</div>
+					<ul>`;
+
+				_.each( setting, control => {
+
+					// Create unique IDs ex: 'sticky-header-title-1'.
+					let id = _.uniqueId( `${ this.params.location }-${ lowerCase( control.title ) }-` ),
+						checked = 'hide' === control.display ? 'checked' : '';
+
+					markup += `
+						<li>
+							<input id="${ id }" class="display-control" type="checkbox" data-display="${ control.display }" data-selector="${ control.selector }" ${ checked }>
+							<label for="${ id }">${ control.title }</label>
+						</li>`;
+				} );
+		markup += `</ul>
 				</div>
-			</div>`;
-			controlMarkup = controlMarkup.replace( `bgtfw-sortable-control display-${ control.display }`, `bgtfw-sortable-control display-${ control.display } selected` );
-			markup += controlMarkup;
-		} );
+			</div>
+		</div>`;
 
 		return markup;
 	},

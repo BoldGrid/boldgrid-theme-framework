@@ -42,17 +42,12 @@
 	}
 
 	// Adjust for admin bar presence in WordPress.
-	&.admin-bar .bgtfw-sticky-header {
+	&.admin-bar .bgtfw-sticky-header.bgtfw-stick {
 		top: 32px;
 		@media screen and (max-width: 782px) {
 			top: 46px;
 		}
 	}
-
-
-
-	// Unstuck. Empty selector left for reference.
-	.bgtfw-unstick {}
 }
 
 .custom-logo-link {

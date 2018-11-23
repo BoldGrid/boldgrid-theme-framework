@@ -115,12 +115,12 @@
   width: 80%;
 }
 
-.header-top.admin-bar .bgtfw-sticky-header {
+.header-top.admin-bar .bgtfw-sticky-header.bgtfw-stick {
   top: 32px;
 }
 
 @media screen and (max-width: 782px) {
-  .header-top.admin-bar .bgtfw-sticky-header {
+  .header-top.admin-bar .bgtfw-sticky-header.bgtfw-stick {
     top: 46px;
   }
 }

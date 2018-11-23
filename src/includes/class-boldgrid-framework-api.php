@@ -1269,7 +1269,16 @@ class BoldGrid {
 	 * @return string Rendered HTML for dyanmic layout element.
 	 */
 	public static function dynamic_sticky_header() {
-		return self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+		$markup = '';
+		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . ' role="banner" ' . BoldGrid_Framework_Schema::header( true ) . '>';
+		do_action( 'boldgrid_header_top' );
+		$markup .= '<div class="custom-header-media">';
+		$markup .= the_custom_header_markup();
+		$markup .= '</div>';
+		$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+		do_action( 'boldgrid_header_bottom' );
+		$markup .= '</header><!-- #masthead -->';
+		return $markup;
 	}
 
 	/**

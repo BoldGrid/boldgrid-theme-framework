@@ -2555,7 +2555,7 @@ return array(
 						'type' => 'boldgrid_site_identity',
 						'key' => 'branding',
 						'align' => 'w',
-						'branding' => [
+						'display' => [
 							[
 								'selector' => '.custom-logo',
 								'display' => 'show',

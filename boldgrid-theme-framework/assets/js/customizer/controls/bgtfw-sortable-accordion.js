@@ -98,7 +98,7 @@ export default {
 				.on( 'change', '.repeater-control.menu-select', e => this._updateMenuSelect( e ) )
 				.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) )
 				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', () => this._updateContainer() )
-				.on( 'change', '.repeater-control.attribution', e => this._updateAttribution( e ) )
+				.on( 'change', '.repeater-control.attribution .attribution-link', e => this._updateAttribution( e ) )
 				.on( 'change', '.display-control', e => this._updateDisplay( e ) );
 
 			$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );

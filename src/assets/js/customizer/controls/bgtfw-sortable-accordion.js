@@ -114,14 +114,14 @@ export default {
 				this.sortable.on( 'click', '.repeater-control.sticky .bgtfw-sortable-control:not(.selected)', ( e ) => this._updateSelector( e ) );
 			} );
 
-			api( 'custom_logo', value => value.bind( () => this._toggleLogo() ) );
+			api( 'custom_logo', value => value.bind( to => this._toggleLogo( to ) ) );
 		} );
 	},
 
-	_toggleLogo() {
-		if ( _.isEmpty( api( 'custom_logo' )() ) ) {
-			this.container.find( '.repeater-control[data-selector=".custom-logo"]' ).addClass( 'hidden' );
-		}
+	_toggleLogo( to ) {
+		this.container[0].querySelectorAll( '[data-selector=".custom-logo"]' ).forEach( control => {
+			control.classList.toggle( 'hidden', _.isEmpty( to ) );
+		} );
 	},
 
 	/**
@@ -146,7 +146,7 @@ export default {
 		let el = e.currentTarget;
 
 		// Set display state based on :checked.
-		el.dataset.display = el.checked ? 'hide' : 'show';
+		el.dataset.display = el.checked ? 'show' : 'hide';
 
 		// Update repeater.
 		let repeater = $( el ).closest( '.repeater' )[0],
@@ -382,7 +382,7 @@ export default {
 
 					// Create unique IDs ex: 'sticky-header-title-1'.
 					let id = _.uniqueId( `${ this.params.location }-${ lowerCase( control.title ) }-` ),
-						checked = 'hide' === control.display ? 'checked' : '';
+						checked = 'hide' === control.display ? '' : 'checked';
 
 					markup += `
 						<li>

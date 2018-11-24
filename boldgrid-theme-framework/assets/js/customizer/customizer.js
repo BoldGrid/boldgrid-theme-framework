@@ -13,26 +13,38 @@ const api = wp.customize;
 const controlApi = parent.wp.customize;
 
 api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
-	if ( 'bgtfw_header_layout' === placement.partial.id ) {
-		let css = [];
+	let controls = [ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
 
-		_.each( api( 'bgtfw_header_layout' )(), sections => {
-			if ( ! _.isUndefined( sections.items ) ) {
-				_.each( sections.items, item => {
-					if ( ! _.isUndefined( item.sticky ) ) {
-						_.each( item.sticky, sticky => {
-							if ( 'hide' === sticky.display ) {
-								css.push( `.bgtfw-header-stick .${ item.uid } ${ sticky.selector }` );
+	if ( controls.includes( placement.partial.id ) ) {
+			let css = [];
+
+			controls.map( control => {
+				let uid = control.includes( 'header' ) ? control.includes( 'sticky-header' ) ? 's' : 'h' : 'f';
+
+				_.each( api( control )(), ( sections, key ) => {
+					uid += key;
+					if ( ! _.isUndefined( sections.items ) ) {
+						_.each( sections.items, ( item, k ) => {
+							if ( _.isEmpty( item.uid ) ) {
+								uid += k;
+							} else {
+								uid = item.uid;
+							}
+							if ( ! _.isUndefined( item.display ) ) {
+								_.each( item.display, display => {
+									if ( 'hide' === display.display ) {
+										css.push( `.${ uid } ${ display.selector }` );
+									}
+								} );
 							}
 						} );
 					}
 				} );
-			}
-		} );
+			} );
 
-		css = _.isEmpty( css ) ? '' : `${ css.join( ', ' ) } { display: none; }`;
+			css = _.isEmpty( css ) ? '' : `${ css.join( ', ' ) } { display: none; }`;
 
-		document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = css;
+			document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = css;
 	}
 } );
 

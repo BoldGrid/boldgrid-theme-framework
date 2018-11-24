@@ -56,13 +56,13 @@ class Boldgrid_Framework_Sticky_Header {
 	 */
 	public function get_styles() {
 		$css = '';
+		$selectors = [];
 		$theme_mods = [];
 		$theme_mods[] = BoldGrid::create_uids( 'bgtfw_header_layout' );
 		$theme_mods[] = BoldGrid::create_uids( 'bgtfw_sticky_header_layout' );
 		$theme_mods[] = BoldGrid::create_uids( 'bgtfw_footer_layout' );
 
 		foreach ( $theme_mods as $theme_mod ) {
-			$selectors = [];
 			foreach ( $theme_mod as $key => $section ) {
 				if ( ! empty( $section['items'] ) ) {
 					foreach ( $section['items'] as $k => $item ) {
@@ -77,9 +77,9 @@ class Boldgrid_Framework_Sticky_Header {
 				}
 			}
 
-			$css .= ! empty( $selectors ) ? implode( ', ', $selectors ) . '{ display: none; }' : '';
-		}
 
-		return apply_filters( 'bgtfw_sticky_header_display_css', $css );
+		}
+		$selectors = ! empty( $selectors ) ? implode( ', ', $selectors ) . '{ display: none; }' : '';
+		return apply_filters( 'bgtfw_sticky_header_display_css', $selectors );
 	}
 }

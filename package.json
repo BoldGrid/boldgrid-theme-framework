@@ -87,6 +87,7 @@
   },
   "dependencies": {
     "@boldgrid/components": "^2.15.2",
+    "@wordpress/dom-ready": "^2.0.2",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",
     "animate.css": "latest",
     "bootstrap-sass": "~3.3.6",

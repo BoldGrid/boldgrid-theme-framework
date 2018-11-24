@@ -10,6 +10,7 @@
  * ======================================================================== */
 
 import cssVars from 'css-vars-ponyfill';
+import domReady from '@wordpress/dom-ready';
 
 // Setup our object.
 //jscs:disable requireVarDeclFirst
@@ -329,10 +330,15 @@ var BoldGrid = BoldGrid || {};
 			 * Initialize header-slide-in.
 			 */
 			init: function() {
-				window.matchMedia( '(min-width: 768px)' ).addListener( e => {
+				let mq = window.matchMedia( '(min-width: 768px)' ),
+					sticky = () => this._scroll() && window.addEventListener( 'scroll', this._scroll );
+
+				// On DOMLoaded check media query and initialize sticky listener if matched.
+				domReady( () => mq.matches && sticky() );
+
+				mq.addListener( e => {
 					if ( e.matches ) {
-						window.addEventListener( 'scroll', this._scroll );
-						this._scroll();
+						sticky();
 					} else {
 						window.removeEventListener( 'scroll', this._scroll );
 						document.getElementById( 'masthead-sticky' ).parentElement.classList.remove( 'bgtfw-stick' );

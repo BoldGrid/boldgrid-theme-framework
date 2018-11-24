@@ -19,7 +19,7 @@ api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
 			let css = [];
 
 			controls.map( control => {
-				let uid = control.includes( 'header' ) ? control.includes( 'sticky-header' ) ? 's' : 'h' : 'f';
+				let uid = control.includes( 'header' ) ? control.includes( 'sticky_header' ) ? 's' : 'h' : 'f';
 
 				_.each( api( control )(), ( sections, key ) => {
 					uid += key;

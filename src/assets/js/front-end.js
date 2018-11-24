@@ -331,7 +331,10 @@ var BoldGrid = BoldGrid || {};
 			 */
 			init: function() {
 				let mq = window.matchMedia( '(min-width: 768px)' ),
-					sticky = () => this._scroll() && window.addEventListener( 'scroll', this._scroll );
+					sticky = () => {
+						this._scroll();
+						window.addEventListener( 'scroll', this._scroll );
+					};
 
 				// On DOMLoaded check media query and initialize sticky listener if matched.
 				domReady( () => mq.matches && sticky() );

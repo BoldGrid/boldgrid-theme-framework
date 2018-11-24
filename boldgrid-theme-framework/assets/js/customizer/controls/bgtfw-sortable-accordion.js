@@ -381,12 +381,17 @@ export default {
 				_.each( setting, control => {
 
 					// Create unique IDs ex: 'sticky-header-title-1'.
-					let id = _.uniqueId( `${ this.params.location }-${ lowerCase( control.title ) }-` ),
+					let classes = 'display-control',
+						id = _.uniqueId( `${ this.params.location }-${ lowerCase( control.title ) }-` ),
 						checked = 'hide' === control.display ? '' : 'checked';
+
+					if ( '.custom-logo' === control.selector && _.isEmpty( api( 'custom_logo' )() ) ) {
+						classes += ' hidden';
+					}
 
 					markup += `
 						<li>
-							<input id="${ id }" class="display-control" type="checkbox" data-display="${ control.display }" data-selector="${ control.selector }" ${ checked }>
+							<input id="${ id }" class="${ classes }" type="checkbox" data-display="${ control.display }" data-selector="${ control.selector }" ${ checked }>
 							<label for="${ id }">${ control.title }</label>
 						</li>`;
 				} );

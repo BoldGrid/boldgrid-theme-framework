@@ -21,7 +21,12 @@
 
 .bgtfw-sortable-accordion {
 	width: calc( 100% - 20px );
-    margin: 0 auto;
+	margin: 0 auto;
+
+	.hidden, .hidden + label {
+		display: none !important;
+	}
+
 	.sortable-wrapper {
 		background-color: rgba( 255, 255, 255, .7 );
 		border: 1px solid #ddd;
@@ -246,6 +251,8 @@
 			}
 
 			&.sidebar-edit {
+				padding: 0 .75em;
+
 				.repeater-control-description {
 					margin-top: 0;
 					font-style: italic;

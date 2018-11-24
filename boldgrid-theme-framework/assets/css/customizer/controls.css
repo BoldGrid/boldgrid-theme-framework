@@ -2633,6 +2633,10 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   margin: 0 auto;
 }
 
+.bgtfw-sortable-accordion .hidden, .bgtfw-sortable-accordion .hidden + label {
+  display: none !important;
+}
+
 .bgtfw-sortable-accordion .sortable-wrapper {
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid #ddd;
@@ -2893,6 +2897,10 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 
 .bgtfw-sortable-accordion .repeater .repeater-control.display .control-wrapper label {
   vertical-align: top;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit {
+  padding: 0 .75em;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit .repeater-control-description {

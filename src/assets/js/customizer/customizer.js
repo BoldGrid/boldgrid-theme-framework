@@ -16,35 +16,35 @@ api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
 	let controls = [ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
 
 	if ( controls.includes( placement.partial.id ) ) {
-			let css = [];
+		let css = [];
 
-			controls.map( control => {
-				let uid = control.includes( 'header' ) ? control.includes( 'sticky_header' ) ? 's' : 'h' : 'f';
+		controls.map( control => {
+			let uid = control.includes( 'header' ) ? control.includes( 'sticky_header' ) ? 's' : 'h' : 'f';
 
-				_.each( api( control )(), ( sections, key ) => {
-					uid += key;
-					if ( ! _.isUndefined( sections.items ) ) {
-						_.each( sections.items, ( item, k ) => {
-							if ( _.isEmpty( item.uid ) ) {
-								uid += k;
-							} else {
-								uid = item.uid;
-							}
-							if ( ! _.isUndefined( item.display ) ) {
-								_.each( item.display, display => {
-									if ( 'hide' === display.display ) {
-										css.push( `.${ uid } ${ display.selector }` );
-									}
-								} );
-							}
-						} );
-					}
-				} );
+			_.each( api( control )(), ( sections, key ) => {
+				uid += key;
+				if ( ! _.isUndefined( sections.items ) ) {
+					_.each( sections.items, ( item, k ) => {
+						if ( _.isEmpty( item.uid ) ) {
+							uid += k;
+						} else {
+							uid = item.uid;
+						}
+						if ( ! _.isUndefined( item.display ) ) {
+							_.each( item.display, display => {
+								if ( 'hide' === display.display ) {
+									css.push( `.${ uid } ${ display.selector }` );
+								}
+							} );
+						}
+					} );
+				}
 			} );
+		} );
 
-			css = _.isEmpty( css ) ? '' : `${ css.join( ', ' ) } { display: none; }`;
+		css = _.isEmpty( css ) ? '' : `${ css.join( ', ' ) } { display: none; }`;
 
-			document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = css;
+		document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = css;
 	}
 } );
 

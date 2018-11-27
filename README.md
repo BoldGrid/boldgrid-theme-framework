@@ -7,8 +7,8 @@
 
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
-* **Requires at least:** 4.7
-* **Tested up to:** 4.9.8
+* **Requires at least:** 4.9
+* **Tested up to:** 5.0.0-rc.1
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,12 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.1.0-rc.1 ###
+* Update: Added tabs for dynamic header layout, sticky vs standard.
+* Update: Allow sticky navigation to have it's own nav locations set.
+* Update: Moved sticky controls out of standard dynamic header layout controls.
+* Update: Menus and sidebar location sections are now dynamic based on dynamic controls.
 
 ### 2.1.0-alpha.1 ###
 * New Feature: Adding dynamic layout controls for header/footer.

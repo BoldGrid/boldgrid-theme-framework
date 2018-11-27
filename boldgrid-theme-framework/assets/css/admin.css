@@ -81,6 +81,6 @@
 
 /* BoldGrid Crio admin menu item icon. */
 #toplevel_page_crio-welcome .wp-menu-image:before {
-  content: "\e600";
+  content: "\e900";
   font-family: 'boldgrid';
 }

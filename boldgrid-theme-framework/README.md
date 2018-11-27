@@ -31,6 +31,7 @@ user guide for more information.
 * Update: Allow sticky navigation to have it's own nav locations set.
 * Update: Moved sticky controls out of standard dynamic header layout controls.
 * Update: Menus and sidebar location sections are now dynamic based on dynamic controls.
+* Update: Adding Crio Enzo as icon for admin menu.
 
 ### 2.1.0-alpha.1 ###
 * New Feature: Adding dynamic layout controls for header/footer.

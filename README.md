@@ -28,6 +28,7 @@ user guide for more information.
 
 ### 1.5.10 ###
 * Bug fix: Fix doing_cron logic so that blog widgets are not erased.
+* Bug fix: Remove deprecated create_function call for PHP7.
 
 ### 1.5.9 ###
 * Update: Removing the spinner's arrows from the quantity number inputs.

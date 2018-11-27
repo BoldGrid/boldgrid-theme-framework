@@ -135,7 +135,7 @@
   height: 100%;
 }
 
-#masthead .boldgrid-section .row, #masthead-clone .boldgrid-section .row, #colophon .boldgrid-section .row {
+#masthead .boldgrid-section .row, #masthead-sticky .boldgrid-section .row, #colophon .boldgrid-section .row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -143,7 +143,7 @@
       flex-wrap: wrap;
 }
 
-#masthead .boldgrid-section .row aside.sidebar, #masthead-clone .boldgrid-section .row aside.sidebar, #colophon .boldgrid-section .row aside.sidebar {
+#masthead .boldgrid-section .row aside.sidebar, #masthead-sticky .boldgrid-section .row aside.sidebar, #colophon .boldgrid-section .row aside.sidebar {
   margin-left: -15px;
   margin-right: -15px;
   height: 100%;

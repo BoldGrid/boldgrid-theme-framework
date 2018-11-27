@@ -2381,7 +2381,7 @@ return array(
 							],
 							[
 								'selector' => '.site-description',
-								'display' => 'hide',
+								'display' => 'show',
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
 						],
@@ -2463,7 +2463,7 @@ return array(
 							],
 							[
 								'selector' => '.site-description',
-								'display' => 'hide',
+								'display' => 'show',
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
 						],
@@ -2515,7 +2515,7 @@ return array(
 							],
 							[
 								'selector' => '.site-description',
-								'display' => 'hide',
+								'display' => 'show',
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
 						],
@@ -2563,12 +2563,12 @@ return array(
 							],
 							[
 								'selector' => '.site-title',
-								'display' => 'hide',
+								'display' => 'show',
 								'title' => __( 'Title', 'bgtfw' ),
 							],
 							[
 								'selector' => '.site-description',
-								'display' => 'hide',
+								'display' => 'show',
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
 						],
@@ -2610,17 +2610,17 @@ return array(
 						'default' => [
 							[
 								'selector' => '.custom-logo',
-								'display' => 'hide',
+								'display' => 'show',
 								'title' => __( 'Logo', 'bgtfw' ),
 							],
 							[
 								'selector' => '.site-title',
-								'display' => 'hide',
+								'display' => 'show',
 								'title' => __( 'Title', 'bgtfw' ),
 							],
 							[
 								'selector' => '.site-description',
-								'display' => 'hide',
+								'display' => 'show',
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
 						],

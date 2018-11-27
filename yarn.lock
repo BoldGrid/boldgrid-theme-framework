@@ -521,6 +521,13 @@
     js-levenshtein "^1.1.3"
     semver "^5.3.0"
 
+"@babel/runtime@^7.0.0":
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.1.5.tgz#4170907641cf1f61508f563ece3725150cc6fe39"
+  integrity sha512-xKnPpXG/pvK1B90JkwwxSGii90rQGKtzcMt2gI5G6+M0REXaq6rOHsGC2ay6/d0Uje7zzvSzjEzfR3ENhFlrfA==
+  dependencies:
+    regenerator-runtime "^0.12.0"
+
 "@babel/template@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.0.0-beta.44.tgz#f8832f4fdcee5d59bf515e595fc5106c529b394f"
@@ -1099,6 +1106,13 @@
     strip-ansi "^4.0.0"
     text-table "^0.2.0"
     webpack-log "^1.1.2"
+
+"@wordpress/dom-ready@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@wordpress/dom-ready/-/dom-ready-2.0.2.tgz#983c733d9eef08dce98518e66e1abee346089323"
+  integrity sha512-SENsbiIesC0Oz6qTLHpYxo6aW9/NgFYkXq4TGjUBA5LLNJmBf9AhPKX9rpgh8Y3+DKVobMdX8IKhfRrQYiqRiw==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
 
 "Buttons@https://github.com/alexwolfe/Buttons":
   version "2.0.0"
@@ -5742,10 +5756,6 @@ he@1.1.x:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
 
-headhesive@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/headhesive/-/headhesive-1.2.4.tgz#04492eb0bf0f26dcf074227c42b46cf82f03f21f"
-
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -7231,6 +7241,11 @@ lodash.keys@~2.4.1:
     lodash._isnative "~2.4.1"
     lodash._shimkeys "~2.4.1"
     lodash.isobject "~2.4.1"
+
+lodash.lowercase@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/lodash.lowercase/-/lodash.lowercase-4.3.0.tgz#46515aced4acb0b7093133333af068e4c3b14e9d"
+  integrity sha1-RlFaztSssLcJMTMzOvBo5MOxTp0=
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
@@ -9443,6 +9458,11 @@ regenerate@^1.2.1, regenerate@^1.4.0:
 regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
+
+regenerator-runtime@^0.12.0:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
+  integrity sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg==
 
 regenerator-transform@^0.10.0:
   version "0.10.1"

@@ -1,4 +1,4 @@
-/* global Modernizr:false, BOLDGRID:false, Headhesive:true, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, Cookies:false, FloatLabels:false */
+/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, Cookies:false, FloatLabels:false */
 
 /* ========================================================================
  * DOM-based Routing
@@ -10,6 +10,7 @@
  * ======================================================================== */
 
 import cssVars from 'css-vars-ponyfill';
+import domReady from '@wordpress/dom-ready';
 
 // Setup our object.
 //jscs:disable requireVarDeclFirst
@@ -294,21 +295,18 @@ var BoldGrid = BoldGrid || {};
 
 					// Fixed Headers
 					if ( classes.contains( 'header-slide-in' ) ) {
-						if ( undefined === BoldGrid.header_slide_in.getInstance() ) {
-							BoldGrid.header_slide_in.init();
-						}
 
 					// Non-fixed headers.
 					} else {
-						if ( undefined !== BoldGrid.header_slide_in.getInstance() ) {
-							BoldGrid.header_slide_in.destroy();
-						}
+
+						// Do something else.
 					}
 
 				// Mobile.
 				} else {
-					if ( undefined !== BoldGrid.header_slide_in.getInstance() ) {
-						BoldGrid.header_slide_in.destroy( true );
+					if ( classes.contains( 'header-slide-in' ) ) {
+
+						// Destroy instance.
 					}
 
 					menu = $( '#main-menu' );
@@ -329,116 +327,41 @@ var BoldGrid = BoldGrid || {};
 		'header_slide_in': {
 
 			/**
-			 * Expose the instance globally for access to configurations.
-			 */
-			getInstance: function() {
-				return this.instance;
-			},
-
-			/**
-			 * Destroy instance reference.
-			 */
-			destroy: function() {
-				if ( undefined !== this.instance ) {
-
-					// Listen for header-unstick to be complete.
-					window.addEventListener( 'bgtfw-header-unstick', function _bgtfwHeaderUnstick() {
-						if ( undefined !== BoldGrid.header_slide_in.getInstance() ) {
-							BoldGrid.header_slide_in.getInstance().destroy();
-						}
-
-						BoldGrid.header_slide_in.instance = null;
-						delete BoldGrid.header_slide_in.instance;
-
-						// Remove self for reinit.
-						window.removeEventListener( 'bgtfw-header-unstick', _bgtfwHeaderUnstick, false );
-					}, false );
-
-					// Unstick instance.
-					this.instance.unstick();
-				}
-			},
-
-			/**
-			 * Create header slide in instance.
-			 */
-			header: function() {
-				return ( this.instance = new Headhesive( '.site-header', {
-
-					// Scroll offset.
-					offset: '#content',
-
-					// If using a DOM element, we can choose which side to use as offset (top|bottom).
-					offsetSide: 'top',
-
-					// Custom classes.
-					classes: {
-
-						// Cloned elem class.
-						clone: 'bgtfw-header-clone',
-
-						// Stick class.
-						stick: 'bgtfw-header-stick',
-
-						// Unstick class.
-						unstick: 'bgtfw-header-unstick'
-					},
-
-					// Throttle scroll event to fire every 250ms to improve performace.
-					throttle: 250,
-
-					onStick: function() {
-						var clone = $( '.bgtfw-header-clone' ),
-							inside = $( '#masthead' );
-
-						$( '#masthead-clone' ).appendTo( '#boldgrid-sticky-wrap > .site-header' );
-						document.getElementById( 'masthead-clone' ).classList = inside[0].classList;
-						inside.appendTo( clone );
-
-						if ( 'undefined' !== typeof BOLDGRID && BOLDGRID.CustomizerEdit ) {
-							$( '.bgtfw-header-clone' ).one( BoldGrid.common.detectTransitionEvent(), function() {
-								BOLDGRID.CustomizerEdit.placeButtons();
-							} );
-						}
-					},
-
-					onUnstick: function() {
-						$( '.bgtfw-header-clone' ).one( BoldGrid.common.detectTransitionEvent(), function() {
-							var header = $( '#boldgrid-sticky-wrap > .site-header' ),
-								inside = $( '#masthead' ),
-								event = new Event( 'bgtfw-header-unstick' );
-
-							$( '#masthead-clone' ).appendTo( '.bgtfw-header-clone' );
-							document.getElementById( 'masthead-clone' ).classList = inside[0].classList;
-							inside.appendTo( header );
-
-							if ( 'undefined' !== typeof BOLDGRID && BOLDGRID.CustomizerEdit ) {
-								BOLDGRID.CustomizerEdit.placeButtons();
-							}
-
-							// Dispatch event.
-							window.dispatchEvent( event );
-						} );
-					},
-
-					onInit: function() {
-						$( '.bgtfw-header-clone > #masthead' ).attr( 'id', 'masthead-clone' );
-					}
-				} ) );
-			},
-
-			/**
 			 * Initialize header-slide-in.
 			 */
 			init: function() {
+				let mq = window.matchMedia( '(min-width: 768px)' ),
+					sticky = () => {
+						this._scroll();
+						window.addEventListener( 'scroll', this._scroll );
+					};
 
-				// Initialize Headheasive and set reference to instance.
-				if ( undefined === this.instance ) {
-					this.header();
+				// On DOMLoaded check media query and initialize sticky listener if matched.
+				domReady( () => mq.matches && sticky() );
+
+				mq.addListener( e => {
+					if ( e.matches ) {
+						sticky();
+					} else {
+						window.removeEventListener( 'scroll', this._scroll );
+						document.getElementById( 'masthead-sticky' ).parentElement.classList.remove( 'bgtfw-stick' );
+					}
+				} );
+			},
+
+			_scroll: function() {
+				let header = document.querySelector( '.bgtfw-header' ),
+					distanceY = window.pageYOffset || document.documentElement.scrollTop,
+					shrinkOn = header.offsetHeight,
+					sticky = header.previousElementSibling;
+
+				if ( distanceY > shrinkOn ) {
+					sticky.classList.add( 'bgtfw-stick' );
+					sticky.setAttribute( 'aria-hidden', 'false' );
+				} else {
+					sticky.classList.remove( 'bgtfw-stick' );
+					sticky.setAttribute( 'aria-hidden', 'true' );
 				}
-
-				// Update position on load.
-				this.instance.update();
 			}
 		},
 

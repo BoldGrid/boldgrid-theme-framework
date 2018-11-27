@@ -55,23 +55,29 @@ class Boldgrid_Framework_Sticky_Header {
 	 * @return string CSS for the styling sticky-header items' display.
 	 */
 	public function get_styles() {
+		$css = '';
 		$selectors = [];
-		$theme_mod = get_theme_mod( 'bgtfw_header_layout' );
+		$theme_mods = [];
+		$theme_mods[] = BoldGrid::create_uids( 'bgtfw_header_layout' );
+		$theme_mods[] = BoldGrid::create_uids( 'bgtfw_sticky_header_layout' );
+		$theme_mods[] = BoldGrid::create_uids( 'bgtfw_footer_layout' );
 
-		foreach ( $theme_mod as $section ) {
-			if ( ! empty( $section['items'] ) ) {
-				foreach ( $section['items'] as $item ) {
-					if ( ! empty( $item['sticky'] ) ) {
-						foreach ( $item['sticky'] as $sticky ) {
-							if ( 'show' !== $sticky['display'] ) {
-								$selectors[] = '.bgtfw-header-stick ' . $sticky['selector'];
+		foreach ( $theme_mods as $theme_mod ) {
+			foreach ( $theme_mod as $key => $section ) {
+				if ( ! empty( $section['items'] ) ) {
+					foreach ( $section['items'] as $k => $item ) {
+						if ( ! empty( $item['display'] ) ) {
+							foreach ( $item['display'] as $display ) {
+								if ( 'show' !== $display['display'] ) {
+									$selectors[] = '.' . $item['uid'] . ' ' . $display['selector'];
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-
-		return implode( ', ', $selectors ) . '{ display:none }';
+		$selectors = ! empty( $selectors ) ? implode( ', ', $selectors ) . '{ display: none; }' : '';
+		return apply_filters( 'bgtfw_sticky_header_display_css', $selectors );
 	}
 }

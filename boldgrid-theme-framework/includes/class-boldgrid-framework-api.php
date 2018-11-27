@@ -149,7 +149,7 @@ class BoldGrid {
 		$configs = $boldgrid_theme_framework->get_configs();
 
 		// Bug fix 9/28/15: https://codex.wordpress.org/Function_Reference/is_home.
-		if ( ( is_front_page() && 'page' === get_option( 'show_on_front' ) ) || ( is_front_page() && is_home() ) ) {
+		if ( ( ( is_front_page() && 'page' === get_option( 'show_on_front' ) ) || ( is_front_page() && is_home() ) ) && ( 1 === did_action( 'boldgrid_site_identity' ) ) ) {
 			$title_tag = $configs['template']['site-title-tag'];
 		} else {
 			$title_tag = 'p';
@@ -1168,14 +1168,15 @@ class BoldGrid {
 	 */
 	public static function dynamic_layout( $theme_mod ) {
 		$markup = '';
-		$theme_mod = get_theme_mod( $theme_mod );
+		$theme_mod = self::create_uids( $theme_mod );
+
 		foreach ( $theme_mod as $section ) {
 			$markup .= '<div class="boldgrid-section">';
 			$markup .= '<div class="' . $section['container'] . '">';
 			$markup .= '<div class="row">';
 			foreach ( $section['items'] as $col => $col_data ) {
 				$num = ( 12 / count( $section['items'] ) );
-				$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12">';
+				$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_data['uid'] . '">';
 				ob_start();
 				switch ( $col_data['type'] ) {
 					case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
@@ -1223,6 +1224,33 @@ class BoldGrid {
 	}
 
 	/**
+	 * Creates UIDs for dynamic layouts if none are passed in.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @param string $theme_mod Theme mod of dynamic layout element.
+	 *
+	 * @return array $defaults Default parameters with uIDs added for items.
+	 */
+	public static function create_uids( $theme_mod ) {
+		$uid = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) ) ? 's' : 'h' : 'f';
+		$defaults = get_theme_mod( $theme_mod );
+
+		foreach ( $defaults as $key => $section ) {
+			$base = $uid . $key;
+			if ( ! empty( $section['items'] ) ) {
+				foreach ( $section['items'] as $k => $v ) {
+					if ( empty( $v['uid'] ) ) {
+						$defaults[ $key ]['items'][ $k ]['uid'] = $base . $k;
+					}
+				}
+			}
+		}
+
+		return $defaults;
+	}
+
+	/**
 	 * Outputs dynamic header layout element.
 	 *
 	 * @since 2.0.3
@@ -1231,6 +1259,30 @@ class BoldGrid {
 	 */
 	public static function dynamic_header() {
 		return self::dynamic_layout( 'bgtfw_header_layout' );
+	}
+
+	/**
+	 * Outputs dynamic header layout element.
+	 *
+	 * @since 2.0.3
+	 *
+	 * @return string Rendered HTML for dyanmic layout element.
+	 */
+	public static function dynamic_sticky_header() {
+		$markup = '';
+		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . '>';
+		ob_start();
+		do_action( 'boldgrid_header_top' );
+		$markup .= ob_get_clean();
+		$markup .= '<div class="custom-header-media">';
+		$markup .= get_custom_header_markup();
+		$markup .= '</div>';
+		$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+		ob_start();
+		do_action( 'boldgrid_header_bottom' );
+		$markup .= ob_get_clean();
+		$markup .= '</header><!-- #masthead -->';
+		return $markup;
 	}
 
 	/**

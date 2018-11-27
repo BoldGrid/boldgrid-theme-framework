@@ -43,7 +43,7 @@ if ( ! defined( 'WPINC' ) ) {
 						</p>
 					</div>
 					<div class="welcome-panel-column">
-						<img style="width:100%;" src="<?php echo esc_url( get_template_directory_uri() ); ?>/starter-content/corporate/screenshot.jpg">
+						<img style="width:100%;" src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/screenshot.jpg">
 					</div>
 				</div>
 

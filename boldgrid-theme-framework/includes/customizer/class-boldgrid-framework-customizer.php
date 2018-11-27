@@ -69,9 +69,11 @@ class BoldGrid_Framework_Customizer {
 				Kirki::add_field( 'bgtfw', $control );
 
 				if ( strpos( $control['settings'], 'bgtfw_menu_' ) !== false &&
-					strpos( $control['settings'], 'main' ) !== false && $wp_customize ) {
+					( strpos( $control['settings'], 'main' ) !== false &&
+						strpos( $control['settings'], 'sticky-main' ) === false ) &&
+							$wp_customize ) {
 
-					$menus = get_registered_nav_menus();
+					$menus = $this->configs['menu']['locations'];
 
 					foreach ( $menus as $location => $description ) {
 						$panel = new Boldgrid_Framework_Customizer_Panel(

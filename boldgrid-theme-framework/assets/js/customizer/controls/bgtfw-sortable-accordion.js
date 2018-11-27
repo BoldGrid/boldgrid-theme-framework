@@ -1,6 +1,7 @@
 import camelCase from 'lodash.camelcase';
 import kebabCase from 'lodash.kebabcase';
 import startCase from 'lodash.startcase';
+import lowerCase from 'lodash.lowercase';
 
 const api = wp.customize;
 
@@ -20,6 +21,8 @@ export default {
 		this.updateTitles();
 		this.updateAddTypes();
 		this.addEvents();
+		this.addUids();
+		this._toggleSticky();
 	},
 
 	/**
@@ -59,8 +62,7 @@ export default {
 		this.sortable.accordion( {
 			header: '> .sortable-wrapper > .sortable-title',
 			heightStyle: 'content',
-			collapsible: true,
-			active: false
+			collapsible: true
 		} ).sortable( {
 			update: this.updateValues.bind( this )
 		} ).disableSelection();
@@ -75,8 +77,7 @@ export default {
 		this.container.find( '.connected-sortable' ).accordion( {
 			header: '.repeater-handle',
 			heightStyle: 'content',
-			collapsible: true,
-			active: false
+			collapsible: true
 		} ).sortable( {
 			update: this.updateValues.bind( this )
 		} ).disableSelection();
@@ -92,40 +93,91 @@ export default {
 			$( api.OuterSection.prototype.containerParent ).on( 'bgtfw-menu-dropdown-select', _.after( this.getConnectedMenus().length, this.updateConnectedSelects( true ) ) );
 			this.sortable
 				.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
-				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.align .direction:not(.selected), .repeater-control.sticky .bgtfw-sortable-control:not(.selected)', e => this._select( e ) )
+				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.align .direction:not(.selected)', e => this._select( e ) )
 				.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
 				.on( 'change', '.repeater-control.menu-select', e => this._updateMenuSelect( e ) )
 				.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) )
 				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', () => this._updateContainer() )
-				.on( 'change', '.repeater-control.attribution', e => this._updateAttribution( e ) );
+				.on( 'change', '.repeater-control.attribution .attribution-link', e => this._updateAttribution( e ) )
+				.on( 'change', '.display-control', e => this._updateDisplay( e ) );
+
 			$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );
-			api( 'bgtfw_fixed_header', value => value.bind( to => this._toggleSticky( to ) ) );
+
+			// Bind sticky header and header position controls to sticky header controls in dynamic layout.
+			api( 'bgtfw_fixed_header', 'bgtfw_header_layout_position', 'custom_logo', ( ...args ) => {
+				args.map( ( control ) => {
+					control.bind( () => this._toggleSticky() );
+				} );
+			} );
+
 			api.previewer.bind( 'ready', () => {
 				this.sortable.on( 'click', '.repeater-control.sticky .bgtfw-sortable-control:not(.selected)', ( e ) => this._updateSelector( e ) );
 			} );
+
+			api( 'custom_logo', value => value.bind( to => this._toggleLogo( to ) ) );
+		} );
+	},
+
+	_toggleLogo( to ) {
+		this.container[0].querySelectorAll( '[data-selector=".custom-logo"]' ).forEach( control => {
+			control.classList.toggle( 'hidden', _.isEmpty( to ) );
 		} );
 	},
 
 	/**
-	 * Sticky header items' display event handler.
+	 * Adds Unique IDs for each item.
 	 *
 	 * @since 2.0.3
 	 */
-	_updateSelector( e ) {
-		let el = e.currentTarget,
-			repeater = $( el ).closest( '.repeater' )[0],
+	addUids() {
+		this.container[0].querySelectorAll( '.repeater.ui-sortable-handle' ).forEach( repeater => {
+			if ( _.isEmpty( repeater.dataset ) || _.isUndefined( repeater.dataset.uid ) ) {
+				repeater.dataset.uid = _.uniqueId( this.params.location.charAt( 0 ).toString() );
+			}
+		} );
+	},
+
+	/**
+	 * Header items' display event handler.
+	 *
+	 * @since 2.0.3
+	 */
+	_updateDisplay( e ) {
+		let el = e.currentTarget;
+
+		// Set display state based on :checked.
+		el.dataset.display = el.checked ? 'show' : 'hide';
+
+		// Update repeater.
+		let repeater = $( el ).closest( '.repeater' )[0],
 			data = {
-				display: el.dataset.sticky,
-				selector: $( el ).closest( '.repeater-control.sticky' )[0].dataset.selector
+				display: el.dataset.display,
+				selector: el.dataset.selector
 			},
-			stickyData = JSON.parse( decodeURIComponent( repeater.dataset.sticky ) ),
-			index = _.findIndex( stickyData, { selector: data.selector } );
+			displayData = JSON.parse( decodeURIComponent( repeater.dataset.display ) ),
+			index = _.findIndex( displayData, { selector: data.selector } );
 
-		stickyData[ index ] = _.extend( _.findWhere( stickyData, { selector: data.selector } ), data );
-
-		repeater.dataset.sticky = encodeURIComponent( JSON.stringify( stickyData ) );
-		api.previewer.send( this.params.type, data );
+		displayData[ index ] = _.extend( _.findWhere( displayData, { selector: data.selector } ), data );
+		repeater.dataset.display = encodeURIComponent( JSON.stringify( displayData ) );
 		this.updateValues();
+	},
+
+	/**
+	 * Gets dynamic item selectors.
+	 *
+	 * @since 2.0.3
+	 */
+	getItemSelector( data ) {
+		let selector = data.selector;
+		if ( 'menu' === data.key ) {
+			selector = this.getMenuSelector( data.type );
+		}
+
+		if ( 'sidebar' === data.key ) {
+			selector = this.getSidebarSelector( data.type );
+		}
+
+		return selector;
 	},
 
 	/**
@@ -133,9 +185,13 @@ export default {
 	 *
 	 * @since 2.0.3
 	 */
-	_toggleSticky( to ) {
-		if ( 'header' === this.params.location ) {
-			this.container.find( '.repeater-control.sticky' ).toggleClass( 'hidden', ! to );
+	_toggleSticky() {
+		if ( 'sticky-header' === this.params.location ) {
+			if ( 'header-top' === api( 'bgtfw_header_layout_position' )() && true === api( 'bgtfw_fixed_header' )() ) {
+				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).show();
+			} else {
+				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).hide();
+			}
 		}
 	},
 
@@ -146,7 +202,9 @@ export default {
 	 */
 	addSection( e ) {
 		e.preventDefault();
-		this.container.find( '.connected-sortable' ).sortable( 'destroy' );
+		let instances = this.container.find( '.connected-sortable' );
+		instances.sortable( 'destroy' );
+		instances.accordion( 'destroy' );
 		let items = this.sortable.find( '.sortable-wrapper' );
 		let newItem = items.last().clone( true );
 		newItem.attr( 'id', `sortable-${ items.length }-wrapper` );
@@ -164,8 +222,28 @@ export default {
 	 * @since 2.0.3
 	 */
 	_deleteItem( e ) {
-		$( e.currentTarget ).closest( '.ui-sortable-handle' ).remove();
+		e.preventDefault();
+		let handle = $( e.currentTarget ).closest( '.ui-sortable-handle' ),
+			flagUpdate = 0;
+
+		// Main sortable is deleted.
+		if ( _.isEmpty( handle[0].dataset ) ) {
+			handle[0].querySelectorAll( '.repeater.ui-sortable-handle' ).forEach( repeater => {
+				if ( 'menu' === repeater.dataset.key ) {
+					flagUpdate++;
+				}
+			} );
+		} else {
+			if ( 'menu' === handle[0].dataset.key ) {
+				flagUpdate++;
+			}
+		}
+
+		handle.remove();
 		this.updateValues();
+		if ( 0 !== flagUpdate ) {
+			this.updateConnectedSelects();
+		}
 	},
 
 	/**
@@ -292,23 +370,35 @@ export default {
 	 *
 	 * @since 2.0.3
 	 */
-	getStickyMarkup( setting ) {
-		let markup = '';
-		_.each( setting, ( control ) => {
-			let controlMarkup = `<div class="repeater-control sticky" data-selector="${ control.selector }">
-				<div class="repeater-control-title">${ control.title }</div>
+	getDisplayMarkup( setting ) {
+		let markup = `
+		<div class="repeater-control display">
+			<div class="repeater-control-title">Display</div>
+			<div class="repeater-control-nested">
 				<div class="control-wrapper">
-					<div class="bgtfw-sortable-control sticky-show" data-sticky="show">
-						<span class="dashicons dashicons-visibility"></span><span>Show</span>
-					</div>
-					<div class="bgtfw-sortable-control sticky-hide" data-sticky="hide">
-						<span class="dashicons dashicons-hidden"></span><span>Hide</span>
-					</div>
+					<ul>`;
+
+				_.each( setting, control => {
+
+					// Create unique IDs ex: 'sticky-header-title-1'.
+					let classes = 'display-control',
+						id = _.uniqueId( `${ this.params.location }-${ lowerCase( control.title ) }-` ),
+						checked = 'hide' === control.display ? '' : 'checked';
+
+					if ( '.custom-logo' === control.selector && _.isEmpty( api( 'custom_logo' )() ) ) {
+						classes += ' hidden';
+					}
+
+					markup += `
+						<li>
+							<input id="${ id }" class="${ classes }" type="checkbox" data-display="${ control.display }" data-selector="${ control.selector }" ${ checked }>
+							<label for="${ id }">${ control.title }</label>
+						</li>`;
+				} );
+		markup += `</ul>
 				</div>
-			</div>`;
-			controlMarkup = controlMarkup.replace( `bgtfw-sortable-control sticky-${ control.display }`, `bgtfw-sortable-control sticky-${ control.display } selected` );
-			markup += controlMarkup;
-		} );
+			</div>
+		</div>`;
 
 		return markup;
 	},
@@ -413,6 +503,12 @@ export default {
 			markup = '<select class="repeater-control menu-select">';
 
 		_.each( window._wpCustomizeNavMenusSettings.locationSlugMappedToName, ( name, location ) => {
+			if ( 'sticky-header' !== this.params.location && location.includes( 'sticky' ) ) {
+				return;
+			}
+			if ( 'sticky-header' === this.params.location && ! location.includes( 'sticky' ) ) {
+				return;
+			}
 			attr = `boldgrid_menu_${ location }` === type ? 'selected' : '';
 			markup += `<option value="boldgrid_menu_${ location }"${ attr }>${ name }</option>`;
 		} );
@@ -491,9 +587,17 @@ export default {
 		// Apply control defaults to repeater for newly added items.
 		_.each( this.params.items[ el.dataset.key ].controls, ( control, key ) => {
 			if ( ! _.isUndefined( control.default ) ) {
+				if ( ! _.isString( control.default ) ) {
+					control.default = encodeURIComponent( JSON.stringify( control.default ) );
+				}
 				container.lastChild.dataset[ key ] = control.default;
 			}
 		} );
+
+		// Add uid for new items.
+		if ( _.isUndefined( container.lastChild.dataset.uid ) ) {
+			container.lastChild.dataset.uid = _.uniqueId( this.params.location.charAt( 0 ).toString() );
+		}
 
 		this.addRepeaterControls( true );
 		this.refreshItems();
@@ -614,6 +718,24 @@ export default {
 	},
 
 	/**
+	 * Gets menu item selector for toggling display.
+	 *
+	 * @since 2.0.3
+	 */
+	getMenuSelector( action ) {
+		return '#' + action.replace( 'boldgrid_menu_', '' );
+	},
+
+	/**
+	 * Gets sidebar item selector for toggling display.
+	 *
+	 * @since 2.0.3
+	 */
+	getSidebarSelector( action ) {
+		return '#' + action.replace( 'bgtfw_sidebar_', '' );
+	},
+
+	/**
 	 * Gets markup for add item buttons.
 	 *
 	 * @since 2.0.3
@@ -722,7 +844,9 @@ export default {
 	 * @since 2.0.3
 	 */
 	getAvailableMenus() {
-		return _.difference( this.getAllMenuActions(), this.getConnectedMenus() );
+		let menus = this.getAllMenuActions();
+		menus = 'sticky-header' === this.params.location ? menus.filter( s => ~s.indexOf( 'sticky' ) ) : menus.filter( s => ! ~s.indexOf( 'sticky' ) );
+		return _.difference( menus, this.getConnectedMenus() );
 	},
 
 	/**
@@ -793,7 +917,11 @@ export default {
 	 * @since 2.0.3
 	 */
 	getConnectedMenus() {
-		return _.filter( this.getConnectedItems(), item => item.includes( 'boldgrid_menu' ) );
+		let menus = _.filter( this.getConnectedItems(), item => item.includes( 'boldgrid_menu' ) );
+		if ( false === api( 'bgtfw_fixed_header' )() || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
+			menus = menus.filter( menu => ! menu.includes( 'sticky' ) );
+		}
+		return menus;
 	},
 
 	/**

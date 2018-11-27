@@ -341,9 +341,39 @@ class Boldgrid_Framework_Menu {
 	 * @since     1.0.0
 	 */
 	public function register_navs() {
+		$menus = $this->configs['menu']['locations'];
+
+		// Handle deregistration/registration of locations when not in the customizer.
+		if ( ! is_customize_preview() ) {
+			$locations = [];
+			$theme_mods = [];
+			$theme_mods[] = BoldGrid::create_uids( 'bgtfw_header_layout' );
+			$theme_mods[] = BoldGrid::create_uids( 'bgtfw_footer_layout' );
+			$theme_mods[] = BoldGrid::create_uids( 'bgtfw_sticky_header_layout' );
+
+			foreach ( $theme_mods as $theme_mod ) {
+				foreach ( $theme_mod as $key => $section ) {
+					if ( ! empty( $section['items'] ) ) {
+						foreach ( $section['items'] as $item ) {
+							if ( ! empty( $item['type'] ) ) {
+								if ( false !== strpos( $item['type'], 'boldgrid_menu' ) ) {
+									$locations[] = str_replace( 'boldgrid_menu_', '', $item['type'] );
+								}
+							}
+						}
+					}
+				}
+			}
+
+			if ( is_array( $this->configs['menu']['locations'] ) && ! empty( $locations ) ) {
+				$menus = array_intersect_key( $this->configs['menu']['locations'], array_flip( $locations ) );
+			}
+		}
 
 		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus( $this->configs['menu']['locations'] );
+		if ( ! empty( $menus ) ) {
+			register_nav_menus( $menus );
+		}
 	}
 
 	/**

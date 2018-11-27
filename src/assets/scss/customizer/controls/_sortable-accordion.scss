@@ -1,4 +1,31 @@
+#customize-control-bgtfw_header_layout_tabs {
+	margin-bottom: 0;
+	.bgtfw-tabs {
+		.bgtfw-tab {
+			border-top-right-radius: 5px;
+			border-top-left-radius: 5px;
+			&:first-child {
+				margin-right: 10px;
+			}
+		}
+	}
+}
+#customize-control-bgtfw_header_layout,
+#customize-control-bgtfw_sticky_header_layout {
+	background-color: white;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 10px 0;
+}
+
 .bgtfw-sortable-accordion {
+	width: calc( 100% - 20px );
+	margin: 0 auto;
+
+	.hidden, .hidden + label {
+		display: none !important;
+	}
 
 	.sortable-wrapper {
 		background-color: rgba( 255, 255, 255, .7 );
@@ -52,7 +79,7 @@
 		padding: 10px;
 	}
 	.bgtfw-add-new-section {
-		margin-top: 15px;
+		margin-top: 10px;
 		.button-secondary {
 			float: right;
 			.fa {
@@ -61,7 +88,7 @@
 		}
 	}
 
-	.repeater-control.sticky .control-wrapper,
+	.repeater-control.display .control-wrapper,
 	.bgtfw-container-control,
 	.sortable-actions {
 		display: flex;
@@ -164,11 +191,30 @@
 			}
 		}
 
+		&[data-key="branding"] {
+
+			.repeater-control {
+				box-sizing: border-box;
+				margin-top: 0;
+
+				&.display {
+					border-right: 1px solid #ddd;
+				}
+
+				&.align .align-wrapper {
+					border-right: none;
+				}
+			}
+		}
+
 		.repeater-control {
 			margin-left: auto;
 			margin-right: auto;
 			margin-top: .75em;
-			width: 80%;
+
+			&.menu-select {
+				width: 80%;
+			}
 
 			&.attribution {
 				label {
@@ -176,10 +222,10 @@
 				}
 			}
 
-			&.sticky {
+			&.display {
 				border-top: 1px solid #ddd;
 				border-bottom: 1px solid #ddd;
-				width: 100%;
+				width: 50%;
 
 				&:hover,
 				&:hover .repeater-control-title {
@@ -197,10 +243,16 @@
 
 				.control-wrapper {
 					font-weight: 400;
+					padding: .5em .75em;
+					label {
+						vertical-align: top;
+					}
 				}
 			}
 
 			&.sidebar-edit {
+				padding: 0 .75em;
+
 				.repeater-control-description {
 					margin-top: 0;
 					font-style: italic;
@@ -216,6 +268,7 @@
 				display: flex;
 				flex-direction: column;
 				align-items: center;
+				width: 50%;
 
 				.repeater-control-title {
 					width: 100%;
@@ -227,7 +280,6 @@
 				.align-wrapper {
 					background: white;
 					border: 1px solid #ddd;
-					width: 50%;
 					display: flex;
 					flex-wrap: wrap;
 					justify-content: center;

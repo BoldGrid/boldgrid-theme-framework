@@ -2606,6 +2606,37 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 /*--------------------------------------------------------------
 # Sortable Accordion
 --------------------------------------------------------------*/
+#customize-control-bgtfw_header_layout_tabs {
+  margin-bottom: 0;
+}
+
+#customize-control-bgtfw_header_layout_tabs .bgtfw-tabs .bgtfw-tab {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+#customize-control-bgtfw_header_layout_tabs .bgtfw-tabs .bgtfw-tab:first-child {
+  margin-right: 10px;
+}
+
+#customize-control-bgtfw_header_layout,
+#customize-control-bgtfw_sticky_header_layout {
+  background-color: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 10px 0;
+}
+
+.bgtfw-sortable-accordion {
+  width: calc( 100% - 20px);
+  margin: 0 auto;
+}
+
+.bgtfw-sortable-accordion .hidden, .bgtfw-sortable-accordion .hidden + label {
+  display: none !important;
+}
+
 .bgtfw-sortable-accordion .sortable-wrapper {
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid #ddd;
@@ -2666,7 +2697,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 }
 
 .bgtfw-sortable-accordion .bgtfw-add-new-section {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .bgtfw-sortable-accordion .bgtfw-add-new-section .button-secondary {
@@ -2677,7 +2708,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   margin-right: 5px;
 }
 
-.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper,
+.bgtfw-sortable-accordion .repeater-control.display .control-wrapper,
 .bgtfw-sortable-accordion .bgtfw-container-control,
 .bgtfw-sortable-accordion .sortable-actions {
   display: -webkit-box;
@@ -2690,8 +2721,8 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
           justify-content: space-between;
 }
 
-.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper i,
-.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper .dashicons
+.bgtfw-sortable-accordion .repeater-control.display .control-wrapper i,
+.bgtfw-sortable-accordion .repeater-control.display .control-wrapper .dashicons
 .bgtfw-icon,
 .bgtfw-sortable-accordion .bgtfw-container-control i,
 .bgtfw-sortable-accordion .bgtfw-container-control .dashicons
@@ -2702,8 +2733,8 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   margin-right: 5px;
 }
 
-.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper .bgtfw-sortable-control,
-.bgtfw-sortable-accordion .repeater-control.sticky .control-wrapper .bgtfw-sortable,
+.bgtfw-sortable-accordion .repeater-control.display .control-wrapper .bgtfw-sortable-control,
+.bgtfw-sortable-accordion .repeater-control.display .control-wrapper .bgtfw-sortable,
 .bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable-control,
 .bgtfw-sortable-accordion .bgtfw-container-control .bgtfw-sortable,
 .bgtfw-sortable-accordion .sortable-actions .bgtfw-sortable-control,
@@ -2811,10 +2842,27 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   display: none;
 }
 
+.bgtfw-sortable-accordion .repeater[data-key="branding"] .repeater-control {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-top: 0;
+}
+
+.bgtfw-sortable-accordion .repeater[data-key="branding"] .repeater-control.display {
+  border-right: 1px solid #ddd;
+}
+
+.bgtfw-sortable-accordion .repeater[data-key="branding"] .repeater-control.align .align-wrapper {
+  border-right: none;
+}
+
 .bgtfw-sortable-accordion .repeater .repeater-control {
   margin-left: auto;
   margin-right: auto;
   margin-top: .75em;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.menu-select {
   width: 80%;
 }
 
@@ -2822,18 +2870,18 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   font-weight: 400;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.sticky {
+.bgtfw-sortable-accordion .repeater .repeater-control.display {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  width: 100%;
+  width: 50%;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.sticky:hover,
-.bgtfw-sortable-accordion .repeater .repeater-control.sticky:hover .repeater-control-title {
+.bgtfw-sortable-accordion .repeater .repeater-control.display:hover,
+.bgtfw-sortable-accordion .repeater .repeater-control.display:hover .repeater-control-title {
   border-color: #999;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.sticky .repeater-control-title {
+.bgtfw-sortable-accordion .repeater .repeater-control.display .repeater-control-title {
   border-bottom: 1px solid #ddd;
   background-color: rgba(255, 255, 255, 0.7);
   width: 100%;
@@ -2842,8 +2890,17 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   text-align: center;
 }
 
-.bgtfw-sortable-accordion .repeater .repeater-control.sticky .control-wrapper {
+.bgtfw-sortable-accordion .repeater .repeater-control.display .control-wrapper {
   font-weight: 400;
+  padding: .5em .75em;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.display .control-wrapper label {
+  vertical-align: top;
+}
+
+.bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit {
+  padding: 0 .75em;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.sidebar-edit .repeater-control-description {
@@ -2872,6 +2929,7 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 50%;
 }
 
 .bgtfw-sortable-accordion .repeater .repeater-control.align .repeater-control-title {
@@ -2884,7 +2942,6 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 .bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper {
   background: white;
   border: 1px solid #ddd;
-  width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2944,4 +3001,28 @@ ul[id^="sub-accordion-panel-"] .bgtfw-description .help a .dashicons:before {
 .bgtfw-sortable-accordion .repeater .repeater-control.align .align-wrapper .direction.sw .dashicons-arrow-down {
   -webkit-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
+}
+
+/*--------------------------------------------------------------
+# Tabs
+--------------------------------------------------------------*/
+.bgtfw-tabs {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.bgtfw-tab {
+  padding: .75em;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.bgtfw-tab:hover {
+  background-color: #fafafa;
+}
+
+.bgtfw-tab.selected {
+  background-color: #00a0d2;
+  color: rgba(255, 255, 255, 0.8);
 }

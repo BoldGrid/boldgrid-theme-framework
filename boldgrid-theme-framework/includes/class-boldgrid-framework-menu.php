@@ -351,7 +351,7 @@ class Boldgrid_Framework_Menu {
 			$theme_mods[] = BoldGrid::create_uids( 'bgtfw_footer_layout' );
 			$theme_mods[] = BoldGrid::create_uids( 'bgtfw_sticky_header_layout' );
 
-			foreach( $theme_mods as $theme_mod ) {
+			foreach ( $theme_mods as $theme_mod ) {
 				foreach ( $theme_mod as $key => $section ) {
 					if ( ! empty( $section['items'] ) ) {
 						foreach ( $section['items'] as $item ) {

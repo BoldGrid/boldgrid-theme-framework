@@ -2306,37 +2306,6 @@ return array(
 				'container' => 'container',
 				'items' => [
 					[
-						'type' => 'bgtfw_sidebar_footer-1',
-						'key' => 'sidebar',
-					],
-					[
-						'type' => 'bgtfw_sidebar_footer-2',
-						'key' => 'sidebar',
-					],
-					[
-						'type' => 'bgtfw_sidebar_footer-3',
-						'key' => 'sidebar',
-					],
-					[
-						'type' => 'bgtfw_sidebar_footer-4',
-						'key' => 'sidebar',
-					],
-				],
-			],
-			[
-				'container' => 'container',
-				'items' => [
-					[
-						'type' => 'boldgrid_menu_tertiary',
-						'key' => 'menu',
-						'align' => 'w',
-					],
-				],
-			],
-			[
-				'container' => 'container',
-				'items' => [
-					[
 						'type' => 'boldgrid_display_attribution_links',
 						'key' => 'attribution',
 						'align' => 'w',
@@ -2344,7 +2313,7 @@ return array(
 					[
 						'type' => 'boldgrid_menu_social',
 						'key' => 'menu',
-						'align' => 'w',
+						'align' => 'e',
 					],
 				],
 			],
@@ -2475,16 +2444,6 @@ return array(
 					],
 				],
 			],
-			[
-				'container' => 'container',
-				'items' => [
-					[
-						'type' => 'boldgrid_menu_secondary',
-						'key' => 'menu',
-						'align' => 'w',
-					],
-				],
-			],
 		],
 		'items' => [
 			'menu' => [
@@ -2577,16 +2536,6 @@ return array(
 						'type' => 'boldgrid_menu_sticky-main',
 						'key' => 'menu',
 						'align' => 'e',
-					],
-				],
-			],
-			[
-				'container' => 'container',
-				'items' => [
-					[
-						'type' => 'boldgrid_menu_sticky-secondary',
-						'key' => 'menu',
-						'align' => 'w',
 					],
 				],
 			],

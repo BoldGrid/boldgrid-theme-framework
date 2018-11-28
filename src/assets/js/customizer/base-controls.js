@@ -1,5 +1,6 @@
 /* eslint-disable */
 import WidgetSectionUpdate from './widget/section-update';
+import bgtfwWidgetsSection from './controls/bgtfw-widgets-section';
 import BlogPagePanelExpand from './design/blog/blog-page/panel-expand.js';
 import BlogPostsPanelExpand from './design/blog/posts/panel-expand.js';
 import HomepageSectionExpand from './design/homepage/section-expand.js';
@@ -43,4 +44,5 @@ devices.init();
 	wp.customize.controlConstructor['bgtfw-sortable-accordion'] = api.Control.extend( bgtfwSortableAccordion );
 	wp.customize.controlConstructor.nav_menu_location = api.controlConstructor['nav_menu_location'].extend( bgtfwMenuLocations );
 	wp.customize.Section = api.Section.extend( bgtfwSection );
+	wp.customize.sectionConstructor['bgtfw-widgets-section'] = api.Section.extend( bgtfwWidgetsSection );
 } )( jQuery );

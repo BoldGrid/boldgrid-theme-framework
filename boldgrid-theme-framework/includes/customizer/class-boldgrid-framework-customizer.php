@@ -776,6 +776,24 @@ HTML;
 			$section = new Boldgrid_Framework_Customizer_Section( $wp_customize, $name, $section );
 			$wp_customize->add_section( $section );
 		}
+
+		// Register custom widgets section
+		$wp_customize->register_section_type( 'Boldgrid_Framework_Customizer_Widgets_Section' );
+
+		// Add section.
+		$wp_customize->add_section(
+			new Boldgrid_Framework_Customizer_Widgets_Section(
+				$wp_customize,
+				'bgtfw_widgets_section',
+				array(
+					'section_description' => esc_html__( 'You can add and remove widget areas in your header and footer layouts:', 'bgtfw' ),
+					'header_title' => esc_html__( 'Header Layout', 'bgtfw' ),
+					'footer_title' => esc_html__( 'Footer Layout', 'bgtfw' ),
+					'panel' => 'widgets',
+					'priority' => 9999,
+				)
+			)
+		);
 	}
 
 	/**

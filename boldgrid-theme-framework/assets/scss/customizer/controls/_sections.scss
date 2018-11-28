@@ -38,3 +38,8 @@ span.section-title-extended {
 		margin-top: -3px;
 	}
 }
+
+// Force show bgtfw widgets section on WP widgets panel.
+#accordion-section-bgtfw_widgets_section {
+	display: block !important;
+}

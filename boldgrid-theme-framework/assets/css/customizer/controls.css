@@ -2399,6 +2399,10 @@ h3.accordion-section-title span.section-title-extended {
   margin-top: -3px;
 }
 
+#accordion-section-bgtfw_widgets_section {
+  display: block !important;
+}
+
 /*--------------------------------------------------------------
 # Section/Panel Descriptions
 --------------------------------------------------------------*/

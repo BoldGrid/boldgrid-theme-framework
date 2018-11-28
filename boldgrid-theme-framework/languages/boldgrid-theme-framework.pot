@@ -734,7 +734,7 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2302
+#: src/includes/configs/customizer/controls.config.php:2302, src/includes/customizer/class-boldgrid-framework-customizer.php:791
 msgid "Footer Layout"
 msgstr ""
 
@@ -758,7 +758,7 @@ msgstr ""
 msgid "Top"
 msgstr ""
 
-#: src/includes/configs/customizer/controls.config.php:2405
+#: src/includes/configs/customizer/controls.config.php:2405, src/includes/customizer/class-boldgrid-framework-customizer.php:790
 msgid "Header Layout"
 msgstr ""
 
@@ -1865,6 +1865,10 @@ msgstr ""
 msgid "Links Color:"
 msgstr ""
 
+#: src/includes/customizer/class-boldgrid-framework-customizer-widgets-section.php:94
+msgid "Edit in Admin"
+msgstr ""
+
 #: src/includes/customizer/class-boldgrid-framework-customizer.php:95
 msgid "Menu Items"
 msgstr ""
@@ -1985,7 +1989,11 @@ msgstr ""
 msgid "Add custom CSS for this theme."
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer.php:821
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:789
+msgid "You can add and remove widget areas in your header and footer layouts:"
+msgstr ""
+
+#: src/includes/customizer/class-boldgrid-framework-customizer.php:839
 msgid "Menu Tutorial"
 msgstr ""
 

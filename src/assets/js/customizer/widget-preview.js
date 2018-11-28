@@ -13,7 +13,6 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	self.section_click_bound = false;
 	$( function() {
 		$window.on( 'boldgrid_customizer_refresh', onload );
-		add_widget_description();
 	} );
 
 	onload = function() {
@@ -153,28 +152,4 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 
 		return section_selector;
 	};
-
-	var add_widget_description = function() {
-		var $widgetAreaBottom = $( '#sub-accordion-panel-widgets, #accordion-panel-widgets .accordion-sub-container' ),
-			$navMenuBottom = $( '#sub-accordion-panel-nav_menus, #accordion-panel-nav_menus .accordion-sub-container' );
-
-		// TODO: Move this markup into php and localize. If no header or footer widgets, change wording to add more widgets.
-		if ( ! _.isUndefined( wp.customize( 'boldgrid_footer_widgets' ) ) &&
-			! _.isUndefined( wp.customize( 'boldgrid_header_widgets' ) ) &&
-			wp.customize( 'boldgrid_footer_widgets' ).get() !== '0' &&
-			wp.customize( 'boldgrid_header_widgets' ).get() !== '0' ) {
-				$widgetAreaBottom
-					.append( '<p class="boldgrid-subdescription bottom-description">To change the number of columns in your header or footer, use the following buttons. </p>' )
-					.append( '<div class="boldgrid-subdescription"><button  type="button" data-focus-control="boldgrid_header_widgets" class="button">Header Columns</button><button class="button" type="button" data-focus-control="boldgrid_footer_widgets">Footer Columns</button><div>' )
-					.append( '<div class="boldgrid-subdescription edit-in-admin"><a href="' + Boldgrid_Thememod_Markup.siteurl + '/wp-admin/widgets.php" type="button" class="button">Edit in Admin</a><div>' );
-		} else {
-			$widgetAreaBottom
-				.append( '<p class="boldgrid-subdescription bottom-description">You can add more widget areas in your header or footer, just use the following buttons: </p>' )
-				.append( '<div class="boldgrid-subdescription"><button  type="button" data-focus-control="boldgrid_header_widgets" class="button">Header Widgets</button><button class="button" type="button" data-focus-control="boldgrid_footer_widgets">Footer Widgets</button><div>' )
-				.append( '<div class="boldgrid-subdescription edit-in-admin"><a href="' + Boldgrid_Thememod_Markup.siteurl + '/wp-admin/widgets.php" type="button" class="button">Edit in Admin</a><div>' );
-		}
-
-		$navMenuBottom.append( '<div class="boldgrid-subdescription edit-in-admin"><a href="' + Boldgrid_Thememod_Markup.siteurl + '/wp-admin/nav-menus.php" type="button" class="button">Edit in Admin</a><div>' );
-	};
-
-})( jQuery );
+} )( jQuery );

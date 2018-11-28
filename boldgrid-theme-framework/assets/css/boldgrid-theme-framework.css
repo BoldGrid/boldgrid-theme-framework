@@ -2558,6 +2558,9 @@ select[name="archive-dropdown"] {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
 }
 
 .main-wrapper.full-width {

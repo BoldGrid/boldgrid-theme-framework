@@ -1158,7 +1158,7 @@ body.bgtfw-edit-links-hidden .bgtfw-edit-link a {
 }
 
 .container .container {
-  width: auto !important;
+  width: auto;
 }
 
 /** Nav Tabs Default Styles **/

@@ -1087,13 +1087,13 @@ class BoldGrid {
 		global $post;
 		$label = 'pwbox-' . ( empty( $post->ID ) ? rand() : $post->ID );
 		$output = '
-		<div class="boldgrid-section">
-			<div class="container">
-				<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="form-inline post-password-form" method="post">
-					<p>' . __( 'This content is password protected. To view it please enter your password below:', 'bgtfw' ) . '</p>
-					<label for="' . esc_attr( $label ) . '">' . __( 'Password:', 'bgtfw' ) . ' <input name="post_password" id="' . esc_attr( $label ) . '" type="password" size="20" class="form-control" /></label><button type="submit" name="Submit" class="button-primary">' . esc_attr_x( 'Enter', 'post password form', 'bgtfw' ) . '</button>
-				</form>
-			</div>
+		<div class="container">
+			<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="form-inline post-password-form" method="post">
+				<p>' . __( 'This content is password protected. To view it please enter your password below:', 'bgtfw' ) . '</p>
+				<label for="' . esc_attr( $label ) . '">' . __( 'Password:', 'bgtfw' ) . '</label>
+				<input name="post_password" id="' . esc_attr( $label ) . '" type="password" size="20" class="form-control" />
+				<button type="submit" name="Submit" class="button-primary">' . esc_attr_x( 'Enter', 'post password form', 'bgtfw' ) . '</button>
+			</form>
 		</div>';
 
 		return $output;

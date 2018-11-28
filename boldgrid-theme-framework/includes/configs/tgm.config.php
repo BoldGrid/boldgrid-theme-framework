@@ -23,8 +23,6 @@ return array(
 			'name'      => 'BoldGrid Post and Page Builder',
 			'slug'      => 'post-and-page-builder',
 			'required'  => true,
-			// This is temporary. Please keep bgtfw and prime's builder version in sync.
-			'source'    => 'https://downloads.wordpress.org/plugin/post-and-page-builder.1.8.0-rc.4.zip',
 		),
 		array(
 			'name'      => 'BoldGrid Post and Page Builder Premium',

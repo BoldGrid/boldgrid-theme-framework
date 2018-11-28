@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "905084e5f79e1a0eda0b83ff592d5844",
     "packages": [
         {
             "name": "boldgrid/library",
-            "version": "2.6.1",
+            "version": "2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BoldGrid/library.git",
-                "reference": "ce6126f0894cb715e52d063e0fd9f304a771d057"
+                "reference": "04863578a221f662a50d789f6f367869ee1b0a24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BoldGrid/library/zipball/ce6126f0894cb715e52d063e0fd9f304a771d057",
-                "reference": "ce6126f0894cb715e52d063e0fd9f304a771d057",
+                "url": "https://api.github.com/repos/BoldGrid/library/zipball/04863578a221f662a50d789f6f367869ee1b0a24",
+                "reference": "04863578a221f662a50d789f6f367869ee1b0a24",
                 "shasum": ""
             },
             "type": "library",
@@ -53,7 +53,7 @@
                 }
             ],
             "description": "The BoldGrid Library for shared code used in official BoldGrid plugins and themes.",
-            "time": "2018-10-03T17:20:26+00:00"
+            "time": "2018-11-27T20:21:42+00:00"
         },
         {
             "name": "boldgrid/theme-updater",

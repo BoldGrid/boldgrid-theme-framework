@@ -476,10 +476,16 @@ function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
 				} else {
 					$opt = null;
 				}
+			} else {
+				$opt = false;
 			}
 		}
 
-		if ( ! is_null( $opt ) ) {
+		if ( false === $opt ) {
+			return $style;
+		}
+
+		if ( ! empty( $opt ) ) {
 			$color = get_theme_mod( $opt ) ? get_theme_mod( $opt ) : '';
 
 			if ( ! empty( $color ) ) {

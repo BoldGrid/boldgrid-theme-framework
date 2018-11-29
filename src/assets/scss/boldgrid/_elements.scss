@@ -32,6 +32,7 @@ body.custom-background {
 /** Headings **/
 .palette-primary {
 	@include headings() {
+		font-style: normal;
 		word-wrap: break-word;
 		hyphens: auto;
 	}

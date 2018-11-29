@@ -200,6 +200,7 @@ body.custom-background {
 
 /** Headings **/
 .palette-primary h1, .palette-primary .h1 {
+  font-style: normal;
   word-wrap: break-word;
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
@@ -207,6 +208,7 @@ body.custom-background {
 }
 
 .palette-primary h2, .palette-primary .h2 {
+  font-style: normal;
   word-wrap: break-word;
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
@@ -214,6 +216,7 @@ body.custom-background {
 }
 
 .palette-primary h3, .palette-primary .h3 {
+  font-style: normal;
   word-wrap: break-word;
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
@@ -221,6 +224,7 @@ body.custom-background {
 }
 
 .palette-primary h4, .palette-primary .h4 {
+  font-style: normal;
   word-wrap: break-word;
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
@@ -228,6 +232,7 @@ body.custom-background {
 }
 
 .palette-primary h5, .palette-primary .h5 {
+  font-style: normal;
   word-wrap: break-word;
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
@@ -235,6 +240,7 @@ body.custom-background {
 }
 
 .palette-primary h6, .palette-primary .h6 {
+  font-style: normal;
   word-wrap: break-word;
   -webkit-hyphens: auto;
       -ms-hyphens: auto;

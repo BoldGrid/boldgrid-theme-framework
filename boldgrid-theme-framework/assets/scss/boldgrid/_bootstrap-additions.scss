@@ -34,7 +34,10 @@
 	}
 }
 
-
+.entry-content .row {
+	display:flex;
+	flex-wrap: wrap;
+}
 
 .full-width-column {
 	padding: 0px;

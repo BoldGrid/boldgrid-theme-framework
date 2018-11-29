@@ -34,7 +34,14 @@
 	}
 }
 
+.entry-content .row {
+	display:flex;
+	flex-wrap: wrap;
 
+	&::before, &::after {
+		width: 0;
+	}
+}
 
 .full-width-column {
 	padding: 0px;

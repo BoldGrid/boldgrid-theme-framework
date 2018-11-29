@@ -31,7 +31,6 @@ export default {
 	setupTabs() {
 		if ( false === api( 'bgtfw_fixed_header' )() || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
 			$( '.bgtfw-tab[data-tab$="sticky_header_layout"]' ).hide();
-			api.control( 'bgtfw_sticky_header_layout' ).deactivate();
 		}
 
 		this.hideTab();

@@ -22,7 +22,6 @@ export default {
 		this.updateAddTypes();
 		this.addEvents();
 		this.addUids();
-		this._toggleSticky();
 	},
 
 	/**
@@ -111,6 +110,7 @@ export default {
 			} );
 
 			api.previewer.bind( 'ready', () => {
+				this._toggleSticky();
 				this.sortable.on( 'click', '.repeater-control.sticky .bgtfw-sortable-control:not(.selected)', ( e ) => this._updateSelector( e ) );
 			} );
 
@@ -189,8 +189,10 @@ export default {
 		if ( 'sticky-header' === this.params.location ) {
 			if ( 'header-top' === api( 'bgtfw_header_layout_position' )() && true === api( 'bgtfw_fixed_header' )() ) {
 				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).show();
+				this.active.set( true );
 			} else {
 				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).hide();
+				this.active.set( false );
 			}
 		}
 	},

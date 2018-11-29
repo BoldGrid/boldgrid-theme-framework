@@ -86,7 +86,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "@boldgrid/components": "^2.15.2",
+    "@boldgrid/components": "^2.16.1",
     "@wordpress/dom-ready": "^2.0.2",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",
     "animate.css": "latest",

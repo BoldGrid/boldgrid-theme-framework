@@ -3188,24 +3188,6 @@ return array(
 			),
 		),
 	),
-	'bgtfw_blog_radius' => array(
-		'type'        => 'kirki-generic',
-		'transport'   => 'postMessage',
-		'section'     => 'bgtfw_blog_radius_section',
-		'settings'    => 'bgtfw_blog_radius',
-		'label'       => '',
-		'default'     => '',
-		'choices' => array(
-			'name' => 'boldgrid_controls',
-			'type' => 'BorderRadius',
-			'settings' => array(
-				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
-				'control' => array(
-					'selectors' => array( '.palette-primary.archive .post, .palette-primary.blog .post, .blog main > article.post .entry-header, .blog main > article.post .entry-header.background .featured-imgage-header, .archive main > article.post .entry-header.background .featured-imgage-header, .blog main > article.post .entry-header.above .featured-imgage-header, .archive main > article.post .entry-header.above .featured-imgage-header' ),
-				),
-			),
-		),
-	),
 	'bgtfw_blog_header_background_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',

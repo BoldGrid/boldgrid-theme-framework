@@ -618,11 +618,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 					if ( -1 === document.body.className.indexOf( 'header-slide-in' ) ) {
 						document.body.className += ' ' + 'header-slide-in';
 					}
+					BoldGrid.header_slide_in.init();
+					$( '.bgtfw-sticky-header' ).show();
 				} else {
 					if ( -1 === document.body.className.indexOf( 'header-fixed' ) ) {
 						document.body.className += ' ' + 'header-fixed';
 					}
 				}
+			} else {
+				$( '.bgtfw-sticky-header' ).hide();
 			}
 			calc();
 		} ) );

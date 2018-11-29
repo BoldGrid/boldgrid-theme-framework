@@ -120,7 +120,7 @@ export default {
 
 	_toggleLogo( to ) {
 		this.container[0].querySelectorAll( '[data-selector=".custom-logo"]' ).forEach( control => {
-			control.classList.toggle( 'hidden', _.isEmpty( to ) );
+			control.classList.toggle( 'hidden', ( _.isEmpty( to ) && ! _.isNumber( to ) ) );
 		} );
 	},
 
@@ -383,9 +383,10 @@ export default {
 					// Create unique IDs ex: 'sticky-header-title-1'.
 					let classes = 'display-control',
 						id = _.uniqueId( `${ this.params.location }-${ lowerCase( control.title ) }-` ),
-						checked = 'hide' === control.display ? '' : 'checked';
+						checked = 'hide' === control.display ? '' : 'checked',
+						logo = api( 'custom_logo' )();
 
-					if ( '.custom-logo' === control.selector && _.isEmpty( api( 'custom_logo' )() ) ) {
+					if ( '.custom-logo' === control.selector && ( _.isEmpty( logo ) && ! _.isNumber( logo ) ) ) {
 						classes += ' hidden';
 					}
 

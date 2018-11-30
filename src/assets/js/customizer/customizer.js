@@ -619,14 +619,14 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 						document.body.className += ' ' + 'header-slide-in';
 					}
 					BoldGrid.header_slide_in.init();
-					$( '.bgtfw-sticky-header' ).show();
+					$( '.bgtfw-sticky-header' ).attr( 'style', '' );
 				} else {
 					if ( -1 === document.body.className.indexOf( 'header-fixed' ) ) {
 						document.body.className += ' ' + 'header-fixed';
 					}
 				}
 			} else {
-				$( '.bgtfw-sticky-header' ).hide();
+				$( '.bgtfw-sticky-header' ).attr( 'style', 'display: none !important' );
 			}
 			calc();
 		} ) );

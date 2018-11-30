@@ -208,11 +208,39 @@ export default {
 		instances.sortable( 'destroy' );
 		instances.accordion( 'destroy' );
 		let items = this.sortable.find( '.sortable-wrapper' );
-		let newItem = items.last().clone( true );
-		newItem.attr( 'id', `sortable-${ items.length }-wrapper` );
-		newItem.find( '.connected-sortable' ).attr( 'id', `sortable-${ this.id }-${ items.length }` );
-		newItem.find( '.connected-sortable li' ).remove();
-		newItem.appendTo( this.sortable );
+		let newItem;
+		if ( items.length ) {
+			newItem = items.last().clone( true );
+			newItem.attr( 'id', `sortable-${ items.length }-wrapper` );
+			newItem.find( '.connected-sortable' ).attr( 'id', `sortable-${ this.id }-${ items.length }` );
+			newItem.find( '.connected-sortable li' ).remove();
+			newItem.appendTo( this.sortable );
+		} else {
+			newItem = `
+			<div id="sortable-0-wrapper" class="sortable-wrapper ui-sortable-handle">
+				<span class="sortable-title ui-accordion-header ui-state-default ui-accordion-header-active ui-state-active ui-corner-top ui-accordion-icons" role="tab" id="ui-id-17" aria-controls="ui-id-18" aria-selected="true" aria-expanded="true" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span><span class="title"><em>Empty Section</em></span><span class="dashicons dashicons-trash"></span></span>
+				<div class="sortable-accordion-content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" id="ui-id-18" aria-labelledby="ui-id-17" role="tabpanel" aria-hidden="false" style="display: block;">
+					<div class="sortable-section-controls">
+						<div class="bgtfw-container-control">
+							<div class="bgtfw-sortable-control container selected" data-container="container">
+								<span class="bgtfw-icon icon-layout-container"></span>
+								<span>Container</span>
+							</div>
+							<div class="bgtfw-sortable-control full-screen" data-container="full-width">
+								<span class="bgtfw-icon icon-layout-full-screen"></span>
+								<span>Full Width</span>
+							</div>
+						</div>
+					</div>
+					<ul id="sortable-${ this.id }-0" class="connected-sortable ui-accordion ui-widget ui-helper-reset ui-sortable" role="tablist">
+					</ul>
+					<div class="sortable-actions"></div>
+				</div>
+			</div>`;
+			document.getElementById( `sortable-${ this.id }` ).innerHTML = newItem;
+			this.addTypes();
+		}
+
 		this.addRepeaterSortables();
 		this.refreshItems();
 		this.updateValues();

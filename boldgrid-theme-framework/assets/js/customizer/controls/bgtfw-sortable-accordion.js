@@ -13,6 +13,7 @@ export default {
 	 * @since 2.0.3
 	 */
 	ready() {
+		this.uids = [];
 		this.setSelectQueue();
 		this.setSortable();
 		this.addSortables();
@@ -132,7 +133,12 @@ export default {
 	addUids() {
 		this.container[0].querySelectorAll( '.repeater.ui-sortable-handle' ).forEach( repeater => {
 			if ( _.isEmpty( repeater.dataset ) || _.isUndefined( repeater.dataset.uid ) ) {
-				repeater.dataset.uid = _.uniqueId( this.params.location.charAt( 0 ).toString() );
+				let uid = _.uniqueId( this.params.location.charAt( 0 ).toString() );
+				while ( this.uids.includes( uid ) ) {
+					uid = _.uniqueId( this.params.location.charAt( 0 ).toString() );
+				}
+				this.uids.push( uid );
+				repeater.dataset.uid = uid;
 			}
 		} );
 	},

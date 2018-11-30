@@ -77,7 +77,7 @@ class Boldgrid_Framework_Sticky_Header {
 				}
 			}
 		}
-		$selectors = ! empty( $selectors ) ? implode( ', ', $selectors ) . '{ display: none !important; }' : '';
+		$selectors = ! empty( $selectors ) ? implode( ', ', $selectors ) . '{ display: none !important; }' : ':not(BGTFW){}';
 		return apply_filters( 'bgtfw_sticky_header_display_css', $selectors );
 	}
 }

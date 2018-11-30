@@ -1058,10 +1058,6 @@ class BoldGrid_Framework {
 		add_filter( 'loop_shop_per_page', function( $cols ) {
 			return 12;
 		}, 20 );
-		if ( function_exists( 'woocommerce_demo_store' ) ) {
-			add_action( 'boldgrid_main_top', 'woocommerce_demo_store', 5 );
-			remove_action( 'wp_footer', 'woocommerce_demo_store', 10 );
-		}
 		add_action( 'template_redirect', function() use ( $woo ) {
 			if ( $woo->is_woocommerce_page() ) {
 				add_action( 'boldgrid_main_top' , array( $woo, 'add_container_open' ) );

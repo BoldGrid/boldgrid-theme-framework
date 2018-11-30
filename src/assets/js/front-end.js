@@ -1,4 +1,4 @@
-/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, Cookies:false, FloatLabels:false */
+/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false */
 
 /* ========================================================================
  * DOM-based Routing
@@ -712,26 +712,6 @@ var BoldGrid = BoldGrid || {};
 			// Destroy scroll to top buttons.
 			destroy: function() {
 				$( '.goup-container, .goup-text' ).remove();
-			}
-		},
-		'woocommerce_demo_store': {
-			finalize: function() {
-				if ( 'undefined' !== typeof wp ) {
-					if ( 'undefined' === typeof wp.customize ) {
-
-						// Remove margin-top when notice is dismissed.
-						$( '.woocommerce-store-notice__dismiss-link' ).click( function() {
-							$( '.header-slide-in.header-top.woocommerce-demo-store' ).css( 'margin-top', '0' );
-						} );
-
-						// Check the value of that cookie and show/hide the notice accordingly
-						if ( 'hidden' === Cookies.get( 'store_notice' ) ) {
-							$( '.header-slide-in.header-top.woocommerce-demo-store' ).css( 'margin-top', '0' );
-						} else {
-							$( '.header-slide-in.header-top.woocommerce-demo-store' ).css( 'margin-top', $( '.woocommerce-store-notice' ).outerHeight() );
-						}
-					}
-				}
 			}
 		}
 	};

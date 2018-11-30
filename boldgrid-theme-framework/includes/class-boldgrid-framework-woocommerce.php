@@ -211,11 +211,6 @@ class BoldGrid_Framework_Woocommerce {
 					'1.4.6'
 				);
 			}
-
-			if ( is_customize_preview() && is_store_notice_showing() ) {
-				$css = '.woocommerce-store-notice, p.demo_store { display: flex !important; } .header-fixed.header-top.woocommerce-demo-store { margin-top: 57px; }';
-				wp_add_inline_style( 'customize-preview', $css );
-			}
 		}
 	}
 

@@ -2339,7 +2339,7 @@ return array(
 					'display' => [
 						'default' => [
 							[
-								'selector' => '.custom-logo',
+								'selector' => '.custom-logo-link',
 								'display' => 'show',
 								'title' => __( 'Logo', 'bgtfw' ),
 							],
@@ -2421,7 +2421,7 @@ return array(
 						'align' => 'w',
 						'display' => [
 							[
-								'selector' => '.custom-logo',
+								'selector' => '.custom-logo-link',
 								'display' => 'show',
 								'title' => __( 'Logo', 'bgtfw' ),
 							],
@@ -2463,7 +2463,7 @@ return array(
 					'display' => [
 						'default' => [
 							[
-								'selector' => '.custom-logo',
+								'selector' => '.custom-logo-link',
 								'display' => 'show',
 								'title' => __( 'Logo', 'bgtfw' ),
 							],
@@ -2516,7 +2516,7 @@ return array(
 						'align' => 'w',
 						'display' => [
 							[
-								'selector' => '.custom-logo',
+								'selector' => '.custom-logo-link',
 								'display' => 'show',
 								'title' => __( 'Logo', 'bgtfw' ),
 							],
@@ -2558,7 +2558,7 @@ return array(
 					'display' => [
 						'default' => [
 							[
-								'selector' => '.custom-logo',
+								'selector' => '.custom-logo-link',
 								'display' => 'show',
 								'title' => __( 'Logo', 'bgtfw' ),
 							],

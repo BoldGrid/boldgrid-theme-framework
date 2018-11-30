@@ -270,16 +270,19 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			checkImg: function() {
-				var customHeader, body;
+				var customHeaders, body;
 
 				body = document.body.classList;
 				body.remove( 'has-header-image' );
 				body.remove( 'has-video-header' );
-				customHeader = document.getElementById( 'wp-custom-header' );
+				customHeaders = document.querySelectorAll( 'wp-custom-header' );
 
-				if ( customHeader && customHeader.firstChild && 'IMG' === customHeader.firstChild.nodeName ) {
-					body.add( 'has-header-image' );
-				}
+				customHeaders.forEach( customHeader => {
+					if ( customHeader && customHeader.firstChild && 'IMG' === customHeader.firstChild.nodeName ) {
+						body.add( 'has-header-image' );
+					}
+				} );
+
 			},
 
 			calc: function() {

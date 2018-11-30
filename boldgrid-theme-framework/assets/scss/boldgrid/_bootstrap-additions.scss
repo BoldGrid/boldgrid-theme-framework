@@ -16,6 +16,42 @@
 	min-height: 15px;
 }
 
+.col-xs-5s,
+.col-sm-5s,
+.col-md-5s,
+.col-lg-5s {
+	position: relative;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.col-xs-5s {
+	width: 20%;
+	float: left;
+}
+
+@media (min-width: 768px) {
+	.col-sm-5s {
+		width: 20%;
+		float: left;
+	}
+}
+
+@media (min-width: 992px) {
+	.col-md-5s {
+		width: 20%;
+		float: left;
+	}
+}
+
+@media (min-width: 1200px) {
+	.col-lg-5s {
+		width: 20%;
+		float: left;
+	}
+}
+
 .row .row,
 .container .entry-content .boldgrid-section {
 	margin-left: -15px;

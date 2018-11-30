@@ -4815,12 +4815,6 @@ body:not(.boldgrid-ppb) .boldgrid-shortcode:not(.wpforms-shortcode) {
   margin-top: 1em;
 }
 
-@media only screen and (min-width: 480px) {
-  .palette-primary.woocommerce .return-to-shop .btn.button-primary, .palette-primary.woocommerce-page .return-to-shop .btn.button-primary {
-    padding: 1em;
-  }
-}
-
 .palette-primary .woocommerce-MyAccount-navigation-link a {
   text-decoration: none;
 }

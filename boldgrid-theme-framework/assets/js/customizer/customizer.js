@@ -42,7 +42,7 @@ api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
 			} );
 		} );
 
-		css = _.isEmpty( css ) ? '' : `${ css.join( ', ' ) } { display: none; }`;
+		css = _.isEmpty( css ) ? '' : `${ css.join( ', ' ) } { display: none !important; }`;
 
 		document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = css;
 	}

@@ -90,7 +90,6 @@ class BoldGrid_Framework {
 		$this->ninja_forms();
 		$this->woocommerce();
 		$this->title();
-		$this->welcome();
 	}
 
 	/**
@@ -188,7 +187,6 @@ class BoldGrid_Framework {
 			'template-config',
 			'title',
 			'upgrade',
-			'welcome',
 			'widgets',
 			'woocommerce',
 			'wp-fs',
@@ -829,28 +827,6 @@ class BoldGrid_Framework {
 	}
 
 	/**
-	 * Welcome.
-	 *
-	 * This method sets up the Welcome screen displayed after theme is activated.
-	 *
-	 * @since    2.0.0
-	 * @access   private
-	 */
-	private function welcome() {
-		$welcome = new BoldGrid_Framework_Welcome( $this->configs );
-
-		$this->loader->add_action( 'admin_init', $welcome, 'redirect_on_activation' );
-		$this->loader->add_action( 'admin_menu', $welcome, 'add_admin_menu' );
-		$this->loader->add_action( 'Boldgrid\Library\Library\Page\Connect\addScripts', $welcome, 'connect_scripts' );
-		$this->loader->add_action( 'custom_menu_order', $welcome, 'custom_menu_order' );
-
-		// Don't show the key prompt notice on the welcome page.
-		if ( Boldgrid_Framework_Welcome::is_welcome_page() ) {
-			add_filter( 'Boldgrid\Library\Library\Notice\KeyPrompt_display', '__return_false' );
-		}
-	}
-
-	/**
 	 * Responsible for creating the dynamic widget area markup.
 	 *
 	 * @since 2.0.0
@@ -940,6 +916,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'tgmpa_die_on_api_error', $plugins, 'tgmpa_die_on_api_error' );
 		$this->loader->add_filter( 'bgtfw_register_tgmpa', $plugins, 'bgtfw_register_tgmpa' );
 		$this->loader->add_action( 'wp_ajax_bgtfw-post-plugin-setup', $plugins, 'post_plugin_setup' );
+		$this->loader->add_action( 'bgtfw_enqueue_starter_content_plugins', $plugins, 'enqueue' );
 
 		// Filters to run if we are in the Customizer and requesting Starter Content be loaded.
 		if ( BoldGrid_Framework_Customizer_Starter_Content::$fresh_site_customize ) {

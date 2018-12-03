@@ -1,0 +1,124 @@
+#devices {
+  margin-left: 65px;
+  position: absolute;
+  bottom: 5px;
+  left: 50px;
+  z-index: 1000000;
+  width: 150px;
+}
+
+#devices .devices-container {
+  border-radius: 3px;
+  margin: 0 auto;
+  text-align: center;
+  min-width: 160px;
+}
+
+#devices .device {
+  cursor: pointer;
+  vertical-align: top;
+  position: relative;
+  top: 5px;
+  margin-right: 10px;
+}
+
+#devices .device:before {
+  display: inline-block;
+  font: normal 30px/1 'dashicons';
+  margin: 0 5px;
+  color: #777;
+  position: relative;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  top: -5px;
+  vertical-align: middle;
+}
+
+@-moz-document url-prefix() {
+  #devices .device:before {
+    top: -3px;
+  }
+}
+
+#devices .device:hover,
+#devices .device:hover:before {
+  color: #F95B26;
+}
+
+#devices .screen-desktop:before {
+  content: "\f472";
+}
+
+#devices .screen-tablet:before {
+  content: "\f471";
+}
+
+#devices .screen-mobile:before {
+  content: "\f470";
+}
+
+#devices .current:before,
+#devices .current:hover:before,
+#devices .current,
+#devices .current:hover {
+  color: #F95B26;
+}
+
+#customize-preview.desktop,
+#customize-preview.tablet,
+#customize-preview.mobile {
+  background-color: #555;
+}
+
+#customize-preview iframe {
+  -webkit-transition: all ease .5s;
+  transition: all ease .5s;
+}
+
+#customize-preview.desktop iframe {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#customize-preview.tablet iframe {
+  display: block;
+  margin: 0 auto;
+  width: 768px;
+}
+
+#customize-preview.mobile iframe {
+  display: block;
+  margin: 0 auto;
+  width: 335px;
+  padding-top: 8vw;
+  padding-bottom: 8vw;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#customize-preview.mobile #mobile-message {
+  display: block;
+}
+
+#mobile-message {
+  color: #999;
+  font-size: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  display: none;
+  padding: 30px 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+#mobile-message a {
+  color: #bbb;
+}
+
+#mobile-message a:hover {
+  color: #fff;
+}

@@ -1,0 +1,2009 @@
+/*! @license
+*
+* Buttons
+* Copyright 2012-2014 Alex Wolfe and Rob Levin
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*        http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+/*
+* Compass (optional)
+*
+* We recommend the use of autoprefixer instead of Compass
+* when using buttons. However, buttons does support Compass.
+* simply change $ubtn-use-compass to true and uncomment the
+* @import 'compass' code below to use Compass.
+*/
+/*
+* Required Files
+*
+* These files include the variables and options
+* and base css styles that are required to generate buttons.
+*/
+/*
+* $ubtn prefix (reserved)
+*
+* This prefix stands for Unicorn Button - ubtn
+* We provide a prefix to the Sass Variables to
+* prevent namespace collisions that could occur if
+* you import buttons as part of your Sass build process.
+* We kindly ask you not to use the prefix $ubtn in your project
+* in order to avoid possilbe name conflicts. Thanks!
+*/
+/*
+* Button Namespace (ex .button or .btn)
+*
+*/
+/*
+* Button Defaults
+*
+* Some default settings that are used throughout the button library.
+* Changes to these settings will be picked up by all of the other modules.
+* The colors used here are the default colors for the base button (gray).
+* The font size and height are used to set the base size for the buttons.
+* The size values will be used to calculate the larger and smaller button sizes.
+*/
+/*
+* Button Colors
+*
+* $ubtn-colors is used to generate the different button colors.
+* Edit or add colors to the list below and recompile.
+* Each block contains the (name, background, color)
+* The class is generated using the name: (ex .button-primary)
+*/
+/*
+* Button Shapes
+*
+* $ubtn-shapes is used to generate the different button shapes.
+* Edit or add shapes to the list below and recompile.
+* Each block contains the (name, border-radius).
+* The class is generated using the name: (ex .button-square).
+*/
+/*
+* Button Sizes
+*
+* $ubtn-sizes is used to generate the different button sizes.
+* Edit or add colors to the list below and recompile.
+* Each block contains the (name, size multiplier).
+* The class is generated using the name: (ex .button-giant).
+*/
+/*
+* Color Mixin
+*
+* Iterates through the list of colors and creates
+*
+*/
+/*
+* No Animation
+*
+* Sets animation property to none
+*/
+/*
+* Clearfix
+*
+* Clears floats inside the container
+*/
+/*
+* Base Button Style
+*
+* The default values for the .button class
+*/
+.button {
+  color: #666;
+  background-color: #EEE;
+  border-color: #EEE;
+  font-weight: 300;
+  font-size: 16px;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  padding: 0 40px;
+  margin: 0;
+  display: inline-block;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+  border: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+  /*
+  * Disabled State
+  *
+  * The disabled state uses the class .disabled, is-disabled,
+  * and the form attribute disabled="disabled".
+  * The use of !important is only added because this is a state
+  * that must be applied to all buttons when in a disabled state.
+  */
+}
+
+.button:visited {
+  color: #666;
+}
+
+.button:hover, .button:focus {
+  background-color: #f6f6f6;
+  text-decoration: none;
+  outline: none;
+}
+
+.button:active, .button.active, .button.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  background-color: #eeeeee;
+  border-color: #cfcfcf;
+  color: #d5d5d5;
+  -webkit-transition-duration: 0s;
+          transition-duration: 0s;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button.disabled, .button.is-disabled, .button:disabled {
+  top: 0 !important;
+  background: #EEE !important;
+  border: 1px solid #DDD !important;
+  text-shadow: 0 1px 1px white !important;
+  color: #CCC !important;
+  cursor: default !important;
+  -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+          appearance: none !important;
+}
+
+.button.disabled else, .button.is-disabled else, .button:disabled else {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  opacity: .8 !important;
+}
+
+/*
+* Base Button Tyography
+*
+*/
+.button-uppercase {
+  text-transform: uppercase;
+}
+
+.button-lowercase {
+  text-transform: lowercase;
+}
+
+.button-capitalize {
+  text-transform: capitalize;
+}
+
+.button-small-caps {
+  font-variant: small-caps;
+}
+
+.button-icon-txt-large {
+  font-size: 36px !important;
+}
+
+/*
+* Base padding
+*
+*/
+.button-width-small {
+  padding: 0 10px !important;
+}
+
+/*
+* Base Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.button-primary,
+.button-primary-flat {
+  background-color: #1B9AF7;
+  border-color: #1B9AF7;
+  color: #FFF;
+}
+
+.button-primary:visited,
+.button-primary-flat:visited {
+  color: #FFF;
+}
+
+.button-primary:hover, .button-primary:focus,
+.button-primary-flat:hover,
+.button-primary-flat:focus {
+  background-color: #4cb0f9;
+  border-color: #4cb0f9;
+  color: #FFF;
+}
+
+.button-primary:active, .button-primary.active, .button-primary.is-active,
+.button-primary-flat:active,
+.button-primary-flat.active,
+.button-primary-flat.is-active {
+  background-color: #2798eb;
+  border-color: #2798eb;
+  color: #0880d7;
+}
+
+.button-plain,
+.button-plain-flat {
+  background-color: #FFF;
+  border-color: #FFF;
+  color: #1B9AF7;
+}
+
+.button-plain:visited,
+.button-plain-flat:visited {
+  color: #1B9AF7;
+}
+
+.button-plain:hover, .button-plain:focus,
+.button-plain-flat:hover,
+.button-plain-flat:focus {
+  background-color: white;
+  border-color: white;
+  color: #1B9AF7;
+}
+
+.button-plain:active, .button-plain.active, .button-plain.is-active,
+.button-plain-flat:active,
+.button-plain-flat.active,
+.button-plain-flat.is-active {
+  background-color: white;
+  border-color: white;
+  color: #e6e6e6;
+}
+
+.button-inverse,
+.button-inverse-flat {
+  background-color: #222;
+  border-color: #222;
+  color: #EEE;
+}
+
+.button-inverse:visited,
+.button-inverse-flat:visited {
+  color: #EEE;
+}
+
+.button-inverse:hover, .button-inverse:focus,
+.button-inverse-flat:hover,
+.button-inverse-flat:focus {
+  background-color: #3c3c3c;
+  border-color: #3c3c3c;
+  color: #EEE;
+}
+
+.button-inverse:active, .button-inverse.active, .button-inverse.is-active,
+.button-inverse-flat:active,
+.button-inverse-flat.active,
+.button-inverse-flat.is-active {
+  background-color: #222222;
+  border-color: #222222;
+  color: #090909;
+}
+
+.button-action,
+.button-action-flat {
+  background-color: #A5DE37;
+  border-color: #A5DE37;
+  color: #FFF;
+}
+
+.button-action:visited,
+.button-action-flat:visited {
+  color: #FFF;
+}
+
+.button-action:hover, .button-action:focus,
+.button-action-flat:hover,
+.button-action-flat:focus {
+  background-color: #b9e563;
+  border-color: #b9e563;
+  color: #FFF;
+}
+
+.button-action:active, .button-action.active, .button-action.is-active,
+.button-action-flat:active,
+.button-action-flat.active,
+.button-action-flat.is-active {
+  background-color: #a1d243;
+  border-color: #a1d243;
+  color: #8bc220;
+}
+
+.button-highlight,
+.button-highlight-flat {
+  background-color: #FEAE1B;
+  border-color: #FEAE1B;
+  color: #FFF;
+}
+
+.button-highlight:visited,
+.button-highlight-flat:visited {
+  color: #FFF;
+}
+
+.button-highlight:hover, .button-highlight:focus,
+.button-highlight-flat:hover,
+.button-highlight-flat:focus {
+  background-color: #fec04e;
+  border-color: #fec04e;
+  color: #FFF;
+}
+
+.button-highlight:active, .button-highlight.active, .button-highlight.is-active,
+.button-highlight-flat:active,
+.button-highlight-flat.active,
+.button-highlight-flat.is-active {
+  background-color: #f3ab26;
+  border-color: #f3ab26;
+  color: #e59501;
+}
+
+.button-caution,
+.button-caution-flat {
+  background-color: #FF4351;
+  border-color: #FF4351;
+  color: #FFF;
+}
+
+.button-caution:visited,
+.button-caution-flat:visited {
+  color: #FFF;
+}
+
+.button-caution:hover, .button-caution:focus,
+.button-caution-flat:hover,
+.button-caution-flat:focus {
+  background-color: #ff7680;
+  border-color: #ff7680;
+  color: #FFF;
+}
+
+.button-caution:active, .button-caution.active, .button-caution.is-active,
+.button-caution-flat:active,
+.button-caution-flat.active,
+.button-caution-flat.is-active {
+  background-color: #f64c59;
+  border-color: #f64c59;
+  color: #ff1022;
+}
+
+.button-royal,
+.button-royal-flat {
+  background-color: #7B72E9;
+  border-color: #7B72E9;
+  color: #FFF;
+}
+
+.button-royal:visited,
+.button-royal-flat:visited {
+  color: #FFF;
+}
+
+.button-royal:hover, .button-royal:focus,
+.button-royal-flat:hover,
+.button-royal-flat:focus {
+  background-color: #a49ef0;
+  border-color: #a49ef0;
+  color: #FFF;
+}
+
+.button-royal:active, .button-royal.active, .button-royal.is-active,
+.button-royal-flat:active,
+.button-royal-flat.active,
+.button-royal-flat.is-active {
+  background-color: #827ae1;
+  border-color: #827ae1;
+  color: #5246e2;
+}
+
+/*
+* Base Layout Styles
+*
+* Very Miminal Layout Styles
+*/
+.button-block,
+.button-stacked {
+  display: block;
+}
+
+/*
+* Button Types (optional)
+*
+* All of the files below represent the various button
+* types (including shapes & sizes). None of these files
+* are required. Simple remove the uneeded type below and
+* the button type will be excluded from the final build
+*/
+/*
+* Button Shapes
+*
+* This file creates the various button shapes
+* (ex. Circle, Rounded, Pill)
+*/
+.button-square {
+  border-radius: 0;
+}
+
+.button-box {
+  border-radius: 10px;
+}
+
+.button-rounded {
+  border-radius: 4px;
+}
+
+.button-pill {
+  border-radius: 200px;
+}
+
+.button-circle {
+  border-radius: 100%;
+}
+
+/*
+* Size Adjustment for equal height & widht buttons
+*
+* Remove padding and set a fixed width.
+*/
+.button-circle,
+.button-box,
+.button-square {
+  padding: 0 !important;
+  width: 40px;
+}
+
+.button-circle.button-giant,
+.button-box.button-giant,
+.button-square.button-giant {
+  width: 70px;
+}
+
+.button-circle.button-jumbo,
+.button-box.button-jumbo,
+.button-square.button-jumbo {
+  width: 60px;
+}
+
+.button-circle.button-large,
+.button-box.button-large,
+.button-square.button-large {
+  width: 50px;
+}
+
+.button-circle.button-normal,
+.button-box.button-normal,
+.button-square.button-normal {
+  width: 40px;
+}
+
+.button-circle.button-small,
+.button-box.button-small,
+.button-square.button-small {
+  width: 30px;
+}
+
+.button-circle.button-tiny,
+.button-box.button-tiny,
+.button-square.button-tiny {
+  width: 24px;
+}
+
+/*
+* Border Buttons
+*
+* These buttons have no fill they only have a
+* border to define their hit target.
+*/
+.button-border, .button-border-thin, .button-border-thick {
+  background: none;
+  border-width: 2px;
+  border-style: solid;
+  line-height: 36px;
+}
+
+.button-border:hover, .button-border-thin:hover, .button-border-thick:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.button-border:active, .button-border-thin:active, .button-border-thick:active, .button-border.active, .active.button-border-thin, .active.button-border-thick, .button-border.is-active, .is-active.button-border-thin, .is-active.button-border-thick {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-shadow: none;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+}
+
+/*
+* Border Optional Sizes
+*
+* A slight variation in border thickness
+*/
+.button-border-thin {
+  border-width: 1px;
+}
+
+.button-border-thick {
+  border-width: 3px;
+}
+
+/*
+* Border Button Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.button-border, .button-border-thin, .button-border-thick,
+.button-border-thin,
+.button-border-thick {
+  /*
+  * Border Button Size Adjustment
+  *
+  * The line-height must be adjusted to compinsate for
+  * the width of the border.
+  */
+}
+
+.button-border.button-primary, .button-primary.button-border-thin, .button-primary.button-border-thick,
+.button-border-thin.button-primary,
+.button-border-thick.button-primary {
+  color: #1B9AF7;
+}
+
+.button-border.button-primary:hover, .button-primary.button-border-thin:hover, .button-primary.button-border-thick:hover, .button-border.button-primary:focus, .button-primary.button-border-thin:focus, .button-primary.button-border-thick:focus,
+.button-border-thin.button-primary:hover,
+.button-border-thin.button-primary:focus,
+.button-border-thick.button-primary:hover,
+.button-border-thick.button-primary:focus {
+  background-color: rgba(76, 176, 249, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.button-border.button-primary:active, .button-primary.button-border-thin:active, .button-primary.button-border-thick:active, .button-border.button-primary.active, .button-primary.active.button-border-thin, .button-primary.active.button-border-thick, .button-border.button-primary.is-active, .button-primary.is-active.button-border-thin, .button-primary.is-active.button-border-thick,
+.button-border-thin.button-primary:active,
+.button-border-thin.button-primary.active,
+.button-border-thin.button-primary.is-active,
+.button-border-thick.button-primary:active,
+.button-border-thick.button-primary.active,
+.button-border-thick.button-primary.is-active {
+  background-color: rgba(39, 152, 235, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: .3;
+}
+
+.button-border.button-plain, .button-plain.button-border-thin, .button-plain.button-border-thick,
+.button-border-thin.button-plain,
+.button-border-thick.button-plain {
+  color: #FFF;
+}
+
+.button-border.button-plain:hover, .button-plain.button-border-thin:hover, .button-plain.button-border-thick:hover, .button-border.button-plain:focus, .button-plain.button-border-thin:focus, .button-plain.button-border-thick:focus,
+.button-border-thin.button-plain:hover,
+.button-border-thin.button-plain:focus,
+.button-border-thick.button-plain:hover,
+.button-border-thick.button-plain:focus {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgba(27, 154, 247, 0.9);
+}
+
+.button-border.button-plain:active, .button-plain.button-border-thin:active, .button-plain.button-border-thick:active, .button-border.button-plain.active, .button-plain.active.button-border-thin, .button-plain.active.button-border-thick, .button-border.button-plain.is-active, .button-plain.is-active.button-border-thin, .button-plain.is-active.button-border-thick,
+.button-border-thin.button-plain:active,
+.button-border-thin.button-plain.active,
+.button-border-thin.button-plain.is-active,
+.button-border-thick.button-plain:active,
+.button-border-thick.button-plain.active,
+.button-border-thick.button-plain.is-active {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgba(27, 154, 247, 0.5);
+  opacity: .3;
+}
+
+.button-border.button-inverse, .button-inverse.button-border-thin, .button-inverse.button-border-thick,
+.button-border-thin.button-inverse,
+.button-border-thick.button-inverse {
+  color: #222;
+}
+
+.button-border.button-inverse:hover, .button-inverse.button-border-thin:hover, .button-inverse.button-border-thick:hover, .button-border.button-inverse:focus, .button-inverse.button-border-thin:focus, .button-inverse.button-border-thick:focus,
+.button-border-thin.button-inverse:hover,
+.button-border-thin.button-inverse:focus,
+.button-border-thick.button-inverse:hover,
+.button-border-thick.button-inverse:focus {
+  background-color: rgba(60, 60, 60, 0.9);
+  color: rgba(238, 238, 238, 0.9);
+}
+
+.button-border.button-inverse:active, .button-inverse.button-border-thin:active, .button-inverse.button-border-thick:active, .button-border.button-inverse.active, .button-inverse.active.button-border-thin, .button-inverse.active.button-border-thick, .button-border.button-inverse.is-active, .button-inverse.is-active.button-border-thin, .button-inverse.is-active.button-border-thick,
+.button-border-thin.button-inverse:active,
+.button-border-thin.button-inverse.active,
+.button-border-thin.button-inverse.is-active,
+.button-border-thick.button-inverse:active,
+.button-border-thick.button-inverse.active,
+.button-border-thick.button-inverse.is-active {
+  background-color: rgba(34, 34, 34, 0.7);
+  color: rgba(238, 238, 238, 0.5);
+  opacity: .3;
+}
+
+.button-border.button-action, .button-action.button-border-thin, .button-action.button-border-thick,
+.button-border-thin.button-action,
+.button-border-thick.button-action {
+  color: #A5DE37;
+}
+
+.button-border.button-action:hover, .button-action.button-border-thin:hover, .button-action.button-border-thick:hover, .button-border.button-action:focus, .button-action.button-border-thin:focus, .button-action.button-border-thick:focus,
+.button-border-thin.button-action:hover,
+.button-border-thin.button-action:focus,
+.button-border-thick.button-action:hover,
+.button-border-thick.button-action:focus {
+  background-color: rgba(185, 229, 99, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.button-border.button-action:active, .button-action.button-border-thin:active, .button-action.button-border-thick:active, .button-border.button-action.active, .button-action.active.button-border-thin, .button-action.active.button-border-thick, .button-border.button-action.is-active, .button-action.is-active.button-border-thin, .button-action.is-active.button-border-thick,
+.button-border-thin.button-action:active,
+.button-border-thin.button-action.active,
+.button-border-thin.button-action.is-active,
+.button-border-thick.button-action:active,
+.button-border-thick.button-action.active,
+.button-border-thick.button-action.is-active {
+  background-color: rgba(161, 210, 67, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: .3;
+}
+
+.button-border.button-highlight, .button-highlight.button-border-thin, .button-highlight.button-border-thick,
+.button-border-thin.button-highlight,
+.button-border-thick.button-highlight {
+  color: #FEAE1B;
+}
+
+.button-border.button-highlight:hover, .button-highlight.button-border-thin:hover, .button-highlight.button-border-thick:hover, .button-border.button-highlight:focus, .button-highlight.button-border-thin:focus, .button-highlight.button-border-thick:focus,
+.button-border-thin.button-highlight:hover,
+.button-border-thin.button-highlight:focus,
+.button-border-thick.button-highlight:hover,
+.button-border-thick.button-highlight:focus {
+  background-color: rgba(254, 192, 78, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.button-border.button-highlight:active, .button-highlight.button-border-thin:active, .button-highlight.button-border-thick:active, .button-border.button-highlight.active, .button-highlight.active.button-border-thin, .button-highlight.active.button-border-thick, .button-border.button-highlight.is-active, .button-highlight.is-active.button-border-thin, .button-highlight.is-active.button-border-thick,
+.button-border-thin.button-highlight:active,
+.button-border-thin.button-highlight.active,
+.button-border-thin.button-highlight.is-active,
+.button-border-thick.button-highlight:active,
+.button-border-thick.button-highlight.active,
+.button-border-thick.button-highlight.is-active {
+  background-color: rgba(243, 171, 38, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: .3;
+}
+
+.button-border.button-caution, .button-caution.button-border-thin, .button-caution.button-border-thick,
+.button-border-thin.button-caution,
+.button-border-thick.button-caution {
+  color: #FF4351;
+}
+
+.button-border.button-caution:hover, .button-caution.button-border-thin:hover, .button-caution.button-border-thick:hover, .button-border.button-caution:focus, .button-caution.button-border-thin:focus, .button-caution.button-border-thick:focus,
+.button-border-thin.button-caution:hover,
+.button-border-thin.button-caution:focus,
+.button-border-thick.button-caution:hover,
+.button-border-thick.button-caution:focus {
+  background-color: rgba(255, 118, 128, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.button-border.button-caution:active, .button-caution.button-border-thin:active, .button-caution.button-border-thick:active, .button-border.button-caution.active, .button-caution.active.button-border-thin, .button-caution.active.button-border-thick, .button-border.button-caution.is-active, .button-caution.is-active.button-border-thin, .button-caution.is-active.button-border-thick,
+.button-border-thin.button-caution:active,
+.button-border-thin.button-caution.active,
+.button-border-thin.button-caution.is-active,
+.button-border-thick.button-caution:active,
+.button-border-thick.button-caution.active,
+.button-border-thick.button-caution.is-active {
+  background-color: rgba(246, 76, 89, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: .3;
+}
+
+.button-border.button-royal, .button-royal.button-border-thin, .button-royal.button-border-thick,
+.button-border-thin.button-royal,
+.button-border-thick.button-royal {
+  color: #7B72E9;
+}
+
+.button-border.button-royal:hover, .button-royal.button-border-thin:hover, .button-royal.button-border-thick:hover, .button-border.button-royal:focus, .button-royal.button-border-thin:focus, .button-royal.button-border-thick:focus,
+.button-border-thin.button-royal:hover,
+.button-border-thin.button-royal:focus,
+.button-border-thick.button-royal:hover,
+.button-border-thick.button-royal:focus {
+  background-color: rgba(164, 158, 240, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.button-border.button-royal:active, .button-royal.button-border-thin:active, .button-royal.button-border-thick:active, .button-border.button-royal.active, .button-royal.active.button-border-thin, .button-royal.active.button-border-thick, .button-border.button-royal.is-active, .button-royal.is-active.button-border-thin, .button-royal.is-active.button-border-thick,
+.button-border-thin.button-royal:active,
+.button-border-thin.button-royal.active,
+.button-border-thin.button-royal.is-active,
+.button-border-thick.button-royal:active,
+.button-border-thick.button-royal.active,
+.button-border-thick.button-royal.is-active {
+  background-color: rgba(130, 122, 225, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  opacity: .3;
+}
+
+.button-border.button-giant, .button-giant.button-border-thin, .button-giant.button-border-thick,
+.button-border-thin.button-giant,
+.button-border-thick.button-giant {
+  line-height: 66px;
+}
+
+.button-border.button-jumbo, .button-jumbo.button-border-thin, .button-jumbo.button-border-thick,
+.button-border-thin.button-jumbo,
+.button-border-thick.button-jumbo {
+  line-height: 56px;
+}
+
+.button-border.button-large, .button-large.button-border-thin, .button-large.button-border-thick,
+.button-border-thin.button-large,
+.button-border-thick.button-large {
+  line-height: 46px;
+}
+
+.button-border.button-normal, .button-normal.button-border-thin, .button-normal.button-border-thick,
+.button-border-thin.button-normal,
+.button-border-thick.button-normal {
+  line-height: 36px;
+}
+
+.button-border.button-small, .button-small.button-border-thin, .button-small.button-border-thick,
+.button-border-thin.button-small,
+.button-border-thick.button-small {
+  line-height: 26px;
+}
+
+.button-border.button-tiny, .button-tiny.button-border-thin, .button-tiny.button-border-thick,
+.button-border-thin.button-tiny,
+.button-border-thick.button-tiny {
+  line-height: 20px;
+}
+
+/*
+* Border Buttons
+*
+* These buttons have no fill they only have a
+* border to define their hit target.
+*/
+.button-borderless {
+  background: none;
+  border: none;
+  padding: 0 8px !important;
+  color: #EEE;
+  font-size: 20.8px;
+  font-weight: 200;
+  /*
+  * Borderless Button Colors
+  *
+  * Create colors for buttons
+  * (.button-primary, .button-secondary, etc.)
+  */
+  /*
+  * Borderles Size Adjustment
+  *
+  * The font-size must be large to compinsate for
+  * the lack of a hit target.
+  */
+}
+
+.button-borderless:hover, .button-borderless:focus {
+  background: none;
+}
+
+.button-borderless:active, .button-borderless.active, .button-borderless.is-active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-shadow: none;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+  opacity: .3;
+}
+
+.button-borderless.button-primary {
+  color: #1B9AF7;
+}
+
+.button-borderless.button-plain {
+  color: #FFF;
+}
+
+.button-borderless.button-inverse {
+  color: #222;
+}
+
+.button-borderless.button-action {
+  color: #A5DE37;
+}
+
+.button-borderless.button-highlight {
+  color: #FEAE1B;
+}
+
+.button-borderless.button-caution {
+  color: #FF4351;
+}
+
+.button-borderless.button-royal {
+  color: #7B72E9;
+}
+
+.button-borderless.button-giant {
+  font-size: 36.4px;
+  height: 52.4px;
+  line-height: 52.4px;
+}
+
+.button-borderless.button-jumbo {
+  font-size: 31.2px;
+  height: 47.2px;
+  line-height: 47.2px;
+}
+
+.button-borderless.button-large {
+  font-size: 26px;
+  height: 42px;
+  line-height: 42px;
+}
+
+.button-borderless.button-normal {
+  font-size: 20.8px;
+  height: 36.8px;
+  line-height: 36.8px;
+}
+
+.button-borderless.button-small {
+  font-size: 15.6px;
+  height: 31.6px;
+  line-height: 31.6px;
+}
+
+.button-borderless.button-tiny {
+  font-size: 12.48px;
+  height: 28.48px;
+  line-height: 28.48px;
+}
+
+/*
+* Raised Buttons
+*
+* A classic looking button that offers
+* great depth and affordance.
+*/
+.button-raised {
+  border-color: #e1e1e1;
+  border-style: solid;
+  border-width: 1px;
+  line-height: 38px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#e1e1e1));
+  background: linear-gradient(#f6f6f6, #e1e1e1);
+  -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15);
+          box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.button-raised:hover, .button-raised:focus {
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(gainsboro));
+  background: linear-gradient(white, gainsboro);
+}
+
+.button-raised:active, .button-raised.active, .button-raised.is-active {
+  background: #eeeeee;
+  -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 0px white;
+          box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 0px white;
+}
+
+/*
+* Raised Button Colors
+*
+* Create colors for raised buttons
+*/
+.button-raised.button-primary {
+  border-color: #088ef0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#34a5f8), to(#088ef0));
+  background: linear-gradient(#34a5f8, #088ef0);
+}
+
+.button-raised.button-primary:hover, .button-raised.button-primary:focus {
+  background: -webkit-gradient(linear, left top, left bottom, from(#42abf8), to(#0888e6));
+  background: linear-gradient(#42abf8, #0888e6);
+}
+
+.button-raised.button-primary:active, .button-raised.button-primary.active, .button-raised.button-primary.is-active {
+  border-color: #0880d7;
+  background: #2798eb;
+}
+
+.button-raised.button-plain {
+  border-color: #f2f2f2;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f2f2f2));
+  background: linear-gradient(white, #f2f2f2);
+}
+
+.button-raised.button-plain:hover, .button-raised.button-plain:focus {
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#ededed));
+  background: linear-gradient(white, #ededed);
+}
+
+.button-raised.button-plain:active, .button-raised.button-plain.active, .button-raised.button-plain.is-active {
+  border-color: #e6e6e6;
+  background: white;
+}
+
+.button-raised.button-inverse {
+  border-color: #151515;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2f2f2f), to(#151515));
+  background: linear-gradient(#2f2f2f, #151515);
+}
+
+.button-raised.button-inverse:hover, .button-raised.button-inverse:focus {
+  background: -webkit-gradient(linear, left top, left bottom, from(#363636), to(#101010));
+  background: linear-gradient(#363636, #101010);
+}
+
+.button-raised.button-inverse:active, .button-raised.button-inverse.active, .button-raised.button-inverse.is-active {
+  border-color: #090909;
+  background: #222222;
+}
+
+.button-raised.button-action {
+  border-color: #9ad824;
+  background: -webkit-gradient(linear, left top, left bottom, from(#afe24d), to(#9ad824));
+  background: linear-gradient(#afe24d, #9ad824);
+}
+
+.button-raised.button-action:hover, .button-raised.button-action:focus {
+  background: -webkit-gradient(linear, left top, left bottom, from(#b5e45a), to(#94cf22));
+  background: linear-gradient(#b5e45a, #94cf22);
+}
+
+.button-raised.button-action:active, .button-raised.button-action.active, .button-raised.button-action.is-active {
+  border-color: #8bc220;
+  background: #a1d243;
+}
+
+.button-raised.button-highlight {
+  border-color: #fea502;
+  background: -webkit-gradient(linear, left top, left bottom, from(#feb734), to(#fea502));
+  background: linear-gradient(#feb734, #fea502);
+}
+
+.button-raised.button-highlight:hover, .button-raised.button-highlight:focus {
+  background: -webkit-gradient(linear, left top, left bottom, from(#febc44), to(#f49f01));
+  background: linear-gradient(#febc44, #f49f01);
+}
+
+.button-raised.button-highlight:active, .button-raised.button-highlight.active, .button-raised.button-highlight.is-active {
+  border-color: #e59501;
+  background: #f3ab26;
+}
+
+.button-raised.button-caution {
+  border-color: #ff2a39;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ff5d69), to(#ff2a39));
+  background: linear-gradient(#ff5d69, #ff2a39);
+}
+
+.button-raised.button-caution:hover, .button-raised.button-caution:focus {
+  background: -webkit-gradient(linear, left top, left bottom, from(#ff6c77), to(#ff1f30));
+  background: linear-gradient(#ff6c77, #ff1f30);
+}
+
+.button-raised.button-caution:active, .button-raised.button-caution.active, .button-raised.button-caution.is-active {
+  border-color: #ff1022;
+  background: #f64c59;
+}
+
+.button-raised.button-royal {
+  border-color: #665ce6;
+  background: -webkit-gradient(linear, left top, left bottom, from(#9088ec), to(#665ce6));
+  background: linear-gradient(#9088ec, #665ce6);
+}
+
+.button-raised.button-royal:hover, .button-raised.button-royal:focus {
+  background: -webkit-gradient(linear, left top, left bottom, from(#9c95ef), to(#5e53e4));
+  background: linear-gradient(#9c95ef, #5e53e4);
+}
+
+.button-raised.button-royal:active, .button-raised.button-royal.active, .button-raised.button-royal.is-active {
+  border-color: #5246e2;
+  background: #827ae1;
+}
+
+/*
+* 3D Buttons
+*
+* These buttons have a heavy three dimensional
+* style that mimics the visual appearance of a
+* real life button.
+*/
+.button-3d {
+  position: relative;
+  top: 0;
+  -webkit-box-shadow: 0 7px 0 #bbbbbb, 0 8px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 7px 0 #bbbbbb, 0 8px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d:hover, .button-3d:focus {
+  -webkit-box-shadow: 0 7px 0 #bbbbbb, 0 8px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 7px 0 #bbbbbb, 0 8px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d:active, .button-3d.active, .button-3d.is-active {
+  top: 5px;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: .15s;
+          transition-duration: .15s;
+  -webkit-box-shadow: 0 2px 0 #bbbbbb, 0 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 0 #bbbbbb, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+/*
+* 3D Button Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.button-3d.button-primary {
+  -webkit-box-shadow: 0 7px 0 #0880d7, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #0880d7, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-primary:hover, .button-3d.button-primary:focus {
+  -webkit-box-shadow: 0 7px 0 #077ace, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #077ace, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-primary:active, .button-3d.button-primary.active, .button-3d.button-primary.is-active {
+  -webkit-box-shadow: 0 2px 0 #0662a6, 0 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 0 #0662a6, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d.button-plain {
+  -webkit-box-shadow: 0 7px 0 #e6e6e6, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #e6e6e6, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-plain:hover, .button-3d.button-plain:focus {
+  -webkit-box-shadow: 0 7px 0 #e0e0e0, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #e0e0e0, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-plain:active, .button-3d.button-plain.active, .button-3d.button-plain.is-active {
+  -webkit-box-shadow: 0 2px 0 #cccccc, 0 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 0 #cccccc, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d.button-inverse {
+  -webkit-box-shadow: 0 7px 0 #090909, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #090909, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-inverse:hover, .button-3d.button-inverse:focus {
+  -webkit-box-shadow: 0 7px 0 #030303, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #030303, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-inverse:active, .button-3d.button-inverse.active, .button-3d.button-inverse.is-active {
+  -webkit-box-shadow: 0 2px 0 black, 0 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 0 black, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d.button-action {
+  -webkit-box-shadow: 0 7px 0 #8bc220, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #8bc220, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-action:hover, .button-3d.button-action:focus {
+  -webkit-box-shadow: 0 7px 0 #84b91f, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #84b91f, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-action:active, .button-3d.button-action.active, .button-3d.button-action.is-active {
+  -webkit-box-shadow: 0 2px 0 #6b9619, 0 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 0 #6b9619, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d.button-highlight {
+  -webkit-box-shadow: 0 7px 0 #e59501, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #e59501, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-highlight:hover, .button-3d.button-highlight:focus {
+  -webkit-box-shadow: 0 7px 0 #db8e01, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #db8e01, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-highlight:active, .button-3d.button-highlight.active, .button-3d.button-highlight.is-active {
+  -webkit-box-shadow: 0 2px 0 #b27401, 0 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 0 #b27401, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d.button-caution {
+  -webkit-box-shadow: 0 7px 0 #ff1022, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #ff1022, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-caution:hover, .button-3d.button-caution:focus {
+  -webkit-box-shadow: 0 7px 0 #ff0618, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #ff0618, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-caution:active, .button-3d.button-caution.active, .button-3d.button-caution.is-active {
+  -webkit-box-shadow: 0 2px 0 #dc0010, 0 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 0 #dc0010, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d.button-royal {
+  -webkit-box-shadow: 0 7px 0 #5246e2, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #5246e2, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-royal:hover, .button-3d.button-royal:focus {
+  -webkit-box-shadow: 0 7px 0 #493de1, 0 8px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 7px 0 #493de1, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-royal:active, .button-3d.button-royal.active, .button-3d.button-royal.is-active {
+  -webkit-box-shadow: 0 2px 0 #2f21d4, 0 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 0 #2f21d4, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+/*
+* Glowing Buttons
+*
+* A pulse like glow that appears
+* rythmically around the edges of
+* a button.
+*/
+/*
+* Glow animation mixin for Compass users
+*
+*/
+/*
+* Glowing Keyframes
+*
+*/
+@-webkit-keyframes glowing {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+            box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(44, 154, 219, 0.8);
+            box-shadow: 0 0 20px rgba(44, 154, 219, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+            box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+  }
+}
+@keyframes glowing {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+            box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(44, 154, 219, 0.8);
+            box-shadow: 0 0 20px rgba(44, 154, 219, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+            box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+  }
+}
+
+/*
+* Glowing Keyframes for various colors
+*
+*/
+@-webkit-keyframes glowing-primary {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+            box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(27, 154, 247, 0.8);
+            box-shadow: 0 0 20px rgba(27, 154, 247, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+            box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+  }
+}
+@keyframes glowing-primary {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+            box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(27, 154, 247, 0.8);
+            box-shadow: 0 0 20px rgba(27, 154, 247, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+            box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+  }
+}
+
+@-webkit-keyframes glowing-plain {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes glowing-plain {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+  }
+}
+
+@-webkit-keyframes glowing-inverse {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+            box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(34, 34, 34, 0.8);
+            box-shadow: 0 0 20px rgba(34, 34, 34, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+            box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+  }
+}
+
+@keyframes glowing-inverse {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+            box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(34, 34, 34, 0.8);
+            box-shadow: 0 0 20px rgba(34, 34, 34, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+            box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+  }
+}
+
+@-webkit-keyframes glowing-action {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+            box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(165, 222, 55, 0.8);
+            box-shadow: 0 0 20px rgba(165, 222, 55, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+            box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+  }
+}
+
+@keyframes glowing-action {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+            box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(165, 222, 55, 0.8);
+            box-shadow: 0 0 20px rgba(165, 222, 55, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+            box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+  }
+}
+
+@-webkit-keyframes glowing-highlight {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+            box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(254, 174, 27, 0.8);
+            box-shadow: 0 0 20px rgba(254, 174, 27, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+            box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+  }
+}
+
+@keyframes glowing-highlight {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+            box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(254, 174, 27, 0.8);
+            box-shadow: 0 0 20px rgba(254, 174, 27, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+            box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+  }
+}
+
+@-webkit-keyframes glowing-caution {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+  }
+}
+
+@keyframes glowing-caution {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+  }
+}
+
+@-webkit-keyframes glowing-royal {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+            box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(123, 114, 233, 0.8);
+            box-shadow: 0 0 20px rgba(123, 114, 233, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+            box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+  }
+}
+
+@keyframes glowing-royal {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+            box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+  }
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(123, 114, 233, 0.8);
+            box-shadow: 0 0 20px rgba(123, 114, 233, 0.8);
+  }
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+            box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+  }
+}
+
+/*
+* Glowing Buttons Base Styes
+*
+* A pulse like glow that appears
+* rythmically around the edges of
+* a button.
+*/
+.button-glow {
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-name: glowing;
+          animation-name: glowing;
+}
+
+.button-glow:active, .button-glow.active, .button-glow.is-active {
+  -webkit-animation-name: none;
+          animation-name: none;
+}
+
+/*
+* Glowing Button Colors
+*
+* Create colors for glowing buttons
+*/
+.button-glow.button-primary {
+  -webkit-animation-name: glowing-primary;
+          animation-name: glowing-primary;
+}
+
+.button-glow.button-plain {
+  -webkit-animation-name: glowing-plain;
+          animation-name: glowing-plain;
+}
+
+.button-glow.button-inverse {
+  -webkit-animation-name: glowing-inverse;
+          animation-name: glowing-inverse;
+}
+
+.button-glow.button-action {
+  -webkit-animation-name: glowing-action;
+          animation-name: glowing-action;
+}
+
+.button-glow.button-highlight {
+  -webkit-animation-name: glowing-highlight;
+          animation-name: glowing-highlight;
+}
+
+.button-glow.button-caution {
+  -webkit-animation-name: glowing-caution;
+          animation-name: glowing-caution;
+}
+
+.button-glow.button-royal {
+  -webkit-animation-name: glowing-royal;
+          animation-name: glowing-royal;
+}
+
+/*
+* Dropdown menu buttons
+*
+* A dropdown menu appears
+* when a button is pressed
+*/
+/*
+* Dropdown Container
+*
+*/
+.button-dropdown {
+  position: relative;
+  overflow: visible;
+  display: inline-block;
+}
+
+/*
+* Dropdown List Style
+*
+*/
+.button-dropdown-list {
+  display: none;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  min-width: 100%;
+  list-style-type: none;
+  background: rgba(255, 255, 255, 0.95);
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d5d5d5;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  -webkit-box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /*
+  * Dropdown Below
+  *
+  */
+  /*
+  * Dropdown Above
+  *
+  */
+}
+
+.button-dropdown-list.is-below {
+  top: 100%;
+  border-top: none;
+  border-radius: 0 0 3px 3px;
+}
+
+.button-dropdown-list.is-above {
+  bottom: 100%;
+  top: auto;
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+  -webkit-box-shadow: 0 -2px 7px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 -2px 7px rgba(0, 0, 0, 0.2);
+}
+
+/*
+* Dropdown Buttons
+*
+*/
+.button-dropdown-list > li {
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+.button-dropdown-list > li > a {
+  display: block;
+  line-height: 40px;
+  font-size: 12.8px;
+  padding: 5px 10px;
+  float: none;
+  color: #666;
+  text-decoration: none;
+}
+
+.button-dropdown-list > li > a:hover {
+  color: #5e5e5e;
+  background: #f6f6f6;
+  text-decoration: none;
+}
+
+.button-dropdown-divider {
+  border-top: 1px solid #e6e6e6;
+}
+
+/*
+* Dropdown Colors
+*
+* Create colors for buttons
+* (.button-primary, .button-secondary, etc.)
+*/
+.button-dropdown.button-dropdown-primary .button-dropdown-list {
+  background: rgba(27, 154, 247, 0.95);
+  border-color: #0880d7;
+}
+
+.button-dropdown.button-dropdown-primary .button-dropdown-list .button-dropdown-divider {
+  border-color: #0888e6;
+}
+
+.button-dropdown.button-dropdown-primary .button-dropdown-list > li > a {
+  color: #FFF;
+}
+
+.button-dropdown.button-dropdown-primary .button-dropdown-list > li > a:hover {
+  color: #f2f2f2;
+  background: #088ef0;
+}
+
+.button-dropdown.button-dropdown-plain .button-dropdown-list {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #e6e6e6;
+}
+
+.button-dropdown.button-dropdown-plain .button-dropdown-list .button-dropdown-divider {
+  border-color: #ededed;
+}
+
+.button-dropdown.button-dropdown-plain .button-dropdown-list > li > a {
+  color: #1B9AF7;
+}
+
+.button-dropdown.button-dropdown-plain .button-dropdown-list > li > a:hover {
+  color: #088ef0;
+  background: #f2f2f2;
+}
+
+.button-dropdown.button-dropdown-inverse .button-dropdown-list {
+  background: rgba(34, 34, 34, 0.95);
+  border-color: #090909;
+}
+
+.button-dropdown.button-dropdown-inverse .button-dropdown-list .button-dropdown-divider {
+  border-color: #101010;
+}
+
+.button-dropdown.button-dropdown-inverse .button-dropdown-list > li > a {
+  color: #EEE;
+}
+
+.button-dropdown.button-dropdown-inverse .button-dropdown-list > li > a:hover {
+  color: #e1e1e1;
+  background: #151515;
+}
+
+.button-dropdown.button-dropdown-action .button-dropdown-list {
+  background: rgba(165, 222, 55, 0.95);
+  border-color: #8bc220;
+}
+
+.button-dropdown.button-dropdown-action .button-dropdown-list .button-dropdown-divider {
+  border-color: #94cf22;
+}
+
+.button-dropdown.button-dropdown-action .button-dropdown-list > li > a {
+  color: #FFF;
+}
+
+.button-dropdown.button-dropdown-action .button-dropdown-list > li > a:hover {
+  color: #f2f2f2;
+  background: #9ad824;
+}
+
+.button-dropdown.button-dropdown-highlight .button-dropdown-list {
+  background: rgba(254, 174, 27, 0.95);
+  border-color: #e59501;
+}
+
+.button-dropdown.button-dropdown-highlight .button-dropdown-list .button-dropdown-divider {
+  border-color: #f49f01;
+}
+
+.button-dropdown.button-dropdown-highlight .button-dropdown-list > li > a {
+  color: #FFF;
+}
+
+.button-dropdown.button-dropdown-highlight .button-dropdown-list > li > a:hover {
+  color: #f2f2f2;
+  background: #fea502;
+}
+
+.button-dropdown.button-dropdown-caution .button-dropdown-list {
+  background: rgba(255, 67, 81, 0.95);
+  border-color: #ff1022;
+}
+
+.button-dropdown.button-dropdown-caution .button-dropdown-list .button-dropdown-divider {
+  border-color: #ff1f30;
+}
+
+.button-dropdown.button-dropdown-caution .button-dropdown-list > li > a {
+  color: #FFF;
+}
+
+.button-dropdown.button-dropdown-caution .button-dropdown-list > li > a:hover {
+  color: #f2f2f2;
+  background: #ff2a39;
+}
+
+.button-dropdown.button-dropdown-royal .button-dropdown-list {
+  background: rgba(123, 114, 233, 0.95);
+  border-color: #5246e2;
+}
+
+.button-dropdown.button-dropdown-royal .button-dropdown-list .button-dropdown-divider {
+  border-color: #5e53e4;
+}
+
+.button-dropdown.button-dropdown-royal .button-dropdown-list > li > a {
+  color: #FFF;
+}
+
+.button-dropdown.button-dropdown-royal .button-dropdown-list > li > a:hover {
+  color: #f2f2f2;
+  background: #665ce6;
+}
+
+/*
+* Buton Groups
+*
+* A group of related buttons
+* displayed edge to edge
+*/
+.button-group {
+  *zoom: 1;
+  position: relative;
+  display: inline-block;
+}
+
+.button-group:after, .button-group:before {
+  content: '.';
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  font-size: 0;
+  line-height: 0;
+  width: 0;
+  height: 0;
+}
+
+.button-group .button,
+.button-group .button-dropdown {
+  float: left;
+}
+
+.button-group .button:not(:first-child):not(:last-child),
+.button-group .button-dropdown:not(:first-child):not(:last-child) {
+  border-radius: 0;
+  border-right: none;
+}
+
+.button-group .button:first-child,
+.button-group .button-dropdown:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+
+.button-group .button:last-child,
+.button-group .button-dropdown:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/*
+* Button Wrapper
+*
+* A wrap around effect to highlight
+* the shape of the button and offer
+* a subtle visual effect.
+*/
+.button-wrap {
+  border: 1px solid #e3e3e3;
+  display: inline-block;
+  padding: 9px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#FFF));
+  background: linear-gradient(#f2f2f2, #FFF);
+  border-radius: 200px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/*
+* Long Shadow Buttons
+*
+* A visual effect adding a flat shadow to the text of a button
+*/
+/*
+* Long Shadow Function
+*
+* Loops $length times building a long shadow. Defaults downward right
+*/
+/*
+* LONG SHADOW MIXIN
+*
+*/
+/*
+* Shadow Right
+*
+*/
+.button-longshadow,
+.button-longshadow-right {
+  overflow: hidden;
+}
+
+.button-longshadow.button-primary,
+.button-longshadow-right.button-primary {
+  text-shadow: 0px 0px #0880d7+", "+1+"px "+1+"px "+#0880d7+", "+2+"px "+2+"px "+#0880d7+", "+3+"px "+3+"px "+#0880d7+", "+4+"px "+4+"px "+#0880d7+", "+5+"px "+5+"px "+#0880d7+", "+6+"px "+6+"px "+#0880d7+", "+7+"px "+7+"px "+#0880d7+", "+8+"px "+8+"px "+#0880d7+", "+9+"px "+9+"px "+#0880d7+", "+10+"px "+10+"px "+#0880d7+", "+11+"px "+11+"px "+#0880d7+", "+12+"px "+12+"px "+#0880d7+", "+13+"px "+13+"px "+#0880d7+", "+14+"px "+14+"px "+#0880d7+", "+15+"px "+15+"px "+#0880d7+", "+16+"px "+16+"px "+#0880d7+", "+17+"px "+17+"px "+#0880d7+", "+18+"px "+18+"px "+#0880d7+", "+19+"px "+19+"px "+#0880d7+", "+20+"px "+20+"px "+#0880d7+", "+21+"px "+21+"px "+#0880d7+", "+22+"px "+22+"px "+#0880d7+", "+23+"px "+23+"px "+#0880d7+", "+24+"px "+24+"px "+#0880d7+", "+25+"px "+25+"px "+#0880d7+", "+26+"px "+26+"px "+#0880d7+", "+27+"px "+27+"px "+#0880d7+", "+28+"px "+28+"px "+#0880d7+", "+29+"px "+29+"px "+#0880d7+", "+30+"px "+30+"px "+#0880d7+", "+31+"px "+31+"px "+#0880d7+", "+32+"px "+32+"px "+#0880d7+", "+33+"px "+33+"px "+#0880d7+", "+34+"px "+34+"px "+#0880d7+", "+35+"px "+35+"px "+#0880d7+", "+36+"px "+36+"px "+#0880d7+", "+37+"px "+37+"px "+#0880d7+", "+38+"px "+38+"px "+#0880d7+", "+39+"px "+39+"px "+#0880d7+", "+40+"px "+40+"px "+#0880d7+", "+41+"px "+41+"px "+#0880d7+", "+42+"px "+42+"px "+#0880d7+", "+43+"px "+43+"px "+#0880d7+", "+44+"px "+44+"px "+#0880d7+", "+45+"px "+45+"px "+#0880d7+", "+46+"px "+46+"px "+#0880d7+", "+47+"px "+47+"px "+#0880d7+", "+48+"px "+48+"px "+#0880d7+", "+49+"px "+49+"px "+#0880d7+", "+50+"px "+50+"px "+#0880d7+", "+51+"px "+51+"px "+#0880d7+", "+52+"px "+52+"px "+#0880d7+", "+53+"px "+53+"px "+#0880d7+", "+54+"px "+54+"px "+#0880d7+", "+55+"px "+55+"px "+#0880d7+", "+56+"px "+56+"px "+#0880d7+", "+57+"px "+57+"px "+#0880d7+", "+58+"px "+58+"px "+#0880d7+", "+59+"px "+59+"px "+#0880d7+", "+60+"px "+60+"px "+#0880d7+", "+61+"px "+61+"px "+#0880d7+", "+62+"px "+62+"px "+#0880d7+", "+63+"px "+63+"px "+#0880d7+", "+64+"px "+64+"px "+#0880d7+", "+65+"px "+65+"px "+#0880d7+", "+66+"px "+66+"px "+#0880d7+", "+67+"px "+67+"px "+#0880d7+", "+68+"px "+68+"px "+#0880d7+", "+69+"px "+69+"px "+#0880d7+", "+70+"px "+70+"px "+#0880d7+", "+71+"px "+71+"px "+#0880d7+", "+72+"px "+72+"px "+#0880d7+", "+73+"px "+73+"px "+#0880d7+", "+74+"px "+74+"px "+#0880d7+", "+75+"px "+75+"px "+#0880d7+", "+76+"px "+76+"px "+#0880d7+", "+77+"px "+77+"px "+#0880d7+", "+78+"px "+78+"px "+#0880d7+", "+79+"px "+79+"px "+#0880d7+", "+80+"px "+80+"px "+#0880d7+", "+81+"px "+81+"px "+#0880d7+", "+82+"px "+82+"px "+#0880d7+", "+83+"px "+83+"px "+#0880d7+", "+84+"px "+84+"px "+#0880d7+", "+85+"px "+85+"px "+#0880d7;
+}
+
+.button-longshadow.button-primary:active, .button-longshadow.button-primary.active, .button-longshadow.button-primary.is-active,
+.button-longshadow-right.button-primary:active,
+.button-longshadow-right.button-primary.active,
+.button-longshadow-right.button-primary.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow.button-plain,
+.button-longshadow-right.button-plain {
+  text-shadow: 0px 0px #e6e6e6+", "+1+"px "+1+"px "+#e6e6e6+", "+2+"px "+2+"px "+#e6e6e6+", "+3+"px "+3+"px "+#e6e6e6+", "+4+"px "+4+"px "+#e6e6e6+", "+5+"px "+5+"px "+#e6e6e6+", "+6+"px "+6+"px "+#e6e6e6+", "+7+"px "+7+"px "+#e6e6e6+", "+8+"px "+8+"px "+#e6e6e6+", "+9+"px "+9+"px "+#e6e6e6+", "+10+"px "+10+"px "+#e6e6e6+", "+11+"px "+11+"px "+#e6e6e6+", "+12+"px "+12+"px "+#e6e6e6+", "+13+"px "+13+"px "+#e6e6e6+", "+14+"px "+14+"px "+#e6e6e6+", "+15+"px "+15+"px "+#e6e6e6+", "+16+"px "+16+"px "+#e6e6e6+", "+17+"px "+17+"px "+#e6e6e6+", "+18+"px "+18+"px "+#e6e6e6+", "+19+"px "+19+"px "+#e6e6e6+", "+20+"px "+20+"px "+#e6e6e6+", "+21+"px "+21+"px "+#e6e6e6+", "+22+"px "+22+"px "+#e6e6e6+", "+23+"px "+23+"px "+#e6e6e6+", "+24+"px "+24+"px "+#e6e6e6+", "+25+"px "+25+"px "+#e6e6e6+", "+26+"px "+26+"px "+#e6e6e6+", "+27+"px "+27+"px "+#e6e6e6+", "+28+"px "+28+"px "+#e6e6e6+", "+29+"px "+29+"px "+#e6e6e6+", "+30+"px "+30+"px "+#e6e6e6+", "+31+"px "+31+"px "+#e6e6e6+", "+32+"px "+32+"px "+#e6e6e6+", "+33+"px "+33+"px "+#e6e6e6+", "+34+"px "+34+"px "+#e6e6e6+", "+35+"px "+35+"px "+#e6e6e6+", "+36+"px "+36+"px "+#e6e6e6+", "+37+"px "+37+"px "+#e6e6e6+", "+38+"px "+38+"px "+#e6e6e6+", "+39+"px "+39+"px "+#e6e6e6+", "+40+"px "+40+"px "+#e6e6e6+", "+41+"px "+41+"px "+#e6e6e6+", "+42+"px "+42+"px "+#e6e6e6+", "+43+"px "+43+"px "+#e6e6e6+", "+44+"px "+44+"px "+#e6e6e6+", "+45+"px "+45+"px "+#e6e6e6+", "+46+"px "+46+"px "+#e6e6e6+", "+47+"px "+47+"px "+#e6e6e6+", "+48+"px "+48+"px "+#e6e6e6+", "+49+"px "+49+"px "+#e6e6e6+", "+50+"px "+50+"px "+#e6e6e6+", "+51+"px "+51+"px "+#e6e6e6+", "+52+"px "+52+"px "+#e6e6e6+", "+53+"px "+53+"px "+#e6e6e6+", "+54+"px "+54+"px "+#e6e6e6+", "+55+"px "+55+"px "+#e6e6e6+", "+56+"px "+56+"px "+#e6e6e6+", "+57+"px "+57+"px "+#e6e6e6+", "+58+"px "+58+"px "+#e6e6e6+", "+59+"px "+59+"px "+#e6e6e6+", "+60+"px "+60+"px "+#e6e6e6+", "+61+"px "+61+"px "+#e6e6e6+", "+62+"px "+62+"px "+#e6e6e6+", "+63+"px "+63+"px "+#e6e6e6+", "+64+"px "+64+"px "+#e6e6e6+", "+65+"px "+65+"px "+#e6e6e6+", "+66+"px "+66+"px "+#e6e6e6+", "+67+"px "+67+"px "+#e6e6e6+", "+68+"px "+68+"px "+#e6e6e6+", "+69+"px "+69+"px "+#e6e6e6+", "+70+"px "+70+"px "+#e6e6e6+", "+71+"px "+71+"px "+#e6e6e6+", "+72+"px "+72+"px "+#e6e6e6+", "+73+"px "+73+"px "+#e6e6e6+", "+74+"px "+74+"px "+#e6e6e6+", "+75+"px "+75+"px "+#e6e6e6+", "+76+"px "+76+"px "+#e6e6e6+", "+77+"px "+77+"px "+#e6e6e6+", "+78+"px "+78+"px "+#e6e6e6+", "+79+"px "+79+"px "+#e6e6e6+", "+80+"px "+80+"px "+#e6e6e6+", "+81+"px "+81+"px "+#e6e6e6+", "+82+"px "+82+"px "+#e6e6e6+", "+83+"px "+83+"px "+#e6e6e6+", "+84+"px "+84+"px "+#e6e6e6+", "+85+"px "+85+"px "+#e6e6e6;
+}
+
+.button-longshadow.button-plain:active, .button-longshadow.button-plain.active, .button-longshadow.button-plain.is-active,
+.button-longshadow-right.button-plain:active,
+.button-longshadow-right.button-plain.active,
+.button-longshadow-right.button-plain.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow.button-inverse,
+.button-longshadow-right.button-inverse {
+  text-shadow: 0px 0px #090909+", "+1+"px "+1+"px "+#090909+", "+2+"px "+2+"px "+#090909+", "+3+"px "+3+"px "+#090909+", "+4+"px "+4+"px "+#090909+", "+5+"px "+5+"px "+#090909+", "+6+"px "+6+"px "+#090909+", "+7+"px "+7+"px "+#090909+", "+8+"px "+8+"px "+#090909+", "+9+"px "+9+"px "+#090909+", "+10+"px "+10+"px "+#090909+", "+11+"px "+11+"px "+#090909+", "+12+"px "+12+"px "+#090909+", "+13+"px "+13+"px "+#090909+", "+14+"px "+14+"px "+#090909+", "+15+"px "+15+"px "+#090909+", "+16+"px "+16+"px "+#090909+", "+17+"px "+17+"px "+#090909+", "+18+"px "+18+"px "+#090909+", "+19+"px "+19+"px "+#090909+", "+20+"px "+20+"px "+#090909+", "+21+"px "+21+"px "+#090909+", "+22+"px "+22+"px "+#090909+", "+23+"px "+23+"px "+#090909+", "+24+"px "+24+"px "+#090909+", "+25+"px "+25+"px "+#090909+", "+26+"px "+26+"px "+#090909+", "+27+"px "+27+"px "+#090909+", "+28+"px "+28+"px "+#090909+", "+29+"px "+29+"px "+#090909+", "+30+"px "+30+"px "+#090909+", "+31+"px "+31+"px "+#090909+", "+32+"px "+32+"px "+#090909+", "+33+"px "+33+"px "+#090909+", "+34+"px "+34+"px "+#090909+", "+35+"px "+35+"px "+#090909+", "+36+"px "+36+"px "+#090909+", "+37+"px "+37+"px "+#090909+", "+38+"px "+38+"px "+#090909+", "+39+"px "+39+"px "+#090909+", "+40+"px "+40+"px "+#090909+", "+41+"px "+41+"px "+#090909+", "+42+"px "+42+"px "+#090909+", "+43+"px "+43+"px "+#090909+", "+44+"px "+44+"px "+#090909+", "+45+"px "+45+"px "+#090909+", "+46+"px "+46+"px "+#090909+", "+47+"px "+47+"px "+#090909+", "+48+"px "+48+"px "+#090909+", "+49+"px "+49+"px "+#090909+", "+50+"px "+50+"px "+#090909+", "+51+"px "+51+"px "+#090909+", "+52+"px "+52+"px "+#090909+", "+53+"px "+53+"px "+#090909+", "+54+"px "+54+"px "+#090909+", "+55+"px "+55+"px "+#090909+", "+56+"px "+56+"px "+#090909+", "+57+"px "+57+"px "+#090909+", "+58+"px "+58+"px "+#090909+", "+59+"px "+59+"px "+#090909+", "+60+"px "+60+"px "+#090909+", "+61+"px "+61+"px "+#090909+", "+62+"px "+62+"px "+#090909+", "+63+"px "+63+"px "+#090909+", "+64+"px "+64+"px "+#090909+", "+65+"px "+65+"px "+#090909+", "+66+"px "+66+"px "+#090909+", "+67+"px "+67+"px "+#090909+", "+68+"px "+68+"px "+#090909+", "+69+"px "+69+"px "+#090909+", "+70+"px "+70+"px "+#090909+", "+71+"px "+71+"px "+#090909+", "+72+"px "+72+"px "+#090909+", "+73+"px "+73+"px "+#090909+", "+74+"px "+74+"px "+#090909+", "+75+"px "+75+"px "+#090909+", "+76+"px "+76+"px "+#090909+", "+77+"px "+77+"px "+#090909+", "+78+"px "+78+"px "+#090909+", "+79+"px "+79+"px "+#090909+", "+80+"px "+80+"px "+#090909+", "+81+"px "+81+"px "+#090909+", "+82+"px "+82+"px "+#090909+", "+83+"px "+83+"px "+#090909+", "+84+"px "+84+"px "+#090909+", "+85+"px "+85+"px "+#090909;
+}
+
+.button-longshadow.button-inverse:active, .button-longshadow.button-inverse.active, .button-longshadow.button-inverse.is-active,
+.button-longshadow-right.button-inverse:active,
+.button-longshadow-right.button-inverse.active,
+.button-longshadow-right.button-inverse.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow.button-action,
+.button-longshadow-right.button-action {
+  text-shadow: 0px 0px #8bc220+", "+1+"px "+1+"px "+#8bc220+", "+2+"px "+2+"px "+#8bc220+", "+3+"px "+3+"px "+#8bc220+", "+4+"px "+4+"px "+#8bc220+", "+5+"px "+5+"px "+#8bc220+", "+6+"px "+6+"px "+#8bc220+", "+7+"px "+7+"px "+#8bc220+", "+8+"px "+8+"px "+#8bc220+", "+9+"px "+9+"px "+#8bc220+", "+10+"px "+10+"px "+#8bc220+", "+11+"px "+11+"px "+#8bc220+", "+12+"px "+12+"px "+#8bc220+", "+13+"px "+13+"px "+#8bc220+", "+14+"px "+14+"px "+#8bc220+", "+15+"px "+15+"px "+#8bc220+", "+16+"px "+16+"px "+#8bc220+", "+17+"px "+17+"px "+#8bc220+", "+18+"px "+18+"px "+#8bc220+", "+19+"px "+19+"px "+#8bc220+", "+20+"px "+20+"px "+#8bc220+", "+21+"px "+21+"px "+#8bc220+", "+22+"px "+22+"px "+#8bc220+", "+23+"px "+23+"px "+#8bc220+", "+24+"px "+24+"px "+#8bc220+", "+25+"px "+25+"px "+#8bc220+", "+26+"px "+26+"px "+#8bc220+", "+27+"px "+27+"px "+#8bc220+", "+28+"px "+28+"px "+#8bc220+", "+29+"px "+29+"px "+#8bc220+", "+30+"px "+30+"px "+#8bc220+", "+31+"px "+31+"px "+#8bc220+", "+32+"px "+32+"px "+#8bc220+", "+33+"px "+33+"px "+#8bc220+", "+34+"px "+34+"px "+#8bc220+", "+35+"px "+35+"px "+#8bc220+", "+36+"px "+36+"px "+#8bc220+", "+37+"px "+37+"px "+#8bc220+", "+38+"px "+38+"px "+#8bc220+", "+39+"px "+39+"px "+#8bc220+", "+40+"px "+40+"px "+#8bc220+", "+41+"px "+41+"px "+#8bc220+", "+42+"px "+42+"px "+#8bc220+", "+43+"px "+43+"px "+#8bc220+", "+44+"px "+44+"px "+#8bc220+", "+45+"px "+45+"px "+#8bc220+", "+46+"px "+46+"px "+#8bc220+", "+47+"px "+47+"px "+#8bc220+", "+48+"px "+48+"px "+#8bc220+", "+49+"px "+49+"px "+#8bc220+", "+50+"px "+50+"px "+#8bc220+", "+51+"px "+51+"px "+#8bc220+", "+52+"px "+52+"px "+#8bc220+", "+53+"px "+53+"px "+#8bc220+", "+54+"px "+54+"px "+#8bc220+", "+55+"px "+55+"px "+#8bc220+", "+56+"px "+56+"px "+#8bc220+", "+57+"px "+57+"px "+#8bc220+", "+58+"px "+58+"px "+#8bc220+", "+59+"px "+59+"px "+#8bc220+", "+60+"px "+60+"px "+#8bc220+", "+61+"px "+61+"px "+#8bc220+", "+62+"px "+62+"px "+#8bc220+", "+63+"px "+63+"px "+#8bc220+", "+64+"px "+64+"px "+#8bc220+", "+65+"px "+65+"px "+#8bc220+", "+66+"px "+66+"px "+#8bc220+", "+67+"px "+67+"px "+#8bc220+", "+68+"px "+68+"px "+#8bc220+", "+69+"px "+69+"px "+#8bc220+", "+70+"px "+70+"px "+#8bc220+", "+71+"px "+71+"px "+#8bc220+", "+72+"px "+72+"px "+#8bc220+", "+73+"px "+73+"px "+#8bc220+", "+74+"px "+74+"px "+#8bc220+", "+75+"px "+75+"px "+#8bc220+", "+76+"px "+76+"px "+#8bc220+", "+77+"px "+77+"px "+#8bc220+", "+78+"px "+78+"px "+#8bc220+", "+79+"px "+79+"px "+#8bc220+", "+80+"px "+80+"px "+#8bc220+", "+81+"px "+81+"px "+#8bc220+", "+82+"px "+82+"px "+#8bc220+", "+83+"px "+83+"px "+#8bc220+", "+84+"px "+84+"px "+#8bc220+", "+85+"px "+85+"px "+#8bc220;
+}
+
+.button-longshadow.button-action:active, .button-longshadow.button-action.active, .button-longshadow.button-action.is-active,
+.button-longshadow-right.button-action:active,
+.button-longshadow-right.button-action.active,
+.button-longshadow-right.button-action.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow.button-highlight,
+.button-longshadow-right.button-highlight {
+  text-shadow: 0px 0px #e59501+", "+1+"px "+1+"px "+#e59501+", "+2+"px "+2+"px "+#e59501+", "+3+"px "+3+"px "+#e59501+", "+4+"px "+4+"px "+#e59501+", "+5+"px "+5+"px "+#e59501+", "+6+"px "+6+"px "+#e59501+", "+7+"px "+7+"px "+#e59501+", "+8+"px "+8+"px "+#e59501+", "+9+"px "+9+"px "+#e59501+", "+10+"px "+10+"px "+#e59501+", "+11+"px "+11+"px "+#e59501+", "+12+"px "+12+"px "+#e59501+", "+13+"px "+13+"px "+#e59501+", "+14+"px "+14+"px "+#e59501+", "+15+"px "+15+"px "+#e59501+", "+16+"px "+16+"px "+#e59501+", "+17+"px "+17+"px "+#e59501+", "+18+"px "+18+"px "+#e59501+", "+19+"px "+19+"px "+#e59501+", "+20+"px "+20+"px "+#e59501+", "+21+"px "+21+"px "+#e59501+", "+22+"px "+22+"px "+#e59501+", "+23+"px "+23+"px "+#e59501+", "+24+"px "+24+"px "+#e59501+", "+25+"px "+25+"px "+#e59501+", "+26+"px "+26+"px "+#e59501+", "+27+"px "+27+"px "+#e59501+", "+28+"px "+28+"px "+#e59501+", "+29+"px "+29+"px "+#e59501+", "+30+"px "+30+"px "+#e59501+", "+31+"px "+31+"px "+#e59501+", "+32+"px "+32+"px "+#e59501+", "+33+"px "+33+"px "+#e59501+", "+34+"px "+34+"px "+#e59501+", "+35+"px "+35+"px "+#e59501+", "+36+"px "+36+"px "+#e59501+", "+37+"px "+37+"px "+#e59501+", "+38+"px "+38+"px "+#e59501+", "+39+"px "+39+"px "+#e59501+", "+40+"px "+40+"px "+#e59501+", "+41+"px "+41+"px "+#e59501+", "+42+"px "+42+"px "+#e59501+", "+43+"px "+43+"px "+#e59501+", "+44+"px "+44+"px "+#e59501+", "+45+"px "+45+"px "+#e59501+", "+46+"px "+46+"px "+#e59501+", "+47+"px "+47+"px "+#e59501+", "+48+"px "+48+"px "+#e59501+", "+49+"px "+49+"px "+#e59501+", "+50+"px "+50+"px "+#e59501+", "+51+"px "+51+"px "+#e59501+", "+52+"px "+52+"px "+#e59501+", "+53+"px "+53+"px "+#e59501+", "+54+"px "+54+"px "+#e59501+", "+55+"px "+55+"px "+#e59501+", "+56+"px "+56+"px "+#e59501+", "+57+"px "+57+"px "+#e59501+", "+58+"px "+58+"px "+#e59501+", "+59+"px "+59+"px "+#e59501+", "+60+"px "+60+"px "+#e59501+", "+61+"px "+61+"px "+#e59501+", "+62+"px "+62+"px "+#e59501+", "+63+"px "+63+"px "+#e59501+", "+64+"px "+64+"px "+#e59501+", "+65+"px "+65+"px "+#e59501+", "+66+"px "+66+"px "+#e59501+", "+67+"px "+67+"px "+#e59501+", "+68+"px "+68+"px "+#e59501+", "+69+"px "+69+"px "+#e59501+", "+70+"px "+70+"px "+#e59501+", "+71+"px "+71+"px "+#e59501+", "+72+"px "+72+"px "+#e59501+", "+73+"px "+73+"px "+#e59501+", "+74+"px "+74+"px "+#e59501+", "+75+"px "+75+"px "+#e59501+", "+76+"px "+76+"px "+#e59501+", "+77+"px "+77+"px "+#e59501+", "+78+"px "+78+"px "+#e59501+", "+79+"px "+79+"px "+#e59501+", "+80+"px "+80+"px "+#e59501+", "+81+"px "+81+"px "+#e59501+", "+82+"px "+82+"px "+#e59501+", "+83+"px "+83+"px "+#e59501+", "+84+"px "+84+"px "+#e59501+", "+85+"px "+85+"px "+#e59501;
+}
+
+.button-longshadow.button-highlight:active, .button-longshadow.button-highlight.active, .button-longshadow.button-highlight.is-active,
+.button-longshadow-right.button-highlight:active,
+.button-longshadow-right.button-highlight.active,
+.button-longshadow-right.button-highlight.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow.button-caution,
+.button-longshadow-right.button-caution {
+  text-shadow: 0px 0px #ff1022+", "+1+"px "+1+"px "+#ff1022+", "+2+"px "+2+"px "+#ff1022+", "+3+"px "+3+"px "+#ff1022+", "+4+"px "+4+"px "+#ff1022+", "+5+"px "+5+"px "+#ff1022+", "+6+"px "+6+"px "+#ff1022+", "+7+"px "+7+"px "+#ff1022+", "+8+"px "+8+"px "+#ff1022+", "+9+"px "+9+"px "+#ff1022+", "+10+"px "+10+"px "+#ff1022+", "+11+"px "+11+"px "+#ff1022+", "+12+"px "+12+"px "+#ff1022+", "+13+"px "+13+"px "+#ff1022+", "+14+"px "+14+"px "+#ff1022+", "+15+"px "+15+"px "+#ff1022+", "+16+"px "+16+"px "+#ff1022+", "+17+"px "+17+"px "+#ff1022+", "+18+"px "+18+"px "+#ff1022+", "+19+"px "+19+"px "+#ff1022+", "+20+"px "+20+"px "+#ff1022+", "+21+"px "+21+"px "+#ff1022+", "+22+"px "+22+"px "+#ff1022+", "+23+"px "+23+"px "+#ff1022+", "+24+"px "+24+"px "+#ff1022+", "+25+"px "+25+"px "+#ff1022+", "+26+"px "+26+"px "+#ff1022+", "+27+"px "+27+"px "+#ff1022+", "+28+"px "+28+"px "+#ff1022+", "+29+"px "+29+"px "+#ff1022+", "+30+"px "+30+"px "+#ff1022+", "+31+"px "+31+"px "+#ff1022+", "+32+"px "+32+"px "+#ff1022+", "+33+"px "+33+"px "+#ff1022+", "+34+"px "+34+"px "+#ff1022+", "+35+"px "+35+"px "+#ff1022+", "+36+"px "+36+"px "+#ff1022+", "+37+"px "+37+"px "+#ff1022+", "+38+"px "+38+"px "+#ff1022+", "+39+"px "+39+"px "+#ff1022+", "+40+"px "+40+"px "+#ff1022+", "+41+"px "+41+"px "+#ff1022+", "+42+"px "+42+"px "+#ff1022+", "+43+"px "+43+"px "+#ff1022+", "+44+"px "+44+"px "+#ff1022+", "+45+"px "+45+"px "+#ff1022+", "+46+"px "+46+"px "+#ff1022+", "+47+"px "+47+"px "+#ff1022+", "+48+"px "+48+"px "+#ff1022+", "+49+"px "+49+"px "+#ff1022+", "+50+"px "+50+"px "+#ff1022+", "+51+"px "+51+"px "+#ff1022+", "+52+"px "+52+"px "+#ff1022+", "+53+"px "+53+"px "+#ff1022+", "+54+"px "+54+"px "+#ff1022+", "+55+"px "+55+"px "+#ff1022+", "+56+"px "+56+"px "+#ff1022+", "+57+"px "+57+"px "+#ff1022+", "+58+"px "+58+"px "+#ff1022+", "+59+"px "+59+"px "+#ff1022+", "+60+"px "+60+"px "+#ff1022+", "+61+"px "+61+"px "+#ff1022+", "+62+"px "+62+"px "+#ff1022+", "+63+"px "+63+"px "+#ff1022+", "+64+"px "+64+"px "+#ff1022+", "+65+"px "+65+"px "+#ff1022+", "+66+"px "+66+"px "+#ff1022+", "+67+"px "+67+"px "+#ff1022+", "+68+"px "+68+"px "+#ff1022+", "+69+"px "+69+"px "+#ff1022+", "+70+"px "+70+"px "+#ff1022+", "+71+"px "+71+"px "+#ff1022+", "+72+"px "+72+"px "+#ff1022+", "+73+"px "+73+"px "+#ff1022+", "+74+"px "+74+"px "+#ff1022+", "+75+"px "+75+"px "+#ff1022+", "+76+"px "+76+"px "+#ff1022+", "+77+"px "+77+"px "+#ff1022+", "+78+"px "+78+"px "+#ff1022+", "+79+"px "+79+"px "+#ff1022+", "+80+"px "+80+"px "+#ff1022+", "+81+"px "+81+"px "+#ff1022+", "+82+"px "+82+"px "+#ff1022+", "+83+"px "+83+"px "+#ff1022+", "+84+"px "+84+"px "+#ff1022+", "+85+"px "+85+"px "+#ff1022;
+}
+
+.button-longshadow.button-caution:active, .button-longshadow.button-caution.active, .button-longshadow.button-caution.is-active,
+.button-longshadow-right.button-caution:active,
+.button-longshadow-right.button-caution.active,
+.button-longshadow-right.button-caution.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow.button-royal,
+.button-longshadow-right.button-royal {
+  text-shadow: 0px 0px #5246e2+", "+1+"px "+1+"px "+#5246e2+", "+2+"px "+2+"px "+#5246e2+", "+3+"px "+3+"px "+#5246e2+", "+4+"px "+4+"px "+#5246e2+", "+5+"px "+5+"px "+#5246e2+", "+6+"px "+6+"px "+#5246e2+", "+7+"px "+7+"px "+#5246e2+", "+8+"px "+8+"px "+#5246e2+", "+9+"px "+9+"px "+#5246e2+", "+10+"px "+10+"px "+#5246e2+", "+11+"px "+11+"px "+#5246e2+", "+12+"px "+12+"px "+#5246e2+", "+13+"px "+13+"px "+#5246e2+", "+14+"px "+14+"px "+#5246e2+", "+15+"px "+15+"px "+#5246e2+", "+16+"px "+16+"px "+#5246e2+", "+17+"px "+17+"px "+#5246e2+", "+18+"px "+18+"px "+#5246e2+", "+19+"px "+19+"px "+#5246e2+", "+20+"px "+20+"px "+#5246e2+", "+21+"px "+21+"px "+#5246e2+", "+22+"px "+22+"px "+#5246e2+", "+23+"px "+23+"px "+#5246e2+", "+24+"px "+24+"px "+#5246e2+", "+25+"px "+25+"px "+#5246e2+", "+26+"px "+26+"px "+#5246e2+", "+27+"px "+27+"px "+#5246e2+", "+28+"px "+28+"px "+#5246e2+", "+29+"px "+29+"px "+#5246e2+", "+30+"px "+30+"px "+#5246e2+", "+31+"px "+31+"px "+#5246e2+", "+32+"px "+32+"px "+#5246e2+", "+33+"px "+33+"px "+#5246e2+", "+34+"px "+34+"px "+#5246e2+", "+35+"px "+35+"px "+#5246e2+", "+36+"px "+36+"px "+#5246e2+", "+37+"px "+37+"px "+#5246e2+", "+38+"px "+38+"px "+#5246e2+", "+39+"px "+39+"px "+#5246e2+", "+40+"px "+40+"px "+#5246e2+", "+41+"px "+41+"px "+#5246e2+", "+42+"px "+42+"px "+#5246e2+", "+43+"px "+43+"px "+#5246e2+", "+44+"px "+44+"px "+#5246e2+", "+45+"px "+45+"px "+#5246e2+", "+46+"px "+46+"px "+#5246e2+", "+47+"px "+47+"px "+#5246e2+", "+48+"px "+48+"px "+#5246e2+", "+49+"px "+49+"px "+#5246e2+", "+50+"px "+50+"px "+#5246e2+", "+51+"px "+51+"px "+#5246e2+", "+52+"px "+52+"px "+#5246e2+", "+53+"px "+53+"px "+#5246e2+", "+54+"px "+54+"px "+#5246e2+", "+55+"px "+55+"px "+#5246e2+", "+56+"px "+56+"px "+#5246e2+", "+57+"px "+57+"px "+#5246e2+", "+58+"px "+58+"px "+#5246e2+", "+59+"px "+59+"px "+#5246e2+", "+60+"px "+60+"px "+#5246e2+", "+61+"px "+61+"px "+#5246e2+", "+62+"px "+62+"px "+#5246e2+", "+63+"px "+63+"px "+#5246e2+", "+64+"px "+64+"px "+#5246e2+", "+65+"px "+65+"px "+#5246e2+", "+66+"px "+66+"px "+#5246e2+", "+67+"px "+67+"px "+#5246e2+", "+68+"px "+68+"px "+#5246e2+", "+69+"px "+69+"px "+#5246e2+", "+70+"px "+70+"px "+#5246e2+", "+71+"px "+71+"px "+#5246e2+", "+72+"px "+72+"px "+#5246e2+", "+73+"px "+73+"px "+#5246e2+", "+74+"px "+74+"px "+#5246e2+", "+75+"px "+75+"px "+#5246e2+", "+76+"px "+76+"px "+#5246e2+", "+77+"px "+77+"px "+#5246e2+", "+78+"px "+78+"px "+#5246e2+", "+79+"px "+79+"px "+#5246e2+", "+80+"px "+80+"px "+#5246e2+", "+81+"px "+81+"px "+#5246e2+", "+82+"px "+82+"px "+#5246e2+", "+83+"px "+83+"px "+#5246e2+", "+84+"px "+84+"px "+#5246e2+", "+85+"px "+85+"px "+#5246e2;
+}
+
+.button-longshadow.button-royal:active, .button-longshadow.button-royal.active, .button-longshadow.button-royal.is-active,
+.button-longshadow-right.button-royal:active,
+.button-longshadow-right.button-royal.active,
+.button-longshadow-right.button-royal.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/*
+* Shadow Left
+*
+*/
+.button-longshadow-left {
+  overflow: hidden;
+}
+
+.button-longshadow-left.button-primary {
+  text-shadow: 0px 0px #0880d7+", "+-1+"px "+1+"px "+#0880d7+", "+-2+"px "+2+"px "+#0880d7+", "+-3+"px "+3+"px "+#0880d7+", "+-4+"px "+4+"px "+#0880d7+", "+-5+"px "+5+"px "+#0880d7+", "+-6+"px "+6+"px "+#0880d7+", "+-7+"px "+7+"px "+#0880d7+", "+-8+"px "+8+"px "+#0880d7+", "+-9+"px "+9+"px "+#0880d7+", "+-10+"px "+10+"px "+#0880d7+", "+-11+"px "+11+"px "+#0880d7+", "+-12+"px "+12+"px "+#0880d7+", "+-13+"px "+13+"px "+#0880d7+", "+-14+"px "+14+"px "+#0880d7+", "+-15+"px "+15+"px "+#0880d7+", "+-16+"px "+16+"px "+#0880d7+", "+-17+"px "+17+"px "+#0880d7+", "+-18+"px "+18+"px "+#0880d7+", "+-19+"px "+19+"px "+#0880d7+", "+-20+"px "+20+"px "+#0880d7+", "+-21+"px "+21+"px "+#0880d7+", "+-22+"px "+22+"px "+#0880d7+", "+-23+"px "+23+"px "+#0880d7+", "+-24+"px "+24+"px "+#0880d7+", "+-25+"px "+25+"px "+#0880d7+", "+-26+"px "+26+"px "+#0880d7+", "+-27+"px "+27+"px "+#0880d7+", "+-28+"px "+28+"px "+#0880d7+", "+-29+"px "+29+"px "+#0880d7+", "+-30+"px "+30+"px "+#0880d7+", "+-31+"px "+31+"px "+#0880d7+", "+-32+"px "+32+"px "+#0880d7+", "+-33+"px "+33+"px "+#0880d7+", "+-34+"px "+34+"px "+#0880d7+", "+-35+"px "+35+"px "+#0880d7+", "+-36+"px "+36+"px "+#0880d7+", "+-37+"px "+37+"px "+#0880d7+", "+-38+"px "+38+"px "+#0880d7+", "+-39+"px "+39+"px "+#0880d7+", "+-40+"px "+40+"px "+#0880d7+", "+-41+"px "+41+"px "+#0880d7+", "+-42+"px "+42+"px "+#0880d7+", "+-43+"px "+43+"px "+#0880d7+", "+-44+"px "+44+"px "+#0880d7+", "+-45+"px "+45+"px "+#0880d7+", "+-46+"px "+46+"px "+#0880d7+", "+-47+"px "+47+"px "+#0880d7+", "+-48+"px "+48+"px "+#0880d7+", "+-49+"px "+49+"px "+#0880d7+", "+-50+"px "+50+"px "+#0880d7+", "+-51+"px "+51+"px "+#0880d7+", "+-52+"px "+52+"px "+#0880d7+", "+-53+"px "+53+"px "+#0880d7+", "+-54+"px "+54+"px "+#0880d7+", "+-55+"px "+55+"px "+#0880d7+", "+-56+"px "+56+"px "+#0880d7+", "+-57+"px "+57+"px "+#0880d7+", "+-58+"px "+58+"px "+#0880d7+", "+-59+"px "+59+"px "+#0880d7+", "+-60+"px "+60+"px "+#0880d7+", "+-61+"px "+61+"px "+#0880d7+", "+-62+"px "+62+"px "+#0880d7+", "+-63+"px "+63+"px "+#0880d7+", "+-64+"px "+64+"px "+#0880d7+", "+-65+"px "+65+"px "+#0880d7+", "+-66+"px "+66+"px "+#0880d7+", "+-67+"px "+67+"px "+#0880d7+", "+-68+"px "+68+"px "+#0880d7+", "+-69+"px "+69+"px "+#0880d7+", "+-70+"px "+70+"px "+#0880d7+", "+-71+"px "+71+"px "+#0880d7+", "+-72+"px "+72+"px "+#0880d7+", "+-73+"px "+73+"px "+#0880d7+", "+-74+"px "+74+"px "+#0880d7+", "+-75+"px "+75+"px "+#0880d7+", "+-76+"px "+76+"px "+#0880d7+", "+-77+"px "+77+"px "+#0880d7+", "+-78+"px "+78+"px "+#0880d7+", "+-79+"px "+79+"px "+#0880d7+", "+-80+"px "+80+"px "+#0880d7+", "+-81+"px "+81+"px "+#0880d7+", "+-82+"px "+82+"px "+#0880d7+", "+-83+"px "+83+"px "+#0880d7+", "+-84+"px "+84+"px "+#0880d7+", "+-85+"px "+85+"px "+#0880d7;
+}
+
+.button-longshadow-left.button-primary:active, .button-longshadow-left.button-primary.active, .button-longshadow-left.button-primary.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow-left.button-plain {
+  text-shadow: 0px 0px #e6e6e6+", "+-1+"px "+1+"px "+#e6e6e6+", "+-2+"px "+2+"px "+#e6e6e6+", "+-3+"px "+3+"px "+#e6e6e6+", "+-4+"px "+4+"px "+#e6e6e6+", "+-5+"px "+5+"px "+#e6e6e6+", "+-6+"px "+6+"px "+#e6e6e6+", "+-7+"px "+7+"px "+#e6e6e6+", "+-8+"px "+8+"px "+#e6e6e6+", "+-9+"px "+9+"px "+#e6e6e6+", "+-10+"px "+10+"px "+#e6e6e6+", "+-11+"px "+11+"px "+#e6e6e6+", "+-12+"px "+12+"px "+#e6e6e6+", "+-13+"px "+13+"px "+#e6e6e6+", "+-14+"px "+14+"px "+#e6e6e6+", "+-15+"px "+15+"px "+#e6e6e6+", "+-16+"px "+16+"px "+#e6e6e6+", "+-17+"px "+17+"px "+#e6e6e6+", "+-18+"px "+18+"px "+#e6e6e6+", "+-19+"px "+19+"px "+#e6e6e6+", "+-20+"px "+20+"px "+#e6e6e6+", "+-21+"px "+21+"px "+#e6e6e6+", "+-22+"px "+22+"px "+#e6e6e6+", "+-23+"px "+23+"px "+#e6e6e6+", "+-24+"px "+24+"px "+#e6e6e6+", "+-25+"px "+25+"px "+#e6e6e6+", "+-26+"px "+26+"px "+#e6e6e6+", "+-27+"px "+27+"px "+#e6e6e6+", "+-28+"px "+28+"px "+#e6e6e6+", "+-29+"px "+29+"px "+#e6e6e6+", "+-30+"px "+30+"px "+#e6e6e6+", "+-31+"px "+31+"px "+#e6e6e6+", "+-32+"px "+32+"px "+#e6e6e6+", "+-33+"px "+33+"px "+#e6e6e6+", "+-34+"px "+34+"px "+#e6e6e6+", "+-35+"px "+35+"px "+#e6e6e6+", "+-36+"px "+36+"px "+#e6e6e6+", "+-37+"px "+37+"px "+#e6e6e6+", "+-38+"px "+38+"px "+#e6e6e6+", "+-39+"px "+39+"px "+#e6e6e6+", "+-40+"px "+40+"px "+#e6e6e6+", "+-41+"px "+41+"px "+#e6e6e6+", "+-42+"px "+42+"px "+#e6e6e6+", "+-43+"px "+43+"px "+#e6e6e6+", "+-44+"px "+44+"px "+#e6e6e6+", "+-45+"px "+45+"px "+#e6e6e6+", "+-46+"px "+46+"px "+#e6e6e6+", "+-47+"px "+47+"px "+#e6e6e6+", "+-48+"px "+48+"px "+#e6e6e6+", "+-49+"px "+49+"px "+#e6e6e6+", "+-50+"px "+50+"px "+#e6e6e6+", "+-51+"px "+51+"px "+#e6e6e6+", "+-52+"px "+52+"px "+#e6e6e6+", "+-53+"px "+53+"px "+#e6e6e6+", "+-54+"px "+54+"px "+#e6e6e6+", "+-55+"px "+55+"px "+#e6e6e6+", "+-56+"px "+56+"px "+#e6e6e6+", "+-57+"px "+57+"px "+#e6e6e6+", "+-58+"px "+58+"px "+#e6e6e6+", "+-59+"px "+59+"px "+#e6e6e6+", "+-60+"px "+60+"px "+#e6e6e6+", "+-61+"px "+61+"px "+#e6e6e6+", "+-62+"px "+62+"px "+#e6e6e6+", "+-63+"px "+63+"px "+#e6e6e6+", "+-64+"px "+64+"px "+#e6e6e6+", "+-65+"px "+65+"px "+#e6e6e6+", "+-66+"px "+66+"px "+#e6e6e6+", "+-67+"px "+67+"px "+#e6e6e6+", "+-68+"px "+68+"px "+#e6e6e6+", "+-69+"px "+69+"px "+#e6e6e6+", "+-70+"px "+70+"px "+#e6e6e6+", "+-71+"px "+71+"px "+#e6e6e6+", "+-72+"px "+72+"px "+#e6e6e6+", "+-73+"px "+73+"px "+#e6e6e6+", "+-74+"px "+74+"px "+#e6e6e6+", "+-75+"px "+75+"px "+#e6e6e6+", "+-76+"px "+76+"px "+#e6e6e6+", "+-77+"px "+77+"px "+#e6e6e6+", "+-78+"px "+78+"px "+#e6e6e6+", "+-79+"px "+79+"px "+#e6e6e6+", "+-80+"px "+80+"px "+#e6e6e6+", "+-81+"px "+81+"px "+#e6e6e6+", "+-82+"px "+82+"px "+#e6e6e6+", "+-83+"px "+83+"px "+#e6e6e6+", "+-84+"px "+84+"px "+#e6e6e6+", "+-85+"px "+85+"px "+#e6e6e6;
+}
+
+.button-longshadow-left.button-plain:active, .button-longshadow-left.button-plain.active, .button-longshadow-left.button-plain.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow-left.button-inverse {
+  text-shadow: 0px 0px #090909+", "+-1+"px "+1+"px "+#090909+", "+-2+"px "+2+"px "+#090909+", "+-3+"px "+3+"px "+#090909+", "+-4+"px "+4+"px "+#090909+", "+-5+"px "+5+"px "+#090909+", "+-6+"px "+6+"px "+#090909+", "+-7+"px "+7+"px "+#090909+", "+-8+"px "+8+"px "+#090909+", "+-9+"px "+9+"px "+#090909+", "+-10+"px "+10+"px "+#090909+", "+-11+"px "+11+"px "+#090909+", "+-12+"px "+12+"px "+#090909+", "+-13+"px "+13+"px "+#090909+", "+-14+"px "+14+"px "+#090909+", "+-15+"px "+15+"px "+#090909+", "+-16+"px "+16+"px "+#090909+", "+-17+"px "+17+"px "+#090909+", "+-18+"px "+18+"px "+#090909+", "+-19+"px "+19+"px "+#090909+", "+-20+"px "+20+"px "+#090909+", "+-21+"px "+21+"px "+#090909+", "+-22+"px "+22+"px "+#090909+", "+-23+"px "+23+"px "+#090909+", "+-24+"px "+24+"px "+#090909+", "+-25+"px "+25+"px "+#090909+", "+-26+"px "+26+"px "+#090909+", "+-27+"px "+27+"px "+#090909+", "+-28+"px "+28+"px "+#090909+", "+-29+"px "+29+"px "+#090909+", "+-30+"px "+30+"px "+#090909+", "+-31+"px "+31+"px "+#090909+", "+-32+"px "+32+"px "+#090909+", "+-33+"px "+33+"px "+#090909+", "+-34+"px "+34+"px "+#090909+", "+-35+"px "+35+"px "+#090909+", "+-36+"px "+36+"px "+#090909+", "+-37+"px "+37+"px "+#090909+", "+-38+"px "+38+"px "+#090909+", "+-39+"px "+39+"px "+#090909+", "+-40+"px "+40+"px "+#090909+", "+-41+"px "+41+"px "+#090909+", "+-42+"px "+42+"px "+#090909+", "+-43+"px "+43+"px "+#090909+", "+-44+"px "+44+"px "+#090909+", "+-45+"px "+45+"px "+#090909+", "+-46+"px "+46+"px "+#090909+", "+-47+"px "+47+"px "+#090909+", "+-48+"px "+48+"px "+#090909+", "+-49+"px "+49+"px "+#090909+", "+-50+"px "+50+"px "+#090909+", "+-51+"px "+51+"px "+#090909+", "+-52+"px "+52+"px "+#090909+", "+-53+"px "+53+"px "+#090909+", "+-54+"px "+54+"px "+#090909+", "+-55+"px "+55+"px "+#090909+", "+-56+"px "+56+"px "+#090909+", "+-57+"px "+57+"px "+#090909+", "+-58+"px "+58+"px "+#090909+", "+-59+"px "+59+"px "+#090909+", "+-60+"px "+60+"px "+#090909+", "+-61+"px "+61+"px "+#090909+", "+-62+"px "+62+"px "+#090909+", "+-63+"px "+63+"px "+#090909+", "+-64+"px "+64+"px "+#090909+", "+-65+"px "+65+"px "+#090909+", "+-66+"px "+66+"px "+#090909+", "+-67+"px "+67+"px "+#090909+", "+-68+"px "+68+"px "+#090909+", "+-69+"px "+69+"px "+#090909+", "+-70+"px "+70+"px "+#090909+", "+-71+"px "+71+"px "+#090909+", "+-72+"px "+72+"px "+#090909+", "+-73+"px "+73+"px "+#090909+", "+-74+"px "+74+"px "+#090909+", "+-75+"px "+75+"px "+#090909+", "+-76+"px "+76+"px "+#090909+", "+-77+"px "+77+"px "+#090909+", "+-78+"px "+78+"px "+#090909+", "+-79+"px "+79+"px "+#090909+", "+-80+"px "+80+"px "+#090909+", "+-81+"px "+81+"px "+#090909+", "+-82+"px "+82+"px "+#090909+", "+-83+"px "+83+"px "+#090909+", "+-84+"px "+84+"px "+#090909+", "+-85+"px "+85+"px "+#090909;
+}
+
+.button-longshadow-left.button-inverse:active, .button-longshadow-left.button-inverse.active, .button-longshadow-left.button-inverse.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow-left.button-action {
+  text-shadow: 0px 0px #8bc220+", "+-1+"px "+1+"px "+#8bc220+", "+-2+"px "+2+"px "+#8bc220+", "+-3+"px "+3+"px "+#8bc220+", "+-4+"px "+4+"px "+#8bc220+", "+-5+"px "+5+"px "+#8bc220+", "+-6+"px "+6+"px "+#8bc220+", "+-7+"px "+7+"px "+#8bc220+", "+-8+"px "+8+"px "+#8bc220+", "+-9+"px "+9+"px "+#8bc220+", "+-10+"px "+10+"px "+#8bc220+", "+-11+"px "+11+"px "+#8bc220+", "+-12+"px "+12+"px "+#8bc220+", "+-13+"px "+13+"px "+#8bc220+", "+-14+"px "+14+"px "+#8bc220+", "+-15+"px "+15+"px "+#8bc220+", "+-16+"px "+16+"px "+#8bc220+", "+-17+"px "+17+"px "+#8bc220+", "+-18+"px "+18+"px "+#8bc220+", "+-19+"px "+19+"px "+#8bc220+", "+-20+"px "+20+"px "+#8bc220+", "+-21+"px "+21+"px "+#8bc220+", "+-22+"px "+22+"px "+#8bc220+", "+-23+"px "+23+"px "+#8bc220+", "+-24+"px "+24+"px "+#8bc220+", "+-25+"px "+25+"px "+#8bc220+", "+-26+"px "+26+"px "+#8bc220+", "+-27+"px "+27+"px "+#8bc220+", "+-28+"px "+28+"px "+#8bc220+", "+-29+"px "+29+"px "+#8bc220+", "+-30+"px "+30+"px "+#8bc220+", "+-31+"px "+31+"px "+#8bc220+", "+-32+"px "+32+"px "+#8bc220+", "+-33+"px "+33+"px "+#8bc220+", "+-34+"px "+34+"px "+#8bc220+", "+-35+"px "+35+"px "+#8bc220+", "+-36+"px "+36+"px "+#8bc220+", "+-37+"px "+37+"px "+#8bc220+", "+-38+"px "+38+"px "+#8bc220+", "+-39+"px "+39+"px "+#8bc220+", "+-40+"px "+40+"px "+#8bc220+", "+-41+"px "+41+"px "+#8bc220+", "+-42+"px "+42+"px "+#8bc220+", "+-43+"px "+43+"px "+#8bc220+", "+-44+"px "+44+"px "+#8bc220+", "+-45+"px "+45+"px "+#8bc220+", "+-46+"px "+46+"px "+#8bc220+", "+-47+"px "+47+"px "+#8bc220+", "+-48+"px "+48+"px "+#8bc220+", "+-49+"px "+49+"px "+#8bc220+", "+-50+"px "+50+"px "+#8bc220+", "+-51+"px "+51+"px "+#8bc220+", "+-52+"px "+52+"px "+#8bc220+", "+-53+"px "+53+"px "+#8bc220+", "+-54+"px "+54+"px "+#8bc220+", "+-55+"px "+55+"px "+#8bc220+", "+-56+"px "+56+"px "+#8bc220+", "+-57+"px "+57+"px "+#8bc220+", "+-58+"px "+58+"px "+#8bc220+", "+-59+"px "+59+"px "+#8bc220+", "+-60+"px "+60+"px "+#8bc220+", "+-61+"px "+61+"px "+#8bc220+", "+-62+"px "+62+"px "+#8bc220+", "+-63+"px "+63+"px "+#8bc220+", "+-64+"px "+64+"px "+#8bc220+", "+-65+"px "+65+"px "+#8bc220+", "+-66+"px "+66+"px "+#8bc220+", "+-67+"px "+67+"px "+#8bc220+", "+-68+"px "+68+"px "+#8bc220+", "+-69+"px "+69+"px "+#8bc220+", "+-70+"px "+70+"px "+#8bc220+", "+-71+"px "+71+"px "+#8bc220+", "+-72+"px "+72+"px "+#8bc220+", "+-73+"px "+73+"px "+#8bc220+", "+-74+"px "+74+"px "+#8bc220+", "+-75+"px "+75+"px "+#8bc220+", "+-76+"px "+76+"px "+#8bc220+", "+-77+"px "+77+"px "+#8bc220+", "+-78+"px "+78+"px "+#8bc220+", "+-79+"px "+79+"px "+#8bc220+", "+-80+"px "+80+"px "+#8bc220+", "+-81+"px "+81+"px "+#8bc220+", "+-82+"px "+82+"px "+#8bc220+", "+-83+"px "+83+"px "+#8bc220+", "+-84+"px "+84+"px "+#8bc220+", "+-85+"px "+85+"px "+#8bc220;
+}
+
+.button-longshadow-left.button-action:active, .button-longshadow-left.button-action.active, .button-longshadow-left.button-action.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow-left.button-highlight {
+  text-shadow: 0px 0px #e59501+", "+-1+"px "+1+"px "+#e59501+", "+-2+"px "+2+"px "+#e59501+", "+-3+"px "+3+"px "+#e59501+", "+-4+"px "+4+"px "+#e59501+", "+-5+"px "+5+"px "+#e59501+", "+-6+"px "+6+"px "+#e59501+", "+-7+"px "+7+"px "+#e59501+", "+-8+"px "+8+"px "+#e59501+", "+-9+"px "+9+"px "+#e59501+", "+-10+"px "+10+"px "+#e59501+", "+-11+"px "+11+"px "+#e59501+", "+-12+"px "+12+"px "+#e59501+", "+-13+"px "+13+"px "+#e59501+", "+-14+"px "+14+"px "+#e59501+", "+-15+"px "+15+"px "+#e59501+", "+-16+"px "+16+"px "+#e59501+", "+-17+"px "+17+"px "+#e59501+", "+-18+"px "+18+"px "+#e59501+", "+-19+"px "+19+"px "+#e59501+", "+-20+"px "+20+"px "+#e59501+", "+-21+"px "+21+"px "+#e59501+", "+-22+"px "+22+"px "+#e59501+", "+-23+"px "+23+"px "+#e59501+", "+-24+"px "+24+"px "+#e59501+", "+-25+"px "+25+"px "+#e59501+", "+-26+"px "+26+"px "+#e59501+", "+-27+"px "+27+"px "+#e59501+", "+-28+"px "+28+"px "+#e59501+", "+-29+"px "+29+"px "+#e59501+", "+-30+"px "+30+"px "+#e59501+", "+-31+"px "+31+"px "+#e59501+", "+-32+"px "+32+"px "+#e59501+", "+-33+"px "+33+"px "+#e59501+", "+-34+"px "+34+"px "+#e59501+", "+-35+"px "+35+"px "+#e59501+", "+-36+"px "+36+"px "+#e59501+", "+-37+"px "+37+"px "+#e59501+", "+-38+"px "+38+"px "+#e59501+", "+-39+"px "+39+"px "+#e59501+", "+-40+"px "+40+"px "+#e59501+", "+-41+"px "+41+"px "+#e59501+", "+-42+"px "+42+"px "+#e59501+", "+-43+"px "+43+"px "+#e59501+", "+-44+"px "+44+"px "+#e59501+", "+-45+"px "+45+"px "+#e59501+", "+-46+"px "+46+"px "+#e59501+", "+-47+"px "+47+"px "+#e59501+", "+-48+"px "+48+"px "+#e59501+", "+-49+"px "+49+"px "+#e59501+", "+-50+"px "+50+"px "+#e59501+", "+-51+"px "+51+"px "+#e59501+", "+-52+"px "+52+"px "+#e59501+", "+-53+"px "+53+"px "+#e59501+", "+-54+"px "+54+"px "+#e59501+", "+-55+"px "+55+"px "+#e59501+", "+-56+"px "+56+"px "+#e59501+", "+-57+"px "+57+"px "+#e59501+", "+-58+"px "+58+"px "+#e59501+", "+-59+"px "+59+"px "+#e59501+", "+-60+"px "+60+"px "+#e59501+", "+-61+"px "+61+"px "+#e59501+", "+-62+"px "+62+"px "+#e59501+", "+-63+"px "+63+"px "+#e59501+", "+-64+"px "+64+"px "+#e59501+", "+-65+"px "+65+"px "+#e59501+", "+-66+"px "+66+"px "+#e59501+", "+-67+"px "+67+"px "+#e59501+", "+-68+"px "+68+"px "+#e59501+", "+-69+"px "+69+"px "+#e59501+", "+-70+"px "+70+"px "+#e59501+", "+-71+"px "+71+"px "+#e59501+", "+-72+"px "+72+"px "+#e59501+", "+-73+"px "+73+"px "+#e59501+", "+-74+"px "+74+"px "+#e59501+", "+-75+"px "+75+"px "+#e59501+", "+-76+"px "+76+"px "+#e59501+", "+-77+"px "+77+"px "+#e59501+", "+-78+"px "+78+"px "+#e59501+", "+-79+"px "+79+"px "+#e59501+", "+-80+"px "+80+"px "+#e59501+", "+-81+"px "+81+"px "+#e59501+", "+-82+"px "+82+"px "+#e59501+", "+-83+"px "+83+"px "+#e59501+", "+-84+"px "+84+"px "+#e59501+", "+-85+"px "+85+"px "+#e59501;
+}
+
+.button-longshadow-left.button-highlight:active, .button-longshadow-left.button-highlight.active, .button-longshadow-left.button-highlight.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow-left.button-caution {
+  text-shadow: 0px 0px #ff1022+", "+-1+"px "+1+"px "+#ff1022+", "+-2+"px "+2+"px "+#ff1022+", "+-3+"px "+3+"px "+#ff1022+", "+-4+"px "+4+"px "+#ff1022+", "+-5+"px "+5+"px "+#ff1022+", "+-6+"px "+6+"px "+#ff1022+", "+-7+"px "+7+"px "+#ff1022+", "+-8+"px "+8+"px "+#ff1022+", "+-9+"px "+9+"px "+#ff1022+", "+-10+"px "+10+"px "+#ff1022+", "+-11+"px "+11+"px "+#ff1022+", "+-12+"px "+12+"px "+#ff1022+", "+-13+"px "+13+"px "+#ff1022+", "+-14+"px "+14+"px "+#ff1022+", "+-15+"px "+15+"px "+#ff1022+", "+-16+"px "+16+"px "+#ff1022+", "+-17+"px "+17+"px "+#ff1022+", "+-18+"px "+18+"px "+#ff1022+", "+-19+"px "+19+"px "+#ff1022+", "+-20+"px "+20+"px "+#ff1022+", "+-21+"px "+21+"px "+#ff1022+", "+-22+"px "+22+"px "+#ff1022+", "+-23+"px "+23+"px "+#ff1022+", "+-24+"px "+24+"px "+#ff1022+", "+-25+"px "+25+"px "+#ff1022+", "+-26+"px "+26+"px "+#ff1022+", "+-27+"px "+27+"px "+#ff1022+", "+-28+"px "+28+"px "+#ff1022+", "+-29+"px "+29+"px "+#ff1022+", "+-30+"px "+30+"px "+#ff1022+", "+-31+"px "+31+"px "+#ff1022+", "+-32+"px "+32+"px "+#ff1022+", "+-33+"px "+33+"px "+#ff1022+", "+-34+"px "+34+"px "+#ff1022+", "+-35+"px "+35+"px "+#ff1022+", "+-36+"px "+36+"px "+#ff1022+", "+-37+"px "+37+"px "+#ff1022+", "+-38+"px "+38+"px "+#ff1022+", "+-39+"px "+39+"px "+#ff1022+", "+-40+"px "+40+"px "+#ff1022+", "+-41+"px "+41+"px "+#ff1022+", "+-42+"px "+42+"px "+#ff1022+", "+-43+"px "+43+"px "+#ff1022+", "+-44+"px "+44+"px "+#ff1022+", "+-45+"px "+45+"px "+#ff1022+", "+-46+"px "+46+"px "+#ff1022+", "+-47+"px "+47+"px "+#ff1022+", "+-48+"px "+48+"px "+#ff1022+", "+-49+"px "+49+"px "+#ff1022+", "+-50+"px "+50+"px "+#ff1022+", "+-51+"px "+51+"px "+#ff1022+", "+-52+"px "+52+"px "+#ff1022+", "+-53+"px "+53+"px "+#ff1022+", "+-54+"px "+54+"px "+#ff1022+", "+-55+"px "+55+"px "+#ff1022+", "+-56+"px "+56+"px "+#ff1022+", "+-57+"px "+57+"px "+#ff1022+", "+-58+"px "+58+"px "+#ff1022+", "+-59+"px "+59+"px "+#ff1022+", "+-60+"px "+60+"px "+#ff1022+", "+-61+"px "+61+"px "+#ff1022+", "+-62+"px "+62+"px "+#ff1022+", "+-63+"px "+63+"px "+#ff1022+", "+-64+"px "+64+"px "+#ff1022+", "+-65+"px "+65+"px "+#ff1022+", "+-66+"px "+66+"px "+#ff1022+", "+-67+"px "+67+"px "+#ff1022+", "+-68+"px "+68+"px "+#ff1022+", "+-69+"px "+69+"px "+#ff1022+", "+-70+"px "+70+"px "+#ff1022+", "+-71+"px "+71+"px "+#ff1022+", "+-72+"px "+72+"px "+#ff1022+", "+-73+"px "+73+"px "+#ff1022+", "+-74+"px "+74+"px "+#ff1022+", "+-75+"px "+75+"px "+#ff1022+", "+-76+"px "+76+"px "+#ff1022+", "+-77+"px "+77+"px "+#ff1022+", "+-78+"px "+78+"px "+#ff1022+", "+-79+"px "+79+"px "+#ff1022+", "+-80+"px "+80+"px "+#ff1022+", "+-81+"px "+81+"px "+#ff1022+", "+-82+"px "+82+"px "+#ff1022+", "+-83+"px "+83+"px "+#ff1022+", "+-84+"px "+84+"px "+#ff1022+", "+-85+"px "+85+"px "+#ff1022;
+}
+
+.button-longshadow-left.button-caution:active, .button-longshadow-left.button-caution.active, .button-longshadow-left.button-caution.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.button-longshadow-left.button-royal {
+  text-shadow: 0px 0px #5246e2+", "+-1+"px "+1+"px "+#5246e2+", "+-2+"px "+2+"px "+#5246e2+", "+-3+"px "+3+"px "+#5246e2+", "+-4+"px "+4+"px "+#5246e2+", "+-5+"px "+5+"px "+#5246e2+", "+-6+"px "+6+"px "+#5246e2+", "+-7+"px "+7+"px "+#5246e2+", "+-8+"px "+8+"px "+#5246e2+", "+-9+"px "+9+"px "+#5246e2+", "+-10+"px "+10+"px "+#5246e2+", "+-11+"px "+11+"px "+#5246e2+", "+-12+"px "+12+"px "+#5246e2+", "+-13+"px "+13+"px "+#5246e2+", "+-14+"px "+14+"px "+#5246e2+", "+-15+"px "+15+"px "+#5246e2+", "+-16+"px "+16+"px "+#5246e2+", "+-17+"px "+17+"px "+#5246e2+", "+-18+"px "+18+"px "+#5246e2+", "+-19+"px "+19+"px "+#5246e2+", "+-20+"px "+20+"px "+#5246e2+", "+-21+"px "+21+"px "+#5246e2+", "+-22+"px "+22+"px "+#5246e2+", "+-23+"px "+23+"px "+#5246e2+", "+-24+"px "+24+"px "+#5246e2+", "+-25+"px "+25+"px "+#5246e2+", "+-26+"px "+26+"px "+#5246e2+", "+-27+"px "+27+"px "+#5246e2+", "+-28+"px "+28+"px "+#5246e2+", "+-29+"px "+29+"px "+#5246e2+", "+-30+"px "+30+"px "+#5246e2+", "+-31+"px "+31+"px "+#5246e2+", "+-32+"px "+32+"px "+#5246e2+", "+-33+"px "+33+"px "+#5246e2+", "+-34+"px "+34+"px "+#5246e2+", "+-35+"px "+35+"px "+#5246e2+", "+-36+"px "+36+"px "+#5246e2+", "+-37+"px "+37+"px "+#5246e2+", "+-38+"px "+38+"px "+#5246e2+", "+-39+"px "+39+"px "+#5246e2+", "+-40+"px "+40+"px "+#5246e2+", "+-41+"px "+41+"px "+#5246e2+", "+-42+"px "+42+"px "+#5246e2+", "+-43+"px "+43+"px "+#5246e2+", "+-44+"px "+44+"px "+#5246e2+", "+-45+"px "+45+"px "+#5246e2+", "+-46+"px "+46+"px "+#5246e2+", "+-47+"px "+47+"px "+#5246e2+", "+-48+"px "+48+"px "+#5246e2+", "+-49+"px "+49+"px "+#5246e2+", "+-50+"px "+50+"px "+#5246e2+", "+-51+"px "+51+"px "+#5246e2+", "+-52+"px "+52+"px "+#5246e2+", "+-53+"px "+53+"px "+#5246e2+", "+-54+"px "+54+"px "+#5246e2+", "+-55+"px "+55+"px "+#5246e2+", "+-56+"px "+56+"px "+#5246e2+", "+-57+"px "+57+"px "+#5246e2+", "+-58+"px "+58+"px "+#5246e2+", "+-59+"px "+59+"px "+#5246e2+", "+-60+"px "+60+"px "+#5246e2+", "+-61+"px "+61+"px "+#5246e2+", "+-62+"px "+62+"px "+#5246e2+", "+-63+"px "+63+"px "+#5246e2+", "+-64+"px "+64+"px "+#5246e2+", "+-65+"px "+65+"px "+#5246e2+", "+-66+"px "+66+"px "+#5246e2+", "+-67+"px "+67+"px "+#5246e2+", "+-68+"px "+68+"px "+#5246e2+", "+-69+"px "+69+"px "+#5246e2+", "+-70+"px "+70+"px "+#5246e2+", "+-71+"px "+71+"px "+#5246e2+", "+-72+"px "+72+"px "+#5246e2+", "+-73+"px "+73+"px "+#5246e2+", "+-74+"px "+74+"px "+#5246e2+", "+-75+"px "+75+"px "+#5246e2+", "+-76+"px "+76+"px "+#5246e2+", "+-77+"px "+77+"px "+#5246e2+", "+-78+"px "+78+"px "+#5246e2+", "+-79+"px "+79+"px "+#5246e2+", "+-80+"px "+80+"px "+#5246e2+", "+-81+"px "+81+"px "+#5246e2+", "+-82+"px "+82+"px "+#5246e2+", "+-83+"px "+83+"px "+#5246e2+", "+-84+"px "+84+"px "+#5246e2+", "+-85+"px "+85+"px "+#5246e2;
+}
+
+.button-longshadow-left.button-royal:active, .button-longshadow-left.button-royal.active, .button-longshadow-left.button-royal.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/*
+* Button Sizes
+*
+* This file creates the various button sizes
+* (ex. .button-large, .button-small, etc.)
+*/
+.button-giant {
+  font-size: 28px;
+  height: 70px;
+  line-height: 70px;
+  padding: 0 70px;
+}
+
+.button-jumbo {
+  font-size: 24px;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 60px;
+}
+
+.button-large {
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 50px;
+}
+
+.button-normal {
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 40px;
+}
+
+.button-small {
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 30px;
+}
+
+.button-tiny {
+  font-size: 9.6px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 24px;
+}

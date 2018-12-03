@@ -1,0 +1,39 @@
+.bgtfw-misc-pub-section :before {
+  /* Taken from wp-admin/css/edit.css */
+  font: normal 20px/1 dashicons;
+  speak: none;
+  display: inline-block;
+  margin-left: -1px;
+  vertical-align: top;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #82878c;
+}
+
+.bgtfw-misc-pub-section .bgtfw-page-title:before {
+  content: "\f495";
+}
+
+.bgtfw-misc-pub-section .options {
+  margin: 10px 0px;
+  display: none;
+}
+
+.bgtfw-misc-pub-section .options > label {
+  display: block;
+}
+
+.bgtfw-misc-pub-section .value-displayed {
+  font-weight: bold;
+}
+
+.bgtfw-misc-pub-section .value-displayed .template-subtitle,
+.bgtfw-page-title .template-subtitle {
+  display: inline;
+  margin: 0;
+}
+
+#bgtfw-attributes-meta-box div.inside {
+  margin: 0px;
+  padding: 0px;
+}

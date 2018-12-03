@@ -1,0 +1,31 @@
+.post-attributes-advanced-wrap {
+  padding: 0px 12px;
+}
+
+/** Gutenberg Styles **/
+.gutenberg {
+  /** 100% - ( offset + 16px scrollbar probability ) **/
+  /* Inherit bgtfw fonts instead of using Gutenberg defaults. */
+}
+
+.gutenberg .edit-post-visual-editor .editor-post-title__block,
+.gutenberg .edit-post-visual-editor .editor-block-list__block {
+  max-width: calc( 100% - 58px);
+}
+
+.gutenberg .edit-post-visual-editor, .gutenberg .edit-post-visual-editor p {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+.gutenberg .wp-block-freeform.core-blocks-rich-text__tinymce li,
+.gutenberg .wp-block-freeform.core-blocks-rich-text__tinymce p {
+  line-height: inherit;
+}
+
+.components-popover input[type=search].editor-inserter__search {
+  width: auto;
+}

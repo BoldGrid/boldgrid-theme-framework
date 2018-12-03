@@ -1,0 +1,195 @@
+/*--------------------------------------------------------------
+# Color Palettes
+--------------------------------------------------------------*/
+.color-palette-transitions.duration-long * {
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+.color-palette-transitions * {
+  -webkit-transition-property: background-color, color, border-color;
+  transition-property: background-color, color, border-color;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+  -webkit-transition-timing-function: linear;
+          transition-timing-function: linear;
+}
+
+.color-palette-transitions .menu-social a,
+.color-palette-transitions .fa-stack {
+  -webkit-transition: none;
+  transition: none;
+}
+
+/*--------------------------------------------------------------
+# Edit Buttons
+--------------------------------------------------------------*/
+/**
+* #.# Edit buttons.
+*
+* Buttons are identified using "button[data-control]". Sometimes ".palette-primary button" styles
+* override the button settings below, so "body" has been prepended below for specificity.
+*/
+/* Generic dashicon settings for all buttons */
+body button[data-control]:before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  font: normal 20px/1 'dashicons';
+  vertical-align: top;
+}
+
+/* "New" buttons will have text added on hover */
+body button[data-control].new {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Default settings for all buttons. If updating z-index, update in edit.js as well. */
+body button[data-control] {
+  font-size: 14px;
+  font-family: monospace;
+  padding: 5px;
+  text-decoration: none;
+  color: #000;
+  background: #ddd;
+  opacity: 0.75;
+  border-radius: 4px;
+  border: 0px;
+  /* Sticky header's z-index set to 201, we'll go one lower. */
+  z-index: 200;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  line-height: 20px;
+  max-width: 30px;
+}
+
+/* Orange / orange shadow for button hover. */
+body button[data-control]:hover,
+body button[data-control].highlight-button {
+  opacity: 1;
+  background: #f95b26;
+  color: #fff;
+  -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+}
+
+/**
+* #.# jQuery UI Dialog.
+*
+* Custom settings for our jQuery UI Dialog, which is used for notices, such as when trying to edit
+* a page's content.
+*/
+/* By default, ensure the dialog is hidden. */
+.dialog-hidden {
+  display: none;
+}
+
+/* Generic settings to ensure a theme's css does not interfere with dialog. */
+.ui-dialog {
+  color: #000;
+  max-width: 95%;
+  font-family: Helvetica;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Mimic the close button in Dashboard > Appearance > Themes > Theme Details. */
+.ui-dialog-titlebar-close {
+  height: 100%;
+  float: right;
+  background: transparent;
+  margin-right: -35px;
+  border: 0px;
+  border-left: 1px solid #ddd;
+}
+
+/* Mimic wp-core-ui's button-primary */
+.ui-dialog-buttonset button {
+  font-size: 13px;
+  line-height: 26px;
+  height: 28px;
+  margin: 0;
+  padding: 0 10px 1px;
+  border-width: 1px;
+  -webkit-appearance: none;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.ui-dialog-buttonset button:first-of-type {
+  background: #0085ba;
+  border-color: #0073aa #006799 #006799;
+  -webkit-box-shadow: 0 1px 0 #006799;
+  box-shadow: 0 1px 0 #006799;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+  margin-right: 5px;
+}
+
+/* Images used within the dialog, such as the 'Show page title' image when editing a page title. */
+#entry-title img {
+  margin: 10px 0px;
+}
+
+/* By defualt, a .ui-button color is #555. The ".palette-primary button" class may override this,
+causing undesired effects. Below, override color settings set by ".palette-primary button". */
+.ui-dialog .ui-button {
+  color: #555;
+}
+
+.bgtfw-dialog-question {
+  text-align: center;
+  font-style: italic;
+  color: #555d66;
+  margin-top: 26px;
+}
+
+/**
+* #.# Other
+*/
+/* This is the div that highlights a selector when the edit button is hovered. */
+#target-highlight {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 0px;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(249, 91, 38, 0.5);
+  box-shadow: 0px 0px 10px 2px #f95b26;
+}
+
+/* Remove WP 4.7's visible edit shortcuts, we have our own. */
+.customize-partial-edit-shortcut {
+  display: none;
+}
+
+/**
+* #.# Empty areas
+*
+* Style for empty areas, such as an empty widget area.
+*/
+/* By default, empty areas should have no height, which prevents empty areas from affecting page's appearance. */
+[data-empty-area], .empty-menu {
+  height: 0px;
+  /* Buttons are typically aligned far right of an element. If an empty area has no width, the button
+  is going to look "off" because it will belong to a 0px by 0px element. Give the empty area 100% width
+  to prevent this 0px by 0px element. */
+  width: 100%;
+}
+
+/* When an empty area is expanded, it will become the same height as an edit button. */
+[data-empty-area].expanded,
+.empty-menu.expanded {
+  height: 30px;
+}
+
+/* We don't want empty navbars to take up space. Adjust their min-height (usually 50px) to hide them. */
+.navbar.empty-navbar {
+  min-height: 0px;
+}

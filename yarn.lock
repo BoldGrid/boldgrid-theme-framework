@@ -6366,7 +6366,7 @@ gulp-util@^2.2.14:
     through2 "^0.5.0"
     vinyl "^0.2.1"
 
-gulp-wp-pot@^1.3.2:
+gulp-wp-pot@^1.1.1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/gulp-wp-pot/-/gulp-wp-pot-1.3.2.tgz#4ba47c8ed1f7c45c919b5c4d8d5c314ff7fa6f6d"
   integrity sha1-S6R8jtH3xFyRm1xNjVwxT/f6b20=

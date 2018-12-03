@@ -1,0 +1,24 @@
+&.layout-6 {
+	.contact-block-wrapper,
+	.attribution-theme-mods-wrapper {
+		justify-content: center;
+	}
+	.contact-block {
+		text-align: center;
+	}
+	@media only screen and (min-width : 768px) {
+		.social-menu-wrapper {
+			flex-basis: 30%;
+			order: 3;
+			justify-content: flex-end;
+		}
+		.footer-center-menu-wrapper {
+			flex-basis: 70%;
+			order: 2;
+			justify-content: flex-start;
+		}
+		.contact-block {
+			text-align: right;
+		}
+	}
+}

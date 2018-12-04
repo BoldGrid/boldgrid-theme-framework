@@ -23,12 +23,14 @@ export class Required {
 	 */
 	_setup() {
 		for ( const [ switchControl ] of Object.entries( this.options.required ) ) {
-			this._toggle( switchControl );
+			if ( ! _.isUndefined( wp.customize( switchControl ) ) ) {
+				this._toggle( switchControl );
 
-			// Bind event only once per control.
-			if ( ! this.bound[ switchControl ] ) {
-				this.bound[ switchControl ] = true;
-				wp.customize( switchControl ).bind( () => this._toggle( switchControl ) );
+				// Bind event only once per control.
+				if ( ! this.bound[ switchControl ] ) {
+					this.bound[ switchControl ] = true;
+					wp.customize( switchControl ).bind( () => this._toggle( switchControl ) );
+				}
 			}
 		}
 	}

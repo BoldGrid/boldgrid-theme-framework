@@ -13,6 +13,7 @@
  */
 
 return array(
+	'boldgrid_enable_footer' => array(),
 	'bgtfw_header_overlay' => array(
 		'bgtfw_header_overlay_alpha',
 		'bgtfw_header_overlay_color',

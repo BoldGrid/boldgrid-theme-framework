@@ -26,6 +26,25 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.0-rc.2 ###
+* New Feature: Section links added to customizer for Header/Footer layouts.
+* Update: Removed composer installation from bgtfw for libraries only used by themes.
+* Update: WooCommerce compatibility for v3.
+* Bug fix: Dynamic content areas should wrap rows when more than 6 items are added.
+* Bug fix: Custom logo control in dynamic layouts is not being hidden.
+* Bug fix: Sticky Header not being initialized correctly when toggling options in customizer.
+* Bug fix: Unable to add new section if no sections present in dynamic layouts.
+* Bug fix: Titlecase BoldGrid and WordPress in attribution controls.
+* Bug fix: Italic fonts on main typography control overrides menus and widgets fonts.
+* Bug fix: Tagline needs bottom margin.
+* Bug fix: Blog page featured images have auto width applied.
+* Bug fix: Editor not aligning column content in center.
+* Bug fix: Undefined index for bgtfw configs generated from BoldGrid Inspirations Premium due to removed config.
+* Bug fix: 404 page containers conflict with container controls.
+* Bug fix: Add spacing below Post Navigation.
+* Bug fix: Featured Images aren't able to be hidden on blog page.
+* Bug fix: Removed hardcoded language strings from JS for widget highlight in customizer for proper translations.
+
 ### 2.1.0-rc.1 ###
 * Update: Added tabs for dynamic header layout, sticky vs standard.
 * Update: Allow sticky navigation to have it's own nav locations set.

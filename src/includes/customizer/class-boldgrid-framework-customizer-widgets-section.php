@@ -59,13 +59,13 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 		 *
 		 * @since 2.1.0
 		 * @access public
-		 * @return void
+		 * @return Array $json Data that will be JSON encoded.
 		 */
 		public function json() {
 			$json = parent::json();
 			$json['section_description'] = $this->section_description;
-			$json['header_title']  = $this->header_title;
-			$json['footer_title']  = $this->footer_title;
+			$json['header_title'] = $this->header_title;
+			$json['footer_title'] = $this->footer_title;
 
 			return $json;
 		}
@@ -73,11 +73,12 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 		/**
 		 * Outputs the Underscore.js template.
 		 *
-		 * @since  1.0.0
+		 * @since 2.1.0
 		 * @access public
 		 * @return void
 		 */
-		protected function render_template() { ?>
+		protected function render_template() {
+			?>
 			<div id="accordion-section-{{ data.id }}" class="bgtfw-widgets-section">
 				<p class="bgtfw-widgets-section-description boldgrid-subdescription">{{{ data.section_description }}}</p>
 				<li onclick="event.preventDefault(); wp.customize.control( 'bgtfw_header_layout' ).focus();" id="accordion-section-{{ data.id }}-header" class="accordion-section control-section control-section-{{ data.type }}">
@@ -94,6 +95,7 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 					<a href="<?php echo admin_url( 'widgets.php' ); ?>" type="button" class="button"><?php _e( 'Edit in Admin', 'bgtfw' ); ?></a>
 				<div>
 			</div>
-		<?php }
+		<?php
+		}
 	}
 }

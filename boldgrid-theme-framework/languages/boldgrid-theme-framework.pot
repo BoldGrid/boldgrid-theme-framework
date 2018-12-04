@@ -1841,7 +1841,7 @@ msgstr ""
 msgid "Links Color:"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-widgets-section.php:94
+#: src/includes/customizer/class-boldgrid-framework-customizer-widgets-section.php:95
 msgid "Edit in Admin"
 msgstr ""
 

@@ -332,7 +332,7 @@ var BoldGrid = BoldGrid || {};
 			/**
 			 * Initialize header-slide-in.
 			 */
-			init: function() {
+			init: function( direct = false ) {
 				let mq = window.matchMedia( '(min-width: 768px)' ),
 					sticky = () => {
 						this._scroll();
@@ -341,6 +341,10 @@ var BoldGrid = BoldGrid || {};
 
 				// On DOMLoaded check media query and initialize sticky listener if matched.
 				domReady( () => mq.matches && sticky() );
+
+				if ( direct ) {
+					mq.matches && sticky();
+				}
 
 				mq.addListener( e => {
 					if ( e.matches ) {

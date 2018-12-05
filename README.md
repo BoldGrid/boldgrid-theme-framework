@@ -12,6 +12,16 @@
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
+<a href="https://www.browserstack.com/" title="BrowserStack" target="_blank">
+<img src="https://p14.zdusercontent.com/attachment/1015988/e7lZDYUQAcrjhARfSQKnVsW5M?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..Rj7ZUz59GX2kLfySyw8pdw.q8aA7RoJrLrobEqyTsY8eit4vnvNQuNMuQS9-HyFoLtLu6Q8lsQmHuiboyA8w1HYC_5raUBaIpKLsj_lV5AwEX_aw2-zbSe5EXWiIEuoXHBmLKjSD657s8JMsird0qXUgYvpU9jGZPj9cZj42msR2Cb0lasANAf5ISP6I0qc0Xx2yRRkwjT_r94Z7GCyGMZhCw8pA3Da9Jz0_TZzS62wOgdoxizVMsrnw3Bj_F34eMvZIOI3uclFVVUQu-j-m8qamarikMSLQlr2hAPLjBknibGj6HGO2T8jHwVDz2cH6NU.OFY7iswivDQLRyvfVbc7yw" width="30%" height="30%" />
+</a>
+
+Browser testing and compatibility is made possible to us with <a href="https://www.browserstack.com/" title="BrowserStack" target="_blank">BrowserStack</a>'s awesome support and wonderful service! The following browsers are the currently supported browsers for BoldGrid Theme Framework. Other browsers do work perfectly fine for the frontend of websites, but aren't guaranteed to have active testing and bugfixes in terms of the tools provided to build a site.  We highly suggest using a modern browser, such as the <a href="https://www.google.com/chrome/browser/" title="Download Google Chrome" target="_blank">latest Chrome release</a>.
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
+| --------- | --------- | --------- | --------- | --------- | --------- |
+| last version | last 2 versions| last 2 versions| last 2 versions| last 2 versions| last version
+
 ## Description ##
 
 BoldGrid Theme Framework is a library that allows you to easily make BoldGrid themes.

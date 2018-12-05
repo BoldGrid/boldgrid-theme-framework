@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.0 ###
+* Bug fix: Remove font preview in MS edge, helps with performance
+
 ### 2.1.0-rc.2 ###
 * New Feature: Section links added to customizer for Header/Footer layouts.
 * Update: Removed composer installation from bgtfw for libraries only used by themes.

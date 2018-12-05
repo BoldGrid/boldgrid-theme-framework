@@ -345,10 +345,15 @@ class BoldGrid_Framework_Customizer {
 	 * Enqueue General customizer helper styles.
 	 *
 	 * @since    1.0.0
+	 *
+	 * @global   boolean   $is_edge    Is Edge.
+	 *
 	 * @access   protected
 	 * @var      string    $configs    An array of the theme framework configurations
 	 */
 	public function enqueue_styles() {
+		global $is_edge;
+
 		wp_register_style(
 			'bgtfw-menu-hamburgers',
 			$this->configs['framework']['css_dir'] . 'hamburgers/hamburgers.min.css',
@@ -365,10 +370,13 @@ class BoldGrid_Framework_Customizer {
 
 		wp_enqueue_style( 'bgtfw-menu-hamburgers' );
 
-		wp_enqueue_style(
-			'boldgrid-customizer-controls-base',
-			$this->configs['framework']['css_dir'] . 'customizer/font-family-controls.min.css'
-		);
+		// The regex css selectors in this file cause issues in MSEdge. Remove the font preview.
+		if ( ! $is_edge ) {
+			wp_enqueue_style(
+				'boldgrid-customizer-controls-base',
+				$this->configs['framework']['css_dir'] . 'customizer/font-family-controls.min.css'
+			);
+		}
 
 		wp_enqueue_style(
 			'boldgrid-customizer-controls-bundle',

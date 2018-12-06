@@ -11383,9 +11383,9 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-"scssphp@https://github.com/leafo/scssphp.git#9715679e32533d61dbd1716820cea980b4014dfd":
+"scssphp@https://github.com/leafo/scssphp.git#v0.7.7":
   version "0.0.0"
-  resolved "https://github.com/leafo/scssphp.git#9715679e32533d61dbd1716820cea980b4014dfd"
+  resolved "https://github.com/leafo/scssphp.git#1d656f8c02a3a69404bba6b28ec4e06edddf0f49"
 
 seek-bzip@^1.0.3:
   version "1.0.5"

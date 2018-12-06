@@ -108,7 +108,7 @@
     "lodash.startcase": "^4.4.0",
     "postcss": "^6.0.22",
     "sass.js": "~0.9.4",
-    "scssphp": "https://github.com/leafo/scssphp.git#9715679e32533d61dbd1716820cea980b4014dfd",
+    "scssphp": "https://github.com/leafo/scssphp.git#v0.7.7",
     "smartmenus": "^1.1.0",
     "style-loader": "^0.21.0",
     "wowjs": "^1.1.3"

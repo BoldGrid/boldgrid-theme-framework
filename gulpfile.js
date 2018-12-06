@@ -132,15 +132,8 @@ gulp.task('jsDeps', function () {
   // Bootstrap
   gulp.src(config.node_modules + '/bootstrap-sass/assets/javascripts/bootstrap.*')
     .pipe(gulp.dest(config.jsDest + '/bootstrap'));
-  gulp.src(config.node_modules + '/smartmenus/dist/**/jquery.*.js')
+  gulp.src(config.node_modules + '/smartmenus/dist/jquery.*.js')
     .pipe(gulp.dest(config.jsDest + '/smartmenus'));
-  // Jasny Bootstrap
-  gulp.src(config.node_modules + '/jasny-bootstrap/js/offcanvas.js')
-    .pipe(gulp.dest(config.jsDest + '/offcanvas'));
-  gulp.src(config.node_modules + '/jasny-bootstrap/js/offcanvas.js')
-    .pipe(uglify())
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(config.jsDest + '/offcanvas'));
   // Nicescroll.
   gulp.src(config.node_modules + '/jquery.nicescroll/dist/*.{js,png}')
     .pipe(gulp.dest(config.jsDest + '/niceScroll'));
@@ -157,9 +150,6 @@ gulp.task('jsDeps', function () {
     .pipe(gulp.dest(config.jsDest + '/float-labels.js'));
   gulp.src(config.node_modules + '/float-labels.js/src/float-labels.js')
     .pipe(gulp.dest(config.jsDest + '/float-labels.js'));
-  // Headhesive.
-  gulp.src(config.node_modules + '/headhesive/dist/*.js')
-    .pipe(gulp.dest(config.jsDest + '/headhesive'));
   // Wowjs - Check
   gulp.src(config.node_modules + '/wowjs/dist/**/*')
     .pipe(gulp.dest(config.jsDest + '/wow'));
@@ -216,16 +206,11 @@ gulp.task('phpDeps', function () {
   // Add BoldGrid Logo to Kirki.
   gulp.src(config.src + '/assets/img/boldgrid-logo.svg')
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets/images'));
-  // Black Studio TinyMCE Widget.
-  gulp.src(config.src + '/includes/black-studio-tinymce-widget/**/*')
-    .pipe(gulp.dest(config.dist + '/includes/black-studio-tinymce-widget'));
 });
 
 // Copy Framework Files.
 gulp.task('frameworkFiles', function () {
   return gulp.src([
-    '!' + config.src + '/includes/black-studio-tinymce-widget',
-    '!' + config.src + '/includes/black-studio-tinymce-widget/**',
     config.src + '/**/*.{php,txt,json,css,mo,po,pot}',
   ])
     .pipe(gulp.dest(config.dist));
@@ -360,12 +345,8 @@ gulp.task('scssDeps', function () {
     .pipe(replace("$values: #{$values}, unquote($i * -1 + 'px') #{$i}px #{$kolor};", "$values: unquote(#{$values}+', '+#{$i * -1}+'px '+#{$i}+'px '+#{$kolor});"))
     .pipe(replace("background: linear-gradient(top,", "background: linear-gradient("))
     .pipe(gulp.dest(config.dist + '/assets/scss/buttons'));
-  gulp.src(config.node_modules + '/select2-bootstrap-css/select2-bootstrap*.css')
-    .pipe(gulp.dest(config.dist + '/assets/css/select2-bootstrap'));
 
   gulp.src(config.node_modules + '/smartmenus/dist/css/sm-core-css.css')
-    .pipe(gulp.dest(config.dist + '/assets/css/smartmenus'));
-  gulp.src(config.node_modules + '/smartmenus/dist/addons/**/jquery.*.css')
     .pipe(gulp.dest(config.dist + '/assets/css/smartmenus'));
 
   // boldgrid-components.
@@ -458,8 +439,6 @@ gulp.task( 'copyScss', () => {
 // PHP Code Sniffer
 gulp.task('codeSniffer', function () {
   return gulp.src([
-    '!' + config.src + '/includes/black-studio-tinymce-widget',
-    '!' + config.src + '/includes/black-studio-tinymce-widget/**',
     'src/**/*.php'
   ])
     // Validate files using PHP Code Sniffer

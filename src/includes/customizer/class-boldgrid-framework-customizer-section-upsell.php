@@ -33,6 +33,15 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 		public $type = 'bgtfw-upsell';
 
 		/**
+		 * Text to output for the link title on hover.
+		 *
+		 * @since 2.1.1
+		 * @access public
+		 * @var string
+		 */
+		public $upsell_title = '';
+
+		/**
 		 * Text to output for upsell button.
 		 *
 		 * @since 2.1.1
@@ -59,6 +68,7 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 		 */
 		public function json() {
 			$json = parent::json();
+			$json['upsell_title'] = $this->upsell_title;
 			$json['upsell_text'] = $this->upsell_text;
 			$json['upsell_url'] = esc_url( $this->upsell_url );
 			return $json;
@@ -78,7 +88,7 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 				<h3 class="accordion-section-title">
 					{{ data.title }}
 					<# if ( data.upsell_text && data.upsell_url ) { #>
-						<a href="{{ data.upsell_url }}" class="button button-secondary alignright" target="_blank">{{ data.upsell_text }}</a>
+						<a title="{{ data.upsell_title }}" href="{{ data.upsell_url }}" class="button button-secondary alignright" target="_blank">{{ data.upsell_text }}</a>
 					<# } #>
 				</h3>
 			</li>

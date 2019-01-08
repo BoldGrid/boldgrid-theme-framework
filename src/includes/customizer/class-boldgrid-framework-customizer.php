@@ -812,6 +812,7 @@ HTML;
 				array(
 					'title' => esc_html__( 'Crio PRO', 'bgtfw' ),
 					'upsell_text' => esc_html__( 'Go PRO!', 'bgtfw' ),
+					'upsell_title' => esc_html__( 'Upgrade to pro', 'bgtfw' ),
 					'upsell_url' => 'https://boldgrid.com/crio',
 					'priority' => 0,
 				)

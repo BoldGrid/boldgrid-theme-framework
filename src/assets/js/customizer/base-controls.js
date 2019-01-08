@@ -45,4 +45,5 @@ devices.init();
 	wp.customize.controlConstructor.nav_menu_location = api.controlConstructor['nav_menu_location'].extend( bgtfwMenuLocations );
 	wp.customize.Section = api.Section.extend( bgtfwSection );
 	wp.customize.sectionConstructor['bgtfw-widgets-section'] = api.Section.extend( bgtfwWidgetsSection );
+	wp.customize.sectionConstructor['bgtfw-upsell'] = api.Section.extend( bgtfwWidgetsSection );
 } )( jQuery );

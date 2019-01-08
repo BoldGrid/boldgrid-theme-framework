@@ -43,3 +43,21 @@ span.section-title-extended {
 #accordion-section-bgtfw_widgets_section {
 	display: block !important;
 }
+
+/* Upsell Section */
+#customize-controls #accordion-section-bgtfw-upsell.control-section-bgtfw-upsell {
+	margin-bottom: 17px;
+}
+#customize-controls .control-section-bgtfw-upsell .accordion-section-title:hover,
+#customize-controls .control-section-bgtfw-upsell .accordion-section-title:focus {
+	background-color: #fff;
+}
+.control-section-bgtfw-upsell .accordion-section-title .button {
+	margin-top: -4px;
+	font-weight: 400;
+	margin-left: 8px;
+}
+.rtl .control-section-bgtfw-upsell .accordion-section-title .button {
+	margin-left: 0;
+	margin-right: 8px;
+}

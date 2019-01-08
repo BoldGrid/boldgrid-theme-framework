@@ -785,7 +785,8 @@ HTML;
 			$wp_customize->add_section( $section );
 		}
 
-		// Register custom widgets section
+		// Register custom sections.
+		$wp_customize->register_section_type( 'Boldgrid_Framework_Customizer_Section_Upsell' );
 		$wp_customize->register_section_type( 'Boldgrid_Framework_Customizer_Widgets_Section' );
 
 		// Add section.
@@ -799,6 +800,20 @@ HTML;
 					'footer_title' => esc_html__( 'Footer Layout', 'bgtfw' ),
 					'panel' => 'widgets',
 					'priority' => 9999,
+				)
+			)
+		);
+
+		// Add upsell section.
+		$wp_customize->add_section(
+			new Boldgrid_Framework_Customizer_Section_Upsell(
+				$wp_customize,
+				'bgtfw-upsell',
+				array(
+					'title' => esc_html__( 'Crio PRO', 'bgtfw' ),
+					'upsell_text' => esc_html__( 'Go PRO!', 'bgtfw' ),
+					'upsell_url' => 'https://boldgrid.com/crio',
+					'priority' => 0,
 				)
 			)
 		);

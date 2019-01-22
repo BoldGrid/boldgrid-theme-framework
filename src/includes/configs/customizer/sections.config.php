@@ -65,7 +65,6 @@ return array(
 		'panel' => 'bgtfw_footer',
 		'priority' => 70,
 	),
-
 	'bgtfw_header_layout' => array(
 		'title' => __( 'Layout', 'bgtfw' ),
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Manage the layout of your site\'s header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',

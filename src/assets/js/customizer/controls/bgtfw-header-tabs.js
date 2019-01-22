@@ -29,7 +29,7 @@ export default {
 	 * @since 2.1.0
 	 */
 	setupTabs() {
-		if ( false === api( 'bgtfw_fixed_header' )() || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
+		if ( ( _.isFunction( api( 'bgtfw_fixed_header' ) ) && false === api( 'bgtfw_fixed_header' )() ) || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
 			$( '.bgtfw-tab[data-tab$="sticky_header_layout"]' ).hide();
 		}
 
@@ -80,7 +80,7 @@ export default {
 			control.bind( () => {
 				const tab = $( '.bgtfw-tab[data-tab$="sticky_header_layout"]' );
 
-				if ( true === api( 'bgtfw_fixed_header' )() && 'header-top' === api( 'bgtfw_header_layout_position' )() ) {
+				if ( ( _.isFunction( api( 'bgtfw_fixed_header' ) ) && true === api( 'bgtfw_fixed_header' )() ) && 'header-top' === api( 'bgtfw_header_layout_position' )() ) {
 					tab.show();
 					api.control( 'bgtfw_sticky_header_layout' ).activate();
 					this.hideTab();

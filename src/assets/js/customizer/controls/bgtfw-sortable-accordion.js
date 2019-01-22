@@ -192,7 +192,7 @@ export default {
 	 * @since 2.0.3
 	 */
 	_toggleSticky() {
-		if ( 'sticky-header' === this.params.location ) {
+		if ( 'sticky-header' === this.params.location && _.isFunction( api( 'bgtfw_fixed_header' ) ) ) {
 			if ( 'header-top' === api( 'bgtfw_header_layout_position' )() && true === api( 'bgtfw_fixed_header' )() ) {
 				api.control( 'bgtfw_fixed_header' ).container.find( '.customize-control-description' ).show();
 				this.active.set( true );
@@ -955,9 +955,12 @@ export default {
 	 */
 	getConnectedMenus() {
 		let menus = _.filter( this.getConnectedItems(), item => item.includes( 'boldgrid_menu' ) );
-		if ( false === api( 'bgtfw_fixed_header' )() || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
-			menus = menus.filter( menu => ! menu.includes( 'sticky' ) );
+		if ( _.isFunction( api( 'bgtfw_fixed_header' ) ) ) {
+			if ( false === api( 'bgtfw_fixed_header' )() || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
+				menus = menus.filter( menu => ! menu.includes( 'sticky' ) );
+			}
 		}
+
 		return menus;
 	},
 

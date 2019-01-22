@@ -2349,7 +2349,7 @@ return array(
 			],
 			'sidebar' => [
 				'icon' => 'dashicons dashicons-layout',
-				'title' => __( 'Sidebar', 'bgtfw' ),
+				'title' => __( 'Widget Area', 'bgtfw' ),
 				'controls' => [
 					'sidebar-edit' => [],
 				],
@@ -2476,7 +2476,7 @@ return array(
 			],
 			'sidebar' => [
 				'icon' => 'dashicons dashicons-layout',
-				'title' => __( 'Sidebar', 'bgtfw' ),
+				'title' => __( 'Widget Area', 'bgtfw' ),
 				'controls' => [
 					'sidebar-edit' => [],
 				],
@@ -2571,7 +2571,7 @@ return array(
 			],
 			'sidebar' => [
 				'icon' => 'dashicons dashicons-layout',
-				'title' => __( 'Sidebar', 'bgtfw' ),
+				'title' => __( 'Widget Area', 'bgtfw' ),
 				'controls' => [
 					'sidebar-edit' => [],
 				],

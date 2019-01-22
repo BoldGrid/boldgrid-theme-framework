@@ -1619,16 +1619,6 @@ return array(
 			),
 		),
 	),
-	'bgtfw_fixed_header' => array(
-		'type'        => 'switch',
-		'transport'   => 'postMessage',
-		'settings'    => 'bgtfw_fixed_header',
-		'description' => __( 'You can change what items are displayed when your header is stuck to the top of the page in the <b>Header Layout</b> section below.', 'bgtfw' ),
-		'label'       => esc_attr__( 'Sticky Header', 'bgtfw' ),
-		'section'     => 'bgtfw_header_layout',
-		'default'     => false,
-		'priority'    => 10,
-	),
 	'bgtfw_header_width' => array(
 		'type'        => 'slider',
 		'settings'    => 'bgtfw_header_width',

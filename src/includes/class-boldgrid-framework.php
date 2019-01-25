@@ -647,6 +647,7 @@ class BoldGrid_Framework {
 		self::customizer_widget_meta();
 		self::customizer_starter_content();
 		self::customizer_search();
+		self::customizer_notifications();
 	}
 
 	/**
@@ -922,6 +923,18 @@ class BoldGrid_Framework {
 		if ( BoldGrid_Framework_Customizer_Starter_Content::$fresh_site_customize ) {
 			$this->loader->add_filter( 'pre_get_posts', $starter_content, 'pre_get_posts' );
 		}
+	}
+
+	/**
+	 * This defines the core functionality of the framework's notifications in the customizer.
+	 *
+	 * @since    2.1.1
+	 * @access   private
+	 */
+	private function customizer_notifications() {
+		$notifications = new Boldgrid_Framework_Customizer_Notification();
+
+		$this->loader->add_action( 'customize_controls_print_footer_scripts', $notifications, 'print_template' );
 	}
 
 	/**

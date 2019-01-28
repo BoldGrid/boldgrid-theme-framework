@@ -19,9 +19,11 @@ import bgtfwMenuLocations from './controls/bgtfw-menu-locations.js';
 import bgtfwPaneReflow from './controls/bgtfw-pane-reflow';
 import bgtfwPanel from './controls/bgtfw-panel';
 import bgtfwSection from './controls/bgtfw-section';
+import bgtfwNotifications from './controls/bgtfw-notifications';
 
 let devices = new Devices();
 devices.init();
+bgtfwNotifications();
 
 ( function( $ ) {
 	const api = wp.customize;

@@ -932,9 +932,11 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function customizer_notifications() {
-		$notifications = new Boldgrid_Framework_Customizer_Notification();
+		if ( is_customize_preview() ) {
+			$notifications = new Boldgrid_Framework_Customizer_Notification();
 
-		$this->loader->add_action( 'customize_controls_print_footer_scripts', $notifications, 'print_template' );
+			$this->loader->add_action( 'customize_controls_print_footer_scripts', $notifications, 'print_template' );
+		}
 	}
 
 	/**

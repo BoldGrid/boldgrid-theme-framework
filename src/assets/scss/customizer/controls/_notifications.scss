@@ -25,12 +25,22 @@
 			padding: 9px 38px 9px 14px;
 		}
 
-		.bgtfw-notice-expanded {
-			padding: 0 38px 9px 38px;
+		.bgtfw-notice-learn-more {
+			display: flex;
+			justify-content: flex-end;
+			padding-top: 0;
+			padding-bottom: 15px;
+			padding-left: 10px;
+			padding-right: 10px;
+			.dashicons {
+				font-size: 17px;
+				line-height: .85;
+			}
 		}
 
 		.bgtfw-feature-list {
 			list-style: square;
+			padding: 0 38px 9px 38px;
 		}
 
 		.notice-count {

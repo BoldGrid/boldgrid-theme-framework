@@ -54,6 +54,32 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 		public $breadcrumb = '';
 
 		/**
+		 * Section notifications.
+		 *
+		 * @since 2.1.1
+		 *
+		 * @access public
+		 * @var    Array BGTFW Notice defaults.
+		 */
+		public $notice_defaults = [
+			'dismissible' => false,
+			'message' => '',
+			'type' => 'bgtfw-features',
+			'templateId' => 'bgtfw-notification',
+			'features' => [],
+		];
+
+		/**
+		 * Section notifications.
+		 *
+		 * @since 2.1.1
+		 *
+		 * @access public
+		 * @var    Array BGTFW Notice defaults.
+		 */
+		public $notice = [];
+
+		/**
 		 * Gather the parameters passed to client JavaScript via JSON.
 		 *
 		 * @since 2.0.0
@@ -71,6 +97,11 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 				$array['customizeAction'] = rtrim( $this->manager->get_panel( $this->panel )->breadcrumb ) . ' &#9656; ' . $this->manager->get_panel( $this->panel )->get_panel_link( $this->manager->get_panel( $this->panel )->id, $this->manager->get_panel( $this->panel )->title, $this->id );
 			} else {
 				$array['customizeAction'] = '<span class="dashicons dashicons-admin-home"></span>';
+			}
+
+			if ( isset( $this->notice ) && ! empty( $this->notice ) ) {
+				$this->notice = wp_parse_args( $this->notice, $this->notice_defaults );
+				$array['notice'] = $this->notice;
 			}
 
 			return $array;

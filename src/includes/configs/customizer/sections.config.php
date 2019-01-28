@@ -71,6 +71,13 @@ return array(
 		'panel' => 'bgtfw_header',
 		'capability' => 'edit_theme_options',
 		'priority' => 5,
+		'notice' => [
+			'dismissible' => false,
+			'message' => 'feature in crio available in upgrade',
+			'type' => 'bgtfw-features',
+			'templateId' => 'bgtfw-notification',
+			'features' => [ 'feat-1', 'feat 2', 'feature #3' ],
+		],
 	),
 	'bgtfw_site_title' => array(
 		'title' => esc_attr__( 'Site Title', 'bgtfw' ),

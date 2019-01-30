@@ -67,7 +67,7 @@ return array(
 	),
 	'bgtfw_header_layout' => array(
 		'title' => __( 'Layout', 'bgtfw' ),
-		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Manage the layout of your site\'s header. Upgrade to <b>Crio PRO</b> for more header customization features like adding a sticky header to your site!', 'bgtfw' ) . '</p><div class="help"><a title="' . esc_html__( 'Find out more about Crio Pro', 'bgtfw' ) . '" href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'More', 'bgtfw' ) . '</a></div></div>',
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Manage the layout of your site\'s header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'crio-premium' ) . '</a></div></div>',
 		'panel' => 'bgtfw_header',
 		'capability' => 'edit_theme_options',
 		'priority' => 5,

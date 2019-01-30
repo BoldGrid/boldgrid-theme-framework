@@ -129,13 +129,16 @@ class Boldgrid_Framework_Links {
 			$excludes = '';
 
 			// Grab the filtered selectors.
-			$selectors = $this->configs['customizer']['controls'][ "${prefix}_link_color" ]['choices']['selectors'];
+			if ( ! empty( $this->configs['customizer']['controls'][ "${prefix}_link_color" ]['choices']['selectors'] ) ) {
+				$selectors = $this->configs['customizer']['controls'][ "${prefix}_link_color" ]['choices']['selectors'];
 
-			foreach ( $selectors as $selector ) {
-				$selector = $selector . $excludes;
-				$css .= "${selector} {color: ${color_variable};text-decoration: ${decoration};}";
-				$css .= "${selector}:hover, ${selector}:focus {color: ${color_hover};text-decoration: ${decoration_hover};}";
+				foreach ( $selectors as $selector ) {
+					$selector = $selector . $excludes;
+					$css .= "${selector} {color: ${color_variable};text-decoration: ${decoration};}";
+					$css .= "${selector}:hover, ${selector}:focus {color: ${color_hover};text-decoration: ${decoration_hover};}";
+				}
 			}
+
 		}
 
 		return $css;

@@ -73,10 +73,13 @@ return array(
 		'priority' => 5,
 		'notice' => [
 			'dismissible' => false,
-			'message' => 'feature in crio available in upgrade',
+			'message' => esc_html__( 'Upgrade to Crio Pro to get access to more header customization options like adding a Sticky Header!', 'bgtfw' ),
 			'type' => 'bgtfw-features',
 			'templateId' => 'bgtfw-notification',
-			'features' => [ 'feat-1', 'feat 2', 'feature #3' ],
+			'featureCount' => 1,
+			'featureDescription' => esc_html__( '1 premium feature available!', 'bgtfw' ),
+			'url' => esc_url( 'https://boldgrid.com/crio/pro/sticky-header' ),
+			'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
 		],
 	),
 	'bgtfw_site_title' => array(

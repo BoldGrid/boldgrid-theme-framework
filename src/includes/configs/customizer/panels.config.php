@@ -61,5 +61,15 @@ return array(
 		'title' => __( 'Posts', 'bgtfw' ),
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the display of single blog posts.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-your-blog-posts-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'panel' => 'bgtfw_blog_panel',
+		'notice' => [
+			'dismissible' => false,
+			'message' => esc_html__( 'Upgrade to Crio Pro to gain access to dozens of new customization options for your single posts!', 'crio-premium' ),
+			'type' => 'bgtfw-features',
+			'templateId' => 'bgtfw-notification',
+			'featureCount' => 15,
+			'featureDescription' => esc_html__( '15 premium features available!', 'bgtfw' ),
+			'url' => esc_url( 'https://boldgrid.com/crio/pro/blog-posts' ),
+			'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
+		],
 	),
 );

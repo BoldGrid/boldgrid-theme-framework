@@ -53,6 +53,31 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 		 */
 		public $breadcrumb = '';
 
+		/**
+		 * Panel notification defaults.
+		 *
+		 * @since 2.1.1
+		 *
+		 * @access public
+		 * @var    Array BGTFW Notice defaults.
+		 */
+		public $notice_defaults = [
+			'dismissible' => false,
+			'message' => '',
+			'type' => 'bgtfw-features',
+			'templateId' => 'bgtfw-notification',
+			'features' => [],
+		];
+
+		/**
+		 * Panel notifications.
+		 *
+		 * @since 2.1.1
+		 *
+		 * @access public
+		 * @var    Array BGTFW Notice defaults.
+		 */
+		public $notice = [];
 
 		/**
 		 * Gather the parameters passed to client JavaScript via JSON.
@@ -69,6 +94,11 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 			$array['active'] = $this->active();
 			$array['instanceNumber'] = $this->instance_number;
 			$array['breadcrumb'] = $this->get_breadcrumb();
+
+			if ( isset( $this->notice ) && ! empty( $this->notice ) ) {
+				$this->notice = wp_parse_args( $this->notice, $this->notice_defaults );
+				$array['notice'] = $this->notice;
+			}
 
 			return $array;
 		}

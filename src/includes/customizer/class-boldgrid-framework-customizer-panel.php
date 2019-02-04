@@ -80,6 +80,16 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 		public $notice = [];
 
 		/**
+		 * Panel Icon
+		 *
+		 * @since 2.1.1
+		 *
+		 * @access public
+		 * @var    String $icon Panel icon.
+		 */
+		public $icon = null;
+
+		/**
 		 * Gather the parameters passed to client JavaScript via JSON.
 		 *
 		 * @since  2.0.0
@@ -94,6 +104,7 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 			$array['active'] = $this->active();
 			$array['instanceNumber'] = $this->instance_number;
 			$array['breadcrumb'] = $this->get_breadcrumb();
+			$array['icon'] = $this->get_icon();
 
 			if ( isset( $this->notice ) && ! empty( $this->notice ) ) {
 				$this->notice = wp_parse_args( $this->notice, $this->notice_defaults );
@@ -101,6 +112,25 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 			}
 
 			return $array;
+		}
+
+		/**
+		 * Get the breadcrumb trails for the current panel.
+		 *
+		 * @since 2.0.0
+		 *
+		 * @return string $breadcrumb The breadcrumb trail displayed.
+		 */
+		public function get_icon() {
+			if ( ! empty( $this->icon ) ) {
+				if ( strpos( $this->icon, 'dashicons-' ) !== false ) {
+					$this->icon = "dashicons-before {$this->icon}";
+				} else if ( strpos( $this->icon, 'fa-' ) !== false ) {
+					$this->icon = "fa {$this->icon}";
+				}
+			}
+
+			return $this->icon;
 		}
 
 		/**
@@ -156,7 +186,7 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 				<div class="accordion-section-title">
 					<span class="preview-notice">
 						{{{ data.breadcrumb }}}
-						<strong class="panel-title">{{ data.title }}</strong>
+						<strong class="panel-title<# if ( ! _.isEmpty( data.icon ) ) { #> {{ data.icon }}<# } #>">{{ data.title }}</strong>
 					</span>
 					<# if ( data.description ) { #>
 						<button type="button" class="customize-help-toggle dashicons dashicons-editor-help" aria-expanded="false"><span class="screen-reader-text"><?php _e( 'Help', 'bgtfw' ); ?></span></button>
@@ -169,6 +199,28 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 				<# } #>
 
 				<div class="customize-control-notifications-container"></div>
+			</li>
+			<?php
+		}
+
+		/**
+		 * An Underscore (JS) template for rendering this panel's container.
+		 *
+		 * Class variables for this panel class are available in the `data` JS object;
+		 * export custom variables by overriding WP_Customize_Panel::json().
+		 *
+		 * @see WP_Customize_Panel::print_template()
+		 *
+		 * @since 4.3.0
+		 */
+		protected function render_template() {
+			?>
+			<li id="accordion-panel-{{ data.id }}" class="accordion-section control-section control-panel control-panel-{{ data.type }}">
+				<h3 class="accordion-section-title<# if ( ! _.isEmpty( data.icon ) ) { #> {{ data.icon }}<# } #>" tabindex="0">
+					{{ data.title }}
+					<span class="screen-reader-text"><?php _e( 'Press return or enter to open this panel', 'bgtfw' ); ?></span>
+				</h3>
+				<ul class="accordion-sub-container control-panel-content"></ul>
 			</li>
 			<?php
 		}

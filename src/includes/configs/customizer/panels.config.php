@@ -14,6 +14,7 @@ return array(
 	'bgtfw_design_panel' => array(
 		'title' => __( 'Design', 'bgtfw' ),
 		'priority' => 1,
+		'icon' => 'dashicons-admin-appearance',
 	),
 	'boldgrid_typography' => array(
 		'title' => __( 'Fonts', 'bgtfw' ),

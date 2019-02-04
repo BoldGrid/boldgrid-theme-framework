@@ -81,6 +81,7 @@ return array(
 			'url' => esc_url( 'https://boldgrid.com/crio/pro/sticky-header' ),
 			'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
 		],
+		'icon' => 'dashicons-schedule',
 	),
 	'bgtfw_site_title' => array(
 		'title' => esc_attr__( 'Site Title', 'bgtfw' ),
@@ -88,6 +89,7 @@ return array(
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s title and it\'s appearance.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'capability' => 'edit_theme_options',
 		'priority' => 6,
+		'icon' => 'dashicons-flag',
 	),
 	'bgtfw_tagline' => array(
 		'title' => __( 'Tagline', 'bgtfw' ),
@@ -95,6 +97,7 @@ return array(
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s tagline, and it\'s appearance.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'capability' => 'edit_theme_options',
 		'priority' => 8,
+		'icon' => 'dashicons-tag',
 	),
 	'bgtfw_header_colors' => array(
 		'title' => __( 'Colors', 'bgtfw' ),
@@ -102,12 +105,14 @@ return array(
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the colors used in your custom header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-header-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'capability' => 'edit_theme_options',
 		'priority' => 11,
+		'icon' => 'dashicons-art',
 	),
 	'bgtfw_header_advanced' => array(
 		'title' => __( 'Advanced', 'bgtfw' ),
 		'description' => esc_html__( 'Advanced settings for the appearance of your site\'s header.', 'bgtfw' ),
 		'panel' => 'bgtfw_header',
 		'priority' => 70,
+		'icon' => 'dashicons-admin-generic',
 	),
 	'navigation_typography' => array(
 		'title' => __( 'Menus', 'bgtfw' ),

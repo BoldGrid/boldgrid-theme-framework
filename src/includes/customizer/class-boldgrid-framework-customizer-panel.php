@@ -127,6 +127,8 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 					$this->icon = "dashicons-before {$this->icon}";
 				} else if ( strpos( $this->icon, 'fa-' ) !== false ) {
 					$this->icon = "fa {$this->icon}";
+				} else {
+					$this->icon = $this->icon;
 				}
 			}
 

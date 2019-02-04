@@ -81,4 +81,53 @@ class Boldgrid_Framework_Customizer_Footer {
 		</div>
 		<?php
 	}
+
+	/**
+	 * Handles attribution links in footer for customizer.
+	 *
+	 * @since 2.1.1
+	 */
+	public static function customize_links() {
+		$exists = false;
+		$name = 'bgtfw_footer_layout';
+		$theme_mod = get_theme_mod( $name );
+
+		// Ensure array.
+		if ( ! is_array( $theme_mod ) ) {
+			$theme_mod = [];
+		}
+
+		// Check if exists.
+		foreach ( $theme_mod as $row ) {
+			if ( ! empty( $row['items'] ) ) {
+				foreach ( $row['items'] as $item ) {
+					if ( ! empty( $item['key'] ) && 'attribution' === $item['key'] ) {
+						$exists = true;
+					}
+				}
+			}
+		}
+
+		// Check settings.
+		if ( get_theme_mod( 'hide_boldgrid_attribution' ) ) {
+			set_theme_mod( 'hide_boldgrid_attribution', false );
+		}
+
+		// Merge Defaults.
+		if ( ! $exists ) {
+			$theme_mod[] = [
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'boldgrid_display_attribution_links',
+						'key' => 'attribution',
+						'align' => 'w',
+					],
+				],
+			];
+
+			set_theme_mod( $name, $theme_mod );
+		}
+
+	}
 }

@@ -770,6 +770,7 @@ class BoldGrid_Framework {
 	private function customizer_footer() {
 		$footer = new BoldGrid_Framework_Customizer_Footer();
 		$this->loader->add_action( 'boldgrid_display_attribution_links', $footer, 'attribution_display_action' );
+		add_action( 'customize_save_after', [ 'Boldgrid_Framework_Customizer_Footer', 'customize_links' ], 999 );
 	}
 
 	/**

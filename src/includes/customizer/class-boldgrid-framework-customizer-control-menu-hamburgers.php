@@ -34,19 +34,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @var string $initial Initial choices for control.
 		 */
-		public $initial = [
-			'3DX' => 'hamburger--3dx',
-			'3DX Reverse' => 'hamburger--3dx-r',
-			'3DY' => 'hamburger--3dy',
-			'3DY Reverse' => 'hamburger--3dy-r',
-			'3DXY' => 'hamburger--3dxy',
-			'3DXY Reverse' => 'hamburger--3dxy-r',
-			'Arrow' => 'hamburger--arrow',
-			'Arrow Reverse' => 'hamburger--arrow-r',
-			'Arrow 2' => 'hamburger--arrowalt',
-			'Arrow 2 Reverse' => 'hamburger--arrowalt-r',
-			'Arrow Turn' => 'hamburger--arrowturn',
-			'Arrow Turn Reverse' => 'hamburger--arrowturn-r',
+		 public $initial = [
 			'Boring' => 'hamburger--boring',
 			'Collapse' => 'hamburger--collapse',
 			'Collapse Reverse' => 'hamburger--collapse-r',
@@ -55,17 +43,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			'Emphatic' => 'hamburger--emphatic',
 			'Emphatic Reverse' => 'hamburger--emphatic-r',
 			'Minus' => 'hamburger--minus',
-			'Slider' => 'hamburger--slider',
-			'Slider Reverse' => 'hamburger--slider-r',
-			'Spin' => 'hamburger--spin',
-			'Spin Reverse' => 'hamburger--spin-r',
-			'Spring' => 'hamburger--spring',
-			'Spring Reverse' => 'hamburger--spring-r',
-			'Stand' => 'hamburger--stand',
-			'Stand Reverse' => 'hamburger--stand-r',
-			'Squeeze' => 'hamburger--squeeze',
-			'Vortex' => 'hamburger--vortex',
-			'Vortex Reverse' => 'hamburger--vortex-r',
 		];
 
 		/**

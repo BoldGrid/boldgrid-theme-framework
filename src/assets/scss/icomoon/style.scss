@@ -10,14 +10,19 @@
 }
 
 [class^="icon-"]:before, [class*=" icon-"]:before {
+  speak: none;
+  display: inline;
+
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: none;
   font-style: normal;
-  font-weight: normal;
+  font-size: 1.4em;
+  font-weight: 400;
   font-variant: normal;
-  text-transform: none;
   line-height: 1;
+  padding: .5em;
+  text-transform: none;
+  vertical-align: middle;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
@@ -84,4 +89,5 @@
 .icon-sidebar-settings:before {
   content: "\e927";
   transform: rotate(-90deg);
+  padding: 0 .5em;
 }

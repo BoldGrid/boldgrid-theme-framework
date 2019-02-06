@@ -95,12 +95,15 @@ class BoldGrid_Framework_Customizer {
 								'title'      => __( 'Menu Items', 'bgtfw' ),
 								'panel'      => "bgtfw_menu_location_$location",
 								'capability' => 'edit_theme_options',
+								'icon' => 'dashicons-networking',
+								'priority' => 10,
 							)
 						);
 
 						$wp_customize->add_panel( $panel );
 
-						Kirki::add_section(
+						$section = new Boldgrid_Framework_Customizer_Section(
+							$wp_customize,
 							"bgtfw_menu_hamburgers_$location",
 							array(
 								'title'       => __( 'Hamburger Style', 'bgtfw' ),
@@ -108,8 +111,11 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_location_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-menu',
+								'priority' => 20,
 							)
 						);
+
+						$wp_customize->add_section( $section );
 
 						Kirki::add_section(
 							"bgtfw_menu_typography_$location",
@@ -119,6 +125,7 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_location_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-editor-textcolor',
+								'priority' => 30,
 							)
 						);
 
@@ -130,6 +137,7 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_location_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-format-image',
+								'priority' => 40,
 							)
 						);
 
@@ -141,6 +149,7 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_location_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-grid-view',
+								'priority' => 50,
 							)
 						);
 
@@ -152,6 +161,7 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_location_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-editor-outdent',
+								'priority' => 60,
 							)
 						);
 
@@ -163,6 +173,7 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_location_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-editor-indent',
+								'priority' => 70,
 							)
 						);
 
@@ -174,6 +185,7 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_location_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-welcome-view-site',
+								'priority' => 80,
 							)
 						);
 

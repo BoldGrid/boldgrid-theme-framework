@@ -217,6 +217,7 @@ class BoldGrid_Framework_Customizer {
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the active link style for your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-active-link-style-in-menus/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 								'panel'       => "bgtfw_menu_items_$location",
 								'capability'  => 'edit_theme_options',
+								'priority'    => 10,
 							)
 						);
 
@@ -252,9 +253,10 @@ class BoldGrid_Framework_Customizer {
 							)
 						);
 
-						Kirki::add_section(
+						$section = new Boldgrid_Framework_Customizer_Section(
+							$wp_customize,
 							"bgtfw_menu_items_hover_item_$location",
-							array(
+							[
 								'title'       => __( 'Hover Style', 'bgtfw' ),
 								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the hover style for links in your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-menu-link-styles/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 								'panel'       => "bgtfw_menu_items_$location",
@@ -262,16 +264,19 @@ class BoldGrid_Framework_Customizer {
 								'icon'        => 'dashicons-admin-links',
 								'notice' => [
 									'dismissible' => false,
-									'message' => esc_html__( 'Upgrade to Crio Pro for more than 20 new hamburger styles!', 'bgtfw' ),
+									'message' => esc_html__( 'Upgrade to Crio Pro to obtain access to 16 new menu item hover styles!', 'bgtfw' ),
 									'type' => 'bgtfw-features',
 									'templateId' => 'bgtfw-notification',
-									'featureCount' => 22,
-									'featureDescription' => esc_html__( '22 premium features available!', 'bgtfw' ),
-									'url' => esc_url( 'https://boldgrid.com/crio/pro/hamburger-menu-styles' ),
+									'featureCount' => 16,
+									'featureDescription' => esc_html__( '16 premium features available!', 'bgtfw' ),
+									'url' => esc_url( 'https://boldgrid.com/crio/pro/menu-item-hover-styles' ),
 									'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
 								],
-							)
+								'priority' => 20,
+							]
 						);
+
+						$wp_customize->add_section( $section );
 
 						Kirki::add_section(
 							"bgtfw_menu_items_link_color_$location",
@@ -281,6 +286,7 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_items_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-art',
+								'priority' => 30,
 							)
 						);
 
@@ -292,6 +298,7 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_items_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-grid-view',
+								'priority' => 40,
 							)
 						);
 
@@ -303,6 +310,7 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_items_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-editor-outdent',
+								'priority' => 50,
 							)
 						);
 					}

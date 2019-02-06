@@ -2328,13 +2328,6 @@ return array(
 					'hvr-fade' => esc_attr__( 'Fade', 'bgtfw' ),
 					'hvr-sweep-to-right' => esc_attr__( 'Sweep to Right', 'bgtfw' ),
 					'hvr-sweep-to-left' => esc_attr__( 'Sweep to Left', 'bgtfw' ),
-					'hvr-sweep-to-bottom' => esc_attr__( 'Sweep to Bottom', 'bgtfw' ),
-					'hvr-sweep-to-top' => esc_attr__( 'Sweep to Top', 'bgtfw' ),
-					'hvr-bounce-to-right' => esc_attr__( 'Bounce to Right', 'bgtfw' ),
-					'hvr-bounce-to-left' => esc_attr__( 'Bounce to Left', 'bgtfw' ),
-					'hvr-bounce-to-bottom' => esc_attr__( 'Bounce to Bottom', 'bgtfw' ),
-					'hvr-bounce-to-top' => esc_attr__( 'Bounce to Top', 'bgtfw' ),
-
 				),
 			),
 
@@ -2342,14 +2335,10 @@ return array(
 			'optgroup2' => array(
 				esc_attr__( 'Two Color Transitions', 'bgtfw' ),
 				array(
-					'hvr-radial-in' => esc_attr__( 'Radial In', 'bgtfw' ),
-					'hvr-radial-out' => esc_attr__( 'Radial Out', 'bgtfw' ),
 					'hvr-rectangle-in' => esc_attr__( 'Rectangle In', 'bgtfw' ),
 					'hvr-rectangle-out' => esc_attr__( 'Rectangle Out', 'bgtfw' ),
 					'hvr-shutter-in-horizontal' => esc_attr__( 'Shutter In Horizontal', 'bgtfw' ),
-					'hvr-shutter-in-vertical' => esc_attr__( 'Shutter In Vertical', 'bgtfw' ),
 					'hvr-shutter-out-horizontal' => esc_attr__( 'Shutter Out Horizontal', 'bgtfw' ),
-					'hvr-shutter-out-vertical' => esc_attr__( 'Shutter Out Vertical', 'bgtfw' ),
 				),
 			),
 
@@ -2358,23 +2347,17 @@ return array(
 				esc_attr__( 'Border Effects', 'bgtfw' ),
 				array(
 					'hvr-trim' => esc_attr__( 'Trim', 'bgtfw' ),
-					'hvr-ripple-out' => esc_attr__( 'Ripple Out', 'bgtfw' ),
 					'hvr-ripple-in' => esc_attr__( 'Ripple In', 'bgtfw' ),
 					'hvr-outline-out' => esc_attr__( 'Outline Out', 'bgtfw' ),
-					'hvr-outline-in' => esc_attr__( 'Outline In', 'bgtfw' ),
 				),
 			),
 			'optgroup4' => array(
 				esc_attr__( 'Overline/Underline Effects', 'bgtfw' ),
 				array(
-					'hvr-underline-from-left' => esc_attr__( 'Underline From Left', 'bgtfw' ),
 					'hvr-underline-from-center' => esc_attr__( 'Underline From Center', 'bgtfw' ),
-					'hvr-underline-from-right' => esc_attr__( 'Underline From Right', 'bgtfw' ),
 					'hvr-underline-reveal' => esc_attr__( 'Underline Reveal', 'bgtfw' ),
 					'hvr-overline-reveal' => esc_attr__( 'Overline Reveal', 'bgtfw' ),
-					'hvr-overline-from-left' => esc_attr__( 'Overline From Left', 'bgtfw' ),
 					'hvr-overline-from-center' => esc_attr__( 'Overline From Center', 'bgtfw' ),
-					'hvr-overline-from-right' => esc_attr__( 'Overline From Right', 'bgtfw' ),
 				),
 			),
 		),

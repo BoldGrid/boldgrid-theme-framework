@@ -83,6 +83,19 @@ class Boldgrid_Framework_Customizer_Footer {
 	}
 
 	/**
+	 * Handles attribution links in footer customizer control.
+	 *
+	 * @since 2.1.1
+	 */
+	public static function customize_attribution() {
+		?>
+		<style type="text/css" id="bgtfw-attribution-cntrl">
+			.repeater-control.attribution [data-attribution="hide_boldgrid_attribution"], .repeater-control.attribution [data-attribution="hide_boldgrid_attribution"] + label { display: none; }
+		</style>
+	<?php
+	}
+
+	/**
 	 * Handles attribution links in footer for customizer.
 	 *
 	 * @since 2.1.1

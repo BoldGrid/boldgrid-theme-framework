@@ -443,7 +443,7 @@ class BoldGrid_Framework {
 			}
 			if ( is_customize_preview() && ( false === get_theme_mod( 'bgtfw_fixed_header' ) || 'header-top' !== get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {
 				add_filter( 'bgtfw_sticky_header_display_css', function( $css ) {
-					$css .= '.bgtfw-sticky-header { display: none; }';
+					$css .= '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none; }';
 					return $css;
 				} );
 			}

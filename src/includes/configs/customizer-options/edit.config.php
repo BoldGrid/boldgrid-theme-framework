@@ -68,7 +68,7 @@ return array(
 				'title' => esc_attr__( 'Contact Blocks', 'bgtfw' ),
 			),
 			array(
-				'control' => 'hide_boldgrid_attribution',
+				'control' => 'bgtfw_footer_layout',
 				'selector' => '.attribution-theme-mods',
 				'title' => esc_attr__( 'Attribution', 'bgtfw' ),
 			),

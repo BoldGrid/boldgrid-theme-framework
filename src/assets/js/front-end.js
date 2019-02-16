@@ -275,7 +275,7 @@ var BoldGrid = BoldGrid || {};
 				body = document.body.classList;
 				body.remove( 'has-header-image' );
 				body.remove( 'has-video-header' );
-				customHeaders = document.querySelectorAll( 'wp-custom-header' );
+				customHeaders = document.querySelectorAll( '.wp-custom-header' );
 
 				customHeaders.forEach( customHeader => {
 					if ( customHeader && customHeader.firstChild && 'IMG' === customHeader.firstChild.nodeName ) {

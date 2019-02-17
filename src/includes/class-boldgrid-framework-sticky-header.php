@@ -58,26 +58,34 @@ class Boldgrid_Framework_Sticky_Header {
 		$css = '';
 		$selectors = [];
 		$theme_mods = [];
-		$theme_mods[] = BoldGrid::create_uids( 'bgtfw_header_layout' );
-		$theme_mods[] = BoldGrid::create_uids( 'bgtfw_sticky_header_layout' );
-		$theme_mods[] = BoldGrid::create_uids( 'bgtfw_footer_layout' );
 
-		foreach ( $theme_mods as $theme_mod ) {
-			foreach ( $theme_mod as $key => $section ) {
-				if ( ! empty( $section['items'] ) ) {
-					foreach ( $section['items'] as $k => $item ) {
-						if ( ! empty( $item['display'] ) ) {
-							foreach ( $item['display'] as $display ) {
-								if ( 'show' !== $display['display'] ) {
-									$selectors[] = '.' . $item['uid'] . ' ' . $display['selector'];
+		foreach ( [ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ] as $type ) {
+			$type = BoldGrid::create_uids( $type );
+			if ( ! empty( $type ) ) {
+				$theme_mods[] = $type;
+			}
+		}
+
+		if ( ! empty( $theme_mods ) ) {
+			foreach ( $theme_mods as $theme_mod ) {
+				foreach ( $theme_mod as $key => $section ) {
+					if ( ! empty( $section['items'] ) ) {
+						foreach ( $section['items'] as $k => $item ) {
+							if ( ! empty( $item['display'] ) ) {
+								foreach ( $item['display'] as $display ) {
+									if ( 'show' !== $display['display'] ) {
+										$selectors[] = '.' . $item['uid'] . ' ' . $display['selector'];
+									}
 								}
 							}
 						}
 					}
 				}
 			}
+
+			$selectors = ! empty( $selectors ) ? implode( ', ', $selectors ) . '{ display: none !important; }' : ':not(BGTFW){}';
 		}
-		$selectors = ! empty( $selectors ) ? implode( ', ', $selectors ) . '{ display: none !important; }' : ':not(BGTFW){}';
+
 		return apply_filters( 'bgtfw_sticky_header_display_css', $selectors );
 	}
 }

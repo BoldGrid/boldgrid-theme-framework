@@ -72,23 +72,22 @@ class Boldgrid_Framework_Customizer_Background {
 	 * @since     1.0.0
 	 */
 	public function get_pattern_files() {
-		$pattern_dir = $this->configs['framework']['asset_dir'] . 'img/patterns/';
-		$pattern_dir_uri = $this->configs['framework']['admin_asset_dir'] . 'img/patterns/';
-		$patterns = scandir( $pattern_dir );
-		$trimmed_patterns = array_diff( $patterns, array(
-			'.',
-			'..',
-		) );
+		// Get patterns, sslverify is false for local env and self-signed SSLs on temp domains.
+		$request = wp_remote_get( $this->configs['framework']['admin_asset_dir'] . 'json/patterns.json', [ 'sslverify' => false ] );
 
-		$pattern_data = array();
-		foreach ( $trimmed_patterns as $key => $pattern ) {
-			$pattern_data[] = array(
-				'uri' => $pattern_dir_uri . $pattern,
-				'basename' => $pattern,
-			);
+		// Check for errors with $request.
+		if ( is_wp_error( $request ) ) {
+			return $request;
 		}
 
-		return $pattern_data;
+		$contents = json_decode( wp_remote_retrieve_body( $request ) );
+
+		$patterns = [];
+		foreach ( $contents->patterns as $pattern ) {
+			$patterns[ $pattern->id ] = $pattern->formattedName;
+		}
+
+		return $patterns;
 	}
 
 	/**
@@ -377,8 +376,6 @@ class Boldgrid_Framework_Customizer_Background {
 	public function add_patterns( $wp_customize ) {
 		require_once $this->configs['framework']['includes_dir'] . 'control/class-boldgrid-framework-control-pattern.php';
 
-		$patterns = $this->get_pattern_files();
-
 		$wp_customize->add_setting(
 			'boldgrid_background_pattern',
 			array(
@@ -394,8 +391,7 @@ class Boldgrid_Framework_Customizer_Background {
 					preg_match( '/url\(\"(.+)\"\)/', $value, $matches );
 
 					if ( ! empty( $matches ) ) {
-						$url = esc_url_raw( $matches[1] );
-						return 'url("' . $url . '")';
+						return 'url("' . $matches[1] . '")';
 					} else {
 						return '';
 					}
@@ -403,19 +399,19 @@ class Boldgrid_Framework_Customizer_Background {
 			)
 		);
 
+		$patterns = $this->get_pattern_files();
+
 		$wp_customize->add_control(
 			new Boldgrid_Framework_Control_Pattern(
 				$wp_customize,
 				'boldgrid_background_pattern',
-				array(
-					'label' => __( 'Subtle Patterns', 'bgtfw' ),
+				[
+					'label' => __( 'Patterns', 'bgtfw' ),
 					'section' => 'background_image',
 					'settings' => 'boldgrid_background_pattern',
 					'priority' => 3,
-					'choices' => array(
-						'patterns' => $patterns,
-					),
-				)
+					'choices' => $patterns,
+				]
 			)
 		);
 	}

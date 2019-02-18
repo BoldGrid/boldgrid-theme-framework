@@ -20,10 +20,12 @@ import bgtfwPaneReflow from './controls/bgtfw-pane-reflow';
 import bgtfwPanel from './controls/bgtfw-panel';
 import bgtfwSection from './controls/bgtfw-section';
 import bgtfwNotifications from './controls/bgtfw-notifications';
+import bgtfwBackgroundControls from './controls/bgtfw-background-control';
 
 let devices = new Devices();
 devices.init();
 bgtfwNotifications();
+bgtfwBackgroundControls();
 
 ( function( $ ) {
 	const api = wp.customize;

@@ -35,32 +35,24 @@ class Boldgrid_Framework_Control_Pattern extends WP_Customize_Control {
 	 */
 	public function render_content() {
 	?>
-		<div class='boldgrid-pattern-wrapper' data-pattern-selected="<?php echo (bool) $this->value(); ?>">
+		<div class='boldgrid-pattern-wrapper' data-pattern-selected="<?php echo ( bool ) $this->value(); ?>">
 			<div class='boldgrid-pattern-selection-heading'>
 				<label>
 						<span class="customize-control-title">Pattern</span>
 				</label>
 				<div>
-					<a <?php echo ( ! $this->value()) ? 'disabled="disabled"' : ''; ?>class='button remove-selected-pattern'></a>
+					<a <?php echo ( ! $this->value() ) ? 'disabled="disabled"' : ''; ?>class='button remove-selected-pattern'></a>
 				</div>
 			</div>
-			<div id="<?php echo esc_attr( $this->id ); ?>" class='pattern-wrapper'>
-				<div class='pattern-preview-wrapper'>
-				<?php foreach ( $this->choices['patterns'] as $pattern ) {
-					$active_class = '';
-					if (  ('url(' . $pattern['uri'] . ')') == $this->value() ) {
-						$active_class = 'active-pattern';
-					}
-					?>
-					<div class="patternpreview <?php echo esc_attr( $active_class ); ?>"
-							data-background="<?php echo esc_attr( $pattern['uri'] )?>"></div>
+			<div id="<?php echo esc_attr( $this->id ); ?>" class="pattern-wrapper">
+				<div class="pattern-preview-wrapper">
+				<?php foreach ( $this->choices as $pattern => $name ) { ?>
+					<div class="patternpreview<?php echo $pattern !== $this->value() ? '' : ' active-pattern'; ?>" data-background="<?php echo esc_attr( $pattern ); ?>"></div>
 				<?php } ?>
-
 				</div>
-				<input type="text" val='<?php echo esc_attr( $this->value() ); ?>' class='hidden' <?php echo  esc_attr( $this->link() ); ?>>
+				<input type="text" val='<?php echo esc_attr( $this->value() ); ?>' class='hidden' <?php echo esc_attr( $this->link() ); ?>>
 			</div>
 		</div>
 	<?php
 	}
 }
-?>

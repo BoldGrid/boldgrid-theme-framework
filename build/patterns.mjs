@@ -7,7 +7,7 @@ bgtfwPatterns.patterns = [];
 
 for ( let pattern in hero.default ) {
 	var patternData = {
-		id: pattern.replace( /([A-Z])/g, '-$1' ).toLowerCase(),
+		id: pattern,
 		formattedName: pattern.charAt( 0 ).toUpperCase() + pattern.replace( /([A-Z])/g, ' $1' ).slice( 1 )
 	}
 	bgtfwPatterns.patterns.push( patternData );

@@ -505,13 +505,15 @@ gulp.task('cleanHovers', function() {
     .pipe(clean({force: true}));
 });
 
+gulp.task( 'patterns', shell.task( 'yarn run script:patterns' ) );
+
 // Tasks
 gulp.task('build', function (cb) {
   sequence(
     'dist',
     'clean',
     'readme',
-    ['jsHint', 'jscs', 'frameworkJs', 'svgs'],
+    ['jsHint', 'jscs', 'frameworkJs', 'svgs', 'patterns'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     'images',
     ['scssCompile', 'bootstrapCompile'],
@@ -528,7 +530,7 @@ gulp.task('qbuild', function (cb) {
   sequence(
     'dist',
     'readme',
-    ['jsHint', 'jscs', 'frameworkJs'],
+    ['jsHint', 'jscs', 'frameworkJs', 'patterns'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',

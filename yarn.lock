@@ -6575,6 +6575,11 @@ he@1.1.x:
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
   integrity sha1-k0EP0hsAlzUVH4howvJx80J+I/0=
 
+hero-patterns@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/hero-patterns/-/hero-patterns-2.0.2.tgz#58fecd8a872e7aa46190a55bcca43df805d5c8e5"
+  integrity sha512-6StqbEZ+Q9QAonzFjGO/G2ZnLH8vz0qq9j70Bp44VQh8GXBPvfxoZ3I+HIknxItzzwe8xkmPb6QF9lu+++zOSw==
+
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"

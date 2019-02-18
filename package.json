@@ -13,7 +13,8 @@
     "build-webpack-dev": "cross-env NODE_ENV=development webpack --color",
     "dev": "gulp watch",
     "dev:server": "concurrently \"cross-env NODE_ENV=development gulp watch --silent\" \"npm run webpack-server\"",
-    "quick-build": "gulp qbuild"
+    "quick-build": "gulp qbuild",
+    "script:patterns": "node --experimental-modules build/patterns.mjs"
   },
   "keywords": [
     "BoldGrid"
@@ -97,6 +98,7 @@
     "float-labels.js": "^3.3.5",
     "font-awesome": "^4.7.0",
     "hamburgers": "https://github.com/jonsuh/hamburgers#v0.9.3",
+    "hero-patterns": "^2.0.2",
     "hover.css": "^2.3.1",
     "jquery-goup": "^1.1.0",
     "jquery.nicescroll": "^3.6.8",

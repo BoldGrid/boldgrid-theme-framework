@@ -5,6 +5,7 @@
 		"front-end": "./assets/js/front-end.js"
 	},
 	"output": {
+		"chunkFilename": "assets/js/[id].chunk.js",
 		"filename": "./assets/js/[name].min.js"
 	},
 	"externals": {
@@ -14,10 +15,10 @@
 	"stats": {
 		"assets": true,
 		"children": false,
-		"chunks": false,
+		"chunks": true,
 		"hash": false,
 		"modules": true,
-		"publicPath": false,
+		"publicPath": true,
 		"timings": true,
 		"version": true,
 		"maxModules": 0,

@@ -3,6 +3,11 @@
   "version": "2.0.0",
   "description": "BoldGrid Theme Framework",
   "main": "index.js",
+  "babel": {
+    "plugins": [
+      "@babel/plugin-syntax-dynamic-import"
+    ]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "phpcs-installStandards": "php node_modules/PHP_CodeSniffer/scripts/phpcs --config-set installed_paths node_modules/WordPress-Coding-Standards/",
@@ -87,6 +92,9 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
     "@boldgrid/components": "^2.16.1",
     "@wordpress/dom-ready": "^2.0.2",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",

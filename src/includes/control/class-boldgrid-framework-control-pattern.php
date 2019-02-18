@@ -47,7 +47,7 @@ class Boldgrid_Framework_Control_Pattern extends WP_Customize_Control {
 			<div id="<?php echo esc_attr( $this->id ); ?>" class="pattern-wrapper">
 				<div class="pattern-preview-wrapper">
 				<?php foreach ( $this->choices as $pattern => $name ) { ?>
-					<div class="patternpreview<?php echo $pattern !== $this->value() ? '' : ' active-pattern'; ?>" data-background="<?php echo esc_attr( $pattern ); ?>"></div>
+					<div class="patternpreview" data-background="<?php echo esc_attr( $pattern ); ?>"></div>
 				<?php } ?>
 				</div>
 				<input type="text" val='<?php echo esc_attr( $this->value() ); ?>' class='hidden' <?php echo esc_attr( $this->link() ); ?>>

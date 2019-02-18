@@ -82,7 +82,10 @@ class Boldgrid_Framework_Links {
 	public function add_styles_frontend() {
 		foreach ( self::$prefixes as $prefix ) {
 			$css_prefix = str_replace( '_', '-', $prefix );
-			Boldgrid_Framework_Customizer_Generic::add_inline_style( "${css_prefix}-link", $this->get_styles( $prefix ) );
+			$styles = $this->get_styles( $prefix );
+			if ( ! empty( $styles ) ) {
+				Boldgrid_Framework_Customizer_Generic::add_inline_style( "${css_prefix}-link", $styles );
+			}
 		}
 	}
 
@@ -118,6 +121,10 @@ class Boldgrid_Framework_Links {
 			// Apply color as CSS variable.
 			list( $color_variable ) = explode( ':', $color );
 			$color_variable = "var(--${color_variable})";
+
+			if ( empty( $color ) ) {
+				return $css;
+			}
 
 			$color = explode( ':', $color )[1];
 			$ari_color = ariColor::newColor( $color );

@@ -1012,3 +1012,18 @@
 # Notifications
 --------------------------------------------------------------*/
 @import "controls/notifications";
+
+/* FA icons */
+.accordion-section-title.fa {
+	display: block;
+}
+/* BG Patterns */
+.boldgrid-pattern-selection-heading .current-pattern {
+	width: calc(100% - 34px);
+	height: 100px;
+	margin: 0 auto;
+	margin-bottom: 7px;
+}
+.boldgrid-pattern-selection-heading .button.remove-selected-pattern {
+	margin-left: 15px;
+}

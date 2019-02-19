@@ -50,7 +50,7 @@ export default function() {
 			wp.customize( 'boldgrid_background_pattern' ).set( '' );
 		} );
 
-		$( '.patternpreview' ).on( 'click', function() {
+		$( '#boldgrid_background_pattern .patternpreview' ).on( 'click', function() {
 			var $this =  $( this );
 			$( '.pattern-wrapper .active-pattern' ).removeClass( 'active-pattern' );
 			$this.toggleClass( 'active-pattern' );
@@ -99,8 +99,9 @@ export default function() {
 		wp.customize.section( 'background_image' ).expanded.bind( function( isExpanded ) {
 			if ( isExpanded && ! loaded ) {
 				loaded = true;
-				setBackgroundPatterns();
-				setActivePattern();
+				setBackgroundPatterns().then( () => {
+					setActivePattern();
+				} );
 			}
 		} );
 	};
@@ -123,7 +124,7 @@ export default function() {
 	async function addPatterns() {
 		const hero = await import( /* webpackChunkName: "hero-patterns" */ 'hero-patterns' );
 
-		$( '.patternpreview' ).each( function() {
+		$( '#boldgrid_background_pattern .patternpreview' ).each( function() {
 			var color = new PaletteSelector(),
 				el = $( this ),
 				bg = color.getColor( wp.customize( 'boldgrid_background_color' )(), true ),
@@ -147,7 +148,7 @@ export default function() {
 	};
 
 	var setActivePattern = function() {
-		$( `.patternpreview[style*='background-image: ${ wp.customize( 'boldgrid_background_pattern' )() }']` ).addClass( 'active-pattern' );
+		$( `#boldgrid_background_pattern .patternpreview[style*='background-image: ${ wp.customize( 'boldgrid_background_pattern' )() }']` ).addClass( 'active-pattern' );
 	};
 
 	var validate_background_color_setting = function() {

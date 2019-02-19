@@ -4,6 +4,31 @@
 	@include dashicons;
 }
 
+[id^="accordion-panel-"] > h3.dashicons:before,
+[id^="accordion-section-"] > h3.dashicons:before {
+	@include dashicons;
+}
+
+[id^="accordion-panel-"] > h3.fa:before,
+[id^="accordion-section-"] > h3.fa:before {
+	@include FontAwesome;
+}
+
+[id^="accordion-panel-"] > h3.fa,
+[id^="accordion-section-"] > h3.fa {
+	font: inherit;
+	font-size: inherit;
+	font-weight: bold;
+}
+
+[id^="accordion-panel-"] > h3[class^="icon-"]:before,
+[id^="accordion-section-"] > h3[class^="icon-"]:before,
+[id^="accordion-panel-"] > h3[class*=" icon-"]:before,
+[id^="accordion-section-"] > h3[class*=" icon-"]:before {
+	@include bgtfwIcons;
+}
+
+
 // Main panel.
 ul.customize-pane-parent > li {
 	&#accordion-panel- {

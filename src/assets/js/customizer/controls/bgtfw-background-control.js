@@ -40,8 +40,6 @@ export default function() {
 		// Bind Events.
 		validate_background_color_setting();
 		append_head_styles();
-		bind_background_color_change();
-		bind_palette_change();
 
 		$remove_selected_pattern.on( 'click', function() {
 			$boldgrid_pattern_wrapper.removeAttr( 'data-pattern-selected' );
@@ -165,31 +163,22 @@ export default function() {
 	};
 
 	/**
-	 * When the user changes the background color using the color picker,
-	 * update the preview patterns
+	 * When the user changes the background color or palettes update patterns/colors.
+	 *
+	 * @since 2.1.1
 	 */
-	var bind_background_color_change = function() {
-		wp.customize( 'boldgrid_background_color', function( value ) {
-			value.bind( function() {
-				var pattern;
-				append_head_styles();
-				setBackgroundPatterns().then( () => {
-					pattern = $( '#customize-control-boldgrid_background_pattern' ).find( '.active-pattern' ).css( 'background-image' );
-					$( '#boldgrid_background_pattern input' ).val( pattern ).change();
-					wp.customize( 'boldgrid_background_pattern' ).set( pattern );
-				} );
-			} );
-		} );
-	};
-
-	var bind_palette_change = function() {
-		wp.customize( 'boldgrid_color_palette', function( value ) {
-			value.bind( function() {
-				append_head_styles();
-				setBackgroundPatterns().then( () => {
-					pattern = $( '#customize-control-boldgrid_background_pattern' ).find( '.active-pattern' ).css( 'background-image' );
-					$( '#boldgrid_background_pattern input' ).val( pattern ).change();
-					wp.customize( 'boldgrid_background_pattern' ).set( pattern );
+	var bindControls = () => {
+		api( 'boldgrid_background_color', 'boldgrid_color_palette', ( ...controls ) => {
+			controls.map( control => {
+				control.bind( () => {
+					append_head_styles();
+					if ( 'palette' === api( 'boldgrid_background_type' )() ) {
+						setBackgroundPatterns().then( () => {
+							let pattern = $( '#customize-control-boldgrid_background_pattern' ).find( '.active-pattern' ).css( 'background-image' );
+							$( '#boldgrid_background_pattern input' ).val( pattern ).change();
+							api( 'boldgrid_background_pattern' ).set( pattern );
+						} );
+					}
 				} );
 			} );
 		} );

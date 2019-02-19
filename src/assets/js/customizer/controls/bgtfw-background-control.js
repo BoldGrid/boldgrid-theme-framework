@@ -99,26 +99,9 @@ export default function() {
 		wp.customize.section( 'background_image' ).expanded.bind( function( isExpanded ) {
 			if ( isExpanded && ! loaded ) {
 				loaded = true;
-				setBackgroundPatterns().then( () => {
-					setActivePattern();
-				} );
+				setBackgroundPatterns().then( () => setActivePattern() );
 			}
 		} );
-	};
-
-	var setBackgroundPattern = function( el, patterns ) {
-		var color = new PaletteSelector(),
-			bg = color.getColor( wp.customize( 'boldgrid_background_color' )(), true ),
-			win = wp.customize.previewer.targetWindow(),
-			contrast;
-
-		contrast = win.BOLDGRID.Customizer.Util.getTextContrast( bg );
-
-		bg = colorLib.Color( bg );
-		bg = contrast.includes( 'light' ) ? bg.lightenByAmount( 0.075 ) : bg.darkenByAmount( 0.075 );
-		bg = bg.toCSS();
-
-		el.css( 'background-image', patterns.default[ el.data( 'background' ) ]( bg ) );
 	};
 
 	async function addPatterns() {
@@ -144,7 +127,7 @@ export default function() {
 	};
 
 	var setBackgroundPatterns = function() {
-		return addPatterns();
+		return addPatterns( api( 'boldgrid_background_type' )() );
 	};
 
 	var setActivePattern = function() {

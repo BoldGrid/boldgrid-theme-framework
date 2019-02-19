@@ -41,12 +41,24 @@ return array(
 			'height'   => 100,
 		),
 	),
+	'boldgrid_background_type' => [
+		'type'        => 'radio-buttonset',
+		'transport'   => 'postMessage',
+		'settings'    => 'boldgrid_background_type',
+		'section'     => 'background_image',
+		'default'     => 'image',
+		'priority'    => 0,
+		'choices'     => [
+			'image'   => '<span class="dashicons dashicons-format-image"></span>&nbsp;' . esc_html__( 'Image', 'bgtfw' ),
+			'pattern' => '<span class="dashicons dashicons-art"></span>&nbsp;' . esc_html__( 'Pattern & Color', 'bgtfw' ),
+		],
+	],
 	'bgtfw_background_description' => array(
 		'type'        => 'custom',
 		'settings'    => 'bgtfw_background_description',
 		'section'     => 'background_image',
 		'default'     => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the appearance of your site\'s background.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-your-site-background-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-		'priority' => 1,
+		'priority'    => 1,
 	),
 	'boldgrid_background_color' => array(
 		'type'        => 'bgtfw-palette-selector',

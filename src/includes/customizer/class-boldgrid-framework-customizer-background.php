@@ -236,33 +236,6 @@ class Boldgrid_Framework_Customizer_Background {
 
 		require_once $this->configs['framework']['includes_dir'] .
 			'control/class-boldgrid-framework-control-background-type.php';
-
-		$wp_customize->add_setting(
-			'boldgrid_background_type',
-			array(
-				'default' => $this->configs['customizer-options']['background']['defaults']['boldgrid_background_type'],
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
-				'transport' => 'postMessage',
-				'sanitize_callback' => function( $value ) {
-					return in_array( $value, [ 'image', 'pattern' ], true ) ? $value : 'pattern';
-				},
-			)
-		);
-
-		$wp_customize->add_control(
-			new Boldgrid_Framework_Control_Background_Type(
-				$wp_customize,
-				'boldgrid-background-type',
-				array(
-					'label' => __( 'Background Type', 'bgtfw' ),
-					'section' => 'background_image',
-					'settings' => 'boldgrid_background_type',
-					'priority' => 0,
-					'choices' => array(),
-				)
-			)
-		);
 	}
 
 	/**

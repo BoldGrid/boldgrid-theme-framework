@@ -60,7 +60,6 @@ export default function() {
 		} );
 
 		// Init Button Set.
-		$( '#boldgrid-background-type' ).buttonset();
 		$( '.accordion-section-content, .wp-full-overlay-sidebar-content' ).on( 'scroll', function() {
 			var $this = $( this );
 			var top = $this.scrollTop();

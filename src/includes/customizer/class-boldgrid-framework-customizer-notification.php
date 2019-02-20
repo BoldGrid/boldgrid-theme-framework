@@ -1,21 +1,21 @@
 <?php
 /**
- * Customizer Section Functionality
+ * Customizer Notifications Functionality
  *
  * @link http://www.boldgrid.com
  *
- * @since 2.0.0
+ * @since 2.1.1
  *
  * @package Boldgrid_Theme_Framework_Customizer
  */
 
 
 /**
- * Class: Boldgrid_Framework_Customizer_Section
+ * Class: Boldgrid_Framework_Customizer_Notification
  *
- * Extends the WordPress customizer's section implementation..
+ * Extends the WordPress customizer's notification implementation..
  *
- * @since      2.0.0
+ * @since      2.1.1
  * @category   Customizer
  * @package    Boldgrid_Framework
  * @subpackage Boldgrid_Framework_Customizer
@@ -27,9 +27,7 @@ class Boldgrid_Framework_Customizer_Notification {
 	/**
 	 * Notification template to render for customizer notifications.
 	 *
-	 * @since 2.0.0
-	 *
-	 * @return array The array to be exported to the client as JSON.
+	 * @since 2.1.1
 	 */
 	public function print_template() {
 		?>

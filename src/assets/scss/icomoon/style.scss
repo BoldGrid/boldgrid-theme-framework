@@ -91,3 +91,7 @@
   transform: rotate(-90deg);
   padding: 0 .5em;
 }
+.icon-crio:before,
+.icon-crio-enzo:before {
+	content: "\e904";
+}

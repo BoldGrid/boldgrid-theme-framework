@@ -269,28 +269,16 @@ class Boldgrid_Framework_Customizer_Background {
 		$theme_mods = get_theme_mods();
 		$background_options = $this->configs['customizer-options']['background'];
 
-		$bg_image = ! empty( $theme_mods['background_image'] ) ? $theme_mods['background_image'] : null;
+		$bg_image = get_theme_mod( 'background_image', $background_options['defaults']['background_image'] );
 		$bg_type = get_theme_mod( 'boldgrid_background_type' );
 		$bg_pattern = ! empty( $theme_mods['boldgrid_background_pattern'] ) ? $theme_mods['boldgrid_background_pattern'] : 'none';
 		$bg_size = get_theme_mod( 'boldgrid_background_image_size' );
-		$bg_attach = get_theme_mod( 'background_attachment', null );
+		$bg_attach = get_theme_mod( 'background_attachment', $background_options['defaults']['background_attachment'] );
 
 		/** Passing the defaults to the process that creates the css */
 		if ( 'none' === $bg_pattern ) {
 			if ( ! empty( $background_options['defaults']['boldgrid_background_pattern'] ) ) {
 				$bg_pattern = self::get_default_pattern_mod( $this->configs );
-			}
-		}
-
-		if ( ! $bg_attach ) {
-			if ( ! empty( $background_options['defaults']['background_attachment'] ) ) {
-				$bg_attach = $background_options['defaults']['background_attachment'];
-			}
-		}
-
-		if ( ! $bg_image ) {
-			if ( ! empty( $background_options['defaults']['background_image'] ) ) {
-				$bg_image = $background_options['defaults']['background_image'];
 			}
 		}
 

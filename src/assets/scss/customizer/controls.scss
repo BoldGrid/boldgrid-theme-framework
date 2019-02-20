@@ -584,54 +584,26 @@
 /*****************************************************
 ************Background Type Controls****************
 ******************************************************/
-#sub-accordion-section-background_image.open {
-	#customize-control-boldgrid_background_type {
-		width: calc(100% + 16px);
-		height: 40px;
-		background-color: white;
-		padding: 4px;
-		position: relative;
-		left: -12px;
-		top: -15px;
-		border-bottom:1px solid lightgrey;
-		.ui-button {
-			background-color: #f7f7f7;
-			padding: 9px;
-			border: 1px solid lightgrey;
-			font-size: 14px;
-			line-height: 20px;
-			height: 34px;
-			&set {
-				width: 100%;
-				text-align: center;
-				margin: 6px auto 0 auto;
-				padding-top:3px;
-				label {
-					margin: -3px;
-				}
-			}
-			&.ui-state-active {
-				background-color: lightgrey;
-			}
-			&.ui-corner-right {
-				border-top-left-radius: 0px;
-				border-bottom-left-radius: 0px;
-				border-top-right-radius: 5px;
-				border-bottom-right-radius: 5px;
-			}
-			&.ui-corner-left {
-				border-top-right-radius: 0px;
-				border-bottom-right-radius: 0px;
-				border-top-left-radius: 5px;
-				border-bottom-left-radius: 5px;
-			}
-		}
-	}
+#customize-control-boldgrid_background_type {
+	width: calc(100% + 16px);
+	height: 40px;
+	background-color: white;
+	padding: 4px;
+	position: relative;
+	left: -12px;
+	top: -15px;
+	border-bottom:1px solid lightgrey;
 }
 
 /*****************************************************
 ************Sticky Controls****************
 ******************************************************/
+#boldgrid_background_typepattern + label .dashicons,
+#boldgrid_background_typeimage + label .dashicons {
+	display: flex;
+	align-items: center;
+}
+
 .expanded .boldgrid-sticky-customizer {
 	#customize-control-boldgrid_background_color,
 	#customize-control-boldgrid_background_type,

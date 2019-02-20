@@ -379,7 +379,7 @@ class Boldgrid_Framework_Customizer_Background {
 				$wp_customize,
 				'boldgrid_background_pattern',
 				[
-					'label' => __( 'Patterns', 'bgtfw' ),
+					'label' => __( 'Pattern', 'bgtfw' ),
 					'section' => 'background_image',
 					'settings' => 'boldgrid_background_pattern',
 					'priority' => 3,

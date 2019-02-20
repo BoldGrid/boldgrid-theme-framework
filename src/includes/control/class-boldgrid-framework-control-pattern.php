@@ -35,13 +35,13 @@ class Boldgrid_Framework_Control_Pattern extends WP_Customize_Control {
 	 */
 	public function render_content() {
 	?>
-		<div class='boldgrid-pattern-wrapper' data-pattern-selected="<?php echo ( bool ) $this->value(); ?>">
+		<div id="<?php echo esc_attr( $this->id ); ?>-control-wrapper" class="boldgrid-pattern-wrapper" data-pattern-selected="<?php echo ( bool ) $this->value(); ?>">
 			<div class='boldgrid-pattern-selection-heading'>
 				<label>
-						<span class="customize-control-title">Pattern</span>
+						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 				</label>
 				<div>
-					<a <?php echo ( ! $this->value() ) ? 'disabled="disabled"' : ''; ?>class='button remove-selected-pattern'></a>
+					<a id="<?php echo esc_attr( $this->id ); ?>-remove-pattern" <?php echo ( ! $this->value() ) ? 'disabled="disabled"' : ''; ?>class='button remove-selected-pattern'></a>
 				</div>
 			</div>
 			<div id="<?php echo esc_attr( $this->id ); ?>" class="pattern-wrapper">

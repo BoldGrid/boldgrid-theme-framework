@@ -1,19 +1,11 @@
 import PaletteSelector from '../color/palette-selector';
 
 const colorLib = window.net.brehaut;
+const api = wp.customize;
 
 export default function() {
 
 	'use strict';
-
-	var BOLDGRID = BOLDGRID || {};
-	BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
-	BOLDGRID.CUSTOMIZER.Background = {};
-
-	var self = BOLDGRID.CUSTOMIZER.Background,
-		api = wp.customize;
-
-	var $window = $( window );
 
 	$( function() {
 
@@ -21,136 +13,133 @@ export default function() {
 		 * @todo This needs to be refactored. All these events should not be each time
 		 * preview iframe is refreshed.
 		 */
-		$window.on( 'boldgrid_customizer_refresh', onload_procedure );
-		loadPatterns();
+		$( window ).on( 'boldgrid_customizer_refresh', init );
+		loadSection();
 	} );
 
-	var onload_procedure = function() {
-		bind_all();
-		validate_selection_set();
+	var init = function() {
+		bindColors();
+	};
 
-		var $flat_color_background = $( '#customize-control-boldgrid_background_color' );
-		var $pattern_background = $( '#customize-control-boldgrid_background_pattern' );
-		var $background_type = $( '#customize-control-boldgrid-background-type' );
-		self.$background_color_picker_color = $flat_color_background.find( '.wp-color-result' );
-		var $pattern_input = $pattern_background.find( '#boldgrid_background_pattern input' );
-		var $boldgrid_pattern_wrapper = $pattern_background.find( '.boldgrid-pattern-wrapper' );
-		var $remove_selected_pattern = $pattern_background.find( '.remove-selected-pattern' );
+	/**
+	 * Update Background Type Actions.
+	 *
+	 * This is where we hide the color and pattern controls.
+	 *
+	 * @since 2.1.1
+	 *
+	 * @param {String} to thememod string to check against.
+	 */
+	var updateBgType = ( to ) => {
+		let init = 'activate',
+			opts = { duration: 0 },
+			state = 'image' === to ? `de${init}` : init;
 
-		// Bind Events.
-		validate_background_color_setting();
-		append_head_styles();
-
-		$remove_selected_pattern.on( 'click', function() {
-			$boldgrid_pattern_wrapper.removeAttr( 'data-pattern-selected' );
-			$remove_selected_pattern.attr( 'disabled', 'disabled' );
-			$( '#boldgrid_background_pattern .active-pattern' ).removeClass( 'active-pattern' );
-			wp.customize( 'boldgrid_background_pattern' ).set( '' );
-		} );
-
-		$( '#boldgrid_background_pattern .patternpreview' ).on( 'click', function() {
-			var $this =  $( this );
-			$( '.pattern-wrapper .active-pattern' ).removeClass( 'active-pattern' );
-			$this.toggleClass( 'active-pattern' );
-			var background_image = $this.css( 'background-image' );
-			$pattern_input.val( background_image ).change();
-			wp.customize( 'boldgrid_background_pattern' ).set( background_image );
-			$boldgrid_pattern_wrapper.attr( 'data-pattern-selected', 1 );
-			$remove_selected_pattern.removeAttr( 'disabled', 'disabled' );
-		} );
-
-		// Init Button Set.
-		$( '.accordion-section-content, .wp-full-overlay-sidebar-content' ).on( 'scroll', function() {
-			var $this = $( this );
-			var top = $this.scrollTop();
-			if ( top > 75 && wp.customize( 'boldgrid_background_type' )() === 'pattern' ) {
-				$this.addClass( 'boldgrid-sticky-customizer' );
-			} else {
-				$this.removeClass( 'boldgrid-sticky-customizer' );
-			}
-		} );
-
-		$background_type.on( 'change', 'input', function() {
-			var $this = $( this );
-			if ( $this.val() === 'image' ) {
-				$( '#customize-control-boldgrid_background_color' ).hide();
-				$( '#customize-control-boldgrid_background_pattern' ).hide();
-			} else {
-				$( '#customize-control-boldgrid_background_color' ).show();
-				$( '#customize-control-boldgrid_background_pattern' ).show();
-			}
-
-		});
-
-		$background_type.find( 'input:checked' ).change();
+		[ 'boldgrid_background_color', 'boldgrid_background_pattern' ].map( id => api.control( id )[ state ]( opts ) );
 	};
 
 	/**
 	 * When the background panel is opened, load available background patterns.
 	 *
-	 * @since 2.0.0
+	 * @since 2.1.1
 	 */
-	var loadPatterns = function() {
-		var loaded = false;
-
-		wp.customize.section( 'background_image' ).expanded.bind( function( isExpanded ) {
-			if ( isExpanded && ! loaded ) {
+	var loadSection = function() {
+		let loaded = false;
+		api.section( 'background_image' ).expanded.bind( expanded => {
+			if ( expanded && ! loaded ) {
 				loaded = true;
+				bindValidation();
+				validateSelectionSet();
+				backgroundSectionInit();
+				updateBgType( api( 'boldgrid_background_type' )() );
+				api( 'boldgrid_background_type', value => value.bind( ( to ) => updateBgType( to ) ) );
 				setBackgroundPatterns().then( () => setActivePattern() );
+				appendHeadStyles();
 			}
 		} );
 	};
 
-	async function addPatterns() {
+	/**
+	 * Add patterns to section.
+	 *
+	 * This is a chunked resource and offloaded to avoid high resource
+	 * usage until it's needed.
+	 *
+	 * @since 2.1.1
+	 */
+	var backgroundSectionInit = () => {
+		let wrapper = document.getElementById( 'boldgrid_background_pattern-control-wrapper' ),
+			button = document.getElementById( 'boldgrid_background_pattern-remove-pattern' );
+
+		$( button ).on( 'click', () => {
+			$( '#boldgrid_background_pattern .active-pattern' ).removeClass( 'active-pattern' );
+			api( 'boldgrid_background_pattern' ).set( '' );
+			wrapper.removeAttribute( 'data-pattern-selected' );
+			button.disabled = true;
+		} );
+
+		$( '#boldgrid_background_pattern .patternpreview' ).on( 'click', ( e ) => {
+			let el = $( e.currentTarget );
+			if ( ! el.hasClass( 'active-pattern' ) ) {
+				$( '#boldgrid_background_pattern .active-pattern' ).removeClass( 'active-pattern' );
+				el.addClass( 'active-pattern' );
+				api( 'boldgrid_background_pattern' ).set( el.css( 'background-image' ) );
+				wrapper.dataset.patternSelected = 1;
+				button.disabled = false;
+			}
+		} );
+
+		// Init Button Set.
+		$( '.accordion-section-content, .wp-full-overlay-sidebar-content' ).on( 'scroll', function() {
+			let el = $( this );
+			if ( 75 <= el.scrollTop() && 'pattern' === api( 'boldgrid_background_type' )() ) {
+				el.addClass( 'boldgrid-sticky-customizer' );
+			} else {
+				el.removeClass( 'boldgrid-sticky-customizer' );
+			}
+		} );
+	};
+
+	/**
+	 * Add patterns to section.
+	 *
+	 * This is a chunked resource and offloaded to avoid high resource
+	 * usage until it's needed.
+	 *
+	 * @since 2.1.1
+	 */
+	var setBackgroundPatterns = async function() {
 		const hero = await import( /* webpackChunkName: "hero-patterns" */ 'hero-patterns' );
 
+		let color = new PaletteSelector(),
+			bg = color.getColor( api( 'boldgrid_background_color' )(), true ),
+			win = api.previewer.targetWindow(),
+			contrast;
+
+		contrast = win.BOLDGRID.Customizer.Util.getTextContrast( bg );
+
+		bg = colorLib.Color( bg );
+		bg = contrast.includes( 'light' ) ? bg.lightenByAmount( 0.075 ) : bg.darkenByAmount( 0.075 );
+		bg = bg.toCSS();
+
 		$( '#boldgrid_background_pattern .patternpreview' ).each( function() {
-			var color = new PaletteSelector(),
-				el = $( this ),
-				bg = color.getColor( wp.customize( 'boldgrid_background_color' )(), true ),
-				win = wp.customize.previewer.targetWindow(),
-				contrast;
-
-			contrast = win.BOLDGRID.Customizer.Util.getTextContrast( bg );
-
-			bg = colorLib.Color( bg );
-			bg = contrast.includes( 'light' ) ? bg.lightenByAmount( 0.075 ) : bg.darkenByAmount( 0.075 );
-			bg = bg.toCSS();
-
-			el.css( 'background-image', hero[ el.data( 'background' ) ]( bg ) );
+			this.style.backgroundImage = hero[ this.dataset.background ]( bg );
 		} );
 
 		return true;
-	};
-
-	var setBackgroundPatterns = function() {
-		return addPatterns( api( 'boldgrid_background_type' )() );
 	};
 
 	var setActivePattern = function() {
 		$( `#boldgrid_background_pattern .patternpreview[style*='background-image: ${ wp.customize( 'boldgrid_background_pattern' )() }']` ).addClass( 'active-pattern' );
 	};
 
-	var validate_background_color_setting = function() {
-		var $container = $( wp.customize.previewer.container );
-		var to = wp.customize( 'boldgrid_background_color' )();
-		if ( to === '' ) {
-			setTimeout( function() {
-				var $iframe = $container.find( 'iframe' ).contents();
-				var color = $iframe.find( 'body' ).css( 'background-color' );
-				self.$background_color_picker_color.css( 'background-color', color );
-				append_head_styles( color );
-				setBackgroundPatterns();
-			}, 100 );
-		}
-	};
-
-	var append_head_styles = function( to ) {
+	var appendHeadStyles = function( to ) {
 		if ( ! to ) {
-			to = wp.customize( 'boldgrid_background_color' )();
+			to = api( 'boldgrid_background_color' )();
 		}
 
 		$( '#customizer_boldgrid_background_color' ).remove();
+
 		if ( to ) {
 			var style = '';
 			style += '<style id="customizer_boldgrid_background_color">';
@@ -162,78 +151,80 @@ export default function() {
 	};
 
 	/**
-	 * When the user changes the background color or palettes update patterns/colors.
+	 * Bind color related controls for backgrounds.
 	 *
 	 * @since 2.1.1
 	 */
-	var bindControls = () => {
-		api( 'boldgrid_background_color', 'boldgrid_color_palette', ( ...controls ) => {
-			controls.map( control => {
-				control.bind( () => {
-					append_head_styles();
-					if ( 'palette' === api( 'boldgrid_background_type' )() ) {
-						setBackgroundPatterns().then( () => {
-							let pattern = $( '#customize-control-boldgrid_background_pattern' ).find( '.active-pattern' ).css( 'background-image' );
-							$( '#boldgrid_background_pattern input' ).val( pattern ).change();
-							api( 'boldgrid_background_pattern' ).set( pattern );
-						} );
-					}
-				} );
-			} );
-		} );
+	var bindColors = () => {
+		api( 'boldgrid_background_color', 'boldgrid_color_palette', ( ...controls ) => controls.map( control => control.bind( setColors ) ) );
 	};
 
-	var validate_selection_set = function() {
-		var bg_image = wp.customize( 'background_image' )();
-		var bg_attach = wp.customize( 'background_attachment' )();
-		var bg_type = wp.customize( 'boldgrid_background_type' )();
+	/**
+	 * Set color for backgrounds based on selection.
+	 *
+	 * @since 2.1.1
+	 */
+	var setColors = () => {
+		if ( 'pattern' === api( 'boldgrid_background_type' )() ) {
+			setBackgroundPatterns().then( () => {
+				let pattern = $( '#customize-control-boldgrid_background_pattern' ).find( '.active-pattern' ).css( 'background-image' );
+				$( '#boldgrid_background_pattern input' ).val( pattern ).change();
+				api( 'boldgrid_background_pattern' ).set( pattern );
+				appendHeadStyles();
+			} );
+		}
+	};
 
-		if ( bg_type === 'pattern' ) {
+	var validateSelectionSet = function() {
+		var opts = { duration: 0 },
+			type = api( 'boldgrid_background_type' )();
+
+		if ( 'pattern' === type ) {
 
 			// Activate Pattern.
-			wp.customize.control( 'boldgrid_background_pattern' ).activate( { duration: 0 } );
-			wp.customize.control( 'boldgrid_background_color' ).activate( { duration: 0 } );
+			api.control( 'boldgrid_background_pattern' ).activate( opts );
+			api.control( 'boldgrid_background_color' ).activate( opts );
 
 			// Deactivate Image.
-			wp.customize.control( 'boldgrid_background_horizontal_position' ).deactivate( { duration: 0 } );
-			wp.customize.control( 'boldgrid_background_vertical_position' ).deactivate( { duration: 0 } );
-			wp.customize.control( 'boldgrid_background_image_size' ).deactivate( { duration: 0 } );
-			wp.customize.control( 'background_image' ).deactivate( { duration: 0 } );
-			wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
-			getAttachmentControl().deactivate( { duration: 0 } );
+			api.control( 'boldgrid_background_horizontal_position' ).deactivate( opts );
+			api.control( 'boldgrid_background_vertical_position' ).deactivate( opts );
+			api.control( 'boldgrid_background_image_size' ).deactivate( opts );
+			api.control( 'background_image' ).deactivate( opts );
+			api.control( 'background_repeat' ).deactivate( opts );
+			getAttachmentControl().deactivate( opts );
 
 		} else {
 
 			// Activate Image.
-			wp.customize.control( 'boldgrid_background_image_size' ).activate( { duration: 0 } );
-			wp.customize.control( 'boldgrid_background_horizontal_position' ).activate( { duration: 0 } );
-			wp.customize.control( 'boldgrid_background_vertical_position' ).activate( { duration: 0 } );
-			wp.customize.control( 'background_image' ).activate( { duration: 0 } );
-			getAttachmentControl().activate( { duration: 0 } );
-			wp.customize.control( 'background_repeat' ).activate( { duration: 0 } );
+			api.control( 'boldgrid_background_image_size' ).activate( opts );
+			api.control( 'boldgrid_background_horizontal_position' ).activate( opts );
+			api.control( 'boldgrid_background_vertical_position' ).activate( opts );
+			api.control( 'background_image' ).activate( opts );
+			getAttachmentControl().activate( opts );
+			api.control( 'background_repeat' ).activate( opts );
 
-			if ( ! bg_image ) {
-				wp.customize.control( 'boldgrid_background_horizontal_position' ).deactivate( { duration: 0 } );
-				wp.customize.control( 'boldgrid_background_vertical_position' ).deactivate( { duration: 0 } );
-				wp.customize.control( 'boldgrid_background_image_size' ).deactivate( { duration: 0 } );
-				getAttachmentControl().deactivate( { duration: 0 } );
-				wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
+			if ( ! api( 'background_image' )() ) {
+				api.control( 'boldgrid_background_horizontal_position' ).deactivate( opts );
+				api.control( 'boldgrid_background_vertical_position' ).deactivate( opts );
+				api.control( 'boldgrid_background_image_size' ).deactivate( opts );
+				getAttachmentControl().deactivate( opts );
+				api.control( 'background_repeat' ).deactivate( opts );
 			} else {
-				wp.customize.control( 'boldgrid_background_horizontal_position' ).activate( { duration: 0 } );
-				wp.customize.control( 'boldgrid_background_vertical_position' ).activate( { duration: 0 } );
-				wp.customize.control( 'boldgrid_background_image_size' ).activate( { duration: 0 } );
-				getAttachmentControl().activate( { duration: 0 } );
-				wp.customize.control( 'background_repeat' ).activate( { duration: 0 } );
+				api.control( 'boldgrid_background_horizontal_position' ).activate( opts );
+				api.control( 'boldgrid_background_vertical_position' ).activate( opts );
+				api.control( 'boldgrid_background_image_size' ).activate( opts );
+				getAttachmentControl().activate( opts );
+				api.control( 'background_repeat' ).activate( opts );
 			}
 
-			if ( bg_attach === 'parallax' ) {
-				wp.customize.control( 'boldgrid_background_horizontal_position' ).deactivate( { duration: 0 } );
-				wp.customize.control( 'boldgrid_background_vertical_position' ).deactivate( { duration: 0 } );
-				wp.customize.control( 'background_repeat' ).deactivate( { duration: 0 } );
+			if ( 'parallax' === api( 'background_attachment' )() ) {
+				api.control( 'boldgrid_background_horizontal_position' ).deactivate( opts );
+				api.control( 'boldgrid_background_vertical_position' ).deactivate( opts );
+				api.control( 'background_repeat' ).deactivate( opts );
 			}
 		}
 
-		toggleOverlay( bg_type );
+		toggleOverlay( type );
 	};
 
 	/**
@@ -241,7 +232,7 @@ export default function() {
 	 *
 	 * @since 2.0.0
 	 */
-	var toggleOverlay = function ( bgType ) {
+	var toggleOverlay = function( bgType ) {
 		var state,
 			opts = { duration: 0 },
 			overlayControl = api.control( 'bgtfw_background_overlay' ),
@@ -249,7 +240,7 @@ export default function() {
 			overlayColorControl = api.control( 'bgtfw_background_overlay_color' ),
 			overlayAlphaControl = api.control( 'bgtfw_background_overlay_alpha' );
 
-		state = bgType === 'pattern' || ! backgroundImage() ? 'deactivate' : 'activate';
+		state = 'pattern' === bgType || ! backgroundImage() ? 'deactivate' : 'activate';
 		overlayControl[ state ]( opts );
 
 		state = overlayControl.setting() && overlayControl.active() ? 'activate' : 'deactivate';
@@ -257,16 +248,22 @@ export default function() {
 		overlayAlphaControl[ state ]( opts );
 	};
 
+	/**
+	 * Get Background Attachment Control.
+	 *
+	 * Determines if new WP bg attachment control is used,
+	 * or a BoldGrid deprecated attachment control.
+	 *
+	 * @since 2.0.0
+	 */
 	var getAttachmentControl = function() {
-		if ( wp.customize.control( 'background_attachment' ) ) {
-			return wp.customize.control( 'background_attachment' );
-		} else {
-			return wp.customize.control( 'boldgrid_background_attachment' );
-		}
+		let id = 'background_attachment';
+		id = api.control( id ) ? id : `boldgrid_${id}`;
+		return api.control( id );
 	};
 
-	var bind_all = function() {
-		var background_control_refresh = [
+	var bindValidation = function() {
+		let ids = [
 			'background_image',
 			'background_attachment',
 			'background_repeat',
@@ -277,10 +274,6 @@ export default function() {
 			'boldgrid_background_vertical_position'
 		];
 
-		$.each( background_control_refresh, function() {
-			wp.customize( this, function( value ) {
-				value.bind( validate_selection_set );
-			} );
-		} );
+		api( ...ids, ( ...controls ) => controls.map( control => control.bind( validateSelectionSet ) ) );
 	};
 }

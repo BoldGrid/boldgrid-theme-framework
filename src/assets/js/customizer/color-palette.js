@@ -456,7 +456,7 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 			} else {
 				$this.closest( 'div' ).remove();
 			}
-		});
+		} );
 
 		// Apply Sortable.
 		colorPalette.add_jquery_sortable( $ul );

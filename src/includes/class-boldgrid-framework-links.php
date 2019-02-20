@@ -145,7 +145,6 @@ class Boldgrid_Framework_Links {
 					$css .= "${selector}:hover, ${selector}:focus {color: ${color_hover};text-decoration: ${decoration_hover};}";
 				}
 			}
-
 		}
 
 		return $css;

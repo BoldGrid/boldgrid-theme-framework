@@ -83,7 +83,7 @@ class Boldgrid_Framework_Customizer_Background {
 
 		$patterns = [];
 		foreach ( $contents->patterns as $pattern ) {
-			$patterns[ $pattern->id ] = $pattern->formattedName;
+			$patterns[ $pattern->id ] = $pattern->formattedName; // @codingStandardsIgnoreLine
 		}
 
 		return $patterns;

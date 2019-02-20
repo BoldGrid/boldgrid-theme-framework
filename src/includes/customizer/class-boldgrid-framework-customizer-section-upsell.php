@@ -81,10 +81,9 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 		 * @access public
 		 * @return void
 		 */
-		protected function render_template() { ?>
-
+		protected function render_template() {
+			?>
 			<li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }} cannot-expand">
-
 				<h3 class="accordion-section-title">
 					{{ data.title }}
 					<# if ( data.upsell_text && data.upsell_url ) { #>
@@ -92,6 +91,7 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 					<# } #>
 				</h3>
 			</li>
-		<?php }
+			<?php
+		}
 	}
 }

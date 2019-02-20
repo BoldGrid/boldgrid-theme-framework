@@ -49,8 +49,25 @@ return array(
 		'default'     => 'image',
 		'priority'    => 0,
 		'choices'     => [
-			'image'   => '<span class="dashicons dashicons-format-image"></span>&nbsp;' . esc_html__( 'Image', 'bgtfw' ),
-			'pattern' => '<span class="dashicons dashicons-art"></span>&nbsp;' . esc_html__( 'Pattern & Color', 'bgtfw' ),
+			'image'   => '<span class="dashicons dashicons-format-image"></span>' . esc_html__( 'Image', 'bgtfw' ),
+			'pattern' => '<span class="dashicons dashicons-art"></span>' . esc_html__( 'Pattern & Color', 'bgtfw' ),
+		],
+	],
+	'boldgrid_background_image_size' => [
+		'type' => 'radio',
+		'label' => __( 'Background Image Size', 'bgtfw' ),
+		'section' => 'background_image',
+		'settings' => 'boldgrid_background_image_size',
+		'transport' => 'postMessage',
+		'default'     => 'cover',
+		'priority' => 15,
+		'choices' => [
+			'cover' => __( 'Cover Page', 'bgtfw' ),
+			'contain' => __( 'Scaled to Fit', 'bgtfw' ),
+			'100% auto' => __( 'Full Width', 'bgtfw' ),
+			'auto 100%' => __( 'Full Height', 'bgtfw' ),
+			'inherit' => __( 'Default', 'bgtfw' ),
+			'auto' => __( 'Do Not Resize', 'bgtfw' ),
 		],
 	],
 	'bgtfw_background_description' => array(
@@ -69,26 +86,12 @@ return array(
 		'tooltip' => 'testing what a tool tip looks like',
 		'section'     => 'background_image',
 		'priority' => 2,
-		'default'     => '',
+		'default'     => 'color-neutral',
 		'choices'     => array(
 			'colors' => $formatted_palette,
 			'size' => $palette->get_palette_size( $formatted_palette ),
 		),
 		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
-	),
-	'boldgrid_background_vertical_position' => array(
-		'type' => 'slider',
-		'settings' => 'boldgrid_background_vertical_position',
-		'label' => __( 'Vertical Background Position', 'bgtfw' ),
-		'section' => 'background_image',
-		'transport' => 'postMessage',
-		'default' => '0',
-		'priority' => 16,
-		'choices' => array(
-			'min' => - 100,
-			'max' => 100,
-			'step' => 1,
-		),
 	),
 
 	/*** Start Background Image Overlay ***/
@@ -358,20 +361,6 @@ return array(
 	),
 	/*** End Footer Generic Controls ***/
 
-	'boldgrid_background_horizontal_position' => array(
-		'type' => 'slider',
-		'settings' => 'boldgrid_background_horizontal_position',
-		'label' => __( 'Horizontal Background Position', 'bgtfw' ),
-		'section' => 'background_image',
-		'transport' => 'postMessage',
-		'default' => '0',
-		'priority' => 17,
-		'choices' => array(
-			'min' => -100,
-			'max' => 100,
-			'step' => 1,
-		),
-	),
 	'bgtfw_pages_container' => array(
 		'settings' => 'bgtfw_pages_container',
 		'transport'   => 'postMessage',

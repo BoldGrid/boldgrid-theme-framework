@@ -186,8 +186,6 @@ export default function() {
 			api.control( 'boldgrid_background_color' ).activate( opts );
 
 			// Deactivate Image.
-			api.control( 'boldgrid_background_horizontal_position' ).deactivate( opts );
-			api.control( 'boldgrid_background_vertical_position' ).deactivate( opts );
 			api.control( 'boldgrid_background_image_size' ).deactivate( opts );
 			api.control( 'background_image' ).deactivate( opts );
 			api.control( 'background_repeat' ).deactivate( opts );
@@ -197,29 +195,21 @@ export default function() {
 
 			// Activate Image.
 			api.control( 'boldgrid_background_image_size' ).activate( opts );
-			api.control( 'boldgrid_background_horizontal_position' ).activate( opts );
-			api.control( 'boldgrid_background_vertical_position' ).activate( opts );
 			api.control( 'background_image' ).activate( opts );
 			getAttachmentControl().activate( opts );
 			api.control( 'background_repeat' ).activate( opts );
 
 			if ( ! api( 'background_image' )() ) {
-				api.control( 'boldgrid_background_horizontal_position' ).deactivate( opts );
-				api.control( 'boldgrid_background_vertical_position' ).deactivate( opts );
 				api.control( 'boldgrid_background_image_size' ).deactivate( opts );
 				getAttachmentControl().deactivate( opts );
 				api.control( 'background_repeat' ).deactivate( opts );
 			} else {
-				api.control( 'boldgrid_background_horizontal_position' ).activate( opts );
-				api.control( 'boldgrid_background_vertical_position' ).activate( opts );
 				api.control( 'boldgrid_background_image_size' ).activate( opts );
 				getAttachmentControl().activate( opts );
 				api.control( 'background_repeat' ).activate( opts );
 			}
 
 			if ( 'parallax' === api( 'background_attachment' )() ) {
-				api.control( 'boldgrid_background_horizontal_position' ).deactivate( opts );
-				api.control( 'boldgrid_background_vertical_position' ).deactivate( opts );
 				api.control( 'background_repeat' ).deactivate( opts );
 			}
 		}
@@ -269,9 +259,7 @@ export default function() {
 			'background_repeat',
 			'bgtfw_background_overlay',
 			'boldgrid_background_image_size',
-			'boldgrid_background_horizontal_position',
-			'boldgrid_background_type',
-			'boldgrid_background_vertical_position'
+			'boldgrid_background_type'
 		];
 
 		api( ...ids, ( ...controls ) => controls.map( control => control.bind( validateSelectionSet ) ) );

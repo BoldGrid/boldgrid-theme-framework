@@ -273,8 +273,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			backgroundTypeUpdate,
 			backgroundSizeUpdate,
 			backgroundAttachmentUpdate,
-			setBackgroundVerticalPosition,
-			setBackgroundHorizontalPosition,
 			backgroundRepeatUpdate,
 			initValues,
 			attributionLinks,
@@ -346,36 +344,11 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				$body.css( {
 					'background-attachment': to
 				} );
-				setBackgroundVerticalPosition();
-				setBackgroundHorizontalPosition();
+
 				backgroundRepeatUpdate();
 
 				$body.removeClass( 'boldgrid-customizer-parallax-effect' );
 			}
-		};
-
-		/**
-		 * Set the theme background_vertical_position on the preview frame
-		 */
-		setBackgroundVerticalPosition = function() {
-			var to, curBackgroundPos, backgroundPos;
-			to = api( 'boldgrid_background_vertical_position' )();
-			curBackgroundPos = $body.css( 'background-position' );
-			backgroundPos = curBackgroundPos.split( ' ' )[0] + ' ' + ( to ) * 5 + 'px';
-			$body.css( 'background-position', backgroundPos );
-		};
-
-
-		/**
-		 * Set the theme background_horizontal_position on the preview frame
-		 */
-		setBackgroundHorizontalPosition = function() {
-			var to, curBackgroundPos, backgroundPos;
-
-			to = api( 'boldgrid_background_horizontal_position' )();
-			curBackgroundPos = $body.css( 'background-position' );
-			backgroundPos = ( to ) * 5 + 'px' + ' ' + curBackgroundPos.split( ' ' )[1];
-			$body.css( 'background-position', backgroundPos );
 		};
 
 		/**
@@ -458,8 +431,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				backgroundPreview.setImage();
 
 				if ( 'parallax' !== bgAttach ) {
-					setBackgroundVerticalPosition();
-					setBackgroundHorizontalPosition();
 					backgroundRepeatUpdate();
 				}
 			}
@@ -812,8 +783,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			toggleTitleFn( condition, [ 'single', 'post-template-default' ] );
 		} ) );
 
-		new Toggle( 'boldgrid_background_vertical_position', setBackgroundVerticalPosition );
-		new Toggle( 'boldgrid_background_horizontal_position', setBackgroundHorizontalPosition );
 		new Toggle( 'boldgrid_background_pattern', updateColorAndPatterns );
 		new Toggle( 'boldgrid_background_color', updateColorAndPatterns );
 

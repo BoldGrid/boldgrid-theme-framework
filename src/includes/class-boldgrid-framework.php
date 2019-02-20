@@ -659,12 +659,9 @@ class BoldGrid_Framework {
 	private function customizer_background_controls() {
 		$background = new Boldgrid_Framework_Customizer_Background( $this->configs );
 		$this->loader->add_action( 'customize_register', $background, 'add_patterns' );
-		// $this->loader->add_action( 'customize_register', $background, 'add_position' );
-		$this->loader->add_action( 'customize_register', $background, 'add_background_size' );
-		$this->loader->add_action( 'customize_register', $background, 'add_background_type' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_crop', 11 );
 		$this->loader->add_action( 'customize_register', $background, 'rearrange_menu', 999 );
-		$this->loader->add_action( 'admin_enqueue_scripts', $background, 'register_control_scripts' );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $background, 'add_preview_scripts' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $background, 'register_front_end_scripts' );
 		$this->loader->add_filter( 'boldgrid_add_head_styles', $background, 'add_head_styles_filter' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $background, 'add_editor_styles' );

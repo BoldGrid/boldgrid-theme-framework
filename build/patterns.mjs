@@ -13,8 +13,7 @@ for ( let pattern in hero.default ) {
 	bgtfwPatterns.patterns.push( patternData );
 }
 
-
-fs.writeFile ( path.join(path.resolve( './boldgrid-theme-framework/assets'), 'json') + '/patterns.json', JSON.stringify( bgtfwPatterns ), function( err ) {
+fs.writeFile( path.join( path.resolve( './boldgrid-theme-framework/assets'), 'json') + '/patterns.json', JSON.stringify( bgtfwPatterns ), function( err ) {
 	if ( err ) throw err;
 	console.log('complete');
 } );

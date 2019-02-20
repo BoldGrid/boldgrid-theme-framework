@@ -513,7 +513,7 @@ gulp.task('build', function (cb) {
     'dist',
     'clean',
     'readme',
-    ['jsHint', 'jscs', 'frameworkJs', 'svgs', 'patterns'],
+    ['jsHint', 'jscs', 'frameworkJs', 'svgs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     'images',
     ['scssCompile', 'bootstrapCompile'],

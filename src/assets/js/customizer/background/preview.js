@@ -89,9 +89,7 @@ export class Preview {
 	 * @return {string}                 CSS for background image.
 	 */
 	_getOverlayCss( backgroundImage ) {
-		const color = this.selector.getColor(
-				api( 'bgtfw_background_overlay_color' )()
-			),
+		const color = this.selector.getColor( api( 'bgtfw_background_overlay_color' )(), true ),
 			alpha = api( 'bgtfw_background_overlay_alpha' )(),
 			brehautColor = parent.net.brehaut.Color( color ),
 			rgba = brehautColor.setAlpha( alpha ).toString();

@@ -517,7 +517,7 @@ gulp.task('build', function (cb) {
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     'images',
     ['scssCompile', 'bootstrapCompile'],
-    'fontFamilyCss',
+    ['fontFamilyCss', 'patterns'],
     'hovers',
     'hoverColors',
     'cleanHovers',

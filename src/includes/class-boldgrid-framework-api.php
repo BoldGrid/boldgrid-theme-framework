@@ -1170,68 +1170,71 @@ class BoldGrid {
 		$markup = '';
 		$theme_mod = self::create_uids( $theme_mod );
 
-		foreach ( $theme_mod as $section ) {
-			$markup .= '<div class="boldgrid-section">';
-			$markup .= '<div class="' . $section['container'] . '">';
-			$chunks = array_chunk( $section['items'], 6, true );
+		if ( ! empty( $theme_mod ) ) {
+			foreach ( $theme_mod as $section ) {
+				$markup .= '<div class="boldgrid-section">';
+				$markup .= '<div class="' . $section['container'] . '">';
+				$chunks = array_chunk( $section['items'], 6, true );
 
-			foreach ( $chunks as $chunk ) {
-				$markup .= '<div class="row">';
+				foreach ( $chunks as $chunk ) {
+					$markup .= '<div class="row">';
 
-				foreach ( $chunk as $col => $col_data ) {
-					$num = ( 12 / count( $chunk ) );
+					foreach ( $chunk as $col => $col_data ) {
+						$num = ( 12 / count( $chunk ) );
 
-					// Adds support for 5-6 col.
-					if ( 2.4 === $num ) {
-						$num = '5s';
-					}
+						// Adds support for 5-6 col.
+						if ( 2.4 === $num ) {
+							$num = '5s';
+						}
 
-					$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_data['uid'] . '">';
-					ob_start();
-					switch ( $col_data['type'] ) {
-						case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
-							$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
-							echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>';
-							if ( empty( $col_data['align'] ) ) {
-								$col_data['align'] = 'nw';
-							}
-							do_action( $col_data['type'], [ 'menu_class' => 'flex-row ' . $col_data['align'] ] );
-							echo '</div>';
-							break;
-						case 'boldgrid_site_identity' === $col_data['type'] :
-							$filter = function( $classes ) use ( $col_data ) {
+						$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_data['uid'] . '">';
+						ob_start();
+						switch ( $col_data['type'] ) {
+							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
+								$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
+								echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>';
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';
 								}
-								$classes[] = $col_data['align'];
-								return $classes;
-							};
-							add_filter( 'bgtfw_site_branding_classes', $filter, 10 );
-						case 'boldgrid_display_attribution_links' === $col_data['type'] :
-							$filter = function( $classes ) use ( $col_data ) {
-								if ( empty( $col_data['align'] ) ) {
-									$col_data['align'] = 'nw';
-								}
-								$classes[] = 'flex-row';
-								$classes[] = $col_data['align'];
-								return $classes;
-							};
-							add_filter( 'bgtfw_attribution_theme_mods_classes', $filter, 10 );
-						default:
-							do_action( $col_data['type'] );
+								do_action( $col_data['type'], [ 'menu_class' => 'flex-row ' . $col_data['align'] ] );
+								echo '</div>';
+								break;
+							case 'boldgrid_site_identity' === $col_data['type'] :
+								$filter = function( $classes ) use ( $col_data ) {
+									if ( empty( $col_data['align'] ) ) {
+										$col_data['align'] = 'nw';
+									}
+									$classes[] = $col_data['align'];
+									return $classes;
+								};
+								add_filter( 'bgtfw_site_branding_classes', $filter, 10 );
+							case 'boldgrid_display_attribution_links' === $col_data['type'] :
+								$filter = function( $classes ) use ( $col_data ) {
+									if ( empty( $col_data['align'] ) ) {
+										$col_data['align'] = 'nw';
+									}
+									$classes[] = 'flex-row';
+									$classes[] = $col_data['align'];
+									return $classes;
+								};
+								add_filter( 'bgtfw_attribution_theme_mods_classes', $filter, 10 );
+							default:
+								do_action( $col_data['type'] );
+						}
+
+						$markup .= ob_get_contents();
+						ob_end_clean();
+						$markup .= '</div>';
 					}
 
-					$markup .= ob_get_contents();
-					ob_end_clean();
 					$markup .= '</div>';
 				}
 
 				$markup .= '</div>';
+				$markup .= '</div>';
 			}
-
-			$markup .= '</div>';
-			$markup .= '</div>';
 		}
+
 		return $markup;
 	}
 

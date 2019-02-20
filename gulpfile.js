@@ -530,7 +530,7 @@ gulp.task('qbuild', function (cb) {
   sequence(
     'dist',
     'readme',
-    ['jsHint', 'jscs', 'frameworkJs', 'patterns'],
+    ['jsHint', 'jscs', 'frameworkJs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',

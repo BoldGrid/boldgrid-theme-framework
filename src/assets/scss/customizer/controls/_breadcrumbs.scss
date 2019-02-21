@@ -1,9 +1,9 @@
 // Add customizer panel and section breadcrumb styles.
-.control-panel-bgtfw_panel .preview-notice, .control-section-bgtfw_section .customize-action {
+.control-panel-bgtfw_panel .preview-notice,
+.control-section-bgtfw_section .customize-action {
 	display: block;
 	font-size: 13px;
 	line-height: 24px;
-	margin: 1px 0;
 	width: calc( 100% - 22px );
 	a, .dashicons.dashicons-admin-home {
 		color: currentColor;
@@ -16,4 +16,7 @@
 			color: #0073aa;
 		}
 	}
+}
+.control-section-bgtfw_section .customize-action {
+	margin: 1px 0;
 }

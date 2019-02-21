@@ -41,7 +41,7 @@ class Boldgrid_Framework_Customizer_Notification {
 					</button>
 				<# } #>
 				<div class="bgtfw-notice-learn-more">
-					<a title="{{ data.buttonText }}" href="{{ data.url }}" class="button button-secondary" target="_blank"><span class="dashicons dashicons-external"></span>{{{ data.buttonText }}}</a>
+					<a title="{{ data.buttonText }}" href="{{ data.url }}" class="button button-bgtfw-primary" target="_blank">{{{ data.buttonText }}}</a>
 				</div>
 			</li>
 		</script>

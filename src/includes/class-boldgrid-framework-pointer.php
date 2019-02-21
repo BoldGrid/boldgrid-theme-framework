@@ -19,7 +19,8 @@ class Boldgrid_Framework_Pointer {
 
 		// Don't run on WP < 3.3
 		if ( get_bloginfo( 'version' ) < '3.3' ) {
-			return; }
+			return;
+		}
 
 		if ( isset( $pntrs ) ) {
 			$screen = get_current_screen();
@@ -48,17 +49,14 @@ class Boldgrid_Framework_Pointer {
 		foreach ( $pntrs as $ptr ) {
 
 			if ( $ptr['screen'] == $this->screen_id ) {
-
-				$pointers[ $ptr['id'] ] = array(
+				$pointers[ $ptr['id'] ] = [
 					'screen' => $ptr['screen'],
 					'target' => $ptr['target'],
-					'options' => array(
-						'content' => sprintf( '<h3> %s </h3> <p> %s </p>',
-							__( $ptr['title'], 'bgtfw' ),
-						__( $ptr['content'], 'bgtfw' ) ),
+					'options' => [
+						'content' => sprintf( '<h3> %s </h3> <p> %s </p>', $ptr['title'], $ptr['content'] ),
 						'position' => $ptr['position'],
-					),
-				);
+					],
+				];
 			}
 		}
 
@@ -109,43 +107,44 @@ class Boldgrid_Framework_Pointer {
 		$pointers = $this->valid;
 
 		if ( empty( $pointers ) ) {
-			return; }
+			return;
+		}
 
 		$pointers = json_encode( $pointers );
 		echo <<<HTML
-        <script>
-        jQuery(document).ready( function($) {
-            var WPHelpPointer = {$pointers};
-            $.each(WPHelpPointer.pointers, function(i) {
-            	setTimeout( function () {
-		            jQuery('#accordion-section-colors').on('click.boldgrid-help-pointer', function () {
-            			setTimeout( function () {
-							wp_help_pointer_open(i);
-						}, 1000);
-		            });
-				}, 1000);
-            });
+		<script>
+		jQuery( document ).ready( function( $ ) {
+			var WPHelpPointer = {$pointers};
+			$.each( WPHelpPointer.pointers, function( i ) {
+				setTimeout( function() {
+					$( '#accordion-section-colors' ).on( 'click.boldgrid-help-pointer', function() {
+						setTimeout( function() {
+							wp_help_pointer_open( i );
+						}, 1000 );
+					} );
+				}, 1000 );
+			} );
 
-            function wp_help_pointer_open(i) {
-                pointer = WPHelpPointer.pointers[i];
-                options = $.extend( pointer.options, {
-            		pointerClass: 'wp-pointer boldgrid-color-palette-help',
-                    close: function() {
-                        $.post( ajaxurl, {
-                            pointer: pointer.pointer_id,
-                            action: 'dismiss-wp-pointer'
-                        });
+			function wp_help_pointer_open( i ) {
+				pointer = WPHelpPointer.pointers[ i ];
+				options = $.extend( pointer.options, {
+					pointerClass: 'wp-pointer boldgrid-color-palette-help',
+					close: function() {
+						$.post( ajaxurl, {
+							pointer: pointer.pointer_id,
+							action: 'dismiss-wp-pointer'
+						} );
 
-            			//Remove After dismissing so that it wont show anymore
-            			$('.boldgrid-color-palette-help').remove();
-                    }
-                });
+						//Remove After dismissing so that it wont show anymore
+						$( '.boldgrid-color-palette-help' ).remove();
+					}
+				} );
 
-                $(pointer.target).pointer( options ).pointer('open');
-            	jQuery('#accordion-section-colors').off('click.boldgrid-help-pointer');
-            }
-        });
-        </script>
+				$( pointer.target ).pointer( options ).pointer( 'open' );
+				$( '#accordion-section-colors' ).off( 'click.boldgrid-help-pointer' );
+			}
+		} );
+		</script>
 HTML;
 	}
 }

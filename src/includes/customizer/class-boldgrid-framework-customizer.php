@@ -849,13 +849,13 @@ HTML;
 			new Boldgrid_Framework_Customizer_Section_Upsell(
 				$wp_customize,
 				'bgtfw-upsell',
-				array(
-					'title' => esc_html__( 'Crio PRO', 'bgtfw' ),
-					'upsell_text' => esc_html__( 'Go PRO!', 'bgtfw' ),
-					'upsell_title' => esc_html__( 'Upgrade to pro', 'bgtfw' ),
-					'upsell_url' => 'https://boldgrid.com/crio',
+				[
+					'title' => esc_html__( 'Get More Features', 'bgtfw' ),
+					'upsell_text' => esc_html__( 'Upgrade Crio', 'bgtfw' ),
+					'upsell_title' => esc_html__( 'Upgrade Crio', 'bgtfw' ),
+					'upsell_url' => 'https://boldgrid.com/wordpress-themes/crio',
 					'priority' => 0,
-				)
+				]
 			)
 		);
 	}

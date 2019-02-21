@@ -60,6 +60,15 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 		public $upsell_url = '';
 
 		/**
+		 * Upsell section icon.
+		 *
+		 * @since 2.1.1
+		 * @access public
+		 * @var string
+		 */
+		public $icon = '';
+
+		/**
 		 * Add custom parameters to pass to the JS via JSON.
 		 *
 		 * @since 2.1.1
@@ -68,6 +77,7 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 		 */
 		public function json() {
 			$json = parent::json();
+			$json['icon'] = $this->get_icon();
 			$json['upsell_title'] = $this->upsell_title;
 			$json['upsell_text'] = $this->upsell_text;
 			$json['upsell_url'] = esc_url( $this->upsell_url );
@@ -84,14 +94,35 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 		protected function render_template() {
 			?>
 			<li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }} cannot-expand">
-				<h3 class="accordion-section-title">
+				<h3 class="accordion-section-title<# if ( ! _.isEmpty( data.icon ) ) { #> {{ data.icon }}<# } #>">
 					{{ data.title }}
 					<# if ( data.upsell_text && data.upsell_url ) { #>
-						<a title="{{ data.upsell_title }}" href="{{ data.upsell_url }}" class="button button-secondary alignright" target="_blank">{{ data.upsell_text }}</a>
+						<a title="{{ data.upsell_title }}" href="{{ data.upsell_url }}" class="button button-bgtfw-primary alignright" target="_blank">{{ data.upsell_text }}</a>
 					<# } #>
 				</h3>
 			</li>
 			<?php
+		}
+
+		/**
+		 * Gets the icon classes
+		 *
+		 * @since 2.1.1
+		 *
+		 * @return string $breadcrumb The breadcrumb trail displayed.
+		 */
+		public function get_icon() {
+			if ( ! empty( $this->icon ) ) {
+				if ( strpos( $this->icon, 'dashicons-' ) !== false ) {
+					$this->icon = "dashicons-before {$this->icon}";
+				} else if ( strpos( $this->icon, 'fa-' ) !== false ) {
+					$this->icon = "fa {$this->icon}";
+				} else {
+					$this->icon = $this->icon;
+				}
+			}
+
+			return $this->icon;
 		}
 	}
 }

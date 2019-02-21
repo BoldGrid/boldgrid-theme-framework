@@ -40,10 +40,6 @@ ul.customize-pane-parent > li {
 		}
 	}
 	&#accordion-section- {
-		&bgtfw-upsell > h3:before {
-			@include bgtfwIcons;
-			content: "\e905";
-		}
 		&colors > h3:before {
 			content: "\f309";
 		}

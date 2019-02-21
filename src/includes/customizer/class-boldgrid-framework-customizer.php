@@ -112,16 +112,6 @@ class BoldGrid_Framework_Customizer {
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-menu',
 								'priority' => 20,
-								'notice' => [
-									'dismissible' => false,
-									'message' => esc_html__( 'Upgrade to Crio Pro for more than 20 new hamburger styles!', 'crio-premium' ),
-									'type' => 'bgtfw-features',
-									'templateId' => 'bgtfw-notification',
-									'featureCount' => 22,
-									'featureDescription' => esc_html__( '22 premium features available!', 'bgtfw' ),
-									'url' => esc_url( 'https://boldgrid.com/crio/pro/hamburger-menu-styles' ),
-									'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
-								],
 							)
 						);
 
@@ -262,16 +252,6 @@ class BoldGrid_Framework_Customizer {
 								'panel'       => "bgtfw_menu_items_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-admin-links',
-								'notice' => [
-									'dismissible' => false,
-									'message' => esc_html__( 'Upgrade to Crio Pro to obtain access to 16 new menu item hover styles!', 'bgtfw' ),
-									'type' => 'bgtfw-features',
-									'templateId' => 'bgtfw-notification',
-									'featureCount' => 16,
-									'featureDescription' => esc_html__( '16 premium features available!', 'bgtfw' ),
-									'url' => esc_url( 'https://boldgrid.com/crio/pro/menu-item-hover-styles' ),
-									'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
-								],
 								'priority' => 20,
 							]
 						);

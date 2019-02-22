@@ -506,6 +506,7 @@ gulp.task('cleanHovers', function() {
 });
 
 gulp.task( 'patterns', shell.task( 'yarn run script:patterns' ) );
+gulp.task( 'tgm', shell.task( 'yarn run script:tgm' ) );
 
 // Tasks
 gulp.task('build', function (cb) {
@@ -513,7 +514,7 @@ gulp.task('build', function (cb) {
     'dist',
     'clean',
     'readme',
-    ['jsHint', 'jscs', 'frameworkJs', 'svgs'],
+    ['jsHint', 'jscs', 'frameworkJs', 'svgs', 'tgm'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     'images',
     ['scssCompile', 'bootstrapCompile'],

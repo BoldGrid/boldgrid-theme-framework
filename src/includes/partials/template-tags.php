@@ -325,7 +325,7 @@ if ( ! function_exists( 'bgtfw_edit_link' ) ) {
  */
 function woocommerce_widget_shopping_cart_button_view_cart() {
 	?>
-		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="btn button-primary wc-forward"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
+		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="btn button-primary wc-forward"><?php _e( 'View Cart', 'bgtfw' ); ?></a>
 	<?php
 }
 
@@ -336,7 +336,7 @@ function woocommerce_widget_shopping_cart_button_view_cart() {
  */
 function woocommerce_widget_shopping_cart_proceed_to_checkout() {
 	?>
-		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="btn button-primary checkout wc-forward"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
+		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="btn button-primary checkout wc-forward"><?php _e( 'Checkout', 'bgtfw' ); ?></a>
 	<?php
 }
 

@@ -9085,6 +9085,11 @@ modernizr@^3.5.0:
     requirejs "2.1.22"
     yargs "7.0.2"
 
+moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -10006,6 +10011,11 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+
+php-parser@^3.0.0-prerelease.8:
+  version "3.0.0-prerelease.8"
+  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-3.0.0-prerelease.8.tgz#95ba7fb4207f28fd7b1bb60241e6753d417db0b7"
+  integrity sha512-sVMPsnPd3q7kf1vs0VUROo71Klcs6s7Ho5TSMcBcI8Qg5VuVMaM5far36E4qaYTH8SW+2Tquv5RuU7e8+jfjIw==
 
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"

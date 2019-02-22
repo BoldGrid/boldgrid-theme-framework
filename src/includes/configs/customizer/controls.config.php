@@ -1532,7 +1532,7 @@ return array(
 		'settings'    => 'boldgrid_contact_details_setting',
 		'default'     => array(
 			array(
-				'contact_block' => '© ' . date( 'Y' ) . ' ' . get_bloginfo( 'name' ),
+				'contact_block' => '&copy; ' . date( 'Y' ) . ' ' . get_bloginfo( 'name' ),
 			),
 			array(
 				'contact_block' => esc_attr( '202 Grid Blvd. Agloe, NY 12776' ),

@@ -16,14 +16,6 @@ return array(
 		'help' => __( 'You can choose a background image or a Pattern/Color.', 'bgtfw' ),
 	),
 	array(
-		'settings' => 'boldgrid_background_horizontal_position',
-		'help' => __( 'Use this control to move your image left and right. This can be used to adjust visible portion of your image.', 'bgtfw' ),
-	),
-	array(
-		'settings' => 'boldgrid_background_vertical_position',
-		'help' => __( 'Use this control to move your image up and down. This can be used to adjust visible portion of your image.', 'bgtfw' ),
-	),
-	array(
 		'settings' => 'boldgrid_background_color',
 		'help' => __( 'Change the color of your background. This can affect the color behind images including the patterns below. Click clear within the color selection tool if you would like your current color palette to determine the background color instead.', 'bgtfw' ),
 	),
@@ -41,11 +33,11 @@ return array(
 	),
 	array(
 		'settings' => 'boldgrid_footer_widgets',
-		'help' => __( 'This theme’s footer supports up to 4 columns of Widget Areas.  You can place as many Widgets as you like in each area.', 'bgtfw' ),
+		'help' => __( 'This theme\'s footer supports up to 4 columns of Widget Areas.  You can place as many Widgets as you like in each area.', 'bgtfw' ),
 	),
 	array(
 		'settings' => 'boldgrid_header_widgets',
-		'help' => __( 'This theme’s header supports up to 4 columns of Widget Areas.  You can place as many Widgets as you like in each area.', 'bgtfw' ),
+		'help' => __( 'This theme\'s header supports up to 4 columns of Widget Areas.  You can place as many Widgets as you like in each area.', 'bgtfw' ),
 	),
 	array(
 		'settings' => 'boldgrid_footer_html',

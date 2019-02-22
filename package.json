@@ -19,8 +19,8 @@
     "dev": "gulp watch",
     "dev:server": "concurrently \"cross-env NODE_ENV=development gulp watch --silent\" \"npm run webpack-server\"",
     "quick-build": "gulp qbuild",
-	"script:patterns": "node --experimental-modules build/patterns.mjs",
-	"script:tgm": "node build/tgm.mjs"
+    "script:patterns": "node --experimental-modules build/patterns.mjs",
+    "script:tgm": "node build/tgm.mjs"
   },
   "keywords": [
     "BoldGrid"
@@ -79,6 +79,7 @@
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.1.0",
     "mini-css-extract-plugin": "^0.4.0",
+    "mkdirp": "^0.5.1",
     "postcss-colors-only": "^0.0.3",
     "postcss-flexbugs-fixes": "^3.3.1",
     "postcss-hash-classname": "https://github.com/timelsass/postcss-hash-classname",

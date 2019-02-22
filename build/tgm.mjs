@@ -1,6 +1,7 @@
 const
 	chalk = require( 'chalk' ),
 	repo = require( './modules/github-request' ),
+	mkdirp = require( 'mkdirp' ),
 	fs = require( 'fs' ),
 	path = require( 'path' ),
 
@@ -70,10 +71,17 @@ function getFile( tag, file ) {
 function writeFile( content, file ) {
 	let fileName = file;
 	file = options.installPath + path.sep + file;
-	fs.writeFile( file, content, function( err ) {
-		if ( err ) throw err;
-		console.log( chalk`{greenBright   ✓  Installed file:} ${fileName}` );
-		updateCounter();
+
+	mkdirp( options.installPath, err => {
+		if ( err ) {
+			console.error( err );
+		} else {
+			fs.writeFile( file, content, function( err ) {
+				if ( err ) throw err;
+				console.log( chalk`{greenBright   ✓  Installed file:} ${fileName}` );
+				updateCounter();
+			} );
+		}
 	} );
 }
 

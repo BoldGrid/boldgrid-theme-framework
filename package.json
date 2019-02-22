@@ -19,7 +19,8 @@
     "dev": "gulp watch",
     "dev:server": "concurrently \"cross-env NODE_ENV=development gulp watch --silent\" \"npm run webpack-server\"",
     "quick-build": "gulp qbuild",
-    "script:patterns": "node --experimental-modules build/patterns.mjs"
+	"script:patterns": "node --experimental-modules build/patterns.mjs",
+	"script:tgm": "node build/tgm.mjs"
   },
   "keywords": [
     "BoldGrid"

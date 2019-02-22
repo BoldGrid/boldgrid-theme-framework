@@ -528,7 +528,7 @@ var BoldGrid = BoldGrid || {};
 			},
 			stickyFooter: function() {
 				var footer = $( '.site-footer' ),
-					adminBar        = $( '#wpadminbar' ),
+					adminBar        = $( document.getElementById( 'wpadminbar' ) ),
 					stickyWrapper   = $( '#boldgrid-sticky-wrap' ),
 					footerHeight    = footer.outerHeight(  ),
 					footerTop       = footer[0].getBoundingClientRect().top,
@@ -553,7 +553,7 @@ var BoldGrid = BoldGrid || {};
 						$( '#boldgrid-sticky-filler' ).css( { 'height': stickyFiller - footerHeight } );
 
 						// If in admin keep WYSIWYG and caluculate adminbar height.
-						if ( $( '#wpadminbar' ).length ) {
+						if ( $( document.getElementById( 'wpadminbar' ) ).length ) {
 							footer.css( {
 								'bottom': adminBarHeight + 'px'
 							} );

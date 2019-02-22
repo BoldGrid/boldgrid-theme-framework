@@ -507,6 +507,7 @@ gulp.task('cleanHovers', function() {
 
 gulp.task( 'patterns', shell.task( 'yarn run script:patterns' ) );
 gulp.task( 'tgm', shell.task( 'yarn run script:tgm' ) );
+gulp.task( 'wpTextDomainLint', shell.task( 'yarn run script:wp-textdomain-lint' ) );
 
 // Tasks
 gulp.task('build', function (cb) {
@@ -514,7 +515,7 @@ gulp.task('build', function (cb) {
     'dist',
     'clean',
     'readme',
-    ['jsHint', 'jscs', 'frameworkJs', 'svgs', 'tgm'],
+    ['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs', 'svgs', 'tgm'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     'images',
     ['scssCompile', 'bootstrapCompile'],
@@ -531,7 +532,7 @@ gulp.task('qbuild', function (cb) {
   sequence(
     'dist',
     'readme',
-    ['jsHint', 'jscs', 'frameworkJs'],
+    ['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs'],
     ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',

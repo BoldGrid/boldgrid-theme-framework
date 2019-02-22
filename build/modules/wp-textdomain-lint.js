@@ -92,6 +92,7 @@ module.exports = ( pattern = '**/*.php', config = {} ) => {
 				argument: 0,
 			},
 			gettext = defaultParams,
+			previousToken,
 			parensBalance = 0;
 
 		for ( let i = 0; i < tokens.length; i++ ) {
@@ -161,6 +162,18 @@ module.exports = ( pattern = '**/*.php', config = {} ) => {
 					if ( options.variableDomain && gettext.domain === -1 ) {
 						errorType = 'variable-domain';
 					} else if ( options.missingDomain && ! gettext.domain ) {
+
+						// If we have a message, but no text-domain and are fixing add our domain from options.
+						if ( gettext.name && options.fix ) {
+							let spacing = modifiedContent.length;
+							modifiedContent = modifiedContent.replace( /((\s*\S+)*)\s*/, '$1' );
+							spacing -= modifiedContent.length;
+
+							// We want to preserve original spacing and not interfere with coding style.
+							spacing = Array( spacing + 1 ).join( ' ' );
+							content = `,${spacing}'${ options.domain[0] }' )`;
+						}
+
 						errorType = 'missing-domain';
 					} else if ( gettext.domain && gettext.domain !== -1 && options.domain.indexOf( gettext.domain ) === -1 ) {
 						errorType = 'incorrect-domain';

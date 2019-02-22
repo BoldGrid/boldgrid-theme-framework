@@ -529,7 +529,7 @@ function bgtfw_featured_img_bg( $post_id, $theme_mod = false ) {
  */
 function bgtfw_excerpt_more( $more ) {
 	global $post;
-	return '… <div class="read-more"><a class="' . get_theme_mod( 'bgtfw_blog_post_readmore_type' ) . '" href="' . get_permalink( $post->ID ) . '">' . get_theme_mod( 'bgtfw_blog_post_readmore_text' ) . '</a></div>';
+	return '<div class="read-more"><a class="' . get_theme_mod( 'bgtfw_blog_post_readmore_type' ) . '" href="' . get_permalink( $post->ID ) . '">' . get_theme_mod( 'bgtfw_blog_post_readmore_text' ) . '</a></div>';
 }
 
 add_filter( 'excerpt_more', 'bgtfw_excerpt_more' );

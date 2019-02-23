@@ -76,6 +76,7 @@ function writeFile( content, file ) {
 		if ( err ) {
 			console.error( err );
 		} else {
+			content = content.replace( /^\s*$(?:\r\n?|\n)/gm, '\n' );
 			fs.writeFile( file, content, function( err ) {
 				if ( err ) throw err;
 				console.log( chalk`{greenBright   ✓  Installed file:} ${fileName}` );

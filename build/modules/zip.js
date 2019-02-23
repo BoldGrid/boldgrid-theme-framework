@@ -35,7 +35,7 @@ module.exports = ( options ) => {
 		stream = fs.createWriteStream( opts.path + path.sep + opts.name + opts.extension );
 
 	return new Promise( ( resolve, reject ) => {
-		archive.directory( opts.sourceDirectory, false )
+		archive.directory( opts.sourceDirectory, opts.sourceDirectory )
 			.on( 'error', err => {
 				console.log( "\n" + chalk.red.bold( `✖  Unable to build ${ opts.name }${ opts.extension }!\n` ) );
 				reject( err )

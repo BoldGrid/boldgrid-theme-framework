@@ -21,7 +21,8 @@
     "quick-build": "gulp qbuild",
     "script:patterns": "node --experimental-modules build/patterns.mjs",
     "script:tgm": "node build/tgm.mjs",
-    "script:wp-textdomain-lint": "node build/check-text-domains.js"
+	"script:wp-textdomain-lint": "node build/check-text-domains.js",
+	"script:zip": "node build/build-zip.js"
   },
   "keywords": [
     "BoldGrid"
@@ -34,10 +35,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.47",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.0.0-beta.47",
     "@boldgrid/controls": "https://github.com/BoldGrid/controls#dev",
     "PHP_CodeSniffer": "https://github.com/squizlabs/PHP_CodeSniffer/#2.9",
     "WordPress-Coding-Standards": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards#0.10.0",
+    "archiver": "^3.0.0",
     "autoprefixer": "^8.6.2",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0-beta",
@@ -92,6 +96,7 @@
     "postcss-prefix-selector": "^1.6.0",
     "run-sequence": "^1.1.5",
     "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
     "svg-inline-loader": "^0.8.0",
     "text-table": "^0.2.0",
     "webpack": "^4.8.3",
@@ -100,9 +105,6 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-transform-react-jsx": "^7.3.0",
-    "@babel/plugin-transform-runtime": "^7.2.0",
     "@boldgrid/components": "^2.16.1",
     "@wordpress/dom-ready": "^2.0.2",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",
@@ -127,7 +129,6 @@
     "sass.js": "~0.9.4",
     "scssphp": "https://github.com/leafo/scssphp.git#v0.7.7",
     "smartmenus": "^1.1.0",
-    "style-loader": "^0.21.0",
     "wow.js": "^1.2.2"
   }
 }

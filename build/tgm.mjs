@@ -51,8 +51,6 @@ repo.getData( ( status, response ) => {
 	}
 } );
 
-
-
 function getFile( tag, file ) {
 	let url = { path: '/TGMPA/TGM-Plugin-Activation/' + tag + '/' + file };
 	repo.setOptions( Object.assign( options.calls.getFile, url ) );

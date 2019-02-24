@@ -1,0 +1,13 @@
+#!/bin/bash
+if output=$(git status --untracked-files=no --porcelain) && [ -z "$output" ]; then
+  # Working directory clean
+  exit 0;
+else
+  # Uncommitted changes
+  git status;
+  echo "";
+  echo "Your current working directory contains files that have changes."
+  echo "Checkout or commit your files, to continue try running yarn version again.";
+  echo "";
+  exit 1;
+fi;

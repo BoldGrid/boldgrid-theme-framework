@@ -1,6 +1,6 @@
 {
   "name": "boldgrid-theme-framework",
-  "version": "2.0.0",
+  "version": "1.3.3-rc.5",
   "description": "BoldGrid Theme Framework",
   "main": "index.js",
   "babel": {
@@ -9,6 +9,7 @@
     ]
   },
   "scripts": {
+    "postversion": "echo \"postversion ran\" && node build/update-version.js src/boldgrid-theme-framework.php $npm_package_version",
     "test": "echo \"Error: no test specified\" && exit 1",
     "phpcs-installStandards": "php node_modules/PHP_CodeSniffer/scripts/phpcs --config-set installed_paths node_modules/WordPress-Coding-Standards/",
     "php-codesniffer": "npm run phpcs-installStandards && php ./node_modules/PHP_CodeSniffer/scripts/phpcs -p -s -v -n ./src --standard=./phpcs.ruleset.xml --ignore=*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php",
@@ -21,8 +22,8 @@
     "quick-build": "gulp qbuild",
     "script:patterns": "node --experimental-modules build/patterns.mjs",
     "script:tgm": "node build/tgm.mjs",
-	"script:wp-textdomain-lint": "node build/check-text-domains.js",
-	"script:zip": "node build/build-zip.js"
+    "script:wp-textdomain-lint": "node build/check-text-domains.js",
+    "script:zip": "node build/build-zip.js"
   },
   "keywords": [
     "BoldGrid"

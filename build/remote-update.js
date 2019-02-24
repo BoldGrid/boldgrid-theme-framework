@@ -52,7 +52,7 @@ got.post( 'https://api.travis-ci.org/repo/BoldGrid%2Fprime/requests', {
 					BGTFW_AUTO_UPDATE_AUTHOR: gitAuthor,
 					BGTFW_AUTO_UPDATE_EMAIL: gitEmail
 				},
-				script: 'node bin/tag.js style.css ${BGTFW_AUTO_UPDATE_TAG}'
+				script: `node bin/tag.js style.css ${ process.env.TRAVIS_TAG }`
 			}
 		},
 	} ),

@@ -25,12 +25,11 @@ matrix:
 # Declare which versions of WordPress to test against.
 # Also declare whether or not to test in Multisite.
 env:
-    # Trunk (current version in development is 4.7)
-    # @link https://github.com/WordPress/WordPress
-    - WP_VERSION=master WP_MULTISITE=0
-
-global:
-  secure: WYH4JaFh+qKyBlrwVf6irhrYLJ7RSXXJqiElQAwXz1FbdB7njDM/qGlvGdH0uvM0xUEaHEiMl7qs4F5W9H9yjRkK9Vp4mfR9UkWWCmPP1JslW5/scpxyg8+lYwFXmNmqLW69xVqQgQDJFab5Dn/Jpct/oF7ijBiYHl0eopNnDrGDB956JtLLiHmQe3Rqi6zaPzR8/a0Xv0NGSi2nOMrkIZlkg5h9J5ZT6lssrNmgUvFqW1sr85LBWguW+L8BkGPly55UpxheAt2NQ3G2KYKsAU68uBcO6sQUezV3RdSJ1ShyrP+OgMKK55n/VV9BOMcy+ZUL4q4os6YhmzFdv/ySnn3azKEHuBuaiVF5aEcgPzPgeQqVYFC7G3gZirrZyFQ7fthX9MOmKHtT4KMLh7sZk8monWODz0Bct8MJGZrF43OyaBwpFqwpHA9AW5bkZxURgEGWs8UtK6JbXcgV2oYc4HyTXfnqDgywXAI9y+A8WmiIvlmTL7rQqzqbWJvN2e7T2gpXsg0BmKqIt/K1sR5KZoh9B1pwMAAfVc2ip6Ibduu5NvvyFE+PdlwFrprD8RFg9aihrDkPDXK0flAxqVKgsx0yJq8jvjWpn5F3+pcsNuQKpMQZPzZ8R+09JynvIiikCiZ8L9IGVR0zJ6lzTiyeMw/erBwNaYtPpAss9mt7rxg=
+  # Trunk (current version in development is 4.7)
+  # @link https://github.com/WordPress/WordPress
+  - WP_VERSION=master WP_MULTISITE=0
+  global:
+    secure: WYH4JaFh+qKyBlrwVf6irhrYLJ7RSXXJqiElQAwXz1FbdB7njDM/qGlvGdH0uvM0xUEaHEiMl7qs4F5W9H9yjRkK9Vp4mfR9UkWWCmPP1JslW5/scpxyg8+lYwFXmNmqLW69xVqQgQDJFab5Dn/Jpct/oF7ijBiYHl0eopNnDrGDB956JtLLiHmQe3Rqi6zaPzR8/a0Xv0NGSi2nOMrkIZlkg5h9J5ZT6lssrNmgUvFqW1sr85LBWguW+L8BkGPly55UpxheAt2NQ3G2KYKsAU68uBcO6sQUezV3RdSJ1ShyrP+OgMKK55n/VV9BOMcy+ZUL4q4os6YhmzFdv/ySnn3azKEHuBuaiVF5aEcgPzPgeQqVYFC7G3gZirrZyFQ7fthX9MOmKHtT4KMLh7sZk8monWODz0Bct8MJGZrF43OyaBwpFqwpHA9AW5bkZxURgEGWs8UtK6JbXcgV2oYc4HyTXfnqDgywXAI9y+A8WmiIvlmTL7rQqzqbWJvN2e7T2gpXsg0BmKqIt/K1sR5KZoh9B1pwMAAfVc2ip6Ibduu5NvvyFE+PdlwFrprD8RFg9aihrDkPDXK0flAxqVKgsx0yJq8jvjWpn5F3+pcsNuQKpMQZPzZ8R+09JynvIiikCiZ8L9IGVR0zJ6lzTiyeMw/erBwNaYtPpAss9mt7rxg=
 
 notifications:
   slack:

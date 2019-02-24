@@ -10,7 +10,7 @@
   },
   "scripts": {
     "preversion": "bash build/cwd-dirty && yarn run build",
-    "postversion": "git tag -d $npm_package_version && node build/update-version.js src/boldgrid-theme-framework.php $npm_package_version && git ",
+    "postversion": "git tag -d $npm_package_version && node build/update-version.js src/boldgrid-theme-framework.php $npm_package_version && git commit -am \"Updating Version $npm_package_version\" && git push origin dev && git checkout master && git pull origin master && git pull origin dev && git push origin master && git tag -a $npm_package_version -m \"Version $npm_package_version Release\" master && git push origin $npm_package_version",
     "test": "echo \"Error: no test specified\" && exit 1",
     "phpcs-installStandards": "php node_modules/PHP_CodeSniffer/scripts/phpcs --config-set installed_paths node_modules/WordPress-Coding-Standards/",
     "php-codesniffer": "npm run phpcs-installStandards && php ./node_modules/PHP_CodeSniffer/scripts/phpcs -p -s -v -n ./src --standard=./phpcs.ruleset.xml --ignore=*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php",

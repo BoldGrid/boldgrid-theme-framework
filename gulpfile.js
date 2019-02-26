@@ -151,7 +151,7 @@ gulp.task('jsDeps', function () {
   gulp.src(config.node_modules + '/float-labels.js/src/float-labels.js')
     .pipe(gulp.dest(config.jsDest + '/float-labels.js'));
   // Wowjs - Check
-  gulp.src(config.node_modules + '/wowjs/dist/**/*')
+  gulp.src(config.node_modules + '/wow-js/dist/**/*')
     .pipe(gulp.dest(config.jsDest + '/wow'));
   // Color-js
   gulp.src(config.node_modules + '/color-js/color.js')

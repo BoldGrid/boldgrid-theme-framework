@@ -26,8 +26,10 @@ module.exports = ( options ) => {
 		},
 	}, options );
 
-	if ( opts.path !== __dirname ) {
+	if ( opts.path === __dirname ) {
 		opts.path = await pkgDir( __dirname );
+	} else {
+		opts.path = path.join( opts.path, '..' );
 	}
 
 	if ( 'auto' === opts.extension ) {

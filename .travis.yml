@@ -59,6 +59,7 @@ deploy:
     tags: true
     php: '7.1'
 - provider: script
+  skip_cleanup: true
   script: node build/remote-update.js
   on:
     tags: true

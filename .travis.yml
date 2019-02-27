@@ -56,7 +56,7 @@ before_script:
     # Clone in the prime parent theme.
     - git clone -b dev https://github.com/boldgrid/prime $theme_dir
     # Move the framework into parent theme for tests.
-    - mv $framework_dir $theme_dir/inc
+    - cp -r $framework_dir/. $theme_dir/inc/boldgrid-theme-framework
     # Set up WordPress configuration.
     - cd $WP_DEVELOP_DIR
     - echo $WP_DEVELOP_DIR
@@ -99,3 +99,25 @@ script:
     # --standard: Use WordPress as the standard.
     # --extensions: Only sniff PHP files.
     - $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=$TRAVIS_BUILD_DIR/phpcs.ruleset.xml --ignore=*partials/hover-colors-only.php,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php
+
+deploy:
+- provider: script
+  script: node $TRAVIS_BUILD_DIR/build/build-zip.js
+  skip_cleanup: true
+  on:
+    tags: true
+    php: '7.1'
+- provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: OGbDuJ1YkBXkPIsfil/m7FnKMnfKlI1OUnYauLU4XJUwwSTBB2YqXElVpGK3rOjs0Er+aSfNkngvpqjtHuc5ofZMgX29Z0Bdp+bh7cKpxRt2psZroKeaegrNGkyiT7Exr/9RAgYG58+eKN7MaAMSGkrowULEJbf9d4mz1BfHHIKSHGQwF+wNVEgif8AwMEQzGk61bLewRwKdgDoVWwtrUiu4fVHM6leC6l7A7bm8f+RQzebVHvZFYuCxR3bPfp4+6iaRJ8zw9Nl1N1TmB+DDCtKzzZmWAcxpZjog6bGBdX7dbUqdTXIR+mk4BlAZQjpiSAffcHIs1t+xfKPExQbTAkVwgjlJ8V2qqKlEnwp5KaawDDzJYr/CYGkTbjYhCbRd0Py5xSnZ9/ZSsNexYoyhspeekTOOHdZByX5uhMCTc1lucbmGX83OZ+KBpvGpUgYF4SBTGiGh0PkOgw7rwrDoNBgryvV6kbG6mXSnYyJnmTzvsUltTINZPexpcdICH9bkMkDhM7/uRRV6B7OrQeI2OpmAh9SC5RcSMJ9KiiHA7wQZivEYJv1EI1GDFU3vEjVGr0okzm2r0XtEu6wh5aFRHGlge89DHxna8eqF2l7EqC+ibgOO5BCkOKxGx+6IOzq4V6upZMxOfe/giPhPLy/VbTmHyF66FnfuQZzHiMnyGQ8=
+  file: bgtfw.zip
+  on:
+    tags: true
+    php: '7.1'
+- provider: script
+  script: node $TRAVIS_BUILD_DIR/build/remote-update.js
+  skip_cleanup: true
+  on:
+    tags: true
+    php: '7.1'

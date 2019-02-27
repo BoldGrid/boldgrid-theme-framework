@@ -20,7 +20,7 @@ if ( 0 !== gitCommitRet.code ) {
 
 const gitCommitHash = gitCommitRet.output.trim();
 
-let gitDetails = shell.exec( `git log ${ gitCommitHash } --format='%an,%ae'^!`, currentDir );
+let gitDetails = shell.exec( `git log --format='%an,%ae' ${ gitCommitHash }^!`, currentDir );
 
 let gitAuthor = 'BoldGrid';
 let gitEmail = 'pdt@boldgrid.com';

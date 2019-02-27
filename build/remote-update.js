@@ -44,13 +44,15 @@ got.post( 'https://api.travis-ci.org/repo/BoldGrid%2Fprime/requests', {
 	body: JSON.stringify( {
 		request: {
 			message: `BGTFW auto-built from commit: ${gitCommitHash}`,
-			branch: master,
+			branch: 'dev',
 			config: {
 				merge_mode: 'deep_merge',
 				env: {
-					BGTFW_AUTO_UPDATE_TAG: process.env.TRAVIS_TAG,
-					BGTFW_AUTO_UPDATE_AUTHOR: gitAuthor,
-					BGTFW_AUTO_UPDATE_EMAIL: gitEmail
+					global: [
+						`BGTFW_AUTO_UPDATE_TAG=${ process.env.TRAVIS_TAG }`,
+						`BGTFW_AUTO_UPDATE_AUTHOR=${ gitAuthor }`,
+						`BGTFW_AUTO_UPDATE_EMAIL=${ gitEmail }`
+					]
 				},
 				script: `node bin/tag.js style.css ${ process.env.TRAVIS_TAG }`
 			}
@@ -58,8 +60,9 @@ got.post( 'https://api.travis-ci.org/repo/BoldGrid%2Fprime/requests', {
 	} ),
 } )
 
-.then( () => {
+.then( response => {
 	console.log( 'Triggered BoldGrid/prime build and deployment.' );
+	console.log( response.body );
 	process.exit();
 } )
 

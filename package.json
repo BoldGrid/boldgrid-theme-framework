@@ -90,6 +90,7 @@
     "mkdirp": "^0.5.1",
     "moment": "^2.24.0",
     "php-parser": "^3.0.0-prerelease.8",
+    "pkg-dir": "^3.0.0",
     "postcss-colors-only": "^0.0.3",
     "postcss-flexbugs-fixes": "^3.3.1",
     "postcss-hash-classname": "https://github.com/timelsass/postcss-hash-classname",

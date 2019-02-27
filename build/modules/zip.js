@@ -1,7 +1,8 @@
 const archiver = require( 'archiver' ),
 	fs = require( 'fs' ),
 	path = require( 'path' ),
-	chalk = require( 'chalk' );
+	chalk = require( 'chalk' ),
+	pkgDir = require( 'pkg-dir' );
 
 /**
  * @param {Object} options Module Options
@@ -12,7 +13,7 @@ module.exports = ( options ) => {
 
 	let opts = Object.assign( {
 		sourceDirectory: null,
-		path: process.cwd(),
+		path: __dirname,
 		name: 'build',
 		extension: 'auto',
 		archiver: {
@@ -24,6 +25,10 @@ module.exports = ( options ) => {
 			}
 		},
 	}, options );
+
+	if ( opts.path !== __dirname ) {
+		opts.path = await pkgDir( __dirname );
+	}
 
 	if ( 'auto' === opts.extension ) {
 		opts.extension = 'zip' === opts.archiver.format ? '.zip' : '.tar.gz';

@@ -18,13 +18,13 @@ before_script:
 - npm install --global gulp-cli
 - yarn install && yarn run build
 - export WP_DEVELOP_DIR=/tmp/wordpress/
+- export BGTFW_THEME_DIR=$WP_DEVELOP_DIR/src/wp-content/themes/prime
 - mkdir -p $WP_DEVELOP_DIR
 - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
 - framework_dir=$(basename $(pwd))/boldgrid-theme-framework
-- theme_dir=$WP_DEVELOP_DIR/src/wp-content/themes/prime
 - cd ..
-- git clone -b dev https://github.com/boldgrid/prime $theme_dir
-- cp -r $framework_dir/. $theme_dir/inc/boldgrid-theme-framework
+- git clone -b dev https://github.com/boldgrid/prime $BGTFW_THEME_DIR
+- cp -r $framework_dir/. $BGTFW_THEME_DIR/inc/boldgrid-theme-framework
 - cd $WP_DEVELOP_DIR
 - echo $WP_DEVELOP_DIR
 - cp wp-tests-config-sample.php wp-tests-config.php
@@ -36,7 +36,7 @@ before_script:
 - mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/0.10.0.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
 - cd php-codesniffer
 - scripts/phpcs --config-set installed_paths ../wordpress-coding-standards
-- cd $theme_dir
+- cd $BGTFW_THEME_DIR
 - phpenv rehash
 script:
 - find . \( -name '*.php' \) -exec php -lf {} \;
@@ -51,7 +51,7 @@ deploy:
 - provider: releases
   api_key:
     secure: ILkTznHjXK2hvc7v5OPZsHtDM8UCSk3qJUGA3lGqoUGmCCpHMRjay9JGm1VyNxlj+UmHBfFbukPm6bRUzg7Y0XeMpzfYTuiYAWIzFHsAMgFO56PdP1YCCa9rDwqOE//K+ED6PQz4r6wSPqLegjdhzQ3DJM+1nUkdcuwvkBNVfhSTDbryw7X1TQ6jOadBSPleG2PwdPOT19RU6hUMVJneLHLLi6jWZNonclvxFupornBoldzHPuT+l8Pu41nPpxEJsW1MoZifbdFR77kJrQERV51OOU6RPB8V3ADNDjeSuMss7uIVedJAkwqbzuFHAj2umIdEiAhfOfyi4NpNnwEfECz633eHVZH+cfEMpeWSvZbd1Eh3Jm+LdBmMq2DkNss3XwJg5op71Ac3DJ8yDbxRplFCsOJ8MS4ky8d9DeReTwgyimp0oXD7uGAL8RIfPf8rlwsD+aQn80LsYYkMMWTfTAAy1gM29nUcbSuBWIe1bkJP9QSI2MQJ5ViAO2zHHHdut5c7jVj82wUAjlmOKYx529JcXfMsrQTTKPat0e3Ks224yfoYZSMyw0by3okAYskq5kx9L3ib+QJO6LwzMUTjgUtn4lLzdFOVC9fysb6h8ULCbOg0fnAlyWMmP+p+4RiV8BXbdekXJZkuLrm0vVMBEuXQ7lf/zW56EmlGIgmwXiU=
-  file: bgtfw.zip
+  file: $BGTFW_THEME_DIR/bgtfw.zip
   on:
     repo: BoldGrid/boldgrid-theme-framework
     tags: true

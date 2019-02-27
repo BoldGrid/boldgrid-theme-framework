@@ -41,9 +41,10 @@ before_script:
 script:
 - find . \( -name '*.php' \) -exec php -lf {} \;
 - "$WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=$TRAVIS_BUILD_DIR/phpcs.ruleset.xml --ignore=*partials/hover-colors-only.php,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php"
+- cd $TRAVIS_BUILD_DIR
 deploy:
 - provider: script
-  script: node $TRAVIS_BUILD_DIR/build/build-zip.js
+  script: node build/build-zip.js
   skip_cleanup: true
   on:
     tags: true
@@ -57,7 +58,7 @@ deploy:
     tags: true
     php: '7.1'
 - provider: script
-  script: node $TRAVIS_BUILD_DIR/build/remote-update.js
+  script: node build/remote-update.js
   on:
     tags: true
     php: '7.1'

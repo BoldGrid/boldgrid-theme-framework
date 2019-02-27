@@ -18,7 +18,7 @@ if ( 0 !== gitCommitRet.code ) {
 	process.exit();
 }
 
-const gitCommitHash = gitCommitRet.stdout.trim();
+const gitCommitHash = gitCommitRet.output.trim();
 
 let gitDetails = shell.exec( `git log ${ gitCommitHash } --format='%an,%ae'^!`, currentDir );
 
@@ -26,7 +26,7 @@ let gitAuthor = 'BoldGrid';
 let gitEmail = 'pdt@boldgrid.com';
 
 if ( 0 === gitDetails.code ) {
-	gitDetails = gitDetails.stdout.trim().split( ',' );
+	gitDetails = gitDetails.output.trim().split( ',' );
 	gitAuthor = gitDetails[0];
 	gitEmail = gitDetails[1];
 }

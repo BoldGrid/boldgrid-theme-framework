@@ -27,7 +27,7 @@ module.exports = ( options ) => {
 	}, options );
 
 	if ( opts.path === __dirname ) {
-		opts.path = await pkgDir( __dirname );
+		opts.path = pkgDir.sync( __dirname );
 	} else {
 		opts.path = path.join( opts.path, '..' );
 	}

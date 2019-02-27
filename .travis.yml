@@ -1,105 +1,46 @@
-# Travis CI configuration file.
-# @link https://travis-ci.org/
-
-# For use with the BoldGrid Theme Framework.
-# @link https://boldgrid.com/docs/
-
-# Declare project language and PHP versions to test against.
-# @link http://about.travis-ci.org/docs/user/languages/php/
 language: php
-
-# Ditch sudo and use containers.
-# @link http://docs.travis-ci.com/user/migrating-from-legacy/#Why-migrate-to-container-based-infrastructure%3F
-# @link http://docs.travis-ci.com/user/workers/container-based-infrastructure/#Routing-your-build-to-container-based-infrastructure
 sudo: false
-
-# Declare versions of PHP to use. Use one decimal max.
 matrix:
   include:
   - php: 7.1
-#  - php: 7.0
   - php: 5.6
-#  - php: 5.5
   - php: 5.4
-
-# Declare which versions of WordPress to test against.
-# Also declare whether or not to test in Multisite.
 env:
   global:
-    # Trunk Version
-    # @link https://github.com/WordPress/WordPress
-    - WP_VERSION=master WP_MULTISITE=0
-    - secure: WYH4JaFh+qKyBlrwVf6irhrYLJ7RSXXJqiElQAwXz1FbdB7njDM/qGlvGdH0uvM0xUEaHEiMl7qs4F5W9H9yjRkK9Vp4mfR9UkWWCmPP1JslW5/scpxyg8+lYwFXmNmqLW69xVqQgQDJFab5Dn/Jpct/oF7ijBiYHl0eopNnDrGDB956JtLLiHmQe3Rqi6zaPzR8/a0Xv0NGSi2nOMrkIZlkg5h9J5ZT6lssrNmgUvFqW1sr85LBWguW+L8BkGPly55UpxheAt2NQ3G2KYKsAU68uBcO6sQUezV3RdSJ1ShyrP+OgMKK55n/VV9BOMcy+ZUL4q4os6YhmzFdv/ySnn3azKEHuBuaiVF5aEcgPzPgeQqVYFC7G3gZirrZyFQ7fthX9MOmKHtT4KMLh7sZk8monWODz0Bct8MJGZrF43OyaBwpFqwpHA9AW5bkZxURgEGWs8UtK6JbXcgV2oYc4HyTXfnqDgywXAI9y+A8WmiIvlmTL7rQqzqbWJvN2e7T2gpXsg0BmKqIt/K1sR5KZoh9B1pwMAAfVc2ip6Ibduu5NvvyFE+PdlwFrprD8RFg9aihrDkPDXK0flAxqVKgsx0yJq8jvjWpn5F3+pcsNuQKpMQZPzZ8R+09JynvIiikCiZ8L9IGVR0zJ6lzTiyeMw/erBwNaYtPpAss9mt7rxg=
-
+  - WP_VERSION=master WP_MULTISITE=0
+  - secure: WYH4JaFh+qKyBlrwVf6irhrYLJ7RSXXJqiElQAwXz1FbdB7njDM/qGlvGdH0uvM0xUEaHEiMl7qs4F5W9H9yjRkK9Vp4mfR9UkWWCmPP1JslW5/scpxyg8+lYwFXmNmqLW69xVqQgQDJFab5Dn/Jpct/oF7ijBiYHl0eopNnDrGDB956JtLLiHmQe3Rqi6zaPzR8/a0Xv0NGSi2nOMrkIZlkg5h9J5ZT6lssrNmgUvFqW1sr85LBWguW+L8BkGPly55UpxheAt2NQ3G2KYKsAU68uBcO6sQUezV3RdSJ1ShyrP+OgMKK55n/VV9BOMcy+ZUL4q4os6YhmzFdv/ySnn3azKEHuBuaiVF5aEcgPzPgeQqVYFC7G3gZirrZyFQ7fthX9MOmKHtT4KMLh7sZk8monWODz0Bct8MJGZrF43OyaBwpFqwpHA9AW5bkZxURgEGWs8UtK6JbXcgV2oYc4HyTXfnqDgywXAI9y+A8WmiIvlmTL7rQqzqbWJvN2e7T2gpXsg0BmKqIt/K1sR5KZoh9B1pwMAAfVc2ip6Ibduu5NvvyFE+PdlwFrprD8RFg9aihrDkPDXK0flAxqVKgsx0yJq8jvjWpn5F3+pcsNuQKpMQZPzZ8R+09JynvIiikCiZ8L9IGVR0zJ6lzTiyeMw/erBwNaYtPpAss9mt7rxg=
 notifications:
   slack:
     secure: U0C7obTxqgI1blt1RIhIY+M3mU94CgSVMCP3oWtPyVaXrDwYdlSZvqXGCdezJXqVzFOcMEytDlKMJxo1zM6fnXlpqvUllBGm2IJkpQj6ijUr+uQy6bVqMWQiIWDho8XRKH3GoYa812XSsNJOROX+let9JiXiO5qz0DWSs3FQ4gl+Ti+E/Znck9yE32AfY5rHEhtkbN2ih/Agx7o+8PkdGG2BGr6hqfn/Gf1sHiUA6KifdoD6lZRR/nym/1osEMlkuavbY4tOf+RBvUTpSpyBDthPXmgXCPJZ8iGGTKySic7KF367AXITWNWdZxX0ChzNB6WcmJWvdvghbxRnIZXN3nML+gtXclmNnH8GOO4iLyXtUbyh7JpoZh/5KVnqP2hmgjPzBGNm84JBmZuqB7jIKHAZwWh66u9k03uteM5wrYNxQBYvDHvTaeeP7TnOBDWhUkjvEacx61TpxmUCb6VGHahSv/MuqaAEpvolcj83BPBC4fjrLA3dj6u+WjYxTqRZeA9A35eW6qT3182beKHCj+GfN1PfsMRGCyqebxcj6CMLgGti0UMgFUBBp1w30z54vKq/lpIRCgMYXQWbETJPLhez76u9MqVCc1j9JoxD6o7we3BsvYtOhngnCbKLcpDzsQK8q/TTtVB/etfQcYdir6lkJn4wAQbvoM5US8uPQ7w=
-
-# Use this to prepare your build for testing.
-# e.g. copy database configurations, environment variables, etc.
-# Failures in this section will result in build status 'errored'.
 before_script:
-    - nvm install 10.13.0
-    - nvm use 10.13.0
-    - npm install --global gulp-cli
-    - yarn install && yarn run build
-    # Set up WordPress installation.
-    - export WP_DEVELOP_DIR=/tmp/wordpress/
-    - mkdir -p $WP_DEVELOP_DIR
-    # Use the Git mirror of WordPress.
-    - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
-    # Framework dir
-    - framework_dir=$(basename $(pwd))/boldgrid-theme-framework
-    # Set up Prime theme.
-    - theme_dir=$WP_DEVELOP_DIR/src/wp-content/themes/prime
-    - cd ..
-    # Clone in the prime parent theme.
-    - git clone -b dev https://github.com/boldgrid/prime $theme_dir
-    # Move the framework into parent theme for tests.
-    - cp -r $framework_dir/. $theme_dir/inc/boldgrid-theme-framework
-    # Set up WordPress configuration.
-    - cd $WP_DEVELOP_DIR
-    - echo $WP_DEVELOP_DIR
-    - cp wp-tests-config-sample.php wp-tests-config.php
-    # Test DB "wordpress_test".
-    - sed -i "s/youremptytestdbnamehere/wordpress_test/" wp-tests-config.php
-    # User "root".
-    - sed -i "s/yourusernamehere/root/" wp-tests-config.php
-    # No password
-    - sed -i "s/yourpasswordhere//" wp-tests-config.php
-    # Create WordPress database.
-    - mysql -e 'CREATE DATABASE wordpress_test;' -uroot
-    # Install CodeSniffer for WordPress Coding Standards checks.
-    - mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/2.9.tar.gz | tar xz --strip-components=1 -C php-codesniffer
-    # Install WordPress Coding Standards.
-    - mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/0.10.0.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
-    # Hop into CodeSniffer directory.
-    - cd php-codesniffer
-    # Set install path for WordPress Coding Standards
-    # @link https://github.com/squizlabs/PHP_CodeSniffer/blob/4237c2fc98cc838730b76ee9cee316f99286a2a7/CodeSniffer.php#L1941
-    - scripts/phpcs --config-set installed_paths ../wordpress-coding-standards
-    # Hop into themes directory.
-    - cd $theme_dir
-    # After CodeSniffer install you should refresh your path.
-    - phpenv rehash
-
-# Run test script commands.
-# Default is specific to project language.
-# All commands must exit with code 0 on success. Anything else is considered failure.
+- nvm install 10.13.0
+- nvm use 10.13.0
+- npm install --global gulp-cli
+- yarn install && yarn run build
+- export WP_DEVELOP_DIR=/tmp/wordpress/
+- mkdir -p $WP_DEVELOP_DIR
+- git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
+- framework_dir=$(basename $(pwd))/boldgrid-theme-framework
+- theme_dir=$WP_DEVELOP_DIR/src/wp-content/themes/prime
+- cd ..
+- git clone -b dev https://github.com/boldgrid/prime $theme_dir
+- cp -r $framework_dir/. $theme_dir/inc/boldgrid-theme-framework
+- cd $WP_DEVELOP_DIR
+- echo $WP_DEVELOP_DIR
+- cp wp-tests-config-sample.php wp-tests-config.php
+- sed -i "s/youremptytestdbnamehere/wordpress_test/" wp-tests-config.php
+- sed -i "s/yourusernamehere/root/" wp-tests-config.php
+- sed -i "s/yourpasswordhere//" wp-tests-config.php
+- mysql -e 'CREATE DATABASE wordpress_test;' -uroot
+- mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/2.9.tar.gz | tar xz --strip-components=1 -C php-codesniffer
+- mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/0.10.0.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
+- cd php-codesniffer
+- scripts/phpcs --config-set installed_paths ../wordpress-coding-standards
+- cd $theme_dir
+- phpenv rehash
 script:
-    # Search theme for PHP syntax errors.
-    - find . \( -name '*.php' \) -exec php -lf {} \;
-    # WordPress Coding Standards
-    # @link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
-    # @link http://pear.php.net/package/PHP_CodeSniffer/
-    # -p flag: Show progress of the run.
-    # -s flag: Show sniff codes in all reports.
-    # -v flag: Print verbose output.
-    # -n flag: Do not print warnings (shortcut for --warning-severity=0)
-    # --standard: Use WordPress as the standard.
-    # --extensions: Only sniff PHP files.
-    - $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=$TRAVIS_BUILD_DIR/phpcs.ruleset.xml --ignore=*partials/hover-colors-only.php,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php
-
+- find . \( -name '*.php' \) -exec php -lf {} \;
+- "$WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=$TRAVIS_BUILD_DIR/phpcs.ruleset.xml --ignore=*partials/hover-colors-only.php,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/class-boldgrid-framework-pointer.php,*/woocommerce/* --extensions=php"
 deploy:
 - provider: script
   script: node $TRAVIS_BUILD_DIR/build/build-zip.js
@@ -108,11 +49,11 @@ deploy:
     tags: true
     php: '7.1'
 - provider: releases
-  skip_cleanup: true
   api_key:
-    secure: OGbDuJ1YkBXkPIsfil/m7FnKMnfKlI1OUnYauLU4XJUwwSTBB2YqXElVpGK3rOjs0Er+aSfNkngvpqjtHuc5ofZMgX29Z0Bdp+bh7cKpxRt2psZroKeaegrNGkyiT7Exr/9RAgYG58+eKN7MaAMSGkrowULEJbf9d4mz1BfHHIKSHGQwF+wNVEgif8AwMEQzGk61bLewRwKdgDoVWwtrUiu4fVHM6leC6l7A7bm8f+RQzebVHvZFYuCxR3bPfp4+6iaRJ8zw9Nl1N1TmB+DDCtKzzZmWAcxpZjog6bGBdX7dbUqdTXIR+mk4BlAZQjpiSAffcHIs1t+xfKPExQbTAkVwgjlJ8V2qqKlEnwp5KaawDDzJYr/CYGkTbjYhCbRd0Py5xSnZ9/ZSsNexYoyhspeekTOOHdZByX5uhMCTc1lucbmGX83OZ+KBpvGpUgYF4SBTGiGh0PkOgw7rwrDoNBgryvV6kbG6mXSnYyJnmTzvsUltTINZPexpcdICH9bkMkDhM7/uRRV6B7OrQeI2OpmAh9SC5RcSMJ9KiiHA7wQZivEYJv1EI1GDFU3vEjVGr0okzm2r0XtEu6wh5aFRHGlge89DHxna8eqF2l7EqC+ibgOO5BCkOKxGx+6IOzq4V6upZMxOfe/giPhPLy/VbTmHyF66FnfuQZzHiMnyGQ8=
-  file: bgtfw.zip
+    secure: ILkTznHjXK2hvc7v5OPZsHtDM8UCSk3qJUGA3lGqoUGmCCpHMRjay9JGm1VyNxlj+UmHBfFbukPm6bRUzg7Y0XeMpzfYTuiYAWIzFHsAMgFO56PdP1YCCa9rDwqOE//K+ED6PQz4r6wSPqLegjdhzQ3DJM+1nUkdcuwvkBNVfhSTDbryw7X1TQ6jOadBSPleG2PwdPOT19RU6hUMVJneLHLLi6jWZNonclvxFupornBoldzHPuT+l8Pu41nPpxEJsW1MoZifbdFR77kJrQERV51OOU6RPB8V3ADNDjeSuMss7uIVedJAkwqbzuFHAj2umIdEiAhfOfyi4NpNnwEfECz633eHVZH+cfEMpeWSvZbd1Eh3Jm+LdBmMq2DkNss3XwJg5op71Ac3DJ8yDbxRplFCsOJ8MS4ky8d9DeReTwgyimp0oXD7uGAL8RIfPf8rlwsD+aQn80LsYYkMMWTfTAAy1gM29nUcbSuBWIe1bkJP9QSI2MQJ5ViAO2zHHHdut5c7jVj82wUAjlmOKYx529JcXfMsrQTTKPat0e3Ks224yfoYZSMyw0by3okAYskq5kx9L3ib+QJO6LwzMUTjgUtn4lLzdFOVC9fysb6h8ULCbOg0fnAlyWMmP+p+4RiV8BXbdekXJZkuLrm0vVMBEuXQ7lf/zW56EmlGIgmwXiU=
+  file: $WP_DEVELOP_DIR/src/wp-content/themes/prime/bgtfw.zip
   on:
+    repo: BoldGrid/boldgrid-theme-framework
     tags: true
     php: '7.1'
 - provider: script

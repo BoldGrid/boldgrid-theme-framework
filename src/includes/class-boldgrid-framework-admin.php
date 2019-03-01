@@ -82,7 +82,7 @@ class Boldgrid_Framework_Admin {
 	}
 
 	/**
-	 * Enqueue Color Palettes file And Buttons file to the Wordpress Admin Screen.
+	 * Enqueue Color Palettes file And Buttons file to the WordPress Admin Screen.
 	 *
 	 * Note: This does not enqueue into the editor, just the admin screen. This is needed for the editor controls.
 	 *

@@ -1,6 +1,6 @@
 <?php
 /**
- * Wordpress pointer functionality
+ * WordPress Pointer Functionality
  *
  * @since      1.0.0
  * @package    Boldgrid_Framework

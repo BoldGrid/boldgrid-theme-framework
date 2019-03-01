@@ -894,26 +894,6 @@ class BoldGrid {
 	}
 
 	/**
-	 * Sets the authordata global when viewing an author archive.
-	 *
-	 * This provides backwards compatibility with
-	 * http://core.trac.wordpress.org/changeset/25574
-	 *
-	 * It removes the need to call the_post() and rewind_posts() in an author
-	 * template to print information about the author.
-	 *
-	 * @global   WP_Query $wp_query WordPress Query object.
-	 * @since    1.0.0
-	 */
-	public function setup_author() {
-		global $wp_query;
-
-		if ( $wp_query->is_author( ) && isset( $wp_query->post ) ) {
-			$GLOBALS['authordata'] = get_userdata( $wp_query->post->post_author );
-		}
-	}
-
-	/**
 	 * Page Menu Arguments.
 	 *
 	 * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.

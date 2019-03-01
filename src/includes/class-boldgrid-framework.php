@@ -540,7 +540,7 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'switch_theme', $activate, 'do_deactivate' );
 		}
 
-		// Stop Wordpress from assigning widgets to our areas.
+		// Stop WordPress from assigning widgets to our areas.
 		remove_action( 'after_switch_theme', '_wp_sidebars_changed' );
 
 		$this->loader->add_action( 'mce_external_plugins', $editor, 'add_tinymce_plugin' );
@@ -589,12 +589,6 @@ class BoldGrid_Framework {
 		// Add the active button styles from configs to the compiler file array if active.
 		if ( true === $this->configs['components']['buttons']['enabled'] ) {
 			$this->loader->add_filter( 'boldgrid_theme_helper_scss_files', $color_compile, 'get_button_color_files' );
-		}
-
-		// Save the compiled CSS when themes are activated and after they save customizer settings.
-		if ( true === $this->configs['components']['bootstrap']['enabled'] ||
-			 true === $this->configs['components']['buttons']['enabled'] ) {
-				// $this->loader->add_action( 'customize_save_after', $compile, 'build' );
 		}
 
 		// Remove .hentry from pages for valid schema markup.

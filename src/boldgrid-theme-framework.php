@@ -24,13 +24,15 @@ if ( defined( 'BGTFW_PATH' ) ) {
 }
 
 $theme_framework_class = $theme_framework_path . '/includes/class-boldgrid-framework.php';
+
 if ( file_exists( $theme_framework_class ) ) {
-	/**
-	 * Set up constants for our theme framework directory structure.
-	 *
-	 * @since 1.0.0
-	 */
-	require_once $theme_framework_class;
-	$boldgrid_theme_framework = new Boldgrid_Framework();
-	$boldgrid_theme_framework->run();
+	if ( version_compare( phpversion(), '5.4.0', '<' ) ) {
+		require_once $theme_framework_path . '/includes/class-boldgrid-framework-version-requirements.php';
+		$requirements = new Boldgrid_Framework_Version_Requirements();
+		$requirements->add_hooks();
+	} else {
+		require_once $theme_framework_class;
+		$boldgrid_theme_framework = new Boldgrid_Framework();
+		$boldgrid_theme_framework->run();
+	}
 }

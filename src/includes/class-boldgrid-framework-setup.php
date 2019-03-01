@@ -78,11 +78,7 @@ class BoldGrid_Framework_Setup {
 	 * @since 1.0.0
 	 */
 	public function add_additional_setup() {
-		// Directory path.
-		$dir = $this->configs['framework']['includes_dir'] . 'partials/';
-
-		require $dir . 'template-tags.php';
-		require $dir . 'extras.php';
+		require_once $this->configs['framework']['includes_dir'] . 'partials/template-tags.php';
 	}
 
 	/**

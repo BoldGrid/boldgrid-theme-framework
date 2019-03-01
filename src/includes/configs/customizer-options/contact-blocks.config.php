@@ -9,15 +9,11 @@
  *
  * @return   array   An array of contact block configs.
  */
-
-$year = date( 'Y' );
-$blogname = get_bloginfo( 'name' );
-
 return array(
 	'enabled'  => false,
 	'defaults' => array(
 		array(
-			'contact_block' => "© {$year} {$blogname}",
+			'contact_block' => '© ' . date( 'Y' ) . ' ' . get_bloginfo( 'name' ),
 		),
 		array(
 			'contact_block' => esc_attr( '202 Grid Blvd. Agloe, NY 12776' ),

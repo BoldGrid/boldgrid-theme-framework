@@ -106,8 +106,10 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 			$array['breadcrumb'] = $this->get_breadcrumb();
 			$array['icon'] = $this->get_icon();
 
-			if ( isset( $this->notice ) && ! empty( $this->notice ) ) {
-				$this->notice = wp_parse_args( $this->notice, $this->notice_defaults );
+			$_notice = $this->notice;
+
+			if ( isset( $_notice ) && ! empty( $_notice ) ) {
+				$this->notice = wp_parse_args( $_notice, $this->notice_defaults );
 				$array['notice'] = $this->notice;
 			}
 

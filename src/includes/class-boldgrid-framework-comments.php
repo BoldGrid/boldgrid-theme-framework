@@ -151,9 +151,6 @@ class BoldGrid_Framework_Comments {
 	 * @since 1.0.0
 	 */
 	public function boldgrid_bootstrap_comment( $comment, $args, $depth ) {
-
-		$GLOBALS['comment'] = $comment;
-
 		if ( 'pingback' == $comment->comment_type || 'trackback' == $comment->comment_type ) : ?>
 
 		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( 'media' ); ?>>

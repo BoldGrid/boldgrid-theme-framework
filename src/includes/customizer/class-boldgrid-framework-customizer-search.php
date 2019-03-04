@@ -70,14 +70,14 @@ class Boldgrid_Framework_Customizer_Search {
 	public function print_templates() {
 		?>
 		<script type="text/html" id="tmpl-search-button">
-			<button type="button" class="customize-search-toggle dashicons dashicons-search" aria-expanded="false"><span class="screen-reader-text"><?php _e( 'Search', 'bgtfw' ); ?></span></button>
+			<button type="button" class="customize-search-toggle dashicons dashicons-search" aria-expanded="false"><span class="screen-reader-text"><?php esc_html_e( 'Search', 'bgtfw' ); ?></span></button>
 		</script>
 		<script type="text/html" id="tmpl-search-form">
 			<div id="accordion-section-customizer-search" style="display: none;">
 				<h4 class="customizer-search-section accordion-section-title">
 					<span class="search-field-wrapper">
-						<input type="text" placeholder="<?php _e( 'Search Controls...', 'bgtfw' ); ?>" name="customizer-search-input" autofocus="autofocus" id="customizer-search-input" class="customizer-search-input">
-						<button type="button" class="button clear-search" tabindex="0"><?php _e( 'Clear', 'bgtfw' ); ?></button>
+						<input type="text" placeholder="<?php esc_html_e( 'Search Controls...', 'bgtfw' ); ?>" name="customizer-search-input" autofocus="autofocus" id="customizer-search-input" class="customizer-search-input">
+						<button type="button" class="button clear-search" tabindex="0"><?php esc_html_e( 'Clear', 'bgtfw' ); ?></button>
 					</span>
 				</h4>
 			</div>

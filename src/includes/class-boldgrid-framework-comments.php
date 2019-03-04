@@ -123,7 +123,7 @@ class BoldGrid_Framework_Comments {
 					&& '0' != get_comments_number()
 					&& post_type_supports( get_post_type(), 'comments' ) ) :
 			?>
-			<p class="no-comments"><?php _e( 'Comments are closed.', 'bgtfw' ); ?></p>
+			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'bgtfw' ); ?></p>
 		<?php endif; ?>
 
 		<?php comment_form( $args = array(

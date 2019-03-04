@@ -155,13 +155,13 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 			<li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }}">
 				<h3 class="accordion-section-title<# if ( ! _.isEmpty( data.icon ) ) { #> {{ data.icon }}<# } #>" tabindex="0">
 					{{ data.title }}
-					<span class="screen-reader-text"><?php _e( 'Press return or enter to open this section', 'bgtfw' ); ?></span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open this section', 'bgtfw' ); ?></span>
 				</h3>
 				<ul class="accordion-section-content">
 					<li class="customize-section-description-container section-meta <# if ( data.description_hidden ) { #>customize-info<# } #>">
 						<div class="customize-section-title">
 							<button class="customize-section-back" tabindex="-1">
-								<span class="screen-reader-text"><?php _e( 'Back', 'bgtfw' ); ?></span>
+								<span class="screen-reader-text"><?php esc_html_e( 'Back', 'bgtfw' ); ?></span>
 							</button>
 							<h3>
 								<span class="customize-action">
@@ -170,7 +170,7 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 								<div class="bgtfw-section-title<# if ( ! _.isEmpty( data.icon ) ) { #> {{ data.icon }}<# } #>">{{ data.title }}</div>
 							</h3>
 							<# if ( data.description && data.description_hidden ) { #>
-								<button type="button" class="customize-help-toggle dashicons dashicons-editor-help" aria-expanded="false"><span class="screen-reader-text"><?php _e( 'Help', 'bgtfw' ); ?></span></button>
+								<button type="button" class="customize-help-toggle dashicons dashicons-editor-help" aria-expanded="false"><span class="screen-reader-text"><?php esc_html_e( 'Help', 'bgtfw' ); ?></span></button>
 								<div class="description customize-section-description">
 									{{{ data.description }}}
 								</div>

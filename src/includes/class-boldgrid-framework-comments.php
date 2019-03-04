@@ -58,12 +58,12 @@ class BoldGrid_Framework_Comments {
 						$comments_number = get_comments_number();
 						if ( 1 === $comments_number ) {
 							printf(
-								/* translators: %s: post title */
+								/* translators: %s: comments title */
 								esc_html_x( 'One thought on &ldquo;%s&rdquo;', 'comments title', 'bgtfw' ),
-								'<span>' . get_the_title() . '</span>'
+								'<span>' . esc_html( get_the_title() ) . '</span>'
 							);
 						} else {
-							printf( // WPCS: XSS OK.
+							printf(
 								/* translators: 1: number of comments, 2: post title */
 								esc_html( _nx(
 									'%1$s thought on &ldquo;%2$s&rdquo;',
@@ -72,8 +72,8 @@ class BoldGrid_Framework_Comments {
 									'comments title',
 									'bgtfw'
 								) ),
-								number_format_i18n( $comments_number ),
-								'<span>' . get_the_title() . '</span>'
+								esc_html( number_format_i18n( $comments_number ) ),
+								'<span>' . esc_html( get_the_title() ) . '</span>'
 							);
 						}
 					?>
@@ -127,12 +127,13 @@ class BoldGrid_Framework_Comments {
 		<?php endif; ?>
 
 		<?php comment_form( $args = array(
-			'id_form'           => 'commentform',                         // wp default value
-			'id_submit'         => 'commentsubmit',                       // wp default value
-			'title_reply'       => __( 'Leave a Reply',       'bgtfw' ),  // wp default value
-			'title_reply_to'    => __( 'Leave a Reply to %s', 'bgtfw' ),  // wp default value
-			'cancel_reply_link' => __( 'Cancel Reply',        'bgtfw' ),  // wp default value
-			'label_submit'      => __( 'Post Comment',        'bgtfw' ),  // wp default value
+			'id_form'           => 'commentform',
+			'id_submit'         => 'commentsubmit',
+			'title_reply'       => __( 'Leave a Reply', 'bgtfw' ),
+			/* translators: %s: the author of the comment being replied to */
+			'title_reply_to'    => __( 'Leave a Reply to %s', 'bgtfw' ),
+			'cancel_reply_link' => __( 'Cancel Reply', 'bgtfw' ),
+			'label_submit'      => __( 'Post Comment', 'bgtfw' ),
 			'class_submit' => 'button-primary',
 			'comment_field' => '<p><textarea placeholder="Start typing..." id="comment" class="form-control" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
 			'comment_notes_after' => '<p class="form-allowed-tags">' .
@@ -155,12 +156,12 @@ class BoldGrid_Framework_Comments {
 
 		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( 'media' ); ?>>
 			<div class="comment-body">
-				<?php _e( 'Pingback:', 'bgtfw' ); ?> <?php comment_author_link( ); ?> <?php edit_comment_link( __( 'Edit', 'bgtfw' ), '<span class="edit-link">', '</span>' ); ?>
+				<?php esc_html_e( 'Pingback:', 'bgtfw' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'bgtfw' ), '<span class="edit-link">', '</span>' ); ?>
 			</div>
 		<?php else : ?>
 		<li id="comment-<?php comment_ID(); ?>"
 			<?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
-			<article id="div-comment-<?php comment_ID( ); ?>" class="comment-body media">
+			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body media">
 				<a class="pull-left" href="#">
 					<?php if ( 0 != $args['avatar_size'] ) { echo get_avatar( $comment, $args['avatar_size'] ); } ?>
 				</a>
@@ -168,22 +169,32 @@ class BoldGrid_Framework_Comments {
 					<div class="media-body-wrap panel panel-default">
 						<div class="panel-heading">
 							<div class="media-heading">
-								<?php printf( __( '%s <span class="says">says:</span>', 'bgtfw' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link( ) ) ); ?>
+							<?php
+								printf(
+									'<cite class="fn">%1$s</cite><span class="says">%2$s:</span>',
+									get_comment_author_link(),
+									/* translators: this displays as $author says: */
+									esc_html__( 'says', 'bgtfw' )
+								);
+							?>
 							</div>
 							<div class="comment-meta">
 								<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-									<time datetime="<?php comment_time( 'c' ); ?>">
-										<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'bgtfw' ), get_comment_date( ), get_comment_time( ) ); ?>
+									<time datetime="<?php esc_attr( comment_time( 'c' ) ); ?>">
+									<?php
+										/* translators: 1: date of comment, 2: time of comment */
+										printf( esc_html_x( '%1$s at %2$s', '1: date, 2: time', 'bgtfw' ), esc_html( get_comment_date() ), esc_html( get_comment_time() ) );
+									?>
 									</time>
 								</a>
 								<?php edit_comment_link( __( '<span style="margin-left: 5px;" class="fa fa-edit"></span> Edit', 'bgtfw' ), '<span class="edit-link">', '</span>' ); ?>
 							</div>
 						</div>
 						<?php if ( '0' == $comment->comment_approved ) : ?>
-							<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'bgtfw' ); ?></p>
+							<p class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'bgtfw' ); ?></p>
 						<?php endif; ?>
 						<div class="comment-content panel-body">
-							<?php comment_text( ); ?>
+							<?php comment_text(); ?>
 						</div><!-- .comment-content -->
 						<?php
 						comment_reply_link(

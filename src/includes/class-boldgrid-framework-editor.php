@@ -77,7 +77,7 @@ class Boldgrid_Framework_Editor {
 				'Editor' => array(
 					'mce_inline_styles' => $mce_inline_styles,
 				),
-				'post_id' => ! empty( $_REQUEST['post'] ) ? $_REQUEST['post'] : null,
+				'post_id' => ! empty( $_REQUEST['post'] ) ? absint( $_REQUEST['post'] ) : null,
 			) );
 
 		$editor_js_file = $this->configs['framework']['admin_asset_dir'] . 'js/editor.js';
@@ -102,7 +102,7 @@ class Boldgrid_Framework_Editor {
 	 * @since 1.3.2
 	 */
 	public function get_post_type() {
-		$current_post_id = ! empty( $_REQUEST['post'] ) ? $_REQUEST['post'] : null;
+		$current_post_id = ! empty( $_REQUEST['post'] ) ? absint( $_REQUEST['post'] ) : null;
 		$current_post = get_post( $current_post_id );
 
 		/*
@@ -114,7 +114,7 @@ class Boldgrid_Framework_Editor {
 		if ( ! empty( $current_post->post_type ) ) {
 			$current_post_type = $current_post->post_type;
 		} elseif ( isset( $_GET['post_type'] ) ) {
-			$current_post_type = $_GET['post_type'];
+			$current_post_type = sanitize_key( $_GET['post_type'] );
 		} else {
 			$current_post_type = 'post';
 		}

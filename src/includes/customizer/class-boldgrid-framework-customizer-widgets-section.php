@@ -92,7 +92,7 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 					</h3>
 				</li>
 				<div class="boldgrid-subdescription">
-					<a href="<?php echo admin_url( 'widgets.php' ); ?>" type="button" class="button"><?php _e( 'Edit in Admin', 'bgtfw' ); ?></a>
+					<a href="<?php echo esc_url( admin_url( 'widgets.php' ) ); ?>" type="button" class="button"><?php esc_html_e( 'Edit in Admin', 'bgtfw' ); ?></a>
 				<div>
 			</div>
 		<?php

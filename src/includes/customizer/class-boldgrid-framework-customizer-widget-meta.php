@@ -10,7 +10,10 @@
  * @subpackage Boldgrid_Framework_Customizer_Widget_Meta
  */
 
-/*
+/**
+ * This file was originally inspired from XWP.
+ * This is the license information under which the code was distributed:
+ *
  * Copyright (c) 2017 XWP (https://xwp.co/)
  *
  * This program is free software; you can redistribute it and/or modify

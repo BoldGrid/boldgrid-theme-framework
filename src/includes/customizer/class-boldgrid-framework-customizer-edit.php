@@ -71,8 +71,8 @@ class Boldgrid_Framework_Customizer_Edit {
 	 */
 	public static function fallback_cb( $menu ) {
 		printf( "<div id='%s' class='empty-menu' data-theme-location='%s'></div>",
-			$menu['menu_id'],
-			$menu['theme_location']
+			esc_attr( $menu['menu_id'] ),
+			esc_attr( $menu['theme_location'] )
 		);
 	}
 

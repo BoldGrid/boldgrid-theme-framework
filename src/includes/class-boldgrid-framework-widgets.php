@@ -91,20 +91,15 @@ class Boldgrid_Framework_Widgets {
 	 */
 	public function wrap_widget_areas() {
 		$before_function = function ( $index, $filled = false ) {
-			$filled_data = '';
-			if ( false === $filled ) {
-				$filled_data = 'data-empty-area="true"';
-			}
-
-			echo '<div data-widget-area="accordion-section-sidebar-widgets-' . esc_attr( $index ) . '" ' . $filled_data . '>';
+			echo '<div data-widget-area="accordion-section-sidebar-widgets-' . esc_attr( $index ) . '" ' . $filled ? '' : 'data-empty-area="true"' . '>';
 		};
 
 		$after_function = function ( $index, $filled = false ) {
 			echo '</div>';
 		};
 
-		add_action( 'dynamic_sidebar_before',  $before_function, 10, 2 );
-		add_action( 'dynamic_sidebar_after',  $after_function, 10, 2 );
+		add_action( 'dynamic_sidebar_before', $before_function, 10, 2 );
+		add_action( 'dynamic_sidebar_after', $after_function, 10, 2 );
 	}
 
 	/**

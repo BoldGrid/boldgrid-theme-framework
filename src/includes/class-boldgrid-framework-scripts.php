@@ -112,18 +112,6 @@ class BoldGrid_Framework_Scripts {
 		);
 
 		/**
-		 * Hide/Show Author Box
-		 */
-		if ( is_single( ) || is_author( ) ) {
-			wp_enqueue_script(
-				'hide-author-box',
-				$this->configs['framework']['js_dir'] . 'hide-author-box' . $suffix . '.js',
-				array( 'jquery' ),
-				$this->configs['version'],
-				true
-			);
-		}
-		/**
 		 * Check to see if comments are open before enqueuing the WP core comment-reply js.
 		 *
 		 * @since 1.0.0

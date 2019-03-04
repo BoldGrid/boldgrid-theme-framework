@@ -69,13 +69,12 @@ class Boldgrid_Framework_Control_Palette extends WP_Customize_Control {
 		// The following attributes that are not escaped are all booleans.
 		 ?>
 		<ul class='boldgrid-inactive-palette'
-			 data-is-default="<?php echo ! empty( $color_palette['default'] ); ?>"
-			 data-is-active="<?php echo ! empty( $color_palette['is_active'] ); ?>"
+			 data-is-default="<?php echo esc_attr( ! empty( $color_palette['default'] ) ); ?>"
+			 data-is-active="<?php echo esc_attr( ! empty( $color_palette['is_active'] ) ); ?>"
 			 data-color-palette-format="<?php echo esc_attr( $color_palette['format'] ); ?>"
-			 data-copy-on-mod="<?php echo ! empty( $color_palette['copy_on_mod'] ); ?>"
+			 data-copy-on-mod="<?php echo esc_attr( ! empty( $color_palette['copy_on_mod'] ) ); ?>"
 			 data-palette-id="<?php echo esc_attr( $palette_id ); ?>"
-			<?php echo ! empty( $color_palette['neutral-color'] )
-				? 'data-neutral-color="' . esc_attr( $color_palette['neutral-color'] ) . '"' : '';?>>
+			<?php echo ! empty( $color_palette['neutral-color'] ) ? 'data-neutral-color="' . esc_attr( $color_palette['neutral-color'] ) . '"' : '';?>>
 			<li class='boldgrid-palette-colors'>
 				<?php
 				foreach ( $color_palette['colors'] as $key => $color ) :  ?>

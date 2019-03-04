@@ -155,7 +155,7 @@ class Boldgrid_Framework_Title {
 		if ( isset( $_POST[ $this->configs['title']['hide'] ] ) ) {
 
 			// Validate "show title" post meta, and abort on failure.
-			$value = $_POST[ $this->configs['title']['hide'] ];
+			$value = ( string ) absint( $_POST[ $this->configs['title']['hide'] ] );
 
 			if ( ! in_array( $value, array( '0', '1', 'global' ), true ) ) {
 				return;

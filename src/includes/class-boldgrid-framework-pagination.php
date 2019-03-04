@@ -192,12 +192,10 @@ class BoldGrid_Framework_Pagination {
 			],
 		];
 
-		$page_links = wp_kses( $output, $allowed );
-
 		if ( $args['echo'] ) {
-			printf( $page_links );
+			printf( wp_kses( $output, $allowed ) );
 		} else {
-			return $page_links;
+			return wp_kses( $output, $allowed );
 		}
 	}
 }

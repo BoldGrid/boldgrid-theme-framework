@@ -130,11 +130,15 @@ class Boldgrid_Framework_Title {
 			</a>
 			<div class="options">
 				<?php foreach ( $options as $option ) : ?>
-					<?php $value_displayed = $option['name'] . ( ! empty( $option['post_text'] ) ? sprintf( ' <span class="template-subtitle">%1$s</span>', $option['post_text'] ) : '' ); ?>
-					<label>
-						<input type="radio" name="<?php echo esc_attr( $this->configs['title']['hide'] ); ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo esc_attr( $option['checked'] ? '1' : '0' ); ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
-						<?php echo '<span>' . $value_displayed . '</span>'; ?>
-					</label>
+				<label>
+					<input type="radio" name="<?php echo esc_attr( $this->configs['title']['hide'] ); ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo esc_attr( $option['checked'] ? '1' : '0' ); ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
+					<span>
+						<?php echo esc_html( $option['name'] ); ?>
+						<?php if ( ! empty( $option['post_text'] ) ) : ?>
+						<span class="template-subtitle"><?php echo esc_html( $option['post_text'] ); ?></span>
+						<?php endif; ?>
+					</span>
+				</label>
 				<?php endforeach; ?>
 				<p>
 					<a href="" class="button"><?php esc_html_e( 'OK', 'bgtfw' ); ?></a>

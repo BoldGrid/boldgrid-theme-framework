@@ -145,10 +145,14 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 		 * @return string $breadcrumb The breadcrumb trail displayed.
 		 */
 		public function get_breadcrumb() {
-			if ( ! empty( $this->panel ) && ! empty( $this->manager->get_panel( $this->panel )->breadcrumb ) ) {
-				$this->breadcrumb = rtrim( $this->manager->get_panel( $this->panel )->breadcrumb ) . ' &#9656; ' . $this->get_panel_link( $this->manager->get_panel( $this->panel )->id, $this->manager->get_panel( $this->panel )->title );
-			} else {
-				$this->breadcrumb = '<span class="dashicons dashicons-admin-home"></span>';
+			$panel = $this->panel;
+			if ( ! empty( $panel ) ) {
+				$breadcrumb = $this->manager->get_panel( $panel )->breadcrumb;
+				if ( ! empty( $breadcrumb ) ) {
+					$this->breadcrumb = rtrim( $breadcrumb ) . ' &#9656; ' . $this->get_panel_link( $this->manager->get_panel( $panel )->id, $this->manager->get_panel( $panel )->title );
+				} else {
+					$this->breadcrumb = '<span class="dashicons dashicons-admin-home"></span>';
+				}
 			}
 
 			return $this->breadcrumb;
@@ -186,14 +190,14 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 		protected function content_template() {
 			?>
 			<li class="panel-meta customize-info accordion-section <# if ( ! data.description ) { #> cannot-expand<# } #>">
-				<button class="customize-panel-back" tabindex="-1"><span class="screen-reader-text"><?php _e( 'Back', 'bgtfw' ); ?></span></button>
+				<button class="customize-panel-back" tabindex="-1"><span class="screen-reader-text"><?php esc_html_e( 'Back', 'bgtfw' ); ?></span></button>
 				<div class="accordion-section-title">
 					<span class="preview-notice">
 						{{{ data.breadcrumb }}}
 						<strong class="panel-title<# if ( ! _.isEmpty( data.icon ) ) { #> {{ data.icon }}<# } #>">{{ data.title }}</strong>
 					</span>
 					<# if ( data.description ) { #>
-						<button type="button" class="customize-help-toggle dashicons dashicons-editor-help" aria-expanded="false"><span class="screen-reader-text"><?php _e( 'Help', 'bgtfw' ); ?></span></button>
+						<button type="button" class="customize-help-toggle dashicons dashicons-editor-help" aria-expanded="false"><span class="screen-reader-text"><?php esc_html_e( 'Help', 'bgtfw' ); ?></span></button>
 					<# } #>
 				</div>
 				<# if ( data.description ) { #>
@@ -222,7 +226,7 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 			<li id="accordion-panel-{{ data.id }}" class="accordion-section control-section control-panel control-panel-{{ data.type }}">
 				<h3 class="accordion-section-title<# if ( ! _.isEmpty( data.icon ) ) { #> {{ data.icon }}<# } #>" tabindex="0">
 					{{ data.title }}
-					<span class="screen-reader-text"><?php _e( 'Press return or enter to open this panel', 'bgtfw' ); ?></span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open this panel', 'bgtfw' ); ?></span>
 				</h3>
 				<ul class="accordion-sub-container control-panel-content"></ul>
 			</li>

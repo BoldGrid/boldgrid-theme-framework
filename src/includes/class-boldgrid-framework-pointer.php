@@ -111,40 +111,40 @@ class Boldgrid_Framework_Pointer {
 		}
 
 		$pointers = json_encode( $pointers );
-		echo <<<HTML
+		?>
 		<script>
-		jQuery( document ).ready( function( $ ) {
-			var WPHelpPointer = {$pointers};
-			$.each( WPHelpPointer.pointers, function( i ) {
-				setTimeout( function() {
-					$( '#accordion-section-colors' ).on( 'click.boldgrid-help-pointer', function() {
-						setTimeout( function() {
-							wp_help_pointer_open( i );
-						}, 1000 );
-					} );
-				}, 1000 );
-			} );
-
-			function wp_help_pointer_open( i ) {
-				pointer = WPHelpPointer.pointers[ i ];
-				options = $.extend( pointer.options, {
-					pointerClass: 'wp-pointer boldgrid-color-palette-help',
-					close: function() {
-						$.post( ajaxurl, {
-							pointer: pointer.pointer_id,
-							action: 'dismiss-wp-pointer'
+			jQuery( document ).ready( function( $ ) {
+				var WPHelpPointer = {$pointers};
+				$.each( WPHelpPointer.pointers, function( i ) {
+					setTimeout( function() {
+						$( '#accordion-section-colors' ).on( 'click.boldgrid-help-pointer', function() {
+							setTimeout( function() {
+								wp_help_pointer_open( i );
+							}, 1000 );
 						} );
-
-						//Remove After dismissing so that it wont show anymore
-						$( '.boldgrid-color-palette-help' ).remove();
-					}
+					}, 1000 );
 				} );
 
-				$( pointer.target ).pointer( options ).pointer( 'open' );
-				$( '#accordion-section-colors' ).off( 'click.boldgrid-help-pointer' );
-			}
-		} );
+				function wp_help_pointer_open( i ) {
+					pointer = WPHelpPointer.pointers[ i ];
+					options = $.extend( pointer.options, {
+						pointerClass: 'wp-pointer boldgrid-color-palette-help',
+						close: function() {
+							$.post( ajaxurl, {
+								pointer: pointer.pointer_id,
+								action: 'dismiss-wp-pointer'
+							} );
+
+							//Remove After dismissing so that it wont show anymore
+							$( '.boldgrid-color-palette-help' ).remove();
+						}
+					} );
+
+					$( pointer.target ).pointer( options ).pointer( 'open' );
+					$( '#accordion-section-colors' ).off( 'click.boldgrid-help-pointer' );
+				}
+			} );
 		</script>
-HTML;
+		<?php
 	}
 }

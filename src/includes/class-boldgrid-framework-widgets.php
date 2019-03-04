@@ -207,7 +207,17 @@ class Boldgrid_Framework_Widgets {
 		} );
 
 		// Set primary sidebar as first in array.
-		$wp_registered_sidebars = [ 'primary-sidebar' => $wp_registered_sidebars['primary-sidebar'] ] + $wp_registered_sidebars;
+		$sidebars = [ 'primary-sidebar' => $wp_registered_sidebars['primary-sidebar'] ] + $wp_registered_sidebars;
+
+		// Unregister all registered sidebars.
+		foreach( $sidebars as $sidebar => $settings ) {
+			unregister_sidebar( $sidebar );
+		}
+
+		// Register all sidebars in our custom order.
+		foreach( $sidebars as $sidebar => $settings ) {
+			register_sidebar( $settings );
+		}
 	}
 
 	/**

@@ -528,7 +528,6 @@ class BoldGrid_Framework {
 		// Actions.
 		$this->loader->add_action( 'boldgrid_activate_framework', $activate, 'do_activate' );
 		$this->loader->add_action( 'boldgrid_framework_reset', $activate, 'reset' );
-		$this->loader->add_action( 'wp_ajax_boldgrid_reset_theme_mods', $activate, 'undo_theme_mod_transfer' );
 
 		if ( true === $this->configs['tgm']['enabled'] ) {
 			$this->loader->add_action( 'tgmpa_register', $activate, 'register_required_plugins' );

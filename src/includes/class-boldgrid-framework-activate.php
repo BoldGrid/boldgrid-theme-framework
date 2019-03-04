@@ -88,39 +88,6 @@ class Boldgrid_Framework_Activate {
 	}
 
 	/**
-	 * Remove any theme mods that were transferred to this theme
-	 *
-	 * @since 1.0.0
-	 */
-	public function undo_theme_mod_transfer() {
-		$accept = true;
-		$data = wp_unslash( $_POST['data']['accept'] );
-
-		if ( ! empty( $data ) ) {
-			$accept = $data;
-		}
-		if ( false === $accept ) {
-			$theme_mods = get_option( 'theme_mods_' . get_stylesheet(), array() );
-			if ( ! empty( $theme_mods['transferred_theme_mods'] ) && is_array( $theme_mods['transferred_theme_mods'] ) ) {
-				foreach ( $theme_mods['transferred_theme_mods'] as $theme_mod ) {
-					unset( $theme_mods[ $theme_mod ] );
-				}
-				$theme_mods['transferred_theme_mods'] = array();
-			}
-
-			update_option( 'theme_mods_' . get_stylesheet(), $theme_mods );
-
-			// Compile All SCSS again!
-			$this->scss->force_update_css();
-		} else {
-			// If accepted, reset the array of theme mods.
-			set_theme_mod( 'transferred_theme_mods', array() );
-		}
-
-		wp_die();
-	}
-
-	/**
 	 * Check & set the default palette theme mod and compile the css
 	 * for a user that has not selected a new palette and uses
 	 * the theme's defined default palette.

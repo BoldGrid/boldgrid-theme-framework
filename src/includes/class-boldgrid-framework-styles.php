@@ -67,21 +67,22 @@ class BoldGrid_Framework_Styles {
 		// Enqueue styles for Gutenberg.
 		$config = $this->configs;
 		add_action( 'enqueue_block_editor_assets', function() use ( $files, $config ) {
-			$gutenberg = array();
 			foreach ( $files as $file ) {
 				$handle = explode( '?', basename( $file ) );
 				$handle = basename( basename( $handle[0], '.css' ), '.min' );
-				$query = $handle[1];
-				parse_str( $handle[1] );
-				$gutenberg[] = array(
-					'handle' => $handle,
-					'file' => $file,
-					'version' => ! empty( $version ) ? $version : null,
-				);
-			}
 
-			foreach ( $gutenberg as $ss ) {
-				wp_enqueue_style( $ss['handle'], $ss['file'], ! is_null( $ss['version'] ) && $ss['version'] );
+				// Parse version information for style from asset passed.
+				$version = null;
+				$parsed = wp_parse_url( $file );
+
+				if ( ! empty( $parsed['query'] ) ) {
+					wp_parse_str( $parsed['query'], $data );
+					if ( ! empty( $data['version'] ) ) {
+						$version = $data['version'];
+					}
+				}
+
+				wp_enqueue_style( $handle, $file, $version );
 			}
 
 			// Add Kirki dynamically generated styles.

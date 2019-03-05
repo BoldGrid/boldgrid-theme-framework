@@ -156,9 +156,10 @@ class BoldGrid {
 		}
 
 		// Site title link.
-		$link = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo( 'name' ) . '</a>';
 		$display = get_theme_mod( 'bgtfw_site_title_display' ) === 'hide' ? ' screen-reader-text' : '';
-		echo '<' . $title_tag . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . $display . '">' . $link . '</' . $title_tag . '>';
+		echo '<' . esc_html( $title_tag ) . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . esc_attr( $display ) . '">' .
+			'<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo( 'name' ) . '</a>' .
+			'</' . esc_html( $title_tag ) . '>';
 	}
 
 	/**

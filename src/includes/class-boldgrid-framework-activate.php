@@ -155,7 +155,7 @@ class Boldgrid_Framework_Activate {
 	 * @return array           BGTFW Configs.
 	 */
 	public function tgm_override( $configs ) {
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		include_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 		foreach ( $configs['tgm']['renamed_plugins'] as $renamed ) {
 

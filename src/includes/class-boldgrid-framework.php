@@ -637,7 +637,6 @@ class BoldGrid_Framework {
 		self::customizer_kirki();
 		self::customizer_effects();
 		self::customizer_widget_meta();
-		self::customizer_starter_content();
 		self::customizer_search();
 		self::customizer_notifications();
 	}
@@ -875,44 +874,6 @@ class BoldGrid_Framework {
 			$this->loader->add_filter( 'dynamic_sidebar_before', $widget_meta, 'add_customizer_sidebar_styles', 1 );
 		} else {
 			$this->loader->add_filter( 'bgtfw_inline_css', $widget_meta, 'add_frontend_sidebar_styles' );
-		}
-	}
-
-	/**
-	 * This defines the core functionality of the framework's customizer start content import button.
-	 *
-	 * @since    2.0.0
-	 * @access   private
-	 */
-	private function customizer_starter_content() {
-		$starter_content = new Boldgrid_Framework_Customizer_Starter_Content( $this->configs );
-		$query = new Boldgrid_Framework_Customizer_Starter_Content_Query();
-		$suggest = new Boldgrid_Framework_Customizer_Starter_Content_Suggest( $this->configs );
-		$plugins = new Boldgrid_Framework_Customizer_Starter_Content_Plugins( $this->configs );
-
-		// Import the starter content.
-		$this->loader->add_action( 'customize_preview_init', $query, 'make_auto_drafts_queryable' );
-		$this->loader->add_action( 'customize_register', $starter_content, 'add_hooks' );
-		$this->loader->add_filter( 'get_theme_starter_content', $starter_content, 'get_theme_starter_content', 10, 2 );
-
-		// Suggest the user load starter content.
-		$this->loader->add_action( 'wp_footer', $suggest, 'wp_footer' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $suggest, 'wp_enqueue_scripts' );
-		$this->loader->add_action( 'wp_ajax_bgtfw_starter_content_suggested', $suggest, 'ajax_suggested' );
-
-		// Allow plugins to be installed before starter content is imported.
-		$this->loader->add_action( 'wp_ajax_tgmpa-bulk-install', $plugins, 'tgmpa_bulk_install' );
-		$this->loader->add_action( 'wp_ajax_tgmpa-bulk-activate', $plugins, 'tgmpa_bulk_install' );
-		$this->loader->add_action( 'tgmpa_register', $plugins, 'tgmpa_register' );
-		$this->loader->add_filter( 'tgmpa_load', $plugins, 'tgmpa_load' );
-		$this->loader->add_filter( 'tgmpa_die_on_api_error', $plugins, 'tgmpa_die_on_api_error' );
-		$this->loader->add_filter( 'bgtfw_register_tgmpa', $plugins, 'bgtfw_register_tgmpa' );
-		$this->loader->add_action( 'wp_ajax_bgtfw-post-plugin-setup', $plugins, 'post_plugin_setup' );
-		$this->loader->add_action( 'bgtfw_enqueue_starter_content_plugins', $plugins, 'enqueue' );
-
-		// Filters to run if we are in the Customizer and requesting Starter Content be loaded.
-		if ( BoldGrid_Framework_Customizer_Starter_Content::$fresh_site_customize ) {
-			$this->loader->add_filter( 'pre_get_posts', $starter_content, 'pre_get_posts' );
 		}
 	}
 

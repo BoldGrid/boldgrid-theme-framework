@@ -8,8 +8,9 @@
  * @author     BoldGrid <support@boldgrid.com>
  * @link       https://boldgrid.com
  *
- * Special thanks to RAWfolio LLC for their work, this is based upon:
- * @link https://github.com/rawcreative/wp-help-pointers
+ * Special thanks to Stephen Harris' guide on integrating pointers.
+ *
+ * @link https://code.tutsplus.com/articles/integrating-with-wordpress-ui-admin-pointers--wp-26853
  */
 class Boldgrid_Framework_Pointer {
 	public $screen_id;
@@ -110,11 +111,10 @@ class Boldgrid_Framework_Pointer {
 			return;
 		}
 
-		$pointers = json_encode( $pointers );
 		?>
 		<script>
 			jQuery( document ).ready( function( $ ) {
-				var WPHelpPointer = {$pointers};
+				var WPHelpPointer = <?php echo wp_json_encode( $pointers ); ?>;
 				$.each( WPHelpPointer.pointers, function( i ) {
 					setTimeout( function() {
 						$( '#accordion-section-colors' ).on( 'click.boldgrid-help-pointer', function() {

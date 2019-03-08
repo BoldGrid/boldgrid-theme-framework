@@ -30,11 +30,11 @@ class Boldgrid_Framework_Pointer {
 			$this->register_pointers( $pntrs );
 
 			add_action( 'admin_enqueue_scripts', array(
-				&$this,
+				$this,
 				'add_pointers',
 			), 1000 );
 			add_action( 'admin_print_footer_scripts', array(
-				&$this,
+				$this,
 				'add_scripts',
 			), 1001 );
 		}

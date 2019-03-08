@@ -131,6 +131,7 @@ class Boldgrid_Framework_Title {
 			<div class="options">
 				<?php foreach ( $options as $option ) : ?>
 				<label>
+					<?php $value_displayed = $option['name'] . ( ! empty( $option['post_text'] ) ? sprintf( ' <span class="template-subtitle">%1$s</span>', $option['post_text'] ) : '' ); ?>
 					<input type="radio" name="<?php echo esc_attr( $this->configs['title']['hide'] ); ?>" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['checked'] ); ?> data-default-option="<?php echo esc_attr( $option['checked'] ? '1' : '0' ); ?>" data-value-displayed="<?php echo esc_attr( $value_displayed ); ?>" />
 					<span>
 						<?php echo esc_html( $option['name'] ); ?>

@@ -167,13 +167,6 @@ class Boldgrid_Framework_Editor {
 
 			$async->webfont_loader();
 			$async->webfont_loader_script();
-
-			$local_fonts = new Kirki_Modules_Webfonts_Local(
-				Kirki_Modules_Webfonts::get_instance(),
-				Kirki_Fonts_Google::get_instance()
-			);
-
-			$local_fonts->add_styles();
 		}
 	}
 

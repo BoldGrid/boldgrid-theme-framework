@@ -22,11 +22,6 @@ return array(
 		array(
 			'name'      => 'BoldGrid Post and Page Builder',
 			'slug'      => 'post-and-page-builder',
-			'required'  => true,
-		),
-		array(
-			'name'      => 'BoldGrid Backup',
-			'slug'      => 'boldgrid-backup',
 			'required'  => false,
 		),
 		array(

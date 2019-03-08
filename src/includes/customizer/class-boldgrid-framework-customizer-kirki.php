@@ -171,5 +171,6 @@ Kirki::add_config(
 	array(
 		'option_type' => 'theme_mod',
 		'capability'  => 'edit_theme_options',
+		'gutenberg_support' => true,
 	)
 );

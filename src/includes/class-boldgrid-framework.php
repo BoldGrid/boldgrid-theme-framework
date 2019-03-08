@@ -206,7 +206,7 @@ class BoldGrid_Framework {
 		require_once trailingslashit( __DIR__ ) . 'tgm/class-tgm-plugin-activation.php';
 
 		// Loader instance.
-		$this->loader = new Boldgrid_Framework_Loader( );
+		$this->loader = new Boldgrid_Framework_Loader();
 	}
 
 	/**
@@ -258,6 +258,9 @@ class BoldGrid_Framework {
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
 		$custom_header = new Boldgrid_Framework_Custom_Header( $this->configs );
+
+		// Disable Kirki Telemetry.
+		add_filter( 'kirki_telemetry', '__return_false' );
 
 		// Set the is_editing_boldgrid_theme filter to true for any theme using BGTFW.
 		add_filter( 'is_editing_boldgrid_theme', '__return_true', 20 );

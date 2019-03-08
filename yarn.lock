@@ -8055,9 +8055,9 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-"kirki-toolkit@https://github.com/aristath/kirki.git#v3.0.35.1":
-  version "3.0.27"
-  resolved "https://github.com/aristath/kirki.git#70967e0c36068905601d4be7d5a9281908cad263"
+"kirki-toolkit@https://github.com/timelsass/kirki.git#develop":
+  version "3.0.38"
+  resolved "https://github.com/timelsass/kirki.git#7abf67a3d90f0896f26c28fd02dfdd8b61e12858"
 
 lazy-req@^1.0.0:
   version "1.1.0"

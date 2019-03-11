@@ -97,7 +97,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * Control content can alternately be rendered in JS. See WP_Customize_Control::print_template().
 		 *
-		 * @since 3.4.0
+		 * @since 2.1.1
 		 */
 		protected function render_content() {}
 

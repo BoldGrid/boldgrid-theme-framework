@@ -83,6 +83,25 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		}
 
 		/**
+		 * Render the control's content.
+		 *
+		 * NOTE: This is intentionally left empty to override the parent's render_content() since
+		 * we are providing the template in JS.
+		 *
+		 * @link https://make.wordpress.org/core/2014/11/17/jsunderscore-template-rendered-custom-customizer-controls-in-wordpress-4-1/
+		 *
+		 * Allows the content to be overridden without having to rewrite the wrapper in `$this::render()`.
+		 *
+		 * Supports basic input types `text`, `checkbox`, `textarea`, `radio`, `select` and `dropdown-pages`.
+		 * Additional input types such as `email`, `url`, `number`, `hidden` and `date` are supported implicitly.
+		 *
+		 * Control content can alternately be rendered in JS. See WP_Customize_Control::print_template().
+		 *
+		 * @since 3.4.0
+		 */
+		protected function render_content() {}
+
+		/**
 		 * An Underscore (JS) template for this control's content (but not its container).
 		 *
 		 * Class variables for this control class are available in the `data` JS object;

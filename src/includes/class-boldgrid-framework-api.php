@@ -1153,6 +1153,12 @@ class BoldGrid {
 
 		if ( ! empty( $theme_mod ) ) {
 			foreach ( $theme_mod as $section ) {
+
+				// Skip loop if no items.
+				if ( empty( $section['items'] ) ) {
+					continue;
+				}
+
 				$markup .= '<div class="boldgrid-section">';
 				$markup .= '<div class="' . $section['container'] . '">';
 				$chunks = array_chunk( $section['items'], 6, true );

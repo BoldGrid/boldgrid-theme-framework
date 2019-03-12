@@ -146,12 +146,12 @@ if ( class_exists( 'WP_Customize_Panel' ) ) {
 		 */
 		public function get_breadcrumb() {
 			$panel = $this->panel;
+			$this->breadcrumb = '<span class="dashicons dashicons-admin-home"></span>';
+
 			if ( ! empty( $panel ) ) {
 				$breadcrumb = $this->manager->get_panel( $panel )->breadcrumb;
 				if ( ! empty( $breadcrumb ) ) {
 					$this->breadcrumb = rtrim( $breadcrumb ) . ' &#9656; ' . $this->get_panel_link( $this->manager->get_panel( $panel )->id, $this->manager->get_panel( $panel )->title );
-				} else {
-					$this->breadcrumb = '<span class="dashicons dashicons-admin-home"></span>';
 				}
 			}
 

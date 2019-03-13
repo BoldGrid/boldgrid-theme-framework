@@ -97,32 +97,35 @@ class Boldgrid_Framework_Title {
 		}
 
 		$post_meta = get_post_meta( $post->ID, $this->configs['title']['hide'], true );
-		$global = $this->get_global( $post->post_type );
-
 		$title = sprintf( '%1$s %2$s', 'post' === $post->post_type ? __( 'Post', 'bgtfw' ) : __( 'Page', 'bgtfw' ), __( 'Title', 'bgtfw' ) );
 
 		$options = array(
-			array(
-				'name' => __( 'Use Global Setting', 'bgtfw' ),
-				'value' => 'global',
-				'checked' => 'global' === $post_meta || '' === $post_meta,
-				'post_text' => 'show' === $global ? __( 'Show', 'bgtfw' ) : __( 'Hide', 'bgtfw' ),
-			),
-			array(
+			'global' => array(
 				'name' => __( 'Show', 'bgtfw' ),
-				'value' => '1',
-				'checked' => '1' === $post_meta,
+				'value' => 'global',
+				'checked' => '0' !== $post_meta,
 				'post_text' => $this->configs['title']['meta_box'][ $post->post_type ]['show_post_text'],
 			),
-			array(
+			'hide' => array(
 				'name' => __( 'Hide', 'bgtfw' ),
 				'value' => '0',
 				'checked' => '0' === $post_meta,
 				'post_text' => $this->configs['title']['meta_box'][ $post->post_type ]['hide_post_text'],
 			),
 		);
-		?>
 
+		/**
+		 * Filter the available control options.
+		 *
+		 * @since 2.1.0
+		 *
+		 * @param array $options   Default post options.
+		 * @param array $post      Current Post Object.
+		 * @param array $post_meta Post Meta Value.
+		 */
+		$options = apply_filters( 'bgtfw_page_title_options', $options, $post, $post_meta );
+
+		?>
 		<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-page-title">
 			<?php echo esc_html( $title ); ?>: <span class="value-displayed">...</span>
 			<a class="edit" href="">

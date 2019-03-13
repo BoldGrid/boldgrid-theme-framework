@@ -880,7 +880,7 @@ HTML;
 			$section    = $wp_customize->get_section( $section_id );
 
 			if ( $section ) {
-				$section->description = '<a target="_blank" class="boldgrid-icon-newtab" href="https://www.boldgrid.com/support/working-with-menus-in-boldgrid/">' . __( 'Menu Tutorial', 'bgtfw' ) . '</a>';
+				$section->description = '<a target="_blank" class="boldgrid-icon-newtab dashicons-before dashicons-external" href="https://www.boldgrid.com/support/working-with-menus-in-boldgrid/">' . __( 'Menu Tutorial', 'bgtfw' ) . '</a>';
 			}
 		}
 	}

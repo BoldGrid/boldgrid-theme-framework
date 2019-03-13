@@ -564,7 +564,7 @@ class Boldgrid_Framework_Customizer_Colors {
 				'content' => sprintf(
 					/* translators: 1: instructions on using the color palette system for new users 2: name of link for tutorials on WordPress customizer */
 					'%1$s <a class="boldgrid-icon-newtab dashicons-before dashicons-external" href="https://www.boldgrid.com/support/customizer-how-to-use-the-colors-tab/" target="_blank">%2$s</a>.',
-					esc_html__( 'The BoldGrid Color Palette System allows you to create custom color palettes. Try changing the order of colors in a palette, or use the Palette Creator to automatically generate new palettes. For more information about using this tool, view our', 'bgtfw' ),
+					esc_html__( 'The BoldGrid Color Palette System allows you to create custom color palettes. Try changing the order of colors in a palette, or use Suggest Palettes to automatically generate new palettes. For more information about using this tool, view our', 'bgtfw' ),
 					esc_html__( 'customizer tutorials', 'bgtfw' )
 				),
 				'position' => [

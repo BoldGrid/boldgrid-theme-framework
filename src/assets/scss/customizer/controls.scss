@@ -15,12 +15,9 @@
 	transform: translateX(-100%);
 }
 
-.boldgrid-icon-newtab {
-	background: url(../../img/icon-newpage.png) no-repeat right center;
-	display: inline;
-	margin-right: 2px;
-	padding-right: 14px;
-	background-position: 100% 4px;
+.boldgrid-icon-newtab.dashicons-before:before {
+	font-size: 17px;
+	vertical-align: middle;
 }
 
 .overlay {

@@ -485,6 +485,15 @@ class BoldGrid_Framework_Starter_Content {
 				return $setting;
 			} );
 		}
+
+		// Loop through any theme mods that have not been defaulted by a control config.
+		foreach ( $config['theme-mods'] as $name => $default ) {
+			if ( empty( $config['customizer']['controls'][ $name ]['settings'] ) ) {
+				add_filter( "theme_mod_{$name}", function( $setting ) use ( $default ) {
+					return ( false === $setting ) ? $default : $setting;
+				} );
+			}
+		}
 	}
 
 	/**

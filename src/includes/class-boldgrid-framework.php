@@ -361,17 +361,13 @@ class BoldGrid_Framework {
 	private function define_theme_hooks() {
 		$styles  = new BoldGrid_Framework_Styles( $this->configs );
 		$scripts = new BoldGrid_Framework_Scripts( $this->configs );
-		$boldgrid_theme   = new BoldGrid( $this->configs );
-		$template         = new Boldgrid_Framework_Template_Config( $this->configs );
+		$boldgrid_theme = new BoldGrid( $this->configs );
 
 		// Load Theme Wrapper.
 		if ( true === $this->configs['boldgrid-parent-theme'] ) {
 			$wrapper  = new Boldgrid_Framework_Wrapper();
 			$this->loader->add_filter( 'template_include', $wrapper, 'wrap', 109 );
 		}
-
-		// Register Locations.
-		$this->loader->add_action( 'boldgrid-theme-location', $template, 'do_location_action', 10, 2 );
 
 		// Add Theme Styles.
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );

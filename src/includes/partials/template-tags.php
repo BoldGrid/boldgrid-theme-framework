@@ -283,7 +283,7 @@ if ( ! function_exists( 'bgtfw_get_edit_link' ) ) {
 	 * @return string $link HTML to display edit link button.
 	 */
 	function bgtfw_get_edit_link( $url = null, $text = 'Click to edit.', $before = '<span class="bgtfw-edit-link">', $after = '</span>' ) {
-		if ( ! $url ) {
+		if ( null === $url ) {
 			return;
 		}
 

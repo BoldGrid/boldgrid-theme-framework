@@ -148,7 +148,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	 * @since 1.1.6
 	 *
 	 * @param array $args Array of wp_nav_menu() arguments.
-	 * @return array.
+	 * @return array $args Modfied wp_nav_menu() arguments.
 	 */
 	public function wp_nav_menu_args( $args ) {
 		if ( is_customize_preview() && true === $this->enabled && ! empty( $args['theme_location'] ) ) {

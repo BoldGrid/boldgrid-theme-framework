@@ -45,7 +45,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	public function __construct( $configs ) {
 		$this->configs = $configs;
 
-		$this->enabled = $configs['customizer-options']['edit']['enabled'];
+		$this->enabled = (bool) $configs['customizer-options']['edit']['enabled'];
 
 		/*
 		 * Disable edit icons based on $_GET['customize_messenger_channel'].

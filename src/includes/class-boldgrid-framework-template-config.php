@@ -33,15 +33,6 @@ class BoldGrid_Framework_Template_Config {
 	protected $configs;
 
 	/**
-	 * Locations thats have been registered for use by the theme.
-	 *
-	 * @since     1.2
-	 * @access    protected
-	 * @var       array     $enabled_locations       List of registered locations.
-	 */
-	protected $enabled_locations = array();
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param     array $configs       The BoldGrid Theme Framework configurations.

@@ -39,7 +39,7 @@ return array(
 	'bootstrap' => false,
 
 	// End Required.
-	'text_domain' => 'boldgrid-theme-framework',
+	'textdomain' => $theme_data->get( 'TextDomain' ),
 
 	'font' => array(
 		'translators' => 'on',

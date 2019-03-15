@@ -87,7 +87,6 @@ class BoldGrid_Framework {
 		$this->error_404();
 		$this->search_forms();
 		$this->pagination();
-		$this->ninja_forms();
 		$this->woocommerce();
 		$this->title();
 	}
@@ -125,7 +124,6 @@ class BoldGrid_Framework {
 	 * - Boldgrid_Framework_Il8n                 Defines internationalization functionality.
 	 * - Boldgrid_Framework_Loader               Orchestrates the hooks of the plugin.
 	 * - Boldgrid_Framework_Menu                 Contains the hooks for registering nav menus and setting locations.
-	 * - Boldgrid_Framework_Ninja_Forms          Adds filters for Ninja Forms to have Bootstrap styles applied.
 	 * - Boldgrid_Framework_Pointer              Responsible for the WordPress pointer functionality seen in customizer.
 	 * - Boldgrid_Framework_Schema_Markup        Contains markup that theme's utilize to add schema.org markup.
 	 * - Boldgrid_Framework_Scripts              Enqueue the javascript a theme utilizes.
@@ -169,7 +167,6 @@ class BoldGrid_Framework {
 			'links',
 			'loader',
 			'menu',
-			'ninja-forms',
 			'pagination',
 			'ppb',
 			'pointer',
@@ -950,25 +947,6 @@ class BoldGrid_Framework {
 	private function search_forms() {
 		$search_forms = new Boldgrid_Framework_Search_Forms( $this->configs );
 		$this->loader->add_action( 'boldgrid_search_form', $search_forms, 'boldgrid_search_template' );
-	}
-
-	/**
-	 * Add in Bootstrap CSS Classes to Ninja Forms Forms.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function ninja_forms() {
-		$ninja_forms = new Boldgrid_Framework_Ninja_Forms( $this->configs );
-		$this->loader->add_action( 'ninja_forms_field', $ninja_forms, 'forms_field', 10, 2 );
-		$this->loader->add_action( 'ninja_forms_label_class', $ninja_forms, 'forms_label_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_display_field_wrap_class', $ninja_forms, 'forms_field_wrap_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_form_class', $ninja_forms, 'forms_form_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_form_wrap_class', $ninja_forms, 'forms_form_wrap_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_display_field_desc_class', $ninja_forms, 'field_description_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_display_field_processing_error_class', $ninja_forms, 'field_error_message_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_display_required_items_class', $ninja_forms, 'form_required_items_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_display_response_message_class', $ninja_forms, 'form_response_message_class', 10, 2 );
 	}
 
 	/**

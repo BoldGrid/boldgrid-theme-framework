@@ -6,3 +6,14 @@
 		max-width: (1170 * .75) + px !important;
 	}
 }
+
+// Gutenberg Button Styles
+// Buttons
+.entry-content a.wp-block-button__link {
+	&, &:hover, &:focus {
+		text-decoration: none;
+	}
+	&:hover, &:focus {
+		opacity: .9;
+	}
+}

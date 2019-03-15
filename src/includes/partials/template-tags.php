@@ -152,18 +152,18 @@ function boldgrid_entry_footer() {
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || $comment_count ) ) {
 
-		$icon = '';
-		$class = 'comments-link';
+		$icon = 'bgtfw_blog_post_comment_icon';
+		$class = 'singular';
 
 		if ( $comment_count > 1 ) {
-			$icon = get_theme_mod( 'bgtfw_blog_post_comments_icon' );
-			$class .= ' multiple';
-		} else {
-			$icon = get_theme_mod( 'bgtfw_blog_post_comment_icon' );
-			$class .= ' singular';
+			$icon = 'bgtfw_blog_post_comments_icon';
+			$class .= 'multiple';
 		}
 
-		echo '<span class="' . $class . '">';
+		$icon = get_theme_mod( $icon );
+		$class .= ' comments-link';
+
+		echo '<span class="' . esc_attr( $class ) . '">';
 
 		echo '<i class="fa fa-fw fa-' . esc_attr( $icon ) . '" aria-hidden="true"></i> ';
 
@@ -401,7 +401,6 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	$style = 'padding-top: 15px; padding-bottom: 15px;';
 	$sidebar_meta = get_theme_mod( 'sidebar_meta' );
 
-	$color_class = '';
 	$classes = array();
 
 	global $boldgrid_theme_framework;

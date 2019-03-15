@@ -90,8 +90,6 @@ class Boldgrid_Framework_Customizer_Edit {
 			// Minify if script debug is off.
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-			$stylesheet = get_stylesheet();
-
 			wp_register_script(
 				'boldgrid-framework-customizer-edit-js',
 				$this->configs['framework']['js_dir'] . 'customizer/edit' . $suffix . '.js',

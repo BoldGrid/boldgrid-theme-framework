@@ -62,10 +62,6 @@ class Boldgrid_Framework_Container {
 			$container = $this->get_header_container_classes();
 		}
 
-		if ( 'footer' === $location ) {
-			$container = $this->get_footer_container_classes();
-		}
-
 		return $container;
 	}
 

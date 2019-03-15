@@ -40,28 +40,6 @@ class BoldGrid {
 	}
 
 	/**
-	 * Just a simple endpoint for some of the functionality to run.
-	 *
-	 * @since 1.0.0
-	 */
-	public function boldgrid_api_endpoint() {
-		$this->body_classes( );
-		$this->setup_author( );
-		$this->page_menu_args( );
-	}
-
-	/**
-	 * Header.
-	 *
-	 * This will output main <header> components
-	 *
-	 * @since 1.0.0
-	 */
-	private static function boldgrid_header() {
-		do_action( 'boldgrid_header' );
-	}
-
-	/**
 	 * Doctype.
 	 *
 	 * This will output <head> components

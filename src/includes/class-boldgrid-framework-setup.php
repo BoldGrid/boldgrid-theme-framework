@@ -68,6 +68,7 @@ class BoldGrid_Framework_Setup {
 		$this->woo_commerce_setup( );
 		$this->header_image_setup( );
 		$this->custom_logo_setup();
+		$this->align_wide();
 	}
 
 	/**
@@ -255,5 +256,14 @@ class BoldGrid_Framework_Setup {
 				)
 			)
 		);
+	}
+
+	/**
+	 * Add support for alignwide and alignfull classes.
+	 *
+	 * @since 2.1.1
+	 */
+	public function align_wide() {
+		add_theme_support( 'align-wide' );
 	}
 }

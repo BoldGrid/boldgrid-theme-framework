@@ -170,8 +170,6 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				$label_class .= ' layout-selected';
 			}
 
-			/* Label */
-			$layout_label = $template;
 			?>
 			<label class="<?php echo esc_attr( $label_class ); ?>">
 				<input type="radio" name="page_template" class="theme-layout-input" value="<?php echo esc_attr( $templates[ $template ] ); ?>" <?php checked( $post_layout, $layout_value ); ?> data-value-displayed="<?php echo esc_attr( $template ); ?>" data-default-option="<?php echo esc_attr( $post_layout === $layout_value ? '1' : '0' ); ?>" />

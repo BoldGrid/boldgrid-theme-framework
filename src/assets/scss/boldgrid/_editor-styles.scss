@@ -38,3 +38,14 @@
 		}
 	}
 }
+
+// Gutenberg Button Styles
+// Buttons
+.entry-content a.wp-block-button__link {
+	&, &:hover, &:focus {
+		text-decoration: none;
+	}
+	&:hover, &:focus {
+		opacity: .9;
+	}
+}

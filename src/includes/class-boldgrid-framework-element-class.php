@@ -32,7 +32,7 @@ class Boldgrid_Framework_Element_Class {
 	 * Class/classes to be added to location when called.
 	 *
 	 * @since 2.0.0
-	 * @var string $class Class/classes to be added to element when called.
+	 * @var string|array $class Class/classes to be added to element when called.
 	 */
 	public $class;
 

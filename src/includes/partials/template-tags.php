@@ -41,7 +41,7 @@ function boldgrid_post_nav() {
 
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h2 class="sr-only"><?php _e( 'Post navigation', 'bgtfw' ); ?></h2>
+		<h2 class="sr-only"><?php esc_html_e( 'Post navigation', 'bgtfw' ); ?></h2>
 		<div class="nav-links">
 			<?php
 				previous_post_link( '<div class="' . $nav_classes['previous'] . '">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'bgtfw' ) );
@@ -325,7 +325,7 @@ if ( ! function_exists( 'bgtfw_edit_link' ) ) {
  */
 function woocommerce_widget_shopping_cart_button_view_cart() {
 	?>
-		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="btn button-primary wc-forward"><?php _e( 'View Cart', 'bgtfw' ); ?></a>
+		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="btn button-primary wc-forward"><?php esc_html_e( 'View Cart', 'bgtfw' ); ?></a>
 	<?php
 }
 
@@ -336,7 +336,7 @@ function woocommerce_widget_shopping_cart_button_view_cart() {
  */
 function woocommerce_widget_shopping_cart_proceed_to_checkout() {
 	?>
-		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="btn button-primary checkout wc-forward"><?php _e( 'Checkout', 'bgtfw' ); ?></a>
+		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="btn button-primary checkout wc-forward"><?php esc_html_e( 'Checkout', 'bgtfw' ); ?></a>
 	<?php
 }
 
@@ -431,14 +431,14 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>
 				<div class="empty-sidebar-message">
 					<?php if ( empty( $sidebar_meta[ $sidebar_id ]['title'] ) ) : ?>
-						<h2><?php _e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
+						<h2><?php esc_html_e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
 					<?php endif; ?>
-					<p><?php _e( "This sidebar doesn't have any widgets assigned to it yet.", 'bgtfw' ); ?></p>
-					<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add widgets here.', 'bgtfw' ) ?></a></p>
+					<p><?php esc_html_e( "This sidebar doesn't have any widgets assigned to it yet.", 'bgtfw' ); ?></p>
+					<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php esc_html_e( 'Add widgets here.', 'bgtfw' ) ?></a></p>
 				</div>
 				<?php elseif ( is_active_sidebar( $sidebar_id ) ) : ?>
 					<div class="add-widget-message">
-						<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add another widget.', 'bgtfw' ) ?></a></p>
+						<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php esc_html_e( 'Add another widget.', 'bgtfw' ) ?></a></p>
 					</div>
 			<?php endif; ?>
 		<?php endif; ?>

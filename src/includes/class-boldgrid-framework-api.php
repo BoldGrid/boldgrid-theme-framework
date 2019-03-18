@@ -136,7 +136,7 @@ class BoldGrid {
 		// Site title link.
 		$display = get_theme_mod( 'bgtfw_site_title_display' ) === 'hide' ? ' screen-reader-text' : '';
 		echo '<' . esc_html( $title_tag ) . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . esc_attr( $display ) . '">' .
-			'<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo( 'name' ) . '</a>' .
+			'<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a>' .
 			'</' . esc_html( $title_tag ) . '>';
 	}
 
@@ -323,9 +323,9 @@ class BoldGrid {
 		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
 
 		if ( $blog_info ) {
-			printf( $this->configs['template']['tagline'], $this->configs['template']['tagline-classes'] . $display, $blog_info );
+			printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $this->configs['template']['tagline-classes'] . $display ), esc_html( $blog_info ) );
 		} else {
-			printf( $this->configs['template']['tagline'], 'site-description invisible', $blog_info );
+			printf( wp_kses_post( $this->configs['template']['tagline'] ), 'site-description invisible', esc_html( $blog_info ) );
 		}
 	}
 
@@ -1067,10 +1067,12 @@ class BoldGrid {
 	 */
 	public static function add_class( $element = '', $class = '', $echo = true ) {
 		$el = new Boldgrid_Framework_Element_Class( $element, $class );
+		$html = (string) $el->html;
+
 		if ( $echo ) {
-			echo ( string ) $el->html;
+			echo esc_attr( $html );
 		} else {
-			return ( string ) $el->html;
+			return $html;
 		}
 	}
 
@@ -1156,7 +1158,7 @@ class BoldGrid {
 						switch ( $col_data['type'] ) {
 							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
 								$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
-								echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>';
+								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . esc_attr( BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) ) . '>';
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';
 								}

@@ -431,9 +431,11 @@ class BoldGrid_Framework {
 		add_action( 'template_redirect', function() {
 			if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {
 				add_action( 'boldgrid_header_before', function() {
-					echo '<div ' . BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ], false ) . '>';
-					echo BoldGrid::dynamic_sticky_header();
-					echo '</div>';
+					?>
+					<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
+						<?php BoldGrid::dynamic_sticky_header(); ?>
+					</div>
+					<?php
 				}, 20 );
 			}
 			if ( is_customize_preview() && ( false === get_theme_mod( 'bgtfw_fixed_header' ) || 'header-top' !== get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {

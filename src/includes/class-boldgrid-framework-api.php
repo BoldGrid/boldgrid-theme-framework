@@ -1070,7 +1070,7 @@ class BoldGrid {
 		$html = (string) $el->html;
 
 		if ( $echo ) {
-			echo esc_attr( $html );
+			echo $html;
 		} else {
 			return $html;
 		}
@@ -1158,7 +1158,7 @@ class BoldGrid {
 						switch ( $col_data['type'] ) {
 							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
 								$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
-								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . esc_attr( BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) ) . '>';
+								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>';
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';
 								}

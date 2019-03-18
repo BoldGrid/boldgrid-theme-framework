@@ -339,9 +339,17 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 *
 	 * @param string $sidebar_id The ID of the sidebar to apply styles for.
 	 */
-	public function add_customizer_sidebar_styles( $sidebar_id ) {
-		$css = $this->generate_sidebar_styles( $sidebar_id );
-		printf( '<style id="dynamic-sidebar-%1$s-css">%2$s</style>', esc_attr( $sidebar_id ), $css );
+	public function add_customizer_sidebar_styles() {
+		global $wp_registered_sidebars;
+
+		if ( empty( $wp_registered_sidebars ) ) {
+			return;
+		}
+
+		foreach ( $wp_registered_sidebars as $sidebar ) {
+			$sidebar_id = $sidebar['id'];
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "dynamic-sidebar-{$sidebar_id}", $this->generate_sidebar_styles( $sidebar_id ) );
+		}
 	}
 
 	/**

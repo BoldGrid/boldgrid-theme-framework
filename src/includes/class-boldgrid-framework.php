@@ -869,7 +869,7 @@ class BoldGrid_Framework {
 		}
 
 		if ( is_customize_preview() ) {
-			$this->loader->add_filter( 'dynamic_sidebar_before', $widget_meta, 'add_customizer_sidebar_styles', 1 );
+			$this->loader->add_action( 'wp_enqueue_scripts', $widget_meta, 'add_customizer_sidebar_styles' );
 		} else {
 			$this->loader->add_filter( 'bgtfw_inline_css', $widget_meta, 'add_frontend_sidebar_styles' );
 		}

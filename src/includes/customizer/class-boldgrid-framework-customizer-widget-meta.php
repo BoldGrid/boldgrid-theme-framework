@@ -316,7 +316,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		$rendered_title = wptexturize( $title );
 		$rendered_title = convert_smilies( $rendered_title );
 
-		printf( '<h2 %s>%s</h2>', esc_attr( $container_attributes ), esc_html( $rendered_title ) );
+		printf( '<h2 %s>%s</h2>', $container_attributes, esc_html( $rendered_title ) );
 	}
 
 	/**

@@ -891,7 +891,7 @@ HTML;
 	 * @since 1.0.0
 	 */
 	public function custom_js_output() {
-		echo '<script type="text/javascript" id="boldgrid-custom-js">' . get_theme_mod( 'custom_theme_js', '' ) . '</script>';
+		echo '<script type="text/javascript" id="boldgrid-custom-js">' . esc_js( get_theme_mod( 'custom_theme_js', '' ) ) . '</script>';
 	}
 
 	/**

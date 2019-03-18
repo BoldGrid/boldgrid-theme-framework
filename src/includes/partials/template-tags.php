@@ -503,7 +503,7 @@ function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
 			}
 		}
 
-		$style = 'style="background: ' . $color . 'url(' . $img[0] . '); background-size: cover; background-position: center center;"';
+		$style = 'style="background: ' . $color . 'url(' . esc_url( $img[0] ) . '); background-size: cover; background-position: center center;"';
 	}
 
 	return $style;

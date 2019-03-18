@@ -284,7 +284,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 * @param string $sidebar_id Sidebar ID.
 	 */
 	public function render_sidebar_start_tag( $sidebar_id ) {
-		printf( '<div class="dynamic-sidebar %s">', sanitize_title( $sidebar_id ) );
+		printf( '<div class="dynamic-sidebar %s">', esc_attr( sanitize_title( $sidebar_id ) ) );
 	}
 
 	/**
@@ -316,7 +316,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		$rendered_title = wptexturize( $title );
 		$rendered_title = convert_smilies( $rendered_title );
 
-		printf( '<h2 %s>%s</h2>', $container_attributes, esc_html( $rendered_title ) );
+		printf( '<h2 %s>%s</h2>', esc_attr( $container_attributes ), esc_html( $rendered_title ) );
 	}
 
 	/**
@@ -329,7 +329,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 * @param string $sidebar_id Sidebar ID.
 	 */
 	public function render_sidebar_end_tag( $sidebar_id ) {
-		printf( '</div><!-- / .dynamic-sidebar.%s -->', sanitize_title( $sidebar_id ) );
+		printf( '</div><!-- / .dynamic-sidebar.%s -->', esc_html( sanitize_title( $sidebar_id ) ) );
 	}
 
 	/**
@@ -341,7 +341,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 */
 	public function add_customizer_sidebar_styles( $sidebar_id ) {
 		$css = $this->generate_sidebar_styles( $sidebar_id );
-		print "<style id=\"dynamic-sidebar-{$sidebar_id}-css\">{$css}</style>";
+		printf( '<style id="dynamic-sidebar-%1$s-css">%2$s</style>', esc_attr( $sidebar_id ), $css );
 	}
 
 	/**

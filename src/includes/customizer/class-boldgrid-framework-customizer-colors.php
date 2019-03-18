@@ -276,7 +276,7 @@ class Boldgrid_Framework_Customizer_Colors {
 	public function changeset_data( $data ) {
 		global $boldgrid_theme_framework;
 		$slug = get_template();
-		$changeset_status = ! empty( $_REQUEST['customize_changeset_status'] ) ? wp_unslash( $_REQUEST['customize_changeset_status'] ) : false;
+		$changeset_status = ! empty( $_REQUEST['customize_changeset_status'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['customize_changeset_status'] ) ) : false;
 
 		if ( ! get_post_status_object( $changeset_status ) || ! in_array( $changeset_status, array( 'draft', 'pending', 'publish', 'future' ), true ) ) {
 			$changeset_status = false;

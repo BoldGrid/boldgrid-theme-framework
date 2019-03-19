@@ -81,24 +81,25 @@ function boldgrid_posted_on() {
 
 	if ( 'timeago' === $format ) {
 		$posted_on = sprintf(
-			_x( 'Posted %s ago', '%s = human-readable time difference', 'bgtfw' ),
+			esc_html_x( 'Posted %s ago', '%s = human-readable time difference', 'bgtfw' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . human_time_diff( get_the_time( 'U', $post->ID ), current_time( 'U' ) ) . '</a>'
 		);
 	}
 
 	if ( 'date' === $format ) {
 		$posted_on = sprintf(
-			_x( 'Posted on %s', 'post date', 'bgtfw' ),
+			esc_html_x( 'Posted on %s', 'post date', 'bgtfw' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
 	}
 
 	$byline = sprintf(
-		_x( 'by %s', 'post author', 'bgtfw' ),
+		esc_html_x( 'by %s', 'post author', 'bgtfw' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
-	echo '<span class="posted-on ' . esc_attr( $format ) . '">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
+	// Note: The variables $posted_on and $byline have all dynamic parts escaped above, and are safe for output at this point.
+	echo '<span class="posted-on ' . esc_attr( $format ) . '">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 endif;
 
@@ -111,40 +112,47 @@ function boldgrid_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
 
-		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( ', ' );
+		/* translators: used between each category list item, there is a space after the comma */
+		$categories_list = get_the_category_list( esc_html__( ', ', 'bgtfw' ) );
 		$categories_count = count( explode( ', ', $categories_list ) );
+
 		if ( $categories_list && boldgrid_categorized_blog() ) {
 			$class = 'singular';
-
 			$icon = is_single() ? get_theme_mod( 'bgtfw_posts_cat_icon' ) : get_theme_mod( 'bgtfw_blog_post_cat_icon' );
-			$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 
 			if ( $categories_count > 1 ) {
 				$icon = is_single() ? get_theme_mod( 'bgtfw_posts_cats_icon' ) : get_theme_mod( 'bgtfw_blog_post_cats_icon' );
-				$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 				$class = 'multiple';
 			}
 
-			printf( '<span class="cat-links %1$s">%2$s %3$s</span>', $class, $icon, $categories_list );
+			// Note: get_the_category_list already internally performs it's own escaping and cleanup, which is stored in the variable $categories_list.
+			printf( '<span class="cat-links %1$s"><i class="fa fa-fw fa-%2$s" aria-hidden="true"></i> %3$s</span>',
+				esc_attr( $class ),
+				esc_attr( $icon ),
+				$categories_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			);
 		}
 
-		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', ', ' );
+		/* translators: used between each tag list item, there is a space after the comma */
+		$tags_list = get_the_tag_list( '', esc_html__( ', ', 'bgtfw' ) );
 
 		if ( $tags_list ) {
 			$icon = is_single() ? get_theme_mod( 'bgtfw_posts_tag_icon' ) : get_theme_mod( 'bgtfw_blog_post_tag_icon' );
-			$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 			$class = 'singular';
+
 			$tags_count = count( explode( ', ', $tags_list ) );
 
 			if ( $tags_count > 1 ) {
 				$icon = is_single() ? get_theme_mod( 'bgtfw_posts_tags_icon' ) : get_theme_mod( 'bgtfw_blog_post_tags_icon' );
-				$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 				$class = 'multiple';
 			}
 
-			printf( '<span class="tags-links %1$s">%2$s %3$s</span>', $class, $icon, $tags_list );
+			// Note: The variable $tags_list uses get_the_tag_list above, which internally calls get_the_term_list, and is considered safe for output without escaping.
+			printf( '<span class="tags-links %1$s"><i class="fa fa-fw fa-%2$s" aria-hidden="true"></i> %3$s</span>',
+				esc_attr( $class ),
+				esc_attr( $icon ),
+				$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			);
 		}
 	}
 
@@ -314,7 +322,9 @@ if ( ! function_exists( 'bgtfw_edit_link' ) ) {
 	 */
 	function bgtfw_edit_link( $url ) {
 		$link = bgtfw_get_edit_link( $url );
-		echo apply_filters( 'bgtfw_edit_link', $link );
+
+		// Note: The variable $link has it's dynamic parts escaped in the method bgtfw_get_edit_link, so no further escaping at this point is necessary.
+		echo apply_filters( 'bgtfw_edit_link', $link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 
@@ -519,6 +529,8 @@ function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
  * @since 2.0.0
  */
 function bgtfw_featured_img_bg( $post_id, $theme_mod = false ) {
+
+	//Note: See the docblock comment of this method for details regarding the escaping.
 	echo bgtfw_get_featured_img_bg( $post_id, $theme_mod ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
@@ -532,7 +544,7 @@ function bgtfw_featured_img_bg( $post_id, $theme_mod = false ) {
  */
 function bgtfw_excerpt_more( $more ) {
 	global $post;
-	return '<div class="read-more"><a class="' . get_theme_mod( 'bgtfw_blog_post_readmore_type' ) . '" href="' . get_permalink( $post->ID ) . '">' . get_theme_mod( 'bgtfw_blog_post_readmore_text' ) . '</a></div>';
+	return '<div class="read-more"><a class="' . esc_attr( get_theme_mod( 'bgtfw_blog_post_readmore_type' ) ) . '" href="' . get_permalink( $post->ID ) . '">' . esc_html( get_theme_mod( 'bgtfw_blog_post_readmore_text' ) ) . '</a></div>';
 }
 
 add_filter( 'excerpt_more', 'bgtfw_excerpt_more' );

@@ -149,9 +149,15 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 			?>
 			<label class="theme-layout-label layout-default layout-selected">
 				<input type="radio" name="page_template" class="theme-layout-input" value="default" <?php echo esc_html( $checked ); ?> data-value-displayed="<?php echo esc_attr( strip_tags( $title ) . ' ' . $subtitle ); ?>" data-default-option="<?php echo esc_attr( $checked ? '1' : '0' ); ?>" />
-				<?php echo '<span>' . $title . '</span>'; ?>
+				<?php
+					// Note: The variable $title has it's dynamic parts escaped above using esc_html.
+					echo '<span>' . $title . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
 			</label>
-			<?php echo '<span>' . $subtitle . '</span>'; ?>
+			<?php
+				// Note: The variable $subtitle has it's dynamic parts escaped above using esc_html.
+				echo '<span>' . $subtitle . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			?>
 		<?php
 		foreach ( array_keys( $templates ) as $template ) {
 
@@ -226,7 +232,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 		<?php
 			if ( is_post_type_hierarchical( $post->post_type ) ) : ?>
 				<div class="advanced-toggle dashicons-before dashicons-admin-tools">
-					<p>Advanced Options</p>
+					<p><?php esc_html_e( 'Advanced Options', 'bgtfw' ); ?></p>
 					<span class="toggle-indicator" aria-hidden="true"></span>
 				</div>
 				<div class="post-attributes-advanced-wrap hide-if-js"><?php
@@ -235,7 +241,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					'exclude_tree'     => $post->ID,
 					'selected'         => $post->post_parent,
 					'name'             => 'parent_id',
-					'show_option_none' => __( '(no parent)', 'bgtfw' ),
+					'show_option_none' => esc_html__( '(no parent)', 'bgtfw' ),
 					'sort_column'      => 'menu_order, post_title',
 					'echo'             => 0,
 				);
@@ -254,8 +260,10 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				$pages = wp_dropdown_pages( $dropdown_args );
 				if ( ! empty( $pages ) ) : ?>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php esc_html_e( 'Parent', 'bgtfw' ); ?></label></p>
-					<?php echo '<span>' . $pages . '</span>'; ?>
 					<?php
+					// Note: The variable $pages has it's dynamic parts (translation string) escaped above when the variable $dropdown_args is created so no further escaping is necessary at this point.
+					echo '<span>' . $pages . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 				endif; // end empty pages check
 			endif;  // end hierarchical check.
 		?>

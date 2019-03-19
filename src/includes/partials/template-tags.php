@@ -512,10 +512,14 @@ function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
 /**
  * Echos the style for a feature image set as a background image on an element.
  *
+ * Note: The bgtfw_get_featured_img_bg method escapes output of the dynamic
+ * parts generated already.  Colors are sanitized through ariColor, and the
+ * background-image's URL is escaped using esc_url().
+ *
  * @since 2.0.0
  */
 function bgtfw_featured_img_bg( $post_id, $theme_mod = false ) {
-	echo bgtfw_get_featured_img_bg( $post_id, $theme_mod );
+	echo bgtfw_get_featured_img_bg( $post_id, $theme_mod ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**

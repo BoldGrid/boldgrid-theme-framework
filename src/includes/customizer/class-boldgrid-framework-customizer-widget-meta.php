@@ -332,8 +332,6 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 * Add sidebar inline styles for customizer preview.
 	 *
 	 * @since 2.0.0
-	 *
-	 * @param string $sidebar_id The ID of the sidebar to apply styles for.
 	 */
 	public function add_customizer_sidebar_styles() {
 		global $wp_registered_sidebars;

@@ -530,7 +530,7 @@ function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
  */
 function bgtfw_featured_img_bg( $post_id, $theme_mod = false ) {
 
-	//Note: See the docblock comment of this method for details regarding the escaping.
+	// Note: See the docblock comment of this method for details regarding the escaping.
 	echo bgtfw_get_featured_img_bg( $post_id, $theme_mod ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 

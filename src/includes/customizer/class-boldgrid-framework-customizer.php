@@ -136,7 +136,7 @@ class BoldGrid_Framework_Customizer {
 							array(
 								'title'       => __( 'Background', 'bgtfw' ),
 								/* translators: %s: a menu location's description. */
-								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the background for your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-menu-background/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help' ) . '</a></div></div>',
+								'description' => '<div class="bgtfw-description"><p>' . sprintf( esc_html__( 'Change the background for your %s location.', 'bgtfw' ), $description ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/how-to-change-the-menu-background/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
 								'panel'       => "bgtfw_menu_location_$location",
 								'capability'  => 'edit_theme_options',
 								'icon'        => 'dashicons-format-image',

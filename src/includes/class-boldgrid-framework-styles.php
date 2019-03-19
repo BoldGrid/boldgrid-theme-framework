@@ -536,9 +536,7 @@ class BoldGrid_Framework_Styles {
 			$css .= sprintf( '%s { %s }', $rule, $def );
 		}
 
-		$css = apply_filters( "$id-content", $css );
-
-		return "<style id='{$id}' type='text/css'>{$css}</style>";
+		return apply_filters( "$id-content", $css );
 	}
 
 	/**

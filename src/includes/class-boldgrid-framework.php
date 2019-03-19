@@ -806,7 +806,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_print_styles', $base, 'control_styles' );
 
 		// This hook can be used to add any styles to the head.
-		$this->loader->add_action( 'wp_head', $base, 'add_head_styles', 9001 );
+		$this->loader->add_action( 'wp_enqueue_scripts', $base, 'add_head_styles' );
 
 		// Output custom JS to live site.
 		$this->loader->add_action( 'wp_footer', $base, 'custom_js_output' );

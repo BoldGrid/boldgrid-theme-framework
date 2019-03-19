@@ -305,18 +305,14 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		}
 
 		$title = $is_empty_title ? '' : $sidebar_meta[ $sidebar_id ]['title'];
-		$container_attributes = '';
-		if ( is_customize_preview() ) {
-			$container_attributes .= sprintf( ' data-customize-partial-id="%s"', "sidebar_meta[$sidebar_id][title]" );
-			if ( $is_empty_title ) {
-				$container_attributes .= ' hidden';
-			}
-		}
 
 		$rendered_title = wptexturize( $title );
 		$rendered_title = convert_smilies( $rendered_title );
 
-		printf( '<h2 %s>%s</h2>', $container_attributes, esc_html( $rendered_title ) );
+		printf( '<h2 %1$s>%2$s</h2>',
+			is_customize_preview() ? 'data-customize-partial-id="' . esc_attr( "sidebar_meta[$sidebar_id][title]" ) . '"' : '',
+			esc_html( $rendered_title )
+		);
 	}
 
 	/**

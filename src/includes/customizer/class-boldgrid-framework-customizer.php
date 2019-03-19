@@ -905,6 +905,8 @@ HTML;
 	 */
 	public function add_head_styles() {
 		$css_rules = apply_filters( 'boldgrid_add_head_styles', $css_rules = array() );
-		print BoldGrid_Framework_Styles::convert_array_to_css( $css_rules, 'boldgrid-override-styles' );
+		$id = 'boldgrid-override-styles';
+		$css = BoldGrid_Framework_Styles::convert_array_to_css( $css_rules, $id );
+		Boldgrid_Framework_Customizer_Generic::add_inline_style( $id, $css );
 	}
 }

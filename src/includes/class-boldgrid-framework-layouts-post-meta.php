@@ -235,7 +235,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					<p><?php esc_html_e( 'Advanced Options', 'bgtfw' ); ?></p>
 					<span class="toggle-indicator" aria-hidden="true"></span>
 				</div>
-				<div class="post-attributes-advanced-wrap hide-if-js"><?php
+				<div class="post-attributes-advanced-wrap hide-if-js">
+				<?php
 				$dropdown_args = array(
 					'post_type'        => $post->post_type,
 					'exclude_tree'     => $post->ID,
@@ -257,7 +258,9 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				 * @param WP_Post $post          The current WP_Post object.
 				 */
 				$dropdown_args = apply_filters( 'page_attributes_dropdown_pages_args', $dropdown_args, $post );
-				$pages = wp_dropdown_pages( $dropdown_args );
+
+				// Note: The dynamic parts (translation strings) are escaped above when the variable $dropdown_args is created, so no further escaping is necessary at this point.
+				$pages = wp_dropdown_pages( $dropdown_args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				if ( ! empty( $pages ) ) : ?>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php esc_html_e( 'Parent', 'bgtfw' ); ?></label></p>
 					<?php

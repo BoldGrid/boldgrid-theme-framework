@@ -1060,6 +1060,10 @@ class BoldGrid {
 	/**
 	 * Display the classes for the header element.
 	 *
+	 * Note: Boldgrid_Framework_Element_Class creates filters for adding and removing
+	 * classes in the BGTFW codebase.  This class also handles escaping the output of
+	 * the classes, and generates class="$classes" for HTML output.
+	 *
 	 * @since 2.8.0
 	 *
 	 * @param string       $element Element class is being added to.
@@ -1070,7 +1074,7 @@ class BoldGrid {
 		$html = (string) $el->html;
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -1158,7 +1162,7 @@ class BoldGrid {
 						switch ( $col_data['type'] ) {
 							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
 								$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
-								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>';
+								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';
 								}

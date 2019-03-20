@@ -1,16 +1,16 @@
 # BoldGrid Theme Framework #
 
 [![Build Status](https://api.travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=master)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
-[![License](https://img.shields.io/badge/license-GPL--2.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE)
+[![License](https://img.shields.io/badge/license-GPL--3.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE)
 [![PHP Version](https://img.shields.io/badge/PHP-5.4%2B-blue.svg)](https://php.net)
 [![Code Climate](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework/badges/gpa.svg)](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework)
 
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.0.0-rc.1
-* **License:** GPLv2 or later
-* **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+* **Tested up to:** 5.1.1
+* **License:** GPL-3.0-or-later
+* **License URI:** https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
 <a href="https://www.browserstack.com/" title="BrowserStack" target="_blank">
 <img src="https://p14.zdusercontent.com/attachment/1015988/e7lZDYUQAcrjhARfSQKnVsW5M?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..Rj7ZUz59GX2kLfySyw8pdw.q8aA7RoJrLrobEqyTsY8eit4vnvNQuNMuQS9-HyFoLtLu6Q8lsQmHuiboyA8w1HYC_5raUBaIpKLsj_lV5AwEX_aw2-zbSe5EXWiIEuoXHBmLKjSD657s8JMsird0qXUgYvpU9jGZPj9cZj42msR2Cb0lasANAf5ISP6I0qc0Xx2yRRkwjT_r94Z7GCyGMZhCw8pA3Da9Jz0_TZzS62wOgdoxizVMsrnw3Bj_F34eMvZIOI3uclFVVUQu-j-m8qamarikMSLQlr2hAPLjBknibGj6HGO2T8jHwVDz2cH6NU.OFY7iswivDQLRyvfVbc7yw" width="30%" height="30%" />

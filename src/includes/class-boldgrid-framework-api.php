@@ -65,6 +65,78 @@ class BoldGrid {
 	}
 
 	/**
+	 * Site Logo.
+	 *
+	 * This will return a logo from the WordPress customizer that is stored
+	 * under the option for the boldgrid_logo_setting.
+	 *
+	 * @since    1.0.0
+	 */
+	public static function site_logo() {
+		$image_attributes = wp_get_attachment_image_src( absint( get_theme_mod( 'boldgrid_logo_setting' ) ), 'full' );
+		$alt = get_post_meta( get_theme_mod( 'boldgrid_logo_setting' ), '_wp_attachment_image_alt', true );
+		$alt = empty( $alt ) ? '' : $alt;
+
+		if ( $image_attributes ) { ?>
+		<div class="site-title">
+			<a class='logo-site-title' href="<?php echo esc_url( home_url( '/' ) ); ?>"  rel="home">
+				<img alt="<?php echo esc_attr( $alt ); ?>" src="<?php echo esc_attr( $image_attributes[0] ); ?>" width="<?php echo esc_attr( $image_attributes[1] ); ?>" height="<?php echo esc_attr( $image_attributes[2] ); ?>" />
+			</a>
+		</div>
+		<?php }
+	}
+
+	/**
+	 * Site title or logo.
+	 *
+	 * This will return a logo from the WordPress customizer that is stored
+	 * under the option for the boldgrid_logo_setting if a logo is updated.
+	 * Otherwise, it will return the site title with BoldGrid::site_title(  ).
+	 *
+	 * @uses     BoldGrid::site_logo(  ); BoldGrid::site_title(  );
+	 * @since    1.0.0
+	 */
+	public function site_logo_or_title() {
+		$background_image = get_theme_mod( 'boldgrid_logo_setting' );
+		$background_image ? self::site_logo() : self::site_title();
+	}
+
+	/**
+	 * Print tagline under site title - boldgrid_print_tagline hook
+	 *
+	 * @since 1.0.0
+	 */
+	public function print_tagline() {
+		// Retrieve blog tagline.
+		$blog_info = get_bloginfo( 'description' );
+		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
+		$classes = 'site-description invisible';
+
+		if ( $blog_info ) {
+			$classes = $this->configs['template']['tagline-classes'] . $display;
+		}
+
+		printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $classes ), esc_html( $blog_info ) );
+	}
+
+	/**
+	 * Print the sites title and tagline together.
+	 *
+	 * @since   1.0.0
+	 */
+	public function print_title_tagline() {
+	?>
+		<div <?php BoldGrid::add_class( 'site_branding', [ 'site-branding' ] ); ?>>
+			<?php if ( function_exists( 'the_custom_logo' ) ) : ?>
+				<?php the_custom_logo(); ?>
+			<?php endif; ?>
+			<?php do_action( 'boldgrid_site_title' ); ?>
+			<?php do_action( 'boldgrid_print_tagline' ); ?>
+		</div><!-- .site-branding -->
+		<?php
+	}
+
+	/**
 	 * Add blog container classes.
 	 *
 	 * @since 2.0.0
@@ -140,7 +212,6 @@ class BoldGrid {
 		return $classes;
 	}
 
-
 	/**
 	 * Add title content container classes.
 	 *
@@ -160,78 +231,6 @@ class BoldGrid {
 		$classes[] = $class;
 
 		return $classes;
-	}
-
-	/**
-	 * Site Logo.
-	 *
-	 * This will return a logo from the WordPress customizer that is stored
-	 * under the option for the boldgrid_logo_setting.
-	 *
-	 * @since    1.0.0
-	 */
-	public static function site_logo() {
-		$image_attributes = wp_get_attachment_image_src( absint( get_theme_mod( 'boldgrid_logo_setting' ) ), 'full' );
-		$alt = get_post_meta( get_theme_mod( 'boldgrid_logo_setting' ), '_wp_attachment_image_alt', true );
-		$alt = empty( $alt ) ? '' : $alt;
-
-		if ( $image_attributes ) { ?>
-		<div class="site-title">
-			<a class='logo-site-title' href="<?php echo esc_url( home_url( '/' ) ); ?>"  rel="home">
-				<img alt="<?php echo esc_attr( $alt ); ?>" src="<?php echo esc_attr( $image_attributes[0] ); ?>" width="<?php echo esc_attr( $image_attributes[1] ); ?>" height="<?php echo esc_attr( $image_attributes[2] ); ?>" />
-			</a>
-		</div>
-		<?php }
-	}
-
-	/**
-	 * Site title or logo.
-	 *
-	 * This will return a logo from the WordPress customizer that is stored
-	 * under the option for the boldgrid_logo_setting if a logo is updated.
-	 * Otherwise, it will return the site title with BoldGrid::site_title(  ).
-	 *
-	 * @uses     BoldGrid::site_logo(  ); BoldGrid::site_title(  );
-	 * @since    1.0.0
-	 */
-	public function site_logo_or_title() {
-		$background_image = get_theme_mod( 'boldgrid_logo_setting' );
-		$background_image ? self::site_logo() : self::site_title();
-	}
-
-	/**
-	 * Print tagline under site title - boldgrid_print_tagline hook
-	 *
-	 * @since 1.0.0
-	 */
-	public function print_tagline() {
-		// Retrieve blog tagline.
-		$blog_info = get_bloginfo( 'description' );
-		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
-		$classes = 'site-description invisible';
-
-		if ( $blog_info ) {
-			$classes = $this->configs['template']['tagline-classes'] . $display;
-		}
-
-		printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $classes ), esc_html( $blog_info ) );
-	}
-
-	/**
-	 * Print the sites title and tagline together.
-	 *
-	 * @since   1.0.0
-	 */
-	public function print_title_tagline() {
-	?>
-		<div <?php BoldGrid::add_class( 'site_branding', [ 'site-branding' ] ); ?>>
-			<?php if ( function_exists( 'the_custom_logo' ) ) : ?>
-				<?php the_custom_logo(); ?>
-			<?php endif; ?>
-			<?php do_action( 'boldgrid_site_title' ); ?>
-			<?php do_action( 'boldgrid_print_tagline' ); ?>
-		</div><!-- .site-branding -->
-		<?php
 	}
 
 	/**

@@ -380,13 +380,6 @@ class BoldGrid_Framework {
 
 		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'post_list_sidebar' );
 
-		// Setup Header Metadata.
-		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_meta_charset',  105 );
-		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_enable_xua',    106 );
-		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_meta_viewport', 107 );
-		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_link_profile',  108 );
-		$this->loader->add_action( 'boldgrid_head_top',     $boldgrid_theme,   'boldgrid_link_pingback', 109 );
-
 		// Setup Sticky Footer.
 		$this->loader->add_action( 'boldgrid_header_before', $boldgrid_theme, 'boldgrid_sticky_top',    10 );
 		$this->loader->add_action( 'boldgrid_footer_before', $boldgrid_theme, 'boldgrid_sticky_bottom', 15 );

@@ -65,17 +65,6 @@ class BoldGrid {
 	}
 
 	/**
-	 * Is this a blog styled page.
-	 *
-	 * @since 1.5.1
-	 *
-	 * @return boolean Whether or not this page is styled as a post.
-	 */
-	public static function is_blog() {
-		return is_single() || is_archive() || is_search() || is_home() || is_attachment();
-	}
-
-	/**
 	 * Add blog container classes.
 	 *
 	 * @since 2.0.0
@@ -140,11 +129,13 @@ class BoldGrid {
 	 * @return array $classes Filter classes on .main element.
 	 */
 	public function title_container( $classes ) {
+		$class = 'full-width';
+
 		if ( 'above' === get_theme_mod( 'bgtfw_global_title_position' ) ) {
-			$classes[] = get_theme_mod( 'bgtfw_global_title_background_container' );
-		} else {
-			$classes[] = 'full-width';
+			$class = get_theme_mod( 'bgtfw_global_title_background_container' );
 		}
+
+		$classes[] = $class;
 
 		return $classes;
 	}
@@ -161,37 +152,14 @@ class BoldGrid {
 	 */
 	public function title_content_container( $classes ) {
 		$class = 'container';
+
 		if ( 'above' === get_theme_mod( 'bgtfw_global_title_position' ) && 'full-width' === get_theme_mod( 'bgtfw_global_title_background_container' ) ) {
 			$class = get_theme_mod( 'bgtfw_global_title_content_container' );
 		}
 
-		return array_merge( $classes, $class );
-	}
+		$classes[] = $class;
 
-	/**
-	 * Print the container class.
-	 *
-	 * @since 1.2
-	 */
-	public static function print_container_class( $location ) {
-		global $boldgrid_theme_framework;
-		$configs = $boldgrid_theme_framework->get_configs();
-		$template = basename( get_page_template() );
-		$template = ( $template ) ? $template : 'default';
-		$class = isset( $configs['template']['pages'][ $template ][ $location ] ) ?
-			$configs['template']['pages'][ $template ][ $location ] : 'container';
-
-		if ( 'blog' == $location ) {
-			$class = '';
-			if ( self::is_blog() ) {
-				$class = $configs['template']['pages']['blog'];
-			}
-			if ( ! empty( $configs['template']['pages'][ $template ]['main'] ) ) {
-				$class .= $configs['template']['pages'][ $template ]['main'];
-			}
-		}
-
-		print esc_attr( $class );
+		return $classes;
 	}
 
 	/**
@@ -204,17 +172,13 @@ class BoldGrid {
 	 */
 	public static function site_logo() {
 		$image_attributes = wp_get_attachment_image_src( absint( get_theme_mod( 'boldgrid_logo_setting' ) ), 'full' );
-		$alt_tag = get_post_meta( get_theme_mod( 'boldgrid_logo_setting' ), '_wp_attachment_image_alt', true );
-
-		$alt = '';
-		if ( ! empty( $alt_tag ) ) {
-			$alt = 'alt="' . $alt_tag . '"';
-		}
+		$alt = get_post_meta( get_theme_mod( 'boldgrid_logo_setting' ), '_wp_attachment_image_alt', true );
+		$alt = empty( $alt ) ? '' : $alt;
 
 		if ( $image_attributes ) { ?>
 		<div class="site-title">
 			<a class='logo-site-title' href="<?php echo esc_url( home_url( '/' ) ); ?>"  rel="home">
-				<img <?php echo esc_attr( $alt ); ?> src="<?php echo esc_attr( $image_attributes[0] ); ?>" width="<?php echo esc_attr( $image_attributes[1] ); ?>" height="<?php echo esc_attr( $image_attributes[2] ); ?>" />
+				<img alt="<?php echo esc_attr( $alt ); ?>" src="<?php echo esc_attr( $image_attributes[0] ); ?>" width="<?php echo esc_attr( $image_attributes[1] ); ?>" height="<?php echo esc_attr( $image_attributes[2] ); ?>" />
 			</a>
 		</div>
 		<?php }
@@ -267,38 +231,6 @@ class BoldGrid {
 			<?php do_action( 'boldgrid_site_title' ); ?>
 			<?php do_action( 'boldgrid_print_tagline' ); ?>
 		</div><!-- .site-branding -->
-		<?php
-	}
-
-	/**
-	 * Print the site's primary navigation using the native WordPress navwalker.
-	 *
-	 * @since 2.0.0
-	 */
-	public function print_menu() {
-		?>
-			<div id="navi">
-			<!-- Mobile toggle -->
-			<input id="main-menu-state" type="checkbox" />
-			<label class="main-menu-btn" for="main-menu-state">
-				<span class="main-menu-btn-icon"></span><span class="sr-only"><?php esc_html_e( 'Toggle main menu visibility', 'bgtfw' ); ?></span>
-			</label>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'false', 'menu_id' => 'main-menu', 'menu_class' => 'sm bgtfw-menu main-menu' ) ); ?>
-			</div>
-		<?php
-	}
-
-	/**
-	 * BoldGrid::skip_link(  );
-	 *
-	 * This is the markup that will render for screen reader users to skip to
-	 * the main content.  This is the element targetted by skip-link-focus-fix.js
-	 *
-	 * @since    1.0.0
-	 */
-	public static function skip_link() {
-	?>
-			<a class="skip-link sr-only" href="#content"><?php esc_html_e( 'Skip to content', 'bgtfw' ); ?></a>
 		<?php
 	}
 
@@ -701,7 +633,7 @@ class BoldGrid {
 	 * @return array $classes Array of classes to add to posts.
 	 */
 	public function blog_page_post_title_classes( $classes ) {
-		global $post;
+		global $wp_query;
 		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
 			$classes = array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_blog_post_header_title_color' ), [ 'color', 'color-hover' ] ) );
 		}
@@ -793,44 +725,6 @@ class BoldGrid {
 		if ( true === $this->configs['scripts']['boldgrid-sticky-footer'] ) { ?>
 			</div><!-- End of #boldgrid-sticky-wrap -->
 		<?php }
-	}
-
-	/**
-	 *  Get the subcategory installed by inspiration.
-	 *
-	 *  @since 1.1.7
-	 *
-	 *  @return string $installed_subcategory_key
-	 */
-	public static function get_inspiration_configs( $configs ) {
-
-		// Read installed option values.
-		$boldgrid_install_options = get_option( 'boldgrid_install_options', array() );
-		$installed_subcategory_key = ( ! empty( $boldgrid_install_options['subcategory_key'] ) ) ?
-			$boldgrid_install_options['subcategory_key'] : null;
-
-		$installed_subcategory_id = ( ! empty( $boldgrid_install_options['subcategory_id'] ) ) ?
-			$boldgrid_install_options['subcategory_id'] : null;
-
-		// Load Configs.
-		$category_key_configs = array();
-		$config_path = realpath( plugin_dir_path( __FILE__ ) . '/configs/category.config.php' );
-		if ( ! $installed_subcategory_key && $config_path ) {
-			$category_key_configs = include $config_path;
-		}
-
-		// If no key found but the id matches, set the key from configs.
-		if ( ! $installed_subcategory_key && ! empty( $category_key_configs[ $installed_subcategory_id ] ) ) {
-			$installed_subcategory_key = $category_key_configs[ $installed_subcategory_id ];
-		}
-
-		// Assign the subcategory lookup key to a config.
-		$boldgrid_install_options['subcategory_key'] = $installed_subcategory_key;
-
-		// Assign the resr of the install options to a config.
-		$configs['inspiration'] = $boldgrid_install_options;
-
-		return $configs;
 	}
 
 	/**
@@ -973,35 +867,6 @@ class BoldGrid {
 	public static function get_container_classes( $location = '' ) {
 		$container = new Boldgrid_Framework_Container( $location );
 		return $container->classes;
-	}
-
-	/**
-	 * Set the order for blog posts and archive pages by default.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param WP_Query $query The WP_Query instance.
-	 */
-	public function set_main_query( WP_Query $query ) {
-		if ( ( $query->is_archive() || $query->is_home() ) && $query->is_main_query() ) {
-			$query->set( 'orderby', 'date modified title' );
-			$query->set( 'order', 'desc' );
-		}
-
-		return $query;
-	}
-
-	/**
-	 * Make sure that the posts_where filter will be applied.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param array $args WP_Query args.
-	 */
-	public function set_recent_posts_query( $args ) {
-		$args['orderby'] = 'date modified title';
-		$args['order'] = 'desc';
-		return $args;
 	}
 
 	/**

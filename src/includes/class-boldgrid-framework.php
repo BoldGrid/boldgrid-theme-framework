@@ -272,7 +272,6 @@ class BoldGrid_Framework {
 		add_filter( 'boldgrid_theme_framework_config', array( $activate, 'tgm_override' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $custom_header, 'add_display_classes' ), 20 );
 		add_filter( 'boldgrid_theme_framework_config', array( $custom_header, 'add_color_classes' ), 20 );
-		add_filter( 'boldgrid_theme_framework_config', 'BoldGrid::get_inspiration_configs', 5 );
 
 		// Adds the sidebar options to the page template selections.
 		add_filter( 'theme_page_templates', array( $template_config, 'templates' ) );
@@ -385,8 +384,6 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'boldgrid_footer_before', $boldgrid_theme, 'boldgrid_sticky_bottom', 15 );
 
 		// Additional theme functionality.
-		$this->loader->add_action( 'pre_get_posts', $boldgrid_theme, 'set_main_query' );
-		$this->loader->add_filter( 'widget_posts_args', $boldgrid_theme, 'set_recent_posts_query' );
 		$this->loader->add_filter( 'body_class', $boldgrid_theme, 'body_classes' );
 		$this->loader->add_filter( 'post_class', $boldgrid_theme, 'post_class' );
 
@@ -417,7 +414,6 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );
 		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_title' );
 		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
-		$this->loader->add_filter( 'boldgrid_print_menu', $boldgrid_theme, 'print_menu' );
 
 		// Sticky Header
 		add_action( 'template_redirect', function() {

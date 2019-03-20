@@ -39,26 +39,8 @@ class Boldgrid_Framework_Activate {
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
-		$this->widgets = new Boldgrid_Framework_Widgets( $this->configs );
-		$this->menus   = new Boldgrid_Framework_Menu( $this->configs );
 		$this->scss    = new Boldgrid_Framework_SCSS( $this->configs );
 		$this->color   = new Boldgrid_Framework_Customizer_Colors( $this->configs );
-	}
-
-	/**
-	 * Reset The Boldgrid Theme Framework
-	 * Removing any menu locations and widget locations
-	 *
-	 * @since 1.0.0
-	 */
-	public function reset() {
-		$this->menus->reset_nav_locations();
-
-		// Delete Option indicating that the framework needs to be setup.
-		delete_option( 'boldgrid_framework_init' );
-
-		// Do action for 3rd party.
-		do_action( 'boldgrid_theme_reset' );
 	}
 
 	/**
@@ -67,24 +49,8 @@ class Boldgrid_Framework_Activate {
 	 * @since 1.0.0
 	 */
 	public function do_activate() {
-		if ( $this->menus->is_user_child() ) {
-			return;
-		}
-
-		// Before running the activation, run deactivate just to be sure.
-		$this->reset();
-
-		$this->widgets->empty_widget_areas();
-
-		// Then update the menu_check option to make sure this code only runs once.
-		update_option( 'boldgrid_framework_init', true );
-
-		// Set Color Palettes.
 		$option = 'theme_mods_' . get_stylesheet();
 		$this->set_palette( $option );
-
-		// Do action for 3rd party.
-		do_action( 'boldgrid_theme_activate' );
 	}
 
 	/**
@@ -191,7 +157,8 @@ class Boldgrid_Framework_Activate {
 	 * @return array $configs              BGTFW Configs.
 	 */
 	public function remove_recommended_plugin( $configs, $disabled_plugin_name ) {
-		$plugins = array();
+		$plugins = [];
+
 		foreach ( $configs['tgm']['plugins'] as $plugin ) {
 			if ( $disabled_plugin_name !== $plugin['slug'] ) {
 				$plugins[] = $plugin;
@@ -206,50 +173,9 @@ class Boldgrid_Framework_Activate {
 	/**
 	 * Register the required plugins for this theme.
 	 *
-	 * In this example, we register five plugins:
-	 * - one included with the TGMPA library
-	 * - two from an external source, one from an arbitrary source, one from a GitHub repository
-	 * - two from the .org repo, where one demonstrates the use of the `is_callable` argument
-	 *
-	 * The variables passed to the `tgmpa()` function should be:
-	 * - an array of plugin arrays;
-	 * - optionally a configuration array.
-	 * If you are not changing anything in the configuration array, you can remove the array and remove the
-	 * variable from the function call: `tgmpa( $plugins );`.
-	 * In that case, the TGMPA default settings will be used.
-	 *
-	 * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
+	 * @since 1.5.4
 	 */
 	public function register_required_plugins() {
-
-		/**
-		 * Whether or not to register our configured tgmpa plugins.
-		 *
-		 * The theme may configure a set of base plugins (in tgm.config.php), and our starter content
-		 * may configure an additional set of plugins (specific to that starter content).
-		 *
-		 * The main purpose of this filter is to prevent issues in which the theme and the starter
-		 * content both configure the same plugins.
-		 *
-		 * For example, if the theme is requiring p&pb(version 1.7, stable, from the repo), yet the
-		 * starter cotnent is requiring p&pb(version 1.8, rc, from external URL), the plugins from
-		 * the starter content should take precedence from the plugins reuqired for the theme only.
-		 *
-		 * @since 2.0.0
-		 */
-		$register = apply_filters( 'bgtfw_register_tgmpa', true );
-
-		if ( $register ) {
-			tgmpa( $this->configs['tgm']['plugins'], $this->configs['tgm']['configs'] );
-		}
-	}
-
-	/**
-	 * Perform tasks on deactivation.
-	 *
-	 * @since 1.5.10
-	 */
-	public function do_deactivate() {
-		delete_site_transient( 'bg_license_data' );
+		tgmpa( $this->configs['tgm']['plugins'], $this->configs['tgm']['configs'] );
 	}
 }

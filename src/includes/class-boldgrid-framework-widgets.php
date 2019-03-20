@@ -45,40 +45,11 @@ class Boldgrid_Framework_Widgets {
 	}
 
 	/**
-	 * Clear all Widget areas
-	 *
-	 * @since 1.0.0
-	 */
-	public function empty_widget_areas() {
-		$auto_created = $this->configs['widget']['sidebars'];
-		$all_widgets = get_option( 'sidebars_widgets' );
-
-		foreach ( $all_widgets as $key => $widget ) {
-			if ( ! empty( $auto_created[ $key ] ) ) {
-				$all_widgets[ $key ] = array();
-			}
-		}
-
-		/**
-		 * The call to update_option returns true / false based on the success of the update.
-		 * The call will fail if:
-		 * 1. The first parameter, 'sidebars_widgets', is empty (which will never be).
-		 * 2. The old value == the new value.
-		 * 3. The SQL failed to update the database.
-		 * In an obscure bug, the call below is failing because of scenario #2 above.
-		 * Below, we'll try to fix this by emptying the value before setting it.
-		 */
-		update_option( 'sidebars_widgets', array() );
-		update_option( 'sidebars_widgets', $all_widgets );
-	}
-
-	/**
 	 * Create sidebars based on config file
 	 *
 	 * @since     1.0.0
 	 */
 	public function create_config_widgets() {
-
 		foreach ( $this->configs['widget']['sidebars'] as $config ) {
 			register_sidebar( $config );
 		}

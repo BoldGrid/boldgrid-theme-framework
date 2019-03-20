@@ -171,7 +171,7 @@ class BoldGrid_Framework_Comments {
 							<div class="media-heading">
 							<?php
 								printf(
-									'<cite class="fn">%1$s</cite><span class="says">%2$s:</span>',
+									'<cite class="fn">%1$s</cite> <span class="says">%2$s:</span>',
 									get_comment_author_link(),
 									/* translators: this displays as $author says: */
 									esc_html__( 'says', 'bgtfw' )

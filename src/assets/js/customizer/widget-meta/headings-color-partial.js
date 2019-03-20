@@ -25,7 +25,7 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_headings_color = (
 
 			_.each( partial.placements(), function( placement ) {
 				var color = new PaletteSelector().getColor( headingsColorSetting.get() ),
-					id = 'dynamic-sidebar-' + placement.partial.id.match( /\[(.*?)\]/ ).pop() + '-css';
+					id = 'dynamic-sidebar-' + placement.partial.id.match( /\[(.*?)\]/ ).pop() + '-inline-css';
 
 				new Preview().updateDynamicStyles( id, `
 					${placement.partial.params.selector} {

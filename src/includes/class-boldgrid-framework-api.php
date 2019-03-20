@@ -40,28 +40,6 @@ class BoldGrid {
 	}
 
 	/**
-	 * Just a simple endpoint for some of the functionality to run.
-	 *
-	 * @since 1.0.0
-	 */
-	public function boldgrid_api_endpoint() {
-		$this->body_classes( );
-		$this->setup_author( );
-		$this->page_menu_args( );
-	}
-
-	/**
-	 * Header.
-	 *
-	 * This will output main <header> components
-	 *
-	 * @since 1.0.0
-	 */
-	private static function boldgrid_header() {
-		do_action( 'boldgrid_header' );
-	}
-
-	/**
 	 * Doctype.
 	 *
 	 * This will output <head> components
@@ -158,7 +136,7 @@ class BoldGrid {
 		// Site title link.
 		$display = get_theme_mod( 'bgtfw_site_title_display' ) === 'hide' ? ' screen-reader-text' : '';
 		echo '<' . esc_html( $title_tag ) . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . esc_attr( $display ) . '">' .
-			'<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo( 'name' ) . '</a>' .
+			'<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a>' .
 			'</' . esc_html( $title_tag ) . '>';
 	}
 
@@ -345,9 +323,9 @@ class BoldGrid {
 		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
 
 		if ( $blog_info ) {
-			printf( $this->configs['template']['tagline'], $this->configs['template']['tagline-classes'] . $display, $blog_info );
+			printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $this->configs['template']['tagline-classes'] . $display ), esc_html( $blog_info ) );
 		} else {
-			printf( $this->configs['template']['tagline'], 'site-description invisible', $blog_info );
+			printf( wp_kses_post( $this->configs['template']['tagline'] ), 'site-description invisible', esc_html( $blog_info ) );
 		}
 	}
 
@@ -1002,7 +980,6 @@ class BoldGrid {
 			// Split [params]method to useable strings.
 			preg_match( '/^\[.*\]/', $condition, $matches );
 			$type = ! empty( $matches[0] ) ? $matches[0] : null;
-			$name = str_ireplace( $type, '', $condition );
 			$param = str_replace( array( '[', ']' ), '', $type );
 			$is_page_template = ( strpos( $condition, 'is_page_template' ) !== false );
 			switch ( $param ) {
@@ -1083,6 +1060,10 @@ class BoldGrid {
 	/**
 	 * Display the classes for the header element.
 	 *
+	 * Note: Boldgrid_Framework_Element_Class creates filters for adding and removing
+	 * classes in the BGTFW codebase.  This class also handles escaping the output of
+	 * the classes, and generates class="$classes" for HTML output.
+	 *
 	 * @since 2.8.0
 	 *
 	 * @param string       $element Element class is being added to.
@@ -1090,10 +1071,12 @@ class BoldGrid {
 	 */
 	public static function add_class( $element = '', $class = '', $echo = true ) {
 		$el = new Boldgrid_Framework_Element_Class( $element, $class );
+		$html = (string) $el->html;
+
 		if ( $echo ) {
-			echo ( string ) $el->html;
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
-			return ( string ) $el->html;
+			return $html;
 		}
 	}
 
@@ -1179,7 +1162,7 @@ class BoldGrid {
 						switch ( $col_data['type'] ) {
 							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
 								$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
-								echo '<div id="' . $menu . '-wrap" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>';
+								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';
 								}

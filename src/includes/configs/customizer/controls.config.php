@@ -418,24 +418,24 @@ return array(
 					if ( ! is_front_page() && is_home() ) {
 						printf(
 							'<p class="page-title %1$s"><a %2$s href="%3$s" rel="bookmark">%4$s</a></p>',
-							get_theme_mod( 'bgtfw_global_title_size' ),
-							BoldGrid::add_class( 'pages_title', [ 'link' ], false ),
+							esc_attr( get_theme_mod( 'bgtfw_global_title_size' ) ),
+							BoldGrid::add_class( 'pages_title', [ 'link' ], false ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							esc_url( get_permalink( get_option( 'page_for_posts', true ) ) ),
-							get_the_title( get_option( 'page_for_posts', true ) )
+							wp_kses_post( get_the_title( get_option( 'page_for_posts', true ) ) )
 						);
 					} else if ( is_archive() || is_author() ) {
 						$queried_obj_id = get_queried_object_id();
 						$archive_url = is_author() ? get_author_posts_url( $queried_obj_id ) : get_term_link( $queried_obj_id );
 						printf(
 							'<p class="page-title %1$s"><a %2$s href="%3$s" rel="bookmark">%4$s</a></p>',
-							get_theme_mod( 'bgtfw_global_title_size' ),
-							BoldGrid::add_class( 'pages_title', [ 'link' ], false ),
+							esc_attr( get_theme_mod( 'bgtfw_global_title_size' ) ),
+							BoldGrid::add_class( 'pages_title', [ 'link' ], false ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							esc_url( $archive_url ),
-							get_the_archive_title()
+							wp_kses_post( get_the_archive_title() )
 						);
 						the_archive_description( '<div class="taxonomy-description">', '</div>' );
 					} else {
-						the_title( sprintf( '<p class="entry-title page-title ' . get_theme_mod( 'bgtfw_global_title_size' ) . '"><a ' . BoldGrid::add_class( 'pages_title', [ 'link' ], false ) . ' href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></p>' );
+						the_title( sprintf( '<p class="entry-title page-title ' . esc_attr( get_theme_mod( 'bgtfw_global_title_size' ) ) . '"><a ' . BoldGrid::add_class( 'pages_title', [ 'link' ], false ) . ' href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></p>' );
 					}
 					return;
 				},

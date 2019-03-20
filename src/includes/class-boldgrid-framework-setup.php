@@ -107,7 +107,7 @@ class BoldGrid_Framework_Setup {
 	 * @since  1.0.0
 	 */
 	private function load_text_domain() {
-		load_theme_textdomain( 'bgtfw', get_template_directory( ) . '/languages' );
+		load_theme_textdomain( $this->configs['textdomain'], get_template_directory( ) . '/languages' );
 	}
 
 	/**

@@ -83,7 +83,9 @@ button, input, optgroup, select, textarea {
 	color: fl(color-text);
 }
 
-input[type=submit] {
+input[type=radio],
+input[type=submit],
+input[type=checkbox] {
 	width: auto;
 }
 

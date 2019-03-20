@@ -133,7 +133,7 @@
     "lodash.startcase": "^4.4.0",
     "postcss": "^6.0.22",
     "sass.js": "~0.9.4",
-    "scssphp": "https://github.com/leafo/scssphp.git#v0.7.7",
+    "scssphp": "https://github.com/timelsass/scssphp.git#master",
     "smartmenus": "^1.1.0",
     "wow.js": "^1.2.2"
   }

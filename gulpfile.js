@@ -409,7 +409,7 @@ gulp.task('sass:watch', function () {
 
 // Watch for changes and copy php files.
 gulp.task('php:watch', function () {
-	gulp.watch(config.src + '/**/*.{php,txt,json,css,mo,po,pot}', ['frameworkFiles', 'translate']);
+	gulp.watch(config.src + '/**/*.{php,txt,json,css,mo,po,pot}', ['frameworkFiles']);
 } );
 
 // Watch for changes and recompile/copy js files.
@@ -516,7 +516,7 @@ gulp.task('build', function (cb) {
     'clean',
     'readme',
     ['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs', 'svgs', 'tgm'],
-    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
+    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss'],
     'images',
     ['scssCompile', 'bootstrapCompile'],
     ['fontFamilyCss', 'patterns'],
@@ -533,7 +533,7 @@ gulp.task('qbuild', function (cb) {
     'dist',
     'readme',
     ['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs'],
-    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate'],
+    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss'],
     ['scssCompile', 'bootstrapCompile'],
     'fontFamilyCss',
     'hovers',
@@ -547,7 +547,7 @@ gulp.task('framework-js', function (cb) {
   return sequence( [ 'jsHint', 'jscs' ], 'frameworkJs', 'modernizr', cb );
 });
 
-gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss', 'translate']);
+gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss']);
 
 gulp.task('watch', function () {
 	gulp.start( 'sass:watch' );

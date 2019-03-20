@@ -87,7 +87,6 @@ class BoldGrid_Framework {
 		$this->error_404();
 		$this->search_forms();
 		$this->pagination();
-		$this->ninja_forms();
 		$this->woocommerce();
 		$this->title();
 	}
@@ -125,7 +124,6 @@ class BoldGrid_Framework {
 	 * - Boldgrid_Framework_Il8n                 Defines internationalization functionality.
 	 * - Boldgrid_Framework_Loader               Orchestrates the hooks of the plugin.
 	 * - Boldgrid_Framework_Menu                 Contains the hooks for registering nav menus and setting locations.
-	 * - Boldgrid_Framework_Ninja_Forms          Adds filters for Ninja Forms to have Bootstrap styles applied.
 	 * - Boldgrid_Framework_Pointer              Responsible for the WordPress pointer functionality seen in customizer.
 	 * - Boldgrid_Framework_Schema_Markup        Contains markup that theme's utilize to add schema.org markup.
 	 * - Boldgrid_Framework_Scripts              Enqueue the javascript a theme utilizes.
@@ -169,7 +167,6 @@ class BoldGrid_Framework {
 			'links',
 			'loader',
 			'menu',
-			'ninja-forms',
 			'pagination',
 			'ppb',
 			'pointer',
@@ -361,17 +358,13 @@ class BoldGrid_Framework {
 	private function define_theme_hooks() {
 		$styles  = new BoldGrid_Framework_Styles( $this->configs );
 		$scripts = new BoldGrid_Framework_Scripts( $this->configs );
-		$boldgrid_theme   = new BoldGrid( $this->configs );
-		$template         = new Boldgrid_Framework_Template_Config( $this->configs );
+		$boldgrid_theme = new BoldGrid( $this->configs );
 
 		// Load Theme Wrapper.
 		if ( true === $this->configs['boldgrid-parent-theme'] ) {
 			$wrapper  = new Boldgrid_Framework_Wrapper();
 			$this->loader->add_filter( 'template_include', $wrapper, 'wrap', 109 );
 		}
-
-		// Register Locations.
-		$this->loader->add_action( 'boldgrid-theme-location', $template, 'do_location_action', 10, 2 );
 
 		// Add Theme Styles.
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
@@ -438,9 +431,11 @@ class BoldGrid_Framework {
 		add_action( 'template_redirect', function() {
 			if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {
 				add_action( 'boldgrid_header_before', function() {
-					echo '<div ' . BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ], false ) . '>';
-					echo BoldGrid::dynamic_sticky_header();
-					echo '</div>';
+					?>
+					<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
+						<?php BoldGrid::dynamic_sticky_header(); ?>
+					</div>
+					<?php
 				}, 20 );
 			}
 			if ( is_customize_preview() && ( false === get_theme_mod( 'bgtfw_fixed_header' ) || 'header-top' !== get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {
@@ -811,7 +806,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_print_styles', $base, 'control_styles' );
 
 		// This hook can be used to add any styles to the head.
-		$this->loader->add_action( 'wp_head', $base, 'add_head_styles', 9001 );
+		$this->loader->add_action( 'wp_enqueue_scripts', $base, 'add_head_styles' );
 
 		// Output custom JS to live site.
 		$this->loader->add_action( 'wp_footer', $base, 'custom_js_output' );
@@ -874,7 +869,7 @@ class BoldGrid_Framework {
 		}
 
 		if ( is_customize_preview() ) {
-			$this->loader->add_filter( 'dynamic_sidebar_before', $widget_meta, 'add_customizer_sidebar_styles', 1 );
+			$this->loader->add_action( 'wp_enqueue_scripts', $widget_meta, 'add_customizer_sidebar_styles' );
 		} else {
 			$this->loader->add_filter( 'bgtfw_inline_css', $widget_meta, 'add_frontend_sidebar_styles' );
 		}
@@ -954,25 +949,6 @@ class BoldGrid_Framework {
 	private function search_forms() {
 		$search_forms = new Boldgrid_Framework_Search_Forms( $this->configs );
 		$this->loader->add_action( 'boldgrid_search_form', $search_forms, 'boldgrid_search_template' );
-	}
-
-	/**
-	 * Add in Bootstrap CSS Classes to Ninja Forms Forms.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function ninja_forms() {
-		$ninja_forms = new Boldgrid_Framework_Ninja_Forms( $this->configs );
-		$this->loader->add_action( 'ninja_forms_field', $ninja_forms, 'forms_field', 10, 2 );
-		$this->loader->add_action( 'ninja_forms_label_class', $ninja_forms, 'forms_label_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_display_field_wrap_class', $ninja_forms, 'forms_field_wrap_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_form_class', $ninja_forms, 'forms_form_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_form_wrap_class', $ninja_forms, 'forms_form_wrap_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_display_field_desc_class', $ninja_forms, 'field_description_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_display_field_processing_error_class', $ninja_forms, 'field_error_message_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_display_required_items_class', $ninja_forms, 'form_required_items_class', 10, 2 );
-		$this->loader->add_filter( 'ninja_forms_display_response_message_class', $ninja_forms, 'form_response_message_class', 10, 2 );
 	}
 
 	/**

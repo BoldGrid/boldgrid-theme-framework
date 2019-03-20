@@ -284,7 +284,7 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 * @param string $sidebar_id Sidebar ID.
 	 */
 	public function render_sidebar_start_tag( $sidebar_id ) {
-		printf( '<div class="dynamic-sidebar %s">', sanitize_title( $sidebar_id ) );
+		printf( '<div class="dynamic-sidebar %s">', esc_attr( sanitize_title( $sidebar_id ) ) );
 	}
 
 	/**
@@ -305,18 +305,14 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 		}
 
 		$title = $is_empty_title ? '' : $sidebar_meta[ $sidebar_id ]['title'];
-		$container_attributes = '';
-		if ( is_customize_preview() ) {
-			$container_attributes .= sprintf( ' data-customize-partial-id="%s"', "sidebar_meta[$sidebar_id][title]" );
-			if ( $is_empty_title ) {
-				$container_attributes .= ' hidden';
-			}
-		}
 
 		$rendered_title = wptexturize( $title );
 		$rendered_title = convert_smilies( $rendered_title );
 
-		printf( '<h2 %s>%s</h2>', $container_attributes, esc_html( $rendered_title ) );
+		printf( '<h2 %1$s>%2$s</h2>',
+			is_customize_preview() ? 'data-customize-partial-id="' . esc_attr( "sidebar_meta[$sidebar_id][title]" ) . '"' : '',
+			esc_html( $rendered_title )
+		);
 	}
 
 	/**
@@ -329,19 +325,25 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	 * @param string $sidebar_id Sidebar ID.
 	 */
 	public function render_sidebar_end_tag( $sidebar_id ) {
-		printf( '</div><!-- / .dynamic-sidebar.%s -->', sanitize_title( $sidebar_id ) );
+		printf( '</div><!-- / .dynamic-sidebar.%s -->', esc_html( sanitize_title( $sidebar_id ) ) );
 	}
 
 	/**
 	 * Add sidebar inline styles for customizer preview.
 	 *
 	 * @since 2.0.0
-	 *
-	 * @param string $sidebar_id The ID of the sidebar to apply styles for.
 	 */
-	public function add_customizer_sidebar_styles( $sidebar_id ) {
-		$css = $this->generate_sidebar_styles( $sidebar_id );
-		print "<style id=\"dynamic-sidebar-{$sidebar_id}-css\">{$css}</style>";
+	public function add_customizer_sidebar_styles() {
+		global $wp_registered_sidebars;
+
+		if ( empty( $wp_registered_sidebars ) ) {
+			return;
+		}
+
+		foreach ( $wp_registered_sidebars as $sidebar ) {
+			$sidebar_id = $sidebar['id'];
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "dynamic-sidebar-{$sidebar_id}", $this->generate_sidebar_styles( $sidebar_id ) );
+		}
 	}
 
 	/**

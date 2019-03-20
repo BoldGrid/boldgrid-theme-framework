@@ -257,7 +257,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	var $body, $customStyles, colorPreview;
 
 	$body = $( 'body' );
-	$customStyles = $( '#boldgrid-override-styles' );
+	$customStyles = $( '#boldgrid-override-styles-inline-css' );
 
 	colorPreview = new ColorPreview().init();
 	let backgroundPreview = new BackgroundPreview().init();

@@ -149,9 +149,15 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 			?>
 			<label class="theme-layout-label layout-default layout-selected">
 				<input type="radio" name="page_template" class="theme-layout-input" value="default" <?php echo esc_html( $checked ); ?> data-value-displayed="<?php echo esc_attr( strip_tags( $title ) . ' ' . $subtitle ); ?>" data-default-option="<?php echo esc_attr( $checked ? '1' : '0' ); ?>" />
-				<?php echo '<span>' . $title . '</span>'; ?>
+				<?php
+					// Note: The variable $title has it's dynamic parts escaped above using esc_html.
+					echo '<span>' . $title . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
 			</label>
-			<?php echo '<span>' . $subtitle . '</span>'; ?>
+			<?php
+				// Note: The variable $subtitle has it's dynamic parts escaped above using esc_html.
+				echo '<span>' . $subtitle . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			?>
 		<?php
 		foreach ( array_keys( $templates ) as $template ) {
 
@@ -170,8 +176,6 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				$label_class .= ' layout-selected';
 			}
 
-			/* Label */
-			$layout_label = $template;
 			?>
 			<label class="<?php echo esc_attr( $label_class ); ?>">
 				<input type="radio" name="page_template" class="theme-layout-input" value="<?php echo esc_attr( $templates[ $template ] ); ?>" <?php checked( $post_layout, $layout_value ); ?> data-value-displayed="<?php echo esc_attr( $template ); ?>" data-default-option="<?php echo esc_attr( $post_layout === $layout_value ? '1' : '0' ); ?>" />
@@ -197,7 +201,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				$template = ! empty( $post->page_template ) ? $post->page_template : false;
 				?>
 				<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-template">
-					<?php _e( 'Template', 'bgtfw' ); ?>:<?php
+					<?php esc_html_e( 'Template', 'bgtfw' ); ?>:<?php
 						/**
 						 * Fires immediately after the label inside the 'Template' section
 						 * of the 'Page Attributes' meta box.
@@ -211,13 +215,13 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					?>
 					<span class="value-displayed">...</span>
 					<a class="edit" href="">
-						<span aria-hidden="true"><?php echo __( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo __( 'Edit template', 'bgtfw' ); ?></span>
+						<span aria-hidden="true"><?php esc_html_e( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php esc_html_e( 'Edit template', 'bgtfw' ); ?></span>
 					</a>
 					<div class="options">
 						<?php $this->layout_selection( $post ); ?>
 						<p>
-							<a href="" class="button"><?php echo __( 'OK', 'bgtfw' ); ?></a>
-							<a href="" class="button-cancel"><?php echo __( 'Cancel', 'bgtfw' ); ?></a>
+							<a href="" class="button"><?php esc_html_e( 'OK', 'bgtfw' ); ?></a>
+							<a href="" class="button-cancel"><?php esc_html_e( 'Cancel', 'bgtfw' ); ?></a>
 						</p>
 					</div>
 				</div>
@@ -228,16 +232,17 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 		<?php
 			if ( is_post_type_hierarchical( $post->post_type ) ) : ?>
 				<div class="advanced-toggle dashicons-before dashicons-admin-tools">
-					<p>Advanced Options</p>
+					<p><?php esc_html_e( 'Advanced Options', 'bgtfw' ); ?></p>
 					<span class="toggle-indicator" aria-hidden="true"></span>
 				</div>
-				<div class="post-attributes-advanced-wrap hide-if-js"><?php
+				<div class="post-attributes-advanced-wrap hide-if-js">
+				<?php
 				$dropdown_args = array(
 					'post_type'        => $post->post_type,
 					'exclude_tree'     => $post->ID,
 					'selected'         => $post->post_parent,
 					'name'             => 'parent_id',
-					'show_option_none' => __( '(no parent)', 'bgtfw' ),
+					'show_option_none' => esc_html__( '(no parent)', 'bgtfw' ),
 					'sort_column'      => 'menu_order, post_title',
 					'echo'             => 0,
 				);
@@ -253,19 +258,23 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				 * @param WP_Post $post          The current WP_Post object.
 				 */
 				$dropdown_args = apply_filters( 'page_attributes_dropdown_pages_args', $dropdown_args, $post );
-				$pages = wp_dropdown_pages( $dropdown_args );
+
+				// Note: The dynamic parts (translation strings) are escaped above when the variable $dropdown_args is created, so no further escaping is necessary at this point.
+				$pages = wp_dropdown_pages( $dropdown_args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				if ( ! empty( $pages ) ) : ?>
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php _e( 'Parent', 'bgtfw' ); ?></label></p>
-					<?php echo '<span>' . $pages . '</span>'; ?>
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php esc_html_e( 'Parent', 'bgtfw' ); ?></label></p>
 					<?php
+					// Note: The variable $pages has it's dynamic parts (translation string) escaped above when the variable $dropdown_args is created so no further escaping is necessary at this point.
+					echo '<span>' . $pages . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 				endif; // end empty pages check
 			endif;  // end hierarchical check.
 		?>
 		<?php if ( post_type_supports( $post->post_type, 'page-attributes' ) ) : ?>
-		<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order"><?php _e( 'Order', 'bgtfw' ); ?></label></p>
+		<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order"><?php esc_html_e( 'Order', 'bgtfw' ); ?></label></p>
 		<input name="menu_order" type="text" size="4" id="menu_order" value="<?php echo esc_attr( $post->menu_order ); ?>" />
 		<?php if ( 'page' == $post->post_type && get_current_screen()->get_help_tabs() ) : ?>
-		<p><?php _e( 'Need help? Use the Help tab above the screen title.', 'bgtfw' ); ?></p>
+		<p><?php esc_html_e( 'Need help? Use the Help tab above the screen title.', 'bgtfw' ); ?></p>
 		<?php endif; ?>
 		</div>
 		<?php endif; ?>

@@ -45,7 +45,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	public function __construct( $configs ) {
 		$this->configs = $configs;
 
-		$this->enabled = $configs['customizer-options']['edit']['enabled'];
+		$this->enabled = (bool) $configs['customizer-options']['edit']['enabled'];
 
 		/*
 		 * Disable edit icons based on $_GET['customize_messenger_channel'].
@@ -89,8 +89,6 @@ class Boldgrid_Framework_Customizer_Edit {
 		if ( is_customize_preview() && true === $this->enabled ) {
 			// Minify if script debug is off.
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-			$stylesheet = get_stylesheet();
 
 			wp_register_script(
 				'boldgrid-framework-customizer-edit-js',
@@ -150,7 +148,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	 * @since 1.1.6
 	 *
 	 * @param array $args Array of wp_nav_menu() arguments.
-	 * @return array.
+	 * @return array $args Modfied wp_nav_menu() arguments.
 	 */
 	public function wp_nav_menu_args( $args ) {
 		if ( is_customize_preview() && true === $this->enabled && ! empty( $args['theme_location'] ) ) {

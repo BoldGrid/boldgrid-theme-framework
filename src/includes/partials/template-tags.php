@@ -41,7 +41,7 @@ function boldgrid_post_nav() {
 
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h2 class="sr-only"><?php _e( 'Post navigation', 'bgtfw' ); ?></h2>
+		<h2 class="sr-only"><?php esc_html_e( 'Post navigation', 'bgtfw' ); ?></h2>
 		<div class="nav-links">
 			<?php
 				previous_post_link( '<div class="' . $nav_classes['previous'] . '">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'bgtfw' ) );
@@ -81,24 +81,25 @@ function boldgrid_posted_on() {
 
 	if ( 'timeago' === $format ) {
 		$posted_on = sprintf(
-			_x( 'Posted %s ago', '%s = human-readable time difference', 'bgtfw' ),
+			esc_html_x( 'Posted %s ago', '%s = human-readable time difference', 'bgtfw' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . human_time_diff( get_the_time( 'U', $post->ID ), current_time( 'U' ) ) . '</a>'
 		);
 	}
 
 	if ( 'date' === $format ) {
 		$posted_on = sprintf(
-			_x( 'Posted on %s', 'post date', 'bgtfw' ),
+			esc_html_x( 'Posted on %s', 'post date', 'bgtfw' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
 	}
 
 	$byline = sprintf(
-		_x( 'by %s', 'post author', 'bgtfw' ),
+		esc_html_x( 'by %s', 'post author', 'bgtfw' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
-	echo '<span class="posted-on ' . esc_attr( $format ) . '">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
+	// Note: The variables $posted_on and $byline have all dynamic parts escaped above, and are safe for output at this point.
+	echo '<span class="posted-on ' . esc_attr( $format ) . '">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 endif;
 
@@ -111,40 +112,47 @@ function boldgrid_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
 
-		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( ', ' );
+		/* translators: used between each category list item, there is a space after the comma */
+		$categories_list = get_the_category_list( esc_html__( ', ', 'bgtfw' ) );
 		$categories_count = count( explode( ', ', $categories_list ) );
+
 		if ( $categories_list && boldgrid_categorized_blog() ) {
 			$class = 'singular';
-
 			$icon = is_single() ? get_theme_mod( 'bgtfw_posts_cat_icon' ) : get_theme_mod( 'bgtfw_blog_post_cat_icon' );
-			$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 
 			if ( $categories_count > 1 ) {
 				$icon = is_single() ? get_theme_mod( 'bgtfw_posts_cats_icon' ) : get_theme_mod( 'bgtfw_blog_post_cats_icon' );
-				$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 				$class = 'multiple';
 			}
 
-			printf( '<span class="cat-links %1$s">%2$s %3$s</span>', $class, $icon, $categories_list );
+			// Note: get_the_category_list already internally performs it's own escaping and cleanup, which is stored in the variable $categories_list.
+			printf( '<span class="cat-links %1$s"><i class="fa fa-fw fa-%2$s" aria-hidden="true"></i> %3$s</span>',
+				esc_attr( $class ),
+				esc_attr( $icon ),
+				$categories_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			);
 		}
 
-		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', ', ' );
+		/* translators: used between each tag list item, there is a space after the comma */
+		$tags_list = get_the_tag_list( '', esc_html__( ', ', 'bgtfw' ) );
 
 		if ( $tags_list ) {
 			$icon = is_single() ? get_theme_mod( 'bgtfw_posts_tag_icon' ) : get_theme_mod( 'bgtfw_blog_post_tag_icon' );
-			$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 			$class = 'singular';
+
 			$tags_count = count( explode( ', ', $tags_list ) );
 
 			if ( $tags_count > 1 ) {
 				$icon = is_single() ? get_theme_mod( 'bgtfw_posts_tags_icon' ) : get_theme_mod( 'bgtfw_blog_post_tags_icon' );
-				$icon = '<i class="fa fa-fw fa-' . $icon . '" aria-hidden="true"></i>';
 				$class = 'multiple';
 			}
 
-			printf( '<span class="tags-links %1$s">%2$s %3$s</span>', $class, $icon, $tags_list );
+			// Note: The variable $tags_list uses get_the_tag_list above, which internally calls get_the_term_list, and is considered safe for output without escaping.
+			printf( '<span class="tags-links %1$s"><i class="fa fa-fw fa-%2$s" aria-hidden="true"></i> %3$s</span>',
+				esc_attr( $class ),
+				esc_attr( $icon ),
+				$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			);
 		}
 	}
 
@@ -152,18 +160,18 @@ function boldgrid_entry_footer() {
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || $comment_count ) ) {
 
-		$icon = '';
-		$class = 'comments-link';
+		$icon = 'bgtfw_blog_post_comment_icon';
+		$class = 'singular';
 
 		if ( $comment_count > 1 ) {
-			$icon = get_theme_mod( 'bgtfw_blog_post_comments_icon' );
-			$class .= ' multiple';
-		} else {
-			$icon = get_theme_mod( 'bgtfw_blog_post_comment_icon' );
-			$class .= ' singular';
+			$icon = 'bgtfw_blog_post_comments_icon';
+			$class .= 'multiple';
 		}
 
-		echo '<span class="' . $class . '">';
+		$icon = get_theme_mod( $icon );
+		$class .= ' comments-link';
+
+		echo '<span class="' . esc_attr( $class ) . '">';
 
 		echo '<i class="fa fa-fw fa-' . esc_attr( $icon ) . '" aria-hidden="true"></i> ';
 
@@ -283,7 +291,7 @@ if ( ! function_exists( 'bgtfw_get_edit_link' ) ) {
 	 * @return string $link HTML to display edit link button.
 	 */
 	function bgtfw_get_edit_link( $url = null, $text = 'Click to edit.', $before = '<span class="bgtfw-edit-link">', $after = '</span>' ) {
-		if ( ! $url ) {
+		if ( null === $url ) {
 			return;
 		}
 
@@ -314,7 +322,9 @@ if ( ! function_exists( 'bgtfw_edit_link' ) ) {
 	 */
 	function bgtfw_edit_link( $url ) {
 		$link = bgtfw_get_edit_link( $url );
-		echo apply_filters( 'bgtfw_edit_link', $link );
+
+		// Note: The variable $link has it's dynamic parts escaped in the method bgtfw_get_edit_link, so no further escaping at this point is necessary.
+		echo apply_filters( 'bgtfw_edit_link', $link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 
@@ -325,7 +335,7 @@ if ( ! function_exists( 'bgtfw_edit_link' ) ) {
  */
 function woocommerce_widget_shopping_cart_button_view_cart() {
 	?>
-		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="btn button-primary wc-forward"><?php _e( 'View Cart', 'bgtfw' ); ?></a>
+		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="btn button-primary wc-forward"><?php esc_html_e( 'View Cart', 'bgtfw' ); ?></a>
 	<?php
 }
 
@@ -336,7 +346,7 @@ function woocommerce_widget_shopping_cart_button_view_cart() {
  */
 function woocommerce_widget_shopping_cart_proceed_to_checkout() {
 	?>
-		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="btn button-primary checkout wc-forward"><?php _e( 'Checkout', 'bgtfw' ); ?></a>
+		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="btn button-primary checkout wc-forward"><?php esc_html_e( 'Checkout', 'bgtfw' ); ?></a>
 	<?php
 }
 
@@ -401,7 +411,6 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	$style = 'padding-top: 15px; padding-bottom: 15px;';
 	$sidebar_meta = get_theme_mod( 'sidebar_meta' );
 
-	$color_class = '';
 	$classes = array();
 
 	global $boldgrid_theme_framework;
@@ -426,20 +435,20 @@ function bgtfw_widget( $sidebar_id, $help = null ) {
 	$classes[] = $color_class . '-link-color';
 
 ?>
-	<aside id="<?php echo sanitize_title( $sidebar_id ); ?>" class="sidebar container-fluid <?php echo esc_attr( implode( ' ', $classes ) ); ?>" role="complementary" style="<?php echo esc_attr( $style ); ?>">
+	<aside id="<?php echo esc_attr( sanitize_title( $sidebar_id ) ); ?>" class="sidebar container-fluid <?php echo esc_attr( implode( ' ', $classes ) ); ?>" role="complementary" style="<?php echo esc_attr( $style ); ?>">
 		<?php dynamic_sidebar( $sidebar_id ); ?>
 		<?php if ( current_user_can( 'edit_pages' ) && ! is_customize_preview() && true === $tmp ) : ?>
 			<?php if ( ! is_active_sidebar( $sidebar_id ) ) : ?>
 				<div class="empty-sidebar-message">
 					<?php if ( empty( $sidebar_meta[ $sidebar_id ]['title'] ) ) : ?>
-						<h2><?php _e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
+						<h2><?php esc_html_e( 'Empty Sidebar', 'bgtfw' ); ?></h2>
 					<?php endif; ?>
-					<p><?php _e( "This sidebar doesn't have any widgets assigned to it yet.", 'bgtfw' ); ?></p>
-					<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add widgets here.', 'bgtfw' ) ?></a></p>
+					<p><?php esc_html_e( "This sidebar doesn't have any widgets assigned to it yet.", 'bgtfw' ); ?></p>
+					<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php esc_html_e( 'Add widgets here.', 'bgtfw' ) ?></a></p>
 				</div>
 				<?php elseif ( is_active_sidebar( $sidebar_id ) ) : ?>
 					<div class="add-widget-message">
-						<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php _e( 'Add another widget.', 'bgtfw' ) ?></a></p>
+						<p><a href="<?php echo esc_url( $link ) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i> <?php esc_html_e( 'Add another widget.', 'bgtfw' ) ?></a></p>
 					</div>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -504,7 +513,7 @@ function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
 			}
 		}
 
-		$style = 'style="background: ' . $color . 'url(' . $img[0] . '); background-size: cover; background-position: center center;"';
+		$style = 'style="background: ' . $color . 'url(' . esc_url( $img[0] ) . '); background-size: cover; background-position: center center;"';
 	}
 
 	return $style;
@@ -513,10 +522,16 @@ function bgtfw_get_featured_img_bg( $post_id, $theme_mod = false ) {
 /**
  * Echos the style for a feature image set as a background image on an element.
  *
+ * Note: The bgtfw_get_featured_img_bg method escapes output of the dynamic
+ * parts generated already.  Colors are sanitized through ariColor, and the
+ * background-image's URL is escaped using esc_url().
+ *
  * @since 2.0.0
  */
 function bgtfw_featured_img_bg( $post_id, $theme_mod = false ) {
-	echo bgtfw_get_featured_img_bg( $post_id, $theme_mod );
+
+	// Note: See the docblock comment of this method for details regarding the escaping.
+	echo bgtfw_get_featured_img_bg( $post_id, $theme_mod ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**
@@ -529,7 +544,7 @@ function bgtfw_featured_img_bg( $post_id, $theme_mod = false ) {
  */
 function bgtfw_excerpt_more( $more ) {
 	global $post;
-	return '<div class="read-more"><a class="' . get_theme_mod( 'bgtfw_blog_post_readmore_type' ) . '" href="' . get_permalink( $post->ID ) . '">' . get_theme_mod( 'bgtfw_blog_post_readmore_text' ) . '</a></div>';
+	return '<div class="read-more"><a class="' . esc_attr( get_theme_mod( 'bgtfw_blog_post_readmore_type' ) ) . '" href="' . get_permalink( $post->ID ) . '">' . esc_html( get_theme_mod( 'bgtfw_blog_post_readmore_text' ) ) . '</a></div>';
 }
 
 add_filter( 'excerpt_more', 'bgtfw_excerpt_more' );

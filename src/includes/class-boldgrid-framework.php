@@ -392,8 +392,8 @@ class BoldGrid_Framework {
 
 		$this->loader->add_filter( 'bgtfw_entry_header_classes', $boldgrid_theme, 'entry_header_classes' );
 		$this->loader->add_filter( 'bgtfw_header_classes', $boldgrid_theme, 'header_classes' );
+		$this->loader->add_filter( 'bgtfw_navi_wrap_classes', $boldgrid_theme, 'header_classes' );
 		$this->loader->add_filter( 'bgtfw_footer_classes', $boldgrid_theme, 'footer_classes' );
-		$this->loader->add_filter( 'bgtfw_navi_wrap_classes', $boldgrid_theme, 'inner_header_classes' );
 		$this->loader->add_filter( 'bgtfw_navi_classes', $boldgrid_theme, 'navi_classes' );
 		$this->loader->add_filter( 'bgtfw_footer_content_classes', $boldgrid_theme, 'inner_footer_classes' );
 		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'blog_container' );
@@ -417,7 +417,6 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );
 		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_title' );
 		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
-		$this->loader->add_filter( 'boldgrid_primary_navigation',   $boldgrid_theme,   'print_primary_navigation' );
 		$this->loader->add_filter( 'boldgrid_print_menu', $boldgrid_theme, 'print_menu' );
 
 		// Sticky Header
@@ -474,7 +473,6 @@ class BoldGrid_Framework {
 
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $menu, 'disable_advanced_nav_options' );
-			$this->loader->add_action( 'after_switch_theme', $menu, 'transfer_menus', 10, 2 );
 		}
 	}
 
@@ -526,7 +524,6 @@ class BoldGrid_Framework {
 
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $activate, 'do_activate' );
-			$this->loader->add_action( 'switch_theme', $activate, 'do_deactivate' );
 		}
 
 		// Stop WordPress from assigning widgets to our areas.

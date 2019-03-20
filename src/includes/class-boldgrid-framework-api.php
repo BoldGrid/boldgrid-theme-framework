@@ -160,13 +160,12 @@ class BoldGrid {
 	 * @return array $classes Filter classes on .main element.
 	 */
 	public function title_content_container( $classes ) {
+		$class = 'container';
 		if ( 'above' === get_theme_mod( 'bgtfw_global_title_position' ) && 'full-width' === get_theme_mod( 'bgtfw_global_title_background_container' ) ) {
-			$classes[] = get_theme_mod( 'bgtfw_global_title_content_container' );
-		} else {
-			$classes[] = 'container';
+			$class = get_theme_mod( 'bgtfw_global_title_content_container' );
 		}
 
-		return $classes;
+		return array_merge( $classes, $class );
 	}
 
 	/**
@@ -245,12 +244,13 @@ class BoldGrid {
 		// Retrieve blog tagline.
 		$blog_info = get_bloginfo( 'description' );
 		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
+		$classes = 'site-description invisible';
 
 		if ( $blog_info ) {
-			printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $this->configs['template']['tagline-classes'] . $display ), esc_html( $blog_info ) );
-		} else {
-			printf( wp_kses_post( $this->configs['template']['tagline'] ), 'site-description invisible', esc_html( $blog_info ) );
+			$classes = $this->configs['template']['tagline-classes'] . $display;
 		}
+
+		printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $classes ), esc_html( $blog_info ) );
 	}
 
 	/**
@@ -271,31 +271,6 @@ class BoldGrid {
 	}
 
 	/**
-	 * Print the site's primary navigation using the Bootstrap navwalker.
-	 *
-	 * @since 1.0.0
-	 */
-	public function print_primary_navigation() {
-		if ( has_nav_menu( 'primary' ) ) { ?>
-			<nav id="site-navigation" class="navbar navbar-default" role="navigation">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div><!-- .navbar-header -->
-				<?php do_action( 'boldgrid_menu_primary' ); ?>
-				<?php if ( true === $this->configs['template']['navbar-search-form'] ) : ?>
-					<?php get_template_part( 'templates/header/search' ); ?>
-				<?php endif; ?>
-			</nav><!-- #site-navigation -->
-			<?php
-		}
-	}
-
-	/**
 	 * Print the site's primary navigation using the native WordPress navwalker.
 	 *
 	 * @since 2.0.0
@@ -306,7 +281,7 @@ class BoldGrid {
 			<!-- Mobile toggle -->
 			<input id="main-menu-state" type="checkbox" />
 			<label class="main-menu-btn" for="main-menu-state">
-				<span class="main-menu-btn-icon"></span><span class="sr-only">Toggle main menu visibility</span>
+				<span class="main-menu-btn-icon"></span><span class="sr-only"><?php esc_html_e( 'Toggle main menu visibility', 'bgtfw' ); ?></span>
 			</label>
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'false', 'menu_id' => 'main-menu', 'menu_class' => 'sm bgtfw-menu main-menu' ) ); ?>
 			</div>
@@ -348,22 +323,6 @@ class BoldGrid {
 	 */
 	public function navi_classes( $classes ) {
 		$classes[] = self::get_container_classes( 'header' );
-		return $classes;
-	}
-
-	/**
-	 * Adds custom classes to the array of inner header classes.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @return array $classes array of classes to be applied to the #masthead element.
-	 */
-	public function inner_header_classes( $classes ) {
-		$classes = array_merge(
-			$classes,
-			$this->get_background_color( 'bgtfw_header_color' )
-		);
-
 		return $classes;
 	}
 

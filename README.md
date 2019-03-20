@@ -36,6 +36,17 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.1 ###
+* Bugfix: Addressed various output escaping issues.
+* Update: Moved translation support from bgtfw to themes.
+* New Feature: Added new background patterns for customizer.
+* New Feature: Added styles for Gutenberg buttons.
+* Update: Removed NinjaForms bootstrap.css overrides.
+* Update: Switched to MIT licensed animation library, everything works as it did before, including other plugins hooked in.
+* Update: Updated license to GPL-3.0-or-later.
+* Update: Removed starter content overrides that aren't allowed in WordPress.org.
+* Update: Replaced all non-GPL-2.0-or-later compatible images.
+
 ### 2.1.0 ###
 * Bug fix: Remove font preview in MS edge, helps with performance
 

@@ -11,7 +11,7 @@
 	"externals": {
 		"jquery": "jQuery"
 	},
-	"devtool": "source-map",
+	"devtool": false,
 	"stats": {
 		"assets": true,
 		"children": false,

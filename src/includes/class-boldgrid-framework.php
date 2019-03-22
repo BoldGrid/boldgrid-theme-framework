@@ -623,6 +623,20 @@ class BoldGrid_Framework {
 		self::customizer_widget_meta();
 		self::customizer_search();
 		self::customizer_notifications();
+		self::customizer_query();
+	}
+
+	/**
+	 * This defines the core functionality of the framework's customizer start content import button.
+	 *
+	 * @since    2.1.1
+	 * @access   private
+	 */
+	private function customizer_query() {
+		$query = new Boldgrid_Framework_Customizer_Starter_Content_Query();
+		$this->loader->add_action( 'customize_preview_init', $query, 'make_auto_drafts_queryable' );
+		$this->loader->add_action( 'pre_get_posts', $query, 'set_main_query' );
+		$this->loader->add_filter( 'widget_posts_args', $query, 'set_recent_posts_query' );
 	}
 
 	/**
@@ -851,7 +865,6 @@ class BoldGrid_Framework {
 		if ( ! is_admin() ) {
 			$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_start_tag', 5 );
 			$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_title', 9 );
-			$this->loader->add_action( 'dynamic_sidebar_after', $widget_meta, 'render_sidebar_end_tag', 15 );
 		}
 
 		if ( is_customize_preview() ) {

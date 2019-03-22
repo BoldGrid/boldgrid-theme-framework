@@ -316,19 +316,6 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 	}
 
 	/**
-	 * Render the sidebar start element.
-	 *
-	 * Note the priority is 5 so that it will output the start element before the title and before the "milestone" comment.
-	 *
-	 * @see WP_Customize_Widgets::end_dynamic_sidebar()
-	 *
-	 * @param string $sidebar_id Sidebar ID.
-	 */
-	public function render_sidebar_end_tag( $sidebar_id ) {
-		printf( '</div><!-- / .dynamic-sidebar.%s -->', esc_html( sanitize_title( $sidebar_id ) ) );
-	}
-
-	/**
 	 * Add sidebar inline styles for customizer preview.
 	 *
 	 * @since 2.0.0

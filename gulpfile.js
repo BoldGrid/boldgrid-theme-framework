@@ -222,6 +222,12 @@ gulp.task('readme', function () {
     .pipe(gulp.dest(config.dist));
 });
 
+// Copy License
+gulp.task( 'license', function() {
+	gulp.src( './LICENSE' )
+		.pipe( gulp.dest( config.dist ) );
+} );
+
 // Framework Images.  Pipe through newer images only!
 gulp.task('images', function () {
   return gulp.src([config.src + '/assets/img/**/*.{png,jpg,gif}'])
@@ -510,41 +516,41 @@ gulp.task( 'tgm', shell.task( 'yarn run script:tgm' ) );
 gulp.task( 'wpTextDomainLint', shell.task( 'yarn run script:wp-textdomain-lint' ) );
 
 // Tasks
-gulp.task('build', function (cb) {
-  sequence(
-    'dist',
-    'clean',
-    'readme',
-    ['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs', 'svgs', 'tgm'],
-    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss'],
-    'images',
-    ['scssCompile', 'bootstrapCompile'],
-    ['fontFamilyCss', 'patterns'],
-    'hovers',
-    'hoverColors',
-    'cleanHovers',
-    cb
-  );
-});
+gulp.task( 'build', function( cb ) {
+	sequence(
+		'dist',
+		'clean',
+		[ 'readme','license' ],
+		['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs', 'svgs', 'tgm'],
+		['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss'],
+		'images',
+		['scssCompile', 'bootstrapCompile'],
+		['fontFamilyCss', 'patterns'],
+		'hovers',
+		'hoverColors',
+		'cleanHovers',
+		cb
+	);
+} );
 
 // Tasks
-gulp.task('qbuild', function (cb) {
-  sequence(
-    'dist',
-    'readme',
-    ['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs'],
-    ['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss'],
-    ['scssCompile', 'bootstrapCompile'],
-    'fontFamilyCss',
-    'hovers',
-    'hoverColors',
-    'cleanHovers',
-    cb
-  );
+gulp.task( 'qbuild', function( cb ) {
+	sequence(
+		'dist',
+		[ 'readme','license' ],
+		['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs'],
+		['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss'],
+		['scssCompile', 'bootstrapCompile'],
+		'fontFamilyCss',
+		'hovers',
+		'hoverColors',
+		'cleanHovers',
+		cb
+	);
 });
 
 gulp.task('framework-js', function (cb) {
-  return sequence( [ 'jsHint', 'jscs' ], 'frameworkJs', 'modernizr', cb );
+	return sequence( [ 'jsHint', 'jscs' ], 'frameworkJs', 'modernizr', cb );
 });
 
 gulp.task('prebuild', ['images', 'scssDeps', 'jsDeps', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss']);

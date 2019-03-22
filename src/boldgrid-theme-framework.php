@@ -3,14 +3,29 @@
  * Plugin Name: BoldGrid Theme Framework
  * Plugin URI: https://www.boldgrid.com/docs/configuration-file
  * Description: BoldGrid Theme Framework is a library that allows you to easily make BoldGrid themes. Please see our reference guide for more information: https://www.boldgrid.com/docs/configuration-file
- * Version: 2.1.1
+ * Version: 2.1.2
  * Author: BoldGrid.com <wpb@boldgrid.com>
  * Author URI: https://www.boldgrid.com/
  * Text Domain: bgtfw
  * Domain Path: /languages
- * License: GPLv2 or later
+ * License: GPL-3.0-or-later
  *
  * @package Boldgrid_Theme_Framework
+ * @license GPL-3.0-or-later
+ *
+ * Copyright (C) 2019 BoldGrid
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
  */
 
 /**

@@ -27,6 +27,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 	 * @var array
 	 */
 	protected $changeset_auto_draft_post_ids = array();
+
 	/**
 	 * Add hooks to ensure auto-draft posts from the current changeset are included in WP_Query results.
 	 *
@@ -79,6 +80,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 		add_action( 'pre_get_posts', array( $this, 'prevent_filter_suppression' ), 100, 2 );
 		add_filter( 'posts_where', array( $this, 'posts_where' ) );
 	}
+
 	/**
 	 * Make sure that the posts_where filter will be applied.
 	 *
@@ -87,6 +89,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 	public function prevent_filter_suppression( WP_Query $query ) {
 		$query->set( 'suppress_filters', false );
 	}
+
 	/**
 	 * Filter WHERE clause for posts queries to exclude auto-draft posts that aren't part of the current changeset.
 	 *

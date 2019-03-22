@@ -623,6 +623,20 @@ class BoldGrid_Framework {
 		self::customizer_widget_meta();
 		self::customizer_search();
 		self::customizer_notifications();
+		self::customizer_query();
+	}
+
+	/**
+	 * This defines the core functionality of the framework's customizer start content import button.
+	 *
+	 * @since    2.1.1
+	 * @access   private
+	 */
+	private function customizer_query() {
+		$query = new Boldgrid_Framework_Customizer_Starter_Content_Query();
+		$this->loader->add_action( 'customize_preview_init', $query, 'make_auto_drafts_queryable' );
+		$this->loader->add_action( 'pre_get_posts', $query, 'set_main_query' );
+		$this->loader->add_filter( 'widget_posts_args', $query, 'set_recent_posts_query' );
 	}
 
 	/**

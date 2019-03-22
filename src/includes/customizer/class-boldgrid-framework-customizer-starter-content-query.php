@@ -128,6 +128,8 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 	 * @since 2.0.0
 	 *
 	 * @param WP_Query $query The WP_Query instance.
+	 *
+	 * @return WP_Query $query The WP_Query instance.
 	 */
 	public function set_main_query( WP_Query $query ) {
 		if ( ( $query->is_archive() || $query->is_home() ) && $query->is_main_query() ) {
@@ -143,6 +145,8 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 	 * @since 2.0.0
 	 *
 	 * @param array $args WP_Query args.
+	 *
+	 * @return array $args WP_Query args.
 	 */
 	public function set_recent_posts_query( $args ) {
 		$args['orderby'] = 'date modified title';

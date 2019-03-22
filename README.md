@@ -36,6 +36,11 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.2 ###
+* Bugfix: Added starter content's customizer query for blog posts.
+* Bugfix: Removed closing div for widget areas in customizer.
+* Update: Removed source maps for production build.
+
 ### 2.1.1 ###
 * Bugfix: Addressed various output escaping issues.
 * Update: Moved translation support from bgtfw to themes.

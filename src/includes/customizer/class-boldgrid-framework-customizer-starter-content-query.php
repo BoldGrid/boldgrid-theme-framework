@@ -11,8 +11,10 @@
  * @author     BoldGrid <support@boldgrid.com>
  * @link       https://boldgrid.com
  */
+
 // If this file is called directly, abort.
 defined( 'WPINC' ) ? : die;
+
 /**
  * BoldGrid_Framework_Customizer_Starter_Content_Query
  *
@@ -21,6 +23,7 @@ defined( 'WPINC' ) ? : die;
  * @since 2.0.0
  */
 class BoldGrid_Framework_Customizer_Starter_Content_Query {
+
 	/**
 	 * Auto draft post IDs in the current changeset.
 	 *
@@ -35,10 +38,12 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 	 */
 	public function make_auto_drafts_queryable( WP_Customize_Manager $wp_customize ) {
 		global $wp_post_statuses;
+
 		// WordPress 4.7 required.
 		if ( ! method_exists( $wp_customize, 'changeset_data' ) ) {
 			return;
 		}
+
 		/*
 		* Note that we cannot use $wp_customize->get_setting( 'nav_menus_created_posts' )->value()
 		* for the sake of unauthenticated users who may be previewing the changeset on the
@@ -52,6 +57,7 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 				$changeset_data['nav_menus_created_posts']['value']
 			);
 		}
+
 		/*
 		* Now merge the starter content post IDs  from the changeset with any additional
 		* IDs for page/post stubs created for nav menus which may not have been written
@@ -64,10 +70,12 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 				$nav_menus_created_posts_setting->value()
 			);
 		}
+
 		// If there are no auto-draft posts in the current changeset, then there is nothing to do here.
 		if ( empty( $this->changeset_auto_draft_post_ids ) ) {
 			return;
 		}
+
 		/*
 		* Ensure that starter content posts (with auto-draft status) will be considered
 		* to have a public post status in in WP_Query::get_posts(), at:

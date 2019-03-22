@@ -865,7 +865,6 @@ class BoldGrid_Framework {
 		if ( ! is_admin() ) {
 			$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_start_tag', 5 );
 			$this->loader->add_action( 'dynamic_sidebar_before', $widget_meta, 'render_sidebar_title', 9 );
-			$this->loader->add_action( 'dynamic_sidebar_after', $widget_meta, 'render_sidebar_end_tag', 15 );
 		}
 
 		if ( is_customize_preview() ) {

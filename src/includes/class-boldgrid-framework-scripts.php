@@ -46,6 +46,10 @@ class BoldGrid_Framework_Scripts {
 		$this->configs = $configs;
 	}
 
+	public function get_asset_path() {
+		return 'BGTFW = BGTFW || {}; BGTFW.assets = BGTFW.assets || {}; BGTFW.assets.path';
+	}
+
 	/**
 	 * Enqueue the scripts for our BoldGrid Theme.
 	 *
@@ -200,6 +204,13 @@ class BoldGrid_Framework_Scripts {
 		);
 
 		wp_enqueue_script( 'boldgrid-front-end-scripts' );
+
+		wp_localize_script(
+			'boldgrid-front-end-scripts',
+			$this->get_asset_path(),
+			$this->configs['framework']['admin_asset_dir']
+		);
+
 		wp_enqueue_script( 'float-labels' );
 		if ( is_customize_preview() ) {
 			wp_enqueue_script(

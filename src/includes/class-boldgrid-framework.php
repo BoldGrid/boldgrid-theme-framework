@@ -154,6 +154,7 @@ class BoldGrid_Framework {
 			'admin',
 			'activate',
 			'api',
+			'assets',
 			'comments',
 			'compile-colors',
 			'container',

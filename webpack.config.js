@@ -90,7 +90,7 @@ const webpackConfig = merge( {
 	},
 	plugins: [
 		new RuntimePath( {
-			runtimePublicPath: 'window.BGTFW.assets'
+			runtimePublicPath: 'BGTFW.assets.path'
 		} ),
 		new MiniCssExtractPlugin( {
 			filename: './assets/css/[name]-bundle.min.css'

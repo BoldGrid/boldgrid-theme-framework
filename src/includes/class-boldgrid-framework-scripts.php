@@ -46,6 +46,11 @@ class BoldGrid_Framework_Scripts {
 		$this->configs = $configs;
 	}
 
+	/**
+	 * Gets the asset path reference for webpack imports.
+	 *
+	 * @since 2.1.3
+	 */
 	public function get_asset_path() {
 		return 'BGTFW = BGTFW || {}; BGTFW.assets = BGTFW.assets || {}; BGTFW.assets.path';
 	}

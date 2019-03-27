@@ -33,21 +33,21 @@
  *
  * @since 1.0.0
  */
-$theme_framework_path = get_template_directory() . '/inc/boldgrid-theme-framework';
+$bgtfw_path = get_template_directory() . '/inc/boldgrid-theme-framework';
 if ( defined( 'BGTFW_PATH' ) ) {
-	$theme_framework_path = ABSPATH . BGTFW_PATH;
+	$bgtfw_path = ABSPATH . BGTFW_PATH;
 }
 
-$theme_framework_class = $theme_framework_path . '/includes/class-boldgrid-framework.php';
+$bgtfw_class = $bgtfw_path . '/includes/class-boldgrid-framework.php';
 
-if ( file_exists( $theme_framework_class ) ) {
+if ( file_exists( $bgtfw_class ) ) {
 	if ( version_compare( phpversion(), '5.4.0', '<' ) ) {
-		require_once $theme_framework_path . '/includes/class-boldgrid-framework-version-requirements.php';
-		$requirements = new Boldgrid_Framework_Version_Requirements();
-		$requirements->add_hooks();
+		require_once $bgtfw_path . '/includes/class-boldgrid-framework-version-requirements.php';
+		$bgtfw_requirements = new Boldgrid_Framework_Version_Requirements();
+		$bgtfw_requirements->add_hooks();
 	} else {
-		require_once $theme_framework_class;
-		$boldgrid_theme_framework = new Boldgrid_Framework();
-		$boldgrid_theme_framework->run();
+		require_once $bgtfw_class;
+		$bgtfw_framework = new Boldgrid_Framework();
+		$bgtfw_framework->run();
 	}
 }

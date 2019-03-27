@@ -10,7 +10,7 @@
  * @return   array   An array of color palette configs.
  */
 global $boldgrid_theme_framework;
-$configs = $boldgrid_theme_framework->get_configs();
+$bgtfw_configs = $boldgrid_theme_framework->get_configs();
 
 return array(
 	'enabled' => true,
@@ -20,15 +20,14 @@ return array(
 	'settings' => array(
 		// Directory that contains SCSS files to be compiled.
 		'scss_directory' => array(
-			'framework_dir' => $configs['framework']['asset_dir'] . 'scss/custom-color',
+			'framework_dir' => $bgtfw_configs['framework']['asset_dir'] . 'scss/custom-color',
 			'default' => '/inc/boldgrid-theme-framework-config/scss',
 		),
 
 		// After the helper compiles the css, where should the css be stored?
-		'output_css_name' => $this->configs['framework']['config_directory']['template'] . '/css/color-palettes.css',
+		'output_css_name' => $bgtfw_configs['framework']['config_directory']['template'] . '/css/color-palettes.css',
 
 		// Should the output be minified?
 		'minify_output' => true,
 	),
 );
-

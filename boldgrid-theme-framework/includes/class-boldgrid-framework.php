@@ -71,7 +71,6 @@ class BoldGrid_Framework {
 		$this->assign_configurations();
 		$this->add_config_filters();
 		$this->load_theme_configs();
-		$this->set_doing_cron();
 		$this->upgrade();
 		$this->cta();
 
@@ -89,28 +88,6 @@ class BoldGrid_Framework {
 		$this->pagination();
 		$this->ninja_forms();
 		$this->woocommerce();
-	}
-
-	/**
-	 * Check if DOING_CRON is defined.
-	 *
-	 * Though this is a simple method, the lengthy description is added below to server as a
-	 * reference for why we're setting this var.
-	 *
-	 * There are several methods triggered during the 'after_switch_theme' action.
-	 * Those hooks are intended to setup a new BoldGrid theme after it's been activated.
-	 * Those hooks however are sometimes ran twice:
-	 * 	1st, they are ran by the WordPress cron, if DISABLE_WP_CRON is not set to true.
-	 * 	2nd, they are ran by an ajax call
-	 * To only run those methods once, we'll check 'DOING_CRON' before adding the hooks.
-	 *
-	 * @since 1.0.5
-	 */
-	public function set_doing_cron() {
-		// After Inspirations installs a site, it makes an ajax post with doing_wp_cron set.
-		$doing_wp_cron = ! empty( $_GET['doing_wp_cron'] ) && 'fire-after-theme-switch-hooks' === $_GET['doing_wp_cron'];
-
-		$this->doing_cron = defined( 'DOING_CRON' ) || $doing_wp_cron;
 	}
 
 	/**
@@ -423,10 +400,8 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'after_setup_theme', $menu, 'register_navs' );
 		$this->loader->add_action( 'after_setup_theme', $menu, 'add_dynamic_actions' );
 
-		if ( ! $this->doing_cron ) {
-			$this->loader->add_action( 'after_switch_theme', $menu, 'disable_advanced_nav_options' );
-			$this->loader->add_action( 'after_switch_theme', $menu, 'transfer_menus', 10, 2 );
-		}
+		$this->loader->add_action( 'after_switch_theme', $menu, 'disable_advanced_nav_options' );
+		$this->loader->add_action( 'after_switch_theme', $menu, 'transfer_menus', 10, 2 );
 	}
 
 	/**
@@ -455,9 +430,7 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'tgmpa_register', $activate, 'register_required_plugins' );
 		}
 
-		if ( ! $this->doing_cron ) {
-			$this->loader->add_action( 'after_switch_theme', $activate, 'do_activate' );
-		}
+		$this->loader->add_action( 'after_switch_theme', $activate, 'do_activate' );
 
 		// Stop Wordpress from assigning widgets to our areas.
 		remove_action( 'after_switch_theme', '_wp_sidebars_changed' );
@@ -889,9 +862,8 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'init', $staging, 'launch_staging_process', 998 );
 		$this->loader->add_action( 'init', $scss, 'force_recompile_checker', 999 );
 
-		if ( ! $this->doing_cron ) {
-			$this->loader->add_action( 'after_switch_theme', $scss, 'force_update_css', 999 );
-		}
+		$this->loader->add_action( 'after_switch_theme', $scss, 'force_update_css', 999 );
+
 		$this->loader->add_action( 'upgrader_process_complete', $scss , 'theme_upgrader_process', 10, 3 );
 	}
 

@@ -62,7 +62,7 @@ class BoldGrid_Framework_Styles {
 			Boldgrid_Framework_Customizer_Colors::get_colors_uri( $this->configs ),
 		);
 
-		$files = apply_filters( 'local_editor_styles', $files );
+		$files = apply_filters( 'boldgrid_theme_framework_local_editor_styles', $files );
 
 		// Enqueue styles for Gutenberg.
 		$config = $this->configs;

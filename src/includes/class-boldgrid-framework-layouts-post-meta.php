@@ -135,7 +135,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					$global_template = get_theme_mod( 'bgtfw_layout_' . $type, $global_default );
 				}
 
-				$default_title = apply_filters( 'default_page_template_title', $default_title, 'meta-box' );
+				// Invoking core default_page_template_title filter.
+				$default_title = apply_filters( 'default_page_template_title', $default_title, 'meta-box' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
 				$checked = ! in_array( $post_layout, $templates ) ? 'checked="checked"' : '';
 				$title = $default_title;
@@ -202,16 +203,20 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				?>
 				<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-template">
 					<?php esc_html_e( 'Template', 'bgtfw' ); ?>:<?php
+
 						/**
 						 * Fires immediately after the label inside the 'Template' section
 						 * of the 'Page Attributes' meta box.
+						 *
+						 * This is a core WP action, which is added for our metabox override as there
+						 * are not the appropriate hooks/filters for what we needed to modify.
 						 *
 						 * @since 4.4.0
 						 *
 						 * @param string  $template The template used for the current post.
 						 * @param WP_Post $post     The current post.
 						 */
-						do_action( 'page_attributes_meta_box_template', $template, $post );
+						do_action( 'page_attributes_meta_box_template', $template, $post ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 					?>
 					<span class="value-displayed">...</span>
 					<a class="edit" href="">
@@ -250,6 +255,9 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				/**
 				 * Filters the arguments used to generate a Pages drop-down element.
 				 *
+				 * This is a core filter, which is added since we are overriding the default
+				 * metabox functionality.
+				 *
 				 * @since 2.0.0
 				 *
 				 * @see wp_dropdown_pages()
@@ -257,7 +265,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				 * @param array   $dropdown_args Array of arguments used to generate the pages drop-down.
 				 * @param WP_Post $post          The current WP_Post object.
 				 */
-				$dropdown_args = apply_filters( 'page_attributes_dropdown_pages_args', $dropdown_args, $post );
+				$dropdown_args = apply_filters( 'page_attributes_dropdown_pages_args', $dropdown_args, $post ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
 				// Note: The dynamic parts (translation strings) are escaped above when the variable $dropdown_args is created, so no further escaping is necessary at this point.
 				$pages = wp_dropdown_pages( $dropdown_args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

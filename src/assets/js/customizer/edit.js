@@ -348,8 +348,10 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 			// When "Go there now" is clicked, navigate to the editor for this page.
 			dialogSettings.buttons[goThereNow] = function() {
-				parent.window.location = self.i18n.editPostLink;
+				wp.customize.preview.send( 'edit-post-link', self.i18n.editPostLink );
 			};
+
+			wp.customize.preview.bind( 'active', dialogSettings.buttons[goThereNow] );
 
 			// When "cancel" is clicked, close the dialog.
 			dialogSettings.buttons[cancel] = function() {

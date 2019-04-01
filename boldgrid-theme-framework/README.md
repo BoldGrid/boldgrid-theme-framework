@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.5.11 ###
+* Update: Remove references of doing_cron, which were initially added to help with a BoldGrid Inspirations deployment.
+
 ### 1.5.10 ###
 * Bug fix: Fix doing_cron logic so that blog widgets are not erased.
 * Bug fix: Remove deprecated create_function call for PHP7.

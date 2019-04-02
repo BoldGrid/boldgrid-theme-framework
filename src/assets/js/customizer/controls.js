@@ -61,6 +61,6 @@
 // Bind edit post links from previewer.
 wp.customize.bind( 'ready', function() {
 	wp.customize.previewer.bind( 'edit-post-link', function( editPostLink ) {
-		window.location = editPostLink
+		window.location = editPostLink;
 	} );
 } );

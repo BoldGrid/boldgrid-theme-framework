@@ -26,6 +26,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.5.12 ###
+* Bugfix: Fixed "Go There Now" button in customizer (#43).
+* Bugfix: Updated scssphp to v0.7.7 to fix some php7.2 warnings - this drops php5.3 support.  Note: WP minimum will be php5.6 in next core update, so users should upgrade anyways.
+
 ### 1.5.11 ###
 * Update: Remove references of doing_cron, which were initially added to help with a BoldGrid Inspirations deployment.
 

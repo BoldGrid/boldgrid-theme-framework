@@ -20,7 +20,7 @@
     "font-awesome": "fontawesome#~4.7.0",
     "bootstrap-sass": "~3.3.6",
     "color-js": "https://github.com/brehaut/color-js.git",
-    "scssphp": "https://github.com/leafo/scssphp.git#0.6.1",
+    "scssphp": "https://github.com/leafo/scssphp.git#0.7.7",
     "kirki": "https://github.com/aristath/kirki.git#develop",
     "jquery.stellar": "~0.6.2",
     "sass.js": "~0.9.4",

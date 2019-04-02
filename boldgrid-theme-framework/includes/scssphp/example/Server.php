@@ -2,7 +2,7 @@
 /**
  * SCSSPHP
  *
- * @copyright 2012-2015 Leaf Corcoran
+ * @copyright 2012-2017 Leaf Corcoran
  *
  * @license http://opensource.org/licenses/MIT MIT
  *
@@ -116,13 +116,12 @@ class Server
     /**
      * Determine whether .scss file needs to be re-compiled.
      *
-     * @param string $in   Input path
      * @param string $out  Output path
      * @param string $etag ETag
      *
      * @return boolean True if compile required.
      */
-    protected function needsCompile($in, $out, &$etag)
+    protected function needsCompile($out, &$etag)
     {
         if (! is_file($out)) {
             return true;
@@ -208,21 +207,21 @@ class Server
         $elapsed = round((microtime(true) - $start), 4);
 
         $v    = Version::VERSION;
-        $t    = @date('r');
+        $t    = gmdate('r');
         $css  = "/* compiled by scssphp $v on $t (${elapsed}s) */\n\n" . $css;
         $etag = md5($css);
 
         file_put_contents($out, $css);
         file_put_contents(
             $this->metadataName($out),
-            serialize(array(
+            serialize([
                 'etag'    => $etag,
                 'imports' => $this->scss->getParsedFiles(),
                 'vars'    => crc32(serialize($this->scss->getVariables())),
-            ))
+            ])
         );
 
-        return array($css, $etag);
+        return [$css, $etag];
     }
 
     /**
@@ -235,8 +234,8 @@ class Server
     protected function createErrorCSS(\Exception $error)
     {
         $message = str_replace(
-            array("'", "\n"),
-            array("\\'", "\\A"),
+            ["'", "\n"],
+            ["\\'", "\\A"],
             $error->getfile() . ":\n\n" . $error->getMessage()
         );
 
@@ -326,11 +325,11 @@ class Server
             $output = $this->cacheName($salt . $input);
             $etag = $noneMatch = trim($this->getIfNoneMatchHeader(), '"');
 
-            if ($this->needsCompile($input, $output, $etag)) {
+            if ($this->needsCompile($output, $etag)) {
                 try {
                     list($css, $etag) = $this->compile($input, $output);
 
-                    $lastModified = gmdate('D, d M Y H:i:s', filemtime($output)) . ' GMT';
+                    $lastModified = gmdate('r', filemtime($output));
 
                     header('Last-Modified: ' . $lastModified);
                     header('Content-type: text/css');
@@ -366,13 +365,13 @@ class Server
             $modifiedSince = $this->getIfModifiedSinceHeader();
             $mtime = filemtime($output);
 
-            if (@strtotime($modifiedSince) === $mtime) {
+            if (strtotime($modifiedSince) === $mtime) {
                 header($protocol . ' 304 Not Modified');
 
                 return;
             }
 
-            $lastModified  = gmdate('D, d M Y H:i:s', $mtime) . ' GMT';
+            $lastModified  = gmdate('r', $mtime);
             header('Last-Modified: ' . $lastModified);
 
             echo file_get_contents($output);
@@ -408,13 +407,78 @@ class Server
             throw new ServerException('Invalid or unwritable output file specified.');
         }
 
-        if ($force || $this->needsCompile($in, $out, $etag)) {
+        if ($force || $this->needsCompile($out, $etag)) {
             list($css, $etag) = $this->compile($in, $out);
         } else {
             $css = file_get_contents($out);
         }
 
         return $css;
+    }
+
+    /**
+     * Execute scssphp on a .scss file or a scssphp cache structure
+     *
+     * The scssphp cache structure contains information about a specific
+     * scss file having been parsed. It can be used as a hint for future
+     * calls to determine whether or not a rebuild is required.
+     *
+     * The cache structure contains two important keys that may be used
+     * externally:
+     *
+     * compiled: The final compiled CSS
+     * updated: The time (in seconds) the CSS was last compiled
+     *
+     * The cache structure is a plain-ol' PHP associative array and can
+     * be serialized and unserialized without a hitch.
+     *
+     * @param mixed   $in    Input
+     * @param boolean $force Force rebuild?
+     *
+     * @return array scssphp cache structure
+     */
+    public function cachedCompile($in, $force = false)
+    {
+        // assume no root
+        $root = null;
+
+        if (is_string($in)) {
+            $root = $in;
+        } elseif (is_array($in) and isset($in['root'])) {
+            if ($force or ! isset($in['files'])) {
+                // If we are forcing a recompile or if for some reason the
+                // structure does not contain any file information we should
+                // specify the root to trigger a rebuild.
+                $root = $in['root'];
+            } elseif (isset($in['files']) and is_array($in['files'])) {
+                foreach ($in['files'] as $fname => $ftime) {
+                    if (! file_exists($fname) or filemtime($fname) > $ftime) {
+                        // One of the files we knew about previously has changed
+                        // so we should look at our incoming root again.
+                        $root = $in['root'];
+                        break;
+                    }
+                }
+            }
+        } else {
+            // TODO: Throw an exception? We got neither a string nor something
+            // that looks like a compatible lessphp cache structure.
+            return null;
+        }
+
+        if ($root !== null) {
+            // If we have a root value which means we should rebuild.
+            $out = array();
+            $out['root'] = $root;
+            $out['compiled'] = $this->compileFile($root);
+            $out['files'] = $this->scss->getParsedFiles();
+            $out['updated'] = time();
+            return $out;
+        } else {
+            // No changes, pass back the structure
+            // we were given initially.
+            return $in;
+        }
     }
 
     /**
@@ -435,7 +499,7 @@ class Server
         $this->cacheDir = $cacheDir;
 
         if (! is_dir($this->cacheDir)) {
-            mkdir($this->cacheDir, 0755, true);
+            throw new ServerException('Cache directory doesn\'t exist: ' . $cacheDir);
         }
 
         if (! isset($scss)) {
@@ -445,16 +509,7 @@ class Server
 
         $this->scss = $scss;
         $this->showErrorsAsCSS = false;
-    }
 
-    /**
-     * Helper method to serve compiled scss
-     *
-     * @param string $path Root path
-     */
-    public static function serveFrom($path)
-    {
-        $server = new self($path);
-        $server->serve();
+        date_default_timezone_set('UTC');
     }
 }

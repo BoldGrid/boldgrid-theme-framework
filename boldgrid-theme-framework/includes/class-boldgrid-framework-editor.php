@@ -276,7 +276,12 @@ HTML;
 	 */
 	public function tinymce_body_class( $mce ) {
 		$palette = get_theme_mod( 'boldgrid_palette_class' );
-		$mce['body_class'] .= " $palette";
+
+		if ( ! isset( $mce['body_class'] ) ) {
+			$mce['body_class'] = $palette;
+		} else {
+			$mce['body_class'] .= " $palette";
+		}
 
 		// Get the current post, check if it's a page and add our body classes.
 		if ( $post = get_post() ) {

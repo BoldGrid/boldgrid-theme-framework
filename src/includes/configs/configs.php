@@ -40,14 +40,6 @@ return array(
 
 	// End Required.
 	'textdomain' => $theme_data->get( 'TextDomain' ),
-
-	'font' => array(
-		'translators' => 'on',
-		'types' => array(
-			'Roboto:300,400,500,700,900|Oswald'
-		 ),
-	),
-
 	'framework' => array(
 		'asset_dir'       => $theme_framework_dir . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR,
 		'includes_dir'    => $theme_framework_dir . '/includes/',

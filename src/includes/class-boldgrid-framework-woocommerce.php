@@ -119,10 +119,7 @@ class BoldGrid_Framework_Woocommerce {
 	public function remove_select2() {
 		if ( class_exists( 'woocommerce' ) ) {
 			wp_dequeue_style( 'selectWoo' );
-			wp_deregister_style( 'selectWoo' );
-
 			wp_dequeue_script( 'selectWoo' );
-			wp_deregister_script( 'selectWoo' );
 		}
 	}
 

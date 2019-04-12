@@ -164,14 +164,47 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			// Handle forms.
-			forms: function() {
-				new FloatLabels(
-					'form', {
-						prefix: 'bgtfw-',
-						style: 2,
-						exclude: '.comment-form-rating #rating'
-					}
-				);
+			forms: function( hasFloat = false ) {
+				let selectors = '.comment-form-rating #rating, .widget_categories .postform';
+
+				if ( ! hasFloat ) {
+					new FloatLabels(
+						'form', {
+							prefix: 'bgtfw-',
+							style: 2,
+							exclude: selectors
+						}
+					);
+				}
+
+				/**
+				 * Determine the neutral color and return className
+				 * that should be applied to native select elements.
+				 */
+				const getColor = () => {
+					var styles = getComputedStyle( document.documentElement );
+					var neutralTextContrast = styles.getPropertyValue( '--color-neutral-text-contrast' );
+					var darkTextColor = styles.getPropertyValue( '--dark-text' );
+
+					return neutralTextContrast === darkTextColor ? 'light' : 'dark';
+				};
+
+				// Adds select element to the excluded form element selectors.
+				selectors = selectors.split( ',' ).map( selector => {
+					let selects = selector.split( ' ' );
+					let select = selects.pop().trim();
+					select = ' select' + select;
+					selects.push( select );
+					return selects.join( '' );
+				} ).join( ',' );
+
+				let selects = document.querySelectorAll( selectors );
+
+				// Apply color class to found select elements.
+				for ( let i = 0; i < selects.length; i++ ) {
+					selects[ i ].classList.remove( 'dark', 'light' );
+					selects[ i ].classList.add( getColor() );
+				}
 			},
 
 			// Side header handling.

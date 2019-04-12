@@ -54,10 +54,18 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 		value.bind( self.update_css );
 
 		// Update css field on updates.
-		value.bind( function () {
+		value.bind( function() {
 			parent.BOLDGRID.COLOR_PALETTE.Modify.$compiled_css_control
 				.val( parent.BOLDGRID.COLOR_PALETTE.Modify.compiled_css )
 				.change();
+		} );
+	} );
+
+	wp.customize( 'boldgrid_compiled_css', function( value ) {
+		value.bind( function() {
+
+			// Update native select element colors.
+			BoldGrid.common.forms( true );
 		} );
 	} );
 

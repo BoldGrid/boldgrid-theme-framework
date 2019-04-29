@@ -1519,7 +1519,7 @@ return array(
 	),
 	/* End Link Design */
 
-	// Start: Scroll To Top Settings.
+	/* Start: Scroll To Top Settings. */
 	'bgtfw_scroll_to_top_display' => array(
 		'type' => 'radio-buttonset',
 		'transport' => 'postMessage',
@@ -1536,7 +1536,7 @@ return array(
 			return in_array( $value, [ 'show', 'hide' ], true ) ? $value : $settings->default;
 		},
 	),
-	// End: Scroll To Top Settings.
+	/* End: Scroll To Top Settings. */
 
 	'boldgrid_contact_details_setting' => array(
 		'type'        => 'repeater',

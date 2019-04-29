@@ -1519,6 +1519,25 @@ return array(
 	),
 	/* End Link Design */
 
+	// Start: Scroll To Top Settings.
+	'bgtfw_scroll_to_top_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'postMessage',
+		'settings' => 'bgtfw_scroll_to_top_display',
+		'label' => esc_attr__( 'Display', 'bgtfw' ),
+		'tooltip' => __( 'Toggle the display of the scroll to top button on your site.', 'bgtfw' ),
+		'section' => 'bgtfw_scroll_to_top',
+		'default' => 'show',
+		'choices' => array(
+			'show' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'hide' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'show', 'hide' ], true ) ? $value : $settings->default;
+		},
+	),
+	// End: Scroll To Top Settings.
+
 	'boldgrid_contact_details_setting' => array(
 		'type'        => 'repeater',
 		'label'       => esc_attr__( 'Contact Details', 'bgtfw' ),

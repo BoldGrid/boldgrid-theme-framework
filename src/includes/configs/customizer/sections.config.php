@@ -148,6 +148,12 @@ return array(
 		'panel' => 'bgtfw_site_content',
 		'icon' => 'dashicons-admin-links',
 	),
+	'bgtfw_scroll_to_top' => array(
+		'title' => __( 'Scroll To Top', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Configure the settings for the scroll to top arrow displayed on your site.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/site-content-design-tools-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
+		'panel' => 'bgtfw_site_content',
+		'icon' => 'dashicons-arrow-up-alt2',
+	),
 	'bgtfw_blog_colors_section' => array(
 		'title' => __( 'Colors', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',

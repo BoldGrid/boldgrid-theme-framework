@@ -698,6 +698,19 @@ var BoldGrid = BoldGrid || {};
 
 			// Initialize.
 			init: function() {
+
+				// PHP handles body class set, so this flag is only to handle intial appearance from customize views.
+				var scrollEnabled = true;
+
+				if ( 'undefined' !== typeof wp && 'undefined' !== typeof wp.customize && 'undefined' !== wp.customize( 'bgtfw_scroll_to_top_display' ) ) {
+					scrollEnabled = 'hide' !== wp.customize( 'bgtfw_scroll_to_top_display' )() ? true : false;
+				}
+
+				scrollEnabled && this.setup();
+			},
+
+			// Setup scroll to top arrows.
+			setup: function() {
 				var arrowColor = _goupOptions.arrowColor ? _goupOptions.arrowColor : BoldGrid.goup_enabled.getArrowColor();
 
 				$.goup( {

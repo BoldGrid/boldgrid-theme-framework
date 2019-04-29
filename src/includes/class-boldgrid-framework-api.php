@@ -454,7 +454,7 @@ class BoldGrid {
 			$classes[] = 'nicescroll-enabled';
 		}
 
-		if ( true === $this->configs['scripts']['options']['goup']['enabled'] ) {
+		if ( 'show' === get_theme_mod( 'bgtfw_scroll_to_top_display' ) ) {
 			$classes[] = 'goup-enabled';
 		}
 

@@ -545,6 +545,13 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 
 		/**
+		 * Toggle Scroll To Top Arrows.
+		 */
+		api( 'bgtfw_scroll_to_top_display', value => value.bind( to => {
+			'hide' !== to ? BoldGrid.goup_enabled.init() : BoldGrid.goup_enabled.destroy();
+		} ) );
+
+		/**
 		 * Update any of the color control's palettes with correct palette from color picker.
 		 */
 		api( 'boldgrid_color_palette', function( value ) {

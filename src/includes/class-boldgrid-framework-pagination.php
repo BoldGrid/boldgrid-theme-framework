@@ -75,6 +75,8 @@ class BoldGrid_Framework_Pagination {
 			foreach ( $page_numbers as $page_numbers_item ) {
 				if ( strpos( $page_numbers_item->getAttribute( 'class' ), 'current' ) !== false ) {
 					$page_numbers_item->setAttribute( 'class', 'page-numbers color2-background-color color1-border-color color-2-text-contrast' );
+				} else if ( 'span' === $page_numbers_item->nodeName ) {
+					$page_numbers_item->setAttribute( 'class', 'page-numbers color1-background-color color1-border-color color-1-text-contrast' );
 				} else {
 					$page_numbers_item->setAttribute( 'class', 'page-numbers color1-background-color color1-border-color color-1-text-contrast color2-background-color-hover color-2-text-contrast-hover' );
 				}
@@ -170,6 +172,8 @@ class BoldGrid_Framework_Pagination {
 			foreach ( $page_numbers as $page_numbers_item ) {
 				if ( strpos( $page_numbers_item->getAttribute( 'class' ), 'current' ) !== false ) {
 					$page_numbers_item->setAttribute( 'class', 'page-numbers color2-background-color color1-border-color color-2-text-contrast' );
+				} else if ( 'span' === $page_numbers_item->nodeName ) {
+					$page_numbers_item->setAttribute( 'class', 'page-numbers color1-background-color color1-border-color color-1-text-contrast' );
 				} else {
 					$page_numbers_item->setAttribute( 'class', 'page-numbers color1-background-color color1-border-color color-1-text-contrast color2-background-color-hover color-2-text-contrast-hover' );
 				}

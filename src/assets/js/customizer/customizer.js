@@ -548,7 +548,21 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		 * Toggle Scroll To Top Arrows.
 		 */
 		api( 'bgtfw_scroll_to_top_display', value => value.bind( to => {
-			'hide' !== to ? BoldGrid.goup_enabled.init() : BoldGrid.goup_enabled.destroy();
+			if ( 'hide' !== to ) {
+
+				// Initialize goup.
+				BoldGrid.goup_enabled.init();
+
+				// Check configs for scroll to top edit button settings.
+				let btn = _.findWhere( BOLDGRID.CustomizerEdit.i18n.config.buttons.general, { control: 'bgtfw_scroll_to_top_display' } );
+
+				// If the setting is found then add the edit button if it's not already in the DOM.
+				if ( ! _.isUndefined( btn ) && ! $( '[data-control="bgtfw_scroll_to_top_display"]' ).length ) {
+					BOLDGRID.CustomizerEdit.addButton( btn );
+				}
+			} else {
+				BoldGrid.goup_enabled.destroy(); // Destroy scroll to top instance.
+			}
 		} ) );
 
 		/**

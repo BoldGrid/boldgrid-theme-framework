@@ -976,6 +976,10 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'enqueue' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'remove_select2', 100 );
 		$this->loader->add_filter( 'woocommerce_breadcrumb_defaults', $woo, 'breadcrumbs' );
+		$this->loader->add_filter( 'woocommerce_quantity_input_classes', $woo, 'quantity_input_classes' );
+		$this->loader->add_action( 'woocommerce_before_quantity_input_field', $woo, 'quantity_input_before' );
+		$this->loader->add_action( 'woocommerce_after_quantity_input_field', $woo, 'quantity_input_after' );
+
 		remove_all_actions( 'woocommerce_sidebar' );
 		add_filter( 'loop_shop_per_page', function( $cols ) {
 			return 12;

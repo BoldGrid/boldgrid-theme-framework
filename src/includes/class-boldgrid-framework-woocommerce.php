@@ -247,4 +247,47 @@ class BoldGrid_Framework_Woocommerce {
 			}
 		}
 	}
+
+	/**
+	 * Action triggered before global quantity input template.
+	 *
+	 * @since 2.1.4
+	 */
+	public function quantity_input_before() {
+		?>
+		<div class="input-group quantity">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-minus btn-number" data-type="minus" disabled="disabled">
+					<span class="fa fa-minus"></span>
+				</button>
+			</span>
+		<?php
+	}
+
+	/**
+	 * Action triggered after global quantity input template.
+	 *
+	 * @since 2.1.4
+	 */
+	public function quantity_input_after() {
+		?>
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-plus btn-number" data-type="plus">
+					<span class="fa fa-plus"></span>
+				</button>
+			</span>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Filters the input classes on quantity inputs.
+	 *
+	 * @since 2.1.4
+	 */
+	public function quantity_input_classes( $classes ) {
+		$classes[] = 'form-control';
+		$classes[] = 'input-number';
+		return $classes;
+	}
 }

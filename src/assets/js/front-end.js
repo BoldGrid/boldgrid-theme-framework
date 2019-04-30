@@ -165,7 +165,7 @@ var BoldGrid = BoldGrid || {};
 
 			// Handle forms.
 			forms: function( hasFloat = false ) {
-				let selectors = '.comment-form-rating #rating, .widget_categories .postform';
+				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty';
 
 				if ( ! hasFloat ) {
 					new FloatLabels(

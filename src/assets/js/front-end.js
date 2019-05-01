@@ -602,15 +602,17 @@ var BoldGrid = BoldGrid || {};
 
 		// Parallax enabled pages.
 		'boldgrid_customizer_parallax': {
+			jarallax: null,
+			/* jshint ignore:start */
 			init: function() {
-				var $body = $( 'body.boldgrid-customizer-parallax' );
-				if ( $body.stellar ) {
-					$body.attr( 'data-stellar-background-ratio', '0.2' );
-					$body.stellar( {
-						horizontalScrolling: false
-					} );
-				}
+				( async function() {
+					if ( ! BoldGrid.boldgrid_customizer_parallax.jarallax ) {
+						BoldGrid.boldgrid_customizer_parallax.jarallax = await import( /* webpackChunkName: "jarallax" */ 'jarallax' );
+					}
+					BoldGrid.boldgrid_customizer_parallax.jarallax.jarallax( document.body, { speed: 0.2 } );
+				} )();
 			}
+			/* jshint ignore:end */
 		},
 
 		// WOW.js enabled.

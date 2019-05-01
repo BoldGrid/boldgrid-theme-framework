@@ -8,7 +8,19 @@
   },
   "babel": {
     "plugins": [
-      "@babel/plugin-syntax-dynamic-import"
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "absoluteRuntime": false,
+          "corejs": 2,
+          "helpers": true,
+          "regenerator": true,
+          "useESModules": false
+        }
+      ],
+      [
+        "@babel/plugin-syntax-dynamic-import"
+      ]
     ]
   },
   "scripts": {
@@ -42,6 +54,7 @@
     "@babel/core": "^7.0.0-beta.47",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.0.0-beta.47",
     "@boldgrid/controls": "https://github.com/BoldGrid/controls#dev",
     "PHP_CodeSniffer": "https://github.com/squizlabs/PHP_CodeSniffer/#2.9",
@@ -112,6 +125,7 @@
     "webpack-runtime-public-path-plugin": "^1.1.2"
   },
   "dependencies": {
+    "@babel/runtime-corejs2": "^7.4.4",
     "@boldgrid/components": "^2.16.1",
     "@wordpress/dom-ready": "^2.0.2",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",
@@ -124,6 +138,7 @@
     "hamburgers": "https://github.com/jonsuh/hamburgers#v0.9.3",
     "hero-patterns": "^2.0.2",
     "hover.css": "^2.3.1",
+    "jarallax": "^1.10.7",
     "jquery-goup": "^1.1.0",
     "jquery.nicescroll": "^3.6.8",
     "jquery.stellar": "~0.6.2",

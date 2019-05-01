@@ -273,7 +273,8 @@ gulp.task('jsHint', function () {
 
 gulp.task('jscs', function () {
   return gulp.src([config.src + '/assets/js/**/*.js'])
-    .pipe(jscs())
+	.pipe(jscs())
+	.pipe(jscs({configPath: "./.jscsrc"}))
     .pipe(jscs.reporter())
     .pipe(jscs.reporter('fail'));
 });

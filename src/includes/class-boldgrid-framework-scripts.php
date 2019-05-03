@@ -226,12 +226,6 @@ class BoldGrid_Framework_Scripts {
 				false
 			);
 		}
-
-		// Load parallax script if user select option in customize.
-		if ( 'parallax' === get_theme_mod( 'background_attachment' ) ) {
-			$background = new Boldgrid_Framework_Customizer_Background( $this->configs );
-			$background->add_preview_scripts();
-		}
 	}
 
 	/**

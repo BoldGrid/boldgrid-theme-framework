@@ -1,5 +1,9 @@
+/* global BoldGrid:true */
+
 import PaletteSelector from '../color/palette-selector';
 import ColorPreview from '../color/preview';
+import { Preview as PreviewUtility } from '../preview';
+
 
 const api = wp.customize;
 
@@ -20,7 +24,6 @@ export class Preview {
 	constructor() {
 		this.selector = new PaletteSelector();
 		this.colorPreview = new ColorPreview().init();
-		this.$body = $( 'body' );
 	}
 
 	/**
@@ -45,14 +48,25 @@ export class Preview {
 		if ( 'image' === api( 'boldgrid_background_type' )() ) {
 			const backgroundImage = api( 'background_image' )();
 
-			let css = '';
-			if ( backgroundImage && api( 'bgtfw_background_overlay' )() ) {
-				css = this._getOverlayCss( backgroundImage );
-			} else if ( backgroundImage ) {
-				css = `url("${backgroundImage}")`;
-			}
+			if ( backgroundImage ) {
+				if ( 'parallax' === api( 'background_attachment' )() ) {
+					if ( ! document.querySelector( 'body > [id^="jarallax-container"]' ) ) {
+						if ( ! BoldGrid.hooks.didAction( 'bgtfwParallaxReady' ) ) {
+							if ( ! _.isUndefined( BoldGrid.hooks.actions.bgtfwParallaxReady ) && ! BoldGrid.hooks.actions.bgtfwParallaxReady.handlers ) {
+								BoldGrid.hooks.addAction( 'bgtfwParallaxReady', 'bgtfwBackgroundPreview', () => this.setImage() );
+							}
+						} else {
+							BoldGrid.hooks.removeAction( 'bgtfwParallaxReady', 'bgtfwBackgroundPreview' );
+						}
+					}
+				}
+				document.querySelectorAll( 'body, body > [id^="jarallax-container"] > div' ).forEach( el => {
+					el.style.backgroundImage = `url("${backgroundImage}")`;
+				} );
 
-			this.$body.css( 'background-image', css );
+				let util = new PreviewUtility();
+				util.updateDynamicStyles( 'bgtfw-background-overlay', api( 'bgtfw_background_overlay' )() ? this._getOverlayCss() : '' );
+			}
 		}
 	}
 
@@ -64,9 +78,7 @@ export class Preview {
 	setBodyClasses() {
 		if ( 'image' === api( 'boldgrid_background_type' )() ) {
 			if ( api( 'background_image' )() && api( 'bgtfw_background_overlay' )() ) {
-				this.colorPreview.outputColor( 'bgtfw_background_overlay_color', 'body', [
-					'background-color', 'text-default'
-				] );
+				this.colorPreview.outputColor( 'bgtfw_background_overlay_color', 'body', [ 'text-default' ] );
 			}
 		}
 	}
@@ -85,16 +97,17 @@ export class Preview {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  {string} backgroundImage Background image property.
 	 * @return {string}                 CSS for background image.
 	 */
-	_getOverlayCss( backgroundImage ) {
+	_getOverlayCss() {
 		const color = this.selector.getColor( api( 'bgtfw_background_overlay_color' )(), true ),
 			alpha = api( 'bgtfw_background_overlay_alpha' )(),
 			brehautColor = parent.net.brehaut.Color( color ),
-			rgba = brehautColor.setAlpha( alpha ).toString();
+			rgba = brehautColor.setAlpha( alpha ).toString(),
+			selector = 'body, body > [id^="jarallax-container"] > div';
 
-		return `linear-gradient(to left, ${rgba}, ${rgba}), url("${backgroundImage}")`;
+		return `@supports(background-blend-mode: overlay) { ${selector} { background-color: ${rgba}; background-blend-mode: overlay; } }` +
+			`@supports not (background-blend-mode: overlay) { ${selector} { background-color: ${brehautColor.toString()}; opacity: ${alpha}; } }`;
 	}
 
 	/**
@@ -108,7 +121,6 @@ export class Preview {
 			'bgtfw_background_overlay',
 			'bgtfw_background_overlay_color',
 			'background_image',
-			'boldgrid_background_type',
 			( ...args ) => {
 				args.map( control =>
 					control.bind( () => {

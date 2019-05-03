@@ -90,16 +90,6 @@ class Boldgrid_Framework_Customizer_Background {
 	}
 
 	/**
-	 * Add scripts to the preview window
-	 *
-	 * @since     1.0.0
-	 */
-	public function add_preview_scripts() {
-		$this->register_front_end_scripts();
-		wp_enqueue_script( 'boldgrid-stellar-parallax' );
-	}
-
-	/**
 	 * Validate the attachment value. Set class prop to be used on later filter.
 	 *
 	 * @param string $value Value of background attachment field.
@@ -202,7 +192,6 @@ class Boldgrid_Framework_Customizer_Background {
 	 * @param array $wp_customize WordPress Customizer Object.
 	 */
 	public function add_patterns( $wp_customize ) {
-		add_action( 'wp_head', [ $this, 'add_preview_scripts' ] );
 		require_once $this->configs['framework']['includes_dir'] . 'control/class-boldgrid-framework-control-pattern.php';
 
 		$wp_customize->add_setting(
@@ -246,21 +235,6 @@ class Boldgrid_Framework_Customizer_Background {
 	}
 
 	/**
-	 * Register scripts used in the customizer, they are enqueued in customizer hooks
-	 *
-	 * @since 1.0.0
-	 */
-	public function register_front_end_scripts() {
-		wp_register_script(
-			'boldgrid-stellar-parallax',
-			$this->configs['framework']['js_dir'] . 'jquery-stellar/jquery.stellar.min.js',
-			array( 'jquery' ),
-			$this->configs['version'],
-			true
-		);
-	}
-
-	/**
 	 * Add controls to hand the background pattern
 	 *
 	 * @since 1.0.0
@@ -294,24 +268,6 @@ class Boldgrid_Framework_Customizer_Background {
 				),
 			);
 		} else {
-
-			if ( 'parallax' === $bg_attach ) {
-
-				$css_rules = array(
-					'body.custom-background' => array(
-						'background-attachment' => 'fixed',
-					),
-				);
-
-				$boldgrid_filter_body_class = function( $body_class ) {
-					$body_class[] = 'boldgrid-customizer-parallax';
-					return $body_class;
-				};
-
-				// Add the body class and enqueue the script library.
-				add_filter( 'body_class', $boldgrid_filter_body_class );
-				wp_enqueue_script( 'boldgrid-stellar-parallax' );
-			}
 
 			if ( $bg_image ) {
 				$css_rules['body.custom-background']['background-image'] = $this->create_overlay_css( $bg_image );

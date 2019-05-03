@@ -8,15 +8,15 @@
  * Only fires on body classes that match. If a body class contains a dash,
  * replace the dash with an underscore when adding it to the object below.
  * ======================================================================== */
-
+import { createHooks } from '@wordpress/hooks';
 import cssVars from 'css-vars-ponyfill';
 import domReady from '@wordpress/dom-ready';
 
 // Setup our object.
 //jscs:disable requireVarDeclFirst
 var BoldGrid = BoldGrid || {};
-
 //jscs:enable requireVarDeclFirst
+
 ( function( $ ) {
 
 	'use strict';
@@ -25,6 +25,9 @@ var BoldGrid = BoldGrid || {};
 
 	// Use this variable to set up the common and DOM based specific functionality.
 	BoldGrid = {
+
+		// Setup hooks.
+		hooks: createHooks(),
 
 		// Scripts to fire on all pages.
 		'common': {
@@ -609,7 +612,12 @@ var BoldGrid = BoldGrid || {};
 					if ( ! BoldGrid.boldgrid_customizer_parallax.jarallax ) {
 						BoldGrid.boldgrid_customizer_parallax.jarallax = await import( /* webpackChunkName: "jarallax" */ 'jarallax' );
 					}
-					BoldGrid.boldgrid_customizer_parallax.jarallax.jarallax( document.body, { speed: 0.2 } );
+					BoldGrid.boldgrid_customizer_parallax.jarallax.jarallax( document.body,
+						{
+							speed: 0.2,
+							onInit: BoldGrid.hooks.doAction( 'bgtfwParallaxReady' )
+						}
+					);
 				} )();
 			}
 			/* jshint ignore:end */

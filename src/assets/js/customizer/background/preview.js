@@ -65,7 +65,7 @@ export class Preview {
 				} );
 
 				let util = new PreviewUtility();
-				util.updateDynamicStyles( 'bgtfw-background-overlay', api( 'bgtfw_background_overlay' )() ? this._getOverlayCss() : '' );
+				util.updateDynamicStyles( 'bgtfw-background-inline-css', api( 'bgtfw_background_overlay' )() ? this._getOverlayCss() : '' );
 			}
 		}
 	}

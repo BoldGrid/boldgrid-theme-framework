@@ -245,49 +245,59 @@ class Boldgrid_Framework_Customizer_Background {
 
 		$bg_image = get_theme_mod( 'background_image', $background_options['defaults']['background_image'] );
 		$bg_type = get_theme_mod( 'boldgrid_background_type' );
-		$bg_pattern = ! empty( $theme_mods['boldgrid_background_pattern'] ) ? $theme_mods['boldgrid_background_pattern'] : 'none';
 		$bg_size = get_theme_mod( 'boldgrid_background_image_size' );
 		$bg_attach = get_theme_mod( 'background_attachment', $background_options['defaults']['background_attachment'] );
 
-		/** Passing the defaults to the process that creates the css */
-		if ( 'none' === $bg_pattern ) {
-			if ( ! empty( $background_options['defaults']['boldgrid_background_pattern'] ) ) {
-				$bg_pattern = self::get_default_pattern_mod( $this->configs );
-			}
-		}
-
-		$css_rules = array();
+		$css = '';
 
 		if ( 'pattern' === $bg_type ) {
-			$css_rules = array(
-				'body.custom-background' => array(
-					'background-image' => $bg_pattern,
-					'background-size' => 'auto',
-					'background-repeat' => 'repeat',
-					'background-attachment' => 'scroll',
-				),
-			);
+			$bg_pattern = ! empty( $theme_mods['boldgrid_background_pattern'] ) ? $theme_mods['boldgrid_background_pattern'] : 'none';
+
+			if ( 'none' === $bg_pattern && ! empty( $background_options['defaults']['boldgrid_background_pattern'] ) ) {
+				$bg_pattern = self::get_default_pattern_mod( $this->configs );
+			}
+
+			$css = 'body.custom-background {' .
+				'background-image:' . $bg_pattern . ';' .
+				'background-size: auto;' .
+				'background-repeat: repeat;' .
+				'background-attachment: scroll;' .
+			'}';
 		} else {
+			if ( 'parallax' === $bg_attach ) {
 
-			if ( $bg_image ) {
-				$css_rules['body.custom-background']['background-image'] = $this->create_overlay_css( $bg_image );
+				// Sets a "parallaxy" bg if JS doesn't load, and minimize flickers.
+				$css = 'body.custom-background {' .
+					'background-image:' . 'url("' . esc_attr( $bg_image ) . '");' .
+					'background-size: cover;' .
+					'background-repeat: no-repeat;' .
+					'background-attachment: fixed;' .
+				'}';
+			} else {
+				$css .= 'body.custom-background {';
+
+				if ( $bg_image ) {
+					$css .= 'background-image: url("' . esc_attr( $bg_image ) . '");';
+				}
+
+				if ( $bg_size ) {
+					$css .= 'background-size: ' . esc_attr( $bg_size ) . ';';
+				}
+
+				$css .= '}';
 			}
 
-			if ( $bg_size ) {
-				$css_rules['body.custom-background']['background-size'] = esc_attr( $bg_size );
-			}
+			$css .= $this->create_overlay_css( $bg_image );
 		}
 
-		if ( ! empty( $css_rules ) ) {
-			$custom_background = function ( $array ) {
-				$array[] = 'custom-background';
-				return $array;
-			};
-
-			add_filter( 'body_class', $custom_background );
+		if ( ! empty( $css ) ) {
+			add_filter( 'body_class', function( $classes ) {
+				$classes[] = 'custom-background';
+				return $classes;
+			} );
 		}
 
-		return $css_rules;
+		return $css;
 	}
 
 	/**
@@ -296,20 +306,18 @@ class Boldgrid_Framework_Customizer_Background {
 	 * @since 2.0.0
 	 *
 	 * @param  string $image Image URL value from theme mod or config.
-	 * @return string        A CSS rule for the background image.
+	 * @return string $rule  A CSS rule for the background image.
 	 */
 	public function create_overlay_css( $image ) {
 		$controls = $this->configs['customizer']['controls'];
 
 		// Get the related theme mods.
-		$enabled = get_theme_mod( 'bgtfw_background_overlay',
-			$controls['bgtfw_background_overlay']['default'] );
-		$color = get_theme_mod( 'bgtfw_background_overlay_color',
-			$controls['bgtfw_background_overlay_color']['default'] );
-		$alpha = get_theme_mod( 'bgtfw_background_overlay_alpha',
-			$controls['bgtfw_background_overlay_alpha']['default'] );
+		$enabled = get_theme_mod( 'bgtfw_background_overlay', $controls['bgtfw_background_overlay']['default'] );
+		$color = get_theme_mod( 'bgtfw_background_overlay_color', $controls['bgtfw_background_overlay_color']['default'] );
+		$alpha = get_theme_mod( 'bgtfw_background_overlay_alpha', $controls['bgtfw_background_overlay_alpha']['default'] );
 
 		$rule = '';
+
 		if ( $enabled && $color && $alpha ) {
 
 			// Create an rgba given palette color and alpha.
@@ -317,25 +325,23 @@ class Boldgrid_Framework_Customizer_Background {
 			$color = array_pop( $color );
 			$color_obj = ariColor::newColor( $color );
 			$color_obj->alpha = $alpha;
-			$color = esc_attr( $color_obj->toCSS( 'rgba' ) );
+			$newColor = esc_attr( $color_obj->toCSS( 'rgba' ) );
 
-			$rule = 'linear-gradient(to right, ' . $color . ', ' . $color .
-				' ), url("' . esc_attr( $image ) . '")';
+			$rule = "@supports(background-blend-mode: overlay) { body, body > [id^=\"jarallax-container\"] > div { background-color: $newColor; background-blend-mode: overlay; } }";
+			$rule .= "@supports not (background-blend-mode: overlay) { body, body > [id^=\"jarallax-container\"] > div { background-color: $color; opacity: $alpha; } }";
 		}
 
 		return $rule;
 	}
 
 	/**
-	 * Append BG styles to Head rules
+	 * Adds background styles.
 	 *
-	 * @param     array $cur_rules Current rules.
-	 * @return    array    $css_rules    Merged rules.
-	 * @since     1.0.0
+	 * @since 2.1.4
 	 */
-	public function add_head_styles_filter( $cur_rules ) {
-		$css_rules  = $this->create_background_styles();
-		return array_merge( $cur_rules, $css_rules );
+	public function add_styles() {
+		$generic = new Boldgrid_Framework_Customizer_Generic( $this->configs );
+		$generic::add_inline_style( 'bgtfw-background', $this->create_background_styles() );
 	}
 
 	/**
@@ -349,20 +355,9 @@ class Boldgrid_Framework_Customizer_Background {
 	 */
 	public function add_editor_styles( $css ) {
 		$pattern = get_theme_mod( 'boldgrid_background_pattern' );
-		$styles = array();
 
-		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( $pattern ) ) {
-			$styles = $this->create_background_styles();
-		}
-
-		// Convert array to css.
-		foreach ( $styles as $rule => $definitions ) {
-			$def = '';
-			foreach ( $definitions as $prop => $definition ) {
-				$def .= $prop . ':' . $definition . ';';
-			}
-
-			$css .= sprintf( '%s { %s }', $rule, $def );
+		if ( ! empty( $pattern ) && 'pattern' === get_theme_mod( 'boldgrid_background_type' ) ) {
+			$css .= $this->create_background_styles();
 		}
 
 		return $css;

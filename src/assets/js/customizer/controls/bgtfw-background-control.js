@@ -210,6 +210,7 @@ export default function() {
 			}
 
 			if ( 'parallax' === api( 'background_attachment' )() ) {
+				api.control( 'boldgrid_background_image_size' ).deactivate( opts );
 				api.control( 'background_repeat' ).deactivate( opts );
 			}
 		}

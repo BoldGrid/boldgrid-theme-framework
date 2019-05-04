@@ -291,7 +291,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			document.body.className = document.body.className.replace( regex, '' );
 
 			// Remove these styles that should only overwrite on the front end.
-			[ 'bgtfw-background-overlay', 'custom-background-css', 'boldgrid-override-styles-inline-css' ].forEach( id => {
+			[ 'bgtfw-background-overlay', 'bgtfw-background-inline-css', 'custom-background-css', 'boldgrid-override-styles-inline-css' ].forEach( id => {
 				let el = document.getElementById( id );
 				el && el.parentNode.removeChild( el );
 			} );

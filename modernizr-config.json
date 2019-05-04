@@ -6,7 +6,8 @@
     "flexbox",
     "flexwrap",
     "inlinesvg",
-    "customproperties"
+	"customproperties",
+	"backgroundblendmode"
   ],
   "customTests": "./tests/modernizr/",
   "options": [

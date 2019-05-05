@@ -315,10 +315,11 @@ class Boldgrid_Framework_Customizer_Background {
 		$enabled = get_theme_mod( 'bgtfw_background_overlay', $controls['bgtfw_background_overlay']['default'] );
 		$color = get_theme_mod( 'bgtfw_background_overlay_color', $controls['bgtfw_background_overlay_color']['default'] );
 		$alpha = get_theme_mod( 'bgtfw_background_overlay_alpha', $controls['bgtfw_background_overlay_alpha']['default'] );
+		$type = get_theme_mod( 'bgtfw_background_overlay_type', $controls['bgtfw_background_overlay_type']['default'] );
 
 		$rule = '';
 
-		if ( $enabled && $color && $alpha ) {
+		if ( $enabled && $color && $alpha && $type ) {
 
 			// Create an rgba given palette color and alpha.
 			$color = explode( ':', $color );
@@ -327,8 +328,8 @@ class Boldgrid_Framework_Customizer_Background {
 			$color_obj->alpha = $alpha;
 			$newColor = esc_attr( $color_obj->toCSS( 'rgba' ) );
 
-			$rule = "@supports(background-blend-mode: overlay) { body, body > [id^=\"jarallax-container\"] > div { background-color: $newColor; background-blend-mode: overlay; } }";
-			$rule .= "@supports not (background-blend-mode: overlay) { body, body > [id^=\"jarallax-container\"] > div { background-color: $color; opacity: $alpha; } }";
+			$rule = "@supports(background-blend-mode: $type) { body, body > [id^=\"jarallax-container\"] > div { background-color: $newColor; background-blend-mode: $type; } }";
+			$rule .= "@supports not (background-blend-mode: $type) { body, body > [id^=\"jarallax-container\"] > div { background-color: $color; opacity: $alpha; } }";
 		}
 
 		return $rule;

@@ -104,10 +104,11 @@ export class Preview {
 			alpha = api( 'bgtfw_background_overlay_alpha' )(),
 			brehautColor = parent.net.brehaut.Color( color ),
 			rgba = brehautColor.setAlpha( alpha ).toString(),
+			blendMode = api( 'bgtfw_background_overlay_type' )(),
 			selector = 'body, body > [id^="jarallax-container"] > div';
 
-		return `@supports(background-blend-mode: overlay) { ${selector} { background-color: ${rgba}; background-blend-mode: overlay; } }` +
-			`@supports not (background-blend-mode: overlay) { ${selector} { background-color: ${brehautColor.toString()}; opacity: ${alpha}; } }`;
+		return `@supports(background-blend-mode:${blendMode}) { ${selector} { background-color: ${rgba}; background-blend-mode: ${blendMode}; } }` +
+			`@supports not (background-blend-mode: ${blendMode}) { ${selector} { background-color: ${brehautColor.toString()}; opacity: ${alpha}; } }`;
 	}
 
 	/**
@@ -120,6 +121,7 @@ export class Preview {
 			'bgtfw_background_overlay_alpha',
 			'bgtfw_background_overlay',
 			'bgtfw_background_overlay_color',
+			'bgtfw_background_overlay_type',
 			'background_image',
 			( ...args ) => {
 				args.map( control =>

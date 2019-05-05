@@ -229,6 +229,7 @@ export default function() {
 			overlayControl = api.control( 'bgtfw_background_overlay' ),
 			backgroundImage = api( 'background_image' ),
 			overlayColorControl = api.control( 'bgtfw_background_overlay_color' ),
+			overlayTypeControl = api.control( 'bgtfw_background_overlay_type' ),
 			overlayAlphaControl = api.control( 'bgtfw_background_overlay_alpha' );
 
 		state = 'pattern' === bgType || ! backgroundImage() ? 'deactivate' : 'activate';
@@ -237,6 +238,7 @@ export default function() {
 		state = overlayControl.setting() && overlayControl.active() ? 'activate' : 'deactivate';
 		overlayColorControl[ state ]( opts );
 		overlayAlphaControl[ state ]( opts );
+		overlayTypeControl[ state ]( opts );
 	};
 
 	/**

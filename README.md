@@ -2,7 +2,7 @@
 
 [![Build Status](https://api.travis-ci.org/BoldGrid/boldgrid-theme-framework.svg?branch=master)](https://travis-ci.org/BoldGrid/boldgrid-theme-framework)
 [![License](https://img.shields.io/badge/license-GPL--3.0%2B-orange.svg)](https://raw.githubusercontent.com/BoldGrid/boldgrid-theme-framework/master/LICENSE)
-[![PHP Version](https://img.shields.io/badge/PHP-5.4%2B-blue.svg)](https://php.net)
+[![PHP Version](https://img.shields.io/badge/PHP-5.6%2B-blue.svg)](https://php.net)
 [![Code Climate](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework/badges/gpa.svg)](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework)
 
 * **Contributors:** rramo012, timph

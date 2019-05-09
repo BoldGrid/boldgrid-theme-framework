@@ -41,7 +41,7 @@ if ( defined( 'BGTFW_PATH' ) ) {
 $bgtfw_class = $bgtfw_path . '/includes/class-boldgrid-framework.php';
 
 if ( file_exists( $bgtfw_class ) ) {
-	if ( version_compare( phpversion(), '5.4.0', '<' ) ) {
+	if ( version_compare( phpversion(), '5.6.0', '<' ) ) {
 		require_once $bgtfw_path . '/includes/class-boldgrid-framework-version-requirements.php';
 		$bgtfw_requirements = new Boldgrid_Framework_Version_Requirements();
 		$bgtfw_requirements->add_hooks();

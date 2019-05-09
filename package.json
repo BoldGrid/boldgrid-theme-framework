@@ -145,7 +145,6 @@
     "jarallax": "^1.10.7",
     "jquery-goup": "^1.1.0",
     "jquery.nicescroll": "^3.6.8",
-    "jquery.stellar": "~0.6.2",
     "kirki-toolkit": "https://github.com/timelsass/kirki.git#develop",
     "lodash.camelcase": "^4.3.0",
     "lodash.kebabcase": "^4.1.1",

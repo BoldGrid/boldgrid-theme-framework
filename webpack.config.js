@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const requireDesired = require( './build/modules/require-desired.js' );
 const merge = require( 'webpack-merge' );
 const localConfig = merge( requireDesired( `${__dirname}/build/config` ), requireDesired( `${__dirname}/build/config.local` ) );
+const RuntimePath = require( 'webpack-runtime-public-path-plugin' );
 
 if ( 'development' === localConfig.mode ) {
 	process.env.NODE_ENV = 'development';
@@ -88,6 +89,9 @@ const webpackConfig = merge( {
 		]
 	},
 	plugins: [
+		new RuntimePath( {
+			runtimePublicPath: 'BGTFW.assets.path'
+		} ),
 		new MiniCssExtractPlugin( {
 			filename: './assets/css/[name]-bundle.min.css'
 		} ),

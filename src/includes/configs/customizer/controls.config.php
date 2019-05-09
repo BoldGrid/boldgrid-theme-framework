@@ -11,19 +11,19 @@
  */
 
 global $boldgrid_theme_framework;
-$configs = $boldgrid_theme_framework->get_configs();
+$bgtfw_configs = $boldgrid_theme_framework->get_configs();
 
 // Check that get_page_templates() method is available in the customizer.
 if ( ! function_exists( 'get_page_templates' ) ) {
 	require_once ABSPATH . 'wp-admin/includes/theme.php';
 }
 
-$palette = new Boldgrid_Framework_Compile_Colors( $this->configs );
-$active_palette = $palette->get_active_palette();
-$formatted_palette = $palette->color_format( $active_palette );
-$sanitize = new Boldgrid_Framework_Customizer_Color_Sanitize();
+$bgtfw_palette = new Boldgrid_Framework_Compile_Colors( $bgtfw_configs );
+$bgtfw_active_palette = $bgtfw_palette->get_active_palette();
+$bgtfw_formatted_palette = $bgtfw_palette->color_format( $bgtfw_active_palette );
+$bgtfw_color_sanitize = new Boldgrid_Framework_Customizer_Color_Sanitize();
 
-$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
+$bgtfw_typography = new Boldgrid_Framework_Customizer_Typography( $bgtfw_configs );
 
 return array(
 	'custom_theme_js' => array(
@@ -88,10 +88,10 @@ return array(
 		'priority' => 2,
 		'default'     => 'color-neutral',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 
 	/*** Start Background Image Overlay ***/
@@ -118,10 +118,36 @@ return array(
 		'priority'    => 10,
 		'default'     => 'color-1',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+	),
+	'bgtfw_background_overlay_type' => array(
+		'type'        => 'select',
+		'transport'   => 'postMessage',
+		'settings'    => 'bgtfw_background_overlay_type',
+		'label'       => esc_attr__( 'Overlay Blend Mode', 'bgtfw' ),
+		'section'     => 'background_image',
+		'priority'    => 10,
+		'default'     => 'overlay',
+		'choices' => [
+			'multiply' => __( 'Multiply', 'bgtfw' ),
+			'screen' => __( 'Screen', 'bgtfw' ),
+			'overlay' => __( 'Overlay', 'bgtfw' ),
+			'darken' => __( 'Darken', 'bgtfw' ),
+			'lighten' => __( 'Lighten', 'bgtfw' ),
+			'color-dodge' => __( 'Color Dodge', 'bgtfw' ),
+			'color-burn' => __( 'Color Burn', 'bgtfw' ),
+			'hard-light' => __( 'Hard Light', 'bgtfw' ),
+			'soft-light' => __( 'Soft Light', 'bgtfw' ),
+			'difference' => __( 'Difference', 'bgtfw' ),
+			'exclusion' => __( 'Exclusion', 'bgtfw' ),
+			'hue' => __( 'Hue', 'bgtfw' ),
+			'saturation' => __( 'Saturation', 'bgtfw' ),
+			'color' => __( 'Color', 'bgtfw' ),
+			'luminosity' => __( 'Luminosity', 'bgtfw' ),
+		],
 	),
 	'bgtfw_background_overlay_alpha' => array(
 		'type'        => 'slider',
@@ -207,10 +233,10 @@ return array(
 		'priority'    => 20,
 		'default'     => 'color-1',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_header_shadow' => array(
 		'type'        => 'kirki-generic',
@@ -318,10 +344,10 @@ return array(
 		'priority'    => 20,
 		'default'     => 'color-1',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_footer_shadow' => array(
 		'type'        => 'kirki-generic',
@@ -499,10 +525,10 @@ return array(
 		'default'    => 'color-1',
 		'choices'    => array(
 			'selectors' => [ '.single .entry-footer .tags-links a' ],
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_posts_tags_display',
@@ -736,10 +762,10 @@ return array(
 		'default'    => 'color-1',
 		'choices'    => array(
 			'selectors' => [ '.single .entry-footer .cat-links a' ],
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_posts_cats_display',
@@ -966,10 +992,10 @@ return array(
 		'default'    => 'color-1',
 		'choices'    => array(
 			'selectors' => [ '.single .post-navigation a' ],
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_posts_navigation_display',
@@ -1072,10 +1098,10 @@ return array(
 		'priority'    => 10,
 		'default'     => '',
 		'choices'     => array(
-			'colors'  => $formatted_palette,
-			'size'    => $palette->get_palette_size( $formatted_palette ),
+			'colors'  => $bgtfw_formatted_palette,
+			'size'    => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_headings_typography' => array(
 		'type'     => 'typography',
@@ -1093,7 +1119,7 @@ return array(
 			'text-transform' => 'none',
 		),
 		'priority'    => 20,
-		'output'      => $typography->get_output_values( $this->configs ),
+		'output'      => $bgtfw_typography->get_output_values( $bgtfw_configs ),
 	),
 	'bgtfw_headings_font_size' => array(
 		'type'        => 'slider',
@@ -1118,10 +1144,10 @@ return array(
 		'priority'    => 10,
 		'default'     => '',
 		'choices'     => array(
-			'colors'  => $formatted_palette,
-			'size'    => $palette->get_palette_size( $formatted_palette ),
+			'colors'  => $bgtfw_formatted_palette,
+			'size'    => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_tagline_typography' => array(
 		'type'        => 'typography',
@@ -1231,10 +1257,10 @@ return array(
 		'priority' => 1,
 		'default'     => '',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_site_title_color' => array(
 		'type'        => 'bgtfw-palette-selector',
@@ -1245,10 +1271,10 @@ return array(
 		'priority' => 10,
 		'default'     => '',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_site_title_typography' => array(
 		'type'        => 'typography',
@@ -1308,10 +1334,10 @@ return array(
 		'priority' => 1,
 		'default'     => '',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_global_title_color' => array(
 		'type'        => 'bgtfw-palette-selector',
@@ -1321,10 +1347,10 @@ return array(
 		'section'     => 'bgtfw_global_page_titles',
 		'default'     => '',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_global_title_size' => array(
 		'type'        => 'radio-buttonset',
@@ -1469,10 +1495,10 @@ return array(
 		'default'    => 'color-1',
 		'choices'    => array(
 			'selectors' => Boldgrid_Framework_Links::$default_link_selectors,
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_body_link_decoration' => array(
 		'settings'    => 'bgtfw_body_link_decoration',
@@ -1518,6 +1544,25 @@ return array(
 		},
 	),
 	/* End Link Design */
+
+	/* Start: Scroll To Top Settings. */
+	'bgtfw_scroll_to_top_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'postMessage',
+		'settings' => 'bgtfw_scroll_to_top_display',
+		'label' => esc_attr__( 'Display', 'bgtfw' ),
+		'tooltip' => __( 'Toggle the display of the scroll to top button on your site.', 'bgtfw' ),
+		'section' => 'bgtfw_scroll_to_top',
+		'default' => 'show',
+		'choices' => array(
+			'show' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'hide' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'show', 'hide' ], true ) ? $value : $settings->default;
+		},
+	),
+	/* End: Scroll To Top Settings. */
 
 	'boldgrid_contact_details_setting' => array(
 		'type'        => 'repeater',
@@ -1578,10 +1623,10 @@ return array(
 		'priority'    => 25,
 		'default'     => 'color-1',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_header_overlay_alpha' => array(
 		'type'        => 'slider',
@@ -1608,10 +1653,10 @@ return array(
 		'priority' => 10,
 		'default'     => '',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_footer_links' => array(
 		'type' => 'bgtfw-palette-selector',
@@ -1622,10 +1667,10 @@ return array(
 		'priority' => 30,
 		'default' => '',
 		'choices' => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_pages_blog_blog_page_layout_columns' => array(
 		'label'       => __( 'Columns', 'bgtfw' ),
@@ -2029,10 +2074,10 @@ return array(
 		'section'     => 'bgtfw_menu_hamburgers_main',
 		'default'     => 'color-1',
 		'choices'     => array(
-			'colors'  => $formatted_palette,
-			'size'    => $palette->get_palette_size( $formatted_palette ),
+			'colors'  => $bgtfw_formatted_palette,
+			'size'    => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_menu_hamburger_main' => array(
 		'settings' => 'bgtfw_menu_hamburger_main',
@@ -2053,11 +2098,11 @@ return array(
 		'section'         => 'bgtfw_menu_background_main',
 		'default'         => 'transparent',
 		'choices'         => array(
-			'colors'      => $formatted_palette,
-			'size'        => $palette->get_palette_size( $formatted_palette, true ),
+			'colors'      => $bgtfw_formatted_palette,
+			'size'        => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette, true ),
 			'transparent' => true,
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 
 	/* Start: Main Menu Spacing Controls */
@@ -2177,10 +2222,10 @@ return array(
 		'section'     => 'bgtfw_menu_border_main',
 		'default'     => 'color-3',
 		'choices'     => array(
-			'colors'  => $formatted_palette,
-			'size'    => $palette->get_palette_size( $formatted_palette ),
+			'colors'  => $bgtfw_formatted_palette,
+			'size'    => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_menu_border_radius_main' => array(
 		'type'        => 'kirki-generic',
@@ -2228,10 +2273,10 @@ return array(
 		'section'     => 'bgtfw_menu_items_border_main',
 		'default'     => 'color-3',
 		'choices'     => array(
-			'colors'  => $formatted_palette,
-			'size'    => $palette->get_palette_size( $formatted_palette ),
+			'colors'  => $bgtfw_formatted_palette,
+			'size'    => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_menu_items_border_radius_main' => array(
 		'type'        => 'kirki-generic',
@@ -2283,10 +2328,10 @@ return array(
 		'section'     => 'bgtfw_menu_items_hover_item_main',
 		'default'     => 'color-4',
 		'choices'     => array(
-			'colors'  => $formatted_palette,
-			'size'    => $palette->get_palette_size( $formatted_palette ),
+			'colors'  => $bgtfw_formatted_palette,
+			'size'    => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_menu_items_hover_background_main' => array(
 		'type'        => 'bgtfw-palette-selector',
@@ -2296,10 +2341,10 @@ return array(
 		'section'     => 'bgtfw_menu_items_hover_item_main',
 		'default'     => 'color-3',
 		'choices'     => array(
-			'colors'  => $formatted_palette,
-			'size'    => $palette->get_palette_size( $formatted_palette ),
+			'colors'  => $bgtfw_formatted_palette,
+			'size'    => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_menu_items_hover_effect_main' => array(
 		'type'        => 'select',
@@ -2373,10 +2418,10 @@ return array(
 		'priority' => 1,
 		'default'     => 'color-1',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 
 	'bgtfw_menu_items_active_link_color_main' => array(
@@ -2388,10 +2433,10 @@ return array(
 		'priority' => 1,
 		'default'  => 'color-4',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 
 	'bgtfw_menu_items_active_link_background_main' => array(
@@ -2403,11 +2448,11 @@ return array(
 		'priority' => 1,
 		'default'  => 'transparent',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette, true ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette, true ),
 			'transparent' => true,
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 
 	'bgtfw_menu_items_active_link_border_main' => array(
@@ -2436,10 +2481,10 @@ return array(
 		'section'     => 'bgtfw_menu_items_active_link_border_main',
 		'default'     => 'color-3',
 		'choices'     => array(
-			'colors'  => $formatted_palette,
-			'size'    => $palette->get_palette_size( $formatted_palette ),
+			'colors'  => $bgtfw_formatted_palette,
+			'size'    => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_menu_items_active_link_border_radius_main' => array(
 		'type'        => 'kirki-generic',
@@ -2563,10 +2608,10 @@ return array(
 		'priority'    => 20,
 		'default'     => 'color-1',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_blog_shadow' => array(
 		'type'        => 'kirki-generic',
@@ -2596,10 +2641,10 @@ return array(
 		'priority' => 1,
 		'default'     => 'color-neutral',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_blog_post_background_color' => array(
 		'type'        => 'bgtfw-palette-selector',
@@ -2611,10 +2656,10 @@ return array(
 		'priority' => 1,
 		'default'     => 'color-neutral',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_blog_post_header_title_display' => array(
 		'type' => 'radio-buttonset',
@@ -2645,10 +2690,10 @@ return array(
 		'section'     => 'bgtfw_pages_blog_blog_page_titles',
 		'default'     => 'color-1',
 		'choices'     => array(
-			'colors' => $formatted_palette,
-			'size' => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_blog_post_header_title_display',
@@ -2864,10 +2909,10 @@ return array(
 		'default'    => 'color-1',
 		'choices'    => array(
 			'selectors' => [ '.blog .post .entry-header .entry-meta .posted-on a', '.archive .post .entry-header .entry-meta .posted-on a' ],
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_blog_post_header_meta_display',
@@ -3047,10 +3092,10 @@ return array(
 		'default'    => 'color-1',
 		'choices'    => array(
 			'selectors' => [ '.blog .post .entry-header .entry-meta .byline a', '.archive .post .entry-header .entry-meta .byline a' ],
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_blog_post_header_meta_display',
@@ -3339,10 +3384,10 @@ return array(
 		'default'    => 'color-1',
 		'choices'    => array(
 			'selectors' => [ '.blog .post .entry-footer .tags-links a', '.archive .post .entry-footer .tags-links a' ],
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_blog_post_tags_display',
@@ -3574,10 +3619,10 @@ return array(
 		'default'    => 'color-1',
 		'choices'    => array(
 			'selectors' => [ '.blog .post .entry-footer .cat-links a', '.archive .post .entry-footer .cat-links a' ],
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_blog_post_cats_display',
@@ -3810,10 +3855,10 @@ return array(
 		'default'    => 'color-1',
 		'choices'    => array(
 			'selectors' => [ '.blog .post .entry-footer .comments-link a', '.archive .post .entry-footer .comments-link a' ],
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_blog_post_comments_display',
@@ -4065,10 +4110,10 @@ return array(
 		'default'    => 'color-1',
 		'choices'    => array(
 			'selectors' => [ '.read-more .link' ],
-			'colors' => $formatted_palette,
-			'size'   => $palette->get_palette_size( $formatted_palette ),
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
-		'sanitize_callback' => array( $sanitize, 'sanitize_palette_selector' ),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'active_callback'    => array(
 			array(
 				'setting'  => 'bgtfw_blog_post_readmore_type',

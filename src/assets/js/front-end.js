@@ -8,15 +8,15 @@
  * Only fires on body classes that match. If a body class contains a dash,
  * replace the dash with an underscore when adding it to the object below.
  * ======================================================================== */
-
+import { createHooks } from '@wordpress/hooks';
 import cssVars from 'css-vars-ponyfill';
 import domReady from '@wordpress/dom-ready';
 
 // Setup our object.
 //jscs:disable requireVarDeclFirst
 var BoldGrid = BoldGrid || {};
-
 //jscs:enable requireVarDeclFirst
+
 ( function( $ ) {
 
 	'use strict';
@@ -25,6 +25,9 @@ var BoldGrid = BoldGrid || {};
 
 	// Use this variable to set up the common and DOM based specific functionality.
 	BoldGrid = {
+
+		// Setup hooks.
+		hooks: createHooks(),
 
 		// Scripts to fire on all pages.
 		'common': {
@@ -164,14 +167,47 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			// Handle forms.
-			forms: function() {
-				new FloatLabels(
-					'form', {
-						prefix: 'bgtfw-',
-						style: 2,
-						exclude: '.comment-form-rating #rating'
-					}
-				);
+			forms: function( hasFloat = false ) {
+				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty';
+
+				if ( ! hasFloat ) {
+					new FloatLabels(
+						'form', {
+							prefix: 'bgtfw-',
+							style: 2,
+							exclude: selectors
+						}
+					);
+				}
+
+				/**
+				 * Determine the neutral color and return className
+				 * that should be applied to native select elements.
+				 */
+				const getColor = () => {
+					var styles = getComputedStyle( document.documentElement );
+					var neutralTextContrast = styles.getPropertyValue( '--color-neutral-text-contrast' );
+					var darkTextColor = styles.getPropertyValue( '--dark-text' );
+
+					return neutralTextContrast === darkTextColor ? 'light' : 'dark';
+				};
+
+				// Adds select element to the excluded form element selectors.
+				selectors = selectors.split( ',' ).map( selector => {
+					let selects = selector.split( ' ' );
+					let select = selects.pop().trim();
+					select = ' select' + select;
+					selects.push( select );
+					return selects.join( '' );
+				} ).join( ',' );
+
+				let selects = document.querySelectorAll( selectors );
+
+				// Apply color class to found select elements.
+				for ( let i = 0; i < selects.length; i++ ) {
+					selects[ i ].classList.remove( 'dark', 'light' );
+					selects[ i ].classList.add( getColor() );
+				}
 			},
 
 			// Side header handling.
@@ -569,15 +605,22 @@ var BoldGrid = BoldGrid || {};
 
 		// Parallax enabled pages.
 		'boldgrid_customizer_parallax': {
+			jarallax: null,
+			/* jshint ignore:start */
 			init: function() {
-				var $body = $( 'body.boldgrid-customizer-parallax' );
-				if ( $body.stellar ) {
-					$body.attr( 'data-stellar-background-ratio', '0.2' );
-					$body.stellar( {
-						horizontalScrolling: false
-					} );
-				}
+				( async function() {
+					if ( ! BoldGrid.boldgrid_customizer_parallax.jarallax ) {
+						BoldGrid.boldgrid_customizer_parallax.jarallax = await import( /* webpackChunkName: "jarallax" */ 'jarallax' );
+					}
+					BoldGrid.boldgrid_customizer_parallax.jarallax.jarallax( document.body,
+						{
+							speed: 0.2,
+							onInit: BoldGrid.hooks.doAction( 'bgtfwParallaxReady' )
+						}
+					);
+				} )();
 			}
+			/* jshint ignore:end */
 		},
 
 		// WOW.js enabled.
@@ -665,6 +708,19 @@ var BoldGrid = BoldGrid || {};
 
 			// Initialize.
 			init: function() {
+
+				// PHP handles body class set, so this flag is only to handle intial appearance from customize views.
+				var scrollEnabled = true;
+
+				if ( 'undefined' !== typeof wp && 'undefined' !== typeof wp.customize && 'undefined' !== wp.customize( 'bgtfw_scroll_to_top_display' ) ) {
+					scrollEnabled = 'hide' !== wp.customize( 'bgtfw_scroll_to_top_display' )() ? true : false;
+				}
+
+				scrollEnabled && this.setup();
+			},
+
+			// Setup scroll to top arrows.
+			setup: function() {
 				var arrowColor = _goupOptions.arrowColor ? _goupOptions.arrowColor : BoldGrid.goup_enabled.getArrowColor();
 
 				$.goup( {

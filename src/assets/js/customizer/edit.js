@@ -155,6 +155,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				BOLDGRID.CustomizerEdit.placeButtons();
 			}, 400 ) );
 		},
+
 		/**
 		 * @summary Init the buttons.
 		 *
@@ -348,8 +349,10 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 			// When "Go there now" is clicked, navigate to the editor for this page.
 			dialogSettings.buttons[goThereNow] = function() {
-				parent.window.location = self.i18n.editPostLink;
+				wp.customize.preview.send( 'edit-post-link', self.i18n.editPostLink );
 			};
+
+			wp.customize.preview.bind( 'active', dialogSettings.buttons[goThereNow] );
 
 			// When "cancel" is clicked, close the dialog.
 			dialogSettings.buttons[cancel] = function() {
@@ -765,9 +768,9 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		 * @return object $fixedAncestors A jQuery collection.
 		 */
 		getFixedAncestors: function( $element ) {
-			var $fixedAncestors = $element.parents().filter( function() {
+			var $fixedAncestors = true === $element.data( 'is-parent-column' ) && 'fixed' === $element.css( 'position' ) ? $element : $element.parents().filter( function() {
 				return 'fixed' === $( this ).css( 'position' );
-			});
+			} );
 
 			return $fixedAncestors;
 		},
@@ -1165,6 +1168,54 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		},
 
 		/**
+		 * Handle the Scroll to Top's edit button.
+		 *
+		 * The button conditionally hides/shows itself based on settings passed,
+		 * so we want to attach the edit button's visibility to mimic that of the
+		 * scroll to top button's.  This allows them to hide/show in sync with one
+		 * another.
+		 *
+		 * @since 2.1.4
+		 */
+		scrollToTopButton: function() {
+
+			// Handles Scroll To Top Edit Button conditionally hiding/showing itself.
+			var isAnimating = false, btn = $( '[data-control="bgtfw_scroll_to_top_display"]' );
+
+			if ( btn.length ) {
+
+				// Window offset from top is less than scroll to top's trigger point, so hide.
+				if ( window.pageYOffset < _goupOptions.trigger ) {
+					if ( 'none' !== btn.css( 'display' ) && false === isAnimating ) {
+						isAnimating = true;
+						btn[ _goupOptions.entryAnimation + 'Out' ]( function() {
+							isAnimating = false;
+						} );
+					}
+				} else {
+
+					// Check if btn has determined it's placement.
+					if ( ! btn.data( 'top' ) ) {
+						self.placeButton( $( '[data-control="bgtfw_scroll_to_top_display"]' ) );
+					}
+
+					// Place with CSS if not already placed properly.
+					if ( btn.css( 'top' ) !== btn.data( 'top' ) ) {
+						btn.css( 'top', btn.data( 'top' ) );
+					}
+
+					// show the button.
+					if ( 'hide' !== btn.css( 'display' ) && false === isAnimating ) {
+						isAnimating = true;
+						btn[ _goupOptions.entryAnimation + 'In' ]( function() {
+							isAnimating = false;
+						} );
+					}
+				}
+			}
+		},
+
+		/**
 		 * @summary Adjust a button's position based on whether or not the top of its parent is in view.
 		 *
 		 * @since 1.1.6
@@ -1172,6 +1223,8 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		windowScroll: function() {
 			var $button, $parent, buttonIsFixed,
 				selector = '[data-control][style*="position: fixed"][data-fixed-ancestor="0"]:not(.highlight-button)';
+
+			self.scrollToTopButton();
 
 			/*
 			* Adjust the position of fixed buttons that are NOT highlighted and need to be snapped back

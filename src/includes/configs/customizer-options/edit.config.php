@@ -72,6 +72,7 @@ return array(
 				'selector' => '.attribution-theme-mods',
 				'title' => esc_attr__( 'Attribution', 'bgtfw' ),
 			),
+
 			// Entry header, contains title and meta data.
 			array(
 				'control' => 'bgtfw_global_page_titles',
@@ -106,6 +107,7 @@ return array(
 				'selector' => '.page .entry-title, .blog .page-title',
 				'title' => esc_attr__( 'Page Title Display', 'bgtfw' ),
 			),
+
 			// Entry title, for single post.
 			array(
 				'control' => 'bgtfw_posts_title_display',
@@ -113,6 +115,7 @@ return array(
 				'postType' => array( 'post' ),
 				'title' => esc_attr__( 'Post Title Display', 'bgtfw' ),
 			),
+
 			// Post entry meta.
 			array(
 				'control' => 'bgtfw_pages_blog_posts_meta',
@@ -121,6 +124,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Post Meta', 'bgtfw' ),
 			),
+
 			// Article wrapper for posts.
 			array(
 				'control' => 'bgtfw_pages_blog_posts_container',
@@ -129,6 +133,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Post Container', 'bgtfw' ),
 			),
+
 			// Article wrapper for pages.
 			array(
 				'control' => 'bgtfw_layout_page_container',
@@ -137,6 +142,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Page Container', 'bgtfw' ),
 			),
+
 			// Post navigation links.
 			array(
 				'control' => 'bgtfw_pages_blog_posts_navigation_links',
@@ -145,6 +151,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Navigation Links', 'bgtfw' ),
 			),
+
 			// Post category links.
 			array(
 				'control' => 'bgtfw_pages_blog_posts_cat_links',
@@ -153,6 +160,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Category Links', 'bgtfw' ),
 			),
+
 			// Post tag links.
 			array(
 				'control' => 'bgtfw_pages_blog_posts_tags_links',
@@ -161,6 +169,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Tag Links', 'bgtfw' ),
 			),
+
 			// Posts page - individual post - post meta.
 			array(
 				'control' => 'bgtfw_pages_blog_blog_page_post_meta',
@@ -168,6 +177,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Post Meta', 'bgtfw' ),
 			),
+
 			// Posts page - individual post - read more.
 			array(
 				'control' => 'bgtfw_pages_blog_blog_page_read_more',
@@ -175,6 +185,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Read More', 'bgtfw' ),
 			),
+
 			// Posts page - individual post - tags.
 			array(
 				'control' => 'bgtfw_pages_blog_blog_page_tags_links',
@@ -182,6 +193,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Tag Links', 'bgtfw' ),
 			),
+
 			// Posts page - individual post - categories.
 			array(
 				'control' => 'bgtfw_pages_blog_blog_page_cat_links',
@@ -189,6 +201,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Category Links', 'bgtfw' ),
 			),
+
 			// Posts page - individual post - comments.
 			array(
 				'control' => 'bgtfw_pages_blog_blog_page_comment_links',
@@ -196,6 +209,7 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Comments', 'bgtfw' ),
 			),
+
 			// Posts page - individual post - title.
 			array(
 				'control' => 'bgtfw_pages_blog_blog_page_titles',
@@ -203,18 +217,21 @@ return array(
 				'objectType' => 'section',
 				'title' => esc_attr__( 'Post Title Design', 'bgtfw' ),
 			),
+
 			// Posts page - individual post - entry header.
 			array(
 				'control' => 'bgtfw_blog_header_background_color',
 				'selector' => '.blog .main .entry-header:first, .archive .main .entry-header:first',
 				'title' => esc_attr__( 'Background Color', 'bgtfw' ),
 			),
+
 			// Posts page - individual post - entry content.
 			array(
 				'control' => 'bgtfw_blog_post_background_color',
 				'selector' => '.blog .main .entry-content, .archive .main .entry-content',
 				'title' => esc_attr__( 'Background Color', 'bgtfw' ),
 			),
+
 			// Posts page - individual post - entry content.
 			array(
 				'control' => 'bgtfw_pages_blog_blog_page_advanced',
@@ -248,6 +265,14 @@ return array(
 				'parentColumn' => 'main',
 				'objectType' => 'panel',
 				'title' => esc_attr__( 'Blog Page', 'bgtfw' ),
+			),
+
+			// Scroll to top button.
+			array(
+				'control' => 'bgtfw_scroll_to_top_display',
+				'selector' => '.goup-container',
+				'isParentColumn' => true,
+				'title' => esc_attr__( 'Scroll To Top', 'bgtfw' ),
 			),
 		),
 	),

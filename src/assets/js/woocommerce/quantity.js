@@ -2,13 +2,12 @@ jQuery( document ).ready( function( $ ) {
 
 	var qtyInput = function() {
 		$( '.btn-number' ).click( function( e ) {
-			var minValue, maxValue, fieldName, type, input, currentVal;
+			var minValue, maxValue, type, input, currentVal;
 
 			e.preventDefault();
 
-			fieldName = $( this ).attr( 'data-field' );
-			type      = $( this ).attr( 'data-type' );
-			input = $( 'input[name="' + fieldName + '"]' );
+			type       = $( this ).attr( 'data-type' );
+			input      = $( this ).closest( '.input-group' ).find( '.qty' );
 			currentVal = parseInt( input.val() );
 
 			if ( ! isNaN( currentVal ) ) {
@@ -35,19 +34,18 @@ jQuery( document ).ready( function( $ ) {
 					if ( parseInt( input.val() ) === maxValue ) {
 						$( this ).attr( 'disabled', true );
 					}
-
 				}
 			} else {
 				input.val( 0 );
 			}
-		});
+		} );
 
 		$( '.input-number' ).focusin( function() {
 			$( this ).data( 'oldValue', $( this ).val() );
 		});
 
 		$( '.input-number' ).change( function() {
-			var name, valueCurrent, minValue, maxValue;
+			var valueCurrent, minValue, maxValue, changed;
 
 			minValue =  parseInt( $( this ).attr( 'min' ) );
 			maxValue =  parseInt( $( this ).attr( 'max' ) );
@@ -62,24 +60,26 @@ jQuery( document ).ready( function( $ ) {
 
 			valueCurrent = parseInt( $( this ).val() );
 
-			name = $( this ).attr( 'name' );
-
 			if ( valueCurrent === minValue ) {
-				$( '.btn-number[data-type="minus"][data-field="' + name + '"]' ).attr( 'disabled', true );
+				$( this ).siblings( '.input-group-btn' ).children( '.btn-minus' ).attr( 'disabled', true );
+				changed = true;
 			} else if ( valueCurrent > minValue ) {
-				$( '.btn-number[data-type="minus"][data-field="' + name + '"]' ).removeAttr( 'disabled' );
-			} else {
-				$( this ).val( $( this ).data( 'oldValue' ) );
+				$( this ).siblings( '.input-group-btn' ).children( '.btn-minus' ).removeAttr( 'disabled' );
+				changed = true;
 			}
 
 			if ( valueCurrent === maxValue ) {
-				$( '.btn-number[data-type="plus"][data-field="' + name + '"]' ).attr( 'disabled', true );
-			} else if ( valueCurrent <= maxValue ) {
-				$( '.btn-number[data-type="plus"][data-field="' + name + '"]' ).removeAttr( 'disabled' );
-			} else {
+				$( this ).siblings( '.input-group-btn' ).children( '.btn-plus' ).attr( 'disabled', true );
+				changed = true;
+			} else if ( valueCurrent < maxValue ) {
+				$( this ).siblings( '.input-group-btn' ).children( '.btn-plus' ).removeAttr( 'disabled' );
+				changed = true;
+			}
+
+			if ( true !== changed ) {
 				$( this ).val( $( this ).data( 'oldValue' ) );
 			}
-		});
+		} );
 
 		// Key Events.
 		$( '.input-number' ).keydown( function( e ) {
@@ -103,6 +103,7 @@ jQuery( document ).ready( function( $ ) {
 			}
 		});
 	};
+
 	qtyInput();
 
 	$( '.input-number' ).trigger( 'change' );

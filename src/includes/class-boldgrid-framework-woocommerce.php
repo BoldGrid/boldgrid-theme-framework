@@ -119,10 +119,7 @@ class BoldGrid_Framework_Woocommerce {
 	public function remove_select2() {
 		if ( class_exists( 'woocommerce' ) ) {
 			wp_dequeue_style( 'selectWoo' );
-			wp_deregister_style( 'selectWoo' );
-
 			wp_dequeue_script( 'selectWoo' );
-			wp_deregister_script( 'selectWoo' );
 		}
 	}
 
@@ -249,5 +246,48 @@ class BoldGrid_Framework_Woocommerce {
 				WC_Admin_Notices::remove_notice( 'template_files' );
 			}
 		}
+	}
+
+	/**
+	 * Action triggered before global quantity input template.
+	 *
+	 * @since 2.1.4
+	 */
+	public function quantity_input_before() {
+		?>
+		<div class="input-group quantity">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-minus btn-number" data-type="minus" disabled="disabled">
+					<span class="fa fa-minus"></span>
+				</button>
+			</span>
+		<?php
+	}
+
+	/**
+	 * Action triggered after global quantity input template.
+	 *
+	 * @since 2.1.4
+	 */
+	public function quantity_input_after() {
+		?>
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-plus btn-number" data-type="plus">
+					<span class="fa fa-plus"></span>
+				</button>
+			</span>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Filters the input classes on quantity inputs.
+	 *
+	 * @since 2.1.4
+	 */
+	public function quantity_input_classes( $classes ) {
+		$classes[] = 'form-control';
+		$classes[] = 'input-number';
+		return $classes;
 	}
 }

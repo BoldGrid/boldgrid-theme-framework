@@ -370,7 +370,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $styles, 'enqueue_fontawesome' );
 		$this->loader->add_action( 'after_setup_theme',  $styles, 'add_editor_styling' );
 		$this->loader->add_filter( 'mce_css', $styles, 'add_cache_busting' );
-		$this->loader->add_filter( 'local_editor_styles', $styles, 'enqueue_editor_buttons' );
+		$this->loader->add_filter( 'boldgrid_theme_framework_local_editor_styles', $styles, 'enqueue_editor_buttons' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'get_css_vars' );
 
 		// Add Theme Scripts.
@@ -650,9 +650,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_register', $background, 'add_patterns' );
 		$this->loader->add_action( 'customize_register', $background, 'add_background_crop', 11 );
 		$this->loader->add_action( 'customize_register', $background, 'rearrange_menu', 999 );
-		$this->loader->add_action( 'customize_controls_enqueue_scripts', $background, 'add_preview_scripts' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $background, 'register_front_end_scripts' );
-		$this->loader->add_filter( 'boldgrid_add_head_styles', $background, 'add_head_styles_filter' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $background, 'add_styles' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $background, 'add_editor_styles' );
 
 		// Only do this on 4.7 and above.
@@ -976,6 +974,10 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'enqueue' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $woo, 'remove_select2', 100 );
 		$this->loader->add_filter( 'woocommerce_breadcrumb_defaults', $woo, 'breadcrumbs' );
+		$this->loader->add_filter( 'woocommerce_quantity_input_classes', $woo, 'quantity_input_classes' );
+		$this->loader->add_action( 'woocommerce_before_quantity_input_field', $woo, 'quantity_input_before' );
+		$this->loader->add_action( 'woocommerce_after_quantity_input_field', $woo, 'quantity_input_after' );
+
 		remove_all_actions( 'woocommerce_sidebar' );
 		add_filter( 'loop_shop_per_page', function( $cols ) {
 			return 12;

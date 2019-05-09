@@ -128,8 +128,8 @@
 			@content;
 		}
 		&.sw {
-			align-items: flex-end !important;
-			justify-content: flex-start !important;
+			align-items: flex-start !important;
+			justify-content: flex-end !important;
 			@content;
 		}
 		&.s {

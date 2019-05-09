@@ -84,10 +84,10 @@ return array(
 		'goup' => array(
 			'enabled'          => true, // Enable jQuery Go Up Plugin ( Scroll To Top ).
 			'location'         => 'right', // On which side the button will be shown ("left" or "right").
-			'locationOffset'   => 20, // Pixels from the button is distant from the edge of the screen, based on set location..
-			'bottomOffset'     => 10, // Pixels from the bottom edge of screen.
+			'locationOffset'   => 30, // Pixels from the button is distant from the edge of the screen, based on set location..
+			'bottomOffset'     => 30, // Pixels from the bottom edge of screen.
 			'containerSize'    => 40, // The width and height of the button (minimum is 20).
-			'containerRadius'  => 10, // Let you transform a square in a circle.
+			'containerRadius'  => 4, // Let you transform a square in a circle.
 			'containerClass'   => 'goup-container color1-background-color color-1-text-contrast', // The class name given to the button container.
 			'arrowClass'       => 'goup-arrow', // The class name given to the arrow container
 			'containerColor'   => '#000', // The color of the container (in hex format).

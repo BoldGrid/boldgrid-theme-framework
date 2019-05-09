@@ -21,11 +21,13 @@ import bgtfwPanel from './controls/bgtfw-panel';
 import bgtfwSection from './controls/bgtfw-section';
 import bgtfwNotifications from './controls/bgtfw-notifications';
 import bgtfwBackgroundControls from './controls/bgtfw-background-control';
+import bgtfwEditPane from './controls/edit/pane';
 
 let devices = new Devices();
 devices.init();
 bgtfwNotifications();
 bgtfwBackgroundControls();
+bgtfwEditPane();
 
 ( function( $ ) {
 	const api = wp.customize;

@@ -367,8 +367,7 @@ class BoldGrid_Framework_Customizer {
 	 */
 	public function control_styles() {
 		?>
-		<style id="bgtfw-control-styles">
-		</style>
+		<style id="bgtfw-control-styles"></style>
 		<?php
 	}
 
@@ -513,6 +512,7 @@ class BoldGrid_Framework_Customizer {
 		];
 
 		wp_localize_script( 'bgtfw-customizer-base-controls', $initialize, $data );
+		wp_localize_script( 'bgtfw-customizer-base-controls', $this->scripts->get_asset_path(), $this->configs['framework']['root_uri'] );
 
 		wp_enqueue_script( 'jquery-ui-accordion' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-featured-images' );
@@ -615,6 +615,8 @@ class BoldGrid_Framework_Customizer {
 		);
 
 		wp_enqueue_script( 'boldgrid-theme-customizer' );
+		wp_localize_script( 'boldgrid-theme-customizer', $this->scripts->get_asset_path(), $this->configs['framework']['root_uri'] );
+
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-live-preview' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-layout-columns' );
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-header-background' );

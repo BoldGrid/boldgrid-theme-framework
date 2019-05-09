@@ -326,9 +326,9 @@ class Boldgrid_Framework_Customizer_Background {
 			$color = array_pop( $color );
 			$color_obj = ariColor::newColor( $color );
 			$color_obj->alpha = $alpha;
-			$newColor = esc_attr( $color_obj->toCSS( 'rgba' ) );
+			$new_color = esc_attr( $color_obj->toCSS( 'rgba' ) );
 
-			$rule = "@supports(background-blend-mode: $type) { body, body > [id^=\"jarallax-container\"] > div { background-color: $newColor; background-blend-mode: $type; } }";
+			$rule = "@supports(background-blend-mode: $type) { body, body > [id^=\"jarallax-container\"] > div { background-color: $new_color; background-blend-mode: $type; } }";
 			$rule .= "@supports not (background-blend-mode: $type) { body, body > [id^=\"jarallax-container\"] > div { background-color: $color; opacity: $alpha; } }";
 		}
 

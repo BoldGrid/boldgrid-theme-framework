@@ -11682,7 +11682,7 @@ scss-tokenizer@^0.2.3:
 
 "scssphp@https://github.com/timelsass/scssphp.git#master":
   version "0.0.0"
-  resolved "https://github.com/timelsass/scssphp.git#632b7aebf419ab188696d365c377232a1b20dec7"
+  resolved "https://github.com/timelsass/scssphp.git#0eb70d8c4dc04946eb42c64e65f1df08a6e843b0"
 
 seek-bzip@^1.0.3:
   version "1.0.5"

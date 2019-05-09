@@ -54,7 +54,6 @@ user guide for more information.
 ### 2.1.3 ###
 * Bugfix: Fixed issue with dynamic imports resolving to incorrect paths.
 * Update: Removed `wp_deregister_style` and `wp_deregister_script` calls for selectWoo.
-*
 
 ### 2.1.2 ###
 * Bugfix: Added starter content's customizer query for blog posts.

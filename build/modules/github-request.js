@@ -3,7 +3,7 @@ var https = require( 'https' );
 var options = {
 	host: 'api.github.com',
 	path: '/repos/TGMPA/TGM-Plugin-Activation/releases/latest',
-	post: 443,
+	port: 443,
 	method: 'GET',
 	headers: {
 		'Content-Type': 'application/json',

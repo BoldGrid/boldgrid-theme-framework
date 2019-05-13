@@ -732,6 +732,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		}
 
+		// Listen for widget layout changes.
+		[ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout' ,'bgtfw_footer_layout' ].forEach( control => {
+			api( control, value => {
+				value.bind( () => {
+					api.preview.send( 'bgtfw-widget-section-update', control );
+				} );
+			} );
+		} );
+
 		new Toggle( 'bgtfw_header_width', calc );
 		new Toggle( 'bgtfw_footer_headings_color', () => headingsColorOutput( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)' ) );
 		new Toggle( 'blogname', ( to ) => $( '.site-title a' ).text( to ) && calc() );

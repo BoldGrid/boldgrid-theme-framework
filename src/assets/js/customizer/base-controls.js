@@ -28,6 +28,7 @@ devices.init();
 bgtfwNotifications();
 bgtfwBackgroundControls();
 bgtfwEditPane();
+WidgetSectionUpdate();
 
 ( function( $ ) {
 	const api = wp.customize;
@@ -42,7 +43,6 @@ bgtfwEditPane();
 	new MenuLocations();
 	bgtfwHeaderTabs.init();
 
-	api( 'bgtfw_header_layout', 'bgtfw_sticky_header_layout' ,'bgtfw_footer_layout', WidgetSectionUpdate );
 	wp.customize.bind( 'pane-contents-reflowed', bgtfwPaneReflow );
 	wp.customize.Panel = api.Panel.extend( bgtfwPanel );
 	wp.customize.controlConstructor['kirki-typography'] = api.controlConstructor['kirki-typography'].extend( bgtfwTypography );

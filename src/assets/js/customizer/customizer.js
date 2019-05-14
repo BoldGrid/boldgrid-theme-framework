@@ -52,6 +52,14 @@ api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
 
 		css = _.isEmpty( css ) ? '' : `${ css.join( ', ' ) } { display: none !important; }`;
 
+		// Ensure partial refresh styles are updated for fixed header.
+		if (
+			'bgtfw_header_layout' === placement.partial.id &&
+			( _.isUndefined( api( 'bgtfw_fixed_header' ) ) || false === api( 'bgtfw_fixed_header' )() )
+		) {
+			css += '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none !important; }';
+		}
+
 		document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = css;
 	}
 } );
@@ -731,6 +739,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			}
 
 		}
+
+		// Listen for widget layout changes.
+		[ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ].forEach( control => {
+			api( control, value => {
+				value.bind( () => {
+					api.preview.send( 'bgtfw-widget-section-update', control );
+				} );
+			} );
+		} );
 
 		new Toggle( 'bgtfw_header_width', calc );
 		new Toggle( 'bgtfw_footer_headings_color', () => headingsColorOutput( 'bgtfw_footer_headings_color', '.site-footer :not(.bgtfw-widget-row)' ) );

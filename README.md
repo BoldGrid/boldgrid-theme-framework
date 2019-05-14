@@ -36,6 +36,12 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.5 ###
+* Bug fix: Fixed issue where sidebars were not dynamically populating in customizer. [#47](https://github.com/BoldGrid/boldgrid-theme-framework/issues/47)
+* Bug fix: WP5.2 unitless line-height causing alignment issues for icons in customizer. [#88](https://github.com/BoldGrid/boldgrid-theme-framework/issues/88)
+* Bug fix: WooCommerce quantity inputs no longer disabled after ajax cart updates. [#34](https://github.com/BoldGrid/boldgrid-theme-framework/issues/34)
+* Bug fix: Fixed partial refresh issue with changing header layouts. [#91](https://github.com/BoldGrid/boldgrid-theme-framework/issues/91)
+
 ### 2.1.4 ###
 * New Feature: Users can now toggle on/off the "Scroll To Top" button from the customizer. [#78](https://github.com/BoldGrid/boldgrid-theme-framework/issues/78), [#79](https://github.com/BoldGrid/boldgrid-theme-framework/issues/79)
 * New Feature: Users can now select different background blend modes for background image overlays in the customizer. [#85](https://github.com/BoldGrid/boldgrid-theme-framework/issues/85)

@@ -42,7 +42,7 @@ jQuery( document ).ready( function( $ ) {
 
 		$( '.input-number' ).focusin( function() {
 			$( this ).data( 'oldValue', $( this ).val() );
-		});
+		} );
 
 		$( '.input-number' ).change( function() {
 			var valueCurrent, minValue, maxValue, changed;
@@ -101,7 +101,7 @@ jQuery( document ).ready( function( $ ) {
 			if ( ( e.shiftKey || ( e.keyCode < 48 || e.keyCode > 57 ) ) && ( e.keyCode < 96 || e.keyCode > 105 ) ) {
 				e.preventDefault();
 			}
-		});
+		} );
 	};
 
 	qtyInput();
@@ -112,5 +112,8 @@ jQuery( document ).ready( function( $ ) {
 	$( '.woocommerce-cart .actions' ).wrapInner( '<div class="bgtfw-table-vertical-align"></div>' );
 
 	/* Trigger when cart updates run. */
-	$( 'body' ).on( 'updated_wc_div', qtyInput );
-});
+	$( 'body' ).on( 'updated_wc_div wc_fragments_refreshed', function() {
+		qtyInput();
+		$( '.input-number' ).trigger( 'change' );
+	} );
+} );

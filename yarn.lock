@@ -8124,7 +8124,7 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-"kirki-toolkit@https://github.com/timelsass/kirki.git#develop":
+"kirki-toolkit@https://github.com/timelsass/kirki.git#BGTFW-2.1.3":
   version "3.0.38"
   resolved "https://github.com/timelsass/kirki.git#7abf67a3d90f0896f26c28fd02dfdd8b61e12858"
 

@@ -1,3 +1,11 @@
+.control-section .accordion-section-title,
+.customize-pane-child .accordion-section-title {
+	line-height: 1.4em;
+	&:before {
+		line-height: inherit;
+	}
+}
+
 // Base Styles.
 #customize-controls {
 	.control-section-bgtfw_section.open > li.control-section-bgtfw_section {

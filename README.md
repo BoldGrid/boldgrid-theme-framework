@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.6 ###
+* Update: scssphp package updated to address Theme Check issue.
+
 ### 2.1.5 ###
 * Bug fix: Fixed issue where sidebars were not dynamically populating in customizer. [#47](https://github.com/BoldGrid/boldgrid-theme-framework/issues/47)
 * Bug fix: WP5.2 unitless line-height causing alignment issues for icons in customizer. [#88](https://github.com/BoldGrid/boldgrid-theme-framework/issues/88)

@@ -37,6 +37,7 @@ user guide for more information.
 ## Changelog ##
 
 ### 2.1.6 ###
+* Update: Ensure `paginate_comments_links` is being used where necessary. [#92](https://github.com/BoldGrid/boldgrid-theme-framework/issues/92)
 * Update: scssphp package updated to address Theme Check issue.
 
 ### 2.1.5 ###

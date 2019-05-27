@@ -527,6 +527,9 @@ class BoldGrid_Framework {
 
 		$this->loader->add_action( 'mce_external_plugins', $editor, 'add_tinymce_plugin' );
 
+		// Gutenberg specific scripts/styles.
+		$this->loader->add_action( 'enqueue_block_editor_assets', $editor, 'gutenberg_scripts' );
+
 		// Add Kirki Fonts to WordPress Page/Post Editor.
 		if ( true === $this->configs['customizer-options']['typography']['enabled'] && is_admin() ) {
 			$this->loader->add_filter( 'kirki_dynamic_css_method', $editor, 'add_styles_method' );

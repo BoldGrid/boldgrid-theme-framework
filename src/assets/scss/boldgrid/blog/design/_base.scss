@@ -168,3 +168,13 @@ main {
 		width: calc((100% / 1 - .5vw) - 2vw);
 	}
 }
+
+/* Set print preview visibility on archives. */
+@media print {
+	article.wow {
+		visibility: visible !important;
+	}
+	.empty-sidebar-message {
+		display: none;
+	}
+}

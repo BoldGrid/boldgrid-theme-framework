@@ -66,7 +66,7 @@ class BoldGrid_Framework_Pagination {
 			$paged_query_var = get_query_var( 'paged' );
 
 			if ( '' !== $paged_query_var ) {
-				$paged = ( $paged_query_var === 0 ) ? 1 : $paged_query_var;
+				$paged = ( 0 === $paged_query_var ) ? 1 : $paged_query_var;
 			} else {
 				$paged = absint( ( get_query_var( 'cpage' ) === 0 ) ? 1 : get_query_var( 'cpage' ) );
 			}

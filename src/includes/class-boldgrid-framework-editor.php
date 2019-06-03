@@ -228,4 +228,19 @@ class Boldgrid_Framework_Editor {
 
 		return $mce;
 	}
+
+	/**
+	 * Enqueue block JavaScript and CSS for the editor
+	 */
+	public function gutenberg_scripts() {
+
+		// Enqueue block editor JS
+		wp_enqueue_script(
+			'bgtfw-gutenberg',
+			$this->configs['framework']['admin_asset_dir'] . 'js/gutenberg.js',
+			[ 'wp-edit-post' ],
+			$this->configs['framework-version'],
+			true
+		);
+	}
 }

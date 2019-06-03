@@ -63,7 +63,13 @@ class BoldGrid_Framework_Pagination {
 	public function format( $pages = [] ) {
 		$output = '';
 		if ( is_array( $pages ) ) {
-			$paged = absint( ( get_query_var( 'cpage' ) === 0 ) ? 1 : get_query_var( 'cpage' ) );
+			$paged_query_var = get_query_var( 'paged' );
+
+			if ( '' !== $paged_query_var ) {
+				$paged = ( 0 === $paged_query_var ) ? 1 : $paged_query_var;
+			} else {
+				$paged = absint( ( get_query_var( 'cpage' ) === 0 ) ? 1 : get_query_var( 'cpage' ) );
+			}
 
 			$output .= '<ul class="pagination">';
 

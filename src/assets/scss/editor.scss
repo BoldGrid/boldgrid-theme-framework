@@ -1,13 +1,87 @@
+/** Set Gutenberg metabox styles **/
+.js.block-editor-page {
+
+	#bgtfw-attributes-meta-box.postbox {
+
+		.handlediv {
+			background-image: url("data:image/svg+xml,%3Csvg class='components-panel__arrow' width='24px' height='24px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' role='img' aria-hidden='true' focusable='false'%3E%3Cg%3E%3Cpath fill='none' d='M0,0h24v24H0V0z'%3E%3C/path%3E%3C/g%3E%3Cg%3E%3Cpath d='M12,8l-6,6l1.41,1.41L12,10.83l4.59,4.58L18,14L12,8z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+			background-position: center center;
+			background-repeat: no-repeat;
+			position: absolute;
+			right: 0;
+			z-index: 1;
+
+			.toggle-indicator:before {
+				content: "";
+			}
+		}
+
+		h2, h3 {
+
+			&.hndle {
+				font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+				font-size: 13px;
+				font-weight: 600;
+				text-align: left;
+				color: #191e23;
+				cursor: pointer;
+				border: none;
+				box-shadow: none;
+				transition: background .1s ease-in-out;
+
+				&:hover {
+					background: #f3f4f5;
+				}
+
+				&:focus {
+					color: #191e23;
+					border: none;
+					box-shadow: none;
+					outline-offset: -2px;
+					outline: 1px dotted #555d66;
+				}
+			}
+		}
+
+		&.closed .handlediv {
+
+			background-image: url("data:image/svg+xml,%3Csvg class='components-panel__arrow' width='24px' height='24px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' role='img' aria-hidden='true' focusable='false'%3E%3Cg%3E%3Cpath fill='none' d='M0,0h24v24H0V0z'%3E%3C/path%3E%3C/g%3E%3Cg%3E%3Cpath d='M7.41,8.59L12,13.17l4.59-4.58L18,10l-6,6l-6-6L7.41,8.59z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+
+			.toggle-indicator:before {
+				content: "";
+			}
+		}
+
+		.bgtfw-misc-pub-section {
+			font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+			padding: 6px 15px 8px;
+		}
+	}
+
+	#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"], #customize-control-bgtfw_layout_page input[type="radio"], #customize-control-bgtfw_blog_blog_page_sidebar input[type="radio"], #customize-control-bgtfw_blog_blog_page_sidebar2 input[type="radio"], #customize-control-bgtfw_layout_blog input[type="radio"] {
+		width: 32px;
+		height: 32px;
+		margin: 4px 12px 4px 0;
+	}
+	.template-subtitle {
+		margin-left: 47px;
+	}
+
+	/** Inheriting ul/ol from bootstrap styles since Gutenberg isn't very smart. **/
+	.edit-post-sidebar {
+		ul,
+		ol {
+			margin-bottom: 0;
+			margin-top: 0;
+		}
+	}
+}
+
 .post-attributes-advanced-wrap {
 	padding: 0px 12px;
 }
 
 /** Gutenberg Styles **/
-.gutenberg {
-  /** 100% - ( offset + 16px scrollbar probability ) **/
-  /* Inherit bgtfw fonts instead of using Gutenberg defaults. */
-}
-
 .gutenberg .edit-post-visual-editor .editor-post-title__block,
 .gutenberg .edit-post-visual-editor .editor-block-list__block {
 	max-width: calc( 100% - 58px);

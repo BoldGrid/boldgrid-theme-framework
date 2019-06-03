@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.2
+* **Tested up to:** 5.2.1
 * **License:** GPL-3.0-or-later
 * **License URI:** https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
@@ -35,6 +35,12 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.1.7 ###
+* Bug fix: Pagination "active" class is now properly applied. [#109](https://github.com/BoldGrid/boldgrid-theme-framework/issues/109)
+* Bug fix: Removed duplicate panel being displayed in Gutenberg Editor. [#108](https://github.com/BoldGrid/boldgrid-theme-framework/issues/108)
+* Bug fix: Ignored CSS transitions on archive pages when printing. [#106](https://github.com/BoldGrid/boldgrid-theme-framework/issues/106)
+* Update: Increased tap target size for pagination. [#105](https://github.com/BoldGrid/boldgrid-theme-framework/issues/105)
 
 ### 2.1.6 ###
 * Update: Ensure `paginate_comments_links` is being used where necessary. [#92](https://github.com/BoldGrid/boldgrid-theme-framework/issues/92)

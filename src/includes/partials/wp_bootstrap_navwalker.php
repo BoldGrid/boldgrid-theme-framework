@@ -96,16 +96,16 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			$output .= $indent . '<li' . $id . $value . $class_names . '>';
 
 			$atts = array();
-			$atts['title']  = ! empty( $item->title )	? $item->title	: '';
-			$atts['target'] = ! empty( $item->target )	? $item->target	: '';
-			$atts['rel']    = ! empty( $item->xfn )		? $item->xfn	: '';
+			$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+			$atts['target'] = ! empty( $item->target ) ? $item->target	: '';
+			$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn	: '';
 
 			// If item has_children add atts to a.
 			if ( $args->has_children && $depth === 0 ) {
-				$atts['href']   		= ! empty( $item->url ) ? $item->url : '';
-				$atts['data-toggle']	= 'custom-dropdown';
-				$atts['class']			= 'dropdown-toggle';
-				$atts['aria-haspopup']	= 'true';
+				$atts['href']          = ! empty( $item->url ) ? $item->url : '';
+				$atts['data-toggle']   = 'custom-dropdown';
+				$atts['class']         = 'dropdown-toggle';
+				$atts['aria-haspopup'] = 'true';
 			} else {
 				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
 			}
@@ -120,18 +120,17 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 					}
 
 					$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
-					$attributes .= ' ' . $attr . '="' . $value . '"';
+
+					if ( ! empty( $value ) ) {
+						$attributes .= ' ' . $attr . '="' . $value . '"';
+					}
 				}
 			}
 
 			$item_output = $args->before;
 
 			// Title Attribute.
-			if ( ! empty( $item->attr_title ) ) {
-				$item_output .= '<a' . $attributes . 'title="' . esc_attr( $item->attr_title ) . '">';
-			} else {
-				$item_output .= '<a' . $attributes . '>';
-			}
+			$item_output .= '<a' . $attributes . '>';
 
 			$dropdown_output = '</a>';
 

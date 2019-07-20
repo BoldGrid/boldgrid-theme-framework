@@ -24,11 +24,11 @@ export class Preview {
 	}
 
 	/**
-	 * Bind a single wordpress controls change event.
+	 * Bind a single WordPress controls change event.
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  {object} wpControl Wordpress control instance.
+	 * @param  {object} wpControl WordPress control instance.
 	 */
 	bindControl( wpControl ) {
 		wp.customize( wpControl.id, value => {

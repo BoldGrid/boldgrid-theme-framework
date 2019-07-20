@@ -75,7 +75,7 @@ export class Control {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  {object} wpControl       Wordpress control.
+	 * @param  {object} wpControl       WordPress control.
 	 * @param  {object} controlSettings Current Control settings.
 	 */
 	_setDefaults( wpControl, controlSettings ) {
@@ -96,7 +96,7 @@ export class Control {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  {object} wpControl       Wordpress control.
+	 * @param  {object} wpControl       WordPress control.
 	 * @param  {object} controlSettings Current Control settings.
 	 */
 	_setSavedValues( wpControl, controlSettings ) {

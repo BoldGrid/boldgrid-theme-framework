@@ -1,5 +1,5 @@
 /**
- * We know that this event is triggered by wordpress but we can't get it to work
+ * We know that this event is triggered by WordPress but we can't get it to work
  * This is a temp solution.
  *
  * @param $
@@ -24,19 +24,19 @@
 			$window.trigger( refreshEvent, message );
 		}
 	} );
-	
+
 	// Prevent interaction with panels until Customizer fully loads.
 	$body.addClass( 'pre-initial-refresh' );
 	$themeControls.prop( 'title', BOLDGRID.CUSTOMIZER.data.loadingTitle );
 
 	$( function() {
-		
+
 		// Customizer has fully loaded. Allow for interaction.
 		$( window ).one( 'boldgrid_customizer_refresh', function() {
 			$body.removeClass( 'pre-initial-refresh' );
 			$themeControls.removeAttr( 'title' );
 		});
-		
+
 		$( document ).on( 'click', '.open-widgets-section', function() {
 			wp.customize.panel( 'widgets' ).focus();
 		} );

@@ -36,6 +36,16 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.9 ###
+* Bug fix: Menu items with mark now respect whitespace. [#114](https://github.com/BoldGrid/boldgrid-theme-framework/issues/114)
+* Bug fix: The "No Sidebar" icon is used for customizer controls instead of default "Sidebar Right". [#116](https://github.com/BoldGrid/boldgrid-theme-framework/issues/116)
+* Bug fix: Primary sidebar now loads in the Widgets section in customizer. [#118](https://github.com/BoldGrid/boldgrid-theme-framework/issues/118)
+* Bug fix: Sidebar icon is now properly positioned. [#119](https://github.com/BoldGrid/boldgrid-theme-framework/issues/119)
+* Bug fix: Section title fonts in customizer are now correct. [#120](https://github.com/BoldGrid/boldgrid-theme-framework/issues/120)
+* Update: Removed unnecessary loading of FontAwesome from CDN in Kirki. [#113](https://github.com/BoldGrid/boldgrid-theme-framework/issues/113)
+* Update: The default for post dates has been set to date format instead of human readable. [#115](https://github.com/BoldGrid/boldgrid-theme-framework/issues/115)
+* Update: Removed Crio branding from customizer controls. [#117](https://github.com/BoldGrid/boldgrid-theme-framework/issues/117)
+
 ### 2.1.8 ###
 * Update: Minor changes for WPTRT WordPress.org submission.
 

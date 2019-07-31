@@ -2850,7 +2850,7 @@ return array(
 		'settings'    => 'bgtfw_blog_post_header_meta_format',
 		'label' => esc_attr__( 'Date Format', 'bgtfw' ),
 		'section'     => 'bgtfw_pages_blog_blog_page_post_meta',
-		'default'     => 'timeago',
+		'default'     => 'date',
 		'choices'     => array(
 			'timeago'   => '<i class="fa fa-cc" aria-hidden="true"></i>' . esc_attr__( 'Human Readable', 'bgtfw' ),
 			'date' => '<i class="fa fa-calendar" aria-hidden="true"></i>' . esc_attr__( 'Date', 'bgtfw' ),

@@ -73,6 +73,20 @@ span.section-title-extended {
 .bgtfw-section-title {
 	display: flex;
 	align-items: center;
+
+	// Ensure valid font for sections with FA icons.  See: https://github.com/BoldGrid/boldgrid-theme-framework/issues/119
+	&.fa {
+		font: inherit;
+
+		&:before {
+			font: normal normal normal 14px/1 FontAwesome;
+			font-size: inherit;
+			text-rendering: auto;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			display: inline-block;
+		}
+	}
 }
 
 #customize-controls #accordion-section-bgtfw-upsell {

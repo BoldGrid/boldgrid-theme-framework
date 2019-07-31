@@ -13,8 +13,8 @@ export default function() {
 			sections.map( section => api.section( section.id ).active.set( activeSections.includes( section.id ) ) );
 
 			// Check for primary sidebar activation/deactivation.
-			let body = $( wp.customize.previewer.container ).find( 'iframe' ).last().contents().find( 'body' )[0];
-			api.section( 'sidebar-widgets-primary-sidebar' ).active.set( body.classList.contains( 'has-sidebar' ) );
+			let doc = api.previewer.preview.iframe[0].contentDocument;
+			api.section( 'sidebar-widgets-primary-sidebar' ).active.set( doc.body.classList.contains( 'has-sidebar' ) );
 		};
 
 		api.previewer.bind( 'ready', () => update() );

@@ -11,7 +11,12 @@ export default function() {
 				sections = _.filter( window._wpCustomizeSettings.sections, ( section, id ) => id.includes( 'sidebar-widgets' ) );
 
 			sections.map( section => api.section( section.id ).active.set( activeSections.includes( section.id ) ) );
+
+			// Check for primary sidebar activation/deactivation.
+			let doc = api.previewer.preview.iframe[0].contentDocument;
+			api.section( 'sidebar-widgets-primary-sidebar' ).active.set( doc.body.classList.contains( 'has-sidebar' ) );
 		};
+
 		api.previewer.bind( 'ready', () => update() );
 		api.previewer.bind( 'bgtfw-widget-section-update', () => update() );
 	} );

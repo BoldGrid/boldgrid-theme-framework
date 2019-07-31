@@ -40,9 +40,10 @@
 	.sm-clean a:focus,
 	.sm-clean a:active,
 	.sm-clean a.highlighted {
-		display: flex;
+		display: inline-block;
 		padding: 13px 20px;
 		text-decoration: none;
+		width: 100%;
 	}
 	.sm-clean a.disabled {
 		color: #bbbbbb;

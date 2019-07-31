@@ -1,5 +1,7 @@
 language: php
 sudo: false
+services:
+  - mysql
 matrix:
   include:
   - php: 7.3

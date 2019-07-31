@@ -45,23 +45,20 @@ class Boldgrid_Framework_Customizer_Kirki {
 	/**
 	 * Add Kirki Configs
 	 *
-	 * @param     array $controls    array of controls to pass to kirki.
-	 * @return    array    $args        logo path and textdomain information.
+	 * @param  array $controls Array of controls to pass to kirki.
+	 * @return array $args     Logo path and textdomain information.
 	 */
 	public function general_kirki_configs( $controls ) {
-		$url  = $this->configs['framework']['root_uri'] . 'includes/kirki/';
-		$logo = $this->configs['framework']['admin_asset_dir'] . 'img/crio-logo.svg';
+		$url = $this->configs['framework']['root_uri'] . 'includes/kirki/';
 
 		Kirki::$url = $url;
 
 		$args = array(
 			'url_path'     => $url,
-			'logo_image'   => $logo,
 			'textdomain'   => 'boldgrid',
 		);
 
 		return $args;
-
 	}
 
 	/**

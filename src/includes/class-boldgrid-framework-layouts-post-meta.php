@@ -440,6 +440,13 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 			#customize-control-bgtfw_layout_blog input[type="radio"][value=no-sidebar]:checked {
 				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath fill='%23444' d='M2.12 29.96h27.84V2.12H2.12v27.84zM.04 1.26C.04.6.58.04 1.26.04H30.8c.7 0 1.24.54 1.24 1.22V30.8c0 .7-.55 1.24-1.23 1.24H1.28C.6 32.04.04 31.5.04 30.8V1.27z'/%3E%3C/svg%3E");
 			}
+			#customize-control-bgtfw_layout_blog.customize-control-kirki-radio label input[type="radio"][value=no-sidebar],
+			#customize-control-bgtfw_layout_page input[type="radio"][value=no-sidebar],
+			#customize-control-bgtfw_blog_blog_page_sidebar input[type="radio"][value=no-sidebar],
+			#customize-control-bgtfw_blog_blog_page_sidebar2 input[type="radio"][value=no-sidebar],
+			#customize-control-bgtfw_layout_blog input[type="radio"][value=no-sidebar] {
+				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath fill='%239b9b9b' d='M2.12 29.96h27.84V2.12H2.12v27.84zM.04 1.26C.04.6.58.04 1.26.04H30.8c.7 0 1.24.54 1.24 1.22V30.8c0 .7-.55 1.24-1.23 1.24H1.28C.6 32.04.04 31.5.04 30.8V1.27z'/%3E%3C/svg%3E");
+			}
 			#bgtfw-attributes-meta-box .advanced-toggle:before {
 				margin: 6px 6px 0 -6px;
 				font-size: 20px;

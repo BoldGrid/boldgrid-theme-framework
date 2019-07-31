@@ -88,8 +88,9 @@
 }
 .icon-sidebar-settings:before {
   content: "\e927";
-  transform: rotate(-90deg);
-  padding: 0 .5em;
+  display: inline-block !important;
+  transform: rotate(-90deg) !important;
+  padding: 0 .5em !important;
 }
 .icon-crio:before,
 .icon-crio-enzo:before {

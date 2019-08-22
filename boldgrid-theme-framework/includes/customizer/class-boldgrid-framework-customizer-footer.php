@@ -248,7 +248,16 @@ class Boldgrid_Framework_Customizer_Footer {
 			// Host Link.
 			$host_attribution = get_theme_mod( 'host_attribution' );
 			if ( ! empty( $host_attribution ) && ! get_theme_mod( 'hide_host_attribution' ) ) {
-				$theme_mods .= '<span class="link host-attribution-link">' . $host_attribution . '</span>';
+				$theme_mods .= '<span class="link host-attribution-link">' . wp_kses(
+					$host_attribution,
+					[
+						'a' => [
+							'href'   => [],
+							'target' => [],
+							'ref'    => [],
+						],
+					]
+				) . '</span>';
 			}
 		}
 

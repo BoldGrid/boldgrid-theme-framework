@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.7.0 ###
+* New Feature: Host attribution links.
+
 ### 1.6.1 ##
 * Bug fix: Allow menu title attributes to be removed. [#110](https://github.com/BoldGrid/boldgrid-theme-framework/issues/110)
 

@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.1.1
+* **Tested up to:** 5.2.1
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,12 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 1.7.0 ###
+* New Feature: Host attribution links.
+
+### 1.6.1 ##
+* Bug fix: Allow menu title attributes to be removed. [#110](https://github.com/BoldGrid/boldgrid-theme-framework/issues/110)
 
 ### 1.6.0 ###
 * Bugfix: Fixed "Go There Now" button in customizer (#43).

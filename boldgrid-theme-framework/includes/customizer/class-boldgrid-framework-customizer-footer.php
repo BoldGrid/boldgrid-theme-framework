@@ -254,7 +254,7 @@ class Boldgrid_Framework_Customizer_Footer {
 						'a' => [
 							'href'   => [],
 							'target' => [],
-							'ref'    => [],
+							'rel'    => [],
 							'title'  => [],
 						],
 					]

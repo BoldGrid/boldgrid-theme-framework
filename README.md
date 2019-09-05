@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.7.1 ###
+* Update: Allow rel attribute in host attribution links.
+
 ### 1.7.0 ###
 * New Feature: Host attribution links.
 

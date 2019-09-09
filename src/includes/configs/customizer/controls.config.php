@@ -1319,6 +1319,7 @@ return array(
 		'output'      => array(
 			array(
 				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body',
+				'context' => [ 'front', 'editor' ],
 			),
 		),
 	),

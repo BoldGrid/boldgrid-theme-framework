@@ -87,7 +87,7 @@ return array(
 			'templateId' => 'bgtfw-notification',
 			'featureCount' => 15,
 			'featureDescription' => esc_html__( '15 premium features available!', 'bgtfw' ),
-			'url' => esc_url( 'https://www.boldgrid.com/wordpress-themes/crio/blog' ),
+			'url' => esc_url( 'https://www.boldgrid.com/wordpress-themes/crio/blog/?source=customize-blog' ),
 			'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
 		],
 		'icon' => 'dashicons-admin-post',

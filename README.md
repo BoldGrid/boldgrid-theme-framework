@@ -36,6 +36,11 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.10 ###
+* Bug fix: Comment titles on post/pages should not be hidden when post titles are hidden in customizer. [#123](https://github.com/BoldGrid/boldgrid-theme-framework/issues/123)
+* Bug fix: Creating new menu in customizer should show only used menu locations. [#124](https://github.com/BoldGrid/boldgrid-theme-framework/issues/124)
+* Bug fix: Allow fonts to display in Gutenberg and Classic Editor for proper WYSIWYG. [#125](https://github.com/BoldGrid/boldgrid-theme-framework/issues/125)
+
 ### 2.1.9 ###
 * Bug fix: Menu items with mark now respect whitespace. [#114](https://github.com/BoldGrid/boldgrid-theme-framework/issues/114)
 * Bug fix: The "No Sidebar" icon is used for customizer controls instead of default "Sidebar Right". [#116](https://github.com/BoldGrid/boldgrid-theme-framework/issues/116)

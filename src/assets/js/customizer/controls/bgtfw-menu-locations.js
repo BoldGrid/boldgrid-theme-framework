@@ -1,17 +1,57 @@
+/* global _wpCustomizeNavMenusSettings:false */
 const api = wp.customize;
 
 export default {
 	ready() {
 		api.controlConstructor.nav_menu_location.__super__.ready.apply( this, arguments );
 		api.bind( 'ready', () => {
-			this.toggleUsedLocations();
-			api.control( 'bgtfw_fixed_header', 'bgtfw_header_layout_position', 'bgtfw_sticky_header_layout', 'bgtfw_header_layout', ( ...controls ) => controls.map( ctrl => {
-				ctrl.setting.bind( () => this.toggleUsedLocations() );
-			} ) );
+
+			// Controls that update menu locations dynamically.
+			let dynamicControls = [
+				'bgtfw_fixed_header',
+				'bgtfw_header_layout_position',
+				'bgtfw_sticky_header_layout',
+				'bgtfw_header_layout',
+				'bgtfw_footer_layout'
+			];
+
+			// Bind the menu locations when these controls change the active menu locations used.
+			dynamicControls.forEach( ctrl => {
+				api( ctrl, setting => {
+					this.toggleUsedLocations();
+					setting.bind( () => this.toggleUsedLocations() );
+				} );
+			} );
+
+			// Bind to section add to listen for newly created menu sections being added dynamically.
+			api.section.bind( 'add', function( section ) {
+				if ( section && section.params && section.params.type && 'nav_menu' === section.params.type ) {
+					api.control( section.id + '[locations]', function( control ) {
+						control.deferred.embedded.done( function() {
+
+							// Collect the dynamic controls connected menus.
+							let menus = api.control( 'bgtfw_header_layout' ).getConnectedMenus()
+								.map( menu => menu.replace( 'boldgrid_menu_', '' ) );
+
+							// Update section descriptions with the correct location counts.
+							api.controlConstructor.nav_menu_location.prototype.updateSectionDescription( menus );
+
+							// Update menu location controls displayed throughout the various nav menu sections/panels.
+							Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
+								let isActive = menus.includes( menu );
+								api.controlConstructor.nav_menu_location.prototype.updateMenuLocations( menu, isActive );
+							} );
+						} );
+					} );
+				}
+			} );
 		} );
 	},
 
 	toggleUsedLocations() {
+
+		// Split string like: nav_menu_locations[main] ==> main.
+		let locationId = this.id.slice( 19, -1 );
 
 		// Collect the dynamic controls connected menus.
 		let menus = api.control( 'bgtfw_header_layout' ).getConnectedMenus()
@@ -20,25 +60,21 @@ export default {
 		// This checks if the control matches any of our connected menus set in dynamic controls.
 		let isActive = () => menus.includes( this.id ) ? true : false;
 
-		// Set the active state for control based on our isActive() definition.
-		let setActiveState = () => this.active.set( isActive() );
-
-		// Split string like: nav_menu_locations[main] ==> main.
-		let locationId = this.id.slice( 19, -1 );
-
 		let panel = api.panel( `bgtfw_menu_location_${ locationId }` );
+
+		// Force the active panel state to read JS state set with isActive() and ignore server response.
+		panel.active.validate = isActive;
 
 		// Update "Design" menu panels based on active state declared in the isActive() call.
 		panel.active.set( isActive() );
 
-		// Force the active panel state to read JS state set with isActive() and ignore server response.
-		panel.active.validate = isActive;
+		isActive() ? panel.activate() : panel.deactivate();
 
 		// Force the active state to ignore whatever is sent from server and use JS active state we declared.
 		this.active.validate = isActive;
 
 		// Set the initial active state for control.
-		setActiveState();
+		this.active.set( isActive() );
 
 		// Update section descriptions counts.
 		this.updateSectionDescription( menus );

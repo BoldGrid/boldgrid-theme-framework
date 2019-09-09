@@ -202,6 +202,11 @@ class Boldgrid_Framework_Title {
 			return $title;
 		}
 
+		// Comments should display title regardless of post/page title being hidden.
+		if ( doing_action( 'boldgrid_comments' ) ) {
+			return $title;
+		}
+
 		/*
 		 * The the_title filter is ran quite often. For example, when displaying nav menus, this filter
 		 * is ran and can change a page's title in the nav. We're only interested in adjusting the

@@ -284,6 +284,7 @@ class Boldgrid_Framework_Customizer_Typography {
 				'element' => $elements,
 				'property' => $prop,
 				'choice' => $prop,
+				'context' => [ 'front', 'editor' ],
 			];
 		}
 

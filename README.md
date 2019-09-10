@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.11 ###
+* Update: Changed upsell URL in customizer.
+
 ### 2.1.10 ###
 * Bug fix: Comment titles on post/pages should not be hidden when post titles are hidden in customizer. [#123](https://github.com/BoldGrid/boldgrid-theme-framework/issues/123)
 * Bug fix: Creating new menu in customizer should show only used menu locations. [#124](https://github.com/BoldGrid/boldgrid-theme-framework/issues/124)

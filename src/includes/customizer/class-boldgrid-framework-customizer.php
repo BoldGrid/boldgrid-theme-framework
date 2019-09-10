@@ -846,7 +846,7 @@ HTML;
 					'title' => esc_html__( 'Get More Features', 'bgtfw' ),
 					'upsell_text' => esc_html__( 'Upgrade Crio', 'bgtfw' ),
 					'upsell_title' => esc_html__( 'Upgrade Crio', 'bgtfw' ),
-					'upsell_url' => 'https://boldgrid.com/wordpress-themes/crio',
+					'upsell_url' => 'https://boldgrid.com/wordpress-themes/crio/?source=customize-main',
 					'priority' => 0,
 				]
 			)

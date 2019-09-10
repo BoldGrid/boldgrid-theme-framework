@@ -421,7 +421,7 @@ class BoldGrid_Framework {
 				add_action( 'boldgrid_header_before', function() {
 					?>
 					<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
-						<?php BoldGrid::dynamic_sticky_header(); ?>
+						<?php echo BoldGrid::dynamic_sticky_header(); ?>
 					</div>
 					<?php
 				}, 20 );

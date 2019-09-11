@@ -7,7 +7,7 @@ var options = {
 	method: 'GET',
 	headers: {
 		'Content-Type': 'application/json',
-		'user-agent': 'node.js'
+		'user-agent': 'node.js',
 	}
 };
 
@@ -15,6 +15,11 @@ function setOptions( arg ) {
 	Object.keys( options ).forEach( function( key ) {
 		options[ key ] = arg[ key ] || options[ key ];
 	} );
+
+	// Headers being passed to options, and an Authorization header hasn't already been set by overriding, then check for env var passed in.
+	if ( options.headers && ! options.headers['Authorization'] && process.env.GITHUB_TGMPA_LATEST ) {
+		options.headers['Authorization'] = `token ${ process.env.GITHUB_TGMPA_LATEST }`;
+	}
 }
 
 function getData( onResult ) {

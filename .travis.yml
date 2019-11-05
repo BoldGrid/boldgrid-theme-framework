@@ -25,7 +25,7 @@ before_script:
 - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
 - framework_dir=$(basename $(pwd))/boldgrid-theme-framework
 - cd ..
-- git clone -b dev https://github.com/boldgrid/prime $BGTFW_THEME_DIR
+- git clone -b master https://github.com/boldgrid/prime $BGTFW_THEME_DIR
 - cp -r $framework_dir/. $BGTFW_THEME_DIR/inc/boldgrid-theme-framework
 - cd $WP_DEVELOP_DIR
 - echo $WP_DEVELOP_DIR

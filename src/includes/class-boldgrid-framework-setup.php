@@ -169,7 +169,7 @@ class BoldGrid_Framework_Setup {
 					}
 
 					return $styles;
-				}
+				},
 			) ) );
 		}
 	}

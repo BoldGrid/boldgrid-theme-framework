@@ -38,6 +38,7 @@ user guide for more information.
 
 ### 2.1.12 ###
 * Bug fix: `mce_external_plugins` returning incorrect values. [#129](https://github.com/BoldGrid/boldgrid-theme-framework/issues/129)
+* Bug fix: WP 5.3 - Color palette preview fails with js error. [#132](https://github.com/BoldGrid/boldgrid-theme-framework/issues/132)
 
 ### 2.1.11 ###
 * Bug fix: Ensure that the site header is correctly output when settings are updated in customizer. [#127](https://github.com/BoldGrid/boldgrid-theme-framework/issues/127)

@@ -418,7 +418,7 @@ class BoldGrid_Framework {
 		// Sticky Header
 		add_action( 'template_redirect', function() {
 			if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {
-				add_action( 'boldgrid_header_before', function() {
+				add_action( 'boldgrid_header_after', function() {
 					?>
 					<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
 						<?php echo BoldGrid::dynamic_sticky_header(); ?>

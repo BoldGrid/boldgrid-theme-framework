@@ -40,6 +40,7 @@ user guide for more information.
 * Bug fix: `mce_external_plugins` returning incorrect values. [#129](https://github.com/BoldGrid/boldgrid-theme-framework/issues/129)
 * Bug fix: WP 5.3 - Color palette preview fails with js error. [#132](https://github.com/BoldGrid/boldgrid-theme-framework/issues/132)
 * Bug fix: Background patterns not displayed if background image is set. [#135](https://github.com/BoldGrid/boldgrid-theme-framework/issues/135)
+* Bug fix: Preview of header background videos not displaying. [#138](https://github.com/BoldGrid/boldgrid-theme-framework/issues/138)
 * Update: Font sprite and webfonts json were updated to match latest font availability. [#134](https://github.com/BoldGrid/boldgrid-theme-framework/issues/134)
 
 ### 2.1.11 ###

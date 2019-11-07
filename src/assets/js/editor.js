@@ -53,7 +53,8 @@
 		// Append variables to the document head.
 		if ( BOLDGRID_THEME_FRAMEWORK.Editor && BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles ) {
 			let $style = $( '<style id="bgtfw-inline"></style>' );
-			$style.html( BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles );
+			let styles = BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles.replace( /h1, .h1.*}/, '' );
+			$style.html( styles );
 			$( 'head' ).append( $style );
 		}
 	}

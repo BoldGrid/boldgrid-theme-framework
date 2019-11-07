@@ -42,6 +42,7 @@ user guide for more information.
 * Bug fix: Background patterns not displayed if background image is set. [#135](https://github.com/BoldGrid/boldgrid-theme-framework/issues/135)
 * Bug fix: Preview of header background videos not displaying. [#138](https://github.com/BoldGrid/boldgrid-theme-framework/issues/138)
 * Bug fix: Body background overlay not working if pattern was selected before setting image. [#139](https://github.com/BoldGrid/boldgrid-theme-framework/issues/139)
+* Bug fix: Variable styles not applied for when used within Post and Page Builder. [#141](https://github.com/BoldGrid/boldgrid-theme-framework/issues/141)
 * Update: Font sprite and webfonts json were updated to match latest font availability. [#134](https://github.com/BoldGrid/boldgrid-theme-framework/issues/134)
 
 ### 2.1.11 ###

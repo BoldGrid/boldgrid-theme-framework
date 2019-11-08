@@ -48,8 +48,11 @@
 		margin-right: -15px;
 	}
 }
+
+.container-fluid .boldgrid-section-wrap .boldgrid-section,
 .container-fluid .boldgrid-section-group .boldgrid-section {
-	margin: auto;
+	margin-left: 0;
+	margin-right: 0;
 }
 .container .container {
 	width: auto !important;

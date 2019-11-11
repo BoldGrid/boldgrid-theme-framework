@@ -755,10 +755,10 @@
   resolved "https://registry.yarnpkg.com/@boldgrid/components/-/components-2.14.0.tgz#c6aec6618c965ea90ef6df6b09d0752510e5bd09"
   integrity sha512-My3rE+UQGVE/DxkesqwpSpCjfgdmdEljC2zyuNEF+I+fHOXJ2gTLaHAV6hR18VRWWFtI9Q9LGjYfaQzRe1pWGQ==
 
-"@boldgrid/components@^2.16.1":
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/@boldgrid/components/-/components-2.16.1.tgz#fd414662f37c19314c7f94252ffdb085d85b285e"
-  integrity sha512-Kp1U6JxLr9i92B1173WcLvQTu41pPXFkqw2N8YviubA6yyQb66ipLXbmPEudjv4TCKITVEjDoSctjBENrUU7Bw==
+"@boldgrid/components@^2.16.2":
+  version "2.16.2"
+  resolved "https://registry.yarnpkg.com/@boldgrid/components/-/components-2.16.2.tgz#8a0fcac9d14093fb72bca09bb9e72d8ff9033c1a"
+  integrity sha512-SAvoySS7JwX9S63sJW83D9A8LG2P67IJyrVtLDseeZnQ4eoxOBTzU5I5W2kZObse4hhjlgwqBUINooXiCmICSg==
 
 "@boldgrid/controls@https://github.com/BoldGrid/controls#dev":
   version "0.15.0"

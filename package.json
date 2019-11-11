@@ -129,7 +129,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.4.4",
-    "@boldgrid/components": "^2.16.1",
+    "@boldgrid/components": "^2.16.2",
     "@wordpress/dom-ready": "^2.0.2",
     "@wordpress/hooks": "^2.2.0",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",

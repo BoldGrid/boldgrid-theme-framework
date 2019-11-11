@@ -44,7 +44,7 @@ got.post( 'https://api.travis-ci.org/repo/BoldGrid%2Fprime/requests', {
 	body: JSON.stringify( {
 		request: {
 			message: `BGTFW auto-built from commit: ${gitCommitHash}`,
-			branch: 'dev',
+			branch: 'master',
 			config: {
 				merge_mode: 'deep_merge',
 				env: {

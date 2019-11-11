@@ -17,8 +17,8 @@ function setOptions( arg ) {
 	} );
 
 	// Headers being passed to options, and an Authorization header hasn't already been set by overriding, then check for env var passed in.
-	if ( options.headers && ! options.headers['Authorization'] && process.env.GITHUB_TGMPA_LATEST ) {
-		options.headers['Authorization'] = `token ${ process.env.GITHUB_TGMPA_LATEST }`;
+	if ( options.headers && ! options.headers['Authorization'] && process.env.GITHUB_TOKEN ) {
+		options.headers['Authorization'] = `token ${ process.env.GITHUB_TOKEN }`;
 	}
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "boldgrid-theme-framework",
-  "version": "2.1.11",
+  "version": "2.1.12",
   "description": "BoldGrid Theme Framework",
   "main": "index.js",
   "engines": {

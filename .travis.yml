@@ -56,7 +56,6 @@ deploy:
   api_key: "${GITHUB_TOKEN}"
   file: bgtfw.zip
   on:
-    repo: BoldGrid/boldgrid-theme-framework
     tags: true
     php: '7.3'
 - provider: script

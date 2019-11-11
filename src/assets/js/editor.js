@@ -49,6 +49,14 @@
 
 			$node.find( '.widget_recent_comments ul#recentcomments li' ).css( 'padding', '5px 15px' );
 		} );
+
+		// Append variables to the document head.
+		if ( BOLDGRID_THEME_FRAMEWORK.Editor && BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles ) {
+			let $style = $( '<style id="bgtfw-inline"></style>' );
+			let styles = BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles.replace( /h1, .h1.*}/, '' );
+			$style.html( styles );
+			$( 'head' ).append( $style );
+		}
 	}
 
 	/**

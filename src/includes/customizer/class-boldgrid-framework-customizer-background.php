@@ -328,8 +328,8 @@ class Boldgrid_Framework_Customizer_Background {
 			$color_obj->alpha = $alpha;
 			$new_color = esc_attr( $color_obj->toCSS( 'rgba' ) );
 
-			$rule = "@supports(background-blend-mode: $type) { body, body > [id^=\"jarallax-container\"] > div { background-color: $new_color; background-blend-mode: $type; } }";
-			$rule .= "@supports not (background-blend-mode: $type) { body, body > [id^=\"jarallax-container\"] > div { background-color: $color; opacity: $alpha; } }";
+			$rule = "@supports(background-blend-mode: $type) { body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $new_color !important; background-blend-mode: $type; } }";
+			$rule .= "@supports not (background-blend-mode: $type) { body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $color !important; opacity: $alpha; } }";
 		}
 
 		return $rule;

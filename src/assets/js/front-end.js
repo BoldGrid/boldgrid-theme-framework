@@ -226,7 +226,6 @@ var BoldGrid = BoldGrid || {};
 		// Header Top.
 		'custom_header': {
 			init: function() {
-
 				// Check for custom header image.
 				this.checkImg();
 
@@ -396,7 +395,7 @@ var BoldGrid = BoldGrid || {};
 				let header = document.querySelector( '.bgtfw-header' ),
 					distanceY = window.pageYOffset || document.documentElement.scrollTop,
 					shrinkOn = header.offsetHeight,
-					sticky = header.previousElementSibling;
+					sticky = header.nextElementSibling;
 
 				if ( distanceY > shrinkOn ) {
 					sticky.classList.add( 'bgtfw-stick' );

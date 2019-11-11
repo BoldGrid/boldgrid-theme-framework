@@ -36,8 +36,20 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.12 ###
+* Bug fix: `mce_external_plugins` returning incorrect values. [#129](https://github.com/BoldGrid/boldgrid-theme-framework/issues/129)
+* Bug fix: WP 5.3 - Color palette preview fails with js error. [#132](https://github.com/BoldGrid/boldgrid-theme-framework/issues/132)
+* Bug fix: Background patterns not displayed if background image is set. [#135](https://github.com/BoldGrid/boldgrid-theme-framework/issues/135)
+* Bug fix: Preview of header background videos not displaying. [#138](https://github.com/BoldGrid/boldgrid-theme-framework/issues/138)
+* Bug fix: Body background overlay not working if pattern was selected before setting image. [#139](https://github.com/BoldGrid/boldgrid-theme-framework/issues/139)
+* Bug fix: Variable styles not applied for when used within Post and Page Builder. [#141](https://github.com/BoldGrid/boldgrid-theme-framework/issues/141)
+* Bug fix: Background image setting switches to pattern & color after adding image. [#140](https://github.com/BoldGrid/boldgrid-theme-framework/issues/140)
+* Update: Font sprite and webfonts json were updated to match latest font availability. [#134](https://github.com/BoldGrid/boldgrid-theme-framework/issues/134)
+
+
 ### 2.1.11 ###
-* Update: Changed upsell link in customizer.
+* Bug fix: Ensure that the site header is correctly output when settings are updated in customizer. [#127](https://github.com/BoldGrid/boldgrid-theme-framework/issues/127)
+* Update: Changed upsell link in customizer. [#126](https://github.com/BoldGrid/boldgrid-theme-framework/issues/126)
 
 ### 2.1.10 ###
 * Bug fix: Comment titles on post/pages should not be hidden when post titles are hidden in customizer. [#123](https://github.com/BoldGrid/boldgrid-theme-framework/issues/123)

@@ -161,6 +161,15 @@ class BoldGrid_Framework_Setup {
 				'default-image'          => $this->configs['customizer-options']['background']['defaults']['background_image'],
 				'default-repeat'         => $this->configs['customizer-options']['background']['defaults']['background_repeat'],
 				'default-attachment'     => $this->configs['customizer-options']['background']['defaults']['background_attachment'],
+				'wp-head-callback'       => function ( $styles ) {
+
+					// Disable background image styles, if using a pattern.
+					if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) ) {
+						$styles = '';
+					}
+
+					return $styles;
+				},
 			) ) );
 		}
 	}

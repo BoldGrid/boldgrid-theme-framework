@@ -543,7 +543,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			value.bind( function( to ) {
 				var palettes, colors;
 
-				palettes = parent.$( '.colors-wrapper' );
+				palettes = parent.jQuery( '.colors-wrapper' );
 				colors = BOLDGRID.Customizer.Util.getInitialPalettes( to );
 
 				// Update any palettes on open colorpicker instances.

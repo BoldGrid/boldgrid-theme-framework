@@ -58,11 +58,11 @@ gulp.task('fontFamilyCss', function () {
     family,
     position;
 
-  for (var key in webFonts.items) {
-    family = webFonts.items[key].family;
+for (var key in webFonts.items) {
+	family = webFonts.items[key].family;
 
     // This value needs to -40 after updating sprite.
-    position = -5 + (key * -37);
+    position = -5 + (key * -40);
 
     css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + (position + 8) + 'px;}';
     css += '[id^="select2-"][id$="-' + family + '"] { color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + position + 'px;}';
@@ -86,6 +86,7 @@ gulp.task('fontFamilyCss', function () {
 gulp.task('googlefonts-image', function () {
   var googleApiKey = argv.google_api_key;
   if (!googleApiKey) {
+	console.log('Invalid format');
     console.log('gulp googlefonts-image --google_api_key={Key Goes Here}');
     return;
   }

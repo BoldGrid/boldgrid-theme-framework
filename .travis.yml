@@ -53,9 +53,7 @@ deploy:
     php: '7.3'
 - provider: releases
   skip_cleanup: true
-  api_key:
-    secure: AqsNw7Z149OBXc7RLpYmLHkYEOGEIp9Zc7MQepmI1+VYIhsANWbvCw38911CTgKxphtuXPMjOvWWeWEBUXYz8Q/w6adRO4mh2QSXJmRSn2ACSl8JuywsjmpNHBbJesZlr88S2DF/tQYbHbJIDgN19d0MdBmvNAk+AvPcanLdyNOo7f2fA7cfQN2hvQOc3jZj3tUEgirIVoVpvUFb1W3EX/YtYwYN/cD
-NkFnrV6lIkxI8R0UYvq2S1jl+0tCruItMFSObXJT0R72l5ix6pexDmErmncDCZbw5eHqp+A9jOfYATgjIxwPJDNNy1fGAlqUZAauCA+sqNJPjeM0dJAOZi+S2LBmCc9GTsUWDp4Rh/NiaGDCbhujsb9fd1ke0Z6b1h5xKwnoN+KLw1g0kTaem/KhAjBXaLNiypUXQ5yIxxh9Ky5JLzCbgxOpvGCArfYd2WOhLkxLkNqbHafJlWrH9PJ+CMK4633EpV4jL8JPU7kafJbPY5OgIFKnpA+Avg0N8gHOUd+raIlUyXtaqEZi59s2EbxMqmrbtKuK3c6KyirHIylT8/ME0hYU7IRFhm7Msz+WUW0O+z908CZ2Sqf1qJw+oECO8HWC6AWfgQgHdE6gT/PYJpmH9ffGU8NjhWBbKOG7W59PNtSnF+XPB77A+yg6S0Zq+nK5Gm7/s/COW8dE=
+  api_key: "${GITHUB_TOKEN}"
   file: bgtfw.zip
   on:
     tags: true

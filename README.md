@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.13 ###
+* Bug fix: Reset row margins to bootstrap defaults, fixes column widths.
+
 ### 2.1.12 ###
 * Bug fix: `mce_external_plugins` returning incorrect values. [#129](https://github.com/BoldGrid/boldgrid-theme-framework/issues/129)
 * Bug fix: WP 5.3 - Color palette preview fails with js error. [#132](https://github.com/BoldGrid/boldgrid-theme-framework/issues/132)
@@ -45,7 +48,6 @@ user guide for more information.
 * Bug fix: Variable styles not applied for when used within Post and Page Builder. [#141](https://github.com/BoldGrid/boldgrid-theme-framework/issues/141)
 * Bug fix: Background image setting switches to pattern & color after adding image. [#140](https://github.com/BoldGrid/boldgrid-theme-framework/issues/140)
 * Update: Font sprite and webfonts json were updated to match latest font availability. [#134](https://github.com/BoldGrid/boldgrid-theme-framework/issues/134)
-
 
 ### 2.1.11 ###
 * Bug fix: Ensure that the site header is correctly output when settings are updated in customizer. [#127](https://github.com/BoldGrid/boldgrid-theme-framework/issues/127)

@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.14 ###
+* Bug fix: Reset password field not visible.
+
 ### 2.1.13 ###
 * Bug fix: Reset row margins to bootstrap defaults, fixes column widths.
 

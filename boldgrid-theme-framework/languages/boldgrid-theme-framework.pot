@@ -1,4 +1,4 @@
-# Copyright (C) 2019 boldgrid_theme_framework
+# Copyright (C) 2020 boldgrid_theme_framework
 # This file is distributed under the same license as the boldgrid_theme_framework package.
 msgid ""
 msgstr ""
@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
 "Language-Team: The BoldGrid Team <support@boldgrid.com>\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"

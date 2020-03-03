@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.7.3 ###
+* Update: Woocommerce templates.
+
 ### 1.7.2 ###
 * Update: Fix styles for nested sections.
 

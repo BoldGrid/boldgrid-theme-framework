@@ -24,7 +24,13 @@ $bgtfw_formatted_palette = $bgtfw_palette->color_format( $bgtfw_active_palette )
 $bgtfw_color_sanitize = new Boldgrid_Framework_Customizer_Color_Sanitize();
 $bgtfw_typography = new Boldgrid_Framework_Customizer_Typography( $bgtfw_configs );
 
- function bgtfw_css_sanitize( $value ) {
+/**
+ * BGTFW Css Sanitizer function.
+ *
+ * @param mixed $value Value to be sanitized.
+ * @return mixed
+ */
+function bgtfw_css_sanitize( $value ) {
 	return sanitize_post( $value, 'raw' );
 }
 

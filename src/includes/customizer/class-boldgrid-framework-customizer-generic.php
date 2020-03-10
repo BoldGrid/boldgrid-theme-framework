@@ -97,6 +97,18 @@ class Boldgrid_Framework_Customizer_Generic {
 	}
 
 	/**
+	 * Sanitize a set of css values.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $value Theme mode value.
+	 * @return array        Sanitization Output.
+	 */
+	public static function sanitize( $value ) {
+		return sanitize_post( $value, 'raw' );
+	}
+
+	/**
 	 * Get the default styles for a control.
 	 *
 	 * If the user has not customized this control, we will use any values defined in the

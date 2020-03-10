@@ -24,16 +24,6 @@ $bgtfw_formatted_palette = $bgtfw_palette->color_format( $bgtfw_active_palette )
 $bgtfw_color_sanitize = new Boldgrid_Framework_Customizer_Color_Sanitize();
 $bgtfw_typography = new Boldgrid_Framework_Customizer_Typography( $bgtfw_configs );
 
-/**
- * BGTFW Css Sanitizer function.
- *
- * @param mixed $value Value to be sanitized.
- * @return mixed
- */
-function bgtfw_css_sanitize( $value ) {
-	return sanitize_post( $value, 'raw' );
-}
-
 return array(
 	'custom_theme_js' => array(
 		'type'        => 'code',
@@ -182,7 +172,7 @@ return array(
 		'settings'    => 'bgtfw_header_margin',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
@@ -205,7 +195,7 @@ return array(
 		'settings'    => 'bgtfw_header_padding',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Padding',
@@ -224,7 +214,7 @@ return array(
 		'settings'    => 'bgtfw_header_border',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
@@ -257,7 +247,7 @@ return array(
 		'settings'    => 'bgtfw_header_shadow',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BoxShadow',
@@ -276,7 +266,7 @@ return array(
 		'settings'    => 'bgtfw_header_radius',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BorderRadius',
@@ -298,7 +288,7 @@ return array(
 		'settings'    => 'bgtfw_footer_margin',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
@@ -321,7 +311,7 @@ return array(
 		'settings'    => 'bgtfw_footer_padding',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Padding',
@@ -340,7 +330,7 @@ return array(
 		'settings'    => 'bgtfw_footer_border',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
@@ -373,7 +363,7 @@ return array(
 		'settings'    => 'bgtfw_footer_shadow',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BoxShadow',
@@ -392,7 +382,7 @@ return array(
 		'settings'    => 'bgtfw_footer_radius',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BorderRadius',
@@ -2133,7 +2123,7 @@ return array(
 		'settings'    => 'bgtfw_menu_margin_main',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
@@ -2168,7 +2158,7 @@ return array(
 		'settings'    => 'bgtfw_menu_padding_main',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Padding',
@@ -2205,7 +2195,7 @@ return array(
 		'settings'    => 'bgtfw_menu_visibility_main',
 		'label'       => '',
 		'default'     => [],
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'DeviceVisibility',
@@ -2226,7 +2216,7 @@ return array(
 		'settings'    => 'bgtfw_menu_border_main',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
@@ -2258,7 +2248,7 @@ return array(
 		'settings'    => 'bgtfw_menu_border_radius_main',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BorderRadius',
@@ -2279,7 +2269,7 @@ return array(
 		'settings'    => 'bgtfw_menu_items_border_main',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
@@ -2311,7 +2301,7 @@ return array(
 		'settings'    => 'bgtfw_menu_items_border_radius_main',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BorderRadius',
@@ -2330,7 +2320,7 @@ return array(
 		'settings'    => 'bgtfw_menu_items_spacing_main',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
@@ -2490,7 +2480,7 @@ return array(
 		'settings'    => 'bgtfw_menu_items_active_link_border_main',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
@@ -2522,7 +2512,7 @@ return array(
 		'settings'    => 'bgtfw_menu_items_active_link_border_radius_main',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BorderRadius',
@@ -2578,7 +2568,7 @@ return array(
 				],
 			],
 		],
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Margin',
@@ -2601,7 +2591,7 @@ return array(
 		'settings'    => 'bgtfw_blog_padding',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Padding',
@@ -2620,7 +2610,7 @@ return array(
 		'settings'    => 'bgtfw_blog_border',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'Border',
@@ -2653,7 +2643,7 @@ return array(
 		'settings'    => 'bgtfw_blog_shadow',
 		'label'       => '',
 		'default'     => '',
-		'sanitize_callback' => 'bgtfw_css_sanitize',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
 			'type' => 'BoxShadow',

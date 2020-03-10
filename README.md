@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.15 ###
+* Bug fix: Directional controls not saving css output correctly.
+
 ### 2.1.14 ###
 * Bug fix: Reset password field not visible.
 

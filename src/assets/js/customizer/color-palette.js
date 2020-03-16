@@ -51,7 +51,6 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		colorPalette.setup_close_color_picker();
 		colorPalette.setup_palette_generation();
 		colorPalette.bind_generate_palette_action();
-		colorPalette.bind_help_section_visibility();
 		colorPalette.bind_help_link();
 		colorPalette.bindActiveColorClick();
 
@@ -66,21 +65,6 @@ BOLDGRID.COLOR_PALETTE.Modify = BOLDGRID.COLOR_PALETTE.Modify || {};
 		// Wait 100ms before running this function because it expects WP color picker to be set up.
 		setTimeout( colorPalette.wp_picker_post_init, 100 );
 	} );
-
-	/**
-	 * Try to show and hide the boldgrid color palette pointer depending on if the color the palette
-	 * selector is visible
-	 */
-	colorPalette.bind_help_section_visibility = function() {
-		$( '.accordion-section' ).on( 'click', function() {
-			var $bg_help = $( '.boldgrid-color-palette-help' );
-			if ( self.$accoridon_section_colors.hasClass( 'open' ) && ! $bg_help.is( ':visible' ) ) {
-				$bg_help.show();
-			} else if ( false === self.$accoridon_section_colors.hasClass( 'open' ) ) {
-				$bg_help.hide();
-			}
-		});
-	};
 
 	/**
 	 * Get the body of the previewer iframe.

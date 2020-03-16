@@ -19,11 +19,7 @@ export default function() {
 
 	var init = function() {
 		bindColors();
-
-		if ( api.section( 'background_image' ).expanded() ) {
-			updateBgType( api( 'boldgrid_background_type' )() );
-			validateSelectionSet();
-		}
+		loadSection();
 	};
 
 	/**

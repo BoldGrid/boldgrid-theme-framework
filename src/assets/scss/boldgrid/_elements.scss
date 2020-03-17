@@ -17,6 +17,11 @@ body.custom-background {
 	backface-visibility: hidden;
 }
 
+.row:before,
+.row:after {
+	display: inline-block;
+	}
+
 .site-content {
 	display: flex;
 	flex-direction: column;

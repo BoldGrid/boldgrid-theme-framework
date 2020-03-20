@@ -124,7 +124,6 @@ class BoldGrid_Framework {
 	 * - Boldgrid_Framework_Il8n                 Defines internationalization functionality.
 	 * - Boldgrid_Framework_Loader               Orchestrates the hooks of the plugin.
 	 * - Boldgrid_Framework_Menu                 Contains the hooks for registering nav menus and setting locations.
-	 * - Boldgrid_Framework_Pointer              Responsible for the WordPress pointer functionality seen in customizer.
 	 * - Boldgrid_Framework_Schema_Markup        Contains markup that theme's utilize to add schema.org markup.
 	 * - Boldgrid_Framework_Scripts              Enqueue the javascript a theme utilizes.
 	 * - Boldgrid_Framework_SCSS                 Responsible for converting SCSS to CSS in BoldGrid themes.

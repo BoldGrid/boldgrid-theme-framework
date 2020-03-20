@@ -153,7 +153,6 @@ class Boldgrid_Framework_Customizer_Colors {
 	 */
 	public function enqueue_scripts() {
 		$this->register_scripts();
-		$this->help_pointers();
 	}
 
 	/**
@@ -548,36 +547,6 @@ class Boldgrid_Framework_Customizer_Colors {
 }
 		}
 		return $palette_settings;
-	}
-
-
-	/**
-	 * Add Help Pointer to Color Palette Selection
-	 *
-	 * @since    1.0.0
-	 * @uses     Boldgrid_Framework_Pointer
-	 */
-	public function help_pointers() {
-		$pointers = [
-			[
-				'id' => 'boldgrid-color-palette-pointer',
-				'screen' => 'customize',
-				'target' => '#customize-control-boldgrid-color-palette',
-				'title' => __( 'Color Palettes', 'bgtfw' ),
-				'content' => sprintf(
-					/* translators: 1: instructions on using the color palette system for new users 2: name of link for tutorials on WordPress customizer */
-					'%1$s <a class="boldgrid-icon-newtab dashicons-before dashicons-external" href="https://www.boldgrid.com/support/customizer-how-to-use-the-colors-tab/" target="_blank">%2$s</a>.',
-					esc_html__( 'The BoldGrid Color Palette System allows you to create custom color palettes. Try changing the order of colors in a palette, or use Suggest Palettes to automatically generate new palettes. For more information about using this tool, view our', 'bgtfw' ),
-					esc_html__( 'customizer tutorials', 'bgtfw' )
-				),
-				'position' => [
-					'edge' => 'left',
-					'align' => 'top',
-				],
-			],
-		];
-
-		$pointers = new Boldgrid_Framework_Pointer( $pointers );
 	}
 
 	/**

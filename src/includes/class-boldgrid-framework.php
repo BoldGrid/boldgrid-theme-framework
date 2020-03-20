@@ -512,7 +512,6 @@ class BoldGrid_Framework {
 
 		// Actions.
 		$this->loader->add_action( 'boldgrid_activate_framework', $activate, 'do_activate' );
-		$this->loader->add_action( 'boldgrid_framework_reset', $activate, 'reset' );
 
 		if ( true === $this->configs['tgm']['enabled'] ) {
 			$this->loader->add_action( 'tgmpa_register', $activate, 'register_required_plugins' );

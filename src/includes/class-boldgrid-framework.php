@@ -168,7 +168,6 @@ class BoldGrid_Framework {
 			'menu',
 			'pagination',
 			'ppb',
-			'pointer',
 			'schema-markup',
 			'scripts',
 			'scss',

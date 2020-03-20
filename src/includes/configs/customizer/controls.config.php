@@ -1973,7 +1973,7 @@ return array(
 	),
 	'bgtfw_header_layout' => [
 		'settings' => 'bgtfw_header_layout',
-		'transport' => 'auto',
+		'transport' => 'refresh',
 		'label' => '<div class="screen-reader-text">' . __( 'Standard Header Layout', 'bgtfw' ) . '</div>',
 		'type' => 'bgtfw-sortable-accordion',
 		'default' => [
@@ -2059,12 +2059,6 @@ return array(
 		],
 		'location' => 'header',
 		'section' => 'bgtfw_header_layout',
-		'partial_refresh' => [
-			'bgtfw_header_layout' => [
-				'selector' => '#masthead',
-				'render_callback' => [ 'BoldGrid', 'dynamic_header' ],
-			],
-		],
 	],
 
 	/*** Start: Dynamic Menu Controls ***/

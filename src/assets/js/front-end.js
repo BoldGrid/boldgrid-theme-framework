@@ -39,17 +39,6 @@ var BoldGrid = BoldGrid || {};
 				this.skipLink();
 				this.forms();
 				this.cssVarsPonyfill();
-				this.mobileFooter();
-			},
-
-			// remove attribution seperators on mobile devices.
-			mobileFooter: function() {
-				var width = $( window ).width();
-				if ( 782 >= width ) {
-					$( '.attribution-theme-mods .link' ).addClass( 'no-separator' );
-					$( '.attribution-theme-mods' ).removeClass( 'flex-row' );
-					$( '.attribution-theme-mods' ).addClass( 'flex-column' );
-				}
 			},
 
 			// Observe classList changes on body element.

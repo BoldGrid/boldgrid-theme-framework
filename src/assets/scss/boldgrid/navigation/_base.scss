@@ -49,14 +49,15 @@
 		color: #bbbbbb;
 	}
 	.sm-clean a span.sub-arrow {
-		position: absolute;
-		top: 50%;
-		margin-top: -17px;
-		left: auto;
-		right: 17.5px;
+		position: relative;
+		right: auto;
 		width: 34px;
 		height: 34px;
 		overflow: hidden;
+		display:inline-block;
+		vertical-align: middle;
+		margin-top: inherit;
+		margin-left: 5px;
 		font: bold 16px/34px monospace !important;
 		text-align: center;
 		text-shadow: none;
@@ -166,7 +167,7 @@
 			.sm-clean a span.sub-arrow {
 				top: 50%;
 				margin-top: -2px;
-				right: 12px;
+				right: auto;
 				width: 0;
 				height: 0;
 				border-width: 4px;
@@ -227,7 +228,7 @@
 				padding-right: 20px;
 			}
 			.sm-clean ul a span.sub-arrow {
-				right: 8px;
+				right: auto;
 				top: 50%;
 				margin-top: -5px;
 				border-width: 5px;

@@ -24,6 +24,7 @@ export default function() {
 			updateBgType( api( 'boldgrid_background_type' )() );
 			validateSelectionSet();
 		}
+
 	};
 
 	/**
@@ -60,6 +61,9 @@ export default function() {
 				api( 'boldgrid_background_type', value => value.bind( ( to ) => updateBgType( to ) ) );
 				setBackgroundPatterns().then( () => setActivePattern() );
 				appendHeadStyles();
+			} else if ( expanded ) {
+				updateBgType( api( 'boldgrid_background_type' )() );
+				validateSelectionSet();
 			}
 		} );
 	};

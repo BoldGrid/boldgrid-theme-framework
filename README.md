@@ -36,6 +36,23 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.16 ###
+* Update: Updated WooCommerce Templates.
+* Bug fix: Sub-menus not displaying in preview after making changes to header in customizer [#26](https://github.com/BoldGrid/boldgrid-theme-framework/issues/26)
+* Bug fix: Attribution links not displaying properly on mobile devices [#177](https://github.com/BoldGrid/boldgrid-theme-framework/issues/177)
+* Bug fix: Colorpalette click event listener triggering on all sections clicks [#23](https://github.com/BoldGrid/boldgrid-theme-framework/issues/23)
+* Bug fix: Column / Row flexbox issues on Safari [#25](https://github.com/BoldGrid/boldgrid-theme-framework/issues/25)
+* Bug fix: widget partial refresh causes background image tabs to display all options [#156](https://github.com/BoldGrid/boldgrid-theme-framework/issues/156)
+* Bug fix: Second header menu dropdown overlaps text link on mobile [#150](https://github.com/BoldGrid/boldgrid-theme-framework/issues/150)
+* Bug fix: WP Editor text-contrast issues in dark palette [#40](https://github.com/BoldGrid/boldgrid-theme-framework/issues/40)
+* Bug fix: Class 'Boldgrid_Framework_Activate' does not have a method 'reset' [#173](https://github.com/BoldGrid/boldgrid-theme-framework/issues/173)
+* Bug fix: Crio Full Width Footer = Horizontal Scrollbar [#149](https://github.com/BoldGrid/boldgrid-theme-framework/issues/149)
+* Bug fix: Video Header with Sticky Header has wrong background color [#164](https://github.com/BoldGrid/boldgrid-theme-framework/issues/164)
+* Bug fix: Clicking the Home icon in breadcrumb trail hangs for 5-7 seconds in customizer panels/sections [#27](https://github.com/BoldGrid/boldgrid-theme-framework/issues/27)
+* Bug fix: Form styling from wp.org theme preview incomplete [#152](https://github.com/BoldGrid/boldgrid-theme-framework/issues/152)
+* Bug fix: header/footer widgets inheriting bootstrap body font [#28](https://github.com/BoldGrid/boldgrid-theme-framework/issues/28)
+* Bug fix: Previewing bgtfw based themes fails to load google fonts [#155](https://github.com/BoldGrid/boldgrid-theme-framework/issues/155)
+
 ### 2.1.15 ###
 * Bug fix: Directional controls not saving css output correctly.
 

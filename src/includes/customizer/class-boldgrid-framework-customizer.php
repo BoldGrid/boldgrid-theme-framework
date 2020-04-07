@@ -796,6 +796,15 @@ HTML;
 				},
 			)
 		);
+		$wp_customize->add_setting(
+			'hide_host_attribution', array(
+				'default'           => false,
+				'type'              => 'theme_mod',
+				'sanitize_callback' => function( $checked ) {
+					return ( ( isset( $checked ) && true == $checked ) ? true : false );
+				},
+			)
+		);
 	}
 
 	/**

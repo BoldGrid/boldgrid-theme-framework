@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.17 In progress ###
+* Update: Adding host_attribution footer control.
+
 ### 2.1.16 ###
 * Update: Updated WooCommerce Templates.
 * Bug fix: Sub-menus not displaying in preview after making changes to header in customizer [#26](https://github.com/BoldGrid/boldgrid-theme-framework/issues/26)

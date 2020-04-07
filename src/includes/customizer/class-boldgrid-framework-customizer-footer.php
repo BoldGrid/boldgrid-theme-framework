@@ -60,6 +60,12 @@ class Boldgrid_Framework_Customizer_Footer {
 				);
 			}
 
+			// Host Link.
+			$host_attribution = get_theme_mod( 'host_attribution' );
+			if ( ! empty( $host_attribution ) && ! get_theme_mod( 'hide_host_attribution' ) ) {
+				$theme_mods .= '<span class="link host-attribution-link">' . $host_attribution . '</span>';
+			}
+
 			// Allow plugins or themes to add additional attribution links to footer.
 			$additional_links = '';
 			$additional_links = apply_filters( 'bgtfw_attribution_links', $additional_links );

@@ -463,7 +463,7 @@ export default {
 
 			markup += `<li>
 				<input id="${ id }" class="attribution-link" type="checkbox" data-attribution="${ setting.id }" ${ checked }>
-				<label for="${ id }">${ startCase( setting.id ) }</label>
+				<label for="${ id }">${ startCase( setting.id ).replace( 'Wordpress', 'WordPress').replace( 'Boldgrid', 'BoldGrid' ) }</label>
 			</li>`;
 		} );
 

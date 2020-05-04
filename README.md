@@ -36,7 +36,8 @@ user guide for more information.
 
 ## Changelog ##
 
-### 2.1.17 In progress ###
+### 2.1.17 ###
+* Bug fix: Corrected display of attribution controls when used with Inspirations [#187](https://github.com/BoldGrid/boldgrid-theme-framework/pull/187)
 * Update: Adding host_attribution footer control.
 
 ### 2.1.16 ###

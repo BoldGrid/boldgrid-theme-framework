@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.7.4 ###
+* Bug fix: Host attribution not showing.
+
 ### 1.7.3 ###
 * Update: Woocommerce templates.
 

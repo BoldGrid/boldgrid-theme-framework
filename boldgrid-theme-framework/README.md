@@ -8,11 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-<<<<<<< HEAD
-* **Tested up to:** 5.2
-=======
 * **Tested up to:** 5.3
->>>>>>> 96455fc51614220e9b7723c281f44676b1d83501
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,8 +26,6 @@ user guide for more information.
 
 ## Changelog ##
 
-<<<<<<< HEAD
-=======
 ### 1.7.3 ###
 * Update: Woocommerce templates.
 
@@ -41,7 +35,6 @@ user guide for more information.
 ### 1.7.1 ###
 * Update: Allow rel attribute in host attribution links.
 
->>>>>>> 96455fc51614220e9b7723c281f44676b1d83501
 ### 1.7.0 ###
 * New Feature: Host attribution links.
 

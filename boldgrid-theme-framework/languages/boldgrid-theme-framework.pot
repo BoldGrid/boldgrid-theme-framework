@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Copyright (C) 2019 boldgrid_theme_framework
-=======
 # Copyright (C) 2020 boldgrid_theme_framework
->>>>>>> 96455fc51614220e9b7723c281f44676b1d83501
 # This file is distributed under the same license as the boldgrid_theme_framework package.
 msgid ""
 msgstr ""
@@ -11,11 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-<<<<<<< HEAD
-"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
-=======
 "PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
->>>>>>> 96455fc51614220e9b7723c281f44676b1d83501
 "Language-Team: The BoldGrid Team <support@boldgrid.com>\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -418,7 +410,7 @@ msgstr ""
 msgid "WordPress"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:302, src/includes/customizer/class-boldgrid-framework-customizer.php:227
+#: src/includes/customizer/class-boldgrid-framework-customizer-footer.php:312, src/includes/customizer/class-boldgrid-framework-customizer.php:227
 msgid "Enable Footer"
 msgstr ""
 

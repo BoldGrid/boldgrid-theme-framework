@@ -250,6 +250,12 @@ class BoldGrid_Framework_Scripts {
 	 * @since 1.3.6
 	 */
 	public function modernizr( $output ) {
+		// Do not run this on login screen -- modernizer script is not enqueued.
+		$script_name = isset( $_SERVER['SCRIPT_NAME'] ) ? $_SERVER['SCRIPT_NAME'] : '';
+		if ( false !== stripos( wp_login_url(), $script_name ) ) {
+			return $output;
+		}
+
 		$admin_bar = is_admin_bar_showing() ? ' admin-bar' : '';
 		return "$output class='no-js{$admin_bar}'";
 	}

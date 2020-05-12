@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.2
+* **Tested up to:** 5.3
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,12 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 1.7.3 ###
+* Update: Woocommerce templates.
+
+### 1.7.2 ###
+* Update: Fix styles for nested sections.
 
 ### 1.7.1 ###
 * Update: Allow rel attribute in host attribution links.

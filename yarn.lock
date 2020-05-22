@@ -4065,10 +4065,10 @@ css-selector-tokenizer@^0.7.0:
     fastparse "^1.1.1"
     regexpu-core "^1.0.0"
 
-css-vars-ponyfill@^1.11.1:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/css-vars-ponyfill/-/css-vars-ponyfill-1.11.1.tgz#83b58375145ca6414193a8291073ed570bee1719"
-  integrity sha512-H6j7dMlOjI/+L9GYW6BfBhQf0mz5qKe4t4JG/mN2v2Z+qgV36SOkq1K9iU+KzT7lFhI/AD/l5snn7qKHyOjinA==
+css-vars-ponyfill@^1.17.2:
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/css-vars-ponyfill/-/css-vars-ponyfill-1.17.2.tgz#18ec7bc2fd186ebfaf99ee367b2628aed43889db"
+  integrity sha512-hhdJTdUd9UM0wewdO8+301kba6F5GdfPwIj/lFd13il3xn0yfEuRhrDmLPMfg6R9nPLgbcU0wAp0DRUO/ucE3Q==
 
 cssesc@^0.1.0:
   version "0.1.0"

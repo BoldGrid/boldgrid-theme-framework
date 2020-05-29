@@ -168,6 +168,8 @@ var BoldGrid = BoldGrid || {};
 
 			// Handle forms.
 			forms: function( hasFloat = false ) {
+				var wcCheckoutLabels,
+					wcRequiredLabels = [];
 				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty';
 
 				if ( ! hasFloat ) {
@@ -179,6 +181,22 @@ var BoldGrid = BoldGrid || {};
 						}
 					);
 				}
+
+				wcCheckoutLabels = $( 'form[name=checkout] .woocommerce-input-wrapper label' );
+
+				wcCheckoutLabels.each( function() {
+					if ( ! $( this ).html().includes( '(optional)' ) ) {
+						wcRequiredLabels.push( this );
+					}
+				} );
+
+				wcRequiredLabels.forEach( function( requiredLabel ) {
+					var placeholder = $( requiredLabel ).parent().find( 'input' ).attr( 'placeholder' );
+					if ( ! $.contains( requiredLabel, $( 'abbr' ) ) ) {
+						$( requiredLabel ).append( '<abbr class="required" title="required"> *</abbr>' );
+						$( requiredLabel ).parent().find( 'input' ).attr( 'placeholder', placeholder + ' *' );
+					}
+				} );
 
 				/**
 				 * Determine the neutral color and return className
@@ -226,6 +244,7 @@ var BoldGrid = BoldGrid || {};
 		// Header Top.
 		'custom_header': {
 			init: function() {
+
 				// Check for custom header image.
 				this.checkImg();
 

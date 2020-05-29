@@ -4,7 +4,7 @@
 	align-items: center;
 	justify-content: center;
 	margin: 0;
-	position: relative;
+	position: fixed;
 	@at-root #{selector-append('.header-fixed.header-top', &)} {
 		height: 57px;
 		min-height: 57px;
@@ -13,12 +13,7 @@
 		min-height: 57px;
 		padding: 0;
 		position: fixed;
-		@at-root #{selector-append('.admin-bar', &)} {
-			@media screen and (max-width: 782px) {
-				position: absolute;
-				top: 46px;
-			}
-		}
+		height: fit-content;
 	}
 	@at-root #{selector-append('.header-left,.header-right', &)} {
 		height: 57px;
@@ -29,7 +24,9 @@
 		margin-left: -2.8rem;
 		margin-right: -2.8rem;
 	}
+
 	a {
 		padding-left: 1em;
+		padding-right: 1em;
 	}
 }

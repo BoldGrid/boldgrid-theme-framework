@@ -146,8 +146,10 @@ class BoldGrid {
 	 * @return array $classes Filter classes on .site-content element.
 	 */
 	public function blog_container( $classes ) {
+		global $boldgrid_theme_framework;
+		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
 		if ( is_single() || is_attachment() ) {
-			$theme_mod = get_theme_mod( 'bgtfw_pages_blog_posts_layout_layout' );
+			$theme_mod = get_theme_mod( $theme_mod_type );
 			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 		}
 
@@ -164,8 +166,30 @@ class BoldGrid {
 	 * @return array $classes Filter classes on .site-content element.
 	 */
 	public function page_container( $classes ) {
-		if ( is_page() ) {
-			$theme_mod = get_theme_mod( 'bgtfw_pages_container' );
+		global $boldgrid_theme_framework;
+		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
+		if ( is_page() || ( $boldgrid_theme_framework->woo->is_woocommerce_page() && is_shop() ) ) {
+			$theme_mod = get_theme_mod( $theme_mod_type );
+			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Add woocommerce container classes.
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @param array $classes Classes added to .site-content element.
+	 *
+	 * @return array $classes Filter classes on .site-content element.
+	 */
+	public function woocommerce_container( $classes ) {
+		global $boldgrid_theme_framework;
+
+		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
+			$theme_mod = get_theme_mod( 'bgtfw_woocommerce_container' );
 			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 		}
 
@@ -183,8 +207,11 @@ class BoldGrid {
 	 */
 	public function blog_page_container( $classes ) {
 		global $wp_query;
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
-			$theme_mod = get_theme_mod( 'bgtfw_blog_page_container' );
+		global $boldgrid_theme_framework;
+		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
+
+		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() || is_shop() ) {
+			$theme_mod = get_theme_mod( $theme_mod_type );
 			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 		}
 

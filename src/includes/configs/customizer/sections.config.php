@@ -10,7 +10,7 @@
  * @return array Sections to create in the WordPress Customizer.
  */
 
-return array(
+$sections_array = array(
 	'bgtfw_layout_blog' => array(
 		'title' => __( 'Blog', 'bgtfw' ),
 		'panel' => 'bgtfw_layout',
@@ -38,6 +38,14 @@ return array(
 		'panel' => 'bgtfw_design_panel',
 		'section' => 'bgtfw_layout_page',
 		'description' => esc_html__( 'This section controls the container for your pages.', 'bgtfw' ),
+		'capability' => 'edit_theme_options',
+		'icon' => 'icon-layout-container',
+	),
+	'bgtfw_layout_woocommerce_container' => array(
+		'title' => __( 'Container', 'bgtfw' ),
+		'panel' => 'bgtfw_design_panel',
+		'section' => 'bgtfw_layout_woocommerce',
+		'description' => esc_html__( 'This section controls the container for your WooCommerce pages.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'icon' => 'icon-layout-container',
 	),
@@ -395,3 +403,24 @@ return array(
 	),
 	// End: Generic Blog Design Controls.
 );
+
+/**
+ * Check if WooCommerce is activated
+ */
+$is_woocommerce = false;
+if ( ! function_exists( 'is_woocommerce_activated' ) ) {
+	$is_woocommerce = class_exists( 'woocommerce' );
+}
+
+if ( $is_woocommerce ) {
+	$sections_array['bgtfw_layout_woocommerce'] = array(
+		'title'       => __( 'WooCommerce', 'bgtfw' ),
+		'panel'       => 'bgtfw_design_panel',
+		'description' => esc_html__( 'This section controls the global layout of WooCommerce pages on your website.', 'bgtfw' ),
+		'capability'  => 'edit_theme_options',
+		'priority'    => 1,
+		'icon'        => 'dashicons-admin-page',
+	);
+}
+
+return $sections_array;

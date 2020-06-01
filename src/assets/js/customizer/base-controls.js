@@ -4,6 +4,7 @@ import bgtfwWidgetsSection from './controls/bgtfw-widgets-section';
 import BlogPagePanelExpand from './design/blog/blog-page/panel-expand.js';
 import BlogPostsPanelExpand from './design/blog/posts/panel-expand.js';
 import HomepageSectionExpand from './design/homepage/section-expand.js';
+import WoocommerceSectionExpand from './design/woocommerce/section-expand.js'
 import { Control as GenericControls } from './generic/control.js';
 import { Required } from './required.js';
 import SectionExtendTitle from './menus/extend-title';
@@ -36,6 +37,7 @@ WidgetSectionUpdate();
 	new BlogPagePanelExpand();
 	new BlogPostsPanelExpand();
 	new HomepageSectionExpand();
+	new WoocommerceSectionExpand();
 	new SectionExtendTitle();
 	new GenericControls().init();
 	new HamburgerControlToggle();

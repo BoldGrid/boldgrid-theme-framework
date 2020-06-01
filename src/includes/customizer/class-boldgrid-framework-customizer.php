@@ -506,6 +506,9 @@ class BoldGrid_Framework_Customizer {
 						'mostRecentPost' => ! empty( $posts[0]['ID'] ) ? $posts[0]['ID'] : null,
 					],
 				],
+				'woocommerce' => [
+					'shopUrl' => esc_js( wc_get_page_permalink( 'shop' ) )
+				],
 			],
 			'hoverColors'       => include $this->configs['framework']['includes_dir'] . 'partials/hover-colors-only.php',
 			'loadingTitle'      => __( 'Please wait while the Customizer loads...', 'bgtfw' ),

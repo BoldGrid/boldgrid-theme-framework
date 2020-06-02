@@ -50,6 +50,12 @@ ul.customize-pane-parent > li {
 			content: "\f475";
 		}
 	}
+	&#accordion-panel-woocommerce {
+		.accordion-section-title:before {
+			font-family: 'WooCommerce';
+    		content: '\e03d';
+		}
+	}
 }
 
 // Static Front Page (Homepage) Section.

@@ -32,6 +32,14 @@ class BoldGrid_Framework {
 	protected $loader;
 
 	/**
+	 * Boldgrid_Framework_Woocommerce
+	 *
+	 * @since SINCEVERSION
+	 * @var Boldgrid_Framework_Woocommerce
+	 */
+	public $woo;
+
+	/**
 	 * The plugins configs
 	 *
 	 * @since    1.0.0
@@ -394,6 +402,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'blog_container' );
 		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'page_container' );
 		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'blog_page_container' );
+		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'woocommerce_container' );
+		$this->loader->add_filter( 'bgtfw_site_content_classes', $boldgrid_theme, 'page_container' );
 		$this->loader->add_filter( 'bgtfw_blog_page_post_title_classes', $boldgrid_theme, 'blog_page_post_title_classes' );
 		$this->loader->add_filter( 'bgtfw_posts_title_classes', $boldgrid_theme, 'post_title_classes' );
 		$this->loader->add_filter( 'bgtfw_pages_title_classes', $boldgrid_theme, 'page_title_classes' );
@@ -966,7 +976,8 @@ class BoldGrid_Framework {
 	 * @access private
 	 */
 	private function woocommerce() {
-		$woo = new Boldgrid_Framework_Woocommerce( $this->configs );
+		$woo       = new Boldgrid_Framework_Woocommerce( $this->configs );
+		$this->woo = $woo;
 		$this->loader->add_action( 'wp_loaded', $woo, 'remove_template_warnings', 99 );
 		$this->loader->add_filter( 'customize_register', $woo, 'customizer', 20 );
 		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $woo, 'buttons' );

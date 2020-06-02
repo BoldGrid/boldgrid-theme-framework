@@ -97,7 +97,7 @@ class BoldGrid_Framework_Woocommerce {
 	 * @since 2.0.0
 	 */
 	public function add_container_open() {
-		$classes = array( get_theme_mod( 'woocommerce_container', 'container' ) );
+		$classes = array( get_theme_mod( 'bgtfw_woocommerce_container', 'container' ) );
 		$classes = apply_filters( 'bgtfw_woocommerce_wrapper_classes', $classes );
 		echo '<div class="' . esc_attr( implode( ' ', $classes ) ) . '"><div>';
 	}

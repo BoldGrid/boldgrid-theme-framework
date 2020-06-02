@@ -508,7 +508,7 @@ class BoldGrid_Framework_Customizer {
 				],
 				'woocommerce' => [
 					'shopUrl' => esc_js(
-						wc_get_page_permalink( 'shop' )
+						function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : get_option( 'siteurl' )
 					),
 				],
 			],

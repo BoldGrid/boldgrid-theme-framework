@@ -179,7 +179,7 @@ class BoldGrid {
 	/**
 	 * Add woocommerce container classes.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.1.18
 	 *
 	 * @param array $classes Classes added to .site-content element.
 	 *

@@ -14,7 +14,7 @@ export class WoocommerceSectionExpand extends ExpandSection {
 	/**
 	 * Constructor
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.1.18
 	 *
 	 * @param {String} typeId ID of the section to add expand and collapse bindings.
 	 * @param {String} url    URL the user should be directed to on expanded state.

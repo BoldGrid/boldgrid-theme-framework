@@ -34,7 +34,7 @@ class BoldGrid_Framework {
 	/**
 	 * Boldgrid_Framework_Woocommerce
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.1.18
 	 * @var Boldgrid_Framework_Woocommerce
 	 */
 	public $woo;

@@ -36,6 +36,12 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.1.18 ###
+* Bug fix: Store Notice should be at top of page [#39](https://github.com/BoldGrid/boldgrid-theme-framework/issues/39)
+* Bug fix: Required fields in checkout missing asterisk [#37](https://github.com/BoldGrid/boldgrid-theme-framework/issues/37)
+* Update: Added container control for WooCommerce Pages [#30](https://github.com/BoldGrid/boldgrid-theme-framework/issues/30)
+* Update: Added WooCommerce icon for customizer menu [#67](https://github.com/BoldGrid/boldgrid-theme-framework/issues/67)
+
 ### 2.1.17 ###
 * Bug fix: Corrected display of attribution controls when used with Inspirations [#187](https://github.com/BoldGrid/boldgrid-theme-framework/pull/187)
 * Update: Adding host_attribution footer control.

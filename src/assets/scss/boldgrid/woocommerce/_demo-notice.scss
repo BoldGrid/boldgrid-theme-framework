@@ -5,6 +5,9 @@
 	justify-content: center;
 	margin: 0;
 	position: fixed;
+	bottom: 0px;
+	top: inherit;
+
 	@at-root #{selector-append('.header-fixed.header-top', &)} {
 		height: 57px;
 		min-height: 57px;
@@ -14,6 +17,8 @@
 		padding: 0;
 		position: fixed;
 		height: fit-content;
+		bottom: 0px;
+		top: inherit;
 	}
 	@at-root #{selector-append('.header-left,.header-right', &)} {
 		height: 57px;

@@ -39,8 +39,6 @@ var BoldGrid = BoldGrid || {};
 				this.skipLink();
 				this.forms();
 				this.cssVarsPonyfill();
-				this.demoStore();
-				$( window ).on( 'resize', this.demoStore );
 			},
 
 			// Observe classList changes on body element.
@@ -97,14 +95,6 @@ var BoldGrid = BoldGrid || {};
 						func.apply( context, args );
 					}
 				};
-			},
-
-			// Set correct height of .demo_store notice.
-			demoStore: function() {
-				if ( 0 !== $( '.demo_store:visible' ).length ) {
-					$( '.demo_store' ).css( 'top', window.innerHeight - $( '.demo_store' ).outerHeight() );
-					$( '.goup-container' ).css( 'bottom', $( '.demo_store' ).outerHeight() + 30 );
-				}
 			},
 
 			// JavaScript to be fired on all pages, after page specific JS is fired.

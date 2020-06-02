@@ -226,6 +226,7 @@ var BoldGrid = BoldGrid || {};
 		// Header Top.
 		'custom_header': {
 			init: function() {
+
 				// Check for custom header image.
 				this.checkImg();
 

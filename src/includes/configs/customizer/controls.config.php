@@ -1805,8 +1805,8 @@ return array(
 			),
 		),
 	),
-	'bgtfw_pages_blog_posts_layout_layout' => array(
-		'settings' => 'bgtfw_pages_blog_posts_layout_layout',
+	'bgtfw_blog_posts_container' => array(
+		'settings' => 'bgtfw_blog_posts_container',
 		'transport'   => 'postMessage',
 		'label'       => esc_html__( 'Container', 'bgtfw' ),
 		'tooltip' => __( 'Choose if you would like your content wrapped in a container or cover the full width of the page.', 'bgtfw' ),
@@ -1821,6 +1821,20 @@ return array(
 		'sanitize_callback' => function( $value, $settings ) {
 			return 'container' === $value || '' === $value ? $value : $settings->default;
 		},
+		'js_vars' => array(
+			array(
+				'element' => '.blog .site-content, .single-post .site-content',
+				'function' => 'html',
+				'attr' => 'class',
+				'value_pattern' => 'site-content $',
+			),
+			array(
+				'element' => '.blog .main-wrapper, .single-post .main-wrapper',
+				'function' => 'html',
+				'attr' => 'class',
+				'value_pattern' => 'main-wrapper $',
+			),
+		),
 	),
 	'bgtfw_layout_blog' => array(
 		'settings' => 'bgtfw_layout_blog',

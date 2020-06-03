@@ -209,7 +209,7 @@ class BoldGrid {
 		global $wp_query;
 		global $boldgrid_theme_framework;
 
-		$theme_mod_type;
+		$theme_mod_type = 'bgtfw_pages_container';
 
 		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
 			$theme_mod_type = 'bgtfw_woocommerce_container';
@@ -222,8 +222,6 @@ class BoldGrid {
 			( function_exists( 'is_shop' ) && is_shop() )
 		) {
 			$theme_mod_type = 'bgtfw_blog_posts_container';
-		} else {
-			$theme_mod_type = 'bgtfw_pages_container';
 		}
 
 		$theme_mod = get_theme_mod( $theme_mod_type );

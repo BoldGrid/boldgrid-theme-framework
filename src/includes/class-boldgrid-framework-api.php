@@ -209,7 +209,7 @@ class BoldGrid {
 		global $wp_query;
 		global $boldgrid_theme_framework;
 
-		$theme_mod_type = '';
+		$theme_mod_type;
 
 		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
 			$theme_mod_type = 'bgtfw_woocommerce_container';

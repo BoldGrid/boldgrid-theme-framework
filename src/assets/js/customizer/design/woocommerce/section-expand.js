@@ -1,6 +1,7 @@
 /* esversion: 6 */
 import ExpandSection from '../../expand/section';
 
+// eslint-disable-next-line no-unused-vars
 const api = wp.customize;
 
 /**
@@ -34,6 +35,7 @@ export class WoocommerceSectionExpand extends ExpandSection {
 	 * @return {String} this.url The URL for the previewer.
 	 */
 	setUrl() {
+		// eslint-disable-next-line no-undef
 		this.url = BOLDGRID.CUSTOMIZER.data.design.woocommerce.shopUrl;
 		return this.url;
 	}

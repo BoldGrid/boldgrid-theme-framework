@@ -216,6 +216,12 @@ class BoldGrid_Framework_Scripts {
 			$this->configs['framework']['root_uri']
 		);
 
+		wp_localize_script(
+			'boldgrid-front-end-scripts',
+			'highlightRequiredFields',
+			get_option( 'woocommerce_checkout_highlight_required_fields', 'yes' )
+		);
+
 		wp_enqueue_script( 'float-labels' );
 		if ( is_customize_preview() ) {
 			wp_enqueue_script(

@@ -1,4 +1,4 @@
-/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false */
+/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false, highlightRequiredFields */
 
 /* ========================================================================
  * DOM-based Routing
@@ -183,20 +183,21 @@ var BoldGrid = BoldGrid || {};
 				}
 
 				wcCheckoutLabels = $( 'form[name=checkout] .woocommerce-input-wrapper label' );
+				if ( 'yes' === highlightRequiredFields ) {
+					wcCheckoutLabels.each( function() {
+						if ( ! $( this ).html().includes( '(optional)' ) ) {
+							wcRequiredLabels.push( this );
+						}
+					} );
 
-				wcCheckoutLabels.each( function() {
-					if ( ! $( this ).html().includes( '(optional)' ) ) {
-						wcRequiredLabels.push( this );
-					}
-				} );
-
-				wcRequiredLabels.forEach( function( requiredLabel ) {
-					var placeholder = $( requiredLabel ).parent().find( 'input' ).attr( 'placeholder' );
-					if ( ! $.contains( requiredLabel, $( 'abbr' ) ) ) {
-						$( requiredLabel ).append( '<abbr class="required" title="required"> *</abbr>' );
-						$( requiredLabel ).parent().find( 'input' ).attr( 'placeholder', placeholder + ' *' );
-					}
-				} );
+					wcRequiredLabels.forEach( function( requiredLabel ) {
+						var placeholder = $( requiredLabel ).parent().find( 'input' ).attr( 'placeholder' );
+						if ( ! $.contains( requiredLabel, $( 'abbr' ) ) ) {
+							$( requiredLabel ).append( '<abbr class="required" title="required"> *</abbr>' );
+							$( requiredLabel ).parent().find( 'input' ).attr( 'placeholder', placeholder + ' *' );
+						}
+					} );
+				}
 
 				/**
 				 * Determine the neutral color and return className

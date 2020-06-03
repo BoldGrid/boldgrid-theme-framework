@@ -210,7 +210,7 @@ class BoldGrid {
 		global $boldgrid_theme_framework;
 		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
 
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() || is_shop() ) {
+		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() || ( function_exists( 'is_shop' ) && is_shop() ) ) {
 			$theme_mod = get_theme_mod( $theme_mod_type );
 			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 		}

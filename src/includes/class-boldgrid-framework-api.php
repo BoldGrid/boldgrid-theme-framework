@@ -208,12 +208,24 @@ class BoldGrid {
 	public function blog_page_container( $classes ) {
 		global $wp_query;
 		global $boldgrid_theme_framework;
-		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
 
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() || ( function_exists( 'is_shop' ) && is_shop() ) ) {
-			$theme_mod = get_theme_mod( $theme_mod_type );
-			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+		$theme_mod_type = 'bgtfw_pages_container';
+
+		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
+			$theme_mod_type = 'bgtfw_woocommerce_container';
+		} elseif (
+			( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) ||
+			is_home() ||
+			is_archive() ||
+			is_single() ||
+			is_attachment() ||
+			( function_exists( 'is_shop' ) && is_shop() )
+		) {
+			$theme_mod_type = 'bgtfw_blog_posts_container';
 		}
+
+		$theme_mod = get_theme_mod( $theme_mod_type );
+		$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 
 		return $classes;
 	}

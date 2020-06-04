@@ -151,6 +151,23 @@ class BoldGrid_Framework_Woocommerce {
 			}
 		);
 	}
+	/**
+	 * Checks if on woocommerce shop.
+	 *
+	 * @since 2.2.18
+	 *
+	 * @return bool Is current page a woocommerce shop page ( shop, archive, or product ).
+	 */
+	public function is_shop_page() {
+		return ( bool ) ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || array_filter(
+			array(
+				'woocommerce_shop_page_id',
+			),
+			function( $id ) {
+				return get_the_ID() == get_option( $id , 0 );
+			}
+		);
+	}
 
 	/**
 	 * Adds select2 styles to match our theme.

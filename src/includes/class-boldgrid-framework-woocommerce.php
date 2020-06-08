@@ -307,4 +307,22 @@ class BoldGrid_Framework_Woocommerce {
 		$classes[] = 'input-number';
 		return $classes;
 	}
+
+	/**
+	 * Adds page title to a shop Page.
+	 *
+	 * @since 2.2.16
+	 */
+	public function add_page_title() {
+		if ( 'hide' !== get_theme_mod( 'bgtfw_pages_title_display' ) ) {
+			$slug   = get_post_field( 'post_name', get_post() );
+			$markup = '
+				<header class="woocommerce-' . esc_attr( $slug ) . '-header">
+					<h1 class="woocommerce-' . esc_attr( $slug ) . '-header__title page-title">
+					' . esc_attr( get_the_title() ) . '
+					</h1>
+				</header>';
+			echo $markup; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+	}
 }

@@ -998,6 +998,11 @@ class BoldGrid_Framework {
 				add_action( 'boldgrid_main_bottom' , array( $woo, 'add_container_close' ) );
 			}
 		});
+
+		/**
+		 * Change number of products that are displayed per page (shop page)
+		 */
+		add_filter( 'loop_shop_per_page', array( $woo, 'products_per_page' ), 20 );
 	}
 
 	/**

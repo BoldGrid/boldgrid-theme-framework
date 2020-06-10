@@ -148,7 +148,7 @@ class BoldGrid_Framework_Woocommerce {
 				'woocommerce_lost_password_page_id',
 			),
 			function( $id ) {
-				return get_the_ID() === get_option( $id, 0 );
+				return get_the_ID() === (int) get_option( $id, 0 );
 			}
 		);
 	}
@@ -165,7 +165,7 @@ class BoldGrid_Framework_Woocommerce {
 				'woocommerce_shop_page_id',
 			),
 			function( $id ) {
-				return get_the_ID() === get_option( $id, 0 );
+				return get_the_ID() === (int) get_option( $id, 0 );
 			}
 		);
 	}

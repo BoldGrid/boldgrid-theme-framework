@@ -471,7 +471,7 @@ return array(
 		'type'              => 'kirki-generic',
 		'settings'          => 'bgtfw_woocommerce_products_per_page',
 		'label'             => __( 'Products Per Page', 'bgtfw' ),
-		'description'       => __( 'How may products should be shown per page?', 'bgtfw' ),
+		'description'       => __( 'How many products should be shown per page?', 'bgtfw' ),
 		'section'           => 'woocommerce_product_catalog',
 		'default'           => 10,
 		'priority'          => 10,

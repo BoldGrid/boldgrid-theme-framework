@@ -39,7 +39,9 @@
     "script:patterns": "node --experimental-modules build/patterns.mjs",
     "script:tgm": "node build/tgm.mjs",
     "script:wp-textdomain-lint": "node build/check-text-domains.js",
-    "script:zip": "node build/build-zip.js"
+    "script:zip": "node build/build-zip.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "keywords": [
     "BoldGrid"
@@ -154,6 +156,8 @@
     "sass.js": "~0.9.4",
     "scssphp": "https://github.com/timelsass/scssphp.git#master",
     "smartmenus": "^1.1.0",
-    "wow.js": "^1.2.2"
-  }
+    "wow.js": "^1.2.2",
+    "snyk": "^1.338.0"
+  },
+  "snyk": true
 }

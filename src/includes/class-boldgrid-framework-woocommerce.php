@@ -317,7 +317,6 @@ class BoldGrid_Framework_Woocommerce {
 	}
 
 	/**
-
 	 * Adds page title to a shop Page.
 	 *
 	 * @since 2.2.16
@@ -333,7 +332,9 @@ class BoldGrid_Framework_Woocommerce {
 				</header>';
 			echo $markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
+	}
 
+	/**
 	 * Changes the number of products shown per page.
 	 *
 	 * @since 2.2.16

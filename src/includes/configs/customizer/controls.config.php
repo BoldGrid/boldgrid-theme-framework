@@ -467,6 +467,19 @@ return array(
 		'choices'     => array(),
 		'sanitize_callback' => 'esc_attr',
 	),
+	'bgtfw_woocommerce_products_per_page' => array(
+		'type'              => 'kirki-generic',
+		'settings'          => 'bgtfw_woocommerce_products_per_page',
+		'label'             => __( 'Products Per Page', 'bgtfw' ),
+		'description'       => __( 'How many products should be shown per page?', 'bgtfw' ),
+		'section'           => 'woocommerce_product_catalog',
+		'default'           => 10,
+		'priority'          => 10,
+		'sanitize_callback' => 'esc_attr',
+		'choices'           => array(
+			'type' => 'number',
+		),
+	),
 
 	// Start: Page Title Controls.
 	'bgtfw_pages_title_display' => array(

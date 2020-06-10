@@ -307,4 +307,18 @@ class BoldGrid_Framework_Woocommerce {
 		$classes[] = 'input-number';
 		return $classes;
 	}
+
+	/**
+	 * Changes the number of products shown per page.
+	 *
+	 * @since 2.2.16
+	 *
+	 * @param int $cols number of products per page.
+	 */
+	public function products_per_page( $cols ) {
+		$default_cols = 10;
+
+		$cols = get_theme_mod( 'bgtfw_woocommerce_products_per_page' ) ? (int) get_theme_mod( 'bgtfw_woocommerce_products_per_page' ) : $default_cols;
+		return $cols;
+	}
 }

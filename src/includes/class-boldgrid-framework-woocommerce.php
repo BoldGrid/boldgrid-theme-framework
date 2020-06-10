@@ -1,8 +1,8 @@
 <?php
 /**
- * Class: BoldGrid_Framework_Woocommerce
+ * Class: BoldGrid_Framework_Woocommerce.
  *
- * This is where all wooCommerce specific functionality is manipulated, outside
+ * This is where all wooCommerce specific functionality is manipulated, outside.
  * of custom templates used by parent themes.
  *
  * @since      1.4.1
@@ -12,9 +12,9 @@
  */
 
 /**
- * Class: BoldGrid_Framework_Woocommerce
+ * Class: BoldGrid_Framework_Woocommerce.
  *
- * This is where all wooCommerce specific functionality is manipulated, outside
+ * This is where all wooCommerce specific functionality is manipulated, outside.
  * of custom templates used by parent themes.
  *
  * @since      1.4.1
@@ -43,7 +43,7 @@ class BoldGrid_Framework_Woocommerce {
 	/**
 	 * Filter add_to_cart_url.
 	 *
-	 * This is responsible for filtering the add to cart buttons  used throughout
+	 * This is responsible for filtering the add to cart buttons  used throughout.
 	 * wooCommerce and placing our button classes on them.
 	 *
 	 * @global $product wooCommerce global product info.
@@ -54,7 +54,8 @@ class BoldGrid_Framework_Woocommerce {
 	 */
 	public function buttons( $link ) {
 		global $product;
-		$link = sprintf( '<a rel="nofollow" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s" class="%s">%s</a>',
+		$link = sprintf(
+			'<a rel="nofollow" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s" class="%s">%s</a>',
 			esc_url( $product->add_to_cart_url() ),
 			esc_attr( isset( $quantity ) ? $quantity : 1 ),
 			esc_attr( $product->get_id() ),
@@ -131,7 +132,7 @@ class BoldGrid_Framework_Woocommerce {
 	 * @return bool Is current page a woocommerce page.
 	 */
 	public function is_woocommerce_page() {
-		return ( bool ) ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || array_filter(
+		return (bool) ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || array_filter(
 			array(
 				'woocommerce_shop_page_id',
 				'woocommerce_terms_page_id',
@@ -147,7 +148,7 @@ class BoldGrid_Framework_Woocommerce {
 				'woocommerce_lost_password_page_id',
 			),
 			function( $id ) {
-				return get_the_ID() == get_option( $id , 0 );
+				return get_the_ID() === (int) get_option( $id, 0 );
 			}
 		);
 	}
@@ -159,12 +160,12 @@ class BoldGrid_Framework_Woocommerce {
 	 * @return bool Is current page a woocommerce shop page ( shop, archive, or product ).
 	 */
 	public function is_shop_page() {
-		return ( bool ) ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || array_filter(
+		return (bool) ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || array_filter(
 			array(
 				'woocommerce_shop_page_id',
 			),
 			function( $id ) {
-				return get_the_ID() == get_option( $id , 0 );
+				return get_the_ID() === (int) get_option( $id, 0 );
 			}
 		);
 	}
@@ -172,7 +173,7 @@ class BoldGrid_Framework_Woocommerce {
 	/**
 	 * Adds select2 styles to match our theme.
 	 *
-	 * Woocommerce adds select to for their dropdowns, which creates a better
+	 * Woocommerce adds select to for their dropdowns, which creates a better.
 	 * user experience overall.  The styles conflict with the native styles of
 	 * bootstrap, so we add our bootstrap select2 style conditionally if woocommerce
 	 * class is present, and we are on the checkout page.  This needs to be enqueued
@@ -197,7 +198,8 @@ class BoldGrid_Framework_Woocommerce {
 					'bgtfw-woo-quantity',
 					$this->configs['framework']['js_dir'] . 'woocommerce/quantity' . $suffix . '.js',
 					array( 'jquery' ),
-					'1.4.6'
+					'1.4.6',
+					true
 				);
 			}
 
@@ -209,7 +211,8 @@ class BoldGrid_Framework_Woocommerce {
 					'bgtfw-woo-tabs',
 					$this->configs['framework']['js_dir'] . 'woocommerce/tabs' . $suffix . '.js',
 					array( 'jquery' ),
-					'1.4.6'
+					'1.4.6',
+					true
 				);
 			}
 
@@ -222,7 +225,8 @@ class BoldGrid_Framework_Woocommerce {
 					'bgtfw-woo-user-login',
 					$this->configs['framework']['js_dir'] . 'woocommerce/user-login' . $suffix . '.js',
 					array( 'jquery' ),
-					'1.4.6'
+					'1.4.6',
+					true
 				);
 			}
 		}
@@ -231,7 +235,7 @@ class BoldGrid_Framework_Woocommerce {
 	/**
 	 * Filter for wooCommerce Breadcrumbs.
 	 *
-	 * We use this to apply some of our color classes to the breadcrumb output,
+	 * We use this to apply some of our color classes to the breadcrumb output.
 	 * and to style the Home URL as a Home icon.
 	 *
 	 * @return Array The new breadcrumb arguments to apply to filter.
@@ -301,6 +305,10 @@ class BoldGrid_Framework_Woocommerce {
 	 * Filters the input classes on quantity inputs.
 	 *
 	 * @since 2.1.4
+	 *
+	 * @param array $classes An array of classes.
+	 *
+	 * @return array
 	 */
 	public function quantity_input_classes( $classes ) {
 		$classes[] = 'form-control';
@@ -309,6 +317,23 @@ class BoldGrid_Framework_Woocommerce {
 	}
 
 	/**
+
+	 * Adds page title to a shop Page.
+	 *
+	 * @since 2.2.16
+	 */
+	public function add_page_title() {
+		if ( 'hide' !== get_theme_mod( 'bgtfw_pages_title_display' ) ) {
+			$slug   = get_post_field( 'post_name', get_post() );
+			$markup = '
+				<header class="woocommerce-' . esc_attr( $slug ) . '-header">
+					<h1 class="woocommerce-' . esc_attr( $slug ) . '-header__title page-title">
+					' . esc_attr( get_the_title() ) . '
+					</h1>
+				</header>';
+			echo $markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+
 	 * Changes the number of products shown per page.
 	 *
 	 * @since 2.2.16

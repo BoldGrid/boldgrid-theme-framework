@@ -41,14 +41,6 @@ $sections_array = array(
 		'capability' => 'edit_theme_options',
 		'icon' => 'icon-layout-container',
 	),
-	'bgtfw_layout_woocommerce_container' => array(
-		'title' => __( 'Container', 'bgtfw' ),
-		'panel' => 'bgtfw_design_panel',
-		'section' => 'bgtfw_layout_woocommerce',
-		'description' => esc_html__( 'This section controls the container for your WooCommerce pages.', 'bgtfw' ),
-		'capability' => 'edit_theme_options',
-		'icon' => 'icon-layout-container',
-	),
 	'bgtfw_layout_page_sidebar' => array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
 		'panel' => 'bgtfw_design_panel',
@@ -420,6 +412,14 @@ if ( $is_woocommerce ) {
 		'capability'  => 'edit_theme_options',
 		'priority'    => 1,
 		'icon'        => 'dashicons-admin-page',
+	);
+	$sections_array['bgtfw_layout_woocommerce_container'] = array(
+		'title'       => __( 'Container', 'bgtfw' ),
+		'panel'       => 'bgtfw_design_panel',
+		'section'     => 'bgtfw_layout_woocommerce',
+		'description' => esc_html__( 'This section controls the container for your WooCommerce pages.', 'bgtfw' ),
+		'capability'  => 'edit_theme_options',
+		'icon'        => 'icon-layout-container',
 	);
 }
 

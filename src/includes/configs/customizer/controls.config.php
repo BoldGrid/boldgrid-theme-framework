@@ -3434,6 +3434,107 @@ return array(
 		),
 	),
 
+	// Start: Blog Post Featured Image Controls.
+	'bgtfw_post_header_feat_image_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_post_header_feat_image_display',
+		'label' => esc_attr__( 'Display', 'bgtfw' ),
+		'tooltip' => __( 'Hide or show your featured image on your blog posts.', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_featured_images',
+		'default' => 'show',
+		'choices' => array(
+			'show' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'hide' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'show', 'hide' ], true ) ? $value : $settings->default;
+		},
+	),
+	'bgtfw_post_header_feat_image_position' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_post_header_feat_image_position',
+		'label' => esc_attr__( 'Position', 'bgtfw' ),
+		'tooltip' => __( 'Change where your featured image appears on your blog posts.', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_featured_images',
+		'default' => 'background',
+		'choices' => array(
+			'background' => '<span class="dashicons dashicons-format-image"></span>' . __( 'Header Background', 'bgtfw' ),
+			'below' => '<span class="dashicons dashicons-arrow-down-alt"></span>' . __( 'Below Header', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'background', 'below' ], true ) ? $value : $settings->default;
+		},
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_post_header_feat_image_display',
+				'operator' => '!==',
+				'value'    => 'hide',
+			),
+		),
+	),
+	'bgtfw_post_header_feat_image_size' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_post_header_feat_image_size',
+		'label' => esc_attr__( 'Size', 'bgtfw' ),
+		'tooltip' => __( 'Change the size of your featured images.', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_featured_images',
+		'default' => 'medium',
+		'choices' => array(
+			'thumbnail' => __( 'Thumbnail', 'bgtfw' ),
+			'medium' => __( 'Medium', 'bgtfw' ),
+			'large' => __( 'Large', 'bgtfw' ),
+			'full' => __( 'Full', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, array( 'thumbnail', 'medium', 'large', 'full' ), true ) ? $value : $settings->default;
+		},
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_post_header_feat_image_display',
+				'operator' => '!==',
+				'value'    => 'hide',
+			),
+			array(
+				'setting'  => 'bgtfw_post_header_feat_image_position',
+				'operator' => '!==',
+				'value'    => 'background',
+			),
+		),
+	),
+	'bgtfw_post_header_feat_image_align' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_post_header_feat_image_align',
+		'label' => esc_attr__( 'Alignment', 'bgtfw' ),
+		'tooltip' => __( 'Change the alignment of your image.', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_featured_images',
+		'default' => 'alignleft',
+		'choices' => array(
+			'alignnone' => __( 'None', 'bgtfw' ),
+			'alignleft' => __( 'Left', 'bgtfw' ),
+			'aligncenter' => __( 'Center', 'bgtfw' ),
+			'alignright' => __( 'Right', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, array( 'alignnone', 'alignleft', 'aligncenter', 'alignright' ), true ) ? $value : $settings->default;
+		},
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_post_header_feat_image_display',
+				'operator' => '!==',
+				'value'    => 'hide',
+			),
+			array(
+				'setting'  => 'bgtfw_post_header_feat_image_position',
+				'operator' => '!==',
+				'value'    => 'background',
+			),
+		),
+	),
+
 	// Start: Blog Page Tag Link Colors.
 	'bgtfw_blog_post_tags_link_color_display' => array(
 		'type' => 'radio-buttonset',

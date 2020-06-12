@@ -252,6 +252,11 @@ $sections_array = array(
 		'panel' => 'bgtfw_blog_posts_panel',
 		'icon' => 'dashicons-admin-links',
 	),
+	'bgtfw_pages_blog_posts_featured_images' => array(
+		'title' => 'Featured Images',
+		'panel' => 'bgtfw_blog_posts_panel',
+		'icon' => 'dashicons-format-gallery',
+	),
 	'bgtfw_pages_blog_posts_meta' => array(
 		'title' => __( 'Post Meta', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',

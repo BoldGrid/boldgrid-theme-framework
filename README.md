@@ -36,6 +36,15 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.2.0 ###
+* New Feature: Added Control to change the number of products shown per page on shop catalog [#210](https://github.com/BoldGrid/boldgrid-theme-framework/issues/210)
+* New Feature: Added Featured Image Control to single blog posts [#192](https://github.com/BoldGrid/boldgrid-theme-framework/issues/192)
+* Bug fix: WooCommerce Container control appears w/o WooCommerce installed [#216](https://github.com/BoldGrid/boldgrid-theme-framework/issues/216)
+* Bug fix: Custom Theme JS incorrectly escaping single and double quotes [#199](https://github.com/BoldGrid/boldgrid-theme-framework/issues/199)
+* Update: Updated build dependancy sass.js from 0.9.13 to 0.11.1 [#196](https://github.com/BoldGrid/boldgrid-theme-framework/pull/196)
+* Update: Updated build dependancy css-var-ponyfill from 1.11.1 to 1.17.2 [#195](https://github.com/BoldGrid/boldgrid-theme-framework/pull/195)
+* Update: Updated build dependacy @bable/runtime-corejs2 from 7.4.4 to 7.9.6 [#194](https://github.com/BoldGrid/boldgrid-theme-framework/pull/194)
+
 ### 2.1.18 ###
 * Bug fix: Store Notice should be at top of page [#39](https://github.com/BoldGrid/boldgrid-theme-framework/issues/39)
 * Bug fix: Required fields in checkout missing asterisk [#37](https://github.com/BoldGrid/boldgrid-theme-framework/issues/37)

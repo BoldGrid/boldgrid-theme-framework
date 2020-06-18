@@ -224,8 +224,6 @@ class BoldGrid {
 		}
 
 		$theme_mod = get_theme_mod( $theme_mod_type );
-		error_log( 'Theme Mod Type: ' . $theme_mod_type );
-		error_log( 'Container Type: ' . $theme_mod );
 		$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 
 		return $classes;

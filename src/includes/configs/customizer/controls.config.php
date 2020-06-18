@@ -398,7 +398,7 @@ return array(
 
 	'bgtfw_pages_container' => array(
 		'settings' => 'bgtfw_pages_container',
-		'transport'   => 'postMessage',
+		'transport'   => 'refresh',
 		'label'       => esc_html__( 'Container', 'bgtfw' ),
 		'type'        => 'radio-buttonset',
 		'priority'    => 35,

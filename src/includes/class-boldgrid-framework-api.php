@@ -214,14 +214,13 @@ class BoldGrid {
 		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
 			$theme_mod_type = 'bgtfw_woocommerce_container';
 		} elseif (
-			( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) ||
-			is_home() ||
-			is_archive() ||
 			is_single() ||
 			is_attachment() ||
 			( function_exists( 'is_shop' ) && is_shop() )
 		) {
 			$theme_mod_type = 'bgtfw_blog_posts_container';
+		} elseif ( is_archive() || is_home() ) {
+			$theme_mod_type = 'bgtfw_blog_page_container';
 		}
 
 		$theme_mod = get_theme_mod( $theme_mod_type );

@@ -6,7 +6,6 @@ jQuery( document ).ready( function( $ ) {
 		$tabs_wrapper = $tab.closest( '.wc-tabs-wrapper, .woocommerce-tabs' );
 		$tabs = $tabs_wrapper.find( '.wc-tabs, ul.tabs' );
 		$tabs.find( 'li > a' ).removeClass( 'color1-background color-1-text-contrast' );
-		$tabs_wrapper.find( '.wc-tab, .panel:not(.panel .panel)' ).hide();
 		$tab.closest( 'li > a' ).addClass( 'color1-background color-1-text-contrast' );
 	});
 });

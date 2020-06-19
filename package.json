@@ -1,6 +1,6 @@
 {
   "name": "boldgrid-theme-framework",
-  "version": "2.2.0-rc.1",
+  "version": "2.2.0-rc.2",
   "description": "BoldGrid Theme Framework",
   "main": "index.js",
   "engines": {
@@ -24,7 +24,7 @@
     ]
   },
   "scripts": {
-	"preversion": "bash build/cwd-dirty && yarn run build",
+    "preversion": "bash build/cwd-dirty && yarn run build",
     "postversion": "git tag -d $npm_package_version && node build/update-version.js src/boldgrid-theme-framework.php $npm_package_version && git commit -am \"Updating Version $npm_package_version\" && git tag -a $npm_package_version -m \"Version $npm_package_version Release\" master && git push origin $npm_package_version",
     "test": "echo \"Error: no test specified\" && exit 1",
     "phpcs-installStandards": "php node_modules/PHP_CodeSniffer/scripts/phpcs --config-set installed_paths node_modules/WordPress-Coding-Standards/",

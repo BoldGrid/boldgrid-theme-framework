@@ -3473,7 +3473,7 @@ return array(
 		'transport' => 'auto',
 		'settings' => 'bgtfw_post_header_feat_image_size',
 		'label' => esc_attr__( 'Size', 'bgtfw' ),
-		'tooltip' => __( 'Change the size of your featured images.', 'bgtfw' ),
+		'tooltip' => __( 'Change the size of your featured images. Due to container sizes, very large images may now show the full size when left or right aligned', 'bgtfw' ),
 		'section' => 'bgtfw_pages_blog_posts_featured_images',
 		'default' => 'medium',
 		'choices' => array(

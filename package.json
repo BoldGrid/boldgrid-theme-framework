@@ -145,7 +145,7 @@
     "jarallax": "^1.10.7",
     "jquery-goup": "^1.1.0",
     "jquery.nicescroll": "^3.6.8",
-    "kirki-toolkit": "https://github.com/timelsass/kirki.git#BGTFW-2.1.3",
+    "kirki-toolkit": "https://github.com/kirki-framework/kirki.git#v3.0.34",
     "lodash.camelcase": "^4.3.0",
     "lodash.kebabcase": "^4.1.1",
     "lodash.lowercase": "^4.3.0",

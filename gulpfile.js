@@ -118,7 +118,7 @@ gulp.task('dist', function () {
 });
 // Clean distribution on build.
 gulp.task('clean', function () {
-  return del([ config.dist, '*.map', '*phpunit.xml.dist*', '*phpunit.xml*', '*build.sh*' ] );
+  return del([ config.dist, '**/*.map', '*phpunit.xml.dist*', '*phpunit.xml*', '*build.sh*' ] );
 });
 
 // Javascript Dependencies
@@ -152,8 +152,10 @@ gulp.task('jsDeps', function () {
   gulp.src(config.node_modules + '/float-labels.js/src/float-labels.js')
     .pipe(gulp.dest(config.jsDest + '/float-labels.js'));
   // Wowjs - Check
-  gulp.src(config.node_modules + '/wow.js/dist/**/*')
-    .pipe(gulp.dest(config.jsDest + '/wow'));
+  gulp.src([
+	'!' + config.node_modules + '/wow.js/dist/**/*.map',
+	config.node_modules + '/wow.js/dist/**/*'
+	]).pipe(gulp.dest(config.jsDest + '/wow'));
   // Color-js
   gulp.src(config.node_modules + '/color-js/color.js')
     .pipe(gulp.dest(config.jsDest + '/color-js'));

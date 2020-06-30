@@ -1,8 +1,8 @@
 <?php
 /**
- * Boldgrid_Framework_Customizer_Background
+ * Boldgrid_Framework_Customizer_Background.
  *
- * This adds the background functionality in the WordPress
+ * This adds the background functionality in the WordPress.
  * customizer for a BoldGrid theme.
  *
  * Theme Mods Added :
@@ -58,9 +58,9 @@ class Boldgrid_Framework_Customizer_Background {
 	}
 
 	/**
-	 * Get all of the patterns from the image directory
+	 * Get all of the patterns from the image directory.
 	 *
-	 * Patterns by Subtle Patterns
+	 * Patterns by Subtle Patterns.
 	 *
 	 * @link http://subtlepatterns.com/
 	 *
@@ -72,7 +72,7 @@ class Boldgrid_Framework_Customizer_Background {
 	 */
 	public function get_pattern_files() {
 		// Get patterns, sslverify is false for local env and self-signed SSLs on temp domains.
-		$request = wp_remote_get( $this->configs['framework']['admin_asset_dir'] . 'json/patterns.json', [ 'sslverify' => false ] );
+		$request = wp_remote_get( $this->configs['framework']['admin_asset_dir'] . 'json/patterns.json', array( 'sslverify' => false ) );
 
 		// Check for errors with $request.
 		if ( is_wp_error( $request ) ) {
@@ -81,7 +81,7 @@ class Boldgrid_Framework_Customizer_Background {
 
 		$contents = json_decode( wp_remote_retrieve_body( $request ) );
 
-		$patterns = [];
+		$patterns = array();
 		foreach ( $contents->patterns as $pattern ) {
 			$patterns[ $pattern->id ] = $pattern->formattedName; // @codingStandardsIgnoreLine
 		}
@@ -97,7 +97,7 @@ class Boldgrid_Framework_Customizer_Background {
 	 * @since 1.3.1
 	 */
 	public function pre_sanitize_attachment( $value ) {
-		if ( in_array( $value, array( 'scroll', 'fixed', 'parallax' ) ) ) {
+		if ( in_array( $value, array( 'scroll', 'fixed', 'parallax' ), true ) ) {
 			$this->sanitized_attachment_value = $value;
 		}
 	}
@@ -134,15 +134,15 @@ class Boldgrid_Framework_Customizer_Background {
 		$wp_customize->add_control(
 			'boldgrid_background_attachment',
 			array(
-				'label' => __( 'Background Effects', 'bgtfw' ),
-				'section' => 'background_image',
+				'label'    => __( 'Background Effects', 'bgtfw' ),
+				'section'  => 'background_image',
 				'settings' => 'background_attachment',
 				'priority' => 14,
-				'type' => 'radio',
-				'choices' => array(
+				'type'     => 'radio',
+				'choices'  => array(
 					'parallax' => __( 'Parallax', 'bgtfw' ),
-					'scroll' => __( 'Scroll', 'bgtfw' ),
-					'fixed' => __( 'Fixed', 'bgtfw' ),
+					'scroll'   => __( 'Scroll', 'bgtfw' ),
+					'fixed'    => __( 'Fixed', 'bgtfw' ),
 				),
 			)
 		);
@@ -155,14 +155,14 @@ class Boldgrid_Framework_Customizer_Background {
 	 * @since 1.0.0
 	 */
 	public function rearrange_menu( $wp_customize ) {
-		$bg_attachment = $wp_customize->get_control( 'background_attachment' );
-		$bg_attachment->label = __( 'Background Effects', 'bgtfw' );
-		$bg_attachment->choices = $bg_attachment->choices + [ 'parallax' => 'Parallax' ];
+		$bg_attachment           = $wp_customize->get_control( 'background_attachment' );
+		$bg_attachment->label    = __( 'Background Effects', 'bgtfw' );
+		$bg_attachment->choices  = $bg_attachment->choices + array( 'parallax' => 'Parallax' );
 		$bg_attachment->priority = 14;
 
 		$wp_customize->get_control( 'boldgrid_background_image_size' )->priority = 15;
-		$wp_customize->get_control( 'background_repeat' )->priority = 18;
-		$wp_customize->get_section( 'background_image' )->title = __( 'Background', 'bgtfw' );
+		$wp_customize->get_control( 'background_repeat' )->priority              = 18;
+		$wp_customize->get_section( 'background_image' )->title                  = __( 'Background', 'bgtfw' );
 		$wp_customize->remove_control( 'background_color' );
 
 		return $wp_customize;
@@ -186,7 +186,7 @@ class Boldgrid_Framework_Customizer_Background {
 	}
 
 	/**
-	 * Add controls to handle the background pattern
+	 * Add controls to handle the background pattern.
 	 *
 	 * @since 1.0.0
 	 * @param array $wp_customize WordPress Customizer Object.
@@ -197,10 +197,10 @@ class Boldgrid_Framework_Customizer_Background {
 		$wp_customize->add_setting(
 			'boldgrid_background_pattern',
 			array(
-				'default' => self::get_default_pattern_mod( $this->configs ),
-				'type' => 'theme_mod',
-				'capability' => 'edit_theme_options',
-				'transport' => 'postMessage',
+				'default'           => self::get_default_pattern_mod( $this->configs ),
+				'type'              => 'theme_mod',
+				'capability'        => 'edit_theme_options',
+				'transport'         => 'postMessage',
 				'sanitize_callback' => function( $value ) {
 					if ( empty( $value ) || ! is_string( $value ) ) {
 						return '';
@@ -223,19 +223,19 @@ class Boldgrid_Framework_Customizer_Background {
 			new Boldgrid_Framework_Control_Pattern(
 				$wp_customize,
 				'boldgrid_background_pattern',
-				[
-					'label' => __( 'Pattern', 'bgtfw' ),
-					'section' => 'background_image',
+				array(
+					'label'    => __( 'Pattern', 'bgtfw' ),
+					'section'  => 'background_image',
 					'settings' => 'boldgrid_background_pattern',
 					'priority' => 3,
-					'choices' => $patterns,
-				]
+					'choices'  => $patterns,
+				)
 			)
 		);
 	}
 
 	/**
-	 * Add controls to hand the background pattern
+	 * Add controls to hand the background pattern.
 	 *
 	 * @since 1.0.0
 	 */
@@ -248,7 +248,7 @@ class Boldgrid_Framework_Customizer_Background {
 		$bg_size   = get_theme_mod( 'boldgrid_background_image_size' );
 		$bg_attach = get_theme_mod( 'background_attachment', $background_options['defaults']['background_attachment'] );
 		$bg_repeat = get_theme_mod( 'background_repeat', $background_options['defaults']['background_repeat'] );
-		$css = '';
+		$css       = '';
 
 		if ( 'pattern' === $bg_type ) {
 			$bg_pattern = ! empty( $theme_mods['boldgrid_background_pattern'] ) ? $theme_mods['boldgrid_background_pattern'] : 'none';
@@ -268,12 +268,12 @@ class Boldgrid_Framework_Customizer_Background {
 
 				// Sets a "parallaxy" bg if JS doesn't load, and minimize flickers.
 				$css = 'body.custom-background {' .
-					'background-image:' . 'url("' . esc_attr( $bg_image ) . '");' .
+					'background-image: url("' . esc_attr( $bg_image ) . '");' .
 					'background-size: cover;' .
 					'background-repeat: no-repeat;' .
 					'background-attachment: fixed;' .
 				'}';
-			} else if ( 'fixed' === $bg_attach ) {
+			} elseif ( 'fixed' === $bg_attach ) {
 				$css = 'body.custom-background {' .
 					'background-attachment: fixed;';
 
@@ -288,7 +288,6 @@ class Boldgrid_Framework_Customizer_Background {
 				if ( $bg_repeat ) {
 					$css .= 'background-repeat: ' . esc_attr( $bg_repeat ) . ';';
 				}
-
 			} else {
 				$css .= 'body.custom-background {';
 
@@ -311,10 +310,13 @@ class Boldgrid_Framework_Customizer_Background {
 		}
 
 		if ( ! empty( $css ) ) {
-			add_filter( 'body_class', function( $classes ) {
-				$classes[] = 'custom-background';
-				return $classes;
-			} );
+			add_filter(
+				'body_class',
+				function( $classes ) {
+					$classes[] = 'custom-background';
+					return $classes;
+				}
+			);
 		}
 
 		return $css;
@@ -333,22 +335,22 @@ class Boldgrid_Framework_Customizer_Background {
 
 		// Get the related theme mods.
 		$enabled = get_theme_mod( 'bgtfw_background_overlay', $controls['bgtfw_background_overlay']['default'] );
-		$color = get_theme_mod( 'bgtfw_background_overlay_color', $controls['bgtfw_background_overlay_color']['default'] );
-		$alpha = get_theme_mod( 'bgtfw_background_overlay_alpha', $controls['bgtfw_background_overlay_alpha']['default'] );
-		$type = get_theme_mod( 'bgtfw_background_overlay_type', $controls['bgtfw_background_overlay_type']['default'] );
+		$color   = get_theme_mod( 'bgtfw_background_overlay_color', $controls['bgtfw_background_overlay_color']['default'] );
+		$alpha   = get_theme_mod( 'bgtfw_background_overlay_alpha', $controls['bgtfw_background_overlay_alpha']['default'] );
+		$type    = get_theme_mod( 'bgtfw_background_overlay_type', $controls['bgtfw_background_overlay_type']['default'] );
 
 		$rule = '';
 
 		if ( $enabled && $color && $alpha && $type ) {
 
 			// Create an rgba given palette color and alpha.
-			$color = explode( ':', $color );
-			$color = array_pop( $color );
-			$color_obj = ariColor::newColor( $color );
+			$color            = explode( ':', $color );
+			$color            = array_pop( $color );
+			$color_obj        = ariColor::newColor( $color );
 			$color_obj->alpha = $alpha;
-			$new_color = esc_attr( $color_obj->toCSS( 'rgba' ) );
+			$new_color        = esc_attr( $color_obj->toCSS( 'rgba' ) );
 
-			$rule = "@supports(background-blend-mode: $type) { body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $new_color !important; background-blend-mode: $type; } }";
+			$rule  = "@supports(background-blend-mode: $type) { body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $new_color !important; background-blend-mode: $type; } }";
 			$rule .= "@supports not (background-blend-mode: $type) { body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $color !important; opacity: $alpha; } }";
 		}
 
@@ -387,18 +389,21 @@ class Boldgrid_Framework_Customizer_Background {
 	/**
 	 * Replace the core background image control with one that supports cropping.
 	 *
-	 * Functionality From: https://wordpress.org/plugins/background-image-cropper/
+	 * Functionality From: https://wordpress.org/plugins/background-image-cropper/ .
 	 *
 	 * @param     WP_Customize_Manager $wp_customize    Customizer manager object.
 	 * @since     1.0.0
 	 */
 	public function add_background_crop( $wp_customize ) {
 		// Include class for footer customization.
-		require_once( $this->configs['framework']['includes_dir'] . 'control/class-boldgrid-framework-control-background-crop.php' );
+		require_once $this->configs['framework']['includes_dir'] . 'control/class-boldgrid-framework-control-background-crop.php';
 
-		wp_register_script( 'boldgrid-background-image-cropper',
+		wp_register_script(
+			'boldgrid-background-image-cropper',
 			$this->configs['framework']['js_dir'] . 'customizer/background-crop.js',
-			array( 'jquery', 'customize-controls' )
+			array( 'jquery', 'customize-controls' ),
+			$this->configs['version'],
+			true
 		);
 
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Background_Crop' );

@@ -192,18 +192,6 @@ class Boldgrid_Framework_Customizer_Footer {
 			'',
 			array(
 				'type'        => 'checkbox',
-				'settings'     => 'hide_boldgrid_attribution',
-				'transport'   => 'refresh',
-				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => false,
-				'priority'    => 30,
-			)
-		);
-		Kirki::add_field(
-			'',
-			array(
-				'type'        => 'checkbox',
 				'settings'     => 'hide_wordpress_attribution',
 				'transport'   => 'refresh',
 				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),

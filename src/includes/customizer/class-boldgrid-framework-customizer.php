@@ -136,18 +136,6 @@ class BoldGrid_Framework_Customizer {
 			'bgtfw',
 			array(
 				'type'        => 'checkbox',
-				'settings'     => 'hide_boldgrid_attribution',
-				'transport'   => 'refresh',
-				'label'       => __( 'Hide BoldGrid Attribution', 'bgtfw' ),
-				'section'     => 'boldgrid_footer_panel',
-				'default'     => false,
-				'priority'    => 30,
-			)
-		);
-		Kirki::add_field(
-			'bgtfw',
-			array(
-				'type'        => 'checkbox',
 				'settings'     => 'hide_wordpress_attribution',
 				'transport'   => 'refresh',
 				'label'       => __( 'Hide WordPress Attribution', 'bgtfw' ),
@@ -156,6 +144,21 @@ class BoldGrid_Framework_Customizer {
 				'priority'    => 40,
 			)
 		);
+		// If there is host attribution markup, add a control to hide it.
+		if ( get_theme_mod( 'host_attribution' ) ) {
+			Kirki::add_field(
+				'bgtfw',
+				array(
+					'type'      => 'checkbox',
+					'settings'  => 'hide_host_attribution',
+					'transport' => 'refresh',
+					'label'     => __( 'Hide Host Attribution', 'bgtfw' ),
+					'section'   => 'boldgrid_footer_panel',
+					'default'   => false,
+					'priority'  => 40,
+				)
+			);
+		}
 		Kirki::add_field(
 			'bgtfw',
 			array(

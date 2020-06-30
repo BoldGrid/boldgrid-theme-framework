@@ -57,7 +57,7 @@ return array(
 		'label' => __( 'Background Image Size', 'bgtfw' ),
 		'section' => 'background_image',
 		'settings' => 'boldgrid_background_image_size',
-		'transport' => 'postMessage',
+		'transport' => 'refresh',
 		'default'     => 'cover',
 		'priority' => 15,
 		'choices' => [

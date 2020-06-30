@@ -240,14 +240,14 @@ class Boldgrid_Framework_Customizer_Background {
 	 * @since 1.0.0
 	 */
 	public function create_background_styles() {
-		$theme_mods = get_theme_mods();
+		$theme_mods         = get_theme_mods();
 		$background_options = $this->configs['customizer-options']['background'];
 
-		$bg_image = get_theme_mod( 'background_image', $background_options['defaults']['background_image'] );
-		$bg_type = get_theme_mod( 'boldgrid_background_type' );
-		$bg_size = get_theme_mod( 'boldgrid_background_image_size' );
+		$bg_image  = get_theme_mod( 'background_image', $background_options['defaults']['background_image'] );
+		$bg_type   = get_theme_mod( 'boldgrid_background_type' );
+		$bg_size   = get_theme_mod( 'boldgrid_background_image_size' );
 		$bg_attach = get_theme_mod( 'background_attachment', $background_options['defaults']['background_attachment'] );
-
+		$bg_repeat = get_theme_mod( 'background_repeat', $background_options['defaults']['background_repeat'] );
 		$css = '';
 
 		if ( 'pattern' === $bg_type ) {
@@ -273,6 +273,22 @@ class Boldgrid_Framework_Customizer_Background {
 					'background-repeat: no-repeat;' .
 					'background-attachment: fixed;' .
 				'}';
+			} else if ( 'fixed' === $bg_attach ) {
+				$css = 'body.custom-background {' .
+					'background-attachment: fixed;';
+
+				if ( $bg_image ) {
+					$css .= 'background-image: url("' . esc_attr( $bg_image ) . '");';
+				}
+
+				if ( $bg_size ) {
+					$css .= 'background-size: ' . esc_attr( $bg_size ) . ';';
+				}
+
+				if ( $bg_repeat ) {
+					$css .= 'background-repeat: ' . esc_attr( $bg_repeat ) . ';';
+				}
+
 			} else {
 				$css .= 'body.custom-background {';
 
@@ -282,6 +298,10 @@ class Boldgrid_Framework_Customizer_Background {
 
 				if ( $bg_size ) {
 					$css .= 'background-size: ' . esc_attr( $bg_size ) . ';';
+				}
+
+				if ( $bg_repeat ) {
+					$css .= 'background-repeat: ' . esc_attr( $bg_repeat ) . ';';
 				}
 
 				$css .= '}';

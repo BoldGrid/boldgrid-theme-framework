@@ -23,6 +23,7 @@ import bgtfwSection from './controls/bgtfw-section';
 import bgtfwNotifications from './controls/bgtfw-notifications';
 import bgtfwBackgroundControls from './controls/bgtfw-background-control';
 import bgtfwEditPane from './controls/edit/pane';
+import { HeaderBackground as BgtfwHeaderBackground } from './controls/bgtfw-header-background';
 
 let devices = new Devices();
 devices.init();
@@ -43,6 +44,7 @@ WidgetSectionUpdate();
 	new HamburgerControlToggle();
 	new HoverBackgroundToggle();
 	new MenuLocations();
+	new BgtfwHeaderBackground();
 	bgtfwHeaderTabs.init();
 
 	wp.customize.bind( 'pane-contents-reflowed', bgtfwPaneReflow );

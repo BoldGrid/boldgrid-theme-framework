@@ -7,16 +7,6 @@ export default function() {
 
 	'use strict';
 
-	$( function() {
-
-		/**
-		 * @todo This needs to be refactored. All these events should not be each time
-		 * preview iframe is refreshed.
-		 */
-		$( window ).on( 'boldgrid_customizer_refresh', init );
-		loadSection();
-	} );
-
 	var init = function() {
 		bindColors();
 
@@ -143,6 +133,7 @@ export default function() {
 	};
 
 	var appendHeadStyles = function( to ) {
+		var style = '';
 		if ( ! to ) {
 			to = api( 'boldgrid_background_color' )();
 		}
@@ -150,7 +141,6 @@ export default function() {
 		$( '#customizer_boldgrid_background_color' ).remove();
 
 		if ( to ) {
-			var style = '';
 			style += '<style id="customizer_boldgrid_background_color">';
 			style += '#customize-control-boldgrid_background_pattern .patternpreview{background-color:' + to.split( ':' ).pop() + ';}';
 			style += '</style>';
@@ -276,4 +266,14 @@ export default function() {
 
 		api( ...ids, ( ...controls ) => controls.map( control => control.bind( validateSelectionSet ) ) );
 	};
+
+	$( function() {
+
+		/**
+		 * @todo This needs to be refactored. All these events should not be each time
+		 * preview iframe is refreshed.
+		 */
+		$( window ).on( 'boldgrid_customizer_refresh', init );
+		loadSection();
+	} );
 }

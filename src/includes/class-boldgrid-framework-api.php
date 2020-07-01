@@ -552,13 +552,13 @@ class BoldGrid {
 			$classes[] = sanitize_html_class( $layout );
 		}
 
+		$background_theme_mod = 'boldgrid_background_color';
+		$background_image = get_theme_mod( 'background_image' );
+
 		// Add class for parallax background option.
 		if ( 'parallax' === get_theme_mod( 'background_attachment' ) ) {
 			$classes[] = 'boldgrid-customizer-parallax';
 		} else {
-			$background_theme_mod = 'boldgrid_background_color';
-			$background_image = get_theme_mod( 'background_image' );
-
 			if (
 				'pattern' !== get_theme_mod( 'boldgrid_background_type' ) &&
 				! empty( $background_image ) &&
@@ -566,19 +566,19 @@ class BoldGrid {
 			) {
 				$background_theme_mod = 'bgtfw_background_overlay_color';
 			}
+		}
 
-			$background_color = get_theme_mod( $background_theme_mod );
-			$background_color = explode( ':', $background_color );
-			$background_color = array_shift( $background_color );
+		$background_color = get_theme_mod( $background_theme_mod );
+		$background_color = explode( ':', $background_color );
+		$background_color = array_shift( $background_color );
 
-			if ( ! empty( $background_color ) ) {
-				if ( strpos( $background_color, 'neutral' ) !== false ) {
-					$classes[] = $background_color . '-background-color';
-					$classes[] = $background_color . '-text-default';
-				} else {
-					$classes[] = str_replace( '-', '', $background_color ) . '-background-color';
-					$classes[] = str_replace( '-', '', $background_color ) . '-text-default';
-				}
+		if ( ! empty( $background_color ) ) {
+			if ( strpos( $background_color, 'neutral' ) !== false ) {
+				$classes[] = $background_color . '-background-color';
+				$classes[] = $background_color . '-text-default';
+			} else {
+				$classes[] = str_replace( '-', '', $background_color ) . '-background-color';
+				$classes[] = str_replace( '-', '', $background_color ) . '-text-default';
 			}
 		}
 

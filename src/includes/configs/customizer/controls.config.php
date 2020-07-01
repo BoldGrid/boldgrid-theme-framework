@@ -1312,7 +1312,7 @@ return array(
 		'transport' => 'postMessage',
 		'settings'    => 'bgtfw_header_color',
 		'label' => esc_attr__( 'Background Color', 'bgtfw' ),
-		'section'     => 'bgtfw_header_colors',
+		'section'     => 'header_image',
 		'priority' => 1,
 		'default'     => '',
 		'choices'     => array(

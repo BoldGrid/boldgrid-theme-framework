@@ -36,6 +36,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.2.1 ###
+* Bug fix: Fixed Background Image doesn't work [#193](https://github.com/BoldGrid/boldgrid-theme-framework/issues/193)
+* Bug fix: Incorrect body text color when setting background image effect to "Parallax" [#220](https://github.com/BoldGrid/boldgrid-theme-framework/issues/220)
+
 ### 2.2.0 ###
 * New Feature: Added Control to change the number of products shown per page on shop catalog [#210](https://github.com/BoldGrid/boldgrid-theme-framework/issues/210)
 * New Feature: Added Featured Image Control to single blog posts [#192](https://github.com/BoldGrid/boldgrid-theme-framework/issues/192)

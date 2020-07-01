@@ -465,15 +465,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$( '.site-description' ).addClass( window._typographyClasses );
 
 		/**
-		 * There's a better way to do this, but I dunno what it is.  This
-		 * works for now.  This will just trigger the preview pane to reload
-		 * the same page after a user changes their header videos.
-		 */
-		api( 'external_header_video', 'header_video', function( ...args ) {
-			args.map( ( control ) => control.bind( () => api.preview.send( 'url', window.location.href ) ) );
-		} );
-
-		/**
 		 * Recalculate layouts on font changes.
 		 *
 		 * @since 2.0.0

@@ -346,7 +346,7 @@ var BoldGrid = BoldGrid || {};
 				classes = document.body.classList;
 
 				headerHeight = '';
-				naviHeight = $( '#navi-wrap' ).outerHeight();
+				naviHeight = $( '#masthead' ).outerHeight();
 
 				// Desktop view.
 				if ( 768 <= window.innerWidth ) {
@@ -378,7 +378,6 @@ var BoldGrid = BoldGrid || {};
 					headerHeight = headerHeight + $( '#secondary-menu' ).outerHeight();
 				}
 
-				$( '.wp-custom-header' ).css( 'height', headerHeight );
 			}
 		},
 

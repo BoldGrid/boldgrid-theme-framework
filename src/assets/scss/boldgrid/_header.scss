@@ -12,11 +12,21 @@
 			aside.sidebar {
 				margin-left: -15px;
 				margin-right: -15px;
+				padding-left: 0px;
+				padding-right: 0px;
 				height: 100%;
 			}
 			div {
 				padding-left: 0px;
 				padding-right: 0px;
+			}
+			.site-title,
+			.site-description,
+			.custom-logo-link,
+			.hamburger,
+			.attribution-theme-mods {
+				margin-left: 20px;
+				margin-right: 20px;
 			}
 		}
 	}

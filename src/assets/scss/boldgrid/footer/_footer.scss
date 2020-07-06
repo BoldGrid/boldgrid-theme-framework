@@ -6,3 +6,49 @@
 @import "contact-blocks";
 /* Attribution Links */
 @import "attribution-links";
+
+@media only screen and (min-width : 768px) {
+	footer {
+		&#colophon {
+			.boldgrid-section {
+				.full-width {
+					.row {
+						aside.sidebar {
+							padding-left: 0px;
+							padding-right: 0px;
+							margin-left: 15px;
+							margin-right: 15px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width : 767px) {
+	footer {
+		&#colophon {
+			.boldgrid-section {
+				.full-width {
+					.row {
+						aside.sidebar {
+							padding-left: 15px;
+							padding-right: 15px;
+							margin-left: 0px;
+							margin-right: 0px;
+						}
+					}
+				}
+				.container {
+					.row {
+						aside.sidebar {
+							margin-left: -15px;
+							margin-right: -15px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

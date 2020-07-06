@@ -1,32 +1,46 @@
 @import "header/slide-in";
 
 #masthead, #masthead-sticky, #colophon {
+	aside.sidebar {
+		margin-left: -15px;
+		margin-right: -15px;
+	}
 	.boldgrid-section {
-		.container {
+		.full-width {
 			padding-left: 0px;
 			padding-right: 0px;
-		}
-		.row {
-			display: flex;
-			flex-wrap: wrap;
-			aside.sidebar {
-				margin-left: -15px;
-				margin-right: -15px;
-				padding-left: 0px;
-				padding-right: 0px;
-				height: 100%;
-			}
-			div {
-				padding-left: 0px;
-				padding-right: 0px;
-			}
-			.site-title,
-			.site-description,
-			.custom-logo-link,
-			.hamburger,
-			.attribution-theme-mods {
-				margin-left: 20px;
-				margin-right: 20px;
+			.row {
+				display: flex;
+				flex-wrap: wrap;
+				aside.sidebar {
+					padding-left: 0px;
+					padding-right: 0px;
+					height: 100%;
+				}
+				div {
+					padding-left: 0px;
+					padding-right: 0px;
+				}
+				.site-title,
+				.site-description,
+				.custom-logo-link,
+				.hamburger {
+					margin-left: 20px;
+					margin-right: 20px;
+				}
+				@media only screen and (max-width : 767px) {
+					.site-title,
+					.site-description,
+					.custom-logo-link,
+					.hamburger {
+						margin-left: 15px;
+						margin-right: 15px;
+					}
+				}
+				.attribution-theme-mods {
+					margin-left: 15px;
+					margin-right: 15px;
+				}
 			}
 		}
 	}

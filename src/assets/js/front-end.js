@@ -341,12 +341,9 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			calc: function() {
-				var classes, headerHeight, naviHeight, menu;
+				var classes;
 
 				classes = document.body.classList;
-
-				headerHeight = '';
-				naviHeight = $( '#masthead' ).outerHeight();
 
 				// Desktop view.
 				if ( 768 <= window.innerWidth ) {
@@ -366,16 +363,6 @@ var BoldGrid = BoldGrid || {};
 
 						// Destroy instance.
 					}
-
-					menu = $( '#main-menu' );
-
-					if ( menu.is( ':visible' ) ) {
-						headerHeight = naviHeight - menu.outerHeight();
-					} else {
-						headerHeight = naviHeight;
-					}
-
-					headerHeight = headerHeight + $( '#secondary-menu' ).outerHeight();
 				}
 
 			}

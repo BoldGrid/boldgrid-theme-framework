@@ -398,11 +398,18 @@ $sections_array = array(
 		'description' => esc_html__( 'Change the box shadow of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
+	'bgtfw_preloader_section' => array(
+		'title'       => __( 'Pre-Loader', 'bgtfw' ),
+		'panel'       => '',
+		'icon'        => 'dashicons-image-rotate',
+		'description' => esc_html__( 'Configure what is displayed while your pages load.', 'bgtfw' ),
+		'capability'  => 'edit_theme_options',
+	),
 	// End: Generic Blog Design Controls.
 );
 
 /**
- * Check if WooCommerce is activated
+ * Check if WooCommerce is activated.
  */
 $is_woocommerce = false;
 if ( ! function_exists( 'is_woocommerce_activated' ) ) {

@@ -4384,6 +4384,37 @@ return array(
 		),
 	),
 
+	// Controls the use of the 'fadein' preloader.
+	'bgtfw_preloader_type' => array(
+		'type'              => 'radio',
+		'transport'         => 'auto',
+		'settings'          => 'bgtfw_preloader_type',
+		'label'             => esc_html__( 'Enable Pre-loader', 'bgtfw' ),
+		'description'       => esc_html__(
+			'If you enable the pre-loader, then your body background will be shown until the page fully loads. You may also select an optional animation to be used when the site loads.',
+			'bgtfw'
+		),
+		'section'           => 'bgtfw_preloader_section',
+		'default'           => 'off',
+		'choices'           => array(
+			'off'          => esc_html__( 'Disable', 'bgtfw' ),
+			'no-animation' => esc_html__( 'No Animation', 'bgtfw' ),
+			'fadein'       => esc_html__( 'Fade In', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			switch ( $value ) {
+				case 'off':
+					return false;
+				case 'no-animation':
+					return 'bgtfw-preload';
+				case 'fadein':
+					return 'bgtfw-preload-fadein';
+				default:
+					return false;
+			}
+		},
+	),
+
 	// Read More Button Position.
 	'bgtfw_blog_post_readmore_position' => array(
 		'type'        => 'radio-buttonset',

@@ -251,7 +251,10 @@ class BoldGrid_Framework_Scripts {
 		}
 
 		$admin_bar = is_admin_bar_showing() ? ' admin-bar' : '';
-		return "$output class='no-bgtfw no-js{$admin_bar}'";
+
+		$preload = ( ! get_theme_mod( 'bgtfw_preloader_type', '' ) || 'off' === get_theme_mod( 'bgtfw_preloader_type', '' ) ) ? '' : get_theme_mod( 'bgtfw_preloader_type' ) . ' ';
+
+		return "$output class='{$preload}no-bgtfw no-js{$admin_bar}'";
 	}
 
 	/**

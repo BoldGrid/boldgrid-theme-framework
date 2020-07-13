@@ -347,6 +347,7 @@ var BoldGrid = BoldGrid || {};
 
 				// Desktop view.
 				if ( 768 <= window.innerWidth ) {
+					$( '#wp-custom-header-video' ).show();
 
 					// Fixed Headers
 					if ( classes.contains( 'header-slide-in' ) ) {
@@ -359,6 +360,8 @@ var BoldGrid = BoldGrid || {};
 
 				// Mobile.
 				} else {
+					$( '#wp-custom-header-video' ).hide();
+					$( '.wp-custom-header-video-button' ).hide();
 					if ( classes.contains( 'header-slide-in' ) ) {
 
 						// Destroy instance.

@@ -4400,11 +4400,11 @@ return array(
 		'default'           => 'off',
 		'choices'           => array(
 			'off'                        => esc_html__(
-				'Disable - Content will be displayed as it loads',
+				'Disable - Content will be displayed as it loads.',
 				'bgtfw'
 			),
 			'bgtfw-preload'              => esc_html__(
-				'No Animation - Your site background will be displayed while content loads, then the content will be displayed immediately',
+				'No Animation - Your site background will be displayed while content loads, then the content will be displayed immediately.',
 				'bgtfw'
 			),
 			'bgtfw-preload-fadein'       => esc_html__(

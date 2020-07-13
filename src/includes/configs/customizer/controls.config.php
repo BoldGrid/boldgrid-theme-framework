@@ -4391,27 +4391,29 @@ return array(
 		'settings'          => 'bgtfw_preloader_type',
 		'label'             => esc_html__( 'Enable Pre-loader', 'bgtfw' ),
 		'description'       => esc_html__(
-			'If you enable the pre-loader, then your body background will be shown until the page fully loads. You may also select an optional animation to be used when the site loads.',
+			'If you enable the pre-loader, then your body background will be shown until the page fully loads.
+			You may also select an optional animation to be used when the site loads.
+			This pre-loader is only effective on live page loads, and not for page loads within the WordPress Customizer',
 			'bgtfw'
 		),
 		'section'           => 'bgtfw_preloader_section',
 		'default'           => 'off',
 		'choices'           => array(
-			'off'          => esc_html__( 'Disable', 'bgtfw' ),
-			'no-animation' => esc_html__( 'No Animation', 'bgtfw' ),
-			'fadein'       => esc_html__( 'Fade In', 'bgtfw' ),
+			'off'                        => esc_html__(
+				'Disable - Content will be displayed as it loads',
+				'bgtfw'
+			),
+			'bgtfw-preload'              => esc_html__(
+				'No Animation - Your site background will be displayed while content loads, then the content will be displayed immediately',
+				'bgtfw'
+			),
+			'bgtfw-preload-fadein'       => esc_html__(
+				'Fade In - Your site background will be displayed while content loads, then the content will fade in.',
+				'bgtfw'
+			),
 		),
 		'sanitize_callback' => function( $value, $settings ) {
-			switch ( $value ) {
-				case 'off':
-					return false;
-				case 'no-animation':
-					return 'bgtfw-preload';
-				case 'fadein':
-					return 'bgtfw-preload-fadein';
-				default:
-					return false;
-			}
+			return in_array( $value, [ 'off', 'bgtfw-preload', 'bgtfw-preload-fadein' ], true ) ? $value : $settings->default;
 		},
 	),
 

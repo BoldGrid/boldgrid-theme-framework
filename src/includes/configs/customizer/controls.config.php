@@ -4391,9 +4391,9 @@ return array(
 		'settings'          => 'bgtfw_preloader_type',
 		'label'             => esc_html__( 'Enable Pre-loader', 'bgtfw' ),
 		'description'       => esc_html__(
-			'If you enable the pre-loader, then your body background will be shown until the page fully loads. '
-			'You may also select an optional animation to be used when the site loads. '
-			'This pre-loader is only effective on live page loads, and not for page loads within the WordPress Customizer',
+			'If you enable the pre-loader, then your body background will be shown until the page fully loads.
+			You may also select an optional animation to be used when the site loads.
+			This pre-loader is only effective on live page loads, and not for page loads within the WordPress Customizer',
 			'bgtfw'
 		),
 		'section'           => 'bgtfw_preloader_section',

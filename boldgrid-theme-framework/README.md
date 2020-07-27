@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.7.5 ###
+* Update: Corrected argument order of implode statements to comply with PHP 7.4 changes.
+
 ### 1.7.4 ###
 * Bug fix: Host attribution not showing.
 

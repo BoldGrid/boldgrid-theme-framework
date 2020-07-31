@@ -6079,7 +6079,7 @@
 	 },
 	 {
 	  "kind": "webfonts#webfont",
-	  "family": "Exo 2",
+	  "family": "\"Exo 2\"",
 	  "category": "sans-serif",
 	  "variants": [
 	   "100",

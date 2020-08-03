@@ -16,8 +16,8 @@
 			opacity: 0;
 		}
 	}
-	&.bgtfw-loaded.wf-active,
-		&.bgtfw-loaded.wf-inactive {
+	&.bgtfw-loaded,
+		&.bgtfw-loaded {
 			#boldgrid-sticky-wrap,
 			#colophon {
 				-webkit-animation: fadein 1s linear forwards;
@@ -36,8 +36,8 @@
 			opacity: 0;
 		}
 	}
-	&.bgtfw-loaded.wf-active,
-		&.bgtfw-loaded.wf-inactive {
+	&.bgtfw-loaded,
+		&.bgtfw-loaded {
 			#boldgrid-sticky-wrap,
 			#colophon {
 				opacity: 1;

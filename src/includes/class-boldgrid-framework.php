@@ -239,6 +239,7 @@ class BoldGrid_Framework {
 	 * @access   public
 	 */
 	public function assign_configurations() {
+		global $wp_version;
 		$this->configs = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/configs.php';
 		// Based on the configs already assigned, set config values to help assign later values.
 		$this->assign_dynamic_configs();
@@ -247,6 +248,10 @@ class BoldGrid_Framework {
 		$this->assign_configs( 'customizer-options' );
 		$this->assign_configs( 'customizer' );
 		$this->assign_configs( 'components' );
+
+		if ( version_compare( $wp_version, '5.4.99', 'gt' ) && isset( $this->configs['customizer']['controls']['bgtfw_preloader_type'] ) ) {
+			unset( $this->configs['customizer']['controls']['bgtfw_preloader_type'] );
+		}
 	}
 
 	/**

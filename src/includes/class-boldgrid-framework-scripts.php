@@ -244,6 +244,8 @@ class BoldGrid_Framework_Scripts {
 	 * @since 1.3.6
 	 */
 	public function modernizr( $output ) {
+		global $wp_version;
+
 		// Do not run this on login screen -- modernizer script is not enqueued.
 		$script_name = isset( $_SERVER['SCRIPT_NAME'] ) ? $_SERVER['SCRIPT_NAME'] : '';
 		if ( false !== stripos( wp_login_url(), $script_name ) ) {
@@ -252,7 +254,11 @@ class BoldGrid_Framework_Scripts {
 
 		$admin_bar = is_admin_bar_showing() ? ' admin-bar' : '';
 
-		$preload = ( ! get_theme_mod( 'bgtfw_preloader_type', '' ) || 'off' === get_theme_mod( 'bgtfw_preloader_type', '' ) ) ? '' : get_theme_mod( 'bgtfw_preloader_type' ) . ' ';
+		if ( version_compare( $wp_version, '5.4.99', 'gt' ) ) {
+			$preload = '';
+		} else {
+			$preload = ( ! get_theme_mod( 'bgtfw_preloader_type', '' ) || 'off' === get_theme_mod( 'bgtfw_preloader_type', '' ) ) ? '' : get_theme_mod( 'bgtfw_preloader_type' ) . ' ';
+		}
 
 		return "$output class='{$preload}no-bgtfw no-js{$admin_bar}'";
 	}

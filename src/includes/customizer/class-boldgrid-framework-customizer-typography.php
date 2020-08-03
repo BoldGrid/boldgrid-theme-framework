@@ -147,11 +147,11 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @param array $setting Setting array (optional).
 	 *
 	 * @return array
-	*/
+	 */
 	public function sanitize_typography( $value, $setting ) {
 		$filtered_value = $value;
 		if ( preg_match( '/\s/', $value['font-family'] ) ) {
-			$filtered_value['font-family'] = '"'. $value['font-family'] . '"';
+			$filtered_value['font-family'] = '"' . $value['font-family'] . '"';
 		}
 		return $filtered_value;
 	}

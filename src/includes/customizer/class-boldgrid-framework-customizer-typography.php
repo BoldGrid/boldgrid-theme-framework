@@ -155,6 +155,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		}
 		return $filtered_value;
 	}
+
 	/**
 	 * Adds font size CSS to style.css inline.
 	 *

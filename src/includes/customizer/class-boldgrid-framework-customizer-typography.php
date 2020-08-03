@@ -129,10 +129,31 @@ class Boldgrid_Framework_Customizer_Typography {
 		$css .= ".bg-font-family-menu { font-family: $menu_font_family !important }";
 
 		foreach ( $this->get_typography_settings() as $typography_setting ) {
+			if ( preg_match( '/\s/', $typography_setting['value']['font-family'] ) ) {
+				$typography_setting['value']['font-family'] = '"' . $typography_setting['value']['font-family'] . '"';
+			}
 			$css .= ".{$typography_setting['class_name']} { font-family: {$typography_setting['value']['font-family']} !important }";
 		}
 
 		return $css;
+	}
+
+	/**
+	 * Sanitize Typography Controls.
+	 *
+	 * @since 3.2.1
+	 *
+	 * @param array $value Pre Filtered Value.
+	 * @param array $setting Setting array (optional).
+	 *
+	 * @return array
+	 */
+	public function sanitize_typography( $value, $setting ) {
+		$filtered_value = $value;
+		if ( preg_match( '/\s/', $value['font-family'] ) ) {
+			$filtered_value['font-family'] = '"' . $value['font-family'] . '"';
+		}
+		return $filtered_value;
 	}
 
 	/**

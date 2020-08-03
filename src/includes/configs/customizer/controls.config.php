@@ -1163,13 +1163,13 @@ return array(
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_headings_typography' => array(
-		'type'     => 'typography',
-		'settings'  => 'bgtfw_headings_typography',
-		'transport'   => 'auto',
-		'settings'    => 'bgtfw_headings_typography',
-		'label'       => esc_attr__( 'Headings Typography', 'bgtfw' ),
-		'section'     => 'headings_typography',
-		'default'     => array(
+		'type'              => 'typography',
+		'settings'          => 'bgtfw_headings_typography',
+		'transport'         => 'auto',
+		'settings'          => 'bgtfw_headings_typography',
+		'label'             => esc_attr__( 'Headings Typography', 'bgtfw' ),
+		'section'           => 'headings_typography',
+		'default'           => array(
 			'font-family'    => 'Roboto',
 			'variant'        => 'regular',
 			'line-height'    => '1.5',
@@ -1177,8 +1177,9 @@ return array(
 			'subsets'        => array( 'latin-ext' ),
 			'text-transform' => 'none',
 		),
-		'priority'    => 20,
-		'output'      => $bgtfw_typography->get_output_values( $bgtfw_configs ),
+		'priority'          => 20,
+		'output'            => $bgtfw_typography->get_output_values( $bgtfw_configs ),
+		'sanitize_callback' => array( $bgtfw_typography, 'sanitize_typography' ),
 	),
 	'bgtfw_headings_font_size' => array(
 		'type'        => 'slider',
@@ -1230,6 +1231,7 @@ return array(
 				'element' => '.site-branding .site-description',
 			),
 		),
+		'sanitize_callback' => array( $bgtfw_typography, 'sanitize_typography' ),
 	),
 	'bgtfw_header_width' => array(
 		'type'        => 'slider',
@@ -1357,6 +1359,7 @@ return array(
 				'element' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover',
 			),
 		),
+		'sanitize_callback' => array( $bgtfw_typography, 'sanitize_typography' ),
 	),
 	'bgtfw_body_typography' => array(
 		'type'        => 'typography',
@@ -1378,9 +1381,9 @@ return array(
 		'output'      => array(
 			array(
 				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body',
-				'context' => [ 'front', 'editor' ],
 			),
 		),
+		'sanitize_callback' => array( $bgtfw_typography, 'sanitize_typography' ),
 	),
 
 	/* Start Global Page Title Control */
@@ -2599,6 +2602,7 @@ return array(
 				'element'  => '#main-menu li a',
 			),
 		),
+		'sanitize_callback' => array( $bgtfw_typography, 'sanitize_typography' ),
 	),
 
 	/*** End: Dynamic Menu Controls ***/

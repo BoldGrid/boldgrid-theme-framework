@@ -139,24 +139,6 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
-	 * Sanitize Typography Controls.
-	 *
-	 * @since 3.2.1
-	 *
-	 * @param array $value Pre Filtered Value.
-	 * @param array $setting Setting array (optional).
-	 *
-	 * @return array
-	 */
-	public function sanitize_typography( $value, $setting ) {
-		$filtered_value = $value;
-		if ( preg_match( '/\s/', $value['font-family'] ) ) {
-			$filtered_value['font-family'] = '"' . $value['font-family'] . '"';
-		}
-		return $filtered_value;
-	}
-
-	/**
 	 * Adds font size CSS to style.css inline.
 	 *
 	 * @since 2.0.0
@@ -183,13 +165,13 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
-	 * Overrides Kirki Inline CSS
+	 * Overrides Kirki Inline CSS.
 	 *
 	 * @since 2.2.2
 	 */
 	public function override_kirki_styles() {
-		$kirki_styles = apply_filters( 'kirki_bgtfw_dynamic_css', Kirki_Modules_CSS::loop_controls( 'bgtfw' ) );
-		$filtered_styles = preg_replace( '/font-family:(\w+\s\w+);/', 'font-family:"${1}" !important;', $kirki_styles );
+		$kirki_styles    = apply_filters( 'kirki_bgtfw_dynamic_css', Kirki_Modules_CSS::loop_controls( 'bgtfw' ) );
+		$filtered_styles = preg_replace( '/font-family:(\w+(\s\w+)+);/', 'font-family:"${1}";', $kirki_styles );
 		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'boldgrid-kirki-override', $filtered_styles );
 	}
 

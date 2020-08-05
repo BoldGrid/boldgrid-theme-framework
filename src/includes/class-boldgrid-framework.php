@@ -696,6 +696,7 @@ class BoldGrid_Framework {
 		$typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
 		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'override_kirki_styles' );
 
 		$links = new BoldGrid_Framework_Links( $this->configs );
 		$this->loader->add_filter( 'wp_enqueue_scripts', $links, 'add_styles_frontend' );

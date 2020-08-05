@@ -183,6 +183,17 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
+	 * Overrides Kirki Inline CSS
+	 *
+	 * @since 2.2.2
+	 */
+	public function override_kirki_styles() {
+		$kirki_styles = apply_filters( 'kirki_bgtfw_dynamic_css', Kirki_Modules_CSS::loop_controls( 'bgtfw' ) );
+		$filtered_styles = preg_replace( '/font-family:(\w+\s\w+);/', 'font-family:"${1}" !important;', $kirki_styles );
+		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'boldgrid-kirki-override', $filtered_styles );
+	}
+
+	/**
 	 * Generates headings CSS to apply to frontend.
 	 *
 	 * @since  2.0.0

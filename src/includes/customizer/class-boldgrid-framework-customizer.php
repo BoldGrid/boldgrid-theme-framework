@@ -441,7 +441,7 @@ class BoldGrid_Framework_Customizer {
 			array(
 				'jquery',
 				'customize-controls',
-				'wp-i18n'
+				'wp-i18n',
 			),
 			$this->configs['version'],
 			true

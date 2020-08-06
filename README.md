@@ -36,6 +36,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.2.2 ###
+* Update: Updated Kirki-Framework to latest stable version.
+* Update: Updated Google Fonts Sprites and webfonts.json
+
 ### 2.2.1 ###
 * Bug Fix: Moved Header Background Color control to the Design -> Header -> Background section
 * Bug fix: Full Width sections do not span the entire header [#232](https://github.com/BoldGrid/boldgrid-theme-framework/issues/232)

@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.3
+* **Tested up to:** 5.5
 * **License:** GPL-3.0-or-later
 * **License URI:** https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
@@ -35,6 +35,12 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.2.2 ###
+* Update: Updated Kirki-Framework to latest stable version.
+* Update: Updated Google Fonts Sprites and webfonts.json
+* Update: Updated typography to work with new version of Kirki Framework
+* Update: Updated to work on WP 5.5+
 
 ### 2.2.1 ###
 * Bug Fix: Moved Header Background Color control to the Design -> Header -> Background section

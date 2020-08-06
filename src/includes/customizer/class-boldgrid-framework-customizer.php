@@ -431,12 +431,17 @@ class BoldGrid_Framework_Customizer {
 	public function custom_customize_enqueue() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
+		// This is necessary for wp < 5.5 backwards compatibility. WP5.5+ includes the wp-i18n already.
+		wp_deregister_script( 'wp-color-picker-alpha' );
+		wp_enqueue_script( 'wp-color-picker-alpha', trailingslashit( Kirki::$url ) . 'assets/vendor/wp-color-picker-alpha/wp-color-picker-alpha.js', array( 'wp-i18n', 'wp-color-picker' ), KIRKI_VERSION, true );
+
 		wp_register_script(
 			'bgtfw-customizer-base-controls',
 			$this->scripts->get_webpack_url( $this->configs['framework']['js_dir'], 'customizer/base-controls.min.js' ),
 			array(
 				'jquery',
 				'customize-controls',
+				'wp-i18n'
 			),
 			$this->configs['version'],
 			true
@@ -447,6 +452,7 @@ class BoldGrid_Framework_Customizer {
 			$this->configs['framework']['js_dir'] . 'customizer/controls' . $suffix . '.js',
 			array(
 				'bgtfw-customizer-base-controls',
+				'wp-i18n',
 			),
 			$this->configs['version'],
 			true

@@ -8,7 +8,7 @@ export default {
 			.apply( this, arguments );
 
 		// Selecting the instance will add the needed attributes, don't ask why.
-		//$( this.selector + ' .font-family select' ).selectWoo();
+		$( this.selector + ' .font-family select' ).selectWoo();
 		$( this.selector + ' .font-family select' ).select2();
 	}
 };

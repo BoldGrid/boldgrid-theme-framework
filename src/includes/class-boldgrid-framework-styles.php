@@ -624,4 +624,23 @@ class BoldGrid_Framework_Styles {
 		);
 	}
 
+	/**
+	 * Validate Fonts Directory
+	 *
+	 * This makes sure that the dowloaded fonts option
+	 * is using the correct fonts directory. This is especially
+	 * important when a Crio site is transferred from one server to another.
+	 *
+	 * @since 2.2.3
+	 */
+	public function validate_fonts_dir() {
+		$kirki_downloaded_fonts = get_option( 'kirki_downloaded_font_files', array() );
+
+		foreach ( $kirki_downloaded_fonts as $font_family => $files ) {
+			if ( false === strpos( $files, ABSPATH ) ) {
+				update_option( 'kirki_downloaded_font_files', array() );
+			}
+		}
+
+	}
 }

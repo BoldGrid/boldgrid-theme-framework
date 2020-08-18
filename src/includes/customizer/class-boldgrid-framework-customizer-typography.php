@@ -172,6 +172,10 @@ class Boldgrid_Framework_Customizer_Typography {
 	public function override_kirki_styles() {
 		global $wp_filesystem;
 
+		if( ! $wp_filesystem ) {
+			require_once ABSPATH . '/wp-admin/includes/file.php';
+			WP_Filesystem();
+		}
 		$kirki_styles    = apply_filters( 'kirki_bgtfw_dynamic_css', Kirki_Modules_CSS::loop_controls( 'bgtfw' ) );
 		$filtered_styles = preg_replace( '/font-family:(\w+(\s\w+)+);/', 'font-family:"${1}";', $kirki_styles );
 

@@ -39,7 +39,8 @@
     "script:patterns": "node --experimental-modules build/patterns.mjs",
     "script:tgm": "node build/tgm.mjs",
     "script:wp-textdomain-lint": "node build/check-text-domains.js",
-    "script:zip": "node build/build-zip.js"
+	"script:zip": "node build/build-zip.js",
+	"build-prime": "git clone https://github.com/boldgrid/prime ../themes/prime && ln -s $(pwd)/boldgrid-theme-framework ../themes/prime/inc/boldgrid-theme-framework"
   },
   "keywords": [
     "BoldGrid"
@@ -51,7 +52,7 @@
     "url": "https://github.com/BoldGrid/boldgrid-theme-framework.git"
   },
   "resolutions": {
-    "natives": "1.1.6"
+	"natives": "1.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.47",
@@ -79,7 +80,7 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-html": "^4.0.3",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "googlefonts-sprite-generator": "^1.1.1",
+    "googlefonts-sprite-generator": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-changed": "^1.3.0",
     "gulp-clean": "^0.3.2",

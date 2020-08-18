@@ -172,7 +172,7 @@ class Boldgrid_Framework_Customizer_Typography {
 	public function override_kirki_styles() {
 		global $wp_filesystem;
 
-		if( ! $wp_filesystem ) {
+		if ( ! $wp_filesystem ) {
 			require_once ABSPATH . '/wp-admin/includes/file.php';
 			WP_Filesystem();
 		}

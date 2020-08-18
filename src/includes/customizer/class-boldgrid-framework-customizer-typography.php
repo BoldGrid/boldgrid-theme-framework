@@ -170,6 +170,8 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @since 2.2.2
 	 */
 	public function override_kirki_styles() {
+		global $wp_filesystem;
+
 		$kirki_styles    = apply_filters( 'kirki_bgtfw_dynamic_css', Kirki_Modules_CSS::loop_controls( 'bgtfw' ) );
 		$filtered_styles = preg_replace( '/font-family:(\w+(\s\w+)+);/', 'font-family:"${1}";', $kirki_styles );
 
@@ -177,10 +179,10 @@ class Boldgrid_Framework_Customizer_Typography {
 		 * Kirki no longer creates the kirki-css/styles.css file including their dynamic css.
 		 * Therefore we must create it for them in order to use the styles in the editor.
 		 */
-		if ( ! is_dir( wp_upload_dir()['basedir'] . '/kirki-css' ) ) {
-			mkdir( wp_upload_dir()['basedir'] . '/kirki-css' );
+		if ( ! $wp_filesystem->is_dir( wp_upload_dir()['basedir'] . '/kirki-css' ) ) {
+			$wp_filesystem->mkdir( wp_upload_dir()['basedir'] . '/kirki-css' );
 		}
-		file_put_contents( wp_upload_dir()['basedir'] . '/kirki-css/styles.css', $filtered_styles );
+		$wp_filesystem->put_contents( wp_upload_dir()['basedir'] . '/kirki-css/styles.css', $filtered_styles );
 		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'boldgrid-kirki-override', $filtered_styles );
 	}
 

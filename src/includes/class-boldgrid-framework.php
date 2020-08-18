@@ -379,10 +379,13 @@ class BoldGrid_Framework {
 		// Add Theme Styles.
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $styles, 'enqueue_fontawesome' );
-		$this->loader->add_action( 'after_setup_theme',  $styles, 'add_editor_styling' );
+		$this->loader->add_action( 'after_setup_theme', $styles, 'add_editor_styling' );
 		$this->loader->add_filter( 'mce_css', $styles, 'add_cache_busting' );
 		$this->loader->add_filter( 'boldgrid_theme_framework_local_editor_styles', $styles, 'enqueue_editor_buttons' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'get_css_vars' );
+
+		// Validate Theme Fonts Directory
+		$this->loader->add_action( 'after_setup_theme', $styles, 'validate_fonts_dir' );
 
 		// Add Theme Scripts.
 		$this->loader->add_action( 'wp_enqueue_scripts', $scripts, 'boldgrid_enqueue_scripts' );

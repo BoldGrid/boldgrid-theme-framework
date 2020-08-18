@@ -36,6 +36,11 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.2.3 ###
+* Bug Fix: Crio 2.3.2 & PPB 1.13.3 - Main Text font doesn't pull thru to Editor [#272](https://github.com/BoldGrid/boldgrid-theme-framework/issues/272)
+* Bug Fix: Some fonts don't show their name in the font selection dropdown [#264](https://github.com/BoldGrid/boldgrid-theme-framework/issues/264)
+* Bug Fix: Restoring a backup loses the stylesheet (all styling) [#278](https://github.com/BoldGrid/boldgrid-theme-framework/issues/278)
+
 ### 2.2.2 ###
 * Update: Updated Kirki-Framework to latest stable version.
 * Update: Updated Google Fonts Sprites and webfonts.json

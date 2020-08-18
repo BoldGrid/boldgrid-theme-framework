@@ -1,6 +1,6 @@
 {
   "name": "boldgrid-theme-framework",
-  "version": "2.2.2-rc.5",
+  "version": "2.2.3-rc.1",
   "description": "BoldGrid Theme Framework",
   "main": "index.js",
   "engines": {
@@ -39,8 +39,8 @@
     "script:patterns": "node --experimental-modules build/patterns.mjs",
     "script:tgm": "node build/tgm.mjs",
     "script:wp-textdomain-lint": "node build/check-text-domains.js",
-	"script:zip": "node build/build-zip.js",
-	"build-prime": "git clone https://github.com/boldgrid/prime ../themes/prime && ln -s $(pwd)/boldgrid-theme-framework ../themes/prime/inc/boldgrid-theme-framework"
+    "script:zip": "node build/build-zip.js",
+    "build-prime": "git clone https://github.com/boldgrid/prime ../themes/prime && ln -s $(pwd)/boldgrid-theme-framework ../themes/prime/inc/boldgrid-theme-framework"
   },
   "keywords": [
     "BoldGrid"
@@ -52,7 +52,7 @@
     "url": "https://github.com/BoldGrid/boldgrid-theme-framework.git"
   },
   "resolutions": {
-	"natives": "1.1.6"
+    "natives": "1.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.47",

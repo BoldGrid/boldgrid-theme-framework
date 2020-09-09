@@ -1,5 +1,6 @@
 import { BorderRadius } from '@boldgrid/controls/src/controls/border-radius';
 import { Margin } from '@boldgrid/controls/src/controls/margin';
+import { ColWidth } from '@boldgrid/controls/src/controls/col-width';
 import { Padding } from '@boldgrid/controls/src/controls/padding';
 import { BoxShadow } from '@boldgrid/controls/src/controls/box-shadow';
 import { Control as DeviceVisibility } from '@boldgrid/controls/src/controls/device-visibility';
@@ -18,7 +19,8 @@ export class Control {
 			MultiSlider,
 			Border,
 			Padding,
-			Margin
+			Margin,
+			ColWidth
 		};
 	}
 

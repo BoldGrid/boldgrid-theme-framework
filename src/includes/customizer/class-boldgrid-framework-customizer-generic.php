@@ -124,6 +124,8 @@ class Boldgrid_Framework_Customizer_Generic {
 
 		if ( 'DeviceVisibility' === $control['choices']['type'] ) {
 			$css .= $this->device_visibility_styles( $control ) ?: '';
+		} elseif ( 'ColWidth' === $control['choices']['type'] ) {
+			return $css;
 		} else {
 			$css .= $this->directional_control_styles( $control ) ?: '';
 		}
@@ -366,4 +368,30 @@ class Boldgrid_Framework_Customizer_Generic {
 		return $ranges;
 	}
 
+	/**
+	 * Get Header Columns
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @return array Array of header column slider configs.
+	 */
+	public function get_header_columns() {
+		$header_layout = get_theme_mod( 'bgtfw_header_layout', false ) ? get_theme_mod( 'bgtfw_header_layout', false ) : $this->configs['bgtfw_header_layout']['default'];
+
+		$sliders = array();
+
+		foreach ( $header_layout as $section_index => $section ) {
+			$section_label = (string) ( $section_index + 1 );
+			foreach ( $section['items'] as $item_index => $item ) {
+				error_log( json_encode( $section_index ) );
+				$sliders[] = array(
+					'name'        => $item['key'] . '-' . $section_label,
+					'label'       => ucfirst( $item['key'] ) . ' ' . $section_label,
+					'cssProperty' => 'width',
+				);
+			}
+		}
+
+		return $sliders;
+	}
 }

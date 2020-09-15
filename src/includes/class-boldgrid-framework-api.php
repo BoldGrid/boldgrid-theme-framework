@@ -916,7 +916,7 @@ class BoldGrid {
 	/**
 	 * Get Column Width Array
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.2.3
 	 *
 	 * @param string $theme_mod Theme Mod to parse
 	 *

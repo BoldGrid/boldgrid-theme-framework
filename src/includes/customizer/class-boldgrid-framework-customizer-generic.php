@@ -371,7 +371,7 @@ class Boldgrid_Framework_Customizer_Generic {
 	/**
 	 * Get Column Defaults
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.2.3
 	 *
 	 * @return array Array of default header columns
 	 */
@@ -403,7 +403,7 @@ class Boldgrid_Framework_Customizer_Generic {
 	/**
 	 * Get Header Columns
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.2.3
 	 *
 	 * @return array Array of header column slider configs.
 	 */

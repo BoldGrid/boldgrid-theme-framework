@@ -273,7 +273,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	/**
 	 * Adds Header Sliders
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.2.3
 	 *
 	 * @param array  sliderUids
 	 * @param array  repeaterUids
@@ -304,7 +304,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	function remHeaderSliders( sliderUids, repeaterUids ) {
 		let uidsToRemove = [];
 		sliderUids.forEach( function( uid ) {
-			if ( ! repeaterUids.includes( uid, ) ) {
+			if ( ! repeaterUids.includes( uid ) ) {
 				uidsToRemove.push( uid );
 			}
 		} );
@@ -362,8 +362,8 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				repeaterUids.push( this.dataset.uid );
 			} );
 
-			addHeaderSliders( repeaterContainer, sliderUids, repeaterUids );
-			remHeaderSliders( repeaterContainer, sliderUids, repeaterUids );
+			addHeaderSliders( sliderUids, repeaterUids );
+			remHeaderSliders( sliderUids, repeaterUids );
 		}
 	} ) );
 

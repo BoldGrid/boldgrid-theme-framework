@@ -2015,12 +2015,17 @@ return array(
 	],
 	'bgtfw_header_layout_col_width' => array(
 		'settings' => 'bgtfw_header_layout_col_width',
-		'transport' => 'refresh',
+		'transport' => 'auto',
 		'label' => __( 'Header Column Widths', 'bgtfw' ),
 		'priority' => 4,
 		'section' => 'bgtfw_header_layout',
 		'type' => 'kirki-generic',
-		'default' => '',
+		'default' => $bgtfw_generic->get_column_defaults(),
+		'description' => __(
+			'Headers have a maximum of 12 columns per row. For the best results, make sure that the values of each header item
+			add up to a total of 12 for each row.',
+			'bgtfw'
+		),
 		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices' => array(
 			'name' => 'boldgrid_controls',
@@ -2030,17 +2035,23 @@ return array(
 				'control'    => array(
 					'selectors' => array( '.site-header header row' ),
 					'sliders' => $bgtfw_generic->get_header_columns(),
-					'units'
 				),
 				'slider' => array(
 					'col' => array(
-						'min'  => 1,
-						'max'  => 12,
-						'step' => 1,
+						'min'   => 1,
+						'max'   => 12,
+						'step'  => 1,
+						'value' => 6
 					),
 				),
 			),
 		),
+		'partial_refresh' => [
+			'bgtfw_header_layout' => [
+				'selector' => '.bgtfw-header',
+				'render_callback' => [ 'BoldGrid', 'dynamic_header' ],
+			],
+		],
 	),
 	'bgtfw_header_layout_position' => array(
 		'settings' => 'bgtfw_header_layout_position',
@@ -2087,11 +2098,13 @@ return array(
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
 						],
+						'uid' => 'h90'
 					],
 					[
 						'type' => 'boldgrid_menu_main',
 						'key' => 'menu',
 						'align' => 'e',
+						'uid' => 'h91'
 					],
 				],
 			],

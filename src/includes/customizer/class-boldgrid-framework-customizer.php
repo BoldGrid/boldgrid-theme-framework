@@ -553,6 +553,8 @@ class BoldGrid_Framework_Customizer {
 			array(
 				'boldgrid-front-end-scripts',
 				'customize-preview',
+				'jquery-ui-widget',
+				'jquery-ui-slider',
 			),
 			$this->configs['version'],
 			true

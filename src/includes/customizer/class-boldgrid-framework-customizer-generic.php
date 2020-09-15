@@ -369,6 +369,38 @@ class Boldgrid_Framework_Customizer_Generic {
 	}
 
 	/**
+	 * Get Column Defaults
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @return array Array of default header columns
+	 */
+	public function get_column_defaults() {
+		$defaults = array(
+			[
+				'media' => [ 'base' ],
+				'unit' => 'col',
+				'isLinked' => false,
+				'values' => array(
+					"default_branding" => 6,
+					"default_menu"     => 6,
+				),
+			],
+			[
+				'media' => [ 'phone', 'tablet' ],
+				'unit' => 'col',
+				'isLinked' => false,
+				'values' => array(
+					"default_branding" => 12,
+					"default_menu"     => 12,
+				),
+			],
+		);
+
+		return $defaults;
+	}
+
+	/**
 	 * Get Header Columns
 	 *
 	 * @since SINCEVERSION
@@ -376,17 +408,51 @@ class Boldgrid_Framework_Customizer_Generic {
 	 * @return array Array of header column slider configs.
 	 */
 	public function get_header_columns() {
-		$header_layout = get_theme_mod( 'bgtfw_header_layout', false ) ? get_theme_mod( 'bgtfw_header_layout', false ) : $this->configs['bgtfw_header_layout']['default'];
+		$default_layout = [
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'boldgrid_site_identity',
+						'key' => 'branding',
+						'align' => 'w',
+						'display' => [
+							[
+								'selector' => '.custom-logo-link',
+								'display' => 'show',
+								'title' => __( 'Logo', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-title',
+								'display' => 'show',
+								'title' => __( 'Title', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-description',
+								'display' => 'show',
+								'title' => __( 'Tagline', 'bgtfw' ),
+							],
+						],
+					],
+					[
+						'type' => 'boldgrid_menu_main',
+						'key' => 'menu',
+						'align' => 'e',
+					],
+				],
+			],
+		];
+
+		$header_layout = get_theme_mod( 'bgtfw_header_layout', false ) ? get_theme_mod( 'bgtfw_header_layout', false ) : $default_layout;
 
 		$sliders = array();
 
 		foreach ( $header_layout as $section_index => $section ) {
 			$section_label = (string) ( $section_index + 1 );
 			foreach ( $section['items'] as $item_index => $item ) {
-				error_log( json_encode( $section_index ) );
 				$sliders[] = array(
-					'name'        => $item['key'] . '-' . $section_label,
-					'label'       => ucfirst( $item['key'] ) . ' ' . $section_label,
+					'name'        => isset( $item['uid'] ) ? $item['uid'] : 'default_' . $item['key'],
+					'label'       => 'Row ' . $section_label . ' ' . ucfirst( $item['key'] ),
 					'cssProperty' => 'width',
 				);
 			}

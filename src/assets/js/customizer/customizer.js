@@ -8,6 +8,7 @@ import Toggle from './toggle/toggle';
 import ToggleValue from './toggle/value';
 import './widget-meta';
 import { Preview as TypographyPreview } from './typography/preview';
+import { Slider } from '../../../../node_modules/@boldgrid/controls/src/controls/slider';
 
 const api = wp.customize;
 const controlApi = parent.wp.customize;
@@ -269,6 +270,117 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	new HeaderPreview().bindEvents();
 	new TypographyPreview().bindEvents();
 	new LinkPreview().bindEvents();
+
+	/**
+	 * Adds Header Sliders
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @param string sliderGroup
+	 * @param string repeaterContainer
+	 * @param array  sliderUids
+	 * @param array  repeaterUids
+	 */
+	function addHeaderSliders( sliderGroup, repeaterContainer, sliderUids, repeaterUids ) {
+		let uidsToAdd = [];
+		repeaterUids.forEach( function( uid ) {
+			if ( ! sliderUids.includes( uid, ) ) {
+				uidsToAdd.push( uid );
+			}
+		} );
+
+		uidsToAdd.forEach( function( uid ) {
+			let row = parseInt( $( repeaterContainer ).find( '.repeater[data-uid=' + uid + ']' ).parent().attr( 'id' ).split( '-' )[2] ) + 1,
+				key = $( repeaterContainer ).find( '.repeater[data-uid=' + uid + ']' )[0].dataset.key,
+				sliderConfig,
+				sliderControl,
+				linkSvg = `
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
+								<path d="M25.278 63.41L8.788 46.92c-5.095-5.093-7.9-11.865-7.9-19.068 0-7.203 2.805-13.975 7.9-19.067C13.877 3.692 20.65.887 27.852.887c7.203 0 13.975 2.805 19.067 7.898l16.49 16.49-7.07 7.07-16.49-16.49c-3.205-3.204-7.465-4.968-11.997-4.968-4.53 0-8.792 1.765-11.996 4.97-3.205 3.203-4.97 7.463-4.97 11.995 0 4.532 1.765 8.792 4.97 11.997l16.49 16.488-7.07 7.072zM72.146 99.1c-6.905 0-13.81-2.63-19.066-7.885L36.59 74.722l7.07-7.07 16.49 16.492c6.616 6.614 17.38 6.613 23.994 0 6.613-6.615 6.613-17.38 0-23.994l-16.49-16.49 7.07-7.07 16.49 16.49c10.513 10.513 10.513 27.62 0 38.135C85.96 96.47 79.053 99.1 72.147 99.1z"></path>
+								<g>
+									<path d="M33.976 26.903L73.094 66.02l-7.07 7.07-39.12-39.116z"></path>
+								</g>
+							</svg>`;
+
+			$( sliderGroup ).find( '.slider-control' ).each( function() {
+				if ( 0 <= $( this ).find( 'label' ).html().indexOf( 'Row ' + row ) ) {
+					return true;
+				} else {
+					sliderConfig = {
+						'name': uid,
+						'label': 'Row ' + row + ' ' + key,
+						'cssProperty': 'width',
+						'uiSettings': {
+							'min': 1,
+							'max': 12,
+							'step': 1,
+							'value': 6
+						}
+					};
+
+					sliderControl = new Slider( $.extend( true, {}, sliderConfig ) );
+
+					sliderControl.render();
+
+					sliderControl.$input.after(
+						'<a class="link" href="#" title="Link all sliders">' + linkSvg + '</a>'
+					);
+
+					$( sliderControl.$control ).insertBefore( this );
+					return false;
+				}
+			} );
+		} );
+	}
+
+	// After partial-refresh, correct header item uids.
+	api.selectiveRefresh.bind( 'partial-content-rendered', function( response ) {
+		if ( 'bgtfw_header_layout_col_width' === response.partial.params.primarySetting ) {
+			let colWidths  = JSON.parse( controlApi( 'bgtfw_header_layout_col_width' )().media ),
+				baseWidths = colWidths.base.values,
+				colUids    = Object.keys( baseWidths );
+			$( '.bgtfw-header .boldgrid-section .row .col-lg-' ).each( function( itemIndex ) {
+				let uid = colUids[ itemIndex ],
+					classList;
+				$( this ).removeClass( 'col-lg- col-md-6 col-sm- col-xs-' );
+				$( this ).removeClass ( function( index, className ) {
+					return ( className.match( /default_.*/g ) || [] ).join( ' ' );
+				} );
+
+				classList = [
+					'col-lg-' + ( colWidths.large ? colWidths.large.values[ uid ] : baseWidths[ uid ] ),
+					'col-md-' + ( colWidths.desktop ? colWidths.desktop.values[ uid ] : baseWidths[ uid ] ),
+					'col-sm-' + ( colWidths.tablet ? colWidths.tablet.values[ uid ] : baseWidths[ uid ] ),
+					'col-xs-' + ( colWidths.phone ? colWidths.phone.values[ uid ] : baseWidths[ uid ] ),
+					uid
+				];
+
+				$( this ).addClass( classList.join( ' ' ) );
+			} );
+		}
+	} );
+
+	// After preview refreshes, and new layout items are added, add new sliders.
+	api.bind( 'preview-ready', _.defer( function() {
+		let sliderUids   = [];
+		let repeaterUids = [];
+		let sliderContainer;
+		let repeaterContainer;
+		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
+			sliderContainer = controlApi.control( 'bgtfw_header_layout_col_width' ).container;
+			$( controlApi.section( 'bgtfw_header_layout' ).container[1] ).find( '.slider' ).each( function() {
+				sliderUids.push( this.dataset.name.split( '-' )[1] );
+			} );
+
+			repeaterContainer = controlApi.control( 'bgtfw_header_layout' ).container;
+
+			$( repeaterContainer ).find( '.repeater' ).each( function() {
+				repeaterUids.push( this.dataset.uid );
+			} );
+
+			addHeaderSliders( $( sliderContainer ).find( '.slider-group' ), repeaterContainer, sliderUids, repeaterUids );
+		}
+	} ) );
 
 	$( function() {
 		var headingsColorOutput,

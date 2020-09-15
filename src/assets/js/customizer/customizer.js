@@ -271,7 +271,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	new LinkPreview().bindEvents();
 
 	/**
-	 * Adds Header Sliders
+	 * Runs when trying to add Header Sliders
 	 *
 	 * @since 2.2.3
 	 *
@@ -301,6 +301,14 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		}
 	}
 
+	/**
+	 * Remove Header Sliders
+	 *
+	 * @since 2.2.3
+	 *
+	 * @param array  sliderUids
+	 * @param array  repeaterUids
+	 */
 	function remHeaderSliders( sliderUids, repeaterUids ) {
 		let uidsToRemove = [];
 		sliderUids.forEach( function( uid ) {

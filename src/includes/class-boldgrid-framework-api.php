@@ -1067,6 +1067,17 @@ class BoldGrid {
 		$uid = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) ) ? 's' : 'h' : 'f';
 		$defaults = ( array ) get_theme_mod( $theme_mod );
 
+		foreach ( $defaults as $key => $section ) {
+			$base = $uid . $key;
+			if ( ! empty( $section['items'] ) ) {
+				foreach ( $section['items'] as $k => $v ) {
+					if ( empty( $v['uid'] ) ) {
+						$defaults[ $key ]['items'][ $k ]['uid'] = $base . $k;
+					}
+				}
+			}
+		}
+
 		return $defaults;
 	}
 

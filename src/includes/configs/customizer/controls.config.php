@@ -2098,13 +2098,11 @@ return array(
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
 						],
-						'uid' => 'h90',
 					],
 					[
 						'type' => 'boldgrid_menu_main',
 						'key' => 'menu',
 						'align' => 'e',
-						'uid' => 'h91',
 					],
 				],
 			],

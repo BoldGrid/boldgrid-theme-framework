@@ -918,7 +918,7 @@ class BoldGrid {
 	 *
 	 * @since 2.2.3
 	 *
-	 * @param string $theme_mod Theme Mod to parse
+	 * @param string $theme_mod Theme Mod to parse.
 	 *
 	 * @return array Array of Column Width Values.
 	 */
@@ -991,7 +991,7 @@ class BoldGrid {
 
 						$col_uid = isset( $col_data['uid'] ) ? $col_data['uid'] : 'default_' . $col_data['key'];
 
-						if( isset( $column_widths['lg'][ $col_uid ] ) ) {
+						if ( isset( $column_widths['lg'][ $col_uid ] ) ) {
 							$lg_col = $column_widths['lg'][ $col_uid ];
 							$md_col = $column_widths['md'][ $col_uid ];
 							$sm_col = $column_widths['sm'][ $col_uid ];

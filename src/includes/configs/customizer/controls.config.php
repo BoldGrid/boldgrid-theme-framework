@@ -2041,7 +2041,7 @@ return array(
 						'min'   => 1,
 						'max'   => 12,
 						'step'  => 1,
-						'value' => 6
+						'value' => 6,
 					),
 				),
 			),
@@ -2098,13 +2098,13 @@ return array(
 								'title' => __( 'Tagline', 'bgtfw' ),
 							],
 						],
-						'uid' => 'h90'
+						'uid' => 'h90',
 					],
 					[
 						'type' => 'boldgrid_menu_main',
 						'key' => 'menu',
 						'align' => 'e',
-						'uid' => 'h91'
+						'uid' => 'h91',
 					],
 				],
 			],

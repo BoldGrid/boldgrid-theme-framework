@@ -382,8 +382,8 @@ class Boldgrid_Framework_Customizer_Generic {
 				'unit' => 'col',
 				'isLinked' => false,
 				'values' => array(
-					"default_branding" => 6,
-					"default_menu"     => 6,
+					'default_branding' => 6,
+					'default_menu'     => 6,
 				),
 			],
 			[
@@ -391,8 +391,8 @@ class Boldgrid_Framework_Customizer_Generic {
 				'unit' => 'col',
 				'isLinked' => false,
 				'values' => array(
-					"default_branding" => 12,
-					"default_menu"     => 12,
+					'default_branding' => 12,
+					'default_menu'     => 12,
 				),
 			],
 		);

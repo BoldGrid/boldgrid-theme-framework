@@ -450,9 +450,14 @@ class Boldgrid_Framework_Customizer_Generic {
 		foreach ( $header_layout as $section_index => $section ) {
 			$section_label = (string) ( $section_index + 1 );
 			foreach ( $section['items'] as $item_index => $item ) {
+				if ( 'sidebar' === $item['key'] ) {
+					$label = 'Row ' . $section_label . ' Widget Area';
+				} else {
+					$label = 'Row ' . $section_label . ' ' . ucfirst( $item['key'] );
+				}
 				$sliders[] = array(
 					'name'        => isset( $item['uid'] ) ? $item['uid'] : 'default_' . $item['key'],
-					'label'       => 'Row ' . $section_label . ' ' . ucfirst( $item['key'] ),
+					'label'       => $label,
 					'cssProperty' => 'width',
 				);
 			}

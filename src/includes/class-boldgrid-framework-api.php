@@ -914,6 +914,49 @@ class BoldGrid {
 	}
 
 	/**
+	 * Get Column Width Array
+	 *
+	 * @since 2.2.3
+	 *
+	 * @param string $theme_mod Theme Mod to parse.
+	 *
+	 * @return array Array of Column Width Values.
+	 */
+	public static function get_column_widths( $theme_mod ) {
+		$device_column_widths  = array();
+
+		$type = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) )
+			? 'sticky_header'
+			: 'header'
+			: 'footer';
+
+		$col_width_theme_mod = is_string( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' ) )
+			? json_decode( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' ), true )
+			: json_decode( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' )['media'], true );
+
+		if ( empty( $col_width_theme_mod ) ) {
+			return $device_column_widths;
+		}
+
+		foreach ( $col_width_theme_mod as $device => $values ) {
+			if ( isset( $values['media'][0] ) ) {
+				$device_column_widths[ $values['media'][0] ] = $values['values'];
+			} else {
+				$device_column_widths[ $device ] = $values['values'];
+			}
+		}
+
+		$column_widths = array(
+			'lg' => isset( $device_column_widths['large'] ) ? $device_column_widths['large'] : $device_column_widths['base'],
+			'md' => isset( $device_column_widths['desktop'] ) ? $device_column_widths['desktop'] : $device_column_widths['base'],
+			'sm' => isset( $device_column_widths['tablet'] ) ? $device_column_widths['tablet'] : $device_column_widths['base'],
+			'xs' => isset( $device_column_widths['phone'] ) ? $device_column_widths['phone'] : $device_column_widths['base'],
+		);
+
+		return $column_widths;
+	}
+
+	/**
 	 * Outputs dynamic layout elements.
 	 *
 	 * @since 2.0.3
@@ -923,12 +966,14 @@ class BoldGrid {
 	 * @return string $markup    Rendered HTML for dyanmic layout element.
 	 */
 	public static function dynamic_layout( $theme_mod ) {
-		$markup = '';
-		$theme_mod = self::create_uids( $theme_mod );
+		$markup        = '';
+		$column_widths = self::get_column_widths( $theme_mod );
+		$theme_mod     = self::create_uids( $theme_mod );
 
 		if ( ! empty( $theme_mod ) ) {
-			foreach ( $theme_mod as $section ) {
+			foreach ( $theme_mod as $section_index => $section ) {
 
+				$section_number = $section_index + 1;
 				// Skip loop if no items.
 				if ( empty( $section['items'] ) ) {
 					continue;
@@ -942,14 +987,23 @@ class BoldGrid {
 					$markup .= '<div class="row">';
 
 					foreach ( $chunk as $col => $col_data ) {
-						$num = ( 12 / count( $chunk ) );
+						$md_col = ( 12 / count( $chunk ) );
 
-						// Adds support for 5-6 col.
-						if ( 2.4 === $num ) {
-							$num = '5s';
+						$col_uid = isset( $col_data['uid'] ) ? $col_data['uid'] : 'default_' . $col_data['key'];
+
+						if ( isset( $column_widths['lg'][ $col_uid ] ) ) {
+							$lg_col = $column_widths['lg'][ $col_uid ];
+							$md_col = $column_widths['md'][ $col_uid ];
+							$sm_col = $column_widths['sm'][ $col_uid ];
+							$xs_col = $column_widths['xs'][ $col_uid ];
 						}
 
-						$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_data['uid'] . '">';
+						// Adds support for 5-6 col.
+						if ( 2.4 === $md_col ) {
+							$md_col = '5s';
+						}
+
+						$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . '">';
 						ob_start();
 						switch ( $col_data['type'] ) {
 							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :

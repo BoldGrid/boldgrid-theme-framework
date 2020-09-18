@@ -270,6 +270,111 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	new TypographyPreview().bindEvents();
 	new LinkPreview().bindEvents();
 
+	/**
+	 * Runs when trying to add Header Sliders
+	 *
+	 * @since 2.2.3
+	 *
+	 * @param array  sliderUids
+	 * @param array  repeaterUids
+	 */
+	function addHeaderSliders( sliderUids, repeaterUids ) {
+		let uidsToAdd = [],
+			notification = `
+				<div class="customize-control-notifications-container">
+					<ul>
+						<li class="notice notice-bgtfw-header-layout-change" data-code="bgtfw-header-layout-change" data-type="warning">
+							<div class="notification-message">You must publish changes, and refresh the customizer before you can adjust the column width of your newly added item</div>
+						</li>
+					</ul>
+				</div>`,
+			sliderGroup = $( controlApi.control( 'bgtfw_header_layout_col_width' ).container ).find( '.slider-group' );
+
+		repeaterUids.forEach( function( uid ) {
+			if ( ! sliderUids.includes( uid, ) ) {
+				uidsToAdd.push( uid );
+			}
+		} );
+
+		if ( 0 < uidsToAdd.length ) {
+			$( sliderGroup ).prepend( notification );
+		}
+	}
+
+	/**
+	 * Remove Header Sliders
+	 *
+	 * @since 2.2.3
+	 *
+	 * @param array  sliderUids
+	 * @param array  repeaterUids
+	 */
+	function remHeaderSliders( sliderUids, repeaterUids ) {
+		let uidsToRemove = [];
+		sliderUids.forEach( function( uid ) {
+			if ( ! repeaterUids.includes( uid ) ) {
+				uidsToRemove.push( uid );
+			}
+		} );
+
+		uidsToRemove.forEach( function( uid ) {
+			var sliderGroup = $( controlApi.control( 'bgtfw_header_layout_col_width' ).container ).find( '.slider-group' );
+			$( sliderGroup ).find( '.slider-control' ).each( function() {
+				if ( 0 < $( this ).find( '.slider[data-name=' + uid + ']' ).length ) {
+					$( this ).remove();
+				}
+			} );
+		} );
+	}
+
+	// After partial-refresh, correct header item uids.
+	api.selectiveRefresh.bind( 'partial-content-rendered', function( response ) {
+		if ( 'bgtfw_header_layout_col_width' === response.partial.params.primarySetting ) {
+			let colWidths  = JSON.parse( controlApi( 'bgtfw_header_layout_col_width' )().media ),
+				baseWidths = colWidths.base.values,
+				colUids    = Object.keys( baseWidths );
+			$( '.bgtfw-header .boldgrid-section .row .col-lg-' ).each( function( itemIndex ) {
+				let uid = colUids[ itemIndex ],
+					classList;
+				$( this ).removeClass( 'col-lg- col-md-6 col-sm- col-xs-' );
+				$( this ).removeClass ( function( index, className ) {
+					return ( className.match( /default_.*/g ) || [] ).join( ' ' );
+				} );
+
+				classList = [
+					'col-lg-' + ( colWidths.large ? colWidths.large.values[ uid ] : baseWidths[ uid ] ),
+					'col-md-' + ( colWidths.desktop ? colWidths.desktop.values[ uid ] : baseWidths[ uid ] ),
+					'col-sm-' + ( colWidths.tablet ? colWidths.tablet.values[ uid ] : baseWidths[ uid ] ),
+					'col-xs-' + ( colWidths.phone ? colWidths.phone.values[ uid ] : baseWidths[ uid ] ),
+					uid
+				];
+
+				$( this ).addClass( classList.join( ' ' ) );
+			} );
+		}
+	} );
+
+	// After preview refreshes, and new layout items are added, add new sliders.
+	api.bind( 'preview-ready', _.defer( function() {
+		let sliderUids   = [];
+		let repeaterUids = [];
+		let repeaterContainer;
+		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
+			$( controlApi.section( 'bgtfw_header_layout' ).container[1] ).find( '.slider' ).each( function() {
+				sliderUids.push( this.dataset.name );
+			} );
+
+			repeaterContainer = controlApi.control( 'bgtfw_header_layout' ).container;
+
+			$( repeaterContainer ).find( '.repeater' ).each( function() {
+				repeaterUids.push( this.dataset.uid );
+			} );
+
+			addHeaderSliders( sliderUids, repeaterUids );
+			remHeaderSliders( sliderUids, repeaterUids );
+		}
+	} ) );
+
 	$( function() {
 		var headingsColorOutput,
 			setupPostEditLink,

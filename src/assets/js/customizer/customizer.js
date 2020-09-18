@@ -328,8 +328,8 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	}
 
 	// After partial-refresh, correct header item uids.
-	api.selectiveRefresh.bind( 'partial-content-rendered', function( response ) {
-		if ( 'bgtfw_header_layout_col_width' === response.partial.params.primarySetting ) {
+	api.bind( 'preview-ready', function() {
+		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
 			let colWidths  = JSON.parse( controlApi( 'bgtfw_header_layout_col_width' )().media ),
 				baseWidths = colWidths.base.values,
 				colUids    = Object.keys( baseWidths );

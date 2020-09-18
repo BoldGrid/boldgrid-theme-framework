@@ -762,7 +762,7 @@
 
 "@boldgrid/controls@https://github.com/BoldGrid/controls#col-width":
   version "0.15.0"
-  resolved "https://github.com/BoldGrid/controls#cd1a2adf883300ca3d28c45ff4ac901376906a16"
+  resolved "https://github.com/BoldGrid/controls#c04f26cbce514081b3054009e22b12a2fc11f76d"
   dependencies:
     "@boldgrid/components" "^2.14.0"
     "@material/switch" "^0.36.1"
@@ -3432,6 +3432,13 @@ circular-json@^0.3.1:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
   integrity sha512-UZK3NBx2Mca+b5LsG7bY183pHWt5Y1xts4P3Pz7ENTwGVnJOUWbRb3ocjvX7hx9tq/yTAdclXm9sZ38gNuem4A==
+
+cjs@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/cjs/-/cjs-0.0.11.tgz#1fe528ebda8f9ee21f81a7f7b299a8d70b14a47c"
+  integrity sha1-H+Uo69qPnuIfgaf3spmo1wsUpHw=
+  dependencies:
+    sync-channel "*"
 
 clap@^1.0.9:
   version "1.2.3"
@@ -12633,6 +12640,11 @@ symbol-observable@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
   integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
+
+sync-channel@*:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/sync-channel/-/sync-channel-0.0.6.tgz#0bad830d8f1f11b8ce612549e0d9637bb0652850"
+  integrity sha1-C62DDY8fEbjOYSVJ4Nlje7BlKFA=
 
 tabbable@^1.0.3:
   version "1.1.3"

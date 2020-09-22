@@ -930,6 +930,7 @@ class BoldGrid {
 			: 'header'
 			: 'footer';
 
+		// if the theme_mod is a json array, we need to decode it to use it as a php array.
 		$col_width_theme_mod = is_string( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' ) )
 			? json_decode( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' ), true )
 			: json_decode( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' )['media'], true );
@@ -946,11 +947,12 @@ class BoldGrid {
 			}
 		}
 
+		// if the various device sizes are not set, default to the setting for 'large' devices.
 		$column_widths = array(
-			'lg' => isset( $device_column_widths['large'] ) ? $device_column_widths['large'] : $device_column_widths['base'],
-			'md' => isset( $device_column_widths['desktop'] ) ? $device_column_widths['desktop'] : $device_column_widths['base'],
-			'sm' => isset( $device_column_widths['tablet'] ) ? $device_column_widths['tablet'] : $device_column_widths['base'],
-			'xs' => isset( $device_column_widths['phone'] ) ? $device_column_widths['phone'] : $device_column_widths['base'],
+			'lg' => $device_column_widths['large'],
+			'md' => isset( $device_column_widths['desktop'] ) ? $device_column_widths['desktop'] : $device_column_widths['large'],
+			'sm' => isset( $device_column_widths['tablet'] ) ? $device_column_widths['tablet'] : $device_column_widths['large'],
+			'xs' => isset( $device_column_widths['phone'] ) ? $device_column_widths['phone'] : $device_column_widths['large'],
 		);
 
 		return $column_widths;
@@ -992,10 +994,16 @@ class BoldGrid {
 						$col_uid = isset( $col_data['uid'] ) ? $col_data['uid'] : 'default_' . $col_data['key'];
 
 						if ( isset( $column_widths['lg'][ $col_uid ] ) ) {
+							// We have to set each of these values to either the correct device value or to the 'large' device value.
 							$lg_col = $column_widths['lg'][ $col_uid ];
-							$md_col = $column_widths['md'][ $col_uid ];
-							$sm_col = $column_widths['sm'][ $col_uid ];
-							$xs_col = $column_widths['xs'][ $col_uid ];
+							$md_col = isset( $column_widths['md'][ $col_uid ] ) ? $column_widths['md'][ $col_uid ] : $column_widths['lg'][ $col_uid ];
+							$sm_col = isset( $column_widths['sm'][ $col_uid ] ) ? $column_widths['sm'][ $col_uid ] : $column_widths['lg'][ $col_uid ];
+							$xs_col = isset( $column_widths['xs'][ $col_uid ] ) ? $column_widths['xs'][ $col_uid ] : $column_widths['lg'][ $col_uid ];
+						} else {
+							// This ensures that if there are not specified column widths for this uid, that the defaults are used.
+							$lg_col = $md_col;
+							$sm_col = 12;
+							$xs_col = 12;
 						}
 
 						// Adds support for 5-6 col.

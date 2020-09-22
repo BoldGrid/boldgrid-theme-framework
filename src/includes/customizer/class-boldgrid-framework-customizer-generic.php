@@ -371,6 +371,10 @@ class Boldgrid_Framework_Customizer_Generic {
 	/**
 	 * Get Column Defaults
 	 *
+	 * These are the default column controls that will
+	 * be added when none already exist in the theme mods,
+	 * such as when loading starter content in the customizer.
+	 *
 	 * @since 2.2.3
 	 *
 	 * @return array Array of default header columns
@@ -443,13 +447,17 @@ class Boldgrid_Framework_Customizer_Generic {
 			],
 		];
 
+		// When loading starter content, the bgtfw_header_layout theme mod is not populated yet, so we have to use the default_layout array.
 		$header_layout = get_theme_mod( 'bgtfw_header_layout', false ) ? get_theme_mod( 'bgtfw_header_layout', false ) : $default_layout;
 
 		$sliders = array();
 
+		// We have to loop through the items in the header layout to generate the sliders.
 		foreach ( $header_layout as $section_index => $section ) {
+			// Since the sections are indexed starting at 0, we add 1 to be more human readable.
 			$section_label = (string) ( $section_index + 1 );
 			foreach ( $section['items'] as $item_index => $item ) {
+				// Widget areas are keyed as 'sidebar' but we want those to display as 'Widget Area' instead.
 				if ( 'sidebar' === $item['key'] ) {
 					$label = 'Row ' . $section_label . ' Widget Area';
 				} else {

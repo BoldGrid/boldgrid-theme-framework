@@ -296,10 +296,10 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			}
 		} );
 
-		if ( 0 < uidsToAdd.length ) {
-			if ( 0 === $( sliderGroup ).find( '.customize-control-notifications-container' ).length ) {
-				$( sliderGroup ).prepend( notification );
-			}
+		// If there are uidsToAdd and no notification added, then we have to add the notification to the sliderGroup.
+		if ( 0 < uidsToAdd.length && 0 === $( sliderGroup ).find( '.customize-control-notifications-container' ).length ) {
+			$( sliderGroup ).prepend( notification );
+
 		}
 	}
 
@@ -338,11 +338,14 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			$( '.bgtfw-header .boldgrid-section .row .col-lg-' ).each( function( itemIndex ) {
 				let uid = colUids[ itemIndex ],
 					classList;
+
+				// This removes the empty column widths.
 				$( this ).removeClass( 'col-lg- col-md-6 col-sm- col-xs-' );
 				$( this ).removeClass ( function( index, className ) {
 					return ( className.match( /default_.*/g ) || [] ).join( ' ' );
 				} );
 
+				// If the different values are not set, then use the baseWidths value ( which is from the 'large' device ).
 				classList = [
 					'col-lg-' + ( colWidths.large ? colWidths.large.values[ uid ] : baseWidths[ uid ] ),
 					'col-md-' + ( colWidths.desktop ? colWidths.desktop.values[ uid ] : baseWidths[ uid ] ),
@@ -356,7 +359,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		}
 	} );
 
-	// After preview refreshes, and new layout items are added, add new sliders.
+	// After preview refreshes, and new layout items are added, add new slider uids.
 	api.bind( 'preview-ready', _.defer( function() {
 		let sliderUids   = [];
 		let repeaterUids = [];

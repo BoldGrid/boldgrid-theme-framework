@@ -378,7 +378,7 @@ class Boldgrid_Framework_Customizer_Generic {
 	public function get_column_defaults() {
 		$defaults = array(
 			[
-				'media' => [ 'base' ],
+				'media' => [ 'large', 'desktop' ],
 				'unit' => 'col',
 				'isLinked' => false,
 				'values' => array(

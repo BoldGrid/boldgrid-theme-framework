@@ -2034,7 +2034,6 @@ return array(
 						'Headers have a maximum of 12 columns per row. If the total columns used by the items in a row exceed 12, they will be roll over to a new row.',
 						'bgtfw'
 					),
-
 				),
 				'slider' => array(
 					'col' => array(

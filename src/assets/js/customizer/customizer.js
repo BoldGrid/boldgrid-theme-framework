@@ -297,7 +297,9 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		} );
 
 		if ( 0 < uidsToAdd.length ) {
-			$( sliderGroup ).prepend( notification );
+			if ( 0 === $( sliderGroup ).find( '.customize-control-notifications-container' ).length ) {
+				$( sliderGroup ).prepend( notification );
+			}
 		}
 	}
 
@@ -331,7 +333,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	api.bind( 'preview-ready', function() {
 		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
 			let colWidths  = JSON.parse( controlApi( 'bgtfw_header_layout_col_width' )().media ),
-				baseWidths = colWidths.base.values,
+				baseWidths = colWidths.large.values,
 				colUids    = Object.keys( baseWidths );
 			$( '.bgtfw-header .boldgrid-section .row .col-lg-' ).each( function( itemIndex ) {
 				let uid = colUids[ itemIndex ],

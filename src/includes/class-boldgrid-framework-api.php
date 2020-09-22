@@ -947,10 +947,10 @@ class BoldGrid {
 		}
 
 		$column_widths = array(
-			'lg' => isset( $device_column_widths['large'] ) ? $device_column_widths['large'] : $device_column_widths['base'],
-			'md' => isset( $device_column_widths['desktop'] ) ? $device_column_widths['desktop'] : $device_column_widths['base'],
-			'sm' => isset( $device_column_widths['tablet'] ) ? $device_column_widths['tablet'] : $device_column_widths['base'],
-			'xs' => isset( $device_column_widths['phone'] ) ? $device_column_widths['phone'] : $device_column_widths['base'],
+			'lg' => $device_column_widths['large'],
+			'md' => isset( $device_column_widths['desktop'] ) ? $device_column_widths['desktop'] : $device_column_widths['large'],
+			'sm' => isset( $device_column_widths['tablet'] ) ? $device_column_widths['tablet'] : $device_column_widths['large'],
+			'xs' => isset( $device_column_widths['phone'] ) ? $device_column_widths['phone'] : $device_column_widths['large'],
 		);
 
 		return $column_widths;
@@ -969,6 +969,8 @@ class BoldGrid {
 		$markup        = '';
 		$column_widths = self::get_column_widths( $theme_mod );
 		$theme_mod     = self::create_uids( $theme_mod );
+
+		error_log( json_encode( $column_widths ) );
 
 		if ( ! empty( $theme_mod ) ) {
 			foreach ( $theme_mod as $section_index => $section ) {
@@ -993,9 +995,13 @@ class BoldGrid {
 
 						if ( isset( $column_widths['lg'][ $col_uid ] ) ) {
 							$lg_col = $column_widths['lg'][ $col_uid ];
-							$md_col = $column_widths['md'][ $col_uid ];
-							$sm_col = $column_widths['sm'][ $col_uid ];
-							$xs_col = $column_widths['xs'][ $col_uid ];
+							$md_col = isset( $column_widths['md'][ $col_uid ] ) ? $column_widths['md'][ $col_uid ] : $column_widths['lg'][ $col_uid ];
+							$sm_col = isset( $column_widths['sm'][ $col_uid ] ) ? $column_widths['sm'][ $col_uid ] : $column_widths['lg'][ $col_uid ];
+							$xs_col = isset( $column_widths['xs'][ $col_uid ] ) ? $column_widths['xs'][ $col_uid ] : $column_widths['lg'][ $col_uid ];
+						} else {
+							$lg_col = $md_col;
+							$sm_col = 12;
+							$xs_col = 12;
 						}
 
 						// Adds support for 5-6 col.

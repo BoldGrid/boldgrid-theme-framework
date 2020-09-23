@@ -1,6 +1,6 @@
 {
   "name": "boldgrid-theme-framework",
-  "version": "2.3.0-rc.3",
+  "version": "2.3.0-rc.2",
   "description": "BoldGrid Theme Framework",
   "main": "index.js",
   "engines": {
@@ -60,7 +60,7 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.0.0-beta.47",
-    "@boldgrid/controls": "https://github.com/BoldGrid/controls#col-width",
+    "@boldgrid/controls": "https://github.com/BoldGrid/controls#v0.16.0-beta",
     "PHP_CodeSniffer": "https://github.com/squizlabs/PHP_CodeSniffer/#2.9",
     "WordPress-Coding-Standards": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards#0.10.0",
     "archiver": "^3.0.0",

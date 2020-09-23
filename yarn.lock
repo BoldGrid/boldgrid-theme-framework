@@ -762,7 +762,7 @@
 
 "@boldgrid/controls@https://github.com/BoldGrid/controls#col-width":
   version "0.15.0"
-  resolved "https://github.com/BoldGrid/controls#c04f26cbce514081b3054009e22b12a2fc11f76d"
+  resolved "https://github.com/BoldGrid/controls#c3e820a1f3cbe8c7aedc6765af5b5fdfd94a45bc"
   dependencies:
     "@boldgrid/components" "^2.14.0"
     "@material/switch" "^0.36.1"

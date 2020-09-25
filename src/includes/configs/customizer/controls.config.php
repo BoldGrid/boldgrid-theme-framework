@@ -2017,7 +2017,7 @@ return array(
 		'settings' => 'bgtfw_header_layout_col_width',
 		'transport' => 'refresh',
 		'label' => __( 'Header Column Widths', 'bgtfw' ),
-		'priority' => 4,
+		'priority' => 8,
 		'section' => 'bgtfw_header_layout',
 		'type' => 'kirki-generic',
 		'default' => $bgtfw_generic->get_column_defaults(),
@@ -2031,7 +2031,7 @@ return array(
 					'selectors' => array( '.site-header header row' ),
 					'sliders' => $bgtfw_generic->get_header_columns(),
 					'description' => __(
-						'Headers have a maximum of 12 columns per row. If the total columns used by the items in a row exceed 12, they will be roll over to a new row.',
+						'Headers have a maximum of 12 columns per row. If the total columns used by the items in a row exceed 12, they will be rolled over to a new row.',
 						'bgtfw'
 					),
 				),

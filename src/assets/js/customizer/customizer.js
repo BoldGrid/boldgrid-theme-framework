@@ -284,7 +284,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				<div class="customize-control-notifications-container">
 					<ul>
 						<li class="notice notice-bgtfw-header-layout-change" data-code="bgtfw-header-layout-change" data-type="warning">
-							<div class="notification-message">You must publish changes, and refresh the customizer before you can adjust the column width of your newly added item</div>
+							<div class="notification-message">The Customizer must be refreshed before you can adjust the column width. We recommend using the Customizer’s Save Draft option, then refresh the page.</div>
 						</li>
 					</ul>
 				</div>`,
@@ -682,6 +682,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
 		new ToggleValue( 'bgtfw_blog_page_container', '.blog .site-content, .archive .site-content', 'container', calc );
+
+		api( 'bgtfw_header_layout_tabs', function( control ) {
+			$( controlApi.control( 'bgtfw_header_layout_tabs' ).container ).find( '.bgtfw-tab' ).on( 'click', function() {
+				if ( '#customize-control-bgtfw_sticky_header_layout' === this.dataset.tab ) {
+					controlApi.control( 'bgtfw_header_layout_col_width' ).deactivate();
+				} else {
+					controlApi.control( 'bgtfw_header_layout_col_width' ).activate();
+				}
+			} );
+		} );
 		api( 'bgtfw_fixed_header', value => value.bind( to => {
 			document.body.className = document.body.className.replace( 'header-slide-in', '' );
 			document.body.className = document.body.className.replace( 'header-fixed', '' );

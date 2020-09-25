@@ -169,7 +169,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					<# } ); #>
 				</div>
 				<div id="sortable-{{ data.id }}-add-section" class="bgtfw-add-new-section">
-					<a class="button-secondary" href="#"><i class="fa fa-plus" aria-hidden="true"></i><?php esc_html_e( 'Add Section', 'bgtfw' ); ?></a>
+					<a class="button-secondary" href="#"><i class="fa fa-plus" aria-hidden="true"></i><?php esc_html_e( 'Add Row', 'bgtfw' ); ?></a>
 				</div>
 			</div>
 			<?php

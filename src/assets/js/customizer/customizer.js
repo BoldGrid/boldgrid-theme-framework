@@ -685,7 +685,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
 		new ToggleValue( 'bgtfw_blog_page_container', '.blog .site-content, .archive .site-content', 'container', calc );
 
-		api( 'bgtfw_header_layout_tabs', function( control ) {
+		api( 'bgtfw_header_layout_tabs', function() {
 			$( controlApi.control( 'bgtfw_header_layout_tabs' ).container ).find( '.bgtfw-tab' ).on( 'click', function() {
 				if ( '#customize-control-bgtfw_sticky_header_layout' === this.dataset.tab ) {
 					controlApi.control( 'bgtfw_header_layout_col_width' ).deactivate();

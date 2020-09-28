@@ -335,26 +335,28 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			let colWidths  = JSON.parse( controlApi( 'bgtfw_header_layout_col_width' )().media ),
 				baseWidths = colWidths.large.values,
 				colUids    = Object.keys( baseWidths );
-			$( '.bgtfw-header .boldgrid-section .row .col-lg-' ).each( function( itemIndex ) {
+
+			$( '.bgtfw-header .boldgrid-section .row > div' ).each( function( itemIndex ) {
 				let uid = colUids[ itemIndex ],
 					classList;
-
-				// This removes the empty column widths.
-				$( this ).removeClass( 'col-lg- col-md-6 col-sm- col-xs-' );
-				$( this ).removeClass ( function( index, className ) {
-					return ( className.match( /default_.*/g ) || [] ).join( ' ' );
-				} );
 
 				// If the different values are not set, then use the baseWidths value ( which is from the 'large' device ).
 				classList = [
 					'col-lg-' + ( colWidths.large ? colWidths.large.values[ uid ] : baseWidths[ uid ] ),
 					'col-md-' + ( colWidths.desktop ? colWidths.desktop.values[ uid ] : baseWidths[ uid ] ),
 					'col-sm-' + ( colWidths.tablet ? colWidths.tablet.values[ uid ] : baseWidths[ uid ] ),
-					'col-xs-' + ( colWidths.phone ? colWidths.phone.values[ uid ] : baseWidths[ uid ] ),
-					uid
+					'col-xs-' + ( colWidths.phone ? colWidths.phone.values[ uid ] : baseWidths[ uid ] )
 				];
 
+				uid = $( this ).hasClass( 'h00' ) ? 'h00' : uid;
+				uid = $( this ).hasClass( 'h01' ) ? 'h01' : uid;
+
+				// This removes the empty column widths.
+				$( this ).removeClass();
+
 				$( this ).addClass( classList.join( ' ' ) );
+
+				$( this ).addClass( uid );
 			} );
 		}
 	} );

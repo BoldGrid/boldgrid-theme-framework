@@ -42,13 +42,18 @@
 // Prevent interaction with panels until Customizer fully loads.
 body.pre-initial-refresh #customize-theme-controls {
 	cursor: wait;
-	
+
 	li.accordion-section {
 		pointer-events: none;
 	}
-	
+
 	h3:after,
 	h3.accordion-section-title {
 		color: #ccc;
 	}
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+   opacity: 1;
 }

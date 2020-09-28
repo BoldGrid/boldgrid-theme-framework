@@ -284,7 +284,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				<div class="customize-control-notifications-container">
 					<ul>
 						<li class="notice notice-bgtfw-header-layout-change" data-code="bgtfw-header-layout-change" data-type="warning">
-							<div class="notification-message">You must publish changes, and refresh the customizer before you can adjust the column width of your newly added item</div>
+							<div class="notification-message">The Customizer must be refreshed before you can adjust the column width. We recommend using the Customizer’s Save Draft option, then refresh the page.</div>
 						</li>
 					</ul>
 				</div>`,
@@ -335,26 +335,28 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			let colWidths  = JSON.parse( controlApi( 'bgtfw_header_layout_col_width' )().media ),
 				baseWidths = colWidths.large.values,
 				colUids    = Object.keys( baseWidths );
-			$( '.bgtfw-header .boldgrid-section .row .col-lg-' ).each( function( itemIndex ) {
+
+			$( '.bgtfw-header .boldgrid-section .row > div' ).each( function( itemIndex ) {
 				let uid = colUids[ itemIndex ],
 					classList;
-
-				// This removes the empty column widths.
-				$( this ).removeClass( 'col-lg- col-md-6 col-sm- col-xs-' );
-				$( this ).removeClass ( function( index, className ) {
-					return ( className.match( /default_.*/g ) || [] ).join( ' ' );
-				} );
 
 				// If the different values are not set, then use the baseWidths value ( which is from the 'large' device ).
 				classList = [
 					'col-lg-' + ( colWidths.large ? colWidths.large.values[ uid ] : baseWidths[ uid ] ),
 					'col-md-' + ( colWidths.desktop ? colWidths.desktop.values[ uid ] : baseWidths[ uid ] ),
 					'col-sm-' + ( colWidths.tablet ? colWidths.tablet.values[ uid ] : baseWidths[ uid ] ),
-					'col-xs-' + ( colWidths.phone ? colWidths.phone.values[ uid ] : baseWidths[ uid ] ),
-					uid
+					'col-xs-' + ( colWidths.phone ? colWidths.phone.values[ uid ] : baseWidths[ uid ] )
 				];
 
+				uid = $( this ).hasClass( 'h00' ) ? 'h00' : uid;
+				uid = $( this ).hasClass( 'h01' ) ? 'h01' : uid;
+
+				// This removes the empty column widths.
+				$( this ).removeClass();
+
 				$( this ).addClass( classList.join( ' ' ) );
+
+				$( this ).addClass( uid );
 			} );
 		}
 	} );
@@ -682,6 +684,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
 		new ToggleValue( 'bgtfw_blog_page_container', '.blog .site-content, .archive .site-content', 'container', calc );
+
+		api( 'bgtfw_header_layout_tabs', function() {
+			$( controlApi.control( 'bgtfw_header_layout_tabs' ).container ).find( '.bgtfw-tab' ).on( 'click', function() {
+				if ( '#customize-control-bgtfw_sticky_header_layout' === this.dataset.tab ) {
+					controlApi.control( 'bgtfw_header_layout_col_width' ).deactivate();
+				} else {
+					controlApi.control( 'bgtfw_header_layout_col_width' ).activate();
+				}
+			} );
+		} );
 		api( 'bgtfw_fixed_header', value => value.bind( to => {
 			document.body.className = document.body.className.replace( 'header-slide-in', '' );
 			document.body.className = document.body.className.replace( 'header-fixed', '' );

@@ -1002,3 +1002,11 @@
 .boldgrid-pattern-selection-heading .button.remove-selected-pattern {
 	margin-left: 15px;
 }
+
+/*--------------------------------------------------------------
+# Column Width Controls
+--------------------------------------------------------------*/
+
+.boldgrid-control.column-widths-control .device input:checked ~ .relationship {
+	display: none;
+}

@@ -26,6 +26,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 1.7.6 ###
+* Update: Optimized framework for v1 themes to prevent unneccessary loading of the framework.
+
 ### 1.7.5 ###
 * Update: Corrected argument order of implode statements to comply with PHP 7.4 changes.
 

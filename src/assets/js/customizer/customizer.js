@@ -332,9 +332,11 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	// After partial-refresh, correct header item uids.
 	api.bind( 'preview-ready', function() {
 		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
-			let colWidths  = JSON.parse( controlApi( 'bgtfw_header_layout_col_width' )().media ),
-				baseWidths = colWidths.large.values,
-				colUids    = Object.keys( baseWidths );
+			let colWidths,
+				colUids,
+				themeMod = controlApi( 'bgtfw_header_layout_col_width' )().media;
+			colWidths = 'string' === typeof themeMod ? JSON.parse( themeMod ) : themeMod ;
+			colUids = Object.keys( colWidths.large.values );
 
 			$( '.bgtfw-header .boldgrid-section .row > div' ).each( function( itemIndex ) {
 				let uid = colUids[ itemIndex ],
@@ -342,10 +344,10 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 				// If the different values are not set, then use the baseWidths value ( which is from the 'large' device ).
 				classList = [
-					'col-lg-' + ( colWidths.large ? colWidths.large.values[ uid ] : baseWidths[ uid ] ),
-					'col-md-' + ( colWidths.desktop ? colWidths.desktop.values[ uid ] : baseWidths[ uid ] ),
-					'col-sm-' + ( colWidths.tablet ? colWidths.tablet.values[ uid ] : baseWidths[ uid ] ),
-					'col-xs-' + ( colWidths.phone ? colWidths.phone.values[ uid ] : baseWidths[ uid ] )
+					'col-lg-' + ( colWidths.large.values[uid] ? colWidths.large.values[ uid ] : 6 ),
+					'col-md-' + ( colWidths.desktop.values[uid] ? colWidths.desktop.values[ uid ] : 6 ),
+					'col-sm-' + ( colWidths.tablet.values[uid] ? colWidths.tablet.values[ uid ] : 12 ),
+					'col-xs-' + ( colWidths.phone.values[uid] ? colWidths.phone.values[ uid ] : 12 )
 				];
 
 				uid = $( this ).hasClass( 'h00' ) ? 'h00' : uid;

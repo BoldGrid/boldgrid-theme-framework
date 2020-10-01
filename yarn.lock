@@ -760,9 +760,9 @@
   resolved "https://registry.yarnpkg.com/@boldgrid/components/-/components-2.16.2.tgz#8a0fcac9d14093fb72bca09bb9e72d8ff9033c1a"
   integrity sha512-SAvoySS7JwX9S63sJW83D9A8LG2P67IJyrVtLDseeZnQ4eoxOBTzU5I5W2kZObse4hhjlgwqBUINooXiCmICSg==
 
-"@boldgrid/controls@https://github.com/BoldGrid/controls#v0.16.0-beta3":
+"@boldgrid/controls@https://github.com/BoldGrid/controls#dev":
   version "0.15.0"
-  resolved "https://github.com/BoldGrid/controls#6dc38a204298a625de91c1492b904157c35575c5"
+  resolved "https://github.com/BoldGrid/controls#6e665cab07f636217b6b559fb72aacc6a171f8d4"
   dependencies:
     "@boldgrid/components" "^2.14.0"
     "@material/switch" "^0.36.1"

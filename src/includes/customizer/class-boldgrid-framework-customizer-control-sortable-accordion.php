@@ -124,7 +124,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				<div id="sortable-{{ data.id }}">
 					<# _.each( data.value, function( repeaters, sortable ) { #>
 						<div id="sortable-{{ sortable }}-wrapper" class="sortable-wrapper">
-							<span class="sortable-title"><span class="title title-empty"><em><?php esc_html_e( 'Empty Section', 'bgtfw' ) ?></em></span><span class="dashicons dashicons-trash"></span></span>
+							<span class="sortable-title"><span class="title title-empty"><em><?php esc_html_e( 'Empty Row', 'bgtfw' ) ?></em></span><span class="dashicons dashicons-trash"></span></span>
 							<div class="sortable-accordion-content">
 								<div class="sortable-section-controls">
 									<div class="bgtfw-container-control">

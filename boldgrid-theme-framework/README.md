@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.3
+* **Tested up to:** 5.5
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,12 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 1.7.7 ###
+* Bug Fix: Unable to set Featured Images for Blog Posts in V1 themes [#290](https://github.com/BoldGrid/boldgrid-theme-framework/issues/290)
+
+### 1.7.6 ###
+* Update: Optimized framework for v1 themes to prevent unneccessary loading of the framework.
 
 ### 1.7.5 ###
 * Update: Corrected argument order of implode statements to comply with PHP 7.4 changes.

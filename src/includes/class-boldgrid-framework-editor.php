@@ -56,6 +56,7 @@ class Boldgrid_Framework_Editor {
 			'page',
 			'post',
 			'bg_block',
+			'crio_page_header'
 		);
 
 		if ( ! empty( $pagenow ) && ! in_array( $pagenow, $valid_pages ) ) {

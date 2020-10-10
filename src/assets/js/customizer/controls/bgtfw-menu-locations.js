@@ -15,6 +15,21 @@ export default {
 				'bgtfw_footer_layout'
 			];
 
+			// Update menu location controls displayed throughout the various nav menu sections/panels.
+			let customMenus = [];
+			Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
+				let isActive = false;
+				if ( /.*-menu_\d+/.test( menu ) ) {
+					isActive = true;
+					api.controlConstructor.nav_menu_location.prototype.updateMenuLocations( menu, isActive );
+					customMenus.push( menu );
+				}
+			} );
+			let menus = api.control( 'bgtfw_header_layout' ).getConnectedMenus()
+				.map( menu => menu.replace( 'boldgrid_menu_', '' ) );
+			menus = menus.concat( customMenus );
+			api.controlConstructor.nav_menu_location.prototype.updateSectionDescription( menus );
+
 			// Bind the menu locations when these controls change the active menu locations used.
 			dynamicControls.forEach( ctrl => {
 				api( ctrl, setting => {
@@ -32,13 +47,15 @@ export default {
 							// Collect the dynamic controls connected menus.
 							let menus = api.control( 'bgtfw_header_layout' ).getConnectedMenus()
 								.map( menu => menu.replace( 'boldgrid_menu_', '' ) );
-
 							// Update section descriptions with the correct location counts.
 							api.controlConstructor.nav_menu_location.prototype.updateSectionDescription( menus );
 
 							// Update menu location controls displayed throughout the various nav menu sections/panels.
 							Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
 								let isActive = menus.includes( menu );
+								if ( /.*-menu_\d+/.test( menu ) ) {
+									isActive = true;
+								}
 								api.controlConstructor.nav_menu_location.prototype.updateMenuLocations( menu, isActive );
 							} );
 						} );
@@ -58,8 +75,15 @@ export default {
 			.map( menu => menu.replace( 'boldgrid_menu_', 'nav_menu_locations[' ) + ']' );
 
 		// This checks if the control matches any of our connected menus set in dynamic controls.
-		let isActive = () => menus.includes( this.id ) ? true : false;
+		let isActive;
 
+		if ( /.*-menu_\d+/.test( this.id ) ) {
+			isActive = function() {
+				return true;
+			};
+		} else {
+			isActive = () => menus.includes( this.id ) ? true : false;
+		}
 		let panel = api.panel( `bgtfw_menu_location_${ locationId }` );
 
 		// Force the active panel state to read JS state set with isActive() and ignore server response.
@@ -76,6 +100,13 @@ export default {
 		// Set the initial active state for control.
 		this.active.set( isActive() );
 
+		let customMenus = [];
+		Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
+			if ( /.*-menu_\d+/.test( menu ) ) {
+				customMenus.push( menu );
+			}
+		} );
+		menus = menus.concat( customMenus );
 		// Update section descriptions counts.
 		this.updateSectionDescription( menus );
 

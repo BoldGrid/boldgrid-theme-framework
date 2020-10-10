@@ -350,6 +350,8 @@ class Boldgrid_Framework_Menu {
 				}
 			}
 
+			$locations = apply_filters( 'boldgrid_custom_menu_locations', $locations );
+
 			if ( is_array( $this->configs['menu']['locations'] ) && ! empty( $locations ) ) {
 				$menus = array_intersect_key( $this->configs['menu']['locations'], array_flip( $locations ) );
 			}

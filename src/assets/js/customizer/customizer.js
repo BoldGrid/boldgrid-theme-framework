@@ -800,7 +800,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		// Setup menu controls.
 		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
-
 			if ( props.theme_location ) {
 
 				// Setup current menu items.

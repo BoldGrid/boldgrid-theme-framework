@@ -106,8 +106,8 @@ class Boldgrid_Framework_Customizer_Typography {
 
 		$settings = self::$typography_settings;
 		foreach ( $settings as &$setting ) {
-			$setting['value'] = get_theme_mod( $setting['settings'],
-				$configs[ $setting['settings'] ]['default'] );
+			$default = isset( $configs [ $setting['settings'] ] ) ? $configs [ $setting['settings'] ] : $configs [ 'bgtfw_menu_typography_main' ];
+			$setting['value'] = get_theme_mod( $setting['settings'], $default );
 		}
 
 		return $settings;
@@ -129,10 +129,11 @@ class Boldgrid_Framework_Customizer_Typography {
 		$css .= ".bg-font-family-menu { font-family: $menu_font_family !important }";
 
 		foreach ( $this->get_typography_settings() as $typography_setting ) {
-			if ( preg_match( '/\s/', $typography_setting['value']['font-family'] ) ) {
-				$typography_setting['value']['font-family'] = '"' . $typography_setting['value']['font-family'] . '"';
+			$font_family = isset( $typography_setting['value']['font-family'] ) ? $typography_setting['value']['font-family'] : $typography_setting['value']['default']['font-family'];
+			if ( preg_match( '/\s/', $font_family ) ) {
+				$font_family = '"' . $font_family . '"';
 			}
-			$css .= ".{$typography_setting['class_name']} { font-family: {$typography_setting['value']['font-family']} !important }";
+			$css .= ".{$typography_setting['class_name']} { font-family: {$font_family} !important }";
 		}
 
 		return $css;

@@ -106,7 +106,7 @@ class Boldgrid_Framework_Customizer_Typography {
 
 		$settings = self::$typography_settings;
 		foreach ( $settings as &$setting ) {
-			$default = isset( $configs [ $setting['settings'] ] ) ? $configs [ $setting['settings'] ] : $configs [ 'bgtfw_menu_typography_main' ];
+			$default = isset( $configs [ $setting['settings'] ] ) ? $configs [ $setting['settings'] ] : $configs ['bgtfw_menu_typography_main'];
 			$setting['value'] = get_theme_mod( $setting['settings'], $default );
 		}
 

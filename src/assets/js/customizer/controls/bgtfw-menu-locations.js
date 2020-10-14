@@ -19,7 +19,7 @@ export default {
 			let customMenus = [];
 			Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
 				let isActive = false;
-				if ( /.*-menu_\d+/.test( menu ) ) {
+				if ( /.*_\d+/.test( menu ) ) {
 					isActive = true;
 					api.controlConstructor.nav_menu_location.prototype.updateMenuLocations( menu, isActive );
 					customMenus.push( menu );
@@ -53,7 +53,7 @@ export default {
 							// Update menu location controls displayed throughout the various nav menu sections/panels.
 							Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
 								let isActive = menus.includes( menu );
-								if ( /.*-menu_\d+/.test( menu ) ) {
+								if ( /.*_\d+/.test( menu ) ) {
 									isActive = true;
 								}
 								api.controlConstructor.nav_menu_location.prototype.updateMenuLocations( menu, isActive );
@@ -77,7 +77,7 @@ export default {
 		// This checks if the control matches any of our connected menus set in dynamic controls.
 		let isActive;
 
-		if ( /.*-menu_\d+/.test( this.id ) ) {
+		if ( /.*_\d+/.test( this.id ) ) {
 			isActive = function() {
 				return true;
 			};
@@ -102,7 +102,7 @@ export default {
 
 		let customMenus = [];
 		Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
-			if ( /.*-menu_\d+/.test( menu ) ) {
+			if ( /.*_\d+/.test( menu ) ) {
 				customMenus.push( menu );
 			}
 		} );

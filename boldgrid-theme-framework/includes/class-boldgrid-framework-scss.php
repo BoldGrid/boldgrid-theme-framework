@@ -275,7 +275,7 @@ class Boldgrid_Framework_SCSS {
 		$fail_safe_expired = ! $fail_safe_compile || ( time() > $fail_safe_compile + 3600 );
 
 		// If the color pallete or buttons.css file is missing, force recompile.
-		if ( ( ! file_exists( $buttons_css_file ) || ! file_exists( $css_file ) ) && $fail_safe_expired && false === $already_compiling ) {
+		if ( ( ! file_exists( $buttons_css_file ) && false === $already_compiling ) || ( ! file_exists( $css_file ) && $fail_safe_expired && false === $already_compiling ) ) {
 			set_theme_mod( 'fail_safe_compile', time() );
 			$force_recompile[ $site_mode ] = true;
 		}

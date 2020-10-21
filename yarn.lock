@@ -11773,7 +11773,7 @@ scss-tokenizer@^0.2.3:
 
 "scssphp@https://github.com/boldgrid/scssphp.git#master":
   version "0.0.0"
-  resolved "https://github.com/boldgrid/scssphp.git#2ff441725e43ae6923f80e451e95763500498a75"
+  resolved "https://github.com/boldgrid/scssphp.git#c8f11fbb5389821102ca304fc71901aa3a48982b"
 
 seek-bzip@^1.0.3:
   version "1.0.5"

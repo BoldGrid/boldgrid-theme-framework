@@ -11771,9 +11771,9 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-"scssphp@https://github.com/timelsass/scssphp.git#master":
+"scssphp@https://github.com/boldgrid/scssphp.git#master":
   version "0.0.0"
-  resolved "https://github.com/timelsass/scssphp.git#9f1e5ee616c1358442ff47f95e9585573ef2bb0e"
+  resolved "https://github.com/boldgrid/scssphp.git#2ff441725e43ae6923f80e451e95763500498a75"
 
 seek-bzip@^1.0.3:
   version "1.0.5"

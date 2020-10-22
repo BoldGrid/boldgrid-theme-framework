@@ -135,7 +135,7 @@
     "@wordpress/dom-ready": "^2.0.2",
     "@wordpress/hooks": "^2.2.0",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",
-    "animate.css": "latest",
+    "animate.css": "3.7.2",
     "bootstrap-sass": "~3.4.1",
     "color-js": "^1.0.1",
     "css-vars-ponyfill": "^1.17.2",

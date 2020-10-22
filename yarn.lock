@@ -6063,13 +6063,13 @@ global-prefix@^1.0.1:
     is-windows "^1.0.1"
     which "^1.2.14"
 
-global@^4.3.2, global@~4.3.0:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/global/-/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
-  integrity sha1-52mJJopsdMOJCLEwWxD8DjlOnQ8=
+global@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/global/-/global-4.4.0.tgz#3e7b105179006a323ed71aafca3e9c57a5cc6406"
+  integrity sha512-wv/LAoHdRE3BeTGz53FAamhGlPLhlssK45usmGFThIi4XqnBmjKQ16u+RNbP7WvigRZDxUsM0J3gcQ5yicaL0w==
   dependencies:
     min-document "^2.19.0"
-    process "~0.5.1"
+    process "^0.11.10"
 
 globals@^11.0.1, globals@^11.1.0:
   version "11.7.0"
@@ -7832,15 +7832,14 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jarallax@^1.10.7:
-  version "1.10.7"
-  resolved "https://registry.yarnpkg.com/jarallax/-/jarallax-1.10.7.tgz#b9e31392c705cb3ea21113d2b2c98fab8ff6b526"
-  integrity sha512-eIRVwNRLiWdEWkYvU3gwxOeZPHNeXnwmT9FqUb9wO8oQOGZPm/hDJUs5Z9FXYsK60Ivoj5WXLozx4SXaMlvfAg==
+jarallax@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/jarallax/-/jarallax-1.12.1.tgz#5f8c539f54244264c7a53ade11adf49c0634dd99"
+  integrity sha512-8AKPKjLz8JcjZFwdMMbf3W7QG9BTzB3rN0k47Xx+tWpkPeGgHodxEUB2OGsj3eOzLCpSvolfW0PtwTp7i3CrhA==
   dependencies:
-    global "^4.3.2"
+    global "^4.4.0"
     lite-ready "^1.0.4"
-    rafl "^1.2.2"
-    video-worker "^1.1.6"
+    video-worker "^1.1.8"
 
 jpegtran-bin@^3.0.0:
   version "3.2.0"
@@ -10802,11 +10801,6 @@ process@^0.11.10:
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
 
-process@~0.5.1:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/process/-/process-0.5.2.tgz#1638d8a8e34c2f440a91db95ab9aeb677fc185cf"
-  integrity sha1-FjjYqONML0QKkduVq5rrZ3/Bhc8=
-
 progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
@@ -10972,13 +10966,6 @@ querystringify@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.0.tgz#7ded8dfbf7879dcc60d0a644ac6754b283ad17ef"
   integrity sha512-sluvZZ1YiTLD5jsqZcDmFyV2EwToyXZBfpoVOmktMmW+VEnhgakFHnasVph65fOjGPTWN0Nw3+XQaSeMayr0kg==
-
-rafl@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/rafl/-/rafl-1.2.2.tgz#fe930f758211020d47e38815f5196a8be4150740"
-  integrity sha1-/pMPdYIRAg1H44gV9Rlqi+QVB0A=
-  dependencies:
-    global "~4.3.0"
 
 randomatic@^3.0.0:
   version "3.0.0"
@@ -13366,12 +13353,12 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-video-worker@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/video-worker/-/video-worker-1.1.6.tgz#a0bfd63f386c7632ca4a6dfdeac430797c752b40"
-  integrity sha512-l72nF3wE3V8VuJOvg9zSonxe31udDrvAzT0bwU/GS+smxc9UQqZGBe7b1tyj/vBsagQusXVx0sEw6FwFD1GdZQ==
+video-worker@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/video-worker/-/video-worker-1.1.8.tgz#9b7e1a2a5e72a3d13c5bd70150f94362d45dcfe7"
+  integrity sha512-eUDefy2ZrY7TgAepGoHVS3uh7MDPsPD2Ug5gD7I+bBJnqAXf9Cp9GM2aOnIS3ZrDDeyRq2wbhFr/x1MsCKun/w==
   dependencies:
-    global "^4.3.2"
+    global "^4.4.0"
 
 vinyl-assign@^1.0.1:
   version "1.2.1"

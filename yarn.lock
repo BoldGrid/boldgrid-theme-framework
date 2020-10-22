@@ -648,12 +648,12 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0":
-  version "7.1.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.1.5.tgz#4170907641cf1f61508f563ece3725150cc6fe39"
-  integrity sha512-xKnPpXG/pvK1B90JkwwxSGii90rQGKtzcMt2gI5G6+M0REXaq6rOHsGC2ay6/d0Uje7zzvSzjEzfR3ENhFlrfA==
+"@babel/runtime@^7.9.2":
+  version "7.9.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.6.tgz#a9102eb5cadedf3f31d08a9ecf294af7827ea29f"
+  integrity sha512-64AF1xY3OAkFHqOb9s4jpgk1Mm5vDZ4L3acHvAml+53nO1XbXLuDodsVpO4OIUsmemlUHMxNdYMNJmsvOwLrvQ==
   dependencies:
-    regenerator-runtime "^0.12.0"
+    regenerator-runtime "^0.13.4"
 
 "@babel/runtime@^7.9.2":
   version "7.9.6"
@@ -1330,12 +1330,12 @@
     text-table "^0.2.0"
     webpack-log "^1.1.2"
 
-"@wordpress/dom-ready@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@wordpress/dom-ready/-/dom-ready-2.0.2.tgz#983c733d9eef08dce98518e66e1abee346089323"
-  integrity sha512-SENsbiIesC0Oz6qTLHpYxo6aW9/NgFYkXq4TGjUBA5LLNJmBf9AhPKX9rpgh8Y3+DKVobMdX8IKhfRrQYiqRiw==
+"@wordpress/dom-ready@^2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@wordpress/dom-ready/-/dom-ready-2.9.0.tgz#964337de20b031bd54c60c040cc728097a525384"
+  integrity sha512-2egz1f4LaLeeSPTsWUgvgerNUbV9A++x/YWBGiF8t/bC7KX1n4mqexQRihfuofvpBxlkalIJEXxka3pzrD1XHA==
   dependencies:
-    "@babel/runtime" "^7.0.0"
+    "@babel/runtime" "^7.9.2"
 
 "@wordpress/hooks@^2.8.0":
   version "2.8.0"
@@ -11245,11 +11245,6 @@ regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
-
-regenerator-runtime@^0.12.0:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
-  integrity sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg==
 
 regenerator-runtime@^0.13.2:
   version "0.13.2"

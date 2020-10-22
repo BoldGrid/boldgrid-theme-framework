@@ -32,6 +32,14 @@ class BoldGrid_Framework {
 	protected $loader;
 
 	/**
+	 * Boldgrid_Framework_Woocommerce
+	 *
+	 * @since 2.1.18
+	 * @var Boldgrid_Framework_Woocommerce
+	 */
+	public $woo;
+
+	/**
 	 * The plugins configs
 	 *
 	 * @since    1.0.0
@@ -231,6 +239,7 @@ class BoldGrid_Framework {
 	 * @access   public
 	 */
 	public function assign_configurations() {
+		global $wp_version;
 		$this->configs = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/configs.php';
 		// Based on the configs already assigned, set config values to help assign later values.
 		$this->assign_dynamic_configs();
@@ -239,6 +248,10 @@ class BoldGrid_Framework {
 		$this->assign_configs( 'customizer-options' );
 		$this->assign_configs( 'customizer' );
 		$this->assign_configs( 'components' );
+
+		if ( version_compare( $wp_version, '5.4.99', 'gt' ) && isset( $this->configs['customizer']['controls']['bgtfw_preloader_type'] ) ) {
+			unset( $this->configs['customizer']['controls']['bgtfw_preloader_type'] );
+		}
 	}
 
 	/**
@@ -366,10 +379,13 @@ class BoldGrid_Framework {
 		// Add Theme Styles.
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $styles, 'enqueue_fontawesome' );
-		$this->loader->add_action( 'after_setup_theme',  $styles, 'add_editor_styling' );
+		$this->loader->add_action( 'after_setup_theme', $styles, 'add_editor_styling' );
 		$this->loader->add_filter( 'mce_css', $styles, 'add_cache_busting' );
 		$this->loader->add_filter( 'boldgrid_theme_framework_local_editor_styles', $styles, 'enqueue_editor_buttons' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'get_css_vars' );
+
+		// Validate Theme Fonts Directory
+		$this->loader->add_action( 'after_setup_theme', $styles, 'validate_fonts_dir' );
 
 		// Add Theme Scripts.
 		$this->loader->add_action( 'wp_enqueue_scripts', $scripts, 'boldgrid_enqueue_scripts' );
@@ -391,9 +407,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bgtfw_footer_classes', $boldgrid_theme, 'footer_classes' );
 		$this->loader->add_filter( 'bgtfw_navi_classes', $boldgrid_theme, 'navi_classes' );
 		$this->loader->add_filter( 'bgtfw_footer_content_classes', $boldgrid_theme, 'inner_footer_classes' );
-		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'blog_container' );
-		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'page_container' );
 		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'blog_page_container' );
+		$this->loader->add_filter( 'bgtfw_woocommerce_wrapper_classes', $boldgrid_theme, 'woocommerce_container' );
 		$this->loader->add_filter( 'bgtfw_blog_page_post_title_classes', $boldgrid_theme, 'blog_page_post_title_classes' );
 		$this->loader->add_filter( 'bgtfw_posts_title_classes', $boldgrid_theme, 'post_title_classes' );
 		$this->loader->add_filter( 'bgtfw_pages_title_classes', $boldgrid_theme, 'page_title_classes' );
@@ -684,6 +699,7 @@ class BoldGrid_Framework {
 		$typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
 		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'override_kirki_styles' );
 
 		$links = new BoldGrid_Framework_Links( $this->configs );
 		$this->loader->add_filter( 'wp_enqueue_scripts', $links, 'add_styles_frontend' );
@@ -966,7 +982,8 @@ class BoldGrid_Framework {
 	 * @access private
 	 */
 	private function woocommerce() {
-		$woo = new Boldgrid_Framework_Woocommerce( $this->configs );
+		$woo       = new Boldgrid_Framework_Woocommerce( $this->configs );
+		$this->woo = $woo;
 		$this->loader->add_action( 'wp_loaded', $woo, 'remove_template_warnings', 99 );
 		$this->loader->add_filter( 'customize_register', $woo, 'customizer', 20 );
 		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $woo, 'buttons' );
@@ -977,6 +994,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'woocommerce_quantity_input_classes', $woo, 'quantity_input_classes' );
 		$this->loader->add_action( 'woocommerce_before_quantity_input_field', $woo, 'quantity_input_before' );
 		$this->loader->add_action( 'woocommerce_after_quantity_input_field', $woo, 'quantity_input_after' );
+		$this->loader->add_action( 'woocommerce_before_cart', $this->woo, 'add_page_title' );
+		$this->loader->add_action( 'woocommerce_before_checkout_form', $this->woo, 'add_page_title' );
 
 		remove_all_actions( 'woocommerce_sidebar' );
 		add_filter( 'loop_shop_per_page', function( $cols ) {
@@ -988,6 +1007,11 @@ class BoldGrid_Framework {
 				add_action( 'boldgrid_main_bottom' , array( $woo, 'add_container_close' ) );
 			}
 		});
+
+		/**
+		 * Change number of products that are displayed per page (shop page)
+		 */
+		add_filter( 'loop_shop_per_page', array( $woo, 'products_per_page' ), 20 );
 	}
 
 	/**

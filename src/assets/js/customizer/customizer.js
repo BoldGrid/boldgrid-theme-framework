@@ -270,6 +270,120 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	new TypographyPreview().bindEvents();
 	new LinkPreview().bindEvents();
 
+	/**
+	 * Runs when trying to add Header Sliders
+	 *
+	 * @since 2.2.3
+	 *
+	 * @param array  sliderUids
+	 * @param array  repeaterUids
+	 */
+	function addHeaderSliders( sliderUids, repeaterUids ) {
+		let uidsToAdd = [],
+			notification = `
+				<div class="customize-control-notifications-container">
+					<ul>
+						<li class="notice notice-bgtfw-header-layout-change" data-code="bgtfw-header-layout-change" data-type="warning">
+							<div class="notification-message">The Customizer must be refreshed before you can adjust the column width. We recommend using the Customizer’s Save Draft option, then refresh the page.</div>
+						</li>
+					</ul>
+				</div>`,
+			sliderGroup = $( controlApi.control( 'bgtfw_header_layout_col_width' ).container ).find( '.slider-group' );
+
+		repeaterUids.forEach( function( uid ) {
+			if ( ! sliderUids.includes( uid, ) ) {
+				uidsToAdd.push( uid );
+			}
+		} );
+
+		// If there are uidsToAdd and no notification added, then we have to add the notification to the sliderGroup.
+		if ( 0 < uidsToAdd.length && 0 === $( sliderGroup ).find( '.customize-control-notifications-container' ).length ) {
+			$( sliderGroup ).prepend( notification );
+
+		}
+	}
+
+	/**
+	 * Remove Header Sliders
+	 *
+	 * @since 2.2.3
+	 *
+	 * @param array  sliderUids
+	 * @param array  repeaterUids
+	 */
+	function remHeaderSliders( sliderUids, repeaterUids ) {
+		let uidsToRemove = [];
+		sliderUids.forEach( function( uid ) {
+			if ( ! repeaterUids.includes( uid ) ) {
+				uidsToRemove.push( uid );
+			}
+		} );
+
+		uidsToRemove.forEach( function( uid ) {
+			var sliderGroup = $( controlApi.control( 'bgtfw_header_layout_col_width' ).container ).find( '.slider-group' );
+			$( sliderGroup ).find( '.slider-control' ).each( function() {
+				if ( 0 < $( this ).find( '.slider[data-name=' + uid + ']' ).length ) {
+					$( this ).remove();
+				}
+			} );
+		} );
+	}
+
+	// After partial-refresh, correct header item uids.
+	api.bind( 'preview-ready', function() {
+		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
+			let colWidths,
+				colUids,
+				themeMod = controlApi( 'bgtfw_header_layout_col_width' )().media;
+			colWidths = 'string' === typeof themeMod ? JSON.parse( themeMod ) : themeMod ;
+			colUids = Object.keys( colWidths.large.values );
+
+			$( '.bgtfw-header .boldgrid-section .row > div' ).each( function( itemIndex ) {
+				let uid = colUids[ itemIndex ],
+					classList;
+
+				// If the different values are not set, then use the baseWidths value ( which is from the 'large' device ).
+				classList = [
+					'col-lg-' + ( colWidths.large.values[uid] ? colWidths.large.values[ uid ] : 6 ),
+					'col-md-' + ( colWidths.desktop.values[uid] ? colWidths.desktop.values[ uid ] : 6 ),
+					'col-sm-' + ( colWidths.tablet.values[uid] ? colWidths.tablet.values[ uid ] : 12 ),
+					'col-xs-' + ( colWidths.phone.values[uid] ? colWidths.phone.values[ uid ] : 12 )
+				];
+
+				uid = $( this ).hasClass( 'h00' ) ? 'h00' : uid;
+				uid = $( this ).hasClass( 'h01' ) ? 'h01' : uid;
+
+				// This removes the empty column widths.
+				$( this ).removeClass();
+
+				$( this ).addClass( classList.join( ' ' ) );
+
+				$( this ).addClass( uid );
+			} );
+		}
+	} );
+
+	// After preview refreshes, and new layout items are added, add new slider uids.
+	api.bind( 'preview-ready', _.defer( function() {
+		let sliderUids   = [];
+		let repeaterUids = [];
+		let repeaterContainer;
+		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
+			$( controlApi.section( 'bgtfw_header_layout' ).container[1] ).find( '.slider' ).each( function() {
+				sliderUids.push( this.dataset.name );
+			} );
+
+			repeaterContainer = controlApi.control( 'bgtfw_header_layout' ).container;
+
+			$( repeaterContainer ).find( '.repeater' ).each( function() {
+				repeaterUids.push( this.dataset.uid );
+			} );
+
+			addHeaderSliders( sliderUids, repeaterUids );
+			remHeaderSliders( sliderUids, repeaterUids );
+		}
+	} ) );
+
 	$( function() {
 		var headingsColorOutput,
 			setupPostEditLink,
@@ -465,15 +579,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$( '.site-description' ).addClass( window._typographyClasses );
 
 		/**
-		 * There's a better way to do this, but I dunno what it is.  This
-		 * works for now.  This will just trigger the preview pane to reload
-		 * the same page after a user changes their header videos.
-		 */
-		api( 'external_header_video', 'header_video', function( ...args ) {
-			args.map( ( control ) => control.bind( () => api.preview.send( 'url', window.location.href ) ) );
-		} );
-
-		/**
 		 * Recalculate layouts on font changes.
 		 *
 		 * @since 2.0.0
@@ -581,6 +686,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
 		new ToggleValue( 'bgtfw_blog_page_container', '.blog .site-content, .archive .site-content', 'container', calc );
+
+		api( 'bgtfw_header_layout_tabs', function() {
+			$( controlApi.control( 'bgtfw_header_layout_tabs' ).container ).find( '.bgtfw-tab' ).on( 'click', function() {
+				if ( '#customize-control-bgtfw_sticky_header_layout' === this.dataset.tab ) {
+					controlApi.control( 'bgtfw_header_layout_col_width' ).deactivate();
+				} else {
+					controlApi.control( 'bgtfw_header_layout_col_width' ).activate();
+				}
+			} );
+		} );
 		api( 'bgtfw_fixed_header', value => value.bind( to => {
 			document.body.className = document.body.className.replace( 'header-slide-in', '' );
 			document.body.className = document.body.className.replace( 'header-fixed', '' );

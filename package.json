@@ -1,6 +1,6 @@
 {
   "name": "boldgrid-theme-framework",
-  "version": "2.1.17",
+  "version": "2.3.0",
   "description": "BoldGrid Theme Framework",
   "main": "index.js",
   "engines": {
@@ -24,8 +24,8 @@
     ]
   },
   "scripts": {
-    "preversion": "git checkout dev && bash build/cwd-dirty && yarn run build",
-    "postversion": "git tag -d $npm_package_version && node build/update-version.js src/boldgrid-theme-framework.php $npm_package_version && git commit -am \"Updating Version $npm_package_version\" && git push origin dev && git checkout master && git pull origin master && git pull origin dev && git push origin master && git tag -a $npm_package_version -m \"Version $npm_package_version Release\" master && git push origin $npm_package_version",
+    "preversion": "bash build/cwd-dirty && yarn run build",
+    "postversion": "git tag -d $npm_package_version && node build/update-version.js src/boldgrid-theme-framework.php $npm_package_version && git commit -am \"Updating Version $npm_package_version\" && git tag -a $npm_package_version -m \"Version $npm_package_version Release\" master && git push origin $npm_package_version",
     "test": "echo \"Error: no test specified\" && exit 1",
     "phpcs-installStandards": "php node_modules/PHP_CodeSniffer/scripts/phpcs --config-set installed_paths node_modules/WordPress-Coding-Standards/",
     "php-codesniffer": "npm run phpcs-installStandards && php ./node_modules/PHP_CodeSniffer/scripts/phpcs -p -s -v -n ./src --standard=./phpcs.ruleset.xml --ignore=*/wp_bootstrap_navwalker.php,*/woocommerce/* --extensions=php",
@@ -39,7 +39,8 @@
     "script:patterns": "node --experimental-modules build/patterns.mjs",
     "script:tgm": "node build/tgm.mjs",
     "script:wp-textdomain-lint": "node build/check-text-domains.js",
-    "script:zip": "node build/build-zip.js"
+    "script:zip": "node build/build-zip.js",
+    "build-prime": "git clone https://github.com/boldgrid/prime ../themes/prime && ln -s $(pwd)/boldgrid-theme-framework ../themes/prime/inc/boldgrid-theme-framework"
   },
   "keywords": [
     "BoldGrid"
@@ -68,6 +69,7 @@
     "babel-loader": "^8.0.0-beta",
     "babel-preset-minify": "^0.4.3",
     "chalk": "^2.4.2",
+    "cjs": "^0.0.11",
     "concurrently": "^4.0.1",
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
@@ -79,7 +81,7 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-html": "^4.0.3",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "googlefonts-sprite-generator": "^1.1.1",
+    "googlefonts-sprite-generator": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-changed": "^1.3.0",
     "gulp-clean": "^0.3.2",
@@ -128,30 +130,30 @@
     "webpack-runtime-public-path-plugin": "^1.1.2"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.4.4",
+    "@babel/runtime-corejs2": "^7.9.6",
     "@boldgrid/components": "^2.16.2",
     "@wordpress/dom-ready": "^2.9.0",
-    "@wordpress/hooks": "^2.2.0",
+    "@wordpress/hooks": "^2.8.0",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",
-    "animate.css": "latest",
+    "animate.css": "3.7.2",
     "bootstrap-sass": "~3.4.1",
     "color-js": "^1.0.1",
-    "css-vars-ponyfill": "^1.11.1",
+    "css-vars-ponyfill": "^1.17.2",
     "float-labels.js": "^3.3.5",
     "font-awesome": "^4.7.0",
     "hamburgers": "https://github.com/jonsuh/hamburgers#v0.9.3",
     "hero-patterns": "^2.0.2",
     "hover.css": "^2.3.1",
-    "jarallax": "^1.10.7",
+    "jarallax": "^1.12.1",
     "jquery-goup": "^1.1.0",
     "jquery.nicescroll": "^3.6.8",
-    "kirki-toolkit": "https://github.com/timelsass/kirki.git#BGTFW-2.1.3",
+    "kirki-toolkit": "https://github.com/kirki-framework/kirki.git#v3.1.4",
     "lodash.camelcase": "^4.3.0",
     "lodash.kebabcase": "^4.1.1",
     "lodash.lowercase": "^4.3.0",
     "lodash.startcase": "^4.4.0",
     "postcss": "^6.0.22",
-    "sass.js": "~0.9.4",
+    "sass.js": "~0.11.1",
     "scssphp": "https://github.com/timelsass/scssphp.git#master",
     "smartmenus": "^1.1.0",
     "wow.js": "^1.2.2"

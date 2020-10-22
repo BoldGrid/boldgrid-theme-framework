@@ -146,8 +146,10 @@ class BoldGrid {
 	 * @return array $classes Filter classes on .site-content element.
 	 */
 	public function blog_container( $classes ) {
+		global $boldgrid_theme_framework;
+		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
 		if ( is_single() || is_attachment() ) {
-			$theme_mod = get_theme_mod( 'bgtfw_pages_blog_posts_layout_layout' );
+			$theme_mod = get_theme_mod( $theme_mod_type );
 			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 		}
 
@@ -164,8 +166,30 @@ class BoldGrid {
 	 * @return array $classes Filter classes on .site-content element.
 	 */
 	public function page_container( $classes ) {
-		if ( is_page() ) {
-			$theme_mod = get_theme_mod( 'bgtfw_pages_container' );
+		global $boldgrid_theme_framework;
+		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
+		if ( is_page() || ( $boldgrid_theme_framework->woo->is_woocommerce_page() && is_shop() ) ) {
+			$theme_mod = get_theme_mod( $theme_mod_type );
+			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Add woocommerce container classes.
+	 *
+	 * @since 2.1.18
+	 *
+	 * @param array $classes Classes added to .site-content element.
+	 *
+	 * @return array $classes Filter classes on .site-content element.
+	 */
+	public function woocommerce_container( $classes ) {
+		global $boldgrid_theme_framework;
+
+		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
+			$theme_mod = get_theme_mod( 'bgtfw_woocommerce_container' );
 			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 		}
 
@@ -183,10 +207,24 @@ class BoldGrid {
 	 */
 	public function blog_page_container( $classes ) {
 		global $wp_query;
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
-			$theme_mod = get_theme_mod( 'bgtfw_blog_page_container' );
-			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+		global $boldgrid_theme_framework;
+
+		$theme_mod_type = 'bgtfw_pages_container';
+
+		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
+			$theme_mod_type = 'bgtfw_woocommerce_container';
+		} elseif (
+			is_single() ||
+			is_attachment() ||
+			( function_exists( 'is_shop' ) && is_shop() )
+		) {
+			$theme_mod_type = 'bgtfw_blog_posts_container';
+		} elseif ( is_archive() || is_home() ) {
+			$theme_mod_type = 'bgtfw_blog_page_container';
 		}
+
+		$theme_mod = get_theme_mod( $theme_mod_type );
+		$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 
 		return $classes;
 	}
@@ -514,13 +552,13 @@ class BoldGrid {
 			$classes[] = sanitize_html_class( $layout );
 		}
 
+		$background_theme_mod = 'boldgrid_background_color';
+		$background_image = get_theme_mod( 'background_image' );
+
 		// Add class for parallax background option.
 		if ( 'parallax' === get_theme_mod( 'background_attachment' ) ) {
 			$classes[] = 'boldgrid-customizer-parallax';
 		} else {
-			$background_theme_mod = 'boldgrid_background_color';
-			$background_image = get_theme_mod( 'background_image' );
-
 			if (
 				'pattern' !== get_theme_mod( 'boldgrid_background_type' ) &&
 				! empty( $background_image ) &&
@@ -528,19 +566,19 @@ class BoldGrid {
 			) {
 				$background_theme_mod = 'bgtfw_background_overlay_color';
 			}
+		}
 
-			$background_color = get_theme_mod( $background_theme_mod );
-			$background_color = explode( ':', $background_color );
-			$background_color = array_shift( $background_color );
+		$background_color = get_theme_mod( $background_theme_mod );
+		$background_color = explode( ':', $background_color );
+		$background_color = array_shift( $background_color );
 
-			if ( ! empty( $background_color ) ) {
-				if ( strpos( $background_color, 'neutral' ) !== false ) {
-					$classes[] = $background_color . '-background-color';
-					$classes[] = $background_color . '-text-default';
-				} else {
-					$classes[] = str_replace( '-', '', $background_color ) . '-background-color';
-					$classes[] = str_replace( '-', '', $background_color ) . '-text-default';
-				}
+		if ( ! empty( $background_color ) ) {
+			if ( strpos( $background_color, 'neutral' ) !== false ) {
+				$classes[] = $background_color . '-background-color';
+				$classes[] = $background_color . '-text-default';
+			} else {
+				$classes[] = str_replace( '-', '', $background_color ) . '-background-color';
+				$classes[] = str_replace( '-', '', $background_color ) . '-text-default';
 			}
 		}
 
@@ -876,6 +914,51 @@ class BoldGrid {
 	}
 
 	/**
+	 * Get Column Width Array
+	 *
+	 * @since 2.2.3
+	 *
+	 * @param string $theme_mod Theme Mod to parse.
+	 *
+	 * @return array Array of Column Width Values.
+	 */
+	public static function get_column_widths( $theme_mod ) {
+		$device_column_widths  = array();
+
+		$type = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) )
+			? 'sticky_header'
+			: 'header'
+			: 'footer';
+
+		// if the theme_mod is a json array, we need to decode it to use it as a php array.
+		$col_width_theme_mod = is_string( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' ) )
+			? json_decode( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' ), true )
+			: json_decode( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' )['media'], true );
+
+		if ( empty( $col_width_theme_mod ) ) {
+			return $device_column_widths;
+		}
+
+		foreach ( $col_width_theme_mod as $device => $values ) {
+			if ( isset( $values['media'][0] ) ) {
+				$device_column_widths[ $values['media'][0] ] = $values['values'];
+			} else {
+				$device_column_widths[ $device ] = $values['values'];
+			}
+		}
+
+		// if the various device sizes are not set, default to the setting for 'large' devices.
+		$column_widths = array(
+			'lg' => $device_column_widths['large'],
+			'md' => isset( $device_column_widths['desktop'] ) ? $device_column_widths['desktop'] : $device_column_widths['large'],
+			'sm' => isset( $device_column_widths['tablet'] ) ? $device_column_widths['tablet'] : $device_column_widths['large'],
+			'xs' => isset( $device_column_widths['phone'] ) ? $device_column_widths['phone'] : $device_column_widths['large'],
+		);
+
+		return $column_widths;
+	}
+
+	/**
 	 * Outputs dynamic layout elements.
 	 *
 	 * @since 2.0.3
@@ -885,12 +968,14 @@ class BoldGrid {
 	 * @return string $markup    Rendered HTML for dyanmic layout element.
 	 */
 	public static function dynamic_layout( $theme_mod ) {
-		$markup = '';
-		$theme_mod = self::create_uids( $theme_mod );
+		$markup        = '';
+		$column_widths = self::get_column_widths( $theme_mod );
+		$theme_mod     = self::create_uids( $theme_mod );
 
 		if ( ! empty( $theme_mod ) ) {
-			foreach ( $theme_mod as $section ) {
+			foreach ( $theme_mod as $section_index => $section ) {
 
+				$section_number = $section_index + 1;
 				// Skip loop if no items.
 				if ( empty( $section['items'] ) ) {
 					continue;
@@ -904,14 +989,29 @@ class BoldGrid {
 					$markup .= '<div class="row">';
 
 					foreach ( $chunk as $col => $col_data ) {
-						$num = ( 12 / count( $chunk ) );
+						$md_col = ( 12 / count( $chunk ) );
 
-						// Adds support for 5-6 col.
-						if ( 2.4 === $num ) {
-							$num = '5s';
+						$col_uid = isset( $col_data['uid'] ) ? $col_data['uid'] : 'default_' . $col_data['key'];
+
+						if ( isset( $column_widths['lg'][ $col_uid ] ) ) {
+							// We have to set each of these values to either the correct device value or to the 'large' device value.
+							$lg_col = $column_widths['lg'][ $col_uid ];
+							$md_col = isset( $column_widths['md'][ $col_uid ] ) ? $column_widths['md'][ $col_uid ] : $column_widths['lg'][ $col_uid ];
+							$sm_col = isset( $column_widths['sm'][ $col_uid ] ) ? $column_widths['sm'][ $col_uid ] : $column_widths['lg'][ $col_uid ];
+							$xs_col = isset( $column_widths['xs'][ $col_uid ] ) ? $column_widths['xs'][ $col_uid ] : $column_widths['lg'][ $col_uid ];
+						} else {
+							// This ensures that if there are not specified column widths for this uid, that the defaults are used.
+							$lg_col = $md_col;
+							$sm_col = 12;
+							$xs_col = 12;
 						}
 
-						$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_data['uid'] . '">';
+						// Adds support for 5-6 col.
+						if ( 2.4 === $md_col ) {
+							$md_col = '5s';
+						}
+
+						$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . '">';
 						ob_start();
 						switch ( $col_data['type'] ) {
 							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :

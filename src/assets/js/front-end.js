@@ -1,4 +1,4 @@
-/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false */
+/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false, highlightRequiredFields */
 
 /* ========================================================================
  * DOM-based Routing
@@ -168,6 +168,8 @@ var BoldGrid = BoldGrid || {};
 
 			// Handle forms.
 			forms: function( hasFloat = false ) {
+				var wcCheckoutLabels,
+					wcRequiredLabels = [];
 				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty';
 
 				if ( ! hasFloat ) {
@@ -178,6 +180,23 @@ var BoldGrid = BoldGrid || {};
 							exclude: selectors
 						}
 					);
+				}
+
+				wcCheckoutLabels = $( 'form[name=checkout] .woocommerce-input-wrapper label' );
+				if ( 'yes' === highlightRequiredFields ) {
+					wcCheckoutLabels.each( function() {
+						if ( ! $( this ).html().includes( '(optional)' ) ) {
+							wcRequiredLabels.push( this );
+						}
+					} );
+
+					wcRequiredLabels.forEach( function( requiredLabel ) {
+						var placeholder = $( requiredLabel ).parent().find( 'input' ).attr( 'placeholder' );
+						if ( ! $.contains( requiredLabel, $( 'abbr' ) ) ) {
+							$( requiredLabel ).append( '<abbr class="required" title="required"> *</abbr>' );
+							$( requiredLabel ).parent().find( 'input' ).attr( 'placeholder', placeholder + ' *' );
+						}
+					} );
 				}
 
 				/**
@@ -226,6 +245,7 @@ var BoldGrid = BoldGrid || {};
 		// Header Top.
 		'custom_header': {
 			init: function() {
+
 				// Check for custom header image.
 				this.checkImg();
 
@@ -321,15 +341,13 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			calc: function() {
-				var classes, headerHeight, naviHeight, menu;
+				var classes;
 
 				classes = document.body.classList;
 
-				headerHeight = '';
-				naviHeight = $( '#navi-wrap' ).outerHeight();
-
 				// Desktop view.
 				if ( 768 <= window.innerWidth ) {
+					$( '#wp-custom-header-video' ).show();
 
 					// Fixed Headers
 					if ( classes.contains( 'header-slide-in' ) ) {
@@ -342,23 +360,14 @@ var BoldGrid = BoldGrid || {};
 
 				// Mobile.
 				} else {
+					$( '#wp-custom-header-video' ).hide();
+					$( '.wp-custom-header-video-button' ).hide();
 					if ( classes.contains( 'header-slide-in' ) ) {
 
 						// Destroy instance.
 					}
-
-					menu = $( '#main-menu' );
-
-					if ( menu.is( ':visible' ) ) {
-						headerHeight = naviHeight - menu.outerHeight();
-					} else {
-						headerHeight = naviHeight;
-					}
-
-					headerHeight = headerHeight + $( '#secondary-menu' ).outerHeight();
 				}
 
-				$( '.wp-custom-header' ).css( 'height', headerHeight );
 			}
 		},
 

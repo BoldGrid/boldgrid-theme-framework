@@ -10,7 +10,7 @@
  * @return array Sections to create in the WordPress Customizer.
  */
 
-return array(
+$sections_array = array(
 	'bgtfw_layout_blog' => array(
 		'title' => __( 'Blog', 'bgtfw' ),
 		'panel' => 'bgtfw_layout',
@@ -252,6 +252,11 @@ return array(
 		'panel' => 'bgtfw_blog_posts_panel',
 		'icon' => 'dashicons-admin-links',
 	),
+	'bgtfw_pages_blog_posts_featured_images' => array(
+		'title' => 'Featured Images',
+		'panel' => 'bgtfw_blog_posts_panel',
+		'icon' => 'dashicons-format-gallery',
+	),
 	'bgtfw_pages_blog_posts_meta' => array(
 		'title' => __( 'Post Meta', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
@@ -393,5 +398,41 @@ return array(
 		'description' => esc_html__( 'Change the box shadow of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
+	'bgtfw_preloader_section' => array(
+		'title'       => __( 'Pre-Loader', 'bgtfw' ),
+		'panel'       => '',
+		'icon'        => 'dashicons-image-rotate',
+		'description' => esc_html__( 'Configure what is displayed while your pages load.', 'bgtfw' ),
+		'capability'  => 'edit_theme_options',
+	),
 	// End: Generic Blog Design Controls.
 );
+
+/**
+ * Check if WooCommerce is activated.
+ */
+$is_woocommerce = false;
+if ( ! function_exists( 'is_woocommerce_activated' ) ) {
+	$is_woocommerce = class_exists( 'woocommerce' );
+}
+
+if ( $is_woocommerce ) {
+	$sections_array['bgtfw_layout_woocommerce'] = array(
+		'title'       => __( 'WooCommerce', 'bgtfw' ),
+		'panel'       => 'bgtfw_design_panel',
+		'description' => esc_html__( 'This section controls the global layout of WooCommerce pages on your website.', 'bgtfw' ),
+		'capability'  => 'edit_theme_options',
+		'priority'    => 1,
+		'icon'        => 'dashicons-admin-page',
+	);
+	$sections_array['bgtfw_layout_woocommerce_container'] = array(
+		'title'       => __( 'Container', 'bgtfw' ),
+		'panel'       => 'bgtfw_design_panel',
+		'section'     => 'bgtfw_layout_woocommerce',
+		'description' => esc_html__( 'This section controls the container for your WooCommerce pages.', 'bgtfw' ),
+		'capability'  => 'edit_theme_options',
+		'icon'        => 'icon-layout-container',
+	);
+}
+
+return $sections_array;

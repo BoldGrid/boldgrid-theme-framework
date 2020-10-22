@@ -4,6 +4,7 @@ import bgtfwWidgetsSection from './controls/bgtfw-widgets-section';
 import BlogPagePanelExpand from './design/blog/blog-page/panel-expand.js';
 import BlogPostsPanelExpand from './design/blog/posts/panel-expand.js';
 import HomepageSectionExpand from './design/homepage/section-expand.js';
+import WoocommerceSectionExpand from './design/woocommerce/section-expand.js'
 import { Control as GenericControls } from './generic/control.js';
 import { Required } from './required.js';
 import SectionExtendTitle from './menus/extend-title';
@@ -22,6 +23,7 @@ import bgtfwSection from './controls/bgtfw-section';
 import bgtfwNotifications from './controls/bgtfw-notifications';
 import bgtfwBackgroundControls from './controls/bgtfw-background-control';
 import bgtfwEditPane from './controls/edit/pane';
+import { HeaderBackground as BgtfwHeaderBackground } from './controls/bgtfw-header-background';
 
 let devices = new Devices();
 devices.init();
@@ -36,11 +38,13 @@ WidgetSectionUpdate();
 	new BlogPagePanelExpand();
 	new BlogPostsPanelExpand();
 	new HomepageSectionExpand();
+	new WoocommerceSectionExpand();
 	new SectionExtendTitle();
 	new GenericControls().init();
 	new HamburgerControlToggle();
 	new HoverBackgroundToggle();
 	new MenuLocations();
+	new BgtfwHeaderBackground();
 	bgtfwHeaderTabs.init();
 
 	wp.customize.bind( 'pane-contents-reflowed', bgtfwPaneReflow );

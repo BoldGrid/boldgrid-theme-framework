@@ -12,5 +12,6 @@
 
 return array(
 	'bgtfw_posts_title_display' => 'show',
-	'bgtfw_posts_meta_display' => 'inline-block',
+	'bgtfw_posts_meta_display'  => 'inline-block',
+	'bgtfw_preloader_type'      => 'off',
 );

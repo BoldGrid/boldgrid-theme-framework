@@ -126,7 +126,7 @@ class BoldGrid_Framework_Comments {
 			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'bgtfw' ); ?></p>
 		<?php endif; ?>
 
-		<?php comment_form( $args = array(
+		<?php comment_form( apply_filters( 'comment_form_defaults', $args = array(
 			'id_form'           => 'commentform',
 			'id_submit'         => 'commentsubmit',
 			'title_reply'       => __( 'Leave a Reply', 'bgtfw' ),
@@ -139,7 +139,7 @@ class BoldGrid_Framework_Comments {
 			'comment_notes_after' => '<p class="form-allowed-tags">' .
 			__( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:', 'bgtfw' ) .
 			'</p><div class="alert alert-info">' . allowed_tags() . '</div>',
-		) );
+		) ) );
 	}
 
 	/**

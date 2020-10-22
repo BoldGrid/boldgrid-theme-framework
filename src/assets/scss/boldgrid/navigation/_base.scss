@@ -128,6 +128,11 @@
 	.site-footer,
 	&:not(.header-left):not(.header-right) .site-header {
 		@media (min-width: 768px) {
+			.full-width {
+				.sm {
+					width: 100%;
+				}
+			}
 			.sm-clean ul {
 				position: absolute;
 				width: 12em;

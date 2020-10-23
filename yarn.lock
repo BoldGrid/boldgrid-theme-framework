@@ -655,13 +655,6 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.9.2":
-  version "7.9.6"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.6.tgz#a9102eb5cadedf3f31d08a9ecf294af7827ea29f"
-  integrity sha512-64AF1xY3OAkFHqOb9s4jpgk1Mm5vDZ4L3acHvAml+53nO1XbXLuDodsVpO4OIUsmemlUHMxNdYMNJmsvOwLrvQ==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
 "@babel/template@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.0.0-beta.44.tgz#f8832f4fdcee5d59bf515e595fc5106c529b394f"
@@ -7832,14 +7825,14 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jarallax@^1.12.1:
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/jarallax/-/jarallax-1.12.1.tgz#5f8c539f54244264c7a53ade11adf49c0634dd99"
-  integrity sha512-8AKPKjLz8JcjZFwdMMbf3W7QG9BTzB3rN0k47Xx+tWpkPeGgHodxEUB2OGsj3eOzLCpSvolfW0PtwTp7i3CrhA==
+jarallax@^1.12.4:
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/jarallax/-/jarallax-1.12.4.tgz#188796460a965281546dfe6cd4a3ef244c79dd72"
+  integrity sha512-bQqQkHro7F0mf24qDjPEBFYwtYeBZzagotZYMkV8PgN0xHWNHi2VZ7VH9ANTtUsZOZpUgInloXmvcEomSCXJJQ==
   dependencies:
     global "^4.4.0"
     lite-ready "^1.0.4"
-    video-worker "^1.1.8"
+    video-worker "^1.1.9"
 
 jpegtran-bin@^3.0.0:
   version "3.2.0"
@@ -11246,11 +11239,6 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
-regenerator-runtime@^0.13.2:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
-  integrity sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA==
-
 regenerator-runtime@^0.13.4:
   version "0.13.5"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.5.tgz#d878a1d094b4306d10b9096484b33ebd55e26697"
@@ -13348,10 +13336,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-video-worker@^1.1.8:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/video-worker/-/video-worker-1.1.8.tgz#9b7e1a2a5e72a3d13c5bd70150f94362d45dcfe7"
-  integrity sha512-eUDefy2ZrY7TgAepGoHVS3uh7MDPsPD2Ug5gD7I+bBJnqAXf9Cp9GM2aOnIS3ZrDDeyRq2wbhFr/x1MsCKun/w==
+video-worker@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/video-worker/-/video-worker-1.1.9.tgz#18d4c751645819cd44c512b23fce1335b9db85a6"
+  integrity sha512-eTXgpGG562Zlu0+5EBTwssa/r+24Oewqkfyy6jXpFpFfHCtbW+iN0ftRxsMOsZ0N/643hokRxKhuRZ93ijgJGA==
   dependencies:
     global "^4.4.0"
 

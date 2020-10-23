@@ -133,7 +133,7 @@
     "@babel/runtime-corejs2": "^7.9.6",
     "@boldgrid/components": "^2.16.2",
     "@wordpress/dom-ready": "^2.9.0",
-    "@wordpress/hooks": "^2.8.0",
+    "@wordpress/hooks": "^2.10.0",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",
     "animate.css": "3.7.2",
     "bootstrap-sass": "~3.4.1",

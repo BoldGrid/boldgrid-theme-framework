@@ -428,24 +428,22 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_title' );
 		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
 
-		// Sticky Header
-		add_action( 'template_redirect', function() {
-			if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {
-				add_action( 'boldgrid_header_after', function() {
-					?>
-					<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
-						<?php echo BoldGrid::dynamic_sticky_header(); ?>
-					</div>
-					<?php
-				}, 20 );
-			}
-			if ( is_customize_preview() && false === get_theme_mod( 'bgtfw_fixed_header' ) ) {
-				add_filter( 'bgtfw_sticky_header_display_css', function( $css ) {
-					$css .= '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none; }';
-					return $css;
-				} );
-			}
-		} );
+		// Sticky Header - Removed template_redirect as it was unnecessary and caused duplication of the sticky header sometimes.
+		if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {
+			add_action( 'boldgrid_header_after', function() {
+				?>
+				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
+					<?php echo BoldGrid::dynamic_sticky_header(); ?>
+				</div>
+				<?php
+			}, 20 );
+		}
+		if ( is_customize_preview() && false === get_theme_mod( 'bgtfw_fixed_header' ) ) {
+			add_filter( 'bgtfw_sticky_header_display_css', function( $css ) {
+				$css .= '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none; }';
+				return $css;
+			} );
+		}
 
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );

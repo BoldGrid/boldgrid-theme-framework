@@ -404,7 +404,7 @@ var BoldGrid = BoldGrid || {};
 				let header = document.querySelector( '.bgtfw-header' ),
 					distanceY = window.pageYOffset || document.documentElement.scrollTop,
 					shrinkOn = header.offsetHeight,
-					sticky = header.nextElementSibling;
+					sticky = document.querySelector( '.bgtfw-sticky-header' );
 
 				if ( distanceY > shrinkOn ) {
 					sticky.classList.add( 'bgtfw-stick' );

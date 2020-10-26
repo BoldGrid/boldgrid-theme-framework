@@ -401,8 +401,15 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				navMenuLocation = $parent.attr( 'data-theme-location' );
 				api.control( 'nav_menu_locations[' + navMenuLocation + ']' ).focus();
 
+			// Custom menu locations.
+			} else if ( 'nav_menu[0]' === dataControl ) {
+				let locationId = $button.attr( 'data-selector' ).match(/\s#(\D+-\d{3})-menu/)[1];
+				locationId = locationId.replace( '-', '_' );
+				api.panel( 'bgtfw_menu_location_' + locationId ).focus();
+
 			// Default.
 			} else {
+				console.log( dataControl );
 				api.control( dataControl ).focus();
 			}
 

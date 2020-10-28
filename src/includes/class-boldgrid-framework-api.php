@@ -941,7 +941,7 @@ class BoldGrid {
 			$col_width_theme_mod = json_decode( $raw_col_widths, true );
 		} else {
 			$col_width_theme_mod = isset( $raw_col_widths['media'] )
-				? json_decode( $raw_col_widths['media'] )
+				? json_decode( $raw_col_widths['media'], true )
 				: $raw_col_widths[0]['media'];
 		}
 

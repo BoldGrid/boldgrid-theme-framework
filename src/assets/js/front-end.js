@@ -395,7 +395,7 @@ var BoldGrid = BoldGrid || {};
 						sticky();
 					} else {
 						window.removeEventListener( 'scroll', this._scroll );
-						document.getElementById( 'masthead-sticky' ).parentElement.classList.remove( 'bgtfw-stick' );
+						$( '#masthead-sticky' ).parent().removeClass( 'bgtfw-stick' );
 					}
 				} );
 			},
@@ -404,14 +404,14 @@ var BoldGrid = BoldGrid || {};
 				let header = document.querySelector( '.bgtfw-header' ),
 					distanceY = window.pageYOffset || document.documentElement.scrollTop,
 					shrinkOn = header.offsetHeight,
-					sticky = document.querySelector( '.bgtfw-sticky-header' );
+					sticky = $( '.bgtfw-sticky-header' );
 
 				if ( distanceY > shrinkOn ) {
-					sticky.classList.add( 'bgtfw-stick' );
-					sticky.setAttribute( 'aria-hidden', 'false' );
+					$( sticky ).addClass( 'bgtfw-stick' );
+					$( sticky ).attr( 'aria-hidden', 'false' );
 				} else {
-					sticky.classList.remove( 'bgtfw-stick' );
-					sticky.setAttribute( 'aria-hidden', 'true' );
+					$( sticky ).removeClass( 'bgtfw-stick' );
+					$( sticky ).attr( 'aria-hidden', 'true' );
 				}
 			}
 		},

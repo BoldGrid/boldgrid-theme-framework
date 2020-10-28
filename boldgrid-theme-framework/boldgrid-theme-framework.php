@@ -32,13 +32,6 @@ if ( file_exists( $theme_framework_class ) ) {
 	 */
 	require_once $theme_framework_class;
 
-	$uri           = $_SERVER['REQUEST_URI'];
-	$is_admin_ajax = false !== strpos( $uri, 'admin-ajax' );
-	$is_editor     = false !== strpos( $uri, 'edit' );
-	$is_admin_post = is_admin() && ( false !== strpos( $uri, 'post' ) );
-	// Only Load theme if page is admin, customizer or editor
-	if( false === is_admin() || is_customize_preview() || $is_admin_ajax || $is_editor || $is_admin_post ) {
-		$boldgrid_theme_framework = new Boldgrid_Framework();
-		$boldgrid_theme_framework->run();
-	}
+	$boldgrid_theme_framework = new Boldgrid_Framework();
+	$boldgrid_theme_framework->run();
 }

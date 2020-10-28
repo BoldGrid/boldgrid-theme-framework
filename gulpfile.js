@@ -178,7 +178,7 @@ gulp.task('fontDeps', function () {
 
 // PHP Dependencies
 gulp.task('phpDeps', function () {
-  // Leafo SCSSPHP Compiler
+  // ScssPhp SCSSPHP Compiler
   gulp.src([
     '!' + config.node_modules + '/scssphp/tests',
     '!' + config.node_modules + '/scssphp/example/**',

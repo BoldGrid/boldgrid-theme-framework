@@ -403,8 +403,9 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 			// Custom menu locations.
 			} else if ( 'nav_menu[0]' === dataControl ) {
-				let locationId = $button.attr( 'data-selector' ).match(/\s#(\D+-\d{3})-menu/)[1];
-				locationId = locationId.replace( '-', '_' );
+				let locationId = $button.attr( 'data-selector' ).match(/\s?#(\S+-\d{3})-menu/)[1];
+				locationId = locationId.replace( /(\S+)-(\d{3})/, '$1_$2' );
+				console.log( locationId );
 				api.panel( 'bgtfw_menu_location_' + locationId ).focus();
 
 			// Default.

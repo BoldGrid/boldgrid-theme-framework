@@ -47,6 +47,7 @@ export default {
 							// Collect the dynamic controls connected menus.
 							let menus = api.control( 'bgtfw_header_layout' ).getConnectedMenus()
 								.map( menu => menu.replace( 'boldgrid_menu_', '' ) );
+
 							// Update section descriptions with the correct location counts.
 							api.controlConstructor.nav_menu_location.prototype.updateSectionDescription( menus );
 
@@ -107,6 +108,7 @@ export default {
 			}
 		} );
 		menus = menus.concat( customMenus );
+
 		// Update section descriptions counts.
 		this.updateSectionDescription( menus );
 

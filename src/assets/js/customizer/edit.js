@@ -405,12 +405,10 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			} else if ( 'nav_menu[0]' === dataControl ) {
 				let locationId = $button.attr( 'data-selector' ).match(/\s?#(\S+-\d{3})-menu/)[1];
 				locationId = locationId.replace( /(\S+)-(\d{3})/, '$1_$2' );
-				console.log( locationId );
 				api.panel( 'bgtfw_menu_location_' + locationId ).focus();
 
 			// Default.
 			} else {
-				console.log( dataControl );
 				api.control( dataControl ).focus();
 			}
 

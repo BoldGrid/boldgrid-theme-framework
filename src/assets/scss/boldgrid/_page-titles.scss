@@ -48,7 +48,7 @@
 	.entry-title,
 	.page-title {
 		margin: 0;
-		padding: 0 15px;
+		padding: 0px;
 	}
 }
 .single .page-header-wrapper .entry-title .entry-meta,
@@ -59,7 +59,7 @@
 .single .page-header-wrapper .entry-title + .entry-meta,
 .archive .page-header-wrapper .page-title + .taxonomy-description {
 	margin: 0;
-	padding: 0 15px;
+	padding: 0 0px;
 	padding-top: 1.4rem;
 	padding-bottom: 9px;
 }

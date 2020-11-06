@@ -65,7 +65,7 @@ return array(
 			'amount' => 0.85,
 		),
 		// Enable this styling for Page Header Headings.
-		'.bgc-heading' => array(
+		'.bgc-heading, .bgc-heading .bgc_site_title a, .bgc-heading .bgc_site_title a:hover' => array(
 			'type' => 'headings',
 			'round' => 'floor',
 			'amount' => 1,

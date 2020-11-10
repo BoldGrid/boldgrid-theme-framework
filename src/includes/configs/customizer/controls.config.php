@@ -1377,7 +1377,7 @@ return array(
 		'priority'    => 10,
 		'output'      => array(
 			array(
-				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body',
+				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header',
 			),
 		),
 	),

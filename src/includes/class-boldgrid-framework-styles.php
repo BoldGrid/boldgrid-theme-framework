@@ -275,6 +275,7 @@ class BoldGrid_Framework_Styles {
 		foreach ( $menus as $location => $description ) {
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "hover-{$location}", $this->hover_generate( $location ) );
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "active-link-color-{$location}", $this->active_link_generate( $location ) );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "menu-item-styles-{$location}", $this->menu_items_css( $location ) );
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "menu-colors-{$location}", $this->menu_css( $location ) );
 		}
 	}
@@ -310,7 +311,7 @@ class BoldGrid_Framework_Styles {
 		$color_obj = ariColor::newColor( $background_color );
 
 		$css = '';
-
+		error_log( 'TRIGGER' );
 		$css .= $this->menu_items_css( $location );
 
 		$location = str_replace( '_', '-', $location );

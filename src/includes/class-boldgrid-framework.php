@@ -698,6 +698,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
 		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'override_kirki_styles' );
+
 		/*
 		 * Sometimes we need changes made in the customizer to be saved to the kirki styles.css
 		 * before they have a chance to be enqueued by wp_enqueue_scripts. Therefore, we need to

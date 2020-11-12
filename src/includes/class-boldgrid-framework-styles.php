@@ -311,7 +311,7 @@ class BoldGrid_Framework_Styles {
 		$color_obj = ariColor::newColor( $background_color );
 
 		$css = '';
-		error_log( 'TRIGGER' );
+
 		$css .= $this->menu_items_css( $location );
 
 		$location = str_replace( '_', '-', $location );
@@ -356,7 +356,7 @@ class BoldGrid_Framework_Styles {
 		);
 
 		$css = '';
-		foreach( $menu_items_controls as $control ) {
+		foreach ( $menu_items_controls as $control ) {
 			$theme_mod = get_theme_mod( $control );
 			if ( ! empty( $theme_mod ) && isset( $theme_mod['css'] ) ) {
 				$css .= $theme_mod['css'];

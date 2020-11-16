@@ -371,7 +371,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			if ( $previewToggleControls.is( ':visible' ) ) {
 				$overlay.toggleClass( 'preview-only' );
 			}
-
 			// Page title.
 			if ( 'entry-title' === dataControl ) {
 				if( 'page' === self.i18n.postType ) {

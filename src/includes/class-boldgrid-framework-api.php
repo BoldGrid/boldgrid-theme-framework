@@ -1042,7 +1042,10 @@ class BoldGrid {
 									if ( empty( $col_data['align'] ) ) {
 										$col_data['align'] = 'nw';
 									}
-									$classes[] = $col_data['align'];
+									$classes = array(
+										'site-branding',
+										$col_data['align']
+									);
 									return $classes;
 								};
 								add_filter( 'bgtfw_site_branding_classes', $filter, 10 );

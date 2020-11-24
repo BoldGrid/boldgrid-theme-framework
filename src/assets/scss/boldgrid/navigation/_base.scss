@@ -126,7 +126,9 @@
 
 	// Desktop view.
 	.site-footer,
-	&:not(.header-left):not(.header-right) .site-header {
+	&:not(.header-left):not(.header-right) .site-header,
+	&.boldgrid-component-menu,
+	&.crio-premium-site-header {
 		@media (min-width: 768px) {
 			.full-width {
 				.sm {

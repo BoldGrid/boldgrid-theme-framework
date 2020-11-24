@@ -338,6 +338,11 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			colWidths = 'string' === typeof themeMod ? JSON.parse( themeMod ) : themeMod ;
 			colUids = Object.keys( colWidths.large.values );
 
+			// If this page uses Header Templates, do not mess with them.
+			if ( $( '.template-header' ).length ) {
+				return;
+			}
+
 			$( '.bgtfw-header .boldgrid-section .row > div' ).each( function( itemIndex ) {
 				let uid = colUids[ itemIndex ],
 					classList;

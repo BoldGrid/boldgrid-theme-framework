@@ -82,7 +82,7 @@ return array(
 			),
 			array(
 				'control' => 'custom_logo',
-				'selector' => '#masthead .custom-logo-link, bgc_header_logo',
+				'selector' => '#masthead .custom-logo, bgc_header_logo',
 				'isParentColumn' => true,
 				'title' => esc_attr__( 'Logo', 'bgtfw' ),
 			),

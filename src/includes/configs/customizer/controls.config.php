@@ -2628,7 +2628,7 @@ return array(
 		'priority'    => 20,
 		'output'      => array(
 			array(
-				'element'  => '#main-menu li a',
+				'element'  => '#main-menu li a, .mce-content-body .sm-clean',
 			),
 		),
 	),

@@ -1044,7 +1044,7 @@ class BoldGrid {
 									}
 									$classes = array(
 										'site-branding',
-										$col_data['align']
+										$col_data['align'],
 									);
 									return $classes;
 								};

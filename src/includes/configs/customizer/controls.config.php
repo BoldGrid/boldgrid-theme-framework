@@ -1658,6 +1658,21 @@ return array(
 		),
 	),
 
+	'bgtfw_video_background_all' => array(
+		'type'        => 'switch',
+		'settings'    => 'bgtfw_video_background_all',
+		'transport'   => 'refresh',
+		'label'       => __( '', 'bgtfw' ),
+		'description' => esc_attr__( 'By default, the header video will only display on the home page. If you want the video to display on all pages, enable this option.', 'bgtfw' ),
+		'section'     => 'header_image',
+		'default'     => false,
+		'priority'    => 11,
+		'choices'     => array(
+			'on'  => esc_attr__( 'Home Only', 'bgtfw' ),
+			'off' => esc_attr__( 'All Pages', 'bgtfw' ),
+		),
+	),
+
 	// Header overlay begin.
 	'bgtfw_header_overlay' => array(
 		'type'        => 'switch',

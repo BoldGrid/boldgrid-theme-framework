@@ -748,17 +748,17 @@ HTML;
 			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Manage custom CSS and JS code for your site.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/using-the-custom-css-and-js-editor-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 		}
 
-		if( $wp_customize->get_control( 'header_image') ) {
+		if ( $wp_customize->get_control( 'header_image' ) ) {
 			$control           = $wp_customize->get_control( 'header_image' );
 			$control->priority = 12;
 		}
 
-		if ( $wp_customize->get_control( 'header_video') ) {
+		if ( $wp_customize->get_control( 'header_video' ) ) {
 			$control            = $wp_customize->get_control( 'header_video' );
 			$control->transport = 'refresh';
 		}
 
-		if( $wp_customize->get_control( 'external_header_video') ) {
+		if ( $wp_customize->get_control( 'external_header_video' ) ) {
 			$control            = $wp_customize->get_control( 'external_header_video' );
 			$control->transport = 'refresh';
 		}

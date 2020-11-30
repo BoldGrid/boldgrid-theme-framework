@@ -1662,7 +1662,7 @@ return array(
 		'type'        => 'switch',
 		'settings'    => 'bgtfw_video_background_all',
 		'transport'   => 'refresh',
-		'label'       => __( '', 'bgtfw' ),
+		'label'       => '',
 		'description' => esc_attr__( 'By default, the header video will only display on the home page. If you want the video to display on all pages, enable this option.', 'bgtfw' ),
 		'section'     => 'header_image',
 		'default'     => false,

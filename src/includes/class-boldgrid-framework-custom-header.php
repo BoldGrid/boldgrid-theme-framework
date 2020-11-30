@@ -72,6 +72,7 @@ class Boldgrid_Framework_Custom_Header {
 					'flex-height'        => true,
 					'video'              => true,
 					'wp-head-callback'   => array( $this, 'header_style' ),
+					'video-active-callback' => array( $this, 'video_is_active' ),
 				)
 			)
 		);
@@ -96,6 +97,20 @@ class Boldgrid_Framework_Custom_Header {
 			);
 		} else {
 			register_default_headers( array() );
+		}
+	}
+
+	/**
+	 * Video Is Active
+	 *
+	 * Callback to determine whether to display header video or not.
+	 *
+	 * @since 2.3.1
+	 */
+	public function video_is_active() {
+		$display_on_all = get_theme_mod( 'bgtfw_video_background_all', false );
+		if ( is_front_page() || $display_on_all ) {
+			return true;
 		}
 	}
 

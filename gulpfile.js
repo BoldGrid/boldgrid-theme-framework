@@ -528,7 +528,6 @@ gulp.task( 'wpTextDomainLint', shell.task( 'yarn run script:wp-textdomain-lint' 
 gulp.task( 'build', function( cb ) {
 	sequence(
 		'dist',
-		'clean',
 		[ 'readme','license' ],
 		['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs', 'svgs', 'tgm'],
 		['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss'],

@@ -183,7 +183,7 @@ class Boldgrid_Framework_SCSS {
 	 */
 	public function compile( $content ) {
 		if ( ! class_exists( '\ScssPhp\ScssPhp\Compiler' ) ) {
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/ScssPhp/scss.inc.php';
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/scssphp/scss.inc.php';
 		}
 
 		$scss = new Compiler();

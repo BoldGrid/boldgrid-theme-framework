@@ -2,7 +2,7 @@
 /**
  * Class: Boldgrid_Framework_SCSS
  *
- * Functions for interfacing with Leafo\ScssPhp\Compiler
+ * Functions for interfacing with ScssPhp\ScssPhp\Compiler
  *
  * @since      1.0.0
  * @package    Boldgrid_Framework
@@ -14,7 +14,7 @@
 /**
  * Class: Boldgrid_Framework_Bootstrap_Compile
  *
- * Functions for interfacing with Leafo\ScssPhp\Compiler
+ * Functions for interfacing with ScssPhp\ScssPhp\Compiler
  *
  * @since      1.0.0
  */

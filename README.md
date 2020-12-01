@@ -36,6 +36,22 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.3.1 ###
+* Bug Fix: WP 5.6 - Header background video doesn't show on front end [#312](https://github.com/BoldGrid/boldgrid-theme-framework/issues/312)
+* Bug Fix: WP 5.6 - Too many menu locations show at Menus > Create New Menu [#313](https://github.com/BoldGrid/boldgrid-theme-framework/issues/313)
+* Bug Fix: WP 5.6 - PHP Notices on activation with PHP7.4 [#297](https://github.com/BoldGrid/boldgrid-theme-framework/issues/297)
+* Bug Fix: WP 5.6 - Column Width Sliders not adding properly [#300](https://github.com/BoldGrid/boldgrid-theme-framework/issues/300)
+* Bug Fix: search widget in sidebar has incorrect spacing [#283](https://github.com/BoldGrid/boldgrid-theme-framework/issues/283)
+* Update: Enable Header Video Background for all pages in Crio [#291](https://github.com/BoldGrid/boldgrid-theme-framework/issues/291)
+* Update: [Snyk] Upgrade @wordpress/dom-ready from 2.0.2 to 2.9.0 [#197](https://github.com/BoldGrid/boldgrid-theme-framework/pull/197)
+* Update: [Snyk] Upgrade jarallax from 1.10.7 to 1.12.1 [#214](https://github.com/BoldGrid/boldgrid-theme-framework/pull/214)
+* Update: [Snyk] Upgrade @wordpress/hooks from 2.2.0 to 2.8.0  [#198](https://github.com/BoldGrid/boldgrid-theme-framework/pull/198)
+* Update: [Snyk] Upgrade animate.css from 3.6.1 to 3.7.2  [#215](https://github.com/BoldGrid/boldgrid-theme-framework/pull/215)
+* Update: [Snyk] [ImgBot] Optimize images[#275](https://github.com/BoldGrid/boldgrid-theme-framework/pull/275)
+
+### 2.3.0 ###
+* New Feature: Added adjustable Column Width Controls to the Header Layouts
+
 ### 2.2.3 ###
 * Bug Fix: Crio 2.3.2 & PPB 1.13.3 - Main Text font doesn't pull thru to Editor [#272](https://github.com/BoldGrid/boldgrid-theme-framework/issues/272)
 * Bug Fix: Some fonts don't show their name in the font selection dropdown [#264](https://github.com/BoldGrid/boldgrid-theme-framework/issues/264)

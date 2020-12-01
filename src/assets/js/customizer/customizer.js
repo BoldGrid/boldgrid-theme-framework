@@ -343,7 +343,8 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 				return;
 			}
 
-			$( '.bgtfw-header .boldgrid-section .row > div' ).each( function( itemIndex ) {
+			// Added #masthead to the selector to ensure that Page Header Template rows are not selected.
+			$( '.bgtfw-header #masthead .boldgrid-section .row > div' ).each( function( itemIndex ) {
 				let uid = colUids[ itemIndex ],
 					classList;
 

@@ -108,8 +108,8 @@ class Boldgrid_Framework_Custom_Header {
 	 * @since 2.3.1
 	 */
 	public function video_is_active() {
-		$display_on_all = get_theme_mod( 'bgtfw_video_background_all', false );
-		if ( is_front_page() || $display_on_all ) {
+		$display_home_only = get_theme_mod( 'bgtfw_video_background_all', true );
+		if ( is_front_page() || ! $display_home_only ) {
 			return true;
 		}
 	}

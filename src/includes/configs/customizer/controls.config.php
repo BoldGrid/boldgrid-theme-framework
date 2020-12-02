@@ -1663,9 +1663,9 @@ return array(
 		'settings'    => 'bgtfw_video_background_all',
 		'transport'   => 'refresh',
 		'label'       => '',
-		'description' => esc_attr__( 'By default, the header video will only display on the home page. If you want the video to display on all pages, enable this option.', 'bgtfw' ),
+		'description' => esc_attr__( 'By default, the header video will only display on the home page. If you want the video to display on all pages, disable this option.', 'bgtfw' ),
 		'section'     => 'header_image',
-		'default'     => false,
+		'default'     => true,
 		'priority'    => 11,
 		'choices'     => array(
 			'on'  => esc_attr__( 'Home Only', 'bgtfw' ),

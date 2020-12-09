@@ -5,10 +5,10 @@
 [![PHP Version](https://img.shields.io/badge/PHP-5.3%2B-blue.svg)](https://php.net)
 [![Code Climate](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework/badges/gpa.svg)](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework)
 
-* **Contributors:** rramo012, timph
+* **Contributors:** rramo012, timph, jamesros161
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.5
+* **Tested up to:** 5.6
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,14 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+### 1.7.10 ###
+* Bug Fix: Remove Selected Pattern button in V1 themes [#318](https://github.com/BoldGrid/boldgrid-theme-framework/issues/318)
+
+### 1.6.9 ###
+Bug Fix: Removed conditional loading of bgtfw, to address issues where theme support for navigation menus was not being properly loaded.
+
+### 1.6.8 ###
+Bug Fix: Forces recompiling buttons.css from sass whenever the buttons.css file is missing.
 
 ### 1.7.7 ###
 * Bug Fix: Unable to set Featured Images for Blog Posts in V1 themes [#290](https://github.com/BoldGrid/boldgrid-theme-framework/issues/290)

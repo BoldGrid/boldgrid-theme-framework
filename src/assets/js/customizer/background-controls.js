@@ -40,7 +40,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 			$boldgrid_pattern_wrapper.removeAttr( 'data-pattern-selected' );
 			$remove_selected_pattern.attr( 'disabled', 'disabled' );
 			$( '#boldgrid_background_pattern .active-pattern' ).removeClass( 'active-pattern' );
-			$pattern_input.val( '' ).change();
+			$pattern_input.val( 'none' ).change();
 		} );
 
 		$( '.patternpreview' ).on( 'click', function() {

@@ -426,11 +426,14 @@ class Boldgrid_Framework_Customizer_Background {
 	 * @since 1.0.0
 	 */
 	public function create_background_styles() {
+		$bg_pattern_defualt = 'none';
+		if ( ! empty( $background_options['defaults']['boldgrid_background_pattern'] ) ) {
+			$bg_pattern_defualt = self::get_default_pattern_mod( $this->configs );
+		}
 		$theme_mods = get_theme_mods();
 		$background_options = $this->configs['customizer-options']['background'];
-
 		$bg_type = ! empty( $theme_mods['boldgrid_background_type'] ) ? $theme_mods['boldgrid_background_type'] : null;
-		$bg_pattern = ! empty( $theme_mods['boldgrid_background_pattern'] ) ? $theme_mods['boldgrid_background_pattern'] : 'none';
+		$bg_pattern = get_theme_mod( 'boldgrid_background_pattern', $bg_pattern_defualt ) ? get_theme_mod( 'boldgrid_background_pattern', $bg_pattern_defualt ) : 'none';
 		$bg_x_pos = isset( $theme_mods['boldgrid_background_horizontal_position'] ) ? $theme_mods['boldgrid_background_horizontal_position'] : null;
 		$bg_y_pos = isset( $theme_mods['boldgrid_background_vertical_position'] ) ? $theme_mods['boldgrid_background_vertical_position'] : null;
 		$bg_image_size = ! empty( $theme_mods['boldgrid_background_image_size'] ) ? $theme_mods['boldgrid_background_image_size'] : null;
@@ -441,12 +444,6 @@ class Boldgrid_Framework_Customizer_Background {
 		if ( ! $bg_type ) {
 			if ( ! empty( $background_options['defaults']['boldgrid_background_type'] ) ) {
 				$bg_type = $background_options['defaults']['boldgrid_background_type'];
-			}
-		}
-
-		if ( 'none' === $bg_pattern ) {
-			if ( ! empty( $background_options['defaults']['boldgrid_background_pattern'] ) ) {
-				$bg_pattern = self::get_default_pattern_mod( $this->configs );
 			}
 		}
 

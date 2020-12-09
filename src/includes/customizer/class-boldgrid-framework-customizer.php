@@ -766,6 +766,11 @@ HTML;
 			$control->description = esc_html__( 'Add custom CSS for this theme.', 'bgtfw' );
 		}
 
+		if ( $wp_customize->get_setting( 'custom_logo' ) ) {
+			$setting = $wp_customize->get_setting( 'custom_logo' );
+			$setting->transport = 'refresh';
+		}
+
 		// Remove Addition Control that conflict with site title.
 		$wp_customize->remove_control( 'header_textcolor' );
 		$wp_customize->remove_control( 'display_header_text' );

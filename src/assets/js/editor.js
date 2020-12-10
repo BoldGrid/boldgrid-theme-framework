@@ -1,28 +1,32 @@
+/* global tinymce, BOLDGRID_THEME_FRAMEWORK, tinyMCE */
 ( function( $ ) {
 	'use strict';
 
-	$( function() {
-		tinymce.PluginManager.add( 'boldgrid_theme_framework', function( editor ) {
-			editor.on( 'init', function() {
-				var $style,
-					$iframeHead;
+	/*
+	 * Removing this from the document ready event, to be sure this is added before
+	 * early enough in the page load
+	 */
+	tinymce.PluginManager.add( 'boldgrid_theme_framework', function( editor ) {
+		editor.on( 'init', function() {
+			var $style,
+				$iframeHead;
 
-				if ( BOLDGRID_THEME_FRAMEWORK.Editor && BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles ) {
-					$style = $( '<style>' );
-					$style.html( BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles );
-					$iframeHead = $( tinyMCE.activeEditor.iframeElement ).contents().find( 'head' );
+			if ( BOLDGRID_THEME_FRAMEWORK.Editor && BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles ) {
+				$style = $( '<style>' );
+				$style.html( BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles );
+				$iframeHead = $( tinyMCE.activeEditor.iframeElement ).contents().find( 'head' );
 
-					$iframeHead.append( $style );
+				$iframeHead.append( $style );
 
-					// Copy all google fonts into the editor.
-					$( 'head link[rel="stylesheet"][href*="fonts.googleapis.com/css"], [id^="kirki-local-webfonts"]' ).each( function() {
-						$iframeHead.append( $( this ).addClass( 'webfontjs-loader-styles' ).clone() );
-					} );
-				}
-			} );
-
+				// Copy all google fonts into the editor.
+				$( 'head link[rel="stylesheet"][href*="fonts.googleapis.com/css"], [id^="kirki-local-webfonts"]' ).each( function() {
+					$iframeHead.append( $( this ).addClass( 'webfontjs-loader-styles' ).clone() );
+				} );
+			}
 		} );
+	} );
 
+	$( function() {
 		if ( hasPPBEnabled() ) {
 			setupPPB();
 		}

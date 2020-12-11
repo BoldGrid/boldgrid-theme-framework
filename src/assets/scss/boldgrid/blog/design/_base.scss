@@ -105,7 +105,7 @@ main {
 			}
 		}
 		.featured-imgage-header {
-			margin: 0 15px;
+			margin: 0 auto;
 			width: 100%
 		}
 		.entry-title,
@@ -166,6 +166,10 @@ main {
 @media only screen and (max-width : 768px) {
 	&[class*="col"]:not(.col1) main article.post:not(.sticky) {
 		width: calc((100% / 2 - .5vw) - 2vw);
+	}
+
+	.bgtfw-header .hamburger {
+		padding-left: 0px;
 	}
 }
 @media only screen and (max-width : 480px) {

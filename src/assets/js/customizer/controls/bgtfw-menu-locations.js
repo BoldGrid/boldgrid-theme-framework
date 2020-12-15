@@ -38,6 +38,11 @@ export default {
 				} );
 			} );
 
+			// Bind the 'New Menu' section expansion to show / hide locations on this section.
+			api.section( 'add_menu' ).expanded.bind( () => this.toggleUsedLocations() );
+
+			api.panel( 'nav_menus' ).expanded.bind( () => this.toggleUsedLocations() );
+
 			// Bind to section add to listen for newly created menu sections being added dynamically.
 			api.section.bind( 'add', function( section ) {
 				if ( section && section.params && section.params.type && 'nav_menu' === section.params.type ) {
@@ -149,7 +154,10 @@ export default {
 	 * @since 2.1.0
 	 */
 	updateMenuLocations( id, active ) {
-		active = active ? 'show' : 'hide';
-		$( `[data-location-id="${ id }"]` ).closest( 'li' )[ active ]();
+		if ( active ) {
+			$( `[data-location-id="${ id }"]` ).closest( 'li' ).show();
+		} else {
+			$( `[data-location-id="${ id }"]` ).closest( 'li' ).hide();
+		}
 	}
 };

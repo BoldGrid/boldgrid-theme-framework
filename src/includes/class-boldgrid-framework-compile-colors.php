@@ -134,6 +134,11 @@ class Boldgrid_Framework_Compile_Colors {
 		$neutral_color = false;
 		$palettes = $this->get_palette();
 
+		// This prevents throwing warnings in php7.4 when $palettes is null.
+		if ( ! $palettes ) {
+			return false;
+		}
+
 		$current_palette = $palettes['state']['active-palette'];
 		if ( ! empty( $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) ) {
 			$neutral_color = array(

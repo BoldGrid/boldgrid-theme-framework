@@ -249,9 +249,6 @@ var BoldGrid = BoldGrid || {};
 				// Check for custom header image.
 				this.checkImg();
 
-				// Check for video background embed type.
-				$( document ).on( 'wp-custom-header-video-loaded', this.checkType );
-
 				// Initial calc.
 				BoldGrid.custom_header.calc();
 
@@ -820,6 +817,16 @@ var BoldGrid = BoldGrid || {};
 
 	// Load Events.
 	$( document ).ready( UTIL.loadEvents );
+
+	/*
+	 * Check for video background embed type.
+	 * This has to be added here, to be sure the event
+	 * listener is added at the appropriate
+	 * time.
+	 */
+	$( document ).on( 'wp-custom-header-video-loaded', function() {
+		BoldGrid.custom_header.checkType();
+	} );
 
 } )( jQuery );
 window.BoldGrid = BoldGrid;

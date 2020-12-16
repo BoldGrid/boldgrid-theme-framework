@@ -648,19 +648,12 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0":
-  version "7.1.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.1.5.tgz#4170907641cf1f61508f563ece3725150cc6fe39"
-  integrity sha512-xKnPpXG/pvK1B90JkwwxSGii90rQGKtzcMt2gI5G6+M0REXaq6rOHsGC2ay6/d0Uje7zzvSzjEzfR3ENhFlrfA==
+"@babel/runtime@^7.9.2":
+  version "7.9.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.6.tgz#a9102eb5cadedf3f31d08a9ecf294af7827ea29f"
+  integrity sha512-64AF1xY3OAkFHqOb9s4jpgk1Mm5vDZ4L3acHvAml+53nO1XbXLuDodsVpO4OIUsmemlUHMxNdYMNJmsvOwLrvQ==
   dependencies:
-    regenerator-runtime "^0.12.0"
-
-"@babel/runtime@^7.3.1":
-  version "7.4.4"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.4.tgz#dc2e34982eb236803aa27a07fea6857af1b9171d"
-  integrity sha512-w0+uT71b6Yi7i5SE0co4NioIpSYS6lLiXvCzWzGSKvpK5vdQtCbICHMj+gbAKAOtxiV6HsVh/MBdaF9EQ6faSg==
-  dependencies:
-    regenerator-runtime "^0.13.2"
+    regenerator-runtime "^0.13.4"
 
 "@babel/template@7.0.0-beta.44":
   version "7.0.0-beta.44"
@@ -1330,19 +1323,19 @@
     text-table "^0.2.0"
     webpack-log "^1.1.2"
 
-"@wordpress/dom-ready@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@wordpress/dom-ready/-/dom-ready-2.0.2.tgz#983c733d9eef08dce98518e66e1abee346089323"
-  integrity sha512-SENsbiIesC0Oz6qTLHpYxo6aW9/NgFYkXq4TGjUBA5LLNJmBf9AhPKX9rpgh8Y3+DKVobMdX8IKhfRrQYiqRiw==
+"@wordpress/dom-ready@^2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@wordpress/dom-ready/-/dom-ready-2.9.0.tgz#964337de20b031bd54c60c040cc728097a525384"
+  integrity sha512-2egz1f4LaLeeSPTsWUgvgerNUbV9A++x/YWBGiF8t/bC7KX1n4mqexQRihfuofvpBxlkalIJEXxka3pzrD1XHA==
   dependencies:
-    "@babel/runtime" "^7.0.0"
+    "@babel/runtime" "^7.9.2"
 
-"@wordpress/hooks@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@wordpress/hooks/-/hooks-2.2.0.tgz#626cef9424ded5546333891fced140eab890fe34"
-  integrity sha512-pzLDgcQOPCU4xSN0yuGoPd9xeNW2MnB2o7O52qaFZ2DSmf9tN+OkPDg7lKsg7SEds0J7GngBS8tu+a4Lqywy/w==
+"@wordpress/hooks@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@wordpress/hooks/-/hooks-2.8.0.tgz#30a7c3af68837d9a659c52a008b8f1ee1853994b"
+  integrity sha512-5FbiVz6T2Frw45NmPDF9GbAFU8iQy64YSZaM+61tUngB+Uzdv0A4pA8C8WIDPlw16QJXseZ4uLce4U9HlJQ3dw==
   dependencies:
-    "@babel/runtime" "^7.3.1"
+    "@babel/runtime" "^7.9.2"
 
 "Buttons@https://github.com/alexwolfe/Buttons":
   version "2.0.0"
@@ -1488,7 +1481,12 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-animate.css@^3.5.2, animate.css@latest:
+animate.css@3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.7.2.tgz#e73e0d50e92cb1cfef1597d9b38a9481020e08ea"
+  integrity sha512-0bE8zYo7C0KvgOYrSVfrzkbYk6IOTVPNqkiHg2cbyF4Pq/PXzilz4BRWA3hwEUBoMp5VBgrC29lQIZyhRWdBTw==
+
+animate.css@^3.5.2:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.6.1.tgz#4ea8a48556378bc8d7535224296c4c0dac9229de"
   integrity sha512-xEIzzKyQvQSIldgrtC2d/qptAEQLVlMb6xQrjQ6HU6NyGhF7LAIivRZVmhSAg4EICRASNiS+A1G+wvAKTCoC7A==
@@ -6058,13 +6056,13 @@ global-prefix@^1.0.1:
     is-windows "^1.0.1"
     which "^1.2.14"
 
-global@^4.3.2, global@~4.3.0:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/global/-/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
-  integrity sha1-52mJJopsdMOJCLEwWxD8DjlOnQ8=
+global@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/global/-/global-4.4.0.tgz#3e7b105179006a323ed71aafca3e9c57a5cc6406"
+  integrity sha512-wv/LAoHdRE3BeTGz53FAamhGlPLhlssK45usmGFThIi4XqnBmjKQ16u+RNbP7WvigRZDxUsM0J3gcQ5yicaL0w==
   dependencies:
     min-document "^2.19.0"
-    process "~0.5.1"
+    process "^0.11.10"
 
 globals@^11.0.1, globals@^11.1.0:
   version "11.7.0"
@@ -7827,15 +7825,14 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jarallax@^1.10.7:
-  version "1.10.7"
-  resolved "https://registry.yarnpkg.com/jarallax/-/jarallax-1.10.7.tgz#b9e31392c705cb3ea21113d2b2c98fab8ff6b526"
-  integrity sha512-eIRVwNRLiWdEWkYvU3gwxOeZPHNeXnwmT9FqUb9wO8oQOGZPm/hDJUs5Z9FXYsK60Ivoj5WXLozx4SXaMlvfAg==
+jarallax@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/jarallax/-/jarallax-1.12.1.tgz#5f8c539f54244264c7a53ade11adf49c0634dd99"
+  integrity sha512-8AKPKjLz8JcjZFwdMMbf3W7QG9BTzB3rN0k47Xx+tWpkPeGgHodxEUB2OGsj3eOzLCpSvolfW0PtwTp7i3CrhA==
   dependencies:
-    global "^4.3.2"
+    global "^4.4.0"
     lite-ready "^1.0.4"
-    rafl "^1.2.2"
-    video-worker "^1.1.6"
+    video-worker "^1.1.8"
 
 jpegtran-bin@^3.0.0:
   version "3.2.0"
@@ -10797,11 +10794,6 @@ process@^0.11.10:
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
 
-process@~0.5.1:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/process/-/process-0.5.2.tgz#1638d8a8e34c2f440a91db95ab9aeb677fc185cf"
-  integrity sha1-FjjYqONML0QKkduVq5rrZ3/Bhc8=
-
 progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
@@ -10967,13 +10959,6 @@ querystringify@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.0.tgz#7ded8dfbf7879dcc60d0a644ac6754b283ad17ef"
   integrity sha512-sluvZZ1YiTLD5jsqZcDmFyV2EwToyXZBfpoVOmktMmW+VEnhgakFHnasVph65fOjGPTWN0Nw3+XQaSeMayr0kg==
-
-rafl@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/rafl/-/rafl-1.2.2.tgz#fe930f758211020d47e38815f5196a8be4150740"
-  integrity sha1-/pMPdYIRAg1H44gV9Rlqi+QVB0A=
-  dependencies:
-    global "~4.3.0"
 
 randomatic@^3.0.0:
   version "3.0.0"
@@ -11253,16 +11238,6 @@ regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
-
-regenerator-runtime@^0.12.0:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
-  integrity sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg==
-
-regenerator-runtime@^0.13.2:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
-  integrity sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA==
 
 regenerator-runtime@^0.13.4:
   version "0.13.5"
@@ -13361,12 +13336,12 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-video-worker@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/video-worker/-/video-worker-1.1.6.tgz#a0bfd63f386c7632ca4a6dfdeac430797c752b40"
-  integrity sha512-l72nF3wE3V8VuJOvg9zSonxe31udDrvAzT0bwU/GS+smxc9UQqZGBe7b1tyj/vBsagQusXVx0sEw6FwFD1GdZQ==
+video-worker@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/video-worker/-/video-worker-1.1.8.tgz#9b7e1a2a5e72a3d13c5bd70150f94362d45dcfe7"
+  integrity sha512-eUDefy2ZrY7TgAepGoHVS3uh7MDPsPD2Ug5gD7I+bBJnqAXf9Cp9GM2aOnIS3ZrDDeyRq2wbhFr/x1MsCKun/w==
   dependencies:
-    global "^4.3.2"
+    global "^4.4.0"
 
 vinyl-assign@^1.0.1:
   version "1.2.1"

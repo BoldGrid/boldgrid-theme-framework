@@ -1019,7 +1019,13 @@ class BoldGrid {
 							$md_col = '5s';
 						}
 
-						$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . '">';
+						if ( false !== strpos( $col_uid, 'h' ) ) {
+							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . '">';
+						} else {
+							$num = ( 12 / count( $chunk ) );
+							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . '">';
+						}
+
 						ob_start();
 						switch ( $col_data['type'] ) {
 							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
@@ -1036,7 +1042,10 @@ class BoldGrid {
 									if ( empty( $col_data['align'] ) ) {
 										$col_data['align'] = 'nw';
 									}
-									$classes[] = $col_data['align'];
+									$classes = array(
+										'site-branding',
+										$col_data['align'],
+									);
 									return $classes;
 								};
 								add_filter( 'bgtfw_site_branding_classes', $filter, 10 );

@@ -7,6 +7,19 @@
 /* Attribution Links */
 @import "attribution-links";
 
+.bgtfw-footer {
+	.container {
+		.row {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
+
+	.attribution-theme-mods-wrapper {
+		margin-left: -15px;
+	}
+}
+
 @media only screen and (min-width : 768px) {
 	footer {
 		&#colophon {

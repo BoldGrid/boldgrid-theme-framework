@@ -1228,7 +1228,7 @@ return array(
 		'priority'    => 20,
 		'output'      => array(
 			array(
-				'element' => '.site-branding .site-description',
+				'element' => '.site-branding .site-description, .bgc-tagline',
 			),
 		),
 	),
@@ -1355,7 +1355,7 @@ return array(
 		'priority'    => 20,
 		'output'      => array(
 			array(
-				'element' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover',
+				'element' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '.site-header .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover, .bgc-site-title, .bgc-site-title:hover',
 			),
 		),
 	),
@@ -1377,7 +1377,7 @@ return array(
 		'priority'    => 10,
 		'output'      => array(
 			array(
-				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body',
+				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header',
 			),
 		),
 	),
@@ -2643,7 +2643,7 @@ return array(
 		'priority'    => 20,
 		'output'      => array(
 			array(
-				'element'  => '#main-menu li a',
+				'element'  => '#main-menu li a, .mce-content-body .sm-clean',
 			),
 		),
 	),

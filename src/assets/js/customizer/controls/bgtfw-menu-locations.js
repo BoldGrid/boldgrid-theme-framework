@@ -15,6 +15,21 @@ export default {
 				'bgtfw_footer_layout'
 			];
 
+			// Update menu location controls displayed throughout the various nav menu sections/panels.
+			let customMenus = [];
+			Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
+				let isActive = false;
+				if ( /.*_\d+/.test( menu ) ) {
+					isActive = true;
+					api.controlConstructor.nav_menu_location.prototype.updateMenuLocations( menu, isActive );
+					customMenus.push( menu );
+				}
+			} );
+			let menus = api.control( 'bgtfw_header_layout' ).getConnectedMenus()
+				.map( menu => menu.replace( 'boldgrid_menu_', '' ) );
+			menus = menus.concat( customMenus );
+			api.controlConstructor.nav_menu_location.prototype.updateSectionDescription( menus );
+
 			// Bind the menu locations when these controls change the active menu locations used.
 			dynamicControls.forEach( ctrl => {
 				api( ctrl, setting => {
@@ -25,6 +40,8 @@ export default {
 
 			// Bind the 'New Menu' section expansion to show / hide locations on this section.
 			api.section( 'add_menu' ).expanded.bind( () => this.toggleUsedLocations() );
+
+			api.panel( 'nav_menus' ).expanded.bind( () => this.toggleUsedLocations() );
 
 			// Bind to section add to listen for newly created menu sections being added dynamically.
 			api.section.bind( 'add', function( section ) {
@@ -42,6 +59,9 @@ export default {
 							// Update menu location controls displayed throughout the various nav menu sections/panels.
 							Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
 								let isActive = menus.includes( menu );
+								if ( /.*_\d+/.test( menu ) ) {
+									isActive = true;
+								}
 								api.controlConstructor.nav_menu_location.prototype.updateMenuLocations( menu, isActive );
 							} );
 						} );
@@ -61,8 +81,15 @@ export default {
 			.map( menu => menu.replace( 'boldgrid_menu_', 'nav_menu_locations[' ) + ']' );
 
 		// This checks if the control matches any of our connected menus set in dynamic controls.
-		let isActive = () => menus.includes( this.id ) ? true : false;
+		let isActive;
 
+		if ( /.*_\d+/.test( this.id ) ) {
+			isActive = function() {
+				return true;
+			};
+		} else {
+			isActive = () => menus.includes( this.id ) ? true : false;
+		}
 		let panel = api.panel( `bgtfw_menu_location_${ locationId }` );
 
 		// Force the active panel state to read JS state set with isActive() and ignore server response.
@@ -78,6 +105,14 @@ export default {
 
 		// Set the initial active state for control.
 		this.active.set( isActive() );
+
+		let customMenus = [];
+		Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
+			if ( /.*_\d+/.test( menu ) ) {
+				customMenus.push( menu );
+			}
+		} );
+		menus = menus.concat( customMenus );
 
 		// Update section descriptions counts.
 		this.updateSectionDescription( menus );
@@ -119,7 +154,10 @@ export default {
 	 * @since 2.1.0
 	 */
 	updateMenuLocations( id, active ) {
-		active = active ? 'show' : 'hide';
-		$( `[data-location-id="${ id }"]` ).closest( 'li' )[ active ]();
+		if ( active ) {
+			$( `[data-location-id="${ id }"]` ).closest( 'li' ).show();
+		} else {
+			$( `[data-location-id="${ id }"]` ).closest( 'li' ).hide();
+		}
 	}
 };

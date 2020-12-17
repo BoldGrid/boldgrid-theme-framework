@@ -5,6 +5,10 @@
 		margin-left: -15px;
 		margin-right: -15px;
 	}
+	.container, .container-fluid {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
 	.boldgrid-section {
 		.row {
 			display: flex;
@@ -28,7 +32,8 @@
 				.site-title,
 				.site-description,
 				.custom-logo-link,
-				.hamburger {
+				.hamburger,
+				.sm-clean {
 					margin-left: 20px;
 					margin-right: 20px;
 				}

@@ -178,7 +178,7 @@ gulp.task('fontDeps', function () {
 
 // PHP Dependencies
 gulp.task('phpDeps', function () {
-  // Leafo SCSSPHP Compiler
+  // ScssPhp SCSSPHP Compiler
   gulp.src([
     '!' + config.node_modules + '/scssphp/tests',
     '!' + config.node_modules + '/scssphp/example/**',
@@ -528,7 +528,6 @@ gulp.task( 'wpTextDomainLint', shell.task( 'yarn run script:wp-textdomain-lint' 
 gulp.task( 'build', function( cb ) {
 	sequence(
 		'dist',
-		'clean',
 		[ 'readme','license' ],
 		['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs', 'svgs', 'tgm'],
 		['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss'],

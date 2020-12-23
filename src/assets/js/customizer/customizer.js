@@ -338,7 +338,13 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			colWidths = 'string' === typeof themeMod ? JSON.parse( themeMod ) : themeMod ;
 			colUids = Object.keys( colWidths.large.values );
 
-			$( '.bgtfw-header .boldgrid-section .row > div' ).each( function( itemIndex ) {
+			// If this page uses Header Templates, do not mess with them.
+			if ( $( '.template-header' ).length ) {
+				return;
+			}
+
+			// Added #masthead to the selector to ensure that Page Header Template rows are not selected.
+			$( '.bgtfw-header #masthead .boldgrid-section .row > div' ).each( function( itemIndex ) {
 				let uid = colUids[ itemIndex ],
 					classList;
 
@@ -800,7 +806,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 		// Setup menu controls.
 		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
-
 			if ( props.theme_location ) {
 
 				// Setup current menu items.

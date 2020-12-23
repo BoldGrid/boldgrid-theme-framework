@@ -2,7 +2,7 @@
 /**
  * Class: Boldgrid_Framework_SCSS
  *
- * Functions for interfacing with Leafo\ScssPhp\Compiler
+ * Functions for interfacing with ScssPhp\ScssPhp\Compiler
  *
  * @since      1.0.0
  * @package    Boldgrid_Framework
@@ -14,7 +14,7 @@
 /**
  * Class: Boldgrid_Framework_Bootstrap_Compile
  *
- * Functions for interfacing with Leafo\ScssPhp\Compiler
+ * Functions for interfacing with ScssPhp\ScssPhp\Compiler
  *
  * @since      1.0.0
  */
@@ -133,6 +133,11 @@ class Boldgrid_Framework_Compile_Colors {
 	public function get_neutral_color() {
 		$neutral_color = false;
 		$palettes = $this->get_palette();
+
+		// This prevents throwing warnings in php7.4 when $palettes is null.
+		if ( ! $palettes ) {
+			return false;
+		}
 
 		$current_palette = $palettes['state']['active-palette'];
 		if ( ! empty( $palettes['state']['palettes'][ $current_palette ]['neutral-color'] ) ) {

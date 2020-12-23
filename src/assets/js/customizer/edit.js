@@ -371,7 +371,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			if ( $previewToggleControls.is( ':visible' ) ) {
 				$overlay.toggleClass( 'preview-only' );
 			}
-
 			// Page title.
 			if ( 'entry-title' === dataControl ) {
 				if( 'page' === self.i18n.postType ) {
@@ -400,6 +399,12 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			} else if ( 'new_menu_name' === dataControl ) {
 				navMenuLocation = $parent.attr( 'data-theme-location' );
 				api.control( 'nav_menu_locations[' + navMenuLocation + ']' ).focus();
+
+			// Custom menu locations.
+			} else if ( 'nav_menu[0]' === dataControl ) {
+				let locationId = $button.attr( 'data-selector' ).match(/\s?#(\S+-\d{3})-menu/)[1];
+				locationId = locationId.replace( /(\S+)-(\d{3})/, '$1_$2' );
+				api.panel( 'bgtfw_menu_location_' + locationId ).focus();
 
 			// Default.
 			} else {
@@ -1066,7 +1071,25 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			// If includeMargin is undefined, set it to false by default.
 			includeMargin = ! _.isUndefined( includeMargin ) ? includeMargin : false;
 
-			return $element.offset().left + $element.outerWidth( includeMargin );
+			/*
+			 * Sometimes there will be multiple elements in the $element object.
+			 * Normally this would return the results of the first element. However,
+			 * sometimes that first element is hidden, in which case we don't want the results for
+			 * that element, but the next element in line. Therefore we need to skip hidden elements
+			 * when there the length of $elements is not 1.
+			 */
+			if ( 1 === $element.length ) {
+				return $element.offset().left + $element.outerWidth( includeMargin );
+			} else {
+				let left = 0;
+				$element.each( function() {
+					if ( $( this ).is( ':visible' ) ) {
+						left = $( this ).offset().left + $( this ).outerWidth( includeMargin );
+						return false;
+					}
+				} );
+				return left;
+			}
 		},
 
 		/**

@@ -23,6 +23,7 @@ $bgtfw_active_palette = $bgtfw_palette->get_active_palette();
 $bgtfw_formatted_palette = $bgtfw_palette->color_format( $bgtfw_active_palette );
 $bgtfw_color_sanitize = new Boldgrid_Framework_Customizer_Color_Sanitize();
 $bgtfw_typography = new Boldgrid_Framework_Customizer_Typography( $bgtfw_configs );
+$bgtfw_generic = new Boldgrid_Framework_Customizer_Generic( $bgtfw_configs );
 
 return array(
 	'custom_theme_js' => array(
@@ -57,7 +58,7 @@ return array(
 		'label' => __( 'Background Image Size', 'bgtfw' ),
 		'section' => 'background_image',
 		'settings' => 'boldgrid_background_image_size',
-		'transport' => 'postMessage',
+		'transport' => 'refresh',
 		'default'     => 'cover',
 		'priority' => 15,
 		'choices' => [
@@ -398,7 +399,7 @@ return array(
 
 	'bgtfw_pages_container' => array(
 		'settings' => 'bgtfw_pages_container',
-		'transport'   => 'postMessage',
+		'transport'   => 'refresh',
 		'label'       => esc_html__( 'Container', 'bgtfw' ),
 		'type'        => 'radio-buttonset',
 		'priority'    => 35,
@@ -466,6 +467,19 @@ return array(
 		'priority'    => 10,
 		'choices'     => array(),
 		'sanitize_callback' => 'esc_attr',
+	),
+	'bgtfw_woocommerce_products_per_page' => array(
+		'type'              => 'kirki-generic',
+		'settings'          => 'bgtfw_woocommerce_products_per_page',
+		'label'             => __( 'Products Per Page', 'bgtfw' ),
+		'description'       => __( 'How many products should be shown per page?', 'bgtfw' ),
+		'section'           => 'woocommerce_product_catalog',
+		'default'           => 10,
+		'priority'          => 10,
+		'sanitize_callback' => 'esc_attr',
+		'choices'           => array(
+			'type' => 'number',
+		),
 	),
 
 	// Start: Page Title Controls.
@@ -1214,7 +1228,7 @@ return array(
 		'priority'    => 20,
 		'output'      => array(
 			array(
-				'element' => '.site-branding .site-description',
+				'element' => '.site-branding .site-description, .bgc-tagline',
 			),
 		),
 	),
@@ -1299,7 +1313,7 @@ return array(
 		'transport' => 'postMessage',
 		'settings'    => 'bgtfw_header_color',
 		'label' => esc_attr__( 'Background Color', 'bgtfw' ),
-		'section'     => 'bgtfw_header_colors',
+		'section'     => 'header_image',
 		'priority' => 1,
 		'default'     => '',
 		'choices'     => array(
@@ -1341,7 +1355,7 @@ return array(
 		'priority'    => 20,
 		'output'      => array(
 			array(
-				'element' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover',
+				'element' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '.site-header .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover, .bgc-site-title, .bgc-site-title:hover',
 			),
 		),
 	),
@@ -1359,13 +1373,11 @@ return array(
 			'letter-spacing' => '0',
 			'subsets'        => array( 'latin-ext' ),
 			'text-transform' => 'none',
-
 		),
 		'priority'    => 10,
 		'output'      => array(
 			array(
-				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body',
-				'context' => [ 'front', 'editor' ],
+				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header',
 			),
 		),
 	),
@@ -1646,6 +1658,21 @@ return array(
 		),
 	),
 
+	'bgtfw_video_background_all' => array(
+		'type'        => 'switch',
+		'settings'    => 'bgtfw_video_background_all',
+		'transport'   => 'refresh',
+		'label'       => '',
+		'description' => esc_attr__( 'By default, the header video will only display on the home page. If you want the video to display on all pages, disable this option.', 'bgtfw' ),
+		'section'     => 'header_image',
+		'default'     => true,
+		'priority'    => 11,
+		'choices'     => array(
+			'on'  => esc_attr__( 'Home Only', 'bgtfw' ),
+			'off' => esc_attr__( 'All Pages', 'bgtfw' ),
+		),
+	),
+
 	// Header overlay begin.
 	'bgtfw_header_overlay' => array(
 		'type'        => 'switch',
@@ -1662,28 +1689,28 @@ return array(
 		),
 	),
 	'bgtfw_header_overlay_color' => array(
-		'type'        => 'bgtfw-palette-selector',
-		'transport'   => 'postMessage',
-		'settings'    => 'bgtfw_header_overlay_color',
-		'label'       => esc_attr__( 'Overlay Color', 'bgtfw' ),
-		'section'     => 'header_image',
-		'priority'    => 25,
-		'default'     => 'color-1',
-		'choices'     => array(
+		'type'              => 'bgtfw-palette-selector',
+		'transport'         => 'postMessage',
+		'settings'          => 'bgtfw_header_overlay_color',
+		'label'             => esc_attr__( 'Overlay Color', 'bgtfw' ),
+		'section'           => 'header_image',
+		'priority'          => 25,
+		'default'           => 'color-1',
+		'choices'           => array(
 			'colors' => $bgtfw_formatted_palette,
 			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 	'bgtfw_header_overlay_alpha' => array(
-		'type'        => 'slider',
-		'transport'   => 'postMessage',
-		'settings'    => 'bgtfw_header_overlay_alpha',
-		'label'       => esc_attr__( 'Overlay Opacity', 'bgtfw' ),
-		'section'     => 'header_image',
-		'priority'    => 30,
-		'default'     => '0.70',
-		'choices'     => array(
+		'type'      => 'slider',
+		'transport' => 'postMessage',
+		'settings'  => 'bgtfw_header_overlay_alpha',
+		'label'     => esc_attr__( 'Overlay Opacity', 'bgtfw' ),
+		'section'   => 'header_image',
+		'priority'  => 30,
+		'default'   => '0.70',
+		'choices'   => array(
 			'min'  => '0',
 			'max'  => '1',
 			'step' => '.01',
@@ -1739,7 +1766,7 @@ return array(
 	),
 	'bgtfw_blog_page_container' => array(
 		'settings' => 'bgtfw_blog_page_container',
-		'transport'   => 'postMessage',
+		'transport'   => 'refresh',
 		'label'       => esc_html__( 'Container', 'bgtfw' ),
 		'type'        => 'radio-buttonset',
 		'priority'    => 35,
@@ -1807,7 +1834,7 @@ return array(
 	),
 	'bgtfw_blog_posts_container' => array(
 		'settings' => 'bgtfw_blog_posts_container',
-		'transport'   => 'postMessage',
+		'transport'   => 'refresh',
 		'label'       => esc_html__( 'Container', 'bgtfw' ),
 		'tooltip' => __( 'Choose if you would like your content wrapped in a container or cover the full width of the page.', 'bgtfw' ),
 		'type'        => 'radio-buttonset',
@@ -1823,13 +1850,7 @@ return array(
 		},
 		'js_vars' => array(
 			array(
-				'element' => '.blog .site-content, .single-post .site-content',
-				'function' => 'html',
-				'attr' => 'class',
-				'value_pattern' => 'site-content $',
-			),
-			array(
-				'element' => '.blog .main-wrapper, .single-post .main-wrapper',
+				'element' => '.single-post .main-wrapper',
 				'function' => 'html',
 				'attr' => 'class',
 				'value_pattern' => 'main-wrapper $',
@@ -2007,6 +2028,39 @@ return array(
 			],
 		],
 	],
+	'bgtfw_header_layout_col_width' => array(
+		'settings' => 'bgtfw_header_layout_col_width',
+		'transport' => 'refresh',
+		'label' => __( 'Header Column Widths', 'bgtfw' ),
+		'priority' => 8,
+		'section' => 'bgtfw_header_layout',
+		'type' => 'kirki-generic',
+		'default' => $bgtfw_generic->get_column_defaults(),
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'ColWidth',
+			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
+				'control'    => array(
+					'selectors' => array( '.site-header header row' ),
+					'sliders' => $bgtfw_generic->get_header_columns(),
+					'description' => __(
+						'Headers have a maximum of 12 columns per row. If the total columns used by the items in a row exceed 12, they will be rolled over to a new row.',
+						'bgtfw'
+					),
+				),
+				'slider' => array(
+					'col' => array(
+						'min'   => 1,
+						'max'   => 12,
+						'step'  => 1,
+						'value' => 6,
+					),
+				),
+			),
+		),
+	),
 	'bgtfw_header_layout_position' => array(
 		'settings' => 'bgtfw_header_layout_position',
 		'transport' => 'refresh',
@@ -2589,7 +2643,7 @@ return array(
 		'priority'    => 20,
 		'output'      => array(
 			array(
-				'element'  => '#main-menu li a',
+				'element'  => '#main-menu li a, .mce-content-body .sm-clean',
 			),
 		),
 	),
@@ -3417,6 +3471,107 @@ return array(
 			array(
 				'element'  => '.blog .post .entry-footer .tags-links, .archive .post .entry-footer .tags-links',
 				'property' => 'display',
+			),
+		),
+	),
+
+	// Start: Blog Post Featured Image Controls.
+	'bgtfw_post_header_feat_image_display' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_post_header_feat_image_display',
+		'label' => esc_attr__( 'Display', 'bgtfw' ),
+		'tooltip' => __( 'Hide or show your featured image on your blog posts.', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_featured_images',
+		'default' => 'show',
+		'choices' => array(
+			'show' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Show', 'bgtfw' ),
+			'hide' => '<span class="dashicons dashicons-hidden"></span>' . __( 'Hide', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'show', 'hide' ], true ) ? $value : $settings->default;
+		},
+	),
+	'bgtfw_post_header_feat_image_position' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_post_header_feat_image_position',
+		'label' => esc_attr__( 'Position', 'bgtfw' ),
+		'tooltip' => __( 'Change where your featured image appears on your blog posts.', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_featured_images',
+		'default' => 'background',
+		'choices' => array(
+			'background' => '<span class="dashicons dashicons-format-image"></span>' . __( 'Header Background', 'bgtfw' ),
+			'below' => '<span class="dashicons dashicons-arrow-down-alt"></span>' . __( 'Below Header', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'background', 'below' ], true ) ? $value : $settings->default;
+		},
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_post_header_feat_image_display',
+				'operator' => '!==',
+				'value'    => 'hide',
+			),
+		),
+	),
+	'bgtfw_post_header_feat_image_size' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_post_header_feat_image_size',
+		'label' => esc_attr__( 'Size', 'bgtfw' ),
+		'tooltip' => __( 'Change the size of your featured images. Due to container sizes, very large images may now show the full size when left or right aligned', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_featured_images',
+		'default' => 'medium',
+		'choices' => array(
+			'thumbnail' => __( 'Thumbnail', 'bgtfw' ),
+			'medium' => __( 'Medium', 'bgtfw' ),
+			'large' => __( 'Large', 'bgtfw' ),
+			'full' => __( 'Full', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, array( 'thumbnail', 'medium', 'large', 'full' ), true ) ? $value : $settings->default;
+		},
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_post_header_feat_image_display',
+				'operator' => '!==',
+				'value'    => 'hide',
+			),
+			array(
+				'setting'  => 'bgtfw_post_header_feat_image_position',
+				'operator' => '!==',
+				'value'    => 'background',
+			),
+		),
+	),
+	'bgtfw_post_header_feat_image_align' => array(
+		'type' => 'radio-buttonset',
+		'transport' => 'auto',
+		'settings' => 'bgtfw_post_header_feat_image_align',
+		'label' => esc_attr__( 'Alignment', 'bgtfw' ),
+		'tooltip' => __( 'Change the alignment of your image.', 'bgtfw' ),
+		'section' => 'bgtfw_pages_blog_posts_featured_images',
+		'default' => 'alignleft',
+		'choices' => array(
+			'alignnone' => __( 'None', 'bgtfw' ),
+			'alignleft' => __( 'Left', 'bgtfw' ),
+			'aligncenter' => __( 'Center', 'bgtfw' ),
+			'alignright' => __( 'Right', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, array( 'alignnone', 'alignleft', 'aligncenter', 'alignright' ), true ) ? $value : $settings->default;
+		},
+		'active_callback'    => array(
+			array(
+				'setting'  => 'bgtfw_post_header_feat_image_display',
+				'operator' => '!==',
+				'value'    => 'hide',
+			),
+			array(
+				'setting'  => 'bgtfw_post_header_feat_image_position',
+				'operator' => '!==',
+				'value'    => 'background',
 			),
 		),
 	),

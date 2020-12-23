@@ -50,7 +50,7 @@
 	}
 }
 
-.custom-logo-link {
+.custom-logo-link:not( .bgc_logo ) {
 	margin-top: 15px;
 	margin-bottom: 15px;
 

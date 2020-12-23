@@ -106,8 +106,8 @@ class Boldgrid_Framework_Customizer_Typography {
 
 		$settings = self::$typography_settings;
 		foreach ( $settings as &$setting ) {
-			$setting['value'] = get_theme_mod( $setting['settings'],
-				$configs[ $setting['settings'] ]['default'] );
+			$default = isset( $configs [ $setting['settings'] ] ) ? $configs [ $setting['settings'] ] : $configs ['bgtfw_menu_typography_main'];
+			$setting['value'] = get_theme_mod( $setting['settings'], $default );
 		}
 
 		return $settings;
@@ -129,7 +129,11 @@ class Boldgrid_Framework_Customizer_Typography {
 		$css .= ".bg-font-family-menu { font-family: $menu_font_family !important }";
 
 		foreach ( $this->get_typography_settings() as $typography_setting ) {
-			$css .= ".{$typography_setting['class_name']} { font-family: {$typography_setting['value']['font-family']} !important }";
+			$font_family = isset( $typography_setting['value']['font-family'] ) ? $typography_setting['value']['font-family'] : $typography_setting['value']['default']['font-family'];
+			if ( preg_match( '/\s/', $font_family ) ) {
+				$font_family = '"' . $font_family . '"';
+			}
+			$css .= ".{$typography_setting['class_name']} { font-family: {$font_family} !important }";
 		}
 
 		return $css;
@@ -159,6 +163,32 @@ class Boldgrid_Framework_Customizer_Typography {
 		$css .= $this->generate_font_classes();
 
 		return apply_filters( 'bgtfw_inline_css', $css );
+	}
+
+	/**
+	 * Overrides Kirki Inline CSS.
+	 *
+	 * @since 2.2.2
+	 */
+	public function override_kirki_styles() {
+		global $wp_filesystem;
+
+		if ( ! $wp_filesystem ) {
+			require_once ABSPATH . '/wp-admin/includes/file.php';
+			WP_Filesystem();
+		}
+		$kirki_styles    = apply_filters( 'kirki_bgtfw_dynamic_css', Kirki_Modules_CSS::loop_controls( 'bgtfw' ) );
+		$filtered_styles = preg_replace( '/font-family:(\w+(\s\w+)+);/', 'font-family:"${1}";', $kirki_styles );
+
+		/*
+		 * Kirki no longer creates the kirki-css/styles.css file including their dynamic css.
+		 * Therefore we must create it for them in order to use the styles in the editor.
+		 */
+		if ( ! $wp_filesystem->is_dir( wp_upload_dir()['basedir'] . '/kirki-css' ) ) {
+			$wp_filesystem->mkdir( wp_upload_dir()['basedir'] . '/kirki-css' );
+		}
+		$wp_filesystem->put_contents( wp_upload_dir()['basedir'] . '/kirki-css/styles.css', $filtered_styles );
+		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'boldgrid-kirki-override', $filtered_styles );
 	}
 
 	/**

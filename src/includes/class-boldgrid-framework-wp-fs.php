@@ -11,7 +11,7 @@
  * @link       https://boldgrid.com
  */
 
-use Leafo\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\Compiler;
 
 /**
  * Class: Boldgrid_Framework_Wp_Fs

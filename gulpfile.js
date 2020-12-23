@@ -62,10 +62,10 @@ for (var key in webFonts.items) {
 	family = webFonts.items[key].family;
 
     // This value needs to -40 after updating sprite.
-    position = -5 + (key * -40);
+    position = key * -44;
 
-    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + (position + 8) + 'px;}';
-    css += '[id^="select2-"][id$="-' + family + '"] { color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + position + 'px;}';
+    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + ( position + 8 ) + 'px;}';
+    css += '[id^="select2-"][id$="-' + family + '"] { color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + ( position + 8 ) + 'px;}';
     css += '[id^="select2-"][id$="-' + family + '"]:hover, [id^="select2-"][id$="-' + family + '"].select2-results__option--highlighted[aria-selected] { color: transparent; }';
   }
 
@@ -118,7 +118,7 @@ gulp.task('dist', function () {
 });
 // Clean distribution on build.
 gulp.task('clean', function () {
-  return del([config.dist]);
+  return del([ config.dist, '**/*.map', '*phpunit.xml.dist*', '*phpunit.xml*', '*build.sh*' ] );
 });
 
 // Javascript Dependencies
@@ -152,8 +152,10 @@ gulp.task('jsDeps', function () {
   gulp.src(config.node_modules + '/float-labels.js/src/float-labels.js')
     .pipe(gulp.dest(config.jsDest + '/float-labels.js'));
   // Wowjs - Check
-  gulp.src(config.node_modules + '/wow.js/dist/**/*')
-    .pipe(gulp.dest(config.jsDest + '/wow'));
+  gulp.src([
+	'!' + config.node_modules + '/wow.js/dist/**/*.map',
+	config.node_modules + '/wow.js/dist/**/*'
+	]).pipe(gulp.dest(config.jsDest + '/wow'));
   // Color-js
   gulp.src(config.node_modules + '/color-js/color.js')
     .pipe(gulp.dest(config.jsDest + '/color-js'));
@@ -176,7 +178,7 @@ gulp.task('fontDeps', function () {
 
 // PHP Dependencies
 gulp.task('phpDeps', function () {
-  // Leafo SCSSPHP Compiler
+  // ScssPhp SCSSPHP Compiler
   gulp.src([
     '!' + config.node_modules + '/scssphp/tests',
     '!' + config.node_modules + '/scssphp/example/**',
@@ -190,7 +192,10 @@ gulp.task('phpDeps', function () {
     '!' + config.node_modules + '/kirki-toolkit/tests',
     '!' + config.node_modules + '/kirki-toolkit/tests/**',
     '!' + config.node_modules + '/kirki-toolkit/docs',
-    '!' + config.node_modules + '/kirki-toolkit/docs/**',
+	'!' + config.node_modules + '/kirki-toolkit/docs/**',
+	'!' + config.node_modules + '/kirki-toolkit/**/*.map',
+	'!' + config.node_modules + '/kirki-toolkit/**/*build.sh',
+	'!' + config.node_modules + '/kirki-toolkit/**/*phpunit**',
     config.node_modules + '/kirki-toolkit/**',
   ])
     .pipe(replace('kirki-logo.svg', 'boldgrid-logo.svg'))
@@ -198,7 +203,7 @@ gulp.task('phpDeps', function () {
     .pipe(replace(/([ \t]*)wp_enqueue_script\(\s?\'kirki-fontawesome-font\',\s?\'https:\/\/use.fontawesome.com\/30858dc40a.js\',\s?array\(\),\s?\'4.0.7\',\s?(?:true|false)\s?\)\;\s?^(?:[\t ]*(?:\r?\n|\r))*/gm, "$1global $boldgrid_theme_framework;\n$1$bgtfw_configs = $boldgrid_theme_framework->get_configs();\n\n$1if ( ! class_exists( 'BoldGrid_Framework_Styles' ) ) {\n$1\trequire_once $bgtfw_configs['framework']['includes_dir'] . 'class-boldgrid-framework-styles.php';\n$1}\n\n$1$bgtfw_styles = new BoldGrid_Framework_Styles( $bgtfw_configs );\n$1$bgtfw_styles->enqueue_fontawesome();\n\n"))
     .pipe(gulp.dest(config.dist + '/includes/kirki'));
   // Get Kirki CSS.
-  gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{css,map,json}')
+  gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{css,json}')
     .pipe(replace('Button styles **/', 'Button styles **', true))
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets'));
   // Get Kirki Assets.
@@ -523,7 +528,6 @@ gulp.task( 'wpTextDomainLint', shell.task( 'yarn run script:wp-textdomain-lint' 
 gulp.task( 'build', function( cb ) {
 	sequence(
 		'dist',
-		'clean',
 		[ 'readme','license' ],
 		['wpTextDomainLint', 'jsHint', 'jscs', 'frameworkJs', 'svgs', 'tgm'],
 		['scssDeps', 'jsDeps', 'modernizr', 'fontDeps', 'phpDeps', 'frameworkFiles', 'copyScss'],

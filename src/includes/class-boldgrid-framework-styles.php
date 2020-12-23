@@ -275,6 +275,7 @@ class BoldGrid_Framework_Styles {
 		foreach ( $menus as $location => $description ) {
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "hover-{$location}", $this->hover_generate( $location ) );
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "active-link-color-{$location}", $this->active_link_generate( $location ) );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "menu-item-styles-{$location}", $this->menu_items_css( $location ) );
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "menu-colors-{$location}", $this->menu_css( $location ) );
 		}
 	}
@@ -311,6 +312,8 @@ class BoldGrid_Framework_Styles {
 
 		$css = '';
 
+		$css .= $this->menu_items_css( $location );
+
 		$location = str_replace( '_', '-', $location );
 
 		if ( false === $in_footer ) {
@@ -325,6 +328,40 @@ class BoldGrid_Framework_Styles {
 		$css .= "#{$location}-menu.sm-clean ul { border: 1px solid " . $color_obj->toCSS( 'rgba' ) . ';}';
 		$css .= "#{$location}-menu.sm-clean > li > ul:before, #{$location}-menu.sm-clean > li > ul:after { border-color: transparent transparent {$background_color} transparent;}";
 		$css .= '}';
+
+		return $css;
+	}
+
+	/**
+	 * Menu Items Css
+	 *
+	 * Get css for various menu item css that is not obtained
+	 * otherwise.
+	 *
+	 * @since 2.5.0
+	 *
+	 * @param string $location Menu location name.
+	 *
+	 * @return string CSS string.
+	 */
+	public function menu_items_css( $location ) {
+
+		// This is a list of the menu item controls that do not get automatically added.
+		$menu_items_controls = array(
+			"bgtfw_menu_items_spacing_{$location}",
+			"bgtfw_menu_items_border_{$location}",
+			"bgtfw_menu_items_active_link_border_{$location}",
+			"bgtfw_menu_items_border_radius_{$location}",
+			"bgtfw_menu_items_active_link_border_radius_{$location}",
+		);
+
+		$css = '';
+		foreach ( $menu_items_controls as $control ) {
+			$theme_mod = get_theme_mod( $control );
+			if ( ! empty( $theme_mod ) && isset( $theme_mod['css'] ) ) {
+				$css .= $theme_mod['css'];
+			}
+		}
 
 		return $css;
 	}
@@ -624,4 +661,23 @@ class BoldGrid_Framework_Styles {
 		);
 	}
 
+	/**
+	 * Validate Fonts Directory
+	 *
+	 * This makes sure that the dowloaded fonts option
+	 * is using the correct fonts directory. This is especially
+	 * important when a Crio site is transferred from one server to another.
+	 *
+	 * @since 2.2.3
+	 */
+	public function validate_fonts_dir() {
+		$kirki_downloaded_fonts = get_option( 'kirki_downloaded_font_files', array() );
+
+		foreach ( $kirki_downloaded_fonts as $font_family => $files ) {
+			if ( false === strpos( $files, ABSPATH ) ) {
+				update_option( 'kirki_downloaded_font_files', array() );
+			}
+		}
+
+	}
 }

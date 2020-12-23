@@ -39,7 +39,8 @@ export class HoverBackgroundToggle {
 						api.control( dependant.id, ( control ) => {
 							let display = () => {
 								let choices = wp.customize.control( 'bgtfw_menu_items_hover_effect_main' ).params.choices;
-								let currentChoice = api.control( 'bgtfw_menu_items_hover_effect_main' ).setting.get();
+								let effectControlId = dependant.id.replace( 'color', 'effect' );
+								let currentChoice = api.control( effectControlId ).setting.get();
 
 								// Displays "Primary Color" control for all categories except "Border Effects" (optgroup3), which uses the secondary color.
 								_.isUndefined( choices.optgroup3[1][ currentChoice ] ) ? control.container.show() : control.container.hide();
@@ -52,7 +53,8 @@ export class HoverBackgroundToggle {
 						api.control( dependant.id, ( control ) => {
 							let display = () => {
 								let choices = wp.customize.control( 'bgtfw_menu_items_hover_effect_main' ).params.choices;
-								let currentChoice = api.control( 'bgtfw_menu_items_hover_effect_main' ).setting.get();
+								let effectControlId = dependant.id.replace( 'background', 'effect' );
+								let currentChoice = api.control( effectControlId ).setting.get();
 
 								// Displays "Secondary Color" control for "Border Effects" (optgroup3) and "Two Color Transitions" (optgroup2) option groups.
 								_.isUndefined( choices.optgroup2[1][ currentChoice ] ) && _.isUndefined( choices.optgroup3[1][ currentChoice ] ) ? control.container.hide() : control.container.show();

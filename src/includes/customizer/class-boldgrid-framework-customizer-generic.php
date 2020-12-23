@@ -124,6 +124,8 @@ class Boldgrid_Framework_Customizer_Generic {
 
 		if ( 'DeviceVisibility' === $control['choices']['type'] ) {
 			$css .= $this->device_visibility_styles( $control ) ?: '';
+		} elseif ( 'ColWidth' === $control['choices']['type'] ) {
+			return $css;
 		} else {
 			$css .= $this->directional_control_styles( $control ) ?: '';
 		}
@@ -366,4 +368,109 @@ class Boldgrid_Framework_Customizer_Generic {
 		return $ranges;
 	}
 
+	/**
+	 * Get Column Defaults
+	 *
+	 * These are the default column controls that will
+	 * be added when none already exist in the theme mods,
+	 * such as when loading starter content in the customizer.
+	 *
+	 * @since 2.2.3
+	 *
+	 * @return array Array of default header columns
+	 */
+	public function get_column_defaults() {
+		$defaults = array(
+			[
+				'media' => [ 'large', 'desktop' ],
+				'unit' => 'col',
+				'isLinked' => false,
+				'values' => array(
+					'default_branding' => 6,
+					'default_menu'     => 6,
+				),
+			],
+			[
+				'media' => [ 'phone', 'tablet' ],
+				'unit' => 'col',
+				'isLinked' => false,
+				'values' => array(
+					'default_branding' => 12,
+					'default_menu'     => 12,
+				),
+			],
+		);
+
+		return $defaults;
+	}
+
+	/**
+	 * Get Header Columns
+	 *
+	 * @since 2.2.3
+	 *
+	 * @return array Array of header column slider configs.
+	 */
+	public function get_header_columns() {
+		$default_layout = [
+			[
+				'container' => 'container',
+				'items' => [
+					[
+						'type' => 'boldgrid_site_identity',
+						'key' => 'branding',
+						'align' => 'w',
+						'display' => [
+							[
+								'selector' => '.custom-logo-link',
+								'display' => 'show',
+								'title' => __( 'Logo', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-title',
+								'display' => 'show',
+								'title' => __( 'Title', 'bgtfw' ),
+							],
+							[
+								'selector' => '.site-description',
+								'display' => 'show',
+								'title' => __( 'Tagline', 'bgtfw' ),
+							],
+						],
+					],
+					[
+						'type' => 'boldgrid_menu_main',
+						'key' => 'menu',
+						'align' => 'e',
+					],
+				],
+			],
+		];
+
+		// When loading starter content, the bgtfw_header_layout theme mod is not populated yet, so we have to use the default_layout array.
+		$header_layout = get_theme_mod( 'bgtfw_header_layout', false ) ? get_theme_mod( 'bgtfw_header_layout', false ) : $default_layout;
+
+		$sliders = array();
+
+		// We have to loop through the items in the header layout to generate the sliders.
+		foreach ( $header_layout as $section_index => $section ) {
+			// Since the sections are indexed starting at 0, we add 1 to be more human readable.
+			$section_label = (string) ( $section_index + 1 );
+			foreach ( $section['items'] as $item_index => $item ) {
+				// Widget areas are keyed as 'sidebar' but we want those to display as 'Widget Area' instead.
+				if ( 'sidebar' === $item['key'] ) {
+					$label = 'Row ' . $section_label . ' Widget Area';
+				} else {
+					$label = 'Row ' . $section_label . ' ' . ucfirst( $item['key'] );
+				}
+				$sliders[] = array(
+					'name'        => isset( $item['uid'] ) ? $item['uid'] : 'default_' . $item['key'],
+					'label'       => $label,
+					'cssProperty' => 'width',
+				);
+			}
+		}
+
+		return $sliders;
+	}
 }

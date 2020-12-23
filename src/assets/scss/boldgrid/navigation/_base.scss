@@ -126,14 +126,39 @@
 
 	// Desktop view.
 	.site-footer,
-	&:not(.header-left):not(.header-right) .site-header {
+	&:not(.header-left):not(.header-right) .site-header,
+	&.boldgrid-component-menu,
+	&.crio-premium-site-header {
 		@media (min-width: 768px) {
+			.full-width {
+				.sm {
+					width: 100%;
+				}
+			}
 			.sm-clean ul {
 				position: absolute;
 				width: 12em;
 			}
 			.sm-clean li {
 				float: left;
+			}
+
+			// Left aligned menus need to line up with everything else.
+			.sm-clean.w,
+			.sm-clean.nw,
+			.sm-clean.sw {
+				li:first-of-type a {
+					padding-left: 0px;
+				}
+			}
+
+			// Right aligned menus need to line up with everything else.
+			.sm-clean.e,
+			.sm-clean.ne,
+			.sm-clean.se {
+				li:last-of-type a {
+					padding-right: 0px;
+				}
 			}
 			.sm-clean.sm-rtl li {
 				float: right;

@@ -94,11 +94,9 @@ class Boldgrid_Framework_Menu {
 			 * @param array $add_class Array of wp_nav_menu args that are CSS class overrides.
 			 */
 			$action = function( $args, $add_class = array() ) use ( $menu, &$bgtfw_menus ) {
-
 				// Combine classes in $args from hook, and merge the remaining items in array.
 				$add_class = ( ! empty( $add_class ) && is_array( $add_class ) ) ? $add_class : array( 'menu_class', 'container_class' );
 				$menu = $this->parse_nav_args( $args, $menu, $add_class );
-
 				// Allow hamburgers at all menu locations.
 				$this->add_hamburger( $menu );
 
@@ -119,6 +117,8 @@ class Boldgrid_Framework_Menu {
 					$menu['fallback_cb'] = 'Boldgrid_Framework_Customizer_Edit::fallback_cb';
 					wp_nav_menu( $menu );
 				} elseif ( has_nav_menu( $menu['theme_location'] ) ) {
+					wp_nav_menu( $menu );
+				} elseif ( isset( $menu['menu'] ) ) {
 					wp_nav_menu( $menu );
 				}
 			};
@@ -189,7 +189,7 @@ class Boldgrid_Framework_Menu {
 	 */
 	public function add_hamburger( $menu ) {
 		$hamburger = get_theme_mod( 'bgtfw_menu_hamburger_' . $menu['theme_location'] );
-		$hidden = ! get_theme_mod( 'bgtfw_menu_hamburger_' . $menu['theme_location'] . '_toggle' ) || ! has_nav_menu( $menu['theme_location'] ) ? 'hidden' : '';
+		$hidden    = ! get_theme_mod( 'bgtfw_menu_hamburger_' . $menu['theme_location'] . '_toggle' ) ? 'hidden' : '';
 		?>
 		<input id="<?php echo esc_attr( $menu['menu_id'] ); ?>-state" type="checkbox" <?php BoldGrid::add_class( $menu['theme_location'] . '_menu_hamburger_input', [ $hidden ] ); ?> />
 		<label id="<?php echo esc_attr( $menu['menu_id'] ); ?>-btn" class="<?php echo esc_attr( $menu['menu_id'] ); ?>-btn" for="<?php echo esc_attr( $menu['menu_id'] ); ?>-state">
@@ -349,6 +349,8 @@ class Boldgrid_Framework_Menu {
 					}
 				}
 			}
+
+			$locations = apply_filters( 'boldgrid_custom_menu_locations', $locations );
 
 			if ( is_array( $this->configs['menu']['locations'] ) && ! empty( $locations ) ) {
 				$menus = array_intersect_key( $this->configs['menu']['locations'], array_flip( $locations ) );

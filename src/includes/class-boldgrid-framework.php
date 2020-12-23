@@ -239,6 +239,7 @@ class BoldGrid_Framework {
 	 * @access   public
 	 */
 	public function assign_configurations() {
+		global $wp_version;
 		$this->configs = include plugin_dir_path( dirname( __FILE__ ) ) . 'includes/configs/configs.php';
 		// Based on the configs already assigned, set config values to help assign later values.
 		$this->assign_dynamic_configs();
@@ -247,6 +248,10 @@ class BoldGrid_Framework {
 		$this->assign_configs( 'customizer-options' );
 		$this->assign_configs( 'customizer' );
 		$this->assign_configs( 'components' );
+
+		if ( version_compare( $wp_version, '5.4.99', 'gt' ) && isset( $this->configs['customizer']['controls']['bgtfw_preloader_type'] ) ) {
+			unset( $this->configs['customizer']['controls']['bgtfw_preloader_type'] );
+		}
 	}
 
 	/**
@@ -374,10 +379,13 @@ class BoldGrid_Framework {
 		// Add Theme Styles.
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $styles, 'enqueue_fontawesome' );
-		$this->loader->add_action( 'after_setup_theme',  $styles, 'add_editor_styling' );
+		$this->loader->add_action( 'after_setup_theme', $styles, 'add_editor_styling' );
 		$this->loader->add_filter( 'mce_css', $styles, 'add_cache_busting' );
 		$this->loader->add_filter( 'boldgrid_theme_framework_local_editor_styles', $styles, 'enqueue_editor_buttons' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'get_css_vars' );
+
+		// Validate Theme Fonts Directory
+		$this->loader->add_action( 'after_setup_theme', $styles, 'validate_fonts_dir' );
 
 		// Add Theme Scripts.
 		$this->loader->add_action( 'wp_enqueue_scripts', $scripts, 'boldgrid_enqueue_scripts' );
@@ -420,24 +428,22 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_title' );
 		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
 
-		// Sticky Header
-		add_action( 'template_redirect', function() {
-			if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) ) {
-				add_action( 'boldgrid_header_after', function() {
-					?>
-					<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
-						<?php echo BoldGrid::dynamic_sticky_header(); ?>
-					</div>
-					<?php
-				}, 20 );
-			}
-			if ( is_customize_preview() && false === get_theme_mod( 'bgtfw_fixed_header' ) ) {
-				add_filter( 'bgtfw_sticky_header_display_css', function( $css ) {
-					$css .= '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none; }';
-					return $css;
-				} );
-			}
-		} );
+		// Sticky Header - Removed template_redirect as it was unnecessary and caused duplication of the sticky header sometimes.
+		if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) ) {
+			add_action( 'boldgrid_header_after', function() {
+				?>
+				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
+					<?php echo BoldGrid::dynamic_sticky_header(); ?>
+				</div>
+				<?php
+			}, 20 );
+		}
+		if ( is_customize_preview() && false === get_theme_mod( 'bgtfw_fixed_header' ) ) {
+			add_filter( 'bgtfw_sticky_header_display_css', function( $css ) {
+				$css .= '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none; }';
+				return $css;
+			} );
+		}
 
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
@@ -691,6 +697,14 @@ class BoldGrid_Framework {
 		$typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
 		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'override_kirki_styles' );
+
+		/*
+		 * Sometimes we need changes made in the customizer to be saved to the kirki styles.css
+		 * before they have a chance to be enqueued by wp_enqueue_scripts. Therefore, we need to
+		 * hook this to the 'customize_save_after' action hook.
+		 */
+		$this->loader->add_action( 'customize_save_after', $typography, 'override_kirki_styles' );
 
 		$links = new BoldGrid_Framework_Links( $this->configs );
 		$this->loader->add_filter( 'wp_enqueue_scripts', $links, 'add_styles_frontend' );
@@ -985,6 +999,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'woocommerce_quantity_input_classes', $woo, 'quantity_input_classes' );
 		$this->loader->add_action( 'woocommerce_before_quantity_input_field', $woo, 'quantity_input_before' );
 		$this->loader->add_action( 'woocommerce_after_quantity_input_field', $woo, 'quantity_input_after' );
+		$this->loader->add_action( 'woocommerce_before_cart', $this->woo, 'add_page_title' );
+		$this->loader->add_action( 'woocommerce_before_checkout_form', $this->woo, 'add_page_title' );
 
 		remove_all_actions( 'woocommerce_sidebar' );
 		add_filter( 'loop_shop_per_page', function( $cols ) {
@@ -996,6 +1012,11 @@ class BoldGrid_Framework {
 				add_action( 'boldgrid_main_bottom' , array( $woo, 'add_container_close' ) );
 			}
 		});
+
+		/**
+		 * Change number of products that are displayed per page (shop page)
+		 */
+		add_filter( 'loop_shop_per_page', array( $woo, 'products_per_page' ), 20 );
 	}
 
 	/**

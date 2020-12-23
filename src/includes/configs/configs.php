@@ -33,7 +33,7 @@ return array(
 	'theme_name' => $bgtfw_theme_data->stylesheet,
 	'theme-parent-name' => $bgtfw_parent,
 	'version' => $bgtfw_theme_data->version,
-	'framework-version' => implode( get_file_data( $bgtfw_dir . '/boldgrid-theme-framework.php', array( 'Version' ), 'plugin' ), '' ),
+	'framework-version' => implode( '', get_file_data( $bgtfw_dir . '/boldgrid-theme-framework.php', array( 'Version' ), 'plugin' ) ),
 	'theme_id' => null,
 	'boldgrid-parent-theme' => false,
 	'bootstrap' => false,

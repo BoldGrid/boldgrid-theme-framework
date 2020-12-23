@@ -5,10 +5,10 @@
 [![PHP Version](https://img.shields.io/badge/PHP-5.6%2B-blue.svg)](https://php.net)
 [![Code Climate](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework/badges/gpa.svg)](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework)
 
-* **Contributors:** rramo012, timph
+* **Contributors:** rramo012, timph, jamesros161
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.3
+* **Tested up to:** 5.6
 * **License:** GPL-3.0-or-later
 * **License URI:** https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
@@ -35,6 +35,36 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.4.0 ###
+* New Feature: Added functionality for Crio Premium's Page Header Templates.
+
+### 2.2.3 ###
+* Bug Fix: Crio 2.3.2 & PPB 1.13.3 - Main Text font doesn't pull thru to Editor [#272](https://github.com/BoldGrid/boldgrid-theme-framework/issues/272)
+* Bug Fix: Some fonts don't show their name in the font selection dropdown [#264](https://github.com/BoldGrid/boldgrid-theme-framework/issues/264)
+* Bug Fix: Restoring a backup loses the stylesheet (all styling) [#278](https://github.com/BoldGrid/boldgrid-theme-framework/issues/278)
+
+### 2.2.2 ###
+* Update: Updated Kirki-Framework to latest stable version.
+* Update: Updated Google Fonts Sprites and webfonts.json
+* Update: Updated typography to work with new version of Kirki Framework
+* Update: Updated to work on WP 5.5+
+
+### 2.2.1 ###
+* Bug Fix: Moved Header Background Color control to the Design -> Header -> Background section
+* Bug fix: Full Width sections do not span the entire header [#232](https://github.com/BoldGrid/boldgrid-theme-framework/issues/232)
+* Bug fix: Fixed Background Image doesn't work [#193](https://github.com/BoldGrid/boldgrid-theme-framework/issues/193)
+* Bug fix: Incorrect body text color when setting background image effect to "Parallax" [#220](https://github.com/BoldGrid/boldgrid-theme-framework/issues/220)
+* Bug fix: Header overlay control should be conditionally visible [#89](https://github.com/BoldGrid/boldgrid-theme-framework/issues/89)
+
+### 2.2.0 ###
+* New Feature: Added Control to change the number of products shown per page on shop catalog [#210](https://github.com/BoldGrid/boldgrid-theme-framework/issues/210)
+* New Feature: Added Featured Image Control to single blog posts [#192](https://github.com/BoldGrid/boldgrid-theme-framework/issues/192)
+* Bug fix: WooCommerce Container control appears w/o WooCommerce installed [#216](https://github.com/BoldGrid/boldgrid-theme-framework/issues/216)
+* Bug fix: Custom Theme JS incorrectly escaping single and double quotes [#199](https://github.com/BoldGrid/boldgrid-theme-framework/issues/199)
+* Update: Updated build dependancy sass.js from 0.9.13 to 0.11.1 [#196](https://github.com/BoldGrid/boldgrid-theme-framework/pull/196)
+* Update: Updated build dependancy css-var-ponyfill from 1.11.1 to 1.17.2 [#195](https://github.com/BoldGrid/boldgrid-theme-framework/pull/195)
+* Update: Updated build dependacy @bable/runtime-corejs2 from 7.4.4 to 7.9.6 [#194](https://github.com/BoldGrid/boldgrid-theme-framework/pull/194)
 
 ### 2.1.18 ###
 * Bug fix: Store Notice should be at top of page [#39](https://github.com/BoldGrid/boldgrid-theme-framework/issues/39)

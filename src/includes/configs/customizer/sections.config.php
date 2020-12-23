@@ -41,14 +41,6 @@ $sections_array = array(
 		'capability' => 'edit_theme_options',
 		'icon' => 'icon-layout-container',
 	),
-	'bgtfw_layout_woocommerce_container' => array(
-		'title' => __( 'Container', 'bgtfw' ),
-		'panel' => 'bgtfw_design_panel',
-		'section' => 'bgtfw_layout_woocommerce',
-		'description' => esc_html__( 'This section controls the container for your WooCommerce pages.', 'bgtfw' ),
-		'capability' => 'edit_theme_options',
-		'icon' => 'icon-layout-container',
-	),
 	'bgtfw_layout_page_sidebar' => array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
 		'panel' => 'bgtfw_design_panel',
@@ -260,6 +252,11 @@ $sections_array = array(
 		'panel' => 'bgtfw_blog_posts_panel',
 		'icon' => 'dashicons-admin-links',
 	),
+	'bgtfw_pages_blog_posts_featured_images' => array(
+		'title' => 'Featured Images',
+		'panel' => 'bgtfw_blog_posts_panel',
+		'icon' => 'dashicons-format-gallery',
+	),
 	'bgtfw_pages_blog_posts_meta' => array(
 		'title' => __( 'Post Meta', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
@@ -401,11 +398,18 @@ $sections_array = array(
 		'description' => esc_html__( 'Change the box shadow of your blog posts.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
+	'bgtfw_preloader_section' => array(
+		'title'       => __( 'Pre-Loader', 'bgtfw' ),
+		'panel'       => '',
+		'icon'        => 'dashicons-image-rotate',
+		'description' => esc_html__( 'Configure what is displayed while your pages load.', 'bgtfw' ),
+		'capability'  => 'edit_theme_options',
+	),
 	// End: Generic Blog Design Controls.
 );
 
 /**
- * Check if WooCommerce is activated
+ * Check if WooCommerce is activated.
  */
 $is_woocommerce = false;
 if ( ! function_exists( 'is_woocommerce_activated' ) ) {
@@ -420,6 +424,14 @@ if ( $is_woocommerce ) {
 		'capability'  => 'edit_theme_options',
 		'priority'    => 1,
 		'icon'        => 'dashicons-admin-page',
+	);
+	$sections_array['bgtfw_layout_woocommerce_container'] = array(
+		'title'       => __( 'Container', 'bgtfw' ),
+		'panel'       => 'bgtfw_design_panel',
+		'section'     => 'bgtfw_layout_woocommerce',
+		'description' => esc_html__( 'This section controls the container for your WooCommerce pages.', 'bgtfw' ),
+		'capability'  => 'edit_theme_options',
+		'icon'        => 'icon-layout-container',
 	);
 }
 

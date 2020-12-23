@@ -46,7 +46,7 @@ class BoldGrid_Framework_PPB {
 		$fonts = array();
 		$typography = new Boldgrid_Framework_Customizer_Typography( $this->configs );
 		foreach ( $typography->get_typography_settings() as $typography_setting ) {
-			$fonts[ $typography_setting['class_name'] ] = $typography_setting['value']['font-family'];
+			$fonts[ $typography_setting['class_name'] ] = isset( $typography_setting['value']['font-family'] ) ? $typography_setting['value']['font-family'] : $typography_setting['value']['default']['font-family'];
 		}
 
 		$editor_configs['builder_config']['theme_fonts'] = array_unique( $fonts );

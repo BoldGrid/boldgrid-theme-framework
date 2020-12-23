@@ -530,7 +530,7 @@ class BoldGrid_Framework_Customizer {
 		);
 
 		wp_localize_script( 'bgtfw-customizer-base-controls', $initialize, $data );
-		wp_localize_script( 'bgtfw-customizer-base-controls', $this->scripts->get_asset_path(), $this->configs['framework']['root_uri'] );
+		wp_localize_script( 'bgtfw-customizer-base-controls', $this->scripts->get_asset_path(), array( $this->configs['framework']['root_uri'] ) );
 
 		wp_enqueue_script( 'jquery-ui-accordion' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-featured-images' );
@@ -635,7 +635,7 @@ class BoldGrid_Framework_Customizer {
 		);
 
 		wp_enqueue_script( 'boldgrid-theme-customizer' );
-		wp_localize_script( 'boldgrid-theme-customizer', $this->scripts->get_asset_path(), $this->configs['framework']['root_uri'] );
+		wp_localize_script( 'boldgrid-theme-customizer', $this->scripts->get_asset_path(), array( $this->configs['framework']['root_uri'] ) );
 
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-live-preview' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-layout-columns' );
@@ -748,6 +748,21 @@ HTML;
 			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Manage custom CSS and JS code for your site.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/using-the-custom-css-and-js-editor-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 		}
 
+		if ( $wp_customize->get_control( 'header_image' ) ) {
+			$control           = $wp_customize->get_control( 'header_image' );
+			$control->priority = 12;
+		}
+
+		if ( $wp_customize->get_control( 'header_video' ) ) {
+			$control            = $wp_customize->get_control( 'header_video' );
+			$control->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_control( 'external_header_video' ) ) {
+			$control            = $wp_customize->get_control( 'external_header_video' );
+			$control->transport = 'refresh';
+		}
+
 		// Add menus panel description.
 		if ( $wp_customize->get_panel( 'menus' ) ) {
 			$panel              = $wp_customize->get_panel( 'menus' );
@@ -764,6 +779,11 @@ HTML;
 		if ( $wp_customize->get_control( 'custom_css' ) ) {
 			$control              = $wp_customize->get_control( 'custom_css' );
 			$control->description = esc_html__( 'Add custom CSS for this theme.', 'bgtfw' );
+		}
+
+		if ( $wp_customize->get_setting( 'custom_logo' ) ) {
+			$setting = $wp_customize->get_setting( 'custom_logo' );
+			$setting->transport = 'refresh';
 		}
 
 		// Remove Addition Control that conflict with site title.

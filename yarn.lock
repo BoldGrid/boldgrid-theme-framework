@@ -648,10 +648,10 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.9.2":
-  version "7.9.6"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.6.tgz#a9102eb5cadedf3f31d08a9ecf294af7827ea29f"
-  integrity sha512-64AF1xY3OAkFHqOb9s4jpgk1Mm5vDZ4L3acHvAml+53nO1XbXLuDodsVpO4OIUsmemlUHMxNdYMNJmsvOwLrvQ==
+"@babel/runtime@^7.11.2":
+  version "7.12.1"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
+  integrity sha512-J5AIf3vPj3UwXaAzb5j1xM4WAQDX3EMgemF8rjCP3SoW09LfRKAXQKt6CoVYl230P6iWdRcBbnLDDdnqWxZSCA==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -1323,19 +1323,19 @@
     text-table "^0.2.0"
     webpack-log "^1.1.2"
 
-"@wordpress/dom-ready@^2.9.0":
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/@wordpress/dom-ready/-/dom-ready-2.9.0.tgz#964337de20b031bd54c60c040cc728097a525384"
-  integrity sha512-2egz1f4LaLeeSPTsWUgvgerNUbV9A++x/YWBGiF8t/bC7KX1n4mqexQRihfuofvpBxlkalIJEXxka3pzrD1XHA==
+"@wordpress/dom-ready@^2.11.0":
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/@wordpress/dom-ready/-/dom-ready-2.11.0.tgz#1ed7057ae481a42f0b96a66387119c172a6340ff"
+  integrity sha512-q9MZqYPHUtioT/2tgzyAtnEFXRgUJ6eMxLDQaOprBQkGoD2Ue/V+wEX6cJGy+x8AafFataPC2i2jPsnYqE9+zQ==
   dependencies:
-    "@babel/runtime" "^7.9.2"
+    "@babel/runtime" "^7.11.2"
 
-"@wordpress/hooks@^2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@wordpress/hooks/-/hooks-2.8.0.tgz#30a7c3af68837d9a659c52a008b8f1ee1853994b"
-  integrity sha512-5FbiVz6T2Frw45NmPDF9GbAFU8iQy64YSZaM+61tUngB+Uzdv0A4pA8C8WIDPlw16QJXseZ4uLce4U9HlJQ3dw==
+"@wordpress/hooks@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@wordpress/hooks/-/hooks-2.10.0.tgz#4aae9401b118796556cb396869b51034d36fa5cd"
+  integrity sha512-DOHahghdZD74feOa36pE1t4E1NpaftAnYP3n41s7YlT2hUKQLCQyo7XQyI38ZsoZwuVCM5b4e9rG4kaNQE6BzA==
   dependencies:
-    "@babel/runtime" "^7.9.2"
+    "@babel/runtime" "^7.11.2"
 
 "Buttons@https://github.com/alexwolfe/Buttons":
   version "2.0.0"
@@ -7825,14 +7825,14 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jarallax@^1.12.1:
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/jarallax/-/jarallax-1.12.1.tgz#5f8c539f54244264c7a53ade11adf49c0634dd99"
-  integrity sha512-8AKPKjLz8JcjZFwdMMbf3W7QG9BTzB3rN0k47Xx+tWpkPeGgHodxEUB2OGsj3eOzLCpSvolfW0PtwTp7i3CrhA==
+jarallax@^1.12.4:
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/jarallax/-/jarallax-1.12.4.tgz#188796460a965281546dfe6cd4a3ef244c79dd72"
+  integrity sha512-bQqQkHro7F0mf24qDjPEBFYwtYeBZzagotZYMkV8PgN0xHWNHi2VZ7VH9ANTtUsZOZpUgInloXmvcEomSCXJJQ==
   dependencies:
     global "^4.4.0"
     lite-ready "^1.0.4"
-    video-worker "^1.1.8"
+    video-worker "^1.1.9"
 
 jpegtran-bin@^3.0.0:
   version "3.2.0"
@@ -11746,9 +11746,9 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-"scssphp@https://github.com/timelsass/scssphp.git#master":
+"scssphp@https://github.com/boldgrid/scssphp.git#master":
   version "0.0.0"
-  resolved "https://github.com/timelsass/scssphp.git#9f1e5ee616c1358442ff47f95e9585573ef2bb0e"
+  resolved "https://github.com/boldgrid/scssphp.git#c8f11fbb5389821102ca304fc71901aa3a48982b"
 
 seek-bzip@^1.0.3:
   version "1.0.5"
@@ -13336,10 +13336,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-video-worker@^1.1.8:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/video-worker/-/video-worker-1.1.8.tgz#9b7e1a2a5e72a3d13c5bd70150f94362d45dcfe7"
-  integrity sha512-eUDefy2ZrY7TgAepGoHVS3uh7MDPsPD2Ug5gD7I+bBJnqAXf9Cp9GM2aOnIS3ZrDDeyRq2wbhFr/x1MsCKun/w==
+video-worker@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/video-worker/-/video-worker-1.1.9.tgz#18d4c751645819cd44c512b23fce1335b9db85a6"
+  integrity sha512-eTXgpGG562Zlu0+5EBTwssa/r+24Oewqkfyy6jXpFpFfHCtbW+iN0ftRxsMOsZ0N/643hokRxKhuRZ93ijgJGA==
   dependencies:
     global "^4.4.0"
 

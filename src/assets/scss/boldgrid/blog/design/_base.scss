@@ -63,10 +63,15 @@
 }
 
 /* General Design */
+.main-wrapper.container {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
 main {
 	&.container {
-		padding-left: 0;
-		padding-right: 0;
+		padding-left: 15px;
+		padding-right: 15px;
 		flex: 0 1 auto;
 	}
 
@@ -161,6 +166,10 @@ main {
 @media only screen and (max-width : 768px) {
 	&[class*="col"]:not(.col1) main article.post:not(.sticky) {
 		width: calc((100% / 2 - .5vw) - 2vw);
+	}
+
+	.bgtfw-header .hamburger {
+		padding-left: 0px;
 	}
 }
 @media only screen and (max-width : 480px) {

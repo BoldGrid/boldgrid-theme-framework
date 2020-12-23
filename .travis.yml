@@ -42,7 +42,7 @@ before_script:
 - phpenv rehash
 script:
 - find . \( -name '*.php' \) -exec php -lf {} \;
-- "$WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=$TRAVIS_BUILD_DIR/phpcs.ruleset.xml --ignore=*partials/hover-colors-only.php,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/woocommerce/*,functions.php --extensions=php"
+- "$WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=$TRAVIS_BUILD_DIR/phpcs.ruleset.xml --ignore=*partials/hover-colors-only.php,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/woocommerce/*,*/sa_templates/*,functions.php --extensions=php"
 - cd $TRAVIS_BUILD_DIR
 deploy:
 - provider: script

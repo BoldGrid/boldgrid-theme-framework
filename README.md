@@ -5,10 +5,10 @@
 [![PHP Version](https://img.shields.io/badge/PHP-5.6%2B-blue.svg)](https://php.net)
 [![Code Climate](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework/badges/gpa.svg)](https://codeclimate.com/github/BoldGrid/boldgrid-theme-framework)
 
-* **Contributors:** rramo012, timph
+* **Contributors:** rramo012, timph, jamesros161
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.5
+* **Tested up to:** 5.6
 * **License:** GPL-3.0-or-later
 * **License URI:** https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
@@ -35,6 +35,9 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.4.0 ###
+* New Feature: Added functionality for Crio Premium's Page Header Templates.
 
 ### 2.2.3 ###
 * Bug Fix: Crio 2.3.2 & PPB 1.13.3 - Main Text font doesn't pull thru to Editor [#272](https://github.com/BoldGrid/boldgrid-theme-framework/issues/272)

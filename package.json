@@ -1,6 +1,6 @@
 {
   "name": "boldgrid-theme-framework",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "BoldGrid Theme Framework",
   "main": "index.js",
   "engines": {
@@ -133,7 +133,7 @@
     "@babel/runtime-corejs2": "^7.9.6",
     "@boldgrid/components": "^2.16.2",
     "@wordpress/dom-ready": "^2.9.0",
-    "@wordpress/hooks": "^2.8.0",
+    "@wordpress/hooks": "^2.10.0",
     "Buttons": "https://github.com/alexwolfe/Buttons#2.0.0",
     "animate.css": "3.7.2",
     "bootstrap-sass": "~3.4.1",
@@ -154,7 +154,7 @@
     "lodash.startcase": "^4.4.0",
     "postcss": "^6.0.22",
     "sass.js": "~0.11.1",
-    "scssphp": "https://github.com/timelsass/scssphp.git#master",
+    "scssphp": "https://github.com/boldgrid/scssphp.git#master",
     "smartmenus": "^1.1.0",
     "wow.js": "^1.2.2"
   }

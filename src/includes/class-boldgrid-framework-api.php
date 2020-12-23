@@ -923,6 +923,9 @@ class BoldGrid {
 	 * @return array Array of Column Width Values.
 	 */
 	public static function get_column_widths( $theme_mod ) {
+		global $boldgrid_theme_framework;
+		$configs = $boldgrid_theme_framework->get_configs();
+
 		$device_column_widths  = array();
 
 		$type = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) )
@@ -931,17 +934,22 @@ class BoldGrid {
 			: 'footer';
 
 		// if the theme_mod is a json array, we need to decode it to use it as a php array.
-		$col_width_theme_mod = is_string( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' ) )
-			? json_decode( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' ), true )
-			: json_decode( get_theme_mod( 'bgtfw_' . $type . '_layout_col_width' )['media'], true );
-
-		if ( empty( $col_width_theme_mod ) ) {
-			return $device_column_widths;
+		$raw_col_widths = get_theme_mod(
+			'bgtfw_' . $type . '_layout_col_width',
+			$configs['customizer']['controls']['bgtfw_header_layout_col_width']['default'] );
+		if ( is_string( $raw_col_widths ) ) {
+			$col_width_theme_mod = json_decode( $raw_col_widths, true );
+		} else {
+			$col_width_theme_mod = isset( $raw_col_widths['media'] )
+				? json_decode( $raw_col_widths['media'], true )
+				: $raw_col_widths[0]['media'];
 		}
 
 		foreach ( $col_width_theme_mod as $device => $values ) {
 			if ( isset( $values['media'][0] ) ) {
 				$device_column_widths[ $values['media'][0] ] = $values['values'];
+			} elseif ( is_string( $values ) ) {
+				$device_column_widths[ $values ] = 6;
 			} else {
 				$device_column_widths[ $device ] = $values['values'];
 			}
@@ -1011,7 +1019,13 @@ class BoldGrid {
 							$md_col = '5s';
 						}
 
-						$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . '">';
+						if ( false !== strpos( $col_uid, 'h' ) ) {
+							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . '">';
+						} else {
+							$num = ( 12 / count( $chunk ) );
+							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . '">';
+						}
+
 						ob_start();
 						switch ( $col_data['type'] ) {
 							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
@@ -1028,7 +1042,10 @@ class BoldGrid {
 									if ( empty( $col_data['align'] ) ) {
 										$col_data['align'] = 'nw';
 									}
-									$classes[] = $col_data['align'];
+									$classes = array(
+										'site-branding',
+										$col_data['align'],
+									);
 									return $classes;
 								};
 								add_filter( 'bgtfw_site_branding_classes', $filter, 10 );

@@ -63,6 +63,7 @@ export class HeaderBackground {
 		$.each( self.imageVideoControls, function() {
 			api( this, function( value ) {
 				value.bind( function() {
+					self.toggleVideoDisplay( self );
 					if ( self.hasHeaderImage() || self.hasHeaderVideo() ) {
 						self.activateOverlayControls();
 					} else {
@@ -71,6 +72,21 @@ export class HeaderBackground {
 				} );
 			} );
 		} );
+	}
+
+	/**
+	 * Toggle Video Display
+	 *
+	 * Toggles the header video display control.
+	 *
+	 * @since 2.3.1
+	 */
+	toggleVideoDisplay( self ) {
+		if ( self.hasHeaderVideo() ) {
+			api.control( 'bgtfw_video_background_all' ).activate();
+		} else {
+			api.control( 'bgtfw_video_background_all' ).deactivate();
+		}
 	}
 
 	/**

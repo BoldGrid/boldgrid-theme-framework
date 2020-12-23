@@ -2,7 +2,7 @@
 /**
  * Class: Boldgrid_Framework_SCSS
  *
- * Functions for interfacing with Leafo\ScssPhp\Compiler
+ * Functions for interfacing with ScssPhp\ScssPhp\Compiler
  *
  * @since      1.0.0
  * @package    Boldgrid_Framework
@@ -11,12 +11,12 @@
  * @link       https://boldgrid.com
  */
 
-use Leafo\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\Compiler;
 
 /**
  * Class: Boldgrid_Framework_SCSS
  *
- * Functions for interfacing with Leafo\ScssPhp\Compiler
+ * Functions for interfacing with ScssPhp\ScssPhp\Compiler
  *
  * @since      1.0.0
  */
@@ -175,14 +175,14 @@ class Boldgrid_Framework_SCSS {
 	}
 
 	/**
-	 * Compile the SCSS files using the Leafo compiler.
+	 * Compile the SCSS files using the ScssPhp compiler.
 	 *
 	 * @since      1.0.0
 	 * @param string $content Content to compile.
 	 * @return     string    $compiled   The compiled SCSS file.
 	 */
 	public function compile( $content ) {
-		if ( ! class_exists( '\Leafo\ScssPhp\Compiler' ) ) {
+		if ( ! class_exists( '\ScssPhp\ScssPhp\Compiler' ) ) {
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/scssphp/scss.inc.php';
 		}
 
@@ -190,7 +190,7 @@ class Boldgrid_Framework_SCSS {
 		$config_settings = $this->configs['customizer-options']['colors']['settings'];
 
 		if ( $config_settings['minify_output'] ) {
-			$scss->setFormatter( 'Leafo\ScssPhp\Formatter\Compressed' );
+			$scss->setFormatter( 'ScssPhp\ScssPhp\Formatter\Compressed' );
 		}
 
 		$variables = $this->colors->get_scss_variables();

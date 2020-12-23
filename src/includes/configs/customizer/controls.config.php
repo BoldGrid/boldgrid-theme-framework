@@ -1228,7 +1228,7 @@ return array(
 		'priority'    => 20,
 		'output'      => array(
 			array(
-				'element' => '.site-branding .site-description',
+				'element' => '.site-branding .site-description, .bgc-tagline',
 			),
 		),
 	),
@@ -1355,7 +1355,7 @@ return array(
 		'priority'    => 20,
 		'output'      => array(
 			array(
-				'element' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover',
+				'element' => '.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '.site-header .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover, .bgc-site-title, .bgc-site-title:hover',
 			),
 		),
 	),
@@ -1377,7 +1377,7 @@ return array(
 		'priority'    => 10,
 		'output'      => array(
 			array(
-				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body',
+				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header',
 			),
 		),
 	),
@@ -1655,6 +1655,21 @@ return array(
 				'description' => esc_attr__( 'Enter the text to display in your contact details', 'bgtfw' ),
 				'default'     => '',
 			),
+		),
+	),
+
+	'bgtfw_video_background_all' => array(
+		'type'        => 'switch',
+		'settings'    => 'bgtfw_video_background_all',
+		'transport'   => 'refresh',
+		'label'       => '',
+		'description' => esc_attr__( 'By default, the header video will only display on the home page. If you want the video to display on all pages, disable this option.', 'bgtfw' ),
+		'section'     => 'header_image',
+		'default'     => true,
+		'priority'    => 11,
+		'choices'     => array(
+			'on'  => esc_attr__( 'Home Only', 'bgtfw' ),
+			'off' => esc_attr__( 'All Pages', 'bgtfw' ),
 		),
 	),
 
@@ -2628,7 +2643,7 @@ return array(
 		'priority'    => 20,
 		'output'      => array(
 			array(
-				'element'  => '#main-menu li a',
+				'element'  => '#main-menu li a, .mce-content-body .sm-clean',
 			),
 		),
 	),

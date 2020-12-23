@@ -2,7 +2,7 @@
 /**
  * Class: Boldgrid_Framework_SCSS
  *
- * Functions for interfacing with Leafo\ScssPhp\Compiler
+ * Functions for interfacing with ScssPhp\ScssPhp\Compiler
  *
  * @since      1.0.0
  * @package    Boldgrid_Framework
@@ -11,12 +11,12 @@
  * @link       https://boldgrid.com
  */
 
-use Leafo\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\Compiler;
 
 /**
  * Class: Boldgrid_Framework_Bootstrap_Compile
  *
- * Functions for interfacing with Leafo\ScssPhp\Compiler
+ * Functions for interfacing with ScssPhp\ScssPhp\Compiler
  *
  * @since      1.0.0
  */
@@ -138,7 +138,7 @@ class Boldgrid_Framework_Scss_Compile implements Boldgrid_Framework_Compile {
 	 * @return string $compiled_scss Contains compiled SCSS code.
 	 */
 	public function compile( $path, $content, $variables ) {
-		if ( ! class_exists( '\Leafo\ScssPhp\Compiler' ) ) {
+		if ( ! class_exists( '\ScssPhp\ScssPhp\Compiler' ) ) {
 			require_once $this->configs['framework']['includes_dir'] . '/scssphp/scss.inc.php';
 		}
 		$scss = new Compiler();

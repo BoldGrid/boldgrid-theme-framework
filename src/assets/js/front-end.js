@@ -249,9 +249,6 @@ var BoldGrid = BoldGrid || {};
 				// Check for custom header image.
 				this.checkImg();
 
-				// Check for video background embed type.
-				$( document ).on( 'wp-custom-header-video-loaded', this.checkType );
-
 				// Initial calc.
 				BoldGrid.custom_header.calc();
 
@@ -395,7 +392,7 @@ var BoldGrid = BoldGrid || {};
 						sticky();
 					} else {
 						window.removeEventListener( 'scroll', this._scroll );
-						document.getElementById( 'masthead-sticky' ).parentElement.classList.remove( 'bgtfw-stick' );
+						$( '#masthead-sticky' ).parent().removeClass( 'bgtfw-stick' );
 					}
 				} );
 			},
@@ -404,14 +401,14 @@ var BoldGrid = BoldGrid || {};
 				let header = document.querySelector( '.bgtfw-header' ),
 					distanceY = window.pageYOffset || document.documentElement.scrollTop,
 					shrinkOn = header.offsetHeight,
-					sticky = header.nextElementSibling;
+					sticky = $( '.bgtfw-sticky-header' );
 
 				if ( distanceY > shrinkOn ) {
-					sticky.classList.add( 'bgtfw-stick' );
-					sticky.setAttribute( 'aria-hidden', 'false' );
+					$( sticky ).addClass( 'bgtfw-stick' );
+					$( sticky ).attr( 'aria-hidden', 'false' );
 				} else {
-					sticky.classList.remove( 'bgtfw-stick' );
-					sticky.setAttribute( 'aria-hidden', 'true' );
+					$( sticky ).removeClass( 'bgtfw-stick' );
+					$( sticky ).attr( 'aria-hidden', 'true' );
 				}
 			}
 		},
@@ -820,6 +817,16 @@ var BoldGrid = BoldGrid || {};
 
 	// Load Events.
 	$( document ).ready( UTIL.loadEvents );
+
+	/*
+	 * Check for video background embed type.
+	 * This has to be added here, to be sure the event
+	 * listener is added at the appropriate
+	 * time.
+	 */
+	$( document ).on( 'wp-custom-header-video-loaded', function() {
+		BoldGrid.custom_header.checkType();
+	} );
 
 } )( jQuery );
 window.BoldGrid = BoldGrid;

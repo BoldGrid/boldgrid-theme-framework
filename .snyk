@@ -1,0 +1,23 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:extend:20180424':
+    - Buttons > grunt-saucelabs > requestretry > extend:
+        patched: '2020-06-10T13:36:28.405Z'
+    - Buttons > grunt-saucelabs > requestretry > request > extend:
+        patched: '2020-06-10T13:36:28.405Z'
+    - Buttons > grunt-saucelabs > sauce-tunnel > request > extend:
+        patched: '2020-06-10T13:36:28.405Z'
+    - Buttons > grunt-saucelabs > saucelabs > https-proxy-agent > extend:
+        patched: '2020-06-10T13:36:28.405Z'
+    - Buttons > grunt-saucelabs > saucelabs > https-proxy-agent > agent-base > extend:
+        patched: '2020-06-10T13:36:28.405Z'
+  'npm:minimatch:20160620':
+    - Buttons > grunt > findup-sync > glob > minimatch:
+        patched: '2020-06-10T13:36:28.405Z'
+    - Buttons > grunt > minimatch:
+        patched: '2020-06-10T13:36:28.405Z'
+    - Buttons > grunt > glob > minimatch:
+        patched: '2020-06-10T13:36:28.405Z'

@@ -203,6 +203,9 @@ class BoldGrid_Framework {
 		// Load Customizer Files.
 		$this->load_customizer_files();
 
+		// Load Pro Feature Cards.
+		$this->load_pro_cards();
+
 		/**
 		 * Include the TGM_Plugin_Activation class.
 		 */
@@ -225,6 +228,22 @@ class BoldGrid_Framework {
 		// Load Customizer Files.
 		$plugin_path = __DIR__ . '/customizer';
 		foreach ( glob( $plugin_path . '/*.php' ) as $filename ) {
+			if ( false !== strpos( $filename, 'index.php' ) ) {
+				continue;
+			}
+			require_once $filename;
+		}
+	}
+
+	/**
+	 * Include files for Pro Feature Cards
+	 *
+	 * @since    SINCEVERSION
+	 * @access   private
+	 */
+	private function load_pro_cards() {
+		$path = __DIR__ . '/pro-feature-cards';
+		foreach ( glob( $path . '/*.php' ) as $filename ) {
 			if ( false !== strpos( $filename, 'index.php' ) ) {
 				continue;
 			}
@@ -494,6 +513,7 @@ class BoldGrid_Framework {
 		$activate = new Boldgrid_Framework_Activate( $this->configs );
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
 		$boldgrid_ppb = new Boldgrid_Framework_PPB( $this->configs );
+		$pro_feature_cards = new BoldGrid_Framework_Pro_Feature_Cards( $this->configs );
 
 		$content = new Boldgrid_Framework_Content( $this->configs );
 		$this->loader->add_filter( 'excerpt_length', $content, 'excerpt_length', 999 );
@@ -552,6 +572,8 @@ class BoldGrid_Framework {
 
 		// If installing a plugin via tgmpa, then remove custom plugins_api hooks.
 		$this->loader->add_action( 'init', $admin, 'remove_hooks' );
+
+		$this->loader->add_action( 'bgtfw_pro_feature_cards', $pro_feature_cards, 'print_cards' );
 	}
 
 	/**

@@ -4,7 +4,7 @@
  *
  * This Class is used for generating Pro Feature Cards for use on the Pro Features page.
  *
- * @since      2.6.0
+ * @since      2.5.0
  * @package    Boldgrid_Framework
  * @author     BoldGrid <support@boldgrid.com>
  * @link       https://boldgrid.com
@@ -15,14 +15,14 @@
  *
  * This Class is used for generating Pro Feature Cards for use on the Pro Features page.
  *
- * @since      2.6.0
+ * @since      2.5.0
  */
 class BoldGrid_Framework_Pro_Feature_Cards {
 
 	/**
 	 * Configs
 	 *
-	 * @since 2.6.0
+	 * @since 2.5.0
 	 * @var array
 	 */
 	public $configs = array();
@@ -34,7 +34,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 * utm_content argument, that way it can be added individual for different locations
 	 * on the page.
 	 *
-	 * @since 2.6.0
+	 * @since 2.5.0
 	 * @var string
 	 */
 	public $upgrade_url = 'https://boldgrid.com/wordpress-themes/crio/?utm_source=Crio_-_Pro_Features&utm_medium=Button&utm_campaign=Crio_Pro_Features';
@@ -42,7 +42,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	/**
 	 * Constructor
 	 *
-	 * @since 2.6.0
+	 * @since 2.5.0
 	 * @param array $configs Theme Configs.
 	 */
 	public function __construct( $configs ) {
@@ -65,7 +65,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 * This function prints cards as used by the 'bgtfw_pro_feature_cards'
 	 * action hook.
 	 *
-	 * @since 2.6.0
+	 * @since 2.5.0
 	 */
 	public function print_cards() {
 		global $current_user;
@@ -108,7 +108,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 				<div class="subtitle"><p><?php echo esc_html( $card['subtitle'] ); ?></p></div>
 				<div class="action-links">
 					<?php if ( $learn_more ) : ?>
-						<a class="button" href="<?php echo esc_url( $learn_more ); ?>"><?php echo esc_html__('Learn More', 'bgtfw' ); ?></a>
+						<a class="button" href="<?php echo esc_url( $learn_more ); ?>"><?php echo esc_html__( 'Learn More', 'bgtfw' ); ?></a>
 					<?php endif; ?>
 					<?php if ( $video ) : ?>
 						<a href="<?php echo esc_url( $video ); ?>"><span class="dashicons dashicons-video-alt3"></span></a>
@@ -133,7 +133,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 * been dismissed by the current user, then return the count of that list
 	 * in order to be displayed in the admin menu.
 	 *
-	 * @since 2.6.0
+	 * @since 2.5.0
 	 *
 	 * @return int The number of notices.
 	 */
@@ -147,7 +147,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 
 		$notices = array();
 
-		foreach( $this->configs['pro-feature-cards'] as $key => $value ) {
+		foreach ( $this->configs['pro-feature-cards'] as $key => $value ) {
 			if ( isset( $value['show_notice'] ) ) {
 				$notices[] = $value['show_notice'];
 			}
@@ -167,8 +167,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 * This is fired in the 'admin_menu' action hook.
 	 *
 	 * @see https://developer.wordpress.org/reference/hooks/admin_menu/
-	 * @since 2.6.0
-	 *
+	 * @since 2.5.0
 	 */
 	public function show_notice_counts() {
 		global $menu;

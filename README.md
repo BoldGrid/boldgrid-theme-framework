@@ -36,6 +36,14 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.5.0 ###
+* New Feature: Added a 'Crio' top level menu page, moved the welcome page there, and added a 'Get Pro' page to highlight new premium features.
+* Update: [Snyk] Upgrade @wordpress/hooks from 2.8.0 to 2.10.0 [#305](https://github.com/BoldGrid/boldgrid-theme-framework/pull/305)
+* Update: [Snyk] Upgrade jarallax from 1.12.1 to 1.12.4 [#304](https://github.com/BoldGrid/boldgrid-theme-framework/pull/304)
+* Update: [Snyk] Upgrade @wordpress/dom-ready from 2.9.0 to 2.11.0 [#303](https://github.com/BoldGrid/boldgrid-theme-framework/pull/303)
+* Update: [Snyk] Upgrade @babel/runtime-corejs2 from 7.9.6 to 7.12.1 [#302](https://github.com/BoldGrid/boldgrid-theme-framework/pull/302)
+* Update: [Snyk] Fix for 2 vulnerabilities [#209](https://github.com/BoldGrid/boldgrid-theme-framework/pull/209)
+
 ### 2.4.0 ###
 * New Feature: Added functionality for Crio Premium's Page Header Templates.
 

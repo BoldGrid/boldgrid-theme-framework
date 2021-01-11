@@ -238,7 +238,7 @@ class BoldGrid_Framework {
 	/**
 	 * Include files for Pro Feature Cards
 	 *
-	 * @since    2.6.0
+	 * @since    2.5.0
 	 * @access   private
 	 */
 	private function load_pro_cards() {

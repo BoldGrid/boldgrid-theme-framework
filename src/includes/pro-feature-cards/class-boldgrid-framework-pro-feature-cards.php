@@ -99,7 +99,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 			?>
 			<div class="card <?php echo esc_attr( $card_slug ); ?>-card<?php echo esc_attr( $new_card ); ?>">
 				<?php if ( $new_card ) : ?>
-					<div class="new-ribbon-wrapper"><div class="new-ribbon">NEW FEATURE</div></div>
+					<div class="new-ribbon-wrapper"><div class="new-ribbon">NEW</div></div>
 				<?php endif; ?>
 				<div class="title"><h3><?php echo esc_html( $card['title'] ); ?></h3></div>
 				<div class="icon" style="border-top:3px solid #<?php echo esc_attr( $color ); ?>;border-bottom:1px solid #ddd">

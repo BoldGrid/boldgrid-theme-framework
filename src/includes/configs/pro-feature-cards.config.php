@@ -9,20 +9,29 @@
  */
 
 return array(
-	'custom-page-headers' => array(
-		'title'      => __( 'Custom Page Headers', 'bgtfw' ),
-		'subtitle'   => __( 'Drag and Drop Header Design.', 'bgtfw' ),
-		'learn-more' => 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/custom-header-templates/',
-		'video'    	 => 'https://www.youtube.com/playlist?list=PLqNQzP6vlTnwl36WwXSMw6FKy6eCBHY3S',
+	'custom-page-headers'     => array(
+		'title'       => __( 'Custom Page Headers', 'bgtfw' ),
+		'subtitle'    => __( 'Create Page Headers using drag and drop functionality, and assign them to different areas.', 'bgtfw' ),
+		'color'       => 'f75c27',
+		'icon'        => 'dashicons-table-row-before',
+		'show_notice' => 'custom-page-headers',
 	),
-	'white-labeling'      => array(
+	'white-labeling'          => array(
 		'title'      => __( 'White Labeling', 'bgtfw' ),
-		'subtitle'   => __( 'Remove Attribution Links.', 'bgtfw' ),
-		'learn-more' => 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-footer-design-in-boldgrid-crio/',
+		'subtitle'   => __( 'Crio Pro can remove the default BoldGrid attribution for a truly white labeled product.', 'bgtfw' ),
+		'color'      => 'ca663b',
+		'icon'       => 'dashicons-tag',
+	),
+	'sticky-headers'      => array(
+		'title'      => __( 'Sticky Headers', 'bgtfw' ),
+		'subtitle'   => __( 'Create a sticky header with a different layout and menu than the standard header.', 'bgtfw' ),
+		'icon'       => 'dashicons-cover-image',
+		'color'      => 'a8817b',
 	),
 	'more-customization'      => array(
-		'title'      => __( 'More Customization', 'bgtfw' ),
-		'subtitle'   => __( '150+ Additional Customizer Controls.', 'bgtfw' ),
-		'learn-more' => 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-header-design-in-boldgrid-crio/',
+		'title'      => __( 'Blog Customization', 'bgtfw' ),
+		'subtitle'   => __( 'Additional post header controls to further fine-tune your blog posts.', 'bgtfw' ),
+		'icon'       => 'dashicons-welcome-write-blog',
+		'color'      => '4a93b6',
 	),
 );

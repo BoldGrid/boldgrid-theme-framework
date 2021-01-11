@@ -238,7 +238,7 @@ class BoldGrid_Framework {
 	/**
 	 * Include files for Pro Feature Cards
 	 *
-	 * @since    SINCEVERSION
+	 * @since    2.6.0
 	 * @access   private
 	 */
 	private function load_pro_cards() {
@@ -514,6 +514,12 @@ class BoldGrid_Framework {
 		$editor = new Boldgrid_Framework_Editor( $this->configs );
 		$boldgrid_ppb = new Boldgrid_Framework_PPB( $this->configs );
 		$pro_feature_cards = new BoldGrid_Framework_Pro_Feature_Cards( $this->configs );
+
+		// This adds Pro Feature notice counts to the admin menu.
+		$this->loader->add_action( 'admin_menu', $pro_feature_cards, 'show_notice_counts' );
+
+		// This filter is used to obtain the 'Go Pro' URL usedon Pro Feature cards.
+		$this->loader->add_filter( 'bgtfw_upgrade_url_pro_features', $pro_feature_cards, 'get_upgrade_url', 10, 0 );
 
 		$content = new Boldgrid_Framework_Content( $this->configs );
 		$this->loader->add_filter( 'excerpt_length', $content, 'excerpt_length', 999 );

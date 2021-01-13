@@ -69,7 +69,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 */
 	public function print_cards() {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		if ( ! isset( $this->configs['pro-feature-cards'] ) ) {
 			return;
@@ -139,7 +139,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 */
 	public function get_notice_counts() {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		if ( ! isset( $this->configs['pro-feature-cards'] ) ) {
 			return 0;

@@ -43,6 +43,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 * Constructor
 	 *
 	 * @since 2.5.0
+	 *
 	 * @param array $configs Theme Configs.
 	 */
 	public function __construct( $configs ) {

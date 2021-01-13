@@ -518,9 +518,6 @@ class BoldGrid_Framework {
 		// This adds Pro Feature notice counts to the admin menu.
 		$this->loader->add_action( 'admin_menu', $pro_feature_cards, 'show_notice_counts' );
 
-		// This filter is used to obtain the 'Go Pro' URL usedon Pro Feature cards.
-		$this->loader->add_filter( 'bgtfw_upgrade_url_pro_features', $pro_feature_cards, 'get_upgrade_url', 10, 0 );
-
 		$content = new Boldgrid_Framework_Content( $this->configs );
 		$this->loader->add_filter( 'excerpt_length', $content, 'excerpt_length', 999 );
 

@@ -50,16 +50,6 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	}
 
 	/**
-	 * Get Upgrad Url
-	 *
-	 * This is the callback for the 'bgtfw_upgrade_url_pro_features'
-	 * filter. This is used on the pro features page.
-	 */
-	public function get_upgrade_url() {
-		return $this->upgrade_url;
-	}
-
-	/**
 	 * Print Cards
 	 *
 	 * This function prints cards as used by the 'bgtfw_pro_feature_cards'

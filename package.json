@@ -157,7 +157,7 @@
     "postcss": "^6.0.22",
     "sass.js": "~0.11.1",
     "scssphp": "https://github.com/boldgrid/scssphp.git#master",
-    "smartmenus": "^1.1.0",
+    "smartmenus": "^1.1.1",
     "wow.js": "^1.2.2",
     "snyk": "^1.338.0"
   },

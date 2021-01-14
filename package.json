@@ -159,7 +159,7 @@
     "scssphp": "https://github.com/boldgrid/scssphp.git#master",
     "smartmenus": "^1.1.0",
     "wow.js": "^1.2.2",
-    "snyk": "^1.338.0"
+    "snyk": "^1.437.3"
   },
   "snyk": true
 }

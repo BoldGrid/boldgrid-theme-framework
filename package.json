@@ -141,7 +141,7 @@
     "bootstrap-sass": "~3.4.1",
     "color-js": "^1.0.1",
     "css-vars-ponyfill": "^1.17.2",
-    "float-labels.js": "^3.3.5",
+    "float-labels.js": "^3.3.9",
     "font-awesome": "^4.7.0",
     "hamburgers": "https://github.com/jonsuh/hamburgers#v0.9.3",
     "hero-patterns": "^2.0.2",

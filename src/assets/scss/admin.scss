@@ -80,7 +80,6 @@
 }
 
 /* BoldGrid Crio admin menu item icon. */
-#toplevel_page_crio-welcome .wp-menu-image:before {
-  content: "\e900";
-  font-family: 'boldgrid';
+#toplevel_page_crio .wp-menu-image img {
+  width: 20px;
 }

@@ -206,6 +206,9 @@ class BoldGrid_Framework {
 		// Load Pro Feature Cards.
 		$this->load_pro_cards();
 
+		// Load Quick Start Guide Files.
+		$this->load_quickstart_guide();
+
 		/**
 		 * Include the TGM_Plugin_Activation class.
 		 */
@@ -243,6 +246,22 @@ class BoldGrid_Framework {
 	 */
 	private function load_pro_cards() {
 		$path = __DIR__ . '/pro-feature-cards';
+		foreach ( glob( $path . '/*.php' ) as $filename ) {
+			if ( false !== strpos( $filename, 'index.php' ) ) {
+				continue;
+			}
+			require_once $filename;
+		}
+	}
+
+	/**
+	 * Include files for Quick Start Guide.
+	 *
+	 * @since    2.7.0
+	 * @access   private
+	 */
+	private function load_quickstart_guide() {
+		$path = __DIR__ . '/quick-start-guide';
 		foreach ( glob( $path . '/*.php' ) as $filename ) {
 			if ( false !== strpos( $filename, 'index.php' ) ) {
 				continue;
@@ -509,11 +528,12 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-		$admin = new BoldGrid_Framework_Admin( $this->configs );
-		$activate = new Boldgrid_Framework_Activate( $this->configs );
-		$editor = new Boldgrid_Framework_Editor( $this->configs );
-		$boldgrid_ppb = new Boldgrid_Framework_PPB( $this->configs );
+		$admin             = new BoldGrid_Framework_Admin( $this->configs );
+		$activate          = new Boldgrid_Framework_Activate( $this->configs );
+		$editor            = new Boldgrid_Framework_Editor( $this->configs );
+		$boldgrid_ppb      = new Boldgrid_Framework_PPB( $this->configs );
 		$pro_feature_cards = new BoldGrid_Framework_Pro_Feature_Cards( $this->configs );
+		$quick_start_guide = new BoldGrid_Framework_Quick_Start_Guide( $this->configs );
 
 		// This adds Pro Feature notice counts to the admin menu.
 		$this->loader->add_action( 'admin_menu', $pro_feature_cards, 'show_notice_counts' );
@@ -577,6 +597,8 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'init', $admin, 'remove_hooks' );
 
 		$this->loader->add_action( 'bgtfw_pro_feature_cards', $pro_feature_cards, 'print_cards' );
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $quick_start_guide, 'enqueue_scripts' );
 	}
 
 	/**

@@ -22,6 +22,8 @@
 		"Backbone": false,
 		"jQuery": false,
 		"JSON": false,
-		"wp": false
+		"wp": false,
+		"_wpCustomizeSettings": false,
+		"_wpCustomizePreviewNavMenusExports": false
 	}
 }

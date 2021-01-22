@@ -1,0 +1,65 @@
+/**
+* #.# Quick Start Guide styles
+*/
+#crio-draggable-cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 998;
+}
+#crio-quickstart-wrapper {
+	position: absolute;
+	left: 15px;
+	top: 15px;
+	width: 350px;
+	height: 500px;
+	background-color: white;
+	z-index: 999;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 2px 2px 2px 2px rgba(68, 68, 68, 0.43);
+	.crio-quickstart-header {
+		padding: 15px;
+		display: flex;
+		justify-content: space-between;
+		color: white;
+		background-color: #f95b26;
+		cursor: move;
+		.action-buttons {
+			span {
+				border-radius: 50%;
+				background-color: white;
+				color: #f95b26;
+				&:hover {
+					color: #fa8158;
+					cursor: pointer;
+				}
+			}
+		}
+		.crio-icon {
+			width: 40px;
+    		padding: 5px 5px 5px 5px;
+			img {
+				transform: translateY(2px);
+			}
+		}
+	}
+	&.minimized {
+		width: auto;
+		height: auto;
+		border-radius: 50%;
+		.crio-quickstart-header {
+			border-radius: 50%;
+			.crio-quickstart-title, .action-buttons {
+				display: none;
+			}
+		}
+		.crio-quickstart-content {
+			display: none;
+		}
+	}
+}

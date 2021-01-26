@@ -206,8 +206,15 @@
 			}
 			.container {
 				.row {
-					margin-left: 20px;
-					margin-right: 20px;
+					&:not( .bg-editor-hr-wrap ) {
+						margin-left: 20px;
+						margin-right: 20px;
+					}
+					&.bg-editor-hr-wrap {
+						> div {
+							padding-left:0px;
+						}
+					}
 				}
 			}
 			.container-fluid {

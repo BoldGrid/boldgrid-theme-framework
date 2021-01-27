@@ -17,7 +17,6 @@
 		constructor( crioQuickStartParams ) {
 			this.nonce         = crioQuickStartParams.nonce;
 			this.iconUrl       = crioQuickStartParams.iconUrl;
-			this.contentMarkup = this.getMarkupAjax();
 			this.title         = __( 'Crio Quick Start Guide', 'crio' ),
 			this.pos1          = 0,
 			this.pos2          = 0,
@@ -33,22 +32,33 @@
 		 *
 		 * @since 5.7.0
 		 *
+		 * @param {string} page Page to get markup for.
+		 *
 		 * @return {string} Quickstart HTML Markup
 		 */
-		getMarkupAjax() {
-			var self   = this,
-				markup = '<p>' + __( 'The Quickstart Guide could not be retrieved at this time', 'crio' ) + '</p>';
+		getMarkupAjax( page ) {
+			var self    = this,
+				markup  = '<p>' + __( 'The Quickstart Guide could not be retrieved at this time', 'crio' ) + '</p>';
+			$( '#crio-quickstart-content' ).animate( { opacity: 0 } );
 			$.post( ajaxurl, {
 				action: 'crio_get_quick_start_markup',
-				nonce: self.nonce
+				nonce: self.nonce,
+				page: page
 			} )
 				.done( function( data ) {
 					if ( data.markup ) {
-						markup = data.markup;
+						$( '#crio-quickstart-content' ).html( data.markup );
+					} else {
+						$( '#crio-quickstart-content' ).html( markup );
 					}
-				} );
 
-			return markup;
+					$( '.breadcrumb-nav' ).on( 'click', crioQuickStart.loadNextScreen );
+					$( '.quick-start-arrow' ).on( 'click', crioQuickStart.loadNextScreen );
+					$( '#crio-quickstart-content' ).animate( { opacity: 1 } );
+				} )
+				.fail( function() {
+					$( '#crio-quickstart-content' ).html( markup );
+				} );
 		}
 
 		getWrapperMarkup() {
@@ -64,8 +74,7 @@
 							<span class="dismiss dashicons dashicons-no"></span>
 						</div>
 					</div>
-					<div class="crio-quickstart-content">
-						${this.contentMarkup}
+					<div id="crio-quickstart-content" class="crio-quickstart-content">
 					</div>
 				</div>
 			`;
@@ -84,8 +93,23 @@
 				markup           = this.getWrapperMarkup();
 
 			$previewContainer.prepend( markup );
+			this.getMarkupAjax( 'main' );
 			$( '#crio-quickstart-wrapper .minimize' ).on( 'click', this.minimizeQuickstart );
 			$( '#crio-quickstart-wrapper' ).on( 'dblclick', this.unMinimizeQuickstart );
+		}
+
+		/**
+		 * loadNextScreen
+		 *
+		 * Loads the next screen when clicking an > icon.
+		 *
+		 * @since 2.7.0
+		 */
+		loadNextScreen() {
+			if ( this.dataset.focus ) {
+				api.control( this.dataset.focus ).focus();
+			}
+			crioQuickStart.getMarkupAjax( this.dataset.child );
 		}
 
 		/**
@@ -226,10 +250,10 @@
 
 	api.bind( 'ready', function() {
 		crioQuickStart.insertQuickStart();
-		$( '#crio-quickstart-wrapper' ).hide();
 		wp.customize.previewer.bind( 'ready', function() {
-			$( '#crio-quickstart-wrapper' ).show( 'slow' );
 			crioQuickStart.dragElement();
+			$( '#crio-quickstart-wrapper' ).animate( { opacity: 1 } );
+			crioQuickStart.unMinimizeQuickstart();
 		} );
 	} );
 

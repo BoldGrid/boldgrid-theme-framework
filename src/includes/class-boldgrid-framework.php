@@ -599,6 +599,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'bgtfw_pro_feature_cards', $pro_feature_cards, 'print_cards' );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $quick_start_guide, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_ajax_crio_get_quick_start_markup', $quick_start_guide, 'quick_start_markup' );
 	}
 
 	/**

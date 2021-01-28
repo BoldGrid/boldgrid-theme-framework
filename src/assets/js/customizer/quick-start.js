@@ -64,6 +64,7 @@
 		getWrapperMarkup() {
 			var markup = `
 				<div id="crio-quickstart-wrapper" class="crio-quickstart-wrapper minimized">
+					<span class="unminimize dashicons dashicons-editor-expand"></span>
 					<div class="crio-quickstart-header draggable">
 						<div class="crio-icon">
 							<img src="${this.iconUrl}"></img>
@@ -95,7 +96,7 @@
 			$previewContainer.prepend( markup );
 			this.getMarkupAjax( 'main' );
 			$( '#crio-quickstart-wrapper .minimize' ).on( 'click', this.minimizeQuickstart );
-			$( '#crio-quickstart-wrapper' ).on( 'dblclick', this.unMinimizeQuickstart );
+			$( '#crio-quickstart-wrapper .unminimize' ).on( 'click', this.unMinimizeQuickstart );
 		}
 
 		/**

@@ -566,7 +566,7 @@ footer#colophon {
 	}
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {x
 	footer#colophon {
 		.boldgrid-section {
 			.full-width {
@@ -578,6 +578,14 @@ footer#colophon {
 						padding-right: 20px;
 					}
 				}
+			}
+		}
+	}
+
+	.has-sidebar.right-sidebar {
+		#main-wrapper.full-width {
+			.main {
+				padding: 0px;
 			}
 		}
 	}

@@ -392,6 +392,14 @@ footer#colophon {
 }
 @media only screen and (max-width: 991px) {
 	.single {
+		.full-width {
+			.entry-content {
+				.boldgrid-section {
+					margin-left: 0px;
+					margin-right: 0px;
+				}
+			}
+		}
 		&.page-title-above {
 			&.has-sidebar {
 				&:not(.woocommerce) {

@@ -51,6 +51,7 @@
 		&.right-sidebar {
 			.main-wrapper.container {
 				.article-wrapper {
+					max-width: 100%;
 					+ aside {
 						margin-right: 0px;
 					}
@@ -60,6 +61,7 @@
 		&.left-sidebar {
 			.main-wrapper.container {
 				.article-wrapper {
+					max-width: 100%;
 					+ aside {
 						margin-left: 0px;
 					}
@@ -333,14 +335,10 @@
 }
 .single {
 	#main-wrapper.full-width {
-		max-width: calc( 100% - 20px );
+		max-width: 100%;
 	}
 	.full-width {
 		.entry-content {
-			.boldgrid-section {
-				margin-left: -15px;
-				margin-right: -15px;
-			}
 			.boldgrid-section-wrap {
 				margin-left: -15px;
 				margin-right: -15px;
@@ -436,6 +434,7 @@ footer#colophon {
 	.has-sidebar.left-sidebar {
 		#main-wrapper.full-width {
 			.main {
+				padding: 0px;
 				aside.sidebar {
 					margin-left:0px;
 					margin-right:0px;
@@ -603,9 +602,6 @@ footer#colophon {
 				&.left-sidebar {
 					.main-wrapper {
 						&.full-width {
-							article {
-								margin-left:-20px;
-							}
 							.article-wrapper {
 								padding-left: 15px;
 								padding-right: 15px;

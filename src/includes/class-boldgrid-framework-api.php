@@ -1020,7 +1020,7 @@ class BoldGrid {
 						}
 
 						if ( false !== strpos( $col_uid, 'h' ) ) {
-							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . '">';
+							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $col_data['align'] . '">';
 						} else {
 							$num = ( 12 / count( $chunk ) );
 							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . '">';

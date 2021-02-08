@@ -36,6 +36,11 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.5.1 ###
+Bug Fix: Full width menu background doesn't touch sides [#327] (https://github.com/BoldGrid/boldgrid-theme-framework/issues/327)
+Bug Fix: Widget in full width header = horizontal scrollbar [#244] (https://github.com/BoldGrid/boldgrid-theme-framework/issues/244)
+Bug Fix: Full width sidebar background doesn't hit sides on mobile [#229] (https://github.com/BoldGrid/boldgrid-theme-framework/issues/229)
+
 ### 2.5.0 ###
 * New Feature: Added a 'Crio' top level menu page, moved the welcome page there, and added a 'Get Pro' page to highlight new premium features.
 * Update: [Snyk] Upgrade @wordpress/hooks from 2.8.0 to 2.10.0 [#305](https://github.com/BoldGrid/boldgrid-theme-framework/pull/305)

@@ -1,0 +1,16 @@
+.wedge-cta {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.wedge-cta-dark {
+	background: rgba(0, 0, 0, 0.8);
+}
+
+@media only screen and (min-width:992px) {
+.wedge-cta {
+		background:none
+	}
+.wedge-cta-dark {
+	background:none
+	}
+}

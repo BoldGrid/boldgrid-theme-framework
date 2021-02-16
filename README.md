@@ -36,6 +36,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.5.2 ###
+Bug Fix: Crio - Nested Row [#343](https://github.com/BoldGrid/boldgrid-theme-framework/issues/343)
+Update: Added CSS styles for WedgeV2 update.
+
 ### 2.5.1 ###
 Bug Fix: Full width menu background doesn't touch sides [#327] (https://github.com/BoldGrid/boldgrid-theme-framework/issues/327)
 Bug Fix: Widget in full width header = horizontal scrollbar [#244] (https://github.com/BoldGrid/boldgrid-theme-framework/issues/244)

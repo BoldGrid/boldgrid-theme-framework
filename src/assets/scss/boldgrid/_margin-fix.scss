@@ -212,7 +212,7 @@
 				margin-right: 0px;
 			}
 			.container {
-				.row {
+				> .row {
 					&:not( .bg-editor-hr-wrap ) {
 						margin-left: 20px;
 						margin-right: 20px;
@@ -431,6 +431,20 @@ footer#colophon {
 									}
 								}
 							}
+						}
+					}
+				}
+			}
+		}
+	}
+	#main-wrapper.full-width {
+		.main {
+			.entry-content {
+				.container {
+					> .row {
+						&:not( .bg-editor-hr-wrap ) {
+							margin-left: 0px;
+							margin-right: 0px;
 						}
 					}
 				}

@@ -217,9 +217,12 @@
 						margin-left: 20px;
 						margin-right: 20px;
 					}
+				}
+				.row {
 					&.bg-editor-hr-wrap {
 						> div {
 							padding-left:0px;
+							padding-right: 0px;
 						}
 					}
 				}

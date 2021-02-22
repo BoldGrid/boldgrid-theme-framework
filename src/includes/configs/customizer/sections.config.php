@@ -73,9 +73,9 @@ $sections_array = array(
 		'icon' => 'dashicons-admin-generic',
 	),
 	'bgtfw_header_layout' => array(
-		'title' => __( 'Layout', 'bgtfw' ),
+		'title' => __( 'Advanced', 'bgtfw' ),
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Manage the layout of your site\'s header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
-		'panel' => 'bgtfw_header',
+		'panel' => 'bgtfw_header_layouts',
 		'capability' => 'edit_theme_options',
 		'priority' => 5,
 		'notice' => [
@@ -88,6 +88,14 @@ $sections_array = array(
 			'url' => esc_url( 'https://www.boldgrid.com/wordpress-themes/crio/header/?source=customize-header' ),
 			'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
 		],
+		'icon' => 'dashicons-admin-generic',
+	),
+	'bgtfw_header_presets' => array(
+		'title' => __( 'Header Layouts', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Choose the Layout of your header from one of these presets.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
+		'panel' => 'bgtfw_header_layouts',
+		'capability' => 'edit_theme_options',
+		'priority' => 1,
 		'icon' => 'dashicons-schedule',
 	),
 	'bgtfw_site_title' => array(

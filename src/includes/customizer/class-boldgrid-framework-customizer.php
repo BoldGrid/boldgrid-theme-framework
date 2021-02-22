@@ -56,6 +56,7 @@ class BoldGrid_Framework_Customizer {
 		$format        = new BoldGrid_Framework_Starter_Content( $configs );
 		$this->configs = $format->set_configs( $configs );
 		$this->scripts = new BoldGrid_Framework_Scripts( $configs );
+		$this->presets = new BoldGrid_Framework_Customizer_Presets( $configs );
 	}
 
 	/**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Customizer Controls Configs
+ * Customizer Controls Configs.
  *
  * @package Boldgrid_Theme_Framework
  * @subpackage Boldgrid_Theme_Framework\Configs
@@ -18,12 +18,13 @@ if ( ! function_exists( 'get_page_templates' ) ) {
 	require_once ABSPATH . 'wp-admin/includes/theme.php';
 }
 
-$bgtfw_palette = new Boldgrid_Framework_Compile_Colors( $bgtfw_configs );
-$bgtfw_active_palette = $bgtfw_palette->get_active_palette();
+$bgtfw_palette           = new Boldgrid_Framework_Compile_Colors( $bgtfw_configs );
+$bgtfw_active_palette    = $bgtfw_palette->get_active_palette();
 $bgtfw_formatted_palette = $bgtfw_palette->color_format( $bgtfw_active_palette );
-$bgtfw_color_sanitize = new Boldgrid_Framework_Customizer_Color_Sanitize();
-$bgtfw_typography = new Boldgrid_Framework_Customizer_Typography( $bgtfw_configs );
-$bgtfw_generic = new Boldgrid_Framework_Customizer_Generic( $bgtfw_configs );
+$bgtfw_color_sanitize    = new Boldgrid_Framework_Customizer_Color_Sanitize();
+$bgtfw_typography        = new Boldgrid_Framework_Customizer_Typography( $bgtfw_configs );
+$bgtfw_generic           = new Boldgrid_Framework_Customizer_Generic( $bgtfw_configs );
+$bgtfw_presets           = new Boldgrid_Framework_Customizer_Presets( $bgtfw_configs );
 
 return array(
 	'custom_theme_js' => array(
@@ -1231,6 +1232,15 @@ return array(
 				'element' => '.site-branding .site-description, .bgc-tagline',
 			),
 		),
+	),
+	'bgtfw_header_preset' => array(
+		'type'        => 'radio-image',
+		'settings'    => 'bgtfw_header_preset',
+		'label'       => esc_html__( 'Header Layout', 'kirki' ),
+		'section'     => 'bgtfw_header_presets',
+		'default'     => 'none',
+		'priority'    => 1,
+		'choices'     => $bgtfw_presets->get_preset_choices( 'header' ),
 	),
 	'bgtfw_header_width' => array(
 		'type'        => 'slider',

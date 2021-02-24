@@ -1079,6 +1079,22 @@ class BoldGrid {
 		return $markup;
 	}
 
+	public static function get_layout( $theme_mod ) {
+		$preset_type = str_replace( 'bgtfw_', '', $theme_mod );
+		$preset_type = str_replace( '_layout', '', $preset_type );
+		$preset      = get_theme_mod( 'bgtfw_' . $preset_type . '_preset' );
+		$layout      = get_theme_mod( $theme_mod . '_' . $preset, get_theme_mod( $theme_mod ) );
+
+		if ( 'custom' === $preset ) {
+			$layout = (array) get_theme_mod( 'bgtfw_custom_' . $preset_type . '_layout' );
+		}
+
+		if ( 'default' === $preset ) {
+			$layout = (array) get_theme_mod( 'bgtfw_default_' . $preset_type . '_layout' );
+		}
+		return $layout;
+	}
+
 	/**
 	 * Creates UIDs for dynamic layouts if none are passed in.
 	 *
@@ -1090,7 +1106,7 @@ class BoldGrid {
 	 */
 	public static function create_uids( $theme_mod ) {
 		$uid = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) ) ? 's' : 'h' : 'f';
-		$defaults = ( array ) get_theme_mod( $theme_mod );
+		$defaults = self::get_layout( $theme_mod );
 
 		foreach ( $defaults as $key => $section ) {
 			$base = $uid . $key;

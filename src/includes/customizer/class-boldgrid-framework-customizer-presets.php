@@ -46,9 +46,105 @@ class Boldgrid_Framework_Customizer_Presets {
 	 * @param array $configs BGTFW Configs Array.
 	 */
 	public function __construct( $configs ) {
-		error_log( json_encode( array_keys( $configs ) ) );
 		$this->configs               = $configs;
 		$this->current_header_layout = get_theme_mod( 'bgtfw_header_layout', array() );
+		$this->set_default_layout();
+		$this->add_theme_mods();
+	}
+
+	/**
+	 * Add Theme Mods
+	 *
+	 * If the theme mods for each preset is not set yet.
+	 * Set a theme mod for each one.
+	 */
+	public function add_theme_mods() {
+		$presets = $this->configs['customizer-options']['presets'];
+		foreach ( $presets as $preset_type => $preset_list ) {
+			$theme_mod_type = 'bgtfw_' . $preset_type . '_layout_';
+			foreach ( $preset_list as $preset_id => $preset ) {
+				$theme_mod = $theme_mod_type . $preset_id;
+				if ( ! get_theme_mod( $theme_mod ) ) {
+					set_theme_mod( $theme_mod, $preset['config'] );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Set Default Layout.
+	 *
+	 * Since the default layout can be different from.
+	 * one Inspiration to another, this will set a value as 'default'
+	 * if a value is not already set.
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function set_default_layout() {
+		$default_layout = get_theme_mod( 'bgtfw_default_header_layout' );
+		if ( ! $default_layout ) {
+			set_theme_mod( 'bgtfw_default_header_layout', $this->current_header_layout );
+		}
+
+		if ( $default_layout === $this->current_header_layout ) {
+			set_theme_mod( 'bgtfw_header_preset', 'default' );
+			return;
+		}
+
+		foreach ( $this->configs['customizer-options']['presets'] as $preset_id => $preset ) {
+			if ( $this->current_header_layout === $preset ) {
+				set_theme_mod( 'bgtfw_header_preset', $preset_id );
+			}
+		}
+	}
+
+	/**
+	 * Set Custom Layout.
+	 *
+	 * If the custom layout option is not set yet.
+	 * then we set the custom layout to match the current layout.
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function set_custom_layout() {
+		$default_layout = get_theme_mod( 'bgtfw_default_header_layout' );
+		$custom_layout  = get_theme_mod( 'bgtfw_custom_header_layout' );
+		if ( ! $custom_layout ) {
+			set_theme_mod( 'bgtfw_custom_header_layout', $this->current_header_layout );
+		}
+	}
+
+	/**
+	 * Add a nonce for Customizer for option presets.
+	 */
+	function header_layout_nonces( $nonces ) {
+		$nonces['bgtfw-header-preset'] = wp_create_nonce( 'bgtfw_header_layout' );
+		return $nonces;
+	}
+
+	public function wp_ajax_bgtfw_header_layout() {
+		check_ajax_referer( 'bgtfw_header_layout', 'headerPresetNonce' );
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			wp_die( -1 );
+		}
+
+		if ( empty( $_POST['headerPreset'] ) ) {
+			wp_send_json_error( 'mytheme_missing_preset_parameter' );
+		}
+
+		$default_layout = get_theme_mod( 'bgtfw_default_header_layout' );
+
+		$preset = sanitize_text_field( wp_unslash( $_POST['headerPreset'] ) );
+		$layout = $this->current_header_layout;
+		if ( isset( $this->configs['customizer-options']['presets']['header'][ $preset ] ) ) {
+			$layout = $this->configs['customizer-options']['presets']['header'][ $preset ]['config'];
+		} elseif ( isset( $default_layout ) ) {
+			$layout = $default_layout;
+		}
+
+		wp_send_json_success( array(
+			'layout' => $layout,
+		) );
 	}
 
 	/**
@@ -63,12 +159,16 @@ class Boldgrid_Framework_Customizer_Presets {
 			return array();
 		}
 
-		$presets     = array();
+		$presets     = array(
+			'default' => get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/default.png',
+		);
 		$preset_keys = array_keys( $this->configs['customizer-options']['presets'][ $preset_type ] );
 
 		foreach ( $preset_keys as $key ) {
 			$presets[ $key ] = get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/' . $key . '.png';
 		}
+
+		$presets['custom'] = get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/custom.png';
 
 		return $presets;
 	}

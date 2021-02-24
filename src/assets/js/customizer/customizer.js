@@ -331,6 +331,47 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	// After partial-refresh, correct header item uids.
 	api.bind( 'preview-ready', function() {
+		controlApi( 'bgtfw_custom_header_layout', function( control ) {
+			var section = controlApi.section( controlApi.control( 'bgtfw_custom_header_layout' ).section() );
+			section.expanded.bind( function() {
+				if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
+					controlApi.control( 'bgtfw_custom_header_layout' ).activate();
+				} else {
+					controlApi.control( 'bgtfw_custom_header_layout' ).deactivate();
+				}
+			} );
+		} );
+
+		controlApi( 'bgtfw_header_preset', function( control ) {
+			control.bind(
+				function( headerPreset ) {
+					var request = wp.ajax.post(
+						'bgtfw_header_preset',
+						{
+							headerPresetNonce: controlApi.settings.nonce['bgtfw-header-preset'],
+							wpCustomize: 'on',
+							customizeTheme: controlApi.settings.theme.stylesheet,
+							headerPreset: headerPreset
+						}
+					);
+
+					if ( 'custom' === headerPreset ) {
+						controlApi.control( 'bgtfw_custom_header_layout' ).activate();
+					} else {
+						controlApi.control( 'bgtfw_custom_header_layout' ).deactivate();
+					}
+
+					request.done(
+						function( response ) {
+							if ( response.layout ) {
+								controlApi( 'bgtfw_header_layout' ).set( response.layout );
+							}
+						}
+					);
+				}
+			);
+		} );
+
 		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
 			let colWidths,
 				colUids,

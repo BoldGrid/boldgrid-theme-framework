@@ -89,6 +89,9 @@ $sections_array = array(
 			'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
 		],
 		'icon' => 'dashicons-admin-generic',
+		'active_callback' => function() {
+			return false;
+		},
 	),
 	'bgtfw_header_presets' => array(
 		'title' => __( 'Header Layouts', 'bgtfw' ),

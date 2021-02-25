@@ -13,7 +13,7 @@ const api = wp.customize;
 const controlApi = parent.wp.customize;
 
 api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
-	let controls = [ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
+	let controls = [ 'bgtfw_header_layout', 'bgtfw_header_preset', 'bgtfw_custom_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
 
 	if ( controls.includes( placement.partial.id ) ) {
 		let css = [];
@@ -50,6 +50,7 @@ api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
 
 		} );
 
+		console.log( css );
 		css = _.isEmpty( css ) ? '' : `${ css.join( ', ' ) } { display: none !important; }`;
 
 		// Ensure partial refresh styles are updated for fixed header.
@@ -333,6 +334,32 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	api.bind( 'preview-ready', function() {
 		controlApi( 'bgtfw_custom_header_layout', function( control ) {
 			var section = controlApi.section( controlApi.control( 'bgtfw_custom_header_layout' ).section() );
+			control.bind( function( value ) {
+				var request = wp.ajax.post(
+					'bgtfw_header_preset',
+					{
+						headerPresetNonce: controlApi.settings.nonce['bgtfw-header-preset'],
+						wpCustomize: 'on',
+						customizeTheme: controlApi.settings.theme.stylesheet,
+						headerPreset: 'custom',
+						customHeaderLayout: value
+					}
+				);
+
+				console.log( 'custom_header_layout before_ajax' );
+
+				request.done(
+					function( response ) {
+						console.log( response );
+						if ( response.markup ) {
+							console.log( response );
+							$( '#masthead' ).find( '.boldgrid-section' ).remove();
+							$( '#masthead' ).append( response.markup );
+						}
+					}
+				);
+			} );
+
 			section.expanded.bind( function() {
 				if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
 					controlApi.control( 'bgtfw_custom_header_layout' ).activate();
@@ -363,8 +390,10 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 					request.done(
 						function( response ) {
-							if ( response.layout ) {
-								controlApi( 'bgtfw_header_layout' ).set( response.layout );
+							console.log( response );
+							if ( response.markup ) {
+								$( '#masthead' ).find( '.boldgrid-section' ).remove();
+								$( '#masthead' ).append( response.markup );
 							}
 						}
 					);
@@ -902,7 +931,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		}
 
 		// Listen for widget layout changes.
-		[ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ].forEach( control => {
+		[ 'bgtfw_header_layout', 'bgtfw_custom_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ].forEach( control => {
 			api( control, value => {
 				value.bind( () => {
 					api.preview.send( 'bgtfw-widget-section-update', control );

@@ -975,10 +975,10 @@ class BoldGrid {
 	 *
 	 * @return string $markup    Rendered HTML for dyanmic layout element.
 	 */
-	public static function dynamic_layout( $theme_mod ) {
+	public static function dynamic_layout( $theme_mod, $preset = null, $custom_layout = null ) {
 		$markup        = '';
 		$column_widths = self::get_column_widths( $theme_mod );
-		$theme_mod     = self::create_uids( $theme_mod );
+		$theme_mod     = self::create_uids( $theme_mod, $preset, $custom_layout );
 
 		if ( ! empty( $theme_mod ) ) {
 			foreach ( $theme_mod as $section_index => $section ) {
@@ -1079,19 +1079,35 @@ class BoldGrid {
 		return $markup;
 	}
 
-	public static function get_layout( $theme_mod ) {
+	public static function get_layout( $theme_mod, $preset = null, $custom_layout = null ) {
+		global $wp_customize;
+		global $boldgrid_theme_framework;
+		$configs = $boldgrid_theme_framework->get_configs();
+		error_log( $theme_mod );
 		$preset_type = str_replace( 'bgtfw_', '', $theme_mod );
 		$preset_type = str_replace( '_layout', '', $preset_type );
-		$preset      = get_theme_mod( 'bgtfw_' . $preset_type . '_preset' );
+		$preset      = $preset ? $preset : get_theme_mod( 'bgtfw_' . $preset_type . '_preset', 'default' );
 		$layout      = get_theme_mod( $theme_mod . '_' . $preset, get_theme_mod( $theme_mod ) );
-
 		if ( 'custom' === $preset ) {
 			$layout = (array) get_theme_mod( 'bgtfw_custom_' . $preset_type . '_layout' );
+			error_log( 'custom is preset, layout: ' . json_encode( $layout ) );
 		}
 
-		if ( 'default' === $preset ) {
-			$layout = (array) get_theme_mod( 'bgtfw_default_' . $preset_type . '_layout' );
+		if ( 'custom' === $preset && $custom_layout && 'footer' !== $preset_type ) {
+			return $custom_layout;
 		}
+
+		if ( 'default' === $preset && get_option( 'fresh_site' ) ) {
+			$starter_content = get_theme_starter_content();
+			$layout          = $starter_content['theme_mods'][ 'bgtfw_' . $preset_type . '_layout' ];
+		} elseif ( 'default' === $preset ) {
+			$layout = (array) get_theme_mod( 'bgtfw_default_' . $preset_type . '_layout', $configs['customizer']['controls']['bgtfw_header_layout']['default'] );
+		}
+
+		if ( 'footer' === $preset_type ) {
+			$layout = (array) get_theme_mod( 'bgtfw_footer_layout' );
+		}
+
 		return $layout;
 	}
 
@@ -1104,9 +1120,9 @@ class BoldGrid {
 	 *
 	 * @return array $defaults Default parameters with uIDs added for items.
 	 */
-	public static function create_uids( $theme_mod ) {
+	public static function create_uids( $theme_mod, $preset = null, $custom_layout = null ) {
 		$uid = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) ) ? 's' : 'h' : 'f';
-		$defaults = self::get_layout( $theme_mod );
+		$defaults = self::get_layout( $theme_mod, $preset, $custom_layout );
 
 		foreach ( $defaults as $key => $section ) {
 			$base = $uid . $key;

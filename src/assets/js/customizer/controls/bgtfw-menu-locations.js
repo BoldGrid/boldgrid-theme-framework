@@ -12,6 +12,7 @@ export default {
 				'bgtfw_header_layout_position',
 				'bgtfw_sticky_header_layout',
 				'bgtfw_header_layout',
+				'bgtfw_custom_header_layout',
 				'bgtfw_footer_layout'
 			];
 

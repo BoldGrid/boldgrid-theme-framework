@@ -47,8 +47,9 @@ class Boldgrid_Framework_Customizer_Presets {
 	 */
 	public function __construct( $configs ) {
 		$this->configs               = $configs;
-		$this->current_header_layout = get_theme_mod( 'bgtfw_header_layout', array() );
+		$this->current_header_layout = get_theme_mod( 'bgtfw_header_layout' );
 		$this->set_default_layout();
+		$this->set_custom_layout();
 		$this->add_theme_mods();
 	}
 
@@ -81,8 +82,11 @@ class Boldgrid_Framework_Customizer_Presets {
 	 * @since SINCEVERSION
 	 */
 	public function set_default_layout() {
+		global $wp_customize;
+		global $pagenow;
 		$default_layout = get_theme_mod( 'bgtfw_default_header_layout' );
-		if ( ! $default_layout ) {
+
+		if ( ! $default_layout && $this->current_header_layout ) {
 			set_theme_mod( 'bgtfw_default_header_layout', $this->current_header_layout );
 		}
 
@@ -110,7 +114,43 @@ class Boldgrid_Framework_Customizer_Presets {
 		$default_layout = get_theme_mod( 'bgtfw_default_header_layout' );
 		$custom_layout  = get_theme_mod( 'bgtfw_custom_header_layout' );
 		if ( ! $custom_layout ) {
-			set_theme_mod( 'bgtfw_custom_header_layout', $this->current_header_layout );
+			set_theme_mod(
+				'bgtfw_custom_header_layout',
+				array(
+					array(
+						'container' => 'container',
+						'items' => array(
+							array(
+								'type' => 'boldgrid_site_identity',
+								'key' => 'branding',
+								'align' => 'w',
+								'display' => array(
+									array(
+										'selector' => '.custom-logo-link',
+										'display' => 'show',
+										'title' => __( 'Logo', 'bgtfw' ),
+									),
+									array(
+										'selector' => '.site-title',
+										'display' => 'show',
+										'title' => __( 'Title', 'bgtfw' ),
+									),
+									array(
+										'selector' => '.site-description',
+										'display' => 'show',
+										'title' => __( 'Tagline', 'bgtfw' ),
+									),
+								),
+							),
+							array(
+								'type' => 'boldgrid_menu_main',
+								'key' => 'menu',
+								'align' => 'e',
+							),
+						),
+					),
+				)
+			);
 		}
 	}
 
@@ -132,18 +172,17 @@ class Boldgrid_Framework_Customizer_Presets {
 			wp_send_json_error( 'mytheme_missing_preset_parameter' );
 		}
 
-		$default_layout = get_theme_mod( 'bgtfw_default_header_layout' );
-
 		$preset = sanitize_text_field( wp_unslash( $_POST['headerPreset'] ) );
-		$layout = $this->current_header_layout;
-		if ( isset( $this->configs['customizer-options']['presets']['header'][ $preset ] ) ) {
-			$layout = $this->configs['customizer-options']['presets']['header'][ $preset ]['config'];
-		} elseif ( isset( $default_layout ) ) {
-			$layout = $default_layout;
+
+		if ( ! empty( $_POST['customHeaderLayout'] ) ) {
+			$custom_layout = $_POST['customHeaderLayout'];
+			$markup = BoldGrid::dynamic_layout( 'bgtfw_header_layout', $preset, $custom_layout );
+		} else {
+			$markup = BoldGrid::dynamic_layout( 'bgtfw_header_layout', $preset );
 		}
 
 		wp_send_json_success( array(
-			'layout' => $layout,
+			'markup' => $markup,
 		) );
 	}
 
@@ -160,15 +199,15 @@ class Boldgrid_Framework_Customizer_Presets {
 		}
 
 		$presets     = array(
-			'default' => get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/default.png',
+			'default' => get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/default.svg',
 		);
 		$preset_keys = array_keys( $this->configs['customizer-options']['presets'][ $preset_type ] );
 
 		foreach ( $preset_keys as $key ) {
-			$presets[ $key ] = get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/' . $key . '.png';
+			$presets[ $key ] = get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/' . $key . '.svg';
 		}
 
-		$presets['custom'] = get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/custom.png';
+		$presets['custom'] = get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/custom.svg';
 
 		return $presets;
 	}

@@ -59,8 +59,13 @@ class Boldgrid_Framework_Sticky_Header {
 		$selectors = [];
 		$theme_mods = [];
 
-		foreach ( [ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ] as $type ) {
-			$type = BoldGrid::create_uids( $type );
+		foreach ( [ 'bgtfw_header_layout', 'bgtfw_custom_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ] as $type ) {
+			if ( false !== strpos( $type, 'custom' ) ) {
+				$type = BoldGrid::create_uids( $type, 'custom' );
+			} else {
+				$type = BoldGrid::create_uids( $type );
+			}
+
 			if ( ! empty( $type ) ) {
 				$theme_mods[] = $type;
 			}

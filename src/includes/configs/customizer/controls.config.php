@@ -1237,18 +1237,19 @@ return array(
 	),
 	'bgtfw_header_preset' => array(
 		'type'        => 'radio-image',
+		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_header_preset',
 		'label'       => esc_html__( 'Header Layout', 'kirki' ),
 		'section'     => 'bgtfw_header_presets',
 		'default'     => 'default',
 		'priority'    => 1,
 		'choices'     => $bgtfw_presets->get_preset_choices( 'header' ),
-		'partial_refresh' => [
-			'bgtfw_header_preset' => [
-				'selector' => '.bgtfw-header',
-				'render_callback' => array( $bgtfw_partial_refresh, 'header' ),
-			],
-		],
+		// 'partial_refresh' => [
+		// 	'bgtfw_header_preset' => [
+		// 		'selector' => '.bgtfw-header',
+		// 		'render_callback' => array( $bgtfw_partial_refresh, 'header' ),
+		// 	],
+		// ],
 	),
 	'bgtfw_header_width' => array(
 		'type'        => 'slider',
@@ -2181,16 +2182,12 @@ return array(
 		],
 		'location' => 'header',
 		'section' => 'bgtfw_header_layout',
-		'partial_refresh' => [
-			'bgtfw_header_layout' => [
-				'selector' => '.bgtfw-header',
-				'render_callback' => array( $bgtfw_partial_refresh, 'header' ),
-			],
-		],
+		'transport' => 'postMessage',
 	],
 
 	'bgtfw_custom_header_layout' => [
 		'settings' => 'bgtfw_custom_header_layout',
+		'transport' => 'postMessage',
 		'label' => '<div class="screen-reader-text">' . __( 'Custom Header Layout', 'bgtfw' ) . '</div>',
 		'type' => 'bgtfw-sortable-accordion',
 		'default' => [
@@ -2276,12 +2273,6 @@ return array(
 		],
 		'location' => 'header',
 		'section' => 'bgtfw_header_presets',
-		'partial_refresh' => [
-			'bgtfw_header_layout' => [
-				'selector' => '.bgtfw-header',
-				'render_callback' => array( $bgtfw_partial_refresh, 'header' ),
-			],
-		],
 	],
 
 	/*** Start: Dynamic Menu Controls ***/

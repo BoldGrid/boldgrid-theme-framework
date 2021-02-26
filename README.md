@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.6.0 ###
+New Feature: Header Layout Presets
+
 ### 2.5.2 ###
 Bug Fix: Crio - Nested Row [#343](https://github.com/BoldGrid/boldgrid-theme-framework/issues/343)
 Update: Added CSS styles for WedgeV2 update.

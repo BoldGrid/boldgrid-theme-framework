@@ -94,8 +94,8 @@ $sections_array = array(
 		},
 	),
 	'bgtfw_header_presets' => array(
-		'title' => __( 'Header Layouts', 'bgtfw' ),
-		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Choose the Layout of your header from one of these presets.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
+		'title' => __( 'Main Header Layout', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Choose the Layout of your header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
 		'panel' => 'bgtfw_header_layouts',
 		'capability' => 'edit_theme_options',
 		'priority' => 1,

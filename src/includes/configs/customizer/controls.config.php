@@ -1244,12 +1244,6 @@ return array(
 		'default'     => 'default',
 		'priority'    => 1,
 		'choices'     => $bgtfw_presets->get_preset_choices( 'header' ),
-		// 'partial_refresh' => [
-		// 	'bgtfw_header_preset' => [
-		// 		'selector' => '.bgtfw-header',
-		// 		'render_callback' => array( $bgtfw_partial_refresh, 'header' ),
-		// 	],
-		// ],
 	),
 	'bgtfw_header_width' => array(
 		'type'        => 'slider',

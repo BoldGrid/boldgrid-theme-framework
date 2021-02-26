@@ -452,8 +452,6 @@ class Boldgrid_Framework_Customizer_Generic {
 
 		$sliders = array();
 
-		
-
 		// We have to loop through the items in the header layout to generate the sliders.
 		foreach ( $header_layout as $section_index => $section ) {
 			// Since the sections are indexed starting at 0, we add 1 to be more human readable.

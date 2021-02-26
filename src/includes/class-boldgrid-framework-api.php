@@ -1079,6 +1079,17 @@ class BoldGrid {
 		return $markup;
 	}
 
+	/**
+	 * Get Layout.
+	 *
+	 * Retrieve the layout for various presets.
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @param string $theme_mod     Name of the theme mod.
+	 * @param string $preset        Name of the preset.
+	 * @param array  $custom_layout Array of custom_layout configs.
+	 */
 	public static function get_layout( $theme_mod, $preset = null, $custom_layout = null ) {
 		global $wp_customize;
 		global $boldgrid_theme_framework;

@@ -162,6 +162,13 @@ class Boldgrid_Framework_Customizer_Presets {
 		return $nonces;
 	}
 
+	/**
+	 * WP Ajax BGTFW Header Layout.
+	 *
+	 * Handles Ajax calls for header layout refreshes.
+	 *
+	 * @since SINCEVERSION
+	 */
 	public function wp_ajax_bgtfw_header_layout() {
 		check_ajax_referer( 'bgtfw_header_layout', 'headerPresetNonce' );
 		if ( ! current_user_can( 'edit_theme_options' ) ) {

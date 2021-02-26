@@ -41,6 +41,14 @@ class Boldgrid_Framework_Customizer_Partial_Refresh {
 		$this->configs = $configs;
 	}
 
+
+	/**
+	 * Header.
+	 *
+	 * Handles header partial refreshes.
+	 *
+	 * @since SINCEVERSION
+	 */
 	public function header() {
 		$has_header_template = apply_filters( 'crio_premium_get_page_header', get_the_ID() );
 		$has_header_template = get_the_ID() === $has_header_template ? false : $has_header_template;

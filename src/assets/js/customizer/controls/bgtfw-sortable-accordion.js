@@ -407,7 +407,6 @@ export default {
 	 * @since 2.0.3
 	 */
 	getDisplayMarkup( setting ) {
-		console.log( setting );
 		let markup = `
 		<div class="repeater-control display">
 			<div class="repeater-control-title">Display</div>

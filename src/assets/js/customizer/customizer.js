@@ -50,7 +50,6 @@ api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
 
 		} );
 
-		console.log( css );
 		css = _.isEmpty( css ) ? '' : `${ css.join( ', ' ) } { display: none !important; }`;
 
 		// Ensure partial refresh styles are updated for fixed header.
@@ -257,6 +256,30 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	return false;
 };
 
+BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
+	var hiddenItems = {},
+	layout = value;
+	layout.forEach( function( container ) {
+		container.items.forEach( function( item ) {
+			var uid,
+				hidden = [];
+			if ( 'branding' === item.key ) {
+				uid = item.uid;
+				item.display.forEach( function( displayItem ) {
+					if ( 'hide' === displayItem.display ) {
+						hidden.push( displayItem.selector );
+					}
+				} );
+			}
+			if ( uid && hidden ) {
+				hiddenItems[uid] = hidden;
+			}
+		} );
+	} );
+
+	return hiddenItems;
+};
+
 /**
  * Theme Customizer enhancements for a better user experience.
  *
@@ -346,15 +369,19 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 					}
 				);
 
-				console.log( 'custom_header_layout before_ajax' );
-
 				request.done(
 					function( response ) {
-						console.log( response );
+						var hiddenItems = {};
 						if ( response.markup ) {
-							console.log( response );
 							$( '#masthead' ).find( '.boldgrid-section' ).remove();
 							$( '#masthead' ).append( response.markup );
+							hiddenItems = BOLDGRID.Customizer.Util.getHiddenItems( value );
+							for ( const uid in hiddenItems ) {
+								$( '.' + uid ).find( '.site-branding' ).children().show();
+								hiddenItems[uid].forEach( function( selector ) {
+									$( '.' + uid ).find( '.site-branding' ).find( selector ).hide();
+								} );
+							}
 						}
 					}
 				);
@@ -390,7 +417,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 					request.done(
 						function( response ) {
-							console.log( response );
 							if ( response.markup ) {
 								$( '#masthead' ).find( '.boldgrid-section' ).remove();
 								$( '#masthead' ).append( response.markup );

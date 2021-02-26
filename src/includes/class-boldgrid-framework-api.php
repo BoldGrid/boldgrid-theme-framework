@@ -1083,14 +1083,12 @@ class BoldGrid {
 		global $wp_customize;
 		global $boldgrid_theme_framework;
 		$configs = $boldgrid_theme_framework->get_configs();
-		error_log( $theme_mod );
 		$preset_type = str_replace( 'bgtfw_', '', $theme_mod );
 		$preset_type = str_replace( '_layout', '', $preset_type );
 		$preset      = $preset ? $preset : get_theme_mod( 'bgtfw_' . $preset_type . '_preset', 'default' );
 		$layout      = get_theme_mod( $theme_mod . '_' . $preset, get_theme_mod( $theme_mod ) );
 		if ( 'custom' === $preset ) {
 			$layout = (array) get_theme_mod( 'bgtfw_custom_' . $preset_type . '_layout' );
-			error_log( 'custom is preset, layout: ' . json_encode( $layout ) );
 		}
 
 		if ( 'custom' === $preset && $custom_layout && 'footer' !== $preset_type ) {

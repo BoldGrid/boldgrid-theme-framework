@@ -65,7 +65,7 @@ class Boldgrid_Framework_Customizer_Presets {
 			$theme_mod_type = 'bgtfw_' . $preset_type . '_layout_';
 			foreach ( $preset_list as $preset_id => $preset ) {
 				$theme_mod = $theme_mod_type . $preset_id;
-				if ( ! get_theme_mod( $theme_mod ) ) {
+				if ( get_theme_mod( $theme_mod ) !== $preset['config'] ) {
 					set_theme_mod( $theme_mod, $preset['config'] );
 				}
 			}
@@ -90,10 +90,10 @@ class Boldgrid_Framework_Customizer_Presets {
 			set_theme_mod( 'bgtfw_default_header_layout', $this->current_header_layout );
 		}
 
-		if ( $default_layout === $this->current_header_layout ) {
-			set_theme_mod( 'bgtfw_header_preset', 'default' );
-			return;
-		}
+		// if ( $default_layout === $this->current_header_layout ) {
+		// 	set_theme_mod( 'bgtfw_header_preset', 'default' );
+		// 	return;
+		// }
 
 		foreach ( $this->configs['customizer-options']['presets'] as $preset_id => $preset ) {
 			if ( $this->current_header_layout === $preset ) {
@@ -170,6 +170,7 @@ class Boldgrid_Framework_Customizer_Presets {
 	 * @since SINCEVERSION
 	 */
 	public function wp_ajax_bgtfw_header_layout() {
+		global $wp_customize;
 		check_ajax_referer( 'bgtfw_header_layout', 'headerPresetNonce' );
 		if ( ! current_user_can( 'edit_theme_options' ) ) {
 			wp_die( -1 );
@@ -181,15 +182,25 @@ class Boldgrid_Framework_Customizer_Presets {
 
 		$preset = sanitize_text_field( wp_unslash( $_POST['headerPreset'] ) );
 
-		if ( ! empty( $_POST['customHeaderLayout'] ) ) {
-			$custom_layout = $_POST['customHeaderLayout'];
-			$markup = BoldGrid::dynamic_layout( 'bgtfw_header_layout', $preset, $custom_layout );
-		} else {
+		if ( empty( $_POST['customLayout'] ) ) {
 			$markup = BoldGrid::dynamic_layout( 'bgtfw_header_layout', $preset );
+		} else {
+			$markup = BoldGrid::dynamic_layout( 'bgtfw_header_layout', $preset, $custom_layout );
 		}
+		$markup = BoldGrid::dynamic_layout( 'bgtfw_header_layout', $preset );
+		$layout = $this->configs['customizer-options']['presets']['header'][ $preset ]['config'];
+		if ( 'default' === $preset ) {
+			$layout = get_theme_mod( 'bgtfw_default_header_layout' );
+		}
+		error_log( '$preset: ' . json_encode( $preset ) );
+		error_log( '$layout: ' . json_encode( $layout ) );
+		$control = $wp_customize->get_control( 'bgtfw_header_layout' );
+		error_log( '$control->value(): ' . json_encode( $control->value() ) );
+		$control->to_json();
 
 		wp_send_json_success( array(
 			'markup' => $markup,
+			'layout' => $layout,
 		) );
 	}
 
@@ -214,7 +225,42 @@ class Boldgrid_Framework_Customizer_Presets {
 			$presets[ $key ] = get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/' . $key . '.svg';
 		}
 
-		$presets['custom'] = get_template_directory_uri() . '/inc/boldgrid-theme-framework/assets/img/presets/custom.svg';
+		return $presets;
+	}
+
+	/**
+	 * Get Presets.
+	 *
+	 * This produces the 'preset' array for the kirki controls.
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @param string $preset_type The type of preset to return.
+	 *
+	 * @return array An array of preset configurations.
+	 */
+	public function get_presets( $preset_type ) {
+		$preset_configs = $this->configs['customizer-options']['presets'][ $preset_type ];
+		$presets        = array();
+		foreach ( $preset_configs as $preset => $config ) {
+			$presets[ $preset ] = array(
+				'settings' => array(
+					'bgtfw_header_layout' => $config['config'],
+				),
+			);
+		}
+
+		$default_layout = get_theme_mod( 'bgtfw_default_' . $preset_type . '_layout' );
+
+		if ( $default_layout ) {
+			$presets['default'] = array(
+				'settings' => array(
+					'bgtfw_header_layout' => $config['config'],
+				),
+			);
+		}
+
+		error_log( '$presets: ' . json_encode( $presets ) );
 
 		return $presets;
 	}

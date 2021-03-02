@@ -7,6 +7,7 @@ export default {
 	attachEvents() {
 		var section;
 		_attachEvents.call( this );
+
 		if ( 'bgtfw_section' !== this.params.type || 'undefined' === typeof this.params.section ) {
 			return;
 		}

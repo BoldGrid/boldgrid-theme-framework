@@ -355,8 +355,8 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 
 	// After partial-refresh, correct header item uids.
 	api.bind( 'preview-ready', function() {
-		controlApi( 'bgtfw_custom_header_layout', function( control ) {
-			var section = controlApi.section( controlApi.control( 'bgtfw_custom_header_layout' ).section() );
+		controlApi( 'bgtfw_header_layout', function( control ) {
+			var section = controlApi.section( controlApi.control( 'bgtfw_header_layout' ).section() );
 			control.bind( function( value ) {
 				var request = wp.ajax.post(
 					'bgtfw_header_preset',
@@ -364,41 +364,40 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 						headerPresetNonce: controlApi.settings.nonce['bgtfw-header-preset'],
 						wpCustomize: 'on',
 						customizeTheme: controlApi.settings.theme.stylesheet,
-						headerPreset: 'custom',
-						customHeaderLayout: value
+						headerPreset: controlApi( 'bgtfw_header_preset' )(),
+						customLayout: Array.isArray( value ) ? value : null
 					}
 				);
 
 				request.done(
 					function( response ) {
-						var hiddenItems = {};
+
+						//var hiddenItems = {};
 						if ( response.markup ) {
 							$( '#masthead' ).find( '.boldgrid-section' ).remove();
 							$( '#masthead' ).append( response.markup );
-							hiddenItems = BOLDGRID.Customizer.Util.getHiddenItems( value );
-							for ( const uid in hiddenItems ) {
-								$( '.' + uid ).find( '.site-branding' ).children().show();
-								hiddenItems[uid].forEach( function( selector ) {
-									$( '.' + uid ).find( '.site-branding' ).find( selector ).hide();
-								} );
+
+							if ( Array.isArray( value ) ) {
+								//controlApi.control( 'bgtfw_header_layout' ).setValues( value );
 							}
+
+							// hiddenItems = BOLDGRID.Customizer.Util.getHiddenItems( value );
+							// for ( const uid in hiddenItems ) {
+							// 	$( '.' + uid ).find( '.site-branding' ).children().show();
+							// 	hiddenItems[uid].forEach( function( selector ) {
+							// 		$( '.' + uid ).find( '.site-branding' ).find( selector ).hide();
+							// 	} );
+							// }
 						}
 					}
 				);
-			} );
-
-			section.expanded.bind( function() {
-				if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
-					controlApi.control( 'bgtfw_custom_header_layout' ).activate();
-				} else {
-					controlApi.control( 'bgtfw_custom_header_layout' ).deactivate();
-				}
 			} );
 		} );
 
 		controlApi( 'bgtfw_header_preset', function( control ) {
 			control.bind(
 				function( headerPreset ) {
+
 					var request = wp.ajax.post(
 						'bgtfw_header_preset',
 						{
@@ -409,17 +408,12 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 						}
 					);
 
-					if ( 'custom' === headerPreset ) {
-						controlApi.control( 'bgtfw_custom_header_layout' ).activate();
-					} else {
-						controlApi.control( 'bgtfw_custom_header_layout' ).deactivate();
-					}
-
 					request.done(
 						function( response ) {
-							if ( response.markup ) {
-								$( '#masthead' ).find( '.boldgrid-section' ).remove();
-								$( '#masthead' ).append( response.markup );
+							if ( response.layout ) {
+								if ( Array.isArray( response.layout ) ) {
+									controlApi.control( 'bgtfw_header_layout' ).setValues( response.layout );
+								}
 							}
 						}
 					);

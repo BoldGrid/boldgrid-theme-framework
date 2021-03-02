@@ -1244,6 +1244,7 @@ return array(
 		'default'     => 'default',
 		'priority'    => 1,
 		'choices'     => $bgtfw_presets->get_preset_choices( 'header' ),
+		'preset'      => $bgtfw_presets->get_presets( 'header' ),
 	),
 	'bgtfw_header_width' => array(
 		'type'        => 'slider',
@@ -2177,96 +2178,6 @@ return array(
 		'location' => 'header',
 		'section' => 'bgtfw_header_layout',
 		'transport' => 'postMessage',
-	],
-
-	'bgtfw_custom_header_layout' => [
-		'settings' => 'bgtfw_custom_header_layout',
-		'transport' => 'postMessage',
-		'label' => '<div class="screen-reader-text">' . __( 'Custom Header Layout', 'bgtfw' ) . '</div>',
-		'type' => 'bgtfw-sortable-accordion',
-		'default' => [
-			[
-				'container' => 'container',
-				'items' => [
-					[
-						'type' => 'boldgrid_site_identity',
-						'key' => 'branding',
-						'align' => 'w',
-						'display' => [
-							[
-								'selector' => '.custom-logo-link',
-								'display' => 'show',
-								'title' => __( 'Logo', 'bgtfw' ),
-							],
-							[
-								'selector' => '.site-title',
-								'display' => 'show',
-								'title' => __( 'Title', 'bgtfw' ),
-							],
-							[
-								'selector' => '.site-description',
-								'display' => 'show',
-								'title' => __( 'Tagline', 'bgtfw' ),
-							],
-						],
-					],
-					[
-						'type' => 'boldgrid_menu_main',
-						'key' => 'menu',
-						'align' => 'e',
-					],
-				],
-			],
-		],
-		'items' => [
-			'menu' => [
-				'icon' => 'dashicons dashicons-menu',
-				'title' => __( 'Menu', 'bgtfw' ),
-				'controls' => [
-					'menu-select' => [],
-					'align' => [
-						'default' => 'nw',
-					],
-				],
-			],
-			'branding' => [
-				'icon' => 'dashicons dashicons-store',
-				'title' => __( 'Branding', 'bgtfw' ),
-				'controls' => [
-					'display' => [
-						'default' => [
-							[
-								'selector' => '.custom-logo-link',
-								'display' => 'show',
-								'title' => __( 'Logo', 'bgtfw' ),
-							],
-							[
-								'selector' => '.site-title',
-								'display' => 'show',
-								'title' => __( 'Title', 'bgtfw' ),
-							],
-							[
-								'selector' => '.site-description',
-								'display' => 'show',
-								'title' => __( 'Tagline', 'bgtfw' ),
-							],
-						],
-					],
-					'align' => [
-						'default' => 'nw',
-					],
-				],
-			],
-			'sidebar' => [
-				'icon' => 'dashicons dashicons-layout',
-				'title' => __( 'Widget Area', 'bgtfw' ),
-				'controls' => [
-					'sidebar-edit' => [],
-				],
-			],
-		],
-		'location' => 'header',
-		'section' => 'bgtfw_header_presets',
 	],
 
 	/*** Start: Dynamic Menu Controls ***/

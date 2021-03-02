@@ -73,11 +73,12 @@ $sections_array = array(
 		'icon' => 'dashicons-admin-generic',
 	),
 	'bgtfw_header_layout' => array(
-		'title' => __( 'Advanced', 'bgtfw' ),
+		'title' => __( 'Customize Main Header Layout', 'bgtfw' ),
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Manage the layout of your site\'s header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
 		'panel' => 'bgtfw_header_layouts',
+		'section' => 'bgtfw_header_layouts_advanced',
 		'capability' => 'edit_theme_options',
-		'priority' => 5,
+		'priority' => 1,
 		'notice' => [
 			'dismissible' => false,
 			'message' => esc_html__( 'Upgrade Crio to get additional display options for your header!', 'bgtfw' ),
@@ -89,9 +90,6 @@ $sections_array = array(
 			'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
 		],
 		'icon' => 'dashicons-admin-generic',
-		'active_callback' => function() {
-			return false;
-		},
 	),
 	'bgtfw_header_presets' => array(
 		'title' => __( 'Main Header Layout', 'bgtfw' ),
@@ -100,6 +98,14 @@ $sections_array = array(
 		'capability' => 'edit_theme_options',
 		'priority' => 1,
 		'icon' => 'dashicons-schedule',
+	),
+	'bgtfw_header_layouts_advanced' => array(
+		'title' => __( 'Advanced', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Advanced Header Layout Control.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
+		'panel' => 'bgtfw_header_layouts',
+		'capability' => 'edit_theme_options',
+		'priority' => 2,
+		'icon' => 'dashicons-admin-generic',
 	),
 	'bgtfw_site_title' => array(
 		'title' => esc_attr__( 'Site Title', 'bgtfw' ),

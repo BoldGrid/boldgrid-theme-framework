@@ -104,7 +104,7 @@ export default {
 			$( `#sortable-${ this.id }-add-section` ).on( 'click', ( e ) => this.addSection( e ) );
 
 			// Bind sticky header and header position controls to sticky header controls in dynamic layout.
-			api( 'bgtfw_fixed_header', 'bgtfw_header_layout_position', 'custom_logo', ( ...args ) => {
+			api( 'bgtfw_header_preset', 'bgtfw_fixed_header', 'bgtfw_header_layout_position', 'custom_logo', ( ...args ) => {
 				args.map( ( control ) => {
 					control.bind( () => this._toggleSticky() );
 				} );
@@ -152,7 +152,7 @@ export default {
 		let el = e.currentTarget;
 
 		// Set display state based on :checked.
-		el.dataset.display = el.checked ? 'show' : 'hide';
+		el.dataset.display = $( el ).prop( 'checked' ) ? 'show' : 'hide';
 
 		// Update repeater.
 		let repeater = $( el ).closest( '.repeater' )[0],
@@ -392,6 +392,7 @@ export default {
 				if ( ! repeater.querySelector( `.repeater-control.${ kebabCase( key ) }` ) ) {
 					setting = repeater.dataset[ key ] || control.default || repeater.dataset.type;
 					setting = this.isJSON( setting ) ? JSON.parse( decodeURIComponent( setting ) ) : setting;
+
 					repeaterControls.innerHTML += this[ camelCase( `Get ${ key } Markup` ) ]( setting );
 					if ( 'menu-select' === key ) {
 						cancelled ? this.updateConnectedSelects() : addedSelect;
@@ -421,6 +422,7 @@ export default {
 						id = _.uniqueId( `${ this.params.location }-${ lowerCase( control.title ) }-` ),
 						checked = 'hide' === control.display ? '' : 'checked',
 						logo = api( 'custom_logo' )();
+
 					if ( '.custom-logo' === control.selector && ( _.isEmpty( logo ) && ! _.isNumber( logo ) ) ) {
 						classes += ' hidden';
 					}
@@ -606,6 +608,48 @@ export default {
 		let selector = $( e.currentTarget );
 		selector.siblings().removeClass( 'selected' );
 		selector.addClass( 'selected' );
+	},
+
+	/**
+	 * Update user's currently set values for control.
+	 *
+	 * @since 2.0.3
+	 */
+	setValues( values ) {
+		var self = this;
+		$( this.container ).find( '.dashicons-trash' ).trigger( 'click' );
+		values.forEach( function( row, index ) {
+			var container = $( self.container ).find( '#sortable-' + index + '-wrapper' );
+			var containerControls = container.find('.bgtfw-container-control' ).children();
+			containerControls.removeClass( 'selected' );
+			containerControls.closest( '.' + row.container ).addClass( 'selected' );
+			$( `#sortable-${ self.id }-add-section` ).trigger( 'click' );
+			row.items.forEach( function( item ) {
+				var container = $( self.container ).find( '#sortable-' + index + '-wrapper' );
+				container.find( '.bgtfw-sortable.' + item.key ).trigger( 'click' );
+
+				container.find( '.repeater' ).last().attr( {
+					'data-uid': item.uid,
+					'data-align': item.align
+				} );
+			} );
+		} );
+
+		values.forEach( function( row ) {
+			row.items.forEach( function( item, index ) {
+				var container = $( self.container ).find( '#sortable-' + index + '-wrapper' );
+				if ( 'branding' === item.key ) {
+					container.find( '.repeater-control.display' ).find( 'input' ).each( function( index ) {
+						var display = item.display[ index ].display;
+							if ( $( this ).attr( 'data-display' ) !== display ) {
+								// $( this ).attr( 'data-display', display );
+								$( this )[0].checked = ! $( this )[0].checked;
+								$( this ).trigger( 'change' );
+							}
+					} );
+				}
+			} );
+		} );
 	},
 
 	/**

@@ -55,7 +55,7 @@ return array(
 			'label'  => __( 'Branding + Menu + Social Icons', 'bgtfw' ),
 			'config' => array(
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'type'    => 'boldgrid_site_identity',
@@ -139,7 +139,7 @@ return array(
 			'label'  => __( 'Branding and Menu + Social', 'bgtfw' ),
 			'config' => array(
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'type'    => 'boldgrid_site_identity',
@@ -173,7 +173,7 @@ return array(
 					),
 				),
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'key'   => 'menu',
@@ -189,7 +189,7 @@ return array(
 			'label'  => __( 'Branding + Social Icons w/ Center Menu', 'bgtfw' ),
 			'config' => array(
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'type'    => 'boldgrid_site_identity',
@@ -223,7 +223,7 @@ return array(
 					),
 				),
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'key'   => 'menu',
@@ -239,7 +239,7 @@ return array(
 			'label'  => __( 'Branding + Social Icons and Menu', 'bgtfw' ),
 			'config' => array(
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'type'    => 'boldgrid_site_identity',
@@ -273,7 +273,7 @@ return array(
 					),
 				),
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'key'   => 'menu',
@@ -289,7 +289,7 @@ return array(
 			'label'  => __( 'Centered Branding above Menu', 'bgtfw' ),
 			'config' => array(
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'type'    => 'boldgrid_site_identity',
@@ -317,7 +317,7 @@ return array(
 					),
 				),
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'key'   => 'menu',
@@ -333,7 +333,7 @@ return array(
 			'label'  => __( 'Centered Menu above Branding', 'bgtfw' ),
 			'config' => array(
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'key'   => 'menu',
@@ -344,7 +344,7 @@ return array(
 					),
 				),
 				array(
-					'container' => 'full-width',
+					'container' => 'container',
 					'items'     => array(
 						array(
 							'type'    => 'boldgrid_site_identity',

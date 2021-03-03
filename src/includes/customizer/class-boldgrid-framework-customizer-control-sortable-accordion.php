@@ -70,7 +70,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			$this->json['id'] = $this->id;
 
 			// The setting value.
-			error_log( 'json value: ' . json_encode( $this->value() ) );
 			$this->json['value'] = $this->value();
 
 			// The data link.

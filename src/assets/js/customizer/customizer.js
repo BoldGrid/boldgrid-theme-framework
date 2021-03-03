@@ -15,6 +15,13 @@ const controlApi = parent.wp.customize;
 api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
 	let controls = [ 'bgtfw_header_layout', 'bgtfw_header_preset', 'bgtfw_custom_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
 
+	if ( 'bgtfw_sticky_header_layout' === placement.partial.id ) {
+		console.log( {
+			'bgtfw_sticky_header_layout rendered': placement.partial,
+			'new sticky layout': controlApi( 'bgtfw_sticky_header_layout' )()
+		} );
+	}
+
 	if ( controls.includes( placement.partial.id ) ) {
 		let css = [];
 
@@ -280,6 +287,75 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 	return hiddenItems;
 };
 
+BOLDGRID.Customizer.Util.updateRepeaterLayout = function( control, selector, action, nonceId ) {
+	control.bind( function( value ) {
+		var request;
+
+		console.log( {
+			'updateRepeaterLayout value': value
+		} );
+
+		request = wp.ajax.post(
+			action,
+			{
+				headerPresetNonce: controlApi.settings.nonce[ nonceId ],
+				wpCustomize: 'on',
+				customizeTheme: controlApi.settings.theme.stylesheet,
+				customLayout: Array.isArray( value ) ? value : null
+			}
+		);
+
+		request.done(
+			function( response ) {
+				var hiddenItems = {};
+				if ( response.markup ) {
+					$( selector ).find( '.boldgrid-section' ).remove();
+					$( selector ).append( response.markup );
+					hiddenItems = BOLDGRID.Customizer.Util.getHiddenItems( value );
+					for ( const uid in hiddenItems ) {
+						$( '.' + uid ).find( '.site-branding' ).children().show();
+						hiddenItems[uid].forEach( function( selector ) {
+							$( '.' + uid ).find( '.site-branding' ).find( selector ).hide();
+						} );
+					}
+				}
+			}
+		);
+	} );
+};
+
+BOLDGRID.Customizer.Util.updateRepeaterPreset = function( control, layoutControl, action, nonceId ) {
+	control.bind(
+		function( headerPreset ) {
+			console.log( {
+				'sticky headerPreset': headerPreset
+			} );
+			var request = wp.ajax.post(
+				action,
+				{
+					headerPresetNonce: controlApi.settings.nonce[ nonceId ],
+					wpCustomize: 'on',
+					customizeTheme: controlApi.settings.theme.stylesheet,
+					headerPreset: headerPreset
+				}
+			);
+
+			request.done(
+				function( response ) {
+					console.log( {
+						'updateRepeaterPreset response': response
+					} );
+					if ( response.layout ) {
+						if ( Array.isArray( response.layout ) ) {
+							controlApi.control( layoutControl ).setValues( response.layout );
+						}
+					}
+				}
+			);
+		}
+	);
+};
+
 /**
  * Theme Customizer enhancements for a better user experience.
  *
@@ -355,39 +431,84 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 
 	// After partial-refresh, correct header item uids.
 	api.bind( 'preview-ready', function() {
+		var footerSocialMenu = controlApi( 'nav_menu_locations[footer-social]' )(),
+			stickySocialMenu = controlApi( 'nav_menu_locations[sticky-social]' )(),
+			stickyMainMenu   = controlApi( 'nav_menu_locations[sticky-main]' )(),
+			mainMenu         = controlApi( 'nav_menu_locations[main]' )(),
+			socialMenu       = controlApi( 'nav_menu_locations[social]' )(),
+			footerLayout     = controlApi( 'bgtfw_footer_layout' )();
+
+		console.log( {
+			'stickyMainMenu': stickyMainMenu,
+			'stickySocialMenu': stickySocialMenu
+		} );
+
+		if ( 0 === footerSocialMenu ) {
+			controlApi.control( 'nav_menu_locations[footer-social]' ).setting.set( socialMenu );
+		}
+
+		if ( 0 === stickyMainMenu || 0 === stickySocialMenu ) {
+			controlApi.control( 'nav_menu_locations[sticky-main]' ).setting.set( mainMenu );
+			controlApi.control( 'nav_menu_locations[sticky-social]' ).setting.set( socialMenu );
+		}
+
+		footerLayout.forEach( function( layoutCol ) {
+			layoutCol.items.forEach( function( item ) {
+				if ( 'boldgrid_menu_social' === item.type ) {
+					item.type = 'boldgrid_menu_footer-social';
+				}
+			} );
+		} );
+
+		controlApi.control( 'bgtfw_footer_layout' ).setting.set( footerLayout );
+
+		//BOLDGRID.Customizer.Util.updateLayoutRepeater( controlApi.control( 'bgtfw_sticky_header_layout' ) );
+
+		controlApi( 'bgtfw_sticky_header_layout', function( control ) {
+			BOLDGRID.Customizer.Util.updateRepeaterLayout(
+				control,
+				'#masthead-sticky',
+				'bgtfw_sticky_header_preset',
+				'bgtfw-sticky-header-preset',
+			);
+		} );
+
+		controlApi( 'bgtfw_sticky_header_preset', function( control ) {
+			BOLDGRID.Customizer.Util.updateRepeaterPreset(
+				control,
+				'bgtfw_sticky_header_layout',
+				'bgtfw_sticky_header_preset',
+				'bgtfw-sticky-header-preset',
+			);
+		} );
+
 		controlApi( 'bgtfw_header_layout', function( control ) {
-			var section = controlApi.section( controlApi.control( 'bgtfw_header_layout' ).section() );
 			control.bind( function( value ) {
-				var request = wp.ajax.post(
+				var request;
+
+				request = wp.ajax.post(
 					'bgtfw_header_preset',
 					{
 						headerPresetNonce: controlApi.settings.nonce['bgtfw-header-preset'],
 						wpCustomize: 'on',
 						customizeTheme: controlApi.settings.theme.stylesheet,
-						headerPreset: controlApi( 'bgtfw_header_preset' )(),
 						customLayout: Array.isArray( value ) ? value : null
 					}
 				);
 
 				request.done(
 					function( response ) {
-
-						//var hiddenItems = {};
+						var hiddenItems = {};
 						if ( response.markup ) {
 							$( '#masthead' ).find( '.boldgrid-section' ).remove();
 							$( '#masthead' ).append( response.markup );
-
-							if ( Array.isArray( value ) ) {
-								//controlApi.control( 'bgtfw_header_layout' ).setValues( value );
+							hiddenItems = BOLDGRID.Customizer.Util.getHiddenItems( value );
+							for ( const uid in hiddenItems ) {
+								$( '.' + uid ).find( '.site-branding' ).children().show();
+								hiddenItems[uid].forEach( function( selector ) {
+									$( '.' + uid ).find( '.site-branding' ).find( selector ).hide();
+								} );
 							}
-
-							// hiddenItems = BOLDGRID.Customizer.Util.getHiddenItems( value );
-							// for ( const uid in hiddenItems ) {
-							// 	$( '.' + uid ).find( '.site-branding' ).children().show();
-							// 	hiddenItems[uid].forEach( function( selector ) {
-							// 		$( '.' + uid ).find( '.site-branding' ).find( selector ).hide();
-							// 	} );
-							// }
 						}
 					}
 				);

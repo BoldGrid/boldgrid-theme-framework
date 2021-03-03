@@ -1956,7 +1956,6 @@ return array(
 	),
 	'bgtfw_footer_layout' => [
 		'settings' => 'bgtfw_footer_layout',
-		'transport' => 'auto',
 		'label' => __( 'Footer Layout', 'bgtfw' ),
 		'type' => 'bgtfw-sortable-accordion',
 		'default' => [
@@ -1969,7 +1968,7 @@ return array(
 						'align' => 'w',
 					],
 					[
-						'type' => 'boldgrid_menu_social',
+						'type' => 'boldgrid_menu_footer-social',
 						'key' => 'menu',
 						'align' => 'e',
 					],

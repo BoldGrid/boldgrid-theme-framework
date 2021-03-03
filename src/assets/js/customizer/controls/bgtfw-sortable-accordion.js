@@ -617,6 +617,11 @@ export default {
 	 */
 	setValues( values ) {
 		var self = this;
+
+		if ( ! Array.isArray( values ) ) {
+			return;
+		}
+
 		$( this.container ).find( '.dashicons-trash' ).trigger( 'click' );
 		values.forEach( function( row, index ) {
 			var container = $( self.container ).find( '#sortable-' + index + '-wrapper' );
@@ -635,19 +640,27 @@ export default {
 			} );
 		} );
 
-		values.forEach( function( row ) {
+		values.forEach( function( row, rowIndex ) {
 			row.items.forEach( function( item, index ) {
-				var container = $( self.container ).find( '#sortable-' + index + '-wrapper' );
+				var container = $( self.container ).find( '#sortable-' + rowIndex + '-wrapper' ),
+					itemContainer = $( container ).find( 'li.repeater' )[index];
+
 				if ( 'branding' === item.key ) {
-					container.find( '.repeater-control.display' ).find( 'input' ).each( function( index ) {
+					$( itemContainer ).find( '.repeater-control.display' ).find( 'input' ).each( function( index ) {
 						var display = item.display[ index ].display;
 							if ( $( this ).attr( 'data-display' ) !== display ) {
-								// $( this ).attr( 'data-display', display );
 								$( this )[0].checked = ! $( this )[0].checked;
 								$( this ).trigger( 'change' );
 							}
 					} );
 				}
+				if ( 'menu' === item.key ) {
+					let menuSelect = $( itemContainer ).find( 'select' );
+					let menuOptions = $( itemContainer ).find( 'option' );
+
+					$( menuSelect ).val( item.type );
+				}
+				$( itemContainer ).find( '.align-wrapper .direction.' + item.align ).trigger( 'click' );
 			} );
 		} );
 	},

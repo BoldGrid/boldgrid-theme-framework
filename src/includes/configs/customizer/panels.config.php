@@ -60,7 +60,7 @@ return array(
 		'icon' => 'dashicons-admin-page',
 	),
 	'bgtfw_header_layouts' => array(
-		'title' => __( 'Layout', 'bgtfw' ),
+		'title' => __( 'Main Header Layout', 'bgtfw' ),
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Manage the layout of your site\'s header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
 		'panel' => 'bgtfw_header',
 		'capability' => 'edit_theme_options',

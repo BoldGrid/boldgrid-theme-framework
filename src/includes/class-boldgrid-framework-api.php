@@ -978,6 +978,7 @@ class BoldGrid {
 	public static function dynamic_layout( $theme_mod, $preset = null, $custom_layout = null ) {
 		$markup        = '';
 		$column_widths = self::get_column_widths( $theme_mod );
+		$theme_mod_id  = $theme_mod;
 		$theme_mod     = self::create_uids( $theme_mod, $preset, $custom_layout );
 
 		if ( ! empty( $theme_mod ) ) {
@@ -1030,6 +1031,10 @@ class BoldGrid {
 						switch ( $col_data['type'] ) {
 							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
 								$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
+								if ( 'social' === $menu && false !== strpos( $col_uid, 'f' ) ) {
+									$menu             = 'footer-social';
+									$col_data['type'] = 'boldgrid_menu_footer-social';
+								}
 								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';
@@ -1096,16 +1101,8 @@ class BoldGrid {
 		$configs = $boldgrid_theme_framework->get_configs();
 		$preset_type = str_replace( 'bgtfw_', '', $theme_mod );
 		$preset_type = str_replace( '_layout', '', $preset_type );
-		$preset      = $preset ? $preset : get_theme_mod( 'bgtfw_' . $preset_type . '_preset', 'default' );
 
 		$layout      = get_theme_mod( $theme_mod . '_' . $preset, get_theme_mod( $theme_mod ) );
-		if ( 'custom' === $preset ) {
-			$layout = (array) get_theme_mod( 'bgtfw_custom_' . $preset_type . '_layout' );
-		}
-
-		if ( 'custom' === $preset && $custom_layout && 'footer' !== $preset_type ) {
-			return $custom_layout;
-		}
 
 		if ( 'default' === $preset && get_option( 'fresh_site' ) ) {
 			$starter_content = get_theme_starter_content();
@@ -1116,6 +1113,10 @@ class BoldGrid {
 
 		if ( 'footer' === $preset_type ) {
 			$layout = (array) get_theme_mod( 'bgtfw_footer_layout' );
+		}
+
+		if ( $custom_layout ) {
+			$layout = $custom_layout;
 		}
 
 		return $layout;
@@ -1166,7 +1167,7 @@ class BoldGrid {
 	 *
 	 * @return string Rendered HTML for dyanmic layout element.
 	 */
-	public static function dynamic_sticky_header() {
+	public static function dynamic_sticky_header( $preset = null ) {
 		$markup = '';
 		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . '>';
 		ob_start();
@@ -1175,7 +1176,11 @@ class BoldGrid {
 		$markup .= '<div class="custom-header-media">';
 		$markup .= get_custom_header_markup();
 		$markup .= '</div>';
-		$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+		if ( $preset ) {
+			$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout', $preset );
+		} else {
+			$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+		}
 		ob_start();
 		do_action( 'boldgrid_header_bottom' );
 		$markup .= ob_get_clean();

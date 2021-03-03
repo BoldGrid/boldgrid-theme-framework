@@ -89,7 +89,7 @@ $sections_array = array(
 			'url' => esc_url( 'https://www.boldgrid.com/wordpress-themes/crio/header/?source=customize-header' ),
 			'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
 		],
-		'icon' => 'dashicons-admin-generic',
+		'icon' => 'dashicons-schedule',
 	),
 	'bgtfw_header_presets' => array(
 		'title' => __( 'Main Header Layout', 'bgtfw' ),

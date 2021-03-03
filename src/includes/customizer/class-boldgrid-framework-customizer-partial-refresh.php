@@ -63,4 +63,18 @@ class Boldgrid_Framework_Customizer_Partial_Refresh {
 			get_template_part( 'templates/header/header', $this->configs['template']['header'] );
 		}
 	}
+
+	/**
+	 * Header.
+	 *
+	 * Handles header partial refreshes.
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function fixed_header() {
+		$preset              = get_theme_mod( 'bgtfw_fixed_header_preset' );
+
+		$fixed_header_markup = BoldGrid::dynamic_sticky_header( $preset );
+		return $fixed_header_markup;
+	}
 }

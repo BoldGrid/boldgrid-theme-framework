@@ -304,7 +304,7 @@ BOLDGRID.Customizer.Util.updateRepeaterLayout = function( control, selector, act
 				customLayout: Array.isArray( value ) ? value : null
 			}
 		);
-
+		$( selector ).prop( 'style', 'opacity: 10%' );
 		request.done(
 			function( response ) {
 				var hiddenItems = {};
@@ -318,6 +318,7 @@ BOLDGRID.Customizer.Util.updateRepeaterLayout = function( control, selector, act
 							$( '.' + uid ).find( '.site-branding' ).find( selector ).hide();
 						} );
 					}
+					$( selector ).prop( 'style', 'opacity: 100%' );
 				}
 			}
 		);
@@ -495,7 +496,7 @@ BOLDGRID.Customizer.Util.updateRepeaterPreset = function( control, layoutControl
 						customLayout: Array.isArray( value ) ? value : null
 					}
 				);
-
+				$( '#masthead' ).prop( 'style', 'opacity: 10%' );
 				request.done(
 					function( response ) {
 						var hiddenItems = {};
@@ -509,6 +510,7 @@ BOLDGRID.Customizer.Util.updateRepeaterPreset = function( control, layoutControl
 									$( '.' + uid ).find( '.site-branding' ).find( selector ).hide();
 								} );
 							}
+							$( '#masthead' ).prop( 'style', 'opacity: 100%' );
 						}
 					}
 				);

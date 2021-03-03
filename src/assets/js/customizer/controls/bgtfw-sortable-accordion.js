@@ -656,7 +656,6 @@ export default {
 				}
 				if ( 'menu' === item.key ) {
 					let menuSelect = $( itemContainer ).find( 'select' );
-					let menuOptions = $( itemContainer ).find( 'option' );
 
 					$( menuSelect ).val( item.type );
 				}

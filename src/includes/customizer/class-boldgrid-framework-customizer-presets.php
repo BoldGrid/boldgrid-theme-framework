@@ -49,6 +49,7 @@ class Boldgrid_Framework_Customizer_Presets {
 		$this->configs               = $configs;
 		$this->current_header_layout = get_theme_mod( 'bgtfw_header_layout' );
 		$this->current_sticky_layout = get_theme_mod( 'bgtfw_sticky_header_layout' );
+		$this->sticky_header         = new Boldgrid_Framework_Sticky_Header( $configs );
 		$this->set_default_layout();
 		$this->set_custom_layout();
 		$this->add_theme_mods();
@@ -190,6 +191,7 @@ class Boldgrid_Framework_Customizer_Presets {
 		$layout = '';
 
 		if ( $custom_layout ) {
+			error_log( 'custom_layout: ' . json_encode( $custom_layout ) );
 			$markup = BoldGrid::dynamic_layout( 'bgtfw_header_layout', $preset, $custom_layout );
 			$layout = $custom_layout;
 		} elseif ( $preset ) {
@@ -282,6 +284,11 @@ class Boldgrid_Framework_Customizer_Presets {
 					'bgtfw_' . $preset_type . '_layout' => $config['config'],
 				),
 			);
+			if( 'header' === $preset_type && 'lshsbm' === $preset ) {
+				$presets[ $preset ]['settings']['bgtfw_header_layout_position'] = 'header-left';
+			} elseif ( 'header' === $preset_type ) {
+				$presets[ $preset ]['settings']['bgtfw_header_layout_position'] = 'header-top';
+			}
 		}
 
 		$default_layout = get_theme_mod( 'bgtfw_default_' . $preset_type . '_layout' );

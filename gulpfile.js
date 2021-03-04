@@ -123,6 +123,8 @@ gulp.task('clean', function () {
 
 // Javascript Dependencies
 gulp.task('jsDeps', function () {
+	gulp.src(config.node_modules + '/multislider/src/*.js' )
+		.pipe(gulp.dest(config.jsDest + '/multislider' ) );
   // jQuery Stellar - Check
   gulp.src(config.node_modules + '/jquery.stellar/jquery.stellar*.js')
     .pipe(gulp.dest(config.jsDest + '/jquery-stellar'));

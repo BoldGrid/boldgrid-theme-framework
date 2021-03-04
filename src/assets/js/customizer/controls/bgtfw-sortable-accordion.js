@@ -622,7 +622,8 @@ export default {
 			return;
 		}
 
-		$( this.container ).find( '.dashicons-trash' ).trigger( 'click' );
+		$( this.container ).find( '.ui-accordion-header > .dashicons-trash' ).trigger( 'click' );
+
 		values.forEach( function( row, index ) {
 			var container = $( self.container ).find( '#sortable-' + index + '-wrapper' );
 			var containerControls = container.find('.bgtfw-container-control' ).children();
@@ -645,6 +646,8 @@ export default {
 				var container = $( self.container ).find( '#sortable-' + rowIndex + '-wrapper' ),
 					itemContainer = $( container ).find( 'li.repeater' )[index];
 
+				$( itemContainer ).find( '.align-wrapper .direction.' + item.align ).trigger( 'click' );
+
 				if ( 'branding' === item.key ) {
 					$( itemContainer ).find( '.repeater-control.display' ).find( 'input' ).each( function( index ) {
 						var display = item.display[ index ].display;
@@ -654,12 +657,12 @@ export default {
 							}
 					} );
 				}
+
 				if ( 'menu' === item.key ) {
 					let menuSelect = $( itemContainer ).find( 'select' );
-
+					$( menuSelect ).closest( '.repeater' ).attr( 'data-type', item.type );
 					$( menuSelect ).val( item.type );
 				}
-				$( itemContainer ).find( '.align-wrapper .direction.' + item.align ).trigger( 'click' );
 			} );
 		} );
 	},

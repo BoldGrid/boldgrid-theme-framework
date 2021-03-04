@@ -1012,6 +1012,8 @@
 # Column Width Controls
 --------------------------------------------------------------*/
 
+@import "controls/colwidths";
+
 .boldgrid-control.column-widths-control .device input:checked ~ .relationship {
 	display: none;
 }

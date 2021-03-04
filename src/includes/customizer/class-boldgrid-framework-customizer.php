@@ -437,6 +437,14 @@ class BoldGrid_Framework_Customizer {
 		wp_enqueue_script( 'wp-color-picker-alpha', trailingslashit( Kirki::$url ) . 'assets/vendor/wp-color-picker-alpha/wp-color-picker-alpha.js', array( 'wp-i18n', 'wp-color-picker' ), KIRKI_VERSION, true );
 
 		wp_register_script(
+			'bgtfw-multislider',
+			$this->scripts->get_webpack_url( $this->configs['framework']['js_dir'], 'multislider/multiSlider.js' ),
+			array( 'jquery' ),
+			$this->configs['version'],
+			true
+		);
+
+		wp_register_script(
 			'bgtfw-customizer-base-controls',
 			$this->scripts->get_webpack_url( $this->configs['framework']['js_dir'], 'customizer/base-controls.min.js' ),
 			array(
@@ -501,7 +509,7 @@ class BoldGrid_Framework_Customizer {
 			$this->configs['version'],
 			true
 		);
-
+		wp_enqueue_script( 'bgtfw-multislider' );
 		wp_enqueue_script( 'bgtfw-customizer-base-controls' );
 
 		$initialize  = 'BOLDGRID = BOLDGRID || {};';
@@ -644,6 +652,9 @@ class BoldGrid_Framework_Customizer {
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-header-container' );
 		wp_enqueue_script( 'bgtfw-customizer-footer-layout-footer-container' );
 		wp_enqueue_script( 'bgtfw_pages_blog_posts_layout_layout' );
+
+		wp_enqueue_style( 'wp-jquery-ui-core' );
+		wp_enqueue_script( 'jquery-ui-core' );
 
 		wp_enqueue_style(
 			'boldgrid-theme-framework-customizer-css',
@@ -995,5 +1006,34 @@ HTML;
 		$id        = 'boldgrid-override-styles';
 		$css       = BoldGrid_Framework_Styles::convert_array_to_css( $css_rules, $id );
 		Boldgrid_Framework_Customizer_Generic::add_inline_style( $id, $css );
+	}
+
+	/**
+	 * Add Custom Column Width control.
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function register_colwidth_control( $wp_customize ) {
+		require_once $this->configs['framework']['includes_dir']
+			. 'control/class-boldgrid-framework-control-col-width.php';
+		$wp_customize->add_setting(
+			'bgtfw_header_layout_col_width',
+			array(
+				'type'       => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'transport'  => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			new Boldgrid_Framework_Control_Col_Width(
+				$wp_customize,
+				'bgtfw_header_layout_col_width',
+				array(
+					'label'    => __( 'Header Column Widths', 'bgtfw' ),
+					'section'  => 'bgtfw_header_layout',
+					'settings' => 'bgtfw_header_layout_col_width',
+				)
+			)
+		);
 	}
 }

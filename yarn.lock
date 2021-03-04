@@ -10255,6 +10255,10 @@ multipipe@^0.1.0, multipipe@^0.1.2:
   dependencies:
     duplexer2 "0.0.2"
 
+"multislider@https://github.com/ippontech/multiSlider.js":
+  version "0.0.0"
+  resolved "https://github.com/ippontech/multiSlider.js#f5b54206b18e77f94a9fc1e9a5a4dd69f918f29e"
+
 mute-stream@0.0.7, mute-stream@~0.0.4:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"

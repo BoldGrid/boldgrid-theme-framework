@@ -1,5 +1,5 @@
 import { PaletteSelector } from '../color/palette-selector';
-import { Border as BaseBorder } from '@boldgrid/controls/src/controls/border';
+import { Border as BaseBorder } from '@boldgrid/controls2/src/controls/border';
 
 export class Border extends BaseBorder {
 

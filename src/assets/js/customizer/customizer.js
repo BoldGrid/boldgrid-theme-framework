@@ -286,7 +286,7 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 BOLDGRID.Customizer.Util.updateColWidthDefaults = function() {
 	var headerItems   = $( '#masthead [class^=col-lg-]' ),
 		defaultParams = controlApi.control( 'bgtfw_header_layout_col_width' ).params.default;
-	console.log( defaultParams );
+
 	// defaultParams.forEach( function( defaultParam ) {
 	// 	for ( const uid in defaultParam.values ) {
 	// 		if ( 0 === $( '.' + uid ).length ) {
@@ -388,15 +388,18 @@ BOLDGRID.Customizer.Util.updateRepeaterLayout = function( control, setting, sele
 
 				if ( response.sliders ) {
 					let multislider = parent.window.BOLDGRID.colWidthSlider;
+					// BOLDGRID.Customizer.Util.updateColWidthDefaults();
+					// console.log( {
+					// 	'sliders': response.sliders,
+					// 	'multislider': multislider,
+					// 	'control': control
+					// } );
+					multislider.changeEventDisabled = true;
+					$( multislider.$deleteSaved ).trigger( 'click' );
 					multislider.options.control.sliders = response.sliders;
 					let control = multislider.render();
 					controlApi.control( 'bgtfw_header_layout_col_width' ).container.find( '.column-widths-control' ).replaceWith( control );
-					BOLDGRID.Customizer.Util.updateColWidthDefaults();
-					console.log( {
-						'sliders': response.sliders,
-						'multislider': multislider,
-						'control': control
-					} );
+					parent.BOLDGRID.colWidthSlider.changeEventDisabled = false;
 				}
 			}
 		);
@@ -593,7 +596,7 @@ BOLDGRID.Customizer.Util.updateRepeaterPreset = function( control, layoutControl
 			var section = controlApi.section( controlApi.control( 'bgtfw_header_layout_col_width' ).section() );
 				section.expanded.bind( function( isExpanding ) {
 					if ( isExpanding ) {
-						BOLDGRID.Customizer.Util.updateColWidthDefaults();
+						// BOLDGRID.Customizer.Util.updateColWidthDefaults();
 					}
 				} );
 
@@ -615,20 +618,7 @@ BOLDGRID.Customizer.Util.updateRepeaterPreset = function( control, layoutControl
 							}
 						} );
 					}
-
-					console.log( {
-						'uid': uid,
-						'prefix': prefix,
-						'colWidths': colWidths,
-						'displaySize': displaySize
-					} );
 				}
-
-				console.log( {
-					'prefix': prefix,
-					'colWidths': colWidths,
-					'displaySize': displaySize
-				} );
 			} );
 		} );
 

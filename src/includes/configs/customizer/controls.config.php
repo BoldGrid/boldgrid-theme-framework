@@ -2041,39 +2041,39 @@ return array(
 			],
 		],
 	],
-	// 'bgtfw_header_layout_col_width' => array(
-	// 	'settings' => 'bgtfw_header_layout_col_width',
-	// 	'transport' => 'postMessage',
-	// 	'label' => __( 'Header Column Widths', 'bgtfw' ),
-	// 	'priority' => 8,
-	// 	'section' => 'bgtfw_header_layout',
-	// 	'type' => 'kirki-generic',
-	// 	'default' => $bgtfw_generic->get_column_defaults(),
-	// 	'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
-	// 	'choices' => array(
-	// 		'name' => 'boldgrid_controls',
-	// 		'type' => 'ColWidth',
-	// 		'settings' => array(
-	// 			'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
-	// 			'control'    => array(
-	// 				'selectors' => array( '.site-header header row' ),
-	// 				'sliders' => $bgtfw_generic->get_header_columns(),
-	// 				'description' => __(
-	// 					'Headers have a maximum of 12 columns per row. If the total columns used by the items in a row exceed 12, they will be rolled over to a new row.',
-	// 					'bgtfw'
-	// 				),
-	// 			),
-	// 			'slider' => array(
-	// 				'col' => array(
-	// 					'min'   => 1,
-	// 					'max'   => 12,
-	// 					'step'  => 1,
-	// 					'value' => 6,
-	// 				),
-	// 			),
-	// 		),
-	// 	),
-	// ),
+	'bgtfw_header_layout_col_width' => array(
+		'settings' => 'bgtfw_header_layout_col_width',
+		'transport' => 'postMessage',
+		'label' => __( 'Header Column Widths', 'bgtfw' ),
+		'priority' => 8,
+		'section' => 'bgtfw_header_layouts_columns',
+		'type' => 'kirki-generic',
+		'default' => $bgtfw_generic->get_column_defaults(),
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
+		'choices' => array(
+			'name' => 'boldgrid_controls',
+			'type' => 'ColWidth',
+			'settings' => array(
+				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
+				'control'    => array(
+					'selectors' => array( '.site-header header row' ),
+					'sliders' => $bgtfw_generic->get_header_columns(),
+					'description' => __(
+						'Headers have a maximum of 12 columns per row. If the total columns used by the items in a row exceed 12, they will be rolled over to a new row.',
+						'bgtfw'
+					),
+				),
+				'slider' => array(
+					'col' => array(
+						'min'   => 1,
+						'max'   => 12,
+						'step'  => 1,
+						'value' => 6,
+					),
+				),
+			),
+		),
+	),
 	'bgtfw_header_layout_position' => array(
 		'settings' => 'bgtfw_header_layout_position',
 		'label' => __( 'Header Position', 'bgtfw' ),

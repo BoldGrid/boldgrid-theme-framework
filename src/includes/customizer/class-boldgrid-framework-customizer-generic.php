@@ -382,7 +382,7 @@ class Boldgrid_Framework_Customizer_Generic {
 	public function get_column_defaults() {
 		$defaults = array(
 			[
-				'media' => [ 'large', 'desktop' ],
+				'media' => [ 'large' ],
 				'unit' => 'col',
 				'isLinked' => false,
 				'values' => array(
@@ -391,7 +391,25 @@ class Boldgrid_Framework_Customizer_Generic {
 				),
 			],
 			[
-				'media' => [ 'phone', 'tablet' ],
+				'media' => [ 'desktop' ],
+				'unit' => 'col',
+				'isLinked' => false,
+				'values' => array(
+					'default_branding' => 6,
+					'default_menu'     => 6,
+				),
+			],
+			[
+				'media' => [ 'tablet' ],
+				'unit' => 'col',
+				'isLinked' => false,
+				'values' => array(
+					'default_branding' => 12,
+					'default_menu'     => 12,
+				),
+			],
+			[
+				'media' => [ 'phone' ],
 				'unit' => 'col',
 				'isLinked' => false,
 				'values' => array(
@@ -411,7 +429,7 @@ class Boldgrid_Framework_Customizer_Generic {
 	 *
 	 * @return array Array of header column slider configs.
 	 */
-	public function get_header_columns() {
+	public function get_header_columns( $custom_layout = null ) {
 		$default_layout = [
 			[
 				'container' => 'container',
@@ -449,6 +467,10 @@ class Boldgrid_Framework_Customizer_Generic {
 
 		// When loading starter content, the bgtfw_header_layout theme mod is not populated yet, so we have to use the default_layout array.
 		$header_layout = get_theme_mod( 'bgtfw_header_layout', false ) ? get_theme_mod( 'bgtfw_header_layout', false ) : $default_layout;
+
+		if ( $custom_layout ) {
+			$header_layout = $custom_layout;
+		}
 
 		$sliders = array();
 

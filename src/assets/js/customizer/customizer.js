@@ -283,6 +283,59 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 	return hiddenItems;
 };
 
+BOLDGRID.Customizer.Util.updateColWidthDefaults = function() {
+	var headerItems   = $( '#masthead [class^=col-lg-]' ),
+		defaultParams = controlApi.control( 'bgtfw_header_layout_col_width' ).params.default;
+	console.log( defaultParams );
+	// defaultParams.forEach( function( defaultParam ) {
+	// 	for ( const uid in defaultParam.values ) {
+	// 		if ( 0 === $( '.' + uid ).length ) {
+	// 			console.log( {
+	// 				'param UID': uid,
+	// 				'headerItem': $( '.' + uid )
+	// 			} );
+	// 			delete defaultParam.values[uid];
+	// 		}
+	// 	};
+	// } );
+
+	headerItems.each( function() {
+		let headerItem = this;
+		controlApi.control( 'bgtfw_header_layout_col_width' ).params.default.forEach( function( defaultItem, index ) {
+			var displaySize = defaultItem.media[0],
+				prefix = 'large' === displaySize ? 'lg' : prefix,
+				value,
+				uid;
+
+			prefix = 'desktop' === displaySize ? 'md' : prefix;
+			prefix = 'tablet' === displaySize ? 'sm' : prefix;
+			prefix = 'phone' === displaySize ? 'xs' : prefix;
+
+
+			headerItem.classList.forEach( function( className ) {
+				if ( className.includes( prefix ) ) {
+					value = className.replace( 'col-' + prefix + '-', '' );
+				}
+
+				if ( className.startsWith( 'h' ) ) {
+					uid = className;
+				}
+			} );
+
+			console.log( {
+				'displaySize': displaySize,
+				'prefix': prefix,
+				'uid': uid,
+				'value': value,
+				'defaultParams': controlApi.control( 'bgtfw_header_layout_col_width' ).params.default,
+				'headerItem': $( '.' + uid )
+			} );
+			controlApi.control( 'bgtfw_header_layout_col_width' ).params.default[index].values[uid] = value;
+			controlApi.control( 'bgtfw_header_layout_col_width' ).container.find( '.ui-slider[data-name=' + uid + ']' ).slider( 'option', 'value', value );
+		} );
+	} );
+};
+
 BOLDGRID.Customizer.Util.updateRepeaterLayout = function( control, setting, selector, action, nonceId ) {
 	var section = controlApi.section( controlApi.control( setting ).section() );
 	section.expanded.bind( function( isExpanding ) {
@@ -331,6 +384,19 @@ BOLDGRID.Customizer.Util.updateRepeaterLayout = function( control, setting, sele
 						} );
 					}
 					$( selector ).prop( 'style', 'opacity: 100%' );
+				}
+
+				if ( response.sliders ) {
+					let multislider = parent.window.BOLDGRID.colWidthSlider;
+					multislider.options.control.sliders = response.sliders;
+					let control = multislider.render();
+					controlApi.control( 'bgtfw_header_layout_col_width' ).container.find( '.column-widths-control' ).replaceWith( control );
+					BOLDGRID.Customizer.Util.updateColWidthDefaults();
+					console.log( {
+						'sliders': response.sliders,
+						'multislider': multislider,
+						'control': control
+					} );
 				}
 			}
 		);
@@ -524,9 +590,44 @@ BOLDGRID.Customizer.Util.updateRepeaterPreset = function( control, layoutControl
 		} );
 
 		controlApi( 'bgtfw_header_layout_col_width', function( control ) {
+			var section = controlApi.section( controlApi.control( 'bgtfw_header_layout_col_width' ).section() );
+				section.expanded.bind( function( isExpanding ) {
+					if ( isExpanding ) {
+						BOLDGRID.Customizer.Util.updateColWidthDefaults();
+					}
+				} );
+
 			control.bind( function( value ) {
+				var displaySize = $( controlApi.control( 'bgtfw_header_layout_col_width' ).container ).find( 'input:checked' ).val(),
+					colWidths = JSON.parse( value.media )[displaySize].values,
+					prefix = 'large' === displaySize ? 'lg' : '';
+
+				prefix = 'desktop' === displaySize ? 'md' : prefix;
+				prefix = 'tablet' === displaySize ? 'sm' : prefix;
+				prefix = 'phone' === displaySize ? 'xs' : prefix;
+
+				for ( const uid in colWidths ) {
+					if ( 0 !== $( '.' + uid ).length ) {
+						$( '.' + uid )[0].classList.forEach( function( className ) {
+							if ( className.includes( prefix ) ) {
+								$( '.' + uid ).removeClass( className );
+								$( '.' + uid ).addClass( 'col-' + prefix + '-' + colWidths[uid] );
+							}
+						} );
+					}
+
+					console.log( {
+						'uid': uid,
+						'prefix': prefix,
+						'colWidths': colWidths,
+						'displaySize': displaySize
+					} );
+				}
+
 				console.log( {
-					'col-width': value
+					'prefix': prefix,
+					'colWidths': colWidths,
+					'displaySize': displaySize
 				} );
 			} );
 		} );

@@ -49,6 +49,7 @@ class Boldgrid_Framework_Customizer_Presets {
 		$this->configs               = $configs;
 		$this->current_header_layout = get_theme_mod( 'bgtfw_header_layout' );
 		$this->current_sticky_layout = get_theme_mod( 'bgtfw_sticky_header_layout' );
+		$this->generic               = new Boldgrid_Framework_Customizer_Generic( $configs );
 		$this->sticky_header         = new Boldgrid_Framework_Sticky_Header( $configs );
 		$this->set_default_layout();
 		$this->set_custom_layout();
@@ -199,9 +200,12 @@ class Boldgrid_Framework_Customizer_Presets {
 			$layout = $this->configs['customizer-options']['presets']['header'][ $preset ]['config'];
 		}
 
+		$sliders = $this->generic->get_header_columns( $layout );
+
 		wp_send_json_success( array(
 			'markup' => $markup,
 			'layout' => $layout,
+			'sliders' => $sliders,
 		) );
 	}
 

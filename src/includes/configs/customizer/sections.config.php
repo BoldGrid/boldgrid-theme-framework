@@ -107,6 +107,15 @@ $sections_array = array(
 		'priority' => 2,
 		'icon' => 'dashicons-admin-generic',
 	),
+	'bgtfw_header_layouts_columns' => array(
+		'title' => __( 'Adjust Header Column Widths', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Advanced Header Layout Control.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
+		'panel' => 'bgtfw_header_layouts',
+		'section' => 'bgtfw_header_layouts_advanced',
+		'capability' => 'edit_theme_options',
+		'priority' => 2,
+		'icon' => 'dashicons-admin-generic',
+	),
 	'bgtfw_site_title' => array(
 		'title' => esc_attr__( 'Site Title', 'bgtfw' ),
 		'panel' => 'bgtfw_header',

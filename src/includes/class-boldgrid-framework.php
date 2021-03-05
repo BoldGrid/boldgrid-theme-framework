@@ -849,7 +849,10 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $base, 'enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_print_styles', $base, 'control_styles' );
 
-		$this->loader->add_action( 'customize_register', $base, 'register_colwidth_control' );
+		/*
+		 * This will be for a future change to the column width control
+		 * $this->loader->add_action( 'customize_register', $base, 'register_colwidth_control' );
+		 */
 
 		// This hook can be used to add any styles to the head.
 		$this->loader->add_action( 'wp_enqueue_scripts', $base, 'add_head_styles' );

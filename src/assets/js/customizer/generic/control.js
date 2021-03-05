@@ -130,6 +130,10 @@ export class Control {
 				const $el = $( wpControl.selector ),
 					$input = $el.find( 'label' );
 
+				console.log( {
+					'initial input': $input
+				} );
+
 				$input.after( bgControl.render() );
 
 				// This dummy input removes orginal handlers, and serves as a honeypot for DOM queries.

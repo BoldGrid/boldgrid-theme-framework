@@ -1,12 +1,12 @@
-import { BorderRadius } from '@boldgrid/controls2/src/controls/border-radius';
-import { Margin } from '@boldgrid/controls2/src/controls/margin';
-import { ColWidth } from '@boldgrid/controls2/src/controls/col-width';
-import { Padding } from '@boldgrid/controls2/src/controls/padding';
-import { BoxShadow } from '@boldgrid/controls2/src/controls/box-shadow';
-import { Control as DeviceVisibility } from '@boldgrid/controls2/src/controls/device-visibility';
+import { BorderRadius } from '@boldgrid/controls/src/controls/border-radius';
+import { Margin } from '@boldgrid/controls/src/controls/margin';
+import { ColWidth } from '@boldgrid/controls/src/controls/col-width';
+import { Padding } from '@boldgrid/controls/src/controls/padding';
+import { BoxShadow } from '@boldgrid/controls/src/controls/box-shadow';
+import { Control as DeviceVisibility } from '@boldgrid/controls/src/controls/device-visibility';
 import { Border } from './border';
 import { DevicePreview } from './device-preview';
-import { MultiSlider } from '@boldgrid/controls2/src/controls/multi-slider';
+import { MultiSlider } from '@boldgrid/controls/src/controls/multi-slider';
 import '../../../scss/customizer/controls/_generic.scss';
 
 export class Control {

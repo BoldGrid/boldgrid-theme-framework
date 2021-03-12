@@ -52,5 +52,25 @@
 				}
 			}
 		}
+		&:not( .default-preset ),
+		&:not( .custom-preset ) {
+			.site-branding {
+				&.hide-logo {
+					.custom-logo-link {
+						display: none !important;
+					}
+				}
+				&.hide-title {
+					.site-title {
+						display: none !important;
+					}
+				}
+				&.hide-description {
+					.site-description {
+						display: none !important;
+					}
+				}
+			}
+		}
 	}
 }

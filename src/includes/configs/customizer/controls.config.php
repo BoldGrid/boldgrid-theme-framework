@@ -1235,14 +1235,41 @@ return array(
 			),
 		),
 	),
+	'bgtfw_header_preset_branding' => array(
+		'type'        => 'multicheck',
+		'settings'    => 'bgtfw_header_preset_branding',
+		'description' => $bgtfw_presets->get_branding_notices(),
+		'transport'   => 'postMessage',
+		'label'       => esc_html__( 'Branding Display', 'bgtfw' ),
+		'section'     => 'bgtfw_header_presets',
+		'default'     => array( 'logo', 'title' ),
+		'priority'    => 1,
+		'choices'     => [
+			'logo'        => esc_html__( 'Logo', 'bgtfw' ),
+			'title'       => esc_html__( 'Site Title', 'bgtfw' ),
+			'description' => esc_html__( 'Tagline', 'bgtfw' ),
+		],
+		'active_callback' => array(
+			array(
+				'setting'  => 'bgtfw_header_preset',
+				'operator' => '!=',
+				'value'    => 'default',
+			),
+			array(
+				'setting'  => 'bgtfw_header_preset',
+				'operator' => '!=',
+				'value'    => 'custom',
+			),
+		),
+	),
 	'bgtfw_header_preset' => array(
 		'type'        => 'radio-image',
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_header_preset',
-		'label'       => esc_html__( 'Header Layout', 'kirki' ),
+		'label'       => esc_html__( 'Header Layout', 'bgtfw' ),
 		'section'     => 'bgtfw_header_presets',
 		'default'     => 'default',
-		'priority'    => 1,
+		'priority'    => 2,
 		'choices'     => $bgtfw_presets->get_preset_choices( 'header' ),
 	),
 	'bgtfw_header_width' => array(
@@ -2076,7 +2103,7 @@ return array(
 	),
 	'bgtfw_header_layout_position' => array(
 		'settings' => 'bgtfw_header_layout_position',
-		'transport' => 'refresh',
+		'transport' => 'postMessage',
 		'label' => __( 'Header Position', 'bgtfw' ),
 		'type' => 'radio-buttonset',
 		'priority' => 5,
@@ -2179,45 +2206,12 @@ return array(
 		'transport' => 'postMessage',
 	],
 
-	'bgtfw_custom_header_layout' => [
-		'settings' => 'bgtfw_custom_header_layout',
+	'bgtfw_header_layout_custom' => [
+		'settings' => 'bgtfw_header_layout_custom',
 		'transport' => 'postMessage',
 		'label' => '<div class="screen-reader-text">' . __( 'Custom Header Layout', 'bgtfw' ) . '</div>',
 		'type' => 'bgtfw-sortable-accordion',
-		'default' => [
-			[
-				'container' => 'container',
-				'items' => [
-					[
-						'type' => 'boldgrid_site_identity',
-						'key' => 'branding',
-						'align' => 'w',
-						'display' => [
-							[
-								'selector' => '.custom-logo-link',
-								'display' => 'show',
-								'title' => __( 'Logo', 'bgtfw' ),
-							],
-							[
-								'selector' => '.site-title',
-								'display' => 'show',
-								'title' => __( 'Title', 'bgtfw' ),
-							],
-							[
-								'selector' => '.site-description',
-								'display' => 'show',
-								'title' => __( 'Tagline', 'bgtfw' ),
-							],
-						],
-					],
-					[
-						'type' => 'boldgrid_menu_main',
-						'key' => 'menu',
-						'align' => 'e',
-					],
-				],
-			],
-		],
+		'default' => $bgtfw_presets->get_custom_layout( 'header' ),
 		'items' => [
 			'menu' => [
 				'icon' => 'dashicons dashicons-menu',
@@ -2266,7 +2260,7 @@ return array(
 			],
 		],
 		'location' => 'header',
-		'section' => 'bgtfw_header_presets',
+		'section' => 'bgtfw_header_layout_advanced',
 	],
 
 	/*** Start: Dynamic Menu Controls ***/

@@ -979,6 +979,17 @@ class BoldGrid {
 		$markup        = '';
 		$column_widths = self::get_column_widths( $theme_mod );
 		$theme_mod     = self::create_uids( $theme_mod, $preset, $custom_layout );
+		$preset        = $preset ? $preset : get_theme_mod( 'bgtfw_header_preset', 'default' );
+		$hidden_items  = array_diff(
+			array( 'title', 'logo', 'description' ),
+			get_theme_mod( 'bgtfw_header_preset_branding', array( 'title', 'logo' ) )
+		);
+
+		$hidden_item_classes = array();
+
+		foreach ( $hidden_items as $index => $item ) {
+			$hidden_item_classes[] = 'hide-' . $item;
+		}
 
 		if ( ! empty( $theme_mod ) ) {
 			foreach ( $theme_mod as $section_index => $section ) {
@@ -989,7 +1000,7 @@ class BoldGrid {
 					continue;
 				}
 
-				$markup .= '<div class="boldgrid-section">';
+				$markup .= '<div class="boldgrid-section ' . $preset . '-preset">';
 				$markup .= '<div class="' . $section['container'] . '">';
 				$chunks = array_chunk( $section['items'], 6, true );
 
@@ -1038,7 +1049,7 @@ class BoldGrid {
 								echo '</div>';
 								break;
 							case 'boldgrid_site_identity' === $col_data['type'] :
-								$filter = function( $classes ) use ( $col_data ) {
+								$filter = function( $classes ) use ( $col_data, $preset, $hidden_item_classes ) {
 									if ( empty( $col_data['align'] ) ) {
 										$col_data['align'] = 'nw';
 									}
@@ -1046,6 +1057,17 @@ class BoldGrid {
 										'site-branding',
 										$col_data['align'],
 									);
+
+									if ( 'custom' === $preset || 'default' === $preset ) {
+										return $classes;
+									}
+
+									if ( false !== strpos( $col_data['uid'], 'f' ) ) {
+										return $classes;
+									}
+
+									$classes = array_merge( $classes, $hidden_item_classes );
+
 									return $classes;
 								};
 								add_filter( 'bgtfw_site_branding_classes', $filter, 10 );
@@ -1098,9 +1120,6 @@ class BoldGrid {
 		$preset_type = str_replace( '_layout', '', $preset_type );
 		$preset      = $preset ? $preset : get_theme_mod( 'bgtfw_' . $preset_type . '_preset', 'default' );
 		$layout      = get_theme_mod( $theme_mod . '_' . $preset, get_theme_mod( $theme_mod ) );
-		if ( 'custom' === $preset ) {
-			$layout = (array) get_theme_mod( 'bgtfw_custom_' . $preset_type . '_layout' );
-		}
 
 		if ( 'custom' === $preset && $custom_layout && 'footer' !== $preset_type ) {
 			return $custom_layout;

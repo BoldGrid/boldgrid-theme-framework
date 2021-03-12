@@ -2,6 +2,7 @@
 import ColorPreview from './color/preview';
 import { Preview as GenericPreview } from './generic/preview.js';
 import { Preview as HeaderPreview } from './header-layout/preview.js';
+import HeaderLayout from './header-layout/header-layout.js';
 import { Preview as BackgroundPreview } from './background/preview.js';
 import { LinkPreview } from './typography/link-preview.js';
 import Toggle from './toggle/toggle';
@@ -13,7 +14,7 @@ const api = wp.customize;
 const controlApi = parent.wp.customize;
 
 api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
-	let controls = [ 'bgtfw_header_layout', 'bgtfw_header_preset', 'bgtfw_custom_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
+	let controls = [ 'bgtfw_header_layout', 'bgtfw_header_preset', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
 
 	if ( controls.includes( placement.partial.id ) ) {
 		let css = [];
@@ -256,30 +257,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	return false;
 };
 
-BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
-	var hiddenItems = {},
-	layout = value;
-	layout.forEach( function( container ) {
-		container.items.forEach( function( item ) {
-			var uid,
-				hidden = [];
-			if ( 'branding' === item.key ) {
-				uid = item.uid;
-				item.display.forEach( function( displayItem ) {
-					if ( 'hide' === displayItem.display ) {
-						hidden.push( displayItem.selector );
-					}
-				} );
-			}
-			if ( uid && hidden ) {
-				hiddenItems[uid] = hidden;
-			}
-		} );
-	} );
-
-	return hiddenItems;
-};
-
 /**
  * Theme Customizer enhancements for a better user experience.
  *
@@ -287,7 +264,10 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
  */
 ( function( $ ) {
 	let colorPreview = new ColorPreview().init(),
-		backgroundPreview = new BackgroundPreview().init();
+		backgroundPreview = new BackgroundPreview().init(),
+		headerLayout = new HeaderLayout();
+
+	headerLayout.init();
 
 	new GenericPreview().bindEvents();
 	new HeaderPreview().bindEvents();
@@ -352,139 +332,6 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 			} );
 		} );
 	}
-
-	// After partial-refresh, correct header item uids.
-	api.bind( 'preview-ready', function() {
-		controlApi( 'bgtfw_custom_header_layout', function( control ) {
-			var section = controlApi.section( controlApi.control( 'bgtfw_custom_header_layout' ).section() );
-			control.bind( function( value ) {
-				var request = wp.ajax.post(
-					'bgtfw_header_preset',
-					{
-						headerPresetNonce: controlApi.settings.nonce['bgtfw-header-preset'],
-						wpCustomize: 'on',
-						customizeTheme: controlApi.settings.theme.stylesheet,
-						headerPreset: 'custom',
-						customHeaderLayout: value
-					}
-				);
-
-				request.done(
-					function( response ) {
-						var hiddenItems = {};
-						if ( response.markup ) {
-							$( '#masthead' ).find( '.boldgrid-section' ).remove();
-							$( '#masthead' ).append( response.markup );
-							hiddenItems = BOLDGRID.Customizer.Util.getHiddenItems( value );
-							for ( const uid in hiddenItems ) {
-								$( '.' + uid ).find( '.site-branding' ).children().show();
-								hiddenItems[uid].forEach( function( selector ) {
-									$( '.' + uid ).find( '.site-branding' ).find( selector ).hide();
-								} );
-							}
-						}
-					}
-				);
-			} );
-
-			section.expanded.bind( function() {
-				if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
-					controlApi.control( 'bgtfw_custom_header_layout' ).activate();
-				} else {
-					controlApi.control( 'bgtfw_custom_header_layout' ).deactivate();
-				}
-			} );
-		} );
-
-		controlApi( 'bgtfw_header_preset', function( control ) {
-			control.bind(
-				function( headerPreset ) {
-					var request = wp.ajax.post(
-						'bgtfw_header_preset',
-						{
-							headerPresetNonce: controlApi.settings.nonce['bgtfw-header-preset'],
-							wpCustomize: 'on',
-							customizeTheme: controlApi.settings.theme.stylesheet,
-							headerPreset: headerPreset
-						}
-					);
-
-					if ( 'custom' === headerPreset ) {
-						controlApi.control( 'bgtfw_custom_header_layout' ).activate();
-					} else {
-						controlApi.control( 'bgtfw_custom_header_layout' ).deactivate();
-					}
-
-					request.done(
-						function( response ) {
-							if ( response.markup ) {
-								$( '#masthead' ).find( '.boldgrid-section' ).remove();
-								$( '#masthead' ).append( response.markup );
-							}
-						}
-					);
-				}
-			);
-		} );
-
-		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
-			let colWidths,
-				colUids,
-				themeMod = controlApi( 'bgtfw_header_layout_col_width' )().media;
-			colWidths = 'string' === typeof themeMod ? JSON.parse( themeMod ) : themeMod ;
-			colUids = Object.keys( colWidths.large.values );
-
-			// If this page uses Header Templates, do not mess with them.
-			if ( $( '.template-header' ).length ) {
-				return;
-			}
-
-			// Added #masthead to the selector to ensure that Page Header Template rows are not selected.
-			$( '.bgtfw-header #masthead .boldgrid-section .row > div' ).each( function( itemIndex ) {
-				let uid = colUids[ itemIndex ],
-					classList;
-
-				// If the different values are not set, then use the baseWidths value ( which is from the 'large' device ).
-				classList = [
-					'col-lg-' + ( colWidths.large.values[uid] ? colWidths.large.values[ uid ] : 6 ),
-					'col-md-' + ( colWidths.desktop.values[uid] ? colWidths.desktop.values[ uid ] : 6 ),
-					'col-sm-' + ( colWidths.tablet.values[uid] ? colWidths.tablet.values[ uid ] : 12 ),
-					'col-xs-' + ( colWidths.phone.values[uid] ? colWidths.phone.values[ uid ] : 12 )
-				];
-
-				uid = $( this ).hasClass( 'h00' ) ? 'h00' : uid;
-				uid = $( this ).hasClass( 'h01' ) ? 'h01' : uid;
-
-				// This removes the empty column widths.
-				$( this ).removeClass();
-
-				$( this ).addClass( classList.join( ' ' ) );
-
-				$( this ).addClass( uid );
-			} );
-		}
-	} );
-
-	// After preview refreshes, and new layout items are added, add new slider uids.
-	api.bind( 'preview-ready', _.defer( function() {
-		let sliderUids   = [];
-		let repeaterUids = [];
-		let repeaterContainer;
-		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
-			$( controlApi.section( 'bgtfw_header_layout' ).container[1] ).find( '.slider' ).each( function() {
-				sliderUids.push( this.dataset.name );
-			} );
-
-			repeaterContainer = controlApi.control( 'bgtfw_header_layout' ).container;
-
-			$( repeaterContainer ).find( '.repeater' ).each( function() {
-				repeaterUids.push( this.dataset.uid );
-			} );
-
-			addHeaderSliders( sliderUids, repeaterUids );
-			remHeaderSliders( sliderUids, repeaterUids );
-		}
-	} ) );
 
 	$( function() {
 		var headingsColorOutput,
@@ -786,7 +633,7 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 			} );
 		} );
 
-		new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
+		// new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
 		new ToggleValue( 'bgtfw_blog_page_container', '.blog .site-content, .archive .site-content', 'container', calc );
 
 		api( 'bgtfw_header_layout_tabs', function() {
@@ -957,7 +804,7 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 		}
 
 		// Listen for widget layout changes.
-		[ 'bgtfw_header_layout', 'bgtfw_custom_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ].forEach( control => {
+		[ 'bgtfw_header_layout', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ].forEach( control => {
 			api( control, value => {
 				value.bind( () => {
 					api.preview.send( 'bgtfw-widget-section-update', control );
@@ -1020,9 +867,6 @@ BOLDGRID.Customizer.Util.getHiddenItems = function( value ) {
 		$( document ).on( 'customize-preview-menu-refreshed', function( event, menu ) {
 			$.each( menu.newContainer.closest( '[data-is-parent-column]' ), function() {
 				BOLDGRID.Customizer.Widgets.updatePartial( $( this ) );
-				if ( 'secondary-menu' === menu.container_id && '' !== api( 'bgtfw_header_container' )() ) {
-					document.getElementById( menu.container_id ).classList.add( api( 'bgtfw_header_container' )() );
-				}
 			} );
 		} );
 

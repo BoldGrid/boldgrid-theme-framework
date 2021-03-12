@@ -7,4 +7,26 @@
 			border-radius: 15px;
 		}
 	}
+	input:checked + label img {
+		box-shadow: 0 0 5px 5px #3498DB57;
+		border: 1px solid #fff;
+	}
+}
+
+#customize-control-bgtfw_header_preset_branding {
+	ul {
+		display: flex;
+		justify-content: space-around;
+	}
+}
+
+.branding_notice {
+	background-color: white;
+	padding: 5px;
+	border-left: 3px solid #ffb900;
+	font-style: normal;
+	a {
+		font-weight: 700;
+		font-style: normal;
+	}
 }

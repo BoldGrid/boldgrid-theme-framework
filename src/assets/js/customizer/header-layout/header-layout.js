@@ -14,8 +14,89 @@ export class HeaderLayout  {
 		this.bindExpanding();
 
 		this.bindControlChanges();
+	}
 
-		api.bind( 'ready', () => this.onCustomizerReady() );
+	changeColumnDevice() {
+		var $container   = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container,
+			$deviceLabel = $container.find( 'label' );
+
+		$deviceLabel.on( 'click', ( e ) => {
+			var $thisLabel      = $( e.currentTarget ),
+				$thisInputValue = $thisLabel.siblings( 'input' ).val();
+
+			console.log( {
+				'$thisLabel': $thisLabel,
+				'$thisInputValue': $thisInputValue
+			} );
+			$container.find( '.col-width-slider-device-group' ).hide();
+			$container.find( '#bgtfw_header_layout_custom_col_width-slider-' + $thisInputValue ).show();
+		} );
+	}
+
+	/**
+	 * Initial Column Sliders.
+	 *
+	 * @since SINCEVERSION
+	 */
+	initialColumnSliders() {
+		var $container   = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container,
+				$sliders      = $container.find( '.col-width-slider' );
+
+		parent.window.BOLDGRID.colWidthSliders = parent.window.BOLDGRID.colWidthSliders ?
+			parent.window.BOLDGRID.colWidthSliders :
+			{};
+
+		$sliders.each( ( rowIndex, sliderElement ) => {
+			var items = $( sliderElement ).data( 'items' ),
+				sliderValues = [];
+
+			items.forEach( ( item, index ) => {
+				var width = parseInt( item.width );
+				if ( 0 === index ) {
+					sliderValues.push( 0, width );
+				} else {
+					let startValue = sliderValues[ sliderValues.length - 1 ];
+					let endValue   = startValue + width;
+					sliderValues.push( startValue, endValue );
+				}
+
+				parent.window.BOLDGRID.colWidthSliders[ item.uid ] = {
+					row: rowIndex,
+					col: index,
+					key: item.key
+				};
+			} );
+
+			console.log( {
+				'values': sliderValues,
+				'sliderElement': $container.find( sliderElement )
+			} );
+
+			let slider = $container.find( sliderElement ).multiSlider( {
+				min: 0,
+				max: 12,
+				step: 1,
+				total: items.length,
+				values: sliderValues
+			} );
+
+			window._.delay( () => {
+				var $slider = $container.find( slider.element );
+				$container.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-large' ).hide();
+				$slider.find( '.ui-slider-range' ).each( ( sliderIndex, sliderRange ) => {
+					var uid = items[ sliderIndex ].uid,
+						device = items[ sliderIndex ].device;
+					console.log( {
+						'sliderIndex': sliderIndex,
+						'sliderRange': sliderRange,
+						'device': device
+					} );
+
+					$container.find( sliderRange ).html( '<span class="col-width-range-label">' + items[sliderIndex].key + '</span>' );
+					parent.window.BOLDGRID.colWidthSliders[ uid ][ device ] = sliderRange;
+				} );
+			}, 100 );
+		} );
 	}
 
 	/**
@@ -29,6 +110,7 @@ export class HeaderLayout  {
 		var customLayoutSection = controlApi.section(
 			controlApi.control( 'bgtfw_header_layout_custom' ).section()
 		);
+
 		controlApi.panel( 'bgtfw_header_layouts' ).expanded.bind(  () => {
 			if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
 				controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
@@ -82,6 +164,8 @@ export class HeaderLayout  {
 
 		customLayoutSection.expanded.bind( () => {
 			if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
+				this.initialColumnSliders();
+				this.changeColumnDevice();
 				controlApi.control( 'bgtfw_header_layout_custom' ).activate();
 			} else {
 				controlApi.control( 'bgtfw_header_layout_custom' ).deactivate();

@@ -112,6 +112,7 @@
 		"mini-css-extract-plugin": "^0.4.0",
 		"mkdirp": "^0.5.1",
 		"moment": "^2.24.0",
+		"multislider": "https://github.com/ippontech/multiSlider.js",
 		"php-parser": "^3.0.0-prerelease.8",
 		"pkg-dir": "^3.0.0",
 		"postcss-colors-only": "^0.0.3",

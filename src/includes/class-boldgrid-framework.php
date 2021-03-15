@@ -858,6 +858,8 @@ class BoldGrid_Framework {
 		// Enqueue live preview javascript in Theme Customizer admin screen.
 		$this->loader->add_action( 'customize_preview_init', $base, 'live_preview' );
 
+		$this->loader->add_action( 'customize_register', $base, 'register_colwidth_control' );
+
 		$this->loader->add_action( 'wp_ajax_bgtfw_header_preset', $base->presets, 'wp_ajax_bgtfw_header_layout' );
 		$this->loader->add_filter( 'customize_refresh_nonces', $base->presets, 'header_layout_nonces' );
 	}

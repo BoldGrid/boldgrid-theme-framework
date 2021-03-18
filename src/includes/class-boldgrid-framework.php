@@ -862,6 +862,8 @@ class BoldGrid_Framework {
 
 		$this->loader->add_action( 'wp_ajax_bgtfw_header_preset', $base->presets, 'wp_ajax_bgtfw_header_layout' );
 		$this->loader->add_filter( 'customize_refresh_nonces', $base->presets, 'header_layout_nonces' );
+		$this->loader->add_filter( 'customize_refresh_nonces', $base, 'header_column_nonces' );
+		$this->loader->add_action( 'wp_ajax_bgtfw_header_columns', $base, 'wp_ajax_bgtfw_header_columns' );
 	}
 
 	/**

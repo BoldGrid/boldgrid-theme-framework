@@ -1,4 +1,3 @@
-const api = wp.customize;
 const controlApi = parent.wp.customize;
 
 export class HeaderLayout  {
@@ -11,26 +10,89 @@ export class HeaderLayout  {
 	 * @return {Preview} Class instance.
 	*/
 	init() {
+
+		parent.window.BOLDGRID.colWidthSliders = parent.window.BOLDGRID.colWidthSliders ?
+			parent.window.BOLDGRID.colWidthSliders :
+			{};
+
+		this.changeColumnDevice();
+
 		this.bindExpanding();
 
 		this.bindControlChanges();
+
+		this.bindResizeEvents();
+
+		this.bindFullWidth();
+
+		parent.window.BOLDGRID.colWidths = parent.window.BOLDGRID.colWidths ?
+			parent.window.BOLDGRID.colWidths :
+			this;
+	}
+
+	bindFullWidth() {
+		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
+			.find( '.col-width-full-width' ).on( 'click', ( event ) => {
+				$( event.currentTarget ).parent().toggleClass( 'disabled' );
+				this.updateControlValue();
+			} );
+	}
+
+	bindResizeEvents() {
+		controlApi.bind( 'preview-ready', () => {
+			$( window ).on( 'resize', _.debounce( () => {
+				var $container = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container;
+				$container.find( '.col-width-slider' ).children().remove();
+				this.initialColumnSliders();
+			}, 300 ) );
+		} );
 	}
 
 	changeColumnDevice() {
 		var $container   = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container,
-			$deviceLabel = $container.find( 'label' );
+			$deviceLabel = $container.find( '.devices-wrapper label' );
 
 		$deviceLabel.on( 'click', ( e ) => {
 			var $thisLabel      = $( e.currentTarget ),
 				$thisInputValue = $thisLabel.siblings( 'input' ).val();
 
-			console.log( {
-				'$thisLabel': $thisLabel,
-				'$thisInputValue': $thisInputValue
-			} );
 			$container.find( '.col-width-slider-device-group' ).hide();
 			$container.find( '#bgtfw_header_layout_custom_col_width-slider-' + $thisInputValue ).show();
 		} );
+	}
+
+	/**
+	 * Update Control.
+	 *
+	 * @since SINCEVERSION
+	 */
+	updateSliderControl( value ) {
+		$.ajax(
+			wp.ajax.settings.url,
+			{
+				type: 'POST',
+				context: this,
+				data: {
+					action: 'bgtfw_header_columns',
+					headerColumnsNonce: controlApi.settings.nonce['bgtfw-header-columns'],
+					wpCustomize: 'on',
+					customizeTheme: controlApi.settings.theme.stylesheet,
+					customHeaderLayout: value
+				}
+			}
+		).done(
+			( response ) => {
+				var container = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container;
+				container.find( '.col-width-slider-device-group' ).remove();
+				container.find( '.sliders-wrapper' ).html( response.data.markup );
+				this.initialColumnSliders( true );
+				this.updateControlValue();
+				controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
+					.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-large' )
+					.hide();
+				container.css( 'opacity', 1 );
+			}
+		);
 	}
 
 	/**
@@ -38,20 +100,22 @@ export class HeaderLayout  {
 	 *
 	 * @since SINCEVERSION
 	 */
-	initialColumnSliders() {
+	initialColumnSliders( forceDefaults = false ) {
 		var $container   = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container,
-				$sliders      = $container.find( '.col-width-slider' );
+				$sliders = $container.find( '.col-width-slider' ),
+				value   = controlApi( 'bgtfw_header_layout_custom_col_width' )();
 
-		parent.window.BOLDGRID.colWidthSliders = parent.window.BOLDGRID.colWidthSliders ?
-			parent.window.BOLDGRID.colWidthSliders :
-			{};
-
-		$sliders.each( ( rowIndex, sliderElement ) => {
+		$sliders.each( ( _, sliderElement ) => {
 			var items = $( sliderElement ).data( 'items' ),
 				sliderValues = [];
 
 			items.forEach( ( item, index ) => {
 				var width = parseInt( item.width );
+
+				if ( ! forceDefaults && value && value[ item.uid ] && value[ item.uid ][ item.device ] ) {
+					width = parseInt( value[ item.uid ] && value[ item.uid ][ item.device ] );
+				}
+
 				if ( 0 === index ) {
 					sliderValues.push( 0, width );
 				} else {
@@ -61,15 +125,10 @@ export class HeaderLayout  {
 				}
 
 				parent.window.BOLDGRID.colWidthSliders[ item.uid ] = {
-					row: rowIndex,
+					row: sliderElement.dataset.row,
 					col: index,
 					key: item.key
 				};
-			} );
-
-			console.log( {
-				'values': sliderValues,
-				'sliderElement': $container.find( sliderElement )
 			} );
 
 			let slider = $container.find( sliderElement ).multiSlider( {
@@ -77,26 +136,122 @@ export class HeaderLayout  {
 				max: 12,
 				step: 1,
 				total: items.length,
-				values: sliderValues
+				values: sliderValues,
+				stop: this.bindSliderChanges
 			} );
 
 			window._.delay( () => {
 				var $slider = $container.find( slider.element );
-				$container.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-large' ).hide();
 				$slider.find( '.ui-slider-range' ).each( ( sliderIndex, sliderRange ) => {
 					var uid = items[ sliderIndex ].uid,
 						device = items[ sliderIndex ].device;
-					console.log( {
-						'sliderIndex': sliderIndex,
-						'sliderRange': sliderRange,
-						'device': device
+
+					let disabled = $slider.siblings( '.full-width-wrapper' ).children( 'input' ).attr( 'checked' ) ?
+						true : false;
+
+					if ( disabled ) {
+						$slider.siblings( '.full-width-wrapper' ).children( 'input' ).parent().addClass( 'disabled' );
+					} else {
+						$slider.siblings( '.full-width-wrapper' ).children( 'input' ).parent().removeClass( 'disabled' );
+					}
+
+					$container.find( sliderRange ).parent().attr( {
+						'data-uid': uid,
+						'data-device': device
 					} );
 
 					$container.find( sliderRange ).html( '<span class="col-width-range-label">' + items[sliderIndex].key + '</span>' );
-					parent.window.BOLDGRID.colWidthSliders[ uid ][ device ] = sliderRange;
+					parent.window.BOLDGRID.colWidthSliders[ uid ][ device ] = slider;
 				} );
 			}, 100 );
 		} );
+	}
+
+	getDeviceClass( deviceSize ) {
+		var deviceClass = 'col-lg-';
+			switch ( deviceSize ) {
+				case 'large':
+					deviceClass = 'col-lg-';
+					break;
+				case 'desktop':
+					deviceClass = 'col-md-';
+					break;
+				case 'tablet':
+					deviceClass = 'col-sm-';
+					break;
+				case 'phone':
+					deviceClass = 'col-xs-';
+					break;
+			}
+
+		return deviceClass;
+	}
+
+	/**
+	 * Update Control Value
+	 *
+	 * @since SINCEVERSION
+	 */
+	updateControlValue() {
+		var sliderObjects = parent.window.BOLDGRID.colWidthSliders,
+			valueObject   = {},
+			$fullWidthControls = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( '.col-width-full-width' );
+
+		for ( const uid in sliderObjects ) {
+			valueObject[ uid ] = {};
+			for ( const device in sliderObjects[ uid ] ) {
+				if ( 'col' === device || 'row' === device || 'key' === device ) {
+					continue;
+				}
+
+				let values = sliderObjects[ uid ][ device ].option( 'values' );
+				let col    = sliderObjects[ uid ].col;
+				let end    = ( ( col + 1 ) * 2 ) - 1;
+				let start  = end - 1;
+
+				valueObject[ uid ][device] = values[ end ] - values[ start ];
+			}
+		}
+
+		valueObject.fullWidth = [];
+
+		$fullWidthControls.each( ( _, fullWidthControl ) => {
+			var $control = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( fullWidthControl ),
+				device = $control.data( 'device' ),
+				checked = $control.attr( 'checked' ) ? true : false,
+				row = parseInt( $control.data( 'row' ) );
+
+				if ( ! valueObject.fullWidth[ row ] ) {
+					valueObject.fullWidth[ row ] = {};
+				}
+
+				valueObject.fullWidth[ row ][ device ] = checked;
+		} );
+
+		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).setting( valueObject );
+	}
+
+	/**
+	 * Bind Slider Changes.
+	 *
+	 * @since SINCEVERSION
+	 */
+	bindSliderChanges( event, ui ) {
+		var newValue    = parseInt( ui.values[1] ) - parseInt( ui.values[0] ),
+			uid         = event.target.dataset.uid,
+			device      = event.target.dataset.device,
+			deviceClass = parent.window.BOLDGRID.colWidths.getDeviceClass( device );
+
+		$( '.' + uid )[0].classList.forEach( ( className ) => {
+			if ( className.includes( deviceClass ) ) {
+				$( '.' + uid ).removeClass( className );
+				return;
+			}
+		} );
+
+		$( '.' + uid ).addClass( deviceClass + newValue );
+
+		parent.window.BOLDGRID.colWidths.updateControlValue();
 	}
 
 	/**
@@ -163,14 +318,40 @@ export class HeaderLayout  {
 		} );
 
 		customLayoutSection.expanded.bind( () => {
+			this.initialColumnSliders();
 			if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
-				this.initialColumnSliders();
-				this.changeColumnDevice();
+				controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
+					.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-large' )
+					.hide();
 				controlApi.control( 'bgtfw_header_layout_custom' ).activate();
 			} else {
 				controlApi.control( 'bgtfw_header_layout_custom' ).deactivate();
 			}
 		} );
+	}
+
+	maybeUpdateSlider( oldValue, newValue ) {
+		if ( oldValue === newValue ) {
+			return false;
+		}
+
+		if ( oldValue.length !== newValue.length ) {
+			return true;
+		}
+
+		for ( let rowIndex = 0; rowIndex < oldValue.length; rowIndex++ ) {
+			if ( oldValue[ rowIndex ].items.length !== newValue[ rowIndex ].items.length ) {
+				return true;
+			}
+
+			for ( let itemIndex = 0; itemIndex < oldValue[ rowIndex ].items.length; itemIndex++ ) {
+				if ( oldValue[ rowIndex ].items[ itemIndex ].uid !== newValue[ rowIndex ].items[ itemIndex ].uid ) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -182,7 +363,11 @@ export class HeaderLayout  {
 	 */
 	bindControlChanges() {
 		controlApi( 'bgtfw_header_layout_custom', ( control ) => {
-			control.bind( ( value ) => {
+			control.bind( ( value, oldValue ) => {
+				var updateSlider = this.maybeUpdateSlider( oldValue, value );
+				if ( updateSlider ) {
+					controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.css( 'opacity', 0.10 );
+				}
 				$.ajax(
 					wp.ajax.settings.url,
 					{
@@ -194,19 +379,26 @@ export class HeaderLayout  {
 							wpCustomize: 'on',
 							customizeTheme: controlApi.settings.theme.stylesheet,
 							headerPreset: 'custom',
-							customHeaderLayout: value
+							customHeaderLayout: value,
+							columnWidths: controlApi( 'bgtfw_header_layout_custom_col_width' )()
 						}
 					}
 				).done(
 					( response ) => {
+						console.log( {
+							'markup': response.data.markup,
+							'layout': response.data.layout
+						} );
 						var hiddenItems = {};
-						console.log( { 'bgtfw_header_preset': this, 'response': response.data } );
 						if ( response.data.markup ) {
 							$( '#masthead' ).find( '.boldgrid-section' ).remove();
 							$( '#masthead' ).append( response.data.markup );
 							hiddenItems = this.getHiddenItems( value );
 							$( '#sticky-header-display-inline-css' ).remove();
 							this.hideHiddenItems( hiddenItems );
+							if ( updateSlider ) {
+								this.updateSliderControl( value );
+							}
 						}
 					}
 				);
@@ -259,7 +451,6 @@ export class HeaderLayout  {
 					}
 				).done( ( response ) => {
 					var hiddenItems = {};
-					console.log( { 'bgtfw_header_preset': this, 'response': response.data } );
 					if ( response.data.markup ) {
 						if ( 'lshsbm' === headerPreset ) {
 							controlApi.control( 'bgtfw_header_layout_position' ).setting( 'header-left' );
@@ -333,12 +524,9 @@ export class HeaderLayout  {
 		var container = control.container;
 		container.find( '.branding_notice' ).hide();
 
-		console.log( 'brandingNotices' );
-
 		if ( value.includes( 'logo' ) && ! controlApi( 'custom_logo' )() ) {
 			container.find( '.branding_notice.logo' ).show();
 			container.find( '.branding_notice.logo a' ).on( 'click', ( e ) => {
-				console.log( 'clicked' );
 				e.preventDefault();
 				controlApi.control( 'custom_logo' ).focus();
 			} );
@@ -347,7 +535,6 @@ export class HeaderLayout  {
 		if ( value.includes( 'title' ) && ! controlApi( 'title' )() ) {
 			container.find( '.branding_notice.title' ).show();
 			container.find( '.branding_notice.title a' ).on( 'click', ( e ) => {
-				console.log( 'clicked' );
 				e.preventDefault();
 				controlApi.control( 'title' ).focus();
 			} );
@@ -356,7 +543,6 @@ export class HeaderLayout  {
 		if ( value.includes( 'description' ) && ! controlApi( 'blogdescription' )() ) {
 			container.find( '.branding_notice.description' ).show();
 			container.find( '.branding_notice.description a' ).on( 'click', ( e ) => {
-				console.log( 'clicked' );
 				e.preventDefault();
 				controlApi.control( 'blogdescription' ).focus();
 			} );
@@ -407,19 +593,6 @@ export class HeaderLayout  {
 			$( '.' + uid ).find( '.site-description' ).removeClass( 'invisible' );
 			hideThisUid( uid );
 		}
-	}
-
-	/**
-	 * Events to run when the Dom loads.
-	 *
-	 * @since 2.0.0
-	 */
-	onCustomizerReady() {
-		console.log( {
-			'customizer_ready': this,
-			'api': api,
-			'controlApi': controlApi
-		} );
 	}
 }
 

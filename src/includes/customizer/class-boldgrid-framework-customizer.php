@@ -1024,4 +1024,39 @@ HTML;
 		);
 		$wp_customize->add_control( new Boldgrid_Framework_Control_Col_Width( $this->configs, $wp_customize ) );
 	}
+
+	/**
+	 * Add a nonce for Customizer for column nonces.
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function header_column_nonces( $nonces ) {
+		error_log( 'coluimn_nonce_created' );
+		$nonces['bgtfw-header-columns'] = wp_create_nonce( 'bgtfw_header_columns' );
+		return $nonces;
+	}
+
+	/**
+	 * WP Ajax Header Columns.
+	 *
+	 * @since SINCEVERSION
+	 */
+	public static function wp_ajax_bgtfw_header_columns() {
+		check_ajax_referer( 'bgtfw_header_columns', 'headerColumnsNonce' );
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			wp_die( -1 );
+		}
+
+		error_log( 'ajax header columns' );
+
+		$layout = $_POST['customHeaderLayout'];
+
+		$markup = Boldgrid_Framework_Control_Col_Width::get_updated_markup( $layout );
+
+		wp_send_json_success( array(
+			'layout' => $layout,
+			'markup' => $markup,
+		) );
+
+	}
 }

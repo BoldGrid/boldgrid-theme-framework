@@ -240,6 +240,7 @@ class Boldgrid_Framework_Customizer_Presets {
 	 * @since SINCEVERSION
 	 */
 	public function wp_ajax_bgtfw_header_layout() {
+		global $wp_customize;
 		check_ajax_referer( 'bgtfw_header_layout', 'headerPresetNonce' );
 		if ( ! current_user_can( 'edit_theme_options' ) ) {
 			wp_die( -1 );

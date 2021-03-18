@@ -38,6 +38,17 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	public $generic;
 
 	/**
+	 * WP Customize.
+	 *
+	 * WP_Customize class instance.
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @var WP_Customize
+	 */
+	public $wp_customize;
+
+	/**
 	 * Constructor.
 	 *
 	 * @since SINCEVERSION
@@ -48,6 +59,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	public function __construct( $configs, $wp_customize ) {
 		$this->configs = $configs;
 		$this->generic = new Boldgrid_Framework_Customizer_Generic( $this->configs );
+		$this->wp_customize = $wp_customize;
 		parent::__construct(
 			$wp_customize,
 				'bgtfw_header_layout_custom_col_width',
@@ -94,20 +106,33 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	 *
 	 * @return string Markup for this section.
 	 */
-	public function slider_device_group( $device, $current_layout ) {
-		$sliders_markup = '<div id="' . esc_attr( $this->id ) . '-slider-' . $device . '" class="col-width-slider-device-group">';
+	public static function slider_device_group( $device, $current_layout ) {
+		$sliders_markup = '<div id="bgtfw_header_layout_custom_col_width-slider-' . $device . '" class="col-width-slider-device-group">';
 		$row_number     = 0;
 		foreach ( $current_layout as $index => $row ) {
-			$items_in_row      = count( $row );
+			$full_width = false;
+			if ( ! array_key_exists( 'items', $row ) ) {
+				continue;
+			}
+			$items_in_row      = count( $row['items'] );
 			$default_col_width = floor( 12 / $items_in_row );
 
-			$sliders_markup .= '<div id="' . esc_attr( $this->id ) . '-slider-' . $row_number . '-' . $device . '" class="col-width-slider" data-row="' . $row_number . '" data-items=\'[';
+			if ( 'tablet' === $device || 'phone' === $device ) {
+				$full_width = true;
+			}
+
+			$sliders_markup .= '<div id="bgtfw_header_layout_custom_col_width-slider-' . $row_number . '-' . $device . '" class="col-width-slider" data-row="' . $row_number . '" data-items=\'[';
 			foreach ( $row['items'] as $index => $item ) {
 				$sliders_markup .= '{"uid": "' . $item['uid'] . '", "key":"' . $item['key'] . '", "width":"' . $default_col_width . '", "device":"' . $device . '"}';
-				error_log( 'items_count: ' . ( count( $row['items'] ) - 1 ) . ' -- Indes: ' . (int) $index );
 				$sliders_markup .= ( count( $row['items'] ) - 1 ) !== (int) $index ? ', ' : ']\'';
 			}
 			$sliders_markup .= '></div>';
+
+			$sliders_markup .= '<div class="full-width-wrapper"><input id="bgtfw_header_layout_custom_col_width-slider-'
+				. $row_number . '-' . $device . '-full" type="checkbox" class="col-width-full-width" data-row="' . $row_number
+				. '" data-device="' . $device . '" value="1" ' . checked( $full_width, true, false ) . '>';
+			$sliders_markup .= '<label class="full_width_label">' . esc_html__( 'Full width items for this device size', 'bgtfw' ) . '</label></div><hr />';
+
 			$row_number     += 1;
 		}
 		$sliders_markup .= '</div>';
@@ -122,11 +147,12 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	 */
 	public function get_sliders_markup() {
 		$current_layout = get_theme_mod( 'bgtfw_header_layout_custom' );
+
 		$sliders_markup = '<div id="' . esc_attr( $this->id ) . '-sliders-wrapper" class="sliders-wrapper">';
 		$devices        = array( 'large', 'desktop', 'tablet', 'phone' );
 
 		foreach ( $devices as $device ) {
-			$sliders_markup .= $this->slider_device_group( $device, $current_layout );
+			$sliders_markup .= self::slider_device_group( $device, $current_layout );
 		}
 
 		$sliders_markup .= '</div>';
@@ -155,8 +181,29 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 			<div id="<?php echo esc_attr( $this->id ); ?>-sliders-wrapper" class="sliders-wrapper">
 				<?php echo $sliders_markup; ?>
 			</div>
-			<input type="text" val='<?php echo esc_attr( $this->value() ); ?>' class='hidden' <?php echo esc_attr( $this->link() ); ?>>
+			<input type="text" value='<?php echo wp_json_encode( $this->value() ); ?>' class='hidden' <?php echo esc_attr( $this->link() ); ?>>
 		</div>
 	<?php
+	}
+
+	/**
+	 * Get Updated Markup
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @param array $layout Layout to use for generating markup.
+	 */
+	public static function get_updated_markup( $layout ) {
+		$devices = array( 'large', 'desktop', 'tablet', 'phone' );
+
+		$sliders_markup = '';
+
+		error_log( 'new_layout: ' . json_encode( $layout ) );
+
+		foreach ( $devices as $device ) {
+			$sliders_markup .= self::slider_device_group( $device, $layout );
+		}
+
+		return $sliders_markup;
 	}
 }

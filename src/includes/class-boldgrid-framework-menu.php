@@ -90,10 +90,12 @@ class Boldgrid_Framework_Menu {
 			 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
 			 * See link for a list of arguments that can be passed to wp_nav_menu().
 			 *
-			 * @param array $args      Arguments to override BGTFW default configs for wp_nav_menu().
-			 * @param array $add_class Array of wp_nav_menu args that are CSS class overrides.
+			 * @param array $args            Arguments to override BGTFW default configs for wp_nav_menu().
+			 * @param array $add_class       Array of wp_nav_menu args that are CSS class overrides.
+			 * @param bool  $force_print_nav Forces this nav location to be printed.
 			 */
 			$action = function( $args, $add_class = array() ) use ( $menu, &$bgtfw_menus ) {
+				global $wp_customize;
 				// Combine classes in $args from hook, and merge the remaining items in array.
 				$add_class = ( ! empty( $add_class ) && is_array( $add_class ) ) ? $add_class : array( 'menu_class', 'container_class' );
 				$menu = $this->parse_nav_args( $args, $menu, $add_class );
@@ -115,11 +117,20 @@ class Boldgrid_Framework_Menu {
 				 */
 				if ( is_customize_preview() && true === $bgtfw_menus->configs['customizer-options']['edit']['enabled'] ) {
 					$menu['fallback_cb'] = 'Boldgrid_Framework_Customizer_Edit::fallback_cb';
+					error_log( 'is_customize_preview(): ' . json_encode( $menu ) );
 					wp_nav_menu( $menu );
 				} elseif ( has_nav_menu( $menu['theme_location'] ) ) {
+					error_log( 'has_nav_menu: ' . json_encode( $menu ) );
 					wp_nav_menu( $menu );
 				} elseif ( isset( $menu['menu'] ) ) {
+					error_log( 'isset( $menu[menu]: ' . json_encode( $menu ) );
 					wp_nav_menu( $menu );
+				} elseif ( 'sticky-main' === $menu['theme_location'] ) {
+					$theme_locations = get_nav_menu_locations();
+					error_log( 'main_menu ID: ' . json_encode( $theme_locations ) );
+					$main_menu       = get_term( $theme_locations['main-menu'], 'nav_menu' );
+					$menu['menu']    = $main_menu->term_id;
+					error_log( 'main_menu ID: ' . json_encode( get_term( $theme_locations['main-menu'], 'nav_menu' ) ) );
 				}
 			};
 

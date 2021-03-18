@@ -1031,7 +1031,6 @@ HTML;
 	 * @since SINCEVERSION
 	 */
 	public function header_column_nonces( $nonces ) {
-		error_log( 'coluimn_nonce_created' );
 		$nonces['bgtfw-header-columns'] = wp_create_nonce( 'bgtfw_header_columns' );
 		return $nonces;
 	}

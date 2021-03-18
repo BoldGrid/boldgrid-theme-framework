@@ -11,6 +11,9 @@ export default {
 				'bgtfw_fixed_header',
 				'bgtfw_header_layout_position',
 				'bgtfw_sticky_header_layout',
+				'bgtfw_sticky_header_layout_custom',
+				'bgtfw_header_preset',
+				'bgtfw_sticky_header_preset',
 				'bgtfw_header_layout',
 				'bgtfw_header_layout_custom',
 				'bgtfw_footer_layout'

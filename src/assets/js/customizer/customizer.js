@@ -14,7 +14,7 @@ const api = wp.customize;
 const controlApi = parent.wp.customize;
 
 api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
-	let controls = [ 'bgtfw_header_layout', 'bgtfw_header_preset', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
+	let controls = [ 'bgtfw_header_layout', 'bgtfw_header_preset', ,'bgtfw_sticky_header_preset', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
 
 	if ( controls.includes( placement.partial.id ) ) {
 		let css = [];
@@ -804,7 +804,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		}
 
 		// Listen for widget layout changes.
-		[ 'bgtfw_header_layout', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ].forEach( control => {
+		[ 'bgtfw_header_layout', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_sticky_header_layout_custom', 'bgtfw_footer_layout' ].forEach( control => {
 			api( control, value => {
 				value.bind( () => {
 					api.preview.send( 'bgtfw-widget-section-update', control );

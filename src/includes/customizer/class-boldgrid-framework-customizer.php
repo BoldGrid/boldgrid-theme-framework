@@ -1046,8 +1046,6 @@ HTML;
 			wp_die( -1 );
 		}
 
-		error_log( 'ajax header columns' );
-
 		$layout = $_POST['customHeaderLayout'];
 
 		$markup = Boldgrid_Framework_Control_Col_Width::get_updated_markup( $layout );

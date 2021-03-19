@@ -14,7 +14,7 @@ const api = wp.customize;
 const controlApi = parent.wp.customize;
 
 api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
-	let controls = [ 'bgtfw_header_layout', 'bgtfw_header_preset', ,'bgtfw_sticky_header_preset', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
+	let controls = [ 'bgtfw_header_layout', 'bgtfw_header_preset', 'bgtfw_sticky_header_preset', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
 
 	if ( controls.includes( placement.partial.id ) ) {
 		let css = [];
@@ -273,65 +273,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	new HeaderPreview().bindEvents();
 	new TypographyPreview().bindEvents();
 	new LinkPreview().bindEvents();
-
-	/**
-	 * Runs when trying to add Header Sliders
-	 *
-	 * @since 2.2.3
-	 *
-	 * @param array  sliderUids
-	 * @param array  repeaterUids
-	 */
-	function addHeaderSliders( sliderUids, repeaterUids ) {
-		let uidsToAdd = [],
-			notification = `
-				<div class="customize-control-notifications-container">
-					<ul>
-						<li class="notice notice-bgtfw-header-layout-change" data-code="bgtfw-header-layout-change" data-type="warning">
-							<div class="notification-message">The Customizer must be refreshed before you can adjust the column width. We recommend using the Customizer’s Save Draft option, then refresh the page.</div>
-						</li>
-					</ul>
-				</div>`,
-			sliderGroup = $( controlApi.control( 'bgtfw_header_layout_col_width' ).container ).find( '.slider-group' );
-
-		repeaterUids.forEach( function( uid ) {
-			if ( ! sliderUids.includes( uid, ) ) {
-				uidsToAdd.push( uid );
-			}
-		} );
-
-		// If there are uidsToAdd and no notification added, then we have to add the notification to the sliderGroup.
-		if ( 0 < uidsToAdd.length && 0 === $( sliderGroup ).find( '.customize-control-notifications-container' ).length ) {
-			$( sliderGroup ).prepend( notification );
-
-		}
-	}
-
-	/**
-	 * Remove Header Sliders
-	 *
-	 * @since 2.2.3
-	 *
-	 * @param array  sliderUids
-	 * @param array  repeaterUids
-	 */
-	function remHeaderSliders( sliderUids, repeaterUids ) {
-		let uidsToRemove = [];
-		sliderUids.forEach( function( uid ) {
-			if ( ! repeaterUids.includes( uid ) ) {
-				uidsToRemove.push( uid );
-			}
-		} );
-
-		uidsToRemove.forEach( function( uid ) {
-			var sliderGroup = $( controlApi.control( 'bgtfw_header_layout_col_width' ).container ).find( '.slider-group' );
-			$( sliderGroup ).find( '.slider-control' ).each( function() {
-				if ( 0 < $( this ).find( '.slider[data-name=' + uid + ']' ).length ) {
-					$( this ).remove();
-				}
-			} );
-		} );
-	}
 
 	$( function() {
 		var headingsColorOutput,

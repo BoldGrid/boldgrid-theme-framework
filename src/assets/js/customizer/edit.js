@@ -275,11 +275,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					title: self.i18n.menu
 				};
 
-				console.log( {
-					'menu': menu,
-					'menuId': menuId
-				} );
-
 				self.addButton( button );
 			} );
 

@@ -117,13 +117,10 @@ class Boldgrid_Framework_Menu {
 				 */
 				if ( is_customize_preview() && true === $bgtfw_menus->configs['customizer-options']['edit']['enabled'] ) {
 					$menu['fallback_cb'] = 'Boldgrid_Framework_Customizer_Edit::fallback_cb';
-					error_log( 'is_customize_preview(): ' . json_encode( $menu ) );
 					wp_nav_menu( $menu );
 				} elseif ( has_nav_menu( $menu['theme_location'] ) ) {
-					error_log( 'has_nav_menu: ' . json_encode( $menu ) );
 					wp_nav_menu( $menu );
 				} elseif ( isset( $menu['menu'] ) ) {
-					error_log( 'isset( $menu[menu]: ' . json_encode( $menu ) );
 					wp_nav_menu( $menu );
 				}
 			};

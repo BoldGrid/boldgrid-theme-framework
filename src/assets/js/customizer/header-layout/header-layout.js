@@ -1,5 +1,11 @@
 const controlApi = parent.wp.customize;
 
+parent.window.BOLDGRID.colWidthSliders = parent.window.BOLDGRID.colWidthSliders ?
+			parent.window.BOLDGRID.colWidthSliders :
+			{};
+
+const colWidthSliders = parent.window.BOLDGRID.colWidthSliders;
+
 export class HeaderLayout  {
 
 	/**
@@ -11,9 +17,6 @@ export class HeaderLayout  {
 	*/
 	init() {
 
-		parent.window.BOLDGRID.colWidthSliders = parent.window.BOLDGRID.colWidthSliders ?
-			parent.window.BOLDGRID.colWidthSliders :
-			{};
 
 		this.changeColumnDevice();
 
@@ -28,9 +31,6 @@ export class HeaderLayout  {
 		wp.customize.bind( 'preview-ready', () => {
 			this.correctMenuLocations();
 			wp.customize.preview.bind( 'sendHeaderLayout', ( args ) => {
-				console.log( {
-					'args': args
-				} );
 				this.renderHeaderPreview( ...args );
 			} );
 		} );
@@ -38,6 +38,10 @@ export class HeaderLayout  {
 		parent.window.BOLDGRID.colWidths = parent.window.BOLDGRID.colWidths ?
 			parent.window.BOLDGRID.colWidths :
 			this;
+
+		// window.BOLDGRID.colWidths = window.BOLDGRID.colWidths ?
+		// 	window.BOLDGRID.colWidths :
+		// 	this;
 	}
 
 	correctMenuLocations() {
@@ -48,21 +52,13 @@ export class HeaderLayout  {
 			stickySocialMenu,
 			stickyMainMenu;
 
-		console.log( 'correctMenuLocations' );
+			if ( window._.isFunction( controlApi( 'nav_menu_locations[sticky-social]' ) ) ) {
+				stickySocialMenu = controlApi( 'nav_menu_locations[sticky-social]' )();
+			}
 
-		if ( window._.isFunction( controlApi( 'nav_menu_locations[sticky-social]' ) ) ) {
-			console.log( {
-				'stickySocialMenu': controlApi( 'nav_menu_locations[sticky-social]' )()
-			} );
-			stickySocialMenu = controlApi( 'nav_menu_locations[sticky-social]' )();
-		}
-
-		if ( window._.isFunction( controlApi( 'nav_menu_locations[sticky-main]' ) ) ) {
-			console.log( {
-				'stickyMain': controlApi( 'nav_menu_locations[sticky-main]' )()
-			} );
-			stickyMainMenu = controlApi( 'nav_menu_locations[sticky-main]' )();
-		}
+			if ( window._.isFunction( controlApi( 'nav_menu_locations[sticky-main]' ) ) ) {
+				stickyMainMenu = controlApi( 'nav_menu_locations[sticky-main]' )();
+			}
 
 		if ( 0 === footerSocialMenu ) {
 			controlApi.control( 'nav_menu_locations[footer-social]' ).setting.set( socialMenu );
@@ -85,8 +81,18 @@ export class HeaderLayout  {
 	bindFullWidth() {
 		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
 			.find( '.col-width-full-width' ).on( 'click', ( event ) => {
-				$( event.currentTarget ).parent().toggleClass( 'disabled' );
+				var deviceClass = this.getDeviceClass( $( event.currentTarget ).data( 'device' ) );
+				if ( $( event.currentTarget ).prop( 'checked' ) ) {
+					$( event.currentTarget ).parent().addClass( 'disabled' );
+				} else {
+					$( event.currentTarget ).parent().removeClass( 'disabled' );
+				}
+
 				this.updateControlValue();
+
+				$( event.currentTarget ).parent().siblings( '.col-width-slider' ).data( 'items' ).forEach( ( item ) => {
+					$( '.' + item.uid ).toggleClass( deviceClass + 'full-width' );
+				} );
 			} );
 	}
 
@@ -108,8 +114,8 @@ export class HeaderLayout  {
 			var $thisLabel      = $( e.currentTarget ),
 				$thisInputValue = $thisLabel.siblings( 'input' ).val();
 
-			$container.find( '.col-width-slider-device-group' ).hide();
-			$container.find( '#bgtfw_header_layout_custom_col_width-slider-' + $thisInputValue ).show();
+			$container.find( '.col-width-slider-device-group' ).height( 0 );
+			$container.find( '#bgtfw_header_layout_custom_col_width-slider-' + $thisInputValue ).height( 81 );
 		} );
 	}
 
@@ -139,9 +145,7 @@ export class HeaderLayout  {
 				container.find( '.sliders-wrapper' ).html( response.data.markup );
 				this.initialColumnSliders( true );
 				this.updateControlValue();
-				controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
-					.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-large' )
-					.hide();
+
 				container.css( 'opacity', 1 );
 			}
 		);
@@ -177,19 +181,13 @@ export class HeaderLayout  {
 				}
 
 				if ( parent ) {
-					console.log( {
-						'parentColWidthSliders': parent.window.BOLDGRID.colWidthSliders
-					} );
 					parent.window.BOLDGRID.colWidthSliders[ item.uid ] = {
 						row: sliderElement.dataset.row,
 						col: index,
 						key: item.key
 					};
 				} else {
-					console.log( {
-						'colWidthSliders': window.BOLDGRID.colWidthSliders
-					} );
-					window.BOLDGRID.colWidthSliders[ item.uid ] = {
+					colWidthSliders[ item.uid ] = {
 						row: sliderElement.dataset.row,
 						col: index,
 						key: item.key
@@ -206,34 +204,33 @@ export class HeaderLayout  {
 				stop: this.bindSliderChanges
 			} );
 
-			window._.delay( () => {
-				var $slider = $container.find( slider.element );
-				$slider.find( '.ui-slider-range' ).each( ( sliderIndex, sliderRange ) => {
-					var uid = items[ sliderIndex ].uid,
-						device = items[ sliderIndex ].device;
 
-					let disabled = $slider.siblings( '.full-width-wrapper' ).children( 'input' ).attr( 'checked' ) ?
-						true : false;
+			let $slider = $container.find( slider.element );
+			$slider.find( '.ui-slider-range' ).each( ( sliderIndex, sliderRange ) => {
+				var uid = items[ sliderIndex ].uid,
+					device = items[ sliderIndex ].device;
 
-					if ( disabled ) {
-						$slider.siblings( '.full-width-wrapper' ).children( 'input' ).parent().addClass( 'disabled' );
-					} else {
-						$slider.siblings( '.full-width-wrapper' ).children( 'input' ).parent().removeClass( 'disabled' );
-					}
+				let disabled = $slider.siblings( '.full-width-wrapper' ).children( 'input' ).attr( 'checked' ) ?
+					true : false;
 
-					$container.find( sliderRange ).parent().attr( {
-						'data-uid': uid,
-						'data-device': device
-					} );
+				if ( disabled ) {
+					$slider.siblings( '.full-width-wrapper' ).children( 'input' ).parent().addClass( 'disabled' );
+				} else {
+					$slider.siblings( '.full-width-wrapper' ).children( 'input' ).parent().removeClass( 'disabled' );
+				}
 
-					$container.find( sliderRange ).html( '<span class="col-width-range-label">' + items[sliderIndex].key + '</span>' );
-					if ( parent ) {
-						parent.window.BOLDGRID.colWidthSliders[ uid ][ device ] = slider;
-					} else {
-						window.BOLDGRID.colWidthSliders[ uid ][ device ] = slider;
-					}
+				$container.find( sliderRange ).parent().attr( {
+					'data-uid': uid,
+					'data-device': device
 				} );
-			}, 100 );
+
+				$container.find( sliderRange ).html( '<span class="col-width-range-label">' + items[sliderIndex].key + '</span>' );
+				if ( parent ) {
+					parent.window.BOLDGRID.colWidthSliders[ uid ][ device ] = slider;
+				} else {
+					colWidthSliders[ uid ][ device ] = slider;
+				}
+			} );
 		} );
 	}
 
@@ -263,7 +260,7 @@ export class HeaderLayout  {
 	 * @since SINCEVERSION
 	 */
 	updateControlValue() {
-		var sliderObjects = parent.window.BOLDGRID.colWidthSliders,
+		var sliderObjects = colWidthSliders,
 			valueObject   = {},
 			$fullWidthControls = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( '.col-width-full-width' );
 
@@ -390,13 +387,14 @@ export class HeaderLayout  {
 		customLayoutSection.expanded.bind( () => {
 			this.initialColumnSliders();
 			if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
-				controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
-					.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-large' )
-					.hide();
 				controlApi.control( 'bgtfw_header_layout_custom' ).activate();
+				controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
+				.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-large' )
+				.height( 0 );
 			} else {
 				controlApi.control( 'bgtfw_header_layout_custom' ).deactivate();
 			}
+
 		} );
 	}
 
@@ -429,9 +427,6 @@ export class HeaderLayout  {
 		$( headerId ).find( '.boldgrid-section' ).remove();
 		$( headerId ).append( markup );
 		hiddenItems = this.getHiddenItems( value );
-		console.log( {
-			'hiddenItems': hiddenItems
-		} );
 		$( '#sticky-header-display-inline-css' ).remove();
 		this.hideHiddenItems( hiddenItems );
 	}
@@ -659,6 +654,8 @@ export class HeaderLayout  {
 
 					showItems.forEach( ( showItem ) => {
 						$( '#masthead .site-branding' ).removeClass( 'hide-' + showItem );
+						$( '#masthead .site-branding' ).children().removeClass( 'invisible' );
+						$( '#masthead .site-branding .site-description' ).show();
 					} );
 
 					hiddenItems.forEach( ( hiddenItem ) => {

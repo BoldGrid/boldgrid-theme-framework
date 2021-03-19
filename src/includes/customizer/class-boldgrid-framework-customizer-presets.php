@@ -74,6 +74,13 @@ class Boldgrid_Framework_Customizer_Presets {
 		}
 	}
 
+	/**
+	 * Get Branding Notices.
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @return string Markup of notices.
+	 */
 	public function get_branding_notices() {
 		$markup  = '<p class="branding_notice logo">'
 			. esc_html__( 'You do not have a logo set. ', 'bgtfw' )
@@ -259,6 +266,15 @@ class Boldgrid_Framework_Customizer_Presets {
 		return $nonces;
 	}
 
+	/**
+	 * Get Custom Layout.
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @param string $header_type Type of header.
+	 *
+	 * @return array Custom layout.
+	 */
 	public function get_custom_layout( $header_type ) {
 		$defaults = array(
 			'header'        => get_theme_mod( 'bgtfw_header_layout_custom' ),

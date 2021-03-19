@@ -198,8 +198,6 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 
 		$sliders_markup = '';
 
-		error_log( 'new_layout: ' . json_encode( $layout ) );
-
 		foreach ( $devices as $device ) {
 			$sliders_markup .= self::slider_device_group( $device, $layout );
 		}

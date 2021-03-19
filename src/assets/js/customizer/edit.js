@@ -262,7 +262,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					return;
 				}
 
-				selectorId = $( '#masthead').find( '#' + menuId ).length ? '#masthead ' : '';
+				selectorId = $( '#masthead' ).find( '#' + menuId ).length ? '#masthead ' : '';
 				selectorId += '#' + menuId;
 
 				// All menu edit buttons will be aligned with the menu itself.
@@ -274,6 +274,11 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					selector : selectorId,
 					title: self.i18n.menu
 				};
+
+				console.log( {
+					'menu': menu,
+					'menuId': menuId
+				} );
 
 				self.addButton( button );
 			} );

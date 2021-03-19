@@ -1277,7 +1277,7 @@ return array(
 		'settings'    => 'bgtfw_header_width',
 		'transport'   => 'auto',
 		'label'       => esc_attr__( 'Header Width', 'bgtfw' ),
-		'section'     => 'bgtfw_header_layout',
+		'section'     => 'bgtfw_header_layout_advanced',
 		'default'     => 400,
 		'choices'     => array(
 			'min'  => '0',
@@ -2113,7 +2113,7 @@ return array(
 			'header-top' => '<span class="icon-advanced-layout-top"></span>' . esc_html__( 'Top', 'bgtfw' ),
 			'header-right' => '<span class="icon-advanced-layout-right"></span>' . esc_html__( 'Right', 'bgtfw' ),
 		),
-		'section' => 'bgtfw_header_layout',
+		'section' => 'bgtfw_header_layout_advanced',
 		'sanitize_callback' => 'sanitize_html_class',
 	),
 	'bgtfw_header_layout' => [

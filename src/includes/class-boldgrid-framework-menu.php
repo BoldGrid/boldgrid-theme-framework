@@ -125,12 +125,6 @@ class Boldgrid_Framework_Menu {
 				} elseif ( isset( $menu['menu'] ) ) {
 					error_log( 'isset( $menu[menu]: ' . json_encode( $menu ) );
 					wp_nav_menu( $menu );
-				} elseif ( 'sticky-main' === $menu['theme_location'] ) {
-					$theme_locations = get_nav_menu_locations();
-					error_log( 'main_menu ID: ' . json_encode( $theme_locations ) );
-					$main_menu       = get_term( $theme_locations['main-menu'], 'nav_menu' );
-					$menu['menu']    = $main_menu->term_id;
-					error_log( 'main_menu ID: ' . json_encode( get_term( $theme_locations['main-menu'], 'nav_menu' ) ) );
 				}
 			};
 

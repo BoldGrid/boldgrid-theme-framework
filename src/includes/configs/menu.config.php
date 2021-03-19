@@ -63,13 +63,13 @@ return array(
 		'footer-social' => array(
 			'theme_location'  => 'footer-social',
 			'container'       => false,
-			'menu_id'         => 'social-menu',
+			'menu_id'         => 'footer-social-menu',
 			'menu_class'      => 'sm sm-clean social-menu',
 		),
 		'sticky-main' => array(
 			'theme_location' => 'sticky-main',
 			'container' => false,
-			'menu_id' => 'main-menu',
+			'menu_id' => 'sticky-main-menu',
 			'menu_class' => 'sm sm-clean main-menu',
 		),
 		'sticky-secondary' => array(
@@ -93,7 +93,7 @@ return array(
 		'sticky-social' => array(
 			'theme_location'  => 'sticky-social',
 			'container'       => false,
-			'menu_id'         => 'social-menu',
+			'menu_id'         => 'sticky-social-menu',
 			'menu_class'      => 'sm sm-clean social-menu',
 		),
 	),

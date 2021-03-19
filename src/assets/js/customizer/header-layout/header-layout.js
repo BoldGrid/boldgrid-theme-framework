@@ -176,11 +176,25 @@ export class HeaderLayout  {
 					sliderValues.push( startValue, endValue );
 				}
 
-				parent.window.BOLDGRID.colWidthSliders[ item.uid ] = {
-					row: sliderElement.dataset.row,
-					col: index,
-					key: item.key
-				};
+				if ( parent ) {
+					console.log( {
+						'parentColWidthSliders': parent.window.BOLDGRID.colWidthSliders
+					} );
+					parent.window.BOLDGRID.colWidthSliders[ item.uid ] = {
+						row: sliderElement.dataset.row,
+						col: index,
+						key: item.key
+					};
+				} else {
+					console.log( {
+						'colWidthSliders': window.BOLDGRID.colWidthSliders
+					} );
+					window.BOLDGRID.colWidthSliders[ item.uid ] = {
+						row: sliderElement.dataset.row,
+						col: index,
+						key: item.key
+					};
+				}
 			} );
 
 			let slider = $container.find( sliderElement ).multiSlider( {
@@ -213,7 +227,11 @@ export class HeaderLayout  {
 					} );
 
 					$container.find( sliderRange ).html( '<span class="col-width-range-label">' + items[sliderIndex].key + '</span>' );
-					parent.window.BOLDGRID.colWidthSliders[ uid ][ device ] = slider;
+					if ( parent ) {
+						parent.window.BOLDGRID.colWidthSliders[ uid ][ device ] = slider;
+					} else {
+						window.BOLDGRID.colWidthSliders[ uid ][ device ] = slider;
+					}
 				} );
 			}, 100 );
 		} );
@@ -418,6 +436,15 @@ export class HeaderLayout  {
 		this.hideHiddenItems( hiddenItems );
 	}
 
+	customPageHeader() {
+		var $customPageHeader = $( '#masthead.template-header' );
+		if ( 0 !== $customPageHeader.length ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	/**
 	 * Bind Control Changes
 	 *
@@ -525,10 +552,23 @@ export class HeaderLayout  {
 
 				if ( 'custom' === headerPreset ) {
 					controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
-					controlApi.section( 'bgtfw_header_layout_advanced' ).focus();
+					controlApi.control( 'bgtfw_header_layout_position' ).focus();
 					requestData.customHeaderLayout = controlApi( 'bgtfw_header_layout_custom' )();
 				} else {
 					controlApi.section( 'bgtfw_header_layout_advanced' ).deactivate();
+				}
+
+				if ( this.customPageHeader() ) {
+					control.notifications.add( 'customPageHeader', new controlApi.Notification(
+						'customPageHeader',
+						{
+							type: 'warning',
+							message: 'The page that you are previewing is using a Custom Page Header. Changes made will still be saved, but will not be previewed on this page.'
+						}
+					) );
+					return;
+				} else {
+					control.notifications.remove( 'customPageHeader' );
 				}
 
 				$( '#masthead' ).css( 'opacity', 0.1 );
@@ -572,7 +612,7 @@ export class HeaderLayout  {
 
 				if ( 'custom' === stickyHeaderPreset ) {
 					controlApi.section( 'bgtfw_sticky_header_layout_advanced' ).activate();
-					controlApi.section( 'bgtfw_sticky_header_layout_advanced' ).focus();
+					controlApi.control( 'bgtfw_sticky_header_layout_custom' ).focus();
 					requestData.customHeaderLayout = controlApi( 'bgtfw_sticky_header_layout_custom' )();
 				} else {
 					controlApi.section( 'bgtfw_sticky_header_layout_advanced' ).deactivate();

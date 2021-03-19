@@ -926,7 +926,11 @@ class BoldGrid {
 		global $boldgrid_theme_framework;
 		$configs = $boldgrid_theme_framework->get_configs();
 
-		$device_column_widths  = array();
+		if ( get_theme_mod( $theme_mod . '_custom_col_width' ) ) {
+			return self::new_column_control( $theme_mod );
+		}
+
+		$device_column_widths = array();
 
 		$type = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) )
 			? 'sticky_header'
@@ -984,8 +988,6 @@ class BoldGrid {
 		} else {
 			$layout_type = 'footer';
 		}
-
-		error_log( 'layout_type: ' . $layout_type . ' - ' . $preset . ' : ' . json_encode( $custom_layout ) );
 
 		$markup        = '';
 		$column_widths = self::get_column_widths( $theme_mod );

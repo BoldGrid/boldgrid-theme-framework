@@ -113,9 +113,14 @@ export class HeaderLayout  {
 		$deviceLabel.on( 'click', ( e ) => {
 			var $thisLabel      = $( e.currentTarget ),
 				$thisInputValue = $thisLabel.siblings( 'input' ).val();
-
 			$container.find( '.col-width-slider-device-group' ).height( 0 );
 			$container.find( '#bgtfw_header_layout_custom_col_width-slider-' + $thisInputValue ).height( 81 );
+
+			if ( 'phone' === $thisInputValue ) {
+				$container.closest( 'body' ).find( 'button.preview-mobile' ).not( '.active' ).trigger( 'click' );
+			} else {
+				$container.closest( 'body' ).find( 'button.preview-' + $thisInputValue ).not( '.active' ).trigger( 'click' );
+			}
 		} );
 	}
 
@@ -231,6 +236,11 @@ export class HeaderLayout  {
 					colWidthSliders[ uid ][ device ] = slider;
 				}
 			} );
+
+			let device = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( '.devices-wrapper input:checked' ).val();
+				controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
+					.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-' + device )
+					.height( 0 );
 		} );
 	}
 
@@ -343,6 +353,11 @@ export class HeaderLayout  {
 
 		controlApi.section( 'bgtfw_header_presets' ).expanded.bind( () => {
 			this.brandingNotices( controlApi( 'bgtfw_header_preset_branding' )(), controlApi.control( 'bgtfw_header_preset_branding' ) );
+			controlApi.control( 'bgtfw_header_preset' ).container.find( '.bgtfw_header_presetcustom' ).on( 'click', () => {
+				controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
+				controlApi.control( 'bgtfw_header_layout_custom' ).activate();
+				controlApi.control( 'bgtfw_header_layout_position' ).focus();
+			} );
 		} );
 
 		controlApi.section( 'bgtfw_header_layout' ).expanded.bind( ( isExpanded ) => {
@@ -388,12 +403,19 @@ export class HeaderLayout  {
 			this.initialColumnSliders();
 			if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
 				controlApi.control( 'bgtfw_header_layout_custom' ).activate();
-				controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
-				.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-large' )
-				.height( 0 );
 			} else {
 				controlApi.control( 'bgtfw_header_layout_custom' ).deactivate();
 			}
+			let $container = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container;
+			$container.closest( 'body' ).find( '#customize-footer-actions button' ).on( 'click', ( event ) => {
+					var device = event.currentTarget.dataset.device;
+
+					controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( '.devices' ).each( ( _, deviceLabel ) => {
+						if ( device === controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( deviceLabel ).data( 'device' ) ) {
+							controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( deviceLabel ).trigger( 'click' );
+						}
+					} );
+				} );
 
 		} );
 	}
@@ -546,8 +568,6 @@ export class HeaderLayout  {
 				};
 
 				if ( 'custom' === headerPreset ) {
-					controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
-					controlApi.control( 'bgtfw_header_layout_position' ).focus();
 					requestData.customHeaderLayout = controlApi( 'bgtfw_header_layout_custom' )();
 				} else {
 					controlApi.section( 'bgtfw_header_layout_advanced' ).deactivate();

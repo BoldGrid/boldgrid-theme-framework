@@ -85,7 +85,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 			$checked    = 'large' === $device ? 'checked' : '';
 
 			$devices_markup .= '<li><input id="col-width-devices-' . $device . '" name="col-width-devices" value="' . $device . '" type="radio" ' . $checked . '></input>';
-			$devices_markup .= '<label title="' . ucfirst( $device ) . '" for="col-width-devices-' . $device . '">';
+			$devices_markup .= '<label class="devices" title="' . ucfirst( $device ) . '" for="col-width-devices-' . $device . '" data-device="' . ( 'phone' === $device ? 'mobile' : $device ) . '">';
 			$devices_markup .= $device_svg;
 			$devices_markup .= '</label></li>';
 		}

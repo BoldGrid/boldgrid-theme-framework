@@ -1226,7 +1226,7 @@ class BoldGrid {
 			$starter_content = get_theme_starter_content();
 			$layout          = $starter_content['theme_mods'][ 'bgtfw_' . $preset_type . '_layout' ];
 		} elseif ( 'default' === $preset ) {
-			$layout = (array) get_theme_mod( 'bgtfw_default_' . $preset_type . '_layout', $configs['customizer']['controls'][ 'bgtfw_' . $preset_type . '_layout' ]['default'] );
+			$layout = (array) get_theme_mod( 'bgtfw_' . $preset_type . '_layout_default', $configs['customizer']['controls'][ 'bgtfw_' . $preset_type . '_layout' ]['default'] );
 		}
 
 		if ( 'footer' === $preset_type ) {

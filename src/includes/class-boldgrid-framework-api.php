@@ -919,7 +919,7 @@ class BoldGrid {
 	 * For users using the new column control,
 	 * the values are stored differently.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @param string $theme_mod The thememod to reference.
 	 */
@@ -1203,7 +1203,7 @@ class BoldGrid {
 	 *
 	 * Retrieve the layout for various presets.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @param string $theme_mod     Name of the theme mod.
 	 * @param string $preset        Name of the preset.

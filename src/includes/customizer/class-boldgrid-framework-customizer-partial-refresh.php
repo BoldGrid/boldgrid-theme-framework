@@ -4,7 +4,7 @@
  *
  * @link http://www.boldgrid.com
  *
- * @since SINCEVERSION
+ * @since 2.7.0
  *
  * @package Boldgrid_Theme_Framework_Customizer
  */
@@ -15,7 +15,7 @@
  *
  * Renders various parts of pages for partial refresh in customizer preview.
  *
- * @since      SINCEVERSION
+ * @since      2.7.0
  * @category   Customizer
  * @package    Boldgrid_Framework
  * @subpackage Boldgrid_Framework_Customizer
@@ -33,7 +33,7 @@ class Boldgrid_Framework_Customizer_Partial_Refresh {
 	/**
 	 * Class Constructor.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @param array $configs BGTFW Configs Array.
 	 */
@@ -47,7 +47,7 @@ class Boldgrid_Framework_Customizer_Partial_Refresh {
 	 *
 	 * Handles header partial refreshes.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	public function header() {
 		$has_header_template = apply_filters( 'crio_premium_get_page_header', get_the_ID() );

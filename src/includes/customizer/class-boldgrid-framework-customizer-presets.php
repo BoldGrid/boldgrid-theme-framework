@@ -4,7 +4,7 @@
  *
  * @link http://www.boldgrid.com
  *
- * @since SINCEVERSION
+ * @since 2.7.0
  *
  * @package Boldgrid_Theme_Framework_Customizer
  */
@@ -15,7 +15,7 @@
  *
  * Stores and retrieves header layout presets.
  *
- * @since      SINCEVERSION
+ * @since      2.7.0
  * @category   Customizer
  * @package    Boldgrid_Framework
  * @subpackage Boldgrid_Framework_Customizer
@@ -41,7 +41,7 @@ class Boldgrid_Framework_Customizer_Presets {
 	/**
 	 * Class Constructor.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @param array $configs BGTFW Configs Array.
 	 */
@@ -75,9 +75,30 @@ class Boldgrid_Framework_Customizer_Presets {
 	}
 
 	/**
+	 * Starter Content Defaults
+	 *
+	 * @since 2.7.0
+	 */
+	public function starter_content_defaults( $wp_customize ) {
+		$changeset_data = $wp_customize->changeset_data();
+
+		$key = get_stylesheet() . '::bgtfw_header_layout';
+		if ( isset( $changeset_data[ $key ] ) && ! empty( $changeset_data[ $key ]['starter_content'] ) ) {
+			set_theme_mod( 'bgtfw_header_layout_default', $changeset_data[ $key ]['value'] );
+			set_theme_mod( 'bgtfw_header_layout_custom', $changeset_data[ $key ]['value'] );
+		}
+
+		$key = get_stylesheet() . '::bgtfw_sticky_header_layout';
+		if ( isset( $changeset_data[ $key ] ) && ! empty( $changeset_data[ $key ]['starter_content'] ) ) {
+			set_theme_mod( 'bgtfw_sticky_header_layout_default', $changeset_data[ $key ]['value'] );
+			set_theme_mod( 'bgtfw_sticky_header_layout_custom', $changeset_data[ $key ]['value'] );
+		}
+	}
+
+	/**
 	 * Get Branding Notices.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @return string Markup of notices.
 	 */
@@ -108,7 +129,7 @@ class Boldgrid_Framework_Customizer_Presets {
 	 * one Inspiration to another, this will set a value as 'default'
 	 * if a value is not already set.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	public function set_default_layout() {
 		global $wp_customize;
@@ -117,6 +138,8 @@ class Boldgrid_Framework_Customizer_Presets {
 
 		if ( ! $default_layout && $this->current_header_layout ) {
 			set_theme_mod( 'bgtfw_header_layout_default', $this->current_header_layout );
+		} elseif ( ! $default_layout && isset( $this->configs['starter-content']['theme_mods']['bgtfw_header_layout'] ) ) {
+			set_theme_mod( 'bgtfw_header_layout_default', $this->configs['starter-content']['theme_mods']['bgtfw_header_layout'] );
 		} elseif ( ! $default_layout ) {
 			set_theme_mod(
 				'bgtfw_header_layout_default',
@@ -173,7 +196,7 @@ class Boldgrid_Framework_Customizer_Presets {
 	 * one Inspiration to another, this will set a value as 'default'
 	 * if a value is not already set.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	public function set_default_sticky_layout() {
 		global $wp_customize;
@@ -237,7 +260,7 @@ class Boldgrid_Framework_Customizer_Presets {
 	 * If the custom layout option is not set yet.
 	 * then we set the custom layout to match the current layout.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	public function set_custom_layout() {
 		$default_layout       = get_theme_mod( 'bgtfw_header_layout_default' );
@@ -269,7 +292,7 @@ class Boldgrid_Framework_Customizer_Presets {
 	/**
 	 * Get Custom Layout.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @param string $header_type Type of header.
 	 *
@@ -289,7 +312,7 @@ class Boldgrid_Framework_Customizer_Presets {
 	 *
 	 * Handles Ajax calls for header layout refreshes.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	public function wp_ajax_bgtfw_header_layout() {
 		global $wp_customize;
@@ -330,7 +353,7 @@ class Boldgrid_Framework_Customizer_Presets {
 	/**
 	 * Get Preset Choices.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @param string $preset_type Type of preset ( header, footer, etc ).
 	 */

@@ -265,7 +265,7 @@ return array(
 			),
 			array(
 				'control' => 'blogdescription',
-				'selector' => '#masthead .site-description, #masthead-sticky .site-description',
+				'selector' => '#masthead .site-description',
 				'isParentColumn' => true,
 				'title' => esc_attr__( 'Tagline', 'bgtfw' ),
 			),

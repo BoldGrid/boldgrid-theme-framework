@@ -1009,7 +1009,7 @@ HTML;
 	/**
 	 * Add Custom Column Width control.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	public function register_colwidth_control( $wp_customize ) {
 		require_once $this->configs['framework']['includes_dir']
@@ -1028,7 +1028,7 @@ HTML;
 	/**
 	 * Add a nonce for Customizer for column nonces.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	public function header_column_nonces( $nonces ) {
 		$nonces['bgtfw-header-columns'] = wp_create_nonce( 'bgtfw_header_columns' );
@@ -1038,7 +1038,7 @@ HTML;
 	/**
 	 * WP Ajax Header Columns.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	public static function wp_ajax_bgtfw_header_columns() {
 		check_ajax_referer( 'bgtfw_header_columns', 'headerColumnsNonce' );

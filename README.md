@@ -36,8 +36,11 @@ user guide for more information.
 
 ## Changelog ##
 
-### 2.6.0 ###
-New Feature: Header Layout Presets
+### 2.7.0 ###
+* New Feature: Header layout presets.
+* New Feature: Partial Refresh enabled for more header elements in customizer.
+* New Feature: Replaced Column Width controls with new multi-sliders.
+* Note: Skipped 2.6.0 for more consistent versioning with BGTFW & Crio releases.
 
 ### 2.5.2 ###
 Bug Fix: Crio - Nested Row [#343](https://github.com/BoldGrid/boldgrid-theme-framework/issues/343)

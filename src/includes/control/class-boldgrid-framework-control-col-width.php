@@ -20,7 +20,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	/**
 	 * Configs.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @var array
 	 */
@@ -31,7 +31,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	 *
 	 * Generic controls class instance.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @var Boldgrid_Framework_Customizer_Generic
 	 */
@@ -42,7 +42,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	 *
 	 * WP_Customize class instance.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @var WP_Customize
 	 */
@@ -51,7 +51,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	/**
 	 * Constructor.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @param array        $configs BGTFW Configs Array.
 	 * @param WP_Customize $wp_customize WP_Customize object.
@@ -74,7 +74,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	/**
 	 * Get Devices Markup
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	public function get_devices_markup() {
 		$svg_dir        = $this->configs['framework']['asset_dir'] . 'img/devices/';
@@ -99,7 +99,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	 *
 	 * Returns markup for a slider group for each display size.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @param string $device The device size.
 	 * @param array  $current_layout The current layout.
@@ -143,7 +143,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	/**
 	 * Get Sliders Markup.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	public function get_sliders_markup() {
 		$current_layout = get_theme_mod( 'bgtfw_header_layout_custom' );
@@ -189,7 +189,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	/**
 	 * Get Updated Markup
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 *
 	 * @param array $layout Layout to use for generating markup.
 	 */

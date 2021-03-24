@@ -38,12 +38,13 @@ export class HeaderLayout  {
 		parent.window.BOLDGRID.colWidths = parent.window.BOLDGRID.colWidths ?
 			parent.window.BOLDGRID.colWidths :
 			this;
-
-		// window.BOLDGRID.colWidths = window.BOLDGRID.colWidths ?
-		// 	window.BOLDGRID.colWidths :
-		// 	this;
 	}
 
+	/**
+	 * Correct Menu Locations.
+	 *
+	 * @since 2.7.0
+	 */
 	correctMenuLocations() {
 		var footerSocialMenu = controlApi( 'nav_menu_locations[footer-social]' )(),
 			mainMenu         = controlApi( 'nav_menu_locations[main]' )(),
@@ -78,6 +79,11 @@ export class HeaderLayout  {
 		} );
 	}
 
+	/**
+	 * Bind Full Width.
+	 *
+	 * @since 2.7.0
+	 */
 	bindFullWidth() {
 		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
 			.find( '.col-width-full-width' ).on( 'click', ( event ) => {
@@ -96,6 +102,11 @@ export class HeaderLayout  {
 			} );
 	}
 
+	/**
+	 * Bind Resize Events.
+	 *
+	 * @since 2.7.0
+	 */
 	bindResizeEvents() {
 		controlApi.bind( 'preview-ready', () => {
 			$( window ).on( 'resize', _.debounce( () => {
@@ -106,6 +117,11 @@ export class HeaderLayout  {
 		} );
 	}
 
+	/**
+	 * Change Column Device.
+	 *
+	 * @since 2.7.0
+	 */
 	changeColumnDevice() {
 		var $container   = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container,
 			$deviceLabel = $container.find( '.devices-wrapper label' );
@@ -127,7 +143,7 @@ export class HeaderLayout  {
 	/**
 	 * Update Control.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	updateSliderControl( value ) {
 		$.ajax(
@@ -159,7 +175,9 @@ export class HeaderLayout  {
 	/**
 	 * Initial Column Sliders.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
+	 *
+	 * @param {bool} forceDefaults Whether or not to force defaults.
 	 */
 	initialColumnSliders( forceDefaults = false ) {
 		var $container   = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container,
@@ -244,6 +262,13 @@ export class HeaderLayout  {
 		} );
 	}
 
+	/**
+	 * Get Device Class.
+	 *
+	 * @since 2.7.0
+	 * @param {string} deviceSize The size of the device to retrieve class for.
+	 * @returns {string} The class selector of this device.
+	 */
 	getDeviceClass( deviceSize ) {
 		var deviceClass = 'col-lg-';
 			switch ( deviceSize ) {
@@ -267,7 +292,7 @@ export class HeaderLayout  {
 	/**
 	 * Update Control Value
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	updateControlValue() {
 		var sliderObjects = colWidthSliders,
@@ -311,7 +336,10 @@ export class HeaderLayout  {
 	/**
 	 * Bind Slider Changes.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
+	 *
+	 * @param {Event}  event Triggering event.
+	 * @param {Object} ui    The UI object.
 	 */
 	bindSliderChanges( event, ui ) {
 		var newValue    = parseInt( ui.values[1] ) - parseInt( ui.values[0] ),
@@ -336,7 +364,7 @@ export class HeaderLayout  {
 	 *
 	 * Bind Events to expanding panels and sections.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	bindExpanding() {
 		var customLayoutSection = controlApi.section(
@@ -408,18 +436,33 @@ export class HeaderLayout  {
 			}
 			let $container = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container;
 			$container.closest( 'body' ).find( '#customize-footer-actions button' ).on( 'click', ( event ) => {
-					var device = event.currentTarget.dataset.device;
+				var device = event.currentTarget.dataset.device;
 
-					controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( '.devices' ).each( ( _, deviceLabel ) => {
-						if ( device === controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( deviceLabel ).data( 'device' ) ) {
-							controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( deviceLabel ).trigger( 'click' );
-						}
-					} );
+				controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( '.devices' ).each( ( _, deviceLabel ) => {
+					if ( device === controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( deviceLabel ).data( 'device' ) ) {
+						controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( deviceLabel ).trigger( 'click' );
+					}
 				} );
-
+			} );
+			controlApi.control( 'bgtfw_header_width' ).container.find( 'input[type=range]' ).on( 'change', ( event ) => {
+				var newValue = event.currentTarget.value;
+				controlApi.control( 'bgtfw_header_width' ).container.find( 'span.value input' ).find( 'div' ).html( newValue );
+			} );
 		} );
 	}
 
+	/**
+	 * Maybe Update Slider.
+	 *
+	 * Compares the old and new values to decide whether the
+	 * slider needs to be updated.
+	 *
+	 * @since 2.7.0
+	 *
+	 * @param {Object} oldValue Old Value.
+	 * @param {Object} newValue New Value.
+	 * @returns {Boolean} True if new value is different than old.
+	 */
 	maybeUpdateSlider( oldValue, newValue ) {
 		if ( oldValue === newValue ) {
 			return false;
@@ -444,6 +487,15 @@ export class HeaderLayout  {
 		return false;
 	}
 
+	/**
+	 * Render Header Preview
+	 *
+	 * @since 2.7.0
+	 *
+	 * @param {string} headerId The ID selector of the header.
+	 * @param {string} markup   The markup of the header.
+	 * @param {Object} value    The layout value of the header.
+	 */
 	renderHeaderPreview( headerId, markup, value ) {
 		var hiddenItems = {};
 		$( headerId ).find( '.boldgrid-section' ).remove();
@@ -453,6 +505,13 @@ export class HeaderLayout  {
 		this.hideHiddenItems( hiddenItems );
 	}
 
+	/**
+	 * Custom Page Headers
+	 *
+	 * @since 2.7.0
+	 *
+	 * @returns {Boolean} True if the current page uses Custom Page Headers.
+	 */
 	customPageHeader() {
 		var $customPageHeader = $( '#masthead.template-header' );
 		if ( 0 !== $customPageHeader.length ) {
@@ -467,7 +526,7 @@ export class HeaderLayout  {
 	 *
 	 * Bind events to changing layout control values.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	bindControlChanges() {
 		controlApi( 'bgtfw_header_layout_custom', ( control ) => {
@@ -712,6 +771,14 @@ export class HeaderLayout  {
 		} );
 	}
 
+	/**
+	 * Branding Notices.
+	 *
+	 * @since 2.7.0
+	 *
+	 * @param {Object} value HiddenItems object.
+	 * @param {wp.customize.control} control Customizer Control object.
+	 */
 	brandingNotices( value, control ) {
 		var container = control.container;
 		container.find( '.branding_notice' ).hide();
@@ -741,6 +808,17 @@ export class HeaderLayout  {
 		}
 	}
 
+	/**
+	 * Get Hidden Items.
+	 *
+	 * Retrieves a list of branding items that need
+	 * to be hidden.
+	 *
+	 * @since 2.7.0
+	 *
+	 * @param {Object} value Layout Object
+	 * @returns {Object}     Items that need to be hidden.
+	 */
 	getHiddenItems( value ) {
 		var hiddenItems = {},
 		layout = Array.isArray( value ) ? value : [];
@@ -770,16 +848,18 @@ export class HeaderLayout  {
 	 *
 	 * @param {object} hiddenItems Set of items to be hidden.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.7.0
 	 */
 	hideHiddenItems( hiddenItems ) {
+		if ( 'default' !== controlApi( 'bgtfw_header_preset' )() && 'custom' !== controlApi( 'bgtfw_header_preset' )() ) {
+			return;
+		}
 		let hideThisUid = ( uid ) => {
 			hiddenItems[uid].forEach( ( hiddenItem ) => {
 				$( '.' + uid ).find( '.site-description' ).addClass( 'invisible' );
 				$( '.' + uid ).find( '.site-branding' ).find( hiddenItem ).hide();
 			} );
 		};
-
 		for ( const uid in hiddenItems ) {
 			$( '.' + uid ).find( '.site-branding' ).children().show();
 			$( '.' + uid ).find( '.site-description' ).removeClass( 'invisible' );

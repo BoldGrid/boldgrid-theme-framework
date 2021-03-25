@@ -16,17 +16,22 @@ export class HeaderLayout  {
 	*/
 	init() {
 
-
+		// Handles changes in the previewed device.
 		this.changeColumnDevice();
 
+		// Bind events to expanding panels and sections.
 		this.bindExpanding();
 
+		// Bind changes to control values.
 		this.bindControlChanges();
 
+		// Bind resizing to adjust slider widths.
 		this.bindResizeEvents();
 
+		// Bind 'Full Width' column slider checkboxes.
 		this.bindFullWidth();
 
+		// Bind to the 'Preview Ready' event to correct menu location controls.
 		wp.customize.bind( 'preview-ready', () => {
 			this.correctMenuLocations();
 			wp.customize.preview.bind( 'sendHeaderLayout', ( args ) => {
@@ -34,6 +39,7 @@ export class HeaderLayout  {
 			} );
 		} );
 
+		// Assign this object to the BOLDGRID object, to make it accessible to other scripts.
 		parent.window.BOLDGRID.colWidths = parent.window.BOLDGRID.colWidths ?
 			parent.window.BOLDGRID.colWidths :
 			this;
@@ -52,6 +58,10 @@ export class HeaderLayout  {
 			stickySocialMenu,
 			stickyMainMenu;
 
+			/*
+			 * These are wrapped in isFunction checks to prevent errors when Crio Premium
+			 * is not installed as well
+			 */
 			if ( window._.isFunction( controlApi( 'nav_menu_locations[sticky-social]' ) ) ) {
 				stickySocialMenu = controlApi( 'nav_menu_locations[sticky-social]' )();
 			}
@@ -60,15 +70,22 @@ export class HeaderLayout  {
 				stickyMainMenu = controlApi( 'nav_menu_locations[sticky-main]' )();
 			}
 
+		/*
+		 * This provides backwards compatibility to inspirations that were made before Crio 2.7.0
+		 * when the footer's social menu location was just 'social'. This ensures that the new location
+		 * 'footer-social' will be assigned the same menu as before.
+		*/
 		if ( 0 === footerSocialMenu ) {
 			controlApi.control( 'nav_menu_locations[footer-social]' ).setting.set( socialMenu );
 		}
 
+		// We need to make sure that the Sticky Menus are assigned as well.
 		if ( 0 === stickyMainMenu || 0 === stickySocialMenu ) {
 			controlApi.control( 'nav_menu_locations[sticky-main]' ).setting.set( mainMenu );
 			controlApi.control( 'nav_menu_locations[sticky-social]' ).setting.set( socialMenu );
 		}
 
+		// This changes the 'social' location in the footer to 'footer-social'.
 		footerLayout.forEach( ( layoutCol ) => {
 			layoutCol.items.forEach( ( item ) => {
 				if ( 'boldgrid_menu_social' === item.type ) {
@@ -81,20 +98,32 @@ export class HeaderLayout  {
 	/**
 	 * Bind Full Width.
 	 *
+	 * This handles the adaption of the column widths
+	 * elements when the 'full width' checkbox is selected.
+	 *
 	 * @since 2.7.0
 	 */
 	bindFullWidth() {
 		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
 			.find( '.col-width-full-width' ).on( 'click', ( event ) => {
 				var deviceClass = this.getDeviceClass( $( event.currentTarget ).data( 'device' ) );
+
+				/*
+				 * If we actually disable the sliders here, it effects the way they
+				 * initialize. Therefore, the checkbox's container itself will expand to
+				 * cover the slider, and prevent interraction. This is handled via CSS, based on the
+				 * 'disabled' class.
+				 */
 				if ( $( event.currentTarget ).prop( 'checked' ) ) {
 					$( event.currentTarget ).parent().addClass( 'disabled' );
 				} else {
 					$( event.currentTarget ).parent().removeClass( 'disabled' );
 				}
 
+				// We need to make sure that the values of the column sliders adjust to match.
 				this.updateControlValue();
 
+				// This is where the preview itself is updated.
 				$( event.currentTarget ).parent().siblings( '.col-width-slider' ).data( 'items' ).forEach( ( item ) => {
 					$( '.' + item.uid ).toggleClass( deviceClass + 'full-width' );
 				} );
@@ -103,6 +132,10 @@ export class HeaderLayout  {
 
 	/**
 	 * Bind Resize Events.
+	 *
+	 * We have to re-initialize the column width sliders when the
+	 * size of the viewport changes to make sure the sliders are not
+	 * cutoff on the edges.
 	 *
 	 * @since 2.7.0
 	 */
@@ -119,6 +152,12 @@ export class HeaderLayout  {
 	/**
 	 * Change Column Device.
 	 *
+	 * Each device size has it's own set of column width sliders.
+	 * These are all technically not 'hidden', because hiding the elements
+	 * screws up the slider's calculation of the container's width. Instead, when
+	 * changing devices, the height of the 'hidden' devices' set of sliders is set to 0,
+	 * the 'visible' device is set to a height of 81 pixels.
+	 *
 	 * @since 2.7.0
 	 */
 	changeColumnDevice() {
@@ -131,6 +170,7 @@ export class HeaderLayout  {
 			$container.find( '.col-width-slider-device-group' ).height( 0 );
 			$container.find( '#bgtfw_header_layout_custom_col_width-slider-' + $thisInputValue ).height( 81 );
 
+			// This triggers the change in the device shown in the preview, to match the one in the control.
 			if ( 'phone' === $thisInputValue ) {
 				$container.closest( 'body' ).find( 'button.preview-mobile' ).not( '.active' ).trigger( 'click' );
 			} else {
@@ -142,7 +182,14 @@ export class HeaderLayout  {
 	/**
 	 * Update Control.
 	 *
+	 * When changes are made to the layout, it requires the
+	 * column width sliders to be updated. This is done by
+	 * re-initializing the sliders using the values passed to
+	 * this method.
+	 *
 	 * @since 2.7.0
+	 *
+	 * @param {Object} value The layout value used to update controls.
 	 */
 	updateSliderControl( value ) {
 		$.ajax(
@@ -161,8 +208,14 @@ export class HeaderLayout  {
 		).done(
 			( response ) => {
 				var container = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container;
+
+				// We must remove the existing sliders present in the control container.
 				container.find( '.col-width-slider-device-group' ).remove();
+
+				// Place the new placeholder markup for the updated sliders.
 				container.find( '.sliders-wrapper' ).html( response.data.markup );
+
+				// Initialize the updated sliders using the new placeholder markup.
 				this.initialColumnSliders( true );
 				this.updateControlValue();
 
@@ -173,6 +226,16 @@ export class HeaderLayout  {
 
 	/**
 	 * Initial Column Sliders.
+	 *
+	 * The column sliders are created in two parts. The first part
+	 * is done server side via PHP, which generates HTML markup containing
+	 * the necessary information in the dataset of the containers. The second
+	 * part is done here, where the sliders are initialized using the data
+	 * contained in the markup's dataset.
+	 *
+	 * The values used will be pulled from this control's saved values, unless the
+	 * 'forceDefaults' option is set. If defaults are forced, the column widths are
+	 * set equal to 12 / the number of columns in the row.
 	 *
 	 * @since 2.7.0
 	 *
@@ -187,6 +250,7 @@ export class HeaderLayout  {
 			var items = $( sliderElement ).data( 'items' ),
 				sliderValues = [];
 
+			// Populate the BOLDGRID.colWidthSliders objects
 			items.forEach( ( item, index ) => {
 				var width = parseInt( item.width );
 
@@ -217,6 +281,7 @@ export class HeaderLayout  {
 				}
 			} );
 
+			// Initializes the jQueryUI Sliders.
 			let slider = $container.find( sliderElement ).multiSlider( {
 				min: 0,
 				max: 12,
@@ -226,7 +291,7 @@ export class HeaderLayout  {
 				stop: this.bindSliderChanges
 			} );
 
-
+			// Adds extra labels and data to slider's datasets.
 			let $slider = $container.find( slider.element );
 			$slider.find( '.ui-slider-range' ).each( ( sliderIndex, sliderRange ) => {
 				var uid = items[ sliderIndex ].uid,
@@ -254,6 +319,7 @@ export class HeaderLayout  {
 				}
 			} );
 
+			// Ensure only one device size is enabled at the time of initialization.
 			let device = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( '.devices-wrapper input:checked' ).val();
 				controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
 					.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-' + device )
@@ -263,6 +329,10 @@ export class HeaderLayout  {
 
 	/**
 	 * Get Device Class.
+	 *
+	 * This is used to essentially translate between the device names:
+	 * large, desktop, mobile, and phone, into the bootstrap breakpoint
+	 * class names, col-lg, col-md, col-sm, and col-xs.
 	 *
 	 * @since 2.7.0
 	 * @param {string} deviceSize The size of the device to retrieve class for.
@@ -291,6 +361,13 @@ export class HeaderLayout  {
 	/**
 	 * Update Control Value
 	 *
+	 * The WordPress Customizer_API is designed to read
+	 * the value of a single input and coorelate that value to the
+	 * setting when saving. Since the column width sliders utilize multiple
+	 * slider inputs, when one of them is changed, the values of all sliders need
+	 * to be stored in a json string and the control's setting property must be set
+	 * manually.
+	 *
 	 * @since 2.7.0
 	 */
 	updateControlValue() {
@@ -298,13 +375,27 @@ export class HeaderLayout  {
 			valueObject   = {},
 			$fullWidthControls = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( '.col-width-full-width' );
 
+		// Add each UID's width value to the valueObject.
 		for ( const uid in sliderObjects ) {
 			valueObject[ uid ] = {};
 			for ( const device in sliderObjects[ uid ] ) {
+
+				/*
+				 * each UID also has data specifying it's col, row, and key,
+				 * but we don't want those in this object.
+				 */
 				if ( 'col' === device || 'row' === device || 'key' === device ) {
 					continue;
 				}
 
+				/*
+				 * The sliders store the values of all handles on a slider
+				 * in one array, as start and end indexes. For example, a slider with 2
+				 * UIDs with a width of 6 columns each, would look like this:
+				 * [0,6,6,12]. To get the value of each UID, we simply determine its position
+				 * on the slider from it's 'col' property, and subract the start index, from the
+				 * end index.
+				 */
 				let values = sliderObjects[ uid ][ device ].option( 'values' );
 				let col    = sliderObjects[ uid ].col;
 				let end    = ( ( col + 1 ) * 2 ) - 1;
@@ -314,6 +405,11 @@ export class HeaderLayout  {
 			}
 		}
 
+		/*
+		 * Next we have to add whether or not the row's items are supposed
+		 * to be full width or not. these are stored as simply booleans, keyed
+		 * by row and device. ie [0][large] = false or [1][tablet] = true.
+		 */
 		valueObject.fullWidth = [];
 
 		$fullWidthControls.each( ( _, fullWidthControl ) => {
@@ -329,11 +425,19 @@ export class HeaderLayout  {
 				valueObject.fullWidth[ row ][ device ] = checked;
 		} );
 
+		// This is where the wp.customize setting is actually changed.
 		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).setting( valueObject );
 	}
 
 	/**
 	 * Bind Slider Changes.
+	 *
+	 * The slider value changes are bound to the sliders' onStop
+	 * event, so the changes are not triggered till after the slider
+	 * handle is moved AND released.
+	 *
+	 * On slider value changes, we update the preview by removing the
+	 * existing bootstrap column class, and replace it with the updated one.
 	 *
 	 * @since 2.7.0
 	 *
@@ -370,69 +474,29 @@ export class HeaderLayout  {
 			controlApi.control( 'bgtfw_header_layout_custom' ).section()
 		);
 
-		controlApi.panel( 'bgtfw_header_layouts' ).expanded.bind(  () => {
-			if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
-				controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
-			} else if ( 'custom' !== controlApi( 'bgtfw_header_preset' )() ) {
-				controlApi.section( 'bgtfw_header_layout_advanced' ).deactivate();
-			}
-		} );
-
-		controlApi.section( 'bgtfw_header_presets' ).expanded.bind( () => {
-			this.brandingNotices( controlApi( 'bgtfw_header_preset_branding' )(), controlApi.control( 'bgtfw_header_preset_branding' ) );
-			controlApi.control( 'bgtfw_header_preset' ).container.find( '.bgtfw_header_presetcustom' ).on( 'click', () => {
-				controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
-				controlApi.control( 'bgtfw_header_layout_custom' ).activate();
-				controlApi.control( 'bgtfw_header_layout_position' ).focus();
-			} );
-		} );
-
-		controlApi.section( 'bgtfw_header_layout' ).expanded.bind( ( isExpanded ) => {
-			if ( isExpanded ) {
-				let colWidths,
-				colUids,
-				themeMod = controlApi( 'bgtfw_header_layout_col_width' )().media;
-				colWidths = 'string' === typeof themeMod ? JSON.parse( themeMod ) : themeMod ;
-				colUids = Object.keys( colWidths.large.values );
-
-				// If this page uses Header Templates, do not mess with them.
-				if ( $( '.template-header' ).length ) {
-					return;
-				}
-
-				// Added #masthead to the selector to ensure that Page Header Template rows are not selected.
-				$( '.bgtfw-header #masthead .boldgrid-section .row > div' ).each( ( itemIndex, itemElement ) => {
-					let uid = colUids[ itemIndex ],
-						classList;
-
-					// If the different values are not set, then use the baseWidths value ( which is from the 'large' device ).
-					classList = [
-						'col-lg-' + ( colWidths.large.values[uid] ? colWidths.large.values[ uid ] : 6 ),
-						'col-md-' + ( colWidths.desktop.values[uid] ? colWidths.desktop.values[ uid ] : 6 ),
-						'col-sm-' + ( colWidths.tablet.values[uid] ? colWidths.tablet.values[ uid ] : 12 ),
-						'col-xs-' + ( colWidths.phone.values[uid] ? colWidths.phone.values[ uid ] : 12 )
-					];
-
-					uid = $( itemElement ).hasClass( 'h00' ) ? 'h00' : uid;
-					uid = $( itemElement ).hasClass( 'h01' ) ? 'h01' : uid;
-
-					// This removes the empty column widths.
-					$( itemElement ).removeClass();
-
-					$( itemElement ).addClass( classList.join( ' ' ) );
-
-					$( itemElement ).addClass( uid );
-				} );
-			}
-		} );
-
+		/*
+		 * bgtfw_header_layout_custom
+		 *
+		 * When the bgtfw_header_layout_custom section expands,
+		 * we have to do the following:
+		 * 1. Initialize Column Sliders.
+		 * 2. Activate / deactivate the custom_layout control based on which preset is active.
+		 * 3. Sync device size buttons.
+		 * 4. Bind the controls for the header_width slider.
+		*/
 		customLayoutSection.expanded.bind( () => {
+
+			// Initialize column sliders on expand.
 			this.initialColumnSliders();
+
+			// Activate / Deactivate the custom layout controls.
 			if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
 				controlApi.control( 'bgtfw_header_layout_custom' ).activate();
 			} else {
 				controlApi.control( 'bgtfw_header_layout_custom' ).deactivate();
 			}
+
+			// Sync device size buttons.
 			let $container = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container;
 			$container.closest( 'body' ).find( '#customize-footer-actions button' ).on( 'click', ( event ) => {
 				var device = event.currentTarget.dataset.device;
@@ -443,10 +507,42 @@ export class HeaderLayout  {
 					}
 				} );
 			} );
+
+			// Bind the controls for the header_width slider.
 			controlApi.control( 'bgtfw_header_width' ).container.find( 'input[type=range]' ).on( 'change', ( event ) => {
 				var newValue = event.currentTarget.value;
 				controlApi.control( 'bgtfw_header_width' ).container.find( 'span.value input' ).val( newValue );
 				controlApi.control( 'bgtfw_header_width' ).container.find( 'span.value input' ).html( newValue );
+			} );
+		} );
+
+		/*
+		 * bgtfw_header_layouts
+		 *
+		 * When we expand this panel, we have to check for whether
+		 * or not we should display the advanced layout section.
+		 */
+		controlApi.panel( 'bgtfw_header_layouts' ).expanded.bind(  () => {
+			if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
+				controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
+			} else if ( 'custom' !== controlApi( 'bgtfw_header_preset' )() ) {
+				controlApi.section( 'bgtfw_header_layout_advanced' ).deactivate();
+			}
+		} );
+
+		/*
+		 * bgtfw_header_presets
+		 *
+		 * When the presets panel expands, we need to bind to the 'click' event
+		 * of the custom preset, that way it will change focus even if it is already
+		 * selected.
+		 */
+		controlApi.section( 'bgtfw_header_presets' ).expanded.bind( () => {
+			this.brandingNotices( controlApi( 'bgtfw_header_preset_branding' )(), controlApi.control( 'bgtfw_header_preset_branding' ) );
+			controlApi.control( 'bgtfw_header_preset' ).container.find( '.bgtfw_header_presetcustom' ).on( 'click', () => {
+				controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
+				controlApi.control( 'bgtfw_header_layout_custom' ).activate();
+				controlApi.control( 'bgtfw_header_layout_position' ).focus();
 			} );
 		} );
 	}
@@ -508,6 +604,9 @@ export class HeaderLayout  {
 	/**
 	 * Custom Page Headers
 	 *
+	 * Determines whether the current page in the preview
+	 * is using a custom page header.
+	 *
 	 * @since 2.7.0
 	 *
 	 * @returns {Boolean} True if the current page uses Custom Page Headers.
@@ -529,6 +628,15 @@ export class HeaderLayout  {
 	 * @since 2.7.0
 	 */
 	bindControlChanges() {
+
+		/*
+		 * bgtfw_header_layout_custom
+		 *
+		 * When the header layout controls change,
+		 * we use admin ajax to retrieve the new header
+		 * layout markup. This is similar to a 'partial-refresh', however
+		 * by doing it manually, we can preserve the 'header-video' content if used.
+		 */
 		controlApi( 'bgtfw_header_layout_custom', ( control ) => {
 			control.bind( ( value, oldValue ) => {
 				var updateSlider = this.maybeUpdateSlider( oldValue, value );
@@ -554,11 +662,23 @@ export class HeaderLayout  {
 					( response ) => {
 						var hiddenItems = {};
 						if ( response.data.markup ) {
+
+							// Remove the old markup.
 							$( '#masthead' ).find( '.boldgrid-section' ).remove();
+
+							// Add the new markup.
 							$( '#masthead' ).append( response.data.markup );
+
+							// get unused branding items.
 							hiddenItems = this.getHiddenItems( value );
+
+							// This inline CSS screws up the branding visiblity.
 							$( '#sticky-header-display-inline-css' ).remove();
+
+							// Hide the unused branding items.
 							this.hideHiddenItems( hiddenItems );
+
+							// If the layout changes require re-initializing the slider, do so.
 							if ( updateSlider ) {
 								this.updateSliderControl( value );
 							}
@@ -568,6 +688,11 @@ export class HeaderLayout  {
 			} );
 		} );
 
+		/*
+		 * bgtfw_sticky_header_layout_custom
+		 *
+		 * see bgtfw_header_layout_custom above.
+		 */
 		controlApi( 'bgtfw_sticky_header_layout_custom', ( control ) => {
 			control.bind( ( value ) => {
 				$.ajax(
@@ -599,6 +724,16 @@ export class HeaderLayout  {
 			} );
 		} );
 
+		/*
+		 * bgtfw_header_layout_position
+		 *
+		 * When the position is changed from 'top' to 'left' or 'right'
+		 * the 'sticky header' controls and the header width controls
+		 * need to be adjusted accordingly.
+		 *
+		 * This also updates the preview by adding or removing the header-top,
+		 * header-left, or header-right classes from 'body' as necessary.
+		 */
 		controlApi( 'bgtfw_header_layout_position', ( control ) => {
 			if ( 'header-top' === controlApi( 'bgtfw_header_layout_position' )() ) {
 				$( '.bgtfw-sticky-header' ).show();
@@ -617,6 +752,16 @@ export class HeaderLayout  {
 			} );
 		} );
 
+		/*
+		 * bgtfw_header_preset
+		 *
+		 * This is the big one. When changing the header preset,
+		 * bgtfw_header_postion and bgtfw_header_layout_custom need
+		 * to be updated as well.
+		 *
+		 * This control / preview is updated via an AJAX request
+		 * to obtain the new markup for the header section.
+		 */
 		controlApi( 'bgtfw_header_preset', ( control ) => {
 			control.bind( ( headerPreset ) => {
 				var requestData = {
@@ -627,12 +772,20 @@ export class HeaderLayout  {
 					headerPreset: headerPreset
 				};
 
+				/*
+				 * If the preset is being changed to 'custom', we need to set the
+				 * customHeaderLayout value so that the AJAX handler knows what layout
+				 * to use for generating the markup. The header_layout_custom control's
+				 * activation and focus is taken care of by it's 'click' event handler, however
+				 * we still need to deactivate it here, if the preset is not 'custom'
+				 */
 				if ( 'custom' === headerPreset ) {
 					requestData.customHeaderLayout = controlApi( 'bgtfw_header_layout_custom' )();
 				} else {
 					controlApi.section( 'bgtfw_header_layout_advanced' ).deactivate();
 				}
 
+				// Display / hide notice if page is using a Custom Page Header.
 				if ( this.customPageHeader() ) {
 					control.notifications.add( 'customPageHeader', new controlApi.Notification(
 						'customPageHeader',
@@ -658,23 +811,43 @@ export class HeaderLayout  {
 				).done( ( response ) => {
 					var hiddenItems = {};
 					if ( response.data.markup ) {
+
+						/*
+						 * 'lshsbm' is the side header preset.
+						 * when that is selected, we must update the layout position control
+						 */
 						if ( 'lshsbm' === headerPreset ) {
 							controlApi.control( 'bgtfw_header_layout_position' ).setting( 'header-left' );
 						} else if ( 'header-left' === controlApi( 'bgtfw_header_layout_position' )() ) {
 							controlApi.control( 'bgtfw_header_layout_position' ).setting( 'header-top' );
 						}
+
+						// Remove old markup from previewer.
 						$( '#masthead' ).find( '.boldgrid-section' ).remove();
+
+						// Add new markup to previewer.
 						$( '#masthead' ).append( response.data.markup );
+
+						// get unused branding items.
+						hiddenItems = this.getHiddenItems( response.data.layout );
+
+						// This inline CSS screws up the branding visiblity.
 						$( '#sticky-header-display-inline-css' ).remove();
 
-						hiddenItems = this.getHiddenItems( response.data.layout );
+						// Hide the unused branding items.
 						this.hideHiddenItems( hiddenItems );
+
 						$( '#masthead' ).css( 'opacity', 1 );
 					}
 				} );
 			} );
 		} );
 
+		/*
+		 * bgtfw_sticky_header_preset
+		 *
+		 * see bgtfw_header_preset for more information.
+		 */
 		controlApi( 'bgtfw_sticky_header_preset', ( control ) => {
 			control.bind( ( stickyHeaderPreset ) => {
 				var requestData = {
@@ -717,34 +890,59 @@ export class HeaderLayout  {
 			} );
 		} );
 
+		/*
+		 * bgtfw_header_preset_branding
+		 *
+		 * When the branding visibility controls are changed
+		 * we need to make sure to hide / show the correct items.
+		 */
 		controlApi( 'bgtfw_header_preset_branding', ( control ) => {
 			control.bind( ( value ) => {
 				var hiddenItems = [ 'logo', 'title', 'description' ],
 					showItems   = [];
-				if ( 'default' !== controlApi( 'bgtfw_header_preset' ) && 'custom' !== controlApi( 'bgtfw_header_preset' ) ) {
-					$( '#sticky-header-display-inline-css' ).remove();
-					value.forEach( ( item ) => {
-						var itemIndex = hiddenItems.indexOf( item );
-						if ( -1 < itemIndex ) {
-							hiddenItems.splice( itemIndex, 1 );
-							showItems.push( item );
-						}
-						this.brandingNotices( value, controlApi.control( 'bgtfw_header_preset_branding' ) );
-					} );
 
-					showItems.forEach( ( showItem ) => {
-						$( '#masthead .site-branding' ).removeClass( 'hide-' + showItem );
-						$( '#masthead .site-branding' ).children().removeClass( 'invisible' );
-						$( '#masthead .site-branding .site-description' ).show();
-					} );
-
-					hiddenItems.forEach( ( hiddenItem ) => {
-						$( '#masthead .site-branding' ).addClass( 'hide-' + hiddenItem );
-					} );
+				// We do not want to use these controls for 'default' or 'custom' layouts.
+				if ( 'default' === controlApi( 'bgtfw_header_preset' ) || 'custom' === controlApi( 'bgtfw_header_preset' ) ) {
+					return;
 				}
+
+				// Remove this inline css. It screws up our visibility previews.
+				$( '#sticky-header-display-inline-css' ).remove();
+
+				/*
+				 * Any items that should be shown, add to 'showItems'
+				 * and remove from 'hiddenItems.
+				 */
+				value.forEach( ( item ) => {
+					var itemIndex = hiddenItems.indexOf( item );
+					if ( -1 < itemIndex ) {
+						hiddenItems.splice( itemIndex, 1 );
+						showItems.push( item );
+					}
+
+					// Display branding notices if applicable.
+					this.brandingNotices( value, controlApi.control( 'bgtfw_header_preset_branding' ) );
+				} );
+
+				// Show all items in the 'showItems' array.
+				showItems.forEach( ( showItem ) => {
+					$( '#masthead .site-branding' ).removeClass( 'hide-' + showItem );
+					$( '#masthead .site-branding' ).children().removeClass( 'invisible' );
+					$( '#masthead .site-branding .site-description' ).show();
+				} );
+
+				// Hide all items in the 'hiddenItems' array.
+				hiddenItems.forEach( ( hiddenItem ) => {
+					$( '#masthead .site-branding' ).addClass( 'hide-' + hiddenItem );
+				} );
 			} );
 		} );
 
+		/*
+		 * bgtfw_sticky_header_preset_branding
+		 *
+		 * see bgtfw_header_preset_branding for more information.
+		 */
 		controlApi( 'bgtfw_sticky_header_preset_branding', ( control ) => {
 			control.bind( ( value ) => {
 				var hiddenItems = [ 'logo', 'title', 'description' ],
@@ -774,6 +972,8 @@ export class HeaderLayout  {
 
 	/**
 	 * Branding Notices.
+	 *
+	 * This displays notices with links to add a 
 	 *
 	 * @since 2.7.0
 	 *

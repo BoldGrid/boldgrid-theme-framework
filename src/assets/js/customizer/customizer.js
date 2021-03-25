@@ -796,10 +796,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		new Toggle( 'background_repeat', backgroundRepeatUpdate );
 		new Toggle( 'boldgrid_background_image_size', backgroundSizeUpdate );
 
-		let setHeaderPosition = ( to ) => {
-			if ( 'header-top' !== to ) {
-				parent.kirkiSetSettingValue.set( 'bgtfw_header_width', api( 'bgtfw_header_width' )() );
-			}
+		let setHeaderPosition = () => {
 			calc();
 		};
 

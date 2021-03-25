@@ -2128,6 +2128,7 @@ return array(
 						'type' => 'boldgrid_site_identity',
 						'key' => 'branding',
 						'align' => 'w',
+						'uid' => 'h47',
 						'display' => [
 							[
 								'selector' => '.custom-logo-link',
@@ -2150,6 +2151,7 @@ return array(
 						'type' => 'boldgrid_menu_main',
 						'key' => 'menu',
 						'align' => 'e',
+						'uid' => 'h48',
 					],
 				],
 			],

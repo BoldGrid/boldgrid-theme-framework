@@ -89,6 +89,7 @@
 		"gulp-clean": "^0.3.2",
 		"gulp-concat-util": "^0.5.5",
 		"gulp-cssnano": "^2.1.1",
+		"gulp-delete-lines": "^0.0.7",
 		"gulp-imagemin": "^2.4.0",
 		"gulp-inject-string": "^1.1.1",
 		"gulp-jscs": "^4.0.0",

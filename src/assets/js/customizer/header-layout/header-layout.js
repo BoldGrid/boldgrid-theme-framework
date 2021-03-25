@@ -3,7 +3,6 @@ const controlApi = parent.wp.customize;
 parent.window.BOLDGRID.colWidthSliders = parent.window.BOLDGRID.colWidthSliders ?
 			parent.window.BOLDGRID.colWidthSliders :
 			{};
-
 const colWidthSliders = parent.window.BOLDGRID.colWidthSliders;
 
 export class HeaderLayout  {
@@ -446,7 +445,8 @@ export class HeaderLayout  {
 			} );
 			controlApi.control( 'bgtfw_header_width' ).container.find( 'input[type=range]' ).on( 'change', ( event ) => {
 				var newValue = event.currentTarget.value;
-				controlApi.control( 'bgtfw_header_width' ).container.find( 'span.value input' ).find( 'div' ).html( newValue );
+				controlApi.control( 'bgtfw_header_width' ).container.find( 'span.value input' ).val( newValue );
+				controlApi.control( 'bgtfw_header_width' ).container.find( 'span.value input' ).html( newValue );
 			} );
 		} );
 	}
@@ -611,6 +611,7 @@ export class HeaderLayout  {
 				if ( 'header-top' === value ) {
 					$( '.bgtfw-sticky-header' ).show();
 				} else {
+					controlApi( 'bgtfw_header_width', controlApi( 'bgtfw_header_width' )() );
 					$( '.bgtfw-sticky-header' ).hide();
 				}
 			} );
@@ -686,6 +687,7 @@ export class HeaderLayout  {
 
 				if ( 'custom' === stickyHeaderPreset ) {
 					controlApi.section( 'bgtfw_sticky_header_layout_advanced' ).activate();
+					controlApi.control( 'bgtfw_sticky_header_layout_custom' ).activate();
 					controlApi.control( 'bgtfw_sticky_header_layout_custom' ).focus();
 					requestData.customHeaderLayout = controlApi( 'bgtfw_sticky_header_layout_custom' )();
 				} else {
@@ -707,7 +709,6 @@ export class HeaderLayout  {
 						$( '#masthead-sticky' ).find( '.boldgrid-section' ).remove();
 						$( '#masthead-sticky' ).append( response.data.markup );
 						$( '#sticky-header-display-inline-css' ).remove();
-
 						hiddenItems = this.getHiddenItems( response.data.layout );
 						this.hideHiddenItems( hiddenItems );
 						$( '#masthead-sticky' ).css( 'opacity', 1 );
@@ -856,7 +857,9 @@ export class HeaderLayout  {
 		}
 		let hideThisUid = ( uid ) => {
 			hiddenItems[uid].forEach( ( hiddenItem ) => {
-				$( '.' + uid ).find( '.site-description' ).addClass( 'invisible' );
+				if ( '.site-description' === hiddenItem ) {
+					$( '.' + uid ).find( '.site-description' ).addClass( 'invisible' );
+				}
 				$( '.' + uid ).find( '.site-branding' ).find( hiddenItem ).hide();
 			} );
 		};

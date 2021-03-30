@@ -120,7 +120,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 			if ( 'tablet' === $device || 'phone' === $device ) {
 				$full_width = true;
 			}
-
+			$sliders_markup .= '<div class="row_slider_container">';
 			$sliders_markup .= '<div id="bgtfw_header_layout_custom_col_width-slider-' . $row_number . '-' . $device . '" class="col-width-slider" data-row="' . $row_number . '" data-items=\'[';
 			foreach ( $row['items'] as $index => $item ) {
 				$sliders_markup .= '{"uid": "' . $item['uid'] . '", "key":"' . $item['key'] . '", "width":"' . $default_col_width . '", "device":"' . $device . '"}';
@@ -131,7 +131,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 			$sliders_markup .= '<div class="full-width-wrapper"><input id="bgtfw_header_layout_custom_col_width-slider-'
 				. $row_number . '-' . $device . '-full" type="checkbox" class="col-width-full-width" data-row="' . $row_number
 				. '" data-device="' . $device . '" value="1" ' . checked( $full_width, true, false ) . '>';
-			$sliders_markup .= '<label class="full_width_label">' . esc_html__( 'Full width items for this device size', 'bgtfw' ) . '</label></div><hr />';
+			$sliders_markup .= '<label class="full_width_label">' . esc_html__( 'Full width items for this device size', 'bgtfw' ) . '</label></div></div><hr />';
 
 			$row_number     += 1;
 		}

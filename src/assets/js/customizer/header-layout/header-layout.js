@@ -29,7 +29,8 @@ export class HeaderLayout  {
 		this.bindResizeEvents();
 
 		// Bind 'Full Width' column slider checkboxes.
-		this.bindFullWidth();
+
+		//this.bindFullWidth();
 
 		// Bind to the 'Preview Ready' event to correct menu location controls.
 		wp.customize.bind( 'preview-ready', () => {
@@ -105,8 +106,8 @@ export class HeaderLayout  {
 	 */
 	bindFullWidth() {
 		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
-			.find( '.col-width-full-width' ).on( 'click', ( event ) => {
-				var deviceClass = this.getDeviceClass( $( event.currentTarget ).data( 'device' ) );
+			.find( '.col-width-full-width' ).off( 'click' ).on( 'click', ( event ) => {
+				var deviceClass = parent.window.BOLDGRID.colWidths.getDeviceClass( $( event.currentTarget ).data( 'device' ) );
 
 				/*
 				 * If we actually disable the sliders here, it effects the way they
@@ -121,7 +122,7 @@ export class HeaderLayout  {
 				}
 
 				// We need to make sure that the values of the column sliders adjust to match.
-				this.updateControlValue();
+				parent.window.BOLDGRID.colWidths.updateControlValue();
 
 				// This is where the preview itself is updated.
 				$( event.currentTarget ).parent().siblings( '.col-width-slider' ).data( 'items' ).forEach( ( item ) => {
@@ -156,7 +157,7 @@ export class HeaderLayout  {
 	 * These are all technically not 'hidden', because hiding the elements
 	 * screws up the slider's calculation of the container's width. Instead, when
 	 * changing devices, the height of the 'hidden' devices' set of sliders is set to 0,
-	 * the 'visible' device is set to a height of 81 pixels.
+	 * the 'visible' device is set to a height of 100 pixels per ROW.
 	 *
 	 * @since 2.7.0
 	 */
@@ -168,7 +169,8 @@ export class HeaderLayout  {
 			var $thisLabel      = $( e.currentTarget ),
 				$thisInputValue = $thisLabel.siblings( 'input' ).val();
 			$container.find( '.col-width-slider-device-group' ).height( 0 );
-			$container.find( '#bgtfw_header_layout_custom_col_width-slider-' + $thisInputValue ).height( 81 );
+			let numOfRows = $container.find( '#bgtfw_header_layout_custom_col_width-slider-' + $thisInputValue ).find( '.col-width-slider' ).length;
+			$container.find( '#bgtfw_header_layout_custom_col_width-slider-' + $thisInputValue ).height( 100 * numOfRows );
 
 			// This triggers the change in the device shown in the preview, to match the one in the control.
 			if ( 'phone' === $thisInputValue ) {
@@ -266,12 +268,10 @@ export class HeaderLayout  {
 					sliderValues.push( startValue, endValue );
 				}
 
-				if ( parent ) {
-					parent.window.BOLDGRID.colWidthSliders[ item.uid ] = {
-						row: sliderElement.dataset.row,
-						col: index,
-						key: item.key
-					};
+				if ( colWidthSliders[ item.uid ] ) {
+					colWidthSliders[ item.uid ].row = sliderElement.dataset.row;
+					colWidthSliders[ item.uid ].col = index;
+					colWidthSliders[ item.uid ].key = item.key;
 				} else {
 					colWidthSliders[ item.uid ] = {
 						row: sliderElement.dataset.row,
@@ -288,6 +288,7 @@ export class HeaderLayout  {
 				step: 1,
 				total: items.length,
 				values: sliderValues,
+				create: this.bindFullWidth,
 				stop: this.bindSliderChanges
 			} );
 
@@ -312,17 +313,19 @@ export class HeaderLayout  {
 				} );
 
 				$container.find( sliderRange ).html( '<span class="col-width-range-label">' + items[sliderIndex].key + '</span>' );
-				if ( parent ) {
-					parent.window.BOLDGRID.colWidthSliders[ uid ][ device ] = slider;
-				} else {
-					colWidthSliders[ uid ][ device ] = slider;
+
+
+				if ( ! colWidthSliders[uid] ) {
+					colWidthSliders[uid] = {};
 				}
+
+				colWidthSliders[ uid ][ device ] = slider;
 			} );
 
 			// Ensure only one device size is enabled at the time of initialization.
-			let device = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( '.devices-wrapper input:checked' ).val();
+			let selectedDevice = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( '.devices-wrapper input:checked' ).val();
 				controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
-					.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-' + device )
+					.find( '.col-width-slider-device-group' ).not( '#bgtfw_header_layout_custom_col_width-slider-' + selectedDevice )
 					.height( 0 );
 		} );
 	}
@@ -426,7 +429,8 @@ export class HeaderLayout  {
 		} );
 
 		// This is where the wp.customize setting is actually changed.
-		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).setting( valueObject );
+
+		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).setting.set( valueObject );
 	}
 
 	/**
@@ -522,10 +526,10 @@ export class HeaderLayout  {
 		 * When we expand this panel, we have to check for whether
 		 * or not we should display the advanced layout section.
 		 */
-		controlApi.panel( 'bgtfw_header_layouts' ).expanded.bind(  () => {
-			if ( 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
+		controlApi.panel( 'bgtfw_header_layouts' ).expanded.bind(  ( isExpanded ) => {
+			if ( isExpanded && 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
 				controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
-			} else if ( 'custom' !== controlApi( 'bgtfw_header_preset' )() ) {
+			} else if ( isExpanded && 'custom' !== controlApi( 'bgtfw_header_preset' )() ) {
 				controlApi.section( 'bgtfw_header_layout_advanced' ).deactivate();
 			}
 		} );
@@ -537,13 +541,23 @@ export class HeaderLayout  {
 		 * of the custom preset, that way it will change focus even if it is already
 		 * selected.
 		 */
-		controlApi.section( 'bgtfw_header_presets' ).expanded.bind( () => {
-			this.brandingNotices( controlApi( 'bgtfw_header_preset_branding' )(), controlApi.control( 'bgtfw_header_preset_branding' ) );
-			controlApi.control( 'bgtfw_header_preset' ).container.find( '.bgtfw_header_presetcustom' ).on( 'click', () => {
+		controlApi.section( 'bgtfw_header_presets' ).expanded.bind( ( isExpanded ) => {
+			if ( isExpanded ) {
+				this.brandingNotices( controlApi( 'bgtfw_header_preset_branding' )(), controlApi.control( 'bgtfw_header_preset_branding' ) );
+				controlApi.control( 'bgtfw_header_preset' ).container.find( '.bgtfw_header_presetcustom' ).on( 'click', () => {
+					controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
+					window._.defer( () => {
+						controlApi.control( 'bgtfw_header_layout_position' ).focus();
+					} );
+				} );
+			}
+
+			if ( ! isExpanded && 'custom' === controlApi( 'bgtfw_header_preset' )() ) {
 				controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
-				controlApi.control( 'bgtfw_header_layout_custom' ).activate();
-				controlApi.control( 'bgtfw_header_layout_position' ).focus();
-			} );
+			} else if ( ! isExpanded && 'custom' !== controlApi( 'bgtfw_header_preset' )() ) {
+				controlApi.section( 'bgtfw_header_layout_advanced' ).deactivate();
+			}
+
 		} );
 	}
 
@@ -560,6 +574,16 @@ export class HeaderLayout  {
 	 * @returns {Boolean} True if new value is different than old.
 	 */
 	maybeUpdateSlider( oldValue, newValue ) {
+
+		for ( let rowIndex = 0; rowIndex < oldValue.length; rowIndex++ ) {
+			for ( let itemIndex = 0; itemIndex < newValue[ rowIndex ].items.length; itemIndex++ ) {
+
+				if ( oldValue[ rowIndex ].items.length !== newValue[ rowIndex ].items.length && 'sidebar' === newValue[ rowIndex ].items[ itemIndex ].key ) {
+					controlApi.previewer.refresh();
+					break;
+				}
+			}
+		}
 		if ( oldValue === newValue ) {
 			return false;
 		}
@@ -643,6 +667,7 @@ export class HeaderLayout  {
 				if ( updateSlider ) {
 					controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.css( 'opacity', 0.10 );
 				}
+
 				$.ajax(
 					wp.ajax.settings.url,
 					{
@@ -781,8 +806,7 @@ export class HeaderLayout  {
 				 */
 				if ( 'custom' === headerPreset ) {
 					requestData.customHeaderLayout = controlApi( 'bgtfw_header_layout_custom' )();
-				} else {
-					controlApi.section( 'bgtfw_header_layout_advanced' ).deactivate();
+					controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
 				}
 
 				// Display / hide notice if page is using a Custom Page Header.
@@ -860,11 +884,10 @@ export class HeaderLayout  {
 
 				if ( 'custom' === stickyHeaderPreset ) {
 					controlApi.section( 'bgtfw_sticky_header_layout_advanced' ).activate();
-					controlApi.control( 'bgtfw_sticky_header_layout_custom' ).activate();
-					controlApi.control( 'bgtfw_sticky_header_layout_custom' ).focus();
+					window._.defer( () => {
+						controlApi.control( 'bgtfw_sticky_header_layout_custom' ).focus();
+					} );
 					requestData.customHeaderLayout = controlApi( 'bgtfw_sticky_header_layout_custom' )();
-				} else {
-					controlApi.section( 'bgtfw_sticky_header_layout_advanced' ).deactivate();
 				}
 
 				$( '#masthead-sticky' ).css( 'opacity', 0.1 );
@@ -972,8 +995,6 @@ export class HeaderLayout  {
 
 	/**
 	 * Branding Notices.
-	 *
-	 * This displays notices with links to add a 
 	 *
 	 * @since 2.7.0
 	 *

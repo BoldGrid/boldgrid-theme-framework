@@ -1155,7 +1155,7 @@ class BoldGrid {
 										$col_data['align'],
 									);
 
-									if ( 'custom' === $preset || 'default' === $preset ) {
+									if ( 'custom' === $preset ) {
 										return $classes;
 									}
 

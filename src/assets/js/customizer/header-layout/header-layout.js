@@ -846,6 +846,8 @@ export class HeaderLayout  {
 							controlApi.control( 'bgtfw_header_layout_position' ).setting( 'header-top' );
 						}
 
+						controlApi.control( 'bgtfw_header_layout' ).setting( response.data.layout );
+
 						// Remove old markup from previewer.
 						$( '#masthead' ).find( '.boldgrid-section' ).remove();
 
@@ -905,6 +907,7 @@ export class HeaderLayout  {
 						$( '#masthead-sticky' ).find( '.boldgrid-section' ).remove();
 						$( '#masthead-sticky' ).append( response.data.markup );
 						$( '#sticky-header-display-inline-css' ).remove();
+						controlApi.control( 'bgtfw_sticky_header_layout' ).setting( response.data.layout );
 						hiddenItems = this.getHiddenItems( response.data.layout );
 						this.hideHiddenItems( hiddenItems );
 						$( '#masthead-sticky' ).css( 'opacity', 1 );

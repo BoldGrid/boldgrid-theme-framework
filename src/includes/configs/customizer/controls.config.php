@@ -1242,7 +1242,7 @@ return array(
 		'transport'   => 'postMessage',
 		'label'       => esc_html__( 'Branding Display', 'bgtfw' ),
 		'section'     => 'bgtfw_header_presets',
-		'default'     => array( 'logo', 'title' ),
+		'default'     => array( 'logo' ),
 		'priority'    => 1,
 		'choices'     => [
 			'logo'        => esc_html__( 'Logo', 'bgtfw' ),

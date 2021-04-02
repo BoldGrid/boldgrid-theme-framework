@@ -44,11 +44,11 @@ class Boldgrid_Framework_Sticky_Header {
 	 * @since 2.0.3
 	 */
 	public function add_styles_frontend() {
-		$preset = get_theme_mod( 'bgtfw_header_preset', 'default' );
-		if ( 'custom' === $preset ) {
-			Boldgrid_Framework_Customizer_Generic::add_inline_style( 'sticky-header-display', $this->get_styles() );
+		if ( 'default' !== get_theme_mod( 'bgtfw_header_preset' ) && 'custom' !== get_theme_mod( 'bgtfw_header_preset' ) ) {
+			return;
 		}
 
+		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'sticky-header-display', $this->get_styles() );
 	}
 
 	/**

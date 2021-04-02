@@ -856,7 +856,7 @@ export class HeaderLayout  {
 
 						// get unused branding items.
 						hiddenItems = this.getHiddenItems( response.data.layout );
-
+						console.log( hiddenItems );
 						// This inline CSS screws up the branding visiblity.
 						$( '#sticky-header-display-inline-css' ).remove();
 
@@ -1054,7 +1054,9 @@ export class HeaderLayout  {
 				if ( 'branding' === item.key ) {
 					uid = item.uid;
 					item.display.forEach( ( displayItem ) => {
-						if ( 'hide' === displayItem.display ) {
+						if ( 'hide' === displayItem.display && '.custom-logo' === displayItem.selector ) {
+							hidden.push( '.custom-logo-link' );
+						} else if ( 'hide' === displayItem.display ) {
 							hidden.push( displayItem.selector );
 						}
 					} );

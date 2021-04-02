@@ -856,7 +856,7 @@ export class HeaderLayout  {
 
 						// get unused branding items.
 						hiddenItems = this.getHiddenItems( response.data.layout );
-						console.log( hiddenItems );
+
 						// This inline CSS screws up the branding visiblity.
 						$( '#sticky-header-display-inline-css' ).remove();
 

@@ -81,9 +81,9 @@ class Boldgrid_Framework_Customizer_Presets {
 	 */
 	public function starter_content_defaults( $wp_customize ) {
 		$changeset_data = $wp_customize->changeset_data();
-
-		$key = get_stylesheet() . '::bgtfw_header_layout';
+		$key            = get_stylesheet() . '::bgtfw_header_layout';
 		if ( isset( $changeset_data[ $key ] ) && ! empty( $changeset_data[ $key ]['starter_content'] ) ) {
+			set_theme_mod( 'bgtfw_using_starter_content', true );
 			set_theme_mod( 'bgtfw_header_layout_default', $changeset_data[ $key ]['value'] );
 			set_theme_mod( 'bgtfw_header_layout_custom', $changeset_data[ $key ]['value'] );
 		}
@@ -340,7 +340,7 @@ class Boldgrid_Framework_Customizer_Presets {
 			$layout        = $custom_layout;
 			$markup        = BoldGrid::dynamic_layout( 'bgtfw_' . $preset_type . '_layout', $preset, $custom_layout );
 		} else {
-			$layout  = BoldGrid::get_layout( 'bgtfw_' . $preset_type . '_layout', $preset );
+			$layout = BoldGrid::get_layout( 'bgtfw_' . $preset_type . '_layout', $preset );
 			$markup = BoldGrid::dynamic_layout( 'bgtfw_' . $preset_type . '_layout', $preset );
 		}
 

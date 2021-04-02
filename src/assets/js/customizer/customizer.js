@@ -688,7 +688,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		};
 
 		// Setup menu controls.
-		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+		let menuLocations = Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs );
+		menuLocations.push( {
+			'theme_location': 'social',
+			'menu_id': 'social-menu'
+		} );
+		menuLocations.push( {
+			'theme_location': 'sticky-social',
+			'menu_id': 'sticky-social-menu'
+		} );
+		for ( const props of menuLocations ) {
 			if ( props.theme_location ) {
 
 				// Setup current menu items.

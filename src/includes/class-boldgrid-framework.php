@@ -108,8 +108,8 @@ class BoldGrid_Framework {
 	 * There are several methods triggered during the 'after_switch_theme' action.
 	 * Those hooks are intended to setup a new BoldGrid theme after it's been activated.
 	 * Those hooks however are sometimes ran twice:
-	 * 	1st, they are ran by the WordPress cron, if DISABLE_WP_CRON is not set to true.
-	 * 	2nd, they are ran by an ajax call
+	 *  1st, they are ran by the WordPress cron, if DISABLE_WP_CRON is not set to true.
+	 *  2nd, they are ran by an ajax call
 	 * To only run those methods once, we'll check 'DOING_CRON' before adding the hooks.
 	 *
 	 * @since 1.0.5
@@ -280,11 +280,11 @@ class BoldGrid_Framework {
 	 * @access   protected.
 	 */
 	public function add_config_filters() {
-		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
+		$effects         = new BoldGrid_Framework_Customizer_Effects( $this->configs );
 		$template_config = new Boldgrid_Framework_Template_Config( $this->configs );
-		$activate = new Boldgrid_Framework_Activate( $this->configs );
+		$activate        = new Boldgrid_Framework_Activate( $this->configs );
 		$starter_content = new Boldgrid_Framework_Starter_Content( $this->configs );
-		$custom_header = new Boldgrid_Framework_Custom_Header( $this->configs );
+		$custom_header   = new Boldgrid_Framework_Custom_Header( $this->configs );
 
 		// Disable Kirki Telemetry.
 		add_filter( 'kirki_telemetry', '__return_false' );
@@ -318,18 +318,18 @@ class BoldGrid_Framework {
 	 */
 	protected function assign_dynamic_configs() {
 
-		$theme_directory = get_template_directory();
+		$theme_directory     = get_template_directory();
 		$theme_directory_uri = get_template_directory_uri();
 
 		// If we are using an authors child theme, paths need to be changed to look at the child.
 		$menu = new Boldgrid_Framework_Menu( $this->configs );
 		if ( is_child_theme() && false === $menu->is_user_child() ) {
-			$theme_directory = get_stylesheet_directory();
+			$theme_directory     = get_stylesheet_directory();
 			$theme_directory_uri = get_stylesheet_directory_uri();
 		}
 
 		$this->configs['framework']['config_directory']['template'] = $theme_directory;
-		$this->configs['framework']['config_directory']['uri'] = $theme_directory_uri;
+		$this->configs['framework']['config_directory']['uri']      = $theme_directory_uri;
 	}
 
 	/**
@@ -364,7 +364,7 @@ class BoldGrid_Framework {
 		$this->configs = apply_filters( 'boldgrid_theme_framework_config', $this->configs );
 		// Backwards Compatibility.
 		$this->configs['directories']['BOLDGRID_THEME_NAME'] = $this->configs['version'];
-		$this->configs['directories']['BOLDGRID_THEME_VER'] = $this->configs['theme_name'];
+		$this->configs['directories']['BOLDGRID_THEME_VER']  = $this->configs['theme_name'];
 	}
 
 	/**
@@ -385,13 +385,13 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function define_theme_hooks() {
-		$styles  = new BoldGrid_Framework_Styles( $this->configs );
-		$scripts = new BoldGrid_Framework_Scripts( $this->configs );
+		$styles         = new BoldGrid_Framework_Styles( $this->configs );
+		$scripts        = new BoldGrid_Framework_Scripts( $this->configs );
 		$boldgrid_theme = new BoldGrid( $this->configs );
 
 		// Load Theme Wrapper.
 		if ( true === $this->configs['boldgrid-parent-theme'] ) {
-			$wrapper  = new Boldgrid_Framework_Wrapper();
+			$wrapper = new Boldgrid_Framework_Wrapper();
 			$this->loader->add_filter( 'template_include', $wrapper, 'wrap', 109 );
 		}
 
@@ -413,7 +413,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'post_list_sidebar' );
 
 		// Setup Sticky Footer.
-		$this->loader->add_action( 'boldgrid_header_before', $boldgrid_theme, 'boldgrid_sticky_top',    10 );
+		$this->loader->add_action( 'boldgrid_header_before', $boldgrid_theme, 'boldgrid_sticky_top', 10 );
 		$this->loader->add_action( 'boldgrid_footer_before', $boldgrid_theme, 'boldgrid_sticky_bottom', 15 );
 
 		// Additional theme functionality.
@@ -442,10 +442,10 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bgtfw_featured_image_page_classes', $boldgrid_theme, 'title_content_container' );
 		$this->loader->add_filter( 'bgtfw_featured_image_single_classes', $boldgrid_theme, 'title_content_container' );
 
-		$this->loader->add_filter( 'wp_page_menu_args',             $boldgrid_theme,   'page_menu_args' );
-		$this->loader->add_filter( 'boldgrid_print_tagline',        $boldgrid_theme,   'print_tagline' );
-		$this->loader->add_filter( 'boldgrid_site_title',           $boldgrid_theme,   'site_title' );
-		$this->loader->add_filter( 'boldgrid_site_identity',        $boldgrid_theme,   'print_title_tagline' );
+		$this->loader->add_filter( 'wp_page_menu_args', $boldgrid_theme, 'page_menu_args' );
+		$this->loader->add_filter( 'boldgrid_print_tagline', $boldgrid_theme, 'print_tagline' );
+		$this->loader->add_filter( 'boldgrid_site_title', $boldgrid_theme, 'site_title' );
+		$this->loader->add_filter( 'boldgrid_site_identity', $boldgrid_theme, 'print_title_tagline' );
 
 		// Sticky Header - Removed template_redirect as it was unnecessary and caused duplication of the sticky header sometimes.
 		if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) ) {
@@ -480,7 +480,7 @@ class BoldGrid_Framework {
 	 * @since 2.0.0
 	 */
 	private function custom_header() {
-		$header  = new Boldgrid_Framework_Custom_Header( $this->configs );
+		$header = new Boldgrid_Framework_Custom_Header( $this->configs );
 		$this->loader->add_action( 'after_setup_theme', $header, 'custom_header_setup' );
 		$this->loader->add_filter( 'header_video_settings', $header, 'video_controls' );
 	}
@@ -509,10 +509,10 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-		$admin = new BoldGrid_Framework_Admin( $this->configs );
-		$activate = new Boldgrid_Framework_Activate( $this->configs );
-		$editor = new Boldgrid_Framework_Editor( $this->configs );
-		$boldgrid_ppb = new Boldgrid_Framework_PPB( $this->configs );
+		$admin             = new BoldGrid_Framework_Admin( $this->configs );
+		$activate          = new Boldgrid_Framework_Activate( $this->configs );
+		$editor            = new Boldgrid_Framework_Editor( $this->configs );
+		$boldgrid_ppb      = new Boldgrid_Framework_PPB( $this->configs );
 		$pro_feature_cards = new BoldGrid_Framework_Pro_Feature_Cards( $this->configs );
 
 		// This adds Pro Feature notice counts to the admin menu.
@@ -601,8 +601,8 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function boldgrid_theme_setup() {
-		$theme_setup = new BoldGrid_Framework_Setup( $this->configs );
-		$compile = new Boldgrid_Framework_Scss_Compile( $this->configs );
+		$theme_setup   = new BoldGrid_Framework_Setup( $this->configs );
+		$compile       = new Boldgrid_Framework_Scss_Compile( $this->configs );
 		$color_compile = new Boldgrid_Framework_Compile_Colors( $this->configs );
 
 		$this->loader->add_action( 'after_setup_theme', $theme_setup, 'boldgrid_setup' );
@@ -756,8 +756,8 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function customizer_colors() {
-		$colors = new Boldgrid_Framework_Customizer_Colors( $this->configs );
-		$stylesheet = get_stylesheet();
+		$colors             = new Boldgrid_Framework_Customizer_Colors( $this->configs );
+		$stylesheet         = get_stylesheet();
 		$staging_stylesheet = get_option( 'boldgrid_staging_stylesheet', '' );
 
 		// Color Palette Controls.
@@ -1041,8 +1041,8 @@ class BoldGrid_Framework {
 		}, 20 );
 		add_action( 'template_redirect', function() use ( $woo ) {
 			if ( $woo->is_woocommerce_page() ) {
-				add_action( 'boldgrid_main_top' , array( $woo, 'add_container_open' ) );
-				add_action( 'boldgrid_main_bottom' , array( $woo, 'add_container_close' ) );
+				add_action( 'boldgrid_main_top', array( $woo, 'add_container_open' ) );
+				add_action( 'boldgrid_main_bottom', array( $woo, 'add_container_close' ) );
 			}
 		});
 
@@ -1086,7 +1086,7 @@ class BoldGrid_Framework {
 	private function define_global_hooks() {
 		$auto_compile_enabled = defined( 'BOLDGRID_THEME_HELPER_SCSS_COMPILE' ) ? BOLDGRID_THEME_HELPER_SCSS_COMPILE : null;
 
-		$scss = new Boldgrid_Framework_SCSS( $this->configs );
+		$scss    = new Boldgrid_Framework_SCSS( $this->configs );
 		$staging = new Boldgrid_Framework_Staging( $this->configs );
 		$compile = new Boldgrid_Framework_Scss_Compile( $this->configs );
 
@@ -1104,7 +1104,7 @@ class BoldGrid_Framework {
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $scss, 'force_update_css', 999 );
 		}
-		$this->loader->add_action( 'upgrader_process_complete', $scss , 'theme_upgrader_process', 10, 3 );
+		$this->loader->add_action( 'upgrader_process_complete', $scss, 'theme_upgrader_process', 10, 3 );
 	}
 
 	/**

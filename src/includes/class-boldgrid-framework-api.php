@@ -74,8 +74,8 @@ class BoldGrid {
 	 */
 	public static function site_logo() {
 		$image_attributes = wp_get_attachment_image_src( absint( get_theme_mod( 'boldgrid_logo_setting' ) ), 'full' );
-		$alt = get_post_meta( get_theme_mod( 'boldgrid_logo_setting' ), '_wp_attachment_image_alt', true );
-		$alt = empty( $alt ) ? '' : $alt;
+		$alt              = get_post_meta( get_theme_mod( 'boldgrid_logo_setting' ), '_wp_attachment_image_alt', true );
+		$alt              = empty( $alt ) ? '' : $alt;
 
 		if ( $image_attributes ) { ?>
 		<div class="site-title">
@@ -83,7 +83,8 @@ class BoldGrid {
 				<img alt="<?php echo esc_attr( $alt ); ?>" src="<?php echo esc_attr( $image_attributes[0] ); ?>" width="<?php echo esc_attr( $image_attributes[1] ); ?>" height="<?php echo esc_attr( $image_attributes[2] ); ?>" />
 			</a>
 		</div>
-		<?php }
+		<?php
+		}
 	}
 
 	/**
@@ -109,8 +110,8 @@ class BoldGrid {
 	public function print_tagline() {
 		// Retrieve blog tagline.
 		$blog_info = get_bloginfo( 'description' );
-		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
-		$classes = 'site-description invisible';
+		$display   = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
+		$classes   = 'site-description invisible';
 
 		if ( $blog_info ) {
 			$classes = $this->configs['template']['tagline-classes'] . $display;
@@ -304,7 +305,7 @@ class BoldGrid {
 	 */
 	public function footer_classes( $classes ) {
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts' );
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		$classes   = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
 		return $classes;
 	}
 
@@ -360,7 +361,7 @@ class BoldGrid {
 	 * @return array  $classes Classes for background color/text contrast.
 	 */
 	public function get_background_color( $mod ) {
-		$color = get_theme_mod( $mod );
+		$color       = get_theme_mod( $mod );
 		$color_class = explode( ':', $color );
 		$color_class = array_shift( $color_class );
 		if ( strpos( $color_class, 'neutral' ) === false ) {
@@ -381,8 +382,8 @@ class BoldGrid {
 	 * @return array  $classes Classes for link colors.
 	 */
 	public function get_link_color( $mod ) {
-		$color = get_theme_mod( $mod );
-		$color = explode( ':', $color );
+		$color     = get_theme_mod( $mod );
+		$color     = explode( ':', $color );
 		$classes[] = array_shift( $color ) . '-link-color';
 		return $classes;
 	}
@@ -402,11 +403,11 @@ class BoldGrid {
 		}
 
 		if ( ! is_front_page() && is_home() ) {
-			$post_id = ( int ) get_option( 'page_for_posts' );
+			$post_id = (int) get_option( 'page_for_posts' );
 		}
 
 		// Adds a class of group-blog to blogs with more than 1 published author.
-		if ( is_multi_author( ) ) {
+		if ( is_multi_author() ) {
 			$classes[] = 'group-blog';
 		}
 		// Add class if sidebar is active.
@@ -419,23 +420,23 @@ class BoldGrid {
 			if ( 'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
 				$classes[] = 'page-header-hidden';
 			}
-		} else if ( $post ) {
+		} elseif ( $post ) {
 			if ( is_page() || ( ! is_front_page() && is_home() ) ) {
 				$keys = get_post_custom_keys( $post_id );
 				if ( is_array( $keys ) && in_array( 'boldgrid_hide_page_title', $keys, true ) ) {
 					$post_meta = get_post_meta( $post_id );
 					if ( empty( $post_meta['boldgrid_hide_page_title'][0] ) ) {
 						$classes[] = 'page-header-hidden';
-					} else if ( 'global' === $post_meta['boldgrid_hide_page_title'][0] &&
+					} elseif ( 'global' === $post_meta['boldgrid_hide_page_title'][0] &&
 						'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
 							$classes[] = 'customizer-page-header-hidden';
-					} else if ( 1 === absint( $post_meta['boldgrid_hide_page_title'][0] ) ) {
+					} elseif ( 1 === absint( $post_meta['boldgrid_hide_page_title'][0] ) ) {
 						$classes[] = 'page-header-shown';
 					}
-				} else if ( 'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
+				} elseif ( 'hide' === get_theme_mod( 'bgtfw_pages_title_display' ) ) {
 					$classes[] = 'customizer-page-header-hidden';
 				}
-			} else if ( is_single() ) {
+			} elseif ( is_single() ) {
 
 				// Check if the key is set for the post meta.
 				$keys = get_post_custom_keys( $post_id );
@@ -449,17 +450,17 @@ class BoldGrid {
 						}
 
 					// If the post meta is set to use the global settings check those and hide the header.
-					} else if ( 'global' === $post_meta['boldgrid_hide_page_title'][0] ) {
+					} elseif ( 'global' === $post_meta['boldgrid_hide_page_title'][0] ) {
 						if ( 'hide' === get_theme_mod( 'bgtfw_posts_title_display' ) &&
 							'none' === get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
 								$classes[] = 'customizer-page-header-hidden';
 						}
-					} else if ( 1 === absint( $post_meta['boldgrid_hide_page_title'][0] ) ) {
+					} elseif ( 1 === absint( $post_meta['boldgrid_hide_page_title'][0] ) ) {
 						$classes[] = 'page-header-shown';
 					}
 
 				// Otherwise only rely on global settings for post title and meta.
-				} else if ( 'hide' === get_theme_mod( 'bgtfw_posts_title_display' ) && 'none' === get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
+				} elseif ( 'hide' === get_theme_mod( 'bgtfw_posts_title_display' ) && 'none' === get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
 					$classes[] = 'customizer-page-header-hidden';
 				}
 			}
@@ -468,7 +469,7 @@ class BoldGrid {
 		// Check if we are on a blog roll page (not archive).
 		global $wp_query;
 
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
+		if ( ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
 			$classes[] = 'col' . get_theme_mod( 'bgtfw_pages_blog_blog_page_layout_columns' );
 		}
 
@@ -545,7 +546,7 @@ class BoldGrid {
 			$layout = get_page_template_slug();
 
 			if ( empty( $layout ) ) {
-				$type = 'page' === get_post_type() ? 'page' : 'blog';
+				$type   = 'page' === get_post_type() ? 'page' : 'blog';
 				$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
 			}
 
@@ -553,7 +554,7 @@ class BoldGrid {
 		}
 
 		$background_theme_mod = 'boldgrid_background_color';
-		$background_image = get_theme_mod( 'background_image' );
+		$background_image     = get_theme_mod( 'background_image' );
 
 		// Add class for parallax background option.
 		if ( 'parallax' === get_theme_mod( 'background_attachment' ) ) {
@@ -647,7 +648,7 @@ class BoldGrid {
 	 */
 	public function post_class( $classes ) {
 		global $post;
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
+		if ( ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
 			$classes = array_merge( $classes, [ 'design-1', 'wow', 'fadeIn' ], $this->get_background_color( 'bgtfw_blog_post_background_color' ) );
 		}
 
@@ -678,7 +679,7 @@ class BoldGrid {
 	 */
 	public function blog_page_post_title_classes( $classes ) {
 		global $wp_query;
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
+		if ( ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
 			$classes = array_merge( $classes, $this->get_color_classes( get_theme_mod( 'bgtfw_blog_post_header_title_color' ), [ 'color', 'color-hover' ] ) );
 		}
 
@@ -724,7 +725,7 @@ class BoldGrid {
 	 */
 	public function entry_header_classes( $classes ) {
 		global $post;
-		if ( ( isset( $wp_query ) && ( bool ) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
+		if ( ( isset( $wp_query ) && (bool) $wp_query->is_posts_page ) || is_home() || is_archive() ) {
 			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_blog_header_background_color' ) );
 		}
 
@@ -753,9 +754,11 @@ class BoldGrid {
 	 *  @since 1.0.1
 	 */
 	public function boldgrid_sticky_top() {
-		if ( true === $this->configs['scripts']['boldgrid-sticky-footer'] ) { ?>
+		if ( true === $this->configs['scripts']['boldgrid-sticky-footer'] ) {
+			?>
 			<div id="boldgrid-sticky-wrap">
-		<?php }
+		<?php
+		}
 	}
 
 	/**
@@ -766,9 +769,11 @@ class BoldGrid {
 	 *  @since 1.0.1
 	 */
 	public function boldgrid_sticky_bottom() {
-		if ( true === $this->configs['scripts']['boldgrid-sticky-footer'] ) { ?>
+		if ( true === $this->configs['scripts']['boldgrid-sticky-footer'] ) {
+			?>
 			</div><!-- End of #boldgrid-sticky-wrap -->
-		<?php }
+		<?php
+		}
 	}
 
 	/**
@@ -800,29 +805,25 @@ class BoldGrid {
 		foreach ( $conditions as $condition ) {
 			// Split [params]method to useable strings.
 			preg_match( '/^\[.*\]/', $condition, $matches );
-			$type = ! empty( $matches[0] ) ? $matches[0] : null;
-			$param = str_replace( array( '[', ']' ), '', $type );
+			$type             = ! empty( $matches[0] ) ? $matches[0] : null;
+			$param            = str_replace( array( '[', ']' ), '', $type );
 			$is_page_template = ( strpos( $condition, 'is_page_template' ) !== false );
 			switch ( $param ) {
-				// Use [parameter]condition as condition( 'parameter' ).
-				case( preg_match( '/^\[.*\]/', $condition ) && ! $is_page_template ) :
+				case ( preg_match( '/^\[.*\]/', $condition ) && ! $is_page_template ):
 					$conditions[] = ! function_exists( $condition ) ? : $condition( $param );
 					break;
-				// Use [default]is_page_template as is_page() && ! is_page_template().
-				case ( $is_page_template && 'default' === $param ) :
+				case ( $is_page_template && 'default' === $param ):
 					$conditions[] = is_page() && ! is_page_template();
 					break;
-				// Use [specific-template.php]is_page_template as is_page_template('specific-template.php').
-				case ( $is_page_template ) :
+				case ( $is_page_template ):
 					$conditions[] = is_page_template( $param );
 					break;
-				// No params found, so run a basic conditional.
-				default :
+				default:
 					$conditions[] = ! function_exists( $condition ) ? : $condition();
 			}
 		}
+		$display = isset( $display ) ? $display : ! in_array( true, $conditions, true );
 
-		isset( $display ) || $display = ! in_array( true, $conditions, true );
 		return apply_filters( 'boldgrid/display_sidebar', $display );
 	}
 
@@ -864,7 +865,7 @@ class BoldGrid {
 	 */
 	public function password_form() {
 		global $post;
-		$label = 'pwbox-' . ( empty( $post->ID ) ? rand() : $post->ID );
+		$label  = 'pwbox-' . ( empty( $post->ID ) ? rand() : $post->ID );
 		$output = '
 		<div class="container">
 			<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="form-inline post-password-form" method="post">
@@ -891,7 +892,7 @@ class BoldGrid {
 	 * @param string|array $class   One or more classes to add to the class list.
 	 */
 	public static function add_class( $element = '', $class = '', $echo = true ) {
-		$el = new Boldgrid_Framework_Element_Class( $element, $class );
+		$el   = new Boldgrid_Framework_Element_Class( $element, $class );
 		$html = (string) $el->html;
 
 		if ( $echo ) {
@@ -985,17 +986,16 @@ class BoldGrid {
 	 *
 	 * @return array Array of Column Width Values.
 	 */
-	public static function get_column_widths( $theme_mod ) {
+	public static function get_column_widths( $theme_mod, $type, $preset ) {
 		global $boldgrid_theme_framework;
 		$configs = $boldgrid_theme_framework->get_configs();
-
-		if ( get_theme_mod( $theme_mod . '_custom_col_width' ) ) {
+		if ( 'custom' === $preset && get_theme_mod( $theme_mod . '_custom_col_width' ) ) {
 			return self::new_column_control( $theme_mod );
 		}
 
 		$device_column_widths = array();
 
-		$type = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) )
+		$type = ( false !== strpos( $layout_type, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) )
 			? 'sticky_header'
 			: 'header'
 			: 'footer';
@@ -1053,13 +1053,20 @@ class BoldGrid {
 		}
 
 		$markup        = '';
-		$column_widths = self::get_column_widths( $theme_mod );
 		$theme_mod     = self::create_uids( $theme_mod, $preset, $custom_layout );
 		$preset        = $preset ? $preset : get_theme_mod( 'bgtfw_' . $layout_type . '_preset', 'default' );
-		$hidden_items  = array_diff(
-			array( 'title', 'logo', 'description' ),
-			get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding', array( 'title', 'logo' ) )
-		);
+		$column_widths = self::get_column_widths( $theme_mod, $layout_type, $preset );
+		if ( get_theme_mod( 'bgtfw_using_starter_content', false ) ) {
+			$hidden_items = array_diff(
+				array( 'title', 'logo', 'description' ),
+				get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding', array( 'logo' ) )
+			);
+		} else {
+			$hidden_items = array_diff(
+				array( 'title', 'logo', 'description' ),
+				get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding', array( 'title', 'logo' ) )
+			);
+		}
 
 		$hidden_item_classes = array();
 
@@ -1078,7 +1085,7 @@ class BoldGrid {
 
 				$markup .= '<div class="boldgrid-section ' . $preset . '-preset">';
 				$markup .= '<div class="' . $section['container'] . '">';
-				$chunks = array_chunk( $section['items'], 6, true );
+				$chunks  = array_chunk( $section['items'], 6, true );
 
 				foreach ( $chunks as $chunk ) {
 					$markup .= '<div class="row">';
@@ -1121,13 +1128,13 @@ class BoldGrid {
 							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $col_data['align'];
 							$markup .= $col_x_full_width ? ' ' . $col_x_full_width . '">' : '">';
 						} else {
-							$num = ( 12 / count( $chunk ) );
+							$num     = ( 12 / count( $chunk ) );
 							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . '">';
 						}
 
 						ob_start();
 						switch ( $col_data['type'] ) {
-							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
+							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false:
 								$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
 								if ( 'social' === $menu && false !== strpos( $col_uid, 'f' ) ) {
 									$menu             = 'footer-social';
@@ -1145,7 +1152,7 @@ class BoldGrid {
 								}
 								echo '</div>';
 								break;
-							case 'boldgrid_site_identity' === $col_data['type'] :
+							case 'boldgrid_site_identity' === $col_data['type']: //phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
 								$filter = function( $classes ) use ( $col_data, $preset, $hidden_item_classes ) {
 									if ( empty( $col_data['align'] ) ) {
 										$col_data['align'] = 'nw';
@@ -1168,7 +1175,7 @@ class BoldGrid {
 									return $classes;
 								};
 								add_filter( 'bgtfw_site_branding_classes', $filter, 10 );
-							case 'boldgrid_display_attribution_links' === $col_data['type'] :
+							case 'boldgrid_display_attribution_links' === $col_data['type']: //phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
 								$filter = function( $classes ) use ( $col_data ) {
 									if ( empty( $col_data['align'] ) ) {
 										$col_data['align'] = 'nw';
@@ -1246,7 +1253,7 @@ class BoldGrid {
 	 * @return array $defaults Default parameters with uIDs added for items.
 	 */
 	public static function create_uids( $theme_mod, $preset = null, $custom_layout = null ) {
-		$uid = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) ) ? 's' : 'h' : 'f';
+		$uid      = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) ) ? 's' : 'h' : 'f';
 		$defaults = self::get_layout( $theme_mod, $preset, $custom_layout );
 
 		foreach ( $defaults as $key => $section ) {
@@ -1282,7 +1289,7 @@ class BoldGrid {
 	 * @return string Rendered HTML for dyanmic layout element.
 	 */
 	public static function dynamic_sticky_header( $preset = null ) {
-		$markup = '';
+		$markup  = '';
 		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . '>';
 		ob_start();
 		do_action( 'boldgrid_header_top' );

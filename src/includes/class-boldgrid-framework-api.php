@@ -1152,7 +1152,7 @@ class BoldGrid {
 								}
 								echo '</div>';
 								break;
-							case 'boldgrid_site_identity' === $col_data['type']: //phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
+							case 'boldgrid_site_identity' === $col_data['type']: // phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
 								$filter = function( $classes ) use ( $col_data, $preset, $hidden_item_classes ) {
 									if ( empty( $col_data['align'] ) ) {
 										$col_data['align'] = 'nw';
@@ -1175,7 +1175,7 @@ class BoldGrid {
 									return $classes;
 								};
 								add_filter( 'bgtfw_site_branding_classes', $filter, 10 );
-							case 'boldgrid_display_attribution_links' === $col_data['type']: //phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
+							case 'boldgrid_display_attribution_links' === $col_data['type']: // phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
 								$filter = function( $classes ) use ( $col_data ) {
 									if ( empty( $col_data['align'] ) ) {
 										$col_data['align'] = 'nw';

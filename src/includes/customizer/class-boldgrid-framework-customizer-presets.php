@@ -353,8 +353,6 @@ class Boldgrid_Framework_Customizer_Presets {
 		} else {
 			$layout = BoldGrid::get_layout( 'bgtfw_' . $preset_type . '_layout', $preset );
 			$markup = BoldGrid::dynamic_layout( 'bgtfw_' . $preset_type . '_layout', $preset );
-			error_log( '$layout: ' . json_encode( $layout ) );
-			error_log( '$markup: ' . json_encode( $markup ) );
 		}
 
 		wp_send_json_success( array(

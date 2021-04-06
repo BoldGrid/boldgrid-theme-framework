@@ -994,7 +994,6 @@ class BoldGrid {
 		}
 
 		if ( 'custom' === $preset && get_theme_mod( 'bgtfw_' . $layout_type . '_layout_custom_col_width' ) ) {
-			error_log( json_encode( get_theme_mod( 'bgtfw_' . $layout_type . '_layout_custom_col_width' ) ) );
 			return self::new_column_control( $layout_type );
 		} elseif ( 'default' !== $preset ) {
 			return array();
@@ -1063,7 +1062,6 @@ class BoldGrid {
 		$theme_mod     = self::create_uids( $theme_mod, $preset, $custom_layout );
 		$preset        = $preset ? $preset : get_theme_mod( 'bgtfw_' . $layout_type . '_preset', 'default' );
 		$column_widths = self::get_column_widths( $theme_mod, $preset, $layout_type );
-		error_log( 'column_widths: ' . json_encode( $column_widths ) );
 		if ( 'default' === $preset && get_theme_mod( '_boldgrid_theme_id' ) ) {
 			$hidden_items = array_diff(
 				array( 'title', 'logo', 'description' ),
@@ -1075,12 +1073,10 @@ class BoldGrid {
 				get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding', array( 'title', 'logo' ) )
 			);
 		}
-		error_log( json_encode( get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding' ) ) );
 		if ( 'default' !== $preset && array( 'logo' ) === get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding' ) && ! get_theme_mod( 'custom_logo' ) ) {
 			$hidden_items = array( 'logo', 'description' );
 		}
 
-		error_log( 'hidden_items: ' . json_encode( $hidden_items ) );
 		$hidden_item_classes = array();
 
 		foreach ( $hidden_items as $index => $item ) {

@@ -418,18 +418,16 @@ export class HeaderLayout  {
 		$fullWidthControls.each( ( _, fullWidthControl ) => {
 			var $control = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container.find( fullWidthControl ),
 				device = $control.data( 'device' ),
-				checked = $control.attr( 'checked' ) ? true : false,
+				checked = $control.prop( 'checked' ) ? true : false,
 				row = parseInt( $control.data( 'row' ) );
 
 				if ( ! valueObject.fullWidth[ row ] ) {
 					valueObject.fullWidth[ row ] = {};
 				}
-
 				valueObject.fullWidth[ row ][ device ] = checked;
 		} );
 
 		// This is where the wp.customize setting is actually changed.
-
 		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).setting.set( valueObject );
 	}
 
@@ -1028,9 +1026,6 @@ export class HeaderLayout  {
 		if ( ! value.includes( 'title' ) && ! controlApi( 'custom_logo' )() ) {
 			let brandingDisplay = value;
 			brandingDisplay.push( 'title' );
-			console.log( {
-				'brandingDisplay': brandingDisplay
-				} );
 			control.container.find( 'input[value=title]' ).trigger( 'click' );
 		}
 

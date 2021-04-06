@@ -1243,7 +1243,7 @@ class BoldGrid {
 		} elseif ( 'default' === $preset ) {
 			$unset_default_layout = isset( $configs['customizer']['controls'][ 'bgtfw_' . $preset_type . '_layout' ]['default'] ) ?
 				$configs['customizer']['controls'][ 'bgtfw_' . $preset_type . '_layout' ]['default'] :
-				$configs['customizer']['controls'][ 'bgtfw_header_layout' ]['default'];
+				$configs['customizer']['controls']['bgtfw_header_layout']['default'];
 			$layout = (array) get_theme_mod( 'bgtfw_' . $preset_type . '_layout_default', $unset_default_layout );
 		}
 

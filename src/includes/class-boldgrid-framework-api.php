@@ -1075,7 +1075,12 @@ class BoldGrid {
 				get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding', array( 'title', 'logo' ) )
 			);
 		}
+		error_log( json_encode( get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding' ) ) );
+		if ( 'default' !== $preset && array( 'logo' ) === get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding' ) && ! get_theme_mod( 'custom_logo' ) ) {
+			$hidden_items = array( 'logo', 'description' );
+		}
 
+		error_log( 'hidden_items: ' . json_encode( $hidden_items ) );
 		$hidden_item_classes = array();
 
 		foreach ( $hidden_items as $index => $item ) {
@@ -1236,7 +1241,7 @@ class BoldGrid {
 			return $custom_layout;
 		}
 
-		if ( 'default' === $preset && get_option( 'fresh_site' ) ) {
+		if ( 'default' === $preset && get_option( 'fresh_site' ) && $wp_customize ) {
 			$starter_content = get_theme_starter_content();
 			$layout          = $starter_content['theme_mods'][ 'bgtfw_' . $preset_type . '_layout' ];
 		} elseif ( 'default' === $preset ) {

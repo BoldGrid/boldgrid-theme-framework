@@ -794,7 +794,8 @@ export class HeaderLayout  {
 					headerPresetNonce: controlApi.settings.nonce['bgtfw-header-preset'],
 					wpCustomize: 'on',
 					customizeTheme: controlApi.settings.theme.stylesheet,
-					headerPreset: headerPreset
+					headerPreset: headerPreset,
+					hasLogoSet: controlApi( 'custom_logo' ) ? true : false
 				};
 
 				/*
@@ -1022,6 +1023,15 @@ export class HeaderLayout  {
 				e.preventDefault();
 				controlApi.control( 'title' ).focus();
 			} );
+		}
+
+		if ( ! value.includes( 'title' ) && ! controlApi( 'custom_logo' )() ) {
+			let brandingDisplay = value;
+			brandingDisplay.push( 'title' );
+			console.log( {
+				'brandingDisplay': brandingDisplay
+				} );
+			control.container.find( 'input[value=title]' ).trigger( 'click' );
 		}
 
 		if ( value.includes( 'description' ) && ! controlApi( 'blogdescription' )() ) {

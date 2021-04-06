@@ -862,6 +862,8 @@ export class HeaderLayout  {
 						// Hide the unused branding items.
 						this.hideHiddenItems( hiddenItems );
 
+						this.setupCurrentMenuItem( 'main-menu' );
+
 						$( '#masthead' ).css( 'opacity', 1 );
 					}
 				} );
@@ -909,6 +911,7 @@ export class HeaderLayout  {
 						controlApi.control( 'bgtfw_sticky_header_layout' ).setting( response.data.layout );
 						hiddenItems = this.getHiddenItems( response.data.layout );
 						this.hideHiddenItems( hiddenItems );
+						this.setupCurrentMenuItem( 'sticky-main-menu' );
 						$( '#masthead-sticky' ).css( 'opacity', 1 );
 					}
 				} );
@@ -1036,6 +1039,25 @@ export class HeaderLayout  {
 				controlApi.control( 'blogdescription' ).focus();
 			} );
 		}
+	}
+
+	/**
+	 * Customizer always marks home as the current-menu-item.  This will check the query
+	 * params of the link in the menu, and compare it to the currently previewed URL and
+	 * remove the .current-menu-item classes from links that don't match.  I assume this
+	 * should be fixed in core at some point, or we have done something incorrect somewhere,
+	 * but for the time being this works.
+	 *
+	 * @since 2.0.0
+	 */
+	setupCurrentMenuItem( menuId ) {
+		var currentUrl = $( location ).attr( 'href' ).split( '?' )[0];
+		$( '#' + menuId + ' > li' ).children( 'a' ).each( ( _, link ) => {
+			var href = $( link ).attr( 'href' );
+			if ( href === currentUrl ) {
+				$( link ).parent().addClass( 'current-menu-item current_page_item' );
+			}
+		} );
 	}
 
 	/**

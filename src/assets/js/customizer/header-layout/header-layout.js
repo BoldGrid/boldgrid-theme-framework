@@ -572,6 +572,9 @@ export class HeaderLayout  {
 	 * @returns {Boolean} True if new value is different than old.
 	 */
 	maybeUpdateSlider( oldValue, newValue ) {
+		if ( oldValue.length > newValue.length ) {
+			return true;
+		}
 
 		for ( let rowIndex = 0; rowIndex < oldValue.length; rowIndex++ ) {
 			for ( let itemIndex = 0; itemIndex < newValue[ rowIndex ].items.length; itemIndex++ ) {
@@ -586,7 +589,7 @@ export class HeaderLayout  {
 			return false;
 		}
 
-		if ( oldValue.length !== newValue.length ) {
+		if ( oldValue.length < newValue.length ) {
 			return true;
 		}
 
@@ -1024,12 +1027,6 @@ export class HeaderLayout  {
 				e.preventDefault();
 				controlApi.control( 'title' ).focus();
 			} );
-		}
-
-		if ( ! value.includes( 'title' ) && ! controlApi( 'custom_logo' )() ) {
-			let brandingDisplay = value;
-			brandingDisplay.push( 'title' );
-			control.container.find( 'input[value=title]' ).trigger( 'click' );
 		}
 
 		if ( value.includes( 'description' ) && ! controlApi( 'blogdescription' )() ) {

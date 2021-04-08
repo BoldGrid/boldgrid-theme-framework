@@ -182,6 +182,13 @@ class Boldgrid_Framework_Customizer_Presets {
 			);
 		}
 
+		if ( ! get_theme_mod( 'bgtfw_header_preset_branding' ) ) {
+			set_theme_mod(
+				'bgtfw_header_preset_branding',
+				array( 'logo', 'title' )
+			);
+		}
+
 		foreach ( $this->configs['customizer-options']['presets'] as $preset_id => $preset ) {
 			if ( $this->current_header_layout === $preset ) {
 				set_theme_mod( 'bgtfw_header_preset', $preset_id );

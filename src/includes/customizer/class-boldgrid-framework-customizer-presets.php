@@ -72,6 +72,21 @@ class Boldgrid_Framework_Customizer_Presets {
 				}
 			}
 		}
+
+		$this->fix_footer_social();
+	}
+
+	/**
+	 * Fix Footer Social.
+	 *
+	 * Changes the theme mod for the footer social icons.
+	 *
+	 * @since 2.7.0
+	 */
+	public function fix_footer_social() {
+		$footer_layout = json_encode( get_theme_mod( 'bgtfw_footer_layout' ) );
+		$fixed_layout  = json_decode( str_replace( '"boldgrid_menu_social"', '"boldgrid_menu_footer-social"', $footer_layout ), true );
+		set_theme_mod( 'bgtfw_footer_layout', $fixed_layout );
 	}
 
 	/**

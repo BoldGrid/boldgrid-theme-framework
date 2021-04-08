@@ -16,6 +16,8 @@ export class HeaderLayout  {
 	*/
 	init() {
 
+		this.socialMenuId = controlApi( 'nav_menu_locations[social]' )();
+
 		// Handles changes in the previewed device.
 		this.changeColumnDevice();
 
@@ -653,6 +655,13 @@ export class HeaderLayout  {
 	 * @since 2.7.0
 	 */
 	bindControlChanges() {
+		var socialMenuSectionId = 'nav_menu[' + this.socialMenuId + ']';
+
+		controlApi.bind( 'add', ( control ) => {
+			if ( window._.isFunction( control.section ) && socialMenuSectionId === control.section() ) {
+				control.setting.transport = 'refresh';
+			}
+		} );
 
 		/*
 		 * bgtfw_header_layout_custom

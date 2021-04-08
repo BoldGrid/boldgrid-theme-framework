@@ -117,8 +117,6 @@ class BoldGrid {
 			$classes = $this->configs['template']['tagline-classes'] . 'site-description invisible';
 		}
 
-		error_log( $classes );
-
 		printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $classes ), esc_html( $blog_info ) );
 	}
 

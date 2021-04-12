@@ -107,30 +107,42 @@ export class HeaderLayout  {
 	 * @since 2.7.0
 	 */
 	bindFullWidth() {
-		controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container
-			.find( '.col-width-full-width' ).off( 'click' ).on( 'click', ( event ) => {
-				var deviceClass = parent.window.BOLDGRID.colWidths.getDeviceClass( $( event.currentTarget ).data( 'device' ) );
+		var colWidthValue = controlApi( 'bgtfw_header_layout_custom_col_width' )(),
+			container     = controlApi.control( 'bgtfw_header_layout_custom_col_width' ).container;
 
-				/*
-				 * If we actually disable the sliders here, it effects the way they
-				 * initialize. Therefore, the checkbox's container itself will expand to
-				 * cover the slider, and prevent interraction. This is handled via CSS, based on the
-				 * 'disabled' class.
-				 */
-				if ( $( event.currentTarget ).prop( 'checked' ) ) {
-					$( event.currentTarget ).parent().addClass( 'disabled' );
-				} else {
-					$( event.currentTarget ).parent().removeClass( 'disabled' );
-				}
+		container.find( '.col-width-full-width' ).each( ( _, controlInput ) => {
+			var device    = controlInput.dataset.device,
+				row       = controlInput.dataset.row,
+				isChecked = colWidthValue.fullWidth[ row ][ device ];
 
-				// We need to make sure that the values of the column sliders adjust to match.
-				parent.window.BOLDGRID.colWidths.updateControlValue();
+			controlApi.control( 'bgtfw_header_layout_custom_col_width' )
+				.container.find( controlInput ).prop( 'checked', isChecked );
 
-				// This is where the preview itself is updated.
-				$( event.currentTarget ).parent().siblings( '.col-width-slider' ).data( 'items' ).forEach( ( item ) => {
-					$( '.' + item.uid ).toggleClass( deviceClass + 'full-width' );
-				} );
+		} );
+
+		container.find( '.col-width-full-width' ).off( 'click' ).on( 'click', ( event ) => {
+			var deviceClass = parent.window.BOLDGRID.colWidths.getDeviceClass( $( event.currentTarget ).data( 'device' ) );
+
+			/*
+				* If we actually disable the sliders here, it effects the way they
+				* initialize. Therefore, the checkbox's container itself will expand to
+				* cover the slider, and prevent interraction. This is handled via CSS, based on the
+				* 'disabled' class.
+				*/
+			if ( $( event.currentTarget ).prop( 'checked' ) ) {
+				$( event.currentTarget ).parent().addClass( 'disabled' );
+			} else {
+				$( event.currentTarget ).parent().removeClass( 'disabled' );
+			}
+
+			// We need to make sure that the values of the column sliders adjust to match.
+			parent.window.BOLDGRID.colWidths.updateControlValue();
+
+			// This is where the preview itself is updated.
+			$( event.currentTarget ).parent().siblings( '.col-width-slider' ).data( 'items' ).forEach( ( item ) => {
+				$( '.' + item.uid ).toggleClass( deviceClass + 'full-width' );
 			} );
+		} );
 	}
 
 	/**

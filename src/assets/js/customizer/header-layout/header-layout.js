@@ -113,7 +113,15 @@ export class HeaderLayout  {
 		container.find( '.col-width-full-width' ).each( ( _, controlInput ) => {
 			var device    = controlInput.dataset.device,
 				row       = controlInput.dataset.row,
+				isChecked;
+
+			if ( colWidthValue ) {
 				isChecked = colWidthValue.fullWidth[ row ][ device ];
+			} else if ( 'tablet' === device || 'phone' === device ) {
+				isChecked = true;
+			} else {
+				isChecked = false;
+			}
 
 			controlApi.control( 'bgtfw_header_layout_custom_col_width' )
 				.container.find( controlInput ).prop( 'checked', isChecked );

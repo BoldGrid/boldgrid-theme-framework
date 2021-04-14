@@ -483,7 +483,16 @@ export class Preview  {
 	 * @since 2.0.0
 	 */
 	menus() {
-		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+		var menuLocations = Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs );
+		menuLocations.push( {
+			'theme_location': 'social',
+			'menu_id': 'social-menu'
+		} );
+		menuLocations.push( {
+			'theme_location': 'sticky-social',
+			'menu_id': 'sticky-social-menu'
+		} );
+		for ( const props of menuLocations ) {
 			if ( props.theme_location ) {
 
 				// Set menu border colors.

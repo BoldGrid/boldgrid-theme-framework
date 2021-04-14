@@ -421,7 +421,6 @@ export default {
 						id = _.uniqueId( `${ this.params.location }-${ lowerCase( control.title ) }-` ),
 						checked = 'hide' === control.display ? '' : 'checked',
 						logo = api( 'custom_logo' )();
-
 					if ( '.custom-logo' === control.selector && ( _.isEmpty( logo ) && ! _.isNumber( logo ) ) ) {
 						classes += ' hidden';
 					}

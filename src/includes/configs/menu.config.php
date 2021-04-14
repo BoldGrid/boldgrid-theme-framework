@@ -22,6 +22,7 @@ return array(
 		'tertiary' => 'Tertiary Menu',
 		'quaternary' => 'Quaternary Menu',
 		'social' => 'Social Icons',
+		'footer-social' => 'Footer Social Icons',
 		'sticky-main' => 'Sticky Main Menu',
 		'sticky-secondary' => 'Sticky Secondary Menu',
 		'sticky-tertiary' => 'Sticky Tertiary Menu',
@@ -57,6 +58,12 @@ return array(
 			'theme_location'  => 'social',
 			'container'       => false,
 			'menu_id'         => 'social-menu',
+			'menu_class'      => 'sm sm-clean social-menu',
+		),
+		'footer-social' => array(
+			'theme_location'  => 'footer-social',
+			'container'       => false,
+			'menu_id'         => 'footer-social-menu',
 			'menu_class'      => 'sm sm-clean social-menu',
 		),
 		'sticky-main' => array(

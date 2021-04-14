@@ -90,10 +90,12 @@ class Boldgrid_Framework_Menu {
 			 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
 			 * See link for a list of arguments that can be passed to wp_nav_menu().
 			 *
-			 * @param array $args      Arguments to override BGTFW default configs for wp_nav_menu().
-			 * @param array $add_class Array of wp_nav_menu args that are CSS class overrides.
+			 * @param array $args            Arguments to override BGTFW default configs for wp_nav_menu().
+			 * @param array $add_class       Array of wp_nav_menu args that are CSS class overrides.
+			 * @param bool  $force_print_nav Forces this nav location to be printed.
 			 */
 			$action = function( $args, $add_class = array() ) use ( $menu, &$bgtfw_menus ) {
+				global $wp_customize;
 				// Combine classes in $args from hook, and merge the remaining items in array.
 				$add_class = ( ! empty( $add_class ) && is_array( $add_class ) ) ? $add_class : array( 'menu_class', 'container_class' );
 				$menu = $this->parse_nav_args( $args, $menu, $add_class );
@@ -119,6 +121,9 @@ class Boldgrid_Framework_Menu {
 				} elseif ( has_nav_menu( $menu['theme_location'] ) ) {
 					wp_nav_menu( $menu );
 				} elseif ( isset( $menu['menu'] ) ) {
+					wp_nav_menu( $menu );
+				} elseif ( isset( $menu['theme_location'] ) && 'footer-social' === $menu['theme_location'] ) {
+					$menu['menu'] = 'social';
 					wp_nav_menu( $menu );
 				}
 			};
@@ -198,7 +203,7 @@ class Boldgrid_Framework_Menu {
 					<span class="hamburger-inner"></span>
 				</span>
 			</div>
-			<span class="screen-reader-text"><?php esc_html_e( 'Toggle menu visibility.', 'bgtfw' ); ?></span>
+			<span class="screen-reader-text"><?php esc_html_e( 'Toggle menu visibility.', 'crio' ); ?></span>
 		</label>
 		<?php
 	}

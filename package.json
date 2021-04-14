@@ -1,6 +1,6 @@
 {
 	"name": "boldgrid-theme-framework",
-	"version": "2.5.2",
+	"version": "2.7.0-rc4",
 	"description": "BoldGrid Theme Framework",
 	"main": "index.js",
 	"engines": {
@@ -89,6 +89,7 @@
 		"gulp-clean": "^0.3.2",
 		"gulp-concat-util": "^0.5.5",
 		"gulp-cssnano": "^2.1.1",
+		"gulp-delete-lines": "^0.0.7",
 		"gulp-imagemin": "^2.4.0",
 		"gulp-inject-string": "^1.1.1",
 		"gulp-jscs": "^4.0.0",
@@ -112,6 +113,7 @@
 		"mini-css-extract-plugin": "^0.4.0",
 		"mkdirp": "^0.5.1",
 		"moment": "^2.24.0",
+		"multislider": "https://github.com/ippontech/multiSlider.js",
 		"php-parser": "^3.0.0-prerelease.8",
 		"pkg-dir": "^3.0.0",
 		"postcss-colors-only": "^0.0.3",

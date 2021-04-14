@@ -44,6 +44,10 @@ class Boldgrid_Framework_Sticky_Header {
 	 * @since 2.0.3
 	 */
 	public function add_styles_frontend() {
+		if ( 'default' !== get_theme_mod( 'bgtfw_header_preset' ) && 'custom' !== get_theme_mod( 'bgtfw_header_preset' ) ) {
+			return;
+		}
+
 		Boldgrid_Framework_Customizer_Generic::add_inline_style( 'sticky-header-display', $this->get_styles() );
 	}
 
@@ -59,8 +63,13 @@ class Boldgrid_Framework_Sticky_Header {
 		$selectors = [];
 		$theme_mods = [];
 
-		foreach ( [ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ] as $type ) {
-			$type = BoldGrid::create_uids( $type );
+		foreach ( [ 'bgtfw_header_layout', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_sticky_header_layout_custom', 'bgtfw_footer_layout' ] as $type ) {
+			if ( false !== strpos( $type, 'custom' ) ) {
+				$type = BoldGrid::create_uids( $type, 'custom' );
+			} else {
+				$type = BoldGrid::create_uids( $type );
+			}
+
 			if ( ! empty( $type ) ) {
 				$theme_mods[] = $type;
 			}

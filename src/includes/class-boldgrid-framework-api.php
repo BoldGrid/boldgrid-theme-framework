@@ -110,10 +110,11 @@ class BoldGrid {
 		// Retrieve blog tagline.
 		$blog_info = get_bloginfo( 'description' );
 		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
-		$classes = 'site-description invisible';
 
 		if ( $blog_info ) {
 			$classes = $this->configs['template']['tagline-classes'] . $display;
+		} else {
+			$classes = $this->configs['template']['tagline-classes'] . 'site-description invisible';
 		}
 
 		printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $classes ), esc_html( $blog_info ) );
@@ -914,7 +915,70 @@ class BoldGrid {
 	}
 
 	/**
-	 * Get Column Width Array
+	 * New Column Control.
+	 *
+	 * For users using the new column control,
+	 * the values are stored differently.
+	 *
+	 * @since 2.7.0
+	 *
+	 * @param string $theme_mod The thememod to reference.
+	 */
+	public static function new_column_control( $theme_mod ) {
+		$col_width_option = get_theme_mod( 'bgtfw_' . $theme_mod . '_layout_custom_col_width' );
+		$col_width        = array(
+			'lg'         => array(),
+			'md'         => array(),
+			'sm'         => array(),
+			'xs'         => array(),
+			'full_width' => array(),
+		);
+
+		foreach ( $col_width_option as $uid => $uid_values ) {
+			if ( 'fullWidth' === $uid ) {
+				foreach ( $uid_values as $index => $row ) {
+					foreach ( $row as $device => $cols ) {
+						switch ( $device ) {
+							case 'large':
+								$col_width['full_width'][ $index ]['lg'] = $cols;
+								break;
+							case 'desktop':
+								$col_width['full_width'][ $index ]['md'] = $cols;
+								break;
+							case 'tablet':
+								$col_width['full_width'][ $index ]['sm'] = $cols;
+								break;
+							case 'phone':
+								$col_width['full_width'][ $index ]['xs'] = $cols;
+								break;
+						}
+					}
+				}
+				continue;
+			}
+			foreach ( $uid_values as $device => $cols ) {
+				switch ( $device ) {
+					case 'large':
+						$col_width['lg'][ $uid ] = $cols;
+						break;
+					case 'desktop':
+						$col_width['md'][ $uid ] = $cols;
+						break;
+					case 'tablet':
+						$col_width['sm'][ $uid ] = $cols;
+						break;
+					case 'phone':
+						$col_width['xs'][ $uid ] = $cols;
+						break;
+				}
+			}
+		}
+
+		return $col_width;
+	}
+
+	/**
+	 * Get Column Width Array.
 	 *
 	 * @since 2.2.3
 	 *
@@ -922,13 +986,23 @@ class BoldGrid {
 	 *
 	 * @return array Array of Column Width Values.
 	 */
-	public static function get_column_widths( $theme_mod ) {
+	public static function get_column_widths( $theme_mod, $preset, $layout_type ) {
 		global $boldgrid_theme_framework;
 		$configs = $boldgrid_theme_framework->get_configs();
 
-		$device_column_widths  = array();
+		if ( 'footer' === $layout_type ) {
+			return array();
+		}
 
-		$type = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) )
+		if ( 'custom' === $preset && get_theme_mod( 'bgtfw_' . $layout_type . '_layout_custom_col_width' ) ) {
+			return self::new_column_control( $layout_type );
+		} elseif ( 'default' !== $preset ) {
+			return array();
+		}
+
+		$device_column_widths = array();
+
+		$type = ( false !== strpos( $layout_type, 'header' ) ) ? ( false !== strpos( $layout_type, 'sticky_header' ) )
 			? 'sticky_header'
 			: 'header'
 			: 'footer';
@@ -975,10 +1049,40 @@ class BoldGrid {
 	 *
 	 * @return string $markup    Rendered HTML for dyanmic layout element.
 	 */
-	public static function dynamic_layout( $theme_mod ) {
+	public static function dynamic_layout( $theme_mod, $preset = null, $custom_layout = null ) {
+		$layout_type = '';
+		if ( false !== strpos( $theme_mod, 'sticky_header' ) ) {
+			$layout_type = 'sticky_header';
+		} elseif ( false !== strpos( $theme_mod, 'header' ) ) {
+			$layout_type = 'header';
+		} else {
+			$layout_type = 'footer';
+		}
+
 		$markup        = '';
-		$column_widths = self::get_column_widths( $theme_mod );
-		$theme_mod     = self::create_uids( $theme_mod );
+		$theme_mod     = self::create_uids( $theme_mod, $preset, $custom_layout );
+		$preset        = $preset ? $preset : get_theme_mod( 'bgtfw_' . $layout_type . '_preset', 'default' );
+		$column_widths = self::get_column_widths( $theme_mod, $preset, $layout_type );
+		if ( 'default' === $preset && get_theme_mod( '_boldgrid_theme_id' ) ) {
+			$hidden_items = array_diff(
+				array( 'title', 'logo', 'description' ),
+				array( 'title' )
+			);
+		} else {
+			$hidden_items = array_diff(
+				array( 'title', 'logo', 'description' ),
+				get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding', array( 'title', 'logo' ) )
+			);
+		}
+		if ( 'default' !== $preset && array( 'logo' ) === get_theme_mod( 'bgtfw_' . $layout_type . '_preset_branding' ) && ! get_theme_mod( 'custom_logo' ) ) {
+			$hidden_items = array( 'logo', 'description' );
+		}
+
+		$hidden_item_classes = array();
+
+		foreach ( $hidden_items as $index => $item ) {
+			$hidden_item_classes[] = 'hide-' . $item;
+		}
 
 		if ( ! empty( $theme_mod ) ) {
 			foreach ( $theme_mod as $section_index => $section ) {
@@ -989,7 +1093,7 @@ class BoldGrid {
 					continue;
 				}
 
-				$markup .= '<div class="boldgrid-section">';
+				$markup .= '<div class="boldgrid-section ' . $preset . '-preset">';
 				$markup .= '<div class="' . $section['container'] . '">';
 				$chunks = array_chunk( $section['items'], 6, true );
 
@@ -1019,8 +1123,20 @@ class BoldGrid {
 							$md_col = '5s';
 						}
 
+						$col_x_full_width = [];
+						if ( isset( $column_widths['full_width'] ) && isset( $column_widths['full_width'][ $section_index ] ) ) {
+							foreach ( $column_widths['full_width'][ $section_index ] as $device => $full_width ) {
+								if ( $full_width ) {
+									$col_x_full_width[] = 'col-' . $device . '-full-width';
+								}
+							}
+						}
+
+						$col_x_full_width = implode( ' ', $col_x_full_width );
+
 						if ( false !== strpos( $col_uid, 'h' ) ) {
-							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $col_data['align'] . '">';
+							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $col_data['align'];
+							$markup .= $col_x_full_width ? ' ' . $col_x_full_width . '">' : '">';
 						} else {
 							$num = ( 12 / count( $chunk ) );
 							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . '">';
@@ -1030,15 +1146,24 @@ class BoldGrid {
 						switch ( $col_data['type'] ) {
 							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
 								$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
+								if ( 'social' === $menu && false !== strpos( $col_uid, 'f' ) ) {
+									$menu             = 'footer-social';
+									$col_data['type'] = 'boldgrid_menu_footer-social';
+								}
 								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';
 								}
-								do_action( $col_data['type'], [ 'menu_class' => 'flex-row ' . $col_data['align'] ] );
+
+								if ( $custom_layout ) {
+									do_action( $col_data['type'], [ 'menu_class' => 'flex-row ' . $col_data['align'] ], array(), true );
+								} else {
+									do_action( $col_data['type'], [ 'menu_class' => 'flex-row ' . $col_data['align'] ] );
+								}
 								echo '</div>';
 								break;
 							case 'boldgrid_site_identity' === $col_data['type'] :
-								$filter = function( $classes ) use ( $col_data ) {
+								$filter = function( $classes ) use ( $col_data, $preset, $hidden_item_classes ) {
 									if ( empty( $col_data['align'] ) ) {
 										$col_data['align'] = 'nw';
 									}
@@ -1046,6 +1171,16 @@ class BoldGrid {
 										'site-branding',
 										$col_data['align'],
 									);
+
+									if ( 'custom' === $preset || 'default' === $preset ) {
+										return $classes;
+									}
+
+									if ( false !== strpos( $col_data['uid'], 'f' ) ) {
+										return $classes;
+									}
+
+									$classes = array_merge( $classes, $hidden_item_classes );
 									return $classes;
 								};
 								add_filter( 'bgtfw_site_branding_classes', $filter, 10 );
@@ -1080,6 +1215,47 @@ class BoldGrid {
 	}
 
 	/**
+	 * Get Layout.
+	 *
+	 * Retrieve the layout for various presets.
+	 *
+	 * @since 2.7.0
+	 *
+	 * @param string $theme_mod     Name of the theme mod.
+	 * @param string $preset        Name of the preset.
+	 * @param array  $custom_layout Array of custom_layout configs.
+	 */
+	public static function get_layout( $theme_mod, $preset = null, $custom_layout = null ) {
+		global $wp_customize;
+		global $boldgrid_theme_framework;
+		$configs     = $boldgrid_theme_framework->get_configs();
+		$preset_type = str_replace( 'bgtfw_', '', $theme_mod );
+		$preset_type = str_replace( '_layout', '', $preset_type );
+		$preset      = $preset ? $preset : get_theme_mod( 'bgtfw_' . $preset_type . '_preset', 'default' );
+		$layout      = get_theme_mod( $theme_mod . '_' . $preset, get_theme_mod( $theme_mod ) );
+
+		if ( 'custom' === $preset && $custom_layout && 'footer' !== $preset_type ) {
+			return $custom_layout;
+		}
+
+		if ( 'default' === $preset && get_option( 'fresh_site' ) && $wp_customize ) {
+			$starter_content = get_theme_starter_content();
+			$layout          = $starter_content['theme_mods'][ 'bgtfw_' . $preset_type . '_layout' ];
+		} elseif ( 'default' === $preset ) {
+			$unset_default_layout = isset( $configs['customizer']['controls'][ 'bgtfw_' . $preset_type . '_layout' ]['default'] ) ?
+				$configs['customizer']['controls'][ 'bgtfw_' . $preset_type . '_layout' ]['default'] :
+				$configs['customizer']['controls']['bgtfw_header_layout']['default'];
+			$layout = (array) get_theme_mod( 'bgtfw_' . $preset_type . '_layout_default', $unset_default_layout );
+		}
+
+		if ( 'footer' === $preset_type ) {
+			$layout = (array) get_theme_mod( 'bgtfw_footer_layout' );
+		}
+
+		return $layout;
+	}
+
+	/**
 	 * Creates UIDs for dynamic layouts if none are passed in.
 	 *
 	 * @since 2.0.3
@@ -1088,9 +1264,9 @@ class BoldGrid {
 	 *
 	 * @return array $defaults Default parameters with uIDs added for items.
 	 */
-	public static function create_uids( $theme_mod ) {
+	public static function create_uids( $theme_mod, $preset = null, $custom_layout = null ) {
 		$uid = ( false !== strpos( $theme_mod, 'header' ) ) ? ( false !== strpos( $theme_mod, 'sticky_header' ) ) ? 's' : 'h' : 'f';
-		$defaults = ( array ) get_theme_mod( $theme_mod );
+		$defaults = self::get_layout( $theme_mod, $preset, $custom_layout );
 
 		foreach ( $defaults as $key => $section ) {
 			$base = $uid . $key;
@@ -1124,7 +1300,7 @@ class BoldGrid {
 	 *
 	 * @return string Rendered HTML for dyanmic layout element.
 	 */
-	public static function dynamic_sticky_header() {
+	public static function dynamic_sticky_header( $preset = null ) {
 		$markup = '';
 		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . '>';
 		ob_start();
@@ -1133,7 +1309,11 @@ class BoldGrid {
 		$markup .= '<div class="custom-header-media">';
 		$markup .= get_custom_header_markup();
 		$markup .= '</div>';
-		$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+		if ( $preset ) {
+			$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout', $preset );
+		} else {
+			$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+		}
 		ob_start();
 		do_action( 'boldgrid_header_bottom' );
 		$markup .= ob_get_clean();

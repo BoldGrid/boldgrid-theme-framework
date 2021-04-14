@@ -56,6 +56,7 @@ class BoldGrid_Framework_Customizer {
 		$format        = new BoldGrid_Framework_Starter_Content( $configs );
 		$this->configs = $format->set_configs( $configs );
 		$this->scripts = new BoldGrid_Framework_Scripts( $configs );
+		$this->presets = new BoldGrid_Framework_Customizer_Presets( $configs );
 	}
 
 	/**
@@ -501,6 +502,16 @@ class BoldGrid_Framework_Customizer {
 			true
 		);
 
+		wp_register_script(
+			'bgtfw-multislider',
+			$this->scripts->get_webpack_url( $this->configs['framework']['js_dir'], 'multislider/multiSlider.js' ),
+			array( 'jquery', 'boldgrid-customizer-controls-base' ),
+			$this->configs['version'],
+			true
+		);
+
+		wp_enqueue_script( 'bgtfw-multislider' );
+
 		wp_enqueue_script( 'bgtfw-customizer-base-controls' );
 
 		$initialize  = 'BOLDGRID = BOLDGRID || {};';
@@ -640,7 +651,6 @@ class BoldGrid_Framework_Customizer {
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-live-preview' );
 		wp_enqueue_script( 'bgtfw-customizer-layout-blog-blog-page-layout-columns' );
 		wp_enqueue_script( 'bgtfw-customizer-header-layout-header-background' );
-		wp_enqueue_script( 'bgtfw-customizer-header-layout-header-container' );
 		wp_enqueue_script( 'bgtfw-customizer-footer-layout-footer-container' );
 		wp_enqueue_script( 'bgtfw_pages_blog_posts_layout_layout' );
 
@@ -994,5 +1004,56 @@ HTML;
 		$id        = 'boldgrid-override-styles';
 		$css       = BoldGrid_Framework_Styles::convert_array_to_css( $css_rules, $id );
 		Boldgrid_Framework_Customizer_Generic::add_inline_style( $id, $css );
+	}
+
+	/**
+	 * Add Custom Column Width control.
+	 *
+	 * @since 2.7.0
+	 */
+	public function register_colwidth_control( $wp_customize ) {
+		require_once $this->configs['framework']['includes_dir']
+			. 'control/class-boldgrid-framework-control-col-width.php';
+		$wp_customize->add_setting(
+			'bgtfw_header_layout_custom_col_width',
+			array(
+				'type'       => 'theme_mod',
+				'capability' => 'edit_theme_options',
+				'transport'  => 'postMessage',
+			)
+		);
+		$wp_customize->add_control( new Boldgrid_Framework_Control_Col_Width( $this->configs, $wp_customize ) );
+	}
+
+	/**
+	 * Add a nonce for Customizer for column nonces.
+	 *
+	 * @since 2.7.0
+	 */
+	public function header_column_nonces( $nonces ) {
+		$nonces['bgtfw-header-columns'] = wp_create_nonce( 'bgtfw_header_columns' );
+		return $nonces;
+	}
+
+	/**
+	 * WP Ajax Header Columns.
+	 *
+	 * @since 2.7.0
+	 */
+	public static function wp_ajax_bgtfw_header_columns() {
+		check_ajax_referer( 'bgtfw_header_columns', 'headerColumnsNonce' );
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			wp_die( -1 );
+		}
+
+		$layout = $_POST['customHeaderLayout'];
+
+		$markup = Boldgrid_Framework_Control_Col_Width::get_updated_markup( $layout );
+
+		wp_send_json_success( array(
+			'layout' => $layout,
+			'markup' => $markup,
+		) );
+
 	}
 }

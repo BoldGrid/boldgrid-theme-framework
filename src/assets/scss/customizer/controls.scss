@@ -985,6 +985,11 @@
 --------------------------------------------------------------*/
 @import "controls/buttons";
 
+/*--------------------------------------------------------------
+# Preset controls
+--------------------------------------------------------------*/
+@import "controls/presets";
+
 /* FA icons */
 .accordion-section-title.fa {
 	display: block;
@@ -1010,3 +1015,6 @@
 .boldgrid-control.column-widths-control .device input:checked ~ .relationship {
 	display: none;
 }
+
+
+@import "controls/multi-slider";

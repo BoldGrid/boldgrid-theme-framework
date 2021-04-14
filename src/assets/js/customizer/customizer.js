@@ -2,6 +2,7 @@
 import ColorPreview from './color/preview';
 import { Preview as GenericPreview } from './generic/preview.js';
 import { Preview as HeaderPreview } from './header-layout/preview.js';
+import HeaderLayout from './header-layout/header-layout.js';
 import { Preview as BackgroundPreview } from './background/preview.js';
 import { LinkPreview } from './typography/link-preview.js';
 import Toggle from './toggle/toggle';
@@ -13,7 +14,7 @@ const api = wp.customize;
 const controlApi = parent.wp.customize;
 
 api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
-	let controls = [ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
+	let controls = [ 'bgtfw_header_layout', 'bgtfw_header_preset', 'bgtfw_sticky_header_preset', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ];
 
 	if ( controls.includes( placement.partial.id ) ) {
 		let css = [];
@@ -263,132 +264,15 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
  */
 ( function( $ ) {
 	let colorPreview = new ColorPreview().init(),
-		backgroundPreview = new BackgroundPreview().init();
+		backgroundPreview = new BackgroundPreview().init(),
+		headerLayout = new HeaderLayout();
+
+	headerLayout.init();
 
 	new GenericPreview().bindEvents();
 	new HeaderPreview().bindEvents();
 	new TypographyPreview().bindEvents();
 	new LinkPreview().bindEvents();
-
-	/**
-	 * Runs when trying to add Header Sliders
-	 *
-	 * @since 2.2.3
-	 *
-	 * @param array  sliderUids
-	 * @param array  repeaterUids
-	 */
-	function addHeaderSliders( sliderUids, repeaterUids ) {
-		let uidsToAdd = [],
-			notification = `
-				<div class="customize-control-notifications-container">
-					<ul>
-						<li class="notice notice-bgtfw-header-layout-change" data-code="bgtfw-header-layout-change" data-type="warning">
-							<div class="notification-message">The Customizer must be refreshed before you can adjust the column width. We recommend using the Customizer’s Save Draft option, then refresh the page.</div>
-						</li>
-					</ul>
-				</div>`,
-			sliderGroup = $( controlApi.control( 'bgtfw_header_layout_col_width' ).container ).find( '.slider-group' );
-
-		repeaterUids.forEach( function( uid ) {
-			if ( ! sliderUids.includes( uid, ) ) {
-				uidsToAdd.push( uid );
-			}
-		} );
-
-		// If there are uidsToAdd and no notification added, then we have to add the notification to the sliderGroup.
-		if ( 0 < uidsToAdd.length && 0 === $( sliderGroup ).find( '.customize-control-notifications-container' ).length ) {
-			$( sliderGroup ).prepend( notification );
-
-		}
-	}
-
-	/**
-	 * Remove Header Sliders
-	 *
-	 * @since 2.2.3
-	 *
-	 * @param array  sliderUids
-	 * @param array  repeaterUids
-	 */
-	function remHeaderSliders( sliderUids, repeaterUids ) {
-		let uidsToRemove = [];
-		sliderUids.forEach( function( uid ) {
-			if ( ! repeaterUids.includes( uid ) ) {
-				uidsToRemove.push( uid );
-			}
-		} );
-
-		uidsToRemove.forEach( function( uid ) {
-			var sliderGroup = $( controlApi.control( 'bgtfw_header_layout_col_width' ).container ).find( '.slider-group' );
-			$( sliderGroup ).find( '.slider-control' ).each( function() {
-				if ( 0 < $( this ).find( '.slider[data-name=' + uid + ']' ).length ) {
-					$( this ).remove();
-				}
-			} );
-		} );
-	}
-
-	// After partial-refresh, correct header item uids.
-	api.bind( 'preview-ready', function() {
-		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
-			let colWidths,
-				colUids,
-				themeMod = controlApi( 'bgtfw_header_layout_col_width' )().media;
-			colWidths = 'string' === typeof themeMod ? JSON.parse( themeMod ) : themeMod ;
-			colUids = Object.keys( colWidths.large.values );
-
-			// If this page uses Header Templates, do not mess with them.
-			if ( $( '.template-header' ).length ) {
-				return;
-			}
-
-			// Added #masthead to the selector to ensure that Page Header Template rows are not selected.
-			$( '.bgtfw-header #masthead .boldgrid-section .row > div' ).each( function( itemIndex ) {
-				let uid = colUids[ itemIndex ],
-					classList;
-
-				// If the different values are not set, then use the baseWidths value ( which is from the 'large' device ).
-				classList = [
-					'col-lg-' + ( colWidths.large.values[uid] ? colWidths.large.values[ uid ] : 6 ),
-					'col-md-' + ( colWidths.desktop.values[uid] ? colWidths.desktop.values[ uid ] : 6 ),
-					'col-sm-' + ( colWidths.tablet.values[uid] ? colWidths.tablet.values[ uid ] : 12 ),
-					'col-xs-' + ( colWidths.phone.values[uid] ? colWidths.phone.values[ uid ] : 12 )
-				];
-
-				uid = $( this ).hasClass( 'h00' ) ? 'h00' : uid;
-				uid = $( this ).hasClass( 'h01' ) ? 'h01' : uid;
-
-				// This removes the empty column widths.
-				$( this ).removeClass();
-
-				$( this ).addClass( classList.join( ' ' ) );
-
-				$( this ).addClass( uid );
-			} );
-		}
-	} );
-
-	// After preview refreshes, and new layout items are added, add new slider uids.
-	api.bind( 'preview-ready', _.defer( function() {
-		let sliderUids   = [];
-		let repeaterUids = [];
-		let repeaterContainer;
-		if ( _.isFunction(  controlApi.section ) && controlApi.section( 'bgtfw_header_layout' ).expanded() ) {
-			$( controlApi.section( 'bgtfw_header_layout' ).container[1] ).find( '.slider' ).each( function() {
-				sliderUids.push( this.dataset.name );
-			} );
-
-			repeaterContainer = controlApi.control( 'bgtfw_header_layout' ).container;
-
-			$( repeaterContainer ).find( '.repeater' ).each( function() {
-				repeaterUids.push( this.dataset.uid );
-			} );
-
-			addHeaderSliders( sliderUids, repeaterUids );
-			remHeaderSliders( sliderUids, repeaterUids );
-		}
-	} ) );
 
 	$( function() {
 		var headingsColorOutput,
@@ -690,7 +574,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			} );
 		} );
 
-		new ToggleValue( 'header_container', '#navi, #secondary-menu', 'container', calc );
 		new ToggleValue( 'bgtfw_blog_page_container', '.blog .site-content, .archive .site-content', 'container', calc );
 
 		api( 'bgtfw_header_layout_tabs', function() {
@@ -805,7 +688,16 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		};
 
 		// Setup menu controls.
-		for ( const props of Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs ) ) {
+		let menuLocations = Object.values( _wpCustomizePreviewNavMenusExports.navMenuInstanceArgs );
+		menuLocations.push( {
+			'theme_location': 'social',
+			'menu_id': 'social-menu'
+		} );
+		menuLocations.push( {
+			'theme_location': 'sticky-social',
+			'menu_id': 'sticky-social-menu'
+		} );
+		for ( const props of menuLocations ) {
 			if ( props.theme_location ) {
 
 				// Setup current menu items.
@@ -861,7 +753,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		}
 
 		// Listen for widget layout changes.
-		[ 'bgtfw_header_layout', 'bgtfw_sticky_header_layout', 'bgtfw_footer_layout' ].forEach( control => {
+		[ 'bgtfw_header_layout', 'bgtfw_header_layout_custom', 'bgtfw_sticky_header_layout', 'bgtfw_sticky_header_layout_custom', 'bgtfw_footer_layout' ].forEach( control => {
 			api( control, value => {
 				value.bind( () => {
 					api.preview.send( 'bgtfw-widget-section-update', control );
@@ -912,10 +804,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		new Toggle( 'background_repeat', backgroundRepeatUpdate );
 		new Toggle( 'boldgrid_background_image_size', backgroundSizeUpdate );
 
-		let setHeaderPosition = ( to ) => {
-			if ( 'header-top' !== to ) {
-				parent.kirkiSetSettingValue.set( 'bgtfw_header_width', api( 'bgtfw_header_width' )() );
-			}
+		let setHeaderPosition = () => {
 			calc();
 		};
 
@@ -924,9 +813,6 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 		$( document ).on( 'customize-preview-menu-refreshed', function( event, menu ) {
 			$.each( menu.newContainer.closest( '[data-is-parent-column]' ), function() {
 				BOLDGRID.Customizer.Widgets.updatePartial( $( this ) );
-				if ( 'secondary-menu' === menu.container_id && '' !== api( 'bgtfw_header_container' )() ) {
-					document.getElementById( menu.container_id ).classList.add( api( 'bgtfw_header_container' )() );
-				}
 			} );
 		} );
 

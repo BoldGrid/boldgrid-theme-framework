@@ -134,7 +134,7 @@ var CustomizeWidgetSidebarMetaControls = ( function( $ ) {
 	 * @param {wp.customize.Widgets.SidebarSection} section Section.
 	 * @returns {wp.customize.control} The added control.
 	 */
-	component.addBackgroundColorControl = function addColorControl ( section ) {
+	component.addBackgroundColorControl = function addColorControl( section ) {
 		var control, customizeId, setting, params, obj = {};
 
 		customizeId = 'sidebar_meta[' + section.params.sidebarId + '][background_color]';

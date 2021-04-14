@@ -24,7 +24,8 @@ var gulp = require('gulp'),
   modernizr = require('gulp-modernizr-wezom'),
   jscs = require('gulp-jscs'),
   postcss = require('gulp-postcss'),
-  inject = require('gulp-inject-string');
+  inject = require('gulp-inject-string'),
+  deleteLines = require( 'gulp-delete-lines' );
 
 // Configs
 var config = {
@@ -123,6 +124,8 @@ gulp.task('clean', function () {
 
 // Javascript Dependencies
 gulp.task('jsDeps', function () {
+  gulp.src(config.node_modules + '/multislider/src/*.js' )
+    .pipe(gulp.dest(config.jsDest + '/multislider' ) );
   // jQuery Stellar - Check
   gulp.src(config.node_modules + '/jquery.stellar/jquery.stellar*.js')
     .pipe(gulp.dest(config.jsDest + '/jquery-stellar'));
@@ -201,10 +204,12 @@ gulp.task('phpDeps', function () {
     .pipe(replace('kirki-logo.svg', 'boldgrid-logo.svg'))
     // Use locally provided FontAwesome dependency.
     .pipe(replace(/([ \t]*)wp_enqueue_script\(\s?\'kirki-fontawesome-font\',\s?\'https:\/\/use.fontawesome.com\/30858dc40a.js\',\s?array\(\),\s?\'4.0.7\',\s?(?:true|false)\s?\)\;\s?^(?:[\t ]*(?:\r?\n|\r))*/gm, "$1global $boldgrid_theme_framework;\n$1$bgtfw_configs = $boldgrid_theme_framework->get_configs();\n\n$1if ( ! class_exists( 'BoldGrid_Framework_Styles' ) ) {\n$1\trequire_once $bgtfw_configs['framework']['includes_dir'] . 'class-boldgrid-framework-styles.php';\n$1}\n\n$1$bgtfw_styles = new BoldGrid_Framework_Styles( $bgtfw_configs );\n$1$bgtfw_styles->enqueue_fontawesome();\n\n"))
-    .pipe(gulp.dest(config.dist + '/includes/kirki'));
+	.pipe( deleteLines( { 'filters': [ /.*sourceMappingURL=.*/i ] } ) )
+	.pipe(gulp.dest(config.dist + '/includes/kirki') );
   // Get Kirki CSS.
   gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{css,json}')
     .pipe(replace('Button styles **/', 'Button styles **', true))
+	.pipe( deleteLines( { 'filters': [ /.*sourceMappingURL=.*/i ] } ) )
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets'));
   // Get Kirki Assets.
   gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{png,scss,js,json}')

@@ -73,9 +73,9 @@ $sections_array = array(
 		'icon' => 'dashicons-admin-generic',
 	),
 	'bgtfw_header_layout' => array(
-		'title' => __( 'Layout', 'bgtfw' ),
+		'title' => __( 'Advanced', 'bgtfw' ),
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Manage the layout of your site\'s header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
-		'panel' => 'bgtfw_header',
+		'panel' => 'bgtfw_header_layouts',
 		'capability' => 'edit_theme_options',
 		'priority' => 5,
 		'notice' => [
@@ -88,7 +88,35 @@ $sections_array = array(
 			'url' => esc_url( 'https://www.boldgrid.com/wordpress-themes/crio/header/?source=customize-header' ),
 			'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
 		],
+		'icon' => 'dashicons-admin-generic',
+		'active_callback' => function() {
+			return false;
+		},
+	),
+	'bgtfw_header_presets' => array(
+		'title' => __( 'Select Layout', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Choose from a number of presets for your header layout, or choose "Custom" to create a customized header layout.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>' . esc_html__( 'Help', 'bgtfw' ) . '</a></div></div>',
+		'panel' => 'bgtfw_header_layouts',
+		'capability' => 'edit_theme_options',
+		'priority' => 1,
 		'icon' => 'dashicons-schedule',
+		'notice' => [
+			'dismissible' => false,
+			'message' => esc_html__( 'Upgrade Crio to get additional display options for your header!', 'bgtfw' ),
+			'type' => 'bgtfw-features',
+			'templateId' => 'bgtfw-notification',
+			'featureCount' => 1,
+			'featureDescription' => esc_html__( '1 premium feature available!', 'bgtfw' ),
+			'url' => esc_url( 'https://www.boldgrid.com/wordpress-themes/crio/header/?source=customize-header' ),
+			'buttonText' => esc_html__( 'Learn More', 'bgtfw' ),
+		],
+	),
+	'bgtfw_header_layout_advanced' => array(
+		'title' => __( 'Custom Header Layout', 'bgtfw' ),
+		'description' => esc_html__( 'Advanced settings for the layout of your site\'s header.', 'bgtfw' ),
+		'panel' => 'bgtfw_header_layouts',
+		'priority' => 70,
+		'icon' => 'dashicons-admin-generic',
 	),
 	'bgtfw_site_title' => array(
 		'title' => esc_attr__( 'Site Title', 'bgtfw' ),

@@ -1017,9 +1017,12 @@ HTML;
 		$wp_customize->add_setting(
 			'bgtfw_header_layout_custom_col_width',
 			array(
-				'type'       => 'theme_mod',
-				'capability' => 'edit_theme_options',
-				'transport'  => 'postMessage',
+				'type'              => 'theme_mod',
+				'capability'        => 'edit_theme_options',
+				'transport'         => 'postMessage',
+				'sanitize_callback' => function( $value, $settings ) {
+					return $value;
+				},
 			)
 		);
 		$wp_customize->add_control( new Boldgrid_Framework_Control_Col_Width( $this->configs, $wp_customize ) );

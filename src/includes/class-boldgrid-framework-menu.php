@@ -122,9 +122,6 @@ class Boldgrid_Framework_Menu {
 					wp_nav_menu( $menu );
 				} elseif ( isset( $menu['menu'] ) ) {
 					wp_nav_menu( $menu );
-				} elseif ( isset( $menu['theme_location'] ) && 'footer-social' === $menu['theme_location'] ) {
-					$menu['menu'] = 'social';
-					wp_nav_menu( $menu );
 				}
 			};
 

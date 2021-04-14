@@ -122,6 +122,9 @@ class Boldgrid_Framework_Menu {
 					wp_nav_menu( $menu );
 				} elseif ( isset( $menu['menu'] ) ) {
 					wp_nav_menu( $menu );
+				} elseif ( isset( $menu['theme_location'] ) && 'footer-social' === $menu['theme_location'] ) {
+					$menu['menu'] = 'social';
+					wp_nav_menu( $menu );
 				}
 			};
 
@@ -200,7 +203,7 @@ class Boldgrid_Framework_Menu {
 					<span class="hamburger-inner"></span>
 				</span>
 			</div>
-			<span class="screen-reader-text"><?php esc_html_e( 'Toggle menu visibility.', 'bgtfw' ); ?></span>
+			<span class="screen-reader-text"><?php esc_html_e( 'Toggle menu visibility.', 'crio' ); ?></span>
 		</label>
 		<?php
 	}

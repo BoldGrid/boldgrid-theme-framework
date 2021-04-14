@@ -203,7 +203,7 @@ class Boldgrid_Framework_Menu {
 					<span class="hamburger-inner"></span>
 				</span>
 			</div>
-			<span class="screen-reader-text"><?php esc_html_e( 'Toggle menu visibility.', 'crio' ); ?></span>
+			<span class="screen-reader-text"><?php esc_html_e( 'Toggle menu visibility.', 'bgtfw' ); ?></span>
 		</label>
 		<?php
 	}

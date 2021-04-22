@@ -44,6 +44,49 @@ return array(
 			'height'   => 100,
 		),
 	),
+	'bgtfw_main_menu_dropdown' => [
+		'type'                => 'bgtfw-dropdown-menu',
+		'transport'           => 'postMessage',
+		'label'               => __( 'Additional Controls', 'bgtfw' ),
+		'default'             => false,
+		'settings'            => 'bgtfw_main_menu_dropdown',
+		'section'             => 'nav_menu[2]',
+		'priority'            => 0,
+		'additional_controls' => array(
+			array(
+				'label'      => __( 'Menu Item Colors and Styles', 'bgtfw' ),
+				'focus_type' => 'panel',
+				'focus_id'   => 'bgtfw_menu_items_main'
+			),
+			array(
+				'label'      => __( 'Menu Font', 'bgtfw' ),
+				'focus_type' => 'control',
+				'focus_id'   => 'bgtfw_menu_typography_main'
+			),
+			array(
+				'label'      => __( 'Menu Background Color', 'bgtfw' ),
+				'focus_type' => 'control',
+				'focus_id'   => 'bgtfw_menu_background_main'
+			),
+			array(
+				'label'      => __( 'Menu Border', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_menu_border_main'
+			),
+		),
+		'faq_links'           => array(
+			array(
+				'label' => __( 'How do I add or remove a menu from my header?', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-header-design-in-boldgrid-crio/' ),
+			),
+		),
+		'similar_questions'   => array(
+			array(
+				'label' => __( 'How do I add social media icons to my site?', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-menus-in-boldgrid-crio/' ),
+			),
+		)
+	],
 	'boldgrid_background_type' => [
 		'type'        => 'radio-buttonset',
 		'transport'   => 'postMessage',

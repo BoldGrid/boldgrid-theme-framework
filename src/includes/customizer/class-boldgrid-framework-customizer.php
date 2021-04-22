@@ -60,7 +60,7 @@ class BoldGrid_Framework_Customizer {
 	}
 
 	/**
-	 * Add all kitki controls.
+	 * Add all kirki controls.
 	 *
 	 * @since 1.5.3
 	 */
@@ -949,6 +949,7 @@ HTML;
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Palette_Selector' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Sortable_Accordion' );
+		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Dropdown_Menu' );
 
 		add_filter(
 			'kirki_control_types',
@@ -956,6 +957,7 @@ HTML;
 				$controls['bgtfw-palette-selector']   = 'Boldgrid_Framework_Customizer_Control_Palette_Selector';
 				$controls['bgtfw-menu-hamburgers']    = 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers';
 				$controls['bgtfw-sortable-accordion'] = 'Boldgrid_Framework_Customizer_Control_Sortable_Accordion';
+				$controls['bgtfw-dropdown-menu']      = 'Boldgrid_Framework_Customizer_Control_Dropdown_Menu';
 				return $controls;
 			}
 		);

@@ -24,6 +24,7 @@ import bgtfwNotifications from './controls/bgtfw-notifications';
 import bgtfwBackgroundControls from './controls/bgtfw-background-control';
 import bgtfwEditPane from './controls/edit/pane';
 import { HeaderBackground as BgtfwHeaderBackground } from './controls/bgtfw-header-background';
+import bgtfwDropdownMenu from './controls/bgtfw-dropdown-menu';
 
 let devices = new Devices();
 devices.init();
@@ -31,6 +32,7 @@ bgtfwNotifications();
 bgtfwBackgroundControls();
 bgtfwEditPane();
 WidgetSectionUpdate();
+bgtfwDropdownMenu();
 
 ( function( $ ) {
 	const api = wp.customize;

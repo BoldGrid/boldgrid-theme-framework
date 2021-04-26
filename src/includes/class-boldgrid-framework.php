@@ -231,7 +231,6 @@ class BoldGrid_Framework {
 			if ( false !== strpos( $filename, 'index.php' ) ) {
 				continue;
 			}
-			error_log( $filename );
 			require_once $filename;
 		}
 	}

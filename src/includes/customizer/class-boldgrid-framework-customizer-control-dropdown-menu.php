@@ -59,7 +59,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		/**
 		 * Refresh the parameters passed to the JavaScript via JSON.
 		 *
-		 * @since 2.0.0
+		 * @since SINCEVERSION
 		 */
 		public function to_json() {
 
@@ -84,10 +84,11 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			?>
 			<div class="bgtfw-dropdown-menu-wrapper">
 				<div class="bgtfw-dropdown-menu-header collapsed">
-					<span class="dashicons dashicons-arrow-up-alt2"></span>
 					<h3 class="bgtfw-dropdown-menu-label">{{{ data.label }}}</h3>
+					<span class="dashicons dashicons-arrow-up-alt2"></span>
 				</div>
 				<div class="bgtfw-dropdown-menu-content">
+					<p class="bgtfw-dropdown-menu-return hidden">Go Back</p>
 					<# if ( data.additional_controls ) { #>
 						<p class="bgtfw-additional-controls-heading">Additional Controls</p><ul>
 						<# data.additional_controls.forEach( ( additional_control ) => { #>
@@ -101,28 +102,28 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 						<# console.log( { 'additional_controls': data.additional_controls } );
 					}
 
-					if ( data.faq_links ) {
+					if ( data.faq_links ) { #>
 						<p class="bgtfw-faq-links-heading">FAQs</p><ul>
 						<# data.faq_links.forEach( ( faq_link ) => { #>
 							<li class="bgtfw-faq-links">
-								<a href="{{ faq_link.url }}">{{{ faq_link.label }}}</a>
+								<a target="_blank" href="{{ faq_link.url }}">{{{ faq_link.label }}}</a>
 							</li>
 						<# } ); #>
 						</ul>
-						console.log( { 'faq_links': data.faq_links } );
+						<# console.log( { 'faq_links': data.faq_links } );
 					}
 
-					<!-- if ( data.similar_questions ) {
+					if ( data.similar_questions ) { #>
 						<p class="bgtfw-similar-questions-heading">FAQs</p><ul>
 						<# data.similar_questions.forEach( ( similar_question ) => { #>
 							<li class="bgtfw-similar-question">
-								<a href="{{ similar_question.url }}">{{{ similar_question.label }}}</a>
+								<a target="_blank" href="{{ similar_question.url }}">{{{ similar_question.label }}}</a>
 							</li>
 						<# } ); #>
 						</ul>
-						console.log( { 'similar_questions': data.similar_questions } );
+						<# console.log( { 'similar_questions': data.similar_questions } );
 					}
-					#> -->
+					#>
 				</div>
 			</div>
 			<?php

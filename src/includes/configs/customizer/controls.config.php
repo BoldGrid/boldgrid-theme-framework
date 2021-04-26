@@ -18,6 +18,98 @@ if ( ! function_exists( 'get_page_templates' ) ) {
 	require_once ABSPATH . 'wp-admin/includes/theme.php';
 }
 
+/**
+ * Generate Menu Dropdowns.
+ *
+ * Generates the config arrays for nav menu dropdowns.
+ *
+ * @since SINCEVERSION
+ *
+ * @param  array $controls An array of control configs.
+ *
+ * @return array An array of control configs.
+ */
+function generate_menu_dropdowns( $controls ) {
+	$nav_menus        = wp_get_nav_menus();
+	$base_menu_config = [
+		'type'                => 'bgtfw-dropdown-menu',
+		'transport'           => 'postMessage',
+		'label'               => __( 'Additional Controls', 'bgtfw' ),
+		'default'             => false,
+		'settings'            => 'bgtfw_dropdown_',
+		'section'             => 'nav_menu',
+		'priority'            => -1,
+		'additional_controls' => array(
+			array(
+				'label'      => __( 'Menu Item Colors and Styles', 'bgtfw' ),
+				'focus_type' => 'panel',
+				'focus_id'   => 'bgtfw_menu_items_',
+			),
+			array(
+				'label'      => __( 'Menu Font', 'bgtfw' ),
+				'focus_type' => 'control',
+				'focus_id'   => 'bgtfw_menu_typography_',
+			),
+			array(
+				'label'      => __( 'Menu Background Color', 'bgtfw' ),
+				'focus_type' => 'control',
+				'focus_id'   => 'bgtfw_menu_background_',
+			),
+			array(
+				'label'      => __( 'Menu Border', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_menu_border_',
+			),
+		),
+		'faq_links'           => array(
+			array(
+				'label' => __( 'How do I add or remove a menu from my header?', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-header-design-in-boldgrid-crio/' ),
+			),
+		),
+		'similar_questions'   => array(
+			array(
+				'label' => __( 'How do I add social media icons to my site?', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-menus-in-boldgrid-crio/' ),
+			),
+		),
+	];
+
+	$nav_menus_locations = get_nav_menu_locations();
+	error_log( 'nav_menu_locations: ' . json_encode( $nav_menus_locations ) );
+	error_log( 'nav_menus: ' . json_encode( $nav_menus ) );
+	foreach ( $nav_menus as $menu ) {
+		$menu_id   = $menu->term_id;
+		$menu_slug = '';
+		foreach ( $nav_menus_locations as $menu_location_slug => $menu_location_id ) {
+			if ( $menu_id === $menu_location_id ) {
+				$menu_slug = $menu_location_slug;
+				break;
+			}
+		}
+
+		if ( 'social' === $menu_slug ) {
+			$menu_slug = 'footer-social';
+		}
+
+		if ( $menu_slug ) {
+			error_log( 'nav_menus: ' . json_encode( $menu_slug ) );
+			$controls[ 'bgtfw_dropdown_' . $menu_slug ]             = $base_menu_config;
+			$controls[ 'bgtfw_dropdown_' . $menu_slug ]['settings'] = 'bgtfw_dropdown_' . $menu_slug;
+			$controls[ 'bgtfw_dropdown_' . $menu_slug ]['section']  = 'nav_menu[' . $menu_id . ']';
+
+			foreach ( $base_menu_config['additional_controls'] as $index => $base_additional_control ) {
+				$old_id = $base_additional_control['focus_id'];
+				$new_id = $base_additional_control['focus_id'] . $menu_slug;
+
+				$controls[ 'bgtfw_dropdown_' . $menu_slug ]['additional_controls'][ $index ]['focus_id'] = $new_id;
+			}
+		}
+	}
+
+	return $controls;
+}
+
 $bgtfw_palette           = new Boldgrid_Framework_Compile_Colors( $bgtfw_configs );
 $bgtfw_active_palette    = $bgtfw_palette->get_active_palette();
 $bgtfw_formatted_palette = $bgtfw_palette->color_format( $bgtfw_active_palette );
@@ -27,8 +119,7 @@ $bgtfw_generic           = new Boldgrid_Framework_Customizer_Generic( $bgtfw_con
 $bgtfw_presets           = new Boldgrid_Framework_Customizer_Presets( $bgtfw_configs );
 $bgtfw_partial_refresh   = new Boldgrid_Framework_Customizer_Partial_Refresh( $bgtfw_configs );
 
-
-return array(
+$general_controls = array(
 	'custom_theme_js' => array(
 		'type'        => 'code',
 		'settings'    => 'custom_theme_js',
@@ -44,49 +135,6 @@ return array(
 			'height'   => 100,
 		),
 	),
-	'bgtfw_main_menu_dropdown' => [
-		'type'                => 'bgtfw-dropdown-menu',
-		'transport'           => 'postMessage',
-		'label'               => __( 'Additional Controls', 'bgtfw' ),
-		'default'             => false,
-		'settings'            => 'bgtfw_main_menu_dropdown',
-		'section'             => 'nav_menu[2]',
-		'priority'            => 0,
-		'additional_controls' => array(
-			array(
-				'label'      => __( 'Menu Item Colors and Styles', 'bgtfw' ),
-				'focus_type' => 'panel',
-				'focus_id'   => 'bgtfw_menu_items_main'
-			),
-			array(
-				'label'      => __( 'Menu Font', 'bgtfw' ),
-				'focus_type' => 'control',
-				'focus_id'   => 'bgtfw_menu_typography_main'
-			),
-			array(
-				'label'      => __( 'Menu Background Color', 'bgtfw' ),
-				'focus_type' => 'control',
-				'focus_id'   => 'bgtfw_menu_background_main'
-			),
-			array(
-				'label'      => __( 'Menu Border', 'bgtfw' ),
-				'focus_type' => 'section',
-				'focus_id'   => 'bgtfw_menu_border_main'
-			),
-		),
-		'faq_links'           => array(
-			array(
-				'label' => __( 'How do I add or remove a menu from my header?', 'bgtfw' ),
-				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-header-design-in-boldgrid-crio/' ),
-			),
-		),
-		'similar_questions'   => array(
-			array(
-				'label' => __( 'How do I add social media icons to my site?', 'bgtfw' ),
-				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-menus-in-boldgrid-crio/' ),
-			),
-		)
-	],
 	'boldgrid_background_type' => [
 		'type'        => 'radio-buttonset',
 		'transport'   => 'postMessage',
@@ -4597,3 +4645,119 @@ return array(
 		),
 	),
 );
+
+$dropdown_controls = array(
+	'bgtfw_logo_dropdown' => [
+		'type'                => 'bgtfw-dropdown-menu',
+		'transport'           => 'postMessage',
+		'label'               => __( 'Additional Controls', 'bgtfw' ),
+		'default'             => false,
+		'settings'            => 'bgtfw_logo_dropdown',
+		'section'             => 'title_tagline',
+		'priority'            => -1,
+		'additional_controls' => array(
+			array(
+				'label'      => __( 'Change Logo position in layout', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_header_presets',
+			),
+			array(
+				'label'      => __( 'Change Site Tagline', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_tagline',
+			),
+			array(
+				'label'      => __( 'Change Site Title ', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_site_title',
+			),
+		),
+		'faq_links'           => array(
+			array(
+				'label' => __( 'How do I customize my logo, title, and tagline?', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
+			),
+		),
+		'similar_questions'   => array(
+			array(
+				'label' => __( 'How do I create custom page headers?', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/custom-header-templates/' ),
+			),
+		),
+	],
+	'bgtfw_dropdown_title' => [
+		'type'                => 'bgtfw-dropdown-menu',
+		'transport'           => 'postMessage',
+		'label'               => __( 'Additional Controls', 'bgtfw' ),
+		'default'             => false,
+		'settings'            => 'bgtfw_dropdown_title',
+		'section'             => 'bgtfw_site_title',
+		'priority'            => -1,
+		'additional_controls' => array(
+			array(
+				'label'      => __( 'Change the location of the Site Title in the header', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_header_presets',
+			),
+			array(
+				'label'      => __( 'Change whether or not the Site Title is displayed', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_header_presets',
+			),
+			array(
+				'label'      => __( 'Change the Site Logo', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'title_tagline',
+			),
+		),
+		'faq_links'           => array(
+			array(
+				'label' => __( 'How do I customize my logo, title, and tagline?', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
+			),
+		),
+		'similar_questions'   => array(
+			array(
+				'label' => __( 'How do I create custom page headers?', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/custom-header-templates/' ),
+			),
+		),
+	],
+	'bgtfw_dropdown_headings_typography' => [
+		'type'                => 'bgtfw-dropdown-menu',
+		'transport'           => 'postMessage',
+		'label'               => __( 'Additional Controls', 'bgtfw' ),
+		'default'             => false,
+		'settings'            => 'bgtfw_dropdown_headings_typography',
+		'section'             => 'headings_typography',
+		'priority'            => -1,
+		'additional_controls' => array(
+			array(
+				'label'      => __( 'Change the Site Title Font', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_site_title',
+			),
+			array(
+				'label'      => __( 'Change the Tagline Font', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_tagline',
+			),
+		),
+		'faq_links'           => array(
+			array(
+				'label' => __( 'How do I customize my logo, title, and tagline?', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
+			),
+		),
+		'similar_questions'   => array(
+			array(
+				'label' => __( 'How do I create custom page headers?', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/custom-header-templates/' ),
+			),
+		),
+	],
+);
+
+$dropdown_controls = generate_menu_dropdowns( $dropdown_controls );
+
+return array_merge( $general_controls, $dropdown_controls );

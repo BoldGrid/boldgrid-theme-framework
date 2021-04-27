@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.7.1 ###
+* Update: Theme Check fixes made to column width controls.
+
 ### 2.7.0 ###
 * New Feature: Header layout presets.
 * New Feature: Partial Refresh enabled for more header elements in customizer.

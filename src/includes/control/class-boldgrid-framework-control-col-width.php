@@ -77,11 +77,12 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 	 * @since 2.7.0
 	 */
 	public function get_devices_markup() {
+		global $wp_filesystem;
 		$svg_dir        = $this->configs['framework']['asset_dir'] . 'img/devices/';
 		$devices        = array( 'large', 'desktop', 'tablet', 'phone' );
 		$devices_markup = '<ul>';
 		foreach ( $devices as $device ) {
-			$device_svg = file_get_contents( $svg_dir . $device . '.svg' );
+			$device_svg = $wp_filesystem->get_contents( $svg_dir . $device . '.svg' );
 			$checked    = 'large' === $device ? 'checked' : '';
 
 			$devices_markup .= '<li><input id="col-width-devices-' . $device . '" name="col-width-devices" value="' . $device . '" type="radio" ' . $checked . '></input>';

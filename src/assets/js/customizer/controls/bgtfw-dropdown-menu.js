@@ -1,3 +1,4 @@
+/* globals BOLDGRID */
 const api = wp.customize;
 window.BOLDGRID.CUSTOMIZER.dropdownMenus = window.BOLDGRID.CUSTOMIZER.dropdownMenus ? window.BOLDGRID.CUSTOMIZER.dropdownMenus : [];
 export default () => {
@@ -10,14 +11,13 @@ export default () => {
 					focusId   = autoFocusLi.dataset.focusId;
 					container.find( autoFocusLi ).find( 'span' ).on( 'click', function() {
 						BOLDGRID.CUSTOMIZER.dropdownMenus.push( control.section() );
-						console.log( 'autoFocus to ' + focusId + ' ' + focusType );
 						api[ focusType ]( focusId ).focus();
 					} );
 
-					container.find( '.bgtfw-dropdown-menu-return' ).on( 'click', function() {
-						BOLDGRID.CUSTOMIZER.dropdownMenus.pop();
-						api.section( focusId ).focus( this.dataset.section );
-					} );
+					// container.find( '.bgtfw-dropdown-menu-return' ).on( 'click', function() {
+					// 	BOLDGRID.CUSTOMIZER.dropdownMenus.pop();
+					// 	api.section( focusId ).focus( this.dataset.section );
+					// } );
 			} );
 		};
 
@@ -37,11 +37,13 @@ export default () => {
 				api.section( control.section() ).expanded.bind( ( isExpanded ) => {
 					if ( ! isExpanded ) {
 						control.container.find( '.bgtfw-dropdown-menu-header' ).addClass( 'collapsed' );
-					} else if ( 0 !== BOLDGRID.CUSTOMIZER.dropdownMenus.length ) {
-						let goBackSections = BOLDGRID.CUSTOMIZER.dropdownMenus;
-						control.container.find( '.bgtfw-dropdown-menu-return' ).removeClass( 'hidden' );
-						control.container.find( '.bgtfw-dropdown-menu-return' ).data( 'section', goBackSections[ goBackSections.length - 1 ] );
 					}
+
+					// } else if ( 0 !== BOLDGRID.CUSTOMIZER.dropdownMenus.length ) {
+					// 	let goBackSections = BOLDGRID.CUSTOMIZER.dropdownMenus;
+					// 	control.container.find( '.bgtfw-dropdown-menu-return' ).removeClass( 'hidden' );
+					// 	control.container.find( '.bgtfw-dropdown-menu-return' ).data( 'section', goBackSections[ goBackSections.length - 1 ] );
+					// }
 				} );
 			}
 		} );

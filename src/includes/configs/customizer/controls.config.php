@@ -4835,5 +4835,4 @@ $dropdown_controls = array(
 );
 
 // $dropdown_controls = generate_menu_dropdowns( $dropdown_controls );
-
 return array_merge( $general_controls, $dropdown_controls );

@@ -962,7 +962,7 @@ export default {
 
 		/*
 		 * We need to remove the main menu from this array
-		 * if this is the standard bgtfw-header-layout to prevent
+		 * if this is not the standard bgtfw-header-layout to prevent
 		 * it from being added multiple times as of 2.7.1.
 		 */
 		if ( 'bgtfw-header-layout' !== this.id ) {

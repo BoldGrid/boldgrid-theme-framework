@@ -37,6 +37,7 @@ user guide for more information.
 ## Changelog ##
 
 ### 2.7.1 ###
+* Bug Fix: Crio Custom Header Glitches [#368](https://github.com/BoldGrid/boldgrid-theme-framework/issues/368)
 * Update: Theme Check fixes made to column width controls.
 
 ### 2.7.0 ###

@@ -115,7 +115,12 @@ export class HeaderLayout  {
 				row       = controlInput.dataset.row,
 				isChecked;
 
-			if ( colWidthValue ) {
+			/*
+			 * When adding a new row and row item, the values for that row
+			 * are not going to be defined yet, so check to be sure they are
+			 * first. This resolves issue #368 as of v2.7.1
+			 */
+			if ( colWidthValue && 'fullWidth' in colWidthValue && undefined !== colWidthValue.fullWidth[ row ] ) {
 				isChecked = colWidthValue.fullWidth[ row ][ device ];
 			} else if ( 'tablet' === device || 'phone' === device ) {
 				isChecked = true;

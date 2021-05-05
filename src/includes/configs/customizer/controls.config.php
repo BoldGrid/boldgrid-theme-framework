@@ -34,7 +34,6 @@ function generate_menu_dropdowns( $controls ) {
 	$base_menu_config = [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
-		'label'               => __( 'Additional Controls', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_',
 		'section'             => 'nav_menu',
@@ -4650,11 +4649,15 @@ $dropdown_controls = array(
 	'bgtfw_logo_dropdown' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
-		'label'               => __( 'Additional Controls', 'bgtfw' ),
+		'label'               => __( 'Related Options', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_logo_dropdown',
 		'section'             => 'title_tagline',
 		'priority'            => -1,
+		'help_text'           => __(
+			'Depending on the header layout you have chosen, you may not see the Logo displayed in your header. To enable the logo, you can do so in the Header Layout Section.',
+			'bgtfw'
+		),
 		'additional_controls' => array(
 			array(
 				'label'      => __( 'Change Logo position in layout', 'bgtfw' ),
@@ -4678,21 +4681,18 @@ $dropdown_controls = array(
 				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
 			),
 		),
-		'similar_questions'   => array(
-			array(
-				'label' => __( 'How do I create custom page headers?', 'bgtfw' ),
-				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/custom-header-templates/' ),
-			),
-		),
 	],
 	'bgtfw_dropdown_title' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
-		'label'               => __( 'Additional Controls', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_title',
 		'section'             => 'bgtfw_site_title',
 		'priority'            => -1,
+		'help_text'           => __(
+			'Depending on the header layout you have chosen, you may not see the Site Title displayed in your header. To enable the site title, you can do so in the Header Layout Section.',
+			'bgtfw'
+		),
 		'additional_controls' => array(
 			array(
 				'label'      => __( 'Change the location of the Site Title in the header', 'bgtfw' ),
@@ -4716,21 +4716,18 @@ $dropdown_controls = array(
 				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
 			),
 		),
-		'similar_questions'   => array(
-			array(
-				'label' => __( 'How do I create custom page headers?', 'bgtfw' ),
-				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/custom-header-templates/' ),
-			),
-		),
 	],
 	'bgtfw_dropdown_tagline' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
-		'label'               => __( 'Additional Controls', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_tagline',
 		'section'             => 'bgtfw_tagline',
 		'priority'            => -1,
+		'help_text'           => __(
+			'Depending on the header layout you have chosen, you may not see the Tagline displayed in your header. To enable the tagline, you can do so in the Header Layout Section.',
+			'bgtfw'
+		),
 		'additional_controls' => array(
 			array(
 				'label'      => __( 'Change the location of the Site Tagline in the header', 'bgtfw' ),
@@ -4754,21 +4751,18 @@ $dropdown_controls = array(
 				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
 			),
 		),
-		'similar_questions'   => array(
-			array(
-				'label' => __( 'How do I create custom page headers?', 'bgtfw' ),
-				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/custom-header-templates/' ),
-			),
-		),
 	],
 	'bgtfw_dropdown_headings_typography' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
-		'label'               => __( 'Additional Controls', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_headings_typography',
 		'section'             => 'headings_typography',
 		'priority'            => -1,
+		'help_text'           => __(
+			'These controls handle the font settings for the main font and headings of the body of your page, but do not effect the fonts in your site\s Header.',
+			'bgtfw'
+		),
 		'additional_controls' => array(
 			array(
 				'label'      => __( 'Change the Site Title Font', 'bgtfw' ),
@@ -4787,21 +4781,18 @@ $dropdown_controls = array(
 				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
 			),
 		),
-		'similar_questions'   => array(
-			array(
-				'label' => __( 'How do I create custom page headers?', 'bgtfw' ),
-				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/custom-header-templates/' ),
-			),
-		),
 	],
 	'bgtfw_dropdown_header_presets' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
-		'label'               => __( 'Additional Controls', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_header_presets',
 		'section'             => 'bgtfw_header_presets',
 		'priority'            => -1,
+		'help_text'           => __(
+			'You can choose from ten different preset header layouts, or you can select "Custom" to create your own custom header layout. Additionally, you can decide whether or not to display your Logo, Title and Tagline.',
+			'bgtfw'
+		),
 		'additional_controls' => array(
 			array(
 				'label'      => __( 'Change your Site Logo', 'bgtfw' ),
@@ -4823,12 +4814,6 @@ $dropdown_controls = array(
 			array(
 				'label' => __( 'How do I customize my logo, title, and tagline?', 'bgtfw' ),
 				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
-			),
-		),
-		'similar_questions'   => array(
-			array(
-				'label' => __( 'How do I create custom page headers?', 'bgtfw' ),
-				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/custom-header-templates/' ),
 			),
 		),
 	],

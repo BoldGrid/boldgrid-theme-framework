@@ -5,6 +5,8 @@ li.customize-control-bgtfw-dropdown-menu {
 
 .bgtfw-dropdown-menu-wrapper {
 	position: relative;
+    border-bottom: 1px solid #dcdcde;
+    background-color: white;
 
 	.bgtfw-dropdown-menu-return.hidden {
 		visibility: hidden;
@@ -14,16 +16,13 @@ li.customize-control-bgtfw-dropdown-menu {
 		display: flex;
 		align-items: center;
 		justify-content: left;
-		padding: 10px;
-
+		height: 55px;
+		border:  1px solid #dcdcde;
 		span.dashicons.dashicons-arrow-up-alt2 {
-			border: solid 1px #c7c7c7;
-			border-radius: 50%;
-			padding: 5px;
 			line-height: 1.0em;
-			margin-left: 10px;
 		}
 		&.collapsed {
+			border-bottom: none;
 			span.dashicons.dashicons-arrow-up-alt2 {
 				transform: rotate(180deg);
 			}
@@ -32,24 +31,52 @@ li.customize-control-bgtfw-dropdown-menu {
 				display: none;
 			}
 		}
+		.dropdown-button {
+			border-right: 1px solid #dcdcde;
+			padding: 10px;
+			width: 48px;
+			box-sizing: border-box;
+			border-left: 4px solid white;
+			display: flex;
+			align-content: center;
+			align-items: center;
+			height: 100%;
+			&:hover {
+				color: #2271b1;
+				background: #f6f7f7;
+				border-left-color: #2271b1;
+				box-shadow: none;
+				outline: 2px solid transparent;
+				outline-offset: -2px;
+			}
+		}
+		.label {
+			padding-left: 10px;
+			.bgtfw-dropdown-menu-label {
+				font-size: 20px;
+				font-weight: 200;
+				line-height: 26px;
+			}
+		}
 	}
 
 	.bgtfw-dropdown-menu-content {
-		width: 85%;
-		position: absolute;
-		left: 10px;
-		top: 85%;
-		z-index: 100;
+		width: calc( 100% - 20px);
+		position: relative;
 		background-color: white;
 		padding: 10px;
-		border: 1px solid gray;
-		border-radius: 5px;
-		box-shadow: 2px 3px 5px rgba(0,0,0,0.8);
 
 		> p {
 			font-weight: 600;
 			font-size: 1.2em;
 			margin: 0px;
+			&.bgtfw-dropdown-menu-help-text {
+				font-size: inherit;
+				font-weight: inherit;
+				border-bottom: 1px solid #dcdcde;
+				padding-bottom: 10px;
+				margin-bottom: 10px;
+			}
 		}
 
 		ul {
@@ -57,7 +84,7 @@ li.customize-control-bgtfw-dropdown-menu {
 			width: auto;
 
 			&:not(:last-child) {
-				border-bottom: solid 1px gray;
+				border-bottom: solid 1px #dcdcde;
 				padding-bottom: 10px;
 				margin-bottom: 10px;
 			}

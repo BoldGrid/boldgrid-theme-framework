@@ -48,13 +48,22 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		public $faq_links = array();
 
 		/**
-		 * Similar Questions.
+		 * Help Text.
 		 *
-		 * @var array
+		 * @var string
 		 *
 		 * @since SINCEVERSION
 		 */
-		public $similar_questions = array();
+		public $help_text = '';
+
+		/**
+		 * Label.
+		 *
+		 * @var string
+		 *
+		 * @since SINCEVERSION
+		 */
+		public $label = '';
 
 		/**
 		 * Refresh the parameters passed to the JavaScript via JSON.
@@ -66,11 +75,74 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			// Call parent to_json() method to get the core defaults like "label", "description", etc.
 			parent::to_json();
 
+			$this->json['help_text'] = $this->help_text;
+
 			$this->json['additional_controls'] = $this->additional_controls;
 
 			$this->json['faq_links'] = $this->faq_links;
+		}
 
-			$this->json['similar_questions'] = $this->similar_questions;
+		/**
+		 * Help Text Template.
+		 *
+		 * Displays the Help Text content.
+		 *
+		 * @access private
+		 *
+		 * @since SINCEVERSION
+		 */
+		private function help_text_template() {
+			?>
+				<p class="bgtfw-dropdown-menu-help-text">{{{ data.help_text }}}</p>
+			<?php
+		}
+
+		/**
+		 * Additional Controls Template
+		 *
+		 * Displays the Additional Controls content.
+		 *
+		 * @access private
+		 *
+		 * @since SINCEVERSION
+		 */
+		private function additional_controls_template() {
+			?>
+				<p class="bgtfw-additional-controls-heading">Additional Controls</p>
+				<ul>
+					<# data.additional_controls.forEach( ( additional_control ) => { #>
+					<li class="bgtfw-additional-control"
+						data-focus-id="{{ additional_control.focus_id }}"
+						data-focus-type="{{ additional_control.focus_type }}">
+						<span>{{{ additional_control.label }}}</span>
+					</li>
+					<# } ); #>
+				</ul>
+				<# console.log( { 'additional_controls': data.additional_controls } ); #>
+			<?php
+		}
+
+		/**
+		 * FAQ Links Template
+		 *
+		 * Displays the FAQ Links Content.
+		 *
+		 * @access private
+		 *
+		 * @since SINCEVERSION
+		 */
+		private function faq_links_template() {
+			?>
+				<p class="bgtfw-faq-links-heading">FAQs</p>
+				<ul>
+					<# data.faq_links.forEach( ( faq_link ) => { #>
+					<li class="bgtfw-faq-links">
+						<a target="_blank" href="{{ faq_link.url }}">{{{ faq_link.label }}}</a>
+					</li>
+					<# } ); #>
+				</ul>
+					<# console.log( { 'faq_links': data.faq_links } ); #>
+			<?php
 		}
 
 		/**
@@ -84,46 +156,25 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			?>
 			<div class="bgtfw-dropdown-menu-wrapper">
 				<div class="bgtfw-dropdown-menu-header collapsed">
-					<h3 class="bgtfw-dropdown-menu-label">{{{ data.label }}}</h3>
-					<span class="dashicons dashicons-arrow-up-alt2"></span>
+					<div class="dropdown-button">
+						<span class="dashicons dashicons-arrow-up-alt2"></span>
+					</div>
+					<div class="label">
+						<p class="bgtfw-dropdown-menu-label"><?php _e( 'Related Options', 'bgtfw' ); ?></p>
+					</div>
 				</div>
 				<div class="bgtfw-dropdown-menu-content">
-					<p class="bgtfw-dropdown-menu-return hidden">Go Back</p>
-					<# if ( data.additional_controls ) { #>
-						<p class="bgtfw-additional-controls-heading">Additional Controls</p><ul>
-						<# data.additional_controls.forEach( ( additional_control ) => { #>
-							<li class="bgtfw-additional-control"
-								data-focus-id="{{ additional_control.focus_id }}"
-								data-focus-type="{{ additional_control.focus_type }}">
-								<span>{{{ additional_control.label }}}</span>
-							</li>
-						<# } ); #>
-						</ul>
-						<# console.log( { 'additional_controls': data.additional_controls } );
-					}
+					<# if ( data.help_text ) { #>
+						<?php $this->help_text_template(); ?>
+					<# }
+
+					if ( data.additional_controls ) { #>
+						<?php $this->additional_controls_template(); ?>
+					<# }
 
 					if ( data.faq_links ) { #>
-						<p class="bgtfw-faq-links-heading">FAQs</p><ul>
-						<# data.faq_links.forEach( ( faq_link ) => { #>
-							<li class="bgtfw-faq-links">
-								<a target="_blank" href="{{ faq_link.url }}">{{{ faq_link.label }}}</a>
-							</li>
-						<# } ); #>
-						</ul>
-						<# console.log( { 'faq_links': data.faq_links } );
-					}
-
-					if ( data.similar_questions ) { #>
-						<p class="bgtfw-similar-questions-heading">FAQs</p><ul>
-						<# data.similar_questions.forEach( ( similar_question ) => { #>
-							<li class="bgtfw-similar-question">
-								<a target="_blank" href="{{ similar_question.url }}">{{{ similar_question.label }}}</a>
-							</li>
-						<# } ); #>
-						</ul>
-						<# console.log( { 'similar_questions': data.similar_questions } );
-					}
-					#>
+						<?php $this->faq_links_template(); ?>
+					<# } #>
 				</div>
 			</div>
 			<?php

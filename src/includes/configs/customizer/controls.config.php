@@ -1246,9 +1246,9 @@ $general_controls = array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_headings_color',
-		'label'       => esc_attr__( 'Color', 'bgtfw' ),
-		'section'     => 'headings_typography',
-		'priority'    => 10,
+		'label'       => esc_attr__( 'Heading Font Color', 'bgtfw' ),
+		'section'     => 'boldgrid_typography',
+		'priority'    => 3,
 		'default'     => '',
 		'choices'     => array(
 			'colors'  => $bgtfw_formatted_palette,
@@ -1260,9 +1260,8 @@ $general_controls = array(
 		'type'     => 'typography',
 		'settings'  => 'bgtfw_headings_typography',
 		'transport'   => 'auto',
-		'settings'    => 'bgtfw_headings_typography',
 		'label'       => esc_attr__( 'Headings Typography', 'bgtfw' ),
-		'section'     => 'headings_typography',
+		'section'     => 'boldgrid_typography',
 		'default'     => array(
 			'font-family'    => 'Roboto',
 			'variant'        => 'regular',
@@ -1271,7 +1270,7 @@ $general_controls = array(
 			'subsets'        => array( 'latin-ext' ),
 			'text-transform' => 'none',
 		),
-		'priority'    => 20,
+		'priority'    => 2,
 		'output'      => $bgtfw_typography->get_output_values( $bgtfw_configs ),
 	),
 	'bgtfw_headings_font_size' => array(
@@ -1493,8 +1492,8 @@ $general_controls = array(
 		'type'        => 'typography',
 		'transport'   => 'auto',
 		'settings'    => 'bgtfw_body_typography',
-		'label'       => esc_attr__( 'Typography', 'bgtfw' ),
-		'section'     => 'body_typography',
+		'label'       => esc_attr__( 'Main Text Typography', 'bgtfw' ),
+		'section'     => 'boldgrid_typography',
 		'default'     => array(
 			'font-family'    => 'Roboto',
 			'variant'        => '100',
@@ -1504,7 +1503,7 @@ $general_controls = array(
 			'subsets'        => array( 'latin-ext' ),
 			'text-transform' => 'none',
 		),
-		'priority'    => 10,
+		'priority'    => 1,
 		'output'      => array(
 			array(
 				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header',
@@ -4752,15 +4751,15 @@ $dropdown_controls = array(
 			),
 		),
 	],
-	'bgtfw_dropdown_headings_typography' => [
+	'bgtfw_dropdown_typography' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
 		'default'             => false,
-		'settings'            => 'bgtfw_dropdown_headings_typography',
-		'section'             => 'headings_typography',
+		'settings'            => 'bgtfw_dropdown_typography',
+		'section'             => 'boldgrid_typography',
 		'priority'            => -1,
 		'help_text'           => __(
-			'These controls handle the font settings for the main font and headings of the body of your page, but do not effect the fonts in your site\s Header.',
+			'These controls handle the font of the body text and the font and color of the headings in your site, but do not effect the fonts in your site\'s Header. The color of your body font is based on your color pallete.',
 			'bgtfw'
 		),
 		'additional_controls' => array(

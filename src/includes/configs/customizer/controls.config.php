@@ -75,8 +75,6 @@ function generate_menu_dropdowns( $controls ) {
 	];
 
 	$nav_menus_locations = get_nav_menu_locations();
-	error_log( 'nav_menu_locations: ' . json_encode( $nav_menus_locations ) );
-	error_log( 'nav_menus: ' . json_encode( $nav_menus ) );
 	foreach ( $nav_menus as $menu ) {
 		$menu_id   = $menu->term_id;
 		$menu_slug = '';
@@ -92,7 +90,6 @@ function generate_menu_dropdowns( $controls ) {
 		}
 
 		if ( $menu_slug ) {
-			error_log( 'nav_menus: ' . json_encode( $menu_slug ) );
 			$controls[ 'bgtfw_dropdown_' . $menu_slug ]             = $base_menu_config;
 			$controls[ 'bgtfw_dropdown_' . $menu_slug ]['settings'] = 'bgtfw_dropdown_' . $menu_slug;
 			$controls[ 'bgtfw_dropdown_' . $menu_slug ]['section']  = 'nav_menu[' . $menu_id . ']';

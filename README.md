@@ -36,6 +36,12 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.8.0 ###
+* New Feature: Added 'Related Controls' feature to customizer.
+* Update: Re-arranged / consolidated some typography controls.
+* Update: Renamed 'Colors' section to 'Color Palettes'
+* Update: Updated some deprecated jQuery.
+
 ### 2.7.0 ###
 * New Feature: Header layout presets.
 * New Feature: Partial Refresh enabled for more header elements in customizer.

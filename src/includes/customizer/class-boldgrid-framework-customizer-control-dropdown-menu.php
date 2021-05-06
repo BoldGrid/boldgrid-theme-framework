@@ -120,7 +120,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					</li>
 					<# } ); #>
 				</ul>
-				<# console.log( { 'additional_controls': data.additional_controls } ); #>
 			<?php
 		}
 
@@ -143,7 +142,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					</li>
 					<# } ); #>
 				</ul>
-					<# console.log( { 'faq_links': data.faq_links } ); #>
 			<?php
 		}
 

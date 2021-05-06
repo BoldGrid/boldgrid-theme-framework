@@ -75,6 +75,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			// Call parent to_json() method to get the core defaults like "label", "description", etc.
 			parent::to_json();
 
+			$$this->json['utm_params'] = '?utm_campaign=Crio%20FTP&utm_medium=faq_link&utm_source=' . $this->section;
+
 			$this->json['help_text'] = $this->help_text;
 
 			$this->json['additional_controls'] = $this->additional_controls;
@@ -137,7 +139,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				<ul>
 					<# data.faq_links.forEach( ( faq_link ) => { #>
 					<li class="bgtfw-faq-links">
-						<a target="_blank" href="{{ faq_link.url }}">{{{ faq_link.label }}}</a>
+						<a target="_blank" href="{{ faq_link.url }}{{data.utm_params}}">{{{ faq_link.label }}}</a>
 					</li>
 					<# } ); #>
 				</ul>
@@ -156,11 +158,14 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			?>
 			<div class="bgtfw-dropdown-menu-wrapper">
 				<div class="bgtfw-dropdown-menu-header collapsed">
+					<div class="label">
+						<p class="bgtfw-dropdown-menu-label">
+							<span class="dashicons dashicons-menu-alt"></span>
+							<span class="text"><?php _e( 'Related Options', 'bgtfw' ); ?></span>
+						</p>
+					</div>
 					<div class="dropdown-button">
 						<span class="dashicons dashicons-arrow-up-alt2"></span>
-					</div>
-					<div class="label">
-						<p class="bgtfw-dropdown-menu-label"><?php _e( 'Related Options', 'bgtfw' ); ?></p>
 					</div>
 				</div>
 				<div class="bgtfw-dropdown-menu-content">

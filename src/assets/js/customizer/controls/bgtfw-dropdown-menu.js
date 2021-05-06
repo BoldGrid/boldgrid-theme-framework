@@ -24,7 +24,7 @@ export default () => {
 		var bindDropdownArrow = ( control ) => {
 			var container = control.container;
 
-			container.find( '.dashicons' ).on( 'click', function() {
+			container.find( '.bgtfw-dropdown-menu-header' ).on( 'click', function() {
 				container.find( '.bgtfw-dropdown-menu-header' ).toggleClass( 'collapsed' );
 			} );
 		};

@@ -7,6 +7,7 @@ li.customize-control-bgtfw-dropdown-menu {
 	position: relative;
     border-bottom: 1px solid #dcdcde;
     background-color: white;
+	margin-bottom: 10px;
 
 	.bgtfw-dropdown-menu-return.hidden {
 		visibility: hidden;
@@ -15,7 +16,7 @@ li.customize-control-bgtfw-dropdown-menu {
 	.bgtfw-dropdown-menu-header {
 		display: flex;
 		align-items: center;
-		justify-content: left;
+		justify-content: space-between;
 		height: 55px;
 		border:  1px solid #dcdcde;
 		span.dashicons.dashicons-arrow-up-alt2 {
@@ -23,6 +24,13 @@ li.customize-control-bgtfw-dropdown-menu {
 		}
 		&.collapsed {
 			border-bottom: none;
+			&:hover {
+				color: #2271b1;
+				background: #f6f7f7;
+				box-shadow: none;
+				outline: 2px solid transparent;
+				outline-offset: -2px;
+			}
 			span.dashicons.dashicons-arrow-up-alt2 {
 				transform: rotate(180deg);
 			}
@@ -32,30 +40,33 @@ li.customize-control-bgtfw-dropdown-menu {
 			}
 		}
 		.dropdown-button {
-			border-right: 1px solid #dcdcde;
 			padding: 10px;
 			width: 48px;
 			box-sizing: border-box;
-			border-left: 4px solid white;
 			display: flex;
 			align-content: center;
 			align-items: center;
+			justify-content: center;
 			height: 100%;
-			&:hover {
-				color: #2271b1;
-				background: #f6f7f7;
-				border-left-color: #2271b1;
-				box-shadow: none;
-				outline: 2px solid transparent;
-				outline-offset: -2px;
-			}
 		}
 		.label {
 			padding-left: 10px;
 			.bgtfw-dropdown-menu-label {
-				font-size: 20px;
-				font-weight: 200;
-				line-height: 26px;
+				font-size: 14px;
+				font-weight: 600;
+				line-height: 1.6em;
+				display: flex;
+				vertical-align: middle;
+				align-items: center;
+				.dashicons-menu-alt {
+					vertical-align: top;
+					font-size: 1.6em;
+					padding: 0.4em;
+				}
+				.text {
+					vertical-align: middle;
+    				padding: 0.4em;
+				}
 			}
 		}
 	}

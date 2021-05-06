@@ -163,13 +163,6 @@ $general_controls = array(
 			'auto' => __( 'Do Not Resize', 'bgtfw' ),
 		],
 	],
-	'bgtfw_background_description' => array(
-		'type'        => 'custom',
-		'settings'    => 'bgtfw_background_description',
-		'section'     => 'background_image',
-		'default'     => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the appearance of your site\'s background.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-your-site-background-in-boldgrid-crio/?source=customize-background" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
-		'priority'    => 1,
-	),
 	'boldgrid_background_color' => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
@@ -4654,30 +4647,34 @@ $dropdown_controls = array(
 		'section'             => 'title_tagline',
 		'priority'            => -1,
 		'help_text'           => __(
-			'Depending on the header layout you have chosen, you may not see the Logo displayed in your header. To enable the logo, you can do so in the Header Layout Section.',
+			'Depending on the active header layout, the Site Title may not be displayed in your header. You can enable the Site Title in the Header Layout Section.',
 			'bgtfw'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Change Logo position in layout', 'bgtfw' ),
+				'label'      => __( 'Logo Display in Header Layout', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_header_presets',
 			),
 			array(
-				'label'      => __( 'Change Site Tagline', 'bgtfw' ),
+				'label'      => __( 'Site Tagline', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_tagline',
 			),
 			array(
-				'label'      => __( 'Change Site Title ', 'bgtfw' ),
+				'label'      => __( 'Site Title ', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_site_title',
 			),
 		),
 		'faq_links'           => array(
 			array(
-				'label' => __( 'How do I customize my logo, title, and tagline?', 'bgtfw' ),
+				'label' => __( 'Working with the Logo', 'bgtfw' ),
 				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Working with Fonts', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-fonts-in-boldgrid-crio/' ),
 			),
 		),
 	],
@@ -4689,30 +4686,43 @@ $dropdown_controls = array(
 		'section'             => 'bgtfw_site_title',
 		'priority'            => -1,
 		'help_text'           => __(
-			'Depending on the header layout you have chosen, you may not see the Site Title displayed in your header. To enable the site title, you can do so in the Header Layout Section.',
+			'Depending on the active header layout, the Logo may not be displayed in your header. You can enable the Logo in the Header Layout Section.',
 			'bgtfw'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Change the location of the Site Title in the header', 'bgtfw' ),
+				'label'      => __( 'Site Title display in the Header Layout', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_header_presets',
 			),
 			array(
-				'label'      => __( 'Change whether or not the Site Title is displayed', 'bgtfw' ),
-				'focus_type' => 'section',
-				'focus_id'   => 'bgtfw_header_presets',
-			),
-			array(
-				'label'      => __( 'Change the Site Logo', 'bgtfw' ),
+				'label'      => __( 'Site Logo', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'title_tagline',
+			),
+			array(
+				'label'      => __( 'Site Tagline', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_tagline',
+			),
+			array(
+				'label'      => __( 'Fonts', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'boldgrid_typography',
 			),
 		),
 		'faq_links'           => array(
 			array(
-				'label' => __( 'How do I customize my logo, title, and tagline?', 'bgtfw' ),
+				'label' => __( 'Working with the Site Title', 'bgtfw' ),
 				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Working with Fonts', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-fonts-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Choose the Color Palette', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-color-palette/' ),
 			),
 		),
 	],
@@ -4724,30 +4734,43 @@ $dropdown_controls = array(
 		'section'             => 'bgtfw_tagline',
 		'priority'            => -1,
 		'help_text'           => __(
-			'Depending on the header layout you have chosen, you may not see the Tagline displayed in your header. To enable the tagline, you can do so in the Header Layout Section.',
+			'Depending on the active header layout, the Tagline may not be displayed in your header. You can enable the Tagline in the Header Layout Section.',
 			'bgtfw'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Change the location of the Site Tagline in the header', 'bgtfw' ),
+				'label'      => __( 'Site Tagline display in the header layout', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_header_presets',
 			),
 			array(
-				'label'      => __( 'Change whether or not the Site Tagline is displayed', 'bgtfw' ),
-				'focus_type' => 'section',
-				'focus_id'   => 'bgtfw_header_presets',
-			),
-			array(
-				'label'      => __( 'Change the Site Logo', 'bgtfw' ),
+				'label'      => __( 'Site Logo', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'title_tagline',
+			),
+			array(
+				'label'      => __( 'Site Title', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_site_title',
+			),
+			array(
+				'label'      => __( 'Fonts', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'boldgrid_typography',
 			),
 		),
 		'faq_links'           => array(
 			array(
-				'label' => __( 'How do I customize my logo, title, and tagline?', 'bgtfw' ),
+				'label' => __( 'Working with the Tagline', 'bgtfw' ),
 				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Working with Fonts', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-fonts-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Choose the Color Palette', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-color-palette/' ),
 			),
 		),
 	],
@@ -4759,7 +4782,7 @@ $dropdown_controls = array(
 		'section'             => 'boldgrid_typography',
 		'priority'            => -1,
 		'help_text'           => __(
-			'These controls handle the font of the body text and the font and color of the headings in your site, but do not effect the fonts in your site\'s Header. The color of your body font is based on your color pallete.',
+			'Site elements can use different fonts and colors, please explore these areas to style your typography.',
 			'bgtfw'
 		),
 		'additional_controls' => array(
@@ -4776,8 +4799,20 @@ $dropdown_controls = array(
 		),
 		'faq_links'           => array(
 			array(
-				'label' => __( 'How do I customize my logo, title, and tagline?', 'bgtfw' ),
+				'label' => __( 'Working with Fonts', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-fonts-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Working with the Site Title and Tagline', 'bgtfw' ),
 				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Choose the Color Palette', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-color-palette/' ),
+			),
+			array(
+				'label' => __( 'Style the Site Links', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/site-content-design-tools-in-boldgrid-crio/' ),
 			),
 		),
 	],
@@ -4789,30 +4824,208 @@ $dropdown_controls = array(
 		'section'             => 'bgtfw_header_presets',
 		'priority'            => -1,
 		'help_text'           => __(
-			'You can choose from ten different preset header layouts, or you can select "Custom" to create your own custom header layout. Additionally, you can decide whether or not to display your Logo, Title and Tagline.',
+			'After choosing a Header Layout, you can select if the Site TItle, Tagline, and/or Logo show. You can also create a Custom header if desired.',
 			'bgtfw'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Change your Site Logo', 'bgtfw' ),
+				'label'      => __( 'Site Logo', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'title_tagline',
 			),
 			array(
-				'label'      => __( 'Change Site Tagline', 'bgtfw' ),
+				'label'      => __( 'Site Tagline', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_tagline',
 			),
 			array(
-				'label'      => __( 'Change Site Title ', 'bgtfw' ),
+				'label'      => __( 'Site Title', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_site_title',
+			),
+			array(
+				'label'      => __( 'Header Background', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'header_image',
 			),
 		),
 		'faq_links'           => array(
 			array(
-				'label' => __( 'How do I customize my logo, title, and tagline?', 'bgtfw' ),
-				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/' ),
+				'label' => __( 'Choose a Header Layout', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-header-design-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Change the Header Background', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/how-to-change-the-header-background-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Working with Widgets', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-header-and-footer-widgets-in-boldgrid-crio/' ),
+			),
+		),
+	],
+	'bgtfw_dropdown_header_background' => [
+		'type'                => 'bgtfw-dropdown-menu',
+		'transport'           => 'postMessage',
+		'default'             => false,
+		'settings'            => 'bgtfw_dropdown_header_background',
+		'section'             => 'header_image',
+		'priority'            => -1,
+		'help_text'           => __(
+			'Your header background can be a color, image, or video. A video background can even show on internal pages.',
+			'bgtfw'
+		),
+		'additional_controls' => array(
+			array(
+				'label'      => __( 'Color Pallete', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'colors',
+			),
+			array(
+				'label'      => __( 'Header Layout', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_header_presets',
+			),
+			array(
+				'label'      => __( 'Site Background', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'background_image',
+			),
+			array(
+				'label'      => __( 'Footer Background', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_footer_colors',
+			),
+		),
+		'faq_links'           => array(
+			array(
+				'label' => __( 'Choose a Header Layout', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-header-design-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Change the Header Background', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/how-to-change-the-header-background-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Choose Your Color Palette', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-color-palette/' ),
+			),
+		),
+	],
+	'bgtfw_dropdown_site_background' => [
+		'type'                => 'bgtfw-dropdown-menu',
+		'transport'           => 'postMessage',
+		'default'             => false,
+		'settings'            => 'bgtfw_dropdown_site_background',
+		'section'             => 'background_image',
+		'priority'            => -1,
+		'help_text'           => __(
+			'Your Site Background is usually the last color in your Color Palette, but it can also be an image or pattern. If you don’t see the color you want to use, please update your Color Palette.',
+			'bgtfw'
+		),
+		'additional_controls' => array(
+			array(
+				'label'      => __( 'Color Pallete', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'colors',
+			),
+			array(
+				'label'      => __( 'Header Background', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'header_image',
+			),
+			array(
+				'label'      => __( 'Footer Background', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_footer_colors',
+			),
+		),
+		'faq_links'           => array(
+			array(
+				'label' => __( 'Change the Site Background', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/changing-your-site-background-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Choose the Color Palette', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-color-palette/' ),
+			),
+		),
+	],
+	'bgtfw_dropdown_footer_colors' => [
+		'type'                => 'bgtfw-dropdown-menu',
+		'transport'           => 'postMessage',
+		'default'             => false,
+		'settings'            => 'bgtfw_dropdown_footer_colors',
+		'section'             => 'bgtfw_footer_colors',
+		'priority'            => -1,
+		'help_text'           => __(
+			'After changing your Footer Colors, you may need to adjust your Widget colors. If you don’t see the color you want to use, please update your Color Palette.',
+			'bgtfw'
+		),
+		'additional_controls' => array(
+			array(
+				'label'      => __( 'Color Pallete', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'colors',
+			),
+			array(
+				'label'      => __( 'Header Background', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'header_image',
+			),
+			array(
+				'label'      => __( 'Site Background', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'background_image',
+			),
+		),
+		'faq_links'           => array(
+			array(
+				'label' => __( 'Change the Site Background', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/changing-your-site-background-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Choose the Color Palette', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-color-palette/' ),
+			),
+		),
+	],
+	'bgtfw_dropdown_color_pallete' => [
+		'type'                => 'bgtfw-dropdown-menu',
+		'transport'           => 'postMessage',
+		'default'             => false,
+		'settings'            => 'bgtfw_dropdown_color_pallete',
+		'section'             => 'colors',
+		'priority'            => -1,
+		'help_text'           => __(
+			'The colors chosen here are used across your entire website, changing one will update that color everywhere it’s used. The last position is the Site Background.',
+			'bgtfw'
+		),
+		'additional_controls' => array(
+			array(
+				'label'      => __( 'Site Background', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'background_image',
+			),
+			array(
+				'label'      => __( 'Header Background', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'header_image',
+			),
+			array(
+				'label'      => __( 'Footer Background', 'bgtfw' ),
+				'focus_type' => 'section',
+				'focus_id'   => 'bgtfw_footer_colors',
+			),
+		),
+		'faq_links'           => array(
+			array(
+				'label' => __( 'Change the Header Background', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/how-to-change-the-header-background-in-boldgrid-crio/' ),
+			),
+			array(
+				'label' => __( 'Choose the Footer Background', 'bgtfw' ),
+				'url'   => esc_url( 'https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/how-to-change-the-footer-colors-in-boldgrid-crio/' ),
 			),
 		),
 	],

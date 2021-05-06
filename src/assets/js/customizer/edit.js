@@ -173,7 +173,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			self.placeButtons();
 
 			// When the window is resized, wait 0.4 seconds and readjust the placement of our buttons.
-			$( window ).resize(function() {
+			$( window ).on( 'resize', function() {
 				clearTimeout( $.data( this, 'resizeTimer' ) );
 
 				$.data( this, 'resizeTimer', setTimeout( function() {
@@ -185,7 +185,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			* Navbars can sometimes become collapsed in a hamburger menu and button placement will
 			* need adjusting. After a navbar toggle is clicked, wait 0.4 seconds and adjust buttons.
 			*/
-			$( self.i18n.config.hamburgers ).click( function() {
+			$( self.i18n.config.hamburgers ).on( 'click', function() {
 				setTimeout( self.placeButtons, 400 );
 			});
 
@@ -196,7 +196,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			* will no longer be visible. In this case, we will fix the button to the top of the page
 			* so it's easily accessible.
 			*/
-			$( window ).scroll( function() {
+			$( window ).on( 'scroll', function() {
 				self.userIsScrolling = true;
 
 				clearTimeout( $.data( this, 'scrollTimer' ) );
@@ -1503,7 +1503,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			}
 
 			// Bind actions to the button's hover.
-			$button.hover(
+			$button.on( 'hover',
 
 				// Mouse in.
 				function() {
@@ -1522,7 +1522,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			});
 
 			// Bind actions the parent's hover.
-			$parent.hover(
+			$parent.on( 'hover',
 
 				// Mouse in.
 				function() {

@@ -234,7 +234,7 @@ var BoldGrid = BoldGrid || {};
 				var header;
 
 				header = $( '.site-header' );
-				header.bind( 'scroll', function() {
+				header.on( 'scroll', function() {
 					if ( 0 !== header.scrollLeft() ) {
 						header.scrollLeft( 0 );
 					}
@@ -253,7 +253,7 @@ var BoldGrid = BoldGrid || {};
 				BoldGrid.custom_header.calc();
 
 				// Listen for resize events to retrigger calculations.
-				$( window ).resize( BoldGrid.common.debounce( this.calc, 250 ) );
+				$( window ).on( 'resize', BoldGrid.common.debounce( this.calc, 250 ) );
 			},
 
 			/**
@@ -466,7 +466,7 @@ var BoldGrid = BoldGrid || {};
 				} );
 
 				// Adds event handling for CSS animated sub menus - toggle animation classes on sub menus show/hide.
-				sm.bind( {
+				sm.on( {
 					'show.smapi': function( e, menu ) {
 						$( menu ).removeClass( 'hide-animation' ).addClass( 'show-animation' );
 					},
@@ -494,13 +494,13 @@ var BoldGrid = BoldGrid || {};
 					if ( $mainMenuState.length ) {
 
 						// Animate mobile menu.
-						$mainMenuState.change( function( e ) {
+						$mainMenuState.on( 'change', function( e ) {
 							var $menu = $( e.currentTarget ).siblings( '.sm' );
 							this.checked ? BoldGrid.standard_menu_enabled.collapse( $menu ) : BoldGrid.standard_menu_enabled.expand( $menu );
 						} );
 
 						// Hide mobile menu beforeunload.
-						$( window ).bind( 'beforeunload unload', function() {
+						$( window ).on( 'beforeunload unload', function() {
 							if ( $mainMenuState[0].checked ) {
 								$mainMenuState[0].click();
 							}

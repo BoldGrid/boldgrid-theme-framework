@@ -110,7 +110,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		private function additional_controls_template() {
 			?>
-				<p class="bgtfw-additional-controls-heading">Additional Controls</p>
+				<p class="bgtfw-additional-controls-heading">Additional {{{ data.label }}} Controls</p>
+				<# if ( data.help_text ) { #>
+						<?php $this->help_text_template(); ?>
+				<# } #>
 				<ul>
 					<# data.additional_controls.forEach( ( additional_control ) => { #>
 					<li class="bgtfw-additional-control"
@@ -134,7 +137,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		private function faq_links_template() {
 			?>
-				<p class="bgtfw-faq-links-heading">FAQs</p>
+				<p class="bgtfw-faq-links-heading">Documentation</p>
 				<ul>
 					<# data.faq_links.forEach( ( faq_link ) => { #>
 					<li class="bgtfw-faq-links">
@@ -167,11 +170,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					</div>
 				</div>
 				<div class="bgtfw-dropdown-menu-content">
-					<# if ( data.help_text ) { #>
-						<?php $this->help_text_template(); ?>
-					<# }
-
-					if ( data.additional_controls ) { #>
+					<# if ( data.additional_controls ) { #>
 						<?php $this->additional_controls_template(); ?>
 					<# }
 

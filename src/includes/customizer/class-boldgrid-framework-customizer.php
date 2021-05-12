@@ -718,7 +718,7 @@ HTML;
 		// Add colors section description.
 		if ( $wp_customize->get_section( 'colors' ) ) {
 			$section              = $wp_customize->get_section( 'colors' );
-			$section->title       = esc_html__( 'Color Pallete', 'bgtfw' );
+			$section->title       = esc_html__( 'Color Palette', 'bgtfw' );
 			$section->description = '<div class="bgtfw-description"><p>' . __( 'Drag a color to a new spot to change what parts of the website are that color.<a href="#" data-action="open-color-picker"><span class="dashicons dashicons-admin-customizer"></span><strong>Click a color</strong></a> to change it. Use the "Suggest Palettes" button to get new color suggestions, and press the lock icons to freeze colors in place.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-color-palette/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 		}
 

@@ -19,6 +19,7 @@ li.customize-control-bgtfw-dropdown-menu {
 		justify-content: space-between;
 		height: 55px;
 		border:  1px solid #dcdcde;
+		cursor: pointer;
 		span.dashicons.dashicons-arrow-up-alt2 {
 			line-height: 1.0em;
 		}
@@ -81,12 +82,12 @@ li.customize-control-bgtfw-dropdown-menu {
 			font-weight: 600;
 			font-size: 1.2em;
 			margin: 0px;
+			margin-bottom: 10px;
 			&.bgtfw-dropdown-menu-help-text {
+				padding-left: 10px;
 				font-size: inherit;
 				font-weight: inherit;
-				border-bottom: 1px solid #dcdcde;
 				padding-bottom: 10px;
-				margin-bottom: 10px;
 			}
 		}
 

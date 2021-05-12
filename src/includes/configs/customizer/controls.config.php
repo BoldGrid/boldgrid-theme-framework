@@ -1238,7 +1238,7 @@ $general_controls = array(
 		'settings'    => 'bgtfw_headings_color',
 		'label'       => esc_attr__( 'Heading Font Color', 'bgtfw' ),
 		'section'     => 'boldgrid_typography',
-		'priority'    => 3,
+		'priority'    => 4,
 		'default'     => '',
 		'choices'     => array(
 			'colors'  => $bgtfw_formatted_palette,
@@ -1268,14 +1268,14 @@ $general_controls = array(
 		'transport'   => 'postMessage',
 		'settings'    => 'bgtfw_headings_font_size',
 		'label'       => esc_attr__( 'Font Size', 'bgtfw' ),
-		'section'     => 'headings_typography',
+		'section'     => 'boldgrid_typography',
 		'default'     => '14',
 		'choices'     => array(
 			'min'  => '6',
 			'max'  => '42',
 			'step' => '1',
 		),
-		'priority'    => 30,
+		'priority'    => 3,
 	),
 	'bgtfw_tagline_color' => array(
 		'type'        => 'bgtfw-palette-selector',
@@ -4638,18 +4638,24 @@ $dropdown_controls = array(
 	'bgtfw_logo_dropdown' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
-		'label'               => __( 'Related Options', 'bgtfw' ),
+		'label'               => __( 'Branding', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_logo_dropdown',
 		'section'             => 'title_tagline',
 		'priority'            => -1,
-		'help_text'           => __(
-			'Depending on the active header layout, the Site Title may not be displayed in your header. You can enable the Site Title in the Header Layout Section.',
-			'bgtfw'
+		'help_text'           => sprintf(
+			__(
+				'Depending on the active %2$sheader layout%1$s, the Logo may not be displayed in your header. You can enable the Logo, %3$sSite Title%1$s, and %4$sTagline%1$s in the %2$sHeader Layout Section%1$s.',
+				'bgtfw'
+			),
+			'</a>',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Header Layouts Section" data-focusType="section" data-focusId="bgtfw_header_presets">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Site Title Section" data-focusType="section" data-focusId="bgtfw_site_title">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Tagline Section" data-focusType="section" data-focusId="bgtfw_tagline">'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Logo Display in Header Layout', 'bgtfw' ),
+				'label'      => __( 'Header Layout', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_header_presets',
 			),
@@ -4678,17 +4684,24 @@ $dropdown_controls = array(
 	'bgtfw_dropdown_title' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
+		'label'               => __( 'Branding', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_title',
 		'section'             => 'bgtfw_site_title',
 		'priority'            => -1,
-		'help_text'           => __(
-			'Depending on the active header layout, the Logo may not be displayed in your header. You can enable the Logo in the Header Layout Section.',
-			'bgtfw'
+		'help_text'           => sprintf(
+			__(
+				'Depending on the active %2$sheader layout%1$s, the Site Title may not be displayed in your header. You can enable the Site Title, %3$sLogo%1$s, and %4$sTagline%1$s in the %2$sHeader Layout Section%1$s.',
+				'bgtfw'
+			),
+			'</a>',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Header Layout Section" data-focusType="section" data-focusId="bgtfw_header_presets">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Logo Section" data-focusType="section" data-focusId="title_tagline">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Tagline Section" data-focusType="section" data-focusId="bgtfw_tagline">'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Site Title display in the Header Layout', 'bgtfw' ),
+				'label'      => __( 'Header Layout', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_header_presets',
 			),
@@ -4726,17 +4739,24 @@ $dropdown_controls = array(
 	'bgtfw_dropdown_tagline' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
+		'label'               => __( 'Branding', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_tagline',
 		'section'             => 'bgtfw_tagline',
 		'priority'            => -1,
-		'help_text'           => __(
-			'Depending on the active header layout, the Tagline may not be displayed in your header. You can enable the Tagline in the Header Layout Section.',
-			'bgtfw'
+		'help_text'           => sprintf(
+			__(
+				'Depending on the active %2$sheader layout%1$s, the Tagline may not be displayed in your header. You can enable the Tagline, %3$sSite Title%1$s, and %4$sLogo%1$s in the %2$sHeader Layout Section%1$s.',
+				'bgtfw'
+			),
+			'</a>',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Header Layout Section" data-focusType="section" data-focusId="bgtfw_header_presets">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Site Title Section" data-focusType="section" data-focusId="bgtfw_site_title">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Logo Section" data-focusType="section" data-focusId="title_tagline">'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Site Tagline display in the header layout', 'bgtfw' ),
+				'label'      => __( 'Header Layout', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_header_presets',
 			),
@@ -4774,22 +4794,28 @@ $dropdown_controls = array(
 	'bgtfw_dropdown_typography' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
+		'label'               => __( 'Font', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_typography',
 		'section'             => 'boldgrid_typography',
 		'priority'            => -1,
-		'help_text'           => __(
-			'Site elements can use different fonts and colors, please explore these areas to style your typography.',
-			'bgtfw'
+		'help_text'           => sprintf(
+			__(
+				'Choose your Heading color from the active Color Palette. The Main Text color will be black or white depending on the site background. Site elements like the %2$sSite Title%1$s and %2$sTagline%1$s can use different fonts and colors than what\'s shown here, please explore all areas to style your typography.',
+				'bgtfw'
+			),
+			'</a>',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Site Title Section" data-focusType="section" data-focusId="bgtfw_site_title">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Tagline Section" data-focusType="section" data-focusId="bgtfw_tagline">'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Change the Site Title Font', 'bgtfw' ),
+				'label'      => __( 'Site Title', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_site_title',
 			),
 			array(
-				'label'      => __( 'Change the Tagline Font', 'bgtfw' ),
+				'label'      => __( 'Tagline', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_tagline',
 			),
@@ -4816,22 +4842,29 @@ $dropdown_controls = array(
 	'bgtfw_dropdown_header_presets' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
+		'label'               => __( 'Header', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_header_presets',
 		'section'             => 'bgtfw_header_presets',
 		'priority'            => -1,
-		'help_text'           => __(
-			'After choosing a Header Layout, you can select if the Site TItle, Tagline, and/or Logo show. You can also create a Custom header if desired.',
-			'bgtfw'
+		'help_text'           => sprintf(
+			__(
+				'After choosing a new Header Layout, you can select if the Site Title, Tagline, and/or Logo display. You can also create a Custom Header if desired. You can also %2$sstyle your Site Title%1$s, %3$supload your Logo%1$s, and %4$sstyle your Tagline%1$s if needed.',
+				'bgtfw'
+			),
+			'</a>',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Site Title Section" data-focusType="section" data-focusId="bgtfw_site_title">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Logo Section" data-focusType="section" data-focusId="title_tagline">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Tagline Section" data-focusType="section" data-focusId="bgtfw_tagline">'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Site Logo', 'bgtfw' ),
+				'label'      => __( 'Logo', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'title_tagline',
 			),
 			array(
-				'label'      => __( 'Site Tagline', 'bgtfw' ),
+				'label'      => __( 'Tagline', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_tagline',
 			),
@@ -4864,17 +4897,24 @@ $dropdown_controls = array(
 	'bgtfw_dropdown_header_background' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
+		'label'               => __( 'Background', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_header_background',
 		'section'             => 'header_image',
 		'priority'            => -1,
-		'help_text'           => __(
-			'Your header background can be a color, image, or video. A video background can even show on internal pages.',
-			'bgtfw'
+		'help_text'           => sprintf(
+			__(
+				'Your Header Background can be a color, image, or video. A video background can even show on internal pages. If you don’t see the color you want to use, please update your %2$sColor Palette%1$s. Your %3$sSite Background%1$s and %4$sFooter Background%1$s can be changed as well.',
+				'bgtfw'
+			),
+			'</a>',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Color Palette Section" data-focusType="section" data-focusId="colors">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Site Background Section" data-focusType="section" data-focusId="background_image">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Footer Background Section" data-focusType="section" data-focusId="bgtfw_footer_colors">'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Color Pallete', 'bgtfw' ),
+				'label'      => __( 'Color Palette', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'colors',
 			),
@@ -4912,17 +4952,22 @@ $dropdown_controls = array(
 	'bgtfw_dropdown_site_background' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
+		'label'               => __( 'Background', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_site_background',
 		'section'             => 'background_image',
 		'priority'            => -1,
-		'help_text'           => __(
-			'Your Site Background is usually the last color in your Color Palette, but it can also be an image or pattern. If you don’t see the color you want to use, please update your Color Palette.',
-			'bgtfw'
+		'help_text'           => sprintf(
+			__(
+				'Your Site Background is usually the last color in your %2$sColor Palette%1$s, but you can also upload an image or select a background pattern here. If you don’t see the color you want to use, please update your %2$sColor Palette%1$s.',
+				'bgtfw'
+			),
+			'</a>',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Color Palette Section" data-focusType="section" data-focusId="colors">'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Color Pallete', 'bgtfw' ),
+				'label'      => __( 'Color Palette', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'colors',
 			),
@@ -4951,17 +4996,30 @@ $dropdown_controls = array(
 	'bgtfw_dropdown_footer_colors' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
+		'label'               => __( 'Background', 'bgtfw' ),
 		'default'             => false,
 		'settings'            => 'bgtfw_dropdown_footer_colors',
 		'section'             => 'bgtfw_footer_colors',
 		'priority'            => -1,
-		'help_text'           => __(
-			'After changing your Footer Colors, you may need to adjust your Widget colors. If you don’t see the color you want to use, please update your Color Palette.',
-			'bgtfw'
+		'help_text'           => sprintf(
+			__(
+				'After changing your Footer Colors, you may need to adjust your %2$sWidget%1$s colors. If you don’t see the color you want to use, please update your %3$sColor Palette%1$s. You may also want to change the %4$sFooter Design%1$s or %5$sSite Background%1$s.',
+				'bgtfw'
+			),
+			'</a>',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Widgets Panel" data-focusType="panel" data-focusId="widgets">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Color Palette Section" data-focusType="section" data-focusId="colors">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Footer Layout Section" data-focusType="section" data-focusId="boldgrid_footer_panel">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Site Background Section" data-focusType="section" data-focusId="background_image">'
 		),
 		'additional_controls' => array(
 			array(
-				'label'      => __( 'Color Pallete', 'bgtfw' ),
+				'label'      => __( 'Widgets', 'bgtfw' ),
+				'focus_type' => 'panel',
+				'focus_id'   => 'widgets',
+			),
+			array(
+				'label'      => __( 'Color Palette', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'colors',
 			),
@@ -4987,16 +5045,23 @@ $dropdown_controls = array(
 			),
 		),
 	],
-	'bgtfw_dropdown_color_pallete' => [
+	'bgtfw_dropdown_color_Palette' => [
 		'type'                => 'bgtfw-dropdown-menu',
 		'transport'           => 'postMessage',
+		'label'               => __( 'Color', 'bgtfw' ),
 		'default'             => false,
-		'settings'            => 'bgtfw_dropdown_color_pallete',
+		'settings'            => 'bgtfw_dropdown_color_Palette',
 		'section'             => 'colors',
 		'priority'            => -1,
-		'help_text'           => __(
-			'The colors chosen here are used across your entire website, changing one will update that color everywhere it’s used. The last position is the Site Background.',
-			'bgtfw'
+		'help_text'           => sprintf(
+			__(
+				'The colors chosen here are used across your entire website, changing one will update that color everywhere it’s used. The last position is the %2$sSite Background%1$s, but you can change it to an image or video. These colors are also used for the %3$sHeader Background%1$s and %4$sFooter Background%1$s.',
+				'bgtfw'
+			),
+			'</a>',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Site Background Section" data-focusType="section" data-focusId="background_image">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Header Background Section" data-focusType="section" data-focusId="header_image">',
+			'<a class="bgtfw-inline-af-link" href="#" title="Go To Footer Background Section" data-focusType="section" data-focusId="bgtfw_footer_colors">'
 		),
 		'additional_controls' => array(
 			array(
@@ -5013,6 +5078,11 @@ $dropdown_controls = array(
 				'label'      => __( 'Footer Background', 'bgtfw' ),
 				'focus_type' => 'section',
 				'focus_id'   => 'bgtfw_footer_colors',
+			),
+			array(
+				'label'      => __( 'Menu Design', 'bgtfw' ),
+				'focus_type' => 'panel',
+				'focus_id'   => 'bgtfw_menus_panel',
 			),
 		),
 		'faq_links'           => array(

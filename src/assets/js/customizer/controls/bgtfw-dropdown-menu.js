@@ -1,23 +1,26 @@
-/* globals BOLDGRID */
 const api = wp.customize;
-window.BOLDGRID.CUSTOMIZER.dropdownMenus = window.BOLDGRID.CUSTOMIZER.dropdownMenus ? window.BOLDGRID.CUSTOMIZER.dropdownMenus : [];
+
 export default () => {
 	api.bind( 'ready', () => {
 		var bindAutoFocus = ( control ) => {
 			var container = control.container;
 
+			container.find( '.bgtfw-inline-af-link' ).each( ( _, afInlineLink ) => {
+				var focusType = afInlineLink.dataset.focustype,
+					focusId   = afInlineLink.dataset.focusid;
+
+				container.find( afInlineLink ).on( 'click', ( e ) => {
+					e.preventDefault();
+					api[ focusType ]( focusId ).focus();
+				} );
+			} );
+
 			container.find( '.bgtfw-additional-control' ).each( ( _, autoFocusLi ) => {
 				var focusType = autoFocusLi.dataset.focusType,
 					focusId   = autoFocusLi.dataset.focusId;
-					container.find( autoFocusLi ).find( 'span' ).on( 'click', function() {
-						BOLDGRID.CUSTOMIZER.dropdownMenus.push( control.section() );
-						api[ focusType ]( focusId ).focus();
-					} );
-
-					// container.find( '.bgtfw-dropdown-menu-return' ).on( 'click', function() {
-					// 	BOLDGRID.CUSTOMIZER.dropdownMenus.pop();
-					// 	api.section( focusId ).focus( this.dataset.section );
-					// } );
+				container.find( autoFocusLi ).find( 'span' ).on( 'click', () => {
+					api[ focusType ]( focusId ).focus();
+				} );
 			} );
 		};
 
@@ -38,12 +41,6 @@ export default () => {
 					if ( ! isExpanded ) {
 						control.container.find( '.bgtfw-dropdown-menu-header' ).addClass( 'collapsed' );
 					}
-
-					// } else if ( 0 !== BOLDGRID.CUSTOMIZER.dropdownMenus.length ) {
-					// 	let goBackSections = BOLDGRID.CUSTOMIZER.dropdownMenus;
-					// 	control.container.find( '.bgtfw-dropdown-menu-return' ).removeClass( 'hidden' );
-					// 	control.container.find( '.bgtfw-dropdown-menu-return' ).data( 'section', goBackSections[ goBackSections.length - 1 ] );
-					// }
 				} );
 			}
 		} );

@@ -7,11 +7,19 @@ export default () => {
 
 			container.find( '.bgtfw-inline-af-link' ).each( ( _, afInlineLink ) => {
 				var focusType = afInlineLink.dataset.focustype,
-					focusId   = afInlineLink.dataset.focusid;
+					focusId   = afInlineLink.dataset.focusid,
+					classList = afInlineLink.classList;
 
 				container.find( afInlineLink ).on( 'click', ( e ) => {
 					e.preventDefault();
-					api[ focusType ]( focusId ).focus();
+					if ( classList.contains( 'custom-preset' ) ) {
+						let presetContainer   = wp.customize.control( 'bgtfw_header_preset' ).container;
+						let customPresetLabel = presetContainer.find( '.bgtfw_header_presetcustom' );
+
+						customPresetLabel.trigger( 'click' );
+					} else {
+						api[ focusType ]( focusId ).focus();
+					}
 				} );
 			} );
 

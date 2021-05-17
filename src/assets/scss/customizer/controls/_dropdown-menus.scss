@@ -88,6 +88,20 @@ li.customize-control-bgtfw-dropdown-menu {
 				font-size: inherit;
 				font-weight: inherit;
 				padding-bottom: 10px;
+				border-bottom: solid 1px #dcdcde;
+			}
+			&.bgtfw-dropdown-menu-help-label {
+				padding-left: 10px;
+				font-size: inherit;
+				font-weight: 600;
+				margin-bottom: 0px;
+				background-color: #eee;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-right: 10px;
+				text-align: center;
+				border-radius: 5px;
+				border: 1px solid #ddd;
 			}
 		}
 
@@ -102,10 +116,30 @@ li.customize-control-bgtfw-dropdown-menu {
 			}
 
 			li {
+				padding: 3px;
+				border-radius: 3px;
+				margin-left: -3px;
+				&.active {
+					background-color:#2271b1;
+					span {
+						color: #fff;
+						cursor: inherit;
+						text-decoration: none;
+					}
+				}
 				span {
 					color: #2271b1;
 					text-decoration: underline;
 					cursor: pointer;
+				}
+				&:hover {
+					background-color:#2271b1;
+					span {
+						color: #fff;
+					}
+					a {
+						color: #fff;
+					}
 				}
 			}
 		}

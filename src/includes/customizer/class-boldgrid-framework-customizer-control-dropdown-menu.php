@@ -48,6 +48,24 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		public $faq_links = array();
 
 		/**
+		 * Active Label.
+		 *
+		 * @var string
+		 *
+		 * @since SINCEVERSION
+		 */
+		public $active_label = '';
+
+		/**
+		 * Help Label.
+		 *
+		 * @var string
+		 *
+		 * @since SINCEVERSION
+		 */
+		public $help_label = '';
+
+		/**
 		 * Help Text.
 		 *
 		 * @var string
@@ -79,6 +97,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 			$this->json['help_text'] = $this->help_text;
 
+			$this->json['help_label'] = $this->help_label;
+
+			$this->json['active_label'] = $this->active_label;
+
 			$this->json['additional_controls'] = $this->additional_controls;
 
 			$this->json['faq_links'] = $this->faq_links;
@@ -95,6 +117,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		private function help_text_template() {
 			?>
+				<p class="bgtfw-dropdown-menu-help-label">{{{ data.help_label }}}</p>
 				<p class="bgtfw-dropdown-menu-help-text">{{{ data.help_text }}}</p>
 			<?php
 		}
@@ -110,13 +133,14 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		private function additional_controls_template() {
 			?>
-				<p class="bgtfw-additional-controls-heading">Additional {{{ data.label }}} Controls</p>
-				<# if ( data.help_text ) { #>
-						<?php $this->help_text_template(); ?>
-				<# } #>
+				<p class="bgtfw-additional-controls-heading">{{{ data.label }}} Elements</p>
 				<ul>
+					<li class="bgtfw-additional-control active">
+						<span>{{{ data.active_label }}}</span>
+					</li>
 					<# data.additional_controls.forEach( ( additional_control ) => { #>
 					<li class="bgtfw-additional-control"
+						title="Go To {{{ additional_control.label }}} Section"
 						data-focus-id="{{ additional_control.focus_id }}"
 						data-focus-type="{{ additional_control.focus_type }}">
 						<span>{{{ additional_control.label }}}</span>
@@ -141,7 +165,9 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				<ul>
 					<# data.faq_links.forEach( ( faq_link ) => { #>
 					<li class="bgtfw-faq-links">
-						<a target="_blank" href="{{ faq_link.url }}{{data.utm_params}}">{{{ faq_link.label }}}</a>
+						<a target="_blank"
+							title="Go to &#8220;{{ faq_link.label }}&#8221; Support Article"
+							href="{{ faq_link.url }}{{data.utm_params}}">{{{ faq_link.label }}}<span class="dashicons dashicons-external"></span></a>
 					</li>
 					<# } ); #>
 				</ul>
@@ -170,6 +196,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					</div>
 				</div>
 				<div class="bgtfw-dropdown-menu-content">
+					<# if ( data.help_text ) { #>
+							<?php $this->help_text_template(); ?>
+					<# } #>
+
 					<# if ( data.additional_controls ) { #>
 						<?php $this->additional_controls_template(); ?>
 					<# }

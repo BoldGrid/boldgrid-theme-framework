@@ -15,7 +15,7 @@
 	}
 }
 
-body.inspirations-theme-73:before {
+body.home.inspirations-theme-73:before {
     content: "";
     display: block;
     height: 100%;
@@ -25,7 +25,7 @@ body.inspirations-theme-73:before {
     z-index: 1;
 	opacity:35%;
 }
-body.inspirations-theme-73:after {
+body.home.inspirations-theme-73:after {
     content: "";
     display: block;
     height: 100%;
@@ -35,33 +35,33 @@ body.inspirations-theme-73:after {
     z-index: 0;
 	opacity:35%;
 }
-body.inspirations-theme-73:before, body.inspirations-theme-73:after {
+body.home.inspirations-theme-73:before, body.home.inspirations-theme-73:after {
     border-top: 700px solid rgb(255,255,255);
 }
-body.inspirations-theme-73:before {
+body.home.inspirations-theme-73:before {
     border-right: 280px solid transparent;
     width: 38%;
 }
-body.inspirations-theme-73:after {
+body.home.inspirations-theme-73:after {
     border-left: 280px solid transparent;
     width: 38%;
 }
 @media only screen and (min-width: 768px) {
-	body.inspirations-theme-73:before {
+	body.home.inspirations-theme-73:before {
 		border-right: 600px solid transparent;
 		width: 65%;
 	}
-	body.inspirations-theme-73:after {
+	body.home.inspirations-theme-73:after {
 		border-left: 600px solid transparent;
 		width: 65%;
 	}
 }
 @media only screen and (min-width: 992px) {
-	body.inspirations-theme-73:before {
+	body.home.inspirations-theme-73:before {
 		border-right: 980px solid transparent;
 		width: 59%;
 	}
-	body.inspirations-theme-73:after {
+	body.home.inspirations-theme-73:after {
 		border-left: 980px solid transparent;
 		width: 59%;
 	}

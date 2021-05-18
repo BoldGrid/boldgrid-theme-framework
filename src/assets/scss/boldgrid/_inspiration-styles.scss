@@ -25,7 +25,7 @@ body {
 			position: absolute;
 			top: 0;
 			z-index: 1;
-			opacity:35%;
+			opacity:0.35;
 		}
 		&.inspirations-theme-73:after {
 			content: "";
@@ -35,7 +35,7 @@ body {
 			right: 0;
 			top: 0;
 			z-index: 0;
-			opacity:35%;
+			opacity:0.35;
 		}
 		&.inspirations-theme-73:before, &.inspirations-theme-73:after {
 			border-top: 700px solid rgb(255,255,255);

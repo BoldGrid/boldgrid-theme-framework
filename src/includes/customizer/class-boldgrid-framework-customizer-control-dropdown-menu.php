@@ -93,7 +93,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			// Call parent to_json() method to get the core defaults like "label", "description", etc.
 			parent::to_json();
 
-			$this->json['utm_params'] = '?utm_campaign=Crio%20FTP&utm_medium=faq_link&utm_source=' . $this->section;
+			$this->json['utm_params'] = '?utm_campaign=Crio%20Customizer&utm_medium=faq_link&utm_source=' . $this->section;
 
 			$this->json['help_text'] = $this->help_text;
 

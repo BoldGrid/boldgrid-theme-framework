@@ -4644,7 +4644,7 @@ $dropdown_controls = array(
 		'settings'            => 'bgtfw_logo_dropdown',
 		'section'             => 'title_tagline',
 		'priority'            => -1,
-		'help_label'          => __( 'Tip #1 - Show / Hide Branding Elements', 'bgtfw' ),
+		'help_label'          => __( 'Tip - Show / Hide Branding Elements', 'bgtfw' ),
 		'help_text'           => sprintf(
 			__(
 				'Depending on the active header layout, the Logo may not be displayed in your header. You can enable the Logo, %3$sSite Title%1$s, and %4$sTagline%1$s in the %2$sHeader Layout%1$s Section.',
@@ -4692,7 +4692,7 @@ $dropdown_controls = array(
 		'settings'            => 'bgtfw_dropdown_title',
 		'section'             => 'bgtfw_site_title',
 		'priority'            => -1,
-		'help_label'          => __( 'Tip #1 - Show / Hide Branding Elements', 'bgtfw' ),
+		'help_label'          => __( 'Tip - Show / Hide Branding Elements', 'bgtfw' ),
 		'help_text'           => sprintf(
 			__(
 				'Depending on the active header layout, the Site Title may not be displayed in your header. You can enable the Site Title, %3$sLogo%1$s, and %4$sTagline%1$s in the %2$sHeader Layout%1$s Section.',
@@ -4749,7 +4749,7 @@ $dropdown_controls = array(
 		'settings'            => 'bgtfw_dropdown_tagline',
 		'section'             => 'bgtfw_tagline',
 		'priority'            => -1,
-		'help_label'          => __( 'Tip #1 - Show / Hide Branding Elements', 'bgtfw' ),
+		'help_label'          => __( 'Tip - Show / Hide Branding Elements', 'bgtfw' ),
 		'help_text'           => sprintf(
 			__(
 				'Depending on the active header layout, the Tagline may not be displayed in your header. You can enable the Tagline, %3$sSite Title%1$s, and %4$sLogo%1$s in the %2$sHeader Layout%1$s Section.',
@@ -4806,7 +4806,7 @@ $dropdown_controls = array(
 		'settings'            => 'bgtfw_dropdown_typography',
 		'section'             => 'boldgrid_typography',
 		'priority'            => -1,
-		'help_label'          => __( 'Tip #2 - Changing and Styling Fonts', 'bgtfw' ),
+		'help_label'          => __( 'Tip - Changing and Styling Fonts', 'bgtfw' ),
 		'help_text'           => sprintf(
 			__(
 				'Choose your Heading color from the active Color Palette. The Main Text color will be black or white depending on the site background. Site elements like the %2$sSite Title%1$s and %2$sTagline%1$s can use different fonts and colors than what\'s shown here, please explore all areas to style your typography.',
@@ -4856,7 +4856,7 @@ $dropdown_controls = array(
 		'settings'            => 'bgtfw_dropdown_header_presets',
 		'section'             => 'bgtfw_header_presets',
 		'priority'            => -1,
-		'help_label'          => __( 'Tip #3 - Choosing a Header Layout', 'bgtfw' ),
+		'help_label'          => __( 'Tip - Choosing a Header Layout', 'bgtfw' ),
 		'help_text'           => sprintf(
 			__(
 				'After choosing a new Header Layout, you can select if the Site Title, Tagline, and/or Logo display. You can also create a %5$sCustom Header%1$s if desired. You can also %2$sstyle your Site Title%1$s, %3$supload your Logo%1$s, and %4$sstyle your Tagline%1$s if needed.',
@@ -4914,7 +4914,7 @@ $dropdown_controls = array(
 		'settings'            => 'bgtfw_dropdown_header_background',
 		'section'             => 'header_image',
 		'priority'            => -1,
-		'help_label'          => __( 'Tip #4 - Changing Backgrounds', 'bgtfw' ),
+		'help_label'          => __( 'Tip - Changing Backgrounds', 'bgtfw' ),
 		'help_text'           => sprintf(
 			__(
 				'Your Header Background can be a color, image, or video. A video background can even show on internal pages. If you don’t see the color you want to use, please update your %2$sColor Palette%1$s. Your %3$sSite Background%1$s and %4$sFooter Background%1$s can be changed as well.',
@@ -4971,7 +4971,7 @@ $dropdown_controls = array(
 		'settings'            => 'bgtfw_dropdown_site_background',
 		'section'             => 'background_image',
 		'priority'            => -1,
-		'help_label'          => __( 'Tip #4 - Changing Backgrounds', 'bgtfw' ),
+		'help_label'          => __( 'Tip - Changing Backgrounds', 'bgtfw' ),
 		'help_text'           => sprintf(
 			__(
 				'Your Site Background is usually the last color in your %2$sColor Palette%1$s, but you can also upload an image or select a background pattern here. If you don’t see the color you want to use, please update your %2$sColor Palette%1$s.',
@@ -5017,7 +5017,7 @@ $dropdown_controls = array(
 		'settings'            => 'bgtfw_dropdown_footer_colors',
 		'section'             => 'bgtfw_footer_colors',
 		'priority'            => -1,
-		'help_label'          => __( 'Tip #4 - Changing Backgrounds', 'bgtfw' ),
+		'help_label'          => __( 'Tip - Changing Backgrounds', 'bgtfw' ),
 		'help_text'           => sprintf(
 			__(
 				'After changing your Footer Colors, you may need to adjust your %2$sWidget%1$s colors. If you don’t see the color you want to use, please update your %3$sColor Palette%1$s. You may also want to change the %4$sFooter Design%1$s or %5$sSite Background%1$s.',
@@ -5071,7 +5071,7 @@ $dropdown_controls = array(
 		'settings'            => 'bgtfw_dropdown_color_palette',
 		'section'             => 'colors',
 		'priority'            => -1,
-		'help_label'          => __( 'Tip #5 - Changing Colors', 'bgtfw' ),
+		'help_label'          => __( 'Tip - Changing Colors', 'bgtfw' ),
 		'help_text'           => sprintf(
 			__(
 				'The colors chosen here are used across your entire website, changing one will update that color everywhere it’s used. The last position is the %2$sSite Background%1$s, but you can change it to an image or video. These colors are also used for the %3$sHeader Background%1$s and %4$sFooter Background%1$s.',

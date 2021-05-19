@@ -162,7 +162,9 @@ class Boldgrid_Framework_Customizer_Background {
 
 		$wp_customize->get_control( 'boldgrid_background_image_size' )->priority = 15;
 		$wp_customize->get_control( 'background_repeat' )->priority              = 18;
-		$wp_customize->get_section( 'background_image' )->title                  = __( 'Background', 'bgtfw' );
+		$background_image_section              = $wp_customize->get_section( 'background_image' );
+		$background_image_section->title       = __( 'Background', 'bgtfw' );
+		$background_image_section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change the appearance of your site\'s background.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-your-site-background-in-boldgrid-crio/?source=customize-background" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 		$wp_customize->remove_control( 'background_color' );
 
 		return $wp_customize;

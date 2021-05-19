@@ -60,7 +60,7 @@ class BoldGrid_Framework_Customizer {
 	}
 
 	/**
-	 * Add all kitki controls.
+	 * Add all kirki controls.
 	 *
 	 * @since 1.5.3
 	 */
@@ -718,6 +718,7 @@ HTML;
 		// Add colors section description.
 		if ( $wp_customize->get_section( 'colors' ) ) {
 			$section              = $wp_customize->get_section( 'colors' );
+			$section->title       = esc_html__( 'Color Palette', 'bgtfw' );
 			$section->description = '<div class="bgtfw-description"><p>' . __( 'Drag a color to a new spot to change what parts of the website are that color.<a href="#" data-action="open-color-picker"><span class="dashicons dashicons-admin-customizer"></span><strong>Click a color</strong></a> to change it. Use the "Suggest Palettes" button to get new color suggestions, and press the lock icons to freeze colors in place.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-color-palette/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 		}
 
@@ -949,6 +950,7 @@ HTML;
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Palette_Selector' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Sortable_Accordion' );
+		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Dropdown_Menu' );
 
 		add_filter(
 			'kirki_control_types',
@@ -956,6 +958,7 @@ HTML;
 				$controls['bgtfw-palette-selector']   = 'Boldgrid_Framework_Customizer_Control_Palette_Selector';
 				$controls['bgtfw-menu-hamburgers']    = 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers';
 				$controls['bgtfw-sortable-accordion'] = 'Boldgrid_Framework_Customizer_Control_Sortable_Accordion';
+				$controls['bgtfw-dropdown-menu']      = 'Boldgrid_Framework_Customizer_Control_Dropdown_Menu';
 				return $controls;
 			}
 		);

@@ -406,6 +406,10 @@ class BoldGrid {
 			$post_id = ( int ) get_option( 'page_for_posts' );
 		}
 
+		if ( get_theme_mod( '_boldgrid_theme_id' ) ) {
+			$classes[] = 'inspirations-theme-' . get_theme_mod( '_boldgrid_theme_id' );
+		}
+
 		// Adds a class of group-blog to blogs with more than 1 published author.
 		if ( is_multi_author( ) ) {
 			$classes[] = 'group-blog';

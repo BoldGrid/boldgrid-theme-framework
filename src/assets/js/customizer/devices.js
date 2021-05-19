@@ -147,7 +147,7 @@ export class Devices {
 		if ( ! this.hasClass() ) {
 			this.toggleClass( this.currentDevice );
 			this.setDevice( this.currentDevice, false );
-			$( '.devices > button' ).blur();
+			$( '.devices > button' ).trigger( 'blur' );
 			this.shouldChange = true;
 		}
 	}
@@ -241,9 +241,9 @@ export class Devices {
 		let button = $( `.devices > [data-device="${device}"]` );
 
 		// Remove focus from currently focused buttons.
-		$( '.devices > button' ).blur();
+		$( '.devices > button' ).trigger( 'blur' );
 
-		button.trigger( 'click', [ { internal: true } ] ).blur();
+		button.trigger( 'click', [ { internal: true } ] ).trigger( 'blur' );
 	}
 
 	/**

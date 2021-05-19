@@ -14,3 +14,68 @@
 	background:none
 	}
 }
+
+body {
+	&.home {
+		&.inspirations-theme-73:before {
+			content: "";
+			display: block;
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			z-index: 1;
+			opacity:0.35;
+		}
+		&.inspirations-theme-73:after {
+			content: "";
+			display: block;
+			height: 100%;
+			position: absolute;
+			right: 0;
+			top: 0;
+			z-index: 0;
+			opacity:0.35;
+		}
+		&.inspirations-theme-73:before, &.inspirations-theme-73:after {
+			border-top: 700px solid rgb(255,255,255);
+		}
+		&.inspirations-theme-73:before {
+			border-right: 280px solid transparent;
+			width: 38%;
+		}
+		&.inspirations-theme-73:after {
+			border-left: 280px solid transparent;
+			width: 38%;
+		}
+	}
+}
+@media only screen and (min-width: 768px) {
+	body {
+		&.home {
+			&.inspirations-theme-73:before {
+				border-right: 600px solid transparent;
+				width: 65%;
+			}
+			&.inspirations-theme-73:after {
+				border-left: 600px solid transparent;
+				width: 65%;
+			}
+		}
+	}
+}
+@media only screen and (min-width: 992px) {
+	body {
+		&.home {
+			&.inspirations-theme-73:before {
+				border-right: 980px solid transparent;
+				width: 59%;
+			}
+			&.inspirations-theme-73:after {
+				border-left: 980px solid transparent;
+				width: 59%;
+			}
+		}
+	}
+
+}

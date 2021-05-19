@@ -81,7 +81,7 @@ if ( class_exists( 'WP_Customize_Section' ) ) {
 			?>
 			<div id="accordion-section-{{ data.id }}" class="bgtfw-widgets-section">
 				<p class="bgtfw-widgets-section-description boldgrid-subdescription">{{{ data.section_description }}}</p>
-				<li onclick="event.preventDefault(); wp.customize.control( 'bgtfw_header_layout' ).focus();" id="accordion-section-{{ data.id }}-header" class="accordion-section control-section control-section-{{ data.type }}">
+				<li onclick="event.preventDefault(); wp.customize.control( 'bgtfw_header_preset' ).focus();" id="accordion-section-{{ data.id }}-header" class="accordion-section control-section control-section-{{ data.type }}">
 					<h3 class="accordion-section-title">
 						{{ data.header_title }}
 					</h3>

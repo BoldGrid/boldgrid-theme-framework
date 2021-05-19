@@ -17,6 +17,12 @@ $sections_array = array(
 		'description' => __( 'This section controls the layout of pages and posts on your website.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 	),
+	'boldgrid_typography' => array(
+		'title' => __( 'Fonts', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Manage your site\'s typography settings.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-fonts-in-boldgrid-crio/?source=customize-fonts" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
+		'priority' => 90,
+		'icon' => 'dashicons-editor-textcolor',
+	),
 	'bgtfw_layout_page' => array(
 		'title' => __( 'Pages', 'bgtfw' ),
 		'panel' => 'bgtfw_design_panel',
@@ -121,7 +127,7 @@ $sections_array = array(
 	'bgtfw_site_title' => array(
 		'title' => esc_attr__( 'Site Title', 'bgtfw' ),
 		'panel' => 'bgtfw_header',
-		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s title and it\'s appearance.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s title and its appearance.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'capability' => 'edit_theme_options',
 		'priority' => 6,
 		'icon' => 'dashicons-flag',
@@ -129,7 +135,7 @@ $sections_array = array(
 	'bgtfw_tagline' => array(
 		'title' => __( 'Tagline', 'bgtfw' ),
 		'panel' => 'bgtfw_header',
-		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s tagline, and it\'s appearance.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s tagline, and its appearance.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/working-with-your-site-title-logo-and-tagline-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'capability' => 'edit_theme_options',
 		'priority' => 8,
 		'icon' => 'dashicons-tag',

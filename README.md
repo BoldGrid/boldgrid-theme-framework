@@ -36,6 +36,12 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.8.0 ###
+* New Feature: Added 'Related Controls' feature to customizer.
+* Update: Re-arranged / consolidated some typography controls.
+* Update: Renamed 'Colors' section to 'Color Palettes'
+* Update: Updated some deprecated jQuery.
+
 ### 2.7.1 ###
 * Bug Fix: Crio Custom Header Glitches [#368](https://github.com/BoldGrid/boldgrid-theme-framework/issues/368)
 * Update: Theme Check fixes made to column width controls.

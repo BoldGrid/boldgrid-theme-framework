@@ -29,7 +29,7 @@ export default {
 					customMenus.push( menu );
 				}
 			} );
-			let menus = api.control( 'bgtfw_header_layout' ).getConnectedMenus()
+			let menus = api.control( 'bgtfw_header_layout_custom' ).getConnectedMenus()
 				.map( menu => menu.replace( 'boldgrid_menu_', '' ) );
 			menus = menus.concat( customMenus );
 			api.controlConstructor.nav_menu_location.prototype.updateSectionDescription( menus );
@@ -54,7 +54,7 @@ export default {
 						control.deferred.embedded.done( function() {
 
 							// Collect the dynamic controls connected menus.
-							let menus = api.control( 'bgtfw_header_layout' ).getConnectedMenus()
+							let menus = api.control( 'bgtfw_header_layout_custom' ).getConnectedMenus()
 								.map( menu => menu.replace( 'boldgrid_menu_', '' ) );
 
 							// Update section descriptions with the correct location counts.
@@ -81,7 +81,7 @@ export default {
 		let locationId = this.id.slice( 19, -1 );
 
 		// Collect the dynamic controls connected menus.
-		let menus = api.control( 'bgtfw_header_layout' ).getConnectedMenus()
+		let menus = api.control( 'bgtfw_header_layout_custom' ).getConnectedMenus()
 			.map( menu => menu.replace( 'boldgrid_menu_', 'nav_menu_locations[' ) + ']' );
 
 		// This checks if the control matches any of our connected menus set in dynamic controls.

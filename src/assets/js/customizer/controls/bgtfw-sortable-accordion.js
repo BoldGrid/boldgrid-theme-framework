@@ -960,6 +960,14 @@ export default {
 			}
 		}
 
+		/*
+		 * We need to remove the main menu from this array
+		 * if this is not the standard bgtfw-header-layout to prevent
+		 * it from being added multiple times as of 2.7.1.
+		 */
+		if ( 'bgtfw-header-layout' !== this.id ) {
+			menus.splice( menus.indexOf( 'boldgrid_menu_main' ), 1 );
+		}
 		return menus;
 	},
 

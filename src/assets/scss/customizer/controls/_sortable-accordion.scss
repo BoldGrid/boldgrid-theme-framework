@@ -150,6 +150,10 @@
 	.title > em,
 	.dashicons-trash {
 		color: #a00;
+		&.disabled {
+			z-index:-1;
+			opacity: 0;
+		}
 		&:hover {
 			color: #dc3232;
 		}

@@ -116,6 +116,14 @@ export default {
 			} );
 
 			api( 'custom_logo', value => value.bind( to => this._toggleLogo( to ) ) );
+
+			let footerContainer = api.control( 'bgtfw_footer_layout' ).container;
+			let footerSortableWrappers = footerContainer.find( '.sortable-wrapper' );
+			footerSortableWrappers.each( ( _, wrapper ) => {
+				if ( 0 !== footerContainer.find( wrapper ).find( '.dashicons-admin-links' ).length ) {
+					footerContainer.find( wrapper ).find( '.dashicons-trash' ).addClass( 'disabled' );
+				}
+			} );
 		} );
 	},
 

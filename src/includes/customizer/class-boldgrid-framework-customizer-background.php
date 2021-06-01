@@ -290,6 +290,8 @@ class Boldgrid_Framework_Customizer_Background {
 				if ( $bg_repeat ) {
 					$css .= 'background-repeat: ' . esc_attr( $bg_repeat ) . ';';
 				}
+
+				$css .= '}';
 			} else {
 				$css .= 'body.custom-background {';
 

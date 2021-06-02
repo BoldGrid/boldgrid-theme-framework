@@ -4,7 +4,9 @@
 	}
 
 	input[type="checkbox"] {
-		height: 100%;
+		&:not(.mdc-switch__native-control) {
+			height: 100%;
+		}
 	}
 
 	&.directional-control .control-name {

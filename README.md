@@ -36,6 +36,18 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.8.1 ###
+* Bug Fix: BoldGrid Attribution should not be toggleable without license [#189](https://github.com/BoldGrid/boldgrid-theme-framework/issues/189)
+* Bug Fix: Crio Customizer Missing Sprout Invoice Icon [#270](https://github.com/BoldGrid/boldgrid-theme-framework/issues/270)
+* Bug Fix: Excerpt Length controls in Design > Post List Settings [#358](https://github.com/BoldGrid/boldgrid-theme-framework/issues/358)
+* Bug Fix: Active menu item on blog posts - Inspirations [#348](https://github.com/BoldGrid/boldgrid-theme-framework/issues/348)
+* Bug Fix: Site Background Opacity only shows with Customizer open [#281](https://github.com/BoldGrid/boldgrid-theme-framework/issues/281)
+* Bug Fix: Links - Hover Color Brightness does not show in live preview [#257](https://github.com/BoldGrid/boldgrid-theme-framework/issues/257)
+* Bug Fix: Change background image implementation [#189](https://github.com/BoldGrid/boldgrid-theme-framework/issues/350)
+* Bug Fix: Control for Box Shadow Inset / Outset - clicking actual toggle doesn't work [#255](https://github.com/BoldGrid/boldgrid-theme-framework/issues/255)
+* Update: Improve Attribution display [#311](https://github.com/BoldGrid/boldgrid-theme-framework/issues/311)
+* Update: Transparent Widget Background [#280](https://github.com/BoldGrid/boldgrid-theme-framework/issues/280)
+
 ### 2.8.0 ###
 * New Feature: Added 'Related Controls' feature to customizer.
 * Update: Re-arranged / consolidated some typography controls.

@@ -221,7 +221,8 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 			),
 			'choices' => array(
 				'colors' => $formatted_palette,
-				'size' => $this->palette->get_palette_size( $formatted_palette ),
+				'size' => $this->palette->get_palette_size( $formatted_palette, true ),
+				'transparent' => true,
 			),
 		);
 		wp_add_inline_script( $handle, sprintf( 'CustomizeWidgetSidebarMetaControls.init( wp.customize, %s );', wp_json_encode( $data ) ) );

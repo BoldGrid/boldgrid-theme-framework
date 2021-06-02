@@ -1938,7 +1938,7 @@ $general_controls = array(
 		'default'     => 55,
 		'transport'   => 'refresh',
 		'choices'     => array(
-			'min'  => 1,
+			'min'  => 0,
 			'max'  => 300,
 			'step' => 1,
 		),

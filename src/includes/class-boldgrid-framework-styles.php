@@ -258,7 +258,7 @@ class BoldGrid_Framework_Styles {
 
 		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";
-		$css = "{$menu_id} .current-menu-item > a,{$menu_id} .current-menu-ancestor > a,{$menu_id} .current-menu-parent > a { color: {$color}; }";
+		$css = "{$menu_id} .current-menu-item > a,{$menu_id} .current-menu-ancestor > a,{$menu_id} .current-menu-parent > a,{$menu_id} .current_page_parent > a { color: {$color}; }";
 
 		return $css;
 	}

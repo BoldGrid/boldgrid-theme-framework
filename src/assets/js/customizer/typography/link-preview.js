@@ -83,7 +83,7 @@ export class LinkPreview {
 	updateStyles( prefix ) {
 		let css = '';
 		if ( false === _.isFunction( api( `${prefix}_link_color_display` ) ) || 'inherit' !== api( `${prefix}_link_color_display` )() ) {
-			let linkColor = this._getColor( `${prefix}_link_color` ),
+			let linkColor = this._getColor( `${prefix}_link_color`, true ),
 				linkColorHover = api( `${prefix}_link_color_hover` )() || 0,
 				decoration = this._getDecoration( `${prefix}_link_decoration` ),
 				decorationHover = this._getDecoration( `${prefix}_link_decoration_hover` ),
@@ -92,6 +92,7 @@ export class LinkPreview {
 				shiftedColorVal;
 
 			linkColorHover = parseInt( linkColorHover, 10 ) / 100;
+
 			shiftedColorVal = colorLib.Color( linkColor ).lightenByAmount( linkColorHover ).toCSS();
 
 			for ( let selector of selectors ) {
@@ -131,12 +132,13 @@ export class LinkPreview {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  {string} setting Setting Name.
-	 * @return {string}         Saved Color.
+	 * @param  {string} setting  Setting Name.
+	 * @param  {bool}   variable Whether to return variable or true color
+	 * @return {string}          Saved Color.
 	 */
-	_getColor( setting ) {
+	_getColor( setting, variable = false ) {
 		let color = api( setting )() || '';
-		return this.paletteSelector.getColor( color );
+		return this.paletteSelector.getColor( color, variable );
 	}
 
 }

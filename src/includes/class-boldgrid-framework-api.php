@@ -623,13 +623,13 @@ class BoldGrid {
 					}
 
 					// Apply active menu item styles.
-					if ( in_array( 'current-menu-item', $classes ) ) {
+					if ( count( array_intersect( $classes, array( 'current-menu-item', 'current_page_parent', 'current-post-parent' ) ) ) ) {
 						$classes[] = implode( ' ', $this->get_color_classes( get_theme_mod( "bgtfw_menu_items_active_link_background_{$location}" ), [ 'background-color' ] ) );
 						$classes[] = implode( ' ', $this->get_color_classes( get_theme_mod( "bgtfw_menu_items_active_link_border_color_{$location}" ), [ 'border-color' ] ) );
 					}
 
 					// Apply to all other menu items that aren't active menu items.
-					if ( ! in_array( 'current-menu-item', $classes ) ) {
+					if ( ! count( array_intersect( $classes, array( 'current-menu-item', 'current_page_parent', 'current-post-parent' ) ) ) ) {
 						$classes[] = get_theme_mod( "bgtfw_menu_items_hover_effect_{$location}" );
 					}
 				}

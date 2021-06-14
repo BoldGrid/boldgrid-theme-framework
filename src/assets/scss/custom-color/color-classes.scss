@@ -89,6 +89,36 @@ $ubtn-colors: ();
 
 /* Create single css classes to apply palettes on universal elements. */
 $names: background background-color;
+.sidebar.transparent-background-color {
+	@for $color from 1 through length( $colors ) {
+		@for $each from 1 through length( $colors ) {
+			$reference: nth($colors, $color);
+			&.color-#{$each}-link-color {
+				a {
+					color: #{nth($colors, $each)};
+				}
+				a:hover, a:focus, a:active, a.highlighted {
+					color: hover( nth($colors, $color), nth($colors, $each) );
+				}
+			}
+		}
+		@if variable-exists( palette-primary-neutral-color ) {
+			&.color-neutral-link-color {
+				a {
+					color: $palette-primary-neutral-color;
+				}
+				a:hover, a:focus, a:active, a.highlighted {
+					color: hover( nth($colors, $color), $palette-primary-neutral-color );
+				}
+			}
+		}
+		&-hover {
+			&:focus, &:hover {
+				background-color: #{$reference} ! important;
+			}
+		}
+	}
+}
 @for $i from 1 through length( $names ) {
 	@for $color from 1 through length( $colors ) {
 		$reference: nth($colors, $color);
@@ -100,6 +130,16 @@ $names: background background-color;
 					}
 					a:hover, a:focus, a:active, a.highlighted {
 						color: hover( nth($colors, $color), nth($colors, $each) );
+					}
+				}
+				&.sidebar {
+					&.color-#{$each}-link-color {
+						a {
+							color: #{nth($colors, $each)};
+						}
+						a:hover, a:focus, a:active, a.highlighted {
+							color: hover( nth($colors, $color), nth($colors, $each) );
+						}
 					}
 				}
 			}

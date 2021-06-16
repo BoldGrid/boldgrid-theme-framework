@@ -420,6 +420,13 @@ class BoldGrid_Framework_Customizer {
 			array(),
 			$this->configs['version']
 		);
+
+		wp_enqueue_style(
+			'kirki-control-styles',
+			$this->configs['framework']['root_uri'] . '/includes/kirki/controls/css/styles.css',
+			array(),
+			$this->configs['version']
+		);
 	}
 
 	/**

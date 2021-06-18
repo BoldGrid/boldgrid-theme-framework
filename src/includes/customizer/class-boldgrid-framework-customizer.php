@@ -66,6 +66,7 @@ class BoldGrid_Framework_Customizer {
 	 */
 	public function kirki_controls() {
 		global $wp_customize;
+		remove_theme_support( 'widgets-block-editor' );
 
 		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			if ( isset( $control['type'] ) && 'radio' !== $control['type'] ) {

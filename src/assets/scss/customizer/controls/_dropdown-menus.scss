@@ -63,8 +63,11 @@ li.customize-control-bgtfw-dropdown-menu {
 					vertical-align: top;
 					font-size: 1.6em;
 					padding: 0.4em;
+					color: #50575e;
+					box-sizing: content-box;
 				}
 				.text {
+					color: #50575e;
 					vertical-align: middle;
     				padding: 0.4em;
 				}
@@ -89,6 +92,10 @@ li.customize-control-bgtfw-dropdown-menu {
 				font-weight: inherit;
 				padding-bottom: 10px;
 				border-bottom: solid 1px #dcdcde;
+				font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+				a {
+					text-decoration: underline;
+				}
 			}
 			&.bgtfw-dropdown-menu-help-label {
 				padding-left: 10px;

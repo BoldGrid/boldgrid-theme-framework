@@ -582,10 +582,15 @@ class BoldGrid_Framework_Styles {
 	 * @since     1.0.0
 	 */
 	public function add_editor_styling() {
-		$local_files = $this->get_local_editor_styles();
+		global $wp_customize;
 
-		apply_filters( 'boldgrid_theme_framework_editor_styles', $local_files );
-		add_editor_style( $local_files );
+		$is_editor = false !== strpos( $_SERVER['REQUEST_URI'], '/post-new' ) || false !== strpos( $_SERVER['REQUEST_URI'], 'action=edit' );
+
+		if ( $is_editor ) {
+			$local_files = $this->get_local_editor_styles();
+			apply_filters( 'boldgrid_theme_framework_editor_styles', $local_files );
+			add_editor_style( $local_files );
+		}
 	}
 
 	/**

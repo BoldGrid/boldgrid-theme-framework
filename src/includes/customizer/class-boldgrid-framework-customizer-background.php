@@ -275,6 +275,28 @@ class Boldgrid_Framework_Customizer_Background {
 					'background-repeat: no-repeat;' .
 					'background-attachment: fixed;' .
 				'}';
+			} elseif ( 'fixed' === $bg_attach && 'cover' === $bg_size ) {
+				// This sets the background to a pseudo element to work with iOS.
+				$css = 'body.custom-background::before {' .
+					'content: "";' .
+					'top: 0;' .
+					'left: 0;' .
+					'position: fixed;' .
+					'background-size: cover;' .
+					'width: 100%;' .
+					'height: 100%;' .
+					'z-index: -1;' .
+					'background-position: center top;';
+				if ( $bg_image ) {
+					$css .= 'background-image: url("' . esc_attr( $bg_image ) . '");';
+				}
+
+				if ( $bg_repeat ) {
+					$css .= 'background-repeat: ' . esc_attr( $bg_repeat ) . ';';
+				}
+
+				$css .= '}';
+
 			} elseif ( 'fixed' === $bg_attach ) {
 				$css = 'body.custom-background {' .
 					'background-attachment: fixed;';
@@ -354,8 +376,8 @@ class Boldgrid_Framework_Customizer_Background {
 			$color_obj->alpha = $alpha;
 			$new_color        = esc_attr( $color_obj->toCSS( 'rgba' ) );
 
-			$rule  = "@supports(background-blend-mode: $type) { body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $new_color !important; background-blend-mode: $type; } }";
-			$rule .= "@supports not (background-blend-mode: $type) { body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $color !important; opacity: $alpha; } }";
+			$rule  = "@supports(background-blend-mode: $type) { body.custom-background::before, body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $new_color !important; background-blend-mode: $type; } }";
+			$rule .= "@supports not (background-blend-mode: $type) { body.custom-background::before, body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $color !important; opacity: $alpha; } }";
 		}
 
 		return $rule;

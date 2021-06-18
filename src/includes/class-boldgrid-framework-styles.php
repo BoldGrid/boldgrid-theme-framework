@@ -584,7 +584,7 @@ class BoldGrid_Framework_Styles {
 	public function add_editor_styling() {
 		global $wp_customize;
 
-		$is_editor = false !== strpos( $_SERVER['REQUEST_URI'], '/post-new' ) || false !== strpos( $_SERVER['REQUEST_URI'], 'action=edit' );
+		$is_editor = strpos( $_SERVER['REQUEST_URI'], '/post-new' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'action=edit' ) !== false;
 
 		if ( $is_editor ) {
 			$local_files = $this->get_local_editor_styles();

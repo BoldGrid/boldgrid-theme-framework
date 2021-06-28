@@ -114,7 +114,7 @@ $names: background background-color;
 		}
 		&-hover {
 			&:focus, &:hover {
-				background-color: #{$reference} ! important;
+				background-color: nth($colors, $color) ! important;
 			}
 		}
 	}

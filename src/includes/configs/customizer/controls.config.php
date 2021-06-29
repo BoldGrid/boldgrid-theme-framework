@@ -1350,6 +1350,11 @@ $general_controls = array(
 		'default'     => 'default',
 		'priority'    => 2,
 		'choices'     => $bgtfw_presets->get_preset_choices( 'header' ),
+		'edit_vars'    => array(
+			'selector' => '#masthead',
+			'label'    => esc_html__( 'Header Layout', 'bgtfw' ),
+			'description' => esc_html__( 'Change the header Layout Preset', 'bgtfw' ),
+		),
 	),
 	'bgtfw_header_width' => array(
 		'type'        => 'slider',

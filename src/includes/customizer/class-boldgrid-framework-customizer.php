@@ -799,6 +799,7 @@ HTML;
 		if ( $wp_customize->get_setting( 'custom_logo' ) ) {
 			$setting = $wp_customize->get_setting( 'custom_logo' );
 			$setting->transport = 'refresh';
+			error_log( json_encode( $setting ) );
 		}
 
 		// Remove Addition Control that conflict with site title.

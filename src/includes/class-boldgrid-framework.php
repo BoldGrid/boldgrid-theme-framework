@@ -664,6 +664,21 @@ class BoldGrid_Framework {
 		self::customizer_search();
 		self::customizer_notifications();
 		self::customizer_query();
+		self::customizer_edit_buttons();
+	}
+
+	/**
+	 * Customizer Edit Buttons.
+	 *
+	 * Defines hooks for customizer edit buttons.
+	 *
+	 * @since    2.9.0
+	 * @access   private
+	 */
+	private function customizer_edit_buttons() {
+		$edit_buttons = new Boldgrid_Framework_Customizer_Edit( $this->configs );
+		$this->loader->add_action( 'customize_preview_init', $edit_buttons, 'generate_edit_params' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $edit_buttons, 'wp_enqueue_scripts' );
 	}
 
 	/**

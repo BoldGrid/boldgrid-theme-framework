@@ -32,13 +32,42 @@ class Boldgrid_Framework_Menu {
 	protected $configs;
 
 	/**
+	 * Feature switch.
+	 *
+	 * @since 1.1.6
+	 * @var   bool
+	 */
+	public $enabled = false;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param     string $configs       The BoldGrid Theme Framework configurations.
 	 * @since     1.0.0
 	 */
 	public function __construct( $configs ) {
-		$this->configs = $configs;
+		$this->configs      = $configs;
+		$this->edit_enabled = (bool) $configs['customizer-options']['edit_enabled'];
+	}
+
+	/**
+	 * Ensure each menu location has a unique class.
+	 *
+	 * That unique classname will be LOCATION-menu-location.
+	 *
+	 * @since 1.1.6
+	 *
+	 * @param array $args Array of wp_nav_menu() arguments.
+	 * @return array $args Modfied wp_nav_menu() arguments.
+	 */
+	public function wp_nav_menu_args( $args ) {
+		if ( is_customize_preview() && true === $this->enabled && ! empty( $args['theme_location'] ) ) {
+			$class = str_replace( '_', '-', $args['theme_location'] ) . '-menu-location';
+
+			$args['container_class'] .= ' ' . $class;
+		}
+
+		return $args;
 	}
 
 	/**
@@ -116,7 +145,12 @@ class Boldgrid_Framework_Menu {
 				 * # Follow standard practice and print the nav menu if it's configured.
 				 */
 				if ( is_customize_preview() && true === $bgtfw_menus->configs['customizer-options']['edit']['enabled'] ) {
-					$menu['fallback_cb'] = 'Boldgrid_Framework_Customizer_Edit::fallback_cb';
+					$menu['fallback_cb'] = function( $menu ) {
+						printf( "<div id='%s' class='empty-menu' data-theme-location='%s'></div>",
+							esc_attr( $menu['menu_id'] ),
+							esc_attr( $menu['theme_location'] )
+						);
+					};
 					wp_nav_menu( $menu );
 				} elseif ( has_nav_menu( $menu['theme_location'] ) ) {
 					wp_nav_menu( $menu );

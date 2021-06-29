@@ -66,7 +66,8 @@ return array(
 	 * @since 1.0.0
 	 */
 	'customizer-options' => array(
-		'site_logo'      => true,
+		'edit_enabled'    => false,
+		'site_logo'       => true,
 		'header_panel'    => true,
 		'header_controls' => array(
 			'widgets'     => true,

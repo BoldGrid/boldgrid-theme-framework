@@ -13,9 +13,11 @@
 return array(
 	'custom_logo' => array(
 		'edit_vars' => array(
-			'selector'    => '#masthead .custom-logo-link',
-			'label'       => esc_html__( 'Change Logo', 'bgtfw' ),
-			'description' => esc_html__( 'Upload or change your site logo.', 'bgtfw' ),
+			array(
+				'selector'    => '#masthead .custom-logo-link',
+				'label'       => esc_html__( 'Change Logo', 'bgtfw' ),
+				'description' => esc_html__( 'Upload or change your site logo.', 'bgtfw' ),
+			)
 		),
 	),
 );

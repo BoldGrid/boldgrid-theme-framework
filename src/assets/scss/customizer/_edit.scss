@@ -4,7 +4,8 @@
 * Buttons are identified using "button[data-control]". Sometimes ".palette-primary button" styles
 * override the button settings below, so "body" has been prepended below for specificity.
 */
-body .bgtfw-edit-button:hover ~ .bgtfw-edit-border-box {
+body .single-edit-button .bgtfw-edit-button:hover ~ .bgtfw-edit-border-box,
+body .bgtfw-multi-edit-button:hover ~ .bgtfw-multi-edit-border-box {
 	width: 100%;
     height: 100%;
     position: absolute;
@@ -15,7 +16,29 @@ body .bgtfw-edit-button:hover ~ .bgtfw-edit-border-box {
     right: 0;
 }
 
-body .bgtfw-edit-button {
+.bgtfw-multi-edit-button:hover ul {
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    width: auto;
+    list-style: none;
+    background-color: white;
+    color: black;
+}
+
+span.edit-label {
+	font-weight: 600;
+}
+
+li.bgtfw-edit-button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: max-content;
+}
+
+body .single-edit-button .bgtfw-edit-button,
+body .bgtfw-multi-edit-button {
     position: absolute;
     width: 30px;
     padding: 5px;
@@ -35,13 +58,15 @@ body .bgtfw-edit-button {
     margin: 0;
 }
 
-body .bgtfw-edit-button:hover {
+body .single-edit-button .bgtfw-edit-button:hover,
+body .bgtfw-multi-edit-button:hover {
 	background-color:#0073aa;
 	color: #fff;
 	opacity: 1;
 }
 
-body .bgtfw-edit-button:before {
+body .single-edit-button .bgtfw-edit-button:before,
+body .bgtfw-multi-edit-button:before {
 	display: inline-block;
 	-webkit-font-smoothing: antialiased;
 	font: normal 20px/1 'dashicons';

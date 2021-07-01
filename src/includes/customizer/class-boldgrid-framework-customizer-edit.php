@@ -71,16 +71,18 @@ class Boldgrid_Framework_Customizer_Edit {
 			}
 
 			$edit_vars = $control_params['edit_vars'];
-			$selector  = $edit_vars['selector'];
+			foreach ( $edit_vars as $edit_var ) {
+				$selector  = $edit_var['selector'];
 
-			if ( ! isset( $this->edit_params[ $selector ] ) ) {
-				$this->edit_params[ $selector ] = array();
+				if ( ! isset( $this->edit_params[ $selector ] ) ) {
+					$this->edit_params[ $selector ] = array();
+				}
+
+				$this->edit_params[ $selector ][ $control_id ] = array(
+					'label'       => $edit_var['label'],
+					'description' => $edit_var['description'],
+				);
 			}
-
-			$this->edit_params[ $selector ][ $control_id ] = array(
-				'label'       => $edit_vars['label'],
-				'description' => $edit_vars['description'],
-			);
 		}
 
 		error_log( 'edit_params: ' . json_encode( $this->edit_params ) );

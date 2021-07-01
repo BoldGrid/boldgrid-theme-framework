@@ -66,6 +66,7 @@ class BoldGrid_Framework_Customizer {
 	 */
 	public function kirki_controls() {
 		global $wp_customize;
+		remove_theme_support( 'widgets-block-editor' );
 
 		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			if ( isset( $control['type'] ) && 'radio' !== $control['type'] ) {
@@ -420,6 +421,13 @@ class BoldGrid_Framework_Customizer {
 			array(),
 			$this->configs['version']
 		);
+
+		wp_enqueue_style(
+			'kirki-control-styles',
+			$this->configs['framework']['root_uri'] . '/includes/kirki/controls/css/styles.css',
+			array(),
+			$this->configs['version']
+		);
 	}
 
 	/**
@@ -431,10 +439,6 @@ class BoldGrid_Framework_Customizer {
 	 */
 	public function custom_customize_enqueue() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-		// This is necessary for wp < 5.5 backwards compatibility. WP5.5+ includes the wp-i18n already.
-		wp_deregister_script( 'wp-color-picker-alpha' );
-		wp_enqueue_script( 'wp-color-picker-alpha', trailingslashit( Kirki::$url ) . 'assets/vendor/wp-color-picker-alpha/wp-color-picker-alpha.js', array( 'wp-i18n', 'wp-color-picker' ), KIRKI_VERSION, true );
 
 		wp_register_script(
 			'bgtfw-customizer-base-controls',

@@ -67,7 +67,7 @@ BOLDGRID.CUSTOMIZER.Search = BOLDGRID.CUSTOMIZER.Search || {};
 				if ( 'sidebar' === section.type ) {
 					sidebar = wp.customize.section( section.id );
 					panel = wp.customize.panel( sidebar.params.panel );
-					_.each( sidebar.sidebarMeta.controls, function( v ) {
+					_.each( sidebar.controls(), function( v ) {
 						var c;
 						c = v.params;
 						c.label = c.label.replace( /:/g, '' );

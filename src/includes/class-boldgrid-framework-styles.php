@@ -258,7 +258,7 @@ class BoldGrid_Framework_Styles {
 
 		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";
-		$css = "{$menu_id} .current-menu-item > a,{$menu_id} .current-menu-ancestor > a,{$menu_id} .current-menu-parent > a { color: {$color}; }";
+		$css = "{$menu_id} .current-menu-item > a,{$menu_id} .current-menu-ancestor > a,{$menu_id} .current-menu-parent > a,{$menu_id} .current_page_parent > a { color: {$color}; }";
 
 		return $css;
 	}
@@ -582,10 +582,15 @@ class BoldGrid_Framework_Styles {
 	 * @since     1.0.0
 	 */
 	public function add_editor_styling() {
-		$local_files = $this->get_local_editor_styles();
+		global $wp_customize;
 
-		apply_filters( 'boldgrid_theme_framework_editor_styles', $local_files );
-		add_editor_style( $local_files );
+		$is_editor = strpos( $_SERVER['REQUEST_URI'], '/post-new' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'action=edit' ) !== false;
+
+		if ( $is_editor ) {
+			$local_files = $this->get_local_editor_styles();
+			apply_filters( 'boldgrid_theme_framework_editor_styles', $local_files );
+			add_editor_style( $local_files );
+		}
 	}
 
 	/**

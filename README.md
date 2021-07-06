@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.8.2 ###
+* Bug Fix: Crio - Venetian Inspiration (inspirations-theme-73) z-index issue with CTA button [#430](https://github.com/BoldGrid/boldgrid-theme-framework/issues/430)
+
 ### 2.8.1 ###
 * Bug Fix: BoldGrid Attribution should not be toggleable without license [#189](https://github.com/BoldGrid/boldgrid-theme-framework/issues/189)
 * Bug Fix: Crio Customizer Missing Sprout Invoice Icon [#270](https://github.com/BoldGrid/boldgrid-theme-framework/issues/270)

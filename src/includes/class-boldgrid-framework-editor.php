@@ -160,13 +160,13 @@ HTML;
 		);
 
 		if ( ! empty( $pagenow ) && ! in_array( $pagenow, $valid_pages ) ) {
-			return;
+			return $plugin_array;
 		}
 
 		// Currently only pages and posts are supported. @since 1.3.1
 		if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 			if ( ! in_array( $this->get_post_type(), $valid_post_types ) ) {
-				return;
+				return $plugin_array;
 			}
 		}
 

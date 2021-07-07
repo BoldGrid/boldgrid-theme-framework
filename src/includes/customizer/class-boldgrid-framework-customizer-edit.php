@@ -59,33 +59,53 @@ class Boldgrid_Framework_Customizer_Edit {
 			return;
 		}
 
-		if ( isset( $this->configs['customizer-options'] ) && isset( $this->configs['customizer-options']['edit'] ) ) {
-			$controls = array_merge( $this->configs['customizer']['controls'], $this->configs['customizer-options']['edit'] );
-		} else {
-			$controls = $this->configs['customizer']['controls'];
-		}
-
-		foreach ( $controls as $control_id => $control_params ) {
-			if ( empty( $control_params['edit_vars'] ) ) {
-				continue;
+		foreach ( array( 'control', 'section', 'panel' ) as $control_type ) {
+			if ( isset( $this->configs['customizer-options'] )
+				&& isset( $this->configs['customizer-options']['edit'] )
+				&& isset( $this->configs['customizer-options']['edit'][ $control_type . 's' ] ) ) {
+				$controls = array_merge( $this->configs['customizer'][ $control_type . 's' ], $this->configs['customizer-options']['edit'][ $control_type . 's' ] );
+			} else {
+				$controls = $this->configs['customizer'][ $control_type . 's' ];
 			}
 
-			$edit_vars = $control_params['edit_vars'];
-			foreach ( $edit_vars as $edit_var ) {
-				$selector  = $edit_var['selector'];
-
-				if ( ! isset( $this->edit_params[ $selector ] ) ) {
-					$this->edit_params[ $selector ] = array();
-				}
-
-				$this->edit_params[ $selector ][ $control_id ] = array(
-					'label'       => $edit_var['label'],
-					'description' => $edit_var['description'],
-				);
+			foreach ( $controls as $control_id => $control_params ) {
+				$this->control_edit_params( $control_id, $control_params, $control_type );
 			}
 		}
 
-		error_log( 'edit_params: ' . json_encode( $this->edit_params ) );
+		error_log( json_encode( $this->edit_params ) );
+	}
+
+	/**
+	 * Control Edit Params.
+	 *
+	 * Generates edit button paramaters for a control.
+	 *
+	 * @since 2.9.0
+	 *
+	 * @param string $control_id     ID of the control.
+	 * @param array  $control_params The control parameters.
+	 * @param string $control_type   The control type ( control, section, panel );
+	 */
+	public function control_edit_params( $control_id, $control_params, $control_type ) {
+		if ( empty( $control_params['edit_vars'] ) ) {
+			return;
+		}
+
+		$edit_vars = $control_params['edit_vars'];
+		foreach ( $edit_vars as $edit_var ) {
+			$selector = $edit_var['selector'];
+
+			if ( ! isset( $this->edit_params[ $selector ] ) ) {
+				$this->edit_params[ $selector ] = array();
+			}
+
+			$this->edit_params[ $selector ][ $control_id ] = array(
+				'type'        => $control_type,
+				'label'       => $edit_var['label'],
+				'description' => $edit_var['description'],
+			);
+		}
 	}
 
 	/**

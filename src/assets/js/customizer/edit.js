@@ -119,27 +119,55 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					self.addMultiButtons( selector, controls );
 				}
 			} );
+			self.addMenuButtons();
+		},
+
+		addMenuButtons: function() {
+			var menus = $( 'ul.sm' );
+			_( menus ).each( function( menu ) {
+				var themeLocation = menu.id.split( '-' )[0],
+					menuId,
+					menuLocationName,
+					controls = {};
+				_( api.section( 'menu_locations' ).controls() ).each( function( menuLocation ) {
+					if ( themeLocation === menuLocation.themeLocation ) {
+						menuId = menuLocation.setting();
+						menuLocationName = menuLocation.params.label;
+					}
+				} );
+
+				if ( ! menuId ) {
+					return;
+				}
+
+				controls[ 'nav_menu[' + menuId + ']' ] = {type: 'section', label: 'Add Menu Items', description: 'Add or remove items to this menu' };
+				controls[ 'bgtfw_menu_location_' + themeLocation ] = {type: 'panel', label: 'Customize ' + menuLocationName, description: 'Customize the styling of this menu' };
+
+				self.addMultiButtons( 'ul#' + menu.id, controls );
+			} );
 		},
 
 		addMultiButtons: function( selector, controls ) {
 			if ( 'static' === $( selector ).css( 'position' ) ) {
 				$( selector ).css( 'position', 'relative' );
 			}
-
+			console.log( controls );
 			$( selector ).addClass( 'bgtfw-has-edit multi-edit-button' );
-			$( selector ).append( '<div class="bgtfw-multi-edit-button"><ul></ul></div>' );
+			$( selector ).append( '<div class="bgtfw-multi-edit-button"><div></div></div>' );
 			$( selector ).append( '<div class="bgtfw-multi-edit-border-box"></div>' );
 			_( controls ).each( function( control, controlId ) {
-				$( selector ).find( '.bgtfw-multi-edit-button' ).find( 'ul' ).append( `
-					<li class="bgtfw-edit-button" data-focus-type="control" data-focus-id="${controlId}">
+				console.log( $( selector ).find( '.bgtfw-multi-edit-button' ).find( 'ul' ) );
+				$( selector ).find( '.bgtfw-multi-edit-button' ).find( 'div' ).append( `
+					<p class="bgtfw-edit-item" data-focus-type="${control.type}" data-focus-id="${controlId}">
 						<span class="edit-label">${control.label}</span> - ${control.description}</span>
-					<li>
+					<p>
 				` );
 			} );
 
-			$( selector ).find( '.bgtfw-edit-button' ).on( 'click', function() {
-				var control = $( this ).data( 'focus-id' );
-				api.control( control ).focus();
+			$( selector ).find( '.bgtfw-edit-item' ).on( 'click', function() {
+				var control = $( this ).data( 'focus-id' ),
+					type    = $( this ).data( 'focus-type' );
+				api[ type ]( control ).focus();
 			} );
 		},
 
@@ -148,7 +176,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$( selector ).css( 'position', 'relative' );
 			}
 			$( selector ).addClass( 'bgtfw-has-edit single-edit-button' );
-			$( selector ).append( '<div class="bgtfw-edit-button" data-focus-type="control" data-focus-id="' + controlId + '" title="' + control.label + '"><div>' );
+			$( selector ).append( '<div class="bgtfw-edit-button" data-focus-type="' + control.type + '" data-focus-id="' + controlId + '" title="' + control.label + '"><div>' );
 			$( selector ).append( '<div class="bgtfw-edit-border-box"></div>' );
 			$( selector ).find( '.bgtfw-edit-button' ).on( 'click', function() {
 				if ( 'A' === $( selector ).prop( 'nodeName' ) ) {
@@ -157,7 +185,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 						e.stopPropagation();
 					} );
 				}
-				api.control( controlId ).focus();
+				api[control.type]( controlId ).focus();
 			} );
 		}
 	};

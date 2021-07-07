@@ -16,7 +16,7 @@ body .bgtfw-multi-edit-button:hover ~ .bgtfw-multi-edit-border-box {
     right: 0;
 }
 
-.bgtfw-multi-edit-button:hover ul {
+.bgtfw-multi-edit-button:hover div {
     position: absolute;
     top: 30px;
     right: 0px;
@@ -30,7 +30,7 @@ span.edit-label {
 	font-weight: 600;
 }
 
-li.bgtfw-edit-button {
+p.bgtfw-edit-item {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

@@ -16,9 +16,8 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 	'use strict';
 
-	var self, bg, api;
+	var self, api;
 
-	bg = BOLDGRID;
 	api = parent.wp.customize;
 
 	/**
@@ -84,8 +83,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		_onLoad: function() {
 			self.destroy();
 			self.start();
-			wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
-				console.log( placement );
+			wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function() {
 				self.destroy();
 				self.start();
 			} );
@@ -132,12 +130,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				locationOffset = $( selector ).offset(),
 				documentHeight = $( document ).height(),
 				position       = { hor: 'right', vert: 'bottom' };
-
-				console.log( {
-					'selector': selector,
-					'$( selector )': $( selector ),
-					'selector offset': $( selector ).offset()
-				} );
 
 				if ( locationOffset.left < locationWidth ) {
 					position.hor = 'left';

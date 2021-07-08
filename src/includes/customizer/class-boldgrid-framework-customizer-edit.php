@@ -72,8 +72,6 @@ class Boldgrid_Framework_Customizer_Edit {
 				$this->control_edit_params( $control_id, $control_params, $control_type );
 			}
 		}
-
-		error_log( json_encode( $this->edit_params ) );
 	}
 
 	/**

@@ -144,7 +144,7 @@ class Boldgrid_Framework_Menu {
 				 * ELSE:
 				 * # Follow standard practice and print the nav menu if it's configured.
 				 */
-				if ( is_customize_preview() && true === $bgtfw_menus->configs['customizer-options']['edit']['enabled'] ) {
+				if ( is_customize_preview() && true ) {
 					$menu['fallback_cb'] = function( $menu ) {
 						printf( "<div id='%s' class='empty-menu' data-theme-location='%s'></div>",
 							esc_attr( $menu['menu_id'] ),

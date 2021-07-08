@@ -16,7 +16,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 	'use strict';
 
-	var self, bg, $body, api;
+	var self, bg, api;
 
 	bg = BOLDGRID;
 	api = parent.wp.customize;
@@ -78,20 +78,22 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		defaultZindex: 200,
 
 		init: function() {
-			self._onReady();
-			self._onLoad();
-		},
-
-		_onReady: function() {
-			$( document ).on( 'ready', self.adjustEmptyMenus );
+			api.previewer.bind( 'ready', self._onLoad );
 		},
 
 		_onLoad: function() {
-			$( window ).on( 'load', function() {
-				$body = $( 'body' );
-
+			self.destroy();
+			self.start();
+			wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+				console.log( placement );
+				self.destroy();
 				self.start();
 			} );
+		},
+
+		destroy: function() {
+			$( '.bgtfw-multi-edit-button' ).remove();
+			$( '.bgtfw-edit-button' ).remove();
 		},
 
 		/**
@@ -114,49 +116,83 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			_( self.buttonParams.params ).each( function( controls, selector ) {
 				if ( 1 === Object.keys( controls ).length ) {
 					let controlId = Object.keys( controls )[0];
-					self.addSingleButton( selector, controlId, controls[ controlId ] );
+					let buttonPosition = self.determineButtonPosition( selector );
+					self.addSingleButton( selector, controlId, controls[ controlId ], buttonPosition );
 				} else {
-					self.addMultiButtons( selector, controls );
+					let buttonPosition = self.determineButtonPosition( selector );
+					self.addMultiButtons( selector, controls, buttonPosition );
 				}
 			} );
 			self.addMenuButtons();
 		},
 
+		determineButtonPosition: function( selector ) {
+			var locationHeight = $( selector ).height(),
+				locationWidth  = $( selector ).outerWidth(),
+				locationOffset = $( selector ).offset(),
+				documentHeight = $( document ).height(),
+				position       = { hor: 'right', vert: 'bottom' };
+
+				console.log( {
+					'selector': selector,
+					'$( selector )': $( selector ),
+					'selector offset': $( selector ).offset()
+				} );
+
+				if ( locationOffset.left < locationWidth ) {
+					position.hor = 'left';
+				}
+
+				if ( locationHeight > documentHeight - ( locationHeight + locationOffset.top ) ) {
+					position.vert = 'top';
+				}
+
+				return position;
+		},
+
 		addMenuButtons: function() {
-			var menus = $( 'ul.sm' );
+			var menus = $( '.bgtfw-menu-wrap' );
 			_( menus ).each( function( menu ) {
-				var themeLocation = menu.id.split( '-' )[0],
+				var themeLocation = menu.id.split( '-wrap' )[0],
 					menuId,
 					menuLocationName,
-					controls = {};
+					controls = {},
+					buttonPosition;
+
 				_( api.section( 'menu_locations' ).controls() ).each( function( menuLocation ) {
-					if ( themeLocation === menuLocation.themeLocation ) {
+					if ( menuLocation.themeLocation === themeLocation ) {
 						menuId = menuLocation.setting();
 						menuLocationName = menuLocation.params.label;
 					}
 				} );
 
 				if ( ! menuId ) {
-					return;
+					controls[ 'nav_menu_locations[' + themeLocation + ']' ] = {type: 'control', label: 'Assign Menu', description: 'Assign or Create a menu for this location' };
+					controls[ 'bgtfw_menu_location_' + themeLocation ] = {type: 'panel', label: 'Customize ' + menuLocationName, description: 'Customize the styling of this menu' };
+					buttonPosition = self.determineButtonPosition( 'div#' + themeLocation + '-menu' );
+					self.addMultiButtons( 'div#' + themeLocation + '-menu', controls, buttonPosition );
+				} else {
+					let menuSelector = 'ul#' + themeLocation + '-menu';
+					controls[ 'nav_menu[' + menuId + ']' ] = {type: 'section', label: 'Add Menu Items', description: 'Add or remove items to this menu' };
+					controls[ 'bgtfw_menu_location_' + themeLocation ] = {type: 'panel', label: 'Customize ' + menuLocationName, description: 'Customize the styling of this menu' };
+					buttonPosition = self.determineButtonPosition( menuSelector );
+					self.addMultiButtons( menuSelector, controls, buttonPosition );
 				}
 
-				controls[ 'nav_menu[' + menuId + ']' ] = {type: 'section', label: 'Add Menu Items', description: 'Add or remove items to this menu' };
-				controls[ 'bgtfw_menu_location_' + themeLocation ] = {type: 'panel', label: 'Customize ' + menuLocationName, description: 'Customize the styling of this menu' };
 
-				self.addMultiButtons( 'ul#' + menu.id, controls );
 			} );
 		},
 
-		addMultiButtons: function( selector, controls ) {
+		addMultiButtons: function( selector, controls, buttonPosition ) {
 			if ( 'static' === $( selector ).css( 'position' ) ) {
 				$( selector ).css( 'position', 'relative' );
 			}
-			console.log( controls );
+
 			$( selector ).addClass( 'bgtfw-has-edit multi-edit-button' );
+			$( selector ).addClass( buttonPosition.vert + '-button ' + buttonPosition.hor + '-button' );
 			$( selector ).append( '<div class="bgtfw-multi-edit-button"><div></div></div>' );
 			$( selector ).append( '<div class="bgtfw-multi-edit-border-box"></div>' );
 			_( controls ).each( function( control, controlId ) {
-				console.log( $( selector ).find( '.bgtfw-multi-edit-button' ).find( 'ul' ) );
 				$( selector ).find( '.bgtfw-multi-edit-button' ).find( 'div' ).append( `
 					<p class="bgtfw-edit-item" data-focus-type="${control.type}" data-focus-id="${controlId}">
 						<span class="edit-label">${control.label}</span> - ${control.description}</span>
@@ -171,11 +207,12 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			} );
 		},
 
-		addSingleButton: function( selector, controlId, control ) {
+		addSingleButton: function( selector, controlId, control, buttonPosition ) {
 			if ( 'static' === $( selector ).css( 'position' ) ) {
 				$( selector ).css( 'position', 'relative' );
 			}
 			$( selector ).addClass( 'bgtfw-has-edit single-edit-button' );
+			$( selector ).addClass( buttonPosition.vert + '-button ' + buttonPosition.hor + '-button' );
 			$( selector ).append( '<div class="bgtfw-edit-button" data-focus-type="' + control.type + '" data-focus-id="' + controlId + '" title="' + control.label + '"><div>' );
 			$( selector ).append( '<div class="bgtfw-edit-border-box"></div>' );
 			$( selector ).find( '.bgtfw-edit-button' ).on( 'click', function() {
@@ -191,6 +228,8 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 	};
 
 	self = BOLDGRID.CustomizerEdit;
+
 } )( jQuery );
 
 BOLDGRID.CustomizerEdit.init();
+parent.window.BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit;

@@ -4,6 +4,33 @@
 * Buttons are identified using "button[data-control]". Sometimes ".palette-primary button" styles
 * override the button settings below, so "body" has been prepended below for specificity.
 */
+
+.top-button .bgtfw-multi-edit-button:hover div,
+.top-button .bgtfw-edit-button:hover div {
+    bottom: 30px;
+    top: unset;
+}
+
+.left-button .bgtfw-multi-edit-button:hover div,
+.left-button .bgtfw-edit-button:hover div {
+    left: 0px;
+    right: unset;
+}
+
+.multi-edit-button.left-button .bgtfw-multi-edit-button,
+.single-edit-button.left-button .bgtfw-edit-button {
+	left: 0;
+}
+
+.multi-edit-button.top-button .bgtfw-multi-edit-button,
+.single-edit-button.top-button .bgtfw-edit-button {
+    top: 0;
+}
+
+.bgtfw-multi-edit-button div {
+	display: none;
+}
+
 body .single-edit-button .bgtfw-edit-button:hover ~ .bgtfw-edit-border-box,
 body .bgtfw-multi-edit-button:hover ~ .bgtfw-multi-edit-border-box {
 	width: 100%;
@@ -17,6 +44,7 @@ body .bgtfw-multi-edit-button:hover ~ .bgtfw-multi-edit-border-box {
 }
 
 .bgtfw-multi-edit-button:hover div {
+	display: block;
     position: absolute;
     top: 30px;
     right: 0px;

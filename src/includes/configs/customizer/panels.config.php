@@ -33,6 +33,13 @@ return array(
 		'priority' => 3,
 		'panel' => 'bgtfw_design_panel',
 		'icon' => 'icon-footer-settings',
+		'edit_vars' => array(
+			array(
+				'selector'    => 'footer.site-footer',
+				'label'       => 'Customize Your Footer',
+				'description' => 'Customize the layout, colors, and style of your Footer',
+			),
+		),
 	),
 	'bgtfw_blog_panel' => array(
 		'title' => __( 'Blog', 'bgtfw' ),

@@ -448,7 +448,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_identity', $boldgrid_theme, 'print_title_tagline' );
 
 		// Sticky Header - Removed template_redirect as it was unnecessary and caused duplication of the sticky header sometimes.
-		if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) ) {
+		if ( is_customize_preview() && ( true === get_theme_mod( 'bgtfw_fixed_header' ) ) || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) ) {
 			add_action( 'boldgrid_header_after', function() {
 				?>
 				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>

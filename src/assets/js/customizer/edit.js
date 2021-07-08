@@ -131,11 +131,11 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				documentHeight = $( document ).height(),
 				position       = { hor: 'right', vert: 'bottom' };
 
-				if ( locationOffset.left < locationWidth ) {
+				if ( locationOffset && locationOffset.left < locationWidth ) {
 					position.hor = 'left';
 				}
 
-				if ( locationHeight > documentHeight - ( locationHeight + locationOffset.top ) ) {
+				if ( locationOffset && locationHeight > documentHeight - ( locationHeight + locationOffset.top ) ) {
 					position.vert = 'top';
 				}
 

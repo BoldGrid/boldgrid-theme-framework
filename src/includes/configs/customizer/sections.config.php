@@ -131,6 +131,13 @@ $sections_array = array(
 		'capability' => 'edit_theme_options',
 		'priority' => 6,
 		'icon' => 'dashicons-flag',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.site-title',
+				'label'       => 'Site Title',
+				'description' => 'Edit your Site Title or change Site Title font & color',
+			),
+		),
 	),
 	'bgtfw_tagline' => array(
 		'title' => __( 'Tagline', 'bgtfw' ),

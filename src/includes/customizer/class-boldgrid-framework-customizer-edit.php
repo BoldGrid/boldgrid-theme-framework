@@ -2,91 +2,115 @@
 /**
  * Class: Boldgrid_Framework_Customizer_Edit
  *
- * Responsible for the edit button functionality in customizer.
+ * Responsible for the edit buttons in customizer preview.
  *
- * @since 1.3
+ * @since 2.9
  * @link http://www.boldgrid.com.
- * @package Boldgrid_Inspiration.
- * @subpackage Boldgrid_Inspiration/includes.
+ * @package bolgrid_theme_framework
  * @author BoldGrid <wpb@boldgrid.com>.
  */
 
 /**
  * Class responsible for edit buttons in customizer.
  *
- * @since 1.3
+ * @since 2.9
  */
 class Boldgrid_Framework_Customizer_Edit {
 
 	/**
-	 * The BoldGrid Theme Framework configurations.
+	 * Configs
 	 *
-	 * @since     xxx
-	 * @access    protected
-	 * @var       string     $configs       The BoldGrid Theme Framework configurations.
+	 * Array of theme configs
+	 *
+	 * @since 2.9
+	 * @var   array
 	 */
-	protected $configs;
+	public $configs = array();
 
 	/**
-	 * Feature switch.
+	 * Edit Params
 	 *
-	 * @since	1.1.6
-	 * @access	public
-	 * @var		bool
+	 * Array of Edit button parameters.
+	 *
+	 * @since 2.9
+	 * @var array
 	 */
-	public $enabled = false;
+	public $edit_params = array();
 
 	/**
-	 * Initialize the class and set its properties.
+	 * Constructor
 	 *
-	 * @param     string $configs       The BoldGrid Theme Framework configurations.
-	 * @since     1.3
+	 * @since 2.9
+	 * @param array $configs Configs array.
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
+	}
 
-		$this->enabled = (bool) $configs['customizer-options']['edit']['enabled'];
+	/**
+	 * Generate Edit Parameters
+	 *
+	 * Creates an array of edit button parameters based on control configs.
+	 *
+	 * @since 2.9
+	 */
+	public function generate_edit_params() {
+		if ( empty( $this->configs['customizer'] ) || empty( $this->configs['customizer']['controls'] ) ) {
+			return;
+		}
 
-		/*
-		 * Disable edit icons based on $_GET['customize_messenger_channel'].
-		 *
-		 * According to remove_frameless_preview_messenger_channel(), that parameter is removed from
-		 * the preview window when it is not in an iframe. So if we don't have this url parameter
-		 * set, then we're not in the Customizer's iframe, so disable edit icons.
-		 *
-		 * In order to be compatible with both WP 4.6 and WP 4.7, we need to also take into
-		 * consideration that $_GET['customize_changeset_uuid'] was not introduced until 4.7.
-		 */
-		if ( ! empty( $_GET['customize_changeset_uuid'] ) && empty( $_GET['customize_messenger_channel'] ) ) {
-			$this->enabled = false;
+		foreach ( array( 'control', 'section', 'panel' ) as $control_type ) {
+			if ( isset( $this->configs['customizer-options'] )
+				&& isset( $this->configs['customizer-options']['edit'] )
+				&& isset( $this->configs['customizer-options']['edit'][ $control_type . 's' ] ) ) {
+				$controls = array_merge( $this->configs['customizer'][ $control_type . 's' ], $this->configs['customizer-options']['edit'][ $control_type . 's' ] );
+			} else {
+				$controls = $this->configs['customizer'][ $control_type . 's' ];
+			}
+
+			foreach ( $controls as $control_id => $control_params ) {
+				$this->control_edit_params( $control_id, $control_params, $control_type );
+			}
 		}
 	}
 
 	/**
-	 * Print an empty container for an empty nav.
+	 * Control Edit Params.
 	 *
-	 * @since 1.3
+	 * Generates edit button paramaters for a control.
 	 *
-	 * @param array $menu An array of menu settings.
+	 * @since 2.9.0
+	 *
+	 * @param string $control_id     ID of the control.
+	 * @param array  $control_params The control parameters.
+	 * @param string $control_type   The control type ( control, section, panel );
 	 */
-	public static function fallback_cb( $menu ) {
-		printf( "<div id='%s' class='empty-menu' data-theme-location='%s'></div>",
-			esc_attr( $menu['menu_id'] ),
-			esc_attr( $menu['theme_location'] )
-		);
+	public function control_edit_params( $control_id, $control_params, $control_type ) {
+		if ( empty( $control_params['edit_vars'] ) ) {
+			return;
+		}
+
+		$edit_vars = $control_params['edit_vars'];
+		foreach ( $edit_vars as $edit_var ) {
+			$selector = $edit_var['selector'];
+
+			if ( ! isset( $this->edit_params[ $selector ] ) ) {
+				$this->edit_params[ $selector ] = array();
+			}
+
+			$this->edit_params[ $selector ][ $control_id ] = array(
+				'type'        => $control_type,
+				'label'       => $edit_var['label'],
+				'description' => $edit_var['description'],
+			);
+		}
 	}
 
 	/**
-	 * Enqueue scripts needed to add edit buttons to the customizer.
-	 *
-	 * Ideally, this method would hook into customize_preview_init. We need to get the page ID,
-	 * which is not avaialable in that hook. Instead, we hook into wp_enqueue_scripts and check to
-	 * see if we're in the is_customize_preview.
-	 *
-	 * @since 1.3
+	 * WP Enqueue Scripts
 	 */
 	public function wp_enqueue_scripts() {
-		if ( is_customize_preview() && true === $this->enabled ) {
+		if ( is_customize_preview() ) {
 			// Minify if script debug is off.
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
@@ -112,12 +136,12 @@ class Boldgrid_Framework_Customizer_Edit {
 				'boldgrid-framework-customizer-edit-js',
 				'boldgridFrameworkCustomizerEdit',
 				array(
-					'editPostLink'	=> $edit_post_link,
-					'goThereNow'	=> __( 'Go there now', 'bgtfw' ),
-					'menu'			=> esc_attr__( 'Menu', 'bgtfw' ),
-					'config'		=> $this->configs['customizer-options']['edit'],
-					'postType'      => get_post_type(),
-					'widgetArea'    => esc_attr__( 'Widget Area', 'bgtfw' ),
+					'editPostLink' => $edit_post_link,
+					'goThereNow'   => __( 'Go there now', 'bgtfw' ),
+					'menu'         => esc_attr__( 'Menu', 'bgtfw' ),
+					'params'       => $this->edit_params,
+					'postType'     => get_post_type(),
+					'widgetArea'   => esc_attr__( 'Widget Area', 'bgtfw' ),
 				)
 			);
 
@@ -130,33 +154,23 @@ class Boldgrid_Framework_Customizer_Edit {
 	}
 
 	/**
-	 * Include our partial template file.
+	 * Get Edit Params.
 	 *
-	 * @since 1.1.6
+	 * @since 2.9
+	 *
+	 * @param string $selector Optional selector.
+	 *
+	 * @return array Edit Button Parameters.
 	 */
-	public function wp_footer() {
-		if ( is_customize_preview() && true === $this->enabled ) {
-			include dirname( dirname( __FILE__ ) ) . '/partials/customizer-edit.php';
-		}
-	}
-
-	/**
-	 * Ensure each menu location has a unique class.
-	 *
-	 * That unique classname will be LOCATION-menu-location.
-	 *
-	 * @since 1.1.6
-	 *
-	 * @param array $args Array of wp_nav_menu() arguments.
-	 * @return array $args Modfied wp_nav_menu() arguments.
-	 */
-	public function wp_nav_menu_args( $args ) {
-		if ( is_customize_preview() && true === $this->enabled && ! empty( $args['theme_location'] ) ) {
-			$class = str_replace( '_', '-', $args['theme_location'] ) . '-menu-location';
-
-			$args['container_class'] .= ' ' . $class;
+	public function get_edit_parameters( $selector = null ) {
+		if ( empty( $this->edit_params ) ) {
+			$this->generate_edit_params();
 		}
 
-		return $args;
+		if ( $selector ) {
+			return isset( $this->edit_params[ $selector ] ) ? $this->edit_params[ $selector ] : array();
+		}
+
+		return $this->edit_params;
 	}
 }

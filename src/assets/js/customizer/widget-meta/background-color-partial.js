@@ -31,8 +31,12 @@ wp.customize.selectiveRefresh.partialConstructor.sidebar_meta_background_color =
 				if ( ! ~colorClassPrefix.indexOf( 'neutral' ) ) {
 					colorClassPrefix = colorClassPrefix.replace( '-', '' );
 				}
-
-				placement.container.parent( '.sidebar' ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
+				if ( ! colorClassPrefix ) {
+					placement.container.parent( '.sidebar' ).addClass( 'transparent-background-color ' + 'transparent-text-default' );
+				} else {
+					placement.container.parent( '.sidebar' ).removeClass( 'transparent-background-color ' + 'transparent-text-default' );
+					placement.container.parent( '.sidebar' ).addClass( colorClassPrefix + '-background-color ' + colorClassPrefix + '-text-default' );
+				}
 			} );
 
 			// Return resolved promise since no server-side selective refresh will be requested.

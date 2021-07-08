@@ -503,6 +503,13 @@ $general_controls = array(
 				'value_pattern' => 'site-content $',
 			),
 		),
+		'edit_vars' => array(
+			array(
+				'selector'    => '.page .site-content',
+				'label'       => 'Page Layout',
+				'description' => 'Choose between contained or full-width page layout',
+			),
+		),
 	),
 
 	'bgtfw_woocommerce_container' => array(
@@ -550,6 +557,13 @@ $general_controls = array(
 		'priority'    => 10,
 		'choices'     => array(),
 		'sanitize_callback' => 'esc_attr',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.page .site-content',
+				'label'       => 'Page Sidebar Layout',
+				'description' => 'Choose the layout of the sidebar on your pages',
+			),
+		),
 	),
 	'bgtfw_woocommerce_products_per_page' => array(
 		'type'              => 'kirki-generic',
@@ -1350,6 +1364,18 @@ $general_controls = array(
 		'default'     => 'default',
 		'priority'    => 2,
 		'choices'     => $bgtfw_presets->get_preset_choices( 'header' ),
+		'edit_vars'    => array(
+			array(
+				'selector' => '#masthead',
+				'label'    => esc_html__( 'Header Layout', 'bgtfw' ),
+				'description' => esc_html__( 'Change the header Layout Preset', 'bgtfw' ),
+			),
+			array(
+				'selector' => '#masthead .site-branding',
+				'label'    => esc_html__( 'Branding Display', 'bgtfw' ),
+				'description' => esc_html__( 'Change the display of branding elements', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_header_width' => array(
 		'type'        => 'slider',
@@ -1938,7 +1964,7 @@ $general_controls = array(
 		'default'     => 55,
 		'transport'   => 'refresh',
 		'choices'     => array(
-			'min'  => 1,
+			'min'  => 0,
 			'max'  => 300,
 			'step' => 1,
 		),

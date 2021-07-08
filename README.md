@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.9.0 ###
+* New Feature: New Edit Buttons added to Customizer Preview, that feature dropdowns for buttons with multiple control options.
+
 ### 2.8.1 ###
 * Bug Fix: BoldGrid Attribution should not be toggleable without license [#189](https://github.com/BoldGrid/boldgrid-theme-framework/issues/189)
 * Bug Fix: Crio Customizer Missing Sprout Invoice Icon [#270](https://github.com/BoldGrid/boldgrid-theme-framework/issues/270)

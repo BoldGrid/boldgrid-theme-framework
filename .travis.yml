@@ -41,7 +41,7 @@ before_script:
 - cd $BGTFW_THEME_DIR
 - phpenv rehash
 script:
-- find . \( -name '*.php' \) -exec php -lf {} \;
+- find . \( -name '*.php' \) -exec php -lf {} \; >/dev/null
 - "$WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=$TRAVIS_BUILD_DIR/phpcs.ruleset.xml --ignore=*partials/hover-colors-only.php,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/woocommerce/*,*/sa_templates/*,functions.php --extensions=php"
 - cd $TRAVIS_BUILD_DIR
 deploy:

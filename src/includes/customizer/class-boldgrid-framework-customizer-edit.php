@@ -83,7 +83,7 @@ class Boldgrid_Framework_Customizer_Edit {
 	 *
 	 * @param string $control_id     ID of the control.
 	 * @param array  $control_params The control parameters.
-	 * @param string $control_type   The control type ( control, section, panel );
+	 * @param string $control_type   The control type ( control, section, panel ).
 	 */
 	public function control_edit_params( $control_id, $control_params, $control_type ) {
 		if ( empty( $control_params['edit_vars'] ) ) {

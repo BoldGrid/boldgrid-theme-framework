@@ -142,6 +142,13 @@ $general_controls = array(
 			'image'   => '<span class="dashicons dashicons-format-image"></span>' . esc_html__( 'Image', 'bgtfw' ),
 			'pattern' => '<span class="dashicons dashicons-art"></span>' . esc_html__( 'Pattern & Color', 'bgtfw' ),
 		],
+		'edit_vars' => array(
+			array(
+				'selector'    => 'body',
+				'label'       => 'Body Background',
+				'description' => 'Change the background of your site',
+			),
+		),
 	],
 	'boldgrid_background_image_size' => [
 		'type' => 'radio',
@@ -547,6 +554,13 @@ $general_controls = array(
 				'value_pattern' => '$',
 			),
 		),
+		'edit_vars' => array(
+			array(
+				'selector'    => '.woocommerce .site-content',
+				'label'       => 'WooCommerce Page Layout',
+				'description' => 'Choose between contained or full-width page layout for WooCommerce pages',
+			),
+		),
 	),
 	'bgtfw_layout_page' => array(
 		'type'        => 'radio',
@@ -624,6 +638,23 @@ $general_controls = array(
 				},
 			),
 		),
+		'edit_vars' => array(
+			array(
+				'selector'    => '.page .page .featured-imgage-header',
+				'label'       => 'Page Title Display',
+				'description' => 'Choose whether or not to display the Page Title',
+			),
+			array(
+				'selector'    => '.archive .page-header .featured-imgage-header',
+				'label'       => 'Page Title Display',
+				'description' => 'Choose whether or not to display the Page Title',
+			),
+			array(
+				'selector'    => '.blog .page-header .featured-imgage-header',
+				'label'       => 'Page Title Display',
+				'description' => 'Choose whether or not to display the Page Title',
+			),
+		),
 	),
 
 	// Start: Post Tag Controls.
@@ -646,6 +677,13 @@ $general_controls = array(
 			array(
 				'element'  => '.single .entry-footer .tags-links',
 				'property' => 'display',
+			),
+		),
+		'edit_vars' => array(
+			array(
+				'selector'    => '.single .entry-footer .tags-links',
+				'label'       => 'Display Post Tag links',
+				'description' => __( 'Toggle the display of your tags on the blog roll and archive pages.', 'bgtfw' ),
 			),
 		),
 	),
@@ -885,6 +923,13 @@ $general_controls = array(
 				'property' => 'display',
 			),
 		),
+		'edit_vars' => array(
+			array(
+				'selector'    => '.single .entry-footer .cat-links',
+				'label'       => 'Post Category Links',
+				'description' => 'Choose whether or not to display Post Category Links',
+			),
+		),
 	),
 
 	// Start: Posts Category Links Color Controls.
@@ -1115,6 +1160,13 @@ $general_controls = array(
 				'property' => 'display',
 			),
 		),
+		'edit_vars' => array(
+			array(
+				'selector'    => '.single .post-navigation',
+				'label'       => 'Post Navigation Links',
+				'description' => 'Choose whether or not to display Post Navigation Links',
+			),
+		),
 	),
 
 	// Start: Posts Navigation Link Color Controls.
@@ -1259,6 +1311,13 @@ $general_controls = array(
 			'size'    => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+		'edit_vars' => array(
+			array(
+				'selector'    => array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ),
+				'label'       => esc_attr__( 'Heading Typography', 'bgtfw' ),
+				'description' => esc_attr__( 'Adjust heading typography styles', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_headings_typography' => array(
 		'type'     => 'typography',
@@ -1452,6 +1511,13 @@ $general_controls = array(
 				'value_pattern' => '$px',
 			),
 		),
+		'edit_vars' => array(
+			array(
+				'selector'    => array( '.flexbox .header-left .site-header', '.flexbox .header-right .site-header' ),
+				'label'       => 'Header Width',
+				'description' => 'Adjust the width of your header',
+			),
+		),
 	),
 	'bgtfw_header_color' => array(
 		'type'        => 'bgtfw-palette-selector',
@@ -1466,6 +1532,13 @@ $general_controls = array(
 			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+		'edit_vars' => array(
+			array(
+				'selector' => '#masthead',
+				'label'    => esc_html__( 'Header Background', 'bgtfw' ),
+				'description' => esc_html__( 'Change the Header Background Color or Set a Background Image / Video', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_site_title_color' => array(
 		'type'        => 'bgtfw-palette-selector',
@@ -1525,6 +1598,17 @@ $general_controls = array(
 				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header',
 			),
 		),
+		'edit_vars' => array(
+			array(
+				'selector'    => array(
+					'.widget p:first-of-type',
+					'.site-content p:first-of-type',
+					'.attribution-theme-mods-wrapper p:first-of-type',
+				),
+				'label'       => esc_attr__( 'Main Text Typography', 'bgtfw' ),
+				'description' => esc_attr__( 'Adjust the typography of your main text', 'bgtfw' ),
+			),
+		),
 	),
 
 	/* Start Global Page Title Control */
@@ -1542,6 +1626,17 @@ $general_controls = array(
 			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+		'edit_vars' => array(
+			array(
+				'selector'    => array(
+					'.blog .page-header .featured-imgage-header',
+					'.archive .page-header .featured-imgage-header',
+					'.page .page .featured-imgage-header'
+				),
+				'label'       => esc_attr__(  'Page Title Styling', 'bgtfw' ),
+				'description' => esc_attr__( 'Customize the color, background, and size of your page title.', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_global_title_color' => array(
 		'type'        => 'bgtfw-palette-selector',
@@ -1703,6 +1798,13 @@ $general_controls = array(
 			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+		'edit_vars' => array(
+			array(
+				'selector'    => Boldgrid_Framework_Links::$default_link_selectors,
+				'label'       => esc_attr__(  'Body Links', 'bgtfw' ),
+				'description' => esc_attr__( 'Customize the style of your body links.', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_body_link_decoration' => array(
 		'settings'    => 'bgtfw_body_link_decoration',
@@ -1765,6 +1867,13 @@ $general_controls = array(
 		'sanitize_callback' => function( $value, $settings ) {
 			return in_array( $value, [ 'show', 'hide' ], true ) ? $value : $settings->default;
 		},
+		'edit_vars' => array(
+			array(
+				'selector'    => '.goup-container',
+				'label'       => esc_attr__( 'Scroll To Top', 'bgtfw' ),
+				'description' => esc_attr__( 'Enable / Disable Scroll To Top button', 'bgtfw' ),
+			),
+		),
 	),
 	/* End: Scroll To Top Settings. */
 
@@ -1876,6 +1985,13 @@ $general_controls = array(
 			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+		'edit_vars' => array(
+			array(
+				'selector'    => 'footer.site-footer',
+				'label'       => esc_attr__( 'Footer Colors', 'bgtfw' ),
+				'description' => esc_attr__( 'Change the color of the footer background and footer links', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_footer_links' => array(
 		'type' => 'bgtfw-palette-selector',

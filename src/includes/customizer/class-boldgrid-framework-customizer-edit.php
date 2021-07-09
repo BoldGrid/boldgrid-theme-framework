@@ -93,17 +93,38 @@ class Boldgrid_Framework_Customizer_Edit {
 		$edit_vars = $control_params['edit_vars'];
 		foreach ( $edit_vars as $edit_var ) {
 			$selector = $edit_var['selector'];
+			if ( is_array( $selector ) ) {
+				foreach ( $selector as $separate_selector ) {
+					$this->append_selector( $separate_selector, $control_id, $control_type, $edit_var );
+				}
+			} else {
+				$this->append_selector( $selector, $control_id, $control_type, $edit_var );
+			}
+		}
+	}
 
-			if ( ! isset( $this->edit_params[ $selector ] ) ) {
+	/**
+	 * Append Selector.
+	 *
+	 * Appends a button to a selector.
+	 *
+	 * @since 2.9.0
+	 *
+	 * @param string $selector     Selector String.
+	 * @param string $control_id   Control Id.
+	 * @param string $control_type Control Type.
+	 * @param array  $edit_var     Edit Button Params.
+	 */
+	public function append_selector( $selector, $control_id, $control_type, $edit_var ) {
+		if ( ! isset( $this->edit_params[ $selector ] ) ) {
 				$this->edit_params[ $selector ] = array();
 			}
 
-			$this->edit_params[ $selector ][ $control_id ] = array(
-				'type'        => $control_type,
-				'label'       => $edit_var['label'],
-				'description' => $edit_var['description'],
-			);
-		}
+		$this->edit_params[ $selector ][ $control_id ] = array(
+			'type'        => $control_type,
+			'label'       => $edit_var['label'],
+			'description' => $edit_var['description'],
+		);
 	}
 
 	/**

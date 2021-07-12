@@ -92,6 +92,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		destroy: function() {
 			self.buttonCollisionSet = {};
 			$( '.bgtfw-multi-edit-button' ).remove();
+			$( '.bgtfw-edit-border-box' ).remove();
 			$( '.bgtfw-edit-button' ).remove();
 		},
 
@@ -124,7 +125,10 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				if ( 1 === Object.keys( controls ).length ) {
 					let controlId = Object.keys( controls )[0];
 					let buttonPosition = self.determineButtonPosition( selector );
-					if ( 'bgtfw_body_link_color' === controlId && $( selector ).is( '.button-primary, .button-secondary' ) ) {
+					if ( 'bgtfw_body_link_color' === controlId && $( selector ).is( '.button-primary, .button-secondary' ) ||
+						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.page-title' ) ||
+						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.tags-links' ) ||
+						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.cat-links' )) {
 						return;
 					}
 					self.addSingleButton( selector, controlId, controls[ controlId ], buttonPosition );
@@ -135,19 +139,28 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			} );
 			self.addMenuButtons();
 
-			self.fixCollisions();
+			self.addWidgetButtons();
+
+			_.defer( self.fixCollisions );
 		},
 
 		fixCollisions: function() {
 			var $editButtons = $( '.bgtfw-multi-edit-button, .bgtfw-edit-button' );
+
+			$editButtons.each( function() {
+				if ( 'static' === $( this ).parent().css( 'position' ) ) {
+					$( this ).parent().css( 'position', 'relative' );
+				}
+			} );
+
 			$editButtons.each( function() {
 				var buttonOffset = $( this ).offset(),
 					offsetKey    = Math.floor( buttonOffset.left ) + ',' + Math.floor( buttonOffset.top );
 
 					if ( self.buttonCollisionSet.hasOwnProperty( offsetKey ) ) {
-						self.buttonCollisionSet[ offsetKey ].push( this );
+						self.buttonCollisionSet[ offsetKey ].push( $( this ) );
 					} else {
-						self.buttonCollisionSet[ offsetKey ] = [ this ];
+						self.buttonCollisionSet[ offsetKey ] = [ $( this ) ];
 					}
 			} );
 
@@ -218,6 +231,22 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				return position;
 		},
 
+		addWidgetButtons: function() {
+			var widgets = $( 'aside.sidebar' );
+
+			_( widgets ).each( function( widget ) {
+				var widgetId      = widget.id,
+					sectionId     = 'sidebar-widgets-' + widgetId,
+					buttonPosition = self.determineButtonPosition( '#' + widgetId ),
+					control    = {
+						'type': 'section',
+						'label': 'Widgets'
+					};
+
+					self.addSingleButton( '#' + widgetId, sectionId, control, buttonPosition );
+			} );
+		},
+
 		addMenuButtons: function() {
 			var menus = $( '.bgtfw-menu-wrap' );
 			_( menus ).each( function( menu ) {
@@ -281,9 +310,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		},
 
 		addSingleButton: function( selector, controlId, control, buttonPosition ) {
-			if ( 'static' === $( selector ).css( 'position' ) ) {
-				$( selector ).css( 'position', 'relative' );
-			}
 			$( selector ).not( '.no-edit-button' ).addClass( 'bgtfw-has-edit single-edit-button' );
 			$( selector ).not( '.no-edit-button' ).addClass( buttonPosition.vert + '-button ' + buttonPosition.hor + '-button' );
 			$( selector ).not( '.no-edit-button' ).append( '<div class="bgtfw-edit-button" data-focus-type="' + control.type + '" data-focus-id="' + controlId + '" title="' + control.label + '"><div>' );

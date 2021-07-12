@@ -38,6 +38,13 @@ $sections_array = array(
 		'description' => esc_html__( 'This section controls the appearance of titles on your pages.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'icon' => 'icon-header-settings',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.page .page-header-wrapper',
+				'label'       => 'Page Title',
+				'description' => 'Control the appearance of titles on your pages',
+			),
+		),
 	),
 	'bgtfw_layout_page_container' => array(
 		'title' => __( 'Container', 'bgtfw' ),
@@ -212,26 +219,66 @@ $sections_array = array(
 		'title' => 'Post List Settings',
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'icon' => 'dashicons-feedback',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog .main-wrapper',
+				'label'       => 'Post List Settings',
+				'description' => 'Configure the post list on your Blog Page',
+			),
+		),
 	),
 	'bgtfw_blog_blog_page_panel_sidebar' => array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'icon' => 'icon-sidebar-settings',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog .main-wrapper',
+				'label'       => 'Blog Page Sidebar',
+				'description' => 'Decide where / if to display a sidebar on your Blog Page',
+			),
+		),
 	),
 	'bgtfw_blog_blog_page_colors' => array(
 		'title' => __( 'Background Colors', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'icon' => 'dashicons-art',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog .entry-header',
+				'label'       => 'Post Header Background',
+				'description' => 'Change the color of the Post Header Background',
+			),
+			array(
+				'selector'    => '.blog .entry-content',
+				'label'       => 'Post Content Background',
+				'description' => 'Change the color of the Post Content Background',
+			),
+		),
 	),
 	'bgtfw_pages_blog_blog_page_titles' => array(
 		'title' => 'Titles',
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'icon' => 'icon-header-settings',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog .entry-title',
+				'label'       => 'Post Titles',
+				'description' => 'Customize the size and color of your Post Titles',
+			),
+		),
 	),
 	'bgtfw_pages_blog_blog_page_featured_images' => array(
 		'title' => 'Featured Images',
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'icon' => 'dashicons-format-gallery',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog .post',
+				'label'       => 'Featured Images',
+				'description' => 'Change the display and style of the featured images',
+			),
+		),
 	),
 	'bgtfw_pages_blog_blog_page_links' => array(
 		'title' => 'Links',
@@ -248,30 +295,65 @@ $sections_array = array(
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'section' => 'bgtfw_pages_blog_blog_page_links',
 		'icon' => 'fa-id-card-o',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog.entry-meta',
+				'label'       => 'Post Meta',
+				'description' => 'Change the display and style of Post Meta Elements',
+			),
+		),
 	),
 	'bgtfw_pages_blog_blog_page_read_more' => array(
 		'title' => 'Read More Links',
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'section' => 'bgtfw_pages_blog_blog_page_links',
 		'icon' => 'fa-ellipsis-h',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.read-more.a',
+				'label'       => 'Read More',
+				'description' => 'Change the style of the "Read More" link',
+			),
+		),
 	),
 	'bgtfw_pages_blog_blog_page_tags_links' => array(
 		'title' => 'Tag Links',
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'section' => 'bgtfw_pages_blog_blog_page_links',
 		'icon' => 'dashicons-tag',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog .entry-footer',
+				'label'       => 'Tag Links',
+				'description' => 'Change the display and style of your tag links',
+			),
+		),
 	),
 	'bgtfw_pages_blog_blog_page_cat_links' => array(
 		'title' => 'Category Links',
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'section' => 'bgtfw_pages_blog_blog_page_links',
 		'icon' => 'dashicons-category',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog .entry-footer',
+				'label'       => 'Category Links',
+				'description' => 'Change the display and style of your category links',
+			),
+		),
 	),
 	'bgtfw_pages_blog_blog_page_comment_links' => array(
 		'title' => 'Comment Links',
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'section' => 'bgtfw_pages_blog_blog_page_links',
 		'icon' => 'fa-comments-o',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog .entry-footer',
+				'label'       => 'Comment Links',
+				'description' => 'Change the display and style of your "Leave a Comment" links',
+			),
+		),
 	),
 	'bgtfw_pages_blog_posts_title' => array(
 		'title' => __( 'Title', 'bgtfw' ),
@@ -287,6 +369,13 @@ $sections_array = array(
 		'title' => __( 'Sidebar', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
 		'icon' => 'icon-sidebar-settings',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.single .main',
+				'label'       => 'Post Sidebar',
+				'description' => 'Decide where / if to display a sidebar on your Posts',
+			),
+		),
 	),
 	'bgtfw_pages_blog_posts_links' => array(
 		'title' => 'Links',
@@ -297,6 +386,13 @@ $sections_array = array(
 		'title' => 'Featured Images',
 		'panel' => 'bgtfw_blog_posts_panel',
 		'icon' => 'dashicons-format-gallery',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.single .page-header-wrapper',
+				'label'       => 'Post Featured Image',
+				'description' => 'Change the display and style of your post\'s featured image',
+			),
+		),
 	),
 	'bgtfw_pages_blog_posts_meta' => array(
 		'title' => __( 'Post Meta', 'bgtfw' ),
@@ -309,12 +405,26 @@ $sections_array = array(
 		'panel' => 'bgtfw_blog_posts_panel',
 		'section' => 'bgtfw_pages_blog_posts_links',
 		'icon' => 'dashicons-tag',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.single .entry-footer',
+				'label'       => 'Tag Links',
+				'description' => 'Change the display and style of your tag links',
+			),
+		),
 	),
 	'bgtfw_pages_blog_posts_cat_links' => array(
 		'title' => 'Category Links',
 		'panel' => 'bgtfw_blog_posts_panel',
 		'section' => 'bgtfw_pages_blog_posts_links',
 		'icon' => 'dashicons-category',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.single .entry-footer',
+				'label'       => 'Category Links',
+				'description' => 'Change the display and style of your category links',
+			),
+		),
 	),
 	'bgtfw_pages_blog_posts_navigation_links' => array(
 		'title' => 'Post Navigation Links',

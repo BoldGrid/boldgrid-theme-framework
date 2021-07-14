@@ -182,7 +182,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			var multiBoxHeight   = $( menuSelector ).height(),
 				multiBoxOffset   = $( menuSelector ).parent().offset(),
 				docHeight        = $( document ).height(),
-				isTop            = $( menuSelector ).closest( '.bgtfw-has-edit' ).is( '.top-button' ) ? true : false,
 				css              = {};
 
 			if ( ! multiBoxOffset ) {

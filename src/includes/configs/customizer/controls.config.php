@@ -1631,9 +1631,9 @@ $general_controls = array(
 				'selector'    => array(
 					'.blog .page-header .featured-imgage-header',
 					'.archive .page-header .featured-imgage-header',
-					'.page .page .featured-imgage-header'
+					'.page .page .featured-imgage-header',
 				),
-				'label'       => esc_attr__(  'Page Title Styling', 'bgtfw' ),
+				'label'       => esc_attr__( 'Page Title Styling', 'bgtfw' ),
 				'description' => esc_attr__( 'Customize the color, background, and size of your page title.', 'bgtfw' ),
 			),
 		),
@@ -1801,7 +1801,7 @@ $general_controls = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => Boldgrid_Framework_Links::$default_link_selectors,
-				'label'       => esc_attr__(  'Body Links', 'bgtfw' ),
+				'label'       => esc_attr__( 'Body Links', 'bgtfw' ),
 				'description' => esc_attr__( 'Customize the style of your body links.', 'bgtfw' ),
 			),
 		),

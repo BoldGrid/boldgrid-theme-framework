@@ -205,6 +205,10 @@ class Boldgrid_Framework_Device_Preview {
 				transform: translateX(-50%);
 			}
 
+			.wp-customizer .standard-menu-enabled label[id$="-menu-btn"] {
+				width: fit-content;
+			}
+
 			/* Mobile Device Previewing Customizer */
 			.wp-full-overlay-footer .devices .preview-mobile:before {
 				font: normal 20px/30px "icomoon";

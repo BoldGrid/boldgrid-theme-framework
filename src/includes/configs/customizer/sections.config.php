@@ -153,6 +153,13 @@ $sections_array = array(
 		'capability' => 'edit_theme_options',
 		'priority' => 8,
 		'icon' => 'dashicons-tag',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.site-description',
+				'label'       => 'Site Tagline',
+				'description' => 'Edit your Tagline or change Tagline font & color',
+			),
+		),
 	),
 	'bgtfw_header_colors' => array(
 		'title' => __( 'Colors', 'bgtfw' ),

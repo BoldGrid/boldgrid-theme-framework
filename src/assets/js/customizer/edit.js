@@ -118,7 +118,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					var text = $( this ).clone().children().remove().end().text();
 					if ( 0 === $( this ).height() ||
 						0 === $( this ).outerWidth() ||
-						( $( this ).is( 'h1, h2, h3, h4, h5, h6, p' ) && 0 === text.length ) ) {
+						( $( this ).is( 'h1, h2, h3, h4, h5, h6, p' ) && 0 === text.length && ! $( this ).is( '.site-title' ) ) ) {
 							$( this ).addClass( 'no-edit-button' );
 					}
 				} );
@@ -128,9 +128,14 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					if ( 'bgtfw_body_link_color' === controlId && $( selector ).is( '.button-primary, .button-secondary' ) ||
 						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.page-title' ) ||
 						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.tags-links' ) ||
-						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.cat-links' )) {
+						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.cat-links' ) ) {
 						return;
 					}
+
+					if ( 'bgtfw_headings_color' === controlId && $( selector ).is( '.site-description, .site-title' ) ) {
+						return;
+					}
+
 					self.addSingleButton( selector, controlId, controls[ controlId ], buttonPosition );
 				} else {
 					let buttonPosition = self.determineButtonPosition( selector );
@@ -171,12 +176,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 				self.buttonCollisionSet[ offset ].forEach( self.fixButtonCollision );
 			}
-
-			$editButtons.each( function() {
-				if ( $( this ).is( '.bgtfw-multi-edit-button' ) ) {
-					self.fixMultiCollisions( $( this ).children( 'div' ) );
-				}
-			} );
 		},
 
 		fixMultiCollisions: function( menuSelector ) {
@@ -190,11 +189,16 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				return;
 			}
 
-			if ( ( multiBoxHeight + multiBoxOffset.top + 30 ) >= docHeight ||
-				0 >= (  multiBoxOffset.top + 30 - multiBoxHeight ) ) {
-					css.top    = isTop ? 'unset' : '30px';
-					css.bottom = isTop ? '30px' : 'unset';
-					$( menuSelector ).css( css );
+			if ( 0 >= (  multiBoxOffset.top + 30 - multiBoxHeight ) ) {
+				css.top    = '30px';
+				css.bottom = 'unset';
+				$( menuSelector ).css( css );
+			}
+
+			if ( ( multiBoxHeight + multiBoxOffset.top + 30 ) >= docHeight ) {
+				css.top    = 'unset';
+				css.bottom = '30px';
+				$( menuSelector ).css( css );
 			}
 		},
 
@@ -215,12 +219,11 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 		determineButtonPosition: function( selector ) {
 			var locationHeight = $( selector ).height(),
-				locationWidth  = $( selector ).outerWidth(),
 				locationOffset = $( selector ).offset(),
 				documentHeight = $( document ).height(),
 				position       = { hor: 'right', vert: 'bottom' };
 
-				if ( locationOffset && locationOffset.left < locationWidth ) {
+				if ( locationOffset && 30 > locationOffset.left ) {
 					position.hor = 'left';
 				}
 
@@ -299,7 +302,9 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 			$( selector ).find( '.bgtfw-multi-edit-button' ).on( 'click', function() {
 				$( this ).toggleClass( 'expanded' );
+				$( this ).parent().toggleClass( 'expanded' );
 				$( '.bgtfw-multi-edit-button' ).not( this ).removeClass( 'expanded' );
+				self.fixMultiCollisions( $( this ).children( 'div' ) );
 			} );
 
 			$( selector ).find( '.bgtfw-edit-item' ).on( 'click', function() {

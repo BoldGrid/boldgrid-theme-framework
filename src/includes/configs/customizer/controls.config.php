@@ -144,7 +144,7 @@ $general_controls = array(
 		],
 		'edit_vars' => array(
 			array(
-				'selector'    => 'body',
+				'selector'    => array( '.page .site-content', '.post .site-content', '.blog .site-content' ),
 				'label'       => 'Body Background',
 				'description' => 'Change the background of your site',
 			),
@@ -1513,7 +1513,7 @@ $general_controls = array(
 		),
 		'edit_vars' => array(
 			array(
-				'selector'    => array( '.flexbox .header-left .site-header', '.flexbox .header-right .site-header' ),
+				'selector'    => array( '.flexbox .header-left .site-header .boldgrid-section.custom-preset', '.flexbox .header-right .site-header .boldgrid-section.custom-preset' ),
 				'label'       => 'Header Width',
 				'description' => 'Adjust the width of your header',
 			),

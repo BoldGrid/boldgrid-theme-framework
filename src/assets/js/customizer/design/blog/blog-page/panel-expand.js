@@ -59,6 +59,8 @@ export class BlogPagePanelExpand extends ExpandPanel {
 			if ( 0 <= pageId ) {
 				this.url = api.settings.url.home + '?page_id=' + pageId;
 			}
+		} else {
+			this.url = api.settings.url.home;
 		}
 
 		return this.url;

@@ -22,6 +22,7 @@
 		<exclude name="Squiz.Commenting.FunctionComment.MissingParamTag" />
 		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
 		<exclude name="Squiz.Commenting.InlineComment.NotCapital" />
+		<include name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
 	</rule>
 	<rule ref="WordPress-Docs">
 

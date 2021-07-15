@@ -299,17 +299,28 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				` );
 			} );
 
-			$( selector ).find( '.bgtfw-multi-edit-button' ).on( 'click', function() {
+			$( selector ).find( '.bgtfw-multi-edit-button' ).off( 'click' ).on( 'click', function( e ) {
+				e.preventDefault();
+				e.stopPropagation();
 				$( this ).toggleClass( 'expanded' );
 				$( this ).parent().toggleClass( 'expanded' );
 				$( '.bgtfw-multi-edit-button' ).not( this ).removeClass( 'expanded' );
+				$( '.bgtfw-multi-edit-button, .bgtfw-edit-button' ).not( this ).toggleClass( 'hidden' );
 				self.fixMultiCollisions( $( this ).children( 'div' ) );
 			} );
 
-			$( selector ).find( '.bgtfw-edit-item' ).on( 'click', function() {
-				var control = $( this ).data( 'focus-id' ),
-					type    = $( this ).data( 'focus-type' );
-				api[ type ]( control ).focus();
+			$( selector ).find( '.bgtfw-edit-item' ).off( 'click' ).on( 'click', function( e ) {
+				var controlId   = $( this ).data( 'focus-id' ),
+					controlType = $( this ).data( 'focus-type' );
+					e.preventDefault();
+					e.stopPropagation();
+				api[ controlType ]( controlId ).focus( { completeCallback: function() {
+					if ( 'control' === controlType ) {
+						api.control( controlId ).container.fadeTo( '400', '0.1', function() {
+							$( this ).fadeTo( '400', '1' );
+						} );
+					}
+				} } );
 			} );
 		},
 
@@ -318,15 +329,26 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			$( selector ).not( '.no-edit-button' ).addClass( buttonPosition.vert + '-button ' + buttonPosition.hor + '-button' );
 			$( selector ).not( '.no-edit-button' ).append( '<div class="bgtfw-edit-button" data-focus-type="' + control.type + '" data-focus-id="' + controlId + '" title="' + control.label + '"><div>' );
 			$( selector ).not( '.no-edit-button' ).append( '<div class="bgtfw-edit-border-box"></div>' );
-			$( selector ).not( '.no-edit-button' ).find( '.bgtfw-edit-button' ).on( 'click', function() {
+
+			$( selector ).not( '.no-edit-button' ).find( '.bgtfw-edit-button' ).off( 'click' ).on( 'click', function( e ) {
+				var controlType = this.dataset.focusType,
+					controlId   = this.dataset.focusId;
 				if ( 'A' === $( selector ).not( '.no-edit-button' ).prop( 'nodeName' ) ) {
 					$( selector ).not( '.no-edit-button' ).on( 'click', function( e ) {
 						e.preventDefault();
 						e.stopPropagation();
 					} );
 				}
-				$( '.bgtfw-multi-edit-button' ).removeClass( 'expanded' );
-				api[control.type]( controlId ).focus();
+
+				e.preventDefault();
+				e.stopPropagation();
+				api[ this.dataset.focusType ]( this.dataset.focusId ).focus( { completeCallback: function() {
+					if ( 'control' === controlType ) {
+						api.control( controlId ).container.fadeTo( '700', '0.1', function() {
+							$( this ).fadeTo( '700', '1' );
+						} );
+					}
+				} } );
 			} );
 		}
 	};

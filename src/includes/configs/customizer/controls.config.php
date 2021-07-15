@@ -116,7 +116,7 @@ $bgtfw_presets           = new Boldgrid_Framework_Customizer_Presets( $bgtfw_con
 $bgtfw_partial_refresh   = new Boldgrid_Framework_Customizer_Partial_Refresh( $bgtfw_configs );
 
 $general_controls = array(
-	'custom_theme_js' => array(
+	'custom_theme_js'                             => array(
 		'type'        => 'code',
 		'settings'    => 'custom_theme_js',
 		'label'       => __( 'JS code', 'bgtfw' ),
@@ -131,61 +131,61 @@ $general_controls = array(
 			'height'   => 100,
 		),
 	),
-	'boldgrid_background_type' => [
-		'type'        => 'radio-buttonset',
-		'transport'   => 'postMessage',
-		'settings'    => 'boldgrid_background_type',
-		'section'     => 'background_image',
-		'default'     => 'image',
-		'priority'    => 0,
-		'choices'     => [
+	'boldgrid_background_type'                    => array(
+		'type'      => 'radio-buttonset',
+		'transport' => 'postMessage',
+		'settings'  => 'boldgrid_background_type',
+		'section'   => 'background_image',
+		'default'   => 'image',
+		'priority'  => 0,
+		'choices'   => array(
 			'image'   => '<span class="dashicons dashicons-format-image"></span>' . esc_html__( 'Image', 'bgtfw' ),
 			'pattern' => '<span class="dashicons dashicons-art"></span>' . esc_html__( 'Pattern & Color', 'bgtfw' ),
-		],
+		),
 		'edit_vars' => array(
 			array(
 				'selector'    => array( '.page .site-content', '.post .site-content', '.blog .site-content' ),
-				'label'       => 'Body Background',
-				'description' => 'Change the background of your site',
+				'label'       => __( 'Body Background', 'bgtfw' ),
+				'description' => __( 'Change the background of your site', 'bgtfw' ),
 			),
 		),
-	],
-	'boldgrid_background_image_size' => [
-		'type' => 'radio',
-		'label' => __( 'Background Image Size', 'bgtfw' ),
-		'section' => 'background_image',
-		'settings' => 'boldgrid_background_image_size',
+	),
+	'boldgrid_background_image_size'              => array(
+		'type'      => 'radio',
+		'label'     => __( 'Background Image Size', 'bgtfw' ),
+		'section'   => 'background_image',
+		'settings'  => 'boldgrid_background_image_size',
 		'transport' => 'refresh',
-		'default'     => 'cover',
-		'priority' => 15,
-		'choices' => [
-			'cover' => __( 'Cover Page', 'bgtfw' ),
-			'contain' => __( 'Scaled to Fit', 'bgtfw' ),
+		'default'   => 'cover',
+		'priority'  => 15,
+		'choices'   => array(
+			'cover'     => __( 'Cover Page', 'bgtfw' ),
+			'contain'   => __( 'Scaled to Fit', 'bgtfw' ),
 			'100% auto' => __( 'Full Width', 'bgtfw' ),
 			'auto 100%' => __( 'Full Height', 'bgtfw' ),
-			'inherit' => __( 'Default', 'bgtfw' ),
-			'auto' => __( 'Do Not Resize', 'bgtfw' ),
-		],
-	],
-	'boldgrid_background_color' => array(
-		'type'        => 'bgtfw-palette-selector',
-		'transport' => 'postMessage',
-		'settings'    => 'boldgrid_background_color',
-		'label' => esc_attr__( 'Color', 'bgtfw' ),
-		'description' => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
-		'tooltip' => 'testing what a tool tip looks like',
-		'section'     => 'background_image',
-		'priority' => 2,
-		'default'     => 'color-neutral',
-		'choices'     => array(
+			'inherit'   => __( 'Default', 'bgtfw' ),
+			'auto'      => __( 'Do Not Resize', 'bgtfw' ),
+		),
+	),
+	'boldgrid_background_color'                   => array(
+		'type'              => 'bgtfw-palette-selector',
+		'transport'         => 'postMessage',
+		'settings'          => 'boldgrid_background_color',
+		'label'             => esc_attr__( 'Color', 'bgtfw' ),
+		'description'       => esc_attr__( 'Choose a color from your palette to use.', 'bgtfw' ),
+		'tooltip'           => 'testing what a tool tip looks like',
+		'section'           => 'background_image',
+		'priority'          => 2,
+		'default'           => 'color-neutral',
+		'choices'           => array(
 			'colors' => $bgtfw_formatted_palette,
-			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 
-	/*** Start Background Image Overlay ***/
-	'bgtfw_background_overlay' => array(
+	// Start Background Image Overlay.
+	'bgtfw_background_overlay'                    => array(
 		'type'        => 'switch',
 		'settings'    => 'bgtfw_background_overlay',
 		'transport'   => 'postMessage',
@@ -199,135 +199,142 @@ $general_controls = array(
 			'off' => esc_attr__( 'Disable', 'bgtfw' ),
 		),
 	),
-	'bgtfw_background_overlay_color' => array(
-		'type'        => 'bgtfw-palette-selector',
-		'transport'   => 'postMessage',
-		'settings'    => 'bgtfw_background_overlay_color',
-		'label'       => esc_attr__( 'Overlay Color', 'bgtfw' ),
-		'section'     => 'background_image',
-		'priority'    => 10,
-		'default'     => 'color-1',
-		'choices'     => array(
+	'bgtfw_background_overlay_color'              => array(
+		'type'              => 'bgtfw-palette-selector',
+		'transport'         => 'postMessage',
+		'settings'          => 'bgtfw_background_overlay_color',
+		'label'             => esc_attr__( 'Overlay Color', 'bgtfw' ),
+		'section'           => 'background_image',
+		'priority'          => 10,
+		'default'           => 'color-1',
+		'choices'           => array(
 			'colors' => $bgtfw_formatted_palette,
-			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
-	'bgtfw_background_overlay_type' => array(
-		'type'        => 'select',
-		'transport'   => 'postMessage',
-		'settings'    => 'bgtfw_background_overlay_type',
-		'label'       => esc_attr__( 'Overlay Blend Mode', 'bgtfw' ),
-		'section'     => 'background_image',
-		'priority'    => 10,
-		'default'     => 'overlay',
-		'choices' => [
-			'multiply' => __( 'Multiply', 'bgtfw' ),
-			'screen' => __( 'Screen', 'bgtfw' ),
-			'overlay' => __( 'Overlay', 'bgtfw' ),
-			'darken' => __( 'Darken', 'bgtfw' ),
-			'lighten' => __( 'Lighten', 'bgtfw' ),
+	'bgtfw_background_overlay_type'               => array(
+		'type'      => 'select',
+		'transport' => 'postMessage',
+		'settings'  => 'bgtfw_background_overlay_type',
+		'label'     => esc_attr__( 'Overlay Blend Mode', 'bgtfw' ),
+		'section'   => 'background_image',
+		'priority'  => 10,
+		'default'   => 'overlay',
+		'choices'   => array(
+			'multiply'    => __( 'Multiply', 'bgtfw' ),
+			'screen'      => __( 'Screen', 'bgtfw' ),
+			'overlay'     => __( 'Overlay', 'bgtfw' ),
+			'darken'      => __( 'Darken', 'bgtfw' ),
+			'lighten'     => __( 'Lighten', 'bgtfw' ),
 			'color-dodge' => __( 'Color Dodge', 'bgtfw' ),
-			'color-burn' => __( 'Color Burn', 'bgtfw' ),
-			'hard-light' => __( 'Hard Light', 'bgtfw' ),
-			'soft-light' => __( 'Soft Light', 'bgtfw' ),
-			'difference' => __( 'Difference', 'bgtfw' ),
-			'exclusion' => __( 'Exclusion', 'bgtfw' ),
-			'hue' => __( 'Hue', 'bgtfw' ),
-			'saturation' => __( 'Saturation', 'bgtfw' ),
-			'color' => __( 'Color', 'bgtfw' ),
-			'luminosity' => __( 'Luminosity', 'bgtfw' ),
-		],
+			'color-burn'  => __( 'Color Burn', 'bgtfw' ),
+			'hard-light'  => __( 'Hard Light', 'bgtfw' ),
+			'soft-light'  => __( 'Soft Light', 'bgtfw' ),
+			'difference'  => __( 'Difference', 'bgtfw' ),
+			'exclusion'   => __( 'Exclusion', 'bgtfw' ),
+			'hue'         => __( 'Hue', 'bgtfw' ),
+			'saturation'  => __( 'Saturation', 'bgtfw' ),
+			'color'       => __( 'Color', 'bgtfw' ),
+			'luminosity'  => __( 'Luminosity', 'bgtfw' ),
+		),
 	),
-	'bgtfw_background_overlay_alpha' => array(
-		'type'        => 'slider',
-		'transport'   => 'postMessage',
-		'settings'    => 'bgtfw_background_overlay_alpha',
-		'label'       => esc_attr__( 'Overlay Opacity', 'bgtfw' ),
-		'section'     => 'background_image',
-		'priority'    => 10,
-		'default'     => '0.70',
-		'choices'     => array(
+	'bgtfw_background_overlay_alpha'              => array(
+		'type'      => 'slider',
+		'transport' => 'postMessage',
+		'settings'  => 'bgtfw_background_overlay_alpha',
+		'label'     => esc_attr__( 'Overlay Opacity', 'bgtfw' ),
+		'section'   => 'background_image',
+		'priority'  => 10,
+		'default'   => '0.70',
+		'choices'   => array(
 			'min'  => '0',
 			'max'  => '1',
 			'step' => '.01',
 		),
 	),
-	/*** End Background Image Overlay ***/
+	// End Background Image Overlay.
 
-	/*** Start Header Generic Controls ***/
-	'bgtfw_header_margin' => array(
-		'type'        => 'kirki-generic',
-		'transport'   => 'postMessage',
-		'section'     => 'boldgrid_header_margin_section',
-		'settings'    => 'bgtfw_header_margin',
-		'label'       => '',
-		'default'     => '',
+	// Start Header Generic Controls.
+	'bgtfw_header_margin'                         => array(
+		'type'              => 'kirki-generic',
+		'transport'         => 'postMessage',
+		'section'           => 'boldgrid_header_margin_section',
+		'settings'          => 'bgtfw_header_margin',
+		'label'             => '',
+		'default'           => '',
 		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
-		'choices' => array(
-			'name' => 'boldgrid_controls',
-			'type' => 'Margin',
+		'choices'           => array(
+			'name'     => 'boldgrid_controls',
+			'type'     => 'Margin',
 			'settings' => array(
 				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
-				'control' => array(
+				'control'    => array(
 					'selectors' => array( '.site-header' ),
-					'sliders' => array(
-						array( 'name' => 'top', 'label' => 'Top', 'cssProperty' => 'margin-top' ),
-						array( 'name' => 'bottom', 'label' => 'Bottom', 'cssProperty' => 'margin-bottom' ),
+					'sliders'   => array(
+						array( 'name'     => 'top',
+							'label'       => 'Top',
+							'cssProperty' => 'margin-top'
+						),
+						array(
+							'name'        => 'bottom',
+							'label'       => 'Bottom',
+							'cssProperty' => 'margin-bottom'
+						),
 					),
 				),
 			),
 		),
 	),
-	'bgtfw_header_padding' => array(
-		'type'        => 'kirki-generic',
-		'transport'   => 'postMessage',
-		'section'     => 'boldgrid_header_padding_section',
-		'settings'    => 'bgtfw_header_padding',
-		'label'       => '',
-		'default'     => '',
+	'bgtfw_header_padding'                        => array(
+		'type'              => 'kirki-generic',
+		'transport'         => 'postMessage',
+		'section'           => 'boldgrid_header_padding_section',
+		'settings'          => 'bgtfw_header_padding',
+		'label'             => '',
+		'default'           => '',
 		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
-		'choices' => array(
-			'name' => 'boldgrid_controls',
-			'type' => 'Padding',
+		'choices'           => array(
+			'name'     => 'boldgrid_controls',
+			'type'     => 'Padding',
 			'settings' => array(
 				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
-				'control' => array(
+				'control'    => array(
 					'selectors' => array( '.site-header header' ),
 				),
 			),
 		),
 	),
-	'bgtfw_header_border' => array(
-		'type'        => 'kirki-generic',
-		'transport'   => 'postMessage',
-		'section'     => 'boldgrid_header_border_section',
-		'settings'    => 'bgtfw_header_border',
-		'label'       => '',
-		'default'     => '',
+	'bgtfw_header_border'                         => array(
+		'type'              => 'kirki-generic',
+		'transport'         => 'postMessage',
+		'section'           => 'boldgrid_header_border_section',
+		'settings'          => 'bgtfw_header_border',
+		'label'             => '',
+		'default'           => '',
 		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
-		'choices' => array(
-			'name' => 'boldgrid_controls',
-			'type' => 'Border',
+		'choices'           => array(
+			'name'     => 'boldgrid_controls',
+			'type'     => 'Border',
 			'settings' => array(
 				'responsive' => Boldgrid_Framework_Customizer_Generic::$device_sizes,
-				'control' => array(
+				'control'    => array(
 					'selectors' => array( '.site-header header' ),
 				),
 			),
 		),
 	),
 	'bgtfw_header_border_color' => array(
-		'type'        => 'bgtfw-palette-selector',
-		'transport'   => 'postMessage',
-		'settings'    => 'bgtfw_header_border_color',
-		'label'       => esc_attr__( 'Border Color', 'bgtfw' ),
-		'section'     => 'boldgrid_header_border_section',
-		'priority'    => 20,
-		'default'     => 'color-1',
-		'choices'     => array(
+		'type'              => 'bgtfw-palette-selector',
+		'transport'         => 'postMessage',
+		'settings'          => 'bgtfw_header_border_color',
+		'label'             => esc_attr__( 'Border Color', 'bgtfw' ),
+		'section'           => 'boldgrid_header_border_section',
+		'priority'          => 20,
+		'default'           => 'color-1',
+		'choices'           => array(
 			'colors' => $bgtfw_formatted_palette,
-			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
@@ -513,8 +520,8 @@ $general_controls = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.page .site-content',
-				'label'       => 'Page Layout',
-				'description' => 'Choose between contained or full-width page layout',
+				'label'       => __( 'Page Layout', 'bgtfw' ),
+				'description' => __( 'Choose between contained or full-width page layout', 'bgtfw' ),
 			),
 		),
 	),
@@ -557,8 +564,8 @@ $general_controls = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.woocommerce .site-content',
-				'label'       => 'WooCommerce Page Layout',
-				'description' => 'Choose between contained or full-width page layout for WooCommerce pages',
+				'label'       => __( 'WooCommerce Page Layout', 'bgtfw' ),
+				'description' => __( 'Choose between contained or full-width page layout for WooCommerce pages', 'bgtfw' ),
 			),
 		),
 	),
@@ -574,8 +581,8 @@ $general_controls = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.page .site-content',
-				'label'       => 'Page Sidebar Layout',
-				'description' => 'Choose the layout of the sidebar on your pages',
+				'label'       => __( 'Page Sidebar Layout', 'bgtfw' ),
+				'description' => __( 'Choose the layout of the sidebar on your pages', 'bgtfw' ),
 			),
 		),
 	),
@@ -640,19 +647,9 @@ $general_controls = array(
 		),
 		'edit_vars' => array(
 			array(
-				'selector'    => '.page .page .featured-imgage-header',
-				'label'       => 'Page Title Display',
-				'description' => 'Choose whether or not to display the Page Title',
-			),
-			array(
-				'selector'    => '.archive .page-header .featured-imgage-header',
-				'label'       => 'Page Title Display',
-				'description' => 'Choose whether or not to display the Page Title',
-			),
-			array(
-				'selector'    => '.blog .page-header .featured-imgage-header',
-				'label'       => 'Page Title Display',
-				'description' => 'Choose whether or not to display the Page Title',
+				'selector'    => array( '.page .page-header', '.archive .page-header', '.blog .page-header' ),
+				'label'       => __( 'Page Title Display', 'bgtfw' ),
+				'description' => __( 'Choose whether or not to display the page title', 'bgtfw' ),
 			),
 		),
 	),
@@ -682,7 +679,7 @@ $general_controls = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.single .entry-footer .tags-links',
-				'label'       => 'Display Post Tag links',
+				'label'       => __( 'Display Post Tag Links', 'bgtfw' ),
 				'description' => __( 'Toggle the display of your tags on the blog roll and archive pages.', 'bgtfw' ),
 			),
 		),
@@ -926,8 +923,8 @@ $general_controls = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.single .entry-footer .cat-links',
-				'label'       => 'Post Category Links',
-				'description' => 'Choose whether or not to display Post Category Links',
+				'label'       => __( 'Post Category Links', 'bgtfw' ),
+				'description' => __( 'Choose whether or not to display post category links', 'bgtfw' ),
 			),
 		),
 	),
@@ -1163,8 +1160,8 @@ $general_controls = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.single .post-navigation',
-				'label'       => 'Post Navigation Links',
-				'description' => 'Choose whether or not to display Post Navigation Links',
+				'label'       => __( 'Post Navigation Links', 'bgtfw' ),
+				'description' => __( 'Choose whether or not to display post navigation links', 'bgtfw' ),
 			),
 		),
 	),
@@ -1311,13 +1308,6 @@ $general_controls = array(
 			'size'    => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
-		'edit_vars' => array(
-			array(
-				'selector'    => array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ),
-				'label'       => esc_attr__( 'Heading Typography', 'bgtfw' ),
-				'description' => esc_attr__( 'Adjust heading typography styles', 'bgtfw' ),
-			),
-		),
 	),
 	'bgtfw_headings_typography' => array(
 		'type'     => 'typography',
@@ -1335,6 +1325,13 @@ $general_controls = array(
 		),
 		'priority'    => 2,
 		'output'      => $bgtfw_typography->get_output_values( $bgtfw_configs ),
+		'edit_vars' => array(
+			array(
+				'selector'    => array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ),
+				'label'       => esc_attr__( 'Heading Typography', 'bgtfw' ),
+				'description' => esc_attr__( 'Adjust heading typography styles', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_headings_font_size' => array(
 		'type'        => 'slider',
@@ -1427,12 +1424,7 @@ $general_controls = array(
 			array(
 				'selector' => '#masthead',
 				'label'    => esc_html__( 'Header Layout', 'bgtfw' ),
-				'description' => esc_html__( 'Change the header Layout Preset', 'bgtfw' ),
-			),
-			array(
-				'selector' => '#masthead .site-branding',
-				'label'    => esc_html__( 'Branding Display', 'bgtfw' ),
-				'description' => esc_html__( 'Change the display of branding elements', 'bgtfw' ),
+				'description' => esc_html__( 'Change the header layout preset', 'bgtfw' ),
 			),
 		),
 	),
@@ -1514,8 +1506,8 @@ $general_controls = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => array( '.flexbox .header-left .site-header .boldgrid-section.custom-preset', '.flexbox .header-right .site-header .boldgrid-section.custom-preset' ),
-				'label'       => 'Header Width',
-				'description' => 'Adjust the width of your header',
+				'label'       => __( 'Header Width', 'bgtfw' ),
+				'description' => __( 'Adjust the width of your header', 'bgtfw' ),
 			),
 		),
 	),
@@ -1536,7 +1528,7 @@ $general_controls = array(
 			array(
 				'selector' => '#masthead',
 				'label'    => esc_html__( 'Header Background', 'bgtfw' ),
-				'description' => esc_html__( 'Change the Header Background Color or Set a Background Image / Video', 'bgtfw' ),
+				'description' => esc_html__( 'Change the header background color or set a background image / video', 'bgtfw' ),
 			),
 		),
 	),
@@ -1601,9 +1593,7 @@ $general_controls = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => array(
-					'.widget p:first-of-type',
 					'.site-content p:first-of-type',
-					'.attribution-theme-mods-wrapper p:first-of-type',
 				),
 				'label'       => esc_attr__( 'Main Text Typography', 'bgtfw' ),
 				'description' => esc_attr__( 'Adjust the typography of your main text', 'bgtfw' ),
@@ -1628,11 +1618,7 @@ $general_controls = array(
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'edit_vars' => array(
 			array(
-				'selector'    => array(
-					'.blog .page-header .featured-imgage-header',
-					'.archive .page-header .featured-imgage-header',
-					'.page .page .featured-imgage-header',
-				),
+				'selector'    => array( '.page .page-header', '.archive .page-header', '.blog .page-header' ),
 				'label'       => esc_attr__( 'Page Title Styling', 'bgtfw' ),
 				'description' => esc_attr__( 'Customize the color, background, and size of your page title.', 'bgtfw' ),
 			),
@@ -1871,7 +1857,7 @@ $general_controls = array(
 			array(
 				'selector'    => '.goup-container',
 				'label'       => esc_attr__( 'Scroll To Top', 'bgtfw' ),
-				'description' => esc_attr__( 'Enable / Disable Scroll To Top button', 'bgtfw' ),
+				'description' => esc_attr__( 'Enable / Disable the scroll to top button', 'bgtfw' ),
 			),
 		),
 	),
@@ -3088,6 +3074,13 @@ $general_controls = array(
 			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog .entry-header',
+				'label'       => __( 'Post Header Background', 'bgtfw' ),
+				'description' => __( 'Change the color of the post header background', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_blog_post_background_color' => array(
 		'type'        => 'bgtfw-palette-selector',
@@ -3103,6 +3096,18 @@ $general_controls = array(
 			'size' => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+		array(
+			'selector'    => '.blog .entry-content',
+			'label'       => 'Post Content Background',
+			'description' => 'Change the color of the Post Content Background',
+		),
+		'edit_vars' => array(
+			array(
+				'selector'    => '.blog .entry-content',
+				'label'       => __( 'Post Content Background', 'bgtfw' ),
+				'description' => __( 'Change the color of the post content background', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_blog_post_header_title_display' => array(
 		'type' => 'radio-buttonset',

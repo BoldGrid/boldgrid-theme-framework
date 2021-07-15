@@ -38,13 +38,6 @@ $sections_array = array(
 		'description' => esc_html__( 'This section controls the appearance of titles on your pages.', 'bgtfw' ),
 		'capability' => 'edit_theme_options',
 		'icon' => 'icon-header-settings',
-		'edit_vars' => array(
-			array(
-				'selector'    => '.page .page-header-wrapper',
-				'label'       => 'Page Title',
-				'description' => 'Control the appearance of titles on your pages',
-			),
-		),
 	),
 	'bgtfw_layout_page_container' => array(
 		'title' => __( 'Container', 'bgtfw' ),
@@ -69,6 +62,13 @@ $sections_array = array(
 		'capability' => 'edit_theme_options',
 		'priority' => 1,
 		'icon' => 'dashicons-schedule',
+		'edit_vars' => array(
+			array(
+				'selector'    => 'footer.site-footer',
+				'label'       => __( 'Footer Layout', 'bgtfw' ),
+				'description' => __( 'Customize the layout of your site\'s footer', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_footer_colors' => array(
 		'title' => __( 'Colors', 'bgtfw' ),
@@ -141,8 +141,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.site-title',
-				'label'       => 'Site Title',
-				'description' => 'Edit your Site Title or change Site Title font & color',
+				'label'       => __( 'Site Title', 'bgtfw' ),
+				'description' => __( 'Edit your site title or change the site title font & color', 'bgtfw' ),
 			),
 		),
 	),
@@ -156,8 +156,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.site-description',
-				'label'       => 'Site Tagline',
-				'description' => 'Edit your Tagline or change Tagline font & color',
+				'label'       => __( 'Site Tagline', 'bgtfw' ),
+				'description' => __( 'Edit your tagline or change tagline font & color', 'bgtfw' ),
 			),
 		),
 	),
@@ -229,8 +229,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.blog .main-wrapper',
-				'label'       => 'Post List Settings',
-				'description' => 'Configure the post list on your Blog Page',
+				'label'       => __( 'Post List Settings', 'bgtfw' ),
+				'description' => __( 'Configure the post list on your blog page', 'bgtfw' ),
 			),
 		),
 	),
@@ -241,8 +241,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.blog .main-wrapper',
-				'label'       => 'Blog Page Sidebar',
-				'description' => 'Decide where / if to display a sidebar on your Blog Page',
+				'label'       => __( 'Blog Page Sidebar', 'bgtfw' ),
+				'description' => __( 'Decide where / if to display a sidebar on your blog page', 'bgtfw' ),
 			),
 		),
 	),
@@ -250,18 +250,6 @@ $sections_array = array(
 		'title' => __( 'Background Colors', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_blog_page_panel',
 		'icon' => 'dashicons-art',
-		'edit_vars' => array(
-			array(
-				'selector'    => '.blog .entry-header',
-				'label'       => 'Post Header Background',
-				'description' => 'Change the color of the Post Header Background',
-			),
-			array(
-				'selector'    => '.blog .entry-content',
-				'label'       => 'Post Content Background',
-				'description' => 'Change the color of the Post Content Background',
-			),
-		),
 	),
 	'bgtfw_pages_blog_blog_page_titles' => array(
 		'title' => 'Titles',
@@ -270,8 +258,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.blog .entry-title',
-				'label'       => 'Post Titles',
-				'description' => 'Customize the size and color of your Post Titles',
+				'label'       => __( 'Post Titles', 'bgtfw' ),
+				'description' => __( 'Customize the size and color of your post titles', 'bgtfw' ),
 			),
 		),
 	),
@@ -282,8 +270,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.blog .post',
-				'label'       => 'Featured Images',
-				'description' => 'Change the display and style of the featured images',
+				'label'       => __( 'Featured Images', 'bgtfw' ),
+				'description' => __( 'Change the display and style of the featured images', 'bgtfw' ),
 			),
 		),
 	),
@@ -304,9 +292,9 @@ $sections_array = array(
 		'icon' => 'fa-id-card-o',
 		'edit_vars' => array(
 			array(
-				'selector'    => '.blog.entry-meta',
-				'label'       => 'Post Meta',
-				'description' => 'Change the display and style of Post Meta Elements',
+				'selector'    => '.blog .entry-meta',
+				'label'       => __( 'Post Meta', 'bgtfw' ),
+				'description' => __( 'Change the display and style of post meta elements', 'bgtfw' ),
 			),
 		),
 	),
@@ -318,8 +306,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.read-more.a',
-				'label'       => 'Read More',
-				'description' => 'Change the style of the "Read More" link',
+				'label'       => __( 'Read More', 'bgtfw' ),
+				'description' => __( 'Change the style of the "Read More" link', 'bgtfw' ),
 			),
 		),
 	),
@@ -331,8 +319,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.blog .entry-footer',
-				'label'       => 'Tag Links',
-				'description' => 'Change the display and style of your tag links',
+				'label'       => __( 'Tag Links', 'bgtfw' ),
+				'description' => __( 'Change the display and style of your tag links', 'bgtfw' ),
 			),
 		),
 	),
@@ -344,8 +332,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.blog .entry-footer',
-				'label'       => 'Category Links',
-				'description' => 'Change the display and style of your category links',
+				'label'       => __( 'Category Links', 'bgtfw' ),
+				'description' => __( 'Change the display and style of your category links', 'bgtfw' ),
 			),
 		),
 	),
@@ -357,8 +345,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.blog .entry-footer',
-				'label'       => 'Comment Links',
-				'description' => 'Change the display and style of your "Leave a Comment" links',
+				'label'       => __( 'Comment Links', 'bgtfw' ),
+				'description' => __( 'Change the display and style of your "Leave a Comment" links', 'bgtfw' ),
 			),
 		),
 	),
@@ -379,8 +367,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.single .main',
-				'label'       => 'Post Sidebar',
-				'description' => 'Decide where / if to display a sidebar on your Posts',
+				'label'       => __( 'Post Sidebar', 'bgtfw' ),
+				'description' => __( 'Decide where / if to display a sidebar on your Posts', 'bgtfw' ),
 			),
 		),
 	),
@@ -396,8 +384,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.single .page-header-wrapper',
-				'label'       => 'Post Featured Image',
-				'description' => 'Change the display and style of your post\'s featured image',
+				'label'       => __( 'Post Featured Image', 'bgtfw' ),
+				'description' => __( 'Change the display and style of your post\'s featured image', 'bgtfw' ),
 			),
 		),
 	),
@@ -415,8 +403,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.single .entry-footer',
-				'label'       => 'Tag Links',
-				'description' => 'Change the display and style of your tag links',
+				'label'       => __( 'Tag Links', 'bgtfw' ),
+				'description' => __( 'Change the display and style of your tag links', 'bgtfw' ),
 			),
 		),
 	),
@@ -428,8 +416,8 @@ $sections_array = array(
 		'edit_vars' => array(
 			array(
 				'selector'    => '.single .entry-footer',
-				'label'       => 'Category Links',
-				'description' => 'Change the display and style of your category links',
+				'label'       => __( 'Category Links', 'bgtfw' ),
+				'description' => __( 'Change the display and style of your category links', 'bgtfw' ),
 			),
 		),
 	),

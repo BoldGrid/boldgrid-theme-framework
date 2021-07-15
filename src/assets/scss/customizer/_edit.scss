@@ -92,7 +92,8 @@ button.customize-partial-edit-shortcut-button {
 				width: 100%;
 				height: 100%;
 				position: absolute;
-				box-shadow: inset 0 0 5px 5px #0073aa, 0 0 5px 5px #0073aa;
+				box-shadow: inset 0 0 2px 1px #0073aa, 0 0 5px 5px #0073aa;
+				background-color: rgba(0, 115, 170,0.15);
 				top: 0;
 				bottom: 0;
 				left: 0;
@@ -146,6 +147,7 @@ button.customize-partial-edit-shortcut-button {
 			span {
 				&.edit-label {
 					font-weight: 600;
+					text-align: left;
 					width: 100%;
 				}
 			}
@@ -160,7 +162,8 @@ button.customize-partial-edit-shortcut-button {
 				width: 100%;
 				height: 100%;
 				position: absolute;
-				box-shadow: inset 0 0 5px 5px #0073aa, 0 0 5px 5px #0073aa;
+				box-shadow: inset 0 0 2px 1px #0073aa, 0 0 5px 5px #0073aa;
+				background-color: rgba(0, 115, 170,0.15);
 				top: 0;
 				bottom: 0;
 				left: 0;

@@ -345,6 +345,10 @@ class BoldGrid_Framework {
 		$path = __DIR__ . '/configs/' . $folder;
 		foreach ( glob( $path . '/*.config.php' ) as $filename ) {
 			$option = basename( str_replace( '.config.php', '', $filename ) );
+			if ( ! false === strpos( $filename, 'customizer/controls/' ) ) {
+				error_log( $filename );
+				continue;
+			}
 			if ( ! empty( $folder ) ) {
 				$this->configs[ $folder ][ $option ] = include $filename;
 			} else {

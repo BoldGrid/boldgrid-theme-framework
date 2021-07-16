@@ -11,6 +11,20 @@
  */
 
 return array(
+	'bgtfw_video_background_all' => array(
+		'type'        => 'switch',
+		'settings'    => 'bgtfw_video_background_all',
+		'transport'   => 'refresh',
+		'label'       => '',
+		'description' => esc_attr__( 'By default, the header video will only display on the home page. If you want the video to display on all pages, disable this option.', 'bgtfw' ),
+		'section'     => 'header_image',
+		'default'     => true,
+		'priority'    => 11,
+		'choices'     => array(
+			'on'  => esc_attr__( 'Home Only', 'bgtfw' ),
+			'off' => esc_attr__( 'All Pages', 'bgtfw' ),
+		),
+	),
 	'bgtfw_header_layout_col_width' => array(
 		'settings' => 'bgtfw_header_layout_col_width',
 		'transport' => 'refresh',

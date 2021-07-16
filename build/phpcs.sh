@@ -2,7 +2,7 @@
 
 run_phpcs() {
 	if php node_modules/PHP_CodeSniffer/bin/phpcs --config-set installed_paths node_modules/WordPress-Coding-Standards/ ; then
-		if npm run phpcs-installStandards && node_modules/PHP_CodeSniffer/bin/phpcs -p -s --report-emacs --report-summary --report-width=220 --standard=WordPress-Docs --standard=WordPress-Extra --ignore=*/node_modules/*,*/vendor/* --extensions=php src/includes/configs/customizer/; then
+		if npm run phpcs-installStandards && node_modules/PHP_CodeSniffer/bin/phpcs -p -s --report-emacs --report-summary --report-width=220 --standard=WordPress-Docs --standard=WordPress-Extra --ignore=*/node_modules/*,*/vendor/* --extensions=php src/includes/configs/customizer/controls/; then
 			echo "No PHPCS Errors Found"
 			exit 0
 		else
@@ -22,14 +22,14 @@ run_phpcs() {
 }
 
 run_phpcbf() {
-	npm run phpcs-installStandards && node_modules/PHP_CodeSniffer/bin/phpcbf -p -s --report-emacs --report-summary --report-width=220 --standard=WordPress-Docs --standard=WordPress-Extra --ignore=*/node_modules/*,*/vendor/* --extensions=php src/includes/configs/customizer/
+	npm run phpcs-installStandards && node_modules/PHP_CodeSniffer/bin/phpcbf -p -s --report-emacs --report-summary --report-width=220 --standard=WordPress-Docs --standard=WordPress-Extra --ignore=*/node_modules/*,*/vendor/* --extensions=php src/includes/configs/customizer/controls/
 	echo "Beautification done. Re-running PHPCS";
 	re_run_phpcs
 }
 
 re_run_phpcs() {
 	if php node_modules/PHP_CodeSniffer/bin/phpcs --config-set installed_paths node_modules/WordPress-Coding-Standards/ ; then
-		if npm run phpcs-installStandards && node_modules/PHP_CodeSniffer/bin/phpcs -p -s --report-emacs --report-summary --report-width=220 --standard=WordPress-Docs --standard=WordPress-Extra --ignore=*/node_modules/*,*/vendor/* --extensions=php src/includes/configs/customizer/; then
+		if npm run phpcs-installStandards && node_modules/PHP_CodeSniffer/bin/phpcs -p -s --report-emacs --report-summary --report-width=220 --standard=WordPress-Docs --standard=WordPress-Extra --ignore=*/node_modules/*,*/vendor/* --extensions=php src/includes/configs/customizer/controls/; then
 			echo "All Issues corrected by PHPCBF"
 			exit 0
 		else

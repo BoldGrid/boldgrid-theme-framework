@@ -11,7 +11,7 @@
  */
 
 return array(
-	'boldgrid_background_type' => array(
+	'boldgrid_background_type'       => array(
 		'type'      => 'radio-buttonset',
 		'transport' => 'postMessage',
 		'settings'  => 'boldgrid_background_type',
@@ -47,7 +47,7 @@ return array(
 			'auto'      => __( 'Do Not Resize', 'bgtfw' ),
 		),
 	),
-	'boldgrid_background_color' => array(
+	'boldgrid_background_color'      => array(
 		'type'        => 'bgtfw-palette-selector',
 		'transport' => 'postMessage',
 		'settings'    => 'boldgrid_background_color',

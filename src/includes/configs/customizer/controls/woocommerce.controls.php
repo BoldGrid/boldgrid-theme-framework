@@ -11,42 +11,42 @@
  */
 
 return array(
-	'bgtfw_woocommerce_container' => array(
-		'settings' => 'bgtfw_woocommerce_container',
-		'transport'   => 'postMessage',
-		'label'       => esc_html__( 'Container', 'bgtfw' ),
-		'type'        => 'radio-buttonset',
-		'priority'    => 35,
-		'default'   => 'container',
-		'choices'     => array(
+	'bgtfw_woocommerce_container'         => array(
+		'settings'          => 'bgtfw_woocommerce_container',
+		'transport'         => 'postMessage',
+		'label'             => esc_html__( 'Container', 'bgtfw' ),
+		'type'              => 'radio-buttonset',
+		'priority'          => 35,
+		'default'           => 'container',
+		'choices'           => array(
 			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			'' => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+			''          => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
 		),
-		'section' => 'bgtfw_layout_woocommerce_container',
+		'section'           => 'bgtfw_layout_woocommerce_container',
 		'sanitize_callback' => function( $value, $settings ) {
 			return 'container' === $value || 'full-width' === $value ? $value : '';
 		},
-		'js_vars' => array(
+		'js_vars'           => array(
 			array(
-				'element' => '.woocommerce .site-content, .woocommerce-page .site-content',
-				'function' => 'html',
-				'attr' => 'class',
+				'element'       => '.woocommerce .site-content, .woocommerce-page .site-content',
+				'function'      => 'html',
+				'attr'          => 'class',
 				'value_pattern' => 'site-content $',
 			),
 			array(
-				'element' => '.woocommerce .main-wrapper, .woocommerce-page .main-wrapper',
-				'function' => 'html',
-				'attr' => 'class',
+				'element'       => '.woocommerce .main-wrapper, .woocommerce-page .main-wrapper',
+				'function'      => 'html',
+				'attr'          => 'class',
 				'value_pattern' => 'main-wrapper $',
 			),
 			array(
-				'element' => '.woocommerce-page .main > .container, .woocommerce-page .main > .full-width',
-				'function' => 'html',
-				'attr' => 'class',
+				'element'       => '.woocommerce-page .main > .container, .woocommerce-page .main > .full-width',
+				'function'      => 'html',
+				'attr'          => 'class',
 				'value_pattern' => '$',
 			),
 		),
-		'edit_vars' => array(
+		'edit_vars'         => array(
 			array(
 				'selector'    => '.woocommerce .site-content',
 				'label'       => __( 'WooCommerce Page Layout', 'bgtfw' ),

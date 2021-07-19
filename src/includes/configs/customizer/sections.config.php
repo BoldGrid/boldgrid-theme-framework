@@ -285,7 +285,7 @@ $sections_array = array(
 		'icon'      => 'fa-id-card-o',
 		'edit_vars' => array(
 			array(
-				'selector'    => '.blog .entry-meta > span:first-child',
+				'selector'    => '.blog .entry-meta',
 				'label'       => __( 'Post Meta', 'bgtfw' ),
 				'description' => __( 'Change the display and style of post meta elements', 'bgtfw' ),
 			),

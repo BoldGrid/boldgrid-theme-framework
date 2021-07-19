@@ -90,7 +90,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 		},
 
 		destroy: function() {
-			self.buttonCollisionSet = {};
+			self.buttonCollisionSet = [];
 			$( '.bgtfw-multi-edit-button' ).remove();
 			$( '.bgtfw-edit-border-box' ).remove();
 			$( '.bgtfw-edit-button' ).remove();
@@ -113,7 +113,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				} else if ( api( 'bgtfw_fixed_header' )() ) {
 					$( '#masthead-sticky' ).css( 'display', 'block' );
 				}
-			});
+			} );
 		},
 
 		/**
@@ -141,7 +141,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 						return;
 					}
 
-					if ( 'bgtfw_headings_color' === controlId && $( selector ).is( '.site-description, .site-title' ) ) {
+					if ( 'bgtfw_headings_typography' === controlId && $( selector ).is( '.site-description, .site-title' ) ) {
 						return;
 					}
 
@@ -155,10 +155,12 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 			self.addWidgetButtons();
 
+			_.defer( self.fixStaticPostioning );
+
 			_.defer( self.fixCollisions );
 		},
 
-		fixCollisions: function() {
+		fixStaticPostioning: function() {
 			var $editButtons = $( '.bgtfw-multi-edit-button, .bgtfw-edit-button' );
 
 			$editButtons.each( function() {
@@ -166,38 +168,143 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					$( this ).parent().css( 'position', 'relative' );
 				}
 			} );
+		},
 
-			$editButtons.each( function() {
-				var buttonOffset = $( this ).offset(),
-					offsetKey    = Math.floor( buttonOffset.left ) + ',' + Math.floor( buttonOffset.top );
+		/**
+		 * @summary Sort buttons asc based upon location to the top of the document.
+		 *
+		 * @since 1.1.6
+		 *
+		 * @link http://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
+		 *
+		 * @param object a A jQuery object.
+		 * @param object b A jQuery object.
+		 * @return int
+		 */
+		sortButtonsAsc: function( $a, $b ) {
+			var aTop = $a.offset().top,
+				bTop = $b.offset().top,
+				$parentA,
+				$parentB,
+				parentATop,
+				parentBTop;
 
-					if ( self.buttonCollisionSet.hasOwnProperty( offsetKey ) ) {
-						self.buttonCollisionSet[ offsetKey ].push( $( this ) );
-					} else {
-						self.buttonCollisionSet[ offsetKey ] = [ $( this ) ];
-					}
+			if ( aTop === bTop ) {
+				$parentA = $( $a.parent() );
+				parentATop = $parentA.offset().top;
+
+				aTop = parentATop;
+
+				$parentB = $( $b.parent() );
+				parentBTop = $parentB.offset().top;
+
+				bTop = parentBTop;
+			}
+
+			if ( aTop < bTop ) {
+				return -1;
+			} else if ( aTop > bTop ) {
+				return 1;
+			} else {
+				return 0;
+			}
+		},
+
+		/**
+		 * @summary Sort buttons desc based upon location to the top of the document.
+		 *
+		 * @since 1.1.6
+		 *
+		 * @param object a A jQuery object.
+		 * @param object b A jQuery object.
+		 * @return int
+		 */
+		sortButtonsDesc: function( a, b ) {
+			var aTop = a.offset().top,
+				bTop = b.offset().top;
+
+			if ( bTop < aTop ) {
+				return -1;
+			} else if ( bTop > aTop ) {
+				return 1;
+			} else {
+				return 0;
+			}
+		},
+
+		assignCollisionSet: function( $buttonA, $buttonB ) {
+
+			// The button towards the bottom will be moved lower. Figure out which button is higher.
+			var aTop = Math.ceil( $buttonA.offset().top ),
+				bTop = Math.ceil( $buttonB.offset().top ),
+				$lowerButton = ( aTop > bTop ? $buttonA : $buttonB ),
+				$higherButton = ( $buttonA.is( $lowerButton ) ? $buttonB : $buttonA ),
+				collisionSet = $higherButton.attr( 'data-collision-set' );
+
+			$lowerButton.offset( {
+				'top': Math.ceil( $higherButton.offset().top ) + 30,
+				'left': $lowerButton.offset().left
 			} );
 
-			for ( const offset in self.buttonCollisionSet ) {
-				if ( 1 === self.buttonCollisionSet[ offset ].length ) {
-					continue;
-				}
-
-				self.buttonCollisionSet[ offset ].forEach( self.fixButtonCollision );
+			if ( 'undefined' === typeof collisionSet ) {
+				collisionSet = self.buttonCollisionSet;
+				self.buttonCollisionSet++;
 			}
+
+			$lowerButton.attr( 'data-collision-set', collisionSet );
+			$higherButton.attr( 'data-collision-set', collisionSet );
+		},
+
+		fixCollisions: function() {
+			var editButtons = [];
+
+			self.buttonCollisionSet = 1;
+
+			$( '.bgtfw-multi-edit-button:visible, .bgtfw-edit-button:visible' ).each( function() {
+				editButtons.push( $( this ) );
+			} );
+
+			editButtons.sort( self.sortButtonsAsc );
+
+			$.each( editButtons, function( index, buttonA ) {
+				var $buttonA = $( buttonA );
+
+				// If this is not the last button.
+				if ( index < ( editButtons.length - 1 ) ) {
+					$.each( editButtons, function( indexB, buttonB ) {
+						var $buttonB = $( buttonB );
+
+						if ( $buttonA.is( $buttonB ) ) {
+							return;
+						}
+
+						if ( self.determineButtonCollision( $buttonA, $buttonB ) ) {
+							self.assignCollisionSet( $buttonA, $buttonB );
+						}
+					} );
+				}
+			} );
 		},
 
 		fixMultiCollisions: function( menuSelector ) {
 			var multiBoxHeight   = $( menuSelector ).height(),
 				multiBoxOffset   = $( menuSelector ).parent().offset(),
-				docHeight        = $( document ).height(),
+				docHeight        = $( '#colophon.site-footer' ).offset().top + $( '#colophon.site-footer' ).outerHeight( true ),
+				scrollTop        = $( window ).scrollTop(),
 				css              = {};
+
+			console.log( {
+				multiBoxHeight: multiBoxHeight,
+				multiBoxOffset: multiBoxOffset,
+				docHeight: docHeight,
+				scrollTop: scrollTop
+			} );
 
 			if ( ! multiBoxOffset ) {
 				return;
 			}
 
-			if ( 0 >= (  multiBoxOffset.top + 30 - multiBoxHeight ) ) {
+			if ( 0 >= ( ( multiBoxOffset.top - scrollTop - 30 ) - multiBoxHeight ) ) {
 				css.top    = '30px';
 				css.bottom = 'unset';
 				$( menuSelector ).css( css );
@@ -210,19 +317,27 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			}
 		},
 
-		fixButtonCollision: function( buttonSelector, index ) {
-			var $buttonParent   = $( buttonSelector ).parent( '.bgtfw-has-edit' ),
-				isLeft          = $buttonParent.is( '.left-button' ) ? true : false,
-				cssProp         = isLeft ? 'left' : 'right',
-				horAdjustment;
+		adjustButtonPosition: function( $button, collisionIndex ) {
+			var $buttonParent = $button.parent( '.bgtfw-has-edit' ),
+				isLeft        = $buttonParent.is( '.left-button' ) ? true : false,
+				topPos        = $button.offset().top,
+				leftPos       = Math.floor( $button.offset().left ),
+				adjustment    = 30 * collisionIndex,
+				newPos        = isLeft ? leftPos + adjustment : leftPos - adjustment;
 
-				if ( 0 === index ) {
-					return;
-				}
+			$button.offset( { top: topPos, left: newPos } );
+		},
 
-				horAdjustment = isLeft ? 30 * index : ( 30 * -1 * index ) - 30;
+		determineButtonCollision: function( $test, $collision ) {
+			var testRect      = $test.get( 0 ).getBoundingClientRect(),
+				collisionRect = $collision.get( 0 ).getBoundingClientRect(),
+				overlap       = ! ( testRect.right < collisionRect.left ||
+					testRect.left > collisionRect.right ||
+					testRect.bottom < collisionRect.top ||
+					testRect.top > collisionRect.bottom
+				);
 
-				$( buttonSelector ).css( cssProp, horAdjustment + 'px' );
+			return overlap;
 		},
 
 		determineButtonPosition: function( selector ) {
@@ -279,6 +394,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					controls[ 'bgtfw_menu_location_' + themeLocation ] = {type: 'panel', label: 'Customize ' + menuLocationName, description: 'Customize the styling of this menu' };
 					buttonPosition = self.determineButtonPosition( 'div#' + themeLocation + '-menu' );
 					self.addMultiButtons( 'div#' + themeLocation + '-menu', controls, buttonPosition );
+					self.addMultiButtons( 'div#' + themeLocation + '-wrap', controls, buttonPosition );
 				} else {
 					let menuSelector = 'ul#' + themeLocation + '-menu';
 					controls[ 'nav_menu[' + menuId + ']' ] = {type: 'section', label: 'Add Menu Items', description: 'Add or remove items to this menu' };
@@ -286,7 +402,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					buttonPosition = self.determineButtonPosition( menuSelector );
 					self.addMultiButtons( menuSelector, controls, buttonPosition );
 				}
-
 
 			} );
 		},
@@ -315,7 +430,9 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$( this ).parent().toggleClass( 'expanded' );
 				$( '.bgtfw-multi-edit-button' ).not( this ).removeClass( 'expanded' );
 				$( '.bgtfw-multi-edit-button, .bgtfw-edit-button' ).not( this ).toggleClass( 'hidden' );
-				self.fixMultiCollisions( $( this ).children( 'div' ) );
+				if ( $( this ).parent().hasClass( 'expanded' ) ) {
+					self.fixMultiCollisions( $( this ).children( 'div' ) );
+				}
 			} );
 
 			$( selector ).find( '.bgtfw-edit-item' ).off( 'click' ).on( 'click', function( e ) {

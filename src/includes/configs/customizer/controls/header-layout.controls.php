@@ -258,7 +258,7 @@ return array(
 		'choices'   => $bgtfw_presets->get_preset_choices( 'header' ),
 		'edit_vars' => array(
 			array(
-				'selector'    => '#masthead',
+				'selector'    => '#masthead.header',
 				'label'       => esc_html__( 'Header Layout', 'bgtfw' ),
 				'description' => esc_html__( 'Change the header layout preset', 'bgtfw' ),
 			),
@@ -362,7 +362,7 @@ return array(
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'edit_vars'         => array(
 			array(
-				'selector'    => '#masthead',
+				'selector'    => '#masthead.header',
 				'label'       => esc_html__( 'Header Background', 'bgtfw' ),
 				'description' => esc_html__( 'Change the header background color or set a background image / video', 'bgtfw' ),
 			),

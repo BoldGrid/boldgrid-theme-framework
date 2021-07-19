@@ -105,6 +105,15 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			self.$targetHighlight = $( '#target-highlight' );
 
 			self.addButtons();
+
+			$( window ).on( 'scroll', function() {
+				var scrollPos = $( window ).scrollTop();
+				if ( 0 >= scrollPos ) {
+					$( '#masthead-sticky' ).css( 'display', 'none' );
+				} else if ( api( 'bgtfw_fixed_header' )() ) {
+					$( '#masthead-sticky' ).css( 'display', 'block' );
+				}
+			});
 		},
 
 		/**

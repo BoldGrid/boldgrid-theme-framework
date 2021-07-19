@@ -98,6 +98,13 @@ return array(
 				'render_callback' => array( 'BoldGrid', 'dynamic_footer' ),
 			),
 		),
+		'edit_vars'   => array(
+			array(
+				'selector'    => 'footer.site-footer',
+				'label'       => __( 'Footer Layout', 'bgtfw' ),
+				'description' => __( 'Customize the layout of your site\'s footer', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_footer_color'  => array(
 		'type'              => 'bgtfw-palette-selector',

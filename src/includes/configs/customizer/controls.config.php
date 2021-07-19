@@ -41,6 +41,7 @@ $menu_controls             = require dirname( __FILE__ ) . '/controls/menu.contr
 $page_title_controls       = require dirname( __FILE__ ) . '/controls/page-title.controls.php';
 $pages_controls            = require dirname( __FILE__ ) . '/controls/pages.controls.php';
 $title_tagline_controls    = require dirname( __FILE__ ) . '/controls/title-tagline.controls.php';
+$typography_controls       = require dirname( __FILE__ ) . '/controls/typography.controls.php';
 $woocommerce_controls      = require dirname( __FILE__ ) . '/controls/woocommerce.controls.php';
 $general_controls          = require dirname( __FILE__ ) . '/controls/general.controls.php';
 
@@ -58,6 +59,7 @@ return array_merge(
 	$page_title_controls,
 	$pages_controls,
 	$title_tagline_controls,
+	$typography_controls,
 	$woocommerce_controls,
 	$general_controls
 );

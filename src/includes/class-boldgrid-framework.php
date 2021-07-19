@@ -461,12 +461,6 @@ class BoldGrid_Framework {
 				<?php
 			}, 20 );
 		}
-		if ( is_customize_preview() && false === get_theme_mod( 'bgtfw_fixed_header' ) ) {
-			add_filter( 'bgtfw_sticky_header_display_css', function( $css ) {
-				$css .= '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none; }';
-				return $css;
-			} );
-		}
 
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );

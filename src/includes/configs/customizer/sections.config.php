@@ -62,13 +62,6 @@ $sections_array = array(
 		'capability'  => 'edit_theme_options',
 		'priority'    => 1,
 		'icon'        => 'dashicons-schedule',
-		'edit_vars'   => array(
-			array(
-				'selector'    => 'footer.site-footer',
-				'label'       => __( 'Footer Layout', 'bgtfw' ),
-				'description' => __( 'Customize the layout of your site\'s footer', 'bgtfw' ),
-			),
-		),
 	),
 	'bgtfw_footer_colors'                        => array(
 		'title'       => __( 'Colors', 'bgtfw' ),
@@ -292,7 +285,7 @@ $sections_array = array(
 		'icon'      => 'fa-id-card-o',
 		'edit_vars' => array(
 			array(
-				'selector'    => '.blog .entry-meta',
+				'selector'    => '.blog .entry-meta > span:first-child',
 				'label'       => __( 'Post Meta', 'bgtfw' ),
 				'description' => __( 'Change the display and style of post meta elements', 'bgtfw' ),
 			),

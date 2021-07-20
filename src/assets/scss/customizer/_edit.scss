@@ -200,3 +200,70 @@ button.customize-partial-edit-shortcut-button {
 		}
 	}
 }
+
+/**
+* #.# jQuery UI Dialog.
+*
+* Custom settings for our jQuery UI Dialog, which is used for notices, such as when trying to edit
+* a page's content.
+*/
+/* By default, ensure the dialog is hidden. */
+.dialog-hidden {
+	display: none;
+}
+
+/* Generic settings to ensure a theme's css does not interfere with dialog. */
+.ui-dialog {
+color: #000;
+max-width: 95%;
+font-family: Helvetica;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
+}
+
+/* Mimic the close button in Dashboard > Appearance > Themes > Theme Details. */
+.ui-dialog-titlebar-close {
+	height: 100%;
+	float: right;
+	background: transparent;
+	margin-right: -35px;
+	border: 0px;
+	border-left: 1px solid #ddd;
+}
+
+/* Mimic wp-core-ui's button-primary */
+.ui-dialog-buttonset button {
+	font-size: 13px;
+	line-height: 26px;
+	height: 28px;
+	margin: 0;
+	padding: 0 10px 1px;
+	border-width: 1px;
+	-webkit-appearance: none;
+	border-radius: 3px;
+	white-space: nowrap;
+}
+.ui-dialog-buttonset button:first-of-type {
+background: #0085ba;
+border-color: #0073aa #006799 #006799;
+-webkit-box-shadow: 0 1px 0 #006799;
+box-shadow: 0 1px 0 #006799;
+color: #fff;
+text-decoration: none;
+text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+margin-right: 5px;
+}
+
+/* By defualt, a .ui-button color is #555. The ".palette-primary button" class may override this,
+causing undesired effects. Below, override color settings set by ".palette-primary button". */
+.ui-dialog .ui-button {
+color: #555;
+}
+
+.bgtfw-dialog-question {
+	text-align: center;
+	font-style: italic;
+	color: #555d66;
+	margin-top: 26px;
+}

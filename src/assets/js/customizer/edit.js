@@ -155,6 +155,8 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 			self.addWidgetButtons();
 
+			self.addExternalButtons();
+
 			_.defer( self.fixStaticPostioning );
 
 			_.defer( self.fixCollisions );
@@ -293,13 +295,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				scrollTop        = $( window ).scrollTop(),
 				css              = {};
 
-			console.log( {
-				multiBoxHeight: multiBoxHeight,
-				multiBoxOffset: multiBoxOffset,
-				docHeight: docHeight,
-				scrollTop: scrollTop
-			} );
-
 			if ( ! multiBoxOffset ) {
 				return;
 			}
@@ -371,6 +366,54 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 					self.addSingleButton( '#' + widgetId, sectionId, control, buttonPosition );
 			} );
+		},
+
+		addExternalButtons: function() {
+			var pageSelector  = '.site-content .entry-content',
+				pageButtonPos = self.determineButtonPosition( pageSelector ),
+				pageHeaderSelector = '#masthead.template-header',
+				pageHeaderButtonPos = self.determineButtonPosition( pageHeaderSelector ),
+				templateId;
+
+			self.addSingleButton(
+				pageSelector,
+				'editPostLink',
+				{
+					type: 'external',
+					label: 'Edit Page / Post Content',
+					description: 'Edit the Content of this Page / Post',
+					dialogSelector: '#entry-content'
+				},
+				pageButtonPos
+			);
+
+			if ( 0 !== $( pageHeaderSelector ).length ) {
+				let classList = $( pageHeaderSelector ).get( 0 ).classList;
+				const re = /template-(\d+)/;
+
+				classList.forEach( function( className ) {
+					let match = re.exec( className );
+					if ( match ) {
+						templateId = match[ 1 ];
+						self.buttonParams.pageHeaderLink = self.buttonParams.editPostLink.replace(
+							/post=\d+/,
+							'post=' + templateId
+						);
+					}
+				} );
+
+				self.addSingleButton(
+					pageHeaderSelector,
+					'pageHeaderLink',
+					{
+						type: 'external',
+						label: 'Edit Custom Page Header',
+						description: 'Edit the Custom Page Header',
+						dialogSelector: '#custom-page-header'
+					},
+					pageHeaderButtonPos
+				);
+			}
 		},
 
 		addMenuButtons: function() {
@@ -468,14 +511,56 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
 				e.preventDefault();
 				e.stopPropagation();
-				api[ this.dataset.focusType ]( this.dataset.focusId ).focus( { completeCallback: function() {
-					if ( 'control' === controlType ) {
-						api.control( controlId ).container.fadeTo( '700', '0.1', function() {
-							$( this ).fadeTo( '700', '1' );
-						} );
-					}
-				} } );
+
+				if ( 'external' === controlType ) {
+					self.showExternalPrompt( controlId, control.dialogSelector );
+
+				} else {
+					api[ this.dataset.focusType ]( this.dataset.focusId ).focus( { completeCallback: function() {
+						if ( 'control' === controlType ) {
+							api.control( controlId ).container.fadeTo( '700', '0.1', function() {
+								$( this ).fadeTo( '700', '1' );
+							} );
+						}
+					} } );
+				}
 			} );
+		},
+		showExternalPrompt: function( controlId, selector ) {
+			var dialogSettings = {
+				width: 400,
+				resizable: false,
+				modal: true
+			},
+			goThereNow = self.buttonParams.goThereNow,
+			editPostLink = self.buttonParams[ controlId ];
+
+			/*
+			* When clicking on the the page content, the user will be prompted to
+			* visit the page editor to edit those items. They will see an option to "Go there now",
+			* which brings the user to the page editor. They will also see an option to cancel,
+			* which closes the editor. In order to use the appropriate language for "Cancel" and
+			* "Go there now", we need to set those language variables as keys. This must be done
+			* below rather than in the standard var delaration above.
+			*/
+			dialogSettings.buttons = {};
+
+			// When "Go there now" is clicked, navigate to the editor for this page.
+			dialogSettings.buttons[goThereNow] = function() {
+				wp.customize.preview.send( 'edit-post-link', editPostLink );
+			};
+
+			wp.customize.preview.bind( 'active', dialogSettings.buttons[goThereNow] );
+
+			dialogSettings.buttons.cancel = function() {
+				$( this ).dialog( 'close' );
+			};
+
+			console.log( {
+				selector: selector,
+				dialogSettings: dialogSettings
+			} );
+			$( selector ).dialog( dialogSettings );
 		}
 	};
 

@@ -175,6 +175,18 @@ class Boldgrid_Framework_Customizer_Edit {
 	}
 
 	/**
+	 * Include our partial template file.
+	 * Get Edit Params.
+	 *
+	 * @since 2.9.0
+	 */
+	public function wp_footer() {
+		if ( is_customize_preview() ) {
+			include dirname( dirname( __FILE__ ) ) . '/partials/customizer-edit.php';
+		}
+	}
+
+	/**
 	 * Get Edit Params.
 	 *
 	 * @since 2.9

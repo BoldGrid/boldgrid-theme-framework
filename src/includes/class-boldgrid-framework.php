@@ -677,6 +677,7 @@ class BoldGrid_Framework {
 		$edit_buttons = new Boldgrid_Framework_Customizer_Edit( $this->configs );
 		$this->loader->add_action( 'customize_preview_init', $edit_buttons, 'generate_edit_params' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $edit_buttons, 'wp_enqueue_scripts' );
+		$this->loader->add_action( 'wp_footer', $edit_buttons, 'wp_footer' );
 	}
 
 	/**

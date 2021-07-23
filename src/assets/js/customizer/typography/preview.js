@@ -38,6 +38,11 @@ export class Preview {
 		let base = api( 'bgtfw_headings_font_size' )();
 		let unit = 'px';
 
+		// Handle variant of font sizes.
+		let variant    = to.variant;
+		let fontWeight = parseInt( variant );
+		let fontStyle  = variant.replace( fontWeight, '' );
+
 		// Build CSS.
 		let css = '';
 
@@ -50,6 +55,16 @@ export class Preview {
 				}
 				if ( 'floor' === selector.round ) {
 					val = Math.floor( val );
+				}
+
+				// Adds css for font variants.
+				if ( fontWeight && fontStyle ) {
+					css += rule + '{font-size:' + val + unit + ';';
+					css += 'font-style:' + fontStyle + ';';
+					css += 'font-weight:' + fontWeight + ';}';
+				} else if ( fontWeight ) {
+					css += rule + '{font-size:' + val + unit + ';';
+					css += 'font-weight:' + fontWeight + ';}';
 				}
 				css += rule + '{font-size:' + val + unit + ';}';
 			}
@@ -102,6 +117,7 @@ export class Preview {
 			'bgtfw_site_title_typography',
 			'bgtfw_menu_typography_main'
 		];
+
 		this.addStyle( this.getCSS( api( 'bgtfw_headings_typography' )() ) );
 
 		typographyControls.forEach( control => this.addTypographyOverride( control ) );

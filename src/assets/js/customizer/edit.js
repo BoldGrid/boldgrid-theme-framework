@@ -530,7 +530,10 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			var dialogSettings = {
 				width: 400,
 				resizable: false,
-				modal: true
+				modal: true,
+				classes: {
+					'ui-dialog': 'bgtfw-edit-dialog'
+				}
 			},
 			goThereNow = self.buttonParams.goThereNow,
 			editPostLink = self.buttonParams[ controlId ];

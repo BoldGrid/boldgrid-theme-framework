@@ -127,7 +127,7 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					var text = $( this ).clone().children().remove().end().text();
 					if ( 0 === $( this ).height() ||
 						0 === $( this ).outerWidth() ||
-						( $( this ).is( 'h1, h2, h3, h4, h5, h6, p' ) && 0 === text.length && ! $( this ).is( '.site-title' ) ) ) {
+						( $( this ).is( 'h1, h2, h3, h4, h5, h6, p' ) && 0 === text.length && ! $( this ).is( '.site-title' ) && ! $( this ).is( '.entry-title' ) ) ) {
 							$( this ).addClass( 'no-edit-button' );
 					}
 				} );
@@ -138,6 +138,10 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.page-title' ) ||
 						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.tags-links' ) ||
 						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.cat-links' ) ) {
+						return;
+					}
+
+					if ( 'bgtfw_body_typography' === controlId && $( selector ).is( '.entry-title' ) ) {
 						return;
 					}
 
@@ -160,6 +164,21 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			_.defer( self.fixStaticPostioning );
 
 			_.defer( self.fixCollisions );
+
+			_.defer( self.fixZindex );
+		},
+
+		/**
+		 * Fixes Menu Z-index.
+		 *
+		 * Find all .sm elements and decrease the z-index for each one.
+		 */
+		fixZindex: function() {
+			var defaultZindex = 301;
+			$( '.sm' ).each( function() {
+				defaultZindex = defaultZindex - 1;
+				$( this ).css( 'z-index', defaultZindex );
+			} );
 		},
 
 		fixStaticPostioning: function() {
@@ -559,10 +578,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 				$( this ).dialog( 'close' );
 			};
 
-			console.log( {
-				selector: selector,
-				dialogSettings: dialogSettings
-			} );
 			$( selector ).dialog( dialogSettings );
 		}
 	};

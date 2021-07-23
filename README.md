@@ -38,6 +38,9 @@ user guide for more information.
 
 ### 2.9.0 ###
 * New Feature: New Edit Buttons added to Customizer Preview, that feature dropdowns for buttons with multiple control options.
+* Bug Fix: Crio - Branding in Footer - Site Title font bug [#431](https://github.com/BoldGrid/boldgrid-theme-framework/issues/431)
+* Bug Fix: Crio Customizer Live Preview - font size / font weight does not update [#307](https://github.com/BoldGrid/boldgrid-theme-framework/issues/307)
+* Bug Fix: Crio - Difficulty working with Widgets in the Customizer [#293](https://github.com/BoldGrid/boldgrid-theme-framework/issues/293)
 
 ### 2.8.1 ###
 * Bug Fix: BoldGrid Attribution should not be toggleable without license [#189](https://github.com/BoldGrid/boldgrid-theme-framework/issues/189)

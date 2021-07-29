@@ -109,7 +109,7 @@ return array(
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'edit_vars'         => array(
 			array(
-				'selector'    => Boldgrid_Framework_Links::$default_link_selectors,
+				'selector'    => Boldgrid_Framework_Links::$edit_link_selectors,
 				'label'       => esc_attr__( 'Body Links', 'bgtfw' ),
 				'description' => esc_attr__( 'Customize the style of your body links.', 'bgtfw' ),
 			),

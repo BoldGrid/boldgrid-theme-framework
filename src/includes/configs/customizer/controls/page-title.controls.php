@@ -27,9 +27,14 @@ return array(
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'edit_vars'         => array(
 			array(
-				'selector'    => array( '.page .page-header', '.archive .page-header', '.blog .page-header' ),
+				'selector'    => array( '.page .page-header', '.archive .page-header', '.blog .page-header', '.single .page-header-wrapper' ),
 				'label'       => esc_attr__( 'Page Title Styling', 'bgtfw' ),
 				'description' => esc_attr__( 'Customize the color, background, and size of your page title.', 'bgtfw' ),
+			),
+			array(
+				'selector'    => array( '.single .page-header-wrapper' ),
+				'label'       => esc_attr__( 'Post Title Styling', 'bgtfw' ),
+				'description' => esc_attr__( 'Customize the color, background, and size of your post title.', 'bgtfw' ),
 			),
 		),
 	),

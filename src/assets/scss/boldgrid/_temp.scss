@@ -224,6 +224,10 @@
 	z-index: 1;
 }
 
+.customize-partial-edit-shortcuts-shown .site-header {
+	z-index: 3;
+}
+
 .wp-custom-header {
 	position: absolute;
 	overflow: hidden;

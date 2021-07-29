@@ -714,7 +714,7 @@ HTML;
 		if ( $wp_customize->get_section( 'static_front_page' ) ) {
 			$section              = $wp_customize->get_section( 'static_front_page' );
 			$section->title       = esc_html__( 'Homepage', 'bgtfw' );
-			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s Homepage settings', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-page-layout-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
+			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s Homepage settings', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/using-the-homepage-settings/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 			$section->priority    = 5;
 			$section->panel       = 'bgtfw_design_panel';
 		}
@@ -983,7 +983,7 @@ HTML;
 			$section    = $wp_customize->get_section( $section_id );
 
 			if ( $section ) {
-				$section->description = '<a target="_blank" class="boldgrid-icon-newtab dashicons-before dashicons-external" href="https://www.boldgrid.com/support/working-with-menus-in-boldgrid/">' . __( 'Menu Tutorial', 'bgtfw' ) . '</a>';
+				$section->description = '<a target="_blank" class="boldgrid-icon-newtab dashicons-before dashicons-external" href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-menus-in-boldgrid-crio/">' . __( 'Menu Tutorial', 'bgtfw' ) . '</a>';
 			}
 		}
 	}

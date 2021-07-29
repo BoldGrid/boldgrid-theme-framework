@@ -12,6 +12,8 @@
 var BOLDGRID = BOLDGRID || {};
 BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 
+const { __ } = wp.i18n;
+
 ( function( $ ) {
 
 	'use strict';
@@ -135,9 +137,8 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					let controlId = Object.keys( controls )[0];
 					let buttonPosition = self.determineButtonPosition( selector );
 					if ( 'bgtfw_body_link_color' === controlId && $( selector ).is( '.button-primary, .button-secondary' ) ||
-						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.page-title' ) ||
-						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.tags-links' ) ||
-						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.cat-links' ) ) {
+						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.page-title, .entry-title, .tags-links, .cat-links ' ) ||
+						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.author, .posted-on, .nav-previous, .nav-next' ) ) {
 						return;
 					}
 
@@ -377,13 +378,18 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 			_( widgets ).each( function( widget ) {
 				var widgetId      = widget.id,
 					sectionId     = 'sidebar-widgets-' + widgetId,
-					buttonPosition = self.determineButtonPosition( '#' + widgetId ),
-					control    = {
-						'type': 'section',
-						'label': 'Widgets'
-					};
+					buttonPosition = self.determineButtonPosition( '#' + widgetId );
 
-					self.addSingleButton( '#' + widgetId, sectionId, control, buttonPosition );
+				// Add widget area edit button.
+				self.addSingleButton(
+					'#' + widgetId,
+					sectionId,
+					{
+						'type': 'section',
+						'label': __( 'Widget Area', 'bgtfw' )
+					},
+					buttonPosition
+				);
 			} );
 		},
 
@@ -456,7 +462,6 @@ BOLDGRID.CustomizerEdit = BOLDGRID.CustomizerEdit || {};
 					controls[ 'bgtfw_menu_location_' + themeLocation ] = {type: 'panel', label: 'Customize ' + menuLocationName, description: 'Customize the styling of this menu' };
 					buttonPosition = self.determineButtonPosition( 'div#' + themeLocation + '-menu' );
 					self.addMultiButtons( 'div#' + themeLocation + '-menu', controls, buttonPosition );
-					self.addMultiButtons( 'div#' + themeLocation + '-wrap', controls, buttonPosition );
 				} else {
 					let menuSelector = 'ul#' + themeLocation + '-menu';
 					controls[ 'nav_menu[' + menuId + ']' ] = {type: 'section', label: 'Add Menu Items', description: 'Add or remove items to this menu' };

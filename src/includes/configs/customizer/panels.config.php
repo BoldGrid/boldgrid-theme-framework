@@ -42,13 +42,13 @@ return array(
 	),
 	'bgtfw_blog_blog_page_panel' => array(
 		'title'       => __( 'Blog Page', 'bgtfw' ),
-		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the display of your site\'s blog page.', 'bgtfw' ) . '</p><div class="help"><a href=https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-your-blog-page-with-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the display of your site\'s blog page.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-your-blog-page-with-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'panel'       => 'bgtfw_blog_panel',
 		'icon'        => 'dashicons-media-document',
 	),
 	'bgtfw_pages_panel'          => array(
 		'title'       => __( 'Pages', 'bgtfw' ),
-		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the display of your site\'s pages', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/using-the-homepage-settings/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
+		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the display of your site\'s pages', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-page-layout-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',
 		'priority'    => 2,
 		'panel'       => 'bgtfw_design_panel',
 		'icon'        => 'dashicons-admin-page',

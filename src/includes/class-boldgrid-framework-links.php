@@ -54,6 +54,17 @@ class Boldgrid_Framework_Links {
 	];
 
 	/**
+	 * Selectors to use for edit vars.
+	 *
+	 * NOTE: do not use this directly. Only set in here for passing into config.
+	 *
+	 * @var array
+	 */
+	public static $edit_link_selectors = [
+		'.article-wrapper a',
+	];
+
+	/**
 	 * Prefixes for theme mods.
 	 *
 	 * NOTE: do not use this directly. Only set in here for passing into config.

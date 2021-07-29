@@ -34,7 +34,7 @@ before_script:
 - sed -i "s/yourusernamehere/root/" wp-tests-config.php
 - sed -i "s/yourpasswordhere//" wp-tests-config.php
 - mysql -e 'CREATE DATABASE wordpress_test;' -uroot
-- mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/2.9.tar.gz | tar xz --strip-components=1 -C php-codesniffer
+- mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/refs/tags/3.6.0.tar.gz | tar xz --strip-components=1 -C php-codesniffer
 - mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/0.10.0.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
 - cd php-codesniffer
 - scripts/phpcs --config-set installed_paths ../wordpress-coding-standards

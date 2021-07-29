@@ -62,6 +62,7 @@ class Boldgrid_Framework_Links {
 	 */
 	public static $edit_link_selectors = [
 		'.article-wrapper a',
+		'p.logged-in-as',
 	];
 
 	/**

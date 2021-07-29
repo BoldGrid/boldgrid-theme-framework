@@ -138,7 +138,7 @@ const { __ } = wp.i18n;
 					let buttonPosition = self.determineButtonPosition( selector );
 					if ( 'bgtfw_body_link_color' === controlId && $( selector ).is( '.button-primary, .button-secondary' ) ||
 						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.page-title, .entry-title, .tags-links, .cat-links ' ) ||
-						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.author, .posted-on, .nav-previous, .nav-next' ) ) {
+						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.author, .posted-on, .nav-previous, .nav-next, .logged-in-as' ) ) {
 						return;
 					}
 
@@ -427,14 +427,20 @@ const { __ } = wp.i18n;
 					}
 				} );
 
-				self.addSingleButton(
+				self.addMultiButtons(
 					pageHeaderSelector,
-					'pageHeaderLink',
 					{
-						type: 'external',
-						label: 'Edit Custom Page Header',
-						description: 'Edit the Custom Page Header',
-						dialogSelector: '#custom-page-header'
+						'bgtfw_page_headers': {
+							type: 'section',
+							label:__( 'Change Custom Page Template', 'bgtfw' ),
+							description: __( 'Choose which custom page template to display', 'bgtfw' ),
+						},
+						'pageHeaderLink': {
+							type: 'external',
+							label: 'Edit Custom Page Header',
+							description: 'Edit the Custom Page Header',
+							dialogSelector: '#custom-page-header'
+						}
 					},
 					pageHeaderButtonPos
 				);
@@ -460,8 +466,8 @@ const { __ } = wp.i18n;
 				if ( ! menuId ) {
 					controls[ 'nav_menu_locations[' + themeLocation + ']' ] = {type: 'control', label: 'Assign Menu', description: 'Assign or Create a menu for this location' };
 					controls[ 'bgtfw_menu_location_' + themeLocation ] = {type: 'panel', label: 'Customize ' + menuLocationName, description: 'Customize the styling of this menu' };
-					buttonPosition = self.determineButtonPosition( 'div#' + themeLocation + '-menu' );
-					self.addMultiButtons( 'div#' + themeLocation + '-menu', controls, buttonPosition );
+					buttonPosition = self.determineButtonPosition( 'div#' + themeLocation + '-wrap' );
+					self.addMultiButtons( 'div#' + themeLocation + '-wrap', controls, buttonPosition );
 				} else {
 					let menuSelector = 'ul#' + themeLocation + '-menu';
 					controls[ 'nav_menu[' + menuId + ']' ] = {type: 'section', label: 'Add Menu Items', description: 'Add or remove items to this menu' };
@@ -484,7 +490,7 @@ const { __ } = wp.i18n;
 			$( selector ).not( '.no-edit-button' ).append( '<div class="bgtfw-edit-border-box"></div>' );
 			_( controls ).each( function( control, controlId ) {
 				$( selector ).not( '.no-edit-button' ).find( '.bgtfw-multi-edit-button' ).find( 'div' ).append( `
-					<p class="bgtfw-edit-item" data-focus-type="${control.type}" data-focus-id="${controlId}">
+					<p class="bgtfw-edit-item" data-focus-type="${control.type}" data-focus-id="${controlId}" data-dialog-selector="${control.dialogSelector}">
 						<span class="edit-label">${control.label}</span>${control.description}
 					</p>
 				` );
@@ -503,17 +509,22 @@ const { __ } = wp.i18n;
 			} );
 
 			$( selector ).find( '.bgtfw-edit-item' ).off( 'click' ).on( 'click', function( e ) {
-				var controlId   = $( this ).data( 'focus-id' ),
-					controlType = $( this ).data( 'focus-type' );
+				var controlId      = $( this ).data( 'focus-id' ),
+					controlType    = $( this ).data( 'focus-type' ),
+					dialogSelector = $( this ).data( 'dialog-selector' );
 					e.preventDefault();
 					e.stopPropagation();
-				api[ controlType ]( controlId ).focus( { completeCallback: function() {
-					if ( 'control' === controlType ) {
-						api.control( controlId ).container.fadeTo( '400', '0.1', function() {
-							$( this ).fadeTo( '400', '1' );
-						} );
-					}
-				} } );
+				if ( 'external' === controlType ) {
+					self.showExternalPrompt( controlId, dialogSelector );
+				} else {
+					api[ controlType ]( controlId ).focus( { completeCallback: function() {
+						if ( 'control' === controlType ) {
+							api.control( controlId ).container.fadeTo( '400', '0.1', function() {
+								$( this ).fadeTo( '400', '1' );
+							} );
+						}
+					} } );
+				}
 			} );
 		},
 

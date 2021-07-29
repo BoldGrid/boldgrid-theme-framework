@@ -32,13 +32,6 @@ return array(
 				'property' => 'display',
 			),
 		),
-		'edit_vars'         => array(
-			array(
-				'selector'    => '.single .entry-footer .tags-links',
-				'label'       => __( 'Display Post Tag Links', 'bgtfw' ),
-				'description' => __( 'Toggle the display of your tags on the blog roll and archive pages.', 'bgtfw' ),
-			),
-		),
 	),
 
 	// Start: Posts Tags Links Color Controls.
@@ -274,13 +267,6 @@ return array(
 			array(
 				'element'  => '.single .entry-footer .cat-links',
 				'property' => 'display',
-			),
-		),
-		'edit_vars'         => array(
-			array(
-				'selector'    => '.single .entry-footer .cat-links',
-				'label'       => __( 'Post Category Links', 'bgtfw' ),
-				'description' => __( 'Choose whether or not to display post category links', 'bgtfw' ),
 			),
 		),
 	),

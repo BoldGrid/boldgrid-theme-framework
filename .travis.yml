@@ -50,7 +50,7 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    php: '7.3'
+    php: '8.0'
 - provider: releases
   skip_cleanup: true
   api_key: "${GITHUB_TOKEN}"

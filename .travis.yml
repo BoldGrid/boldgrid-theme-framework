@@ -37,12 +37,12 @@ before_script:
 - mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/refs/tags/3.6.0.tar.gz | tar xz --strip-components=1 -C php-codesniffer
 - mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/0.10.0.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
 - cd php-codesniffer
-- scripts/phpcs --config-set installed_paths ../wordpress-coding-standards
+- bin/phpcs --config-set installed_paths ../wordpress-coding-standards
 - cd $BGTFW_THEME_DIR
 - phpenv rehash
 script:
 - find . \( -name '*.php' \) -exec php -lf {} \; >/dev/null
-- "$WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=$TRAVIS_BUILD_DIR/phpcs.ruleset.xml --ignore=*partials/hover-colors-only.php,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/woocommerce/*,*/sa_templates/*,functions.php --extensions=php"
+- "$WP_DEVELOP_DIR/php-codesniffer/bin/phpcs -p -s -v -n . --standard=$TRAVIS_BUILD_DIR/phpcs.ruleset.xml --ignore=*partials/hover-colors-only.php,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/woocommerce/*,*/sa_templates/*,functions.php --extensions=php"
 - cd $TRAVIS_BUILD_DIR
 deploy:
 - provider: script

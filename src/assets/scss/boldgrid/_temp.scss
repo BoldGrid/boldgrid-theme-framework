@@ -228,6 +228,10 @@
 	z-index: 3;
 }
 
+.customize-partial-edit-shortcuts-shown .site-header.bgtfw-sticky-header {
+	z-index: 400;
+}
+
 .wp-custom-header {
 	position: absolute;
 	overflow: hidden;

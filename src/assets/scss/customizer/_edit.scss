@@ -139,6 +139,8 @@ button.customize-partial-edit-shortcut-button {
 			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 			font-weight: 400;
 			font-style:normal;
+			text-align: left;
+			justify-content: flex-start;
 			&:hover {
 				background-color: #0073aa;
 				color: #fff;
@@ -151,6 +153,8 @@ button.customize-partial-edit-shortcut-button {
 					font-weight: 600;
 					text-align: left;
 					width: 100%;
+					justify-content: flex-start;
+					padding-left: 0;
 				}
 			}
 		}

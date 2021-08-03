@@ -112,7 +112,7 @@ const { __ } = wp.i18n;
 				var scrollPos = $( window ).scrollTop();
 				if ( 0 >= scrollPos ) {
 					$( '#masthead-sticky' ).css( 'display', 'none' );
-				} else if ( api( 'bgtfw_fixed_header' )() ) {
+				} else if ( api( 'bgtfw_fixed_header' ) && api( 'bgtfw_fixed_header' )() ) {
 					$( '#masthead-sticky' ).css( 'display', 'block' );
 				}
 			} );
@@ -136,19 +136,31 @@ const { __ } = wp.i18n;
 				if ( 1 === Object.keys( controls ).length ) {
 					let controlId = Object.keys( controls )[0];
 					let buttonPosition = self.determineButtonPosition( selector );
-					if ( 'bgtfw_body_link_color' === controlId && $( selector ).is( '.button-primary, .button-secondary' ) ||
-						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.page-title, .entry-title, .tags-links, .cat-links ' ) ||
-						'bgtfw_body_link_color' === controlId && $( selector ).parent().is( '.author, .posted-on, .nav-previous, .nav-next, .logged-in-as' ) ) {
-						return;
-					}
 
-					if ( 'bgtfw_body_typography' === controlId && $( selector ).is( '.entry-title' ) ) {
-						return;
-					}
+					$( selector ).each( function() {
+						if ( 'bgtfw_body_link_color' === controlId && $( this ).is( '.button-primary, .button-secondary' ) ||
+							'bgtfw_body_link_color' === controlId && $( this ).parent().is( '.page-title, .entry-title, .tags-links, .cat-links ' ) ||
+							'bgtfw_body_link_color' === controlId && $( this ).parent().is( '.author, .posted-on, .nav-previous, .nav-next, .logged-in-as' ) ) {
+								$( this ).addClass( 'no-edit-button' );
+						}
 
-					if ( 'bgtfw_headings_typography' === controlId && $( selector ).is( '.site-description, .site-title' ) ) {
-						return;
-					}
+						if ( 'bgtfw_body_link_color' === controlId && $( this ).is( '.button-primary, .button-secondary' ) ||
+							'bgtfw_body_link_color' === controlId && $( this ).parent().is( '.page-title, .entry-title, .tags-links, .cat-links ' ) ||
+							'bgtfw_body_link_color' === controlId && $( this ).parent().is( '.author, .posted-on, .nav-previous, .nav-next, .logged-in-as' ) ) {
+								$( this ).addClass( 'no-edit-button' );
+						}
+
+						if ( ( 'bgtfw_body_typography' === controlId && $( this ).is( '.entry-title' ) ) ||
+							( 'bgtfw_body_typography' === controlId && 0 !== $( this ).siblings( '.bg-hr' ).length ) ) {
+								$( this ).addClass( 'no-edit-button' );
+						}
+
+						if ( 'bgtfw_headings_typography' === controlId && $( this ).is( '.site-description, .site-title' ) ) {
+							$( this ).addClass( 'no-edit-button' );
+						}
+
+
+					} );
 
 					self.addSingleButton( selector, controlId, controls[ controlId ], buttonPosition );
 				} else {
@@ -162,7 +174,7 @@ const { __ } = wp.i18n;
 
 			self.addExternalButtons();
 
-			_.defer( self.fixStaticPostioning );
+			_.defer( self.fixStaticPositioning );
 
 			_.defer( self.fixCollisions );
 
@@ -182,12 +194,16 @@ const { __ } = wp.i18n;
 			} );
 		},
 
-		fixStaticPostioning: function() {
+		fixStaticPositioning: function() {
 			var $editButtons = $( '.bgtfw-multi-edit-button, .bgtfw-edit-button' );
 
 			$editButtons.each( function() {
 				if ( 'static' === $( this ).parent().css( 'position' ) ) {
 					$( this ).parent().css( 'position', 'relative' );
+
+					if ( 'bgtfw_body_link_color' === $( this ).data( 'focus-id' ) && 'inline' === $( this ).parent().css( 'display' ) ) {
+						$( this ).parent().css( 'display', 'inline-block' );
+					}
 				}
 			} );
 		},
@@ -529,6 +545,10 @@ const { __ } = wp.i18n;
 		},
 
 		addSingleButton: function( selector, controlId, control, buttonPosition ) {
+
+			// if ( 'static' === $( selector ).not( '.no-edit-button' ).parent().css( 'position' ) ) {
+			// 	selector = $( selector ).not( '.no-edit-button' ).parent().get( 0 );
+			// }
 			$( selector ).not( '.no-edit-button' ).addClass( 'bgtfw-has-edit single-edit-button' );
 			$( selector ).not( '.no-edit-button' ).addClass( buttonPosition.vert + '-button ' + buttonPosition.hor + '-button' );
 			$( selector ).not( '.no-edit-button' ).append( '<div class="bgtfw-edit-button" data-focus-type="' + control.type + '" data-focus-id="' + controlId + '" title="' + control.label + '"><div>' );

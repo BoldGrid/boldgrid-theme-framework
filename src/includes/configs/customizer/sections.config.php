@@ -352,6 +352,13 @@ $sections_array = array(
 		'title' => __( 'Container', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
 		'icon'  => 'icon-layout-container',
+		'edit_vars' => array(
+			array(
+				'selector'    => '.single .main',
+				'label'       => __( 'Post Layout', 'bgtfw' ),
+				'description' => __( 'Choose between contained or full-width post layout', 'bgtfw' ),
+			),
+		),
 	),
 	'bgtfw_pages_blog_posts_sidebar'             => array(
 		'title'     => __( 'Sidebar', 'bgtfw' ),

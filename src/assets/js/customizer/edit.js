@@ -160,16 +160,16 @@ const { __ } = wp.i18n;
 					$( selector ).each( function() {
 						if ( 'bgtfw_body_link_color' === controlId && $( this ).is( thisLinkExclusions ) ||
 							'bgtfw_body_link_color' === controlId && $( this ).parent().is( parentLinkExclusions ) ) {
-								$( this ).addClass( 'no-edit-button' );
+								$( this ).addClass( 'no-' + controlId + '-edit-button' );
 						}
 
 						if ( ( 'bgtfw_body_typography' === controlId && $( this ).is( '.entry-title' ) ) ||
 							( 'bgtfw_body_typography' === controlId && 0 !== $( this ).siblings( '.bg-hr' ).length ) ) {
-								$( this ).addClass( 'no-edit-button' );
+								$( this ).addClass( 'no-' + controlId + '-edit-button' );
 						}
 
 						if ( 'bgtfw_headings_typography' === controlId && $( this ).is( '.site-description, .site-title' ) ) {
-							$( this ).addClass( 'no-edit-button' );
+							$( this ).addClass( 'no-' + controlId + '-edit-button' );
 						}
 					} );
 
@@ -630,16 +630,16 @@ const { __ } = wp.i18n;
 		 * @param {object} buttonPosition - The position of the button.
 		 */
 		addSingleButton: function( selector, controlId, control, buttonPosition ) {
-			$( selector ).not( '.no-edit-button' ).addClass( 'bgtfw-has-edit single-edit-button' );
-			$( selector ).not( '.no-edit-button' ).addClass( buttonPosition.vert + '-button ' + buttonPosition.hor + '-button' );
-			$( selector ).not( '.no-edit-button' ).append( '<div class="bgtfw-edit-button" data-focus-type="' + control.type + '" data-focus-id="' + controlId + '" title="' + control.label + '"><div>' );
-			$( selector ).not( '.no-edit-button' ).append( '<div class="bgtfw-edit-border-box"></div>' );
+			$( selector ).not( '.no-' + controlId + '-edit-button, .no-edit-button' ).addClass( 'bgtfw-has-edit single-edit-button' );
+			$( selector ).not( '.no-' + controlId + '-edit-button, .no-edit-button' ).addClass( buttonPosition.vert + '-button ' + buttonPosition.hor + '-button' );
+			$( selector ).not( '.no-' + controlId + '-edit-button, .no-edit-button' ).append( '<div class="bgtfw-edit-button" data-focus-type="' + control.type + '" data-focus-id="' + controlId + '" title="' + control.label + '"><div>' );
+			$( selector ).not( '.no-' + controlId + '-edit-button, .no-edit-button' ).append( '<div class="bgtfw-edit-border-box"></div>' );
 
-			$( selector ).not( '.no-edit-button' ).find( '.bgtfw-edit-button' ).off( 'click' ).on( 'click', function( e ) {
+			$( selector ).not( '.no-' + controlId + '-edit-button, .no-edit-button' ).find( '.bgtfw-edit-button' ).off( 'click' ).on( 'click', function( e ) {
 				var controlType = this.dataset.focusType,
 					controlId   = this.dataset.focusId;
-				if ( 'A' === $( selector ).not( '.no-edit-button' ).prop( 'nodeName' ) ) {
-					$( selector ).not( '.no-edit-button' ).on( 'click', function( e ) {
+				if ( 'A' === $( selector ).not( '.no-' + controlId + '-edit-button, .no-edit-button' ).prop( 'nodeName' ) ) {
+					$( selector ).not( '.no-' + controlId + '-edit-button, .no-edit-button' ).on( 'click', function( e ) {
 						e.preventDefault();
 						e.stopPropagation();
 					} );

@@ -346,7 +346,6 @@ class BoldGrid_Framework {
 		foreach ( glob( $path . '/*.config.php' ) as $filename ) {
 			$option = basename( str_replace( '.config.php', '', $filename ) );
 			if ( ! false === strpos( $filename, 'customizer/controls/' ) ) {
-				error_log( $filename );
 				continue;
 			}
 			if ( ! empty( $folder ) ) {

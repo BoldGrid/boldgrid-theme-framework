@@ -144,7 +144,10 @@ const { __ } = wp.i18n;
 					var text = $( this ).clone().children().remove().end().text();
 					if ( 0 === $( this ).height() ||
 						0 === $( this ).outerWidth() ||
-						( $( this ).is( 'h1, h2, h3, h4, h5, h6, p' ) && 0 === text.length && ! $( this ).is( '.site-title' ) && ! $( this ).is( '.entry-title' ) ) ) {
+						( $( this ).is( 'h1, h2, h3, h4, h5, h6, p, a' ) && 0 === text.length &&
+						 ! $( this ).is( '.site-title' ) &&
+						 ! $( this ).is( '.entry-title' ) &&
+						 ! $( this ).is( '.custom-logo-link' ) ) ) {
 							$( this ).addClass( 'no-edit-button' );
 					}
 				} );

@@ -78,10 +78,20 @@ const { __ } = wp.i18n;
 		 */
 		defaultZindex: 200,
 
+		/**
+		 * @summary The initializing function
+		 *
+		 * @since 2.9.0
+		 */
 		init: function() {
 			api.previewer.bind( 'ready', self._onLoad );
 		},
 
+		/**
+		 *  @summary Runs on page load.
+		 *
+		 * @since 2.9.0
+		 */
 		_onLoad: function() {
 			self.destroy();
 			self.start();
@@ -91,6 +101,11 @@ const { __ } = wp.i18n;
 			} );
 		},
 
+		/**
+		 *  @summary This destroys all buttons so new ones can be added.
+		 *
+		 * @since 2.9.0
+		 */
 		destroy: function() {
 			self.buttonCollisionSet = [];
 			$( '.bgtfw-multi-edit-button' ).remove();
@@ -134,19 +149,17 @@ const { __ } = wp.i18n;
 					}
 				} );
 				if ( 1 === Object.keys( controls ).length ) {
-					let controlId = Object.keys( controls )[0];
-					let buttonPosition = self.determineButtonPosition( selector );
+					let controlId = Object.keys( controls )[0],
+						buttonPosition = self.determineButtonPosition( selector ),
+						thisLinkExclusions = [ '.button-primary', '.button-secondary', '.showcoupon' ].join( ', ' ),
+						parentLinkExclusions = [
+							'.page-title', '.entry-title', '.tags-links', '.cat-links',
+							'.author', '.posted-on', '.nav-previous', '.nav-next', '.logged-in-as'
+						].join( ', ' );
 
 					$( selector ).each( function() {
-						if ( 'bgtfw_body_link_color' === controlId && $( this ).is( '.button-primary, .button-secondary' ) ||
-							'bgtfw_body_link_color' === controlId && $( this ).parent().is( '.page-title, .entry-title, .tags-links, .cat-links ' ) ||
-							'bgtfw_body_link_color' === controlId && $( this ).parent().is( '.author, .posted-on, .nav-previous, .nav-next, .logged-in-as' ) ) {
-								$( this ).addClass( 'no-edit-button' );
-						}
-
-						if ( 'bgtfw_body_link_color' === controlId && $( this ).is( '.button-primary, .button-secondary' ) ||
-							'bgtfw_body_link_color' === controlId && $( this ).parent().is( '.page-title, .entry-title, .tags-links, .cat-links ' ) ||
-							'bgtfw_body_link_color' === controlId && $( this ).parent().is( '.author, .posted-on, .nav-previous, .nav-next, .logged-in-as' ) ) {
+						if ( 'bgtfw_body_link_color' === controlId && $( this ).is( thisLinkExclusions ) ||
+							'bgtfw_body_link_color' === controlId && $( this ).parent().is( parentLinkExclusions ) ) {
 								$( this ).addClass( 'no-edit-button' );
 						}
 
@@ -158,8 +171,6 @@ const { __ } = wp.i18n;
 						if ( 'bgtfw_headings_typography' === controlId && $( this ).is( '.site-description, .site-title' ) ) {
 							$( this ).addClass( 'no-edit-button' );
 						}
-
-
 					} );
 
 					self.addSingleButton( selector, controlId, controls[ controlId ], buttonPosition );
@@ -168,6 +179,7 @@ const { __ } = wp.i18n;
 					self.addMultiButtons( selector, controls, buttonPosition );
 				}
 			} );
+
 			self.addMenuButtons();
 
 			self.addWidgetButtons();
@@ -182,9 +194,9 @@ const { __ } = wp.i18n;
 		},
 
 		/**
-		 * Fixes Menu Z-index.
+		 * @summary Find all .sm elements and decrease the z-index for each one.
 		 *
-		 * Find all .sm elements and decrease the z-index for each one.
+		 * @since 2.9.0
 		 */
 		fixZindex: function() {
 			var defaultZindex = 301;
@@ -194,6 +206,11 @@ const { __ } = wp.i18n;
 			} );
 		},
 
+		/**
+		 * @summary fixes Static positioning of button parents.
+		 *
+		 * @since 2.9.0
+		 */
 		fixStaticPositioning: function() {
 			var $editButtons = $( '.bgtfw-multi-edit-button, .bgtfw-edit-button' );
 
@@ -270,9 +287,13 @@ const { __ } = wp.i18n;
 			}
 		},
 
+		/**
+		 * @summary Assignes buttons to a collision set to fix overlapping buttons.
+		 *          The button towards the bottom will be moved lower. Figures out which button is higher.
+		 *
+		 * @since 2.9.0
+		 */
 		assignCollisionSet: function( $buttonA, $buttonB ) {
-
-			// The button towards the bottom will be moved lower. Figure out which button is higher.
 			var aTop = Math.ceil( $buttonA.offset().top ),
 				bTop = Math.ceil( $buttonB.offset().top ),
 				$lowerButton = ( aTop > bTop ? $buttonA : $buttonB ),
@@ -293,6 +314,11 @@ const { __ } = wp.i18n;
 			$higherButton.attr( 'data-collision-set', collisionSet );
 		},
 
+		/**
+		 * @summary Fixes collisions.
+		 *
+		 * @since 2.9.0
+		 */
 		fixCollisions: function() {
 			var editButtons = [];
 
@@ -324,6 +350,11 @@ const { __ } = wp.i18n;
 			} );
 		},
 
+		/**
+		 * @summary Fixes collisions of multibuttons.
+		 *
+		 * @since 2.9.0
+		 */
 		fixMultiCollisions: function( menuSelector ) {
 			var multiBoxHeight   = $( menuSelector ).height(),
 				multiBoxOffset   = $( menuSelector ).parent().offset(),
@@ -348,6 +379,11 @@ const { __ } = wp.i18n;
 			}
 		},
 
+		/**
+		 * @summary Adjusts actual button position.
+		 *
+		 * @since 2.9.0
+		 */
 		adjustButtonPosition: function( $button, collisionIndex ) {
 			var $buttonParent = $button.parent( '.bgtfw-has-edit' ),
 				isLeft        = $buttonParent.is( '.left-button' ) ? true : false,
@@ -359,6 +395,13 @@ const { __ } = wp.i18n;
 			$button.offset( { top: topPos, left: newPos } );
 		},
 
+		/**
+		 * @summary Determines if a button is colliding with another.
+		 *
+		 * @since 2.9.0
+		 *
+		 * @return {boolean} Whether or not the two buttons are colliding.
+		 */
 		determineButtonCollision: function( $test, $collision ) {
 			var testRect      = $test.get( 0 ).getBoundingClientRect(),
 				collisionRect = $collision.get( 0 ).getBoundingClientRect(),
@@ -371,6 +414,15 @@ const { __ } = wp.i18n;
 			return overlap;
 		},
 
+		/**
+		 * @summary Determines which corner of the parent element the button will be positioned.
+		 *
+		 * @since 2.9.0
+		 *
+		 * @param {string} selector The button to be positioned.
+		 *
+		 * @return {object} Horizontal and Top. positioning.
+		 */
 		determineButtonPosition: function( selector ) {
 			var locationHeight = $( selector ).height(),
 				locationOffset = $( selector ).offset(),
@@ -388,6 +440,11 @@ const { __ } = wp.i18n;
 				return position;
 		},
 
+		/**
+		 * @summary Adds widget buttons.
+		 *
+		 * @since 2.9.0
+		 */
 		addWidgetButtons: function() {
 			var widgets = $( 'aside.sidebar' );
 
@@ -409,6 +466,11 @@ const { __ } = wp.i18n;
 			} );
 		},
 
+		/**
+		 * @summary Adds buttons with links outside the customizer.
+		 *
+		 * @since 2.9.0
+		 */
 		addExternalButtons: function() {
 			var pageSelector  = '.site-content .entry-content',
 				pageButtonPos = self.determineButtonPosition( pageSelector ),
@@ -463,6 +525,11 @@ const { __ } = wp.i18n;
 			}
 		},
 
+		/**
+		 * @summary Add buttons for dynamic menus.
+		 *
+		 * @since 2.9.0
+		 */
 		addMenuButtons: function() {
 			var menus = $( '.bgtfw-menu-wrap' );
 			_( menus ).each( function( menu ) {
@@ -491,10 +558,18 @@ const { __ } = wp.i18n;
 					buttonPosition = self.determineButtonPosition( menuSelector );
 					self.addMultiButtons( menuSelector, controls, buttonPosition );
 				}
-
 			} );
 		},
 
+		/**
+		 * @summary Add MultiButtons with drop down edit items.
+		 *
+		 * @since 2.9.0
+		 *
+		 * @param {string} selector - The selector for the element to add the button to.
+		 * @param {object} controls - The controls to add to the button.
+		 * @param {object} buttonPosition - The position of the button.
+		 */
 		addMultiButtons: function( selector, controls, buttonPosition ) {
 			if ( 'static' === $( selector ).css( 'position' ) ) {
 				$( selector ).css( 'position', 'relative' );
@@ -544,11 +619,17 @@ const { __ } = wp.i18n;
 			} );
 		},
 
+		/**
+		 * @summary Adds buttons with a single edit item.
+		 *
+		 * @since 2.9.0
+		 *
+		 * @param {string} selector - The selector for the element to add the button to.
+		 * @param {string} controlId - The ID of the control to add.
+		 * @param {object} controls - The controls to add to the button.
+		 * @param {object} buttonPosition - The position of the button.
+		 */
 		addSingleButton: function( selector, controlId, control, buttonPosition ) {
-
-			// if ( 'static' === $( selector ).not( '.no-edit-button' ).parent().css( 'position' ) ) {
-			// 	selector = $( selector ).not( '.no-edit-button' ).parent().get( 0 );
-			// }
 			$( selector ).not( '.no-edit-button' ).addClass( 'bgtfw-has-edit single-edit-button' );
 			$( selector ).not( '.no-edit-button' ).addClass( buttonPosition.vert + '-button ' + buttonPosition.hor + '-button' );
 			$( selector ).not( '.no-edit-button' ).append( '<div class="bgtfw-edit-button" data-focus-type="' + control.type + '" data-focus-id="' + controlId + '" title="' + control.label + '"><div>' );
@@ -581,6 +662,15 @@ const { __ } = wp.i18n;
 				}
 			} );
 		},
+
+		/**
+		 * @summary Show the prompt to go to the external page.
+		 *
+		 * @since 2.9.0
+		 *
+		 * @param {string} controlId - The ID of the control.
+		 * @param {string} selector - The selector for the dialog.
+		 */
 		showExternalPrompt: function( controlId, selector ) {
 			var dialogSettings = {
 				width: 400,
@@ -618,6 +708,7 @@ const { __ } = wp.i18n;
 		}
 	};
 
+	// Add this class to the BOLDGRID global object.
 	self = BOLDGRID.CustomizerEdit;
 
 } )( jQuery );

@@ -8,6 +8,10 @@ button.customize-partial-edit-shortcut-button {
 	display: none;
 }
 
+.customize-partial-edit-shortcuts-shown .product span.onsale {
+	z-index: 2 !important;
+}
+
 #masthead .boldgrid-section .bgtfw-has-edit, .bgtfw-has-edit {
 
 	&.top-button {

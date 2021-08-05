@@ -1004,6 +1004,14 @@ export class HeaderLayout  {
 				hiddenItems.forEach( ( hiddenItem ) => {
 					$( '#masthead .site-branding' ).addClass( 'hide-' + hiddenItem );
 				} );
+
+				window.BOLDGRID.CustomizerEdit._onLoad();
+			} );
+		} );
+
+		controlApi( 'blogdescription', ( control ) => {
+			control.bind( () => {
+				_.defer( window.BOLDGRID.CustomizerEdit._onLoad );
 			} );
 		} );
 

@@ -737,8 +737,8 @@ HTML;
 
 		// Change tagline control's section.
 		if ( $wp_customize->get_control( 'blogdescription' ) ) {
-			$control          = $wp_customize->get_control( 'blogdescription' );
-			$control->section = 'bgtfw_tagline';
+			$control            = $wp_customize->get_control( 'blogdescription' );
+			$control->section   = 'bgtfw_tagline';
 		}
 
 		// Change site_title control's section.

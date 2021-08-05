@@ -139,15 +139,14 @@ const { __ } = wp.i18n;
 		 * @since 1.1.6
 		 */
 		addButtons: function() {
+			$( '.no-edit-button' ).removeClass( 'no-edit-button' );
 			_( self.buttonParams.params ).each( function( controls, selector ) {
 				$( selector ).each( function() {
 					var text = $( this ).clone().children().remove().end().text();
 					if ( 0 === $( this ).height() ||
 						0 === $( this ).outerWidth() ||
 						( $( this ).is( 'h1, h2, h3, h4, h5, h6, p, a' ) && 0 === text.length &&
-						 ! $( this ).is( '.site-title' ) &&
-						 ! $( this ).is( '.entry-title' ) &&
-						 ! $( this ).is( '.custom-logo-link' ) ) ) {
+						! $( this ).is( '.site-title, .entry-title, .custom-logo-link, .site-description' ) ) ) {
 							$( this ).addClass( 'no-edit-button' );
 					}
 				} );
@@ -194,6 +193,10 @@ const { __ } = wp.i18n;
 			_.defer( self.fixCollisions );
 
 			_.defer( self.fixZindex );
+
+			$( ':not(.bgtfw-multi-edit-button)' ).on( 'click', function() {
+				$( '.bgtfw-multi-edit-button.expanded' ).trigger( 'click' );
+			} );
 		},
 
 		/**

@@ -1171,16 +1171,28 @@ class BoldGrid {
 									if ( empty( $col_data['align'] ) ) {
 										$col_data['align'] = 'nw';
 									}
+
 									$classes = array(
 										'site-branding',
 										$col_data['align'],
 									);
 
-									if ( 'custom' === $preset || 'default' === $preset ) {
+									if ( false !== strpos( $col_data['uid'], 'f' ) ) {
+										/*
+										 * For each item in the $col_data['display'] array, if the display is set to 'hide',
+										 * then add that hidden class to the $classes array.
+										 */
+										foreach ( $col_data['display'] as $item ) {
+											if ( 'hide' === $item['display'] ) {
+												$classes[] = 'hide-' . strtolower( $item['title'] );
+											}
+										}
+
+										$classes[] = 'footer-site-identity';
 										return $classes;
 									}
 
-									if ( false !== strpos( $col_data['uid'], 'f' ) ) {
+									if ( 'custom' === $preset || 'default' === $preset ) {
 										return $classes;
 									}
 

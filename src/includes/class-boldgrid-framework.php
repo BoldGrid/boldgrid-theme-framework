@@ -345,6 +345,9 @@ class BoldGrid_Framework {
 		$path = __DIR__ . '/configs/' . $folder;
 		foreach ( glob( $path . '/*.config.php' ) as $filename ) {
 			$option = basename( str_replace( '.config.php', '', $filename ) );
+			if ( ! false === strpos( $filename, 'customizer/controls/' ) ) {
+				continue;
+			}
 			if ( ! empty( $folder ) ) {
 				$this->configs[ $folder ][ $option ] = include $filename;
 			} else {
@@ -448,7 +451,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_identity', $boldgrid_theme, 'print_title_tagline' );
 
 		// Sticky Header - Removed template_redirect as it was unnecessary and caused duplication of the sticky header sometimes.
-		if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) ) {
+		if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) ) || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) ) {
 			add_action( 'boldgrid_header_after', function() {
 				?>
 				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
@@ -456,12 +459,6 @@ class BoldGrid_Framework {
 				</div>
 				<?php
 			}, 20 );
-		}
-		if ( is_customize_preview() && false === get_theme_mod( 'bgtfw_fixed_header' ) ) {
-			add_filter( 'bgtfw_sticky_header_display_css', function( $css ) {
-				$css .= '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none; }';
-				return $css;
-			} );
 		}
 
 		// Password protected post/page form.
@@ -496,6 +493,7 @@ class BoldGrid_Framework {
 		$menu = new BoldGrid_Framework_Menu( $this->configs );
 		$this->loader->add_action( 'after_setup_theme', $menu, 'register_navs' );
 		$this->loader->add_action( 'after_setup_theme', $menu, 'add_dynamic_actions' );
+		$this->loader->add_action( 'wp_nav_menu_args', $menu, 'wp_nav_menu_args' );
 
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $menu, 'disable_advanced_nav_options' );
@@ -515,7 +513,7 @@ class BoldGrid_Framework {
 		$boldgrid_ppb      = new Boldgrid_Framework_PPB( $this->configs );
 		$pro_feature_cards = new BoldGrid_Framework_Pro_Feature_Cards( $this->configs );
 
-		$this->loader->add_filter( 'bgtfw_upgrade_url_pro_features', $pro_feature_cards, 'get' );
+		$this->loader->add_filter( 'bgtfw_upgrade_url_pro_features', $pro_feature_cards, 'get_upgrade_url', 10, 0 );
 
 		// This adds Pro Feature notice counts to the admin menu.
 		$this->loader->add_action( 'admin_menu', $pro_feature_cards, 'show_notice_counts' );
@@ -653,7 +651,6 @@ class BoldGrid_Framework {
 		self::widget_areas();
 		self::customizer_background_controls();
 		self::device_preview();
-		self::customizer_edit_buttons();
 		self::customizer_typography();
 		self::customizer_colors();
 		self::customizer_footer();
@@ -664,6 +661,22 @@ class BoldGrid_Framework {
 		self::customizer_search();
 		self::customizer_notifications();
 		self::customizer_query();
+		self::customizer_edit_buttons();
+	}
+
+	/**
+	 * Customizer Edit Buttons.
+	 *
+	 * Defines hooks for customizer edit buttons.
+	 *
+	 * @since    2.9.0
+	 * @access   private
+	 */
+	private function customizer_edit_buttons() {
+		$edit_buttons = new Boldgrid_Framework_Customizer_Edit( $this->configs );
+		$this->loader->add_action( 'customize_preview_init', $edit_buttons, 'generate_edit_params' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $edit_buttons, 'wp_enqueue_scripts' );
+		$this->loader->add_action( 'wp_footer', $edit_buttons, 'wp_footer' );
 	}
 
 	/**
@@ -699,19 +712,6 @@ class BoldGrid_Framework {
 			$this->loader->add_action( 'customize_sanitize_background_attachment', $background, 'pre_sanitize_attachment', 5 );
 			$this->loader->add_filter( 'customize_sanitize_background_attachment', $background, 'post_sanitize_attachment', 20 );
 		}
-	}
-
-	/**
-	 * This defines the core functionality of the framework's customizer edit buttons.
-	 *
-	 * @since    1.2.3
-	 * @access   private
-	 */
-	private function customizer_edit_buttons() {
-		$edit = new Boldgrid_Framework_Customizer_Edit( $this->configs );
-		$this->loader->add_action( 'wp_enqueue_scripts', $edit, 'wp_enqueue_scripts' );
-		$this->loader->add_action( 'wp_footer', $edit, 'wp_footer' );
-		$this->loader->add_action( 'wp_nav_menu_args', $edit, 'wp_nav_menu_args' );
 	}
 
 	/**

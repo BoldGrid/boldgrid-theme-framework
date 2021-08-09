@@ -68,6 +68,18 @@ class BoldGrid_Framework_Setup {
 		$this->woo_commerce_setup( );
 		$this->header_image_setup( );
 		$this->custom_logo_setup();
+		$this->selective_refresh_widgets();
+	}
+
+	/**
+	 * Selective Refresh Widgets
+	 *
+	 * Adds Selective Refreshing to the Widgets.
+	 *
+	 * @since 2.9.0
+	 */
+	public function selective_refresh_widgets() {
+		add_theme_support( 'customize-selective-refresh-widgets' );
 	}
 
 	/**

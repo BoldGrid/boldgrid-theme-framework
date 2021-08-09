@@ -742,6 +742,8 @@ export class HeaderLayout  {
 							if ( updateSlider ) {
 								this.updateSliderControl( value );
 							}
+
+							window.BOLDGRID.CustomizerEdit._onLoad();
 						}
 					}
 				);
@@ -902,6 +904,8 @@ export class HeaderLayout  {
 						this.setupCurrentMenuItem( 'main-menu' );
 
 						$( '#masthead' ).css( 'opacity', 1 );
+
+						window.BOLDGRID.CustomizerEdit._onLoad();
 					}
 				} );
 			} );
@@ -1000,6 +1004,14 @@ export class HeaderLayout  {
 				hiddenItems.forEach( ( hiddenItem ) => {
 					$( '#masthead .site-branding' ).addClass( 'hide-' + hiddenItem );
 				} );
+
+				window.BOLDGRID.CustomizerEdit._onLoad();
+			} );
+		} );
+
+		controlApi( 'blogdescription', ( control ) => {
+			control.bind( () => {
+				_.defer( window.BOLDGRID.CustomizerEdit._onLoad );
 			} );
 		} );
 

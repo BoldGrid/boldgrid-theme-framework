@@ -70,6 +70,11 @@
 						display: none !important;
 					}
 				}
+				&.hide-tagline {
+					.site-description {
+						display: none !important;
+					}
+				}
 			}
 		}
 	}

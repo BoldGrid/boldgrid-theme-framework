@@ -60,8 +60,7 @@ api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
 		) {
 			css += '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none !important; }';
 		}
-
-		document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = css;
+		$( '#sticky-header-display-inline-css' ).html( css );
 	}
 } );
 

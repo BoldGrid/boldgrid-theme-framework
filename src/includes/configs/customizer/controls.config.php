@@ -27,7 +27,6 @@ $bgtfw_generic           = new Boldgrid_Framework_Customizer_Generic( $bgtfw_con
 $bgtfw_presets           = new Boldgrid_Framework_Customizer_Presets( $bgtfw_configs );
 $bgtfw_partial_refresh   = new Boldgrid_Framework_Customizer_Partial_Refresh( $bgtfw_configs );
 
-
 $background_image_controls = require dirname( __FILE__ ) . '/controls/background-image.controls.php';
 $blog_page_controls        = require dirname( __FILE__ ) . '/controls/blog-page.controls.php';
 $blog_post_controls        = require dirname( __FILE__ ) . '/controls/blog-post.controls.php';

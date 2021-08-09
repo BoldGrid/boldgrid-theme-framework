@@ -143,7 +143,7 @@ class Boldgrid_Framework_Links {
 			$ari_color = ariColor::newColor( $color );
 			$lightness = min( $ari_color->lightness + $color_hover, 100 );
 			$lightness = max( $lightness, 0 );
-			$color_hover = $ari_color->getNew( 'lightness', $lightness )->toCSS( 'rgba' );
+			$color_hover = $ari_color->getNew( 'lightness', $lightness )->toCSS( 'hsla' );
 			$decoration = $decoration;
 			$decoration_hover = $decoration_hover;
 			$excludes = '';

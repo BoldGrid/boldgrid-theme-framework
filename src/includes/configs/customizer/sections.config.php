@@ -298,7 +298,7 @@ $sections_array = array(
 		'icon'      => 'fa-ellipsis-h',
 		'edit_vars' => array(
 			array(
-				'selector'    => '.read-more.a',
+				'selector'    => '.read-more > a',
 				'label'       => __( 'Read More', 'bgtfw' ),
 				'description' => __( 'Change the style of the "Read More" link', 'bgtfw' ),
 			),

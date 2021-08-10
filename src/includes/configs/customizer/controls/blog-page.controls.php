@@ -861,6 +861,171 @@ return array(
 			),
 		),
 	),
+	'bgtfw_blog_post_readmore_text'                    => array(
+		'type'      => 'text',
+		'transport' => 'postMessage',
+		'settings'  => 'bgtfw_blog_post_readmore_text',
+		'section'   => 'bgtfw_pages_blog_blog_page_read_more',
+		'label'     => esc_attr__( 'Text', 'bgtfw' ),
+		'default'   => 'Continue Reading &raquo;',
+		'js_vars'   => array(
+			array(
+				'element'  => '.read-more a',
+				'function' => 'html',
+			),
+		),
+	),
+	'bgtfw_blog_post_readmore_type'                    => array(
+		'type'              => 'radio-buttonset',
+		'transport'         => 'postMessage',
+		'settings'          => 'bgtfw_blog_post_readmore_type',
+		'label'             => esc_attr__( 'Type', 'bgtfw' ),
+		'section'           => 'bgtfw_pages_blog_blog_page_read_more',
+		'default'           => 'btn button-secondary',
+		'choices'           => array(
+			'btn button-primary'   => '<i class="fa fa-square" aria-hidden="true"></i>' . esc_attr__( 'Primary Button', 'bgtfw' ),
+			'btn button-secondary' => '<i class="fa fa-square-o" aria-hidden="true"></i>' . esc_attr__( 'Secondary Button', 'bgtfw' ),
+			'link'                 => '<span class="dashicons dashicons-admin-links"></span>' . esc_attr__( 'Link', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'btn button-primary', 'btn button-secondary', 'link' ], true ) ? $value : $settings->default;
+		},
+		'js_vars'           => array(
+			array(
+				'element'       => '.read-more a',
+				'function'      => 'html',
+				'attr'          => 'class',
+				'value_pattern' => '$',
+			),
+		),
+	),
+	'bgtfw_blog_post_readmore_link_color_display'      => array(
+		'type'              => 'radio-buttonset',
+		'transport'         => 'postMessage',
+		'settings'          => 'bgtfw_blog_post_readmore_link_color_display',
+		'label'             => esc_attr__( 'Colors', 'bgtfw' ),
+		'section'           => 'bgtfw_pages_blog_blog_page_read_more',
+		'default'           => 'inherit',
+		'choices'           => array(
+			'inherit' => '<span class="dashicons dashicons-admin-site"></span>' . __( 'Global Color', 'bgtfw' ),
+			'custom'  => '<span class="dashicons dashicons-admin-customizer"></span>' . __( 'Custom', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'inherit', 'custom' ], true ) ? $value : $settings->default;
+		},
+		'active_callback'   => array(
+			array(
+				'setting'  => 'bgtfw_blog_post_readmore_type',
+				'operator' => '===',
+				'value'    => 'link',
+			),
+		),
+	),
+	'bgtfw_blog_post_readmore_link_color'              => array(
+		'type'              => 'bgtfw-palette-selector',
+		'transport'         => 'postMessage',
+		'settings'          => 'bgtfw_blog_post_readmore_link_color',
+		'label'             => esc_attr__( 'Link Color', 'bgtfw' ),
+		'section'           => 'bgtfw_pages_blog_blog_page_read_more',
+		'default'           => 'color-1',
+		'choices'           => array(
+			'selectors' => array( '.read-more .link' ),
+			'colors'    => $bgtfw_formatted_palette,
+			'size'      => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
+		),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+		'active_callback'   => array(
+			array(
+				'setting'  => 'bgtfw_blog_post_readmore_type',
+				'operator' => '===',
+				'value'    => 'link',
+			),
+			array(
+				'setting'  => 'bgtfw_blog_post_readmore_link_color_display',
+				'operator' => '!==',
+				'value'    => 'inherit',
+			),
+		),
+	),
+	'bgtfw_blog_post_readmore_link_decoration'         => array(
+		'settings'          => 'bgtfw_blog_post_readmore_link_decoration',
+		'transport'         => 'postMessage',
+		'label'             => esc_html__( 'Text Style', 'bgtfw' ),
+		'type'              => 'radio-buttonset',
+		'section'           => 'bgtfw_pages_blog_blog_page_read_more',
+		'default'           => 'underline',
+		'choices'           => array(
+			'none'      => '<span class="dashicons dashicons-editor-textcolor"></span>' . __( 'None', 'bgtfw' ),
+			'underline' => '<span class="dashicons dashicons-editor-underline"></span>' . __( 'Underline', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'none', 'underline' ], true ) ? $value : $settings->default;
+		},
+		'active_callback'   => array(
+			array(
+				'setting'  => 'bgtfw_blog_post_readmore_type',
+				'operator' => '===',
+				'value'    => 'link',
+			),
+			array(
+				'setting'  => 'bgtfw_blog_post_readmore_link_color_display',
+				'operator' => '!==',
+				'value'    => 'inherit',
+			),
+		),
+	),
+	'bgtfw_blog_post_readmore_link_color_hover'        => array(
+		'type'            => 'slider',
+		'transport'       => 'postMessage',
+		'settings'        => 'bgtfw_blog_post_readmore_link_color_hover',
+		'label'           => esc_attr__( 'Hover Color Brightness', 'bgtfw' ),
+		'section'         => 'bgtfw_pages_blog_blog_page_read_more',
+		'default'         => 0,
+		'choices'         => array(
+			'min'  => '-25',
+			'max'  => '25',
+			'step' => '1',
+		),
+		'active_callback' => array(
+			array(
+				'setting'  => 'bgtfw_blog_post_readmore_type',
+				'operator' => '===',
+				'value'    => 'link',
+			),
+			array(
+				'setting'  => 'bgtfw_blog_post_readmore_link_color_display',
+				'operator' => '!==',
+				'value'    => 'inherit',
+			),
+		),
+	),
+	'bgtfw_blog_post_readmore_link_decoration_hover'   => array(
+		'settings'          => 'bgtfw_blog_post_readmore_link_decoration_hover',
+		'transport'         => 'postMessage',
+		'label'             => esc_html__( 'Hover Text Style', 'bgtfw' ),
+		'type'              => 'radio-buttonset',
+		'section'           => 'bgtfw_pages_blog_blog_page_read_more',
+		'default'           => 'underline',
+		'choices'           => array(
+			'none'      => '<span class="dashicons dashicons-editor-textcolor"></span>' . __( 'None', 'bgtfw' ),
+			'underline' => '<span class="dashicons dashicons-editor-underline"></span>' . __( 'Underline', 'bgtfw' ),
+		),
+		'sanitize_callback' => function( $value, $settings ) {
+			return in_array( $value, [ 'none', 'underline' ], true ) ? $value : $settings->default;
+		},
+		'active_callback'   => array(
+			array(
+				'setting'  => 'bgtfw_blog_post_readmore_type',
+				'operator' => '===',
+				'value'    => 'link',
+			),
+			array(
+				'setting'  => 'bgtfw_blog_post_readmore_link_color_display',
+				'operator' => '!==',
+				'value'    => 'inherit',
+			),
+		),
+	),
 	'bgtfw_blog_post_readmore_position'                => array(
 		'type'              => 'radio-buttonset',
 		'transport'         => 'auto',

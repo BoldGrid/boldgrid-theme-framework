@@ -155,7 +155,7 @@ const { __ } = wp.i18n;
 						buttonPosition = self.determineButtonPosition( selector ),
 						thisLinkExclusions = [ '.button-primary', '.button-secondary', '.showcoupon' ].join( ', ' ),
 						parentLinkExclusions = [
-							'.page-title', '.entry-title', '.tags-links', '.cat-links',
+							'.page-title', '.entry-title', '.tags-links', '.cat-links', '.read-more',
 							'.author', '.posted-on', '.nav-previous', '.nav-next', '.logged-in-as'
 						].join( ', ' );
 

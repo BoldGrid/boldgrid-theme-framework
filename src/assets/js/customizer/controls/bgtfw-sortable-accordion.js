@@ -94,7 +94,7 @@ export default {
 			this.sortable
 				.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
 				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.align .direction:not(.selected)', e => this._select( e ) )
-				.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
+				.on( 'click', '.dashicons-trash:not(.disabled)', e => this._deleteItem( e ) )
 				.on( 'change', '.repeater-control.menu-select', e => this._updateMenuSelect( e ) )
 				.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) )
 				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', () => this._updateContainer() )
@@ -116,14 +116,29 @@ export default {
 			} );
 
 			api( 'custom_logo', value => value.bind( to => this._toggleLogo( to ) ) );
+			this.disableAttributionTrash();
+		} );
+	},
 
-			let footerContainer = api.control( 'bgtfw_footer_layout' ).container;
-			let footerSortableWrappers = footerContainer.find( '.sortable-wrapper' );
-			footerSortableWrappers.each( ( _, wrapper ) => {
-				if ( 0 !== footerContainer.find( wrapper ).find( '.dashicons-admin-links' ).length ) {
-					footerContainer.find( wrapper ).find( '.dashicons-trash' ).addClass( 'disabled' );
-				}
-			} );
+	/**
+	 * Disables the Trash Icon for Attribution LInks.
+	 *
+	 * @since 2.9.2
+	 */
+	disableAttributionTrash() {
+		var footerContainer        = api.control( 'bgtfw_footer_layout' ).container,
+			footerSortableWrappers = footerContainer.find( '.sortable-wrapper' );
+
+		footerSortableWrappers.find( '.dashicons-trash' ).removeClass( 'disabled' );
+
+		footerSortableWrappers.each( ( _, wrapper ) => {
+			var $attributionsLinks   = footerContainer.find( wrapper ).find( '.dashicons-admin-links' ),
+				$attributionsHandles = $attributionsLinks.parents( '.sortable-title' ),
+				$repeaterHandles     = $( wrapper ).children( '.sortable-title' );
+			if ( 0 !== $attributionsLinks.length ) {
+				$attributionsHandles.find( '.dashicons-trash' ).addClass( 'disabled' );
+				$repeaterHandles.find( '.dashicons-trash' ).addClass( 'disabled' );
+			}
 		} );
 	},
 
@@ -572,6 +587,7 @@ export default {
 		this.setting.set( values );
 		this.updateTitles();
 		this.updateAddTypes();
+		this.disableAttributionTrash();
 	},
 
 	/**

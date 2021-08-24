@@ -36,6 +36,11 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.9.2 ###
+* Bug Fix: Footer Layout Delete Buttons are disabled in same row as Attribution [#478](https://github.com/BoldGrid/boldgrid-theme-framework/issues/478)
+
+### 2.9.1 ###
+* Bug Fix: Blog Page Read More Links - missing / broken controls [#480](https://github.com/BoldGrid/boldgrid-theme-framework/issues/480)
 
 ### 2.9.0 ###
 * New Feature: New Edit Buttons added to Customizer Preview that feature dropdowns for buttons with multiple control options.

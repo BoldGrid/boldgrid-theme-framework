@@ -38,6 +38,10 @@ if ( defined( 'BGTFW_PATH' ) ) {
 	$bgtfw_path = ABSPATH . BGTFW_PATH;
 }
 
+if ( ! defined( 'FONTAWESOME_DIR_PATH' ) ) {
+	define( 'FONTAWESOME_DIR_PATH', $bgtfw_path . '/assets/css/font-awesome' );
+}
+
 $bgtfw_class = $bgtfw_path . '/includes/class-boldgrid-framework.php';
 
 if ( file_exists( $bgtfw_class ) ) {

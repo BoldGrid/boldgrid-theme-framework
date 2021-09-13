@@ -959,7 +959,24 @@ export default {
 	 * @since 2.0.3
 	 */
 	getConnectedControls() {
-		return _.filter( window._wpCustomizeSettings.controls, { type: this.params.type } );
+		var controls = window._wpCustomizeSettings.controls;
+
+		/*
+		 * The bgtfw_sticky_header_layout and bgtfw_header_layout control values
+		 * are used when using the preset layouts, but the '*_header_layout_advanced'
+		 * is used when using a custom layout. Therefore, when using a custom layout,
+		 * we need to omit these controls from the list of connected controls or else
+		 * the menus will not work properly.
+		*/
+		if ( _.isFunction( wp.customize( 'bgtfw_sticky_header_preset' ) ) && 'custom' === wp.customize( 'bgtfw_sticky_header_preset' )() ) {
+			controls = _.omit( controls, 'bgtfw_sticky_header_layout' );
+		}
+
+		if ( _.isFunction( wp.customize( 'bgtfw_header_preset' ) ) && 'custom' === wp.customize( 'bgtfw_header_preset' )() ) {
+			controls = _.omit( controls, 'bgtfw_header_layout' );
+		}
+
+		return _.filter( controls, { type: this.params.type } );
 	},
 
 	/**

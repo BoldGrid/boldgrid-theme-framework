@@ -36,6 +36,12 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.9.3 ###
+* Bug Fix: Removed Font Awesome notice from the admin notices [#317](https://github.com/BoldGrid/boldgrid-theme-framework/issues/317)
+* Bug Fix: Crio Pro Sticky Header Menu [#376](https://github.com/BoldGrid/boldgrid-theme-framework/issues/317)
+* Bug Fix: Default menu locations not selectable after changing them in the customizer [#483](https://github.com/BoldGrid/boldgrid-theme-framework/issues/483)
+* Improvement: Make embedded videos more responsive [#490](https://github.com/BoldGrid/boldgrid-theme-framework/issues/490)
+
 ### 2.9.2 ###
 * Bug Fix: Footer Layout Delete Buttons are disabled in same row as Attribution [#478](https://github.com/BoldGrid/boldgrid-theme-framework/issues/478)
 

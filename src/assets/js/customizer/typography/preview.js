@@ -40,8 +40,8 @@ export class Preview {
 
 		// Handle variant of font sizes.
 		let variant    = to.variant;
-		let fontWeight = parseInt( variant );
-		let fontStyle  = variant.replace( fontWeight, '' );
+		let fontWeight = variant ? parseInt( variant ) : 'initial';
+		let fontStyle  = variant ? variant.replace( fontWeight, '' ) : 'initial';
 
 		// Build CSS.
 		let css = '';

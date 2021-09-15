@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.9.4 ###
+* Bug Fix: Fix fatal error with Font Awesome Plugin.
+
 ### 2.9.3 ###
 * Bug Fix: Removed Font Awesome notice from the admin notices [#317](https://github.com/BoldGrid/boldgrid-theme-framework/issues/317)
 * Bug Fix: Crio Pro Sticky Header Menu [#376](https://github.com/BoldGrid/boldgrid-theme-framework/issues/317)

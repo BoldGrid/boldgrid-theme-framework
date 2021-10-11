@@ -29,10 +29,12 @@ return array(
 	// Editor meta box controls.
 	'meta_box' => array(
 		'post' => array(
+			'global_post_text' => '',
 			'show_post_text' => '',
 			'hide_post_text' => '',
 		),
 		'page' => array(
+			'global_post_text' => '',
 			'show_post_text' => '',
 			'hide_post_text' => '',
 		),

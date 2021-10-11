@@ -6,9 +6,10 @@
 		max-width: 100%;
 	}
 }
-.primary-sidebar .widget-title {
+.primary-sidebar aside:first-of-type .widget-title {
 	margin-top: 0;
 }
+
 select[name="archive-dropdown"] {
 	width: auto;
 }

@@ -341,6 +341,34 @@ return array(
 			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+		'active_callback'   => array(
+			array(
+				'setting'  => 'bgtfw_menu_items_hover_effect_main',
+				'operator' => '!==',
+				'value'    => 'hvr-none',
+			),
+		),
+	),
+	'bgtfw_menu_items_hover_link_color_main'               => array(
+		'type'              => 'bgtfw-palette-selector',
+		'transport'         => 'postMessage',
+		'settings'          => 'bgtfw_menu_items_hover_link_color_main',
+		'label'             => esc_attr__( 'Link Hover Color', 'bgtfw' ),
+		'section'           => 'bgtfw_menu_items_hover_item_main',
+		'default'           => 'transparent',
+		'choices'           => array(
+			'colors'      => $bgtfw_formatted_palette,
+			'size'        => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
+			'transparent' => true,
+		),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+		'active_callback'   => array(
+			array(
+				'setting'  => 'bgtfw_menu_items_hover_effect_main',
+				'operator' => '===',
+				'value'    => 'hvr-none',
+			),
+		),
 	),
 	'bgtfw_menu_items_hover_background_main'          => array(
 		'type'              => 'bgtfw-palette-selector',
@@ -366,7 +394,7 @@ return array(
 		'choices'           => array(
 
 			/** No Effects */
-			''          => esc_attr__( 'No Hover Effects', 'bgtfw' ),
+			'hvr-none'          => esc_attr__( 'No Hover Effects', 'bgtfw' ),
 
 			/** Background Transitions */
 			'optgroup1' => array(

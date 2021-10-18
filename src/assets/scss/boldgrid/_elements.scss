@@ -43,7 +43,7 @@ body.custom-background {
 .palette-primary {
 	@include headings() {
 		word-wrap: break-word;
-		hyphens: auto;
+		hyphens: manual;
 	}
 }
 

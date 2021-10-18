@@ -59,7 +59,7 @@ class BoldGrid {
 
 		// Site title link.
 		$display = get_theme_mod( 'bgtfw_site_title_display' ) === 'hide' ? ' screen-reader-text' : '';
-		echo '<' . esc_html( $title_tag ) . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . esc_attr( $display ) . '">' .
+		echo '<' . $title_tag . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . esc_attr( $display ) . '">' .
 			'<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a>' .
 			'</' . esc_html( $title_tag ) . '>';
 	}

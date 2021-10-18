@@ -101,9 +101,15 @@ class Boldgrid_Framework_Title {
 
 		$options = array(
 			'global' => array(
-				'name' => __( 'Show', 'bgtfw' ),
+				'name' => __( 'Use Global Settings', 'bgtfw' ),
 				'value' => 'global',
-				'checked' => '0' !== $post_meta,
+				'checked' => 'global' === $post_meta,
+				'post_text' => $this->configs['title']['meta_box'][ $post->post_type ]['global_post_text'],
+			),
+			'show' => array(
+				'name' => __( 'Show', 'bgtfw' ),
+				'value' => '1',
+				'checked' => '1' === $post_meta,
 				'post_text' => $this->configs['title']['meta_box'][ $post->post_type ]['show_post_text'],
 			),
 			'hide' => array(

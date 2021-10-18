@@ -30,6 +30,9 @@
 
 	</rule>
 
+	<rule ref="WordPress-Extra">
+	</rule>
+
 	<rule ref="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing">
 		<severity>0</severity>
 	</rule>

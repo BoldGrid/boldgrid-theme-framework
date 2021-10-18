@@ -478,7 +478,7 @@ gulp.task('hovers', function() {
       digestType: 'base32',
       maxLength: 0,
       outputName: 'hover1',
-      classnameFormat: '[classname] a',
+      classnameFormat: '[classname]:not( .button-primary):not( .button-secondary ) a',
       type: '.json'
     })
   ];
@@ -499,7 +499,7 @@ gulp.task('hoverColors', function() {
       digestType: 'base32',
       maxLength: 0,
       outputName: 'hover2',
-      classnameFormat: '[classname] a',
+      classnameFormat: '[classname]:not( .button-primary):not( .button-secondary ) a',
       type: '.json'
     }),
     require('postcss-prefix-selector')({ prefix: '%1$s' })

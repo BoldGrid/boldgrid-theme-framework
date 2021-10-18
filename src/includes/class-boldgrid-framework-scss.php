@@ -395,7 +395,7 @@ class Boldgrid_Framework_SCSS {
 		global $boldgrid_theme_framework;
 
 		return ! empty( $boldgrid_theme_framework->changset_customization ) ||
-			( ! empty( $_POST['customize_changeset_status'] ) && 'draft' === $_POST['customize_changeset_status'] );
+			( ! empty( $_POST['customize_changeset_status'] ) && 'draft' === $_POST['customize_changeset_status'] ); // phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification
 	}
 
 	/**

@@ -166,10 +166,10 @@ class Boldgrid_Framework_Title {
 	 * @param int $post_id The ID of the post being updated.
 	 */
 	public function post_updated( $post_id ) {
-		if ( isset( $_POST[ $this->configs['title']['hide'] ] ) ) {
+		if ( isset( $_POST[ $this->configs['title']['hide'] ] ) ) { // phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification
 
 			// Validate "show title" post meta, and abort on failure.
-			$value = ( string ) sanitize_key( $_POST[ $this->configs['title']['hide'] ] );
+			$value = (string) sanitize_key( $_POST[ $this->configs['title']['hide'] ] );
 
 			if ( ! in_array( $value, array( '0', '1', 'global' ), true ) ) {
 				return;

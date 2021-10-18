@@ -332,7 +332,7 @@ class BoldGrid_Framework_Woocommerce {
 					' . esc_attr( get_the_title() ) . '
 					</h1>
 				</header>';
-			echo $markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_kses_post( $markup );
 		}
 	}
 

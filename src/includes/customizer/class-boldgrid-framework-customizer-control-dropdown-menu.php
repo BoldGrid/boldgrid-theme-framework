@@ -188,7 +188,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					<div class="label">
 						<p class="bgtfw-dropdown-menu-label">
 							<span class="dashicons dashicons-menu-alt"></span>
-							<span class="text"><?php _e( 'Related Options', 'bgtfw' ); ?></span>
+							<span class="text"><?php esc_html_e( 'Related Options', 'bgtfw' ); ?></span>
 						</p>
 					</div>
 					<div class="dropdown-button">

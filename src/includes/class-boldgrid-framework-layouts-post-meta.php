@@ -152,12 +152,12 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				<input type="radio" name="page_template" class="theme-layout-input" value="default" <?php echo esc_html( $checked ); ?> data-value-displayed="<?php echo esc_attr( strip_tags( $title ) . ' ' . $subtitle ); ?>" data-default-option="<?php echo esc_attr( $checked ? '1' : '0' ); ?>" />
 				<?php
 					// Note: The variable $title has it's dynamic parts escaped above using esc_html.
-					echo '<span>' . $title . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<span>' . wp_kses_post( $title ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				?>
 			</label>
 			<?php
 				// Note: The variable $subtitle has it's dynamic parts escaped above using esc_html.
-				echo '<span>' . $subtitle . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<span>' . wp_kses_post( $subtitle ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 		<?php
 		foreach ( array_keys( $templates ) as $template ) {
@@ -269,11 +269,11 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 
 				// Note: The dynamic parts (translation strings) are escaped above when the variable $dropdown_args is created, so no further escaping is necessary at this point.
 				$pages = wp_dropdown_pages( $dropdown_args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				if ( ! empty( $pages ) ) : ?>
+				if ( ! empty( $pages ) ) : // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php esc_html_e( 'Parent', 'bgtfw' ); ?></label></p>
 					<?php
 					// Note: The variable $pages has it's dynamic parts (translation string) escaped above when the variable $dropdown_args is created so no further escaping is necessary at this point.
-					echo '<span>' . $pages . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<span>' . $pages . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 				endif; // end empty pages check
 			endif;  // end hierarchical check.

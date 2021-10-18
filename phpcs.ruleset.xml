@@ -10,11 +10,13 @@
 	<rule ref="WordPress-Core">
 		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
 		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+		<exclude name="Generic.Strings.UnnecessaryStringConcat.Found" />
 		<exclude name="WordPress.Files.FileName.UnderscoresNotAllowed" />
 		<exclude name="WordPress.NamingConventions.ValidHookName.NotLowercase" />
 		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 		<exclude name="Generic.Commenting.DocComment.InvalidEndChar" />
+		<exclude name="WordPress.XSS.EscapeOutput.OutputNotEscaped" />
 
 		<exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
 

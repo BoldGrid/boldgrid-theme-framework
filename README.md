@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph, jamesros161
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.6
+* **Tested up to:** 5.8
 * **License:** GPL-3.0-or-later
 * **License URI:** https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
@@ -35,6 +35,17 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.9.5 ###
+* Bug Fix: Add Menu Link Hover Color Control in Crio [#328](https://github.com/BoldGrid/boldgrid-theme-framework/issues/328)
+* Bug Fix: Explicit button height and nowrap makes buttons on mobile look bad [#475](https://github.com/BoldGrid/boldgrid-theme-framework/issues/475)
+* Bug Fix: Improve button display in menus [#509](https://github.com/BoldGrid/boldgrid-theme-framework/issues/509)
+* Bug Fix: Remove Text-Wrap from Headings [#508](https://github.com/BoldGrid/boldgrid-theme-framework/issues/508)
+* Bug Fix: Cannot work with page title control from page unless Pro is active [#501](https://github.com/BoldGrid/boldgrid-theme-framework/issues/501)
+* Bug Fix: Pagination padding and full-width margins creating horizontal scroll on mobile [#357](https://github.com/BoldGrid/boldgrid-theme-framework/issues/357)
+* Bug Fix: Continued padding / margin fixes in Crio [#347](https://github.com/BoldGrid/boldgrid-theme-framework/issues/347)
+* Bug Fix: Search result excerpt incldues the word Read... unlinked without space [#448](https://github.com/BoldGrid/boldgrid-theme-framework/issues/448)
+* Bug Fix: Fix escaping in template file [105677](https://themes.trac.wordpress.org/ticket/105677)
 
 ### 2.9.4 ###
 * Bug Fix: Fix fatal error with Font Awesome Plugin.

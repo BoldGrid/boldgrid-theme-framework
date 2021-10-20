@@ -455,7 +455,7 @@ class BoldGrid_Framework {
 			add_action( 'boldgrid_header_after', function() {
 				?>
 				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
-					<?php echo wp_kses_post( BoldGrid::dynamic_sticky_header() ); ?>
+					<?php echo BoldGrid::dynamic_sticky_header(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</div>
 				<?php
 			}, 20 );

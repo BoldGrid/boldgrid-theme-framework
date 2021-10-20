@@ -152,12 +152,12 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				<input type="radio" name="page_template" class="theme-layout-input" value="default" <?php echo esc_html( $checked ); ?> data-value-displayed="<?php echo esc_attr( strip_tags( $title ) . ' ' . $subtitle ); ?>" data-default-option="<?php echo esc_attr( $checked ? '1' : '0' ); ?>" />
 				<?php
 					// Note: The variable $title has it's dynamic parts escaped above using esc_html.
-					echo '<span>' . wp_kses_post( $title ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<span>' . $title . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				?>
 			</label>
 			<?php
 				// Note: The variable $subtitle has it's dynamic parts escaped above using esc_html.
-				echo '<span>' . wp_kses_post( $subtitle ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<span>' . $subtitle . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 		<?php
 		foreach ( array_keys( $templates ) as $template ) {

@@ -591,7 +591,6 @@ class Boldgrid_Framework_Customizer_Colors {
 
 			if ( ! empty( $buttons ) ) {
 				$vars['ButtonExtends'] = $buttons;
-				error_log( json_encode( $buttons ) );
 			}
 			if ( ! empty( $s['ubtn-namespace'] ) ) {
 				$vars['ButtonNamespace'] = $s['ubtn-namespace'];

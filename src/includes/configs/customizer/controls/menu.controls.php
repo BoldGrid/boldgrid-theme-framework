@@ -345,7 +345,7 @@ return array(
 			array(
 				'setting'  => 'bgtfw_menu_items_hover_effect_main',
 				'operator' => '!==',
-				'value'    => 'hvr-none',
+				'value'    => '',
 			),
 		),
 	),
@@ -366,7 +366,7 @@ return array(
 			array(
 				'setting'  => 'bgtfw_menu_items_hover_effect_main',
 				'operator' => '===',
-				'value'    => 'hvr-none',
+				'value'    => '',
 			),
 		),
 	),
@@ -394,7 +394,7 @@ return array(
 		'choices'           => array(
 
 			/** No Effects */
-			'hvr-none'          => esc_attr__( 'Link Text Color Change', 'bgtfw' ),
+			''          => esc_attr__( 'Link Text Color Change', 'bgtfw' ),
 
 			/** Background Transitions */
 			'optgroup1' => array(

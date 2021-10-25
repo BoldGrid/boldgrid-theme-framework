@@ -630,7 +630,9 @@ class BoldGrid {
 
 					// Apply to all other menu items that aren't active menu items.
 					if ( ! count( array_intersect( $classes, array( 'current-menu-item', 'current_page_parent', 'current-post-parent' ) ) ) ) {
-						$classes[] = get_theme_mod( "bgtfw_menu_items_hover_effect_{$location}" );
+						$hover_effect = get_theme_mod( "bgtfw_menu_items_hover_effect_{$location}" );
+						$hover_effect = $hover_effect ? $hover_effect : 'hvr-none';
+						$classes[]    = $hover_effect;
 					}
 				}
 

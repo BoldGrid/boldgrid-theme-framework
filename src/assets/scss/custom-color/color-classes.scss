@@ -200,8 +200,8 @@ $names: background background-color;
 		// and legacy flat .button-primary-flat
 		.btn-#{$ubtn-name},
 		.btn-#{$ubtn-name}-flat {
-			background-color: $ubtn-background;
-			border-color: $ubtn-background;
+			background-color: $ubtn-background !important;
+			border-color: $ubtn-background !important;
 			color: $ubtn-color !important;
 
 			&:visited {

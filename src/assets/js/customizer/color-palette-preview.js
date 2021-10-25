@@ -39,6 +39,12 @@ BOLDGRID.COLOR_PALETTE.Preview = BOLDGRID.COLOR_PALETTE.Preview || {};
 		modify = parent.BOLDGRID.COLOR_PALETTE.Modify;
 		classes = _.isArray( modify.body_classes ) ? modify.body_classes.join( ' ' ) : '';
 
+		console.log( {
+			'data': data,
+			'classes': classes,
+			'modify': modify
+		} );
+
 		// Update body class.
 		$( 'body:not(.' + data.state['active-palette'] + ')' ).removeClass( classes ).addClass( data.state['active-palette'] );
 

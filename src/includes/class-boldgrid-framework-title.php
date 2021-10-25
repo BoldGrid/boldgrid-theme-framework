@@ -130,6 +130,17 @@ class Boldgrid_Framework_Title {
 		 * @param array $post_meta Post Meta Value.
 		 */
 		$options = apply_filters( 'bgtfw_page_title_options', $options, $post, $post_meta );
+		$checked = false;
+		foreach ( $options as $option ) {
+			if ( $option['checked'] ) {
+				$checked = true;
+				break;
+			}
+		}
+
+		if ( ! $checked ) {
+			$options['global']['checked'] = true;
+		}
 
 		?>
 		<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-page-title">

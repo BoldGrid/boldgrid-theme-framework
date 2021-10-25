@@ -211,9 +211,9 @@ export class Preview  {
 	getActiveLinkColor( to, menuId ) {
 		const color = new PaletteSelector().getColor( to );
 		let css = `
-		#${menuId} .current-menu-item > a,
-		#${menuId} .current-menu-ancestor > a,
-		#${menuId} .current-menu-parent > a {
+		#${menuId} .current-menu-item:not( .btn ) > a,
+		#${menuId} .current-menu-ancestor:not( .btn ) > a,
+		#${menuId} .current-menu-parent:not( .btn ) > a {
 			color: ${color};
 		}`;
 
@@ -231,9 +231,9 @@ export class Preview  {
 	getHoverLinkColor( to, menuId ) {
 		const color = new PaletteSelector().getColor( to );
 		let css = `
-		#${menuId} .hvr-none:not( .current-menu-item ) > a:hover,
-		#${menuId} .hvr-none:not( .current-menu-ancestor ) > a:hover,
-		#${menuId} .hvr-none:not( .current-menu-parent ) > a:hover {
+		#${menuId} .hvr-none:not( .current-menu-item ):not( .button ) > a:hover,
+		#${menuId} .hvr-none:not( .current-menu-ancestor ):not( .button ) > a:hover,
+		#${menuId} .hvr-none:not( .current-menu-parent ):not( .button ) > a:hover {
 			color: ${color};
 		}`;
 

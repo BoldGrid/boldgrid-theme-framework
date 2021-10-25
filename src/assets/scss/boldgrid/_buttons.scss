@@ -7,6 +7,9 @@
 			@extend #{$button-primary-classes};
 		}
 	}
+	.btn.menu-item {
+		height: unset;
+	}
 }
 
 @if variable-exists( button-secondary-classes ) {
@@ -15,5 +18,8 @@
 		.palette-primary & {
 			@extend #{$button-secondary-classes};
 		}
+	}
+	.btn.menu-item {
+		height: unset;
 	}
 }

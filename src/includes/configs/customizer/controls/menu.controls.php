@@ -394,7 +394,7 @@ return array(
 		'choices'           => array(
 
 			/** No Effects */
-			'hvr-none'          => esc_attr__( 'No Hover Effects', 'bgtfw' ),
+			'hvr-none'          => esc_attr__( 'Link Text Color Change', 'bgtfw' ),
 
 			/** Background Transitions */
 			'optgroup1' => array(

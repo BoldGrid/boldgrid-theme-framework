@@ -52,7 +52,7 @@
 	}
 }
 
-.row .row,
+.row:not( .bg-editor-hr-wrap ) .row:not( .bg-editor-hr-wrap ),
 .container .entry-content .boldgrid-section {
 	margin-left: -15px;
 	margin-right: -15px;

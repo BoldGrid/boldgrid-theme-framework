@@ -109,12 +109,12 @@ class BoldGrid {
 	public function print_tagline() {
 		// Retrieve blog tagline.
 		$blog_info = get_bloginfo( 'description' );
-		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
+		$display   = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
 
 		if ( $blog_info ) {
 			$classes = $this->configs['template']['tagline-classes'] . $display;
 		} else {
-			$classes = $this->configs['template']['tagline-classes'] . 'site-description invisible';
+			$classes = $this->configs['template']['tagline-classes'] . ' site-description invisible';
 		}
 
 		printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $classes ), esc_html( $blog_info ) );

@@ -17,6 +17,7 @@
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 		<exclude name="Generic.Commenting.DocComment.InvalidEndChar" />
 		<exclude name="WordPress.XSS.EscapeOutput.OutputNotEscaped" />
+		<exclude name="Generic.Commenting.DocComment.InvalidEndChar" />
 
 		<exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
 
@@ -31,9 +32,5 @@
 	</rule>
 
 	<rule ref="WordPress-Extra">
-	</rule>
-
-	<rule ref="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing">
-		<severity>0</severity>
 	</rule>
 </ruleset>

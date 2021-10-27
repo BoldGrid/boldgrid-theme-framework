@@ -1,6 +1,6 @@
 <?php
 /**
- * Class: BoldGrid_Framework_Comments
+ * File: BoldGrid_Framework_Comments
  *
  * The class responsible for comment display.
  *

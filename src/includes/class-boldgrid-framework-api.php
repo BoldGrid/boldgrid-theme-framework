@@ -1140,7 +1140,7 @@ class BoldGrid {
 
 						$col_x_full_width = implode( ' ', $col_x_full_width );
 
-						if ( false !== strpos( $col_uid, 'h' ) ) {
+						if ( false === strpos( $col_uid, 'f' ) ) {
 							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $col_data['align'];
 							$markup .= $col_x_full_width ? ' ' . $col_x_full_width . '">' : '">';
 						} else {

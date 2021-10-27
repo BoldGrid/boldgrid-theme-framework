@@ -1,4 +1,4 @@
-.bgtfw-header, .bgtfw-sticky-header {
+.bgtfw-header, .bgtfw-sticky-header, .bgtfw-footer {
 	&.template-header {
 		.boldgrid-section {
 			.container {
@@ -216,6 +216,12 @@
 			.row {
 				margin-left: 0px;
 				margin-right: 0px;
+				.slick-slide {
+					.row:not( .bg-editor-hr-wrap ) {
+						margin-left: 0px;
+						margin-right: 0px;
+					}
+				}
 				.row:not( .bg-editor-hr-wrap ) {
 					margin-left: -15px;
 					margin-right: -15px;
@@ -236,6 +242,12 @@
 			.row {
 				margin-left: 0px;
 				margin-right: 0px;
+				.slick-slide {
+					.row:not( .bg-editor-hr-wrap ) {
+						margin-left: 0px;
+						margin-right: 0px;
+					}
+				}
 				.row:not( .bg-editor-hr-wrap ) {
 					margin-left: -15px;
 					margin-right: -15px;
@@ -247,6 +259,12 @@
 						margin-left: 20px;
 						margin-right: 20px;
 					}
+					.slick-slide {
+						.row:not( .bg-editor-hr-wrap ) {
+							margin-left: 0px;
+							margin-right: 0px;
+						}
+					}
 					.row:not( .bg-editor-hr-wrap ) {
 						margin-left: -15px;
 						margin-right: -15px;
@@ -257,6 +275,12 @@
 						> div {
 							padding-left:0px;
 							padding-right: 0px;
+						}
+					}
+					.slick-slide {
+						.row:not( .bg-editor-hr-wrap ) {
+							margin-left: 0px;
+							margin-right: 0px;
 						}
 					}
 					.row:not( .bg-editor-hr-wrap ) {
@@ -272,6 +296,12 @@
 					&.bg-editor-hr-wrap {
 						> div {
 							padding-left:0px;
+						}
+					}
+					.slick-slide {
+						.row:not( .bg-editor-hr-wrap ) {
+							margin-left: 0px;
+							margin-right: 0px;
 						}
 					}
 					.row:not( .bg-editor-hr-wrap ) {
@@ -387,6 +417,21 @@
 			.boldgrid-section-wrap {
 				margin-left: -15px;
 				margin-right: -15px;
+			}
+		}
+	}
+}
+body:not( .header-top ) {
+	#colophon {
+		&.site-footer {
+			.boldgrid-section {
+				.full-width {
+					.row {
+						.sm-clean {
+							margin-left: 0px;
+						}
+					}
+				}
 			}
 		}
 	}

@@ -1145,7 +1145,7 @@ class BoldGrid {
 							$markup .= $col_x_full_width ? ' ' . $col_x_full_width . '">' : '">';
 						} else {
 							$num = ( 12 / count( $chunk ) );
-							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . '">';
+							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . ' ' . $col_data['align'] . '">';
 						}
 
 						ob_start();

@@ -97,12 +97,12 @@ class Boldgrid_Framework_Title {
 		}
 
 		$post_meta = get_post_meta( $post->ID, $this->configs['title']['hide'], true );
-		$title     = sprintf( '%1$s %2$s', 'post' === $post->post_type ? __( 'Post', 'bgtfw' ) : __( 'Page', 'bgtfw' ), __( 'Title', 'bgtfw' ) );
+		$title     = sprintf( '%1$s %2$s', 'post' === $post->post_type ? __( 'Post: ', 'bgtfw' ) : __( 'Page: ', 'bgtfw' ), __( 'Title: ', 'bgtfw' ) );
 		$k         = $this->get_global();
 
 		$options = array(
 			'global' => array(
-				'name' => __( 'Use Global Settings ', 'bgtfw' ),
+				'name' => __( 'Use Global Setting ', 'bgtfw' ),
 				'value' => 'global',
 				'checked' => 'global' === $post_meta,
 				'post_text' => esc_attr( $k ),
@@ -148,7 +148,7 @@ class Boldgrid_Framework_Title {
 			<?php
 				if ( $options['global']['checked'] ) {
 					$k = get_theme_mod( 'bgtfw_pages_title_display' );
-					echo esc_html( $title ) . ': <span class="value-displayed">' . esc_html__( 'Use Global Settings ', 'bgtfw' ) . '<div class="template-subtitle">' . esc_html( $k ) . '</div></span>';
+					echo esc_html( $title ) . ': <span class="value-displayed">' . esc_html__( 'Use Global Setting ', 'bgtfw' ) . '<div class="template-subtitle">' . esc_html( $k ) . '</div></span>';
 				} else {
 					echo esc_html( $title ) . '<span class="value-displayed">...</span>';
 				}

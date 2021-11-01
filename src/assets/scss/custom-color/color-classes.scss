@@ -205,22 +205,31 @@ $names: background background-color;
 			color: $ubtn-color !important;
 
 			&:visited {
-				color: $ubtn-color;
+				color: $ubtn-color !important;
+				a {
+					color: $ubtn-color !important;
+				}
 			}
 
 			&:hover,
 			&:focus {
-				background-color: lighten($ubtn-background, 10%);
-				border-color: lighten($ubtn-background, 10%);
+				background-color: lighten($ubtn-background, 10%) !important;
+				border-color: lighten($ubtn-background, 10%) !important;
 				color: $ubtn-color !important;
+				a {
+					color: $ubtn-color !important;
+				}
 			}
 
 			&:active,
 			&.active,
 			&.is-active {
-				background-color: desaturate($ubtn-background, 10%);
-				border-color: desaturate($ubtn-background, 10%);
+				background-color: desaturate($ubtn-background, 10%) !important;
+				border-color: desaturate($ubtn-background, 10%) !important;
 				color: darken($ubtn-background, 10%) !important;
+				a {
+					color: $ubtn-color !important;
+				}
 			}
 		}
 	}

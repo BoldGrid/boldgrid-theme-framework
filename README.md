@@ -36,7 +36,7 @@ user guide for more information.
 
 ## Changelog ##
 
-### 2.9.5 ###
+### 2.10.0 ###
 * Bug Fix: Add Menu Link Hover Color Control in Crio [#328](https://github.com/BoldGrid/boldgrid-theme-framework/issues/328)
 * Bug Fix: Explicit button height and nowrap makes buttons on mobile look bad [#475](https://github.com/BoldGrid/boldgrid-theme-framework/issues/475)
 * Bug Fix: Improve button display in menus [#509](https://github.com/BoldGrid/boldgrid-theme-framework/issues/509)

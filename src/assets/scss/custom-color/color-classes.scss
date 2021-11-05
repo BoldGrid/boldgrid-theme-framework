@@ -203,6 +203,9 @@ $names: background background-color;
 			background-color: $ubtn-background !important;
 			border-color: $ubtn-background !important;
 			color: $ubtn-color !important;
+			a {
+				color: $ubtn-color !important;
+			}
 
 			&:visited {
 				color: $ubtn-color !important;

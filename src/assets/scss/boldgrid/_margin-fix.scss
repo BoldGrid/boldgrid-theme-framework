@@ -124,6 +124,26 @@
 				}
 			}
 		}
+		.container-fluid {
+			.sm {
+				&.e, &.ne, &.se {
+					.li {
+						.btn {
+							margin-right: -13px;
+							padding-right: 13px;
+						}
+					}
+				}
+				&.w, &.nw, &.sw {
+					.li {
+						.btn {
+							margin-left: -13px;
+							padding-left: 13px;
+						}
+					}
+				}
+			}
+		}
 	}
 }
 .standard-menu-enabled {

@@ -269,11 +269,11 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 
 				// Note: The dynamic parts (translation strings) are escaped above when the variable $dropdown_args is created, so no further escaping is necessary at this point.
 				$pages = wp_dropdown_pages( $dropdown_args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				if ( ! empty( $pages ) ) : ?>
+				if ( ! empty( $pages ) ) : // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php esc_html_e( 'Parent', 'bgtfw' ); ?></label></p>
 					<?php
 					// Note: The variable $pages has it's dynamic parts (translation string) escaped above when the variable $dropdown_args is created so no further escaping is necessary at this point.
-					echo '<span>' . $pages . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<span>' . $pages . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 				endif; // end empty pages check
 			endif;  // end hierarchical check.

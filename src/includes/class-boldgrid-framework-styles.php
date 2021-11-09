@@ -258,7 +258,28 @@ class BoldGrid_Framework_Styles {
 
 		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";
-		$css = "{$menu_id} .current-menu-item > a,{$menu_id} .current-menu-ancestor > a,{$menu_id} .current-menu-parent > a,{$menu_id} .current_page_parent > a { color: {$color}; }";
+		$css = "{$menu_id} .current-menu-item:not( .btn ) > a,{$menu_id} .current-menu-ancestor:not( .btn ) > a,{$menu_id} .current-menu-parent:not( .btn ) > a,{$menu_id} .current_page_parent:not( .btn ) > a { color: {$color}; }";
+
+		return $css;
+	}
+
+	/**
+	 * Generate hover link color CSS for nav menu locations.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $location Nav menu location to generate CSS for.
+	 *
+	 * @return string $css Generated CSS for nav menu location.
+	 */
+	public function hover_link_generate( $location ) {
+		$color = get_theme_mod( "bgtfw_menu_items_hover_link_color_{$location}" );
+		list( $color ) = explode( ':', $color );
+		$color = "var(--{$color})";
+
+		$location = str_replace( '_', '-', $location );
+		$menu_id = "#{$location}-menu";
+		$css = "{$menu_id} .hvr-none:not( .current-menu-item ):not( .button ) > a:hover,{$menu_id} .hvr-none:not( .current-menu-ancestor ):not( .button ) > a:hover,{$menu_id} .hvr-none:not( .current-menu-parent ):not( .button ) > a:hover,{$menu_id} .hvr-none:not( .current_page_parent ):not( .button ) > a:hover{ color: {$color}; }";
 
 		return $css;
 	}
@@ -275,6 +296,7 @@ class BoldGrid_Framework_Styles {
 		foreach ( $menus as $location => $description ) {
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "hover-{$location}", $this->hover_generate( $location ) );
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "active-link-color-{$location}", $this->active_link_generate( $location ) );
+			Boldgrid_Framework_Customizer_Generic::add_inline_style( "hover-link-color-{$location}", $this->hover_link_generate( $location ) );
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "menu-item-styles-{$location}", $this->menu_items_css( $location ) );
 			Boldgrid_Framework_Customizer_Generic::add_inline_style( "menu-colors-{$location}", $this->menu_css( $location ) );
 		}

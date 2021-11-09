@@ -97,13 +97,20 @@ class Boldgrid_Framework_Title {
 		}
 
 		$post_meta = get_post_meta( $post->ID, $this->configs['title']['hide'], true );
-		$title = sprintf( '%1$s %2$s', 'post' === $post->post_type ? __( 'Post', 'bgtfw' ) : __( 'Page', 'bgtfw' ), __( 'Title', 'bgtfw' ) );
+		$title     = sprintf( '%1$s %2$s', 'post' === $post->post_type ? __( 'Post: ', 'bgtfw' ) : __( 'Page: ', 'bgtfw' ), __( 'Title: ', 'bgtfw' ) );
+		$k         = $this->get_global();
 
 		$options = array(
 			'global' => array(
-				'name' => __( 'Show', 'bgtfw' ),
+				'name' => __( 'Use Global Setting ', 'bgtfw' ),
 				'value' => 'global',
-				'checked' => '0' !== $post_meta,
+				'checked' => 'global' === $post_meta,
+				'post_text' => esc_attr( $k ),
+			),
+			'show' => array(
+				'name' => __( 'Show', 'bgtfw' ),
+				'value' => '1',
+				'checked' => '1' === $post_meta,
 				'post_text' => $this->configs['title']['meta_box'][ $post->post_type ]['show_post_text'],
 			),
 			'hide' => array(
@@ -124,10 +131,28 @@ class Boldgrid_Framework_Title {
 		 * @param array $post_meta Post Meta Value.
 		 */
 		$options = apply_filters( 'bgtfw_page_title_options', $options, $post, $post_meta );
+		$checked = false;
+		foreach ( $options as $option ) {
+			if ( $option['checked'] ) {
+				$checked = true;
+				break;
+			}
+		}
+
+		if ( ! $checked ) {
+			$options['global']['checked'] = true;
+		}
 
 		?>
 		<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-page-title">
-			<?php echo esc_html( $title ); ?>: <span class="value-displayed">...</span>
+			<?php
+				if ( $options['global']['checked'] ) {
+					$k = get_theme_mod( 'bgtfw_pages_title_display' );
+					echo esc_html( $title ) . ': <span class="value-displayed">' . esc_html__( 'Use Global Setting ', 'bgtfw' ) . '<div class="template-subtitle">' . esc_html( $k ) . '</div></span>';
+				} else {
+					echo esc_html( $title ) . '<span class="value-displayed">...</span>';
+				}
+			?>
 			<a class="edit" href="">
 				<span aria-hidden="true"><?php esc_html_e( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo esc_html( $title ); ?></span>
 			</a>
@@ -160,10 +185,10 @@ class Boldgrid_Framework_Title {
 	 * @param int $post_id The ID of the post being updated.
 	 */
 	public function post_updated( $post_id ) {
-		if ( isset( $_POST[ $this->configs['title']['hide'] ] ) ) {
+		if ( isset( $_POST[ $this->configs['title']['hide'] ] ) ) { // phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification
 
 			// Validate "show title" post meta, and abort on failure.
-			$value = ( string ) sanitize_key( $_POST[ $this->configs['title']['hide'] ] );
+			$value = (string) sanitize_key( $_POST[ $this->configs['title']['hide'] ] );
 
 			if ( ! in_array( $value, array( '0', '1', 'global' ), true ) ) {
 				return;

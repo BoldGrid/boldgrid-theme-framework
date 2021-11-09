@@ -1,4 +1,26 @@
-.bgtfw-header {
+.bgtfw-header, .bgtfw-sticky-header, .bgtfw-footer {
+	&.template-header {
+		.boldgrid-section {
+			.container {
+				.row {
+					> div:first-child {
+						&:not(:last-child) {
+							padding-right: 0;
+							margin-left: 15px;
+							margin-right: -15px;
+						}
+					}
+					> div:last-child {
+						&:not(:first-child) {
+							padding-left: 0;
+							margin-left: -15px;
+							margin-right: 15px;
+						}
+					}
+				}
+			}
+		}
+	}
 	.boldgrid-section {
 		.container {
 			.row {
@@ -70,7 +92,7 @@
 		}
 	}
 }
-#masthead {
+#masthead, #masthead-sticky {
 	.container {
 		padding-left: 15px;
 		padding-right: 15px;
@@ -99,6 +121,26 @@
 				.sm-clean {
 					margin-left: -15px;
 					margin-right: -15px;
+				}
+			}
+		}
+		.container-fluid {
+			.sm {
+				&.e, &.ne, &.se {
+					.li {
+						.btn {
+							margin-right: -13px;
+							padding-right: 13px;
+						}
+					}
+				}
+				&.w, &.nw, &.sw {
+					.li {
+						.btn {
+							margin-left: -13px;
+							padding-left: 13px;
+						}
+					}
 				}
 			}
 		}
@@ -194,6 +236,16 @@
 			.row {
 				margin-left: 0px;
 				margin-right: 0px;
+				.slick-slide {
+					.row:not( .bg-editor-hr-wrap ) {
+						margin-left: 0px;
+						margin-right: 0px;
+					}
+				}
+				.row:not( .bg-editor-hr-wrap ) {
+					margin-left: -15px;
+					margin-right: -15px;
+				}
 				&.bg-editor-hr-wrap {
 					> div {
 						padding-left:0px;
@@ -210,12 +262,32 @@
 			.row {
 				margin-left: 0px;
 				margin-right: 0px;
+				.slick-slide {
+					.row:not( .bg-editor-hr-wrap ) {
+						margin-left: 0px;
+						margin-right: 0px;
+					}
+				}
+				.row:not( .bg-editor-hr-wrap ) {
+					margin-left: -15px;
+					margin-right: -15px;
+				}
 			}
 			.container {
 				> .row {
 					&:not( .bg-editor-hr-wrap ) {
 						margin-left: 20px;
 						margin-right: 20px;
+					}
+					.slick-slide {
+						.row:not( .bg-editor-hr-wrap ) {
+							margin-left: 0px;
+							margin-right: 0px;
+						}
+					}
+					.row:not( .bg-editor-hr-wrap ) {
+						margin-left: -15px;
+						margin-right: -15px;
 					}
 				}
 				.row {
@@ -224,6 +296,16 @@
 							padding-left:0px;
 							padding-right: 0px;
 						}
+					}
+					.slick-slide {
+						.row:not( .bg-editor-hr-wrap ) {
+							margin-left: 0px;
+							margin-right: 0px;
+						}
+					}
+					.row:not( .bg-editor-hr-wrap ) {
+						margin-left: -15px;
+						margin-right: -15px;
 					}
 				}
 			}
@@ -235,6 +317,16 @@
 						> div {
 							padding-left:0px;
 						}
+					}
+					.slick-slide {
+						.row:not( .bg-editor-hr-wrap ) {
+							margin-left: 0px;
+							margin-right: 0px;
+						}
+					}
+					.row:not( .bg-editor-hr-wrap ) {
+						margin-left: -15px;
+						margin-right: -15px;
 					}
 				}
 				padding-left: 0px;
@@ -289,7 +381,7 @@
 
 .full-width {
 	.entry-content {
-		.boldgrid-section {
+		.boldgrid-section, .boldgrid-section-wrap {
 			margin-left: -20px;
 			margin-right: -20px;
 			padding-left: 20px;
@@ -345,6 +437,21 @@
 			.boldgrid-section-wrap {
 				margin-left: -15px;
 				margin-right: -15px;
+			}
+		}
+	}
+}
+body:not( .header-top ) {
+	#colophon {
+		&.site-footer {
+			.boldgrid-section {
+				.full-width {
+					.row {
+						.sm-clean {
+							margin-left: 0px;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -413,6 +520,16 @@ footer#colophon {
 							}
 						}
 					}
+				}
+			}
+		}
+	}
+	.has-sidebar {
+		.full-width {
+			.entry-content {
+				.boldgrid-section {
+					margin-left: 0px;
+					margin-right: 0px;
 				}
 			}
 		}

@@ -211,9 +211,29 @@ export class Preview  {
 	getActiveLinkColor( to, menuId ) {
 		const color = new PaletteSelector().getColor( to );
 		let css = `
-		#${menuId} .current-menu-item > a,
-		#${menuId} .current-menu-ancestor > a,
-		#${menuId} .current-menu-parent > a {
+		#${menuId} .current-menu-item:not( .btn ) > a,
+		#${menuId} .current-menu-ancestor:not( .btn ) > a,
+		#${menuId} .current-menu-parent:not( .btn ) > a {
+			color: ${color};
+		}`;
+
+		return css;
+	}
+
+	/**
+	 * Get hover link color CSS.
+	 *
+	 * @param {String} to Thememod's color value.
+	 * @param {String} menuId Menu ID for nav menu instance.
+	 *
+	 * @return {String} css The CSS to add.
+	 */
+	getHoverLinkColor( to, menuId ) {
+		const color = new PaletteSelector().getColor( to );
+		let css = `
+		#${menuId} .hvr-none:not( .current-menu-item ):not( .button ) > a:hover,
+		#${menuId} .hvr-none:not( .current-menu-ancestor ):not( .button ) > a:hover,
+		#${menuId} .hvr-none:not( .current-menu-parent ):not( .button ) > a:hover {
 			color: ${color};
 		}`;
 
@@ -339,6 +359,21 @@ export class Preview  {
 		let to = wp.customize( mod )();
 		let css = this.getActiveLinkColor( to, menuId );
 		this.previewUtility.updateDynamicStyles( `active-link-color-${location}-inline-css`, css );
+	}
+
+	/**
+	 * Set active menu item link colors.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param {String} location Location of nav menu instance.
+	 * @param {String} menuId   Unique ID for nav menu instance.
+	 */
+	setHoverLinkColor( location, menuId ) {
+		let mod = `bgtfw_menu_items_hover_link_color_${location}`;
+		let to = wp.customize( mod )();
+		let css = this.getHoverLinkColor( to, menuId );
+		this.previewUtility.updateDynamicStyles( `hover-link-color-${location}-inline-css`, css );
 	}
 
 	/**
@@ -519,6 +554,9 @@ export class Preview  {
 				// Setup active link color even handlers.
 				this._bindActiveLinkColors( props.theme_location, props.menu_id );
 
+				// Setup hover link color even handlers.
+				this._bindHoverLinkColors( props.theme_location, props.menu_id );
+
 				// Setup event handlers.
 				this._bindHamburgerColors( props.theme_location, props.menu_id );
 			}
@@ -645,6 +683,17 @@ export class Preview  {
 	_bindActiveLinkColors( location, menuId ) {
 		wp.customize( `bgtfw_menu_items_active_link_color_${location}`, ( value ) => {
 			value.bind( () => this.setActiveLinkColor( location, menuId ) );
+		} );
+	}
+
+	/**
+	 * Bind hover link color settings
+	 *
+	 * @since 2.0.0
+	 */
+	_bindHoverLinkColors( location, menuId ) {
+		wp.customize( `bgtfw_menu_items_hover_link_color_${location}`, ( value ) => {
+			value.bind( () => this.setHoverLinkColor( location, menuId ) );
 		} );
 	}
 }

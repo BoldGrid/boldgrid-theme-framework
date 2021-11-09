@@ -1590,13 +1590,13 @@ JSV@^4.0.x:
   resolved "https://registry.yarnpkg.com/JSV/-/JSV-4.0.2.tgz#d077f6825571f82132f9dffaed587b4029feff57"
   integrity sha1-0Hf2glVx+CEy+d/67Vh7QCn+/1c=
 
-"PHP_CodeSniffer@https://github.com/squizlabs/PHP_CodeSniffer/#3.6.0":
+"PHP_CodeSniffer@https://github.com/squizlabs/PHP_CodeSniffer/#2.9":
   version "0.0.0"
-  resolved "https://github.com/squizlabs/PHP_CodeSniffer/#ffced0d2c8fa8e6cdc4d695a743271fab6c38625"
+  resolved "https://github.com/squizlabs/PHP_CodeSniffer/#4665f6411253f737658f9aae12e6cafd3ca26b13"
 
-"WordPress-Coding-Standards@https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards#2.3.0":
+"WordPress-Coding-Standards@https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards#0.10.0":
   version "0.0.0"
-  resolved "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards#7da1894633f168fe244afc6de00d141f27517b62"
+  resolved "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards#b39490465f6fd7375743a395019cd597e12119c9"
 
 abbrev@1, abbrev@^1.1.1:
   version "1.1.1"

@@ -31,6 +31,11 @@ export class ToggleValue extends Base {
 	 * @param {Mixed} to New value control is updating to.
 	 */
 	bound( to ) {
+
+		// if this is an items_hover_effect control, and set to none, we need to add the hvr-none class.
+		if ( this.id.includes( 'bgtfw_menu_items_hover_effect' ) && '' === to ) {
+			to = 'hvr-none';
+		}
 		$( this.element ).removeClass( this.remove ).addClass( to ) && this.cb();
 	}
 }

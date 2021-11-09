@@ -60,13 +60,13 @@ button.customize-partial-edit-shortcut-button {
 	&:hover {
 		> .bgtfw-edit-button {
 			background-color:#0073aa;
-			color: #fff;
+			color: #fff !important;
 			opacity: 1;
 
 		}
 		> .bgtfw-multi-edit-button {
 			background-color:#0073aa;
-			color: #fff;
+			color: #fff !important;
 			opacity: 1;
 		}
 	}
@@ -81,7 +81,7 @@ button.customize-partial-edit-shortcut-button {
 		cursor: pointer;
 		right: 0;
 		text-decoration: none;
-		color: #000;
+		color: #000 !important;
 		border-radius: 4px;
 		border: 0px;
 		line-height: 20px;
@@ -125,7 +125,7 @@ button.customize-partial-edit-shortcut-button {
 		cursor: pointer;
 		right: 0;
 		text-decoration: none;
-		color: #000;
+		color: #000 !important;
 		border-radius: 4px;
 		border: 0px;
 		line-height: 20px;
@@ -148,7 +148,7 @@ button.customize-partial-edit-shortcut-button {
 			text-transform: none;
 			&:hover {
 				background-color: #0073aa;
-				color: #fff;
+				color: #fff !important;
 			}
 			&:not( :last-child ) {
 				border-bottom: 1px solid #e0e0e0;
@@ -167,7 +167,7 @@ button.customize-partial-edit-shortcut-button {
 
 		&:hover, &.expanded {
 			background-color:#0073aa;
-			color: #fff;
+			color: #fff !important;
 			opacity: 1;
 			z-index: 301;
 			~ .bgtfw-edit-border-box {
@@ -195,7 +195,7 @@ button.customize-partial-edit-shortcut-button {
 				width: auto;
 				list-style: none;
 				background-color: #f8f8f8;
-				color: black;
+				color: black !important;
 				border-radius: 5px;
 				border: 1px solid #e0e0e0;
 			}

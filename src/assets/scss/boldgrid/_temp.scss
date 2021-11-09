@@ -1,4 +1,4 @@
-.palette-primary .transparent-background-color {
+.palette-primary .transparent-background-color:not( .button-primary ):not( .button-secondary ) {
 	background-color: transparent !important;
 }
 

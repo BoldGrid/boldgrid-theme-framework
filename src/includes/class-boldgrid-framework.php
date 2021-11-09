@@ -455,7 +455,7 @@ class BoldGrid_Framework {
 			add_action( 'boldgrid_header_after', function() {
 				?>
 				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
-					<?php echo BoldGrid::dynamic_sticky_header(); ?>
+					<?php echo BoldGrid::dynamic_sticky_header(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</div>
 				<?php
 			}, 20 );
@@ -960,9 +960,9 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_print_styles', $device_preview, 'adjust_customizer_responsive_sizes' );
 
 		// We don't need device previews if user is running on a mobile device or newer WP.
-		$wp_version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>' );
+		$version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>' );
 
-		if ( wp_is_mobile() || $wp_version ) {
+		if ( wp_is_mobile() || $version ) {
 			return;
 		}
 

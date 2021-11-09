@@ -59,7 +59,7 @@ class BoldGrid {
 
 		// Site title link.
 		$display = get_theme_mod( 'bgtfw_site_title_display' ) === 'hide' ? ' screen-reader-text' : '';
-		echo '<' . esc_html( $title_tag ) . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . esc_attr( $display ) . '">' .
+		echo '<' . $title_tag . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . esc_attr( $display ) . '">' .
 			'<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a>' .
 			'</' . esc_html( $title_tag ) . '>';
 	}
@@ -109,12 +109,12 @@ class BoldGrid {
 	public function print_tagline() {
 		// Retrieve blog tagline.
 		$blog_info = get_bloginfo( 'description' );
-		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
+		$display   = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
 
 		if ( $blog_info ) {
 			$classes = $this->configs['template']['tagline-classes'] . $display;
 		} else {
-			$classes = $this->configs['template']['tagline-classes'] . 'site-description invisible';
+			$classes = $this->configs['template']['tagline-classes'] . ' site-description invisible';
 		}
 
 		printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $classes ), esc_html( $blog_info ) );
@@ -630,7 +630,9 @@ class BoldGrid {
 
 					// Apply to all other menu items that aren't active menu items.
 					if ( ! count( array_intersect( $classes, array( 'current-menu-item', 'current_page_parent', 'current-post-parent' ) ) ) ) {
-						$classes[] = get_theme_mod( "bgtfw_menu_items_hover_effect_{$location}" );
+						$hover_effect = get_theme_mod( "bgtfw_menu_items_hover_effect_{$location}" );
+						$hover_effect = $hover_effect ? $hover_effect : 'hvr-none';
+						$classes[]    = $hover_effect;
 					}
 				}
 
@@ -1138,12 +1140,13 @@ class BoldGrid {
 
 						$col_x_full_width = implode( ' ', $col_x_full_width );
 
-						if ( false !== strpos( $col_uid, 'h' ) ) {
+						if ( false === strpos( $col_uid, 'f' ) ) {
 							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $col_data['align'];
 							$markup .= $col_x_full_width ? ' ' . $col_x_full_width . '">' : '">';
 						} else {
 							$num = ( 12 / count( $chunk ) );
-							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . '">';
+							$align = isset( $col_data['align'] ) ? $col_data['align'] : '';
+							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . ' ' . $align . '">';
 						}
 
 						ob_start();

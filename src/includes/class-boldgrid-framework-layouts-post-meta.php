@@ -44,16 +44,16 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	 * @param String $post_type The post type being modified.
 	 */
 	public function add( $post_type ) {
-
+		$crio_layout_post_types = apply_filters( 'crio_layout_post_types', array( 'page', 'post' ) );
 		// remove the default
-		remove_meta_box( 'pageparentdiv', array( 'page', 'post' ), 'side' );
+		remove_meta_box( 'pageparentdiv', $crio_layout_post_types, 'side' );
 
 		// add our own
 		add_meta_box(
 			'bgtfw-attributes-meta-box',
 			'page' == $post_type ? __( 'Page Attributes', 'bgtfw' ) : __( 'Post Attributes', 'bgtfw' ),
 			array( $this, 'meta_box_callback' ),
-			array( 'page', 'post' ),
+			$crio_layout_post_types,
 			'side',
 			'low'
 		);

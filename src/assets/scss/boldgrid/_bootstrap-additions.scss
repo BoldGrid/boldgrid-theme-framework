@@ -89,6 +89,17 @@
 .container-fluid .boldgrid-section-group .boldgrid-section {
 	margin: auto;
 }
+
+#main-wrapper.full-width.max-full-width .main .entry-content .boldgrid-section .container-fluid {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+body.blog #main-wrapper.full-width.max-full-width {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .container .container {
 	width: auto;
 }

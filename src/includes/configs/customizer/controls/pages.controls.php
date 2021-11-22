@@ -19,12 +19,17 @@ return array(
 		'priority'          => 35,
 		'default'           => 'container',
 		'choices'           => array(
-			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			''          => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+			'container'    => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
+			'fw-contained' => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Contained Full Width', 'bgtfw' ),
+			''             => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
 		),
 		'section'           => 'bgtfw_layout_page_container',
 		'sanitize_callback' => function( $value, $settings ) {
-			return 'container' === $value || '' === $value ? $value : $settings->default;
+			if ( empty( $value ) ) {
+				return 'container';
+			} else {
+				return $value;
+			}
 		},
 		'js_vars'           => array(
 			array(
@@ -39,6 +44,29 @@ return array(
 				'selector'    => '.page .site-content',
 				'label'       => __( 'Page Layout', 'bgtfw' ),
 				'description' => __( 'Choose between contained or full-width page layout', 'bgtfw' ),
+			),
+		),
+	),
+	'bgtfw_pages_full_width_max' => array(
+		'type'             => 'number',
+		'transport'        => 'auto',
+		'settings'         => 'bgtfw_pages_full_width_max',
+		'label'            => esc_html__( 'Max Width', 'kirki' ),
+		'description'      => esc_html__( 'If you want full-width containers to be limited to a maximum width, enter that width here.', 'kirki' ),
+		'section'          => 'bgtfw_layout_page_container',
+		'default'          => '1920',
+		'active_callback' => array(
+			array(
+				'setting'  => 'bgtfw_pages_container',
+				'operator' => '==',
+				'value'    => 'fw-contained',
+			),
+		),
+		'output' => array(
+			array(
+				'element'  => 'body.page #main-wrapper.max-full-width .main .entry-content .boldgrid-section .container-fluid',
+				'property' => 'max-width',
+				'units'     => 'px',
 			),
 		),
 	),

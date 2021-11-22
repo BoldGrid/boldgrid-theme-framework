@@ -645,12 +645,17 @@ return array(
 		'priority'          => 40,
 		'default'           => 'container',
 		'choices'           => array(
-			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			''          => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+			'container'    => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
+			'fw-contained' => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Contained Full Width', 'bgtfw' ),
+			''             => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
 		),
 		'section'           => 'bgtfw_pages_blog_posts_container',
 		'sanitize_callback' => function( $value, $settings ) {
-			return 'container' === $value || '' === $value ? $value : $settings->default;
+			if ( empty( $value ) ) {
+				return 'container';
+			} else {
+				return $value;
+			}
 		},
 		'js_vars'           => array(
 			array(
@@ -658,6 +663,29 @@ return array(
 				'function'      => 'html',
 				'attr'          => 'class',
 				'value_pattern' => 'main-wrapper $',
+			),
+		),
+	),
+	'bgtfw_blog_posts_full_width_max' => array(
+		'type'             => 'number',
+		'transport'        => 'auto',
+		'settings'         => 'bgtfw_blog_posts_full_width_max',
+		'label'            => esc_html__( 'Max Width', 'bgtfw' ),
+		'description'      => esc_html__( 'If you want full-width containers to be limited to a maximum width, enter that width here.', 'kirki' ),
+		'section'          => 'bgtfw_pages_blog_posts_container',
+		'default'          => '1920',
+		'active_callback' => array(
+			array(
+				'setting'  => 'bgtfw_blog_posts_container',
+				'operator' => '==',
+				'value'    => 'fw-contained',
+			),
+		),
+		'output' => array(
+			array(
+				'element'  => 'body.single #main-wrapper.max-full-width .main .entry-content .boldgrid-section .container-fluid',
+				'property' => 'max-width',
+				'units'     => 'px',
 			),
 		),
 	),

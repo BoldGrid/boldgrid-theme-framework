@@ -39,7 +39,7 @@ return array(
 			'subsets'        => array( 'latin-ext' ),
 			'text-transform' => 'none',
 		),
-		'priority'  => 2,
+		'priority'  => 3,
 		'output'    => $bgtfw_typography->get_output_values( $bgtfw_configs ),
 		'edit_vars' => array(
 			array(
@@ -61,7 +61,7 @@ return array(
 			'max'  => '42',
 			'step' => '1',
 		),
-		'priority'  => 3,
+		'priority'  => 4,
 	),
 	'bgtfw_body_typography'            => array(
 		'type'      => 'typography',

@@ -1036,6 +1036,29 @@ HTML;
 	}
 
 	/**
+	 * Add Custom Column Width control.
+	 *
+	 * @since 2.7.0
+	 */
+	public function register_responsive_font_control( $wp_customize ) {
+		require_once $this->configs['framework']['includes_dir']
+			. 'control/class-boldgrid-framework-control-responsive-font-size.php';
+		$params = array(
+			'type'              => 'theme_mod',
+			'section'           => 'boldgrid_typography',
+			'capability'        => 'edit_theme_options',
+			'transport'         => 'postMessage',
+			'priority'          => 2,
+			'sanitize_callback' => function( $value, $settings ) {
+				return $value;
+			},
+			'label' => __( 'Responsive Font Size', 'bgtfw' ),
+		);
+		$wp_customize->add_setting( 'bgtfw_body_font_size', $params );
+		$wp_customize->add_control( new Boldgrid_Framework_Control_Responsive_Font_Size( $this->configs, $wp_customize, $params ) );
+	}
+
+	/**
 	 * Add a nonce for Customizer for column nonces.
 	 *
 	 * @since 2.7.0

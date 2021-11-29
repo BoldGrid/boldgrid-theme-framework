@@ -217,6 +217,86 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
+	 * WP Ajax Heading Sizes.
+	 *
+	 * @since 2.7.0
+	 */
+	public function wp_ajax_responsive_heading_sizes() {
+		check_ajax_referer( 'bgtfw_responsive_heading_sizes', 'responsiveHeadingSizesNonce' );
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			wp_die( -1 );
+		}
+		$selectors  = $this->configs['customizer-options']['typography']['selectors'];
+		$value      = $_POST['responsiveHeadingSizes'];
+		$control_id = $_POST['controlId'];
+		if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+			$css = $this->generate_responsive_headings( $value, $selectors, '' );
+		} else {
+			$css = $this->generate_responsive_font_css( $control_id, $value );
+		}
+
+		wp_send_json_success( array(
+			'css' => $css,
+		) );
+	}
+
+	/** Generate Responive Font CSS
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function generate_responsive_font_css( $control_id, $value ) {
+		$css                 = '';
+		$selectors = $this->configs['customizer-options']['typography']['responsive_font_controls'][ $control_id ]['output_selector'];
+		// XS / Phone.
+		$font_size = ! empty( $value['phone'] ) ? $value['phone'] : false;
+		if ( $font_size ) {
+			$css .= '@media only screen and (max-width: 767px) {';
+			$css .= $selectors;
+			$css .= '{ font-size: ' . $font_size . '!important;}';
+			$css .= '}';
+		}
+
+		// SM / Tablet.
+		$font_size = ! empty( $value['tablet'] ) ? $value['tablet'] : false;
+		if ( $font_size ) {
+			$css .= '@media only screen and (min-width: 768px) and (max-width: 991px) {';
+			$css .= $selectors;
+			$css .= '{ font-size: ' . $font_size . '!important;}';
+			$css .= '}';
+		}
+
+		// MD / Desktop.
+		$font_size = ! empty( $value['desktop'] ) ? $value['desktop'] : false;
+		if ( $font_size ) {
+			$css .= '@media only screen and (min-width: 1200px) {';
+			$css .= $selectors;
+			$css .= '{ font-size: ' . $font_size . '!important;}';
+			$css .= '}';
+		}
+
+		// LG / Large Desktop.
+		$font_size = ! empty( $value['large'] ) ? $value['large'] : false;
+		if ( $font_size ) {
+			$css .= '@media only screen and (min-width: 1200px) {';
+			$css .= $selectors;
+			$css .= '{ font-size: ' . $font_size . '!important;}';
+			$css .= '}';
+		}
+
+		return $css;
+	}
+
+	/**
+	 * Add a nonce for Customizer for responsive heading sizes.
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function header_column_nonces( $nonces ) {
+		$nonces['bgtfw_responsive_heading_sizes'] = wp_create_nonce( 'bgtfw_responsive_heading_sizes' );
+		return $nonces;
+	}
+
+	/**
 	 * Generates headings CSS to apply to frontend.
 	 *
 	 * @since  2.0.0
@@ -226,9 +306,10 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @return string $css CSS for headings styles.
 	 */
 	public function generate_headings_css( $css = '' ) {
-		$headings_font = get_theme_mod( 'bgtfw_headings_typography' );
-		$headings_base = get_theme_mod( 'bgtfw_headings_font_size' );
-		$headings_unit = 'px';
+		$headings_font    = get_theme_mod( 'bgtfw_headings_typography' );
+		$headings_base    = get_theme_mod( 'bgtfw_headings_font_size' );
+		$responsive_sizes = json_decode( get_theme_mod( 'bgtfw_headings_responsive_font_size' ), true );
+		$headings_unit    = 'px';
 
 		$selectors = $this->configs['customizer-options']['typography']['selectors'];
 
@@ -250,11 +331,115 @@ class Boldgrid_Framework_Customizer_Typography {
 			$css .= "$headings_unit;}";
 		}
 
+		if ( $responsive_sizes ) {
+			$css .= $this->generate_responsive_headings( $responsive_sizes, $selectors, $css );
+		}
+
 		$css .= $this->generate_headings_color_css( 'bgtfw_headings_color', '', $selectors );
 
 		return $css;
 	}
 
+	public function generate_responsive_headings( $responsive_sizes, $selectors, $css ) {
+		if ( isset( $responsive_sizes['phone'] ) ) {
+			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['phone'] );
+			$headings_base = $headings_size[0];
+			$headings_unit = $headings_size[1];
+			$css .= '@media only screen and (max-width: 767px) {';
+				foreach ( $selectors as $selector => $options ) {
+					if ( 'subheadings' === $options['type'] ) {
+						continue;
+					}
+
+					$css .= $selector . '{font-size:';
+
+					if ( 'floor' === $options['round'] ) {
+						$css .= floor( $headings_base * $options['amount'] );
+					}
+
+					if ( 'ceil' === $options['round'] ) {
+						$css .= ceil( $headings_base * $options['amount'] );
+					}
+
+					$css .= "$headings_unit;}";
+				}
+				$css .= '}';
+		}
+		if ( isset( $responsive_sizes['tablet'] ) ) {
+			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['tablet'] );
+			$headings_base = $headings_size[0];
+			$headings_unit = $headings_size[1];
+			$css .= '@media only screen and (min-width: 768px) and (max-width: 991px) {';
+				foreach ( $selectors as $selector => $options ) {
+					if ( 'subheadings' === $options['type'] ) {
+						continue;
+					}
+
+					$css .= $selector . '{font-size:';
+
+					if ( 'floor' === $options['round'] ) {
+						$css .= floor( $headings_base * $options['amount'] );
+					}
+
+					if ( 'ceil' === $options['round'] ) {
+						$css .= ceil( $headings_base * $options['amount'] );
+					}
+
+					$css .= "$headings_unit;}";
+				}
+				$css .= '}';
+		}
+		if ( isset( $responsive_sizes['desktop'] ) ) {
+			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['desktop'] );
+			$headings_base = $headings_size[0];
+			$headings_unit = $headings_size[1];
+			$css .= '@media only screen and (min-width: 992px) and (max-width: 1199px) {';
+			foreach ( $selectors as $selector => $options ) {
+				if ( 'subheadings' === $options['type'] ) {
+					continue;
+				}
+
+				$css .= $selector . '{font-size:';
+
+				if ( 'floor' === $options['round'] ) {
+					$css .= floor( $headings_base * $options['amount'] );
+				}
+
+				if ( 'ceil' === $options['round'] ) {
+					$css .= ceil( $headings_base * $options['amount'] );
+				}
+
+				$css .= "$headings_unit;}";
+			}
+			$css .= '}';
+		}
+		if ( isset( $responsive_sizes['large'] ) ) {
+			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['large'] );
+			$headings_base = $headings_size[0];
+			$headings_unit = $headings_size[1];
+			$css .= '@media only screen and (min-width: 1200px) {';
+			foreach ( $selectors as $selector => $options ) {
+				if ( 'subheadings' === $options['type'] ) {
+					continue;
+				}
+
+				$css .= $selector . '{font-size:';
+
+				if ( 'floor' === $options['round'] ) {
+					$css .= floor( $headings_base * $options['amount'] );
+				}
+
+				if ( 'ceil' === $options['round'] ) {
+					$css .= ceil( $headings_base * $options['amount'] );
+				}
+
+				$css .= "$headings_unit;}";
+			}
+			$css .= '}';
+		}
+
+		return $css;
+	}
 	/**
 	 * Generates headings color CSS to apply to frontend.
 	 *

@@ -40,6 +40,80 @@ class BoldGrid_Framework_Styles {
 		$this->configs = $configs;
 	}
 
+	/** Generate Responive Font CSS
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function generate_responsive_font_css( $return = false ) {
+		$css                 = '';
+		$responsive_controls = $this->configs['customizer-options']['typography']['responsive_font_controls'];
+		// XS / Phone.
+		$css .= '@media only screen and (max-width: 767px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['phone'] ) ? $theme_mod['phone'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		// SM / Tablet.
+		$css .= '@media only screen and (min-width: 768px) and (max-width: 991px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['tablet'] ) ? $theme_mod['tablet'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		// MD / Desktop.
+		$css .= '@media only screen and (min-width: 992px) and (max-width: 1199px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['desktop'] ) ? $theme_mod['desktop'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		// LG / Large Desktop.
+		$css .= '@media only screen and (min-width: 1200px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['large'] ) ? $theme_mod['large'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+		if ( $return ) {
+			return $css;
+		}
+		wp_register_style( 'bgtfw-responsive-font-sizes', false );
+		wp_add_inline_style( 'bgtfw-responsive-font-sizes', $css );
+		wp_enqueue_style( 'bgtfw-responsive-font-sizes' );
+	}
+
 	/**
 	 * Return a list of the editor styles that will be applied that are actually contained
 	 * with the theme

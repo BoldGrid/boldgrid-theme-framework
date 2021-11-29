@@ -71,4 +71,21 @@ return array(
 			'amount' => 1,
 		),
 	),
+	'responsive_font_controls' => array(
+		'bgtfw_body_font_size' => array(
+			'section'         => 'boldgrid_typography',
+			'priority'        => 2,
+			'output_selector' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header',
+		),
+		'bgtfw_headings_responsive_font_size' => array(
+			'section'         => 'boldgrid_typography',
+			'priority'        => 5,
+			'output_selector' => 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .bgc-heading.bgc-page-title',
+		),
+		'bgtfw_site_title_font_size' => array(
+			'section'         => 'bgtfw_site_title',
+			'priority'        => 21,
+			'output_selector' => '.site-footer .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '.site-header .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover, .bgc-site-title, .bgc-site-title:hover',
+		),
+	),
 );

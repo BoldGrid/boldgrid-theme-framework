@@ -51,7 +51,6 @@ class BoldGrid_Framework_Customizer {
 	 * @since     1.0.0
 	 */
 	public function __construct( $configs ) {
-
 		// Ensure defaults are processed on customize load.
 		$format        = new BoldGrid_Framework_Starter_Content( $configs );
 		$this->configs = $format->set_configs( $configs );
@@ -1035,27 +1034,65 @@ HTML;
 		$wp_customize->add_control( new Boldgrid_Framework_Control_Col_Width( $this->configs, $wp_customize ) );
 	}
 
+	public function sanitize_responsive_fonts( $value, $settings ) {
+		$sanitized_value = array();
+		if ( is_string( $value ) && is_array( json_decode( $value, true ) ) ) {
+			foreach ( json_decode( $value, true ) as $device => $size ) {
+				$matches = array();
+				preg_match( '/(\d+)(em|ex|%|px|cm|mm|in|pt|pc|rem)?/', $size, $matches );
+				if ( 3 === count( $matches ) ) {
+					$sanitized_value[ $device ] = $matches[0];
+				} elseif ( 2 === count( $matches ) ) {
+					$sanitized_value[ $device ] = $matches[0] . 'px';
+				} else {
+					continue;
+				}
+			}
+		}
+		return wp_json_encode( $sanitized_value );
+	}
+
 	/**
 	 * Add Custom Column Width control.
 	 *
 	 * @since 2.7.0
 	 */
-	public function register_responsive_font_control( $wp_customize ) {
+	public function register_responsive_font_controls( $wp_customize ) {
+		$responsive_controls = $this->configs['customizer-options']['typography']['responsive_font_controls'];
+
+		foreach ( $responsive_controls as $control_id => $control_args ) {
+			$this->register_responsive_font_control( $wp_customize, $control_args, $control_id );
+		}
+	}
+
+	public function register_menu_font_size_controls( $wp_customize ) {
+		$menu_locations = $this->configs['menu']['locations'];
+		foreach ( $menu_locations as $location => $location_args ) {
+			$control_args = array(
+				'section' => 'bgtfw_menu_typography_' . $location,
+				'priority' => 21,
+			);
+
+			$this->register_responsive_font_control( $wp_customize, $control_args, 'bgtfw_menu_font_size_' . $location );
+		}
+	}
+
+	public function register_responsive_font_control( $wp_customize, $control_args, $control_id ) {
 		require_once $this->configs['framework']['includes_dir']
-			. 'control/class-boldgrid-framework-control-responsive-font-size.php';
+		. 'control/class-boldgrid-framework-control-responsive-font-size.php';
 		$params = array(
 			'type'              => 'theme_mod',
-			'section'           => 'boldgrid_typography',
+			'section'           => $control_args['section'],
 			'capability'        => 'edit_theme_options',
 			'transport'         => 'postMessage',
-			'priority'          => 2,
-			'sanitize_callback' => function( $value, $settings ) {
-				return $value;
-			},
-			'label' => __( 'Responsive Font Size', 'bgtfw' ),
+			'priority'          => $control_args['priority'],
+			'sanitize_callback' => array( $this, 'sanitize_responsive_fonts' ),
+			'label'             => __( 'Responsive Font Size', 'bgtfw' ),
 		);
-		$wp_customize->add_setting( 'bgtfw_body_font_size', $params );
-		$wp_customize->add_control( new Boldgrid_Framework_Control_Responsive_Font_Size( $this->configs, $wp_customize, $params ) );
+
+		$wp_customize->add_setting( $control_id, $params );
+		$params['type'] = 'bgtfw-responsive-typography';
+		$wp_customize->add_control( new Boldgrid_Framework_Control_Responsive_Font_Size( $this->configs, $wp_customize, $control_id, $params ) );
 	}
 
 	/**

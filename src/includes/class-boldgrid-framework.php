@@ -402,6 +402,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $styles, 'enqueue_fontawesome' );
 		$this->loader->add_action( 'after_setup_theme', $styles, 'add_editor_styling' );
+		$this->loader->add_action( 'after_setup_theme', $styles, 'generate_responsive_font_css' );
 		$this->loader->add_filter( 'mce_css', $styles, 'add_cache_busting' );
 		$this->loader->add_filter( 'boldgrid_theme_framework_local_editor_styles', $styles, 'enqueue_editor_buttons' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'get_css_vars' );
@@ -725,6 +726,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
 		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'override_kirki_styles' );
+		$this->loader->add_filter( 'customize_refresh_nonces', $typography, 'header_column_nonces' );
+		$this->loader->add_action( 'wp_ajax_responsive_heading_sizes', $typography, 'wp_ajax_responsive_heading_sizes' );
 
 		/*
 		 * Sometimes we need changes made in the customizer to be saved to the kirki styles.css
@@ -861,7 +864,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_preview_init', $base, 'live_preview' );
 
 		$this->loader->add_action( 'customize_register', $base, 'register_colwidth_control' );
-		$this->loader->add_action( 'customize_register', $base, 'register_responsive_font_control' );
+		$this->loader->add_action( 'customize_register', $base, 'register_responsive_font_controls' );
 
 		$this->loader->add_action( 'wp_ajax_bgtfw_header_preset', $base->presets, 'wp_ajax_bgtfw_header_layout' );
 		$this->loader->add_filter( 'customize_refresh_nonces', $base->presets, 'header_layout_nonces' );

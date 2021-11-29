@@ -17,7 +17,7 @@ return array(
 		'settings'          => 'bgtfw_headings_color',
 		'label'             => esc_attr__( 'Heading Font Color', 'bgtfw' ),
 		'section'           => 'boldgrid_typography',
-		'priority'          => 4,
+		'priority'          => 6,
 		'default'           => '',
 		'choices'           => array(
 			'colors' => $bgtfw_formatted_palette,

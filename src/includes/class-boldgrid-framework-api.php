@@ -1320,18 +1320,32 @@ class BoldGrid {
 	 * @return string Rendered HTML for dyanmic layout element.
 	 */
 	public static function dynamic_sticky_header( $preset = null ) {
-		$markup = '';
+		$markup  = '';
 		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . '>';
 		ob_start();
 		do_action( 'boldgrid_header_top' );
 		$markup .= ob_get_clean();
-		$markup .= '<div class="custom-header-media">';
-		$markup .= get_custom_header_markup();
-		$markup .= '</div>';
-		if ( $preset ) {
-			$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout', $preset );
+		if ( get_theme_mod( 'bgtfw_sticky_page_headers_global_enabled' ) ) {
+			if ( ! is_front_page() && is_home() ) {
+				$id = get_option( 'page_for_posts' );
+			} else {
+				$id = get_the_ID();
+			}
+
+			$page_header = apply_filters( 'crio_premium_get_sticky_page_header', $id );
+
+			if ( ! empty( $page_header ) ) {
+				$markup .= apply_filters( 'the_content', get_post_field( 'post_content', $page_header ) );
+			}
 		} else {
-			$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+			$markup .= '<div class="custom-header-media">';
+			$markup .= get_custom_header_markup();
+			$markup .= '</div>';
+			if ( $preset ) {
+				$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout', $preset );
+			} else {
+				$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+			}
 		}
 		ob_start();
 		do_action( 'boldgrid_header_bottom' );

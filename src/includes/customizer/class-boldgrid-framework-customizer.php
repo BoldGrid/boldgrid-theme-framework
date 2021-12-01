@@ -69,6 +69,7 @@ class BoldGrid_Framework_Customizer {
 
 		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			if ( isset( $control['type'] ) && 'radio' !== $control['type'] ) {
+				$control = apply_filters( 'bgtfw_filter_kirki_control', $control );
 				Kirki::add_field( 'bgtfw', $control );
 
 				if ( strpos( $control['settings'], 'bgtfw_menu_' ) !== false &&

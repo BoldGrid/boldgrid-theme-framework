@@ -1334,7 +1334,7 @@ class BoldGrid {
 
 			$page_header = apply_filters( 'crio_premium_get_sticky_page_header', $id );
 
-			if ( ! empty( $page_header ) ) {
+			if ( ! empty( $page_header ) && 'disabled' !== $page_header ) {
 				$markup .= apply_filters( 'the_content', get_post_field( 'post_content', $page_header ) );
 			}
 		} else {
@@ -1362,6 +1362,23 @@ class BoldGrid {
 	 * @return string Rendered HTML for dyanmic layout element.
 	 */
 	public static function dynamic_footer() {
-		return self::dynamic_layout( 'bgtfw_footer_layout' );
+		if ( ! is_front_page() && is_home() ) {
+			$id = get_option( 'page_for_posts' );
+		} else {
+			$id = get_the_ID();
+		}
+
+		$page_footer             = apply_filters( 'crio_premium_get_page_footer', $id );
+		$footer_template_enabled = get_theme_mod( 'bgtfw_page_footers_global_enabled' );
+
+		if ( $footer_template_enabled && 'disabled' === $page_footer ) {
+			return '';
+		}
+
+		if ( $footer_template_enabled && ! empty( $page_footer ) ) {
+			return apply_filters( 'the_content', get_post_field( 'post_content', $page_footer ) );
+		} else {
+			return self::dynamic_layout( 'bgtfw_footer_layout' );
+		}
 	}
 }

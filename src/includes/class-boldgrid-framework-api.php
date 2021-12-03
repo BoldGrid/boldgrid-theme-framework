@@ -1368,16 +1368,23 @@ class BoldGrid {
 		ob_start();
 		do_action( 'boldgrid_header_top' );
 		$markup .= ob_get_clean();
-		if ( get_theme_mod( 'bgtfw_sticky_page_headers_global_enabled' ) ) {
+
+		if ( ! is_front_page() && is_home() ) {
+			$id = get_option( 'page_for_posts' );
+		} else {
+			$id = get_the_ID();
+		}
+
+		$page_header = apply_filters( 'crio_premium_get_sticky_page_header', $id );
+
+		if ( get_theme_mod( 'bgtfw_sticky_page_headers_global_enabled' ) && ! empty( $page_header ) ) {
 			if ( ! is_front_page() && is_home() ) {
 				$id = get_option( 'page_for_posts' );
 			} else {
 				$id = get_the_ID();
 			}
 
-			$page_header = apply_filters( 'crio_premium_get_sticky_page_header', $id );
-
-			if ( ! empty( $page_header ) && 'disabled' !== $page_header ) {
+			if ( 'disabled' !== $page_header ) {
 				$markup .= apply_filters( 'the_content', get_post_field( 'post_content', $page_header ) );
 			}
 		} else {

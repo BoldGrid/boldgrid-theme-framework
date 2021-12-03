@@ -205,7 +205,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		$body_font = get_theme_mod( 'bgtfw_body_typography' );
 		$body_font_size = ! empty( $body_font['font-size'] ) ? $body_font['font-size'] : $this->configs['customizer-options']['typography']['defaults']['body_font_size'];
 
-		$body_base = ( int ) preg_replace( '/[^0-9]./', '', $body_font_size );
+		$body_base = (int) preg_replace( '/[^0-9]./', '', $body_font_size );
 		$body_unit = preg_replace( '/[^a-z]/i', '', $body_font_size );
 		$body_unit = empty( $body_unit ) ? 'px' : $body_unit;
 
@@ -340,6 +340,15 @@ class Boldgrid_Framework_Customizer_Typography {
 		return $css;
 	}
 
+	/**
+	 * Generate Responsive Headings CSS.
+	 *
+	 * @param array  $responsive_sizes Responsive font sizes.
+	 * @param array  $selectors        Heading selectors.
+	 * @param string $css              CSS to append responsive headings styles to.
+	 *
+	 * @return string $css
+	 */
 	public function generate_responsive_headings( $responsive_sizes, $selectors, $css ) {
 		if ( isset( $responsive_sizes['phone'] ) ) {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['phone'] );

@@ -112,7 +112,6 @@ class Boldgrid_Framework_Control_Responsive_Font_Size extends WP_Customize_Contr
 		$current_size = json_decode( get_theme_mod( $this->id ), true );
 		$current_size = $current_size ? $current_size : array();
 
-
 		$font_size_group = '<div id="' . esc_attr( $this->id ) . '-font-size-wrapper" class="font-size-wrapper">';
 		$devices         = array( 'large', 'desktop', 'tablet', 'phone' );
 

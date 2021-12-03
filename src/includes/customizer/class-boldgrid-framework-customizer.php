@@ -1035,6 +1035,18 @@ HTML;
 		$wp_customize->add_control( new Boldgrid_Framework_Control_Col_Width( $this->configs, $wp_customize ) );
 	}
 
+	/**
+	 * Sanitize Responsive Fonts.
+	 *
+	 * Sanitization callback for responsive fonts sanitize_callback argument.
+	 *
+	 * @since 2.11.0
+	 *
+	 * @param string $value    Value to sanitize.
+	 * @param string $settings Setting Object.
+	 *
+	 * @return string Sanitized value.
+	 */
 	public function sanitize_responsive_fonts( $value, $settings ) {
 		$sanitized_value = array();
 		if ( is_string( $value ) && is_array( json_decode( $value, true ) ) ) {
@@ -1056,6 +1068,8 @@ HTML;
 	/**
 	 * Add Custom Column Width control.
 	 *
+	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
+	 *
 	 * @since 2.7.0
 	 */
 	public function register_responsive_font_controls( $wp_customize ) {
@@ -1066,6 +1080,13 @@ HTML;
 		}
 	}
 
+	/**
+	 * Register Menu Font Size Controls
+	 *
+	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
+	 *
+	 * @since 2.11.0
+	 */
 	public function register_menu_font_size_controls( $wp_customize ) {
 		$menu_locations = $this->configs['menu']['locations'];
 		foreach ( $menu_locations as $location => $location_args ) {
@@ -1078,6 +1099,15 @@ HTML;
 		}
 	}
 
+	/**
+	 * Register all Responsive Font Controls
+	 *
+	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
+	 * @param array                $control_args Control Arguments.
+	 * @param string               $control_id   Control ID.
+	 *
+	 * @since 2.11.0
+	 */
 	public function register_responsive_font_control( $wp_customize, $control_args, $control_id ) {
 		require_once $this->configs['framework']['includes_dir']
 		. 'control/class-boldgrid-framework-control-responsive-font-size.php';

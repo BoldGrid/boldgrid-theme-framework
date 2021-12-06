@@ -25,11 +25,22 @@ return array(
 		),
 		'section'           => 'bgtfw_layout_page_container',
 		'sanitize_callback' => function( $value, $settings ) {
-			if ( empty( $value ) ) {
-				return 'container';
-			} else {
-				return $value;
+			$sanitized_value = 'container';
+			switch ( $value ) {
+				case 'container':
+					$sanitized_value = 'container';
+					break;
+				case 'fw-contained':
+					$sanitized_value = 'fw-contained';
+					break;
+				case '':
+					$sanitized_value = '';
+					break;
+				default:
+					$sanitized_value = 'container';
+					break;
 			}
+			return $sanitized_value;
 		},
 		'js_vars'           => array(
 			array(
@@ -65,6 +76,11 @@ return array(
 		'output' => array(
 			array(
 				'element'  => 'body.page #main-wrapper.max-full-width .main .entry-content .boldgrid-section .container-fluid',
+				'property' => 'max-width',
+				'units'     => 'px',
+			),
+			array(
+				'element'  => 'body#tinymce.post-type-page.max-full-width .boldgrid-section .container-fluid',
 				'property' => 'max-width',
 				'units'     => 'px',
 			),

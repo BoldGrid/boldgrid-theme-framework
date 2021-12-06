@@ -343,19 +343,12 @@
 			.sm-clean.sm-vertical a {
 				padding: 10px 20px;
 			}
-			.sm-clean.sm-vertical a:hover,
-			.sm-clean.sm-vertical a:focus,
-			.sm-clean.sm-vertical a:active,
-			.sm-clean.sm-vertical a.highlighted {
-				background: white;
-			}
 			.sm-clean.sm-vertical a.disabled {
 				background: #eeeeee;
 			}
 			.sm-clean.sm-vertical a span.sub-arrow {
-				right: 8px;
 				top: 50%;
-				margin-top: -5px;
+				margin-left: 15px;
 				border-width: 5px;
 				border-style: dashed dashed dashed solid;
 				border-color: transparent transparent transparent currentColor;

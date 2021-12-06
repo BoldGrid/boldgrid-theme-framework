@@ -651,11 +651,22 @@ return array(
 		),
 		'section'           => 'bgtfw_pages_blog_posts_container',
 		'sanitize_callback' => function( $value, $settings ) {
-			if ( empty( $value ) ) {
-				return 'container';
-			} else {
-				return $value;
+			$sanitized_value = 'container';
+			switch ( $value ) {
+				case 'container':
+					$sanitized_value = 'container';
+					break;
+				case 'fw-contained':
+					$sanitized_value = 'fw-contained';
+					break;
+				case '':
+					$sanitized_value = '';
+					break;
+				default:
+					$sanitized_value = 'container';
+					break;
 			}
+			return $sanitized_value;
 		},
 		'js_vars'           => array(
 			array(
@@ -684,6 +695,11 @@ return array(
 		'output' => array(
 			array(
 				'element'  => 'body.single #main-wrapper.max-full-width .main .entry-content .boldgrid-section .container-fluid',
+				'property' => 'max-width',
+				'units'     => 'px',
+			),
+			array(
+				'element'  => '#tinymce.post-type-post.max-full-width .boldgrid-section .container-fluid',
 				'property' => 'max-width',
 				'units'     => 'px',
 			),

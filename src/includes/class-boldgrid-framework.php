@@ -452,15 +452,16 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_identity', $boldgrid_theme, 'print_title_tagline' );
 
 		// Sticky Header - Removed template_redirect as it was unnecessary and caused duplication of the sticky header sometimes.
-		if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) ) || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) ) {
-			add_action( 'boldgrid_header_after', function() {
+		add_action( 'boldgrid_header_after', function( $id ) {
+			if ( $this->maybe_show_sticky_header( $id ) ) {
+				error_log( 'has sticky header template' );
 				?>
 				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
 					<?php echo BoldGrid::dynamic_sticky_header(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</div>
 				<?php
-			}, 20 );
-		}
+			}
+		}, 20 );
 
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
@@ -470,6 +471,29 @@ class BoldGrid_Framework {
 
 		// Load Custom Header.
 		$this->custom_header();
+	}
+
+	/**
+	 * Maybe Show Sticky Header
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function maybe_show_sticky_header( $id ) {
+		if ( is_customize_preview() || true === get_theme_mod( 'bgtfw_fixed_header' ) ) {
+			return true;
+		}
+
+		if ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) {
+			return true;
+		}
+
+		$sticky_header_template = apply_filters( 'crio_premium_get_sticky_page_header', $id );
+
+		if ( ! empty( $sticky_header_template ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

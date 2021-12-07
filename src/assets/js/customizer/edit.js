@@ -129,6 +129,8 @@ const { __ } = wp.i18n;
 					$( '#masthead-sticky' ).css( 'display', 'none' );
 				} else if ( api( 'bgtfw_fixed_header' ) && api( 'bgtfw_fixed_header' )() ) {
 					$( '#masthead-sticky' ).css( 'display', 'block' );
+				} else if ( $( '#masthead-sticky' ).is('[class*="sticky-template"]' ) ) {
+					$( '#masthead-sticky' ).css( 'display', 'block' );
 				}
 			} );
 		},

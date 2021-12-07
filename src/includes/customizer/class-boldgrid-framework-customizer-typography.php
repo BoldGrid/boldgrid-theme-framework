@@ -166,6 +166,18 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
+	 * Generate Kirki font CSS for editor
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function inline_font_css( $css ) {
+		$kirki_styles    = apply_filters( 'kirki_bgtfw_dynamic_css', Kirki_Modules_CSS::loop_controls( 'bgtfw' ) );
+		$filtered_styles = preg_replace( '/font-family:(\w+(\s\w+)+);/', 'font-family:"${1}";', $kirki_styles );
+
+		return $css . $filtered_styles;
+	}
+
+	/**
 	 * Overrides Kirki Inline CSS.
 	 *
 	 * @since 2.2.2
@@ -487,6 +499,31 @@ class Boldgrid_Framework_Customizer_Typography {
 		$css .= "$found{color:{$theme_mod};}";
 
 		return $css;
+	}
+
+	/**
+	 * Retrieve formatted output configs for typography selectors.
+	 *
+	 * @since SINCEVERSION
+	 *
+	 * @param $configs
+	 * @param $elements
+	 *
+	 * @return array $values Formatted output values.
+	 */
+	public function get_typography_output( $configs, $elements ) {
+		$props  = [ 'font-family', 'font-size', 'line-height', 'text-transform', 'variant', 'font-style' ];
+		$values = [];
+		foreach ( $props as $prop ) {
+			$values[] = [
+				'element'  => $elements,
+				'property' => $prop,
+				'choice'   => $prop,
+				'context'  => array( 'front', 'editor' ),
+			];
+		}
+
+		return $values;
 	}
 
 	/**

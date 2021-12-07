@@ -79,10 +79,9 @@ return array(
 			'text-transform' => 'none',
 		),
 		'priority'  => 1,
-		'output'    => array(
-			array(
-				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header',
-			),
+		'output'    => $bgtfw_typography->get_typography_output(
+			$bgtfw_configs,
+			'.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header'
 		),
 		'edit_vars' => array(
 			array(

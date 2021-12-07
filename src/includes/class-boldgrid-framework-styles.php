@@ -40,12 +40,24 @@ class BoldGrid_Framework_Styles {
 		$this->configs = $configs;
 	}
 
+	/**
+	 * Register Responsive Font Sizes.
+	 *
+	 * @since SINCEVERSION
+	 */
+	public function register_responsive_font_sizes() {
+		$css = $this->generate_responsive_font_css();
+
+		wp_register_style( 'bgtfw-responsive-font-sizes', false );
+		wp_add_inline_style( 'bgtfw-responsive-font-sizes', $css );
+		wp_enqueue_style( 'bgtfw-responsive-font-sizes' );
+	}
+
 	/** Generate Responive Font CSS
 	 *
 	 * @since SINCEVERSION
 	 */
-	public function generate_responsive_font_css( $return = false ) {
-		$css                 = '';
+	public function generate_responsive_font_css( $css = '' ) {
 		$responsive_controls = $this->configs['customizer-options']['typography']['responsive_font_controls'];
 		// XS / Phone.
 		$css .= '@media only screen and (max-width: 767px) {';
@@ -106,12 +118,8 @@ class BoldGrid_Framework_Styles {
 			}
 		}
 		$css .= '}';
-		if ( $return ) {
-			return $css;
-		}
-		wp_register_style( 'bgtfw-responsive-font-sizes', false );
-		wp_add_inline_style( 'bgtfw-responsive-font-sizes', $css );
-		wp_enqueue_style( 'bgtfw-responsive-font-sizes' );
+
+		return $css;
 	}
 
 	/**
@@ -163,6 +171,7 @@ class BoldGrid_Framework_Styles {
 			$kirki_css = Kirki_Modules_CSS::get_instance();
 			$styles = apply_filters( 'kirki_bgtfw_dynamic_css', $kirki_css::loop_controls( 'bgtfw' ) );
 			$styles = apply_filters( 'boldgrid_mce_inline_styles', $styles );
+
 
 			wp_register_style( 'bgtfw-dynamic', false );
 			wp_add_inline_style( 'bgtfw-dynamic', $styles );

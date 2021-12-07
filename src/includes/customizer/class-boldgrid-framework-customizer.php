@@ -1036,36 +1036,6 @@ HTML;
 	}
 
 	/**
-	 * Sanitize Responsive Fonts.
-	 *
-	 * Sanitization callback for responsive fonts sanitize_callback argument.
-	 *
-	 * @since 2.11.0
-	 *
-	 * @param string $value    Value to sanitize.
-	 * @param string $settings Setting Object.
-	 *
-	 * @return string Sanitized value.
-	 */
-	public function sanitize_responsive_fonts( $value, $settings ) {
-		$sanitized_value = array();
-		if ( is_string( $value ) && is_array( json_decode( $value, true ) ) ) {
-			foreach ( json_decode( $value, true ) as $device => $size ) {
-				$matches = array();
-				preg_match( '/(\d+)(em|ex|%|px|cm|mm|in|pt|pc|rem)?/', $size, $matches );
-				if ( 3 === count( $matches ) ) {
-					$sanitized_value[ $device ] = $matches[0];
-				} elseif ( 2 === count( $matches ) ) {
-					$sanitized_value[ $device ] = $matches[0] . 'px';
-				} else {
-					continue;
-				}
-			}
-		}
-		return wp_json_encode( $sanitized_value );
-	}
-
-	/**
 	 * Add Custom Column Width control.
 	 *
 	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
@@ -1073,10 +1043,11 @@ HTML;
 	 * @since 2.7.0
 	 */
 	public function register_responsive_font_controls( $wp_customize ) {
+		$typography          = new Boldgrid_Framework_Customizer_Typography( $this->configs );
 		$responsive_controls = $this->configs['customizer-options']['typography']['responsive_font_controls'];
 
 		foreach ( $responsive_controls as $control_id => $control_args ) {
-			$this->register_responsive_font_control( $wp_customize, $control_args, $control_id );
+			$this->register_responsive_font_control( $wp_customize, $control_args, $control_id, $typography );
 		}
 	}
 
@@ -1108,17 +1079,17 @@ HTML;
 	 *
 	 * @since 2.11.0
 	 */
-	public function register_responsive_font_control( $wp_customize, $control_args, $control_id ) {
+	public function register_responsive_font_control( $wp_customize, $control_args, $control_id, $typography ) {
 		require_once $this->configs['framework']['includes_dir']
 		. 'control/class-boldgrid-framework-control-responsive-font-size.php';
 		$params = array(
-			'type'              => 'theme_mod',
-			'section'           => $control_args['section'],
-			'capability'        => 'edit_theme_options',
-			'transport'         => 'postMessage',
-			'priority'          => $control_args['priority'],
-			'sanitize_callback' => array( $this, 'sanitize_responsive_fonts' ),
-			'label'             => __( 'Responsive Font Size', 'bgtfw' ),
+			'type'                  => 'theme_mod',
+			'section'               => $control_args['section'],
+			'capability'            => 'edit_theme_options',
+			'transport'             => 'postMessage',
+			'priority'              => $control_args['priority'],
+			'sanitize_callback'     => array( $typography, 'sanitize_responsive_fonts' ),
+			'label'                 => __( 'Responsive Font Size', 'bgtfw' ),
 		);
 
 		$wp_customize->add_setting( $control_id, $params );

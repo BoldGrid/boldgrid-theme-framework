@@ -10,57 +10,6 @@ export default () => {
 		return true;
 	}
 
-	function validateFontSize( setting ) {
-		setting.validate = function( value ) {
-			var formatCode = 'invalid_format',
-				jsonCode = 'invalid_json',
-				jsonNotification,
-				formatNotification,
-				valueObject,
-				matches,
-				invalidDevices = [];
-
-			if ( ! isJsonString( value ) ) {
-				jsonCode = 'invalid_json';
-				jsonNotification = new api.Notification( jsonCode, {
-					message: 'Invalid JSON',
-					type: 'error'
-				} );
-				setting.notifications.add( jsonCode, jsonNotification );
-				return value;
-			} else {
-				setting.notifications.remove( jsonCode );
-			}
-
-			valueObject = JSON.parse( value );
-
-			for ( let device in valueObject ) {
-				matches = valueObject[ device ].match( /(\d+)(em|ex|%|px|cm|mm|in|pt|pc|rem)?/ );
-				if ( matches && 3 === matches.length && ! _.isUndefined( matches[2] ) ) {
-					continue;
-				}
-
-				invalidDevices.push( device );
-			}
-
-			if ( 0 !== invalidDevices.length ) {
-				formatNotification = new api.Notification(
-					formatCode,
-					{
-						message: 'Invalid ' + invalidDevices.join( ', ' ) + ' font size format',
-						type: 'error'
-					}
-				);
-				setting.notifications.remove( formatCode );
-				setting.notifications.add( formatCode, formatNotification );
-				return value;
-			} else {
-				setting.notifications.remove( formatCode );
-			}
-			return value;
-		};
-	}
-
 	function deviceClick( $container, $thisLabel, $thisInputValue, controlId ) {
 		$container.find( 'p.font-size-input' ).hide();
 		$container.find( '.devices-wrapper input' ).prop( 'ckecked', false );
@@ -130,8 +79,6 @@ export default () => {
 					}, 1000 );
 					$thisInput.on( 'input', debounceCb );
 				} );
-
-				wp.customize( controlId, validateFontSize );
 			}
 		} );
 	} );

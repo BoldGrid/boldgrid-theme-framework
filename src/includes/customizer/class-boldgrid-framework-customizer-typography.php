@@ -229,6 +229,86 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
+	 * Sanitize Font Size.
+	 *
+	 * General sanitization of standalone font size control.
+	 *
+	 * @since 2.11.0
+	 *
+	 * @param string $value The value to sanitize.
+	 *
+	 * @return string Sanitized value.
+	*/
+	public function sanitize_font_size( $value ) {
+		$matches  = array();
+		$int_base = intval( $value );
+		// If no number is present in value, unset value.
+		if ( empty( $int_base ) ) {
+			return false;
+		}
+
+		$unit = str_replace( $int_base, '', $value );
+
+		if ( empty( $unit ) ) {
+			$unit = 'px';
+		}
+
+		// Validate unit given.
+		preg_match( '/(em|ex|%|px|cm|mm|in|pt|pc|rem)/', $unit, $matches );
+
+		// If the unit matches, append the value with unit, otherwise use 'px'.
+		if ( ! empty( $matches ) ) {
+			$sanitized_value = $int_base . $matches[0];
+		} else {
+			$sanitized_value = $int_base . 'px';
+		}
+
+		return $sanitized_value;
+	}
+
+	/**
+	 * Sanitize Responsive Fonts.
+	 *
+	 * Sanitize callback for responsive fonts validate_callback argument.
+	 *
+	 * @since 2.11.0
+	 *
+	 * @param string $value    Value to sanitize.
+	 *
+	 * @return string Sanitized value.
+	 */
+	public function sanitize_responsive_fonts( $value ) {
+		$sanitized_value = array();
+		if ( is_string( $value ) && is_array( json_decode( $value, true ) ) ) {
+			foreach ( json_decode( $value, true ) as $device => $size ) {
+				$matches  = array();
+				$int_base = intval( $size );
+
+				// If no number is present in value, unset value.
+				if ( empty( $int_base ) ) {
+					unset( $sanitized_value[ $device ] );
+				}
+
+				$unit = str_replace( $int_base, '', $size );
+				if ( empty( $unit ) ) {
+					$unit = 'px';
+				}
+
+				// Validate unit given.
+				preg_match( '/(em|ex|%|px|cm|mm|in|pt|pc|rem)/', $unit, $matches );
+
+				// If the unit matches, append the value with unit, otherwise use 'px'.
+				if ( ! empty( $matches ) ) {
+					$sanitized_value[ $device ] = $int_base . $matches[0];
+				} else {
+					$sanitized_value[ $device ] = $int_base . 'px';
+				}
+			}
+		}
+		return wp_json_encode( $sanitized_value );
+	}
+
+	/**
 	 * WP Ajax Heading Sizes.
 	 *
 	 * @since 2.7.0
@@ -239,7 +319,7 @@ class Boldgrid_Framework_Customizer_Typography {
 			wp_die( -1 );
 		}
 		$selectors  = $this->configs['customizer-options']['typography']['selectors'];
-		$value      = $_POST['responsiveHeadingSizes'];
+		$value      = $this->sanitize_responsive_fonts( $_POST['responsiveHeadingSizes'] );
 		$control_id = $_POST['controlId'];
 		if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
 			$css = $this->generate_responsive_headings( $value, $selectors, '' );
@@ -320,10 +400,12 @@ class Boldgrid_Framework_Customizer_Typography {
 	public function generate_headings_css( $css = '' ) {
 		$headings_font    = get_theme_mod( 'bgtfw_headings_typography' );
 		$headings_base    = get_theme_mod( 'bgtfw_headings_font_size' );
+		$base_int         = intval( $headings_base );
+		$headings_unit    = str_replace( $base_int, '', $headings_base );
+		$headings_unit    = empty( $headings_unit ) ? 'px' : $headings_unit;
+		$headings_base    = $base_int;
 		$responsive_sizes = json_decode( get_theme_mod( 'bgtfw_headings_responsive_font_size' ), true );
-		$headings_unit    = 'px';
-
-		$selectors = $this->configs['customizer-options']['typography']['selectors'];
+		$selectors        = $this->configs['customizer-options']['typography']['selectors'];
 
 		foreach ( $selectors as $selector => $options ) {
 			if ( 'subheadings' === $options['type'] ) {

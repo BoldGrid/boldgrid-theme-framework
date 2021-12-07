@@ -50,18 +50,14 @@ return array(
 		),
 	),
 	'bgtfw_headings_font_size'         => array(
-		'type'      => 'slider',
+		'type'      => 'text',
 		'transport' => 'postMessage',
 		'settings'  => 'bgtfw_headings_font_size',
 		'label'     => esc_attr__( 'Font Size', 'bgtfw' ),
 		'section'   => 'boldgrid_typography',
 		'default'   => '14',
-		'choices'   => array(
-			'min'  => '6',
-			'max'  => '42',
-			'step' => '1',
-		),
 		'priority'  => 4,
+		'sanitize_callback' => array( $bgtfw_typography, 'sanitize_font_size' ),
 	),
 	'bgtfw_body_typography'            => array(
 		'type'      => 'typography',

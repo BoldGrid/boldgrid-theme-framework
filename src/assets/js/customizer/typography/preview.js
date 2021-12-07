@@ -31,12 +31,19 @@ export class Preview {
 		}
 
 		// JSON returned sometimes.
-		if ( _.isString( to ) ) {
+		try {
 			to = JSON.parse( to );
+		} catch ( err ) {
+
+			// Do nothing on error.
 		}
 
-		let base = api( 'bgtfw_headings_font_size' )();
-		let unit = 'px';
+		let base = parseInt( api( 'bgtfw_headings_font_size' )() );
+		let unit = api( 'bgtfw_headings_font_size' )().replace( base, '' );
+		unit = unit ? unit : 'px';
+		let matches = unit.match( /(em|ex|%|px|cm|mm|in|pt|pc|rem)/ );
+		unit = matches ? matches[0] : 'px';
+
 
 		// Handle variant of font sizes.
 		let variant    = to.variant;

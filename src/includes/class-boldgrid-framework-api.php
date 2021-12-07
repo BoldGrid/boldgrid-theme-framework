@@ -554,7 +554,7 @@ class BoldGrid {
 
 		$classes[] = 'custom-header';
 
-		if ( get_theme_mod( 'bgtfw_fixed_header' ) ) {
+		if ( get_theme_mod( 'bgtfw_fixed_header' ) || apply_filters( 'crio_premium_get_sticky_page_header', $post_id ) ) {
 			if ( 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) {
 				$classes[] = 'header-slide-in';
 			} else {
@@ -1363,12 +1363,6 @@ class BoldGrid {
 	 * @return string Rendered HTML for dyanmic layout element.
 	 */
 	public static function dynamic_sticky_header( $preset = null ) {
-		$markup  = '';
-		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . '>';
-		ob_start();
-		do_action( 'boldgrid_header_top' );
-		$markup .= ob_get_clean();
-
 		if ( ! is_front_page() && is_home() ) {
 			$id = get_option( 'page_for_posts' );
 		} else {
@@ -1377,8 +1371,30 @@ class BoldGrid {
 
 		$page_header = apply_filters( 'crio_premium_get_sticky_page_header', $id );
 
+		$sticky_template_class = get_theme_mod( 'bgtfw_sticky_page_headers_global_enabled' ) && ! empty( $page_header ) ? 'sticky-template-' . $page_header : '';
+
+		$header_classes = array(
+			'header',
+			'sticky',
+		);
+
+		if ( ! empty( $sticky_template_class ) ) {
+			$header_classes[] = $sticky_template_class;
+		}
+
+		$markup  = '';
+		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', $header_classes, false ) . '>';
+		ob_start();
+		do_action( 'boldgrid_header_top' );
+		$markup .= ob_get_clean();
+
 		if ( get_theme_mod( 'bgtfw_sticky_page_headers_global_enabled' ) && ! empty( $page_header ) ) {
 			if ( 'disabled' !== $page_header ) {
+				error_log(
+					'page_header: ' . json_encode(
+						apply_filters( 'the_content', get_post_field( 'post_content', $page_header ) )
+					)
+				);
 				$markup .= apply_filters( 'the_content', get_post_field( 'post_content', $page_header ) );
 			}
 		} else {

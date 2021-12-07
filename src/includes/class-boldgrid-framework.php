@@ -402,10 +402,11 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $styles, 'enqueue_fontawesome' );
 		$this->loader->add_action( 'after_setup_theme', $styles, 'add_editor_styling' );
-		$this->loader->add_action( 'after_setup_theme', $styles, 'generate_responsive_font_css' );
+		$this->loader->add_action( 'after_setup_theme', $styles, 'register_responsive_font_sizes' );
 		$this->loader->add_filter( 'mce_css', $styles, 'add_cache_busting' );
 		$this->loader->add_filter( 'boldgrid_theme_framework_local_editor_styles', $styles, 'enqueue_editor_buttons' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'get_css_vars' );
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'generate_responsive_font_css' );
 
 		// Validate Theme Fonts Directory
 		$this->loader->add_action( 'after_setup_theme', $styles, 'validate_fonts_dir' );
@@ -747,6 +748,7 @@ class BoldGrid_Framework {
 	private function customizer_typography() {
 		$typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'inline_font_css' );
 		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'override_kirki_styles' );
 		$this->loader->add_filter( 'customize_refresh_nonces', $typography, 'header_column_nonces' );

@@ -25,6 +25,9 @@
 				align-items: center;
 				height: 25px;
 				justify-content: space-between;
+				> .input-wrapper {
+					width: 50%;
+				}
 			}
 			.devices-wrapper {
 				li {

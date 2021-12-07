@@ -50,18 +50,14 @@ return array(
 		),
 	),
 	'bgtfw_headings_font_size'         => array(
-		'type'      => 'slider',
+		'type'      => 'text',
 		'transport' => 'postMessage',
 		'settings'  => 'bgtfw_headings_font_size',
 		'label'     => esc_attr__( 'Font Size', 'bgtfw' ),
 		'section'   => 'boldgrid_typography',
 		'default'   => '14',
-		'choices'   => array(
-			'min'  => '6',
-			'max'  => '42',
-			'step' => '1',
-		),
 		'priority'  => 4,
+		'sanitize_callback' => array( $bgtfw_typography, 'sanitize_font_size' ),
 	),
 	'bgtfw_body_typography'            => array(
 		'type'      => 'typography',
@@ -79,10 +75,9 @@ return array(
 			'text-transform' => 'none',
 		),
 		'priority'  => 1,
-		'output'    => array(
-			array(
-				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header',
-			),
+		'output'    => $bgtfw_typography->get_typography_output(
+			$bgtfw_configs,
+			'.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header'
 		),
 		'edit_vars' => array(
 			array(

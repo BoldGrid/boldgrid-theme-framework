@@ -1,3 +1,4 @@
+/* global BOLDGRID */
 import { Preview as PreviewUtility } from '../preview';
 
 export class Preview {

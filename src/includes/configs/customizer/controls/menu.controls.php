@@ -561,10 +561,9 @@ return array(
 			'text-transform' => 'uppercase',
 		),
 		'priority'  => 20,
-		'output'    => array(
-			array(
-				'element' => '#main-menu li a, .mce-content-body .sm-clean',
-			),
+		'output'    => $bgtfw_typography->get_typography_output(
+			$bgtfw_configs,
+			'#main-menu li a, .mce-content-body .sm-clean'
 		),
 	),
 );

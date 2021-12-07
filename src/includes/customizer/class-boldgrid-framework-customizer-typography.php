@@ -238,7 +238,7 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @param string $value The value to sanitize.
 	 *
 	 * @return string Sanitized value.
-	*/
+	 */
 	public function sanitize_font_size( $value ) {
 		$matches  = array();
 		$int_base = intval( $value );
@@ -588,8 +588,8 @@ class Boldgrid_Framework_Customizer_Typography {
 	 *
 	 * @since SINCEVERSION
 	 *
-	 * @param $configs
-	 * @param $elements
+	 * @param array  $configs  Config array.
+	 * @param string $elements Element Selector string.
 	 *
 	 * @return array $values Formatted output values.
 	 */

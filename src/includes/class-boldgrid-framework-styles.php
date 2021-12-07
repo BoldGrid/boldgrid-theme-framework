@@ -169,9 +169,8 @@ class BoldGrid_Framework_Styles {
 
 			// Add Kirki dynamically generated styles.
 			$kirki_css = Kirki_Modules_CSS::get_instance();
-			$styles = apply_filters( 'kirki_bgtfw_dynamic_css', $kirki_css::loop_controls( 'bgtfw' ) );
-			$styles = apply_filters( 'boldgrid_mce_inline_styles', $styles );
-
+			$styles    = apply_filters( 'kirki_bgtfw_dynamic_css', $kirki_css::loop_controls( 'bgtfw' ) );
+			$styles    = apply_filters( 'boldgrid_mce_inline_styles', $styles );
 
 			wp_register_style( 'bgtfw-dynamic', false );
 			wp_add_inline_style( 'bgtfw-dynamic', $styles );

@@ -454,7 +454,6 @@ class BoldGrid_Framework {
 		// Sticky Header - Removed template_redirect as it was unnecessary and caused duplication of the sticky header sometimes.
 		add_action( 'boldgrid_header_after', function( $id ) {
 			if ( $this->maybe_show_sticky_header( $id ) ) {
-				error_log( 'has sticky header template' );
 				?>
 				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
 					<?php echo BoldGrid::dynamic_sticky_header(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

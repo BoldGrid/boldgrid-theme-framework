@@ -333,6 +333,7 @@
 				border-color: transparent currentColor transparent transparent;
 			}
 			.sm-clean.sm-vertical {
+				flex-direction: column;
 				padding: 10px 0;
 				-webkit-border-radius: 5px;
 				-moz-border-radius: 5px;

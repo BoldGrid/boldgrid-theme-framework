@@ -1390,11 +1390,6 @@ class BoldGrid {
 
 		if ( get_theme_mod( 'bgtfw_sticky_page_headers_global_enabled' ) && ! empty( $page_header ) ) {
 			if ( 'disabled' !== $page_header ) {
-				error_log(
-					'page_header: ' . json_encode(
-						apply_filters( 'the_content', get_post_field( 'post_content', $page_header ) )
-					)
-				);
 				$markup .= apply_filters( 'the_content', get_post_field( 'post_content', $page_header ) );
 			}
 		} else {

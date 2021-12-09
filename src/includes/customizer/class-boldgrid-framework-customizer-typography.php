@@ -279,8 +279,9 @@ class Boldgrid_Framework_Customizer_Typography {
 	 */
 	public function sanitize_responsive_fonts( $value ) {
 		$sanitized_value = array();
-		if ( is_string( $value ) && is_array( json_decode( $value, true ) ) ) {
-			foreach ( json_decode( $value, true ) as $device => $size ) {
+		$value           = is_string( $value ) ? json_decode( $value, true ) : $value;
+		if ( is_array( $value ) ) {
+			foreach ( $value as $device => $size ) {
 				$matches  = array();
 				$int_base = intval( $size );
 
@@ -320,6 +321,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		}
 		$selectors  = $this->configs['customizer-options']['typography']['selectors'];
 		$value      = $this->sanitize_responsive_fonts( $_POST['responsiveHeadingSizes'] );
+
 		$control_id = $_POST['controlId'];
 		if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
 			$css = $this->generate_responsive_headings( $value, $selectors, '' );
@@ -337,7 +339,8 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @since SINCEVERSION
 	 */
 	public function generate_responsive_font_css( $control_id, $value ) {
-		$css                 = '';
+		$value     = is_string( $value ) ? json_decode( $value, true ) : $value;
+		$css       = '';
 		$selectors = $this->configs['customizer-options']['typography']['responsive_font_controls'][ $control_id ]['output_selector'];
 		// XS / Phone.
 		$font_size = ! empty( $value['phone'] ) ? $value['phone'] : false;
@@ -444,6 +447,7 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @return string $css
 	 */
 	public function generate_responsive_headings( $responsive_sizes, $selectors, $css ) {
+		$responsive_sizes = is_string( $responsive_sizes ) ? json_decode( $responsive_sizes, true ) : $responsive_sizes;
 		if ( isset( $responsive_sizes['phone'] ) ) {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['phone'] );
 			$headings_base = $headings_size[0];

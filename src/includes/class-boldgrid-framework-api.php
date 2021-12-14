@@ -323,8 +323,9 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function header_classes( $classes ) {
-		error_log( 'header_classes: ' . json_encode( $classes ) );
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
+		if ( ! in_array( 'template-sticky-header', $classes, true ) ) {
+			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
+		}
 		return $classes;
 	}
 
@@ -1386,6 +1387,9 @@ class BoldGrid {
 
 		if ( ! empty( $sticky_template_class ) ) {
 			$header_classes[] = $sticky_template_class;
+			$header_classes[] = 'template-sticky-header';
+			$header_classes[] = 'color-neutral-background-color';
+			$header_classes[] = 'color-neutral-text-contrast';
 		}
 
 		$markup  = '';

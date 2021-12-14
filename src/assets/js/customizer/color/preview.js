@@ -10,7 +10,7 @@ export class Preview  {
 		this.classControls = [
 			{
 				name: 'bgtfw_footer_color',
-				selector: '#colophon, .footer-content',
+				selector: '#colophon:not(.template-footer), .footer-content:not(.template-footer)',
 				properties: [ 'background-color', 'text-default' ]
 			},
 			{
@@ -50,7 +50,7 @@ export class Preview  {
 			},
 			{
 				name: 'bgtfw_footer_links',
-				selector: '.footer-content',
+				selector: '.footer-content:not(.template-footer)',
 				properties: [ 'link-color' ]
 			}
 		];

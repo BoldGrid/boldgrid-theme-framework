@@ -352,6 +352,9 @@ class BoldGrid {
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts' );
 		if ( ! in_array( 'template-footer', $classes, true ) ) {
 			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		} else {
+			$classes[] = 'color-neutral-background-color';
+			$classes[] = 'color-neutral-text-color';
 		}
 
 		return $classes;

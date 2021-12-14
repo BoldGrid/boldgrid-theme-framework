@@ -348,7 +348,10 @@ class BoldGrid {
 	 */
 	public function footer_classes( $classes ) {
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts' );
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		if ( ! in_array( $classes, 'template-footer', true ) ) {
+			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		}
+
 		return $classes;
 	}
 
@@ -360,11 +363,13 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function inner_footer_classes( $classes ) {
-		$classes = array_merge(
-			$classes,
-			$this->get_background_color( 'bgtfw_footer_color' ),
-			$this->get_link_color( 'bgtfw_footer_links' )
-		);
+		if ( ! in_array( $classes, 'template-footer', true ) ) {
+			$classes = array_merge(
+				$classes,
+				$this->get_background_color( 'bgtfw_footer_color' ),
+				$this->get_link_color( 'bgtfw_footer_links' )
+			);
+		}
 
 		return $classes;
 	}

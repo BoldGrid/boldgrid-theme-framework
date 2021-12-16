@@ -51,6 +51,8 @@ class Boldgrid_Framework_Links {
 		'.page-header-wrapper a',
 		'.mce-content-body a',
 		'.template-header a',
+		'.template-footer a',
+		'.template-sticky-header a',
 	];
 
 	/**

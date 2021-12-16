@@ -323,7 +323,9 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function header_classes( $classes ) {
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
+		if ( ! in_array( 'template-sticky-header', $classes, true ) ) {
+			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
+		}
 		return $classes;
 	}
 
@@ -348,7 +350,13 @@ class BoldGrid {
 	 */
 	public function footer_classes( $classes ) {
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts' );
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		if ( ! in_array( 'template-footer', $classes, true ) ) {
+			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		} else {
+			$classes[] = 'color-neutral-background-color';
+			$classes[] = 'color-neutral-text-color';
+		}
+
 		return $classes;
 	}
 
@@ -360,11 +368,13 @@ class BoldGrid {
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function inner_footer_classes( $classes ) {
-		$classes = array_merge(
-			$classes,
-			$this->get_background_color( 'bgtfw_footer_color' ),
-			$this->get_link_color( 'bgtfw_footer_links' )
-		);
+		if ( ! in_array( 'template-footer', $classes, true ) ) {
+			$classes = array_merge(
+				$classes,
+				$this->get_background_color( 'bgtfw_footer_color' ),
+				$this->get_link_color( 'bgtfw_footer_links' )
+			);
+		}
 
 		return $classes;
 	}
@@ -1380,6 +1390,9 @@ class BoldGrid {
 
 		if ( ! empty( $sticky_template_class ) ) {
 			$header_classes[] = $sticky_template_class;
+			$header_classes[] = 'template-sticky-header';
+			$header_classes[] = 'color-neutral-background-color';
+			$header_classes[] = 'color-neutral-text-contrast';
 		}
 
 		$markup  = '';

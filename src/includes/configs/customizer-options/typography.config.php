@@ -70,6 +70,9 @@ return array(
 			'round' => 'floor',
 			'amount' => 1,
 		),
+		'.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header' => array(
+			'type' => 'body',
+		),
 	),
 	'responsive_font_controls' => array(
 		'bgtfw_body_font_size' => array(

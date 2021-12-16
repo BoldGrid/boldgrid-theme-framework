@@ -23,12 +23,22 @@ export class Preview {
 	 *
 	 * @since 2.0.0
 	 * @param {Mixed} to New value control is updating to.
+	 * @param {String} controlId Control ID.
 	 * @return {String} css CSS to add to page.
 	 */
-	getCSS( to ) {
+	getCSS( to, controlId = 'bgtfw_headings_typography' ) {
+		var variant,
+			fontWeight,
+			fontStyle,
+			base,
+			unit,
+			controlType;
 		if ( _.isUndefined( to ) ) {
-			to = api( 'bgtfw_headings_typography' )();
+			to = api( controlId )();
 		}
+
+		controlType = controlId.replace( 'bgtfw_', '' );
+		controlType = controlType.replace( '_typography', '' );
 
 		// JSON returned sometimes.
 		try {
@@ -38,24 +48,25 @@ export class Preview {
 			// Do nothing on error.
 		}
 
-		let base = parseInt( api( 'bgtfw_headings_font_size' )() );
-		let unit = api( 'bgtfw_headings_font_size' )().replace( base, '' );
-		unit = unit ? unit : 'px';
-		let matches = unit.match( /(em|ex|%|px|cm|mm|in|pt|pc|rem)/ );
-		unit = matches ? matches[0] : 'px';
-
-
 		// Handle variant of font sizes.
-		let variant    = to.variant;
-		let fontWeight = variant ? parseInt( variant ) : 'initial';
-		let fontStyle  = variant ? variant.replace( fontWeight, '' ) : 'initial';
+		variant    = to.variant;
+		fontWeight = variant ? parseInt( variant ) : 'initial';
+		fontStyle  = variant ? variant.replace( fontWeight, '' ) : 'initial';
 
 		// Build CSS.
 		let css = '';
 
+		if ( 'bgtfw_headings_typography' === controlId ) {
+			base = parseInt( api( 'bgtfw_headings_font_size' )() );
+			unit = api( 'bgtfw_headings_font_size' )().replace( base, '' );
+			unit = unit ? unit : 'px';
+			let matches = unit.match( /(em|ex|%|px|cm|mm|in|pt|pc|rem)/ );
+			unit = matches ? matches[0] : 'px';
+		}
+
 		_.each( BOLDGRID.CUSTOMIZER.data.customizerOptions.typography.selectors, function( selector, rule ) {
 			var val;
-			if ( 'headings' === selector.type ) {
+			if ( 'headings' === selector.type && 'bgtfw_headings_typography' === controlId ) {
 				val = base * selector.amount;
 				if ( 'ceil' === selector.round ) {
 					val = Math.ceil( val );
@@ -74,6 +85,20 @@ export class Preview {
 					css += 'font-weight:' + fontWeight + ';}';
 				}
 				css += rule + '{font-size:' + val + unit + ';}';
+			} else if ( controlType === selector.type ) {
+
+				// Adds css for font variants.
+				if ( fontWeight && fontStyle ) {
+					css += rule + '{';
+					css += 'font-style:' + fontStyle + ';';
+					css += 'font-weight:' + fontWeight + ';}';
+				} else if ( fontWeight ) {
+					css += rule + '{';
+					css += 'font-weight:' + fontWeight + ';}';
+				} else if ( fontStyle ) {
+					css += rule + '{';
+					css += 'font-style:' + fontStyle + ';}';
+				}
 			}
 		} );
 
@@ -125,11 +150,12 @@ export class Preview {
 			'bgtfw_menu_typography_main'
 		];
 
-		this.addStyle( this.getCSS( api( 'bgtfw_headings_typography' )() ) );
+		typographyControls.forEach( controlId => this.addTypographyOverride( controlId ) );
 
-		typographyControls.forEach( control => this.addTypographyOverride( control ) );
+		typographyControls.forEach( controlId => {
+			api( controlId, value => value.bind( to => this.addStyle( this.getCSS( to, controlId ) ) ) );
+		} );
 
-		api( 'bgtfw_headings_typography', value => value.bind( to => this.addStyle( this.getCSS( to ) ) ) );
 		api( 'bgtfw_headings_font_size', value => value.bind( to => this.addStyle( this.getCSS( to ) ) ) );
 	}
 

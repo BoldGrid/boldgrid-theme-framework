@@ -345,7 +345,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		// XS / Phone.
 		$font_size = ! empty( $value['phone'] ) ? $value['phone'] : false;
 		if ( $font_size ) {
-			$css .= '@media only screen and (max-width: 767px) {';
+			$css .= '@media only screen and (max-width: 766px) {';
 			$css .= $selectors;
 			$css .= '{ font-size: ' . $font_size . '!important;}';
 			$css .= '}';
@@ -354,7 +354,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		// SM / Tablet.
 		$font_size = ! empty( $value['tablet'] ) ? $value['tablet'] : false;
 		if ( $font_size ) {
-			$css .= '@media only screen and (min-width: 768px) and (max-width: 991px) {';
+			$css .= '@media only screen and (min-width: 767px) and (max-width: 990px) {';
 			$css .= $selectors;
 			$css .= '{ font-size: ' . $font_size . '!important;}';
 			$css .= '}';
@@ -363,7 +363,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		// MD / Desktop.
 		$font_size = ! empty( $value['desktop'] ) ? $value['desktop'] : false;
 		if ( $font_size ) {
-			$css .= '@media only screen and (min-width: 1200px) {';
+			$css .= '@media only screen and (min-width: 991px) and (max-width: 1198px) {';
 			$css .= $selectors;
 			$css .= '{ font-size: ' . $font_size . '!important;}';
 			$css .= '}';
@@ -372,7 +372,7 @@ class Boldgrid_Framework_Customizer_Typography {
 		// LG / Large Desktop.
 		$font_size = ! empty( $value['large'] ) ? $value['large'] : false;
 		if ( $font_size ) {
-			$css .= '@media only screen and (min-width: 1200px) {';
+			$css .= '@media only screen and (min-width: 1199px) {';
 			$css .= $selectors;
 			$css .= '{ font-size: ' . $font_size . '!important;}';
 			$css .= '}';
@@ -456,7 +456,7 @@ class Boldgrid_Framework_Customizer_Typography {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['phone'] );
 			$headings_base = $headings_size[0];
 			$headings_unit = $headings_size[1];
-			$css .= '@media only screen and (max-width: 767px) {';
+			$css .= '@media only screen and (max-width: 766px) {';
 				foreach ( $selectors as $selector => $options ) {
 					if ( 'subheadings' === $options['type'] ) {
 						continue;
@@ -480,7 +480,7 @@ class Boldgrid_Framework_Customizer_Typography {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['tablet'] );
 			$headings_base = $headings_size[0];
 			$headings_unit = $headings_size[1];
-			$css .= '@media only screen and (min-width: 768px) and (max-width: 991px) {';
+			$css .= '@media only screen and (min-width: 767px) and (max-width: 990px) {';
 				foreach ( $selectors as $selector => $options ) {
 					if ( 'subheadings' === $options['type'] ) {
 						continue;
@@ -504,7 +504,7 @@ class Boldgrid_Framework_Customizer_Typography {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['desktop'] );
 			$headings_base = $headings_size[0];
 			$headings_unit = $headings_size[1];
-			$css .= '@media only screen and (min-width: 992px) and (max-width: 1199px) {';
+			$css .= '@media only screen and (min-width: 991px) and (max-width: 1198px) {';
 			foreach ( $selectors as $selector => $options ) {
 				if ( 'subheadings' === $options['type'] ) {
 					continue;
@@ -528,7 +528,7 @@ class Boldgrid_Framework_Customizer_Typography {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['large'] );
 			$headings_base = $headings_size[0];
 			$headings_unit = $headings_size[1];
-			$css .= '@media only screen and (min-width: 1200px) {';
+			$css .= '@media only screen and (min-width: 1199px) {';
 			foreach ( $selectors as $selector => $options ) {
 				if ( 'subheadings' === $options['type'] ) {
 					continue;

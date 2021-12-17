@@ -415,6 +415,10 @@ class Boldgrid_Framework_Customizer_Typography {
 				continue;
 			}
 
+			if ( 'headings' !== $options['type'] ) {
+				continue;
+			}
+
 			$css .= $selector . '{font-size:';
 
 			if ( 'floor' === $options['round'] ) {

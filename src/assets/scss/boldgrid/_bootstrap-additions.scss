@@ -92,8 +92,11 @@
 
 
 #main-wrapper.full-width.max-full-width .main .entry-content .boldgrid-section {
-	display: flex;
+	display: flex !important;
 	justify-content: center;
+	.container-fluid {
+		width: 100%;
+	}
 }
 
 

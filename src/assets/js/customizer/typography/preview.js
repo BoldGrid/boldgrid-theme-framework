@@ -1,5 +1,6 @@
 /* global BOLDGRID:false, global kirkiPostMessageFields*/
 const api = wp.customize;
+const controlApi = parent.wp.customize;
 
 /**
  * This class is responsible for managing the typograpy
@@ -102,6 +103,23 @@ export class Preview {
 			}
 		} );
 
+		if ( controlType.includes( 'menu' ) ) {
+			let rule = controlType.replace( /_/g, '-' );
+				rule = rule.replace( 'menu-', '' );
+				rule = '#' + rule + '-menu li a';
+			if ( fontWeight && fontStyle ) {
+				css += rule + '{';
+				css += 'font-style:' + fontStyle + ';';
+				css += 'font-weight:' + fontWeight + ';}';
+			} else if ( fontWeight ) {
+				css += rule + '{';
+				css += 'font-weight:' + fontWeight + ';}';
+			} else if ( fontStyle ) {
+				css += rule + '{';
+				css += 'font-style:' + fontStyle + ';}';
+			}
+		}
+
 		return css;
 	}
 
@@ -111,15 +129,16 @@ export class Preview {
 	 *
 	 * @since 2.0.0
 	 */
-	addStyle( css ) {
-		if ( document.getElementById( 'bgtfw-headings-typography' ) ) {
-			document.getElementById( 'bgtfw-headings-typography' ).innerHTML = css;
+	addStyle( css, controlId = 'bgtfw_headings_typography' ) {
+		var styleId = controlId.replace( '_', '-' );
+		if ( document.getElementById( styleId ) ) {
+			document.getElementById( styleId ).innerHTML = css;
 		} else {
 			let head = document.head || document.getElementsByTagName( 'head' )[0];
 			let style = document.createElement( 'style' );
 
 			style.type = 'text/css';
-			style.id = 'bgtfw-headings-typography';
+			style.id = styleId;
 
 			if ( style.styleSheet ) {
 				style.styleSheet.cssText = css;
@@ -131,8 +150,8 @@ export class Preview {
 		}
 
 		// Check if kirki's post-message already applied inline CSS and move our CSS after for override.
-		if ( document.getElementById( 'kirki-postmessage-bgtfw_headings_typography' ) ) {
-			$( '#bgtfw-headings-typography' ).insertAfter( '#kirki-postmessage-bgtfw_headings_typography' );
+		if ( document.getElementById( 'kirki-postmessage-' + controlId ) ) {
+			$( '#' + styleId ).insertAfter( '#kirki-postmessage-' + controlId );
 		}
 	}
 
@@ -142,18 +161,20 @@ export class Preview {
 	 * @since 2.0.0
 	 */
 	_bindTypography() {
-		var typographyControls = [
-			'bgtfw_body_typography',
-			'bgtfw_headings_typography',
-			'bgtfw_tagline_typography',
-			'bgtfw_site_title_typography',
-			'bgtfw_menu_typography_main'
-		];
+		var typographyControls = [];
+
+		controlApi.control.each( control => {
+			if ( 'kirki-typography' === control.params.type ) {
+				typographyControls.push( control.id );
+			}
+		} );
+
+		console.log( typographyControls );
 
 		typographyControls.forEach( controlId => this.addTypographyOverride( controlId ) );
 
 		typographyControls.forEach( controlId => {
-			api( controlId, value => value.bind( to => this.addStyle( this.getCSS( to, controlId ) ) ) );
+			api( controlId, value => value.bind( to => this.addStyle( this.getCSS( to, controlId ), controlId ) ) );
 		} );
 
 		api( 'bgtfw_headings_font_size', value => value.bind( to => this.addStyle( this.getCSS( to ) ) ) );

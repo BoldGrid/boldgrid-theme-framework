@@ -159,7 +159,7 @@
 			.sm-clean.ne,
 			.sm-clean.se {
 				&:not( .sm-vertical ) {
-					li:first-of-type a {
+					li:last-of-type a {
 						padding-right: 0px;
 					}
 				}

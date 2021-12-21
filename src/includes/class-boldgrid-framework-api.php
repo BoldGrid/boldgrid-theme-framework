@@ -158,10 +158,6 @@ class BoldGrid {
 				case 'container':
 					$classes[] = 'container';
 					break;
-				case 'fw-contained':
-					$classes[] = 'full-width';
-					$classes[] = 'max-full-width';
-					break;
 				default:
 					$classes[] = 'container';
 					break;
@@ -191,10 +187,6 @@ class BoldGrid {
 					break;
 				case 'container':
 					$classes[] = 'container';
-					break;
-				case 'fw-contained':
-					$classes[] = 'full-width';
-					$classes[] = 'max-full-width';
 					break;
 				default:
 					$classes[] = 'container';
@@ -260,10 +252,6 @@ class BoldGrid {
 				break;
 			case 'container':
 				$classes[] = 'container';
-				break;
-			case 'fw-contained':
-				$classes[] = 'full-width';
-				$classes[] = 'max-full-width';
 				break;
 			default:
 				$classes[] = 'container';

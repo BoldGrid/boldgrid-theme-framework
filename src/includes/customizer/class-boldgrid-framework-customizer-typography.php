@@ -626,7 +626,13 @@ class Boldgrid_Framework_Customizer_Typography {
 	 * @return string $values  Formatted output configs.
 	 */
 	public function get_output_values( $configs ) {
-		$elements = implode( ', ', array_keys( $configs['customizer-options']['typography']['selectors'] ) );
+		$selectors = array();
+		foreach ( $configs['customizer-options']['typography']['selectors'] as $selector => $options ) {
+			if ( 'headings' === $options['type'] ) {
+				$selectors[ $selector ] = $options;
+			}
+		}
+		$elements = implode( ', ', array_keys( $selectors ) );
 		$props = [ 'font-family', 'line-height', 'text-transform', 'variant', 'font-style' ];
 		$values = [];
 

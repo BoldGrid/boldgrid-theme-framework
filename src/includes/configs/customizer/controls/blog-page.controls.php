@@ -38,7 +38,6 @@ return array(
 		'default'           => 'container',
 		'choices'           => array(
 			'container'    => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			'fw-contained' => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Contained Full Width', 'bgtfw' ),
 			''             => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
 		),
 		'section'           => 'bgtfw_pages_blog_blog_page_post_content',
@@ -47,9 +46,6 @@ return array(
 			switch ( $value ) {
 				case 'container':
 					$sanitized_value = 'container';
-					break;
-				case 'fw-contained':
-					$sanitized_value = 'fw-contained';
 					break;
 				case '':
 					$sanitized_value = '';
@@ -61,35 +57,7 @@ return array(
 			return $sanitized_value;
 		},
 	),
-	'bgtfw_blog_page_full_width_max' => array(
-		'type'             => 'number',
-		'transport'        => 'auto',
-		'priority'          => 40,
-		'settings'         => 'bgtfw_blog_page_full_width_max',
-		'label'            => esc_html__( 'Max Width', 'kirki' ),
-		'description'      => esc_html__( 'If you want full-width containers to be limited to a maximum width, enter that width here.', 'kirki' ),
-		'section'          => 'bgtfw_pages_blog_blog_page_post_content',
-		'default'          => '1920',
-		'active_callback' => array(
-			array(
-				'setting'  => 'bgtfw_blog_page_container',
-				'operator' => '==',
-				'value'    => 'fw-contained',
-			),
-		),
-		'output' => array(
-			array(
-				'element'  => 'body.blog #main-wrapper.full-width.max-full-width',
-				'property' => 'max-width',
-				'units'     => 'px',
-			),
-			array(
-				'element'  => '#tinymce.blog.max-full-width .boldgrid-section .container-fluid',
-				'property' => 'max-width',
-				'units'     => 'px',
-			),
-		),
-	),
+
 	'bgtfw_pages_blog_blog_page_layout_posts_per_page' => array(
 		'label'       => __( 'Blog Posts Per Page', 'bgtfw' ),
 		'tooltip'     => __( 'Set how many posts display per page for your blog, categories, archives, and search pages.', 'bgtfw' ),

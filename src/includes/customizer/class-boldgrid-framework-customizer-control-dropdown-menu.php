@@ -4,7 +4,7 @@
  *
  * This class is responsible for creating the dropdown helper menu.
  *
- * @since    SINCEVERSION
+ * @since    2.10.0
  * @category Customizer
  * @package  Boldgrid_Framework
  * @author   BoldGrid <support@boldgrid.com>
@@ -17,7 +17,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 *
 	 * This class is responsible for creating the dropdown helper menu.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.10.0
 	 */
 	class Boldgrid_Framework_Customizer_Control_Dropdown_Menu extends Kirki_Control_Base {
 		/**
@@ -25,7 +25,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @var string
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		public $type = 'bgtfw-dropdown-menu';
 
@@ -34,7 +34,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @var array
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		public $additional_controls = array();
 
@@ -43,7 +43,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @var array
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		public $faq_links = array();
 
@@ -52,7 +52,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @var string
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		public $active_label = '';
 
@@ -61,7 +61,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @var string
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		public $help_label = '';
 
@@ -70,7 +70,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @var string
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		public $help_text = '';
 
@@ -79,14 +79,14 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @var string
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		public $label = '';
 
 		/**
 		 * Refresh the parameters passed to the JavaScript via JSON.
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		public function to_json() {
 
@@ -113,7 +113,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @access private
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		private function help_text_template() {
 			?>
@@ -129,7 +129,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @access private
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		private function additional_controls_template() {
 			?>
@@ -157,7 +157,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * @access private
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		private function faq_links_template() {
 			?>
@@ -179,7 +179,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 *
 		 * Displays the control's content.
 		 *
-		 * @since SINCEVERSION
+		 * @since 2.10.0
 		 */
 		protected function content_template() {
 			?>

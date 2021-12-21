@@ -616,7 +616,7 @@ class Boldgrid_Framework_Customizer_Typography {
 	/**
 	 * Retrieve formatted output configs for typography selectors.
 	 *
-	 * @since SINCEVERSION
+	 * @since 2.11.0
 	 *
 	 * @param array  $configs  Config array.
 	 * @param string $elements Element Selector string.

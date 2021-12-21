@@ -57,6 +57,7 @@ export class Preview {
 		// Build CSS.
 		let css = '';
 
+		// If this is for headings, we must determine the base font size.
 		if ( 'bgtfw_headings_typography' === controlId ) {
 			base = parseInt( api( 'bgtfw_headings_font_size' )() );
 			unit = api( 'bgtfw_headings_font_size' )().replace( base, '' );
@@ -67,6 +68,8 @@ export class Preview {
 
 		_.each( BOLDGRID.CUSTOMIZER.data.customizerOptions.typography.selectors, function( selector, rule ) {
 			var val;
+
+			// If this is for headings, we must calculate the appropriate 'h' value.
 			if ( 'headings' === selector.type && 'bgtfw_headings_typography' === controlId ) {
 				val = base * selector.amount;
 				if ( 'ceil' === selector.round ) {
@@ -86,6 +89,8 @@ export class Preview {
 					css += 'font-weight:' + fontWeight + ';}';
 				}
 				css += rule + '{font-size:' + val + unit + ';}';
+
+			// Selector lists are pulled from the customizer options matched to controlType.
 			} else if ( controlType === selector.type ) {
 
 				// Adds css for font variants.
@@ -103,6 +108,7 @@ export class Preview {
 			}
 		} );
 
+		// Menus are different, because the selectors are dynamic.
 		if ( controlType.includes( 'menu' ) ) {
 			let rule = controlType.replace( /_/g, '-' );
 				rule = rule.replace( 'menu-', '' );
@@ -158,6 +164,11 @@ export class Preview {
 	/**
 	 * Bind Typography Controls.
 	 *
+	 * As of 2.11.0, this control is used for ALL typography controls,
+	 * not just bgtfw_headings_typography and bgtfw_headings_font_size.
+	 * Therefore, we need to bind to all controls and use appropriate logic
+	 * to determine which control is being used.
+	 *
 	 * @since 2.0.0
 	 */
 	_bindTypography() {
@@ -168,8 +179,6 @@ export class Preview {
 				typographyControls.push( control.id );
 			}
 		} );
-
-		console.log( typographyControls );
 
 		typographyControls.forEach( controlId => this.addTypographyOverride( controlId ) );
 
@@ -182,6 +191,8 @@ export class Preview {
 
 	/**
 	 * Override Typography styles in customizer.
+	 *
+	 * As of 2.11.0, this control is used for ALL typography controls.
 	 *
 	 * @since 2.2.2
 	 */
@@ -197,9 +208,12 @@ export class Preview {
 					return;
 				}
 
+				// Adds quotes to font-family if there is a space in it.
 				if ( /\s/.test( adjustedCss['font-family'] ) ) {
 					adjustedCss['font-family'] = '"' + adjustedCss['font-family'] + '"';
 				}
+
+				// Defines cssSelectors based on the control's output field.
 				kirkiPostMessageFields.forEach( function( field ) {
 					if ( ! cssSelectors && control === field.id && field.output[0].element ) {
 						cssSelectors = field.output[0].element;

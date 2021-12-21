@@ -43,7 +43,9 @@ class BoldGrid_Framework_Styles {
 	/**
 	 * Register Responsive Font Sizes.
 	 *
-	 * @since SINCEVERSION
+	 * Registers the responsive font size css.
+	 *
+	 * @since 2.11.0
 	 */
 	public function register_responsive_font_sizes() {
 		$css = $this->generate_responsive_font_css();
@@ -55,7 +57,11 @@ class BoldGrid_Framework_Styles {
 
 	/** Generate Responive Font CSS
 	 *
-	 * @since SINCEVERSION
+	 * Generates responsive font css.
+	 *
+	 * @param string $css The css to be added to the page.
+	 *
+	 * @since 2.11.0
 	 */
 	public function generate_responsive_font_css( $css = '' ) {
 		$responsive_controls = $this->configs['customizer-options']['typography']['responsive_font_controls'];

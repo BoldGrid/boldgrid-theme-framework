@@ -1,6 +1,29 @@
+/**
+ * File: src/assets/js/customizer/controls/bgtfw-responsive-font-size.js
+ *
+ * Responsive font size control for the Customizer.
+ *
+ * @package    Boldgrid_Theme_Framework
+ * @subpackage Boldgrid_Theme_Framework/Customizer/Controls
+ *
+ * @since      2.11.0
+ */
+
+/**
+ * WP_Customize_Manager instance.
+ *
+ * @type {Object}
+ */
 const api = wp.customize;
 
 export default () => {
+
+	/**
+	 * Determines if a string is valid JSON.
+	 *
+	 * @param {string} str Alleged JSON string.
+	 * @returns
+	 */
 	function isJsonString( str ) {
 		try {
 			JSON.parse( str );
@@ -10,6 +33,14 @@ export default () => {
 		return true;
 	}
 
+	/**
+	 * Device Clicked.
+	 *
+	 * @param {object} $container      The container of the clicked device.
+	 * @param {object} $thisLabel      The label of the clicked device.
+	 * @param {string} $thisInputValue The value of the clicked device.
+	 * @param {string} controlId       The control id.
+	 */
 	function deviceClick( $container, $thisLabel, $thisInputValue, controlId ) {
 		$container.find( 'p.font-size-input' ).hide();
 		$container.find( '.devices-wrapper input' ).prop( 'ckecked', false );
@@ -24,6 +55,11 @@ export default () => {
 		}
 	}
 
+	/**
+	 * Handles events bound to section expanding.
+	 *
+	 * @param {object} $controlContainer The container of the control.
+	 */
 	function sectionExpand( $controlContainer ) {
 		var $container         = $controlContainer,
 			currentDevice      = $container.find( '.devices-wrapper input:checked' ).val(),
@@ -40,6 +76,13 @@ export default () => {
 
 	}
 
+	/**
+	 * Converts individual device sizes to a JSON string.
+	 *
+	 * @param {object} $thisInput The input that was changed.
+	 * @param {string} value      The value of the input.
+	 * @param {string} controlId  The control id.
+	 */
 	function fontSizeInput( $thisInput, value, controlId ) {
 		var device  = $thisInput.attr( 'data-device' ),
 			setting = api( controlId )();
@@ -52,7 +95,15 @@ export default () => {
 		}
 	}
 
+	/**
+	 * Binds events to the wp.customize 'ready' event.
+	 */
 	api.bind( 'ready', () => {
+
+		/**
+		 * Binds events to each control that
+		 * has the 'bgtfw-responseive-typography' type.
+		 */
 		api.control.each( function( control ) {
 			var controlId       = control.id,
 				sectionId       = control.section(),
@@ -61,6 +112,8 @@ export default () => {
 				$fontSizeInputs = $container.find( '.font-size-input' );
 
 			if ( 'bgtfw-responsive-typography' === control.params.type ) {
+
+				// Device lable click event.
 				$deviceLabel.on( 'click', ( e ) => {
 					var $thisLabel      = $( e.currentTarget ),
 						$thisInputValue = $thisLabel.siblings( 'input' ).val();
@@ -68,10 +121,12 @@ export default () => {
 					deviceClick( $container, $thisLabel, $thisInputValue, controlId );
 				} );
 
+				// Section expand event.
 				api.section( sectionId ).expanded.bind( () => {
 					sectionExpand( $container );
 				} );
 
+				// Input change event.
 				$fontSizeInputs.each( function() {
 					var $thisInput = $( this );
 					var debounceCb = _.debounce( () => {

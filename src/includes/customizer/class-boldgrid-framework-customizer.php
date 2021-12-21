@@ -1036,11 +1036,16 @@ HTML;
 	}
 
 	/**
-	 * Add Custom Column Width control.
+	 * Add Responsive font controls.
+	 *
+	 * Loops through the responsive controls in the customizer-options
+	 * config file, and registers them.
+	 *
+	 * @see /src/includes/configs/customizer-options/typography.config.php
 	 *
 	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
 	 *
-	 * @since 2.7.0
+	 * @since 2.11.0
 	 */
 	public function register_responsive_font_controls( $wp_customize ) {
 		$typography          = new Boldgrid_Framework_Customizer_Typography( $this->configs );
@@ -1071,7 +1076,10 @@ HTML;
 	}
 
 	/**
-	 * Register all Responsive Font Controls
+	 * Register Responsive Font Control
+	 *
+	 * Registers a single responsive font control. Used by register_responsive_font_controls()
+	 * to loop through the responsive controls and add them all.
 	 *
 	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
 	 * @param array                $control_args Control Arguments.
@@ -1083,13 +1091,13 @@ HTML;
 		require_once $this->configs['framework']['includes_dir']
 		. 'control/class-boldgrid-framework-control-responsive-font-size.php';
 		$params = array(
-			'type'                  => 'theme_mod',
-			'section'               => $control_args['section'],
-			'capability'            => 'edit_theme_options',
-			'transport'             => 'postMessage',
-			'priority'              => $control_args['priority'],
-			'sanitize_callback'     => array( $typography, 'sanitize_responsive_fonts' ),
-			'label'                 => __( 'Responsive Font Size', 'bgtfw' ),
+			'type'              => 'theme_mod',
+			'section'           => $control_args['section'],
+			'capability'        => 'edit_theme_options',
+			'transport'         => 'postMessage',
+			'priority'          => $control_args['priority'],
+			'sanitize_callback' => array( $typography, 'sanitize_responsive_fonts' ),
+			'label'             => __( 'Responsive Font Size', 'bgtfw' ),
 		);
 
 		$wp_customize->add_setting( $control_id, $params );

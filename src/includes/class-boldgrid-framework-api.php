@@ -306,11 +306,14 @@ class BoldGrid {
 	/**
 	 * Adds custom classes to the array of header classes.
 	 *
+	 * @param array $classes An array of header classes.
+	 *
 	 * @since 2.0.0
 	 *
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function header_classes( $classes ) {
+		// Do not add background color classess if this is a Custom Sticky Template.
 		if ( ! in_array( 'template-sticky-header', $classes, true ) ) {
 			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
 		}
@@ -332,12 +335,15 @@ class BoldGrid {
 	/**
 	 * Adds custom classes to the array of footer classes.
 	 *
+	 * @param array $classes An array of footer classes.
+	 *
 	 * @since 2.0.0
 	 *
 	 * @return array $classes array of classes to be applied to the .site-footer element.
 	 */
 	public function footer_classes( $classes ) {
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts' );
+		// Do not add background classess if this is a Custom Footer Template.
 		if ( ! in_array( 'template-footer', $classes, true ) ) {
 			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
 		} else {
@@ -351,11 +357,14 @@ class BoldGrid {
 	/**
 	 * Adds custom classes to the array of inner footer classes.
 	 *
+	 * @param array $classes An array of footer classes.
+	 *
 	 * @since 2.0.0
 	 *
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function inner_footer_classes( $classes ) {
+		// Do not add background classess if this is a Custom Footer Template.
 		if ( ! in_array( 'template-footer', $classes, true ) ) {
 			$classes = array_merge(
 				$classes,
@@ -1376,6 +1385,7 @@ class BoldGrid {
 			'sticky',
 		);
 
+		// Add neutral background colors to sticky headers.
 		if ( ! empty( $sticky_template_class ) ) {
 			$header_classes[] = $sticky_template_class;
 			$header_classes[] = 'template-sticky-header';
@@ -1389,10 +1399,12 @@ class BoldGrid {
 		do_action( 'boldgrid_header_top' );
 		$markup .= ob_get_clean();
 
+		// If using Custom Templates, add the content here.
 		if ( get_theme_mod( 'bgtfw_sticky_page_headers_global_enabled' ) && ! empty( $page_header ) ) {
 			if ( 'disabled' !== $page_header ) {
 				$markup .= apply_filters( 'the_content', get_post_field( 'post_content', $page_header ) );
 			}
+		// Otherwise, load the dynamic layout as usual.
 		} else {
 			$markup .= '<div class="custom-header-media">';
 			$markup .= get_custom_header_markup();
@@ -1427,6 +1439,7 @@ class BoldGrid {
 		$page_footer             = apply_filters( 'crio_premium_get_page_footer', $id );
 		$footer_template_enabled = get_theme_mod( 'bgtfw_page_footers_global_enabled' );
 
+		// Footer templates allow the option to disable the footer all together.
 		if ( $footer_template_enabled && 'disabled' === $page_footer ) {
 			return '';
 		}

@@ -38,7 +38,6 @@ user guide for more information.
 
 ### 2.11.0 ###
 * New Feature: Added responsive font size controls for Body Font, Headings and Site Title[#84](https://github.com/BoldGrid/boldgrid-theme-framework/issues/84)
-* New Feature: Added a new set of controls to allow users to set a max-width for full width containers[#540](https://github.com/BoldGrid/boldgrid-theme-framework/issues/540)
 * New Feature: Added support for new Sticky Header template and Footer Template features in Crio Pro 1.5.0[#544](https://github.com/BoldGrid/boldgrid-theme-framework/pull/544)
 
 ### 2.10.0 ###

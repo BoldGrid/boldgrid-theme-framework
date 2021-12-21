@@ -476,19 +476,34 @@ class BoldGrid_Framework {
 	/**
 	 * Maybe Show Sticky Header
 	 *
-	 * @since SINCEVERSION
+	 * This method determines whether or not the HTML for the
+	 * sticky header will be printed to the page. In some instances,
+	 * it must be printed to the page, but then hidden via CSS / JS.
+	 *
+	 * @param int $id Page / Post ID.
+	 *
+	 * @since 2.11.0
 	 */
 	public function maybe_show_sticky_header( $id ) {
+		/*
+		 * If in the customizer, and fixed_header is enabled, we must always render the sticky header.
+		 * Even if it's not going to be seen, it's still needed for the customizer to work properly.
+		 */
 		if ( is_customize_preview() || true === get_theme_mod( 'bgtfw_fixed_header' ) ) {
 			return true;
 		}
 
+		/*
+		 * Outside of the customizer, we only render the sticky header if 'header-top' AND 'fixed-header' are enabled.
+		 * This prevents wonky stuff from happening when users have a side header selected.
+		 */
 		if ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) {
 			return true;
 		}
 
 		$sticky_header_template = apply_filters( 'crio_premium_get_sticky_page_header', $id );
 
+		// If the user has a Custom Sticky Template enabled for this page or post, ALWAYS render the sticky header markup.
 		if ( ! empty( $sticky_header_template ) ) {
 			return true;
 		}
@@ -752,7 +767,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'override_kirki_styles' );
 		$this->loader->add_filter( 'customize_refresh_nonces', $typography, 'header_column_nonces' );
-		$this->loader->add_action( 'wp_ajax_responsive_heading_sizes', $typography, 'wp_ajax_responsive_heading_sizes' );
+		$this->loader->add_action( 'wp_ajax_responsive_font_sizes', $typography, 'wp_ajax_responsive_font_sizes' );
 
 		/*
 		 * Sometimes we need changes made in the customizer to be saved to the kirki styles.css

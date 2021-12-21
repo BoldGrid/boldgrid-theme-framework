@@ -166,9 +166,11 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
-	 * Generate Kirki font CSS for editor
+	 * Generate Kirki font CSS for PPB editor
 	 *
-	 * @since SINCEVERSION
+	 * @param string $css CSS to append styles to.
+	 *
+	 * @since 2.11.0
 	 */
 	public function inline_font_css( $css ) {
 		$kirki_styles    = apply_filters( 'kirki_bgtfw_dynamic_css', Kirki_Modules_CSS::loop_controls( 'bgtfw' ) );
@@ -310,17 +312,22 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
-	 * WP Ajax Heading Sizes.
+	 * WP Ajax Responsive Font Sizes.
 	 *
-	 * @since 2.7.0
+	 * Ajax callback to get the font sizes for customizer
+	 * Preview.
+	 *
+	 * @see BoldGrid_Framework::customizer_typography() for WP Ajax action hook definition.
+	 *
+	 * @since 2.11.0
 	 */
-	public function wp_ajax_responsive_heading_sizes() {
-		check_ajax_referer( 'bgtfw_responsive_heading_sizes', 'responsiveHeadingSizesNonce' );
+	public function wp_ajax_responsive_font_sizes() {
+		check_ajax_referer( 'bgtfw_responsive_font_sizes', 'responsiveFontSizesNonce' );
 		if ( ! current_user_can( 'edit_theme_options' ) ) {
 			wp_die( -1 );
 		}
-		$selectors  = $this->configs['customizer-options']['typography']['selectors'];
-		$value      = $this->sanitize_responsive_fonts( $_POST['responsiveHeadingSizes'] );
+		$selectors = $this->configs['customizer-options']['typography']['selectors'];
+		$value     = $this->sanitize_responsive_fonts( $_POST['responsiveFontSizes'] );
 
 		$control_id = $_POST['controlId'];
 		if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
@@ -336,7 +343,14 @@ class Boldgrid_Framework_Customizer_Typography {
 
 	/** Generate Responive Font CSS
 	 *
-	 * @since SINCEVERSION
+	 * Generate CSS for responsive font sizes.
+	 *
+	 * @param string $control_id The control ID.
+	 * @param string $value      The value.
+	 *
+	 * @return string $css CSS for responsive font sizes.
+	 *
+	 * @since 2.11.0
 	 */
 	public function generate_responsive_font_css( $control_id, $value ) {
 		$value     = is_string( $value ) ? json_decode( $value, true ) : $value;
@@ -384,10 +398,14 @@ class Boldgrid_Framework_Customizer_Typography {
 	/**
 	 * Add a nonce for Customizer for responsive heading sizes.
 	 *
-	 * @since SINCEVERSION
+	 * @param array $nonces An array of customizer nonces.
+	 *
+	 * @return array An array of customizer nonces.
+	 *
+	 * @since 2.11.0
 	 */
 	public function header_column_nonces( $nonces ) {
-		$nonces['bgtfw_responsive_heading_sizes'] = wp_create_nonce( 'bgtfw_responsive_heading_sizes' );
+		$nonces['bgtfw_responsive_font_sizes'] = wp_create_nonce( 'bgtfw_responsive_font_sizes' );
 		return $nonces;
 	}
 
@@ -456,6 +474,7 @@ class Boldgrid_Framework_Customizer_Typography {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['phone'] );
 			$headings_base = $headings_size[0];
 			$headings_unit = $headings_size[1];
+
 			$css .= '@media only screen and (max-width: 766px) {';
 				foreach ( $selectors as $selector => $options ) {
 					if ( 'subheadings' === $options['type'] ) {
@@ -480,6 +499,7 @@ class Boldgrid_Framework_Customizer_Typography {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['tablet'] );
 			$headings_base = $headings_size[0];
 			$headings_unit = $headings_size[1];
+
 			$css .= '@media only screen and (min-width: 767px) and (max-width: 990px) {';
 				foreach ( $selectors as $selector => $options ) {
 					if ( 'subheadings' === $options['type'] ) {
@@ -504,6 +524,7 @@ class Boldgrid_Framework_Customizer_Typography {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['desktop'] );
 			$headings_base = $headings_size[0];
 			$headings_unit = $headings_size[1];
+
 			$css .= '@media only screen and (min-width: 991px) and (max-width: 1198px) {';
 			foreach ( $selectors as $selector => $options ) {
 				if ( 'subheadings' === $options['type'] ) {
@@ -528,6 +549,7 @@ class Boldgrid_Framework_Customizer_Typography {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['large'] );
 			$headings_base = $headings_size[0];
 			$headings_unit = $headings_size[1];
+
 			$css .= '@media only screen and (min-width: 1199px) {';
 			foreach ( $selectors as $selector => $options ) {
 				if ( 'subheadings' === $options['type'] ) {

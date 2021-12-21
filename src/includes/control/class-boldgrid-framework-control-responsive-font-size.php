@@ -3,24 +3,24 @@
  * Responsive Font Size Control
  *
  * @link       http://www.boldgrid.com
- * @since      1.0.0
+ * @since      2.11.0
  *
- * @package    Boldgrid_Theme_Helper
- * @subpackage Boldgrid_Theme_Helper/admin
+ * @package    Boldgrid_Theme_Framework
+ * @subpackage Boldgrid_Theme_Framework/control
  */
 
 /**
  * Responsive Font Size Control
  *
- * @package Boldgrid_Theme_Helper
- * @subpackage Boldgrid_Theme_Helper/admin
+ * @package Boldgrid_Theme_Framework
+ * @subpackage Boldgrid_Theme_Framework/control
  * @author BoldGrid.com <pdt@boldgrid.com>
  */
 class Boldgrid_Framework_Control_Responsive_Font_Size extends WP_Customize_Control {
 	/**
 	 * Configs.
 	 *
-	 * @since 2.7.0
+	 * @since 2.11.0
 	 *
 	 * @var array
 	 */
@@ -31,7 +31,7 @@ class Boldgrid_Framework_Control_Responsive_Font_Size extends WP_Customize_Contr
 	 *
 	 * Generic controls class instance.
 	 *
-	 * @since 2.7.0
+	 * @since 2.11.0
 	 *
 	 * @var Boldgrid_Framework_Customizer_Generic
 	 */
@@ -42,7 +42,7 @@ class Boldgrid_Framework_Control_Responsive_Font_Size extends WP_Customize_Contr
 	 *
 	 * ID of this control.
 	 *
-	 * @since 2.7.0
+	 * @since 2.11.0
 	 *
 	 * @var string
 	 */
@@ -53,7 +53,7 @@ class Boldgrid_Framework_Control_Responsive_Font_Size extends WP_Customize_Contr
 	 *
 	 * WP_Customize class instance.
 	 *
-	 * @since 2.7.0
+	 * @since 2.11.0
 	 *
 	 * @var WP_Customize
 	 */
@@ -62,10 +62,12 @@ class Boldgrid_Framework_Control_Responsive_Font_Size extends WP_Customize_Contr
 	/**
 	 * Constructor.
 	 *
-	 * @since 2.7.0
+	 * @since 2.11.0
 	 *
-	 * @param array        $configs BGTFW Configs Array.
+	 * @param array        $configs      BGTFW Configs Array.
 	 * @param WP_Customize $wp_customize WP_Customize object.
+	 * @param string       $control_id   Control ID.
+	 * @param array        $params       Control arguments.
 	 */
 	public function __construct( $configs, $wp_customize, $control_id, $params ) {
 		$this->control_id   = $control_id;
@@ -82,7 +84,11 @@ class Boldgrid_Framework_Control_Responsive_Font_Size extends WP_Customize_Contr
 	/**
 	 * Get Devices Markup
 	 *
-	 * @since 2.7.0
+	 * @global WP_Filesystem $wp_filesystem
+	 *
+	 * @return string Devices Markup.
+	 *
+	 * @since 2.11.0
 	 */
 	public function get_devices_markup() {
 		global $wp_filesystem;
@@ -104,9 +110,11 @@ class Boldgrid_Framework_Control_Responsive_Font_Size extends WP_Customize_Contr
 	}
 
 	/**
-	 * Get Sliders Markup.
+	 * Get Input Fields Markup.
 	 *
-	 * @since 2.7.0
+	 * @since 2.11.0
+	 *
+	 * @return string Input Fields Markup.
 	 */
 	public function get_input_fields() {
 		$current_size = json_decode( get_theme_mod( $this->id ), true );
@@ -132,7 +140,7 @@ class Boldgrid_Framework_Control_Responsive_Font_Size extends WP_Customize_Contr
 	/**
 	 * Render the pattern control in customizer.
 	 *
-	 * @since 1.0
+	 * @since 2.11.0
 	 */
 	public function render_content() {
 		$devices_markup = $this->get_devices_markup();

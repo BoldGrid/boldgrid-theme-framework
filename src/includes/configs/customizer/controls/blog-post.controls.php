@@ -645,24 +645,12 @@ return array(
 		'priority'          => 40,
 		'default'           => 'container',
 		'choices'           => array(
-			'container'    => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			''             => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
+			''          => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
 		),
 		'section'           => 'bgtfw_pages_blog_posts_container',
 		'sanitize_callback' => function( $value, $settings ) {
-			$sanitized_value = 'container';
-			switch ( $value ) {
-				case 'container':
-					$sanitized_value = 'container';
-					break;
-				case '':
-					$sanitized_value = '';
-					break;
-				default:
-					$sanitized_value = 'container';
-					break;
-			}
-			return $sanitized_value;
+			return 'container' === $value || '' === $value ? $value : $settings->default;
 		},
 		'js_vars'           => array(
 			array(

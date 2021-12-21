@@ -45,7 +45,6 @@ return array(
 			return 'container' === $value || '' === $value ? $value : $settings->default;
 		},
 	),
-
 	'bgtfw_pages_blog_blog_page_layout_posts_per_page' => array(
 		'label'       => __( 'Blog Posts Per Page', 'bgtfw' ),
 		'tooltip'     => __( 'Set how many posts display per page for your blog, categories, archives, and search pages.', 'bgtfw' ),

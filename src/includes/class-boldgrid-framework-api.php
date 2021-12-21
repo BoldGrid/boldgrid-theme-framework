@@ -151,17 +151,7 @@ class BoldGrid {
 		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
 		if ( is_single() || is_attachment() ) {
 			$theme_mod = get_theme_mod( $theme_mod_type );
-			switch ( $theme_mod ) {
-				case '':
-					$classes[] = 'full-width';
-					break;
-				case 'container':
-					$classes[] = 'container';
-					break;
-				default:
-					$classes[] = 'container';
-					break;
-			}
+			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 		}
 
 		return $classes;
@@ -181,17 +171,7 @@ class BoldGrid {
 		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
 		if ( is_page() || ( $boldgrid_theme_framework->woo->is_woocommerce_page() && is_shop() ) ) {
 			$theme_mod = get_theme_mod( $theme_mod_type );
-			switch ( $theme_mod ) {
-				case '':
-					$classes[] = 'full-width';
-					break;
-				case 'container':
-					$classes[] = 'container';
-					break;
-				default:
-					$classes[] = 'container';
-					break;
-			}
+			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 		}
 
 		return $classes;
@@ -245,18 +225,7 @@ class BoldGrid {
 		}
 
 		$theme_mod = get_theme_mod( $theme_mod_type );
-
-		switch ( $theme_mod ) {
-			case '':
-				$classes[] = 'full-width';
-				break;
-			case 'container':
-				$classes[] = 'container';
-				break;
-			default:
-				$classes[] = 'container';
-				break;
-		}
+		$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 
 		return $classes;
 	}

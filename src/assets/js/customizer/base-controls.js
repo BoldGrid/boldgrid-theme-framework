@@ -23,6 +23,7 @@ import bgtfwBackgroundControls from './controls/bgtfw-background-control';
 import bgtfwEditPane from './controls/edit/pane';
 import { HeaderBackground as BgtfwHeaderBackground } from './controls/bgtfw-header-background';
 import bgtfwDropdownMenu from './controls/bgtfw-dropdown-menu';
+import bgtfwResponsiveFontSize from './controls/bgtfw-responsive-font-size';
 
 let devices = new Devices();
 devices.init();
@@ -31,6 +32,7 @@ bgtfwBackgroundControls();
 bgtfwEditPane();
 WidgetSectionUpdate();
 bgtfwDropdownMenu();
+bgtfwResponsiveFontSize();
 
 ( function( $ ) {
 	const api = wp.customize;

@@ -41,6 +41,94 @@ class BoldGrid_Framework_Styles {
 	}
 
 	/**
+	 * Register Responsive Font Sizes.
+	 *
+	 * Registers the responsive font size css.
+	 *
+	 * @since 2.11.0
+	 */
+	public function register_responsive_font_sizes() {
+		$css = $this->generate_responsive_font_css();
+
+		wp_register_style( 'bgtfw-responsive-font-sizes', false );
+		wp_add_inline_style( 'bgtfw-responsive-font-sizes', $css );
+		wp_enqueue_style( 'bgtfw-responsive-font-sizes' );
+	}
+
+	/** Generate Responive Font CSS
+	 *
+	 * Generates responsive font css.
+	 *
+	 * @param string $css The css to be added to the page.
+	 *
+	 * @since 2.11.0
+	 */
+	public function generate_responsive_font_css( $css = '' ) {
+		$responsive_controls = $this->configs['customizer-options']['typography']['responsive_font_controls'];
+		// XS / Phone.
+		$css .= '@media only screen and (max-width: 767px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['phone'] ) ? $theme_mod['phone'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		// SM / Tablet.
+		$css .= '@media only screen and (min-width: 768px) and (max-width: 991px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['tablet'] ) ? $theme_mod['tablet'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		// MD / Desktop.
+		$css .= '@media only screen and (min-width: 992px) and (max-width: 1199px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['desktop'] ) ? $theme_mod['desktop'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		// LG / Large Desktop.
+		$css .= '@media only screen and (min-width: 1200px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['large'] ) ? $theme_mod['large'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		return $css;
+	}
+
+	/**
 	 * Return a list of the editor styles that will be applied that are actually contained
 	 * with the theme
 	 *
@@ -87,8 +175,8 @@ class BoldGrid_Framework_Styles {
 
 			// Add Kirki dynamically generated styles.
 			$kirki_css = Kirki_Modules_CSS::get_instance();
-			$styles = apply_filters( 'kirki_bgtfw_dynamic_css', $kirki_css::loop_controls( 'bgtfw' ) );
-			$styles = apply_filters( 'boldgrid_mce_inline_styles', $styles );
+			$styles    = apply_filters( 'kirki_bgtfw_dynamic_css', $kirki_css::loop_controls( 'bgtfw' ) );
+			$styles    = apply_filters( 'boldgrid_mce_inline_styles', $styles );
 
 			wp_register_style( 'bgtfw-dynamic', false );
 			wp_add_inline_style( 'bgtfw-dynamic', $styles );

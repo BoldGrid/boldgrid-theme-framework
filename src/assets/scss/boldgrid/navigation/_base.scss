@@ -147,8 +147,10 @@
 			.sm-clean.w,
 			.sm-clean.nw,
 			.sm-clean.sw {
-				li:first-of-type a {
-					padding-left: 0px;
+				&:not( .sm-vertical ) {
+					li:first-of-type a {
+						padding-left: 0px;
+					}
 				}
 			}
 
@@ -156,8 +158,15 @@
 			.sm-clean.e,
 			.sm-clean.ne,
 			.sm-clean.se {
-				li:last-of-type a {
-					padding-right: 0px;
+				&:not( .sm-vertical ) {
+					li:last-of-type a {
+						padding-right: 0px;
+					}
+				}
+				&.sm-vertical {
+					ul.sub-arrow {
+						margin-right: -20px;
+					}
 				}
 			}
 			.sm-clean.sm-rtl li {
@@ -333,6 +342,7 @@
 				border-color: transparent currentColor transparent transparent;
 			}
 			.sm-clean.sm-vertical {
+				flex-direction: column;
 				padding: 10px 0;
 				-webkit-border-radius: 5px;
 				-moz-border-radius: 5px;
@@ -343,19 +353,12 @@
 			.sm-clean.sm-vertical a {
 				padding: 10px 20px;
 			}
-			.sm-clean.sm-vertical a:hover,
-			.sm-clean.sm-vertical a:focus,
-			.sm-clean.sm-vertical a:active,
-			.sm-clean.sm-vertical a.highlighted {
-				background: white;
-			}
 			.sm-clean.sm-vertical a.disabled {
 				background: #eeeeee;
 			}
 			.sm-clean.sm-vertical a span.sub-arrow {
-				right: 8px;
 				top: 50%;
-				margin-top: -5px;
+				margin-left: 10px;
 				border-width: 5px;
 				border-style: dashed dashed dashed solid;
 				border-color: transparent transparent transparent currentColor;

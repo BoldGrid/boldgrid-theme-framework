@@ -51,7 +51,6 @@ class BoldGrid_Framework_Customizer {
 	 * @since     1.0.0
 	 */
 	public function __construct( $configs ) {
-
 		// Ensure defaults are processed on customize load.
 		$format        = new BoldGrid_Framework_Starter_Content( $configs );
 		$this->configs = $format->set_configs( $configs );
@@ -70,6 +69,7 @@ class BoldGrid_Framework_Customizer {
 
 		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			if ( isset( $control['type'] ) && 'radio' !== $control['type'] ) {
+				$control = apply_filters( 'bgtfw_filter_kirki_control', $control );
 				Kirki::add_field( 'bgtfw', $control );
 
 				if ( strpos( $control['settings'], 'bgtfw_menu_' ) !== false &&
@@ -1033,6 +1033,76 @@ HTML;
 			)
 		);
 		$wp_customize->add_control( new Boldgrid_Framework_Control_Col_Width( $this->configs, $wp_customize ) );
+	}
+
+	/**
+	 * Add Responsive font controls.
+	 *
+	 * Loops through the responsive controls in the customizer-options
+	 * config file, and registers them.
+	 *
+	 * @see /src/includes/configs/customizer-options/typography.config.php
+	 *
+	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
+	 *
+	 * @since 2.11.0
+	 */
+	public function register_responsive_font_controls( $wp_customize ) {
+		$typography          = new Boldgrid_Framework_Customizer_Typography( $this->configs );
+		$responsive_controls = $this->configs['customizer-options']['typography']['responsive_font_controls'];
+
+		foreach ( $responsive_controls as $control_id => $control_args ) {
+			$this->register_responsive_font_control( $wp_customize, $control_args, $control_id, $typography );
+		}
+	}
+
+	/**
+	 * Register Menu Font Size Controls
+	 *
+	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
+	 *
+	 * @since 2.11.0
+	 */
+	public function register_menu_font_size_controls( $wp_customize ) {
+		$menu_locations = $this->configs['menu']['locations'];
+		foreach ( $menu_locations as $location => $location_args ) {
+			$control_args = array(
+				'section' => 'bgtfw_menu_typography_' . $location,
+				'priority' => 21,
+			);
+
+			$this->register_responsive_font_control( $wp_customize, $control_args, 'bgtfw_menu_font_size_' . $location );
+		}
+	}
+
+	/**
+	 * Register Responsive Font Control
+	 *
+	 * Registers a single responsive font control. Used by register_responsive_font_controls()
+	 * to loop through the responsive controls and add them all.
+	 *
+	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
+	 * @param array                $control_args Control Arguments.
+	 * @param string               $control_id   Control ID.
+	 *
+	 * @since 2.11.0
+	 */
+	public function register_responsive_font_control( $wp_customize, $control_args, $control_id, $typography ) {
+		require_once $this->configs['framework']['includes_dir']
+		. 'control/class-boldgrid-framework-control-responsive-font-size.php';
+		$params = array(
+			'type'              => 'theme_mod',
+			'section'           => $control_args['section'],
+			'capability'        => 'edit_theme_options',
+			'transport'         => 'postMessage',
+			'priority'          => $control_args['priority'],
+			'sanitize_callback' => array( $typography, 'sanitize_responsive_fonts' ),
+			'label'             => __( 'Responsive Font Size', 'bgtfw' ),
+		);
+
+		$wp_customize->add_setting( $control_id, $params );
+		$params['type'] = 'bgtfw-responsive-typography';
+		$wp_customize->add_control( new Boldgrid_Framework_Control_Responsive_Font_Size( $this->configs, $wp_customize, $control_id, $params ) );
 	}
 
 	/**

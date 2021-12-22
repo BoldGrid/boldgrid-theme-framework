@@ -142,6 +142,16 @@ $names: background background-color;
 						}
 					}
 				}
+				&.sm {
+					&.color-#{$each}-link-color {
+						a {
+							color: #{nth($colors, $each)};
+						}
+						a:hover, a:focus, a:active, a.highlighted {
+							color: hover( nth($colors, $color), nth($colors, $each) );
+						}
+					}
+				}
 			}
 			@if variable-exists( palette-primary-neutral-color ) {
 				&.color-neutral-link-color {

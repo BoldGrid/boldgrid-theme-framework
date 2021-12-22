@@ -270,7 +270,6 @@ class Boldgrid_Framework_Menu {
 		return $menu;
 	}
 
-
 	/**
 	 * Adds appropriate background class to register menu's UL elements.
 	 *

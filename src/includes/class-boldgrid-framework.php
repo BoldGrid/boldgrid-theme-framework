@@ -402,9 +402,11 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $styles, 'enqueue_fontawesome' );
 		$this->loader->add_action( 'after_setup_theme', $styles, 'add_editor_styling' );
+		$this->loader->add_action( 'after_setup_theme', $styles, 'register_responsive_font_sizes' );
 		$this->loader->add_filter( 'mce_css', $styles, 'add_cache_busting' );
 		$this->loader->add_filter( 'boldgrid_theme_framework_local_editor_styles', $styles, 'enqueue_editor_buttons' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'get_css_vars' );
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'generate_responsive_font_css' );
 
 		// Validate Theme Fonts Directory
 		$this->loader->add_action( 'after_setup_theme', $styles, 'validate_fonts_dir' );
@@ -451,15 +453,15 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_identity', $boldgrid_theme, 'print_title_tagline' );
 
 		// Sticky Header - Removed template_redirect as it was unnecessary and caused duplication of the sticky header sometimes.
-		if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) ) || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) ) {
-			add_action( 'boldgrid_header_after', function() {
+		add_action( 'boldgrid_header_after', function( $id ) {
+			if ( $this->maybe_show_sticky_header( $id ) ) {
 				?>
 				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
 					<?php echo BoldGrid::dynamic_sticky_header(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</div>
 				<?php
-			}, 20 );
-		}
+			}
+		}, 20 );
 
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
@@ -469,6 +471,44 @@ class BoldGrid_Framework {
 
 		// Load Custom Header.
 		$this->custom_header();
+	}
+
+	/**
+	 * Maybe Show Sticky Header
+	 *
+	 * This method determines whether or not the HTML for the
+	 * sticky header will be printed to the page. In some instances,
+	 * it must be printed to the page, but then hidden via CSS / JS.
+	 *
+	 * @param int $id Page / Post ID.
+	 *
+	 * @since 2.11.0
+	 */
+	public function maybe_show_sticky_header( $id ) {
+		/*
+		 * If in the customizer, and fixed_header is enabled, we must always render the sticky header.
+		 * Even if it's not going to be seen, it's still needed for the customizer to work properly.
+		 */
+		if ( is_customize_preview() || true === get_theme_mod( 'bgtfw_fixed_header' ) ) {
+			return true;
+		}
+
+		/*
+		 * Outside of the customizer, we only render the sticky header if 'header-top' AND 'fixed-header' are enabled.
+		 * This prevents wonky stuff from happening when users have a side header selected.
+		 */
+		if ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) {
+			return true;
+		}
+
+		$sticky_header_template = apply_filters( 'crio_premium_get_sticky_page_header', $id );
+
+		// If the user has a Custom Sticky Template enabled for this page or post, ALWAYS render the sticky header markup.
+		if ( ! empty( $sticky_header_template ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -723,8 +763,11 @@ class BoldGrid_Framework {
 	private function customizer_typography() {
 		$typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'inline_font_css' );
 		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'override_kirki_styles' );
+		$this->loader->add_filter( 'customize_refresh_nonces', $typography, 'header_column_nonces' );
+		$this->loader->add_action( 'wp_ajax_responsive_font_sizes', $typography, 'wp_ajax_responsive_font_sizes' );
 
 		/*
 		 * Sometimes we need changes made in the customizer to be saved to the kirki styles.css
@@ -861,6 +904,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_preview_init', $base, 'live_preview' );
 
 		$this->loader->add_action( 'customize_register', $base, 'register_colwidth_control' );
+		$this->loader->add_action( 'customize_register', $base, 'register_responsive_font_controls' );
 
 		$this->loader->add_action( 'wp_ajax_bgtfw_header_preset', $base->presets, 'wp_ajax_bgtfw_header_layout' );
 		$this->loader->add_filter( 'customize_refresh_nonces', $base->presets, 'header_layout_nonces' );

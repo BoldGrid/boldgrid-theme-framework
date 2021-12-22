@@ -66,7 +66,7 @@ export default () => {
 			$responsiveWrapper = $container.find( '.devices-wrapper input:checked' ).parents( '.boldgrid-responsive-font-size-wrapper' ),
 			$prevControl       = $controlContainer.prev();
 
-		$prevControl.css( {'margin-bottom': 0, 'border-bottom': 0 } );
+		$prevControl.css( { 'margin-bottom': 0, 'border-bottom': 0 } );
 		$prevControl.children( 'label' ).css( 'border-bottom', 0 );
 		$prevControl.children( 'wrapper' ).css( 'border-bottom', 0 );
 

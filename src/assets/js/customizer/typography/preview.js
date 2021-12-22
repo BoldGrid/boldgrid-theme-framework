@@ -136,7 +136,7 @@ export class Preview {
 	 * @since 2.0.0
 	 */
 	addStyle( css, controlId = 'bgtfw_headings_typography' ) {
-		var styleId = controlId.replace( '_', '-' );
+		var styleId = controlId.replace( /_/g, '-' );
 		if ( document.getElementById( styleId ) ) {
 			document.getElementById( styleId ).innerHTML = css;
 		} else {

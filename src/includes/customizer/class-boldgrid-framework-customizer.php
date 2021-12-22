@@ -1100,7 +1100,18 @@ HTML;
 			'label'             => __( 'Responsive Font Size', 'bgtfw' ),
 		);
 
-		$wp_customize->add_setting( $control_id, $params );
+		$wp_customize->add_setting(
+			$control_id,
+			array(
+				'type'              => 'theme_mod',
+				'section'           => $control_args['section'],
+				'capability'        => 'edit_theme_options',
+				'transport'         => 'postMessage',
+				'priority'          => $control_args['priority'],
+				'sanitize_callback' => array( $typography, 'sanitize_responsive_fonts' ),
+				'label'             => __( 'Responsive Font Size', 'bgtfw' ),
+			)
+		);
 		$params['type'] = 'bgtfw-responsive-typography';
 		$wp_customize->add_control( new Boldgrid_Framework_Control_Responsive_Font_Size( $this->configs, $wp_customize, $control_id, $params ) );
 	}

@@ -11,6 +11,16 @@
  */
 
 $sections_array = array(
+	'bgtfw_primary_button'           => array(
+		'title'    => __( 'Primary Buttons', 'bgtfw' ),
+		'priority' => 1,
+		'panel'    => 'bgtfw_buttons_panel',
+	),
+	'bgtfw_secondary_button'           => array(
+		'title'    => __( 'Secondary Buttons', 'bgtfw' ),
+		'priority' => 2,
+		'panel'    => 'bgtfw_buttons_panel',
+	),
 	'bgtfw_layout_blog'                          => array(
 		'title'       => __( 'Blog', 'bgtfw' ),
 		'panel'       => 'bgtfw_layout',

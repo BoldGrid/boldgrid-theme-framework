@@ -87,6 +87,14 @@ $ubtn-colors: ();
 	}
 }
 
+@if variable-exists( palette-primary-transparent-color ) {
+	$ubtn-colors: append($ubtn-colors,('transparent-color' $palette-primary-transparent-color var(--color-neutral-text-contrast)));
+	@if $ubtn-theme-color == 'palette-primary-transparent-color' {
+		$ubtn-bgcolor: $palette-primary-transparent-color;
+		$ubtn-font-color: var(--color-neutral-text-contrast);
+	}
+}
+
 /* Create single css classes to apply palettes on universal elements. */
 $names: background background-color;
 .sidebar.transparent-background-color {
@@ -209,6 +217,8 @@ $names: background background-color;
 		// Crete class for .button-primary
 		// and legacy flat .button-primary-flat
 		.btn-#{$ubtn-name},
+		.palette-primary .btn-#{$ubtn-name}.button-primary,
+		.palette-primary .btn-#{$ubtn-name}.button-secondary,
 		.btn-#{$ubtn-name}-flat {
 			background-color: $ubtn-background !important;
 			border-color: $ubtn-background !important;

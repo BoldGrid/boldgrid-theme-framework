@@ -77,7 +77,9 @@ blockquote {
 	.button-secondary {
 		white-space: normal;
 		height: unset !important;
-		min-height: 40px;
+		&:not(.btn-small, .btn-tiny ) {
+			min-height: 40px;
+		}
 		&:hover,
 		&:focus {
 			text-decoration: none;

@@ -1,4 +1,4 @@
-/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false, highlightRequiredFields */
+/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false, highlightRequiredFields, bgtfwButtonClasses */
 
 /* ========================================================================
  * DOM-based Routing
@@ -40,6 +40,24 @@ var BoldGrid = BoldGrid || {};
 				this.forms();
 				this.cssVarsPonyfill();
 				this.responsiveVideos();
+				// this.addButtonClasses();
+			},
+
+			// Add classes to buttons.
+			addButtonClasses: function() {
+				var buttonType;
+
+				for ( buttonType in bgtfwButtonClasses ) {
+					let buttonTypeClass = buttonType.replace( 'bgtfw_', '' );
+					let buttonClasses   = bgtfwButtonClasses[ buttonType ];
+					this.addButtonClass( buttonTypeClass.replace( '_', '-' ), buttonClasses );
+				}
+			},
+
+			addButtonClass: function( buttonTypeClass, buttonClasses ) {
+				$( '.' + buttonTypeClass ).each( function() {
+					$( this ).addClass( buttonClasses );
+				} );
 			},
 
 			// Handle responsive video iframe embeds.

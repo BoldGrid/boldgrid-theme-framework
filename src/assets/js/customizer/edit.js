@@ -99,6 +99,20 @@ const { __ } = wp.i18n;
 				self.destroy();
 				self.start();
 			} );
+
+			wp.customize( 'bgtfw_secondary_button_text_shadow', ( control ) => {
+				control.bind( () => {
+					self.destroy();
+					self.start();
+				} );
+			} );
+
+			wp.customize( 'bgtfw_primary_button_text_shadow', ( control ) => {
+				control.bind( () => {
+					self.destroy();
+					self.start();
+				} );
+			} );
 		},
 
 		/**
@@ -229,6 +243,16 @@ const { __ } = wp.i18n;
 					if ( 'bgtfw_body_link_color' === $( this ).data( 'focus-id' ) && 'inline' === $( this ).parent().css( 'display' ) ) {
 						$( this ).parent().css( 'display', 'inline-block' );
 					}
+				}
+
+				console.log( {
+					'parent': $( this ).parent(),
+					'grandParent': $( this ).parent().parent()
+				} );
+
+				if ( $( this ).parent().hasClass( 'btn-longshadow' ) ) {
+					$( this ).parent().css( 'position', 'static' );
+					$( this ).parent().parent().css( 'position', 'relative' );
 				}
 			} );
 		},

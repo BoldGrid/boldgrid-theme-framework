@@ -15,13 +15,14 @@ export class Preview {
 	 * @since 2.0.0
 	 */
 	bindEvents() {
-		//this._backgroundColors();
 		this._buttonSizes();
 		this._buttonShapes();
 		this._buttonRaised();
 		this._buttonEffect();
+		this._buttonBorder();
 		this._buttonTextShadow();
 		this._backgroundColorClasses();
+		this._borderColorClasses();
 	}
 
 	_getHoverColor( color ) {
@@ -40,16 +41,16 @@ export class Preview {
 	}
 
 	_buttonRaised() {
-		var controls = [ 'bgtfw_primary_button_raised' ];
+		var controls = [ 'bgtfw_primary_button_raised', 'bgtfw_secondary_button_raised' ];
 
 		controls.forEach( ( control ) => {
 			api( control, ( value ) => {
 				value.bind( ( newValue ) => {
-					console.log( newValue );
+					var buttonType = control.match( /bgtfw_([a-z]*)_/ )[1];
 
-					$( '.button-primary' ).removeClass( 'btn-raised' );
+					$( '.button-' + buttonType ).removeClass( 'btn-raised' );
 					if ( '' !== newValue ) {
-						$( '.button-primary' ).addClass( newValue );
+						$( '.button-' + buttonType ).addClass( newValue );
 					}
 				} );
 			} );
@@ -57,16 +58,16 @@ export class Preview {
 	}
 
 	_buttonTextShadow() {
-		var controls = [ 'bgtfw_primary_button_text_shadow' ];
+		var controls = [ 'bgtfw_primary_button_text_shadow', 'bgtfw_secondary_button_text_shadow' ];
 
 		controls.forEach( ( control ) => {
 			api( control, ( value ) => {
 				value.bind( ( newValue ) => {
-					console.log( newValue );
+					var buttonType = control.match( /bgtfw_([a-z]*)_/ )[1];
 
-					$( '.button-primary' ).removeClass( 'btn-longshadow' );
+					$( '.button-' + buttonType ).removeClass( 'btn-longshadow' );
 					if ( '' !== newValue ) {
-						$( '.button-primary' ).addClass( newValue );
+						$( '.button-' + buttonType ).addClass( newValue );
 					}
 				} );
 			} );
@@ -74,19 +75,32 @@ export class Preview {
 	}
 
 	_buttonEffect() {
-		var controls = [ 'bgtfw_primary_button_effect' ];
+		var controls = [ 'bgtfw_primary_button_effect', 'bgtfw_secondary_button_effect' ];
 
 		controls.forEach( ( control ) => {
 			api( control, ( value ) => {
 				value.bind( ( newValue ) => {
-					console.log( {
-						'button-primary': $( '.button-primary' ),
-						'newValue': newValue
-					} );
+					var buttonType = control.match( /bgtfw_([a-z]*)_/ )[1];
 
-					$( '.button-primary' ).removeClass( [ 'btn-3d', 'btn-glow' ] );
+					$( '.button-' + buttonType ).removeClass( [ 'btn-3d', 'btn-glow' ] );
 					if ( '' !== newValue ) {
-						$( '.button-primary' ).addClass( newValue );
+						$( '.button-' + buttonType ).addClass( newValue );
+					}
+				} );
+			} );
+		} );
+	}
+
+	_buttonBorder() {
+		var controls = [ 'bgtfw_primary_button_border', 'bgtfw_secondary_button_border' ];
+
+		controls.forEach( ( control ) => {
+			api( control, ( value ) => {
+				value.bind( ( newValue ) => {
+					var buttonType = control.match( /bgtfw_([a-z]*)_/ )[1];
+					$( '.button-' + buttonType ).removeClass( [ 'btn-border', 'btn-border-thin', 'btn-border-thick' ] );
+					if ( '' !== newValue ) {
+						$( '.button-' + buttonType ).addClass( newValue );
 					}
 				} );
 			} );
@@ -94,16 +108,16 @@ export class Preview {
 	}
 
 	_buttonShapes() {
-		var controls = [ 'bgtfw_primary_button_shape' ];
+		var controls = [ 'bgtfw_primary_button_shape', 'bgtfw_secondary_button_shape' ];
 
 		controls.forEach( ( control ) => {
 			api( control, ( value ) => {
 				value.bind( ( newValue ) => {
-					console.log( newValue );
+					var buttonType = control.match( /bgtfw_([a-z]*)_/ )[1];
 
-					$( '.button-primary' ).removeClass( 'btn-rounded btn-pill' );
+					$( '.button-' + buttonType ).removeClass( 'btn-rounded btn-pill' );
 					if ( '' !== newValue ) {
-						$( '.button-primary' ).addClass( newValue );
+						$( '.button-' + buttonType ).addClass( newValue );
 					}
 				} );
 			} );
@@ -111,7 +125,7 @@ export class Preview {
 	}
 
 	_buttonSizes() {
-		var controls = [ 'bgtfw_primary_button_size' ];
+		var controls = [ 'bgtfw_primary_button_size', 'bgtfw_secondary_button_size' ];
 
 		controls.forEach( ( control ) => {
 			api( control, ( value ) => {
@@ -124,16 +138,14 @@ export class Preview {
 							'btn-large',
 							'btn-jumbo',
 							'btn-giant'
-						];
+						],
+						buttonType = control.match( /bgtfw_([a-z]*)_/ )[1];
 
 					sizeClass = sizeClasses[ newValue - 1 ];
 
-
-					console.log( sizeClass );
-
-					$( '.button-primary' ).removeClass( 'btn-tiny btn-small btn-large btn-jumbo btn-giant' );
+					$( '.button-' + buttonType ).removeClass( 'btn-tiny btn-small btn-large btn-jumbo btn-giant' );
 					if ( '' !== sizeClass ) {
-						$( '.button-primary' ).addClass( sizeClass );
+						$( '.button-' + buttonType ).addClass( sizeClass );
 					}
 				} );
 			} );
@@ -141,12 +153,13 @@ export class Preview {
 	}
 
 	_backgroundColorClasses() {
-		var controls = [ 'bgtfw_primary_button_background' ];
+		var controls = [ 'bgtfw_primary_button_background', 'bgtfw_secondary_button_background' ];
 
 		controls.forEach( ( control ) => {
 			api( control, ( value ) => {
 				value.bind( ( newValue ) => {
 					var valueSplit = newValue.split( ':' ),
+						buttonType = control.match( /bgtfw_([a-z]*)_/ )[1],
 						colorClass;
 					if ( 1 < valueSplit.length ) {
 						colorClass = 'btn-' + valueSplit[0];
@@ -158,66 +171,43 @@ export class Preview {
 						colorClass = 'btn-neutral-color';
 					}
 
-					console.log( colorClass );
-
-					$( '.button-primary' ).removeClass( ( index, className ) => {
+					$( '.button-' + buttonType ).removeClass( ( index, className ) => {
 						return ( className.match( /(^|\s)btn-color\S+/g ) || [] ).join( ' ' );
 					} );
-					$( '.button-primary' ).removeClass( 'btn-neutral-color btn-transparent' );
+					$( '.button-' + buttonType ).removeClass( 'btn-neutral-color btn-transparent' );
 					if ( colorClass ) {
-						$( '.button-primary' ).addClass( colorClass );
+						$( '.button-' + buttonType ).addClass( colorClass );
 					}
 				} );
 			} );
 		} );
 	}
-
-	_backgroundColors() {
-		var controls = [ 'bgtfw_primary_button_background' ];
+	_borderColorClasses() {
+		var controls = [ 'bgtfw_primary_button_border_color', 'bgtfw_secondary_button_border_color' ];
 
 		controls.forEach( ( control ) => {
 			api( control, ( value ) => {
 				value.bind( ( newValue ) => {
 					var valueSplit = newValue.split( ':' ),
-						color,
-						colorClass,
-						css,
-						hoverColor;
+						buttonType = control.match( /bgtfw_([a-z]*)_/ )[1],
+						colorClass;
 					if ( 1 < valueSplit.length ) {
-						color = valueSplit[1];
-						colorClass = valueSplit[0];
+						colorClass = 'btn-border-' + valueSplit[0];
 					} else if ( 'transparent' === newValue ) {
-						color = 'rgba(0,0,0,0)';
-					} else {
-						color = '';
+						colorClass = 'btn-border-transparent';
 					}
 
-					hoverColor = this._getHoverColor( color );
+					if ( 'btn-border-color-neutral' === colorClass ) {
+						colorClass = 'btn-border-neutral-color';
+					}
 
-					console.log( hoverColor );
-
-
+					$( '.button-' + buttonType ).removeClass( ( index, className ) => {
+						return ( className.match( /(^|\s)btn-border-color\S+/g ) || [] ).join( ' ' );
+					} );
+					$( '.button-' + buttonType ).removeClass( 'btn-border-neutral-color btn-border-transparent' );
 					if ( colorClass ) {
-						css  = '.palette-primary .button-primary{' +
-							'background-color: var(--' + colorClass + ')!important;' +
-							'color: var(--' + colorClass + '-text-contrast)!important;' +
-							'}' +
-							'.palette-primary .button-primary:hover{' +
-							'background-color: ' + hoverColor + '!important;' +
-							'color: var(--' + colorClass + '-text-contrast)!important;' +
-							'}';
-						this.preview.updateDynamicStyles( control.id, css );
-					} else {
-						css = '.palette-primary .button-primary{' +
-							'background-color: ' + color + '!important;' +
-							'}' +
-							'.palette-primary .button-primary:hover{' +
-							'background-color: ' + hoverColor + '!important;' +
-							'}';
-						this.preview.updateDynamicStyles( control.id, css );
+						$( '.button-' + buttonType ).addClass( colorClass );
 					}
-
-					// this.preview.updateDynamicStyles( newValue );
 				} );
 			} );
 		} );

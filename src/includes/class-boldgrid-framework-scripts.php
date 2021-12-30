@@ -44,6 +44,7 @@ class BoldGrid_Framework_Scripts {
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
+
 	}
 
 	/**
@@ -222,6 +223,12 @@ class BoldGrid_Framework_Scripts {
 			array( get_option( 'woocommerce_checkout_highlight_required_fields', 'yes' ) )
 		);
 
+		wp_localize_script(
+			'boldgrid-front-end-scripts',
+			'bgtfwButtonClasses',
+			$this->get_button_classes()
+		);
+
 		wp_enqueue_script( 'float-labels' );
 		if ( is_customize_preview() ) {
 			wp_enqueue_script(
@@ -281,5 +288,80 @@ class BoldGrid_Framework_Scripts {
 		}
 
 		return $path . $file;
+	}
+
+	/**
+	 * Get Button Classes.
+	 *
+	 * Get Button Classes from Theme Mods.
+	 *
+	 * @since 2.12.0
+	 *
+	 * @return array An array of button classes.
+	 */
+	public function get_button_classes( $button_classes = array() ) {
+		$button_classes  = $button_classes ? $button_classes : array(
+			'button-primary'   => '',
+			'button-secondary' => '',
+		);
+		$controls        = $this->configs['customizer']['controls'];
+		$button_controls = array(
+			'button-primary'   => array(),
+			'button-secondary' => array(),
+		);
+
+		foreach ( $controls as $control_id => $control ) {
+			$section = isset( $control['section'] ) ? $control['section'] : '';
+			if ( 'bgtfw_primary_button' === $section ) {
+				$button_controls['button-primary'][] = $control_id;
+			}
+
+			if ( 'bgtfw_secondary_button' === $section ) {
+				$button_controls['button-secondary'][] = $control_id;
+			}
+		}
+
+		foreach ( $button_controls as $button_type => $button_controls ) {
+			foreach ( $button_controls as $control_id ) {
+				$control_classes = get_theme_mod( $control_id, '' );
+				if ( empty( $control_classes ) ) {
+					continue;
+				}
+
+				if ( false !== strpos( $control_id, '_button_background' ) ) {
+					$control_classes = explode( ':', $control_classes )[0];
+					$control_classes = false !== strpos( $control_classes, 'neutral' ) ? 'neutral-color' : $control_classes;
+					$control_classes = 'btn-' . $control_classes;
+				} elseif ( false !== strpos( $control_id, '_button_border_color' ) ) {
+					$control_classes = explode( ':', $control_classes )[0];
+					$control_classes = false !== strpos( $control_classes, 'neutral' ) ? 'neutral-color' : $control_classes;
+					$control_classes = 'btn-border-' . $control_classes;
+				} elseif ( false !== strpos( $control_id, '_button_size' ) ) {
+					$size_classes = array(
+						'btn-tiny',
+						'btn-small',
+						'',
+						'btn-large',
+						'btn-jumbo',
+						'btn-giant',
+					);
+
+					$control_classes = $size_classes[ $control_classes - 1 ];
+
+					if ( empty( $control_classes ) ) {
+						continue;
+					}
+				}
+
+				if ( '' === $button_classes[ $button_type ] ) {
+					$button_classes[ $button_type ] = $control_classes;
+				} else {
+					$button_classes[ $button_type ] .= ' ' . $control_classes;
+				}
+			}
+		}
+
+		error_log( 'filtered classes: ' . json_encode( $button_classes ) );
+		return $button_classes;
 	}
 }

@@ -221,7 +221,7 @@ $names: background background-color;
 		.palette-primary .btn-#{$ubtn-name}.button-secondary,
 		.btn-#{$ubtn-name}-flat {
 			background-color: $ubtn-background !important;
-			border-color: $ubtn-background !important;
+			border-color: $ubtn-background;
 			color: $ubtn-color !important;
 			a {
 				color: $ubtn-color !important;
@@ -237,7 +237,7 @@ $names: background background-color;
 			&:hover,
 			&:focus {
 				background-color: lighten($ubtn-background, 10%) !important;
-				border-color: lighten($ubtn-background, 10%) !important;
+				border-color: lighten($ubtn-background, 10%);
 				color: $ubtn-color !important;
 				a {
 					color: $ubtn-color !important;
@@ -248,6 +248,39 @@ $names: background background-color;
 			&.active,
 			&.is-active {
 				background-color: desaturate($ubtn-background, 10%) !important;
+				border-color: desaturate($ubtn-background, 10%);
+				color: darken($ubtn-background, 10%) !important;
+				a {
+					color: $ubtn-color !important;
+				}
+			}
+		}
+
+		// Add support for borders & transparent buttons
+		.btn-border-#{$ubtn-name},
+		.palette-primary .btn-border-#{$ubtn-name}.button-primary,
+		.palette-primary .btn-border-#{$ubtn-name}.button-secondary,
+		.btn-border-#{$ubtn-name}-flat {
+			border-color: $ubtn-background !important;
+
+			&:hover,
+			&:focus {
+				&.btn-transparent{
+					background-color: lighten($ubtn-background, 10%) !important;
+				}
+				border-color: lighten($ubtn-background, 10%) !important;
+				color: $ubtn-color !important;
+				a {
+					color: $ubtn-color !important;
+				}
+			}
+
+			&:active,
+			&.active,
+			&.is-active {
+				&.btn-transparent{
+					background-color: lighten($ubtn-background, 10%) !important;
+				}
 				border-color: desaturate($ubtn-background, 10%) !important;
 				color: darken($ubtn-background, 10%) !important;
 				a {

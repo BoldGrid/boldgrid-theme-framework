@@ -1160,7 +1160,8 @@ class BoldGrid {
 						$col_x_full_width = implode( ' ', $col_x_full_width );
 
 						if ( false === strpos( $col_uid, 'f' ) ) {
-							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $col_data['align'];
+							$align = isset( $col_data['align'] ) ? $col_data['align'] : '';
+							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $align;
 							$markup .= $col_x_full_width ? ' ' . $col_x_full_width . '">' : '">';
 						} else {
 							$num = ( 12 / count( $chunk ) );
@@ -1418,5 +1419,18 @@ class BoldGrid {
 		} else {
 			return self::dynamic_layout( 'bgtfw_footer_layout' );
 		}
+	}
+
+	/**
+	 * Add button classes to the content.
+	 *
+	 * @param     string $content       The content.
+	 * @since     1.0.0
+	 */
+	public function add_button_classes( $content ) {
+		$classes       = apply_filters( 'bgtfw_button_classes', array() );
+		$fixed_content = preg_replace( '/([a|li][^>]*class="[^"]*)button-primary([^"]*")/', '$1button-primary ' . $classes['button-primary'] . '$2', $content );
+		$fixed_content = preg_replace( '/([a|li][^>]*class="[^"]*)button-secondary([^"]*")/', '$1button-secondary ' . $classes['button-secondary'] . '$2', $fixed_content );
+		return $fixed_content;
 	}
 }

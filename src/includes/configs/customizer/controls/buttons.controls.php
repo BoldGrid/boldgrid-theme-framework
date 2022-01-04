@@ -150,6 +150,33 @@ return array(
 			),
 		),
 	),
+	'bgtfw_button_primary_typography'            => array(
+		'type'      => 'typography',
+		'transport' => 'auto',
+		'settings'  => 'bgtfw_button_primary_typography',
+		'label'     => esc_attr__( 'Primary Button Typography', 'bgtfw' ),
+		'section'   => 'bgtfw_primary_button',
+		'default'   => array(
+			'font-family'    => 'Roboto',
+			'variant'        => 'regular',
+			'font-size'      => '16px',
+			'text-transform' => 'none',
+		),
+		'priority'  => 10,
+		'output'    => $bgtfw_typography->get_typography_output(
+			$bgtfw_configs,
+			'.palette-primary .button-primary:not(.menu-item)'
+		),
+		'edit_vars' => array(
+			array(
+				'selector'    => array(
+					'.palette-primary .button-primary:not(.menu-item)',
+				),
+				'label'       => esc_attr__( 'Primary Button Typography', 'bgtfw' ),
+				'description' => esc_attr__( 'Adjust the typography of your primary buttons', 'bgtfw' ),
+			),
+		),
+	),
 	// Secondary Buttons.
 	'bgtfw_secondary_button_background' => array(
 		'type'              => 'bgtfw-palette-selector',
@@ -287,6 +314,24 @@ return array(
 			array(
 				'element'  => '.button-secondary',
 			),
+		),
+	),
+	'bgtfw_button_secondary_typography'            => array(
+		'type'      => 'typography',
+		'transport' => 'auto',
+		'settings'  => 'bgtfw_button_secondary_typography',
+		'label'     => esc_attr__( 'Secondary Button Typography', 'bgtfw' ),
+		'section'   => 'bgtfw_secondary_button',
+		'default'   => array(
+			'font-family'    => 'Roboto',
+			'variant'        => 'regular',
+			'font-size'      => '16px',
+			'text-transform' => 'none',
+		),
+		'priority'  => 12,
+		'output'    => $bgtfw_typography->get_typography_output(
+			$bgtfw_configs,
+			'.palette-primary .button-secondary:not(.menu-item)'
 		),
 	),
 );

@@ -245,11 +245,6 @@ const { __ } = wp.i18n;
 					}
 				}
 
-				console.log( {
-					'parent': $( this ).parent(),
-					'grandParent': $( this ).parent().parent()
-				} );
-
 				if ( $( this ).parent().hasClass( 'btn-longshadow' ) ) {
 					$( this ).parent().css( 'position', 'static' );
 					$( this ).parent().parent().css( 'position', 'relative' );

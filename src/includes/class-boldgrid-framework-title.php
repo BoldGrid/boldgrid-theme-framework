@@ -219,8 +219,8 @@ class Boldgrid_Framework_Title {
 
 		// This method only needs to be ran if we're looking at a page, post, archive, or blog.
 		$is_single = is_page() || is_single();
-		$is_multi = is_home() || is_archive();
-		$is_page = is_page();
+		$is_multi  = is_home() || is_archive();
+		$is_page   = is_page();
 
 		$allowed = $is_single || $is_multi;
 
@@ -233,10 +233,18 @@ class Boldgrid_Framework_Title {
 			return $title;
 		}
 
-		if ( $is_page && did_action( 'boldgrid_main_top' )) {
+		/*
+		 * When we're on a page, and the <div class="main"> tag has printed, we know we are inside the page content.
+		 * And therefore must return the title unchanged.
+		 */
+		if ( $is_page && did_action( 'boldgrid_main_top' ) ) {
 			return $title;
 		}
 
+		/*
+		 * Unlike a page, where we only know if we're in the content after the main div is printed,
+		 * a post has to determine whether or not the post header action has been completed
+		 */
 		if ( $is_single && did_action( 'bgtfw_after_post_header' ) ) {
 			return $title;
 		}
@@ -267,7 +275,7 @@ class Boldgrid_Framework_Title {
 		$post_meta = get_post_meta( $id, $this->configs['title']['hide'], true );
 
 		$global = $this->get_global();
-		$show = '1' === $post_meta || ( ( 'global' === $post_meta || '' === $post_meta ) && 'show' === $global );
+		$show   = '1' === $post_meta || ( ( 'global' === $post_meta || '' === $post_meta ) && 'show' === $global );
 
 		return $show ? $title : '';
 	}

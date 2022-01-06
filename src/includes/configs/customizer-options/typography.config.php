@@ -65,11 +65,6 @@ return array(
 			'amount' => 0.85,
 		),
 		// Enable this styling for Page Header Headings.
-		'.bgc-heading.bgc-page-title' => array(
-			'type' => 'headings',
-			'round' => 'floor',
-			'amount' => 1,
-		),
 		'.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header' => array(
 			'type' => 'body',
 		),
@@ -83,12 +78,17 @@ return array(
 		'bgtfw_headings_responsive_font_size' => array(
 			'section'         => 'boldgrid_typography',
 			'priority'        => 5,
-			'output_selector' => 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .bgc-heading.bgc-page-title',
+			'output_selector' => 'h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6',
 		),
 		'bgtfw_site_title_font_size' => array(
 			'section'         => 'bgtfw_site_title',
 			'priority'        => 21,
 			'output_selector' => '.site-footer .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '.site-header .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover, .bgc-site-title, .bgc-site-title:hover',
+		),
+		'bgtfw_site_tagline_font_size' => array(
+			'section'         => 'bgtfw_tagline',
+			'priority'        => 21,
+			'output_selector' => '.site-branding .site-description, .bgc-tagline',
 		),
 	),
 );

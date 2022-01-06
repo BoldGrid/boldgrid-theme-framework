@@ -40,7 +40,7 @@ var BoldGrid = BoldGrid || {};
 				this.forms();
 				this.cssVarsPonyfill();
 				this.responsiveVideos();
-				// this.addButtonClasses();
+				this.addButtonClasses();
 			},
 
 			// Add classes to buttons.

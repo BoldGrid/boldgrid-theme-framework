@@ -5,7 +5,7 @@
  *
  * Handles the previewing of responsive font sizes in the WP Customizer.
  *
- * @package Boldgrid_Theme_Framework
+ * @package    Boldgrid_Theme_Framework
  * @subpackage Boldgrid_Theme_Framework/Customizer/Preview
  *
  * @since 2.11.0

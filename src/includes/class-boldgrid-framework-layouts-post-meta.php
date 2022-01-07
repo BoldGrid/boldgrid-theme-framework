@@ -276,6 +276,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					echo '<span>' . $pages . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 				endif; // end empty pages check
+			echo '</div>'; // end post-attributes-advanced-wrap
 			endif;  // end hierarchical check.
 		?>
 		<?php if ( post_type_supports( $post->post_type, 'page-attributes' ) ) : ?>
@@ -284,7 +285,6 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 		<?php if ( 'page' == $post->post_type && get_current_screen()->get_help_tabs() ) : ?>
 		<p><?php esc_html_e( 'Need help? Use the Help tab above the screen title.', 'bgtfw' ); ?></p>
 		<?php endif; ?>
-		</div>
 		<?php endif; ?>
 	<?php
 	}

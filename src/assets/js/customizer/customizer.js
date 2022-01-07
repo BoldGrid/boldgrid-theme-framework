@@ -10,6 +10,8 @@ import Toggle from './toggle/toggle';
 import ToggleValue from './toggle/value';
 import './widget-meta';
 import { Preview as TypographyPreview } from './typography/preview';
+import { Preview as ButtonsPreview } from './buttons/preview';
+import { Preview as MenuPreview } from './menus/preview';
 
 const api = wp.customize;
 const controlApi = parent.wp.customize;
@@ -274,6 +276,8 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	new HeaderPreview().bindEvents();
 	new TypographyPreview().bindEvents();
 	new LinkPreview().bindEvents();
+	new ButtonsPreview().bindEvents();
+	new MenuPreview().bindEvents();
 
 	$( function() {
 		var headingsColorOutput,

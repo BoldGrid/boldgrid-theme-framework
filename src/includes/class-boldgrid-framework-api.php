@@ -1160,7 +1160,8 @@ class BoldGrid {
 						$col_x_full_width = implode( ' ', $col_x_full_width );
 
 						if ( false === strpos( $col_uid, 'f' ) ) {
-							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $col_data['align'];
+							$align = isset( $col_data['align'] ) ? $col_data['align'] : '';
+							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $align;
 							$markup .= $col_x_full_width ? ' ' . $col_x_full_width . '">' : '">';
 						} else {
 							$num = ( 12 / count( $chunk ) );
@@ -1176,7 +1177,11 @@ class BoldGrid {
 									$menu             = 'footer-social';
 									$col_data['type'] = 'boldgrid_menu_footer-social';
 								}
-								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ';
+								$menu_classes   = array( 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] );
+								$ham_classes    = get_theme_mod( 'bgtfw_menu_hamburger_display_' . $menu, array( 'ham-phone', 'ham-tablet' ) );
+								$menu_classes   = implode( ' ', array_merge( $menu_classes, $ham_classes ) );
+								echo 'class="' . esc_attr( $menu_classes ) . '">';
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';
 								}
@@ -1418,5 +1423,21 @@ class BoldGrid {
 		} else {
 			return self::dynamic_layout( 'bgtfw_footer_layout' );
 		}
+	}
+
+	/**
+	 * Add button classes to the content.
+	 *
+	 * @since 2.12.0
+	 *
+	 * @param string $content The content.
+	 *
+	 * @return string the filtered content.
+	 */
+	public function add_button_classes( $content ) {
+		$classes       = apply_filters( 'bgtfw_button_classes', array() );
+		$fixed_content = preg_replace( '/([a|li][^>]*class="[^"]*)button-primary([^"]*")/', '$1button-primary ' . $classes['button-primary'] . '$2', $content );
+		$fixed_content = preg_replace( '/([a|li][^>]*class="[^"]*)button-secondary([^"]*")/', '$1button-secondary ' . $classes['button-secondary'] . '$2', $fixed_content );
+		return $fixed_content;
 	}
 }

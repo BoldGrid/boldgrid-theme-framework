@@ -417,6 +417,13 @@ class BoldGrid_Framework {
 
 		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'post_list_sidebar' );
 
+		// Add extra button classes.
+		$this->loader->add_filter( 'bgtfw_button_classes', $scripts, 'get_button_classes', 10, 1 );
+		$this->loader->add_filter( 'the_content', $boldgrid_theme, 'add_button_classes', 10, 1 );
+		$this->loader->add_filter( 'wp_nav_menu_items', $boldgrid_theme, 'add_button_classes', 10, 2 );
+		$this->loader->add_filter( 'widget_text', $boldgrid_theme, 'add_button_classes', 10, 1 );
+		$this->loader->add_filter( 'the_editor_content', $boldgrid_theme, 'add_button_classes', 10, 2 );
+
 		// Setup Sticky Footer.
 		$this->loader->add_action( 'boldgrid_header_before', $boldgrid_theme, 'boldgrid_sticky_top', 10 );
 		$this->loader->add_action( 'boldgrid_footer_before', $boldgrid_theme, 'boldgrid_sticky_bottom', 15 );

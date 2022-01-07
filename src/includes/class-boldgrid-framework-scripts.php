@@ -330,11 +330,11 @@ class BoldGrid_Framework_Scripts {
 
 				if ( false !== strpos( $control_id, '_button_background' ) ) {
 					$control_classes = explode( ':', $control_classes )[0];
-					$control_classes = false !== strpos( $control_classes, 'neutral' ) ? 'neutral-color' : $control_classes; // phpcs:ignore WordPress.PHP.YodaConditions.NotYoda
+					$control_classes = ( false !== strpos( $control_classes, 'neutral' ) ) ? 'neutral-color' : $control_classes;
 					$control_classes = 'btn-' . $control_classes;
 				} elseif ( false !== strpos( $control_id, '_button_border_color' ) ) {
 					$control_classes = explode( ':', $control_classes )[0];
-					$control_classes = false !== strpos( $control_classes, 'neutral' ) ? 'neutral-color' : $control_classes; // phpcs:ignore WordPress.PHP.YodaConditions.NotYoda
+					$control_classes = ( false !== strpos( $control_classes, 'neutral' ) ) ? 'neutral-color' : $control_classes;
 					$control_classes = 'btn-border-' . $control_classes;
 				} elseif ( false !== strpos( $control_id, '_button_size' ) ) {
 					$size_classes = array(

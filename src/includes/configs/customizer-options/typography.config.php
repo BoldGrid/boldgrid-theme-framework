@@ -91,15 +91,16 @@ return array(
 			'priority'        => 21,
 			'output_selector' => '.site-footer .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '.site-header .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover, .bgc-site-title, .bgc-site-title:hover',
 		),
-		'bgtfw_button_primary_font_size' => array(
+		'bgtfw_button_primary_font_size'      => array(
 			'section'         => 'boldgrid_typography',
 			'priority'        => 11,
 			'output_selector' => '.palette-primary .button-primary:not(.menu-item)',
 		),
-		'bgtfw_button_secondary_font_size' => array(
+		'bgtfw_button_secondary_font_size'    => array(
 			'section'         => 'boldgrid_typography',
 			'priority'        => 13,
 			'output_selector' => '.palette-primary .button-secondary:not(.menu-item)',
+		),
 		'bgtfw_site_tagline_font_size'        => array(
 			'section'         => 'bgtfw_tagline',
 			'priority'        => 21,

@@ -51,11 +51,12 @@ export class Preview {
 	 *
 	 * @since 2.12.0
 	 *
-	 * @param   {string} color color string.
-	 * @returns {string}       css formatted color string.
+	 * @param {string} color color string.
+	 *
+	 * @returns {string} css formatted color string.
 	 */
 	_getHoverColor( color ) {
-		var colorObj = colorLib.Color( color ),
+		var colorObj  = colorLib.Color( color ),
 			lightness = colorObj.getLightness(),
 			hoverColor;
 

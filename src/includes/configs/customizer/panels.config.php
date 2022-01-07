@@ -40,7 +40,7 @@ return array(
 		'panel'    => 'bgtfw_design_panel',
 		'icon'     => 'dashicons-admin-post',
 	),
-	'bgtfw_buttons_panel'           => array(
+	'bgtfw_buttons_panel'        => array(
 		'title'    => __( 'Buttons', 'bgtfw' ),
 		'priority' => 7,
 		'panel'    => 'bgtfw_design_panel',

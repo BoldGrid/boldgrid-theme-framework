@@ -361,7 +361,6 @@ class BoldGrid_Framework_Scripts {
 			}
 		}
 
-		error_log( 'filtered classes: ' . json_encode( $button_classes ) );
 		return $button_classes;
 	}
 }

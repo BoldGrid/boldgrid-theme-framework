@@ -1424,8 +1424,11 @@ class BoldGrid {
 	/**
 	 * Add button classes to the content.
 	 *
-	 * @param     string $content       The content.
-	 * @since     1.0.0
+	 * @since 2.12.0
+	 *
+	 * @param string $content The content.
+	 *
+	 * @return string the filtered content.
 	 */
 	public function add_button_classes( $content ) {
 		$classes       = apply_filters( 'bgtfw_button_classes', array() );

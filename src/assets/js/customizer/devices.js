@@ -21,15 +21,15 @@ export class Devices {
 		this.devices = {
 			large: {
 				name: 'large',
-				breakpoint: 1200
+				breakpoint: 1250
 			},
 			desktop: {
 				name: 'desktop',
-				breakpoint: 992
+				breakpoint: 100
 			},
 			tablet: {
 				name: 'tablet',
-				breakpoint: 768
+				breakpoint: 780
 			},
 			mobile: {
 				name: 'mobile',

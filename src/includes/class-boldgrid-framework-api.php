@@ -1177,7 +1177,11 @@ class BoldGrid {
 									$menu             = 'footer-social';
 									$col_data['type'] = 'boldgrid_menu_footer-social';
 								}
-								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ';
+								$menu_classes   = array( 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] );
+								$ham_classes    = get_theme_mod( 'bgtfw_menu_hamburger_display_' . $menu, array( 'ham-phone', 'ham-tablet' ) );
+								$menu_classes   = implode( ' ', array_merge( $menu_classes, $ham_classes ) );
+								echo 'class="' . esc_attr( $menu_classes ) . '">';
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';
 								}

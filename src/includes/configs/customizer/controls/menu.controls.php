@@ -41,6 +41,20 @@ return array(
 		'section'           => 'bgtfw_menu_hamburgers_main',
 		'sanitize_callback' => 'sanitize_html_class',
 	),
+	'bgtfw_menu_hamburger_display_main'                       => array(
+		'settings'  => 'bgtfw_menu_hamburger_display_main',
+		'transport' => 'postMessage',
+		'label'     => __( 'Hamburger Display', 'bgtfw' ),
+		'type'      => 'multicheck',
+		'default'   => array( 'ham-tablet', 'ham-phone' ),
+		'section'   => 'bgtfw_menu_hamburgers_main',
+		'choices'   => array(
+			'ham-large'   => esc_html__( 'Large', 'bgtfw' ),
+			'ham-desktop' => esc_html__( 'Desktop', 'bgtfw' ),
+			'ham-tablet'  => esc_html__( 'Tablet', 'bgtfw' ),
+			'ham-phone'   => esc_html__( 'Phone', 'bgtfw' ),
+		),
+	),
 
 	/* Start: Main Menu Background Controls */
 	'bgtfw_menu_background_main'                      => array(

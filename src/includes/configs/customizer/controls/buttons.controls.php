@@ -328,7 +328,7 @@ return array(
 			'font-size'      => '16px',
 			'text-transform' => 'none',
 		),
-		'priority'  => 12,
+		'priority'  => 10,
 		'output'    => $bgtfw_typography->get_typography_output(
 			$bgtfw_configs,
 			'.palette-primary .button-secondary:not(.menu-item)'

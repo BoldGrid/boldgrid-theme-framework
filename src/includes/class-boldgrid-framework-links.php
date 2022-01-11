@@ -159,6 +159,18 @@ class Boldgrid_Framework_Links {
 					$css .= "${selector} {color: ${color_variable};text-decoration: ${decoration};}";
 					$css .= "${selector}:hover, ${selector}:focus {color: ${color_hover};text-decoration: ${decoration_hover};}";
 				}
+
+				if ( 'bgtfw_body' === $prefix ) {
+					$footer_link_color  = explode( ':', get_theme_mod( 'bgtfw_footer_links' ) )[1];
+					$footer_ari_color   = ariColor::newColor( $color );
+					$footer_color_hover = get_theme_mod( "${prefix}_link_color_hover" ) ?: 0;
+					$footer_lightness   = min( $footer_ari_color->lightness + $footer_color_hover, 100 );
+					$footer_lightness   = max( $footer_lightness, 0 );
+					$footer_color_hover = $footer_ari_color->getNew( 'lightness', $footer_lightness )->toCSS( 'hsla' );
+
+					$css .= "#colophon .bgtfw-footer.footer-content a { text-decoration: ${decoration};}";
+					$css .= "#colophon .bgtfw-footer.footer-content a:hover, .bgtfw-footer.footer-content a:focus {color: ${footer_color_hover};text-decoration: ${decoration_hover};}";
+				}
 			}
 		}
 

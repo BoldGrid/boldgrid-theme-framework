@@ -311,6 +311,9 @@ class BoldGrid_Framework_Scripts {
 		);
 
 		foreach ( $controls as $control_id => $control ) {
+			if ( false !== strpos( $control_id, 'typography' ) ) {
+				continue;
+			}
 			$section = isset( $control['section'] ) ? $control['section'] : '';
 			if ( 'bgtfw_primary_button' === $section ) {
 				$button_controls['button-primary'][] = $control_id;

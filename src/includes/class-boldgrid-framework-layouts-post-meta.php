@@ -276,16 +276,18 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					echo '<span>' . $pages . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 				endif; // end empty pages check
-			echo '</div>'; // end post-attributes-advanced-wrap
-			endif;  // end hierarchical check.
 		?>
 		<?php if ( post_type_supports( $post->post_type, 'page-attributes' ) ) : ?>
-		<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order"><?php esc_html_e( 'Order', 'bgtfw' ); ?></label></p>
-		<input name="menu_order" type="text" size="4" id="menu_order" value="<?php echo esc_attr( $post->menu_order ); ?>" />
-		<?php if ( 'page' == $post->post_type && get_current_screen()->get_help_tabs() ) : ?>
-		<p><?php esc_html_e( 'Need help? Use the Help tab above the screen title.', 'bgtfw' ); ?></p>
-		<?php endif; ?>
-		<?php endif; ?>
+			<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order"><?php esc_html_e( 'Order', 'bgtfw' ); ?></label></p>
+			<input name="menu_order" type="text" size="4" id="menu_order" value="<?php echo esc_attr( $post->menu_order ); ?>" />
+			<?php if ( 'page' == $post->post_type && get_current_screen()->get_help_tabs() ) : ?>
+				<p><?php esc_html_e( 'Need help? Use the Help tab above the screen title.', 'bgtfw' ); ?></p>
+			<?php endif; // end if post type is page ?>
+		<?php
+			endif; // end if post supports page-attributes
+		echo '</div>'; // end post-attributes-advanced-wrap
+		endif;  // end hierarchical check.
+		?>
 	<?php
 	}
 

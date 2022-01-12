@@ -109,6 +109,26 @@ export class LinkPreview {
 					}
 				`;
 			}
+
+			if ( 'bgtfw_body' === prefix ) {
+				let footerLinkColor       = this._getColor( 'bgtfw_footer_links', true ),
+					footerLinkColorHover  = api( `${prefix}_link_color_hover` )() || 0,
+					footerShiftedColorVal;
+
+				footerLinkColorHover  = parseInt( footerLinkColorHover, 10 ) / 100,
+				footerShiftedColorVal = colorLib.Color( footerLinkColor ).lightenByAmount( footerLinkColorHover ).toCSS();
+
+				css += `
+				#colophon .bgtfw-footer.footer-content a {
+					text-decoration: ${decoration};
+				}
+				#colophon .bgtfw-footer.footer-content a:hover,
+				#colophon .bgtfw-footer.footer-content a:focus {
+						color: ${footerShiftedColorVal};
+						text-decoration: ${decorationHover};
+					}
+				`;
+			}
 		}
 
 		let inlineName = prefix.replace( /_/g, '-' );

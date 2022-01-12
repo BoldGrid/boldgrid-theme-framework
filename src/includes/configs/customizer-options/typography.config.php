@@ -66,13 +66,19 @@ return array(
 		),
 		// Enable this styling for Page Header Headings.
 		'.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header' => array(
-			'type' => 'body',
+			'type'   => 'body',
+			'round'  => 'ceil',
+			'amount' => 1,
 		),
 		'.palette-primary .button-primary:not(.menu-item)' => array(
-			'type' => 'button_primary',
+			'type'   => 'button_primary',
+			'round'  => 'ceil',
+			'amount' => 1,
 		),
 		'.palette-primary .button-secondary:not(.menu-item)' => array(
-			'type' => 'button_secondary',
+			'type'   => 'button_secondary',
+			'round'  => 'ceil',
+			'amount' => 1,
 		),
 	),
 	'responsive_font_controls' => array(

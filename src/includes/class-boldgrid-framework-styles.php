@@ -41,6 +41,45 @@ class BoldGrid_Framework_Styles {
 	}
 
 	/**
+	 * Editor Button Fonts.
+	 *
+	 * Registers the button fonts to display in the ppb button.
+	 *
+	 * @since 2.12.0
+	 */
+	public function editor_button_fonts() {
+		$is_editor = strpos( $_SERVER['REQUEST_URI'], '/post-new' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'action=edit' ) !== false;
+
+		if ( ! $is_editor ) {
+			return;
+		}
+
+		$button_types = array(
+			'primary'   => '.presets.palette-primary .button-primary:not(.menu-item)',
+			'secondary' => '.presets.palette-primary .button-secondary:not(.menu-item)',
+		);
+
+		$css = '';
+
+		foreach ( $button_types as $button_type => $selectors ) {
+			$typography = get_theme_mod( 'bgtfw_button_' . $button_type . '_typography' );
+			$css       .= $selectors . ' {';
+			foreach ( $typography as $css_propery => $css_value ) {
+				if ( empty( $css_value ) ) {
+					continue;
+				}
+
+				$css .= $css_propery . ':' . $css_value . ';';
+			}
+			$css .= '}';
+		}
+
+		wp_register_style( 'bgtfw-editor-button-fonts', false );
+		wp_add_inline_style( 'bgtfw-editor-button-fonts', $css );
+		wp_enqueue_style( 'bgtfw-editor-button-fonts' );
+	}
+
+	/**
 	 * Register Responsive Font Sizes.
 	 *
 	 * Registers the responsive font size css.
@@ -53,6 +92,7 @@ class BoldGrid_Framework_Styles {
 		wp_register_style( 'bgtfw-responsive-font-sizes', false );
 		wp_add_inline_style( 'bgtfw-responsive-font-sizes', $css );
 		wp_enqueue_style( 'bgtfw-responsive-font-sizes' );
+
 	}
 
 	/** Generate Responive Font CSS

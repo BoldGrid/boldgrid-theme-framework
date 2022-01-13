@@ -77,7 +77,7 @@ return array(
 		'priority'  => 1,
 		'output'    => $bgtfw_typography->get_typography_output(
 			$bgtfw_configs,
-			'.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header'
+			'.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header, .template-footer'
 		),
 		'edit_vars' => array(
 			array(

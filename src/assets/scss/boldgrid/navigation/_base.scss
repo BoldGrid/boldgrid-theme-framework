@@ -217,7 +217,7 @@
 			.sm-clean a.highlighted span.sub-arrow:before {
 				display: none;
 			}
-			.sm-clean li {
+			.sm-clean li:not(.btn-border) {
 				border-top: 0;
 			}
 			.sm-clean > li > ul:before,

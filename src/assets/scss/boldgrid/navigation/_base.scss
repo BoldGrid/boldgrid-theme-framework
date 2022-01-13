@@ -441,6 +441,9 @@
 					display: flex;
 					width: 100%;
 					flex-direction: row;
+					&.sm-vertical {
+						flex-direction: column;
+					}
 				}
 			}
 		}
@@ -475,7 +478,11 @@
 					display: flex;
 					width: 100%;
 					flex-direction: row;
+					&.sm-vertical {
+						flex-direction: column;
+					}
 				}
+
 			}
 		}
 	}
@@ -509,6 +516,9 @@
 					display: flex;
 					width: 100%;
 					flex-direction: row;
+					&.sm-vertical {
+						flex-direction: column;
+					}
 				}
 			}
 		}
@@ -543,6 +553,9 @@
 					display: flex;
 					width: 100%;
 					flex-direction: row;
+					&.sm-vertical {
+						flex-direction: column;
+					}
 				}
 			}
 		}

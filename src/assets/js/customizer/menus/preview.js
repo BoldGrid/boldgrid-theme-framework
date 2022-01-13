@@ -57,14 +57,12 @@
 			control.bind( ( value ) => {
 				var menuId         = '#' + controlId.replace( 'bgtfw_menu_hamburger_display_', '' ) + '-menu',
 					displayClasses = [ 'ham-large', 'ham-desktop', 'ham-phone', 'ham-tablet' ],
-					$menu          = $( menuId );
+					$menu;
 
+				menuId = menuId.replace( /_(\d{3})/, '-$1' ),
+				$menu  = $( menuId );
 				$menu.parent().removeClass( displayClasses );
 				$menu.parent().addClass( value );
-				console.log( {
-					id: controlId,
-					value: value
-				} );
 			} );
 		} );
 	}

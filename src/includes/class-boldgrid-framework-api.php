@@ -1171,16 +1171,16 @@ class BoldGrid {
 
 						ob_start();
 						switch ( $col_data['type'] ) {
-							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
+							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false:
 								$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
 								if ( 'social' === $menu && false !== strpos( $col_uid, 'f' ) ) {
 									$menu             = 'footer-social';
 									$col_data['type'] = 'boldgrid_menu_footer-social';
 								}
 								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ';
-								$menu_classes   = array( 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] );
-								$ham_classes    = get_theme_mod( 'bgtfw_menu_hamburger_display_' . $menu, array( 'ham-phone', 'ham-tablet' ) );
-								$menu_classes   = implode( ' ', array_merge( $menu_classes, $ham_classes ) );
+								$menu_classes = array( 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] );
+								$ham_classes  = get_theme_mod( 'bgtfw_menu_hamburger_display_' . $menu, array( 'ham-phone', 'ham-tablet' ) );
+								$menu_classes = implode( ' ', array_merge( $menu_classes, $ham_classes ) );
 								echo 'class="' . esc_attr( $menu_classes ) . '">';
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';

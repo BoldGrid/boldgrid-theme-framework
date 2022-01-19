@@ -56,6 +56,9 @@ var BoldGrid = BoldGrid || {};
 
 			addButtonClass: function( buttonTypeClass, buttonClasses ) {
 				$( '.' + buttonTypeClass ).each( function() {
+					if ( 'submit' === $( this ).prop( 'type' ) ) {
+						return;
+					}
 					$( this ).addClass( buttonClasses );
 				} );
 			},

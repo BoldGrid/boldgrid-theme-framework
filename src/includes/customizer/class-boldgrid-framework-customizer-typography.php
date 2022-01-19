@@ -113,6 +113,19 @@ class Boldgrid_Framework_Customizer_Typography {
 		return $settings;
 	}
 
+	public function default_button_typography( $configs ) {
+		$body_typography = get_theme_mod( 'bgtfw_body_typography' );
+
+		$default_button_typography = $body_typography ? $body_typography : array(
+			'font-family'    => 'Roboto',
+			'variant'        => 'regular',
+			'font-size'      => '16px',
+			'text-transform' => 'none',
+		);
+
+		return $default_button_typography;
+	}
+
 	/**
 	 * Classes that represent the font families chosen for theme.
 	 *

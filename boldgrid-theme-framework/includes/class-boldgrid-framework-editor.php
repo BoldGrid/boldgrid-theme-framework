@@ -229,7 +229,7 @@ HTML;
 	 * @return string Name of method of adding CSS styles.
 	 */
 	public function add_styles_method() {
-		return 'file';
+		return 'inline';
 	}
 
 	/**

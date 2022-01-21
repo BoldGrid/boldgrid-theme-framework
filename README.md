@@ -25,6 +25,9 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 1.7.11 ###
+* Bug Fix: WP 5.9 & V1 = Body font incorrect [#603](https://github.com/BoldGrid/boldgrid-theme-framework/issues/603)
 ### 1.7.10 ###
 * Bug Fix: Remove Selected Pattern button in V1 themes [#318](https://github.com/BoldGrid/boldgrid-theme-framework/issues/318)
 

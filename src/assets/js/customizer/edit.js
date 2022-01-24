@@ -143,7 +143,7 @@ const { __ } = wp.i18n;
 					$( '#masthead-sticky' ).css( 'display', 'none' );
 				} else if ( api( 'bgtfw_fixed_header' ) && api( 'bgtfw_fixed_header' )() ) {
 					$( '#masthead-sticky' ).css( 'display', 'block' );
-				} else if ( $( '#masthead-sticky' ).is('[class*="sticky-template"]' ) ) {
+				} else if ( $( '#masthead-sticky' ).is( '[class*="sticky-template"]' ) ) {
 					$( '#masthead-sticky' ).css( 'display', 'block' );
 				}
 			} );
@@ -580,6 +580,7 @@ const { __ } = wp.i18n;
 					self.addMultiButtons( 'div#' + themeLocation + '-wrap', controls, buttonPosition );
 				} else {
 					let menuSelector = 'ul#' + themeLocation + '-menu';
+					menuSelector = menuSelector.replace( /_(\d{3})/, '-$1' );
 					controls[ 'nav_menu[' + menuId + ']' ] = {type: 'section', label: 'Add Menu Items', description: 'Add or remove items to this menu' };
 					controls[ 'bgtfw_menu_location_' + themeLocation ] = {type: 'panel', label: 'Customize ' + menuLocationName, description: 'Customize the styling of this menu' };
 					buttonPosition = self.determineButtonPosition( menuSelector );

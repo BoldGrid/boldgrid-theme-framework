@@ -95,7 +95,7 @@ return array(
 		'bgtfw_site_title_font_size'          => array(
 			'section'         => 'bgtfw_site_title',
 			'priority'        => 21,
-			'output_selector' => '.site-footer .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '.site-header .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover, .bgc-site-title, .bgc-site-title:hover',
+			'output_selector' => '.site-footer .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . '.site-header .site-title > a, .' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a,.' . get_theme_mod( 'boldgrid_palette_class', 'palette-primary' ) . ' .site-header .site-title > a:hover, .bgc-heading.bgc-site-title, .bgc-heading.bgc-site-title:hover',
 		),
 		'bgtfw_button_primary_font_size'      => array(
 			'section'         => 'bgtfw_primary_button',

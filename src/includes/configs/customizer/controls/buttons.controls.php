@@ -140,8 +140,7 @@ return array(
 		'default'           => 'color-1',
 		'choices'           => array(
 			'colors'      => $bgtfw_formatted_palette,
-			'size'        => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette, true ),
-			'transparent' => true,
+			'size'        => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette, false ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 		'output'            => array(

@@ -395,6 +395,51 @@
 		z-index: 2;
 	}
 
+	.bgtfw-menu-wrap {
+		&.e,
+		&.ne,
+		&.se {
+			> label {
+				justify-content: flex-end;
+			}
+		}
+		&.n,
+		&.c,
+		&.s {
+			> label {
+				justify-content: center;
+			}
+		}
+		&.w,
+		&.nw,
+		&.sw {
+			> label {
+				justify-content: flex-start;
+			}
+		}
+		&.n,
+		&.ne,
+		&.nw {
+			> label {
+				align-items: flex-start;
+			}
+		}
+		&.e,
+		&.c,
+		&.w {
+			> label {
+				align-items: center;
+			}
+		}
+		&.s,
+		&.se,
+		&.sw {
+			> label {
+				align-items: flex-end;
+			}
+		}
+	}
+
 	input.hidden + label[id$="-menu-btn"] {
 		display: none;
 	}

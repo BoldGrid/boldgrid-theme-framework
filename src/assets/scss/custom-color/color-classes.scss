@@ -222,15 +222,15 @@ $names: background background-color;
 		.btn-#{$ubtn-name}-flat {
 			background-color: $ubtn-background !important;
 			border-color: $ubtn-background;
-			color: $ubtn-color !important;
+			color: $ubtn-color;
 			a {
-				color: $ubtn-color !important;
+				color: $ubtn-color;
 			}
 
 			&:visited {
-				color: $ubtn-color !important;
+				color: $ubtn-color;
 				a {
-					color: $ubtn-color !important;
+					color: $ubtn-color;
 				}
 			}
 
@@ -238,9 +238,9 @@ $names: background background-color;
 			&:focus {
 				background-color: lighten($ubtn-background, 10%) !important;
 				border-color: lighten($ubtn-background, 10%);
-				color: $ubtn-color !important;
+				color: $ubtn-color;
 				a {
-					color: $ubtn-color !important;
+					color: $ubtn-color;
 				}
 			}
 
@@ -249,9 +249,9 @@ $names: background background-color;
 			&.is-active {
 				background-color: desaturate($ubtn-background, 10%) !important;
 				border-color: desaturate($ubtn-background, 10%);
-				color: darken($ubtn-background, 10%) !important;
+				color: darken($ubtn-background, 10%);
 				a {
-					color: $ubtn-color !important;
+					color: $ubtn-color;
 				}
 			}
 		}
@@ -269,9 +269,9 @@ $names: background background-color;
 					background-color: lighten($ubtn-background, 10%) !important;
 				}
 				border-color: lighten($ubtn-background, 10%) !important;
-				color: $ubtn-color !important;
+				color: $ubtn-color;
 				a {
-					color: $ubtn-color !important;
+					color: $ubtn-color;
 				}
 			}
 
@@ -282,9 +282,9 @@ $names: background background-color;
 					background-color: lighten($ubtn-background, 10%) !important;
 				}
 				border-color: desaturate($ubtn-background, 10%) !important;
-				color: darken($ubtn-background, 10%) !important;
+				color: darken($ubtn-background, 10%);
 				a {
-					color: $ubtn-color !important;
+					color: $ubtn-color;
 				}
 			}
 		}

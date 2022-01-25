@@ -316,12 +316,7 @@ return array(
 		'settings'  => 'bgtfw_button_secondary_typography',
 		'label'     => esc_attr__( 'Secondary Button Typography', 'bgtfw' ),
 		'section'   => 'bgtfw_secondary_button',
-		'default'   => array(
-			'font-family'    => 'Roboto',
-			'variant'        => 'regular',
-			'font-size'      => '16px',
-			'text-transform' => 'none',
-		),
+		'default'   => $bgtfw_typography->default_button_typography( $bgtfw_configs ),
 		'priority'  => 10,
 		'output'    => $bgtfw_typography->get_typography_output(
 			$bgtfw_configs,

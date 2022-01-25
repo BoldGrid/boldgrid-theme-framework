@@ -113,6 +113,17 @@ class Boldgrid_Framework_Customizer_Typography {
 		return $settings;
 	}
 
+	/**
+	 * Get the Default Button font settings.
+	 *
+	 * This method includes the currently saved theme mod value.
+	 *
+	 * @since 2.12.0
+	 *
+	 * @param array $configs The name of the setting.
+	 *
+	 * @return array Settings.
+	 */
 	public function default_button_typography( $configs ) {
 		$body_typography = get_theme_mod( 'bgtfw_body_typography' );
 

@@ -134,6 +134,8 @@ class Boldgrid_Framework_Customizer_Typography {
 			'text-transform' => 'none',
 		);
 
+		$default_button_typography['line-height'] = '40px';
+
 		return $default_button_typography;
 	}
 

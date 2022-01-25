@@ -59,6 +59,7 @@ var BoldGrid = BoldGrid || {};
 					if ( 'submit' === $( this ).prop( 'type' ) ) {
 						return;
 					}
+					$( this ).addClass( 'btn' );
 					$( this ).addClass( buttonClasses );
 				} );
 			},

@@ -47,12 +47,12 @@ class Boldgrid_Framework_Links {
 	 * @var array
 	 */
 	public static $default_link_selectors = [
-		'.main a',
-		'.page-header-wrapper a',
-		'.mce-content-body a',
-		'.template-header a',
-		'.template-footer a',
-		'.template-sticky-header a',
+		'.main a:not(.btn)',
+		'.page-header-wrapper a:not(.btn)',
+		'.mce-content-body a:not(.btn)',
+		'.template-header a:not(.btn)',
+		'.template-footer a:not(.btn)',
+		'.template-sticky-header a:not(.btn)',
 	];
 
 	/**

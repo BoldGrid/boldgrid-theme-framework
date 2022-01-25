@@ -267,12 +267,13 @@ $names: background background-color;
 			&:focus {
 				&.btn-transparent{
 					background-color: lighten($ubtn-background, 10%) !important;
+					color: $ubtn-color;
+					a {
+						color: $ubtn-color;
+					}
 				}
 				border-color: lighten($ubtn-background, 10%) !important;
-				color: $ubtn-color;
-				a {
-					color: $ubtn-color;
-				}
+
 			}
 
 			&:active,
@@ -280,12 +281,12 @@ $names: background background-color;
 			&.is-active {
 				&.btn-transparent{
 					background-color: lighten($ubtn-background, 10%) !important;
+					color: darken($ubtn-background, 10%);
+					a {
+						color: $ubtn-color;
+					}
 				}
 				border-color: desaturate($ubtn-background, 10%) !important;
-				color: darken($ubtn-background, 10%);
-				a {
-					color: $ubtn-color;
-				}
 			}
 		}
 	}

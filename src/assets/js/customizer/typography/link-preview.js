@@ -110,6 +110,10 @@ export class LinkPreview {
 				`;
 			}
 
+			/*
+			 * This was added in 2.12.0 to make sure that the booter links can be
+			 * controlled by the Site Content Link typography controls.
+			 */
 			if ( 'bgtfw_body' === prefix ) {
 				let footerLinkColor       = this._getColor( 'bgtfw_footer_links', true ),
 					footerLinkColorHover  = api( `${prefix}_link_color_hover` )() || 0,

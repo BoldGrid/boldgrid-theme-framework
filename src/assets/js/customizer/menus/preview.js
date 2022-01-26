@@ -1,14 +1,12 @@
-/* global BOLDGRID */
-
 /**
- * File: src/assets/js/customizer/bgtfw-responsive-font-sizes/preview.js
+ * File: src/assets/js/customizer/menus/preview.js
  *
  * Handles the previewing of responsive font sizes in the WP Customizer.
  *
  * @package    Boldgrid_Theme_Framework
  * @subpackage Boldgrid_Theme_Framework/Customizer/Preview
  *
- * @since 2.11.0
+ * @since 2.12.0
  */
 
  import { Preview as PreviewUtility } from '../preview';
@@ -18,7 +16,7 @@
   *
   * Extends functionality of PreviewUtility to the Responsive Font Controls.
   *
-  * @since 2.11.0
+  * @since 2.12.0
   */
  export class Preview {
 
@@ -27,7 +25,7 @@
 	  *
 	  * Initialize the Preview class, and PreviewUtility class.
 	  *
-	  * @since 2.11.0
+	  * @since 2.12.0
 	  */
 	constructor() {
 		this.preview = new PreviewUtility();
@@ -39,7 +37,7 @@
 	 * Loop through all controls, and bind control events for
 	 * responsive typography controls.
 	 *
-	 * @since 2.11.0
+	 * @since 2.12.0
 	 */
 	bindEvents() {
 		if ( parent.wp.customize.control ) {
@@ -51,6 +49,13 @@
 		}
 	}
 
+	/**
+	 * Bind Control.
+	 *
+	 * Bind the control events for the hamburger menu controls.
+	 *
+	 * @param {object} wpControl WP_Customize_Control object.
+	 */
 	bindControl( wpControl ) {
 		var controlId = wpControl.id;
 		wp.customize( controlId, ( control ) => {

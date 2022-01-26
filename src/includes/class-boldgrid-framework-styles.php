@@ -92,7 +92,6 @@ class BoldGrid_Framework_Styles {
 		wp_register_style( 'bgtfw-responsive-font-sizes', false );
 		wp_add_inline_style( 'bgtfw-responsive-font-sizes', $css );
 		wp_enqueue_style( 'bgtfw-responsive-font-sizes' );
-
 	}
 
 	/** Generate Responive Font CSS

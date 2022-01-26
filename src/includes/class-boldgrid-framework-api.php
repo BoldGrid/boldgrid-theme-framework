@@ -1160,12 +1160,12 @@ class BoldGrid {
 						$col_x_full_width = implode( ' ', $col_x_full_width );
 
 						if ( false === strpos( $col_uid, 'f' ) ) {
-							$align = isset( $col_data['align'] ) ? $col_data['align'] : '';
+							$align   = isset( $col_data['align'] ) ? $col_data['align'] : '';
 							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $align;
 							$markup .= $col_x_full_width ? ' ' . $col_x_full_width . '">' : '">';
 						} else {
-							$num = ( 12 / count( $chunk ) );
-							$align = isset( $col_data['align'] ) ? $col_data['align'] : '';
+							$num     = ( 12 / count( $chunk ) );
+							$align   = isset( $col_data['align'] ) ? $col_data['align'] : '';
 							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . ' ' . $align . '">';
 						}
 
@@ -1179,7 +1179,13 @@ class BoldGrid {
 								}
 								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ';
 								$menu_classes = array( 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] );
-								$ham_classes  = get_theme_mod( 'bgtfw_menu_hamburger_display_' . $menu, array( 'ham-phone', 'ham-tablet' ) );
+								$ham_classes  = get_theme_mod(
+									'bgtfw_menu_hamburger_display_' . $menu,
+									array(
+										'ham-phone',
+										'ham-tablet',
+									)
+								);
 								$menu_classes = implode( ' ', array_merge( $menu_classes, $ham_classes ) );
 								echo 'class="' . esc_attr( $menu_classes ) . '">';
 								if ( empty( $col_data['align'] ) ) {

@@ -25,7 +25,7 @@ export class Devices {
 			},
 			desktop: {
 				name: 'desktop',
-				breakpoint: 100
+				breakpoint: 1000
 			},
 			tablet: {
 				name: 'tablet',

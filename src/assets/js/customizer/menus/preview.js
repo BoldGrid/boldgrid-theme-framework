@@ -54,6 +54,8 @@
 	 *
 	 * Bind the control events for the hamburger menu controls.
 	 *
+	 * @since 2.12.0
+	 *
 	 * @param {object} wpControl WP_Customize_Control object.
 	 */
 	bindControl( wpControl ) {

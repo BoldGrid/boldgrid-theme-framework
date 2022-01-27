@@ -115,8 +115,8 @@ export class LinkPreview {
 			 * controlled by the Site Content Link typography controls.
 			 */
 			if ( 'bgtfw_body' === prefix ) {
-				let footerLinkColor       = this._getColor( 'bgtfw_footer_links', true ),
-					footerLinkColorHover  = api( `${prefix}_link_color_hover` )() || 0,
+				let footerLinkColor      = this._getColor( 'bgtfw_footer_links', true ),
+					footerLinkColorHover = api( `${prefix}_link_color_hover` )() || 0,
 					footerShiftedColorVal;
 
 				footerLinkColorHover  = parseInt( footerLinkColorHover, 10 ) / 100,

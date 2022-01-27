@@ -324,9 +324,13 @@ class BoldGrid_Framework_Scripts {
 			}
 		}
 
+
 		foreach ( $button_controls as $button_type => $button_controls ) {
 			foreach ( $button_controls as $control_id ) {
-				$control_classes = get_theme_mod( $control_id, '' );
+				$default = $this->configs['customizer']['controls'][ $control_id ] ? $this->configs['customizer']['controls'][ $control_id ]['default'] : '';
+
+				$control_classes = get_theme_mod( $control_id, $default );
+
 				if ( empty( $control_classes ) ) {
 					continue;
 				}

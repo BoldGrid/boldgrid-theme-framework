@@ -55,8 +55,8 @@ class BoldGrid_Framework_Styles {
 		}
 
 		$button_types = array(
-			'primary'   => '.presets.palette-primary .button-primary:not(.menu-item)',
-			'secondary' => '.presets.palette-primary .button-secondary:not(.menu-item)',
+			'primary'   => '.presets.palette-primary .button-primary',
+			'secondary' => '.presets.palette-primary .button-secondary',
 		);
 
 		$css = '';
@@ -473,7 +473,7 @@ class BoldGrid_Framework_Styles {
 
 		$color_obj->alpha = 0.4;
 		$css .= "#{$location}-menu.sm-clean ul {background-color: {$background_color};}";
-		$css .= "#{$location}-menu.sm-clean ul a, #{$location}-menu.sm-clean ul a:hover, #{$location}-menu.sm-clean ul a:focus, #{$location}-menu.sm-clean ul a:active, #{$location}-menu.sm-clean ul a.highlighted, #{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, #{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover { background-color:" . $color_obj->toCSS( 'rgba' ) . ';}';
+		$css .= "#{$location}-menu.sm-clean ul a:not(.btn), #{$location}-menu.sm-clean ul a:not(.btn):hover, #{$location}-menu.sm-clean ul a:not(.btn):focus, #{$location}-menu.sm-clean ul a:not(.btn):active, #{$location}-menu.sm-clean ul a:not(.btn).highlighted, #{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, #{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover { background-color:" . $color_obj->toCSS( 'rgba' ) . ';}';
 		$css .= "#{$location}-menu.sm-clean ul { border: 1px solid " . $color_obj->toCSS( 'rgba' ) . ';}';
 		$css .= "#{$location}-menu.sm-clean > li > ul:before, #{$location}-menu.sm-clean > li > ul:after { border-color: transparent transparent {$background_color} transparent;}";
 		$css .= '}';

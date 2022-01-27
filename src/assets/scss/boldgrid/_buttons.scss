@@ -1,6 +1,6 @@
 @if variable-exists( button-primary-classes ) {
 	input[type=submit],
-	.button-primary:not( .menu-item ),
+	.button-primary,
 	.woocommerce .button,
 	div.wpforms-container-full .wpforms-form button[type=submit] {
 		.palette-primary & {
@@ -9,11 +9,12 @@
 	}
 	.btn.menu-item {
 		height: unset;
+		padding: 0px;
 	}
 }
 
 @if variable-exists( button-secondary-classes ) {
-	.button-secondary:not( .menu-item ),
+	.button-secondary,
 	.woocommerce .alt.button {
 		.palette-primary & {
 			@extend #{$button-secondary-classes};
@@ -21,6 +22,7 @@
 	}
 	.btn.menu-item {
 		height: unset;
+		padding: 0px;
 	}
 }
 

@@ -152,11 +152,21 @@ $names: background background-color;
 				}
 				&.sm {
 					&.color-#{$each}-link-color {
-						a {
-							color: #{nth($colors, $each)};
+						li.btn {
+							a {
+								color: inherit;
+							}
+							a:hover, a:focus, a:active, a.highlighted {
+								color: inherit;
+							}
 						}
-						a:hover, a:focus, a:active, a.highlighted {
-							color: hover( nth($colors, $color), nth($colors, $each) );
+						li:not(.btn) {
+							a {
+								color: #{nth($colors, $each)};
+							}
+							a:hover, a:focus, a:active, a.highlighted {
+								color: hover( nth($colors, $color), nth($colors, $each) );
+							}
 						}
 					}
 				}

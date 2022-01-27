@@ -159,12 +159,12 @@ return array(
 		'priority'  => 10,
 		'output'    => $bgtfw_typography->get_typography_output(
 			$bgtfw_configs,
-			'.palette-primary .button-primary:not(.menu-item)'
+			'.palette-primary .button-primary'
 		),
 		'edit_vars' => array(
 			array(
 				'selector'    => array(
-					'.palette-primary .button-primary:not(.menu-item)',
+					'.palette-primary .button-primary',
 				),
 				'label'       => esc_attr__( 'Primary Button Typography', 'bgtfw' ),
 				'description' => esc_attr__( 'Adjust the typography of your primary buttons', 'bgtfw' ),
@@ -320,7 +320,7 @@ return array(
 		'priority'  => 10,
 		'output'    => $bgtfw_typography->get_typography_output(
 			$bgtfw_configs,
-			'.palette-primary .button-secondary:not(.menu-item)'
+			'.palette-primary .button-secondary'
 		),
 	),
 );

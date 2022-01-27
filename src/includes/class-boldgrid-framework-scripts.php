@@ -324,9 +324,13 @@ class BoldGrid_Framework_Scripts {
 			}
 		}
 
+
 		foreach ( $button_controls as $button_type => $button_controls ) {
 			foreach ( $button_controls as $control_id ) {
-				$control_classes = get_theme_mod( $control_id, '' );
+				$default = $this->configs['customizer']['controls'][ $control_id ] ? $this->configs['customizer']['controls'][ $control_id ]['default'] : '';
+
+				$control_classes = get_theme_mod( $control_id, $default );
+
 				if ( empty( $control_classes ) ) {
 					continue;
 				}
@@ -357,9 +361,9 @@ class BoldGrid_Framework_Scripts {
 				}
 
 				if ( '' === $button_classes[ $button_type ] ) {
-					$button_classes[ $button_type ] = $control_classes;
+					$button_classes[ $button_type ] = 'btn ' . $control_classes;
 				} else {
-					$button_classes[ $button_type ] .= ' ' . $control_classes;
+					$button_classes[ $button_type ] .= ' btn ' . $control_classes;
 				}
 			}
 		}

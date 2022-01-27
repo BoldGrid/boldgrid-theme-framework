@@ -1574,9 +1574,9 @@
     grunt "^0.4.5"
     grunt-saucelabs "^8.3.2"
 
-"Buttons@https://github.com/alexwolfe/Buttons#2.0.0":
-  version "2.0.0"
-  resolved "https://github.com/alexwolfe/Buttons#3e4e737ae509804fed039c85734be385309e3307"
+"Buttons@https://github.com/boldgrid/Buttons#crio-buttons":
+  version "3.0.0"
+  resolved "https://github.com/boldgrid/Buttons#50c6a9ab547c6de01d5f47f6589299e6cde29589"
   dependencies:
     grunt "^0.4.5"
     grunt-saucelabs "^8.3.2"

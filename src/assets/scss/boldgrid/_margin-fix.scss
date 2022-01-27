@@ -472,6 +472,16 @@ body:not( .header-top ) {
 }
 #colophon {
 	.bgtfw-footer {
+		&.template-footer{
+			.bg-editor-hr-wrap {
+				padding-left: 0px;
+				padding-right: 0px;
+				> div {
+					padding-left: 0px;
+					padding-right: 0px;
+				}
+			}
+		}
 		>.boldgrid-section {
 			>.container {
 				>.row {

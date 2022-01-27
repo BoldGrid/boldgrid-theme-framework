@@ -40,6 +40,12 @@ return array(
 		'panel'    => 'bgtfw_design_panel',
 		'icon'     => 'dashicons-admin-post',
 	),
+	'bgtfw_buttons_panel'        => array(
+		'title'    => __( 'Buttons', 'bgtfw' ),
+		'priority' => 7,
+		'panel'    => 'bgtfw_design_panel',
+		'icon'     => 'dashicons-button',
+	),
 	'bgtfw_blog_blog_page_panel' => array(
 		'title'       => __( 'Blog Page', 'bgtfw' ),
 		'description' => '<div class="bgtfw-description"><p>' . esc_html__( 'Change the display of your site\'s blog page.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-your-blog-page-with-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>',

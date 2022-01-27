@@ -40,6 +40,12 @@
 					margin-left: 20px;
 					margin-right: 20px;
 				}
+				@media only screen and (max-width : 991px) {
+					.sm-clean {
+						margin-left: 0px;
+						margin-right: 0px;
+					}
+				}
 				@media only screen and (max-width : 767px) {
 					.site-title,
 					.site-description,

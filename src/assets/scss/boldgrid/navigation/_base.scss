@@ -217,7 +217,7 @@
 			.sm-clean a.highlighted span.sub-arrow:before {
 				display: none;
 			}
-			.sm-clean li {
+			.sm-clean li:not(.btn-border) {
 				border-top: 0;
 			}
 			.sm-clean > li > ul:before,
@@ -395,6 +395,51 @@
 		z-index: 2;
 	}
 
+	.bgtfw-menu-wrap {
+		&.e,
+		&.ne,
+		&.se {
+			> label {
+				justify-content: flex-end;
+			}
+		}
+		&.n,
+		&.c,
+		&.s {
+			> label {
+				justify-content: center;
+			}
+		}
+		&.w,
+		&.nw,
+		&.sw {
+			> label {
+				justify-content: flex-start;
+			}
+		}
+		&.n,
+		&.ne,
+		&.nw {
+			> label {
+				align-items: flex-start;
+			}
+		}
+		&.e,
+		&.c,
+		&.w {
+			> label {
+				align-items: center;
+			}
+		}
+		&.s,
+		&.se,
+		&.sw {
+			> label {
+				align-items: flex-end;
+			}
+		}
+	}
+
 	input.hidden + label[id$="-menu-btn"] {
 		display: none;
 	}
@@ -411,30 +456,156 @@
 		clip: rect(1px, 1px, 1px, 1px);
 	}
 
-	// Hide the menu in mobile view.
-	input:not(:checked):not(.hidden) ~ .sm-clean {
-		display: none;
-	}
-	input:checked ~ .sm-clean {
-		display: block;
-		width: 100%;
+
+	@media only screen and (max-width: 767px) {
+		.bgtfw-menu-wrap {
+			// Hide the menu in mobile view.
+			&.ham-phone {
+				display: block;
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: none;
+				}
+				input:checked ~ .sm-clean {
+					display: block;
+					width: 100%;
+					li {
+						float: none;
+					}
+				}
+			}
+			&:not( .ham-phone ) {
+				/* hide the button in mobile if not enabled */
+				label[id$="-menu-btn"] {
+					position: absolute;
+					top: -99999px;
+				}
+
+				/* always show the menu if hamburger not enabled */
+				input:checked ~ .sm-clean,
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: flex;
+					width: 100%;
+					flex-direction: row;
+					&.sm-vertical {
+						flex-direction: column;
+					}
+				}
+			}
+		}
 	}
 
-	@media only screen and (min-width: 768px) {
-		/* hide the button in desktop view */
-		label[id$="-menu-btn"] {
-			position: absolute;
-			top: -99999px;
-		}
+	@media only screen and (min-width: 768px) and (max-width: 991px ) {
+		.bgtfw-menu-wrap {
+			// Hide the menu in tablet view.
+			&.ham-tablet {
+				display: block;
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: none;
+				}
+				input:checked ~ .sm-clean {
+					display: block;
+					width: 100%;
+					li {
+						float: none;
+					}
+				}
+			}
+			&:not( .ham-tablet ) {
+				/* hide the button in tablet if not enabled */
+				label[id$="-menu-btn"] {
+					position: absolute;
+					top: -99999px;
+				}
 
-		/* always show the menu in desktop view */
-		input:checked ~ .sm-clean,
-		input:not(:checked):not(.hidden) ~ .sm-clean {
-			display: flex;
-			width: 100%;
-			flex-direction: row;
+				/* always show the menu if hamburger not enabled */
+				input:checked ~ .sm-clean,
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: flex;
+					width: 100%;
+					flex-direction: row;
+					&.sm-vertical {
+						flex-direction: column;
+					}
+				}
+
+			}
 		}
 	}
+
+	@media only screen and (min-width: 992px) and (max-width: 1159px ) {
+		.bgtfw-menu-wrap {
+			// Hide the menu in tablet view.
+			&.ham-desktop {
+				display: block;
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: none;
+				}
+				input:checked ~ .sm-clean {
+					display: block;
+					width: 100%;
+					li {
+						float: none;
+					}
+				}
+			}
+			&:not( .ham-desktop ) {
+				/* hide the button in tablet if not enabled */
+				label[id$="-menu-btn"] {
+					position: absolute;
+					top: -99999px;
+				}
+
+				/* always show the menu if hamburger not enabled */
+				input:checked ~ .sm-clean,
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: flex;
+					width: 100%;
+					flex-direction: row;
+					&.sm-vertical {
+						flex-direction: column;
+					}
+				}
+			}
+		}
+	}
+
+	@media only screen and (min-width: 1200px) {
+		.bgtfw-menu-wrap {
+			// Hide the menu in tablet view.
+			&.ham-large {
+				display: block;
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: none;
+				}
+				input:checked ~ .sm-clean {
+					display: block;
+					width: 100%;
+					li {
+						float: none;
+					}
+				}
+			}
+			&:not( .ham-large ) {
+				/* hide the button in tablet if not enabled */
+				label[id$="-menu-btn"] {
+					position: absolute;
+					top: -99999px;
+				}
+
+				/* always show the menu if hamburger not enabled */
+				input:checked ~ .sm-clean,
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: flex;
+					width: 100%;
+					flex-direction: row;
+					&.sm-vertical {
+						flex-direction: column;
+					}
+				}
+			}
+		}
+	}
+
 	.sm-clean {
 		display: flex;
 		flex-wrap: wrap;

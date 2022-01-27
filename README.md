@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph, jamesros161
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.8
+* **Tested up to:** 5.9
 * **License:** GPL-3.0-or-later
 * **License URI:** https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
@@ -35,6 +35,23 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.12.0 ###
+* New Feature: Hamburger Menus on Tablet / Desktop [#512](https://github.com/BoldGrid/boldgrid-theme-framework/issues/512)
+* New Feature: Extend responsive text controls to Tagline & Custom Page Header Site Title [#557](https://github.com/BoldGrid/boldgrid-theme-framework/issues/557)
+* New Feature: Select primary / secondary button design from Customizer [#507](https://github.com/BoldGrid/boldgrid-theme-framework/issues/507)
+* New Feature: Make button text responsive [#556](https://github.com/BoldGrid/boldgrid-theme-framework/issues/556)
+* New Feature: Font control for buttons [#506](https://github.com/BoldGrid/boldgrid-theme-framework/issues/506)
+* Bug Fix: Custom Template 'Page Title' does not use calculated Heading Font Size values. [#553](https://github.com/BoldGrid/boldgrid-theme-framework/issues/553)
+* Bug Fix: wp_register_style was called incorrectly [#595](https://github.com/BoldGrid/boldgrid-theme-framework/issues/595)
+* Bug Fix: Custom Footers do not inherit main text setting from Customizer [#579](https://github.com/BoldGrid/boldgrid-theme-framework/issues/579)
+* Bug Fix: Inconsistent hover effect on links [#513](https://github.com/BoldGrid/boldgrid-theme-framework/issues/513)
+* Bug Fix: Sticky Headers & live preview [#564](https://github.com/BoldGrid/boldgrid-theme-framework/issues/564)
+* Bug Fix: Edit buttons & Custom Footers [#571](https://github.com/BoldGrid/boldgrid-theme-framework/issues/571)
+* Bug Fix: Fix hr alignment in custom footer templates [#578](https://github.com/BoldGrid/boldgrid-theme-framework/issues/578)
+* Bug Fix: Remove min-height from small buttons [#577](https://github.com/BoldGrid/boldgrid-theme-framework/issues/577)
+* Bug Fix: Hiding Page titles breaks title display in the Recent Post widget [#382](https://github.com/BoldGrid/boldgrid-theme-framework/issues/382)
+* Bug Fix: Button color stays orange after changing palette [#561](https://github.com/BoldGrid/boldgrid-theme-framework/issues/561)
 
 ### 2.11.0 ###
 * New Feature: Added responsive font size controls for Body Font, Headings and Site Title[#84](https://github.com/BoldGrid/boldgrid-theme-framework/issues/84)

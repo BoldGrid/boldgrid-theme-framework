@@ -1,4 +1,4 @@
-/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false, highlightRequiredFields */
+/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false, highlightRequiredFields, bgtfwButtonClasses */
 
 /* ========================================================================
  * DOM-based Routing
@@ -40,6 +40,46 @@ var BoldGrid = BoldGrid || {};
 				this.forms();
 				this.cssVarsPonyfill();
 				this.responsiveVideos();
+				this.addButtonClasses();
+			},
+
+			/**
+			 * Add Button Classes.
+			 *
+			 * This function is triggered when this class Inits, and adds
+			 * the custom button classes to all button-primary and button-secondary
+			 * button classes.
+			 *
+			 * @since 2.12.0
+			 */
+			addButtonClasses: function() {
+				var buttonType;
+
+				for ( buttonType in bgtfwButtonClasses ) {
+					let buttonTypeClass = buttonType.replace( 'bgtfw_', '' );
+					let buttonClasses   = bgtfwButtonClasses[ buttonType ];
+					this.addButtonClass( buttonTypeClass.replace( '_', '-' ), buttonClasses );
+				}
+			},
+
+			/**
+			 * Add Button Class
+			 *
+			 * Adds the custom button classes to each button.
+			 *
+			 * @since 2.12.0
+			 *
+			 * @param {string} buttonTypeClass Primary or Secondary button class.
+			 * @param {array}  buttonClasses   Custom classes to add.
+			 */
+			addButtonClass: function( buttonTypeClass, buttonClasses ) {
+				$( '.' + buttonTypeClass ).each( function() {
+					if ( 'submit' === $( this ).prop( 'type' ) ) {
+						return;
+					}
+					$( this ).addClass( 'btn' );
+					$( this ).addClass( buttonClasses );
+				} );
 			},
 
 			// Handle responsive video iframe embeds.

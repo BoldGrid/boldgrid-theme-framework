@@ -114,6 +114,32 @@ class Boldgrid_Framework_Customizer_Typography {
 	}
 
 	/**
+	 * Get the Default Button font settings.
+	 *
+	 * This method includes the currently saved theme mod value.
+	 *
+	 * @since 2.12.0
+	 *
+	 * @param array $configs The name of the setting.
+	 *
+	 * @return array Settings.
+	 */
+	public function default_button_typography( $configs ) {
+		$body_typography = get_theme_mod( 'bgtfw_body_typography' );
+
+		$default_button_typography = $body_typography ? $body_typography : array(
+			'font-family'    => 'Roboto',
+			'variant'        => 'regular',
+			'font-size'      => '16px',
+			'text-transform' => 'none',
+		);
+
+		$default_button_typography['line-height'] = '40px';
+
+		return $default_button_typography;
+	}
+
+	/**
 	 * Classes that represent the font families chosen for theme.
 	 *
 	 * @since 1.2.4

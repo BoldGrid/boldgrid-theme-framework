@@ -402,7 +402,8 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $styles, 'enqueue_fontawesome' );
 		$this->loader->add_action( 'after_setup_theme', $styles, 'add_editor_styling' );
-		$this->loader->add_action( 'after_setup_theme', $styles, 'register_responsive_font_sizes' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'register_responsive_font_sizes' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $styles, 'editor_button_fonts' );
 		$this->loader->add_filter( 'mce_css', $styles, 'add_cache_busting' );
 		$this->loader->add_filter( 'boldgrid_theme_framework_local_editor_styles', $styles, 'enqueue_editor_buttons' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'get_css_vars' );
@@ -416,6 +417,13 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'language_attributes', $scripts, 'modernizr' );
 
 		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'post_list_sidebar' );
+
+		// Add extra button classes.
+		$this->loader->add_filter( 'bgtfw_button_classes', $scripts, 'get_button_classes', 10, 1 );
+		$this->loader->add_filter( 'the_content', $boldgrid_theme, 'add_button_classes', 10, 1 );
+		$this->loader->add_filter( 'wp_nav_menu_items', $boldgrid_theme, 'add_button_classes', 10, 2 );
+		$this->loader->add_filter( 'widget_text', $boldgrid_theme, 'add_button_classes', 10, 1 );
+		$this->loader->add_filter( 'the_editor_content', $boldgrid_theme, 'add_button_classes', 10, 2 );
 
 		// Setup Sticky Footer.
 		$this->loader->add_action( 'boldgrid_header_before', $boldgrid_theme, 'boldgrid_sticky_top', 10 );

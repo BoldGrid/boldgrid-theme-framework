@@ -105,7 +105,7 @@ return array(
 		'bgtfw_button_secondary_font_size'    => array(
 			'section'         => 'bgtfw_secondary_button',
 			'priority'        => 11,
-			'output_selector' => '.palette-primary .button-secondary:not(.menu-item)',
+			'output_selector' => '.palette-primary .button-secondary',
 		),
 		'bgtfw_site_tagline_font_size'        => array(
 			'section'         => 'bgtfw_tagline',

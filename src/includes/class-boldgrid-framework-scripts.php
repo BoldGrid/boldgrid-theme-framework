@@ -361,9 +361,9 @@ class BoldGrid_Framework_Scripts {
 				}
 
 				if ( '' === $button_classes[ $button_type ] ) {
-					$button_classes[ $button_type ] = $control_classes;
+					$button_classes[ $button_type ] = 'btn ' . $control_classes;
 				} else {
-					$button_classes[ $button_type ] .= ' ' . $control_classes;
+					$button_classes[ $button_type ] .= ' btn ' . $control_classes;
 				}
 			}
 		}

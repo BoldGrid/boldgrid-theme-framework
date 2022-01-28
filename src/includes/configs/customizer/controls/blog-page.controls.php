@@ -877,7 +877,7 @@ return array(
 	),
 	'bgtfw_blog_post_readmore_type'                    => array(
 		'type'              => 'radio-buttonset',
-		'transport'         => 'postMessage',
+		'transport'         => 'refresh',
 		'settings'          => 'bgtfw_blog_post_readmore_type',
 		'label'             => esc_attr__( 'Type', 'bgtfw' ),
 		'section'           => 'bgtfw_pages_blog_blog_page_read_more',

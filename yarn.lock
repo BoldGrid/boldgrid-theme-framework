@@ -1576,7 +1576,7 @@
 
 "Buttons@https://github.com/boldgrid/Buttons#crio-buttons":
   version "3.0.0"
-  resolved "https://github.com/boldgrid/Buttons#6345ad7bcb0d2bf3cba7d22699e307c7da13d243"
+  resolved "https://github.com/boldgrid/Buttons#609475046d4372ec6b8881baadff536dbadce1cd"
   dependencies:
     grunt "^0.4.5"
     grunt-saucelabs "^8.3.2"
@@ -12875,9 +12875,9 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-"scssphp@https://github.com/boldgrid/scssphp.git#master":
+"scssphp@https://github.com/scssphp/scssphp#v1.10.0":
   version "0.0.0"
-  resolved "https://github.com/boldgrid/scssphp.git#c8f11fbb5389821102ca304fc71901aa3a48982b"
+  resolved "https://github.com/scssphp/scssphp#9699a52a862da4efb43985943afa17150155dd3d"
 
 secure-keys@^1.0.0:
   version "1.0.0"

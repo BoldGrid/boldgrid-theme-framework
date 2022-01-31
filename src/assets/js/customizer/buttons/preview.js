@@ -82,7 +82,6 @@ export class Preview {
 			this._backgroundColorClasses( buttonType );
 			this._borderColorClasses( buttonType );
 		} );
-
 	}
 
 	/**

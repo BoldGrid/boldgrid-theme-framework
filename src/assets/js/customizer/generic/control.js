@@ -1,5 +1,6 @@
 import { BorderRadius } from '@boldgrid/controls/src/controls/border-radius';
 import { Margin } from '@boldgrid/controls/src/controls/margin';
+import { ContainerWidth } from '@boldgrid/controls/src/controls/container-width';
 import { ColWidth } from '@boldgrid/controls/src/controls/col-width';
 import { Padding } from '@boldgrid/controls/src/controls/padding';
 import { BoxShadow } from '@boldgrid/controls/src/controls/box-shadow';
@@ -20,6 +21,7 @@ export class Control {
 			Border,
 			Padding,
 			Margin,
+			ContainerWidth,
 			ColWidth
 		};
 	}

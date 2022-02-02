@@ -42,6 +42,75 @@ return array(
 			),
 		),
 	),
+	'bgtfw_pages_container_width' => array(
+		'type'              => 'kirki-generic',
+		'transport'         => 'postMessage',
+		'section'           => 'bgtfw_layout_page_container',
+		'settings'          => 'bgtfw_pages_container_width',
+		'label'             => '',
+		'default'           => '',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
+		'choices'           => array(
+			'name'     => 'boldgrid_controls',
+			'type'     => 'ContainerWidth',
+			'settings' => array(
+				'responsive' => array(
+					'tablet'  => 991,
+					'desktop' => 1199,
+				),
+				'control'    => array(
+					'selectors' => array( 'body.page .container' ),
+					'name'      => 'bgtfw_pages_container_width',
+					'sliders'   => array(
+						array(
+							'name'        => 'width',
+							'label'       => '',
+							'cssProperty' => 'width',
+						),
+					),
+					'units' => array(
+						'default' => 'px',
+						'enabled' => array( 'px', '%' ),
+					),
+				),
+			),
+		),
+	),
+	'bgtfw_pages_container_max_width' => array(
+		'type'              => 'kirki-generic',
+		'transport'         => 'postMessage',
+		'section'           => 'bgtfw_layout_page_container',
+		'settings'          => 'bgtfw_pages_container_max_width',
+		'label'             => 'Container Max Width',
+		'default'           => '',
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
+		'choices'           => array(
+			'name'     => 'boldgrid_controls',
+			'type'     => 'ContainerWidth',
+			'settings' => array(
+				'responsive' => array(
+					'tablet'  => 991,
+					'desktop' => 1199,
+				),
+				'control'    => array(
+					'selectors' => array( 'body.page .container' ),
+					'title'     => 'Container Max Width',
+					'name'      => 'bgtfw_pages_container_max_width',
+					'sliders'   => array(
+						array(
+							'name'        => 'maxWidth',
+							'label'       => '',
+							'cssProperty' => 'max-width',
+						),
+					),
+					'units' => array(
+						'default' => '%',
+						'enabled' => array( 'px', '%' ),
+					),
+				),
+			),
+		),
+	),
 	'bgtfw_pages_title_display' => array(
 		'type'              => 'radio-buttonset',
 		'settings'          => 'bgtfw_pages_title_display',

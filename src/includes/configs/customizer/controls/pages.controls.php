@@ -59,7 +59,7 @@ return array(
 					'desktop' => 1199,
 				),
 				'control'    => array(
-					'selectors' => array( 'body.page .container-fluid' ),
+					'selectors' => array( 'body.page .container-fluid', 'body.page .boldgrid-section > .full-width' ),
 					'title'     => 'Container Max Width',
 					'name'      => 'bgtfw_pages_container_max_width',
 					'sliders'   => array(

@@ -13,6 +13,8 @@
 		padding-right: 0px;
 	}
 	.boldgrid-section {
+		display: flex;
+		justify-content: center;
 		.row {
 			display: flex;
 			flex-wrap: wrap;
@@ -20,9 +22,12 @@
 		.full-width {
 			padding-left: 0px;
 			padding-right: 0px;
+			width: calc( 100% + 40px );
 			.row {
 				display: flex;
 				flex-wrap: wrap;
+				margin-left: -10px;
+				margin-right: -10px;
 				aside.sidebar {
 					padding-left: 0px;
 					padding-right: 0px;

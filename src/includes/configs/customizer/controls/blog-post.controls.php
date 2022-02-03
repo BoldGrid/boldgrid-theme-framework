@@ -679,7 +679,7 @@ return array(
 					'desktop' => 1199,
 				),
 				'control'    => array(
-					'selectors' => array( 'body.single .container-fluid' ),
+					'selectors' => array( 'body.single .container-fluid', 'body.single .boldgrid-section > .full-width' ),
 					'title'     => 'Container Max Width',
 					'name'      => 'bgtfw_blog_posts_container_max_width',
 					'sliders'   => array(

@@ -63,7 +63,12 @@ return array(
 					'desktop' => 1199,
 				),
 				'control'    => array(
-					'selectors' => array( 'body.blog .container-fluid', 'body.archive .container-fluid' ),
+					'selectors' => array(
+						'body.blog .container-fluid',
+						'body.archive .container-fluid',
+						'body.blog .boldgrid-section > .full-width',
+						'body.archive .boldgrid-section > .full-width',
+					),
 					'title'     => 'Container Max Width',
 					'name'      => 'bgtfw_blog_page_container_max_width',
 					'sliders'   => array(

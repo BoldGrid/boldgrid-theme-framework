@@ -11,7 +11,7 @@
  */
 
 return array(
-	'bgtfw_pages_container'     => array(
+	'bgtfw_pages_container'           => array(
 		'settings'          => 'bgtfw_pages_container',
 		'transport'         => 'refresh',
 		'label'             => esc_html__( 'Container', 'bgtfw' ),
@@ -42,7 +42,7 @@ return array(
 			),
 		),
 	),
-	'bgtfw_pages_container_width' => array(
+	'bgtfw_pages_container_width'     => array(
 		'type'              => 'kirki-generic',
 		'transport'         => 'postMessage',
 		'section'           => 'bgtfw_layout_page_container',
@@ -68,7 +68,7 @@ return array(
 							'cssProperty' => 'width',
 						),
 					),
-					'units' => array(
+					'units'     => array(
 						'default' => 'px',
 						'enabled' => array( 'px', '%' ),
 					),
@@ -103,7 +103,7 @@ return array(
 							'cssProperty' => 'max-width',
 						),
 					),
-					'units' => array(
+					'units'     => array(
 						'default' => '%',
 						'enabled' => array( 'px', '%' ),
 					),
@@ -111,7 +111,7 @@ return array(
 			),
 		),
 	),
-	'bgtfw_pages_title_display' => array(
+	'bgtfw_pages_title_display'       => array(
 		'type'              => 'radio-buttonset',
 		'settings'          => 'bgtfw_pages_title_display',
 		'label'             => esc_html__( 'Display', 'bgtfw' ),
@@ -163,7 +163,7 @@ return array(
 			),
 		),
 	),
-	'bgtfw_layout_page'         => array(
+	'bgtfw_layout_page'               => array(
 		'type'              => 'radio',
 		'settings'          => 'bgtfw_layout_page',
 		'label'             => __( 'Sidebar', 'bgtfw' ),

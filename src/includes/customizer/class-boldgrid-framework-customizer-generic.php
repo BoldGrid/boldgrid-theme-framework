@@ -173,9 +173,13 @@ class Boldgrid_Framework_Customizer_Generic {
 	public function get_directional_css( $control, $config ) {
 		$css = '';
 		foreach ( $config['values'] as $direction => $value ) {
-			$unit = ! empty( $config['unit'] ) ? $config['unit'] : 'px';
-			$css .= $this->get_control_property( $control['choices']['type'], $direction ) .
-				':' . $value . $unit . ';';
+			$unit             = ! empty( $config['unit'] ) ? $config['unit'] : 'px';
+			$control_property = $this->get_control_property( $control['choices']['type'], $direction );
+			if ( 'ContainerWidth' === $control['choices']['type'] && 'max-width' === $control_property && '%' === $unit ) {
+				$css .= "${control_property}: calc( {$value}{$unit} + 30px );";
+			} else {
+				$css .= "${control_property}: ${value}{$unit};";
+			}
 		}
 
 		/**
@@ -463,25 +467,9 @@ class Boldgrid_Framework_Customizer_Generic {
 			),
 			'max-width' => array(
 				array(
-					'media'    => array( 'base' ),
+					'media'    => array( 'base', 'large', 'desktop', 'tablet' ),
 					'unit'     => '%',
 					'isLinked' => true,
-					'values'   => array(
-						'maxWidth' => 100,
-					),
-				),
-				array(
-					'media'    => array( 'large' ),
-					'unit'     => '%',
-					'isLinked' => true,
-					'values'   => array(
-						'maxWidth' => 100,
-					),
-				),
-				array(
-					'media'    => array( 'desktop', 'tablet', 'phone' ),
-					'unit'     => '%',
-					'isLinked' => false,
 					'values'   => array(
 						'maxWidth' => 100,
 					),

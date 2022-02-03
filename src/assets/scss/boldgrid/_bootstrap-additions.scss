@@ -91,11 +91,11 @@
 }
 
 
-#main-wrapper.full-width.max-full-width .main .entry-content .boldgrid-section {
+#main-wrapper.full-width .main .entry-content .boldgrid-section {
 	display: flex !important;
 	justify-content: center;
 	.container-fluid {
-		width: 100%;
+		width: calc( 100% + 30px );
 	}
 }
 

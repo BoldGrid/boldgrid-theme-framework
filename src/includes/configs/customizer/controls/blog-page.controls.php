@@ -52,7 +52,7 @@ return array(
 		'settings'          => 'bgtfw_blog_page_container_width',
 		'priority'          => 36,
 		'label'             => '',
-		'default'           => '',
+		'default'           => $bgtfw_generic->get_width_defaults( 'width' ),
 		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices'           => array(
 			'name'     => 'boldgrid_controls',
@@ -86,7 +86,7 @@ return array(
 		'section'           => 'bgtfw_pages_blog_blog_page_post_content',
 		'settings'          => 'bgtfw_blog_page_container_max_width',
 		'label'             => 'Container Max Width',
-		'default'           => '',
+		'default'           => $bgtfw_generic->get_width_defaults( 'max-width' ),
 		'priority'          => 37,
 		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices'           => array(

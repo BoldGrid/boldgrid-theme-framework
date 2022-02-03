@@ -48,7 +48,7 @@ return array(
 		'section'           => 'bgtfw_layout_page_container',
 		'settings'          => 'bgtfw_pages_container_width',
 		'label'             => '',
-		'default'           => '',
+		'default'           => $bgtfw_generic->get_width_defaults( 'width' ),
 		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices'           => array(
 			'name'     => 'boldgrid_controls',
@@ -82,7 +82,7 @@ return array(
 		'section'           => 'bgtfw_layout_page_container',
 		'settings'          => 'bgtfw_pages_container_max_width',
 		'label'             => 'Container Max Width',
-		'default'           => '',
+		'default'           => $bgtfw_generic->get_width_defaults( 'max-width' ),
 		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
 		'choices'           => array(
 			'name'     => 'boldgrid_controls',

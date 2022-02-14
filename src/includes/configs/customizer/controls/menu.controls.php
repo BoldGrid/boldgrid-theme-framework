@@ -67,6 +67,23 @@ return array(
 		'settings'          => 'bgtfw_menu_background_main',
 		'label'             => esc_attr__( 'Background Color', 'bgtfw' ),
 		'section'           => 'bgtfw_menu_background_main',
+		'priority'          => 1,
+		'default'           => 'transparent',
+		'choices'           => array(
+			'colors'      => $bgtfw_formatted_palette,
+			'size'        => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette, true ),
+			'transparent' => true,
+		),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+	),
+
+	'bgtfw_menu_submenu_background_main'                   => array(
+		'type'              => 'bgtfw-palette-selector',
+		'transport'         => 'postMessage',
+		'settings'          => 'bgtfw_menu_submenu_background_main',
+		'label'             => esc_attr__( 'Sub Menu Background Color', 'bgtfw' ),
+		'section'           => 'bgtfw_menu_background_main',
+		'priority'          => 2,
 		'default'           => 'transparent',
 		'choices'           => array(
 			'colors'      => $bgtfw_formatted_palette,

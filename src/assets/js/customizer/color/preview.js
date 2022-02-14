@@ -249,6 +249,7 @@ export class Preview  {
 	 */
 	getMenuColorsCSS( location ) {
 		let type = `bgtfw_menu_background_${location}`;
+		let subtype = `bgtfw_menu_submenu_background_${location}`;
 		let inFooter = false;
 
 		if ( wp.customize( type )().includes( 'transparent' ) || _.isUndefined( wp.customize( type )() ) ) {
@@ -262,15 +263,27 @@ export class Preview  {
 			type = `bgtfw_${type}_color`;
 		}
 
-		let color = wp.customize( type )();
+		if ( wp.customize( subtype )().includes( 'transparent' ) || _.isUndefined( wp.customize( subtype )() ) ) {
+			subtype = 'header';
 
-		let paletteSelector = new PaletteSelector();
+			if ( BOLDGRID.CUSTOMIZER.data.menu.footerMenus.includes( location ) ) {
+				subtype = 'footer';
+				inFooter = true;
+			}
 
-		let colorVariable = paletteSelector.getColor( color );
+			subtype = `bgtfw_${subtype}_color`;
+		}
 
-		color = paletteSelector.getColor( color, true );
+		let paletteSelector  = new PaletteSelector();
+		let color            = wp.customize( type )();
+		let subcolor         = wp.customize( subtype )();
+		let subcolorVariable = paletteSelector.getColor( subcolor );
 
-		let alpha = parent.net.brehaut.Color( color );
+		color    = paletteSelector.getColor( color, true );
+		subcolor = paletteSelector.getColor( subcolor, true );
+
+		let alpha    = parent.net.brehaut.Color( color );
+		let subalpha = parent.net.brehaut.Color( subcolor );
 		let css = '';
 
 		location = location.replace( /_/g, '-' );
@@ -280,10 +293,10 @@ export class Preview  {
 		}
 
 		css += '@media (min-width: 768px) {';
-		css += `#${location}-menu.sm-clean ul {background-color: ${colorVariable};}`;
-		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${alpha};}`;
-		css += `#${location}-menu.sm-clean ul { border: 1px solid ${alpha};}`;
-		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${colorVariable} transparent;}`;
+		css += `#${location}-menu.sm-clean ul {background-color: ${subcolorVariable};}`;
+		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${subalpha};}`;
+		css += `#${location}-menu.sm-clean ul { border: 1px solid ${subalpha};}`;
+		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${subcolorVariable} transparent;}`;
 		css += '}';
 
 		return css;
@@ -399,6 +412,11 @@ export class Preview  {
 			{
 				name: `bgtfw_menu_background_${location}`,
 				selector: `#${menuId}`,
+				properties: [ 'background-color' ]
+			},
+			{
+				name: `bgtfw_menu_submenu_background_${location}`,
+				selector: `#${menuId} ul`,
 				properties: [ 'background-color' ]
 			},
 			{
@@ -621,7 +639,7 @@ export class Preview  {
 	 * @since 2.0.0
 	 */
 	_bindMenuColors( location ) {
-		wp.customize( `bgtfw_menu_background_${location}`, 'bgtfw_header_color', 'bgtfw_footer_color', ( ...args ) => {
+		wp.customize( `bgtfw_menu_background_${location}`, `bgtfw_menu_submenu_background_${location}`, 'bgtfw_header_color', 'bgtfw_footer_color', ( ...args ) => {
 			args.map( ( control ) => control.bind( () => this.setMenuColors( location ) ) );
 		} );
 	}

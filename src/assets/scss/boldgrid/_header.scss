@@ -15,6 +15,9 @@
 	.boldgrid-section {
 		display: flex;
 		justify-content: center;
+		.container-fluid {
+			width: calc(100% + 40px);
+		}
 		.row {
 			display: flex;
 			flex-wrap: wrap;

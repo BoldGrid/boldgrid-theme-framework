@@ -11,7 +11,7 @@
  */
 
 return array(
-	'bgtfw_pages_container'     => array(
+	'bgtfw_pages_container'           => array(
 		'settings'          => 'bgtfw_pages_container',
 		'transport'         => 'refresh',
 		'label'             => esc_html__( 'Container', 'bgtfw' ),
@@ -42,7 +42,42 @@ return array(
 			),
 		),
 	),
-	'bgtfw_pages_title_display' => array(
+	'bgtfw_pages_container_max_width' => array(
+		'type'              => 'kirki-generic',
+		'transport'         => 'postMessage',
+		'section'           => 'bgtfw_layout_page_container',
+		'settings'          => 'bgtfw_pages_container_max_width',
+		'label'             => 'Container Max Width',
+		'default'           => $bgtfw_generic->get_width_defaults( 'max-width' ),
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
+		'choices'           => array(
+			'name'     => 'boldgrid_controls',
+			'type'     => 'ContainerWidth',
+			'settings' => array(
+				'responsive' => array(
+					'tablet'  => 991,
+					'desktop' => 1199,
+				),
+				'control'    => array(
+					'selectors' => array( 'body.page .container-fluid', 'body.page .boldgrid-section > .full-width' ),
+					'title'     => 'Container Max Width',
+					'name'      => 'bgtfw_pages_container_max_width',
+					'sliders'   => array(
+						array(
+							'name'        => 'maxWidth',
+							'label'       => '',
+							'cssProperty' => 'max-width',
+						),
+					),
+					'units'     => array(
+						'default' => '%',
+						'enabled' => array( 'px', '%' ),
+					),
+				),
+			),
+		),
+	),
+	'bgtfw_pages_title_display'       => array(
 		'type'              => 'radio-buttonset',
 		'settings'          => 'bgtfw_pages_title_display',
 		'label'             => esc_html__( 'Display', 'bgtfw' ),
@@ -94,7 +129,7 @@ return array(
 			),
 		),
 	),
-	'bgtfw_layout_page'         => array(
+	'bgtfw_layout_page'               => array(
 		'type'              => 'radio',
 		'settings'          => 'bgtfw_layout_page',
 		'label'             => __( 'Sidebar', 'bgtfw' ),

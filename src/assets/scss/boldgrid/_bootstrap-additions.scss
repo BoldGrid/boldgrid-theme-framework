@@ -91,11 +91,16 @@
 }
 
 
-#main-wrapper.full-width.max-full-width .main .entry-content .boldgrid-section {
+#main-wrapper.full-width .main .entry-content .boldgrid-section {
 	display: flex !important;
 	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	.boldgrid-section-divider {
+		width: calc( 100% + 40px ) !important;
+	}
 	.container-fluid {
-		width: 100%;
+		width: calc( 100% + 30px );
 	}
 }
 

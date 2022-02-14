@@ -26,7 +26,8 @@ export class DevicePreview {
 				device = 'mobile';
 			}
 
-			let $button = this.$devices.find( `[data-device="${device}"]` );
+			let $devices = $( '.devices' );
+			let $button  = $devices.find( `[data-device="${device}"]` );
 
 			if ( $button.length ) {
 				$button.click();

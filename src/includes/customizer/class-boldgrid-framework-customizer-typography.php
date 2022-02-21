@@ -455,10 +455,6 @@ class Boldgrid_Framework_Customizer_Typography {
 		$selectors        = $this->configs['customizer-options']['typography']['selectors'];
 
 		foreach ( $selectors as $selector => $options ) {
-			if ( 'subheadings' === $options['type'] ) {
-				continue;
-			}
-
 			if ( 'headings' !== $options['type'] ) {
 				continue;
 			}
@@ -503,7 +499,7 @@ class Boldgrid_Framework_Customizer_Typography {
 
 			$css .= '@media only screen and (max-width: 766px) {';
 				foreach ( $selectors as $selector => $options ) {
-					if ( 'subheadings' === $options['type'] ) {
+					if ( 'headings' !== $options['type'] ) {
 						continue;
 					}
 
@@ -528,7 +524,7 @@ class Boldgrid_Framework_Customizer_Typography {
 
 			$css .= '@media only screen and (min-width: 767px) and (max-width: 990px) {';
 				foreach ( $selectors as $selector => $options ) {
-					if ( 'subheadings' === $options['type'] ) {
+					if ( 'headings' !== $options['type'] ) {
 						continue;
 					}
 
@@ -553,7 +549,7 @@ class Boldgrid_Framework_Customizer_Typography {
 
 			$css .= '@media only screen and (min-width: 991px) and (max-width: 1198px) {';
 			foreach ( $selectors as $selector => $options ) {
-				if ( 'subheadings' === $options['type'] ) {
+				if ( 'headings' !== $options['type'] ) {
 					continue;
 				}
 
@@ -578,7 +574,7 @@ class Boldgrid_Framework_Customizer_Typography {
 
 			$css .= '@media only screen and (min-width: 1199px) {';
 			foreach ( $selectors as $selector => $options ) {
-				if ( 'subheadings' === $options['type'] ) {
+				if ( 'headings' !== $options['type'] ) {
 					continue;
 				}
 

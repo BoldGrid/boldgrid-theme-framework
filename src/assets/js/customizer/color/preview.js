@@ -220,6 +220,18 @@ export class Preview  {
 		return css;
 	}
 
+	getSubActiveLinkColor( to, menuId ) {
+		const color = new PaletteSelector().getColor( to );
+		let css = `
+		#${menuId} ul > .current-menu-item:not( .btn ) > a,
+		#${menuId} ul > .current-menu-ancestor:not( .btn ) > a,
+		#${menuId} ul > .current-menu-parent:not( .btn ) > a {
+			color: ${color};
+		}`;
+
+		return css;
+	}
+
 	/**
 	 * Get hover link color CSS.
 	 *
@@ -359,6 +371,14 @@ export class Preview  {
 		this.previewUtility.updateDynamicStyles( `hover-${location}-inline-css`, css );
 	}
 
+	setActiveSubLinkColor( location, menuId ) {
+		let subMod = `bgtfw_menu_items_sub_active_link_color_${location}`;
+		let subTo = wp.customize( subMod )();
+		let subCss = this.getSubActiveLinkColor( subTo, menuId );
+
+		this.previewUtility.updateDynamicStyles( `active-link-sub-color-${location}-inline-css`, subCss );
+	}
+
 	/**
 	 * Set active menu item link colors.
 	 *
@@ -371,6 +391,7 @@ export class Preview  {
 		let mod = `bgtfw_menu_items_active_link_color_${location}`;
 		let to = wp.customize( mod )();
 		let css = this.getActiveLinkColor( to, menuId );
+
 		this.previewUtility.updateDynamicStyles( `active-link-color-${location}-inline-css`, css );
 	}
 
@@ -423,6 +444,11 @@ export class Preview  {
 				name: `bgtfw_menu_items_link_color_${location}`,
 				selector: `#${menuId}`,
 				properties: [ 'link-color' ]
+			},
+			{
+				name: `bgtfw_menu_items_sub_link_color_${location}`,
+				selector: `#${menuId}`,
+				properties: [ 'sub-link-color' ]
 			},
 			{
 				name: `bgtfw_menu_items_active_link_background_${location}`,
@@ -559,6 +585,9 @@ export class Preview  {
 
 				// Set active link colors.
 				this.setActiveLinkColor( props.theme_location, props.menu_id );
+
+				// Set active link colors.
+				this.setActiveSubLinkColor( props.theme_location, props.menu_id );
 
 				// Set supplementary menu CSS.
 				this.setMenuColors( props.theme_location );
@@ -701,6 +730,10 @@ export class Preview  {
 	_bindActiveLinkColors( location, menuId ) {
 		wp.customize( `bgtfw_menu_items_active_link_color_${location}`, ( value ) => {
 			value.bind( () => this.setActiveLinkColor( location, menuId ) );
+		} );
+
+		wp.customize( `bgtfw_menu_items_sub_active_link_color_${location}`, ( value ) => {
+			value.bind( () => this.setActiveSubLinkColor( location, menuId ) );
 		} );
 	}
 

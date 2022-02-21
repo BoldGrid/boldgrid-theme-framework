@@ -11,7 +11,7 @@
  */
 
 return array(
-	'bgtfw_pages_container'           => array(
+	'bgtfw_pages_container'     => array(
 		'settings'          => 'bgtfw_pages_container',
 		'transport'         => 'refresh',
 		'label'             => esc_html__( 'Container', 'bgtfw' ),
@@ -42,7 +42,7 @@ return array(
 			),
 		),
 	),
-	'bgtfw_pages_title_display'       => array(
+	'bgtfw_pages_title_display' => array(
 		'type'              => 'radio-buttonset',
 		'settings'          => 'bgtfw_pages_title_display',
 		'label'             => esc_html__( 'Display', 'bgtfw' ),
@@ -94,7 +94,7 @@ return array(
 			),
 		),
 	),
-	'bgtfw_layout_page'               => array(
+	'bgtfw_layout_page'         => array(
 		'type'              => 'radio',
 		'settings'          => 'bgtfw_layout_page',
 		'label'             => __( 'Sidebar', 'bgtfw' ),

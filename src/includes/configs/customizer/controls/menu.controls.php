@@ -77,7 +77,7 @@ return array(
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 
-	'bgtfw_menu_submenu_background_main'                   => array(
+	'bgtfw_menu_submenu_background_main'              => array(
 		'type'              => 'bgtfw-palette-selector',
 		'transport'         => 'postMessage',
 		'settings'          => 'bgtfw_menu_submenu_background_main',
@@ -384,7 +384,7 @@ return array(
 			),
 		),
 	),
-	'bgtfw_menu_items_hover_link_color_main'               => array(
+	'bgtfw_menu_items_hover_link_color_main'          => array(
 		'type'              => 'bgtfw-palette-selector',
 		'transport'         => 'postMessage',
 		'settings'          => 'bgtfw_menu_items_hover_link_color_main',
@@ -496,6 +496,21 @@ return array(
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
 
+	'bgtfw_menu_items_sub_link_color_main'            => array(
+		'type'              => 'bgtfw-palette-selector',
+		'transport'         => 'postMessage',
+		'settings'          => 'bgtfw_menu_items_sub_link_color_main',
+		'label'             => esc_attr__( 'Sub Menu Link Color', 'bgtfw' ),
+		'section'           => 'bgtfw_menu_items_link_color_main',
+		'priority'          => 2,
+		'default'           => get_theme_mod( 'bgtfw_menu_items_link_color_main', 'color-1' ),
+		'choices'           => array(
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
+		),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+	),
+
 	'bgtfw_menu_items_active_link_color_main'         => array(
 		'type'              => 'bgtfw-palette-selector',
 		'transport'         => 'postMessage',
@@ -504,6 +519,21 @@ return array(
 		'section'           => 'bgtfw_menu_items_active_link_color_main',
 		'priority'          => 1,
 		'default'           => 'color-4',
+		'choices'           => array(
+			'colors' => $bgtfw_formatted_palette,
+			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
+		),
+		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
+	),
+
+	'bgtfw_menu_items_sub_active_link_color_main'     => array(
+		'type'              => 'bgtfw-palette-selector',
+		'transport'         => 'postMessage',
+		'settings'          => 'bgtfw_menu_items_sub_active_link_color_main',
+		'label'             => esc_attr__( 'Sub Menu Color', 'bgtfw' ),
+		'section'           => 'bgtfw_menu_items_active_link_color_main',
+		'priority'          => 2,
+		'default'           => get_theme_mod( 'bgtfw_menu_items_active_link_color_main', 'color-4' ),
 		'choices'           => array(
 			'colors' => $bgtfw_formatted_palette,
 			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),

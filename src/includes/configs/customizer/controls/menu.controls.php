@@ -84,11 +84,10 @@ return array(
 		'label'             => esc_attr__( 'Sub Menu Background Color', 'bgtfw' ),
 		'section'           => 'bgtfw_menu_background_main',
 		'priority'          => 2,
-		'default'           => 'transparent',
+		'default'           => get_theme_mod( 'bgtfw_menu_background_main', 'transparent' ),
 		'choices'           => array(
 			'colors'      => $bgtfw_formatted_palette,
-			'size'        => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette, true ),
-			'transparent' => true,
+			'size'        => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette, false ),
 		),
 		'sanitize_callback' => array( $bgtfw_color_sanitize, 'sanitize_palette_selector' ),
 	),
@@ -503,7 +502,7 @@ return array(
 		'label'             => esc_attr__( 'Sub Menu Link Color', 'bgtfw' ),
 		'section'           => 'bgtfw_menu_items_link_color_main',
 		'priority'          => 2,
-		'default'           => get_theme_mod( 'bgtfw_menu_items_link_color_main', 'color-1' ),
+		'default'           => get_theme_mod( 'bgtfw_menu_items_link_color_main', 'transparent' ),
 		'choices'           => array(
 			'colors' => $bgtfw_formatted_palette,
 			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
@@ -533,7 +532,7 @@ return array(
 		'label'             => esc_attr__( 'Sub Menu Color', 'bgtfw' ),
 		'section'           => 'bgtfw_menu_items_active_link_color_main',
 		'priority'          => 2,
-		'default'           => get_theme_mod( 'bgtfw_menu_items_active_link_color_main', 'color-4' ),
+		'default'           => get_theme_mod( 'bgtfw_menu_items_active_link_color_main', 'transparent' ),
 		'choices'           => array(
 			'colors' => $bgtfw_formatted_palette,
 			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),

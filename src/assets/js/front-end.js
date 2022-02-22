@@ -78,7 +78,7 @@ var BoldGrid = BoldGrid || {};
 						return;
 					}
 					$( this ).addClass( 'btn' );
-					buttonClasses.forEach( ( buttonClass ) => {
+					buttonClasses.split( ' ' ).forEach( ( buttonClass ) => {
 						if ( ! $( this ).hasClass( buttonClass ) ) {
 							$( this ).addClass( buttonClass );
 						}

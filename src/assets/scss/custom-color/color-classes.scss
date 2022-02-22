@@ -119,6 +119,18 @@ $names: background background-color;
 					color: hover( nth($colors, $color), $palette-primary-neutral-color );
 				}
 			}
+			&.color-neutral-sub-link-color.sm {
+				ul {
+					li:not(.btn) {
+						a {
+							color: $palette-primary-neutral-color;
+						}
+						a:hover, a:focus, a:active, a.highlighted {
+							color: hover( nth($colors, $color), $palette-primary-neutral-color );
+						}
+					}
+				}
+			}
 		}
 		&-hover {
 			&:focus, &:hover {
@@ -192,6 +204,32 @@ $names: background background-color;
 						color: hover( nth($colors, $color), $palette-primary-neutral-color );
 					}
 				}
+				&.color-neutral-sub-link-color.sm {
+					ul {
+						li:not(.btn) {
+							a {
+								color: $palette-primary-neutral-color;
+							}
+							a:hover, a:focus, a:active, a.highlighted {
+								color: hover( nth($colors, $color), $palette-primary-neutral-color );
+							}
+						}
+					}
+				}
+				@for $subEach from 1 through length( $colors ) {
+					&.color-#{$subEach}-sub-link-color {
+						ul {
+							li:not(.btn) {
+								a {
+									color: #{nth($colors, $subEach)};
+								}
+								a:hover, a:focus, a:active, a.highlighted {
+									color: hover( nth($colors, $color), nth($colors, $subEach) );
+								}
+							}
+						}
+					}
+				}
 			}
 			&-hover {
 				&:focus, &:hover {
@@ -211,6 +249,18 @@ $names: background background-color;
 						color: hover( $palette-primary-neutral-color, nth($colors, $each) );
 					}
 				}
+				&.color-#{$each}-sub-link-color.sm {
+					ul {
+						li:not(.btn) {
+							a {
+								color: #{nth($colors, $each)};
+							}
+							a:hover, a:focus, a:active, a.highlighted {
+								color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+							}
+						}
+					}
+				}
 			}
 			&.color-neutral-link-color {
 				a {
@@ -218,6 +268,18 @@ $names: background background-color;
 				}
 				a:hover, a:focus, a:active, a.highlighted {
 					color: hover( $palette-primary-neutral-color, $palette-primary-neutral-color );
+				}
+			}
+			&.color-neutral-sub-link-color.sm {
+				ul {
+					li:not(.btn) {
+						a {
+							color: $palette-primary-neutral-color;
+						}
+						a:hover, a:focus, a:active, a.highlighted {
+							color: hover( $palette-primary-neutral-color, $palette-primary-neutral-color );
+						}
+					}
 				}
 			}
 		}

@@ -17,7 +17,7 @@
 		justify-content: center;
 		flex-direction: column;
 		.container-fluid {
-			width: calc(100% + 40px);
+			width: 100%;
 		}
 		.row {
 			display: flex;
@@ -26,12 +26,10 @@
 		.full-width {
 			padding-left: 0px;
 			padding-right: 0px;
-			width: calc( 100% + 40px );
+			width: 100%;
 			.row {
 				display: flex;
 				flex-wrap: wrap;
-				margin-left: -10px;
-				margin-right: -10px;
 				aside.sidebar {
 					padding-left: 0px;
 					padding-right: 0px;

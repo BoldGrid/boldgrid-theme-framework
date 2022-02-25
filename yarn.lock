@@ -6788,10 +6788,9 @@ google-material-color-palette-json@^2.0.1:
   resolved "https://registry.yarnpkg.com/google-material-color-palette-json/-/google-material-color-palette-json-2.0.1.tgz#3948ee7bcfb7f1e59690c16626cf1dea7a4ff89a"
   integrity sha1-OUjue8+38eWWkMFmJs8d6npP+Jo=
 
-googlefonts-sprite-generator@^1.2.0:
+"googlefonts-sprite-generator@https://github.com/pzagor2/GoogleFontSpriteImageGenerator":
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/googlefonts-sprite-generator/-/googlefonts-sprite-generator-1.2.0.tgz#e8eb0683c64afb3896adb40b4546a41cee411015"
-  integrity sha512-hrVv24J6pkFeaOVK6cEhXukVcfqGDE16r+0Jr2ORLVhuwitgolm3WulYqncz5pNxcxHHeZpbTGwfgXwaWuPTpw==
+  resolved "https://github.com/pzagor2/GoogleFontSpriteImageGenerator#96ec2ecc9d4306d9c604585f463a6ff09a0ace25"
   dependencies:
     ejs "~2.5.5"
     express "^4.17.1"

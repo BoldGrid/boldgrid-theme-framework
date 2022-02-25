@@ -97,10 +97,10 @@
 	flex-direction: column;
 	align-items: center;
 	.boldgrid-section-divider {
-		width: calc( 100% + 40px ) !important;
+		width: 100% !important;
 	}
 	.container-fluid {
-		width: calc( 100% + 30px );
+		width: 100%;
 	}
 }
 

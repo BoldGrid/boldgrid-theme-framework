@@ -83,7 +83,7 @@
 		"eslint-loader": "^2.0.0",
 		"eslint-plugin-html": "^4.0.3",
 		"friendly-errors-webpack-plugin": "^1.7.0",
-		"googlefonts-sprite-generator": "^1.2.0",
+		"googlefonts-sprite-generator": "https://github.com/pzagor2/GoogleFontSpriteImageGenerator",
 		"gulp": "^3.9.1",
 		"gulp-changed": "^1.3.0",
 		"gulp-clean": "^0.3.2",

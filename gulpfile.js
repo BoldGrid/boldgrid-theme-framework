@@ -63,10 +63,10 @@ for (var key in webFonts.items) {
 	family = webFonts.items[key].family;
 
     // This value needs to -40 after updating sprite.
-    position = key * -44;
+	position = 16 + key * -41.45;
 
-    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + ( position + 8 ) + 'px;}';
-    css += '[id^="select2-"][id$="-' + family + '"] { color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + ( position + 8 ) + 'px;}';
+    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + ( position + 16 ) + 'px;}';
+    css += '[id^="select2-"][id$="-' + family + '"] { color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + ( position + 16 ) + 'px;}';
     css += '[id^="select2-"][id$="-' + family + '"]:hover, [id^="select2-"][id$="-' + family + '"].select2-results__option--highlighted[aria-selected] { color: transparent; }';
   }
 
@@ -87,7 +87,7 @@ for (var key in webFonts.items) {
 gulp.task('googlefonts-image', function () {
   var googleApiKey = argv.google_api_key;
   if (!googleApiKey) {
-	console.log('Invalid format');
+	console.log('Invalid format' );
     console.log('gulp googlefonts-image --google_api_key={Key Goes Here}');
     return;
   }
@@ -102,7 +102,7 @@ gulp.task('googlefonts-image', function () {
     port: 1224,
     options: {
       // If above 37px, not all fonts will be rendered within web-fonts.png.
-      lineHeigth: '37px',
+      lineHeight: '37px',
       fontSize: '25px',
       width: '500px'
     },
@@ -199,6 +199,7 @@ gulp.task('phpDeps', function () {
 	'!' + config.node_modules + '/kirki-toolkit/**/*.map',
 	'!' + config.node_modules + '/kirki-toolkit/**/*build.sh',
 	'!' + config.node_modules + '/kirki-toolkit/**/*phpunit**',
+	'!' + config.node_modules + '/kirki-toolkit/modules/webfonts/*.json',
     config.node_modules + '/kirki-toolkit/**',
   ])
     .pipe(replace('kirki-logo.svg', 'boldgrid-logo.svg'))
@@ -216,6 +217,8 @@ gulp.task('phpDeps', function () {
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets'));
   gulp.src(config.src + "/assets/json/webfonts.json")
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets/json'));
+  gulp.src(config.src + "/assets/json/kirki-modules-webfonts/*.json*")
+    .pipe(gulp.dest(config.dist + '/includes/kirki/modules/webfonts' ) );
   // Add BoldGrid Logo to Kirki.
   gulp.src(config.src + '/assets/img/boldgrid-logo.svg')
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets/images'));

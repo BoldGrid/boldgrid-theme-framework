@@ -14,6 +14,27 @@
 	}
 }
 
+@media only screen and (min-width: 768px) {
+	.header-left, .header-right {
+		.standard-menu-enabled {
+			.bgtfw-menu-wrap {
+				input:not(:checked):not(.hidden)~.sm-clean {
+					flex-direction: column
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	#masthead {
+		.container {
+			width: 100%;
+		}
+	}
+}
+
+
 .standard-menu-enabled {
 	.site-footer .sm-clean {
 		z-index: 200;

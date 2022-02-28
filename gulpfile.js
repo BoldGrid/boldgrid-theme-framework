@@ -62,7 +62,7 @@ gulp.task('fontFamilyCss', function () {
 for (var key in webFonts.items) {
 	family = webFonts.items[key].family;
 
-    // This value needs to -40 after updating sprite.
+    // This value needs to -41.45 after updating image.
 	position = 16 + key * -41.45;
 
     css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + ( position + 16 ) + 'px;}';

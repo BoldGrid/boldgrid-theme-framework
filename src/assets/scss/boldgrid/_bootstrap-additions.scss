@@ -97,7 +97,7 @@
 	flex-direction: column;
 	align-items: center;
 	.boldgrid-section-divider {
-		width: 100% !important;
+		width:  calc( 100% + 40px)!important;
 	}
 	.container-fluid {
 		width: calc( 100% + 30px );

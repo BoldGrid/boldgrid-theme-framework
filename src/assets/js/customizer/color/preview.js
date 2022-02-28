@@ -220,6 +220,13 @@ export class Preview  {
 		return css;
 	}
 
+	/**
+	 * Get Submenu Active Link Color
+	 *
+	 * @param {string} to The thememod's color value.
+	 * @param {string} menuId Menu ID for nav menu instance.
+	 * @returns {string} css The CSS to add.
+	 */
 	getSubActiveLinkColor( to, menuId ) {
 		const color = new PaletteSelector().getColor( to );
 		let css = `
@@ -260,8 +267,8 @@ export class Preview  {
 	 * @return {String} css The CSS to add.
 	 */
 	getMenuColorsCSS( location ) {
-		let type = `bgtfw_menu_background_${location}`;
-		let subtype = `bgtfw_menu_submenu_background_${location}`;
+		let type     = `bgtfw_menu_background_${location}`;
+		let subtype  = `bgtfw_menu_submenu_background_${location}`;
 		let inFooter = false;
 
 		if ( wp.customize( type )().includes( 'transparent' ) || _.isUndefined( wp.customize( type )() ) ) {
@@ -371,6 +378,12 @@ export class Preview  {
 		this.previewUtility.updateDynamicStyles( `hover-${location}-inline-css`, css );
 	}
 
+	/**
+	 * Set Active Sub menu link color.
+	 * 
+	 * @param {string} location menu location
+	 * @param {string} menuId menu id
+	 */
 	setActiveSubLinkColor( location, menuId ) {
 		let subMod = `bgtfw_menu_items_sub_active_link_color_${location}`;
 		let subTo = wp.customize( subMod )();

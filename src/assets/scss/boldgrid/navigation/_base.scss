@@ -16,7 +16,7 @@
 
 @media only screen and (min-width: 768px) {
 	.header-left, .header-right {
-		.standard-menu-enabled {
+		&.standard-menu-enabled {
 			.bgtfw-menu-wrap {
 				input:not(:checked):not(.hidden)~.sm-clean {
 					flex-direction: column
@@ -505,7 +505,6 @@
 				input:not(:checked):not(.hidden) ~ .sm-clean {
 					display: flex;
 					width: 100%;
-					flex-direction: row;
 					&.sm-vertical {
 						flex-direction: column;
 					}
@@ -542,7 +541,6 @@
 				input:not(:checked):not(.hidden) ~ .sm-clean {
 					display: flex;
 					width: 100%;
-					flex-direction: row;
 					&.sm-vertical {
 						flex-direction: column;
 					}
@@ -578,7 +576,6 @@
 				input:not(:checked):not(.hidden) ~ .sm-clean {
 					display: flex;
 					width: 100%;
-					flex-direction: row;
 					&.sm-vertical {
 						flex-direction: column;
 					}
@@ -615,7 +612,6 @@
 				input:not(:checked):not(.hidden) ~ .sm-clean {
 					display: flex;
 					width: 100%;
-					flex-direction: row;
 					&.sm-vertical {
 						flex-direction: column;
 					}

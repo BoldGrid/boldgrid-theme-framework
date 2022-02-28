@@ -502,7 +502,7 @@ return array(
 		'label'             => esc_attr__( 'Sub Menu Link Color', 'bgtfw' ),
 		'section'           => 'bgtfw_menu_items_link_color_main',
 		'priority'          => 2,
-		'default'           => get_theme_mod( 'bgtfw_menu_items_link_color_main', 'transparent' ),
+		'default'           => 'transparent',
 		'choices'           => array(
 			'colors' => $bgtfw_formatted_palette,
 			'size'   => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),

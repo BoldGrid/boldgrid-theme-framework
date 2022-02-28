@@ -36,6 +36,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.13.0 ###
+* New Feature: Add controls for submenu backround, link, and active link colors [#587](https://github.com/BoldGrid/boldgrid-theme-framework/issues/587)
+* Feature Update: Update PPB and Crio Google Fonts [#276](https://github.com/BoldGrid/post-and-page-builder/issues/276)
+* Bug Fix: Headings responsive typography controls buttons [#623](https://github.com/BoldGrid/boldgrid-theme-framework/issues/623)
 ### 2.12.0 ###
 * New Feature: Hamburger Menus on Tablet / Desktop [#512](https://github.com/BoldGrid/boldgrid-theme-framework/issues/512)
 * New Feature: Extend responsive text controls to Tagline & Custom Page Header Site Title [#557](https://github.com/BoldGrid/boldgrid-theme-framework/issues/557)

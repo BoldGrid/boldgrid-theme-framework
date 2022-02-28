@@ -100,7 +100,7 @@
 		width: 100% !important;
 	}
 	.container-fluid {
-		width: 100%;
+		width: calc( 100% + 30px );
 	}
 }
 

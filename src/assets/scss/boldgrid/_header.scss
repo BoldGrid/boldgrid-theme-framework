@@ -13,6 +13,12 @@
 		padding-right: 0px;
 	}
 	.boldgrid-section {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		.container-fluid {
+			width: 100%;
+		}
 		.row {
 			display: flex;
 			flex-wrap: wrap;
@@ -20,6 +26,7 @@
 		.full-width {
 			padding-left: 0px;
 			padding-right: 0px;
+			width: 100%;
 			.row {
 				display: flex;
 				flex-wrap: wrap;

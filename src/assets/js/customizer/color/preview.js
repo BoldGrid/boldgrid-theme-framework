@@ -221,6 +221,25 @@ export class Preview  {
 	}
 
 	/**
+	 * Get Submenu Active Link Color
+	 *
+	 * @param {string} to The thememod's color value.
+	 * @param {string} menuId Menu ID for nav menu instance.
+	 * @returns {string} css The CSS to add.
+	 */
+	getSubActiveLinkColor( to, menuId ) {
+		const color = new PaletteSelector().getColor( to );
+		let css = `
+		#${menuId} ul > .current-menu-item:not( .btn ) > a,
+		#${menuId} ul > .current-menu-ancestor:not( .btn ) > a,
+		#${menuId} ul > .current-menu-parent:not( .btn ) > a {
+			color: ${color};
+		}`;
+
+		return css;
+	}
+
+	/**
 	 * Get hover link color CSS.
 	 *
 	 * @param {String} to Thememod's color value.
@@ -248,7 +267,8 @@ export class Preview  {
 	 * @return {String} css The CSS to add.
 	 */
 	getMenuColorsCSS( location ) {
-		let type = `bgtfw_menu_background_${location}`;
+		let type     = `bgtfw_menu_background_${location}`;
+		let subtype  = `bgtfw_menu_submenu_background_${location}`;
 		let inFooter = false;
 
 		if ( wp.customize( type )().includes( 'transparent' ) || _.isUndefined( wp.customize( type )() ) ) {
@@ -262,15 +282,27 @@ export class Preview  {
 			type = `bgtfw_${type}_color`;
 		}
 
-		let color = wp.customize( type )();
+		if ( wp.customize( subtype )().includes( 'transparent' ) || _.isUndefined( wp.customize( subtype )() ) ) {
+			subtype = 'header';
 
-		let paletteSelector = new PaletteSelector();
+			if ( BOLDGRID.CUSTOMIZER.data.menu.footerMenus.includes( location ) ) {
+				subtype = 'footer';
+				inFooter = true;
+			}
 
-		let colorVariable = paletteSelector.getColor( color );
+			subtype = `bgtfw_${subtype}_color`;
+		}
 
-		color = paletteSelector.getColor( color, true );
+		let paletteSelector  = new PaletteSelector();
+		let color            = wp.customize( type )();
+		let subcolor         = wp.customize( subtype )();
+		let subcolorVariable = paletteSelector.getColor( subcolor );
 
-		let alpha = parent.net.brehaut.Color( color );
+		color    = paletteSelector.getColor( color, true );
+		subcolor = paletteSelector.getColor( subcolor, true );
+
+		let alpha    = parent.net.brehaut.Color( color );
+		let subalpha = parent.net.brehaut.Color( subcolor );
 		let css = '';
 
 		location = location.replace( /_/g, '-' );
@@ -280,10 +312,10 @@ export class Preview  {
 		}
 
 		css += '@media (min-width: 768px) {';
-		css += `#${location}-menu.sm-clean ul {background-color: ${colorVariable};}`;
-		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${alpha};}`;
-		css += `#${location}-menu.sm-clean ul { border: 1px solid ${alpha};}`;
-		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${colorVariable} transparent;}`;
+		css += `#${location}-menu.sm-clean ul {background-color: ${subcolorVariable};}`;
+		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${subalpha};}`;
+		css += `#${location}-menu.sm-clean ul { border: 1px solid ${subalpha};}`;
+		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${subcolorVariable} transparent;}`;
 		css += '}';
 
 		return css;
@@ -347,6 +379,20 @@ export class Preview  {
 	}
 
 	/**
+	 * Set Active Sub menu link color.
+	 * 
+	 * @param {string} location menu location
+	 * @param {string} menuId menu id
+	 */
+	setActiveSubLinkColor( location, menuId ) {
+		let subMod = `bgtfw_menu_items_sub_active_link_color_${location}`;
+		let subTo = wp.customize( subMod )();
+		let subCss = this.getSubActiveLinkColor( subTo, menuId );
+
+		this.previewUtility.updateDynamicStyles( `active-link-sub-color-${location}-inline-css`, subCss );
+	}
+
+	/**
 	 * Set active menu item link colors.
 	 *
 	 * @since 2.0.0
@@ -358,6 +404,7 @@ export class Preview  {
 		let mod = `bgtfw_menu_items_active_link_color_${location}`;
 		let to = wp.customize( mod )();
 		let css = this.getActiveLinkColor( to, menuId );
+
 		this.previewUtility.updateDynamicStyles( `active-link-color-${location}-inline-css`, css );
 	}
 
@@ -402,9 +449,19 @@ export class Preview  {
 				properties: [ 'background-color' ]
 			},
 			{
+				name: `bgtfw_menu_submenu_background_${location}`,
+				selector: `#${menuId} ul`,
+				properties: [ 'background-color' ]
+			},
+			{
 				name: `bgtfw_menu_items_link_color_${location}`,
 				selector: `#${menuId}`,
 				properties: [ 'link-color' ]
+			},
+			{
+				name: `bgtfw_menu_items_sub_link_color_${location}`,
+				selector: `#${menuId}`,
+				properties: [ 'sub-link-color' ]
 			},
 			{
 				name: `bgtfw_menu_items_active_link_background_${location}`,
@@ -542,6 +599,9 @@ export class Preview  {
 				// Set active link colors.
 				this.setActiveLinkColor( props.theme_location, props.menu_id );
 
+				// Set active link colors.
+				this.setActiveSubLinkColor( props.theme_location, props.menu_id );
+
 				// Set supplementary menu CSS.
 				this.setMenuColors( props.theme_location );
 
@@ -621,7 +681,7 @@ export class Preview  {
 	 * @since 2.0.0
 	 */
 	_bindMenuColors( location ) {
-		wp.customize( `bgtfw_menu_background_${location}`, 'bgtfw_header_color', 'bgtfw_footer_color', ( ...args ) => {
+		wp.customize( `bgtfw_menu_background_${location}`, `bgtfw_menu_submenu_background_${location}`, 'bgtfw_header_color', 'bgtfw_footer_color', ( ...args ) => {
 			args.map( ( control ) => control.bind( () => this.setMenuColors( location ) ) );
 		} );
 	}
@@ -683,6 +743,10 @@ export class Preview  {
 	_bindActiveLinkColors( location, menuId ) {
 		wp.customize( `bgtfw_menu_items_active_link_color_${location}`, ( value ) => {
 			value.bind( () => this.setActiveLinkColor( location, menuId ) );
+		} );
+
+		wp.customize( `bgtfw_menu_items_sub_active_link_color_${location}`, ( value ) => {
+			value.bind( () => this.setActiveSubLinkColor( location, menuId ) );
 		} );
 	}
 

@@ -439,14 +439,16 @@ class BoldGrid_Framework_Styles {
 	 * @return string $css Modified CSS to add to front end.
 	 */
 	public function menu_css( $location ) {
-		$background_color = get_theme_mod( "bgtfw_menu_background_{$location}" );
+		$background_color         = get_theme_mod( "bgtfw_menu_background_{$location}" );
+		$submenu_background_color = get_theme_mod( "bgtfw_menu_submenu_background_{$location}" );
+
 		$in_footer = false;
 		if ( strpos( $background_color, 'transparent' ) !== false ) {
 			$background_color = 'header';
 
 			if ( in_array( $location, $this->configs['menu']['footer_menus'], true ) ) {
 				$background_color = 'footer';
-				$in_footer = true;
+				$in_footer        = true;
 			}
 
 			$background_color = get_theme_mod( "bgtfw_{$background_color}_color" );
@@ -454,10 +456,28 @@ class BoldGrid_Framework_Styles {
 			$background_color = get_theme_mod( "bgtfw_menu_background_{$location}" );
 		}
 
+		$in_footer = false;
+		if ( strpos( $submenu_background_color, 'transparent' ) !== false ) {
+			$submenu_background_color = 'header';
+
+			if ( in_array( $location, $this->configs['menu']['footer_menus'], true ) ) {
+				$submenu_background_color = 'footer';
+				$in_footer                = true;
+			}
+
+			$submenu_background_color = get_theme_mod( "bgtfw_{$submenu_background_color}_color" );
+		} else {
+			$submenu_background_color = get_theme_mod( "bgtfw_menu_submenu_background_{$location}" );
+		}
+
 		$background_color = explode( ':', $background_color );
 		$background_color = array_pop( $background_color );
 
-		$color_obj = ariColor::newColor( $background_color );
+		$submenu_background_color = explode( ':', $submenu_background_color );
+		$submenu_background_color = array_pop( $submenu_background_color );
+
+		$color_obj    = ariColor::newColor( $background_color );
+		$subcolor_obj = ariColor::newColor( $submenu_background_color );
 
 		$css = '';
 
@@ -468,14 +488,15 @@ class BoldGrid_Framework_Styles {
 		if ( false === $in_footer ) {
 			$css .= ".header-left #{$location}-menu, .header-right #{$location}-menu { background-color: " . $color_obj->toCSS( 'rgba' ) . '; }';
 		}
-		$color_obj->alpha = 0.7;
+		$subcolor_obj->alpha = 0.7;
 		$css .= '@media (min-width: 768px) {';
 
-		$color_obj->alpha = 0.4;
-		$css .= "#{$location}-menu.sm-clean ul {background-color: {$background_color};}";
-		$css .= "#{$location}-menu.sm-clean ul a:not(.btn), #{$location}-menu.sm-clean ul a:not(.btn):hover, #{$location}-menu.sm-clean ul a:not(.btn):focus, #{$location}-menu.sm-clean ul a:not(.btn):active, #{$location}-menu.sm-clean ul a:not(.btn).highlighted, #{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, #{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover { background-color:" . $color_obj->toCSS( 'rgba' ) . ';}';
-		$css .= "#{$location}-menu.sm-clean ul { border: 1px solid " . $color_obj->toCSS( 'rgba' ) . ';}';
-		$css .= "#{$location}-menu.sm-clean > li > ul:before, #{$location}-menu.sm-clean > li > ul:after { border-color: transparent transparent {$background_color} transparent;}";
+		$subcolor_obj->alpha = 0.4;
+
+		$css .= "#{$location}-menu.sm-clean ul {background-color: {$submenu_background_color};}";
+		$css .= "#{$location}-menu.sm-clean ul a:not(.btn), #{$location}-menu.sm-clean ul a:not(.btn):hover, #{$location}-menu.sm-clean ul a:not(.btn):focus, #{$location}-menu.sm-clean ul a:not(.btn):active, #{$location}-menu.sm-clean ul a:not(.btn).highlighted, #{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, #{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover { background-color:" . $subcolor_obj->toCSS( 'rgba' ) . ';}';
+		$css .= "#{$location}-menu.sm-clean ul { border: 1px solid " . $subcolor_obj->toCSS( 'rgba' ) . ';}';
+		$css .= "#{$location}-menu.sm-clean > li > ul:before, #{$location}-menu.sm-clean > li > ul:after { border-color: transparent transparent {$submenu_background_color} transparent;}";
 		$css .= '}';
 
 		return $css;

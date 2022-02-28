@@ -5,14 +5,40 @@
 			height: 100%;
 			display: flex;
 			flex-direction: row;
-			@include align-control();
-		}
-
-		.sm {
-			@include align-control();
 		}
 	}
 }
+
+.header-top {
+	.bgtfw-menu-wrap {
+		@include align-control();
+	}
+
+	.sm {
+		@include align-control();
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.header-left, .header-right {
+		&.standard-menu-enabled {
+			.bgtfw-menu-wrap {
+				input:not(:checked):not(.hidden)~.sm-clean {
+					flex-direction: column
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	#masthead {
+		.container {
+			width: 100%;
+		}
+	}
+}
+
 
 .standard-menu-enabled {
 	.site-footer .sm-clean {
@@ -399,6 +425,7 @@
 		&.e,
 		&.ne,
 		&.se {
+			justify-content: flex-end;
 			> label {
 				justify-content: flex-end;
 			}
@@ -406,6 +433,7 @@
 		&.n,
 		&.c,
 		&.s {
+			justify-content: center;
 			> label {
 				justify-content: center;
 			}
@@ -413,6 +441,7 @@
 		&.w,
 		&.nw,
 		&.sw {
+			justify-content: flex-start;
 			> label {
 				justify-content: flex-start;
 			}
@@ -420,6 +449,7 @@
 		&.n,
 		&.ne,
 		&.nw {
+			align-items: flex-start;
 			> label {
 				align-items: flex-start;
 			}
@@ -427,6 +457,7 @@
 		&.e,
 		&.c,
 		&.w {
+			align-items: center;
 			> label {
 				align-items: center;
 			}
@@ -434,6 +465,7 @@
 		&.s,
 		&.se,
 		&.sw {
+			align-items: flex-end;
 			> label {
 				align-items: flex-end;
 			}
@@ -484,7 +516,6 @@
 				input:not(:checked):not(.hidden) ~ .sm-clean {
 					display: flex;
 					width: 100%;
-					flex-direction: row;
 					&.sm-vertical {
 						flex-direction: column;
 					}
@@ -521,7 +552,6 @@
 				input:not(:checked):not(.hidden) ~ .sm-clean {
 					display: flex;
 					width: 100%;
-					flex-direction: row;
 					&.sm-vertical {
 						flex-direction: column;
 					}
@@ -557,7 +587,6 @@
 				input:not(:checked):not(.hidden) ~ .sm-clean {
 					display: flex;
 					width: 100%;
-					flex-direction: row;
 					&.sm-vertical {
 						flex-direction: column;
 					}
@@ -594,7 +623,6 @@
 				input:not(:checked):not(.hidden) ~ .sm-clean {
 					display: flex;
 					width: 100%;
-					flex-direction: row;
 					&.sm-vertical {
 						flex-direction: column;
 					}

@@ -78,7 +78,11 @@ var BoldGrid = BoldGrid || {};
 						return;
 					}
 					$( this ).addClass( 'btn' );
-					$( this ).addClass( buttonClasses );
+					buttonClasses.split( ' ' ).forEach( ( buttonClass ) => {
+						if ( ! $( this ).hasClass( buttonClass ) ) {
+							$( this ).addClass( buttonClass );
+						}
+					} );
 				} );
 			},
 

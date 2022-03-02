@@ -164,6 +164,7 @@ class BoldGrid_Framework {
 			'comments',
 			'compile-colors',
 			'container',
+			'container-width',
 			'content',
 			'custom-header',
 			'editor',
@@ -388,9 +389,10 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function define_theme_hooks() {
-		$styles         = new BoldGrid_Framework_Styles( $this->configs );
-		$scripts        = new BoldGrid_Framework_Scripts( $this->configs );
-		$boldgrid_theme = new BoldGrid( $this->configs );
+		$styles          = new BoldGrid_Framework_Styles( $this->configs );
+		$scripts         = new BoldGrid_Framework_Scripts( $this->configs );
+		$container_width = new Boldgrid_Framework_Container_Width( $this->configs );
+		$boldgrid_theme  = new BoldGrid( $this->configs );
 
 		// Load Theme Wrapper.
 		if ( true === $this->configs['boldgrid-parent-theme'] ) {
@@ -433,8 +435,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'body_class', $boldgrid_theme, 'body_classes' );
 		$this->loader->add_filter( 'post_class', $boldgrid_theme, 'post_class' );
 
-		$this->loader->add_filter( 'bgtfw_get_container_type', $boldgrid_theme, 'get_container_type', 10, 1 );
-		$this->loader->add_filter( 'bgtfw_get_max_width', $boldgrid_theme, 'get_max_width', 10, 1 );
+		$this->loader->add_filter( 'bgtfw_get_container_type', $container_width, 'get_container_type', 10, 1 );
+		$this->loader->add_filter( 'bgtfw_get_max_width', $container_width, 'get_max_width', 10, 1 );
 
 		$this->loader->add_filter( 'bgtfw_entry_header_classes', $boldgrid_theme, 'entry_header_classes' );
 		$this->loader->add_filter( 'bgtfw_header_classes', $boldgrid_theme, 'header_classes' );

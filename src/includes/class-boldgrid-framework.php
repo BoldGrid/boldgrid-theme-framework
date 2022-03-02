@@ -433,6 +433,9 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'body_class', $boldgrid_theme, 'body_classes' );
 		$this->loader->add_filter( 'post_class', $boldgrid_theme, 'post_class' );
 
+		$this->loader->add_filter( 'bgtfw_get_container_type', $boldgrid_theme, 'get_container_type', 10, 1 );
+		$this->loader->add_filter( 'bgtfw_get_max_width', $boldgrid_theme, 'get_max_width', 10, 1 );
+
 		$this->loader->add_filter( 'bgtfw_entry_header_classes', $boldgrid_theme, 'entry_header_classes' );
 		$this->loader->add_filter( 'bgtfw_header_classes', $boldgrid_theme, 'header_classes' );
 		$this->loader->add_filter( 'bgtfw_navi_wrap_classes', $boldgrid_theme, 'header_classes' );
@@ -440,6 +443,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bgtfw_navi_classes', $boldgrid_theme, 'navi_classes' );
 		$this->loader->add_filter( 'bgtfw_footer_content_classes', $boldgrid_theme, 'inner_footer_classes' );
 		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'blog_page_container' );
+		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'page_container' );
 		$this->loader->add_filter( 'bgtfw_woocommerce_wrapper_classes', $boldgrid_theme, 'woocommerce_container' );
 		$this->loader->add_filter( 'bgtfw_blog_page_post_title_classes', $boldgrid_theme, 'blog_page_post_title_classes' );
 		$this->loader->add_filter( 'bgtfw_posts_title_classes', $boldgrid_theme, 'post_title_classes' );

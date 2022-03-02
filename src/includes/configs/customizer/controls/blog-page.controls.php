@@ -29,22 +29,6 @@ return array(
 			return is_int( $value ) && 6 <= absint( $value ) ? absint( $value ) : $setting->default;
 		},
 	),
-	'bgtfw_blog_page_container'                        => array(
-		'settings'          => 'bgtfw_blog_page_container',
-		'transport'         => 'refresh',
-		'label'             => esc_html__( 'Container', 'bgtfw' ),
-		'type'              => 'radio-buttonset',
-		'priority'          => 35,
-		'default'           => 'container',
-		'choices'           => array(
-			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			''          => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
-		),
-		'section'           => 'bgtfw_pages_blog_blog_page_post_content',
-		'sanitize_callback' => function( $value, $settings ) {
-			return 'container' === $value || '' === $value ? $value : $settings->default;
-		},
-	),
 	'bgtfw_pages_blog_blog_page_layout_posts_per_page' => array(
 		'label'       => __( 'Blog Posts Per Page', 'bgtfw' ),
 		'tooltip'     => __( 'Set how many posts display per page for your blog, categories, archives, and search pages.', 'bgtfw' ),

@@ -40,8 +40,6 @@
 		"script:tgm": "node build/tgm.mjs",
 		"script:wp-textdomain-lint": "node build/check-text-domains.js",
 		"script:zip": "node build/build-zip.js",
-		"snyk-protect": "snyk protect",
-		"prepare": "yarn run snyk-protect",
 		"build-prime": "git clone https://github.com/boldgrid/prime ../themes/prime && ln -s $(pwd)/boldgrid-theme-framework ../themes/prime/inc/boldgrid-theme-framework"
 	},
 	"keywords": [

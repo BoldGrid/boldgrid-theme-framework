@@ -94,6 +94,11 @@ class BoldGrid_Framework_Styles {
 		wp_enqueue_style( 'bgtfw-responsive-font-sizes' );
 	}
 
+	/**
+	 * Register Container Widths.
+	 *
+	 * @since 2.14.0
+	 */
 	public function register_container_widths() {
 		$scss = new Boldgrid_Framework_SCSS( $this->configs );
 		$css  = $scss->compile_widths();

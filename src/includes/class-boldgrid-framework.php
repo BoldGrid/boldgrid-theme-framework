@@ -1174,7 +1174,6 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'init', $staging, 'launch_staging_process', 998 );
 		$this->loader->add_action( 'init', $scss, 'force_recompile_checker', 999 );
 
-
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $scss, 'force_update_css', 999 );
 		}

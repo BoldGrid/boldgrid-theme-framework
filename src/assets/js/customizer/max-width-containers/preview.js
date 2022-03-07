@@ -60,7 +60,7 @@
 		var controlId = wpControl.id;
 		wp.customize( controlId, ( control ) => {
 			control.bind( () => {
-				var attrs = [ 'data-mw-base', 'data-mw-large', 'data-mw-destop','data-mw-tablet' ];
+				var attrs = [ 'data-mw-base', 'data-mw-large', 'data-mw-destop', 'data-mw-tablet' ];
 				attrs.forEach( attr => {
 					$( 'body' ).removeAttr( attr );
 				} );

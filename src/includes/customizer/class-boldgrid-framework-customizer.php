@@ -59,6 +59,46 @@ class BoldGrid_Framework_Customizer {
 	}
 
 	/**
+	 * WP Ajax Responsive Font Sizes.
+	 *
+	 * Ajax callback to get the font sizes for customizer
+	 * Preview.
+	 *
+	 * @see BoldGrid_Framework::customizer_typography() for WP Ajax action hook definition.
+	 *
+	 * @since 2.11.0
+	 */
+	public function wp_ajax_bgtfw_container_width() {
+		check_ajax_referer( 'bgtfw_container_width', 'containerWidthNonce' );
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			wp_die( -1 );
+		}
+
+		$scss = new Boldgrid_Framework_SCSS( $this->configs );
+		$css  = $scss->compile_widths();
+
+		wp_send_json_success(
+			array(
+				'css' => $css,
+			)
+		);
+	}
+
+	/**
+	 * Add a nonce for Customizer for container width.
+	 *
+	 * @param array $nonces An array of customizer nonces.
+	 *
+	 * @return array An array of customizer nonces.
+	 *
+	 * @since 2.11.0
+	 */
+	public function container_width_nonce( $nonces ) {
+		$nonces['bgtfw_container_width'] = wp_create_nonce( 'bgtfw_container_width' );
+		return $nonces;
+	}
+
+	/**
 	 * Add all kirki controls.
 	 *
 	 * @since 1.5.3

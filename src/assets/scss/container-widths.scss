@@ -1,0 +1,326 @@
+body[data-container="max-full-width"] {
+	@if variable-exists(pages-mw-base) {
+		&.page {
+			&[data-mw-base="#{$pages-mw-base}"] {
+				.boldgrid-section {
+					> .container-fluid {
+						max-width: $pages-mw-base;
+					}
+					> .full-width {
+						max-width: $pages-mw-base;
+					}
+				}
+				.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+					max-width: $pages-mw-base;
+				}
+				nav.navigation, #comments {
+					max-width: $pages-mw-base;
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+		}
+	}
+	@if variable-exists(blog-posts-mw-base) {
+		&.single {
+			&[data-mw-base="#{$blog-posts-mw-base}"] {
+				.boldgrid-section {
+					> .container-fluid {
+						max-width: $blog-posts-mw-base;
+					}
+					> .full-width {
+						max-width: $blog-posts-mw-base;
+					}
+				}
+				.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+					max-width: $blog-posts-mw-base;
+				}
+				nav.navigation, #comments {
+					max-width: $blog-posts-mw-base;
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+		}
+	}
+	@if variable-exists(blog-page-mw-base) {
+		&[data-mw-base="#{$blog-page-mw-base}"] {
+			&.search{
+				#main-wrapper.full-width.max-full-width .main {
+					max-width: $blog-page-mw-base;
+				}
+			}
+			&.archive, &.blog {
+				#main-wrapper.full-width.max-full-width {
+					max-width: calc( #{$blog-page-mw-base});
+				}
+			}
+		}
+		&.archive, &.blog, &.search {
+			&[data-mw-base="#{$blog-page-mw-base}"] {
+				.boldgrid-section {
+					> .container-fluid {
+						max-width: $blog-page-mw-base;
+					}
+					> .full-width {
+						max-width: $blog-page-mw-base;
+					}
+				}
+				.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+					max-width: $blog-page-mw-base;
+				}
+				nav.navigation, #comments {
+					max-width: $blog-page-mw-base;
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+		}
+	}
+}
+@media only screen and (min-width: 1200px) {
+	body[data-container="max-full-width"] {
+		@if variable-exists(pages-mw-large) {
+			&.page {
+				&[data-mw-large="#{$pages-mw-large}"] {
+					.boldgrid-section {
+						> .container-fluid {
+							max-width: $pages-mw-large;
+						}
+						> .full-width {
+							max-width: $pages-mw-large;
+						}
+					}
+					.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+						max-width: $pages-mw-large;
+					}
+					nav.navigation, #comments {
+						max-width: $pages-mw-large;
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+			}
+		}
+		@if variable-exists(blog-posts-mw-large) {
+			&.single {
+				&[data-mw-large="#{$blog-posts-mw-large}"] {
+					.boldgrid-section {
+						> .container-fluid {
+							max-width: $blog-posts-mw-large;
+						}
+						> .full-width {
+							max-width: $blog-posts-mw-large;
+						}
+					}
+					.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+						max-width: $blog-posts-mw-large;
+					}
+					nav.navigation, #comments {
+						max-width: $blog-posts-mw-large;
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+			}
+		}
+		@if variable-exists(blog-page-mw-large) {
+			&[data-mw-large="#{$blog-page-mw-large}"] {
+				&.search{
+					#main-wrapper.full-width.max-full-width .main {
+						max-width: $blog-page-mw-large;
+					}
+				}
+				&.archive, &.blog {
+					#main-wrapper.full-width.max-full-width {
+						max-width: #{$blog-page-mw-large};
+					}
+				}
+			}
+			&.archive, &.blog, &.search {
+				&[data-mw-large="#{$blog-page-mw-large}"] {
+					.boldgrid-section {
+						> .container-fluid {
+							max-width: $blog-page-mw-large;
+						}
+						> .full-width {
+							max-width: $blog-page-mw-large;
+						}
+					}
+					.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+						max-width: $blog-page-mw-large;
+					}
+					nav.navigation, #comments {
+						max-width: $blog-page-mw-large;
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+			}
+		}
+	}
+}
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+	body[data-container="max-full-width"] {
+		@if variable-exists(pages-mw-desktop) {
+			&.page {
+				&[data-mw-desktop="#{$pages-mw-desktop}"] {
+					.boldgrid-section {
+						> .container-fluid {
+							max-width: $pages-mw-desktop;
+						}
+						> .full-width {
+							max-width: $pages-mw-desktop;
+						}
+					}
+					.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+						max-width: $pages-mw-desktop;
+					}
+					nav.navigation, #comments {
+						max-width: $pages-mw-desktop;
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+			}
+		}
+		@if variable-exists(blog-posts-mw-desktop) {
+			&.single {
+				&[data-mw-desktop="#{$blog-posts-mw-desktop}"] {
+					.boldgrid-section {
+						> .container-fluid {
+							max-width: $blog-posts-mw-desktop;
+						}
+						> .full-width {
+							max-width: $blog-posts-mw-desktop;
+						}
+					}
+					.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+						max-width: $blog-posts-mw-desktop;
+					}
+					nav.navigation, #comments {
+						max-width: $blog-posts-mw-desktop;
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+			}
+		}
+		@if variable-exists(blog-page-mw-desktop) {
+			&[data-mw-desktop="#{$blog-page-mw-desktop}"] {
+				&.search{
+					#main-wrapper.full-width.max-full-width .main {
+						max-width: $blog-page-mw-desktop;
+					}
+				}
+				&.archive, &.blog {
+					#main-wrapper.full-width.max-full-width {
+						max-width: #{$blog-page-mw-desktop};
+					}
+				}
+			}
+			&.archive, &.blog, &.search {
+				&[data-mw-desktop="#{$blog-page-mw-desktop}"] {
+					.boldgrid-section {
+						> .container-fluid {
+							max-width: $blog-page-mw-desktop;
+						}
+						> .full-width {
+							max-width: $blog-page-mw-desktop;
+						}
+					}
+					.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+						max-width: $blog-page-mw-desktop;
+					}
+					nav.navigation, #comments {
+						max-width: $blog-page-mw-desktop;
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+			}
+		}
+	}
+}
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+	body[data-container="max-full-width"] {
+		@if variable-exists(pages-mw-tablet) {
+			&.page {
+				&[data-mw-tablet="#{$pages-mw-tablet}"] {
+					.boldgrid-section {
+						> .container-fluid {
+							max-width: $pages-mw-tablet;
+						}
+						> .full-width {
+							max-width: $pages-mw-tablet;
+						}
+					}
+					.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+						max-width: $pages-mw-tablet;
+					}
+					nav.navigation, #comments {
+						max-width: $pages-mw-tablet;
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+			}
+		}
+		@if variable-exists(blog-posts-mw-tablet) {
+			&.single {
+				&[data-mw-tablet="#{$blog-posts-mw-tablet}"] {
+					.boldgrid-section {
+						> .container-fluid {
+							max-width: $blog-posts-mw-tablet;
+						}
+						> .full-width {
+							max-width: $blog-posts-mw-tablet;
+						}
+					}
+					.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+						max-width: $blog-posts-mw-tablet;
+					}
+					nav.navigation, #comments {
+						max-width: $blog-posts-mw-tablet;
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+			}
+		}
+		@if variable-exists(blog-page-mw-tablet) {
+			&[data-mw-tablet="#{$blog-page-mw-tablet}"] {
+				&.search{
+					#main-wrapper.full-width.max-full-width .main {
+						max-width: $blog-page-mw-tablet;
+					}
+				}
+				&.archive, &.blog {
+					#main-wrapper.full-width.max-full-width {
+						max-width: #{$blog-page-mw-tablet};
+					}
+				}
+			}
+			&.archive, &.blog, &.search {
+				&[data-mw-tablet="#{$blog-page-mw-tablet}"] {
+					.boldgrid-section {
+						> .container-fluid {
+							max-width: $blog-page-mw-tablet;
+						}
+						> .full-width {
+							max-width: $blog-page-mw-tablet;
+						}
+					}
+					.page-header-wrapper.full-width .featured-imgage-header:not( .contained ) {
+						max-width: $blog-page-mw-tablet;
+					}
+					nav.navigation, #comments {
+						max-width: $blog-page-mw-tablet;
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+			}
+		}
+	}
+}

@@ -74,8 +74,10 @@ class Boldgrid_Framework_Customizer_Generic {
 	public function add_styles() {
 		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			$name = ! empty( $control['choices']['name'] ) ? $control['choices']['name'] : null;
-
 			if ( 'boldgrid_controls' === $name ) {
+				if ( false !== strpos( $control['settings'], 'container_max_width' ) ) {
+					continue;
+				}
 				$style_id      = $control['settings'] . '-bgcontrol';
 				$theme_mod_val = get_theme_mod( $control['settings'] );
 
@@ -432,42 +434,10 @@ class Boldgrid_Framework_Customizer_Generic {
 						'width' => 1170,
 					),
 				),
-				array(
-					'media'    => array( 'large' ),
-					'unit'     => 'px',
-					'isLinked' => true,
-					'values'   => array(
-						'width' => 1170,
-					),
-				),
-				array(
-					'media'    => array( 'desktop' ),
-					'unit'     => 'px',
-					'isLinked' => false,
-					'values'   => array(
-						'width' => 970,
-					),
-				),
-				array(
-					'media'    => array( 'tablet' ),
-					'unit'     => 'px',
-					'isLinked' => false,
-					'values'   => array(
-						'width' => 750,
-					),
-				),
-				array(
-					'media'    => array( 'phone' ),
-					'unit'     => 'px',
-					'isLinked' => false,
-					'values'   => array(
-						'width' => 750,
-					),
-				),
 			),
 			'max-width' => array(
 				array(
-					'media'    => array( 'base', 'large', 'desktop', 'tablet' ),
+					'media'    => array( 'base' ),
 					'unit'     => '%',
 					'isLinked' => true,
 					'values'   => array(

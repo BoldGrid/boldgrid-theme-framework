@@ -181,7 +181,7 @@ class Boldgrid_Framework_SCSS {
 	 * @param string $content Content to compile.
 	 * @return     string    $compiled   The compiled SCSS file.
 	 */
-	public function compile( $content ) {
+	public function compile( $content, $path = null, $variables = null ) {
 		if ( ! class_exists( '\ScssPhp\ScssPhp\Compiler' ) ) {
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/scssphp/scss.inc.php';
 		}
@@ -193,7 +193,7 @@ class Boldgrid_Framework_SCSS {
 			$scss->setFormatter( 'ScssPhp\ScssPhp\Formatter\Compressed' );
 		}
 
-		$variables = $this->colors->get_scss_variables();
+		$variables = $variables ? $variables : $this->colors->get_scss_variables();
 
 		// Check the variables passed in to make sure they aren't empty for compile.
 		$empty = false;
@@ -203,6 +203,10 @@ class Boldgrid_Framework_SCSS {
 				$empty = true;
 				break;
 			}
+		}
+
+		if ( $path ) {
+			$scss->setImportPaths( $path );
 		}
 
 		if ( false === $empty ) {
@@ -248,6 +252,29 @@ class Boldgrid_Framework_SCSS {
 		}
 
 		return $success;
+	}
+
+	/**
+	 * Build BGTFW from SCSS.
+	 *
+	 * Calls to compile bgtfw, and then save it.
+	 *
+	 * @since 1.1
+	 */
+	public function compile_widths() {
+		$container_width = new Boldgrid_Framework_Container_Width( $this->configs );
+		$variables       = $container_width->get_scss_variables();
+		$dir             = $this->configs['framework']['asset_dir'];
+
+		$css = '';
+
+		// Compile.
+		$css = $this->compile( '@import "container-widths";', $dir . 'scss/', $variables );
+
+		$config_settings              = $this->configs['components']['container-widths'];
+		$config_settings['variables'] = $variables;
+
+		return $css;
 	}
 
 	/**

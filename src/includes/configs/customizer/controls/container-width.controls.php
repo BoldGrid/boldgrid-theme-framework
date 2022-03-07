@@ -36,10 +36,10 @@ return array(
 					$sanitized_value = 'max-full-width';
 					break;
 				default:
-					$sanitized_value =  $settings->default;
+					$sanitized_value = $settings->default;
 					break;
 			}
-			error_log( 'sanitized_value: ' . json_encode( $sanitized_value ) );
+
 			return $sanitized_value;
 		},
 		'js_vars'           => array(
@@ -72,12 +72,29 @@ return array(
 		'priority'          => 35,
 		'default'           => 'container',
 		'choices'           => array(
-			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			''          => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+			'container'      => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
+			''               => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+			'max-full-width' => '<span class="icon-layout-max-full-width"></span>' . esc_attr__( 'Max Full Width', 'bgtfw' ),
 		),
 		'section'           => 'bgtfw_pages_blog_blog_page_post_content',
 		'sanitize_callback' => function( $value, $settings ) {
-			return 'container' === $value || '' === $value ? $value : $settings->default;
+			$sanitized_value = $settings->default;
+			switch ( $value ) {
+				case '':
+					$sanitized_value = '';
+					break;
+				case 'container':
+					$sanitized_value = 'container';
+					break;
+				case 'max-full-width':
+					$sanitized_value = 'max-full-width';
+					break;
+				default:
+					$sanitized_value = $settings->default;
+					break;
+			}
+
+			return $sanitized_value;
 		},
 	),
 	'bgtfw_blog_posts_container'           => array(
@@ -89,12 +106,29 @@ return array(
 		'priority'          => 40,
 		'default'           => 'container',
 		'choices'           => array(
-			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			''          => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+			'container'      => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
+			''               => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+			'max-full-width' => '<span class="icon-layout-max-full-width"></span>' . esc_attr__( 'Max Full Width', 'bgtfw' ),
 		),
 		'section'           => 'bgtfw_pages_blog_posts_container',
 		'sanitize_callback' => function( $value, $settings ) {
-			return 'container' === $value || '' === $value ? $value : $settings->default;
+			$sanitized_value = $settings->default;
+			switch ( $value ) {
+				case '':
+					$sanitized_value = '';
+					break;
+				case 'container':
+					$sanitized_value = 'container';
+					break;
+				case 'max-full-width':
+					$sanitized_value = 'max-full-width';
+					break;
+				default:
+					$sanitized_value = $settings->default;
+					break;
+			}
+
+			return $sanitized_value;
 		},
 		'js_vars'           => array(
 			array(
@@ -113,12 +147,29 @@ return array(
 		'priority'          => 35,
 		'default'           => 'container',
 		'choices'           => array(
-			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			''          => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+			'container'      => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
+			''               => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
+			'max-full-width' => '<span class="icon-layout-max-full-width"></span>' . esc_attr__( 'Max Full Width', 'bgtfw' ),
 		),
 		'section'           => 'bgtfw_layout_woocommerce_container',
 		'sanitize_callback' => function( $value, $settings ) {
-			return 'container' === $value || 'full-width' === $value ? $value : '';
+			$sanitized_value = $settings->default;
+			switch ( $value ) {
+				case '':
+					$sanitized_value = '';
+					break;
+				case 'container':
+					$sanitized_value = 'container';
+					break;
+				case 'max-full-width':
+					$sanitized_value = 'max-full-width';
+					break;
+				default:
+					$sanitized_value = $settings->default;
+					break;
+			}
+
+			return $sanitized_value;
 		},
 		'js_vars'           => array(
 			array(
@@ -173,7 +224,11 @@ return array(
 					'desktop' => 1199,
 				),
 				'control'    => array(
-					'selectors' => array( 'body.page .container-fluid', 'body.page .boldgrid-section > .full-width' ),
+					'selectors' => array(
+						'body.page .container-fluid',
+						'body.page .boldgrid-section > .full-width',
+						'body.page .page-header-wrapper.full-width .featured-imgage-header:not( .contained )',
+					),
 					'title'     => 'Container Max Width',
 					'name'      => 'bgtfw_pages_container_max_width',
 					'sliders'   => array(
@@ -219,6 +274,10 @@ return array(
 						'body.archive .container-fluid',
 						'body.blog .boldgrid-section > .full-width',
 						'body.archive .boldgrid-section > .full-width',
+						'body.blog #main-wrapper.full-width.max-full-width',
+						'body.archive #main-wrapper.full-width.max-full-width',
+						'body.blog .page-header-wrapper.full-width .featured-imgage-header:not( .contained )',
+						'body.archive .page-header-wrapper.full-width .featured-imgage-header:not( .contained )',
 					),
 					'title'     => 'Container Max Width',
 					'name'      => 'bgtfw_blog_page_container_max_width',
@@ -260,7 +319,11 @@ return array(
 					'desktop' => 1199,
 				),
 				'control'    => array(
-					'selectors' => array( 'body.single .container-fluid', 'body.single .boldgrid-section > .full-width' ),
+					'selectors' => array(
+						'body.single .boldgrid-section > .container-fluid',
+						'body.single .boldgrid-section > .full-width',
+						'body.single .page-header-wrapper.full-width .featured-imgage-header:not( .contained )',
+					),
 					'title'     => 'Container Max Width',
 					'name'      => 'bgtfw_blog_posts_container_max_width',
 					'sliders'   => array(

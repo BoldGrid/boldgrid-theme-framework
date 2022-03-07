@@ -359,6 +359,9 @@ gulp.task('scssDeps', function () {
   // Custom Icons
   gulp.src(config.scss_src + '/icomoon/style.scss')
     .pipe(gulp.dest(config.dist + '/assets/scss/icomoon'));
+  // Container Widths
+  gulp.src(config.scss_src + '/container-widths.scss')
+    .pipe(gulp.dest(config.dist + '/assets/scss/container-widths'));
   // Animate.css
   gulp.src(config.node_modules + '/animate.css/animate.*')
     .pipe(gulp.dest(config.dist + '/assets/css/animate-css'));
@@ -393,6 +396,7 @@ gulp.task('scssCompile', function () {
   return gulp.src([
     '!' + config.dist + '/assets/scss/bootstrap.scss',
     '!' + config.dist + '/assets/scss/custom-color/**/*',
+	'!' + config.dist + '/assets/scss/container-widths.scss',
     config.dist + '/assets/scss/**/*.scss'])
     .pipe(sass({
 	 outputStyle: 'expanded',

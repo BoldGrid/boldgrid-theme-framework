@@ -94,6 +94,15 @@ class BoldGrid_Framework_Styles {
 		wp_enqueue_style( 'bgtfw-responsive-font-sizes' );
 	}
 
+	public function register_container_widths() {
+		$scss = new Boldgrid_Framework_SCSS( $this->configs );
+		$css  = $scss->compile_widths();
+
+		wp_register_style( 'bgtfw-container-widths', false, $this->configs['version'] );
+		wp_add_inline_style( 'bgtfw-container-widths', $css );
+		wp_enqueue_style( 'bgtfw-container-widths' );
+	}
+
 	/** Generate Responive Font CSS
 	 *
 	 * Generates responsive font css.

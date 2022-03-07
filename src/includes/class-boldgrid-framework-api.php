@@ -183,14 +183,6 @@ class BoldGrid {
 			} else {
 				$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
 			}
-
-			error_log( 'page_container: ' . json_encode(
-				array(
-					'pages_container' => $theme_mod,
-					'theme_mod_type' => $theme_mod_type,
-					'classes'        => $classes,
-				)
-			) );
 		}
 
 		return $classes;
@@ -249,14 +241,6 @@ class BoldGrid {
 		} elseif ( is_archive() ) {
 			$theme_mod_type = 'bgtfw_blog_page_container';
 		}
-
-		error_log( 'blog_page_container: ' . json_encode(
-			array(
-				'blog_page_container' => $theme_mod,
-				'theme_mod_type'      => $theme_mod_type,
-				'classes'             => $classes,
-			)
-		) );
 
 		$theme_mod = get_theme_mod( $theme_mod_type );
 
@@ -456,6 +440,8 @@ class BoldGrid {
 	 */
 	public function body_classes( $classes ) {
 		global $post;
+
+		$post_id = 0;
 
 		if ( is_object( $post ) ) {
 			$post_id = absint( $post->ID );

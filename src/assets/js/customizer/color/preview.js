@@ -380,7 +380,7 @@ export class Preview  {
 
 	/**
 	 * Set Active Sub menu link color.
-	 * 
+	 *
 	 * @param {string} location menu location
 	 * @param {string} menuId menu id
 	 */

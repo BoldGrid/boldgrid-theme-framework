@@ -38,6 +38,15 @@ class Boldgrid_Framework_Container_Width {
 		$this->configs = $configs;
 	}
 
+	/**
+	 * Get Container Type
+	 *
+	 * @since 2.14.0
+	 *
+	 * @param WP_Post $post The post object.
+	 *
+	 * @return string The container type.
+	 */
 	public function get_container_type( $post ) {
 		$container_type = 'container';
 		switch ( $this->get_container_theme_mod( $post ) ) {
@@ -56,12 +65,31 @@ class Boldgrid_Framework_Container_Width {
 		return $container_type;
 	}
 
+	/**
+	 * Get Container Theme Mod
+	 *
+	 * @since 2.14.0
+	 *
+	 * @param WP_Post $post The post object.
+	 * @param bool    $max_full_width Whether or not to return the max-full-width container theme mod.
+	 *
+	 * @return string The container theme mod.
+	 */
 	public function get_container_theme_mod( $post, $max_full_width = false ) {
 		$page_post_type = $this->get_page_post_type( $post );
 		$theme_mod_name = 'bgtfw_' . $page_post_type . '_container' . ( $max_full_width ? '_max_width' : '' );
 		return get_theme_mod( $theme_mod_name );
 	}
 
+	/**
+	 * Get Page Post Type
+	 *
+	 * @since 2.14.0
+	 *
+	 * @param WP_Post $post WP Post Object.
+	 *
+	 * @return string The page post type.
+	 */
 	public function get_page_post_type( $post ) {
 		global $boldgrid_theme_framework;
 		$post_type = 'blog_page';
@@ -71,15 +99,22 @@ class Boldgrid_Framework_Container_Width {
 			$post_type = 'woocommerce';
 		} elseif ( is_front_page() && 'page' === get_option( 'show_on_front' ) || is_page() ) {
 			$post_type = 'pages';
-		} else if ( is_single() || is_attachment() || ( function_exists( 'is_shop' ) && is_shop() ) ) {
+		} elseif ( is_single() || is_attachment() || ( function_exists( 'is_shop' ) && is_shop() ) ) {
 			$post_type = 'blog_posts';
 		}
 		return $post_type;
 	}
 
+	/**
+	 * Get SCSS Variables
+	 *
+	 * @since 2.14.0
+	 *
+	 * @return array The SCSS variables.
+	 */
 	public function get_scss_variables() {
-		$variables      = array();
-		$post_types     = array( 'woocommerce', 'pages', 'blog_posts', 'blog_page' );
+		$variables  = array();
+		$post_types = array( 'woocommerce', 'pages', 'blog_posts', 'blog_page' );
 		foreach ( $post_types as $post_type ) {
 			$max_width_mod = get_theme_mod( 'bgtfw_' . $post_type . '_container_max_width' );
 			if ( empty( $max_width_mod ) ) {
@@ -87,36 +122,45 @@ class Boldgrid_Framework_Container_Width {
 			} elseif ( isset( $max_width_mod[0]['media'] ) ) {
 				foreach ( $max_width_mod as $media_set ) {
 					foreach ( $media_set['media'] as $device ) {
-						$variables[ str_replace( '_', '-', $post_type ) . '-mw-' . $device ] = $media_set['values']['maxWidth'] . $media_set[ 'unit' ];
+						$variables[ str_replace( '_', '-', $post_type ) . '-mw-' . $device ] = $media_set['values']['maxWidth'] . $media_set['unit'];
 					}
 				}
 			} elseif ( isset( $max_width_mod['media'] ) ) {
 				foreach ( json_decode( $max_width_mod['media'], true ) as $device => $media_set ) {
-					$variables[ str_replace( '_', '-', $post_type ) . '-mw-' . $device ] = $media_set['values']['maxWidth'] . $media_set[ 'unit' ];
+					$variables[ str_replace( '_', '-', $post_type ) . '-mw-' . $device ] = $media_set['values']['maxWidth'] . $media_set['unit'];
 				}
 			}
 		}
 		return $variables;
 	}
 
+	/**
+	 * Get Container Max Width
+	 *
+	 * @since 2.14.0
+	 *
+	 * @param WP_Post $post The post object.
+	 *
+	 * @return array The container width.
+	 */
 	public function get_max_width( $post ) {
 		$max_width_mod = $this->get_container_theme_mod( $post, true );
 
 		if ( empty( $max_width_mod ) ) {
-			return array('mw-base' => '100%' );
+			return array( 'mw-base' => '100%' );
 		}
 
 		$max_width = array();
 
-		if ( isset ( $max_width_mod[0]['media'] ) ) {
+		if ( isset( $max_width_mod[0]['media'] ) ) {
 			foreach ( $max_width_mod as $media_set ) {
-				foreach( $media_set['media'] as $device ) {
-					$max_width[ 'mw-' . $device ] = $media_set['values']['maxWidth'] . $media_set[ 'unit' ];
+				foreach ( $media_set['media'] as $device ) {
+					$max_width[ 'mw-' . $device ] = $media_set['values']['maxWidth'] . $media_set['unit'];
 				}
 			}
-		} else if ( isset ( $max_width_mod['media'] ) ) {
+		} elseif ( isset( $max_width_mod['media'] ) ) {
 			foreach ( json_decode( $max_width_mod['media'], true ) as $device => $media_set ) {
-				$max_width[ 'mw-' . $device ] = $media_set['values']['maxWidth'] . $media_set[ 'unit' ];
+				$max_width[ 'mw-' . $device ] = $media_set['values']['maxWidth'] . $media_set['unit'];
 			}
 		} else {
 			return array( 'mw-base' => '100%' );

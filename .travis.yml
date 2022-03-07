@@ -4,7 +4,7 @@ services:
   - mysql
 matrix:
   include:
-  - php: 7.3
+  - php: 7.4
 env:
   global:
   - WP_VERSION=master WP_MULTISITE=0
@@ -38,6 +38,7 @@ before_script:
 - scripts/phpcs --config-set installed_paths ../wordpress-coding-standards
 - cd $BGTFW_THEME_DIR
 - phpenv rehash
+- echo 'error_reporting = E_ERROR' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 script:
 - find . \( -name '*.php' \) -exec php -lf {} \; >/dev/null
 - "$WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=$TRAVIS_BUILD_DIR/phpcs.ruleset.xml --ignore=*partials/hover-colors-only.php,*/scssphp/*,*/kirki/*,*/wp_bootstrap_navwalker.php,*/woocommerce/*,*/sa_templates/*,functions.php --extensions=php"
@@ -48,7 +49,7 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    php: '7.3'
+    php: '7.4'
 - provider: releases
   skip_cleanup: true
   api_key: "${GITHUB_TOKEN}"

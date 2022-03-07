@@ -4,7 +4,7 @@ services:
   - mysql
 matrix:
   include:
-  - php: 7.4
+  - php: 7.3
 env:
   global:
   - WP_VERSION=master WP_MULTISITE=0
@@ -49,17 +49,17 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    php: '7.4'
+    php: '7.3'
 - provider: releases
   skip_cleanup: true
   api_key: "${GITHUB_TOKEN}"
   file: bgtfw.zip
   on:
     tags: true
-    php: '7.4'
+    php: '7.3'
 - provider: script
   skip_cleanup: true
   script: node build/remote-update.js
   on:
     tags: true
-    php: '7.4'
+    php: '7.3'

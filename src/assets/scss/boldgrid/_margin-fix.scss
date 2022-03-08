@@ -350,7 +350,7 @@
 				align-items: center;
 				justify-content: center;
 				width: calc( 100% + 30px );
-				> .featured-imgage-header:not( .contained ) {
+				> .featured-imgage-header:not( .container ) {
 					width: calc( 100% + 30px );
 				}
 			}
@@ -365,12 +365,20 @@
 				align-items: center;
 			}
 		}
+		&.single {
+			#main-wrapper.full-width .main .entry-content .boldgrid-section {
+				padding-left: 0px;
+				padding-right: 0px;
+			}
+		}
 		&.blog, &.archive {
 			#main-wrapper.full-width.max-full-width {
-				padding-left: 1.4em;
-				padding-right: 1.4em;
 				margin-left: auto;
 				margin-right: auto;
+				main.main {
+					padding-left: 0;
+					padding-right: 0;
+				}
 			}
 		}
 		&.search {

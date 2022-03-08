@@ -227,7 +227,7 @@ return array(
 					'selectors' => array(
 						'body.page .container-fluid',
 						'body.page .boldgrid-section > .full-width',
-						'body.page .page-header-wrapper.full-width .featured-imgage-header:not( .contained )',
+						'body.page .page-header-wrapper.full-width .featured-imgage-header:not( .container )',
 					),
 					'title'     => 'Container Max Width',
 					'name'      => 'bgtfw_pages_container_max_width',
@@ -255,10 +255,12 @@ return array(
 		'default'           => $bgtfw_generic->get_width_defaults( 'max-width' ),
 		'priority'          => 37,
 		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
-		'activate_callback' => array(
-			function() {
-				return false;
-			},
+		'active_callback'   => array(
+			array(
+				'setting'  => 'bgtfw_blog_page_container',
+				'operator' => '===',
+				'value'    => 'max-full-width',
+			),
 		),
 		'choices'           => array(
 			'name'     => 'boldgrid_controls',
@@ -276,8 +278,8 @@ return array(
 						'body.archive .boldgrid-section > .full-width',
 						'body.blog #main-wrapper.full-width.max-full-width',
 						'body.archive #main-wrapper.full-width.max-full-width',
-						'body.blog .page-header-wrapper.full-width .featured-imgage-header:not( .contained )',
-						'body.archive .page-header-wrapper.full-width .featured-imgage-header:not( .contained )',
+						'body.blog .page-header-wrapper.full-width .featured-imgage-header:not( .container )',
+						'body.archive .page-header-wrapper.full-width .featured-imgage-header:not( .container )',
 					),
 					'title'     => 'Container Max Width',
 					'name'      => 'bgtfw_blog_page_container_max_width',
@@ -305,10 +307,12 @@ return array(
 		'default'           => $bgtfw_generic->get_width_defaults( 'max-width' ),
 		'priority'          => 40,
 		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
-		'activate_callback' => array(
-			function() {
-				return false;
-			},
+		'active_callback'   => array(
+			array(
+				'setting'  => 'bgtfw_blog_posts_container',
+				'operator' => '===',
+				'value'    => 'max-full-width',
+			),
 		),
 		'choices'           => array(
 			'name'     => 'boldgrid_controls',
@@ -322,7 +326,7 @@ return array(
 					'selectors' => array(
 						'body.single .boldgrid-section > .container-fluid',
 						'body.single .boldgrid-section > .full-width',
-						'body.single .page-header-wrapper.full-width .featured-imgage-header:not( .contained )',
+						'body.single .page-header-wrapper.full-width .featured-imgage-header:not( .container )',
 					),
 					'title'     => 'Container Max Width',
 					'name'      => 'bgtfw_blog_posts_container_max_width',

@@ -63,10 +63,10 @@ for (var key in webFonts.items) {
 	family = webFonts.items[key].family;
 
     // This value needs to -41.45 after updating image.
-	position = 16 + key * -41.45;
+	position = key * -41.423841059602649006622516556291;
 
-    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + ( position + 16 ) + 'px;}';
-    css += '[id^="select2-"][id$="-' + family + '"] { color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + ( position + 16 ) + 'px;}';
+    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + position + 'px;}';
+    css += '[id^="select2-"][id$="-' + family + '"] { line-height:25px; color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + position + 'px;}';
     css += '[id^="select2-"][id$="-' + family + '"]:hover, [id^="select2-"][id$="-' + family + '"].select2-results__option--highlighted[aria-selected] { color: transparent; }';
   }
 

@@ -63,10 +63,10 @@ for (var key in webFonts.items) {
 	family = webFonts.items[key].family;
 
     // This value needs to -41.45 after updating image.
-	position = 16 + key * -41.45;
+	position = key * -41.423841059602649006622516556291;
 
-    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + ( position + 16 ) + 'px;}';
-    css += '[id^="select2-"][id$="-' + family + '"] { color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + ( position + 16 ) + 'px;}';
+    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + position + 'px;}';
+    css += '[id^="select2-"][id$="-' + family + '"] { line-height:25px; color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + position + 'px;}';
     css += '[id^="select2-"][id$="-' + family + '"]:hover, [id^="select2-"][id$="-' + family + '"].select2-results__option--highlighted[aria-selected] { color: transparent; }';
   }
 
@@ -359,6 +359,9 @@ gulp.task('scssDeps', function () {
   // Custom Icons
   gulp.src(config.scss_src + '/icomoon/style.scss')
     .pipe(gulp.dest(config.dist + '/assets/scss/icomoon'));
+  // Container Widths
+  gulp.src(config.scss_src + '/container-widths.scss')
+    .pipe(gulp.dest(config.dist + '/assets/scss/container-widths'));
   // Animate.css
   gulp.src(config.node_modules + '/animate.css/animate.*')
     .pipe(gulp.dest(config.dist + '/assets/css/animate-css'));
@@ -393,6 +396,7 @@ gulp.task('scssCompile', function () {
   return gulp.src([
     '!' + config.dist + '/assets/scss/bootstrap.scss',
     '!' + config.dist + '/assets/scss/custom-color/**/*',
+	'!' + config.dist + '/assets/scss/container-widths.scss',
     config.dist + '/assets/scss/**/*.scss'])
     .pipe(sass({
 	 outputStyle: 'expanded',

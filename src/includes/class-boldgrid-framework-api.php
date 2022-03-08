@@ -238,6 +238,9 @@ class BoldGrid {
 		} elseif ( is_front_page() ) {
 			// Static Homepage.
 			return $classes;
+		} elseif ( is_home() ) {
+			// Blog Page.
+			$theme_mod_type = 'bgtfw_blog_page_container';
 		} elseif ( is_archive() ) {
 			$theme_mod_type = 'bgtfw_blog_page_container';
 		}

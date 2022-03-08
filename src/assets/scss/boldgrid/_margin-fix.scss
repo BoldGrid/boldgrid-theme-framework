@@ -355,9 +355,21 @@
 				}
 			}
 		}
-		#main-wrapper.full-width .main .entry-content .container-fluid {
-			padding-left: 10px;
-			padding-right: 10px;
+		#main-wrapper.full-width .main .entry-content .container-fluid .row {
+			div[class^="col-"]:first-of-type {
+				> {
+					p, h1, h2, h3, h4, h5, h6 {
+						padding-left: 10px;
+					}
+				}
+			}
+			div[class^="col-"]:last-of-type {
+				> {
+					p, h1, h2, h3, h4, h5, h6 {
+						padding-right: 10px;
+					}
+				}
+			}
 		}
 		&.archive {
 			#content.site-content {

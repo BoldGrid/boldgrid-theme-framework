@@ -113,7 +113,17 @@ class Boldgrid_Framework_Container_Width {
 	 * @return array The SCSS variables.
 	 */
 	public function get_scss_variables() {
-		$variables  = array();
+		$variables  = array(
+			'pages-mw-large'        => 'unset',
+			'pages-mw-desktop'      => 'unset',
+			'pages-mw-tablet'       => 'unset',
+			'blog-posts-mw-large'   => 'unset',
+			'blog-posts-mw-desktop' => 'unset',
+			'blog-posts-mw-tablet'  => 'unset',
+			'blog-page-mw-large'    => 'unset',
+			'blog-page-mw-desktop'  => 'unset',
+			'blog-page-mw-tablet'   => 'unset',
+		);
 		$post_types = array( 'woocommerce', 'pages', 'blog_posts', 'blog_page' );
 		foreach ( $post_types as $post_type ) {
 			$max_width_mod = get_theme_mod( 'bgtfw_' . $post_type . '_container_max_width' );

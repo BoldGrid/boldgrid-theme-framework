@@ -239,8 +239,8 @@ return array(
 						),
 					),
 					'units'     => array(
-						'default' => '%',
-						'enabled' => array( 'px', '%' ),
+						'default' => 'px',
+						'enabled' => array( 'px' ),
 					),
 				),
 			),
@@ -291,8 +291,8 @@ return array(
 						),
 					),
 					'units'     => array(
-						'default' => '%',
-						'enabled' => array( 'px', '%' ),
+						'default' => 'px',
+						'enabled' => array( 'px' ),
 					),
 				),
 			),
@@ -338,8 +338,8 @@ return array(
 						),
 					),
 					'units'     => array(
-						'default' => '%',
-						'enabled' => array( 'px', '%' ),
+						'default' => 'px',
+						'enabled' => array( 'px' ),
 					),
 				),
 			),

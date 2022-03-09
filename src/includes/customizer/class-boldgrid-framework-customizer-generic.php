@@ -437,11 +437,11 @@ class Boldgrid_Framework_Customizer_Generic {
 			),
 			'max-width' => array(
 				array(
-					'media'    => array( 'base' ),
-					'unit'     => '%',
+					'media'    => array( 'large' ),
+					'unit'     => 'px',
 					'isLinked' => true,
 					'values'   => array(
-						'maxWidth' => 100,
+						'maxWidth' => 1920,
 					),
 				),
 			),

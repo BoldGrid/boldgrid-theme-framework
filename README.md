@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.13.1 ###
+* Bug Fix: Responsive Utilities from PPB are not respected in latest Crio version [#637](https://github.com/BoldGrid/boldgrid-theme-framework/issues/637)
+
 ### 2.13.0 ###
 * New Feature: Add controls for submenu backround, link, and active link colors [#587](https://github.com/BoldGrid/boldgrid-theme-framework/issues/587)
 * Feature Update: Update PPB and Crio Google Fonts [#276](https://github.com/BoldGrid/post-and-page-builder/issues/276)

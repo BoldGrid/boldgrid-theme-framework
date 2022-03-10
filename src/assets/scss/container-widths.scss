@@ -120,21 +120,21 @@ $container-widths: (
 @media only screen and (min-width: 1200px) {
 	body[data-container="max-full-width"] {
 		@include page( '&.page', 'pages', 'large', 'lg' );
-		// @include page( '&.single', 'blog-posts', 'large', 'lg' );
-		// @include page( '&.archive, &.blog, &.search', 'blog-page', 'large', 'lg' );
+		@include page( '&.single', 'blog-posts', 'large', 'lg' );
+		@include page( '&.archive, &.blog, &.search', 'blog-page', 'large', 'lg' );
 	}
 }
 @media only screen and (max-width: 1199px) and (min-width: 992px) {
 	body[data-container="max-full-width"] {
 		@include page( '&.page', 'pages', 'desktop', 'md' );
-		// @include page( '&.single', 'blog-posts', 'desktop', 'md' );
-		// @include page( '&.archive, &.blog, &.search', 'blog-page', 'desktop', 'md' );
+		@include page( '&.single', 'blog-posts', 'desktop', 'md' );
+		@include page( '&.archive, &.blog, &.search', 'blog-page', 'desktop', 'md' );
 	}
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
 	body[data-container="max-full-width"] {
 		@include page( '&.page', 'pages', 'tablet', 'sm' );
-	// 	@include page( '&.single', 'blog-posts', 'tablet', 'sm' );
-	// 	@include page( '&.archive, &.blog, &.search', 'blog-page', 'tablet', 'sm' );
+		@include page( '&.single', 'blog-posts', 'tablet', 'sm' );
+		@include page( '&.archive, &.blog, &.search', 'blog-page', 'tablet', 'sm' );
 	}
 }

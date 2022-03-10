@@ -41,6 +41,28 @@ var BoldGrid = BoldGrid || {};
 				this.cssVarsPonyfill();
 				this.responsiveVideos();
 				this.addButtonClasses();
+				this.addColLg();
+			},
+
+			/**
+			 * Add col-lg to columns that do not have it.
+			 */
+			addColLg() {
+				$( '#content div[class^="col-"]' ).each( function() {
+					var $this = $( this ),
+						classes = $this.attr( 'class' ),
+						mdSize = classes.match( /col-md-([\d]+)/i ),
+						lgSize = classes.match( /col-lg-([\d]+)/i );
+
+					if ( lgSize && mdSize && mdSize[1] !== lgSize[1] ) {
+						$this.removeClass( 'col-lg-' + lgSize[1] );
+					}
+
+					if ( mdSize && ! lgSize ) {
+						$this.addClass( `col-lg-${mdSize[1]}` );
+					}
+
+				} );
 			},
 
 			/**

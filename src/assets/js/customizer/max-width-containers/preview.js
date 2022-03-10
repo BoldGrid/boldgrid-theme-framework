@@ -52,8 +52,6 @@
 	adjustFullWidthRows( value ) {
 		var $rows       = $( 'body[data-container="max-full-width"]' ).find( '.row.full-width-row' ),
 			$cols       = $( $rows ).find( '.row.full-width-rows div[class^="col-"]' ),
-			$fwrLeft    = $( $rows ).find( '.fwr-left' ),
-			$fwrRight   = $( $rows ).find( '.fwr-right' ),
 			deviceSizes = {},
 			colClasses  = {},
 			colSizes = {
@@ -92,7 +90,8 @@
 		for ( const colSize in colSizes ) {
 			for ( const device in deviceSizes ) {
 				let maxWidth = deviceSizes[device] * colSizes[ colSize ];
-				colClasses[ 'col-' + device + '-' + colSize ] = [ colSizes[ colSize ], maxWidth ];
+				colClasses[device] = 'undefined' === typeof colClasses[device] ? {} : colClasses[device];
+				colClasses[device][ 'col-' + device + '-' + colSize ] = [ colSizes[ colSize ], maxWidth, colSize ];
 			}
 		}
 
@@ -109,47 +108,55 @@
 		} );
 
 		css = '';
-		for ( const colClass in colClasses ) {
-			css += `body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass} .fwr-left,
-			body[data-container="max-full-width"] .boldgrid-section >.full-width .row.full-width-row > div.${colClass} .fwr-left,
-			body[data-container="max-full-width"] .boldgrid-section >.container-fluid .row.full-width-row > div.${colClass} .fwr-right,
-			body[data-container="max-full-width"] .boldgrid-section >.full-width .row.full-width-row > div.${colClass} .fwr-right {
-				width: ${colClasses[ colClass ][1]}px;
-				max-width: calc(( 100vw * ${colClasses[ colClass ][0]} ) - 5px );
+		if ( colClasses.lg ) {
+			css += '@media only screen and (min-width: 1200px) {';
+			for ( const colClass in colClasses.lg ) {
+				css += `body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass} .fwr-left,
+				body[data-container="max-full-width"] .boldgrid-section >.full-width .row.full-width-row > div.${colClass} .fwr-left,
+				body[data-container="max-full-width"] .boldgrid-section >.container-fluid .row.full-width-row > div.${colClass} .fwr-right,
+				body[data-container="max-full-width"] .boldgrid-section >.full-width .row.full-width-row > div.${colClass} .fwr-right {
+					width: ${colClasses.lg[ colClass ][1]}px;
+					max-width: calc(( 100vw * ${colClasses.lg[ colClass ][0]} ) - 5px );
+				}
+				body[data-container="max-full-width"] .boldgrid-section >.container-fluid .row.full-width-row > div.${colClass}:not( :first-of-type ):not( :last-of-type ),
+				body[data-container="max-full-width"] .boldgrid-section >.full-width .row.full-width-row > div.${colClass}:not( :first-of-type ):not( :last-of-type ){
+					width: ${colClasses.lg[ colClass ][1]}px;
+					max-width: calc(( 100vw * ${colClasses.lg[ colClass ][0]} ) - 5px );
+				}
+				body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass}:first-of-type,
+				body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass}:last-of-type {
+					width: calc(( 100vw - calc(${colClasses.lg[ colClass ][1]}px * calc(calc(12 / ${colClasses.lg[ colClass ][2]}) - 2)) ) / 2);
+				}`;
 			}
-			body[data-container="max-full-width"] .boldgrid-section >.container-fluid .row.full-width-row > div.${colClass}:not( :first-of-type ):not( :last-of-type ),
-			body[data-container="max-full-width"] .boldgrid-section >.full-width .row.full-width-row > div.${colClass}:not( :first-of-type ):not( :last-of-type ){
-				width: ${colClasses[ colClass ][1]}px;
-				max-width: calc(( 100vw * ${colClasses[ colClass ][0]} ) - 5px );
-			}`;
+			css += '}';
 		}
-
+		if ( colClasses.md ) {
+			css += '@media only screen and (max-width: 1199px) and (min-width: 992px) {';
+			for ( const colClass in colClasses.md ) {
+				css += `body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass} .fwr-left,
+				body[data-container="max-full-width"] .boldgrid-section >.full-width .row.full-width-row > div.${colClass} .fwr-left,
+				body[data-container="max-full-width"] .boldgrid-section >.container-fluid .row.full-width-row > div.${colClass} .fwr-right,
+				body[data-container="max-full-width"] .boldgrid-section >.full-width .row.full-width-row > div.${colClass} .fwr-right {
+					width: ${colClasses.md[ colClass ][1]}px;
+					max-width: calc(( 100vw * ${colClasses.md[ colClass ][0]} ) - 5px );
+				}
+				body[data-container="max-full-width"] .boldgrid-section >.container-fluid .row.full-width-row > div.${colClass}:not( :first-of-type ):not( :last-of-type ),
+				body[data-container="max-full-width"] .boldgrid-section >.full-width .row.full-width-row > div.${colClass}:not( :first-of-type ):not( :last-of-type ){
+					width: ${colClasses.md[ colClass ][1]}px;
+					max-width: calc(( 100vw * ${colClasses.md[ colClass ][0]} ) - 5px );
+				}
+				body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass}:first-of-type,
+				body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass}:last-of-type {
+					width: calc(( 100vw - calc(${colClasses.md[ colClass ][1]}px * calc(calc(12 / ${colClasses.md[ colClass ][2]}) - 2)) ) / 2);
+				}`;
+			}
+			css += '@media only screen and (min-width: 992px) {';
+			css += '.fwr-right{ float: left!important; padding-right: 20px!important; padding-left:important;}}';
+			css += '.fwr-left{ float: right!important; padding-right: 20px!important; padding-left:important;}}';
+			css += '}';
+		}
 		$( '#bgtfw-full-width-row-inline-css' ).remove();
-		$( 'head' ).append( `<style id="bgtfw-full-width-row-css">${css}</style>` );
-
-		$fwrRight.css(
-			{
-				'float': 'left',
-				'padding-right': '20px'
-			}
-		);
-		$fwrLeft.css(
-			{
-				'float': 'right',
-				'padding-left': '20px'
-			}
-		);
-
-		console.log( {
-			method: 'ContainerWidth.adjustFullWidthRows',
-			'$row': $rows,
-			'$cols': $cols,
-			'$fwrLeft': $fwrLeft,
-			'$fwrRight': $fwrRight,
-			'value': value,
-			'colClasses': colClasses,
-			'css': css
-		} );
+		$( 'head' ).append( `<style id="bgtfw-full-width-row-inline-css">${css}</style>` );
 	}
 
 	/**
@@ -163,13 +170,7 @@
 		var controlId = wpControl.id;
 		wp.customize( controlId, ( control ) => {
 			control.bind( ( value ) => {
-				var attrs         = [ 'data-mw-base', 'data-mw-large', 'data-mw-desktop', 'data-mw-tablet' ],
-					$fullWidthRows = $( '.container-fluid row.full-width-row, .full-width .row.full-width-row' );
-
-				console.log( {
-					method: 'ContainerWidth.bindControl',
-					'fullWidthRows': $fullWidthRows
-				} );
+				var attrs = [ 'data-mw-base', 'data-mw-large', 'data-mw-desktop', 'data-mw-tablet' ];
 
 				attrs.forEach( attr => {
 					$( 'body' ).removeAttr( attr );

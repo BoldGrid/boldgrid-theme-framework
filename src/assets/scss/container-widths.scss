@@ -47,12 +47,17 @@ $container-widths: (
 	> .container-fluid, > .full-width {
 		.row.full-width-row {
 			@each $col-num, $col-size in $col-sizes {
+				$num-of-cols: calc( 12 / #{$col-num} );
+				$num-of-inner-cols: calc( #{$num-of-cols} - 2 );
+				$inner-col-width: calc( #{$max-width} * #{$col-size} );
+				$total-width-of-inner-cols: calc( #{$inner-col-width} * #{$num-of-inner-cols} );
 				.col-#{$col-type}-#{$col-num}:not( :first-of-type ):not( :last-of-type ) {
 					width: calc( #{$max-width} * #{$col-size} );
 					max-width: calc( ( 100vw * #{$col-size} ) - 5px);
 				}
 				.col-#{$col-type}-#{$col-num}:first-of-type,
 				.col-#{$col-type}-#{$col-num}:last-of-type {
+					width: calc( ( 100vw - #{$total-width-of-inner-cols} ) / 2 );
 					.fwr-left, .fwr-right {
 						width: calc( #{$max-width} * #{$col-size} );
 						max-width: calc( ( 100vw * #{$col-size} ) - 5px);

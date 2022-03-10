@@ -33,7 +33,14 @@ $container-widths: (
 		> .full-width {
 			max-width: $max-width;
 		}
-		@include full-width-rows( $col-prefix, $max-width );
+
+		@if 'md' == $col-prefix {
+			@include full-width-rows( $col-prefix, $max-width );
+		}
+		@if 'lg' == $col-prefix {
+			@include full-width-rows( $col-prefix, $max-width );
+		}
+
 	}
 }
 
@@ -58,6 +65,7 @@ $container-widths: (
 				.col-#{$col-type}-#{$col-num}:first-of-type,
 				.col-#{$col-type}-#{$col-num}:last-of-type {
 					width: calc( ( 100vw - #{$total-width-of-inner-cols} ) / 2 );
+					min-width: calc( 100vw * #{$col-size} );
 					.fwr-left, .fwr-right {
 						width: calc( #{$max-width} * #{$col-size} );
 						max-width: calc( ( 100vw * #{$col-size} ) - 5px);

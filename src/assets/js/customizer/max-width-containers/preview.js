@@ -126,6 +126,7 @@
 				body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass}:first-of-type,
 				body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass}:last-of-type {
 					width: calc(( 100vw - calc(${colClasses.lg[ colClass ][1]}px * calc(calc(12 / ${colClasses.lg[ colClass ][2]}) - 2)) ) / 2);
+					min-width: calc( 100vw * ${colClasses.lg[ colClass ][0]} );
 				}`;
 			}
 			css += '}';
@@ -148,6 +149,7 @@
 				body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass}:first-of-type,
 				body[data-container="max-full-width"] .boldgrid-section>.container-fluid .row.full-width-row > div.${colClass}:last-of-type {
 					width: calc(( 100vw - calc(${colClasses.md[ colClass ][1]}px * calc(calc(12 / ${colClasses.md[ colClass ][2]}) - 2)) ) / 2);
+					min-width: calc( 100vw * ${colClasses.md[ colClass ][0]} );
 				}`;
 			}
 			css += '@media only screen and (min-width: 992px) {';

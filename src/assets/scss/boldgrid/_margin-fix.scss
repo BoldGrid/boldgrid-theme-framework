@@ -345,12 +345,6 @@
 @media only screen and (min-width: 768px) {
 	body[data-container="max-full-width"] {
 		overflow-x: hidden;
-		#masthead .boldgrid-section>.container-fluid .row.full-width-row,
-		#main-wrapper.full-width.max-full-width .boldgrid-section>.container-fluid .row.full-width-row {
-			width: 100vw;
-			margin-left: calc(50% - 50vw );
-			margin-right: calc(50% - 50vw );
-		}
 		.page-header-wrapper.full-width {
 			.page-header {
 				display: flex;

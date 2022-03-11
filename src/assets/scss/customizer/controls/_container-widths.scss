@@ -1,0 +1,9 @@
+div[class*=container_max_width] {
+	&.directional-control:not([data-linkable='false']) {
+		.slider-control:first-of-type {
+			.link {
+				visibility: hidden;
+			}
+		}
+	}
+}

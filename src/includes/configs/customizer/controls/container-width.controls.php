@@ -345,4 +345,52 @@ return array(
 			),
 		),
 	),
+	'woocommerce_container_max_width'      => array(
+		'type'              => 'kirki-generic',
+		'transport'         => 'postMessage',
+		'section'           => 'bgtfw_layout_woocommerce_container',
+		'settings'          => 'woocommerce_container_max_width',
+		'label'             => 'Container Max Width',
+		'default'           => $bgtfw_generic->get_width_defaults( 'max-width' ),
+		'priority'          => 40,
+		'sanitize_callback' => array( 'Boldgrid_Framework_Customizer_Generic', 'sanitize' ),
+		'active_callback'   => array(
+			array(
+				'setting'  => 'bgtfw_woocommerce_container',
+				'operator' => '===',
+				'value'    => 'max-full-width',
+			),
+		),
+		'choices'           => array(
+			'name'     => 'boldgrid_controls',
+			'type'     => 'ContainerWidth',
+			'settings' => array(
+				'responsive' => array(
+					'tablet'  => 991,
+					'desktop' => 1199,
+				),
+				'control'    => array(
+					'selectors' => array(
+						'body.woocommerce .container-fluid',
+						'body.woocommerce .boldgrid-section > .full-width',
+						'body.woocommerce #main-wrapper.full-width.max-full-width',
+						'body.woocommerce .page-header-wrapper.full-width .featured-imgage-header:not( .container )',
+					),
+					'title'     => 'Container Max Width',
+					'name'      => 'woocommerce_container_max_width',
+					'sliders'   => array(
+						array(
+							'name'        => 'maxWidth',
+							'label'       => '',
+							'cssProperty' => 'max-width',
+						),
+					),
+					'units'     => array(
+						'default' => 'px',
+						'enabled' => array( 'px' ),
+					),
+				),
+			),
+		),
+	),
 );

@@ -408,23 +408,26 @@
 		overflow-x: hidden;
 		#masthead .boldgrid-section>.container-fluid .row.full-width-row,
 		#main-wrapper.full-width.max-full-width .boldgrid-section>.container-fluid .row.full-width-row {
-			width: 100vw;
-			margin-left: calc(50% - 50vw );
-			margin-right: calc(50% - 50vw );
-			> div[class^="col-"] {
-				&:first-of-type {
-					padding-right: 0px;
-					> .fwr-left {
-						float: right;
-						padding-left: 20px;
-					}
+			position: relative;
+			.fwr-container {
+				width: calc( 100vw - 10px );
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 50%;
+				transform: translateX( -50% );
+				z-index: -1;
+				.fwr-left-container {
+					position:absolute;
+					left: 0;
+					top: 0;
+					bottom: 0;
 				}
-				&:last-of-type {
-					padding-left: 0px;
-					> .fwr-right {
-						float: left;
-						padding-right: 20px;
-					}
+				.fwr-right-container {
+					position:absolute;
+					right: 0;
+					top: 0;
+					bottom: 0;
 				}
 			}
 		}

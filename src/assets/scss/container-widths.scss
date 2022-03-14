@@ -23,6 +23,9 @@ $container-widths: (
 	'blog-page-mw-large': $blog-page-mw-large,
 	'blog-page-mw-desktop': $blog-page-mw-desktop,
 	'blog-page-mw-tablet': $blog-page-mw-tablet,
+	'woocommerce-mw-large': $blog-page-mw-large,
+	'woocommerce-mw-desktop': $blog-page-mw-desktop,
+	'woocommerce-mw-tablet': $blog-page-mw-tablet,
 );
 
 @mixin boldgrid-section( $col-prefix, $max-width ) {
@@ -54,21 +57,10 @@ $container-widths: (
 	> .container-fluid, > .full-width {
 		.row.full-width-row {
 			@each $col-num, $col-size in $col-sizes {
-				$num-of-cols: calc( 12 / #{$col-num} );
-				$num-of-inner-cols: calc( #{$num-of-cols} - 2 );
-				$inner-col-width: calc( #{$max-width} * #{$col-size} );
-				$total-width-of-inner-cols: calc( #{$inner-col-width} * #{$num-of-inner-cols} );
-				.col-#{$col-type}-#{$col-num}:not( :first-of-type ):not( :last-of-type ) {
-					width: calc( #{$max-width} * #{$col-size} );
-					max-width: calc( ( 100vw * #{$col-size} ) - 5px);
-				}
-				.col-#{$col-type}-#{$col-num}:first-of-type,
-				.col-#{$col-type}-#{$col-num}:last-of-type {
-					width: calc( ( 100vw - #{$total-width-of-inner-cols} ) / 2 );
-					min-width: calc( 100vw * #{$col-size} );
-					.fwr-left, .fwr-right {
-						width: calc( #{$max-width} * #{$col-size} );
-						max-width: calc( ( 100vw * #{$col-size} ) - 5px);
+				.fwr-container {
+					.fwr-#{$col-type}-#{$col-num} {
+						width: calc( calc( #{$max-width} * #{$col-size} ) + calc( calc( 100% - #{$max-width} ) / 2 ) );
+						min-width: calc( 100vw * #{$col-size} );
 					}
 				}
 			}
@@ -119,22 +111,26 @@ $container-widths: (
 
 @media only screen and (min-width: 1200px) {
 	body[data-container="max-full-width"] {
-		@include page( '&.page', 'pages', 'large', 'lg' );
-		@include page( '&.single', 'blog-posts', 'large', 'lg' );
-		@include page( '&.archive, &.blog, &.search', 'blog-page', 'large', 'lg' );
+		@include page( '&.page:not(.woocommerce-page)', 'pages', 'large', 'lg' );
+		@include page( '&.single:not(.single-product)', 'blog-posts', 'large', 'lg' );
+		@include page( '&.archive:not(.tax-product_cat), &.blog, &.search', 'blog-page', 'large', 'lg' );
+		@include page( '&.tax-product_cat, &.single-product, &.woocommerce-page', 'woocommerce', 'large', 'lg' );
+
 	}
 }
 @media only screen and (max-width: 1199px) and (min-width: 992px) {
 	body[data-container="max-full-width"] {
-		@include page( '&.page', 'pages', 'desktop', 'md' );
-		@include page( '&.single', 'blog-posts', 'desktop', 'md' );
-		@include page( '&.archive, &.blog, &.search', 'blog-page', 'desktop', 'md' );
+		@include page( '&.page:not(.woocommerce-page)', 'pages', 'desktop', 'md' );
+		@include page( '&.single:not(.single-product)', 'blog-posts', 'desktop', 'md' );
+		@include page( '&.archive:not(.tax-product_cat), &.blog, &.search', 'blog-page', 'desktop', 'md' );
+		@include page( '&.tax-product_cat, &.single-product, &.woocommerce-page', 'woocommerce', 'desktop', 'md' );
 	}
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
 	body[data-container="max-full-width"] {
-		@include page( '&.page', 'pages', 'tablet', 'sm' );
-		@include page( '&.single', 'blog-posts', 'tablet', 'sm' );
-		@include page( '&.archive, &.blog, &.search', 'blog-page', 'tablet', 'sm' );
+		@include page( '&.page:not(.woocommerce-page)', 'pages', 'tablet', 'sm' );
+		@include page( '&.single:not(.single-product)', 'blog-posts', 'tablet', 'sm' );
+		@include page( '&.archive:not(.tax-product_cat), &.blog, &.search', 'blog-page', 'tablet', 'sm' );
+		@include page( '&.tax-product_cat, &.single-product, &.woocommerce-page', 'woocommerce', 'tablet', 'sm' );
 	}
 }

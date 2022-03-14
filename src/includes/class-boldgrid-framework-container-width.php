@@ -114,15 +114,15 @@ class Boldgrid_Framework_Container_Width {
 	 */
 	public function get_scss_variables() {
 		$variables  = array(
-			'pages-mw-large'        => 'unset',
-			'pages-mw-desktop'      => 'unset',
-			'pages-mw-tablet'       => 'unset',
-			'blog-posts-mw-large'   => 'unset',
-			'blog-posts-mw-desktop' => 'unset',
-			'blog-posts-mw-tablet'  => 'unset',
-			'blog-page-mw-large'    => 'unset',
-			'blog-page-mw-desktop'  => 'unset',
-			'blog-page-mw-tablet'   => 'unset',
+			'pages-mw-large'        => '1920px',
+			'pages-mw-desktop'      => '1200px',
+			'pages-mw-tablet'       => '992px',
+			'blog-posts-mw-large'   => '1920px',
+			'blog-posts-mw-desktop' => '1200px',
+			'blog-posts-mw-tablet'  => '992px',
+			'blog-page-mw-large'    => '1920px',
+			'blog-page-mw-desktop'  => '1200px',
+			'blog-page-mw-tablet'   => '992px',
 		);
 		$post_types = array( 'woocommerce', 'pages', 'blog_posts', 'blog_page' );
 		foreach ( $post_types as $post_type ) {
@@ -156,11 +156,15 @@ class Boldgrid_Framework_Container_Width {
 	public function get_max_width( $post ) {
 		$max_width_mod = $this->get_container_theme_mod( $post, true );
 
-		if ( empty( $max_width_mod ) ) {
-			return array( 'mw-base' => '100%' );
-		}
+		$max_width = array(
+			'mw-large'   => '1920px',
+			'mw-desktop' => '1200px',
+			'mw-tablet'  => '992px',
+		);
 
-		$max_width = array();
+		if ( empty( $max_width_mod ) ) {
+			return $max_width;
+		}
 
 		if ( isset( $max_width_mod[0]['media'] ) ) {
 			foreach ( $max_width_mod as $media_set ) {
@@ -172,9 +176,8 @@ class Boldgrid_Framework_Container_Width {
 			foreach ( json_decode( $max_width_mod['media'], true ) as $device => $media_set ) {
 				$max_width[ 'mw-' . $device ] = $media_set['values']['maxWidth'] . $media_set['unit'];
 			}
-		} else {
-			return array( 'mw-base' => '100%' );
 		}
+
 		return $max_width;
 	}
 }

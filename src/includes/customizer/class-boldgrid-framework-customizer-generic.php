@@ -444,6 +444,22 @@ class Boldgrid_Framework_Customizer_Generic {
 						'maxWidth' => 1920,
 					),
 				),
+				array(
+					'media'    => array( 'desktop' ),
+					'unit'     => 'px',
+					'isLinked' => true,
+					'values'   => array(
+						'maxWidth' => 1200,
+					),
+				),
+				array(
+					'media'    => array( 'tablet' ),
+					'unit'     => 'px',
+					'isLinked' => true,
+					'values'   => array(
+						'maxWidth' => 992,
+					),
+				),
 			),
 		);
 

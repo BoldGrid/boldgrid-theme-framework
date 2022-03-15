@@ -23,9 +23,9 @@ $container-widths: (
 	'blog-page-mw-large': $blog-page-mw-large,
 	'blog-page-mw-desktop': $blog-page-mw-desktop,
 	'blog-page-mw-tablet': $blog-page-mw-tablet,
-	'woocommerce-mw-large': $blog-page-mw-large,
-	'woocommerce-mw-desktop': $blog-page-mw-desktop,
-	'woocommerce-mw-tablet': $blog-page-mw-tablet,
+	'woocommerce-mw-large': $woocommerce-mw-large,
+	'woocommerce-mw-desktop': $woocommerce-mw-desktop,
+	'woocommerce-mw-tablet': $woocommerce-mw-tablet,
 );
 
 @mixin boldgrid-section( $col-prefix, $max-width ) {
@@ -82,6 +82,9 @@ $container-widths: (
 			@if 'blog-page' == $page-post-type {
 				@include blog-search-archive( $device-type, $max-width );
 			}
+			@if 'woocommerce' == $page-post-type {
+				@include woocommerce( $device-type, $max-width );
+			}
 		}
 	}
 }
@@ -91,6 +94,16 @@ $container-widths: (
 		max-width: $max-width;
 		margin-left: auto;
 		margin-right: auto;
+	}
+}
+
+@mixin woocommerce( $device-type, $max-width ) {
+	&[data-mw-#{$device-type}="#{$max-width}"] {
+		&.woocommerce, &.woocommerce-page{
+			#main-wrapper.full-width.max-full-width {
+				max-width: $max-width;
+			}
+		}
 	}
 }
 

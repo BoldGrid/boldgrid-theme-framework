@@ -114,15 +114,18 @@ class Boldgrid_Framework_Container_Width {
 	 */
 	public function get_scss_variables() {
 		$variables  = array(
-			'pages-mw-large'        => '1920px',
-			'pages-mw-desktop'      => '1200px',
-			'pages-mw-tablet'       => '992px',
-			'blog-posts-mw-large'   => '1920px',
-			'blog-posts-mw-desktop' => '1200px',
-			'blog-posts-mw-tablet'  => '992px',
-			'blog-page-mw-large'    => '1920px',
-			'blog-page-mw-desktop'  => '1200px',
-			'blog-page-mw-tablet'   => '992px',
+			'pages-mw-large'         => '1920px',
+			'pages-mw-desktop'       => '1200px',
+			'pages-mw-tablet'        => '992px',
+			'blog-posts-mw-large'    => '1920px',
+			'blog-posts-mw-desktop'  => '1200px',
+			'blog-posts-mw-tablet'   => '992px',
+			'blog-page-mw-large'     => '1920px',
+			'blog-page-mw-desktop'   => '1200px',
+			'blog-page-mw-tablet'    => '992px',
+			'woocommerce-mw-large'   => '1920px',
+			'woocommerce-mw-desktop' => '1200px',
+			'woocommerce-mw-tablet'  => '992px',
 		);
 		$post_types = array( 'woocommerce', 'pages', 'blog_posts', 'blog_page' );
 		foreach ( $post_types as $post_type ) {

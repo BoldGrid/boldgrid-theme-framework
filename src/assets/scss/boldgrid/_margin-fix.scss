@@ -384,7 +384,7 @@
 				padding-right: 0px;
 			}
 		}
-		&.blog, &.archive {
+		&.blog, &.archive, &.woocommerce, &.woocommerce-page {
 			#main-wrapper.full-width.max-full-width {
 				margin-left: auto;
 				margin-right: auto;
@@ -393,7 +393,7 @@
 					padding-right: 0;
 				}
 			}
-			&.has-sidebar {
+			&.has-sidebar, &.woocommerce-page {
 				#main-wrapper.full-width.max-full-width {
 					main.main {
 						padding-left: 20px;

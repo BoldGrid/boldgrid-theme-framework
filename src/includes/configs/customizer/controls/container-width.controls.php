@@ -345,11 +345,11 @@ return array(
 			),
 		),
 	),
-	'woocommerce_container_max_width'      => array(
+	'bgtfw_woocommerce_container_max_width'      => array(
 		'type'              => 'kirki-generic',
 		'transport'         => 'postMessage',
 		'section'           => 'bgtfw_layout_woocommerce_container',
-		'settings'          => 'woocommerce_container_max_width',
+		'settings'          => 'bgtfw_woocommerce_container_max_width',
 		'label'             => 'Container Max Width',
 		'default'           => $bgtfw_generic->get_width_defaults( 'max-width' ),
 		'priority'          => 40,

@@ -92,7 +92,7 @@ class Boldgrid_Framework_Title {
 	 * @param WP_Post $post WordPress Post Object.
 	 */
 	public function meta_box_callback( $post ) {
-		if ( ! in_array( $post->post_type, array( 'post', 'page' ), true ) ) {
+		if ( ! in_array( $post->post_type, apply_filters( 'bgtfw_page_title_control_post_types', array( 'post', 'page' ) ), true ) ) {
 			return;
 		}
 

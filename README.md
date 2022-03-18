@@ -36,6 +36,12 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.13.3 ###
+* Bug Fix: Re-build release with 2.13.1 & 2.13.2 fixes properly merged.
+
+### 2.13.2 ###
+* Bug Fix: Fonts in Customizer are misaligned from input [#646](https://github.com/BoldGrid/boldgrid-theme-framework/issues/646)
+
 ### 2.13.1 ###
 * Bug Fix: Responsive Utilities from PPB are not respected in latest Crio version [#637](https://github.com/BoldGrid/boldgrid-theme-framework/issues/637)
 

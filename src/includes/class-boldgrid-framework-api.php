@@ -417,6 +417,8 @@ class BoldGrid {
 	public function body_classes( $classes ) {
 		global $post;
 
+		$post_id = 0;
+
 		if ( is_object( $post ) ) {
 			$post_id = absint( $post->ID );
 		}

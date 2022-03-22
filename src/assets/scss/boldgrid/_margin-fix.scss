@@ -411,7 +411,7 @@
 	}
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1200px) {
 	body[data-container="max-full-width"] {
 		overflow-x: hidden;
 		#masthead .boldgrid-section>.container-fluid .row.full-width-row,
@@ -419,6 +419,9 @@
 		#colophon .boldgrid-section>.container-fluid .row.full-width-row,
 		#main-wrapper.full-width.max-full-width .boldgrid-section>.container-fluid .row.full-width-row {
 			position: relative;
+			> div[class^=col-] {
+				z-index: 1;
+			}
 			.fwr-container {
 				width: calc( 100vw - 10px );
 				position: absolute;
@@ -432,12 +435,14 @@
 					left: 0;
 					top: 0;
 					bottom: 0;
+					z-index: 1;
 				}
 				.fwr-right-container {
 					position:absolute;
 					right: 0;
 					top: 0;
 					bottom: 0;
+					z-index: 0;
 				}
 			}
 		}

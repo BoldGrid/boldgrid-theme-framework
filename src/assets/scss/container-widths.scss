@@ -37,9 +37,6 @@ $container-widths: (
 			max-width: $max-width;
 		}
 
-		@if 'md' == $col-prefix {
-			@include full-width-rows( $col-prefix, $max-width );
-		}
 		@if 'lg' == $col-prefix {
 			@include full-width-rows( $col-prefix, $max-width );
 		}

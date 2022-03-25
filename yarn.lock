@@ -755,7 +755,7 @@
 
 "@boldgrid/controls@https://github.com/BoldGrid/controls#dev":
   version "0.15.0"
-  resolved "https://github.com/BoldGrid/controls#752b80ef715a96f11faa6d5ba82d0f2c544cf761"
+  resolved "https://github.com/BoldGrid/controls#d1ef9755892a8dfcb9aa7e6f5013086f2f2ecfec"
   dependencies:
     "@boldgrid/components" "^2.14.0"
     "@material/switch" "^0.36.1"

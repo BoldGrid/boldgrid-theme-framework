@@ -342,7 +342,7 @@
 	}
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1200px) {
 	body[data-container="max-full-width"] {
 		overflow-x: hidden;
 		.page-header-wrapper.full-width {
@@ -435,14 +435,12 @@
 					left: 0;
 					top: 0;
 					bottom: 0;
-					z-index: 1;
 				}
 				.fwr-right-container {
 					position:absolute;
 					right: 0;
 					top: 0;
 					bottom: 0;
-					z-index: 0;
 				}
 			}
 		}

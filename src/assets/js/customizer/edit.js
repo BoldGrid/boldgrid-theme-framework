@@ -113,6 +113,22 @@ const { __ } = wp.i18n;
 					self.start();
 				} );
 			} );
+
+			api.control.each( ( control ) => {
+				var controlId = control.id;
+				if ( ! controlId ) {
+					return;
+				}
+
+				if ( controlId.includes( '_title_' ) && controlId.includes( 'container' ) ) {
+					wp.customize( controlId, ( titleControl ) => {
+						titleControl.bind( () => {
+							self.destroy();
+							self.start();
+						} );
+					} );
+				}
+			} );
 		},
 
 		/**

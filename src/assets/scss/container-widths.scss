@@ -15,17 +15,9 @@ $col-sizes: (
 
 $container-widths: (
 	'pages-mw-large': $pages-mw-large,
-	'pages-mw-desktop': $pages-mw-desktop,
-	'pages-mw-tablet': $pages-mw-tablet,
 	'blog-posts-mw-large': $blog-posts-mw-large,
-	'blog-posts-mw-desktop': $blog-posts-mw-desktop,
-	'blog-posts-mw-tablet': $blog-posts-mw-tablet,
 	'blog-page-mw-large': $blog-page-mw-large,
-	'blog-page-mw-desktop': $blog-page-mw-desktop,
-	'blog-page-mw-tablet': $blog-page-mw-tablet,
 	'woocommerce-mw-large': $woocommerce-mw-large,
-	'woocommerce-mw-desktop': $woocommerce-mw-desktop,
-	'woocommerce-mw-tablet': $woocommerce-mw-tablet,
 );
 
 @mixin boldgrid-section( $col-prefix, $max-width ) {
@@ -37,9 +29,7 @@ $container-widths: (
 			max-width: $max-width;
 		}
 
-		@if 'lg' == $col-prefix {
-			@include full-width-rows( $col-prefix, $max-width );
-		}
+		@include full-width-rows( $col-prefix, $max-width );
 
 	}
 }
@@ -125,22 +115,5 @@ $container-widths: (
 		@include page( '&.single:not(.single-product)', 'blog-posts', 'large', 'lg' );
 		@include page( '&.archive:not(.tax-product_cat), &.blog, &.search', 'blog-page', 'large', 'lg' );
 		@include page( '&.tax-product_cat, &.single-product, &.woocommerce-page', 'woocommerce', 'large', 'lg' );
-
-	}
-}
-@media only screen and (max-width: 1199px) and (min-width: 992px) {
-	body[data-container="max-full-width"] {
-		@include page( '&.page:not(.woocommerce-page)', 'pages', 'desktop', 'md' );
-		@include page( '&.single:not(.single-product)', 'blog-posts', 'desktop', 'md' );
-		@include page( '&.archive:not(.tax-product_cat), &.blog, &.search', 'blog-page', 'desktop', 'md' );
-		@include page( '&.tax-product_cat, &.single-product, &.woocommerce-page', 'woocommerce', 'desktop', 'md' );
-	}
-}
-@media only screen and (max-width: 991px) and (min-width: 768px) {
-	body[data-container="max-full-width"] {
-		@include page( '&.page:not(.woocommerce-page)', 'pages', 'tablet', 'sm' );
-		@include page( '&.single:not(.single-product)', 'blog-posts', 'tablet', 'sm' );
-		@include page( '&.archive:not(.tax-product_cat), &.blog, &.search', 'blog-page', 'tablet', 'sm' );
-		@include page( '&.tax-product_cat, &.single-product, &.woocommerce-page', 'woocommerce', 'tablet', 'sm' );
 	}
 }

@@ -515,6 +515,14 @@ class BoldGrid {
 				} else if ( 'hide' === get_theme_mod( 'bgtfw_posts_title_display' ) && 'none' === get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
 					$classes[] = 'customizer-page-header-hidden';
 				}
+
+				$feat_img_display  = get_theme_mod( 'bgtfw_post_header_feat_image_display' );
+				$feat_img_position = get_theme_mod( 'bgtfw_post_header_feat_image_position' );
+				$feat_img_align    = get_theme_mod( 'bgtfw_post_header_feat_image_align' );
+
+				if ( 'hide' !== $feat_img_display && 'below' === $feat_img_position ) {
+					$classes[] = 'feat-image-' . $feat_img_align;
+				}
 			}
 		}
 

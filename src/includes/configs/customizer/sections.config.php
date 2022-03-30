@@ -53,7 +53,7 @@ $sections_array = array(
 		'title'       => __( 'Container', 'bgtfw' ),
 		'panel'       => 'bgtfw_design_panel',
 		'section'     => 'bgtfw_layout_page',
-		'description' => esc_html__( 'This section controls the container for your pages.', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"></p>' . esc_html__( 'This section controls the container for your pages.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-container-types/" target="_blank"><span class="dashicons"></span>Help</a></div>',
 		'capability'  => 'edit_theme_options',
 		'icon'        => 'icon-layout-container',
 	),
@@ -130,6 +130,7 @@ $sections_array = array(
 	'bgtfw_header_layout_advanced'               => array(
 		'title'       => __( 'Custom Header Layout', 'bgtfw' ),
 		'description' => esc_html__( 'Advanced settings for the layout of your site\'s header.', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"></p>' . esc_html__( 'Advanced settings for the layout of your site\'s header.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/customizing-the-header-design-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div>',
 		'panel'       => 'bgtfw_header_layouts',
 		'priority'    => 70,
 		'icon'        => 'dashicons-admin-generic',
@@ -228,6 +229,7 @@ $sections_array = array(
 	'bgtfw_pages_blog_blog_page_post_content'    => array(
 		'title'     => 'Post List Settings',
 		'panel'     => 'bgtfw_blog_blog_page_panel',
+		'description' => '<div class="bgtfw-description"></p>' . esc_html__( 'This section controls the settings for your Blog Page.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-container-types/" target="_blank"><span class="dashicons"></span>Help</a></div>',
 		'icon'      => 'dashicons-feedback',
 		'edit_vars' => array(
 			array(
@@ -362,6 +364,7 @@ $sections_array = array(
 		'title' => __( 'Container', 'bgtfw' ),
 		'panel' => 'bgtfw_blog_posts_panel',
 		'icon'  => 'icon-layout-container',
+		'description' => '<div class="bgtfw-description"></p>' . esc_html__( 'This section controls the container for your posts.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-container-types/" target="_blank"><span class="dashicons"></span>Help</a></div>',
 		'edit_vars' => array(
 			array(
 				'selector'    => '.single .main',
@@ -585,7 +588,7 @@ if ( $is_woocommerce ) {
 		'title'       => __( 'Container', 'bgtfw' ),
 		'panel'       => 'bgtfw_design_panel',
 		'section'     => 'bgtfw_layout_woocommerce',
-		'description' => esc_html__( 'This section controls the container for your WooCommerce pages.', 'bgtfw' ),
+		'description' => '<div class="bgtfw-description"></p>' . esc_html__( 'This section controls the container for your WooCommerce pages.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-container-types/" target="_blank"><span class="dashicons"></span>Help</a></div>',
 		'capability'  => 'edit_theme_options',
 		'icon'        => 'icon-layout-container',
 	);

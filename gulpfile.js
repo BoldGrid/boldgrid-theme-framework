@@ -247,15 +247,7 @@ gulp.task( 'license', function() {
 // Framework Images.  Pipe through newer images only!
 gulp.task('images', function () {
   return gulp.src([config.src + '/assets/img/**/*.{png,jpg,gif}'])
-    .pipe(newer(config.dist + '/assets/img'))
-    //.pipe( changed( config.src + '/assets/img' ) )
-    .pipe(imagemin({
-      optimizationLevel: 7,
-      progressive: true,
-      interlaced: true
-  }))
     .pipe(gulp.dest(config.dist + '/assets/img'))
-  // .pipe( notify( { message: 'Image minification complete', onLast: true } ) );
 });
 
 // Move src svgs to dist.

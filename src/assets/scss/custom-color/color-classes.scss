@@ -346,6 +346,9 @@ $names: background background-color;
 		.palette-primary .btn-border-#{$ubtn-name}.button-secondary,
 		.btn-border-#{$ubtn-name}-flat {
 			border-color: $ubtn-background !important;
+			&.btn-transparent{
+				color: $ubtn-background;
+			}
 			&:hover,
 			&:focus {
 				&.btn-transparent{

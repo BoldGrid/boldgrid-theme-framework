@@ -154,7 +154,7 @@ class BoldGrid_Framework {
 	 */
 	private function load_dependencies() {
 		// Load Compile Interface.
-		require_once( trailingslashit( __DIR__ ) . 'interface-boldgrid-framework-compile.php' );
+		require_once trailingslashit( __DIR__ ) . 'interface-boldgrid-framework-compile.php';
 		// Include utility classes.
 		$library_files = array(
 			'404',
@@ -164,6 +164,7 @@ class BoldGrid_Framework {
 			'comments',
 			'compile-colors',
 			'container',
+			'container-width',
 			'content',
 			'custom-header',
 			'editor',
@@ -197,7 +198,7 @@ class BoldGrid_Framework {
 		);
 
 		foreach ( $library_files as $filename ) {
-			require_once( trailingslashit( __DIR__ ) . 'class-boldgrid-framework-' . $filename . '.php' );
+			require_once trailingslashit( __DIR__ ) . 'class-boldgrid-framework-' . $filename . '.php';
 		}
 
 		// Load Customizer Files.
@@ -388,9 +389,10 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function define_theme_hooks() {
-		$styles         = new BoldGrid_Framework_Styles( $this->configs );
-		$scripts        = new BoldGrid_Framework_Scripts( $this->configs );
-		$boldgrid_theme = new BoldGrid( $this->configs );
+		$styles          = new BoldGrid_Framework_Styles( $this->configs );
+		$scripts         = new BoldGrid_Framework_Scripts( $this->configs );
+		$container_width = new Boldgrid_Framework_Container_Width( $this->configs );
+		$boldgrid_theme  = new BoldGrid( $this->configs );
 
 		// Load Theme Wrapper.
 		if ( true === $this->configs['boldgrid-parent-theme'] ) {
@@ -433,6 +435,11 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'body_class', $boldgrid_theme, 'body_classes' );
 		$this->loader->add_filter( 'post_class', $boldgrid_theme, 'post_class' );
 
+		$this->loader->add_filter( 'bgtfw_get_container_type', $container_width, 'get_container_type', 10, 1 );
+		$this->loader->add_filter( 'bgtfw_get_max_width', $container_width, 'get_max_width', 10, 1 );
+
+		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'register_container_widths' );
+
 		$this->loader->add_filter( 'bgtfw_entry_header_classes', $boldgrid_theme, 'entry_header_classes' );
 		$this->loader->add_filter( 'bgtfw_header_classes', $boldgrid_theme, 'header_classes' );
 		$this->loader->add_filter( 'bgtfw_navi_wrap_classes', $boldgrid_theme, 'header_classes' );
@@ -440,6 +447,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bgtfw_navi_classes', $boldgrid_theme, 'navi_classes' );
 		$this->loader->add_filter( 'bgtfw_footer_content_classes', $boldgrid_theme, 'inner_footer_classes' );
 		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'blog_page_container' );
+		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'page_container' );
 		$this->loader->add_filter( 'bgtfw_woocommerce_wrapper_classes', $boldgrid_theme, 'woocommerce_container' );
 		$this->loader->add_filter( 'bgtfw_blog_page_post_title_classes', $boldgrid_theme, 'blog_page_post_title_classes' );
 		$this->loader->add_filter( 'bgtfw_posts_title_classes', $boldgrid_theme, 'post_title_classes' );
@@ -461,15 +469,19 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_identity', $boldgrid_theme, 'print_title_tagline' );
 
 		// Sticky Header - Removed template_redirect as it was unnecessary and caused duplication of the sticky header sometimes.
-		add_action( 'boldgrid_header_after', function( $id ) {
-			if ( $this->maybe_show_sticky_header( $id ) ) {
-				?>
-				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
-					<?php echo BoldGrid::dynamic_sticky_header(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</div>
-				<?php
-			}
-		}, 20 );
+		add_action(
+			'boldgrid_header_after',
+			function( $id ) {
+				if ( $this->maybe_show_sticky_header( $id ) ) {
+					?>
+					<div <?php BoldGrid::add_class( 'sticky_header', array( 'bgtfw-sticky-header', 'site-header' ) ); ?>>
+						<?php echo BoldGrid::dynamic_sticky_header(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<?php
+				}
+			},
+			20
+		);
 
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
@@ -853,8 +865,8 @@ class BoldGrid_Framework {
 	private function customizer_footer() {
 		$footer = new BoldGrid_Framework_Customizer_Footer();
 		$this->loader->add_action( 'boldgrid_display_attribution_links', $footer, 'attribution_display_action' );
-		add_action( 'customize_save_after', [ 'Boldgrid_Framework_Customizer_Footer', 'customize_links' ], 999 );
-		add_action( 'customize_controls_print_styles', [ 'Boldgrid_Framework_Customizer_Footer', 'customize_attribution' ], 999 );
+		add_action( 'customize_save_after', array( 'Boldgrid_Framework_Customizer_Footer', 'customize_links' ), 999 );
+		add_action( 'customize_controls_print_styles', array( 'Boldgrid_Framework_Customizer_Footer', 'customize_attribution' ), 999 );
 	}
 
 	/**
@@ -918,6 +930,8 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'customize_refresh_nonces', $base->presets, 'header_layout_nonces' );
 		$this->loader->add_action( 'customize_save_after', $base->presets, 'starter_content_defaults' );
 		$this->loader->add_filter( 'customize_refresh_nonces', $base, 'header_column_nonces' );
+		$this->loader->add_filter( 'customize_refresh_nonces', $base, 'container_width_nonce' );
+		$this->loader->add_action( 'wp_ajax_bgtfw_container_width', $base, 'wp_ajax_bgtfw_container_width' );
 		$this->loader->add_action( 'wp_ajax_bgtfw_header_columns', $base, 'wp_ajax_bgtfw_header_columns' );
 	}
 
@@ -938,8 +952,6 @@ class BoldGrid_Framework {
 	 */
 	private function customizer_effects() {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
-		// Add Page Effects Controls.
-		// $this->loader->add_action( 'customize_register', $effects, 'add_controls' );
 	}
 
 
@@ -962,7 +974,7 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function customizer_widget_meta() {
-		$widget_meta = new  Boldgrid_Framework_Customizer_Widget_Meta( $this->configs );
+		$widget_meta = new Boldgrid_Framework_Customizer_Widget_Meta( $this->configs );
 		$this->loader->add_action( 'customize_register', $widget_meta, 'customize_register' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $widget_meta, 'customize_controls_enqueue_scripts' );
 		$this->loader->add_action( 'customize_controls_print_footer_scripts', $widget_meta, 'customize_controls_print_footer_scripts' );
@@ -1090,15 +1102,22 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'woocommerce_before_checkout_form', $this->woo, 'add_page_title' );
 
 		remove_all_actions( 'woocommerce_sidebar' );
-		add_filter( 'loop_shop_per_page', function( $cols ) {
-			return 12;
-		}, 20 );
-		add_action( 'template_redirect', function() use ( $woo ) {
-			if ( $woo->is_woocommerce_page() ) {
-				add_action( 'boldgrid_main_top', array( $woo, 'add_container_open' ) );
-				add_action( 'boldgrid_main_bottom', array( $woo, 'add_container_close' ) );
+		add_filter(
+			'loop_shop_per_page',
+			function( $cols ) {
+				return 12;
+			},
+			20
+		);
+		add_action(
+			'template_redirect',
+			function() use ( $woo ) {
+				if ( $woo->is_woocommerce_page() ) {
+					add_action( 'boldgrid_main_top', array( $woo, 'add_container_open' ) );
+					add_action( 'boldgrid_main_bottom', array( $woo, 'add_container_close' ) );
+				}
 			}
-		});
+		);
 
 		/**
 		 * Change number of products that are displayed per page (shop page)

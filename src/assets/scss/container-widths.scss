@@ -1,0 +1,119 @@
+$col-sizes: (
+	'1': 0.0833333,
+	'2': 0.166667,
+	'3': 0.25,
+	'4': 0.3333333,
+	'5': 0.4166667,
+	'6': 0.5,
+	'7': 0.5833333,
+	'8': 0.6666667,
+	'9': 0.75,
+	'10': 0.8333333,
+	'11': 0.9166667,
+	'12': 1
+);
+
+$container-widths: (
+	'pages-mw-large': $pages-mw-large,
+	'blog-posts-mw-large': $blog-posts-mw-large,
+	'blog-page-mw-large': $blog-page-mw-large,
+	'woocommerce-mw-large': $woocommerce-mw-large,
+);
+
+@mixin boldgrid-section( $col-prefix, $max-width ) {
+	.boldgrid-section {
+		> .container-fluid {
+			max-width: $max-width;
+		}
+		> .full-width {
+			max-width: $max-width;
+		}
+
+		@include full-width-rows( $col-prefix, $max-width );
+
+	}
+}
+
+@mixin page-title-header( $max-width ) {
+	.page-header-wrapper.full-width .featured-imgage-header:not( .container ) {
+		max-width: $max-width;
+	}
+}
+
+@mixin full-width-rows( $col-type, $max-width ) {
+	> .container-fluid, > .full-width {
+		.row.full-width-row {
+			@each $col-num, $col-size in $col-sizes {
+				.fwr-container {
+					.fwr-#{$col-type}-#{$col-num} {
+						width: calc( calc( #{$max-width} * #{$col-size} ) + calc( calc( 100% - #{$max-width} ) / 2 ) );
+						min-width: calc( 100vw * #{$col-size} );
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin page( $class, $page-post-type, $device-type, $col-prefix ) {
+	@if map-has-key( $container-widths, #{#{$page-post-type}-mw-#{$device-type}} ) {
+		$max-width: map-get($container-widths, #{#{$page-post-type}-mw-#{$device-type}} );
+		@if 'unset' != $max-width {
+			#{$class} {
+				&[data-mw-#{$device-type}="#{$max-width}"] {
+					@include boldgrid-section( $col-prefix, $max-width );
+					@include page-title-header( $max-width );
+					@include post-comments-navigation( $max-width );
+				}
+			}
+			@if 'blog-page' == $page-post-type {
+				@include blog-search-archive( $device-type, $max-width );
+			}
+			@if 'woocommerce' == $page-post-type {
+				@include woocommerce( $device-type, $max-width );
+			}
+		}
+	}
+}
+
+@mixin post-comments-navigation( $max-width ) {
+	nav.navigation, #comments {
+		max-width: $max-width;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@mixin woocommerce( $device-type, $max-width ) {
+	&[data-mw-#{$device-type}="#{$max-width}"] {
+		&.woocommerce, &.woocommerce-page{
+			#main-wrapper.full-width.max-full-width {
+				max-width: $max-width;
+			}
+		}
+	}
+}
+
+@mixin blog-search-archive( $device-type, $max-width ) {
+	&[data-mw-#{$device-type}="#{$max-width}"] {
+		&.search{
+			#main-wrapper.full-width.max-full-width .main {
+				max-width: $max-width;
+			}
+		}
+		&.archive, &.blog {
+			#main-wrapper.full-width.max-full-width {
+				max-width: $max-width;
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	body[data-container="max-full-width"] {
+		@include page( '&.page:not(.woocommerce-page)', 'pages', 'large', 'lg' );
+		@include page( '&.single:not(.single-product)', 'blog-posts', 'large', 'lg' );
+		@include page( '&.archive:not(.tax-product_cat), &.blog, &.search', 'blog-page', 'large', 'lg' );
+		@include page( '&.tax-product_cat, &.single-product, &.woocommerce-page', 'woocommerce', 'large', 'lg' );
+	}
+}

@@ -44,6 +44,7 @@ $typography_controls       = require dirname( __FILE__ ) . '/controls/typography
 $woocommerce_controls      = require dirname( __FILE__ ) . '/controls/woocommerce.controls.php';
 $general_controls          = require dirname( __FILE__ ) . '/controls/general.controls.php';
 $button_controls           = require dirname( __FILE__ ) . '/controls/buttons.controls.php';
+$container_width_controls  = require dirname( __FILE__ ) . '/controls/container-width.controls.php';
 
 return array_merge(
 	$background_image_controls,
@@ -62,5 +63,6 @@ return array_merge(
 	$typography_controls,
 	$woocommerce_controls,
 	$button_controls,
+	$container_width_controls,
 	$general_controls
 );

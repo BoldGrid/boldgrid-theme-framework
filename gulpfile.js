@@ -247,6 +247,8 @@ gulp.task( 'license', function() {
 // Framework Images.  Pipe through newer images only!
 gulp.task('images', function () {
   return gulp.src([config.src + '/assets/img/**/*.{png,jpg,gif}'])
+    .pipe(newer(config.dist + '/assets/img'))
+    //.pipe( changed( config.src + '/assets/img' ) )
     .pipe(gulp.dest(config.dist + '/assets/img'))
 });
 

@@ -11,37 +11,6 @@
  */
 
 return array(
-	'bgtfw_pages_container'     => array(
-		'settings'          => 'bgtfw_pages_container',
-		'transport'         => 'refresh',
-		'label'             => esc_html__( 'Container', 'bgtfw' ),
-		'type'              => 'radio-buttonset',
-		'priority'          => 35,
-		'default'           => 'container',
-		'choices'           => array(
-			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			''          => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
-		),
-		'section'           => 'bgtfw_layout_page_container',
-		'sanitize_callback' => function( $value, $settings ) {
-			return 'container' === $value || '' === $value ? $value : $settings->default;
-		},
-		'js_vars'           => array(
-			array(
-				'element'       => '.page .site-content',
-				'function'      => 'html',
-				'attr'          => 'class',
-				'value_pattern' => 'site-content $',
-			),
-		),
-		'edit_vars'         => array(
-			array(
-				'selector'    => '.page .site-content',
-				'label'       => __( 'Page Layout', 'bgtfw' ),
-				'description' => __( 'Choose between contained or full-width page layout', 'bgtfw' ),
-			),
-		),
-	),
 	'bgtfw_pages_title_display' => array(
 		'type'              => 'radio-buttonset',
 		'settings'          => 'bgtfw_pages_title_display',

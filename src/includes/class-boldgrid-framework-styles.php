@@ -94,6 +94,20 @@ class BoldGrid_Framework_Styles {
 		wp_enqueue_style( 'bgtfw-responsive-font-sizes' );
 	}
 
+	/**
+	 * Register Container Widths.
+	 *
+	 * @since 2.14.0
+	 */
+	public function register_container_widths() {
+		$scss = new Boldgrid_Framework_SCSS( $this->configs );
+		$css  = $scss->compile_widths();
+
+		wp_register_style( 'bgtfw-container-widths', false, $this->configs['version'] );
+		wp_add_inline_style( 'bgtfw-container-widths', $css );
+		wp_enqueue_style( 'bgtfw-container-widths' );
+	}
+
 	/** Generate Responive Font CSS
 	 *
 	 * Generates responsive font css.
@@ -406,7 +420,7 @@ class BoldGrid_Framework_Styles {
 
 		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";
-		$css = "{$menu_id} .hvr-none:not( .current-menu-item ):not( .button ) > a:hover,{$menu_id} .hvr-none:not( .current-menu-ancestor ):not( .button ) > a:hover,{$menu_id} .hvr-none:not( .current-menu-parent ):not( .button ) > a:hover,{$menu_id} .hvr-none:not( .current_page_parent ):not( .button ) > a:hover{ color: {$color}; }";
+		$css = "{$menu_id} .hvr-none:not( .current-menu-item ):not( .btn ) > a:hover,{$menu_id} .hvr-none:not( .current-menu-ancestor ):not( .btn ) > a:hover,{$menu_id} .hvr-none:not( .current-menu-parent ):not( .btn ) > a:hover,{$menu_id} .hvr-none:not( .current_page_parent ):not( .btn ) > a:hover{ color: {$color}; }";
 
 		return $css;
 	}

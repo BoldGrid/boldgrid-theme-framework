@@ -636,31 +636,6 @@ return array(
 			),
 		),
 	),
-	'bgtfw_blog_posts_container'                => array(
-		'settings'          => 'bgtfw_blog_posts_container',
-		'transport'         => 'refresh',
-		'label'             => esc_html__( 'Container', 'bgtfw' ),
-		'tooltip'           => __( 'Choose if you would like your content wrapped in a container or cover the full width of the page.', 'bgtfw' ),
-		'type'              => 'radio-buttonset',
-		'priority'          => 40,
-		'default'           => 'container',
-		'choices'           => array(
-			'container' => '<span class="icon-layout-container"></span>' . esc_attr__( 'Contained', 'bgtfw' ),
-			''          => '<span class="icon-layout-full-screen"></span>' . esc_attr__( 'Full Width', 'bgtfw' ),
-		),
-		'section'           => 'bgtfw_pages_blog_posts_container',
-		'sanitize_callback' => function( $value, $settings ) {
-			return 'container' === $value || '' === $value ? $value : $settings->default;
-		},
-		'js_vars'           => array(
-			array(
-				'element'       => '.single-post .main-wrapper',
-				'function'      => 'html',
-				'attr'          => 'class',
-				'value_pattern' => 'main-wrapper $',
-			),
-		),
-	),
 	'bgtfw_layout_blog'                         => array(
 		'settings'          => 'bgtfw_layout_blog',
 		'label'             => esc_html__( 'Sidebar Display', 'bgtfw' ),

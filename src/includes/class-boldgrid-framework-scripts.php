@@ -325,6 +325,7 @@ class BoldGrid_Framework_Scripts {
 		}
 
 		foreach ( $button_controls as $button_type => $button_controls ) {
+			$button_classes[ $button_type ] = 'btn';
 			foreach ( $button_controls as $control_id ) {
 				$default = $this->configs['customizer']['controls'][ $control_id ] ? $this->configs['customizer']['controls'][ $control_id ]['default'] : '';
 
@@ -358,12 +359,7 @@ class BoldGrid_Framework_Scripts {
 						continue;
 					}
 				}
-
-				if ( '' === $button_classes[ $button_type ] ) {
-					$button_classes[ $button_type ] = 'btn ' . $control_classes;
-				} else {
-					$button_classes[ $button_type ] .= ' btn ' . $control_classes;
-				}
+				$button_classes[ $button_type ] .= ' ' . $control_classes;
 			}
 		}
 

@@ -151,7 +151,12 @@ class BoldGrid {
 		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
 		if ( is_single() || is_attachment() ) {
 			$theme_mod = get_theme_mod( $theme_mod_type );
-			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+			if ( 'max-full-width' === $theme_mod ) {
+				$classes[] = 'max-full-width';
+				$classes[] = 'full-width';
+			} else {
+				$classes[] = $theme_mod = empty( $theme_mod ) ? 'full-width' : 'container';
+			}
 		}
 
 		return $classes;
@@ -168,10 +173,16 @@ class BoldGrid {
 	 */
 	public function page_container( $classes ) {
 		global $boldgrid_theme_framework;
-		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
+		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_pages_container';
 		if ( is_page() || ( $boldgrid_theme_framework->woo->is_woocommerce_page() && is_shop() ) ) {
+
 			$theme_mod = get_theme_mod( $theme_mod_type );
-			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+			if ( 'max-full-width' === $theme_mod ) {
+				$classes[] = 'max-full-width';
+				$classes[] = 'full-width';
+			} else {
+				$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+			}
 		}
 
 		return $classes;
@@ -191,7 +202,12 @@ class BoldGrid {
 
 		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
 			$theme_mod = get_theme_mod( 'bgtfw_woocommerce_container' );
-			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+			if ( 'max-full-width' === $theme_mod ) {
+				$classes[] = 'max-full-width';
+				$classes[] = 'full-width';
+			} else {
+				$classes[] = $theme_mod = empty( $theme_mod ) ? 'full-width' : 'container';
+			}
 		}
 
 		return $classes;
@@ -214,18 +230,29 @@ class BoldGrid {
 
 		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
 			$theme_mod_type = 'bgtfw_woocommerce_container';
-		} elseif (
-			is_single() ||
-			is_attachment() ||
-			( function_exists( 'is_shop' ) && is_shop() )
-		) {
+		} elseif ( is_single() || is_attachment() || ( function_exists( 'is_shop' ) && is_shop() ) ) {
 			$theme_mod_type = 'bgtfw_blog_posts_container';
-		} elseif ( is_archive() || is_home() ) {
+		} elseif ( is_front_page() && is_home() ) {
+			// Default Homepage ( Latest Posts ).
+			$theme_mod_type      = 'bgtfw_blog_page_container';
+		} elseif ( is_front_page() ) {
+			// Static Homepage.
+			return $classes;
+		} elseif ( is_home() ) {
+			// Blog Page.
+			$theme_mod_type = 'bgtfw_blog_page_container';
+		} elseif ( is_archive() ) {
 			$theme_mod_type = 'bgtfw_blog_page_container';
 		}
 
 		$theme_mod = get_theme_mod( $theme_mod_type );
-		$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+
+		if ( 'max-full-width' === $theme_mod ) {
+			$classes[] = 'max-full-width';
+			$classes[] = 'full-width';
+		} else {
+			$classes[] = $theme_mod = empty( $theme_mod ) ? 'full-width' : 'container';
+		}
 
 		return $classes;
 	}
@@ -417,6 +444,8 @@ class BoldGrid {
 	public function body_classes( $classes ) {
 		global $post;
 
+		$post_id = 0;
+
 		if ( is_object( $post ) ) {
 			$post_id = absint( $post->ID );
 		}
@@ -485,6 +514,14 @@ class BoldGrid {
 				// Otherwise only rely on global settings for post title and meta.
 				} else if ( 'hide' === get_theme_mod( 'bgtfw_posts_title_display' ) && 'none' === get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
 					$classes[] = 'customizer-page-header-hidden';
+				}
+
+				$feat_img_display  = get_theme_mod( 'bgtfw_post_header_feat_image_display' );
+				$feat_img_position = get_theme_mod( 'bgtfw_post_header_feat_image_position' );
+				$feat_img_align    = get_theme_mod( 'bgtfw_post_header_feat_image_align' );
+
+				if ( 'hide' !== $feat_img_display && 'below' === $feat_img_position ) {
+					$classes[] = 'feat-image-' . $feat_img_align;
 				}
 			}
 		}

@@ -12,6 +12,7 @@ import './widget-meta';
 import { Preview as TypographyPreview } from './typography/preview';
 import { Preview as ButtonsPreview } from './buttons/preview';
 import { Preview as MenuPreview } from './menus/preview';
+import { Preview as ContainerWidthPreview } from './max-width-containers/preview';
 
 const api = wp.customize;
 const controlApi = parent.wp.customize;
@@ -278,6 +279,7 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 	new LinkPreview().bindEvents();
 	new ButtonsPreview().bindEvents();
 	new MenuPreview().bindEvents();
+	new ContainerWidthPreview().bindEvents();
 
 	$( function() {
 		var headingsColorOutput,

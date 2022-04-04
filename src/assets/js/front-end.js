@@ -41,6 +41,24 @@ var BoldGrid = BoldGrid || {};
 				this.cssVarsPonyfill();
 				this.responsiveVideos();
 				this.addButtonClasses();
+				this.addColLg();
+			},
+
+			/**
+			 * Add col-lg to columns that do not have it.
+			 */
+			addColLg() {
+				$( 'div[class^="col-"]' ).each( function() {
+					var $this = $( this ),
+						classes = $this.attr( 'class' ),
+						mdSize = classes.match( /col-md-([\d]+)/i ),
+						lgSize = classes.match( /col-lg-([\d]+)/i );
+
+					if ( mdSize && ! lgSize ) {
+						$this.addClass( `col-lg-${mdSize[1]}` );
+					}
+
+				} );
 			},
 
 			/**
@@ -58,8 +76,33 @@ var BoldGrid = BoldGrid || {};
 				for ( buttonType in bgtfwButtonClasses ) {
 					let buttonTypeClass = buttonType.replace( 'bgtfw_', '' );
 					let buttonClasses   = bgtfwButtonClasses[ buttonType ];
+					this.removeButtonClasses( buttonTypeClass.replace( '_', '-' ) );
 					this.addButtonClass( buttonTypeClass.replace( '_', '-' ), buttonClasses );
 				}
+			},
+
+			/** Remove Button Classes
+			 *
+			 * Removes button classes that are already present to prevent duplicates.
+			 *
+			 * @since 2.14.0
+			 *
+			 * @param {string} buttonTypeClass Primary or Secondary button class.
+			 * @param {array}  buttonClasses   Custom classes to add.
+			 *
+			 */
+			removeButtonClasses: function( buttonTypeClass ) {
+				$( '.' + buttonTypeClass ).each( function() {
+					if ( 'submit' === $( this ).prop( 'type' ) ) {
+						return;
+					}
+
+					$( this ).removeClass( 'btn' );
+
+					$( this ).removeClass( function( index, className ) {
+						return ( className.match( /(^|\s)btn-\S+/g ) || [] ).join( ' ' );
+					} );
+				} );
 			},
 
 			/**
@@ -77,6 +120,7 @@ var BoldGrid = BoldGrid || {};
 					if ( 'submit' === $( this ).prop( 'type' ) ) {
 						return;
 					}
+
 					$( this ).addClass( 'btn' );
 					buttonClasses.split( ' ' ).forEach( ( buttonClass ) => {
 						if ( ! $( this ).hasClass( buttonClass ) ) {

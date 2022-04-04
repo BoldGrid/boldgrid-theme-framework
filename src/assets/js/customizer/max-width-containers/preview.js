@@ -6,7 +6,7 @@
  * @package Boldgrid_Theme_Framework
  * @subpackage Boldgrid_Theme_Framework/Customizer/Preview
  *
- * @since 2.11.0
+ * @since 2.14.0
  */
 
  import { Preview as PreviewUtility } from '../preview';
@@ -16,7 +16,7 @@
   *
   * Extends functionality of PreviewUtility to the Responsive Font Controls.
   *
-  * @since 2.11.0
+  * @since 2.14.0
   */
  export class Preview {
 
@@ -25,7 +25,7 @@
 	 *
 	 * Initialize the Preview class, and PreviewUtility class.
 	 *
-	 * @since 2.11.0
+	 * @since 2.14.0
 	 */
 	constructor() {
 		this.preview = new PreviewUtility();
@@ -37,7 +37,7 @@
 	 * Loop through all controls, and bind control events for
 	 * responsive typography controls.
 	 *
-	 * @since 2.11.0
+	 * @since 2.14.0
 	 */
 	bindEvents() {
 		if ( parent.wp.customize.control ) {
@@ -49,6 +49,11 @@
 		}
 	}
 
+	/**
+	 * Adjusts the css for full widht rows based on the max-width value.
+	 *
+	 * @param {string} value value of control
+	 */
 	adjustFullWidthRows( value ) {
 		var deviceSizes = {},
 			colClasses  = {},
@@ -126,7 +131,7 @@
 	/**
 	 * Bind a single WordPress control's change event.
 	 *
-	 * @since 2.11.0
+	 * @since 2.14.0
 	 *
 	 * @param  {object} wpControl WordPress control instance.
 	 */

@@ -35,6 +35,10 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+### 2.14.0 ###
+New Feature: New container type - full width but contained [#540](https://github.com/BoldGrid/boldgrid-theme-framework/issues/540)
+New Feature: Extend new container type to headers & footers [#555](https://github.com/BoldGrid/boldgrid-theme-framework/issues/555)
+Bug Fix: hamburger menu icon shows next to menu from 1160px - 1199px [#366](https://github.com/BoldGrid/post-and-page-builder/issues/366)
 
 ### 2.13.0 ###
 * New Feature: Add controls for submenu backround, link, and active link colors [#587](https://github.com/BoldGrid/boldgrid-theme-framework/issues/587)

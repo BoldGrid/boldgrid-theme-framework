@@ -46,6 +46,8 @@ var BoldGrid = BoldGrid || {};
 
 			/**
 			 * Add col-lg to columns that do not have it.
+			 *
+			 * @since 2.14.0
 			 */
 			addColLg() {
 				$( 'div[class^="col-"]' ).each( function() {

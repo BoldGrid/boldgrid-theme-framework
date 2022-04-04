@@ -114,6 +114,10 @@ const { __ } = wp.i18n;
 				} );
 			} );
 
+			/**
+			 * Anytime a control containing '_title' and 'container'
+			 * is changed, we need to destroy and start again.
+			 */
 			api.control.each( ( control ) => {
 				var controlId = control.id;
 				if ( ! controlId ) {

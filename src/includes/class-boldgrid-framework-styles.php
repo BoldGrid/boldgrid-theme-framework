@@ -587,6 +587,7 @@ class BoldGrid_Framework_Styles {
 				$additional_css .= ".{$property}-background, .{$property2}-background{background: var(--{$property}) !important;}";
 				$additional_css .= ".{$property}-background-color, .{$property2}-background-color{background-color: var(--{$property}) !important;}";
 				$additional_css .= ".{$property}-border-color, .{$property2}-border-color{border-color: var(--{$property}) !important;}";
+				$additional_css .= ".{$property}-outline-color, .{$property2}-outline-color{outline-color: var(--{$property}) !important;}";
 			}
 		}
 

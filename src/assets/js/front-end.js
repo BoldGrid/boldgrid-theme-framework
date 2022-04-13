@@ -288,9 +288,14 @@ var BoldGrid = BoldGrid || {};
 			forms: function( hasFloat = false ) {
 				var wcCheckoutLabels,
 					wcRequiredLabels = [];
-				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty';
+				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty',
+					floatLabelsOn = true;
 
-				if ( ! hasFloat ) {
+				if ( Array.isArray( window.floatLabelsOn ) && '' === window.floatLabelsOn[0] ) {
+					floatLabelsOn = false;
+				}
+
+				if ( ! hasFloat && floatLabelsOn ) {
 					new FloatLabels(
 						'form', {
 							prefix: 'bgtfw-',

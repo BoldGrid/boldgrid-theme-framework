@@ -21,6 +21,12 @@ $sections_array = array(
 		'priority' => 2,
 		'panel'    => 'bgtfw_buttons_panel',
 	),
+	'bgtfw_weforms'              => array(
+		'title'    => __( 'WeForms', 'bgtfw' ),
+		'priority' => 10,
+		'icon'     => 'icon-weforms-settings',
+		'panel'    => 'bgtfw_design_panel',
+	),
 	'bgtfw_layout_blog'                          => array(
 		'title'       => __( 'Blog', 'bgtfw' ),
 		'panel'       => 'bgtfw_layout',

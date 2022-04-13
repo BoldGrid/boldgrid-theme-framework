@@ -95,6 +95,35 @@ class BoldGrid_Framework_Styles {
 	}
 
 	/**
+	 * Register weForms Styles.
+	 *
+	 * Registers the weForms styles.
+	 *
+	 * @since 2.15.0
+	 */
+	public function register_weforms_styles() {
+		$label_color = get_theme_mod( 'bgtfw_weforms_label_color' );
+
+		$label_color = 'var(--' . explode( ':', $label_color )[0] . ') !important;';
+
+		$label_css = '.wpuf-theme-style .wpuf-label label { color: ' . $label_color . ' }';
+
+		wp_register_style( 'bgtfw-weforms-label-color', false );
+		wp_add_inline_style( 'bgtfw-weforms-label-color', $label_css );
+		wp_enqueue_style( 'bgtfw-weforms-label-color' );
+
+		$sub_label_color = get_theme_mod( 'bgtfw_weforms_sublabel_color' );
+
+		$sub_label_color = 'var(--' . explode( ':', $sub_label_color )[0] . ') !important;';
+
+		$sub_label_css = '.wpuf-theme-style .wpuf-form-sub-label { color: ' . $sub_label_color . ' }';
+
+		wp_register_style( 'bgtfw-weforms-sublabel-color', false );
+		wp_add_inline_style( 'bgtfw-weforms-sublabel-color', $sub_label_css );
+		wp_enqueue_style( 'bgtfw-weforms-sublabel-color' );
+	}
+
+	/**
 	 * Register Container Widths.
 	 *
 	 * @since 2.14.0

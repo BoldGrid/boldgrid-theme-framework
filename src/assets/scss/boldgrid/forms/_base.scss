@@ -78,8 +78,12 @@ textarea {
 	}
 }
 
-input {
+form:not( .wpuf-theme-style ) input {
 	width: auto;
+}
+
+form.wpuf-theme-style input {
+	width: 100%;
 }
 
 select,

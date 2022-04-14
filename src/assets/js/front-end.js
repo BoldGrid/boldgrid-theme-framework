@@ -288,7 +288,7 @@ var BoldGrid = BoldGrid || {};
 			forms: function( hasFloat = false ) {
 				var wcCheckoutLabels,
 					wcRequiredLabels = [];
-				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty',
+				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty, [data-style=wpuf-style]',
 					floatLabelsOn = true;
 
 				if ( Array.isArray( window.floatLabelsOn ) && '' === window.floatLabelsOn[0] ) {

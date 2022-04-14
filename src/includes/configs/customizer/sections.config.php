@@ -21,12 +21,6 @@ $sections_array = array(
 		'priority' => 2,
 		'panel'    => 'bgtfw_buttons_panel',
 	),
-	'bgtfw_weforms'              => array(
-		'title'    => __( 'WeForms', 'bgtfw' ),
-		'priority' => 10,
-		'icon'     => 'icon-weforms-settings',
-		'panel'    => 'bgtfw_design_panel',
-	),
 	'bgtfw_layout_blog'                          => array(
 		'title'       => __( 'Blog', 'bgtfw' ),
 		'panel'       => 'bgtfw_layout',
@@ -572,6 +566,15 @@ $sections_array = array(
 	),
 	// End: Generic Blog Design Controls.
 );
+
+if ( is_plugin_active( 'weforms/weforms.php' ) ) {
+	$sections_array['bgtfw_weforms'] = array(
+		'title'    => __( 'WeForms', 'bgtfw' ),
+		'priority' => 10,
+		'icon'     => 'icon-weforms-settings',
+		'panel'    => 'bgtfw_design_panel',
+	);
+}
 
 /**
  * Check if WooCommerce is activated.

@@ -11,16 +11,6 @@
  */
 
 return array(
-	'bgtfw_weforms_float_labels' => array(
-		'type'        => 'switch',
-		'transport'   => 'refresh',
-		'settings'    => 'bgtfw_weforms_float_labels',
-		'description' => __( 'Choose whether or not the labels should be floated within the input field', 'bgtfw' ),
-		'label'       => esc_attr__( 'Float Labels', 'bgtfw' ),
-		'section'     => 'bgtfw_weforms',
-		'default'     => true,
-		'priority'    => 1,
-	),
 	'bgtfw_weforms_label_color' => array(
 		'type'              => 'bgtfw-palette-selector',
 		'transport'         => 'postMessage',

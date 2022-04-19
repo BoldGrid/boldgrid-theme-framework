@@ -37,11 +37,17 @@ var BoldGrid = BoldGrid || {};
 				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
 				this.observeBody();
 				this.skipLink();
-				this.forms();
 				this.cssVarsPonyfill();
 				this.responsiveVideos();
 				this.addButtonClasses();
 				this.addColLg();
+
+				/*
+				 * Disabling this.forms() for now. Leaving code here until 2.16.0. If no issues by then,
+				 * we can remove floatLabels all together.
+				 *
+				 * this.forms();
+				 */
 			},
 
 			/**
@@ -119,7 +125,7 @@ var BoldGrid = BoldGrid || {};
 			 */
 			addButtonClass: function( buttonTypeClass, buttonClasses ) {
 				$( '.' + buttonTypeClass ).each( function() {
-					if ( 'submit' === $( this ).prop( 'type' ) ) {
+					if ( 'submit' === $( this ).prop( 'type' ) && ! $( this ).hasClass( 'weforms_submit_btn' ) ) {
 						return;
 					}
 

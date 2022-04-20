@@ -168,8 +168,17 @@ class Boldgrid_Framework_Links {
 					$footer_lightness   = max( $footer_lightness, 0 );
 					$footer_color_hover = $footer_ari_color->getNew( 'lightness', $footer_lightness )->toCSS( 'hsla' );
 
-					$css .= "#colophon .bgtfw-footer.footer-content a { text-decoration: ${decoration};}";
-					$css .= "#colophon .bgtfw-footer.footer-content a:hover, .bgtfw-footer.footer-content a:focus {color: ${footer_color_hover};text-decoration: ${decoration_hover};}";
+					$css .= "#colophon .bgtfw-footer.footer-content > a,
+						#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ) {
+							text-decoration: ${decoration};
+						}";
+					$css .= "#colophon .bgtfw-footer.footer-content > a:hover,
+						.bgtfw-footer.footer-content > a:focus,
+						#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):hover,
+						.bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):focus, {
+							color: ${footer_color_hover};
+							text-decoration: ${decoration_hover};
+						}";
 				}
 			}
 		}

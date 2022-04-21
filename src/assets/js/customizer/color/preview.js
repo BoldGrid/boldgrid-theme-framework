@@ -152,19 +152,20 @@ export class Preview  {
 	}
 
 	/**
-	 * Get the css used for headin colors.
+	 * Get the css used for weForms label colors.
 	 *
-	 * @since 2.0.0
+	 * @since 2.15.0
 	 *
 	 * @param  {string} to Them mod value.
-	 * @return {string}    CSS for headings.
+	 *
+	 * @return {string}    CSS for weForms.
 	 */
 	getWeformsLabelCss( to ) {
 		const color    = new PaletteSelector().getColor( to );
 		var labelColor = color;
 
-		let css = '',
-			hasSemicolon = color ? color.indexOf( ';' ) : -1,
+		let css                   = '',
+			hasSemicolon          = color ? color.indexOf( ';' ) : -1,
 			weformsLabelSelectors = [];
 
 		if ( color ) {
@@ -182,12 +183,13 @@ export class Preview  {
 	}
 
 	/**
-	 * Get the css used for headin colors.
+	 * Get the css used for weForms sub-label colors.
 	 *
-	 * @since 2.0.0
+	 * @since 2.15.0
 	 *
 	 * @param  {string} to Them mod value.
-	 * @return {string}    CSS for headings.
+	 *
+	 * @return {string}    CSS for weForms.
 	 */
 	getWeformsSubLabelCss( to ) {
 		const color    = new PaletteSelector().getColor( to );
@@ -231,9 +233,9 @@ export class Preview  {
 	}
 
 	/**
-	 * Get a list of heading selectors from the global.
+	 * Get a list of weforms label selectors from the global.
 	 *
-	 * @since 2.0.0
+	 * @since 2.15.0
 	 *
 	 * @return {array} list of selectors.
 	 */
@@ -250,9 +252,9 @@ export class Preview  {
 	}
 
 	/**
-	 * Get a list of heading selectors from the global.
+	 * Get a list of weforms sub-label selectors from the global.
 	 *
-	 * @since 2.0.0
+	 * @since 2.15.0
 	 *
 	 * @return {array} list of selectors.
 	 */
@@ -279,7 +281,8 @@ export class Preview  {
 	}
 
 	/**
-	 * Use the theme mod saved for a heading color to set the heading colors.
+	 * Use the theme mod saved for a weForms label color
+	 * to set the weForms label colors.
 	 *
 	 * @since 2.0.0
 	 */
@@ -289,7 +292,8 @@ export class Preview  {
 	}
 
 	/**
-	 * Use the theme mod saved for a heading color to set the heading colors.
+	 * Use the theme mod saved for a weForms sub-label color
+	 * to set the weForms sub-label colors.
 	 *
 	 * @since 2.0.0
 	 */
@@ -832,9 +836,9 @@ export class Preview  {
 	}
 
 	/**
-	 * Bind the change events for heading colors changing.
+	 * Bind the change events for weforms label colors changing.
 	 *
-	 * @since 2.0.0
+	 * @since 2.15.0
 	 */
 	_bindWeformsColor() {
 		wp.customize( 'bgtfw_weforms_label_color', ( value ) => {
@@ -843,9 +847,9 @@ export class Preview  {
 	}
 
 	/**
-	 * Bind the change events for heading colors changing.
+	 * Bind the change events for weForms sub-label colors changing.
 	 *
-	 * @since 2.0.0
+	 * @since 2.15.0
 	 */
 	_bindWeformsSubColor() {
 		wp.customize( 'bgtfw_weforms_sublabel_color', ( value ) => {

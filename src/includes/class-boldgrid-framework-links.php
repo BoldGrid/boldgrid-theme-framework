@@ -175,7 +175,7 @@ class Boldgrid_Framework_Links {
 					$css .= "#colophon .bgtfw-footer.footer-content > a:hover,
 						.bgtfw-footer.footer-content > a:focus,
 						#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):hover,
-						.bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):focus, {
+						.bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):focus {
 							color: ${footer_color_hover};
 							text-decoration: ${decoration_hover};
 						}";

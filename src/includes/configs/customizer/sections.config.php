@@ -573,6 +573,7 @@ if ( is_plugin_active( 'weforms/weforms.php' ) ) {
 		'priority' => 10,
 		'icon'     => 'icon-weforms-settings',
 		'panel'    => 'bgtfw_design_panel',
+		'description' => esc_html__( 'To use this feature, please enable the "Use Theme CSS" option in each form\'s settings.', 'bgtfw' ),
 	);
 }
 

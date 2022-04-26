@@ -40,6 +40,7 @@ user guide for more information.
 * New Feature: Add font-display: swap to FontAwesome CSS [#649](https://github.com/BoldGrid/boldgrid-theme-framework/issues/649)
 * New Feature: Improve integration with weForms & Crio [#585](https://github.com/BoldGrid/boldgrid-theme-framework/issues/585)
 * Bug Fix: Footer menu inherits site content link underline [#678](https://github.com/BoldGrid/boldgrid-theme-framework/issues/678)
+
 ### 2.14.0 ###
 * New Feature: New container type - full width but contained [#540](https://github.com/BoldGrid/boldgrid-theme-framework/issues/540)
 * New Feature: Extend new container type to headers & footers [#555](https://github.com/BoldGrid/boldgrid-theme-framework/issues/555)

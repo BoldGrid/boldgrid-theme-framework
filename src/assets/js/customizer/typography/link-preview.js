@@ -123,11 +123,14 @@ export class LinkPreview {
 				footerShiftedColorVal = colorLib.Color( footerLinkColor ).lightenByAmount( footerLinkColorHover ).toCSS();
 
 				css += `
-				#colophon .bgtfw-footer.footer-content a {
+				#colophon .bgtfw-footer.footer-content > a:not( .btn ),
+				#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ) {
 					text-decoration: ${decoration};
 				}
-				#colophon .bgtfw-footer.footer-content a:hover,
-				#colophon .bgtfw-footer.footer-content a:focus {
+				#colophon .bgtfw-footer.footer-content > a:not( .btn ):hover,
+				#colophon .bgtfw-footer.footer-content > a:not( .btn ):focus,
+				#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):hover,
+				#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):focus {
 						color: ${footerShiftedColorVal};
 						text-decoration: ${decorationHover};
 					}

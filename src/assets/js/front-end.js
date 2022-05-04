@@ -37,11 +37,17 @@ var BoldGrid = BoldGrid || {};
 				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
 				this.observeBody();
 				this.skipLink();
-				this.forms();
 				this.cssVarsPonyfill();
 				this.responsiveVideos();
 				this.addButtonClasses();
 				this.addColLg();
+
+				/*
+				 * Disabling this.forms() for now. Leaving code here until 2.16.0. If no issues by then,
+				 * we can remove floatLabels all together.
+				 *
+				 * this.forms();
+				 */
 			},
 
 			/**
@@ -119,7 +125,7 @@ var BoldGrid = BoldGrid || {};
 			 */
 			addButtonClass: function( buttonTypeClass, buttonClasses ) {
 				$( '.' + buttonTypeClass ).each( function() {
-					if ( 'submit' === $( this ).prop( 'type' ) ) {
+					if ( 'submit' === $( this ).prop( 'type' ) && ! $( this ).hasClass( 'weforms_submit_btn' ) ) {
 						return;
 					}
 
@@ -288,9 +294,14 @@ var BoldGrid = BoldGrid || {};
 			forms: function( hasFloat = false ) {
 				var wcCheckoutLabels,
 					wcRequiredLabels = [];
-				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty';
+				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty, [data-style=wpuf-style]',
+					floatLabelsOn = true;
 
-				if ( ! hasFloat ) {
+				if ( Array.isArray( window.floatLabelsOn ) && '' === window.floatLabelsOn[0] ) {
+					floatLabelsOn = false;
+				}
+
+				if ( ! hasFloat && floatLabelsOn ) {
 					new FloatLabels(
 						'form', {
 							prefix: 'bgtfw-',

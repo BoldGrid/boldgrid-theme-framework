@@ -229,6 +229,12 @@ class BoldGrid_Framework_Scripts {
 			$this->get_button_classes()
 		);
 
+		wp_localize_script(
+			'boldgrid-front-end-scripts',
+			'floatLabelsOn',
+			array( get_theme_mod( 'bgtfw_weforms_float_labels', true ) )
+		);
+
 		wp_enqueue_script( 'float-labels' );
 		if ( is_customize_preview() ) {
 			wp_enqueue_script(

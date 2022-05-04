@@ -46,14 +46,14 @@ class Boldgrid_Framework_Links {
 	 *
 	 * @var array
 	 */
-	public static $default_link_selectors = [
+	public static $default_link_selectors = array(
 		'.main a:not(.btn)',
 		'.page-header-wrapper a:not(.btn)',
-		'.mce-content-body a:not(.btn)',
+		'.mce-content-body *:not( .menu-item ) > a:not(.btn)',
 		'.template-header a:not(.btn)',
 		'.template-footer a:not(.btn)',
 		'.template-sticky-header a:not(.btn)',
-	];
+	);
 
 	/**
 	 * Selectors to use for edit vars.
@@ -168,8 +168,17 @@ class Boldgrid_Framework_Links {
 					$footer_lightness   = max( $footer_lightness, 0 );
 					$footer_color_hover = $footer_ari_color->getNew( 'lightness', $footer_lightness )->toCSS( 'hsla' );
 
-					$css .= "#colophon .bgtfw-footer.footer-content a { text-decoration: ${decoration};}";
-					$css .= "#colophon .bgtfw-footer.footer-content a:hover, .bgtfw-footer.footer-content a:focus {color: ${footer_color_hover};text-decoration: ${decoration_hover};}";
+					$css .= "#colophon .bgtfw-footer.footer-content > a,
+						#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ) {
+							text-decoration: ${decoration};
+						}";
+					$css .= "#colophon .bgtfw-footer.footer-content > a:hover,
+						.bgtfw-footer.footer-content > a:focus,
+						#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):hover,
+						.bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):focus {
+							color: ${footer_color_hover};
+							text-decoration: ${decoration_hover};
+						}";
 				}
 			}
 		}

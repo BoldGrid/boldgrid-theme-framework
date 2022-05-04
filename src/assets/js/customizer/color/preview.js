@@ -152,6 +152,68 @@ export class Preview  {
 	}
 
 	/**
+	 * Get the css used for weForms label colors.
+	 *
+	 * @since 2.15.0
+	 *
+	 * @param  {string} to Them mod value.
+	 *
+	 * @return {string}    CSS for weForms.
+	 */
+	getWeformsLabelCss( to ) {
+		const color    = new PaletteSelector().getColor( to );
+		var labelColor = color;
+
+		let css                   = '',
+			hasSemicolon          = color ? color.indexOf( ';' ) : -1,
+			weformsLabelSelectors = [];
+
+		if ( color ) {
+			labelColor            = -1 !== hasSemicolon ? color.split( ';' )[0] : color;
+			weformsLabelSelectors = this.getWeformsLabelColorSelectors().join( ', ' );
+
+			css = `
+				${ weformsLabelSelectors } {
+					color: ${ labelColor } !important;
+				}
+			`;
+		}
+
+		return css;
+	}
+
+	/**
+	 * Get the css used for weForms sub-label colors.
+	 *
+	 * @since 2.15.0
+	 *
+	 * @param  {string} to Them mod value.
+	 *
+	 * @return {string}    CSS for weForms.
+	 */
+	getWeformsSubLabelCss( to ) {
+		const color    = new PaletteSelector().getColor( to );
+		var subLabelColor = color;
+
+		let css = '',
+			hasSemicolon = color ? color.indexOf( ';' ) : -1,
+			weformsSubLabelSelectors = [];
+
+		if ( color ) {
+			subLabelColor            = -1 !== hasSemicolon ? color.split( ';' )[0] : color;
+			weformsSubLabelSelectors = this.getWeformsSubLabelColorSelectors().join( ', ' );
+
+			css = `
+				${ weformsSubLabelSelectors } {
+					color: ${ subLabelColor } !important;
+				}
+			`;
+		}
+
+		return css;
+	}
+
+	/**
 	 * Get a list of heading selectors from the global.
 	 *
 	 * @since 2.0.0
@@ -171,6 +233,44 @@ export class Preview  {
 	}
 
 	/**
+	 * Get a list of weforms label selectors from the global.
+	 *
+	 * @since 2.15.0
+	 *
+	 * @return {array} list of selectors.
+	 */
+	getWeformsLabelColorSelectors() {
+		const selectors = [];
+
+		_.each( BOLDGRID.CUSTOMIZER.data.customizerOptions.typography.selectors, function( value, key ) {
+			if ( 'weformsLabel' === value.type ) {
+				selectors.push( key );
+			}
+		} );
+
+		return selectors;
+	}
+
+	/**
+	 * Get a list of weforms sub-label selectors from the global.
+	 *
+	 * @since 2.15.0
+	 *
+	 * @return {array} list of selectors.
+	 */
+	getWeformsSubLabelColorSelectors() {
+		const selectors = [];
+
+		_.each( BOLDGRID.CUSTOMIZER.data.customizerOptions.typography.selectors, function( value, key ) {
+			if ( 'weformsSubLabel' === value.type ) {
+				selectors.push( key );
+			}
+		} );
+
+		return selectors;
+	}
+
+	/**
 	 * Use the theme mod saved for a heading color to set the heading colors.
 	 *
 	 * @since 2.0.0
@@ -179,6 +279,29 @@ export class Preview  {
 		const css = this.getHeadingCSS( wp.customize( 'bgtfw_headings_color' )() );
 		this.previewUtility.updateDynamicStyles( 'bgtfw_headings_color', css );
 	}
+
+	/**
+	 * Use the theme mod saved for a weForms label color
+	 * to set the weForms label colors.
+	 *
+	 * @since 2.0.0
+	 */
+	setWeformsColors() {
+		const css = this.getWeformsLabelCss( wp.customize( 'bgtfw_weforms_label_color' )() );
+		this.previewUtility.updateDynamicStyles( 'bgtfw_weforms_label_color', css );
+	}
+
+	/**
+	 * Use the theme mod saved for a weForms sub-label color
+	 * to set the weForms sub-label colors.
+	 *
+	 * @since 2.0.0
+	 */
+	setWeformsSubColors() {
+		const css = this.getWeformsSubLabelCss( wp.customize( 'bgtfw_weforms_sublabel_color' )() );
+		this.previewUtility.updateDynamicStyles( 'bgtfw_weforms_sublabel_color', css );
+	}
+
 
 	/**
 	 * Get Hamburger menu CSS.
@@ -637,6 +760,8 @@ export class Preview  {
 		// Setup event handlers.
 		this._bindConfiguredControls();
 		this._bindHeadingColor();
+		this._bindWeformsColor();
+		this._bindWeformsSubColor();
 		this._bindHeaderOverlay();
 		this._bindEntryHeader();
 		this._bindGlobalPageTitles();
@@ -707,6 +832,28 @@ export class Preview  {
 	_bindHeadingColor() {
 		wp.customize( 'bgtfw_headings_color', ( value ) => {
 			value.bind( () => this.setHeadingColors() );
+		} );
+	}
+
+	/**
+	 * Bind the change events for weforms label colors changing.
+	 *
+	 * @since 2.15.0
+	 */
+	_bindWeformsColor() {
+		wp.customize( 'bgtfw_weforms_label_color', ( value ) => {
+			value.bind( () => this.setWeformsColors() );
+		} );
+	}
+
+	/**
+	 * Bind the change events for weForms sub-label colors changing.
+	 *
+	 * @since 2.15.0
+	 */
+	_bindWeformsSubColor() {
+		wp.customize( 'bgtfw_weforms_sublabel_color', ( value ) => {
+			value.bind( () => this.setWeformsSubColors() );
 		} );
 	}
 

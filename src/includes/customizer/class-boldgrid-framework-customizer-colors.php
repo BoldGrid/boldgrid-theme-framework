@@ -185,7 +185,7 @@ class Boldgrid_Framework_Customizer_Colors {
 				'default' => '',
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
-				'transport' => 'postMessage',
+				'transport' => 'refresh',
 			)
 		);
 		$this->wp_customize->add_control(

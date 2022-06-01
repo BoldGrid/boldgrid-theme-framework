@@ -211,9 +211,9 @@ export class Preview  {
 	getActiveLinkColor( to, menuId ) {
 		const color = new PaletteSelector().getColor( to );
 		let css = `
-		#${menuId} .current-menu-item:not( .btn ) > a,
-		#${menuId} .current-menu-ancestor:not( .btn ) > a,
-		#${menuId} .current-menu-parent:not( .btn ) > a {
+		#${menuId} .current-menu-item > a:not( .btn ),
+		#${menuId} .current-menu-ancestor > a:not( .btn ),
+		#${menuId} .current-menu-parent > a:not( .btn ) {
 			color: ${color};
 		}`;
 
@@ -230,9 +230,9 @@ export class Preview  {
 	getSubActiveLinkColor( to, menuId ) {
 		const color = new PaletteSelector().getColor( to );
 		let css = `
-		#${menuId} ul > .current-menu-item:not( .btn ) > a,
-		#${menuId} ul > .current-menu-ancestor:not( .btn ) > a,
-		#${menuId} ul > .current-menu-parent:not( .btn ) > a {
+		#${menuId} ul > .current-menu-item > a:not( .btn ),
+		#${menuId} ul > .current-menu-ancestor > a:not( .btn ),
+		#${menuId} ul > .current-menu-parent > a:not( .btn ) {
 			color: ${color};
 		}`;
 

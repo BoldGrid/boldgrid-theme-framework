@@ -70,6 +70,10 @@
 		padding: 13px 20px;
 		text-decoration: none;
 		width: 100%;
+		&.btn {
+			padding: 0px 20px;
+			line-height: 40px;
+		}
 	}
 	.sm-clean a.disabled {
 		color: #bbbbbb;

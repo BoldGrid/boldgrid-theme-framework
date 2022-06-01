@@ -75,12 +75,42 @@ var BoldGrid = BoldGrid || {};
 			addButtonClasses: function() {
 				var buttonType;
 
+				this.adjustMenuButtons();
+
 				for ( buttonType in bgtfwButtonClasses ) {
 					let buttonTypeClass = buttonType.replace( 'bgtfw_', '' );
 					let buttonClasses   = bgtfwButtonClasses[ buttonType ];
 					this.removeButtonClasses( buttonTypeClass.replace( '_', '-' ) );
 					this.addButtonClass( buttonTypeClass.replace( '_', '-' ), buttonClasses );
 				}
+			},
+
+			/**
+			 * Adjust Menu Buttons.
+			 *
+			 * This moves li.btn classes to the li > a.btn elements
+			 */
+			adjustMenuButtons: function() {
+				$( '.menu-item.btn' ).each( function() {
+					var $this = $( this );
+
+					if ( $this.hasClass( 'button-primary' ) ) {
+						$this.removeClass( 'button-primary' );
+						$this.find( 'a' ).addClass( 'button-primary' );
+					}
+
+					if ( $this.hasClass( 'button-secondary' ) ) {
+						$this.removeClass( 'button-secondary' );
+						$this.find( 'a' ).addClass( 'button-secondary' );
+					}
+
+					$this.removeClass( 'btn' );
+
+					$this.removeClass( function( index, className ) {
+						return ( className.match( /(^|\s)btn\S+/g ) || [] ).join( ' ' );
+					} );
+					$this.find( 'a' ).addClass( 'btn' );
+				} );
 			},
 
 			/** Remove Button Classes

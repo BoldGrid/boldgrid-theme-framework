@@ -106,6 +106,8 @@ var BoldGrid = BoldGrid || {};
 
 					$this.removeClass( 'btn' );
 
+					$this.addClass( 'item-has-btn' );
+
 					$this.removeClass( function( index, className ) {
 						return ( className.match( /(^|\s)btn\S+/g ) || [] ).join( ' ' );
 					} );

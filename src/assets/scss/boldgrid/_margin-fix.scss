@@ -359,14 +359,14 @@
 		#main-wrapper.full-width .main .entry-content .container-fluid .row {
 			div[class^="col-"]:first-of-type {
 				>, div > {
-					p, h1, h2, h3, h4, h5, h6 {
+					p:not( .mod-reset ), h1, h2, h3, h4, h5, h6 {
 						padding-left: 10px;
 					}
 				}
 			}
 			div[class^="col-"]:last-of-type {
 				>, div > {
-					p, h1, h2, h3, h4, h5, h6 {
+					p:not( .mod-reset ), h1, h2, h3, h4, h5, h6 {
 						padding-right: 10px;
 					}
 				}

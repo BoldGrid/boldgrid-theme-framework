@@ -497,6 +497,25 @@ class Boldgrid_Framework_Customizer_Typography {
 			$headings_base = $headings_size[0];
 			$headings_unit = $headings_size[1];
 
+			foreach ( $selectors as $selector => $options ) {
+				if ( 'headings' !== $options['type'] ) {
+					continue;
+				}
+
+				$adjusted_selector = array();
+
+				$selector_array = explode( ',', $selector );
+
+				foreach ( $selector_array as $selector_part ) {
+					$adjusted_selector[] = 'body ' . trim( $selector_part );
+				}
+
+				$adjusted_selector = implode( ',', $adjusted_selector );
+
+				$selectors[ $adjusted_selector ] = $selectors[ $selector ];
+				unset( $selectors[ $selector ] );
+			}
+
 			$css .= '@media only screen and (max-width: 766px) {';
 				foreach ( $selectors as $selector => $options ) {
 					if ( 'headings' !== $options['type'] ) {

@@ -159,7 +159,7 @@ return array(
 		'priority'  => 10,
 		'output'    => $bgtfw_typography->get_typography_output(
 			$bgtfw_configs,
-			'.palette-primary .button-primary'
+			'.palette-primary *:not( .menu-item ) > .button-primary'
 		),
 		'edit_vars' => array(
 			array(
@@ -320,7 +320,7 @@ return array(
 		'priority'  => 10,
 		'output'    => $bgtfw_typography->get_typography_output(
 			$bgtfw_configs,
-			'.palette-primary .button-secondary'
+			'.palette-primary *:not( .menu-item ) > .button-secondary'
 		),
 	),
 );

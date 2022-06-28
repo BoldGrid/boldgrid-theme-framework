@@ -73,6 +73,15 @@
 		&.btn {
 			padding: 0px 20px;
 			line-height: 40px;
+			&.btn-border-thin {
+				line-height: 38px;
+			}
+			&.btn-border {
+				line-height: 36px;
+			}
+			&.btn-border-thick {
+				line-height: 32px;
+			}
 		}
 	}
 	.sm-clean a.disabled {

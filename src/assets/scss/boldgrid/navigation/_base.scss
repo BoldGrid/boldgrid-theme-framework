@@ -402,7 +402,7 @@
 				-o-border-radius: 5px;
 				border-radius: 5px;
 			}
-			.sm-clean.sm-vertical a {
+			.sm-clean.sm-vertical a:not( .btn ) {
 				padding: 10px 20px;
 			}
 			.sm-clean.sm-vertical a.disabled {
@@ -419,7 +419,7 @@
 			.sm-clean.sm-vertical > li > ul:after {
 				display: none;
 			}
-			.sm-clean.sm-vertical ul a {
+			.sm-clean.sm-vertical ul a:not( .btn ) {
 				padding: 10px 20px;
 			}
 			.sm-clean.sm-vertical ul a:hover,

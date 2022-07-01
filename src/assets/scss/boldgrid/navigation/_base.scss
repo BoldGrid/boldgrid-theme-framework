@@ -72,15 +72,15 @@
 		width: 100%;
 		&.btn {
 			padding: 0px 20px;
-			line-height: 40px;
+			line-height: 40px !important;
 			&.btn-border-thin {
-				line-height: 38px;
+				line-height: 38px !important;
 			}
 			&.btn-border {
-				line-height: 36px;
+				line-height: 36px !important;
 			}
 			&.btn-border-thick {
-				line-height: 32px;
+				line-height: 32px !important;
 			}
 		}
 	}

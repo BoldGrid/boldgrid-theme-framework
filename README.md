@@ -35,6 +35,22 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.16.0 ###
+* New Feature: Change translucent overlays with palette changes [#554](https://github.com/BoldGrid/boldgrid-theme-framework/issues/554)
+* New Feature: Make menu underlines and menu hovers match styles [#586](https://github.com/BoldGrid/boldgrid-theme-framework/issues/586)
+* New Feature: Change Menu Button styles to match padding / margins of other menu items [#546](https://github.com/BoldGrid/boldgrid-theme-framework/issues/546)
+* Bug Fix: Transparent Buttons in Menus do not work as expected [#702](https://github.com/BoldGrid/boldgrid-theme-framework/issues/702)
+* Bug FIx: Responsive Typography - Live Preview is incorrect with Custom Page Headers [#704](https://github.com/BoldGrid/boldgrid-theme-framework/issues/704)
+* Bug Fix: MFW / FWR content has gap on left side [#701](https://github.com/BoldGrid/boldgrid-theme-framework/issues/701)
+* Bug Fix: Customizer Heading font used in dashboard [#705](https://github.com/BoldGrid/boldgrid-theme-framework/issues/705)
+* Bug Fix: Font weights do not update in live preview [#677](https://github.com/BoldGrid/boldgrid-theme-framework/issues/677)
+* Bug Fix: Responsive typography - live preview is incorrect [#684](https://github.com/BoldGrid/boldgrid-theme-framework/issues/684)
+
+### 2.15.0 ###
+* New Feature: Add font-display: swap to FontAwesome CSS [#649](https://github.com/BoldGrid/boldgrid-theme-framework/issues/649)
+* New Feature: Improve integration with weForms & Crio [#585](https://github.com/BoldGrid/boldgrid-theme-framework/issues/585)
+* Bug Fix: Footer menu inherits site content link underline [#678](https://github.com/BoldGrid/boldgrid-theme-framework/issues/678)
 ### 2.14.0 ###
 * New Feature: New container type - full width but contained [#540](https://github.com/BoldGrid/boldgrid-theme-framework/issues/540)
 * New Feature: Extend new container type to headers & footers [#555](https://github.com/BoldGrid/boldgrid-theme-framework/issues/555)

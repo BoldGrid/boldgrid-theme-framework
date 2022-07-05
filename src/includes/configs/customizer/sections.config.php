@@ -567,6 +567,16 @@ $sections_array = array(
 	// End: Generic Blog Design Controls.
 );
 
+if ( is_plugin_active( 'weforms/weforms.php' ) ) {
+	$sections_array['bgtfw_weforms'] = array(
+		'title'    => __( 'WeForms', 'bgtfw' ),
+		'priority' => 10,
+		'icon'     => 'icon-weforms-settings',
+		'panel'    => 'bgtfw_design_panel',
+		'description' => esc_html__( 'To use this feature, please enable the "Use Theme CSS" option in each form\'s settings.', 'bgtfw' ),
+	);
+}
+
 /**
  * Check if WooCommerce is activated.
  */

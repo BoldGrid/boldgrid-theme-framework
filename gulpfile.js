@@ -349,6 +349,7 @@ gulp.task('scssDeps', function () {
   // Font-Awesome
   gulp.src(config.node_modules + '/font-awesome/scss/**/*.scss')
     .pipe(replace('../fonts', '../../fonts'))
+	.pipe(replace("font-family: 'FontAwesome';", "font-family: 'FontAwesome';font-display:swap;"))
     .pipe(gulp.dest(config.dist + '/assets/scss/font-awesome'));
   // Custom Icons
   gulp.src(config.scss_src + '/icomoon/style.scss')

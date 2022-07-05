@@ -80,6 +80,16 @@ return array(
 			'round'  => 'ceil',
 			'amount' => 1,
 		),
+		'.wpuf-theme-style .wpuf-label label' => array(
+			'type'   => 'weformsLabel',
+			'round'  => 'floor',
+			'amount' => 1,
+		),
+		'.wpuf-theme-style .wpuf-form-sub-label' => array(
+			'type'   => 'weformsSubLabel',
+			'round'  => 'floor',
+			'amount' => 1,
+		),
 	),
 	'responsive_font_controls' => array(
 		'bgtfw_body_font_size'                => array(

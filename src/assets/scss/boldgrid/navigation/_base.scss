@@ -70,6 +70,19 @@
 		padding: 13px 20px;
 		text-decoration: none;
 		width: 100%;
+		&.btn {
+			padding: 0px 20px;
+			line-height: 40px !important;
+			&.btn-border-thin {
+				line-height: 38px !important;
+			}
+			&.btn-border {
+				line-height: 36px !important;
+			}
+			&.btn-border-thick {
+				line-height: 32px !important;
+			}
+		}
 	}
 	.sm-clean a.disabled {
 		color: #bbbbbb;
@@ -167,6 +180,19 @@
 			}
 			.sm-clean li {
 				float: left;
+			}
+
+			.sm-clean:not( .sm-vertical ) {
+				li.item-has-btn {
+						margin-left: 20px;
+						margin-right: 20px;
+					&:last-of-type {
+						margin-right: 0px;
+					}
+					&:first-of-type {
+						margin-left: 0px;
+					}
+				}
 			}
 
 			// Left aligned menus need to line up with everything else.
@@ -376,7 +402,7 @@
 				-o-border-radius: 5px;
 				border-radius: 5px;
 			}
-			.sm-clean.sm-vertical a {
+			.sm-clean.sm-vertical a:not( .btn ) {
 				padding: 10px 20px;
 			}
 			.sm-clean.sm-vertical a.disabled {
@@ -393,7 +419,7 @@
 			.sm-clean.sm-vertical > li > ul:after {
 				display: none;
 			}
-			.sm-clean.sm-vertical ul a {
+			.sm-clean.sm-vertical ul a:not( .btn ) {
 				padding: 10px 20px;
 			}
 			.sm-clean.sm-vertical ul a:hover,
@@ -700,5 +726,13 @@
 	.sm.sm-clean {
 		padding-left: 15px;
 		padding-right: 15px;
+	}
+}
+
+li[class*="hvr-underline"] a:not( .button-primary):not(.button-secondary ) {
+	transform: unset;
+	overflow: unset;
+	&:before {
+		bottom: -2.5px;
 	}
 }

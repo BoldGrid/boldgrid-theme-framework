@@ -428,7 +428,7 @@ class BoldGrid_Framework_Styles {
 
 		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";
-		$css = "{$menu_id} .current-menu-item:not( .btn ) > a,{$menu_id} .current-menu-ancestor:not( .btn ) > a,{$menu_id} .current-menu-parent:not( .btn ) > a,{$menu_id} .current_page_parent:not( .btn ) > a { color: {$color}; }";
+		$css = "{$menu_id} .current-menu-item > a:not( .btn ),{$menu_id} .current-menu-ancestor > a:not( .btn ),{$menu_id} .current-menu-parent > a:not( .btn ),{$menu_id} .current_page_parent > a:not( .btn ) { color: {$color}; }";
 
 		return $css;
 	}
@@ -449,7 +449,7 @@ class BoldGrid_Framework_Styles {
 
 		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";
-		$css = "{$menu_id} .hvr-none:not( .current-menu-item ):not( .btn ) > a:hover,{$menu_id} .hvr-none:not( .current-menu-ancestor ):not( .btn ) > a:hover,{$menu_id} .hvr-none:not( .current-menu-parent ):not( .btn ) > a:hover,{$menu_id} .hvr-none:not( .current_page_parent ):not( .btn ) > a:hover{ color: {$color}; }";
+		$css = "{$menu_id} .hvr-none:not( .current-menu-item ) > a:not( .btn ):hover,{$menu_id} .hvr-none:not( .current-menu-ancestor ) > a:not( .btn ):hover,{$menu_id} .hvr-none:not( .current-menu-parent ) > a:not( .btn ):hover,{$menu_id} .hvr-none:not( .current_page_parent ) > a:not( .btn ):hover{ color: {$color}; }";
 
 		return $css;
 	}

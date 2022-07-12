@@ -101,7 +101,7 @@ $sections_array = array(
 			'templateId'         => 'bgtfw-notification',
 			'featureCount'       => 1,
 			'featureDescription' => esc_html__( '1 premium feature available!', 'bgtfw' ),
-			'url'                => esc_url( 'https://www.boldgrid.com/get-pro-crio/?source=customize-header' ),
+			'url'                => esc_url( apply_filters( 'bgtfw_premium_url', 'https://www.boldgrid.com/get-pro-crio/?source=customize-header' ) ),
 			'buttonText'         => esc_html__( 'Learn More', 'bgtfw' ),
 		),
 		'icon'            => 'dashicons-admin-generic',
@@ -123,7 +123,8 @@ $sections_array = array(
 			'templateId'         => 'bgtfw-notification',
 			'featureCount'       => 1,
 			'featureDescription' => esc_html__( '1 premium feature available!', 'bgtfw' ),
-			'url'                => esc_url( 'https://www.boldgrid.com/get-pro-crio/?source=customize-header' ),
+			'url'                => esc_url( apply_filters( 'bgtfw_premium_url', 'https://www.boldgrid.com/get-pro-crio/?source=customize-header' ) ),
+
 			'buttonText'         => esc_html__( 'Learn More', 'bgtfw' ),
 		),
 	),

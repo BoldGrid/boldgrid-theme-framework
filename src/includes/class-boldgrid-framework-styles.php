@@ -517,6 +517,7 @@ class BoldGrid_Framework_Styles {
 		$background_color = array_pop( $background_color );
 
 		$submenu_background_color = explode( ':', $submenu_background_color );
+		$submenu_background_class = $submenu_background_color[0];
 		$submenu_background_color = array_pop( $submenu_background_color );
 
 		$color_obj    = ariColor::newColor( $background_color );
@@ -536,10 +537,10 @@ class BoldGrid_Framework_Styles {
 
 		$subcolor_obj->alpha = 0.4;
 
-		$css .= "#{$location}-menu.sm-clean ul {background-color: {$submenu_background_color};}";
+		$css .= "#{$location}-menu.sm-clean ul {background-color: var(--{$submenu_background_class});}";
 		$css .= "#{$location}-menu.sm-clean ul a:not(.btn), #{$location}-menu.sm-clean ul a:not(.btn):hover, #{$location}-menu.sm-clean ul a:not(.btn):focus, #{$location}-menu.sm-clean ul a:not(.btn):active, #{$location}-menu.sm-clean ul a:not(.btn).highlighted, #{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, #{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover { background-color:" . $subcolor_obj->toCSS( 'rgba' ) . ';}';
 		$css .= "#{$location}-menu.sm-clean ul { border: 1px solid " . $subcolor_obj->toCSS( 'rgba' ) . ';}';
-		$css .= "#{$location}-menu.sm-clean > li > ul:before, #{$location}-menu.sm-clean > li > ul:after { border-color: transparent transparent {$submenu_background_color} transparent;}";
+		$css .= "#{$location}-menu.sm-clean > li > ul:before, #{$location}-menu.sm-clean > li > ul:after { border-color: transparent transparent var(--{$submenu_background_class}) transparent;}";
 		$css .= '}';
 
 		return $css;

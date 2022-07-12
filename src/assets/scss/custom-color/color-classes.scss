@@ -121,12 +121,14 @@ $names: background background-color;
 			}
 			&.color-neutral-sub-link-color.sm {
 				ul {
-					li:not(.btn) {
-						a {
+					li {
+						a:not(.btn) {
 							color: $palette-primary-neutral-color;
 						}
-						a:hover, a:focus, a:active, a.highlighted {
-							color: hover( nth($colors, $color), $palette-primary-neutral-color );
+						a:not(.btn) {
+							&:hover, &:focus, &:active, &.highlighted {
+								color: hover( nth($colors, $color), $palette-primary-neutral-color );
+							}
 						}
 					}
 				}
@@ -172,22 +174,24 @@ $names: background background-color;
 								color: inherit;
 							}
 						}
-						li:not(.btn) {
-							a {
+						li {
+							a:not(.btn) {
 								color: #{nth($colors, $each)};
 							}
-							a:hover, a:focus, a:active, a.highlighted {
-								color: hover( nth($colors, $color), nth($colors, $each) );
+							a:not(.btn) {
+								&:hover, &:focus, &:active, &.highlighted {
+									color: hover( nth($colors, $color), nth($colors, $each) );
+								}
 							}
 						}
 						@for $subeach from 1 through length( $colors ) {
 							&.color-#{$subeach}-sub-link-color {
-								li:not(.btn) {
-									ul a {
+								li {
+									ul a:not(.btn) {
 										color: #{nth($colors, $subeach)};
-									}
-									ul a:hover, ul a:focus, ul a:active, ul a.highlighted {
-										color: hover( nth($colors, $subeach), nth($colors, $subeach) );
+										&:hover, &:focus, &:active, &.highlighted {
+											color: hover( nth($colors, $subeach), nth($colors, $subeach) );
+										}
 									}
 								}
 							}
@@ -206,12 +210,12 @@ $names: background background-color;
 				}
 				&.color-neutral-sub-link-color.sm {
 					ul {
-						li:not(.btn) {
-							a {
+						li {
+							a:not(.btn) {
 								color: $palette-primary-neutral-color;
-							}
-							a:hover, a:focus, a:active, a.highlighted {
-								color: hover( nth($colors, $color), $palette-primary-neutral-color );
+								&:hover, &:focus, &:active, &.highlighted {
+									color: hover( nth($colors, $color), $palette-primary-neutral-color );
+								}
 							}
 						}
 					}
@@ -219,12 +223,12 @@ $names: background background-color;
 				@for $subEach from 1 through length( $colors ) {
 					&.color-#{$subEach}-sub-link-color {
 						ul {
-							li:not(.btn) {
-								a {
+							li {
+								a:not(.btn) {
 									color: #{nth($colors, $subEach)};
-								}
-								a:hover, a:focus, a:active, a.highlighted {
-									color: hover( nth($colors, $color), nth($colors, $subEach) );
+									&:hover, &:focus, &:active, &.highlighted {
+										color: hover( nth($colors, $color), nth($colors, $subEach) );
+									}
 								}
 							}
 						}
@@ -251,12 +255,12 @@ $names: background background-color;
 				}
 				&.color-#{$each}-sub-link-color.sm {
 					ul {
-						li:not(.btn) {
-							a {
+						li {
+							a:not(.btn) {
 								color: #{nth($colors, $each)};
-							}
-							a:hover, a:focus, a:active, a.highlighted {
-								color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+								&:hover, &:focus, &:active, &.highlighted {
+									color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+								}
 							}
 						}
 					}
@@ -272,12 +276,12 @@ $names: background background-color;
 			}
 			&.color-neutral-sub-link-color.sm {
 				ul {
-					li:not(.btn) {
-						a {
+					li {
+						a:not(.btn) {
 							color: $palette-primary-neutral-color;
-						}
-						a:hover, a:focus, a:active, a.highlighted {
-							color: hover( $palette-primary-neutral-color, $palette-primary-neutral-color );
+							&:hover, &:focus, &:active, &.highlighted {
+								color: hover( $palette-primary-neutral-color, $palette-primary-neutral-color );
+							}
 						}
 					}
 				}

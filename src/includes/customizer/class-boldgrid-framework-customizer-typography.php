@@ -492,6 +492,26 @@ class Boldgrid_Framework_Customizer_Typography {
 	 */
 	public function generate_responsive_headings( $responsive_sizes, $selectors, $css ) {
 		$responsive_sizes = is_string( $responsive_sizes ) ? json_decode( $responsive_sizes, true ) : $responsive_sizes;
+
+		foreach ( $selectors as $selector => $options ) {
+			if ( 'headings' !== $options['type'] ) {
+				continue;
+			}
+
+			$adjusted_selector = array();
+
+			$selector_array = explode( ',', $selector );
+
+			foreach ( $selector_array as $selector_part ) {
+				$adjusted_selector[] = 'body ' . trim( $selector_part );
+			}
+
+			$adjusted_selector = implode( ',', $adjusted_selector );
+
+			$selectors[ $adjusted_selector ] = $selectors[ $selector ];
+			unset( $selectors[ $selector ] );
+		}
+
 		if ( isset( $responsive_sizes['phone'] ) ) {
 			$headings_size = preg_split( '/(?<=[0-9])(?=[a-z]+)/i', $responsive_sizes['phone'] );
 			$headings_base = $headings_size[0];

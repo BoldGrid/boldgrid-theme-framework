@@ -36,6 +36,12 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.16.1 ###
+* Bug Fix: Hover Underline Reveal effect for Menus is broken [#711](https://github.com/BoldGrid/boldgrid-theme-framework/issues/711)
+* Bug Fix: Allow filtering of Premium URL's in theme [#706](https://github.com/BoldGrid/boldgrid-theme-framework/issues/706)
+* Bug Fix: Fix submenu background colors not changing with palette
+* Bug Fix: Hover Effect for Links does not respect Customizer setting [#713](https://github.com/BoldGrid/boldgrid-theme-framework/issues/713)
+
 ### 2.16.0 ###
 * New Feature: Change translucent overlays with palette changes [#554](https://github.com/BoldGrid/boldgrid-theme-framework/issues/554)
 * New Feature: Make menu underlines and menu hovers match styles [#586](https://github.com/BoldGrid/boldgrid-theme-framework/issues/586)

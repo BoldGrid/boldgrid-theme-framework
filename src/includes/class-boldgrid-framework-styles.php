@@ -698,9 +698,6 @@ class BoldGrid_Framework_Styles {
 
 		$this->hover_css();
 
-		$links = new Boldgrid_Framework_Links( $this->configs );
-		$links->add_styles_frontend();
-
 		/* Component Styles */
 		wp_enqueue_style(
 			'boldgrid-components',

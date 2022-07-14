@@ -830,6 +830,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_preview_init', $colors, 'enqueue_preview_color_palette' );
 		$this->loader->add_filter( 'customize_changeset_save_data', $colors, 'changeset_data' );
 		$this->loader->add_action( 'customize_save_after', $colors, 'update_theme_mods' );
+		$this->loader->add_action( 'customize_save_after', $colors, 'adjust_background_colors' );
 		$this->loader->add_action( 'customize_register', $colors, 'customize_register_action' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $colors, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $colors, 'enqueue_scripts' );

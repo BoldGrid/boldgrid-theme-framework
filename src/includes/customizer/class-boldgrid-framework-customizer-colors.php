@@ -335,7 +335,7 @@ class Boldgrid_Framework_Customizer_Colors {
 						'page',
 						'crio_page_header',
 					),
-				),
+				)
 			);
 
 			$posts = array_merge( $posts, $pages, $cphs );

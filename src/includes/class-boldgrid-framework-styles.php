@@ -373,10 +373,10 @@ class BoldGrid_Framework_Styles {
 		foreach ( $menus as $location => $description ) {
 			$color = get_theme_mod( "bgtfw_menu_hamburger_{$location}_color" );
 			$color = explode( ':', $color );
-			$colorVar = $color[0];
+			$color_var = $color[0];
 			$color = array_pop( $color );
 			$location = str_replace( '_', '-', $location );
-			$css .= ".{$location}-menu-btn .hamburger-inner,.{$location}-menu-btn .hamburger-inner:before,.{$location}-menu-btn .hamburger-inner:after {background-color: --var({$colorVar});}";
+			$css .= ".{$location}-menu-btn .hamburger-inner,.{$location}-menu-btn .hamburger-inner:before,.{$location}-menu-btn .hamburger-inner:after {background-color: --var({$color_var});}";
 		}
 
 		return $css;

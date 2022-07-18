@@ -376,7 +376,7 @@ class BoldGrid_Framework_Styles {
 			$color_var = $color[0];
 			$color = array_pop( $color );
 			$location = str_replace( '_', '-', $location );
-			$css .= ".{$location}-menu-btn .hamburger-inner,.{$location}-menu-btn .hamburger-inner:before,.{$location}-menu-btn .hamburger-inner:after {background-color: --var({$color_var});}";
+			$css .= ".{$location}-menu-btn .hamburger-inner,.{$location}-menu-btn .hamburger-inner:before,.{$location}-menu-btn .hamburger-inner:after {background-color: var(--{$color_var});}";
 		}
 
 		return $css;

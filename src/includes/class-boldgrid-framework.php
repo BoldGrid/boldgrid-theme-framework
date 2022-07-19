@@ -574,7 +574,7 @@ class BoldGrid_Framework {
 		$boldgrid_ppb      = new Boldgrid_Framework_PPB( $this->configs );
 		$pro_feature_cards = new BoldGrid_Framework_Pro_Feature_Cards( $this->configs );
 
-		$this->loader->add_filter( 'bgtfw_upgrade_url_pro_features', $pro_feature_cards, 'get_upgrade_url', 10, 0 );
+		$this->loader->add_filter( 'bgtfw_upgrade_url_pro_features', $pro_feature_cards, 'get_upgrade_url', 0 );
 
 		// This adds Pro Feature notice counts to the admin menu.
 		$this->loader->add_action( 'admin_menu', $pro_feature_cards, 'show_notice_counts' );
@@ -830,6 +830,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_preview_init', $colors, 'enqueue_preview_color_palette' );
 		$this->loader->add_filter( 'customize_changeset_save_data', $colors, 'changeset_data' );
 		$this->loader->add_action( 'customize_save_after', $colors, 'update_theme_mods' );
+		$this->loader->add_action( 'customize_save_after', $colors, 'adjust_background_colors' );
 		$this->loader->add_action( 'customize_register', $colors, 'customize_register_action' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $colors, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $colors, 'enqueue_scripts' );

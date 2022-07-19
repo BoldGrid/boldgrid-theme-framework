@@ -913,7 +913,7 @@ return array(
 		'section'           => 'bgtfw_pages_blog_blog_page_read_more',
 		'default'           => 'color-1',
 		'choices'           => array(
-			'selectors' => array( '.read-more .link' ),
+			'selectors' => array( '.read-more a.link:not(.btn)' ),
 			'colors'    => $bgtfw_formatted_palette,
 			'size'      => $bgtfw_palette->get_palette_size( $bgtfw_formatted_palette ),
 		),

@@ -729,7 +729,7 @@
 	}
 }
 
-li[class*="hvr-underline"] a:not( .button-primary):not(.button-secondary ) {
+li[class*="hvr-underline"]:not(.hvr-underline-reveal) a:not( .button-primary):not(.button-secondary ) {
 	transform: unset;
 	overflow: unset;
 	&:before {

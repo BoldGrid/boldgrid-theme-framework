@@ -143,10 +143,16 @@ class BoldGrid_Framework_Customizer_Starter_Content_Query {
 	 * @return WP_Query $query The WP_Query instance.
 	 */
 	public function set_main_query( WP_Query $query ) {
+		// Do not modify query if this is a product. Woocommerce uses its own custom ordering.
+		if ( 'product' === $query->get( 'post_type' ) ) {
+			return $query;
+		}
+
 		if ( ( $query->is_archive() || $query->is_home() ) && $query->is_main_query() ) {
 			$query->set( 'orderby', 'date modified title' );
 			$query->set( 'order', 'desc' );
 		}
+
 		return $query;
 	}
 

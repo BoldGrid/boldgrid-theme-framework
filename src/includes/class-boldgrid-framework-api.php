@@ -398,6 +398,34 @@ class BoldGrid {
 	}
 
 	/**
+	 * Get the rgb color from the palette.
+	 *
+	 * @since 2.16.1
+	 *
+	 * @param string  $color_class Color class string ( e.g. 'color2' ).
+	 * 
+	 * @return string $color_rgb   RGB color string.
+	 */
+	public static function color_from_class( $color_class ) {
+		$palette_position = str_replace( 'color', '', $color_class );
+		$palette_position = str_replace( '-', '', $palette_position );
+
+		$color_palette = get_theme_mod( 'boldgrid_color_palette', array() );
+		if ( empty( $color_palette ) ) {
+			return;
+		}
+
+		$color_palette = json_decode( $color_palette, true );
+		$color_palette = $color_palette['state']['palettes'][ $color_palette['state']['active-palette'] ];
+
+		if ( 'neutral' === $color_class ) {
+			return $color_palette['neutral'];
+		} else {
+			return $color_palette['colors'][ (int) $palette_position - 1 ];
+		}
+	}
+
+	/**
 	 * Get background colors.
 	 *
 	 * @since 2.0.0

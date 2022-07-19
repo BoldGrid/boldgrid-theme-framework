@@ -135,13 +135,13 @@ class Boldgrid_Framework_Links {
 
 			// Apply color as CSS variable.
 			list( $color_variable ) = explode( ':', $color );
+			$color = BoldGrid::color_from_class( $color_variable );
 			$color_variable = "var(--${color_variable})";
 
 			if ( empty( $color ) ) {
 				return $css;
 			}
 
-			$color = explode( ':', $color )[1];
 			$ari_color = ariColor::newColor( $color );
 			$lightness = min( $ari_color->lightness + $color_hover, 100 );
 			$lightness = max( $lightness, 0 );

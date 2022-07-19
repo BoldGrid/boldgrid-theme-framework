@@ -418,10 +418,11 @@ class BoldGrid {
 		$color_palette = json_decode( $color_palette, true );
 		$color_palette = $color_palette['state']['palettes'][ $color_palette['state']['active-palette'] ];
 
-		if ( 'neutral' === $color_class ) {
-			return $color_palette['neutral'];
+		if ( 'neutral' === $palette_position ) {
+			return $color_palette['neutral-color'];
 		} else {
-			return $color_palette['colors'][ (int) $palette_position - 1 ];
+			// If for some reason an invalid color class is passed, return the neutral color instead of an error.
+			return isset( $color_palette['colors'][ (int) $palette_position - 1 ] ) ? $color_palette['colors'][ (int) $palette_position - 1 ] : $color_palette['neutral-color'];
 		}
 	}
 

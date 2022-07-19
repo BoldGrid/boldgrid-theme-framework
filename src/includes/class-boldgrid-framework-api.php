@@ -402,9 +402,9 @@ class BoldGrid {
 	 *
 	 * @since 2.16.1
 	 *
-	 * @param string  $color_class Color class string ( e.g. 'color2' ).
-	 * 
-	 * @return string $color_rgb   RGB color string.
+	 * @param string $color_class Color class string ( e.g. 'color2' ).
+	 *
+	 * @return string $color_rgb RGB color string.
 	 */
 	public static function color_from_class( $color_class ) {
 		$palette_position = str_replace( 'color', '', $color_class );

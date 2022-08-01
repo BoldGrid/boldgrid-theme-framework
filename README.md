@@ -36,6 +36,12 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.16.2 ###
+* Bug Fix: Dividing by Zero in the Header [#708](https://github.com/BoldGrid/boldgrid-theme-framework/issues/708)
+* Bug Fix: Featured Image background for Posts does not display [#717](https://github.com/BoldGrid/boldgrid-theme-framework/issues/717)
+* Bug Fix: WooCommerce Custom Ordering is Ignored [#363](https://github.com/BoldGrid/boldgrid-theme-framework/issues/363)
+* Bug Fix: Review z-index with dropdown menus [#489](https://github.com/BoldGrid/boldgrid-theme-framework/issues/489)
+
 ### 2.16.1 ###
 * Bug Fix: Hover Underline Reveal effect for Menus is broken [#711](https://github.com/BoldGrid/boldgrid-theme-framework/issues/711)
 * Bug Fix: Allow filtering of Premium URL's in theme [#706](https://github.com/BoldGrid/boldgrid-theme-framework/issues/706)

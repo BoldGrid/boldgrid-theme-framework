@@ -115,7 +115,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 			if ( ! array_key_exists( 'items', $row ) ) {
 				continue;
 			}
-			$items_in_row      = 0 !== count( $row['items'] ) ? count( $row['items'] ) : 1;
+			$items_in_row      = count( $row['items'] ) ? count( $row['items'] ) : 1;
 			$default_col_width = floor( 12 / $items_in_row );
 
 			if ( 'tablet' === $device || 'phone' === $device ) {

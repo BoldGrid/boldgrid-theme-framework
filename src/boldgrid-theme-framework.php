@@ -3,7 +3,7 @@
  * Plugin Name: BoldGrid Theme Framework
  * Plugin URI: https://www.boldgrid.com/docs/configuration-file
  * Description: BoldGrid Theme Framework is a library that allows you to easily make BoldGrid themes. Please see our reference guide for more information: https://www.boldgrid.com/docs/configuration-file
- * Version: 2.7.0
+ * Version: 2.16.2
  * Author: BoldGrid.com <wpb@boldgrid.com>
  * Author URI: https://www.boldgrid.com/
  * Text Domain: bgtfw
@@ -36,6 +36,10 @@
 $bgtfw_path = get_template_directory() . '/inc/boldgrid-theme-framework';
 if ( defined( 'BGTFW_PATH' ) ) {
 	$bgtfw_path = ABSPATH . BGTFW_PATH;
+}
+
+if ( ! defined( 'FONTAWESOME_DIR_PATH' ) ) {
+	define( 'FONTAWESOME_DIR_PATH', WP_PLUGIN_DIR . '/font-awesome' );
 }
 
 $bgtfw_class = $bgtfw_path . '/includes/class-boldgrid-framework.php';

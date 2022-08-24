@@ -46,11 +46,25 @@ class Boldgrid_Framework_Links {
 	 *
 	 * @var array
 	 */
-	public static $default_link_selectors = [
-		'.main a',
-		'.page-header-wrapper a',
-		'.mce-content-body a',
-		'.template-header a',
+	public static $default_link_selectors = array(
+		'.main a:not(.btn)',
+		'.page-header-wrapper a:not(.btn)',
+		'.mce-content-body *:not( .menu-item ) > a:not(.btn)',
+		'.template-header a:not(.btn)',
+		'.template-footer a:not(.btn)',
+		'.template-sticky-header a:not(.btn)',
+	);
+
+	/**
+	 * Selectors to use for edit vars.
+	 *
+	 * NOTE: do not use this directly. Only set in here for passing into config.
+	 *
+	 * @var array
+	 */
+	public static $edit_link_selectors = [
+		'.article-wrapper a',
+		'p.logged-in-as',
 	];
 
 	/**
@@ -121,17 +135,17 @@ class Boldgrid_Framework_Links {
 
 			// Apply color as CSS variable.
 			list( $color_variable ) = explode( ':', $color );
+			$color = BoldGrid::color_from_class( $color_variable );
 			$color_variable = "var(--${color_variable})";
 
 			if ( empty( $color ) ) {
 				return $css;
 			}
 
-			$color = explode( ':', $color )[1];
 			$ari_color = ariColor::newColor( $color );
 			$lightness = min( $ari_color->lightness + $color_hover, 100 );
 			$lightness = max( $lightness, 0 );
-			$color_hover = $ari_color->getNew( 'lightness', $lightness )->toCSS( 'rgba' );
+			$color_hover = $ari_color->getNew( 'lightness', $lightness )->toCSS( 'hsla' );
 			$decoration = $decoration;
 			$decoration_hover = $decoration_hover;
 			$excludes = '';
@@ -144,6 +158,18 @@ class Boldgrid_Framework_Links {
 					$selector = $selector . $excludes;
 					$css .= "${selector} {color: ${color_variable};text-decoration: ${decoration};}";
 					$css .= "${selector}:hover, ${selector}:focus {color: ${color_hover};text-decoration: ${decoration_hover};}";
+				}
+
+				if ( 'bgtfw_body' === $prefix ) {
+					$footer_link_color  = explode( ':', get_theme_mod( 'bgtfw_footer_links' ) )[1];
+					$footer_ari_color   = ariColor::newColor( $color );
+					$footer_color_hover = get_theme_mod( "${prefix}_link_color_hover" ) ?: 0;
+					$footer_lightness   = min( $footer_ari_color->lightness + $footer_color_hover, 100 );
+					$footer_lightness   = max( $footer_lightness, 0 );
+					$footer_color_hover = $footer_ari_color->getNew( 'lightness', $footer_lightness )->toCSS( 'hsla' );
+
+					$css .= "#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a { text-decoration: ${decoration};}";
+					$css .= "#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:hover, .bgtfw-footer.footer-content *:not( .menu-item ) > a:focus {color: ${footer_color_hover};text-decoration: ${decoration_hover};}";
 				}
 			}
 		}

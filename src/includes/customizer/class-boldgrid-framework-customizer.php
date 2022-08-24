@@ -51,7 +51,6 @@ class BoldGrid_Framework_Customizer {
 	 * @since     1.0.0
 	 */
 	public function __construct( $configs ) {
-
 		// Ensure defaults are processed on customize load.
 		$format        = new BoldGrid_Framework_Starter_Content( $configs );
 		$this->configs = $format->set_configs( $configs );
@@ -60,15 +59,57 @@ class BoldGrid_Framework_Customizer {
 	}
 
 	/**
-	 * Add all kitki controls.
+	 * WP Ajax Responsive Font Sizes.
+	 *
+	 * Ajax callback to get the font sizes for customizer
+	 * Preview.
+	 *
+	 * @see BoldGrid_Framework::customizer_typography() for WP Ajax action hook definition.
+	 *
+	 * @since 2.11.0
+	 */
+	public function wp_ajax_bgtfw_container_width() {
+		check_ajax_referer( 'bgtfw_container_width', 'containerWidthNonce' );
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			wp_die( -1 );
+		}
+
+		$scss = new Boldgrid_Framework_SCSS( $this->configs );
+		$css  = $scss->compile_widths();
+
+		wp_send_json_success(
+			array(
+				'css' => $css,
+			)
+		);
+	}
+
+	/**
+	 * Add a nonce for Customizer for container width.
+	 *
+	 * @param array $nonces An array of customizer nonces.
+	 *
+	 * @return array An array of customizer nonces.
+	 *
+	 * @since 2.11.0
+	 */
+	public function container_width_nonce( $nonces ) {
+		$nonces['bgtfw_container_width'] = wp_create_nonce( 'bgtfw_container_width' );
+		return $nonces;
+	}
+
+	/**
+	 * Add all kirki controls.
 	 *
 	 * @since 1.5.3
 	 */
 	public function kirki_controls() {
 		global $wp_customize;
+		remove_theme_support( 'widgets-block-editor' );
 
 		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			if ( isset( $control['type'] ) && 'radio' !== $control['type'] ) {
+				$control = apply_filters( 'bgtfw_filter_kirki_control', $control );
 				Kirki::add_field( 'bgtfw', $control );
 
 				if ( strpos( $control['settings'], 'bgtfw_menu_' ) !== false &&
@@ -420,6 +461,13 @@ class BoldGrid_Framework_Customizer {
 			array(),
 			$this->configs['version']
 		);
+
+		wp_enqueue_style(
+			'kirki-control-styles',
+			$this->configs['framework']['root_uri'] . '/includes/kirki/controls/css/styles.css',
+			array(),
+			$this->configs['version']
+		);
 	}
 
 	/**
@@ -431,10 +479,6 @@ class BoldGrid_Framework_Customizer {
 	 */
 	public function custom_customize_enqueue() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-		// This is necessary for wp < 5.5 backwards compatibility. WP5.5+ includes the wp-i18n already.
-		wp_deregister_script( 'wp-color-picker-alpha' );
-		wp_enqueue_script( 'wp-color-picker-alpha', trailingslashit( Kirki::$url ) . 'assets/vendor/wp-color-picker-alpha/wp-color-picker-alpha.js', array( 'wp-i18n', 'wp-color-picker' ), KIRKI_VERSION, true );
 
 		wp_register_script(
 			'bgtfw-customizer-base-controls',
@@ -710,7 +754,7 @@ HTML;
 		if ( $wp_customize->get_section( 'static_front_page' ) ) {
 			$section              = $wp_customize->get_section( 'static_front_page' );
 			$section->title       = esc_html__( 'Homepage', 'bgtfw' );
-			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s Homepage settings', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-the-page-layout-in-boldgrid-crio/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
+			$section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change your site\'s Homepage settings', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/using-the-homepage-settings/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 			$section->priority    = 5;
 			$section->panel       = 'bgtfw_design_panel';
 		}
@@ -718,6 +762,7 @@ HTML;
 		// Add colors section description.
 		if ( $wp_customize->get_section( 'colors' ) ) {
 			$section              = $wp_customize->get_section( 'colors' );
+			$section->title       = esc_html__( 'Color Palette', 'bgtfw' );
 			$section->description = '<div class="bgtfw-description"><p>' . __( 'Drag a color to a new spot to change what parts of the website are that color.<a href="#" data-action="open-color-picker"><span class="dashicons dashicons-admin-customizer"></span><strong>Click a color</strong></a> to change it. Use the "Suggest Palettes" button to get new color suggestions, and press the lock icons to freeze colors in place.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/customizing-the-color-palette/" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 		}
 
@@ -732,8 +777,8 @@ HTML;
 
 		// Change tagline control's section.
 		if ( $wp_customize->get_control( 'blogdescription' ) ) {
-			$control          = $wp_customize->get_control( 'blogdescription' );
-			$control->section = 'bgtfw_tagline';
+			$control            = $wp_customize->get_control( 'blogdescription' );
+			$control->section   = 'bgtfw_tagline';
 		}
 
 		// Change site_title control's section.
@@ -928,7 +973,7 @@ HTML;
 					'title'        => esc_html__( 'Get More Features', 'bgtfw' ),
 					'upsell_text'  => esc_html__( 'Upgrade Crio', 'bgtfw' ),
 					'upsell_title' => esc_html__( 'Upgrade Crio', 'bgtfw' ),
-					'upsell_url'   => 'https://boldgrid.com/wordpress-themes/crio/?source=customize-main',
+					'upsell_url'   => esc_url( apply_filters( 'bgtfw_premium_url', 'https://boldgrid.com/wordpress-themes/crio/?source=customize-main' ) ),
 					'priority'     => 0,
 				)
 			)
@@ -949,6 +994,7 @@ HTML;
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Palette_Selector' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers' );
 		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Sortable_Accordion' );
+		$wp_customize->register_control_type( 'Boldgrid_Framework_Customizer_Control_Dropdown_Menu' );
 
 		add_filter(
 			'kirki_control_types',
@@ -956,6 +1002,7 @@ HTML;
 				$controls['bgtfw-palette-selector']   = 'Boldgrid_Framework_Customizer_Control_Palette_Selector';
 				$controls['bgtfw-menu-hamburgers']    = 'Boldgrid_Framework_Customizer_Control_Menu_Hamburgers';
 				$controls['bgtfw-sortable-accordion'] = 'Boldgrid_Framework_Customizer_Control_Sortable_Accordion';
+				$controls['bgtfw-dropdown-menu']      = 'Boldgrid_Framework_Customizer_Control_Dropdown_Menu';
 				return $controls;
 			}
 		);
@@ -976,7 +1023,7 @@ HTML;
 			$section    = $wp_customize->get_section( $section_id );
 
 			if ( $section ) {
-				$section->description = '<a target="_blank" class="boldgrid-icon-newtab dashicons-before dashicons-external" href="https://www.boldgrid.com/support/working-with-menus-in-boldgrid/">' . __( 'Menu Tutorial', 'bgtfw' ) . '</a>';
+				$section->description = '<a target="_blank" class="boldgrid-icon-newtab dashicons-before dashicons-external" href="https://www.boldgrid.com/support/boldgrid-crio-supertheme-product-guide/working-with-menus-in-boldgrid-crio/">' . __( 'Menu Tutorial', 'bgtfw' ) . '</a>';
 			}
 		}
 	}
@@ -1026,6 +1073,87 @@ HTML;
 			)
 		);
 		$wp_customize->add_control( new Boldgrid_Framework_Control_Col_Width( $this->configs, $wp_customize ) );
+	}
+
+	/**
+	 * Add Responsive font controls.
+	 *
+	 * Loops through the responsive controls in the customizer-options
+	 * config file, and registers them.
+	 *
+	 * @see /src/includes/configs/customizer-options/typography.config.php
+	 *
+	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
+	 *
+	 * @since 2.11.0
+	 */
+	public function register_responsive_font_controls( $wp_customize ) {
+		$typography          = new Boldgrid_Framework_Customizer_Typography( $this->configs );
+		$responsive_controls = $this->configs['customizer-options']['typography']['responsive_font_controls'];
+
+		foreach ( $responsive_controls as $control_id => $control_args ) {
+			$this->register_responsive_font_control( $wp_customize, $control_args, $control_id, $typography );
+		}
+	}
+
+	/**
+	 * Register Menu Font Size Controls
+	 *
+	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
+	 *
+	 * @since 2.11.0
+	 */
+	public function register_menu_font_size_controls( $wp_customize ) {
+		$menu_locations = $this->configs['menu']['locations'];
+		foreach ( $menu_locations as $location => $location_args ) {
+			$control_args = array(
+				'section' => 'bgtfw_menu_typography_' . $location,
+				'priority' => 21,
+			);
+
+			$this->register_responsive_font_control( $wp_customize, $control_args, 'bgtfw_menu_font_size_' . $location );
+		}
+	}
+
+	/**
+	 * Register Responsive Font Control
+	 *
+	 * Registers a single responsive font control. Used by register_responsive_font_controls()
+	 * to loop through the responsive controls and add them all.
+	 *
+	 * @param WP_Customize_Manager $wp_customize WP Customize Manager Instance.
+	 * @param array                $control_args Control Arguments.
+	 * @param string               $control_id   Control ID.
+	 *
+	 * @since 2.11.0
+	 */
+	public function register_responsive_font_control( $wp_customize, $control_args, $control_id, $typography ) {
+		require_once $this->configs['framework']['includes_dir']
+		. 'control/class-boldgrid-framework-control-responsive-font-size.php';
+		$params = array(
+			'type'              => 'theme_mod',
+			'section'           => $control_args['section'],
+			'capability'        => 'edit_theme_options',
+			'transport'         => 'postMessage',
+			'priority'          => $control_args['priority'],
+			'sanitize_callback' => array( $typography, 'sanitize_responsive_fonts' ),
+			'label'             => __( 'Responsive Font Size', 'bgtfw' ),
+		);
+
+		$wp_customize->add_setting(
+			$control_id,
+			array(
+				'type'              => 'theme_mod',
+				'section'           => $control_args['section'],
+				'capability'        => 'edit_theme_options',
+				'transport'         => 'postMessage',
+				'priority'          => $control_args['priority'],
+				'sanitize_callback' => array( $typography, 'sanitize_responsive_fonts' ),
+				'label'             => __( 'Responsive Font Size', 'bgtfw' ),
+			)
+		);
+		$params['type'] = 'bgtfw-responsive-typography';
+		$wp_customize->add_control( new Boldgrid_Framework_Control_Responsive_Font_Size( $this->configs, $wp_customize, $control_id, $params ) );
 	}
 
 	/**

@@ -94,7 +94,7 @@ export default {
 			this.sortable
 				.on( 'click', '.bgtfw-sortable:not(.disabled)', e => this._addItem( e ) )
 				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected), .repeater-control.align .direction:not(.selected)', e => this._select( e ) )
-				.on( 'click', '.dashicons-trash', e => this._deleteItem( e ) )
+				.on( 'click', '.dashicons-trash:not(.disabled)', e => this._deleteItem( e ) )
 				.on( 'change', '.repeater-control.menu-select', e => this._updateMenuSelect( e ) )
 				.on( 'click', '.repeater-control.align .direction:not(.selected)', e => this._updateAlignment( e ) )
 				.on( 'click', '.bgtfw-container-control > .bgtfw-sortable-control:not(.selected)', () => this._updateContainer() )
@@ -116,6 +116,29 @@ export default {
 			} );
 
 			api( 'custom_logo', value => value.bind( to => this._toggleLogo( to ) ) );
+			this.disableAttributionTrash();
+		} );
+	},
+
+	/**
+	 * Disables the Trash Icon for Attribution LInks.
+	 *
+	 * @since 2.9.2
+	 */
+	disableAttributionTrash() {
+		var footerContainer        = api.control( 'bgtfw_footer_layout' ).container,
+			footerSortableWrappers = footerContainer.find( '.sortable-wrapper' );
+
+		footerSortableWrappers.find( '.dashicons-trash' ).removeClass( 'disabled' );
+
+		footerSortableWrappers.each( ( _, wrapper ) => {
+			var $attributionsLinks   = footerContainer.find( wrapper ).find( '.dashicons-admin-links' ),
+				$attributionsHandles = $attributionsLinks.parents( '.sortable-title' ),
+				$repeaterHandles     = $( wrapper ).children( '.sortable-title' );
+			if ( 0 !== $attributionsLinks.length ) {
+				$attributionsHandles.find( '.dashicons-trash' ).addClass( 'disabled' );
+				$repeaterHandles.find( '.dashicons-trash' ).addClass( 'disabled' );
+			}
 		} );
 	},
 
@@ -564,6 +587,7 @@ export default {
 		this.setting.set( values );
 		this.updateTitles();
 		this.updateAddTypes();
+		this.disableAttributionTrash();
 	},
 
 	/**
@@ -880,9 +904,11 @@ export default {
 	 * @since 2.0.3
 	 */
 	getAvailableMenus() {
-		let menus = this.getAllMenuActions();
-		menus = 'sticky-header' === this.params.location ? menus.filter( s => ~s.indexOf( 'sticky' ) ) : menus.filter( s => ! ~s.indexOf( 'sticky' ) );
-		return _.difference( menus, this.getConnectedMenus() );
+		var allMenus       = this.getAllMenuActions(),
+			connectedMenus = this.getConnectedMenus(),
+			availableMenus = _.difference( allMenus, connectedMenus );
+
+		return availableMenus;
 	},
 
 	/**
@@ -935,7 +961,28 @@ export default {
 	 * @since 2.0.3
 	 */
 	getConnectedControls() {
-		return _.filter( window._wpCustomizeSettings.controls, { type: this.params.type } );
+		var controls = window._wpCustomizeSettings.controls;
+
+		/*
+		 * The bgtfw_sticky_header_layout and bgtfw_header_layout control values
+		 * are used when using the preset layouts, but the '*_header_layout_advanced'
+		 * is used when using a custom layout. Therefore, when using a custom layout,
+		 * we need to omit these controls from the list of connected controls or else
+		 * the menus will not work properly.
+		*/
+
+		controls = _.filter( controls, ( control ) => {
+			if ( 'bgtfw_sticky_header_layout' === control.id ) {
+				return false;
+			}
+			if ( 'bgtfw_header_layout' === control.id ) {
+				return false;
+			}
+
+			return true;
+		} );
+
+		return _.filter( controls, { type: this.params.type } );
 	},
 
 	/**
@@ -954,6 +1001,7 @@ export default {
 	 */
 	getConnectedMenus() {
 		let menus = _.filter( this.getConnectedItems(), item => item.includes( 'boldgrid_menu' ) );
+
 		if ( _.isFunction( api( 'bgtfw_fixed_header' ) ) ) {
 			if ( false === api( 'bgtfw_fixed_header' )() || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
 				menus = menus.filter( menu => ! menu.includes( 'sticky' ) );

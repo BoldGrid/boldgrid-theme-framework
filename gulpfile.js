@@ -62,11 +62,11 @@ gulp.task('fontFamilyCss', function () {
 for (var key in webFonts.items) {
 	family = webFonts.items[key].family;
 
-    // This value needs to -40 after updating sprite.
-    position = key * -44;
+    // This value needs to -41.45 after updating image.
+	position = key * -41.423841059602649006622516556291;
 
-    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + ( position + 8 ) + 'px;}';
-    css += '[id^="select2-"][id$="-' + family + '"] { color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + ( position + 8 ) + 'px;}';
+    css += '.select2-container--default .select2-selection__rendered[title="' + family + '"] {color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position: 8px ' + position + 'px;}';
+    css += '[id^="select2-"][id$="-' + family + '"] { line-height:25px; color: transparent; background-image: url(../../img/web-fonts.png); background-repeat: no-repeat; background-position:8px ' + position + 'px;}';
     css += '[id^="select2-"][id$="-' + family + '"]:hover, [id^="select2-"][id$="-' + family + '"].select2-results__option--highlighted[aria-selected] { color: transparent; }';
   }
 
@@ -87,7 +87,7 @@ for (var key in webFonts.items) {
 gulp.task('googlefonts-image', function () {
   var googleApiKey = argv.google_api_key;
   if (!googleApiKey) {
-	console.log('Invalid format');
+	console.log('Invalid format' );
     console.log('gulp googlefonts-image --google_api_key={Key Goes Here}');
     return;
   }
@@ -102,7 +102,7 @@ gulp.task('googlefonts-image', function () {
     port: 1224,
     options: {
       // If above 37px, not all fonts will be rendered within web-fonts.png.
-      lineHeigth: '37px',
+      lineHeight: '37px',
       fontSize: '25px',
       width: '500px'
     },
@@ -199,6 +199,7 @@ gulp.task('phpDeps', function () {
 	'!' + config.node_modules + '/kirki-toolkit/**/*.map',
 	'!' + config.node_modules + '/kirki-toolkit/**/*build.sh',
 	'!' + config.node_modules + '/kirki-toolkit/**/*phpunit**',
+	'!' + config.node_modules + '/kirki-toolkit/modules/webfonts/*.json',
     config.node_modules + '/kirki-toolkit/**',
   ])
     .pipe(replace('kirki-logo.svg', 'boldgrid-logo.svg'))
@@ -216,6 +217,8 @@ gulp.task('phpDeps', function () {
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets'));
   gulp.src(config.src + "/assets/json/webfonts.json")
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets/json'));
+  gulp.src(config.src + "/assets/json/kirki-modules-webfonts/*.json*")
+    .pipe(gulp.dest(config.dist + '/includes/kirki/modules/webfonts' ) );
   // Add BoldGrid Logo to Kirki.
   gulp.src(config.src + '/assets/img/boldgrid-logo.svg')
     .pipe(gulp.dest(config.dist + '/includes/kirki/assets/images'));
@@ -246,13 +249,7 @@ gulp.task('images', function () {
   return gulp.src([config.src + '/assets/img/**/*.{png,jpg,gif}'])
     .pipe(newer(config.dist + '/assets/img'))
     //.pipe( changed( config.src + '/assets/img' ) )
-    .pipe(imagemin({
-      optimizationLevel: 7,
-      progressive: true,
-      interlaced: true
-  }))
     .pipe(gulp.dest(config.dist + '/assets/img'))
-  // .pipe( notify( { message: 'Image minification complete', onLast: true } ) );
 });
 
 // Move src svgs to dist.
@@ -352,10 +349,14 @@ gulp.task('scssDeps', function () {
   // Font-Awesome
   gulp.src(config.node_modules + '/font-awesome/scss/**/*.scss')
     .pipe(replace('../fonts', '../../fonts'))
+	.pipe(replace("font-family: 'FontAwesome';", "font-family: 'FontAwesome';font-display:swap;"))
     .pipe(gulp.dest(config.dist + '/assets/scss/font-awesome'));
   // Custom Icons
   gulp.src(config.scss_src + '/icomoon/style.scss')
     .pipe(gulp.dest(config.dist + '/assets/scss/icomoon'));
+  // Container Widths
+  gulp.src(config.scss_src + '/container-widths.scss')
+    .pipe(gulp.dest(config.dist + '/assets/scss/container-widths'));
   // Animate.css
   gulp.src(config.node_modules + '/animate.css/animate.*')
     .pipe(gulp.dest(config.dist + '/assets/css/animate-css'));
@@ -390,6 +391,7 @@ gulp.task('scssCompile', function () {
   return gulp.src([
     '!' + config.dist + '/assets/scss/bootstrap.scss',
     '!' + config.dist + '/assets/scss/custom-color/**/*',
+	'!' + config.dist + '/assets/scss/container-widths.scss',
     config.dist + '/assets/scss/**/*.scss'])
     .pipe(sass({
 	 outputStyle: 'expanded',
@@ -478,7 +480,7 @@ gulp.task('hovers', function() {
       digestType: 'base32',
       maxLength: 0,
       outputName: 'hover1',
-      classnameFormat: '[classname] a',
+      classnameFormat: '[classname] a:not( .button-primary):not( .button-secondary )',
       type: '.json'
     })
   ];
@@ -499,7 +501,7 @@ gulp.task('hoverColors', function() {
       digestType: 'base32',
       maxLength: 0,
       outputName: 'hover2',
-      classnameFormat: '[classname] a',
+      classnameFormat: '[classname]:not( .button-primary):not( .button-secondary ) a',
       type: '.json'
     }),
     require('postcss-prefix-selector')({ prefix: '%1$s' })

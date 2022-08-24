@@ -92,18 +92,25 @@ class Boldgrid_Framework_Title {
 	 * @param WP_Post $post WordPress Post Object.
 	 */
 	public function meta_box_callback( $post ) {
-		if ( ! in_array( $post->post_type, array( 'post', 'page' ), true ) ) {
+		if ( ! in_array( $post->post_type, apply_filters( 'bgtfw_page_title_control_post_types', array( 'post', 'page' ) ), true ) ) {
 			return;
 		}
 
 		$post_meta = get_post_meta( $post->ID, $this->configs['title']['hide'], true );
-		$title = sprintf( '%1$s %2$s', 'post' === $post->post_type ? __( 'Post', 'bgtfw' ) : __( 'Page', 'bgtfw' ), __( 'Title', 'bgtfw' ) );
+		$title     = sprintf( '%1$s %2$s', 'post' === $post->post_type ? __( 'Post: ', 'bgtfw' ) : __( 'Page: ', 'bgtfw' ), __( 'Title: ', 'bgtfw' ) );
+		$k         = $this->get_global();
 
 		$options = array(
 			'global' => array(
-				'name' => __( 'Show', 'bgtfw' ),
+				'name' => __( 'Use Global Setting ', 'bgtfw' ),
 				'value' => 'global',
-				'checked' => '0' !== $post_meta,
+				'checked' => 'global' === $post_meta,
+				'post_text' => esc_attr( $k ),
+			),
+			'show' => array(
+				'name' => __( 'Show', 'bgtfw' ),
+				'value' => '1',
+				'checked' => '1' === $post_meta,
 				'post_text' => $this->configs['title']['meta_box'][ $post->post_type ]['show_post_text'],
 			),
 			'hide' => array(
@@ -124,10 +131,28 @@ class Boldgrid_Framework_Title {
 		 * @param array $post_meta Post Meta Value.
 		 */
 		$options = apply_filters( 'bgtfw_page_title_options', $options, $post, $post_meta );
+		$checked = false;
+		foreach ( $options as $option ) {
+			if ( $option['checked'] ) {
+				$checked = true;
+				break;
+			}
+		}
+
+		if ( ! $checked ) {
+			$options['global']['checked'] = true;
+		}
 
 		?>
 		<div class="misc-pub-section bgtfw-misc-pub-section bgtfw-page-title">
-			<?php echo esc_html( $title ); ?>: <span class="value-displayed">...</span>
+			<?php
+				if ( $options['global']['checked'] ) {
+					$k = get_theme_mod( 'bgtfw_pages_title_display' );
+					echo esc_html( $title ) . ': <span class="value-displayed">' . esc_html__( 'Use Global Setting ', 'bgtfw' ) . '<div class="template-subtitle">' . esc_html( $k ) . '</div></span>';
+				} else {
+					echo esc_html( $title ) . '<span class="value-displayed">...</span>';
+				}
+			?>
 			<a class="edit" href="">
 				<span aria-hidden="true"><?php esc_html_e( 'Edit', 'bgtfw' ); ?></span> <span class="screen-reader-text"><?php echo esc_html( $title ); ?></span>
 			</a>
@@ -160,10 +185,10 @@ class Boldgrid_Framework_Title {
 	 * @param int $post_id The ID of the post being updated.
 	 */
 	public function post_updated( $post_id ) {
-		if ( isset( $_POST[ $this->configs['title']['hide'] ] ) ) {
+		if ( isset( $_POST[ $this->configs['title']['hide'] ] ) ) { // phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification
 
 			// Validate "show title" post meta, and abort on failure.
-			$value = ( string ) sanitize_key( $_POST[ $this->configs['title']['hide'] ] );
+			$value = (string) sanitize_key( $_POST[ $this->configs['title']['hide'] ] );
 
 			if ( ! in_array( $value, array( '0', '1', 'global' ), true ) ) {
 				return;
@@ -194,7 +219,8 @@ class Boldgrid_Framework_Title {
 
 		// This method only needs to be ran if we're looking at a page, post, archive, or blog.
 		$is_single = is_page() || is_single();
-		$is_multi = is_home() || is_archive();
+		$is_multi  = is_home() || is_archive();
+		$is_page   = is_page();
 
 		$allowed = $is_single || $is_multi;
 
@@ -208,11 +234,32 @@ class Boldgrid_Framework_Title {
 		}
 
 		/*
+		 * When we're on a page, and the <div class="main"> tag has printed, we know we are inside the page content.
+		 * And therefore must return the title unchanged.
+		 */
+		if ( $is_page && did_action( 'boldgrid_main_top' ) ) {
+			return $title;
+		}
+
+		/*
+		 * Unlike a page, where we only know if we're in the content after the main div is printed,
+		 * a post has to determine whether or not the post header action has been completed
+		 */
+		if ( $is_single && did_action( 'bgtfw_after_post_header' ) ) {
+			return $title;
+		}
+
+		/*
 		 * The the_title filter is ran quite often. For example, when displaying nav menus, this filter
 		 * is ran and can change a page's title in the nav. We're only interested in adjusting the
 		 * title when displaying a post.
 		 */
 		if ( ( $is_multi && in_the_loop() ) || ( $is_single && ! in_the_loop() ) ) {
+			return $title;
+		}
+
+		// Check for widget areas displayed within the main content and don't modify those.
+		if ( did_action( 'dynamic_sidebar_before' ) && ! did_action( 'dynamic_sidebar_after' ) ) {
 			return $title;
 		}
 
@@ -223,17 +270,12 @@ class Boldgrid_Framework_Title {
 			if ( ! did_action( 'boldgrid_main_top' ) || did_action( 'boldgrid_main_bottom' ) ) {
 				return $title;
 			}
-
-			// Check for widget areas displayed within the main content and don't modify those.
-			if ( did_action( 'dynamic_sidebar_before' ) && ! did_action( 'dynamic_sidebar_after' ) ) {
-				return $title;
-			}
 		}
 
 		$post_meta = get_post_meta( $id, $this->configs['title']['hide'], true );
 
 		$global = $this->get_global();
-		$show = '1' === $post_meta || ( ( 'global' === $post_meta || '' === $post_meta ) && 'show' === $global );
+		$show   = '1' === $post_meta || ( ( 'global' === $post_meta || '' === $post_meta ) && 'show' === $global );
 
 		return $show ? $title : '';
 	}

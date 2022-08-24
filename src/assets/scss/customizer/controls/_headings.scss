@@ -14,10 +14,19 @@
 	}
 }
 #customize-control-bgtfw_headings_font_size {
+	.kirki-input-container {
+		padding: 0 10px;
+		border: 1px solid rgba(0,0,0,.1);
+		border-top: 0;
+		border-bottom: 0;
+		input {
+			width: 50%
+		}
+	}
 	.customize-control-title {
 		color: #555d66;
 		font-size: 0.83em;
-		margin: 0 0 -1.5em 0;
+		margin: 0;
 		font-weight: 600;
 	}
 	> label {

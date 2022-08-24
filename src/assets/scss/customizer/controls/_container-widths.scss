@@ -1,0 +1,12 @@
+div[class*=container_max_width] {
+	.boldgrid-control.slider-control .number {
+		width: 80px;
+	}
+	&.directional-control:not([data-linkable='false']) {
+		.slider-control:first-of-type {
+			.link {
+				visibility: hidden;
+			}
+		}
+	}
+}

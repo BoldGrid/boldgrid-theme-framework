@@ -107,7 +107,7 @@
 	background-color: #d9edf7;
 	border-color: #98cce6;
 	color: #3a87ad;
-	a:not(.button-primary) {
+	a:not(.button-primary, .showcoupon ) {
 		color: #3a8ace;
 		&:hover, &:focus, &:active {
 			color: #4d90fd;

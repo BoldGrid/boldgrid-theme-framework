@@ -51,6 +51,19 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	}
 
 	/**
+	 * Get Upgrade Url.
+	 *
+	 * Returns upgrade url.
+	 *
+	 * @since 2.9.0
+	 *
+	 * @return string upgrade url.
+	 */
+	public function get_upgrade_url( $url ) {
+		return $this->upgrade_url;
+	}
+
+	/**
 	 * Print Cards
 	 *
 	 * This function prints cards as used by the 'bgtfw_pro_feature_cards'

@@ -1,8 +1,6 @@
 /* eslint-disable */
 import WidgetSectionUpdate from './widget/section-update';
 import bgtfwWidgetsSection from './controls/bgtfw-widgets-section';
-import BlogPagePanelExpand from './design/blog/blog-page/panel-expand.js';
-import BlogPostsPanelExpand from './design/blog/posts/panel-expand.js';
 import HomepageSectionExpand from './design/homepage/section-expand.js';
 import WoocommerceSectionExpand from './design/woocommerce/section-expand.js'
 import { Control as GenericControls } from './generic/control.js';
@@ -24,6 +22,8 @@ import bgtfwNotifications from './controls/bgtfw-notifications';
 import bgtfwBackgroundControls from './controls/bgtfw-background-control';
 import bgtfwEditPane from './controls/edit/pane';
 import { HeaderBackground as BgtfwHeaderBackground } from './controls/bgtfw-header-background';
+import bgtfwDropdownMenu from './controls/bgtfw-dropdown-menu';
+import bgtfwResponsiveFontSize from './controls/bgtfw-responsive-font-size';
 
 let devices = new Devices();
 devices.init();
@@ -31,12 +31,12 @@ bgtfwNotifications();
 bgtfwBackgroundControls();
 bgtfwEditPane();
 WidgetSectionUpdate();
+bgtfwDropdownMenu();
+bgtfwResponsiveFontSize();
 
 ( function( $ ) {
 	const api = wp.customize;
 	new Required().init();
-	new BlogPagePanelExpand();
-	new BlogPostsPanelExpand();
 	new HomepageSectionExpand();
 	new WoocommerceSectionExpand();
 	new SectionExtendTitle();

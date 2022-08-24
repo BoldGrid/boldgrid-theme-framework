@@ -219,6 +219,11 @@ class Boldgrid_Framework_Customizer_Widget_Meta {
 				'headings_color_label' => __( 'Headings Color:', 'bgtfw' ),
 				'links_color_label' => __( 'Links Color:', 'bgtfw' ),
 			),
+			'backgroundChoices' => array(
+				'colors' => $formatted_palette,
+				'size' => $this->palette->get_palette_size( $formatted_palette, true ),
+				'transparent' => true,
+			),
 			'choices' => array(
 				'colors' => $formatted_palette,
 				'size' => $this->palette->get_palette_size( $formatted_palette ),

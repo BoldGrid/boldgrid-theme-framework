@@ -150,7 +150,7 @@ var CustomizeWidgetSidebarMetaControls = ( function( $ ) {
 				},
 				id: customizeId,
 				link: 'data-customize-setting-link="' + customizeId + '"',
-				choices: component.data.choices
+				choices: component.data.backgroundChoices
 			}
 		};
 

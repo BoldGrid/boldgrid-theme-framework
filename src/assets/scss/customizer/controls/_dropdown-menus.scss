@@ -1,0 +1,154 @@
+li.customize-control-bgtfw-dropdown-menu {
+    margin-left: -12px;
+    width: calc( 100% + 25px );
+}
+
+.bgtfw-dropdown-menu-wrapper {
+	position: relative;
+    border-bottom: 1px solid #dcdcde;
+    background-color: white;
+	margin-bottom: 10px;
+
+	.bgtfw-dropdown-menu-return.hidden {
+		visibility: hidden;
+	}
+
+	.bgtfw-dropdown-menu-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 55px;
+		border:  1px solid #dcdcde;
+		cursor: pointer;
+		span.dashicons.dashicons-arrow-up-alt2 {
+			line-height: 1.0em;
+		}
+		&.collapsed {
+			border-bottom: none;
+			&:hover {
+				color: #2271b1;
+				background: #f6f7f7;
+				box-shadow: none;
+				outline: 2px solid transparent;
+				outline-offset: -2px;
+			}
+			span.dashicons.dashicons-arrow-up-alt2 {
+				transform: rotate(180deg);
+			}
+
+			~ div {
+				display: none;
+			}
+		}
+		.dropdown-button {
+			padding: 10px;
+			width: 48px;
+			box-sizing: border-box;
+			display: flex;
+			align-content: center;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+		}
+		.label {
+			padding-left: 10px;
+			.bgtfw-dropdown-menu-label {
+				font-size: 14px;
+				font-weight: 600;
+				line-height: 1.6em;
+				display: flex;
+				vertical-align: middle;
+				align-items: center;
+				.dashicons-menu-alt {
+					vertical-align: top;
+					font-size: 1.6em;
+					padding: 0.4em;
+					color: #50575e;
+					box-sizing: content-box;
+				}
+				.text {
+					color: #50575e;
+					vertical-align: middle;
+    				padding: 0.4em;
+				}
+			}
+		}
+	}
+
+	.bgtfw-dropdown-menu-content {
+		width: calc( 100% - 20px);
+		position: relative;
+		background-color: white;
+		padding: 10px;
+
+		> p {
+			font-weight: 600;
+			font-size: 1.2em;
+			margin: 0px;
+			margin-bottom: 10px;
+			&.bgtfw-dropdown-menu-help-text {
+				padding-left: 10px;
+				font-size: inherit;
+				font-weight: inherit;
+				padding-bottom: 10px;
+				border-bottom: solid 1px #dcdcde;
+				font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+				a {
+					text-decoration: underline;
+				}
+			}
+			&.bgtfw-dropdown-menu-help-label {
+				padding-left: 10px;
+				font-size: inherit;
+				font-weight: 600;
+				margin-bottom: 0px;
+				background-color: #eee;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-right: 10px;
+				text-align: center;
+				border-radius: 5px;
+				border: 1px solid #ddd;
+			}
+		}
+
+		ul {
+			padding-left:10px;
+			width: auto;
+
+			&:not(:last-child) {
+				border-bottom: solid 1px #dcdcde;
+				padding-bottom: 10px;
+				margin-bottom: 10px;
+			}
+
+			li {
+				padding: 3px;
+				border-radius: 3px;
+				margin-left: -3px;
+				&.active {
+					background-color:#2271b1;
+					span {
+						color: #fff;
+						cursor: inherit;
+						text-decoration: none;
+					}
+				}
+				span {
+					color: #2271b1;
+					text-decoration: underline;
+					cursor: pointer;
+				}
+				&:hover {
+					background-color:#2271b1;
+					span {
+						color: #fff;
+					}
+					a {
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+}

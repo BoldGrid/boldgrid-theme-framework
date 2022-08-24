@@ -163,6 +163,8 @@ class BoldGrid_Framework_Woocommerce {
 		return (bool) ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || array_filter(
 			array(
 				'woocommerce_shop_page_id',
+				'woocommerce_cart_page_id',
+				'woocommerce_checkout_page_id',
 			),
 			function( $id ) {
 				return get_the_ID() === (int) get_option( $id, 0 );

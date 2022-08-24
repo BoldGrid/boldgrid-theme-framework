@@ -198,6 +198,7 @@ class Boldgrid_Framework_Widgets {
 	 * @since 2.0.3
 	 */
 	public function add_dynamic_actions() {
+		remove_theme_support( 'widgets-block-editor' );
 		foreach ( $this->configs['widget']['sidebars'] as $widget ) {
 			$action = function() use ( $widget ) {
 				bgtfw_widget( $widget['id'], true );

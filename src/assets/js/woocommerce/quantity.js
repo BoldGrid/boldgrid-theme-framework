@@ -1,7 +1,7 @@
 jQuery( document ).ready( function( $ ) {
 
 	var qtyInput = function() {
-		$( '.btn-number' ).click( function( e ) {
+		$( '.btn-number' ).on( 'click', function( e ) {
 			var minValue, maxValue, type, input, currentVal;
 
 			e.preventDefault();
@@ -44,7 +44,7 @@ jQuery( document ).ready( function( $ ) {
 			$( this ).data( 'oldValue', $( this ).val() );
 		} );
 
-		$( '.input-number' ).change( function() {
+		$( '.input-number' ).on( 'change', function() {
 			var valueCurrent, minValue, maxValue, changed;
 
 			minValue =  parseInt( $( this ).attr( 'min' ) );

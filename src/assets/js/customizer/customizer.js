@@ -1,6 +1,7 @@
 /* global _wpCustomizePreviewNavMenusExports:false, _wpCustomizeSettings:false, BoldGrid:true, BOLDGRID:true */
 import ColorPreview from './color/preview';
 import { Preview as GenericPreview } from './generic/preview.js';
+import { Preview as ResponsiveFontSizes } from './responsive-font-sizes/preview.js';
 import { Preview as HeaderPreview } from './header-layout/preview.js';
 import HeaderLayout from './header-layout/header-layout.js';
 import { Preview as BackgroundPreview } from './background/preview.js';
@@ -9,6 +10,9 @@ import Toggle from './toggle/toggle';
 import ToggleValue from './toggle/value';
 import './widget-meta';
 import { Preview as TypographyPreview } from './typography/preview';
+import { Preview as ButtonsPreview } from './buttons/preview';
+import { Preview as MenuPreview } from './menus/preview';
+import { Preview as ContainerWidthPreview } from './max-width-containers/preview';
 
 const api = wp.customize;
 const controlApi = parent.wp.customize;
@@ -60,8 +64,7 @@ api.selectiveRefresh.bind( 'partial-content-rendered', placement => {
 		) {
 			css += '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none !important; }';
 		}
-
-		document.getElementById( 'sticky-header-display-inline-css' ).innerHTML = css;
+		$( '#sticky-header-display-inline-css' ).html( css );
 	}
 } );
 
@@ -269,10 +272,14 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 
 	headerLayout.init();
 
+	new ResponsiveFontSizes().bindEvents();
 	new GenericPreview().bindEvents();
 	new HeaderPreview().bindEvents();
 	new TypographyPreview().bindEvents();
 	new LinkPreview().bindEvents();
+	new ButtonsPreview().bindEvents();
+	new MenuPreview().bindEvents();
+	new ContainerWidthPreview().bindEvents();
 
 	$( function() {
 		var headingsColorOutput,

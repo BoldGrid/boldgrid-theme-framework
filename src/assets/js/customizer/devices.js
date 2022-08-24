@@ -21,15 +21,15 @@ export class Devices {
 		this.devices = {
 			large: {
 				name: 'large',
-				breakpoint: 1200
+				breakpoint: 1250
 			},
 			desktop: {
 				name: 'desktop',
-				breakpoint: 992
+				breakpoint: 1000
 			},
 			tablet: {
 				name: 'tablet',
-				breakpoint: 768
+				breakpoint: 780
 			},
 			mobile: {
 				name: 'mobile',
@@ -147,7 +147,7 @@ export class Devices {
 		if ( ! this.hasClass() ) {
 			this.toggleClass( this.currentDevice );
 			this.setDevice( this.currentDevice, false );
-			$( '.devices > button' ).blur();
+			$( '.devices > button' ).trigger( 'blur' );
 			this.shouldChange = true;
 		}
 	}
@@ -241,9 +241,9 @@ export class Devices {
 		let button = $( `.devices > [data-device="${device}"]` );
 
 		// Remove focus from currently focused buttons.
-		$( '.devices > button' ).blur();
+		$( '.devices > button' ).trigger( 'blur' );
 
-		button.trigger( 'click', [ { internal: true } ] ).blur();
+		button.trigger( 'click', [ { internal: true } ] ).trigger( 'blur' );
 	}
 
 	/**

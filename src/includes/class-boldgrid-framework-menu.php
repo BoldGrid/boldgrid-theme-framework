@@ -32,13 +32,42 @@ class Boldgrid_Framework_Menu {
 	protected $configs;
 
 	/**
+	 * Feature switch.
+	 *
+	 * @since 1.1.6
+	 * @var   bool
+	 */
+	public $enabled = false;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param     string $configs       The BoldGrid Theme Framework configurations.
 	 * @since     1.0.0
 	 */
 	public function __construct( $configs ) {
-		$this->configs = $configs;
+		$this->configs      = $configs;
+		$this->edit_enabled = (bool) $configs['customizer-options']['edit_enabled'];
+	}
+
+	/**
+	 * Ensure each menu location has a unique class.
+	 *
+	 * That unique classname will be LOCATION-menu-location.
+	 *
+	 * @since 1.1.6
+	 *
+	 * @param array $args Array of wp_nav_menu() arguments.
+	 * @return array $args Modfied wp_nav_menu() arguments.
+	 */
+	public function wp_nav_menu_args( $args ) {
+		if ( is_customize_preview() && true === $this->enabled && ! empty( $args['theme_location'] ) ) {
+			$class = str_replace( '_', '-', $args['theme_location'] ) . '-menu-location';
+
+			$args['container_class'] .= ' ' . $class;
+		}
+
+		return $args;
 	}
 
 	/**
@@ -115,8 +144,13 @@ class Boldgrid_Framework_Menu {
 				 * ELSE:
 				 * # Follow standard practice and print the nav menu if it's configured.
 				 */
-				if ( is_customize_preview() && true === $bgtfw_menus->configs['customizer-options']['edit']['enabled'] ) {
-					$menu['fallback_cb'] = 'Boldgrid_Framework_Customizer_Edit::fallback_cb';
+				if ( is_customize_preview() && true ) {
+					$menu['fallback_cb'] = function( $menu ) {
+						printf( "<div id='%s' class='empty-menu' data-theme-location='%s'></div>",
+							esc_attr( $menu['menu_id'] ),
+							esc_attr( $menu['theme_location'] )
+						);
+					};
 					wp_nav_menu( $menu );
 				} elseif ( has_nav_menu( $menu['theme_location'] ) ) {
 					wp_nav_menu( $menu );
@@ -236,7 +270,6 @@ class Boldgrid_Framework_Menu {
 		return $menu;
 	}
 
-
 	/**
 	 * Adds appropriate background class to register menu's UL elements.
 	 *
@@ -278,9 +311,12 @@ class Boldgrid_Framework_Menu {
 	 * @return array $menu Modfied menu location settings.
 	 */
 	public function add_menu_link( $menu ) {
-		$color = get_theme_mod( 'bgtfw_menu_items_link_color_' . $menu['theme_location'] );
-		$color = explode( ':', $color );
-		$color = array_shift( $color );
+		$color     = get_theme_mod( 'bgtfw_menu_items_link_color_' . $menu['theme_location'] );
+		$subcolor  = get_theme_mod( 'bgtfw_menu_items_sub_link_color_' . $menu['theme_location'] );
+		$color     = explode( ':', $color );
+		$color     = array_shift( $color );
+		$subcolor  = explode( ':', $subcolor );
+		$subcolor  = array_shift( $subcolor );
 
 		$background_color = null;
 		$is_transparent = strpos( $menu['menu_class'], 'transparent' ) !== false;
@@ -314,6 +350,10 @@ class Boldgrid_Framework_Menu {
 			}
 
 			$classes[] = $color . '-link-color';
+		}
+
+		if ( ! empty( $subcolor ) ) {
+			$classes[] = $subcolor . '-sub-link-color';
 		}
 
 		// Convert back to string.

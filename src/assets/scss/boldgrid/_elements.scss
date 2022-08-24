@@ -5,6 +5,9 @@
 	padding: 0 2.8rem;
 	max-width: 100%;
 }
+body {
+	overflow-x: hidden;
+}
 body.page,
 body.single {
 	.main {
@@ -42,9 +45,8 @@ body.custom-background {
 /** Headings **/
 .palette-primary {
 	@include headings() {
-		font-style: normal;
 		word-wrap: break-word;
-		hyphens: auto;
+		hyphens: manual;
 	}
 }
 
@@ -76,6 +78,11 @@ blockquote {
 	.btn,
 	.button-primary,
 	.button-secondary {
+		white-space: normal;
+		height: unset !important;
+		&:not( .btn-small ):not( .btn-tiny ) {
+			min-height: 40px;
+		}
 		&:hover,
 		&:focus {
 			text-decoration: none;
@@ -88,9 +95,9 @@ div {
 	&.button-primary,
 	&.button-secondary {
 		position: relative;
-
+		white-space: wrap;
 		a {
-			color: currentColor !important;
+			color: currentColor;
 		}
 
 		a:after {

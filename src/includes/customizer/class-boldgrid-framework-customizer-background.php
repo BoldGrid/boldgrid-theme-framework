@@ -162,7 +162,9 @@ class Boldgrid_Framework_Customizer_Background {
 
 		$wp_customize->get_control( 'boldgrid_background_image_size' )->priority = 15;
 		$wp_customize->get_control( 'background_repeat' )->priority              = 18;
-		$wp_customize->get_section( 'background_image' )->title                  = __( 'Background', 'bgtfw' );
+		$background_image_section              = $wp_customize->get_section( 'background_image' );
+		$background_image_section->title       = __( 'Background', 'bgtfw' );
+		$background_image_section->description = '<div class="bgtfw-description"><p>' . esc_html__( 'Change the appearance of your site\'s background.', 'bgtfw' ) . '</p><div class="help"><a href="https://www.boldgrid.com/support/boldgrid-crio/changing-your-site-background-in-boldgrid-crio/?source=customize-background" target="_blank"><span class="dashicons"></span>Help</a></div></div>';
 		$wp_customize->remove_control( 'background_color' );
 
 		return $wp_customize;
@@ -273,6 +275,28 @@ class Boldgrid_Framework_Customizer_Background {
 					'background-repeat: no-repeat;' .
 					'background-attachment: fixed;' .
 				'}';
+			} elseif ( 'fixed' === $bg_attach && 'cover' === $bg_size ) {
+				// This sets the background to a pseudo element to work with iOS.
+				$css = 'body.custom-background::before {' .
+					'content: "";' .
+					'top: 0;' .
+					'left: 0;' .
+					'position: fixed;' .
+					'background-size: cover;' .
+					'width: 100%;' .
+					'height: 100%;' .
+					'z-index: -1;' .
+					'background-position: center top;';
+				if ( $bg_image ) {
+					$css .= 'background-image: url("' . esc_attr( $bg_image ) . '");';
+				}
+
+				if ( $bg_repeat ) {
+					$css .= 'background-repeat: ' . esc_attr( $bg_repeat ) . ';';
+				}
+
+				$css .= '}';
+
 			} elseif ( 'fixed' === $bg_attach ) {
 				$css = 'body.custom-background {' .
 					'background-attachment: fixed;';
@@ -288,6 +312,8 @@ class Boldgrid_Framework_Customizer_Background {
 				if ( $bg_repeat ) {
 					$css .= 'background-repeat: ' . esc_attr( $bg_repeat ) . ';';
 				}
+
+				$css .= '}';
 			} else {
 				$css .= 'body.custom-background {';
 
@@ -350,8 +376,8 @@ class Boldgrid_Framework_Customizer_Background {
 			$color_obj->alpha = $alpha;
 			$new_color        = esc_attr( $color_obj->toCSS( 'rgba' ) );
 
-			$rule  = "@supports(background-blend-mode: $type) { body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $new_color !important; background-blend-mode: $type; } }";
-			$rule .= "@supports not (background-blend-mode: $type) { body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $color !important; opacity: $alpha; } }";
+			$rule  = "@supports(background-blend-mode: $type) { body.custom-background::before, body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $new_color !important; background-blend-mode: $type; } }";
+			$rule .= "@supports not (background-blend-mode: $type) { body.custom-background::before, body.custom-background, body.custom-background > [id^=\"jarallax-container\"] > div { background-color: $color !important; opacity: $alpha; } }";
 		}
 
 		return $rule;

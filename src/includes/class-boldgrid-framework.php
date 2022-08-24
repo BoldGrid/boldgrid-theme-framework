@@ -154,7 +154,7 @@ class BoldGrid_Framework {
 	 */
 	private function load_dependencies() {
 		// Load Compile Interface.
-		require_once( trailingslashit( __DIR__ ) . 'interface-boldgrid-framework-compile.php' );
+		require_once trailingslashit( __DIR__ ) . 'interface-boldgrid-framework-compile.php';
 		// Include utility classes.
 		$library_files = array(
 			'404',
@@ -164,6 +164,7 @@ class BoldGrid_Framework {
 			'comments',
 			'compile-colors',
 			'container',
+			'container-width',
 			'content',
 			'custom-header',
 			'editor',
@@ -197,7 +198,7 @@ class BoldGrid_Framework {
 		);
 
 		foreach ( $library_files as $filename ) {
-			require_once( trailingslashit( __DIR__ ) . 'class-boldgrid-framework-' . $filename . '.php' );
+			require_once trailingslashit( __DIR__ ) . 'class-boldgrid-framework-' . $filename . '.php';
 		}
 
 		// Load Customizer Files.
@@ -345,6 +346,9 @@ class BoldGrid_Framework {
 		$path = __DIR__ . '/configs/' . $folder;
 		foreach ( glob( $path . '/*.config.php' ) as $filename ) {
 			$option = basename( str_replace( '.config.php', '', $filename ) );
+			if ( ! false === strpos( $filename, 'customizer/controls/' ) ) {
+				continue;
+			}
 			if ( ! empty( $folder ) ) {
 				$this->configs[ $folder ][ $option ] = include $filename;
 			} else {
@@ -385,9 +389,10 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function define_theme_hooks() {
-		$styles         = new BoldGrid_Framework_Styles( $this->configs );
-		$scripts        = new BoldGrid_Framework_Scripts( $this->configs );
-		$boldgrid_theme = new BoldGrid( $this->configs );
+		$styles          = new BoldGrid_Framework_Styles( $this->configs );
+		$scripts         = new BoldGrid_Framework_Scripts( $this->configs );
+		$container_width = new Boldgrid_Framework_Container_Width( $this->configs );
+		$boldgrid_theme  = new BoldGrid( $this->configs );
 
 		// Load Theme Wrapper.
 		if ( true === $this->configs['boldgrid-parent-theme'] ) {
@@ -399,9 +404,13 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'boldgrid_enqueue_styles' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $styles, 'enqueue_fontawesome' );
 		$this->loader->add_action( 'after_setup_theme', $styles, 'add_editor_styling' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'register_responsive_font_sizes' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'register_weforms_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $styles, 'editor_button_fonts' );
 		$this->loader->add_filter( 'mce_css', $styles, 'add_cache_busting' );
 		$this->loader->add_filter( 'boldgrid_theme_framework_local_editor_styles', $styles, 'enqueue_editor_buttons' );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'get_css_vars' );
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $styles, 'generate_responsive_font_css' );
 
 		// Validate Theme Fonts Directory
 		$this->loader->add_action( 'after_setup_theme', $styles, 'validate_fonts_dir' );
@@ -412,6 +421,13 @@ class BoldGrid_Framework {
 
 		$this->loader->add_filter( 'boldgrid/display_sidebar', $boldgrid_theme, 'post_list_sidebar' );
 
+		// Add extra button classes.
+		$this->loader->add_filter( 'bgtfw_button_classes', $scripts, 'get_button_classes', 10, 1 );
+		$this->loader->add_filter( 'the_content', $boldgrid_theme, 'add_button_classes', 10, 1 );
+		$this->loader->add_filter( 'wp_nav_menu_items', $boldgrid_theme, 'add_button_classes', 10, 2 );
+		$this->loader->add_filter( 'widget_text', $boldgrid_theme, 'add_button_classes', 10, 1 );
+		$this->loader->add_filter( 'the_editor_content', $boldgrid_theme, 'add_button_classes', 10, 2 );
+
 		// Setup Sticky Footer.
 		$this->loader->add_action( 'boldgrid_header_before', $boldgrid_theme, 'boldgrid_sticky_top', 10 );
 		$this->loader->add_action( 'boldgrid_footer_before', $boldgrid_theme, 'boldgrid_sticky_bottom', 15 );
@@ -420,6 +436,11 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'body_class', $boldgrid_theme, 'body_classes' );
 		$this->loader->add_filter( 'post_class', $boldgrid_theme, 'post_class' );
 
+		$this->loader->add_filter( 'bgtfw_get_container_type', $container_width, 'get_container_type', 10, 1 );
+		$this->loader->add_filter( 'bgtfw_get_max_width', $container_width, 'get_max_width', 10, 1 );
+
+		$this->loader->add_action( 'wp_enqueue_scripts', $styles, 'register_container_widths' );
+
 		$this->loader->add_filter( 'bgtfw_entry_header_classes', $boldgrid_theme, 'entry_header_classes' );
 		$this->loader->add_filter( 'bgtfw_header_classes', $boldgrid_theme, 'header_classes' );
 		$this->loader->add_filter( 'bgtfw_navi_wrap_classes', $boldgrid_theme, 'header_classes' );
@@ -427,6 +448,7 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'bgtfw_navi_classes', $boldgrid_theme, 'navi_classes' );
 		$this->loader->add_filter( 'bgtfw_footer_content_classes', $boldgrid_theme, 'inner_footer_classes' );
 		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'blog_page_container' );
+		$this->loader->add_filter( 'bgtfw_main_wrapper_classes', $boldgrid_theme, 'page_container' );
 		$this->loader->add_filter( 'bgtfw_woocommerce_wrapper_classes', $boldgrid_theme, 'woocommerce_container' );
 		$this->loader->add_filter( 'bgtfw_blog_page_post_title_classes', $boldgrid_theme, 'blog_page_post_title_classes' );
 		$this->loader->add_filter( 'bgtfw_posts_title_classes', $boldgrid_theme, 'post_title_classes' );
@@ -448,21 +470,19 @@ class BoldGrid_Framework {
 		$this->loader->add_filter( 'boldgrid_site_identity', $boldgrid_theme, 'print_title_tagline' );
 
 		// Sticky Header - Removed template_redirect as it was unnecessary and caused duplication of the sticky header sometimes.
-		if ( is_customize_preview() || ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) ) {
-			add_action( 'boldgrid_header_after', function() {
-				?>
-				<div <?php BoldGrid::add_class( 'sticky_header', [ 'bgtfw-sticky-header', 'site-header' ] ); ?>>
-					<?php echo BoldGrid::dynamic_sticky_header(); ?>
-				</div>
-				<?php
-			}, 20 );
-		}
-		if ( is_customize_preview() && false === get_theme_mod( 'bgtfw_fixed_header' ) ) {
-			add_filter( 'bgtfw_sticky_header_display_css', function( $css ) {
-				$css .= '#boldgrid-sticky-wrap .bgtfw-sticky-header { display: none; }';
-				return $css;
-			} );
-		}
+		add_action(
+			'boldgrid_header_after',
+			function( $id ) {
+				if ( $this->maybe_show_sticky_header( $id ) ) {
+					?>
+					<div <?php BoldGrid::add_class( 'sticky_header', array( 'bgtfw-sticky-header', 'site-header' ) ); ?>>
+						<?php echo BoldGrid::dynamic_sticky_header(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<?php
+				}
+			},
+			20
+		);
 
 		// Password protected post/page form.
 		$this->loader->add_filter( 'the_password_form', $boldgrid_theme, 'password_form' );
@@ -472,6 +492,44 @@ class BoldGrid_Framework {
 
 		// Load Custom Header.
 		$this->custom_header();
+	}
+
+	/**
+	 * Maybe Show Sticky Header
+	 *
+	 * This method determines whether or not the HTML for the
+	 * sticky header will be printed to the page. In some instances,
+	 * it must be printed to the page, but then hidden via CSS / JS.
+	 *
+	 * @param int $id Page / Post ID.
+	 *
+	 * @since 2.11.0
+	 */
+	public function maybe_show_sticky_header( $id ) {
+		/*
+		 * If in the customizer, and fixed_header is enabled, we must always render the sticky header.
+		 * Even if it's not going to be seen, it's still needed for the customizer to work properly.
+		 */
+		if ( is_customize_preview() || true === get_theme_mod( 'bgtfw_fixed_header' ) ) {
+			return true;
+		}
+
+		/*
+		 * Outside of the customizer, we only render the sticky header if 'header-top' AND 'fixed-header' are enabled.
+		 * This prevents wonky stuff from happening when users have a side header selected.
+		 */
+		if ( true === get_theme_mod( 'bgtfw_fixed_header' ) && 'header-top' === get_theme_mod( 'bgtfw_header_layout_position', 'header-top' ) ) {
+			return true;
+		}
+
+		$sticky_header_template = apply_filters( 'crio_premium_get_sticky_page_header', $id );
+
+		// If the user has a Custom Sticky Template enabled for this page or post, ALWAYS render the sticky header markup.
+		if ( ! empty( $sticky_header_template ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -496,6 +554,7 @@ class BoldGrid_Framework {
 		$menu = new BoldGrid_Framework_Menu( $this->configs );
 		$this->loader->add_action( 'after_setup_theme', $menu, 'register_navs' );
 		$this->loader->add_action( 'after_setup_theme', $menu, 'add_dynamic_actions' );
+		$this->loader->add_action( 'wp_nav_menu_args', $menu, 'wp_nav_menu_args' );
 
 		if ( ! $this->doing_cron ) {
 			$this->loader->add_action( 'after_switch_theme', $menu, 'disable_advanced_nav_options' );
@@ -514,6 +573,8 @@ class BoldGrid_Framework {
 		$editor            = new Boldgrid_Framework_Editor( $this->configs );
 		$boldgrid_ppb      = new Boldgrid_Framework_PPB( $this->configs );
 		$pro_feature_cards = new BoldGrid_Framework_Pro_Feature_Cards( $this->configs );
+
+		$this->loader->add_filter( 'bgtfw_upgrade_url_pro_features', $pro_feature_cards, 'get_upgrade_url', 0 );
 
 		// This adds Pro Feature notice counts to the admin menu.
 		$this->loader->add_action( 'admin_menu', $pro_feature_cards, 'show_notice_counts' );
@@ -651,7 +712,6 @@ class BoldGrid_Framework {
 		self::widget_areas();
 		self::customizer_background_controls();
 		self::device_preview();
-		self::customizer_edit_buttons();
 		self::customizer_typography();
 		self::customizer_colors();
 		self::customizer_footer();
@@ -662,6 +722,22 @@ class BoldGrid_Framework {
 		self::customizer_search();
 		self::customizer_notifications();
 		self::customizer_query();
+		self::customizer_edit_buttons();
+	}
+
+	/**
+	 * Customizer Edit Buttons.
+	 *
+	 * Defines hooks for customizer edit buttons.
+	 *
+	 * @since    2.9.0
+	 * @access   private
+	 */
+	private function customizer_edit_buttons() {
+		$edit_buttons = new Boldgrid_Framework_Customizer_Edit( $this->configs );
+		$this->loader->add_action( 'customize_preview_init', $edit_buttons, 'generate_edit_params' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $edit_buttons, 'wp_enqueue_scripts' );
+		$this->loader->add_action( 'wp_footer', $edit_buttons, 'wp_footer' );
 	}
 
 	/**
@@ -700,19 +776,6 @@ class BoldGrid_Framework {
 	}
 
 	/**
-	 * This defines the core functionality of the framework's customizer edit buttons.
-	 *
-	 * @since    1.2.3
-	 * @access   private
-	 */
-	private function customizer_edit_buttons() {
-		$edit = new Boldgrid_Framework_Customizer_Edit( $this->configs );
-		$this->loader->add_action( 'wp_enqueue_scripts', $edit, 'wp_enqueue_scripts' );
-		$this->loader->add_action( 'wp_footer', $edit, 'wp_footer' );
-		$this->loader->add_action( 'wp_nav_menu_args', $edit, 'wp_nav_menu_args' );
-	}
-
-	/**
 	 * This defines the core functionality of the framework's customizer typography controls.
 	 *
 	 * @since    1.2.3
@@ -721,8 +784,11 @@ class BoldGrid_Framework {
 	private function customizer_typography() {
 		$typography = new BoldGrid_Framework_Customizer_Typography( $this->configs );
 		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'generate_font_size_css' );
+		$this->loader->add_filter( 'boldgrid_mce_inline_styles', $typography, 'inline_font_css' );
 		$this->loader->add_filter( 'boldgrid-override-styles-content', $typography, 'add_font_size_css' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $typography, 'override_kirki_styles' );
+		$this->loader->add_filter( 'customize_refresh_nonces', $typography, 'header_column_nonces' );
+		$this->loader->add_action( 'wp_ajax_responsive_font_sizes', $typography, 'wp_ajax_responsive_font_sizes' );
 
 		/*
 		 * Sometimes we need changes made in the customizer to be saved to the kirki styles.css
@@ -764,6 +830,7 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_preview_init', $colors, 'enqueue_preview_color_palette' );
 		$this->loader->add_filter( 'customize_changeset_save_data', $colors, 'changeset_data' );
 		$this->loader->add_action( 'customize_save_after', $colors, 'update_theme_mods' );
+		$this->loader->add_action( 'customize_save_after', $colors, 'adjust_background_colors' );
 		$this->loader->add_action( 'customize_register', $colors, 'customize_register_action' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $colors, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $colors, 'enqueue_scripts' );
@@ -800,8 +867,8 @@ class BoldGrid_Framework {
 	private function customizer_footer() {
 		$footer = new BoldGrid_Framework_Customizer_Footer();
 		$this->loader->add_action( 'boldgrid_display_attribution_links', $footer, 'attribution_display_action' );
-		add_action( 'customize_save_after', [ 'Boldgrid_Framework_Customizer_Footer', 'customize_links' ], 999 );
-		add_action( 'customize_controls_print_styles', [ 'Boldgrid_Framework_Customizer_Footer', 'customize_attribution' ], 999 );
+		add_action( 'customize_save_after', array( 'Boldgrid_Framework_Customizer_Footer', 'customize_links' ), 999 );
+		add_action( 'customize_controls_print_styles', array( 'Boldgrid_Framework_Customizer_Footer', 'customize_attribution' ), 999 );
 	}
 
 	/**
@@ -859,11 +926,14 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_preview_init', $base, 'live_preview' );
 
 		$this->loader->add_action( 'customize_register', $base, 'register_colwidth_control' );
+		$this->loader->add_action( 'customize_register', $base, 'register_responsive_font_controls' );
 
 		$this->loader->add_action( 'wp_ajax_bgtfw_header_preset', $base->presets, 'wp_ajax_bgtfw_header_layout' );
 		$this->loader->add_filter( 'customize_refresh_nonces', $base->presets, 'header_layout_nonces' );
 		$this->loader->add_action( 'customize_save_after', $base->presets, 'starter_content_defaults' );
 		$this->loader->add_filter( 'customize_refresh_nonces', $base, 'header_column_nonces' );
+		$this->loader->add_filter( 'customize_refresh_nonces', $base, 'container_width_nonce' );
+		$this->loader->add_action( 'wp_ajax_bgtfw_container_width', $base, 'wp_ajax_bgtfw_container_width' );
 		$this->loader->add_action( 'wp_ajax_bgtfw_header_columns', $base, 'wp_ajax_bgtfw_header_columns' );
 	}
 
@@ -884,8 +954,6 @@ class BoldGrid_Framework {
 	 */
 	private function customizer_effects() {
 		$effects = new BoldGrid_Framework_Customizer_Effects( $this->configs );
-		// Add Page Effects Controls.
-		// $this->loader->add_action( 'customize_register', $effects, 'add_controls' );
 	}
 
 
@@ -908,7 +976,7 @@ class BoldGrid_Framework {
 	 * @access   private
 	 */
 	private function customizer_widget_meta() {
-		$widget_meta = new  Boldgrid_Framework_Customizer_Widget_Meta( $this->configs );
+		$widget_meta = new Boldgrid_Framework_Customizer_Widget_Meta( $this->configs );
 		$this->loader->add_action( 'customize_register', $widget_meta, 'customize_register' );
 		$this->loader->add_action( 'customize_controls_enqueue_scripts', $widget_meta, 'customize_controls_enqueue_scripts' );
 		$this->loader->add_action( 'customize_controls_print_footer_scripts', $widget_meta, 'customize_controls_print_footer_scripts' );
@@ -958,9 +1026,9 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'customize_controls_print_styles', $device_preview, 'adjust_customizer_responsive_sizes' );
 
 		// We don't need device previews if user is running on a mobile device or newer WP.
-		$wp_version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>' );
+		$version = version_compare( get_bloginfo( 'version' ), '4.4.2', '>' );
 
-		if ( wp_is_mobile() || $wp_version ) {
+		if ( wp_is_mobile() || $version ) {
 			return;
 		}
 
@@ -1036,15 +1104,22 @@ class BoldGrid_Framework {
 		$this->loader->add_action( 'woocommerce_before_checkout_form', $this->woo, 'add_page_title' );
 
 		remove_all_actions( 'woocommerce_sidebar' );
-		add_filter( 'loop_shop_per_page', function( $cols ) {
-			return 12;
-		}, 20 );
-		add_action( 'template_redirect', function() use ( $woo ) {
-			if ( $woo->is_woocommerce_page() ) {
-				add_action( 'boldgrid_main_top', array( $woo, 'add_container_open' ) );
-				add_action( 'boldgrid_main_bottom', array( $woo, 'add_container_close' ) );
+		add_filter(
+			'loop_shop_per_page',
+			function( $cols ) {
+				return 12;
+			},
+			20
+		);
+		add_action(
+			'template_redirect',
+			function() use ( $woo ) {
+				if ( $woo->is_woocommerce_page() ) {
+					add_action( 'boldgrid_main_top', array( $woo, 'add_container_open' ) );
+					add_action( 'boldgrid_main_bottom', array( $woo, 'add_container_close' ) );
+				}
 			}
-		});
+		);
 
 		/**
 		 * Change number of products that are displayed per page (shop page)

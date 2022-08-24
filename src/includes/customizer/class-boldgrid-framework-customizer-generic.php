@@ -29,13 +29,13 @@ class Boldgrid_Framework_Customizer_Generic {
 	public static $device_sizes = array(
 
 		// Phone size from 0 to 767px.
-		'phone' => 767,
+		'phone'   => 767,
 
 		// Tablet size from 768 to 991.
-		'tablet' => 991,
+		'tablet'  => 991,
 
 		// Desktop from 992 to 1199.
-		'desktop'  => 1199,
+		'desktop' => 1199,
 
 		// Large 1200 +++.
 	);
@@ -74,9 +74,11 @@ class Boldgrid_Framework_Customizer_Generic {
 	public function add_styles() {
 		foreach ( $this->configs['customizer']['controls'] as $control ) {
 			$name = ! empty( $control['choices']['name'] ) ? $control['choices']['name'] : null;
-
 			if ( 'boldgrid_controls' === $name ) {
-				$style_id = $control['settings'] . '-bgcontrol';
+				if ( false !== strpos( $control['settings'], 'container_max_width' ) ) {
+					continue;
+				}
+				$style_id      = $control['settings'] . '-bgcontrol';
 				$theme_mod_val = get_theme_mod( $control['settings'] );
 
 				// If theme mod is set, use it to create styles.
@@ -145,14 +147,14 @@ class Boldgrid_Framework_Customizer_Generic {
 		$defaults = get_theme_mod( $control['settings'] );
 		$defaults = is_array( $defaults ) ? $defaults : [];
 
-		$css = '';
+		$css      = '';
 		$selector = implode( ',', $control['choices']['settings']['control']['selectors'] );
 		foreach ( $defaults as $config_set ) {
 			foreach ( $config_set['media'] as $media_device ) {
 				$media_prefix = $this->create_media_prefix( $media_device );
-				$control_css = $this->get_directional_css( $control, $config_set );
-				$control_css = $control_css ? "${selector} { ${control_css} }" : '';
-				$control_css = $media_prefix && $control_css ? "${media_prefix} { ${control_css} }" : $control_css;
+				$control_css  = $this->get_directional_css( $control, $config_set );
+				$control_css  = $control_css ? "${selector} { ${control_css} }" : '';
+				$control_css  = $media_prefix && $control_css ? "${media_prefix} { ${control_css} }" : $control_css;
 
 				$css .= $control_css;
 			}
@@ -173,9 +175,13 @@ class Boldgrid_Framework_Customizer_Generic {
 	public function get_directional_css( $control, $config ) {
 		$css = '';
 		foreach ( $config['values'] as $direction => $value ) {
-			$unit = ! empty( $config['unit'] ) ? $config['unit'] : 'px';
-			$css .= $this->get_control_property( $control['choices']['type'], $direction ) .
-				':' . $value . $unit . ';';
+			$unit             = ! empty( $config['unit'] ) ? $config['unit'] : 'px';
+			$control_property = $this->get_control_property( $control['choices']['type'], $direction );
+			if ( 'ContainerWidth' === $control['choices']['type'] && 'max-width' === $control_property && '%' === $unit ) {
+				$css .= "${control_property}: calc( {$value}{$unit} + 30px );";
+			} else {
+				$css .= "${control_property}: ${value}{$unit};";
+			}
 		}
 
 		/**
@@ -203,11 +209,11 @@ class Boldgrid_Framework_Customizer_Generic {
 	 * @return string        CSS for the border.
 	 */
 	public function border_css( $css, $control, $config ) {
-		$color = get_theme_mod( $control['settings'] . '_color' ) ?: '';
+		$color                  = get_theme_mod( $control['settings'] . '_color' ) ?: '';
 		list( $color_variable ) = explode( ':', $color );
-		$color_variable = "var(--{$color_variable});";
-		$css .= ! empty( $color_variable ) ? 'border-color: ' . $color_variable . ';' : '';
-		$css .= ! empty( $config['type'] ) ? 'border-style: ' . $config['type'] . ';' : '';
+		$color_variable         = "var(--{$color_variable});";
+		$css                   .= ! empty( $color_variable ) ? 'border-color: ' . $color_variable . ';' : '';
+		$css                   .= ! empty( $config['type'] ) ? 'border-style: ' . $config['type'] . ';' : '';
 
 		return $css;
 	}
@@ -223,11 +229,11 @@ class Boldgrid_Framework_Customizer_Generic {
 	 * @return string        CSS for the box shadow.
 	 */
 	public function box_shadow_css( $css, $control, $config ) {
-		$val = $config['values'];
+		$val        = $config['values'];
 		$properties = [];
 
 		$get_val = function ( $prop, $default ) use ( $val ) {
-			return ( ! empty( $val[ $prop ] ) ? $val[ $prop ] : $default  ) . 'px';
+			return ( ! empty( $val[ $prop ] ) ? $val[ $prop ] : $default ) . 'px';
 		};
 
 		if ( $val['horizontal-position'] || $val['vertical-position'] || $val['blur-radius'] || $val['spread-radius'] ) {
@@ -285,14 +291,14 @@ class Boldgrid_Framework_Customizer_Generic {
 	 * @return string         CSS to display.
 	 */
 	public function device_visibility_styles( $control ) {
-		$css = '';
+		$css      = '';
 		$defaults = get_theme_mod( $control['settings'] );
 		$defaults = is_array( $defaults ) ? $defaults : [];
 
 		foreach ( $defaults as $device ) {
-			$selector = implode( ',', $control['choices']['settings']['control']['selectors'] );
+			$selector     = implode( ',', $control['choices']['settings']['control']['selectors'] );
 			$media_prefix = $this->create_media_prefix( $device );
-			$css .= $media_prefix ? "${media_prefix} { ${selector} { display: none !important;} }" : '';
+			$css         .= $media_prefix ? "${media_prefix} { ${selector} { display: none !important;} }" : '';
 		}
 
 		return $css;
@@ -308,16 +314,16 @@ class Boldgrid_Framework_Customizer_Generic {
 	 */
 	public function create_media_prefix( $device ) {
 		$prefix = '';
-		$range = ! empty( $this->range_config[ $device ] ) ? $this->range_config[ $device ] : null;
+		$range  = ! empty( $this->range_config[ $device ] ) ? $this->range_config[ $device ] : null;
 		if ( ! $range ) {
 			return $prefix;
 		}
 
 		if ( ! empty( $range['min'] ) && ! empty( $range['max'] ) ) {
 			$prefix = "@media only screen and (max-width: {$range['max']}px) and (min-width: {$range['min']}px)";
-		} else if ( ! empty( $range['min'] ) && empty( $range['max'] ) ) {
+		} elseif ( ! empty( $range['min'] ) && empty( $range['max'] ) ) {
 			$prefix = "@media only screen and ( min-width: {$range['min']}px )";
-		} else if ( empty( $range['min'] ) && ! empty( $range['max'] ) ) {
+		} elseif ( empty( $range['min'] ) && ! empty( $range['max'] ) ) {
 			$prefix = "@media only screen and ( max-width: {$range['max']}px )";
 		}
 
@@ -349,10 +355,10 @@ class Boldgrid_Framework_Customizer_Generic {
 		$device_config = self::$device_sizes;
 
 		$ranges = [
-			'phone' => [
+			'phone'   => [
 				'max' => $device_config['phone'],
 			],
-			'tablet' => [
+			'tablet'  => [
 				'min' => $device_config['phone'] + 1,
 				'max' => $device_config['tablet'],
 			],
@@ -360,7 +366,7 @@ class Boldgrid_Framework_Customizer_Generic {
 				'min' => $device_config['tablet'] + 1,
 				'max' => $device_config['desktop'],
 			],
-			'large' => [
+			'large'   => [
 				'min' => $device_config['desktop'] + 1,
 			],
 		];
@@ -382,19 +388,19 @@ class Boldgrid_Framework_Customizer_Generic {
 	public function get_column_defaults() {
 		$defaults = array(
 			[
-				'media' => [ 'large', 'desktop' ],
-				'unit' => 'col',
+				'media'    => [ 'large', 'desktop' ],
+				'unit'     => 'col',
 				'isLinked' => false,
-				'values' => array(
+				'values'   => array(
 					'default_branding' => 6,
 					'default_menu'     => 6,
 				),
 			],
 			[
-				'media' => [ 'phone', 'tablet' ],
-				'unit' => 'col',
+				'media'    => [ 'phone', 'tablet' ],
+				'unit'     => 'col',
 				'isLinked' => false,
-				'values' => array(
+				'values'   => array(
 					'default_branding' => 12,
 					'default_menu'     => 12,
 				),
@@ -402,6 +408,62 @@ class Boldgrid_Framework_Customizer_Generic {
 		);
 
 		return $defaults;
+	}
+
+	/**
+	 * Get width Defaults
+	 *
+	 * These are the default width controls that will
+	 * be added when none already exist in the theme mods,
+	 * such as when loading starter content in the customizer.
+	 *
+	 * @since 2.2.3
+	 *
+	 * @param string $width_type Width type.
+	 *
+	 * @return array Array of default header columns
+	 */
+	public function get_width_defaults( $width_type ) {
+		$defaults = array(
+			'width'     => array(
+				array(
+					'media'    => array( 'base' ),
+					'unit'     => 'px',
+					'isLinked' => true,
+					'values'   => array(
+						'width' => 1170,
+					),
+				),
+			),
+			'max-width' => array(
+				array(
+					'media'    => array( 'large' ),
+					'unit'     => 'px',
+					'isLinked' => true,
+					'values'   => array(
+						'maxWidth' => 1920,
+					),
+				),
+				array(
+					'media'    => array( 'desktop' ),
+					'unit'     => 'px',
+					'isLinked' => true,
+					'values'   => array(
+						'maxWidth' => 1200,
+					),
+				),
+				array(
+					'media'    => array( 'tablet' ),
+					'unit'     => 'px',
+					'isLinked' => true,
+					'values'   => array(
+						'maxWidth' => 992,
+					),
+				),
+			),
+		);
+
+		return $defaults[ $width_type ];
 	}
 
 	/**
@@ -415,32 +477,32 @@ class Boldgrid_Framework_Customizer_Generic {
 		$default_layout = [
 			[
 				'container' => 'container',
-				'items' => [
+				'items'     => [
 					[
-						'type' => 'boldgrid_site_identity',
-						'key' => 'branding',
-						'align' => 'w',
+						'type'    => 'boldgrid_site_identity',
+						'key'     => 'branding',
+						'align'   => 'w',
 						'display' => [
 							[
 								'selector' => '.custom-logo-link',
-								'display' => 'show',
-								'title' => __( 'Logo', 'bgtfw' ),
+								'display'  => 'show',
+								'title'    => __( 'Logo', 'bgtfw' ),
 							],
 							[
 								'selector' => '.site-title',
-								'display' => 'show',
-								'title' => __( 'Title', 'bgtfw' ),
+								'display'  => 'show',
+								'title'    => __( 'Title', 'bgtfw' ),
 							],
 							[
 								'selector' => '.site-description',
-								'display' => 'show',
-								'title' => __( 'Tagline', 'bgtfw' ),
+								'display'  => 'show',
+								'title'    => __( 'Tagline', 'bgtfw' ),
 							],
 						],
 					],
 					[
-						'type' => 'boldgrid_menu_main',
-						'key' => 'menu',
+						'type'  => 'boldgrid_menu_main',
+						'key'   => 'menu',
 						'align' => 'e',
 					],
 				],

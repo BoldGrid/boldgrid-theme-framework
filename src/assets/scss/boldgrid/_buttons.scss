@@ -1,11 +1,15 @@
 @if variable-exists( button-primary-classes ) {
 	input[type=submit],
-	.button-primary,
+	*:not( .menu-item ) > .button-primary,
 	.woocommerce .button,
 	div.wpforms-container-full .wpforms-form button[type=submit] {
 		.palette-primary & {
 			@extend #{$button-primary-classes};
 		}
+	}
+	.btn.menu-item {
+		height: unset;
+		padding: 0px;
 	}
 }
 
@@ -14,6 +18,20 @@
 	.woocommerce .alt.button {
 		.palette-primary & {
 			@extend #{$button-secondary-classes};
+		}
+	}
+	.btn.menu-item {
+		height: unset;
+		padding: 0px;
+	}
+}
+
+.palette-primary {
+	.button-primary,
+	.button-secondary {
+		&.btn-transparent {
+			background-color: rgba( 255,255,255,0 ) !important;
+			color: var(--color-neutral-text-contrast );
 		}
 	}
 }

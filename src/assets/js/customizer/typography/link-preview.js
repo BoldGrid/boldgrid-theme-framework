@@ -83,7 +83,7 @@ export class LinkPreview {
 	updateStyles( prefix ) {
 		let css = '';
 		if ( false === _.isFunction( api( `${prefix}_link_color_display` ) ) || 'inherit' !== api( `${prefix}_link_color_display` )() ) {
-			let linkColor = this._getColor( `${prefix}_link_color` ),
+			let linkColor = this._getColor( `${prefix}_link_color`, true ),
 				linkColorHover = api( `${prefix}_link_color_hover` )() || 0,
 				decoration = this._getDecoration( `${prefix}_link_decoration` ),
 				decorationHover = this._getDecoration( `${prefix}_link_decoration_hover` ),
@@ -92,6 +92,7 @@ export class LinkPreview {
 				shiftedColorVal;
 
 			linkColorHover = parseInt( linkColorHover, 10 ) / 100;
+
 			shiftedColorVal = colorLib.Color( linkColor ).lightenByAmount( linkColorHover ).toCSS();
 
 			for ( let selector of selectors ) {
@@ -104,6 +105,33 @@ export class LinkPreview {
 					${selector}:hover,
 					${selector}:focus {
 						color: ${shiftedColorVal};
+						text-decoration: ${decorationHover};
+					}
+				`;
+			}
+
+			/*
+			 * This was added in 2.12.0 to make sure that the booter links can be
+			 * controlled by the Site Content Link typography controls.
+			 */
+			if ( 'bgtfw_body' === prefix ) {
+				let footerLinkColor      = this._getColor( 'bgtfw_footer_links', true ),
+					footerLinkColorHover = api( `${prefix}_link_color_hover` )() || 0,
+					footerShiftedColorVal;
+
+				footerLinkColorHover  = parseInt( footerLinkColorHover, 10 ) / 100,
+				footerShiftedColorVal = colorLib.Color( footerLinkColor ).lightenByAmount( footerLinkColorHover ).toCSS();
+
+				css += `
+				#colophon .bgtfw-footer.footer-content > a:not( .btn ),
+				#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ) {
+					text-decoration: ${decoration};
+				}
+				#colophon .bgtfw-footer.footer-content > a:not( .btn ):hover,
+				#colophon .bgtfw-footer.footer-content > a:not( .btn ):focus,
+				#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):hover,
+				#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):focus {
+						color: ${footerShiftedColorVal};
 						text-decoration: ${decorationHover};
 					}
 				`;
@@ -131,12 +159,13 @@ export class LinkPreview {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  {string} setting Setting Name.
-	 * @return {string}         Saved Color.
+	 * @param  {string} setting  Setting Name.
+	 * @param  {bool}   variable Whether to return variable or true color
+	 * @return {string}          Saved Color.
 	 */
-	_getColor( setting ) {
+	_getColor( setting, variable = false ) {
 		let color = api( setting )() || '';
-		return this.paletteSelector.getColor( color );
+		return this.paletteSelector.getColor( color, variable );
 	}
 
 }

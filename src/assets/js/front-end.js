@@ -1,4 +1,4 @@
-/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false, highlightRequiredFields */
+/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false, highlightRequiredFields, bgtfwButtonClasses */
 
 /* ========================================================================
  * DOM-based Routing
@@ -37,8 +37,164 @@ var BoldGrid = BoldGrid || {};
 				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
 				this.observeBody();
 				this.skipLink();
-				this.forms();
 				this.cssVarsPonyfill();
+				this.responsiveVideos();
+				this.addButtonClasses();
+				this.addColLg();
+
+				/*
+				 * Disabling this.forms() for now. Leaving code here until 2.16.0. If no issues by then,
+				 * we can remove floatLabels all together.
+				 *
+				 * this.forms();
+				 */
+			},
+
+			/**
+			 * Add col-lg to columns that do not have it.
+			 *
+			 * @since 2.14.0
+			 */
+			addColLg() {
+				$( 'div[class^="col-"]' ).each( function() {
+					var $this = $( this ),
+						classes = $this.attr( 'class' ),
+						mdSize = classes.match( /col-md-([\d]+)/i ),
+						lgSize = classes.match( /col-lg-([\d]+)/i );
+
+					if ( mdSize && ! lgSize ) {
+						$this.addClass( `col-lg-${mdSize[1]}` );
+					}
+
+				} );
+			},
+
+			/**
+			 * Add Button Classes.
+			 *
+			 * This function is triggered when this class Inits, and adds
+			 * the custom button classes to all button-primary and button-secondary
+			 * button classes.
+			 *
+			 * @since 2.12.0
+			 */
+			addButtonClasses: function() {
+				var buttonType;
+
+				this.adjustMenuButtons();
+
+				for ( buttonType in bgtfwButtonClasses ) {
+					let buttonTypeClass = buttonType.replace( 'bgtfw_', '' );
+					let buttonClasses   = bgtfwButtonClasses[ buttonType ];
+					this.removeButtonClasses( buttonTypeClass.replace( '_', '-' ) );
+					this.addButtonClass( buttonTypeClass.replace( '_', '-' ), buttonClasses );
+				}
+			},
+
+			/**
+			 * Adjust Menu Buttons.
+			 *
+			 * This moves li.btn classes to the li > a.btn elements
+			 */
+			adjustMenuButtons: function() {
+				$( '.menu-item.btn' ).each( function() {
+					var $this = $( this );
+
+					if ( $this.hasClass( 'button-primary' ) ) {
+						$this.removeClass( 'button-primary' );
+						$this.find( 'a' ).addClass( 'button-primary' );
+					}
+
+					if ( $this.hasClass( 'button-secondary' ) ) {
+						$this.removeClass( 'button-secondary' );
+						$this.find( 'a' ).addClass( 'button-secondary' );
+					}
+
+					$this.removeClass( 'btn' );
+
+					$this.addClass( 'item-has-btn' );
+
+					$this.removeClass( function( index, className ) {
+						return ( className.match( /(^|\s)btn\S+/g ) || [] ).join( ' ' );
+					} );
+					$this.find( 'a' ).addClass( 'btn' );
+				} );
+			},
+
+			/** Remove Button Classes
+			 *
+			 * Removes button classes that are already present to prevent duplicates.
+			 *
+			 * @since 2.14.0
+			 *
+			 * @param {string} buttonTypeClass Primary or Secondary button class.
+			 * @param {array}  buttonClasses   Custom classes to add.
+			 *
+			 */
+			removeButtonClasses: function( buttonTypeClass ) {
+				$( '.' + buttonTypeClass ).each( function() {
+					if ( 'submit' === $( this ).prop( 'type' ) ) {
+						return;
+					}
+
+					$( this ).removeClass( 'btn' );
+
+					$( this ).removeClass( function( index, className ) {
+						return ( className.match( /(^|\s)btn-\S+/g ) || [] ).join( ' ' );
+					} );
+				} );
+			},
+
+			/**
+			 * Add Button Class
+			 *
+			 * Adds the custom button classes to each button.
+			 *
+			 * @since 2.12.0
+			 *
+			 * @param {string} buttonTypeClass Primary or Secondary button class.
+			 * @param {array}  buttonClasses   Custom classes to add.
+			 */
+			addButtonClass: function( buttonTypeClass, buttonClasses ) {
+				$( '.' + buttonTypeClass ).each( function() {
+					if ( 'submit' === $( this ).prop( 'type' ) && ! $( this ).hasClass( 'weforms_submit_btn' ) ) {
+						return;
+					}
+
+					$( this ).addClass( 'btn' );
+					buttonClasses.split( ' ' ).forEach( ( buttonClass ) => {
+						if ( ! $( this ).hasClass( buttonClass ) ) {
+							$( this ).addClass( buttonClass );
+						}
+					} );
+				} );
+			},
+
+			// Handle responsive video iframe embeds.
+			responsiveVideos: function() {
+				$( window ).on( 'resize', function() {
+					var proportion,
+						parentWidth;
+
+					// Loop iframe elements.
+					document.querySelectorAll( 'iframe' ).forEach( function( iframe ) {
+
+						// Only continue if the iframe has a width & height defined.
+						if ( iframe.width && iframe.height ) {
+
+							// Calculate the proportion/ratio based on the width & height.
+							proportion = parseFloat( iframe.width ) / parseFloat( iframe.height );
+
+							// Get the parent element's width.
+							parentWidth = parseFloat( window.getComputedStyle( iframe.parentElement, null ).width.replace( 'px', '' ) );
+
+							// Set the max-width & height.
+							iframe.style.maxWidth = '100%';
+							iframe.style.maxHeight = Math.round( parentWidth / proportion ).toString() + 'px';
+						}
+					} );
+
+				} );
 			},
 
 			// Observe classList changes on body element.
@@ -170,9 +326,14 @@ var BoldGrid = BoldGrid || {};
 			forms: function( hasFloat = false ) {
 				var wcCheckoutLabels,
 					wcRequiredLabels = [];
-				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty';
+				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty, [data-style=wpuf-style]',
+					floatLabelsOn = true;
 
-				if ( ! hasFloat ) {
+				if ( Array.isArray( window.floatLabelsOn ) && '' === window.floatLabelsOn[0] ) {
+					floatLabelsOn = false;
+				}
+
+				if ( ! hasFloat && floatLabelsOn ) {
 					new FloatLabels(
 						'form', {
 							prefix: 'bgtfw-',
@@ -234,7 +395,7 @@ var BoldGrid = BoldGrid || {};
 				var header;
 
 				header = $( '.site-header' );
-				header.bind( 'scroll', function() {
+				header.on( 'scroll', function() {
 					if ( 0 !== header.scrollLeft() ) {
 						header.scrollLeft( 0 );
 					}
@@ -253,7 +414,7 @@ var BoldGrid = BoldGrid || {};
 				BoldGrid.custom_header.calc();
 
 				// Listen for resize events to retrigger calculations.
-				$( window ).resize( BoldGrid.common.debounce( this.calc, 250 ) );
+				$( window ).on( 'resize', BoldGrid.common.debounce( this.calc, 250 ) );
 			},
 
 			/**
@@ -466,7 +627,7 @@ var BoldGrid = BoldGrid || {};
 				} );
 
 				// Adds event handling for CSS animated sub menus - toggle animation classes on sub menus show/hide.
-				sm.bind( {
+				sm.on( {
 					'show.smapi': function( e, menu ) {
 						$( menu ).removeClass( 'hide-animation' ).addClass( 'show-animation' );
 					},
@@ -494,13 +655,13 @@ var BoldGrid = BoldGrid || {};
 					if ( $mainMenuState.length ) {
 
 						// Animate mobile menu.
-						$mainMenuState.change( function( e ) {
+						$mainMenuState.on( 'change', function( e ) {
 							var $menu = $( e.currentTarget ).siblings( '.sm' );
 							this.checked ? BoldGrid.standard_menu_enabled.collapse( $menu ) : BoldGrid.standard_menu_enabled.expand( $menu );
 						} );
 
 						// Hide mobile menu beforeunload.
-						$( window ).bind( 'beforeunload unload', function() {
+						$( window ).on( 'beforeunload unload', function() {
 							if ( $mainMenuState[0].checked ) {
 								$mainMenuState[0].click();
 							}

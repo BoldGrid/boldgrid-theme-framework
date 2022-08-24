@@ -115,7 +115,12 @@ export class HeaderLayout  {
 				row       = controlInput.dataset.row,
 				isChecked;
 
-			if ( colWidthValue ) {
+			/*
+			 * When adding a new row and row item, the values for that row
+			 * are not going to be defined yet, so check to be sure they are
+			 * first. This resolves issue #368 as of v2.7.1
+			 */
+			if ( colWidthValue && 'fullWidth' in colWidthValue && undefined !== colWidthValue.fullWidth[ row ] ) {
 				isChecked = colWidthValue.fullWidth[ row ][ device ];
 			} else if ( 'tablet' === device || 'phone' === device ) {
 				isChecked = true;
@@ -737,6 +742,8 @@ export class HeaderLayout  {
 							if ( updateSlider ) {
 								this.updateSliderControl( value );
 							}
+
+							window.BOLDGRID.CustomizerEdit._onLoad();
 						}
 					}
 				);
@@ -897,6 +904,8 @@ export class HeaderLayout  {
 						this.setupCurrentMenuItem( 'main-menu' );
 
 						$( '#masthead' ).css( 'opacity', 1 );
+
+						window.BOLDGRID.CustomizerEdit._onLoad();
 					}
 				} );
 			} );
@@ -995,6 +1004,14 @@ export class HeaderLayout  {
 				hiddenItems.forEach( ( hiddenItem ) => {
 					$( '#masthead .site-branding' ).addClass( 'hide-' + hiddenItem );
 				} );
+
+				window.BOLDGRID.CustomizerEdit._onLoad();
+			} );
+		} );
+
+		controlApi( 'blogdescription', ( control ) => {
+			control.bind( () => {
+				_.defer( window.BOLDGRID.CustomizerEdit._onLoad );
 			} );
 		} );
 

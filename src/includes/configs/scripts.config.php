@@ -87,7 +87,7 @@ return array(
 			'locationOffset'   => 30, // Pixels from the button is distant from the edge of the screen, based on set location..
 			'bottomOffset'     => 30, // Pixels from the bottom edge of screen.
 			'containerSize'    => 40, // The width and height of the button (minimum is 20).
-			'containerRadius'  => 4, // Let you transform a square in a circle.
+			'containerRadius'  => '4px', // Let you transform a square in a circle.
 			'containerClass'   => 'goup-container color1-background-color color-1-text-contrast', // The class name given to the button container.
 			'arrowClass'       => 'goup-arrow', // The class name given to the arrow container
 			'containerColor'   => '#000', // The color of the container (in hex format).

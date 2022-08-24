@@ -425,7 +425,6 @@ export class Preview  {
 		subcolor = paletteSelector.getColor( subcolor, true );
 
 		let alpha    = parent.net.brehaut.Color( color );
-		let subalpha = parent.net.brehaut.Color( subcolor );
 		let css = '';
 
 		location = location.replace( /_/g, '-' );

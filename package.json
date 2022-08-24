@@ -133,7 +133,7 @@
 	},
 	"dependencies": {
 		"@babel/runtime-corejs2": "^7.12.1",
-		"@boldgrid/components": "^2.16.2",
+		"@boldgrid/components": "^2.16.15",
 		"@wordpress/dom-ready": "^2.11.0",
 		"@wordpress/hooks": "^2.10.0",
 		"Buttons": "https://github.com/boldgrid/Buttons#crio-buttons",

@@ -185,7 +185,7 @@ class Boldgrid_Framework_Customizer_Colors {
 				'default' => '',
 				'type' => 'theme_mod',
 				'capability' => 'edit_theme_options',
-				'transport' => 'postMessage',
+				'transport' => 'refresh',
 			)
 		);
 		$this->wp_customize->add_control(
@@ -310,6 +310,121 @@ class Boldgrid_Framework_Customizer_Colors {
 			// Update the body class based on the active palette.
 			set_theme_mod( 'boldgrid_palette_class', $active_palette_class );
 		}
+	}
+
+	/**
+	 * Adjust Background Colors.
+	 *
+	 * @param WP_Customize_Manager $wp_customize Customizer object.
+	 */
+	public function adjust_background_colors( $wp_customize ) {
+		$changeset_data = $wp_customize->changeset_data();
+		$slug           = get_template();
+		if ( array_key_exists( $slug . '::boldgrid_color_palette', $changeset_data ) ) {
+			$palette_configs      = json_decode( $changeset_data[ $slug . '::boldgrid_color_palette' ]['value'], true );
+			$active_palette_class = $palette_configs['state']['active-palette'];
+			$colors               = $palette_configs['state']['palettes'][ $active_palette_class ]['colors'];
+			$neutral              = $palette_configs['state']['palettes'][ $active_palette_class ]['neutral-color'];
+
+			$posts = get_posts();
+			$pages = get_pages();
+			$cphs  = get_posts(
+				array(
+					'post_type' => array(
+						'post',
+						'page',
+						'crio_page_header',
+					),
+				)
+			);
+
+			$posts = array_merge( $posts, $pages, $cphs );
+
+			foreach ( $posts as $post ) {
+				$this->update_post_background_colors( $post, $colors, $neutral );
+			}
+		}
+	}
+
+	/**
+	 * Update Post Background Colors
+	 *
+	 * @param WP_Post $post    Post object.
+	 * @param array   $colors  Palette colors.
+	 * @param string  $neutral Neutral color.
+	 */
+	public function update_post_background_colors( $post, $colors, $neutral ) {
+		$post_id      = $post->ID;
+		$post_title   = $post->post_title;
+		$post_content = get_post_field( 'post_content', $post_id );
+
+		// If a post doesn't contain a 'boldgrid-section' it is not a PPB post/page.
+		if ( false === strpos( $post_content, 'boldgrid-section' ) ) {
+			return;
+		}
+
+		// Create an instance of DOMDocument
+		$dom = new \DOMDocument();
+
+		// Handle UTF-8, otherwise problems will occur with UTF-8 characters.
+		$dom->loadHTML( mb_convert_encoding( $post_content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+
+		$elements = $dom->getElementsByTagName( '*' );
+
+		$elements_with_overlays = array();
+		$changed_elements       = 0;
+
+		// Loop through all elements.
+		foreach ( $elements as $element ) {
+			$has_overlay = $element->hasAttribute( 'data-bg-overlaycolor' );
+			if ( $has_overlay ) {
+				$elements_with_overlays[] = $element;
+			}
+		}
+
+		// If the post doesn't contain any translucent overlays, we don't need to update the content.
+		if ( 0 === count( $elements_with_overlays ) ) {
+			return;
+		}
+
+		foreach ( $elements_with_overlays as $element_with_overlay ) {
+			if ( ! $element_with_overlay->hasAttribute( 'data-bg-overlaycolor-class' ) ) {
+				continue;
+			}
+
+			$overlay_alpha  = $element_with_overlay->getAttribute( 'data-bg-overlaycolor-alpha' );
+			$overlay_class  = $element_with_overlay->getAttribute( 'data-bg-overlaycolor-class' );
+			$overlay_color  = str_replace( ' ', '', $element_with_overlay->getAttribute( 'data-bg-overlaycolor' ) );
+			$style          = $element_with_overlay->getAttribute( 'style' );
+			$new_color      = 'neutral' === $overlay_class ? $neutral : $colors[ (int) $overlay_class - 1 ];
+			$new_color_rgba = str_replace( ')', ', ' . $overlay_alpha . ')', $new_color );
+			$new_color_rgba = str_replace( ' ', '', $new_color_rgba );
+
+			if ( $overlay_color === $new_color_rgba ) {
+				continue;
+			}
+
+			$style = preg_replace( '/rgba?(\(\s*\d+\s*,\s*\d+\s*,\s*\d+)(?:\s*,.+?)?\)/', $new_color_rgba, $style );
+
+			$element_with_overlay->setAttribute( 'style', $style );
+			$element_with_overlay->setAttribute( 'data-bg-overlaycolor', $new_color_rgba );
+			$changed_elements++;
+		}
+
+		// If no elements were changed, we don't need to update the content.
+		if ( 0 === $changed_elements ) {
+			return;
+		}
+
+		$new_content = $dom->saveHTML();
+
+		// Update the post content.
+		wp_update_post(
+			array(
+				'ID'           => $post_id,
+				'post_content' => $new_content,
+			)
+		);
 	}
 
 	/**

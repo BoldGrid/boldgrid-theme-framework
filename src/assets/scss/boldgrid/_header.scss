@@ -1,6 +1,9 @@
 @import "header/slide-in";
 
 #masthead, #masthead-sticky, #colophon {
+	&[class^=sticky-template-] {
+		background-color:none;
+	}
 	aside.sidebar {
 		margin-left: -15px;
 		margin-right: -15px;
@@ -10,6 +13,13 @@
 		padding-right: 0px;
 	}
 	.boldgrid-section {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		.container-fluid {
+			width: 100%;
+		}
 		.row {
 			display: flex;
 			flex-wrap: wrap;
@@ -17,6 +27,7 @@
 		.full-width {
 			padding-left: 0px;
 			padding-right: 0px;
+			width: 100%;
 			.row {
 				display: flex;
 				flex-wrap: wrap;
@@ -36,6 +47,12 @@
 				.sm-clean {
 					margin-left: 20px;
 					margin-right: 20px;
+				}
+				@media only screen and (max-width : 991px) {
+					.sm-clean {
+						margin-left: 0px;
+						margin-right: 0px;
+					}
 				}
 				@media only screen and (max-width : 767px) {
 					.site-title,

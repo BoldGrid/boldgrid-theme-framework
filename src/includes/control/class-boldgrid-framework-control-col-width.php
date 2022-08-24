@@ -115,7 +115,7 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 			if ( ! array_key_exists( 'items', $row ) ) {
 				continue;
 			}
-			$items_in_row      = count( $row['items'] );
+			$items_in_row      = count( $row['items'] ) ? count( $row['items'] ) : 1;
 			$default_col_width = floor( 12 / $items_in_row );
 
 			if ( 'tablet' === $device || 'phone' === $device ) {
@@ -177,10 +177,10 @@ class Boldgrid_Framework_Control_Col_Width extends WP_Customize_Control {
 				</label>
 			</div>
 			<div id="<?php echo esc_attr( $this->id ); ?>-devices-wrapper" class="devices-wrapper">
-				<?php echo $devices_markup; ?>
+				<?php echo $devices_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 			<div id="<?php echo esc_attr( $this->id ); ?>-sliders-wrapper" class="sliders-wrapper">
-				<?php echo $sliders_markup; ?>
+				<?php echo $sliders_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 			<input type="text" value='<?php echo wp_json_encode( $this->value() ); ?>' class='hidden' <?php echo esc_attr( $this->link() ); ?>>
 		</div>

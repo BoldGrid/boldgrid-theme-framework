@@ -59,7 +59,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 *
 	 * @return string upgrade url.
 	 */
-	public function get_upgrade_url() {
+	public function get_upgrade_url( $url ) {
 		return $this->upgrade_url;
 	}
 

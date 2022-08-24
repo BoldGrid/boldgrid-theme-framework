@@ -44,16 +44,16 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	 * @param String $post_type The post type being modified.
 	 */
 	public function add( $post_type ) {
-
+		$crio_layout_post_types = apply_filters( 'crio_layout_post_types', array( 'page', 'post' ) );
 		// remove the default
-		remove_meta_box( 'pageparentdiv', array( 'page', 'post' ), 'side' );
+		remove_meta_box( 'pageparentdiv', $crio_layout_post_types, 'side' );
 
 		// add our own
 		add_meta_box(
 			'bgtfw-attributes-meta-box',
 			'page' == $post_type ? __( 'Page Attributes', 'bgtfw' ) : __( 'Post Attributes', 'bgtfw' ),
 			array( $this, 'meta_box_callback' ),
-			array( 'page', 'post' ),
+			$crio_layout_post_types,
 			'side',
 			'low'
 		);
@@ -269,23 +269,25 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 
 				// Note: The dynamic parts (translation strings) are escaped above when the variable $dropdown_args is created, so no further escaping is necessary at this point.
 				$pages = wp_dropdown_pages( $dropdown_args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				if ( ! empty( $pages ) ) : ?>
+				if ( ! empty( $pages ) ) : // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php esc_html_e( 'Parent', 'bgtfw' ); ?></label></p>
 					<?php
 					// Note: The variable $pages has it's dynamic parts (translation string) escaped above when the variable $dropdown_args is created so no further escaping is necessary at this point.
-					echo '<span>' . $pages . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<span>' . $pages . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 				endif; // end empty pages check
-			endif;  // end hierarchical check.
 		?>
 		<?php if ( post_type_supports( $post->post_type, 'page-attributes' ) ) : ?>
-		<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order"><?php esc_html_e( 'Order', 'bgtfw' ); ?></label></p>
-		<input name="menu_order" type="text" size="4" id="menu_order" value="<?php echo esc_attr( $post->menu_order ); ?>" />
-		<?php if ( 'page' == $post->post_type && get_current_screen()->get_help_tabs() ) : ?>
-		<p><?php esc_html_e( 'Need help? Use the Help tab above the screen title.', 'bgtfw' ); ?></p>
-		<?php endif; ?>
-		</div>
-		<?php endif; ?>
+			<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order"><?php esc_html_e( 'Order', 'bgtfw' ); ?></label></p>
+			<input name="menu_order" type="text" size="4" id="menu_order" value="<?php echo esc_attr( $post->menu_order ); ?>" />
+			<?php if ( 'page' == $post->post_type && get_current_screen()->get_help_tabs() ) : ?>
+				<p><?php esc_html_e( 'Need help? Use the Help tab above the screen title.', 'bgtfw' ); ?></p>
+			<?php endif; // end if post type is page ?>
+		<?php
+			endif; // end if post supports page-attributes
+		echo '</div>'; // end post-attributes-advanced-wrap
+		endif;  // end hierarchical check.
+		?>
 	<?php
 	}
 

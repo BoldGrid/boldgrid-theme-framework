@@ -1,4 +1,4 @@
-/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false, highlightRequiredFields */
+/* global Modernizr:false, WOW:false, _wowJsOptions:true, _niceScrollOptions:true, _goupOptions:true, FloatLabels:false, highlightRequiredFields, bgtfwButtonClasses */
 
 /* ========================================================================
  * DOM-based Routing
@@ -37,9 +37,137 @@ var BoldGrid = BoldGrid || {};
 				$( ':root' ).removeClass( 'no-bgtfw' ).addClass( 'bgtfw-loading' );
 				this.observeBody();
 				this.skipLink();
-				this.forms();
 				this.cssVarsPonyfill();
 				this.responsiveVideos();
+				this.addButtonClasses();
+				this.addColLg();
+
+				/*
+				 * Disabling this.forms() for now. Leaving code here until 2.16.0. If no issues by then,
+				 * we can remove floatLabels all together.
+				 *
+				 * this.forms();
+				 */
+			},
+
+			/**
+			 * Add col-lg to columns that do not have it.
+			 *
+			 * @since 2.14.0
+			 */
+			addColLg() {
+				$( 'div[class^="col-"]' ).each( function() {
+					var $this = $( this ),
+						classes = $this.attr( 'class' ),
+						mdSize = classes.match( /col-md-([\d]+)/i ),
+						lgSize = classes.match( /col-lg-([\d]+)/i );
+
+					if ( mdSize && ! lgSize ) {
+						$this.addClass( `col-lg-${mdSize[1]}` );
+					}
+
+				} );
+			},
+
+			/**
+			 * Add Button Classes.
+			 *
+			 * This function is triggered when this class Inits, and adds
+			 * the custom button classes to all button-primary and button-secondary
+			 * button classes.
+			 *
+			 * @since 2.12.0
+			 */
+			addButtonClasses: function() {
+				var buttonType;
+
+				this.adjustMenuButtons();
+
+				for ( buttonType in bgtfwButtonClasses ) {
+					let buttonTypeClass = buttonType.replace( 'bgtfw_', '' );
+					let buttonClasses   = bgtfwButtonClasses[ buttonType ];
+					this.removeButtonClasses( buttonTypeClass.replace( '_', '-' ) );
+					this.addButtonClass( buttonTypeClass.replace( '_', '-' ), buttonClasses );
+				}
+			},
+
+			/**
+			 * Adjust Menu Buttons.
+			 *
+			 * This moves li.btn classes to the li > a.btn elements
+			 */
+			adjustMenuButtons: function() {
+				$( '.menu-item.btn' ).each( function() {
+					var $this = $( this );
+
+					if ( $this.hasClass( 'button-primary' ) ) {
+						$this.removeClass( 'button-primary' );
+						$this.find( 'a' ).addClass( 'button-primary' );
+					}
+
+					if ( $this.hasClass( 'button-secondary' ) ) {
+						$this.removeClass( 'button-secondary' );
+						$this.find( 'a' ).addClass( 'button-secondary' );
+					}
+
+					$this.removeClass( 'btn' );
+
+					$this.addClass( 'item-has-btn' );
+
+					$this.removeClass( function( index, className ) {
+						return ( className.match( /(^|\s)btn\S+/g ) || [] ).join( ' ' );
+					} );
+					$this.find( 'a' ).addClass( 'btn' );
+				} );
+			},
+
+			/** Remove Button Classes
+			 *
+			 * Removes button classes that are already present to prevent duplicates.
+			 *
+			 * @since 2.14.0
+			 *
+			 * @param {string} buttonTypeClass Primary or Secondary button class.
+			 * @param {array}  buttonClasses   Custom classes to add.
+			 *
+			 */
+			removeButtonClasses: function( buttonTypeClass ) {
+				$( '.' + buttonTypeClass ).each( function() {
+					if ( 'submit' === $( this ).prop( 'type' ) ) {
+						return;
+					}
+
+					$( this ).removeClass( 'btn' );
+
+					$( this ).removeClass( function( index, className ) {
+						return ( className.match( /(^|\s)btn-\S+/g ) || [] ).join( ' ' );
+					} );
+				} );
+			},
+
+			/**
+			 * Add Button Class
+			 *
+			 * Adds the custom button classes to each button.
+			 *
+			 * @since 2.12.0
+			 *
+			 * @param {string} buttonTypeClass Primary or Secondary button class.
+			 * @param {array}  buttonClasses   Custom classes to add.
+			 */
+			addButtonClass: function( buttonTypeClass, buttonClasses ) {
+				$( '.' + buttonTypeClass ).each( function() {
+					if ( 'submit' === $( this ).prop( 'type' ) && ! $( this ).hasClass( 'weforms_submit_btn' ) ) {
+						return;
+					}
+
+					$( this ).addClass( 'btn' );
+					buttonClasses.split( ' ' ).forEach( ( buttonClass ) => {
+						if ( ! $( this ).hasClass( buttonClass ) ) {
+							$( this ).addClass( buttonClass );
+						}
+					} );
+				} );
 			},
 
 			// Handle responsive video iframe embeds.
@@ -198,9 +326,14 @@ var BoldGrid = BoldGrid || {};
 			forms: function( hasFloat = false ) {
 				var wcCheckoutLabels,
 					wcRequiredLabels = [];
-				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty';
+				let selectors = '.comment-form-rating #rating, .widget_categories .postform, .quantity .qty, [data-style=wpuf-style]',
+					floatLabelsOn = true;
 
-				if ( ! hasFloat ) {
+				if ( Array.isArray( window.floatLabelsOn ) && '' === window.floatLabelsOn[0] ) {
+					floatLabelsOn = false;
+				}
+
+				if ( ! hasFloat && floatLabelsOn ) {
 					new FloatLabels(
 						'form', {
 							prefix: 'bgtfw-',

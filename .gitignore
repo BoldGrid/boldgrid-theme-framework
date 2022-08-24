@@ -1,6 +1,7 @@
 .buildpath
 .project
 .settings
+.qaconfig.json
 node_modules
 bower_components
 boldgrid-theme-framework-config

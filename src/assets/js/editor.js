@@ -12,7 +12,7 @@
 				$iframeHead;
 
 			if ( BOLDGRID_THEME_FRAMEWORK.Editor && BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles ) {
-				$style = $( '<style>' );
+				$style = $( '<style class="mce-inline-styles">' );
 				$style.html( BOLDGRID_THEME_FRAMEWORK.Editor.mce_inline_styles );
 				$iframeHead = $( tinyMCE.activeEditor.iframeElement ).contents().find( 'head' );
 

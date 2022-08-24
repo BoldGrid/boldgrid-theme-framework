@@ -109,6 +109,33 @@ export class LinkPreview {
 					}
 				`;
 			}
+
+			/*
+			 * This was added in 2.12.0 to make sure that the booter links can be
+			 * controlled by the Site Content Link typography controls.
+			 */
+			if ( 'bgtfw_body' === prefix ) {
+				let footerLinkColor      = this._getColor( 'bgtfw_footer_links', true ),
+					footerLinkColorHover = api( `${prefix}_link_color_hover` )() || 0,
+					footerShiftedColorVal;
+
+				footerLinkColorHover  = parseInt( footerLinkColorHover, 10 ) / 100,
+				footerShiftedColorVal = colorLib.Color( footerLinkColor ).lightenByAmount( footerLinkColorHover ).toCSS();
+
+				css += `
+				#colophon .bgtfw-footer.footer-content > a:not( .btn ),
+				#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ) {
+					text-decoration: ${decoration};
+				}
+				#colophon .bgtfw-footer.footer-content > a:not( .btn ):hover,
+				#colophon .bgtfw-footer.footer-content > a:not( .btn ):focus,
+				#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):hover,
+				#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ):focus {
+						color: ${footerShiftedColorVal};
+						text-decoration: ${decorationHover};
+					}
+				`;
+			}
 		}
 
 		let inlineName = prefix.replace( /_/g, '-' );

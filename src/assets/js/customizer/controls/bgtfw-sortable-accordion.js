@@ -904,9 +904,11 @@ export default {
 	 * @since 2.0.3
 	 */
 	getAvailableMenus() {
-		let menus = this.getAllMenuActions();
-		menus = 'sticky-header' === this.params.location ? menus.filter( s => ~s.indexOf( 'sticky' ) ) : menus.filter( s => ! ~s.indexOf( 'sticky' ) );
-		return _.difference( menus, this.getConnectedMenus() );
+		var allMenus       = this.getAllMenuActions(),
+			connectedMenus = this.getConnectedMenus(),
+			availableMenus = _.difference( allMenus, connectedMenus );
+
+		return availableMenus;
 	},
 
 	/**
@@ -968,13 +970,17 @@ export default {
 		 * we need to omit these controls from the list of connected controls or else
 		 * the menus will not work properly.
 		*/
-		if ( _.isFunction( wp.customize( 'bgtfw_sticky_header_preset' ) ) && 'custom' === wp.customize( 'bgtfw_sticky_header_preset' )() ) {
-			controls = _.omit( controls, 'bgtfw_sticky_header_layout' );
-		}
 
-		if ( _.isFunction( wp.customize( 'bgtfw_header_preset' ) ) && 'custom' === wp.customize( 'bgtfw_header_preset' )() ) {
-			controls = _.omit( controls, 'bgtfw_header_layout' );
-		}
+		controls = _.filter( controls, ( control ) => {
+			if ( 'bgtfw_sticky_header_layout' === control.id ) {
+				return false;
+			}
+			if ( 'bgtfw_header_layout' === control.id ) {
+				return false;
+			}
+
+			return true;
+		} );
 
 		return _.filter( controls, { type: this.params.type } );
 	},
@@ -995,20 +1001,13 @@ export default {
 	 */
 	getConnectedMenus() {
 		let menus = _.filter( this.getConnectedItems(), item => item.includes( 'boldgrid_menu' ) );
+
 		if ( _.isFunction( api( 'bgtfw_fixed_header' ) ) ) {
 			if ( false === api( 'bgtfw_fixed_header' )() || 'header-top' !== api( 'bgtfw_header_layout_position' )() ) {
 				menus = menus.filter( menu => ! menu.includes( 'sticky' ) );
 			}
 		}
 
-		/*
-		 * We need to remove the main menu from this array
-		 * if this is not the standard bgtfw-header-layout to prevent
-		 * it from being added multiple times as of 2.7.1.
-		 */
-		if ( 'bgtfw-header-layout' !== this.id ) {
-			menus.splice( menus.indexOf( 'boldgrid_menu_main' ), 1 );
-		}
 		return menus;
 	},
 

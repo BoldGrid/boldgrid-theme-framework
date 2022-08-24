@@ -212,11 +212,6 @@ class Boldgrid_Framework_Editor {
 		}
 
 		$api = new BoldGrid( $this->configs );
-		$mce['body_class'] .= ' ' . implode( ' ', $api->get_background_color( 'boldgrid_background_color' ) );
-
-		if ( 'pattern' === get_theme_mod( 'boldgrid_background_type' ) && ! empty( $pattern ) ) {
-			$mce['body_class'] .= ' custom-background';
-		}
 
 		// Get the current post, check if it's a page and add our body classes.
 		if ( $post = get_post() ) {

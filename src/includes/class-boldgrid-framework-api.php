@@ -59,7 +59,7 @@ class BoldGrid {
 
 		// Site title link.
 		$display = get_theme_mod( 'bgtfw_site_title_display' ) === 'hide' ? ' screen-reader-text' : '';
-		echo '<' . esc_html( $title_tag ) . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . esc_attr( $display ) . '">' .
+		echo '<' . $title_tag . ' class="' . esc_attr( $configs['template']['site-title-classes'] ) . esc_attr( $display ) . '">' .
 			'<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a>' .
 			'</' . esc_html( $title_tag ) . '>';
 	}
@@ -109,12 +109,12 @@ class BoldGrid {
 	public function print_tagline() {
 		// Retrieve blog tagline.
 		$blog_info = get_bloginfo( 'description' );
-		$display = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
+		$display   = get_theme_mod( 'bgtfw_tagline_display' ) === 'hide' ? ' screen-reader-text' : '';
 
 		if ( $blog_info ) {
 			$classes = $this->configs['template']['tagline-classes'] . $display;
 		} else {
-			$classes = $this->configs['template']['tagline-classes'] . 'site-description invisible';
+			$classes = $this->configs['template']['tagline-classes'] . ' site-description invisible';
 		}
 
 		printf( wp_kses_post( $this->configs['template']['tagline'] ), esc_attr( $classes ), esc_html( $blog_info ) );
@@ -151,7 +151,12 @@ class BoldGrid {
 		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
 		if ( is_single() || is_attachment() ) {
 			$theme_mod = get_theme_mod( $theme_mod_type );
-			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+			if ( 'max-full-width' === $theme_mod ) {
+				$classes[] = 'max-full-width';
+				$classes[] = 'full-width';
+			} else {
+				$classes[] = $theme_mod = empty( $theme_mod ) ? 'full-width' : 'container';
+			}
 		}
 
 		return $classes;
@@ -168,10 +173,16 @@ class BoldGrid {
 	 */
 	public function page_container( $classes ) {
 		global $boldgrid_theme_framework;
-		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_blog_page_container';
+		$theme_mod_type = $boldgrid_theme_framework->woo->is_woocommerce_page() ? 'bgtfw_woocommerce_container' : 'bgtfw_pages_container';
 		if ( is_page() || ( $boldgrid_theme_framework->woo->is_woocommerce_page() && is_shop() ) ) {
+
 			$theme_mod = get_theme_mod( $theme_mod_type );
-			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+			if ( 'max-full-width' === $theme_mod ) {
+				$classes[] = 'max-full-width';
+				$classes[] = 'full-width';
+			} else {
+				$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+			}
 		}
 
 		return $classes;
@@ -191,7 +202,12 @@ class BoldGrid {
 
 		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
 			$theme_mod = get_theme_mod( 'bgtfw_woocommerce_container' );
-			$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+			if ( 'max-full-width' === $theme_mod ) {
+				$classes[] = 'max-full-width';
+				$classes[] = 'full-width';
+			} else {
+				$classes[] = $theme_mod = empty( $theme_mod ) ? 'full-width' : 'container';
+			}
 		}
 
 		return $classes;
@@ -214,18 +230,29 @@ class BoldGrid {
 
 		if ( $boldgrid_theme_framework->woo->is_woocommerce_page() ) {
 			$theme_mod_type = 'bgtfw_woocommerce_container';
-		} elseif (
-			is_single() ||
-			is_attachment() ||
-			( function_exists( 'is_shop' ) && is_shop() )
-		) {
+		} elseif ( is_single() || is_attachment() || ( function_exists( 'is_shop' ) && is_shop() ) ) {
 			$theme_mod_type = 'bgtfw_blog_posts_container';
-		} elseif ( is_archive() || is_home() ) {
+		} elseif ( is_front_page() && is_home() ) {
+			// Default Homepage ( Latest Posts ).
+			$theme_mod_type      = 'bgtfw_blog_page_container';
+		} elseif ( is_front_page() ) {
+			// Static Homepage.
+			return $classes;
+		} elseif ( is_home() ) {
+			// Blog Page.
+			$theme_mod_type = 'bgtfw_blog_page_container';
+		} elseif ( is_archive() ) {
 			$theme_mod_type = 'bgtfw_blog_page_container';
 		}
 
 		$theme_mod = get_theme_mod( $theme_mod_type );
-		$classes[] = empty( $theme_mod ) ? 'full-width' : 'container';
+
+		if ( 'max-full-width' === $theme_mod ) {
+			$classes[] = 'max-full-width';
+			$classes[] = 'full-width';
+		} else {
+			$classes[] = $theme_mod = empty( $theme_mod ) ? 'full-width' : 'container';
+		}
 
 		return $classes;
 	}
@@ -275,12 +302,17 @@ class BoldGrid {
 	/**
 	 * Adds custom classes to the array of header classes.
 	 *
+	 * @param array $classes An array of header classes.
+	 *
 	 * @since 2.0.0
 	 *
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function header_classes( $classes ) {
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
+		// Do not add background color classess if this is a Custom Sticky Template.
+		if ( ! in_array( 'template-sticky-header', $classes, true ) ) {
+			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_header_color' ) );
+		}
 		return $classes;
 	}
 
@@ -299,29 +331,43 @@ class BoldGrid {
 	/**
 	 * Adds custom classes to the array of footer classes.
 	 *
+	 * @param array $classes An array of footer classes.
+	 *
 	 * @since 2.0.0
 	 *
 	 * @return array $classes array of classes to be applied to the .site-footer element.
 	 */
 	public function footer_classes( $classes ) {
 		$classes[] = get_theme_mod( 'bgtfw_footer_layouts' );
-		$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		// Do not add background classess if this is a Custom Footer Template.
+		if ( ! in_array( 'template-footer', $classes, true ) ) {
+			$classes = array_merge( $classes, $this->get_background_color( 'bgtfw_footer_color' ) );
+		} else {
+			$classes[] = 'color-neutral-background-color';
+			$classes[] = 'color-neutral-text-color';
+		}
+
 		return $classes;
 	}
 
 	/**
 	 * Adds custom classes to the array of inner footer classes.
 	 *
+	 * @param array $classes An array of footer classes.
+	 *
 	 * @since 2.0.0
 	 *
 	 * @return array $classes array of classes to be applied to the #masthead element.
 	 */
 	public function inner_footer_classes( $classes ) {
-		$classes = array_merge(
-			$classes,
-			$this->get_background_color( 'bgtfw_footer_color' ),
-			$this->get_link_color( 'bgtfw_footer_links' )
-		);
+		// Do not add background classess if this is a Custom Footer Template.
+		if ( ! in_array( 'template-footer', $classes, true ) ) {
+			$classes = array_merge(
+				$classes,
+				$this->get_background_color( 'bgtfw_footer_color' ),
+				$this->get_link_color( 'bgtfw_footer_links' )
+			);
+		}
 
 		return $classes;
 	}
@@ -349,6 +395,35 @@ class BoldGrid {
 		}
 
 		return $classes;
+	}
+
+	/**
+	 * Get the rgb color from the palette.
+	 *
+	 * @since 2.16.1
+	 *
+	 * @param string $color_class Color class string ( e.g. 'color2' ).
+	 *
+	 * @return string $color_rgb RGB color string.
+	 */
+	public static function color_from_class( $color_class ) {
+		$palette_position = str_replace( 'color', '', $color_class );
+		$palette_position = str_replace( '-', '', $palette_position );
+
+		$color_palette = get_theme_mod( 'boldgrid_color_palette', array() );
+		if ( empty( $color_palette ) ) {
+			return;
+		}
+
+		$color_palette = json_decode( $color_palette, true );
+		$color_palette = $color_palette['state']['palettes'][ $color_palette['state']['active-palette'] ];
+
+		if ( 'neutral' === $palette_position ) {
+			return $color_palette['neutral-color'];
+		} else {
+			// If for some reason an invalid color class is passed, return the neutral color instead of an error.
+			return isset( $color_palette['colors'][ (int) $palette_position - 1 ] ) ? $color_palette['colors'][ (int) $palette_position - 1 ] : $color_palette['neutral-color'];
+		}
 	}
 
 	/**
@@ -397,6 +472,8 @@ class BoldGrid {
 	 */
 	public function body_classes( $classes ) {
 		global $post;
+
+		$post_id = 0;
 
 		if ( is_object( $post ) ) {
 			$post_id = absint( $post->ID );
@@ -467,6 +544,14 @@ class BoldGrid {
 				} else if ( 'hide' === get_theme_mod( 'bgtfw_posts_title_display' ) && 'none' === get_theme_mod( 'bgtfw_posts_meta_display' ) ) {
 					$classes[] = 'customizer-page-header-hidden';
 				}
+
+				$feat_img_display  = get_theme_mod( 'bgtfw_post_header_feat_image_display' );
+				$feat_img_position = get_theme_mod( 'bgtfw_post_header_feat_image_position' );
+				$feat_img_align    = get_theme_mod( 'bgtfw_post_header_feat_image_align' );
+
+				if ( 'hide' !== $feat_img_display && 'below' === $feat_img_position ) {
+					$classes[] = 'feat-image-' . $feat_img_align;
+				}
 			}
 		}
 
@@ -511,7 +596,7 @@ class BoldGrid {
 
 		$classes[] = 'custom-header';
 
-		if ( get_theme_mod( 'bgtfw_fixed_header' ) ) {
+		if ( get_theme_mod( 'bgtfw_fixed_header' ) || apply_filters( 'crio_premium_get_sticky_page_header', $post_id ) ) {
 			if ( 'header-top' === get_theme_mod( 'bgtfw_header_layout_position' ) ) {
 				$classes[] = 'header-slide-in';
 			} else {
@@ -630,7 +715,9 @@ class BoldGrid {
 
 					// Apply to all other menu items that aren't active menu items.
 					if ( ! count( array_intersect( $classes, array( 'current-menu-item', 'current_page_parent', 'current-post-parent' ) ) ) ) {
-						$classes[] = get_theme_mod( "bgtfw_menu_items_hover_effect_{$location}" );
+						$hover_effect = get_theme_mod( "bgtfw_menu_items_hover_effect_{$location}" );
+						$hover_effect = $hover_effect ? $hover_effect : 'hvr-none';
+						$classes[]    = $hover_effect;
 					}
 				}
 
@@ -1138,23 +1225,35 @@ class BoldGrid {
 
 						$col_x_full_width = implode( ' ', $col_x_full_width );
 
-						if ( false !== strpos( $col_uid, 'h' ) ) {
-							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $col_data['align'];
+						if ( false === strpos( $col_uid, 'f' ) ) {
+							$align   = isset( $col_data['align'] ) ? $col_data['align'] : '';
+							$markup .= '<div class="col-lg-' . $lg_col . ' col-md-' . $md_col . ' col-sm-' . $sm_col . ' col-xs-' . $xs_col . ' ' . $col_uid . ' ' . $align;
 							$markup .= $col_x_full_width ? ' ' . $col_x_full_width . '">' : '">';
 						} else {
-							$num = ( 12 / count( $chunk ) );
-							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . '">';
+							$num     = ( 12 / count( $chunk ) );
+							$align   = isset( $col_data['align'] ) ? $col_data['align'] : '';
+							$markup .= '<div class="col-md-' . $num . ' col-sm-12 col-xs-12 ' . $col_uid . ' ' . $align . '">';
 						}
 
 						ob_start();
 						switch ( $col_data['type'] ) {
-							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false :
+							case strpos( $col_data['type'], 'boldgrid_menu_' ) !== false:
 								$menu = str_replace( 'boldgrid_menu_', '', $col_data['type'] );
 								if ( 'social' === $menu && false !== strpos( $col_uid, 'f' ) ) {
 									$menu             = 'footer-social';
 									$col_data['type'] = 'boldgrid_menu_footer-social';
 								}
-								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ' . BoldGrid::add_class( "{$menu}_wrap", [ 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] ], false ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								echo '<div id="' . esc_attr( $menu . '-wrap' ) . '" ';
+								$menu_classes = array( 'bgtfw-menu-wrap', 'flex-row', $col_data['align'] );
+								$ham_classes  = get_theme_mod(
+									'bgtfw_menu_hamburger_display_' . $menu,
+									array(
+										'ham-phone',
+										'ham-tablet',
+									)
+								);
+								$menu_classes = implode( ' ', array_merge( $menu_classes, $ham_classes ) );
+								echo 'class="' . esc_attr( $menu_classes ) . '">';
 								if ( empty( $col_data['align'] ) ) {
 									$col_data['align'] = 'nw';
 								}
@@ -1317,18 +1416,50 @@ class BoldGrid {
 	 * @return string Rendered HTML for dyanmic layout element.
 	 */
 	public static function dynamic_sticky_header( $preset = null ) {
-		$markup = '';
-		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', [ 'header', 'sticky' ], false ) . '>';
+		if ( ! is_front_page() && is_home() ) {
+			$id = get_option( 'page_for_posts' );
+		} else {
+			$id = get_the_ID();
+		}
+
+		$page_header = apply_filters( 'crio_premium_get_sticky_page_header', $id );
+
+		$sticky_template_class = get_theme_mod( 'bgtfw_sticky_page_headers_global_enabled' ) && ! empty( $page_header ) ? 'sticky-template-' . $page_header : '';
+
+		$header_classes = array(
+			'header',
+			'sticky',
+		);
+
+		// Add neutral background colors to sticky headers.
+		if ( ! empty( $sticky_template_class ) ) {
+			$header_classes[] = $sticky_template_class;
+			$header_classes[] = 'template-sticky-header';
+			$header_classes[] = 'color-neutral-background-color';
+			$header_classes[] = 'color-neutral-text-contrast';
+		}
+
+		$markup  = '';
+		$markup .= '<header id="masthead-sticky" ' . BoldGrid::add_class( 'header', $header_classes, false ) . '>';
 		ob_start();
 		do_action( 'boldgrid_header_top' );
 		$markup .= ob_get_clean();
-		$markup .= '<div class="custom-header-media">';
-		$markup .= get_custom_header_markup();
-		$markup .= '</div>';
-		if ( $preset ) {
-			$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout', $preset );
+
+		// If using Custom Templates, add the content here.
+		if ( get_theme_mod( 'bgtfw_sticky_page_headers_global_enabled' ) && ! empty( $page_header ) ) {
+			if ( 'disabled' !== $page_header ) {
+				$markup .= apply_filters( 'the_content', get_post_field( 'post_content', $page_header ) );
+			}
+		// Otherwise, load the dynamic layout as usual.
 		} else {
-			$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+			$markup .= '<div class="custom-header-media">';
+			$markup .= get_custom_header_markup();
+			$markup .= '</div>';
+			if ( $preset ) {
+				$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout', $preset );
+			} else {
+				$markup .= self::dynamic_layout( 'bgtfw_sticky_header_layout' );
+			}
 		}
 		ob_start();
 		do_action( 'boldgrid_header_bottom' );
@@ -1345,6 +1476,40 @@ class BoldGrid {
 	 * @return string Rendered HTML for dyanmic layout element.
 	 */
 	public static function dynamic_footer() {
-		return self::dynamic_layout( 'bgtfw_footer_layout' );
+		if ( ! is_front_page() && is_home() ) {
+			$id = get_option( 'page_for_posts' );
+		} else {
+			$id = get_the_ID();
+		}
+
+		$page_footer             = apply_filters( 'crio_premium_get_page_footer', $id );
+		$footer_template_enabled = get_theme_mod( 'bgtfw_page_footers_global_enabled' );
+
+		// Footer templates allow the option to disable the footer all together.
+		if ( $footer_template_enabled && 'disabled' === $page_footer ) {
+			return '';
+		}
+
+		if ( $footer_template_enabled && ! empty( $page_footer ) ) {
+			return apply_filters( 'the_content', get_post_field( 'post_content', $page_footer ) );
+		} else {
+			return self::dynamic_layout( 'bgtfw_footer_layout' );
+		}
+	}
+
+	/**
+	 * Add button classes to the content.
+	 *
+	 * @since 2.12.0
+	 *
+	 * @param string $content The content.
+	 *
+	 * @return string the filtered content.
+	 */
+	public function add_button_classes( $content ) {
+		$classes       = apply_filters( 'bgtfw_button_classes', array() );
+		$fixed_content = preg_replace( '/([a|li][^>]*class="[^"]*)button-primary([^"]*")/', '$1button-primary ' . $classes['button-primary'] . '$2', $content );
+		$fixed_content = preg_replace( '/([a|li][^>]*class="[^"]*)button-secondary([^"]*")/', '$1button-secondary ' . $classes['button-secondary'] . '$2', $fixed_content );
+		return $fixed_content;
 	}
 }

@@ -52,7 +52,8 @@
 		"url": "https://github.com/BoldGrid/boldgrid-theme-framework.git"
 	},
 	"resolutions": {
-		"natives": "1.1.6"
+		"natives": "1.1.6",
+		"i": "^0.3.7"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.0.0-beta.47",

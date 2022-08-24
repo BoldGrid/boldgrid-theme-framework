@@ -132,7 +132,7 @@
 		"webpack-runtime-public-path-plugin": "^1.1.2"
 	},
 	"dependencies": {
-		"@babel/runtime-corejs2": "^7.12.1",
+		"@babel/runtime-corejs2": "^7.13.17",
 		"@boldgrid/components": "^2.16.2",
 		"@wordpress/dom-ready": "^2.11.0",
 		"@wordpress/hooks": "^2.10.0",

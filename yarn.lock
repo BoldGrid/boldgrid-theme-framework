@@ -1330,12 +1330,12 @@
     text-table "^0.2.0"
     webpack-log "^1.1.2"
 
-"@wordpress/dom-ready@^2.11.0":
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/@wordpress/dom-ready/-/dom-ready-2.11.0.tgz#1ed7057ae481a42f0b96a66387119c172a6340ff"
-  integrity sha512-q9MZqYPHUtioT/2tgzyAtnEFXRgUJ6eMxLDQaOprBQkGoD2Ue/V+wEX6cJGy+x8AafFataPC2i2jPsnYqE9+zQ==
+"@wordpress/dom-ready@^2.13.2":
+  version "2.13.2"
+  resolved "https://registry.yarnpkg.com/@wordpress/dom-ready/-/dom-ready-2.13.2.tgz#c3960a669791f28e12e0a88c100b33c4deb16e82"
+  integrity sha512-COH7n2uZfBq4FtluSbl37N3nCEcdMXzV42ETCWKUcumiP1Zd3qnkfQKcsxTaHWY8aVt/358RvJ7ghWe3xAd+fg==
   dependencies:
-    "@babel/runtime" "^7.11.2"
+    "@babel/runtime" "^7.13.10"
 
 "@wordpress/hooks@^2.12.2":
   version "2.12.2"

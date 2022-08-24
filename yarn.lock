@@ -648,6 +648,13 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.11.2":
+  version "7.18.9"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.9.tgz#b4fcfce55db3d2e5e080d2490f608a3b9f407f4a"
+  integrity sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.13.10":
   version "7.13.17"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.17.tgz#8966d1fc9593bf848602f0662d6b4d0069e3a7ec"
@@ -1335,7 +1342,7 @@
   resolved "https://registry.yarnpkg.com/@wordpress/hooks/-/hooks-2.12.2.tgz#78205b3af2fb31896b3c129b78c22a1981b5efdb"
   integrity sha512-fTgo8CFuqJ3ZFrcHB1U8D43ydn+9m+8DmdcvQmWPRr0lJ3tzngEpGB3MxZE3s+jMfuESa28kDD0ukburyA5u/g==
   dependencies:
-    "@babel/runtime" "^7.11.2"
+    "@babel/runtime" "^7.13.10"
 
 "Buttons@https://github.com/alexwolfe/Buttons":
   version "2.0.0"

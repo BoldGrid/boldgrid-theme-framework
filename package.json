@@ -54,7 +54,8 @@
 	"resolutions": {
 		"natives": "1.1.6",
 		"i": "^0.3.7",
-		"**/chownr": "^1.1.4"
+		"**/chownr": "^1.1.4",
+		"**/url-parse": "^1.5.10"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.0.0-beta.47",

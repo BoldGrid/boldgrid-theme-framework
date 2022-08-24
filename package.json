@@ -135,7 +135,7 @@
 		"@babel/runtime-corejs2": "^7.12.1",
 		"@boldgrid/components": "^2.16.2",
 		"@wordpress/dom-ready": "^2.11.0",
-		"@wordpress/hooks": "^2.10.0",
+		"@wordpress/hooks": "^2.12.3",
 		"Buttons": "https://github.com/boldgrid/Buttons#crio-buttons",
 		"animate.css": "3.7.2",
 		"bootstrap-sass": "~3.4.1",

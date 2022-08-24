@@ -7840,14 +7840,14 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jarallax@^1.12.4:
-  version "1.12.4"
-  resolved "https://registry.yarnpkg.com/jarallax/-/jarallax-1.12.4.tgz#188796460a965281546dfe6cd4a3ef244c79dd72"
-  integrity sha512-bQqQkHro7F0mf24qDjPEBFYwtYeBZzagotZYMkV8PgN0xHWNHi2VZ7VH9ANTtUsZOZpUgInloXmvcEomSCXJJQ==
+jarallax@^1.12.8:
+  version "1.12.8"
+  resolved "https://registry.yarnpkg.com/jarallax/-/jarallax-1.12.8.tgz#d66c3ab060c85666671afd52dde09d0614d51bbe"
+  integrity sha512-O0y21vyDbx8DcwTANGinzu0d8PK6VGF0qrIXne4y3yqLO5glfWSGoUtfmZ5lgfwvZw6yGNNBFdN/ww4p1tkHmw==
   dependencies:
     global "^4.4.0"
     lite-ready "^1.0.4"
-    video-worker "^1.1.9"
+    video-worker "^1.1.17"
 
 jpegtran-bin@^3.0.0:
   version "3.2.0"
@@ -13354,10 +13354,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-video-worker@^1.1.9:
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/video-worker/-/video-worker-1.1.9.tgz#18d4c751645819cd44c512b23fce1335b9db85a6"
-  integrity sha512-eTXgpGG562Zlu0+5EBTwssa/r+24Oewqkfyy6jXpFpFfHCtbW+iN0ftRxsMOsZ0N/643hokRxKhuRZ93ijgJGA==
+video-worker@^1.1.17:
+  version "1.1.17"
+  resolved "https://registry.yarnpkg.com/video-worker/-/video-worker-1.1.17.tgz#78b8104fe059daf014c7454772173ddd9e5ef606"
+  integrity sha512-36w0bumK2BYuFgYEXM1vD99qYEz5fkZEaPX3bSSJC6y0eoDGAApAq+ZN4gVd5ikZzHvQo+1YbepwzpLCGSZYuQ==
   dependencies:
     global "^4.4.0"
 

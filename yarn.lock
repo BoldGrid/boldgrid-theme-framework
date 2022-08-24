@@ -1335,7 +1335,7 @@
   resolved "https://registry.yarnpkg.com/@wordpress/hooks/-/hooks-2.12.2.tgz#78205b3af2fb31896b3c129b78c22a1981b5efdb"
   integrity sha512-fTgo8CFuqJ3ZFrcHB1U8D43ydn+9m+8DmdcvQmWPRr0lJ3tzngEpGB3MxZE3s+jMfuESa28kDD0ukburyA5u/g==
   dependencies:
-    "@babel/runtime" "^7.13.10"
+    "@babel/runtime" "^7.11.2"
 
 "Buttons@https://github.com/alexwolfe/Buttons":
   version "2.0.0"
@@ -12078,9 +12078,9 @@ sntp@1.x.x:
     hoek "2.x.x"
 
 snyk@^1.685.0:
-  version "1.720.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.720.0.tgz#23ad83fb99e39a852d5c2e05fc11398571aeb41e"
-  integrity sha512-NCy+57lvoggyM4WIzsNQyf2+fX6eZAqu2nznGq+RVfYBcwLgiDpg76oafrmp/rUtSIM1E+68cm1bJWSiNZqf7w==
+  version "1.794.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.794.0.tgz#8c75f918197d1546788a3790e16684357205d252"
+  integrity sha512-o2SVajU3FKSn2n56NsCRDroENk4r0GVKX1+++Zle2hPKILNaLZVwtcPAN1NqTFl9WBFAAzcbYzq8ltLopdcADg==
 
 sockjs-client@1.1.5:
   version "1.1.5"

@@ -140,7 +140,7 @@ class Boldgrid_Framework_Device_Preview {
 			}
 			.wp-customizer .preview-desktop .wp-full-overlay-main.previewed-from-large {
 				margin: auto;
-				width: 992px;
+				width: 1000px;
 				height: 100%;
 				left: 50%;
 				-webkit-transform: translateX(-50%);
@@ -148,7 +148,7 @@ class Boldgrid_Framework_Device_Preview {
 			}
 			.wp-customizer .preview-tablet .wp-full-overlay-main.previewed-from-large {
 				margin: auto;
-				width: 768px;
+				width: 780px;
 				height: 100%;
 				left: 50%;
 				-webkit-transform: translateX(-50%);
@@ -173,7 +173,7 @@ class Boldgrid_Framework_Device_Preview {
 			}
 			.wp-customizer .preview-tablet .wp-full-overlay-main.previewed-from-desktop {
 				margin: auto;
-				width: 768px;
+				width: 780px;
 				height: 100%;
 				left: 50%;
 				-webkit-transform: translateX(-50%);

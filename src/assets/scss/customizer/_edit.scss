@@ -13,7 +13,12 @@ button.customize-partial-edit-shortcut-button {
 }
 
 #masthead .boldgrid-section .bgtfw-has-edit, .bgtfw-has-edit {
-
+	&.btn-longshadow {
+		position: static !important;
+		.bgtfw-edit-button {
+			text-shadow: none;
+		}
+	}
 	&.top-button {
 		> .bgtfw-multi-edit-button {
 			top: 0;

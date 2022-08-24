@@ -41,6 +41,176 @@ class BoldGrid_Framework_Styles {
 	}
 
 	/**
+	 * Editor Button Fonts.
+	 *
+	 * Registers the button fonts to display in the ppb button.
+	 *
+	 * @since 2.12.0
+	 */
+	public function editor_button_fonts() {
+		$is_editor = strpos( $_SERVER['REQUEST_URI'], '/post-new' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'action=edit' ) !== false;
+
+		if ( ! $is_editor ) {
+			return;
+		}
+
+		$button_types = array(
+			'primary'   => '.presets.palette-primary .button-primary',
+			'secondary' => '.presets.palette-primary .button-secondary',
+		);
+
+		$css = '';
+
+		foreach ( $button_types as $button_type => $selectors ) {
+			$typography = get_theme_mod( 'bgtfw_button_' . $button_type . '_typography' );
+			$css       .= $selectors . ' {';
+			foreach ( $typography as $css_propery => $css_value ) {
+				if ( empty( $css_value ) ) {
+					continue;
+				}
+
+				$css .= $css_propery . ':' . $css_value . ';';
+			}
+			$css .= '}';
+		}
+
+		wp_register_style( 'bgtfw-editor-button-fonts', false );
+		wp_add_inline_style( 'bgtfw-editor-button-fonts', $css );
+		wp_enqueue_style( 'bgtfw-editor-button-fonts' );
+	}
+
+	/**
+	 * Register Responsive Font Sizes.
+	 *
+	 * Registers the responsive font size css.
+	 *
+	 * @since 2.11.0
+	 */
+	public function register_responsive_font_sizes() {
+		$css = $this->generate_responsive_font_css();
+
+		wp_register_style( 'bgtfw-responsive-font-sizes', false );
+		wp_add_inline_style( 'bgtfw-responsive-font-sizes', $css );
+		wp_enqueue_style( 'bgtfw-responsive-font-sizes' );
+	}
+
+	/**
+	 * Register weForms Styles.
+	 *
+	 * Registers the weForms styles.
+	 *
+	 * @since 2.15.0
+	 */
+	public function register_weforms_styles() {
+		$label_color = get_theme_mod( 'bgtfw_weforms_label_color' );
+
+		$label_color = 'var(--' . explode( ':', $label_color )[0] . ') !important;';
+
+		$label_css = '.wpuf-theme-style .wpuf-label label { color: ' . $label_color . ' }';
+
+		wp_register_style( 'bgtfw-weforms-label-color', false );
+		wp_add_inline_style( 'bgtfw-weforms-label-color', $label_css );
+		wp_enqueue_style( 'bgtfw-weforms-label-color' );
+
+		$sub_label_color = get_theme_mod( 'bgtfw_weforms_sublabel_color' );
+
+		$sub_label_color = 'var(--' . explode( ':', $sub_label_color )[0] . ') !important;';
+
+		$sub_label_css = '.wpuf-theme-style .wpuf-form-sub-label { color: ' . $sub_label_color . ' }';
+
+		wp_register_style( 'bgtfw-weforms-sublabel-color', false );
+		wp_add_inline_style( 'bgtfw-weforms-sublabel-color', $sub_label_css );
+		wp_enqueue_style( 'bgtfw-weforms-sublabel-color' );
+	}
+
+	/**
+	 * Register Container Widths.
+	 *
+	 * @since 2.14.0
+	 */
+	public function register_container_widths() {
+		$scss = new Boldgrid_Framework_SCSS( $this->configs );
+		$css  = $scss->compile_widths();
+
+		wp_register_style( 'bgtfw-container-widths', false, $this->configs['version'] );
+		wp_add_inline_style( 'bgtfw-container-widths', $css );
+		wp_enqueue_style( 'bgtfw-container-widths' );
+	}
+
+	/** Generate Responive Font CSS
+	 *
+	 * Generates responsive font css.
+	 *
+	 * @param string $css The css to be added to the page.
+	 *
+	 * @since 2.11.0
+	 */
+	public function generate_responsive_font_css( $css = '' ) {
+		$responsive_controls = $this->configs['customizer-options']['typography']['responsive_font_controls'];
+		// XS / Phone.
+		$css .= '@media only screen and (max-width: 767px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['phone'] ) ? $theme_mod['phone'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		// SM / Tablet.
+		$css .= '@media only screen and (min-width: 768px) and (max-width: 991px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['tablet'] ) ? $theme_mod['tablet'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		// MD / Desktop.
+		$css .= '@media only screen and (min-width: 992px) and (max-width: 1199px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['desktop'] ) ? $theme_mod['desktop'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		// LG / Large Desktop.
+		$css .= '@media only screen and (min-width: 1200px) {';
+		foreach ( $responsive_controls as $control_id => $control_data ) {
+			if ( 'bgtfw_headings_responsive_font_size' === $control_id ) {
+				continue;
+			}
+			$theme_mod = json_decode( get_theme_mod( $control_id ), true );
+			$font_size = ! empty( $theme_mod['large'] ) ? $theme_mod['large'] : false;
+			if ( $font_size ) {
+				$css .= $control_data['output_selector'];
+				$css .= '{ font-size: ' . $font_size . '!important;}';
+			}
+		}
+		$css .= '}';
+
+		return $css;
+	}
+
+	/**
 	 * Return a list of the editor styles that will be applied that are actually contained
 	 * with the theme
 	 *
@@ -87,8 +257,8 @@ class BoldGrid_Framework_Styles {
 
 			// Add Kirki dynamically generated styles.
 			$kirki_css = Kirki_Modules_CSS::get_instance();
-			$styles = apply_filters( 'kirki_bgtfw_dynamic_css', $kirki_css::loop_controls( 'bgtfw' ) );
-			$styles = apply_filters( 'boldgrid_mce_inline_styles', $styles );
+			$styles    = apply_filters( 'kirki_bgtfw_dynamic_css', $kirki_css::loop_controls( 'bgtfw' ) );
+			$styles    = apply_filters( 'boldgrid_mce_inline_styles', $styles );
 
 			wp_register_style( 'bgtfw-dynamic', false );
 			wp_add_inline_style( 'bgtfw-dynamic', $styles );
@@ -203,9 +373,10 @@ class BoldGrid_Framework_Styles {
 		foreach ( $menus as $location => $description ) {
 			$color = get_theme_mod( "bgtfw_menu_hamburger_{$location}_color" );
 			$color = explode( ':', $color );
+			$color_var = $color[0];
 			$color = array_pop( $color );
 			$location = str_replace( '_', '-', $location );
-			$css .= ".{$location}-menu-btn .hamburger-inner,.{$location}-menu-btn .hamburger-inner:before,.{$location}-menu-btn .hamburger-inner:after {background-color: {$color};}";
+			$css .= ".{$location}-menu-btn .hamburger-inner,.{$location}-menu-btn .hamburger-inner:before,.{$location}-menu-btn .hamburger-inner:after {background-color: var(--{$color_var});}";
 		}
 
 		return $css;
@@ -258,7 +429,7 @@ class BoldGrid_Framework_Styles {
 
 		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";
-		$css = "{$menu_id} .current-menu-item:not( .btn ) > a,{$menu_id} .current-menu-ancestor:not( .btn ) > a,{$menu_id} .current-menu-parent:not( .btn ) > a,{$menu_id} .current_page_parent:not( .btn ) > a { color: {$color}; }";
+		$css = "{$menu_id} .current-menu-item > a:not( .btn ),{$menu_id} .current-menu-ancestor > a:not( .btn ),{$menu_id} .current-menu-parent > a:not( .btn ),{$menu_id} .current_page_parent > a:not( .btn ) { color: {$color}; }";
 
 		return $css;
 	}
@@ -279,7 +450,7 @@ class BoldGrid_Framework_Styles {
 
 		$location = str_replace( '_', '-', $location );
 		$menu_id = "#{$location}-menu";
-		$css = "{$menu_id} .hvr-none:not( .current-menu-item ):not( .button ) > a:hover,{$menu_id} .hvr-none:not( .current-menu-ancestor ):not( .button ) > a:hover,{$menu_id} .hvr-none:not( .current-menu-parent ):not( .button ) > a:hover,{$menu_id} .hvr-none:not( .current_page_parent ):not( .button ) > a:hover{ color: {$color}; }";
+		$css = "{$menu_id} .hvr-none:not( .current-menu-item ) > a:not( .btn ):hover,{$menu_id} .hvr-none:not( .current-menu-ancestor ) > a:not( .btn ):hover,{$menu_id} .hvr-none:not( .current-menu-parent ) > a:not( .btn ):hover,{$menu_id} .hvr-none:not( .current_page_parent ) > a:not( .btn ):hover{ color: {$color}; }";
 
 		return $css;
 	}
@@ -312,14 +483,16 @@ class BoldGrid_Framework_Styles {
 	 * @return string $css Modified CSS to add to front end.
 	 */
 	public function menu_css( $location ) {
-		$background_color = get_theme_mod( "bgtfw_menu_background_{$location}" );
+		$background_color         = get_theme_mod( "bgtfw_menu_background_{$location}" );
+		$submenu_background_color = get_theme_mod( "bgtfw_menu_submenu_background_{$location}" );
+
 		$in_footer = false;
 		if ( strpos( $background_color, 'transparent' ) !== false ) {
 			$background_color = 'header';
 
 			if ( in_array( $location, $this->configs['menu']['footer_menus'], true ) ) {
 				$background_color = 'footer';
-				$in_footer = true;
+				$in_footer        = true;
 			}
 
 			$background_color = get_theme_mod( "bgtfw_{$background_color}_color" );
@@ -327,10 +500,29 @@ class BoldGrid_Framework_Styles {
 			$background_color = get_theme_mod( "bgtfw_menu_background_{$location}" );
 		}
 
+		$in_footer = false;
+		if ( strpos( $submenu_background_color, 'transparent' ) !== false ) {
+			$submenu_background_color = 'header';
+
+			if ( in_array( $location, $this->configs['menu']['footer_menus'], true ) ) {
+				$submenu_background_color = 'footer';
+				$in_footer                = true;
+			}
+
+			$submenu_background_color = get_theme_mod( "bgtfw_{$submenu_background_color}_color" );
+		} else {
+			$submenu_background_color = get_theme_mod( "bgtfw_menu_submenu_background_{$location}" );
+		}
+
 		$background_color = explode( ':', $background_color );
 		$background_color = array_pop( $background_color );
 
-		$color_obj = ariColor::newColor( $background_color );
+		$submenu_background_color = explode( ':', $submenu_background_color );
+		$submenu_background_class = $submenu_background_color[0];
+		$submenu_background_color = array_pop( $submenu_background_color );
+
+		$color_obj    = ariColor::newColor( $background_color );
+		$subcolor_obj = ariColor::newColor( $submenu_background_color );
 
 		$css = '';
 
@@ -341,14 +533,15 @@ class BoldGrid_Framework_Styles {
 		if ( false === $in_footer ) {
 			$css .= ".header-left #{$location}-menu, .header-right #{$location}-menu { background-color: " . $color_obj->toCSS( 'rgba' ) . '; }';
 		}
-		$color_obj->alpha = 0.7;
+		$subcolor_obj->alpha = 0.7;
 		$css .= '@media (min-width: 768px) {';
 
-		$color_obj->alpha = 0.4;
-		$css .= "#{$location}-menu.sm-clean ul {background-color: {$background_color};}";
-		$css .= "#{$location}-menu.sm-clean ul a, #{$location}-menu.sm-clean ul a:hover, #{$location}-menu.sm-clean ul a:focus, #{$location}-menu.sm-clean ul a:active, #{$location}-menu.sm-clean ul a.highlighted, #{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, #{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover { background-color:" . $color_obj->toCSS( 'rgba' ) . ';}';
-		$css .= "#{$location}-menu.sm-clean ul { border: 1px solid " . $color_obj->toCSS( 'rgba' ) . ';}';
-		$css .= "#{$location}-menu.sm-clean > li > ul:before, #{$location}-menu.sm-clean > li > ul:after { border-color: transparent transparent {$background_color} transparent;}";
+		$subcolor_obj->alpha = 0.4;
+
+		$css .= "#{$location}-menu.sm-clean ul {background-color: var(--{$submenu_background_class});}";
+		$css .= "#{$location}-menu.sm-clean ul a:not(.btn), #{$location}-menu.sm-clean ul a:not(.btn):hover, #{$location}-menu.sm-clean ul a:not(.btn):focus, #{$location}-menu.sm-clean ul a:not(.btn):active, #{$location}-menu.sm-clean ul a:not(.btn).highlighted, #{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, #{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover { background-color: var(--{$submenu_background_class});}";
+		$css .= "#{$location}-menu.sm-clean ul { border: 1px solid var(--{$submenu_background_class});}";
+		$css .= "#{$location}-menu.sm-clean > li > ul:before, #{$location}-menu.sm-clean > li > ul:after { border-color: transparent transparent var(--{$submenu_background_class}) transparent;}";
 		$css .= '}';
 
 		return $css;
@@ -425,6 +618,7 @@ class BoldGrid_Framework_Styles {
 				$additional_css .= ".{$property}-background, .{$property2}-background{background: var(--{$property}) !important;}";
 				$additional_css .= ".{$property}-background-color, .{$property2}-background-color{background-color: var(--{$property}) !important;}";
 				$additional_css .= ".{$property}-border-color, .{$property2}-border-color{border-color: var(--{$property}) !important;}";
+				$additional_css .= ".{$property}-outline-color, .{$property2}-outline-color{outline-color: var(--{$property}) !important;}";
 			}
 		}
 
@@ -504,9 +698,6 @@ class BoldGrid_Framework_Styles {
 		wp_enqueue_style( 'hover.css' );
 
 		$this->hover_css();
-
-		$links = new Boldgrid_Framework_Links( $this->configs );
-		$links->add_styles_frontend();
 
 		/* Component Styles */
 		wp_enqueue_style(

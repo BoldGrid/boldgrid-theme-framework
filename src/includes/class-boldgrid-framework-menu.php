@@ -270,7 +270,6 @@ class Boldgrid_Framework_Menu {
 		return $menu;
 	}
 
-
 	/**
 	 * Adds appropriate background class to register menu's UL elements.
 	 *
@@ -312,9 +311,12 @@ class Boldgrid_Framework_Menu {
 	 * @return array $menu Modfied menu location settings.
 	 */
 	public function add_menu_link( $menu ) {
-		$color = get_theme_mod( 'bgtfw_menu_items_link_color_' . $menu['theme_location'] );
-		$color = explode( ':', $color );
-		$color = array_shift( $color );
+		$color     = get_theme_mod( 'bgtfw_menu_items_link_color_' . $menu['theme_location'] );
+		$subcolor  = get_theme_mod( 'bgtfw_menu_items_sub_link_color_' . $menu['theme_location'] );
+		$color     = explode( ':', $color );
+		$color     = array_shift( $color );
+		$subcolor  = explode( ':', $subcolor );
+		$subcolor  = array_shift( $subcolor );
 
 		$background_color = null;
 		$is_transparent = strpos( $menu['menu_class'], 'transparent' ) !== false;
@@ -348,6 +350,10 @@ class Boldgrid_Framework_Menu {
 			}
 
 			$classes[] = $color . '-link-color';
+		}
+
+		if ( ! empty( $subcolor ) ) {
+			$classes[] = $subcolor . '-sub-link-color';
 		}
 
 		// Convert back to string.

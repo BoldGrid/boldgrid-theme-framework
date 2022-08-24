@@ -82,7 +82,7 @@ class Boldgrid_Framework_Sticky_Header {
 						foreach ( $section['items'] as $k => $item ) {
 							if ( ! empty( $item['display'] ) ) {
 								foreach ( $item['display'] as $display ) {
-									if ( 'show' !== $display['display'] ) {
+									if ( 'hide' === $display['display'] ) {
 										$selectors[] = '.' . $item['uid'] . ' ' . $display['selector'];
 									}
 								}

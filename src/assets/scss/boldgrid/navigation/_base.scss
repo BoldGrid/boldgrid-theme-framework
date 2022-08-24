@@ -5,14 +5,40 @@
 			height: 100%;
 			display: flex;
 			flex-direction: row;
-			@include align-control();
-		}
-
-		.sm {
-			@include align-control();
 		}
 	}
 }
+
+.header-top {
+	.bgtfw-menu-wrap {
+		@include align-control();
+	}
+
+	.sm {
+		@include align-control();
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.header-left, .header-right {
+		&.standard-menu-enabled {
+			.bgtfw-menu-wrap {
+				input:not(:checked):not(.hidden)~.sm-clean {
+					flex-direction: column
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	#masthead {
+		.container {
+			width: 100%;
+		}
+	}
+}
+
 
 .standard-menu-enabled {
 	.site-footer .sm-clean {
@@ -44,6 +70,19 @@
 		padding: 13px 20px;
 		text-decoration: none;
 		width: 100%;
+		&.btn {
+			padding: 0px 20px;
+			line-height: 40px !important;
+			&.btn-border-thin {
+				line-height: 38px !important;
+			}
+			&.btn-border {
+				line-height: 36px !important;
+			}
+			&.btn-border-thick {
+				line-height: 32px !important;
+			}
+		}
 	}
 	.sm-clean a.disabled {
 		color: #bbbbbb;
@@ -143,12 +182,27 @@
 				float: left;
 			}
 
+			.sm-clean:not( .sm-vertical ) {
+				li.item-has-btn {
+						margin-left: 20px;
+						margin-right: 20px;
+					&:last-of-type {
+						margin-right: 0px;
+					}
+					&:first-of-type {
+						margin-left: 0px;
+					}
+				}
+			}
+
 			// Left aligned menus need to line up with everything else.
 			.sm-clean.w,
 			.sm-clean.nw,
 			.sm-clean.sw {
-				li:first-of-type a {
-					padding-left: 0px;
+				&:not( .sm-vertical ) {
+					li:first-of-type a {
+						padding-left: 0px;
+					}
 				}
 			}
 
@@ -156,8 +210,15 @@
 			.sm-clean.e,
 			.sm-clean.ne,
 			.sm-clean.se {
-				li:last-of-type a {
-					padding-right: 0px;
+				&:not( .sm-vertical ) {
+					li:last-of-type a {
+						padding-right: 0px;
+					}
+				}
+				&.sm-vertical {
+					ul.sub-arrow {
+						margin-right: -20px;
+					}
 				}
 			}
 			.sm-clean.sm-rtl li {
@@ -208,7 +269,7 @@
 			.sm-clean a.highlighted span.sub-arrow:before {
 				display: none;
 			}
-			.sm-clean li {
+			.sm-clean li:not(.btn-border) {
 				border-top: 0;
 			}
 			.sm-clean > li > ul:before,
@@ -333,6 +394,7 @@
 				border-color: transparent currentColor transparent transparent;
 			}
 			.sm-clean.sm-vertical {
+				flex-direction: column;
 				padding: 10px 0;
 				-webkit-border-radius: 5px;
 				-moz-border-radius: 5px;
@@ -340,22 +402,15 @@
 				-o-border-radius: 5px;
 				border-radius: 5px;
 			}
-			.sm-clean.sm-vertical a {
+			.sm-clean.sm-vertical a:not( .btn ) {
 				padding: 10px 20px;
-			}
-			.sm-clean.sm-vertical a:hover,
-			.sm-clean.sm-vertical a:focus,
-			.sm-clean.sm-vertical a:active,
-			.sm-clean.sm-vertical a.highlighted {
-				background: white;
 			}
 			.sm-clean.sm-vertical a.disabled {
 				background: #eeeeee;
 			}
 			.sm-clean.sm-vertical a span.sub-arrow {
-				right: 8px;
 				top: 50%;
-				margin-top: -5px;
+				margin-left: 10px;
 				border-width: 5px;
 				border-style: dashed dashed dashed solid;
 				border-color: transparent transparent transparent currentColor;
@@ -364,7 +419,7 @@
 			.sm-clean.sm-vertical > li > ul:after {
 				display: none;
 			}
-			.sm-clean.sm-vertical ul a {
+			.sm-clean.sm-vertical ul a:not( .btn ) {
 				padding: 10px 20px;
 			}
 			.sm-clean.sm-vertical ul a:hover,
@@ -392,6 +447,57 @@
 		z-index: 2;
 	}
 
+	.bgtfw-menu-wrap {
+		&.e,
+		&.ne,
+		&.se {
+			justify-content: flex-end;
+			> label {
+				justify-content: flex-end;
+			}
+		}
+		&.n,
+		&.c,
+		&.s {
+			justify-content: center;
+			> label {
+				justify-content: center;
+			}
+		}
+		&.w,
+		&.nw,
+		&.sw {
+			justify-content: flex-start;
+			> label {
+				justify-content: flex-start;
+			}
+		}
+		&.n,
+		&.ne,
+		&.nw {
+			align-items: flex-start;
+			> label {
+				align-items: flex-start;
+			}
+		}
+		&.e,
+		&.c,
+		&.w {
+			align-items: center;
+			> label {
+				align-items: center;
+			}
+		}
+		&.s,
+		&.se,
+		&.sw {
+			align-items: flex-end;
+			> label {
+				align-items: flex-end;
+			}
+		}
+	}
+
 	input.hidden + label[id$="-menu-btn"] {
 		display: none;
 	}
@@ -408,30 +514,149 @@
 		clip: rect(1px, 1px, 1px, 1px);
 	}
 
-	// Hide the menu in mobile view.
-	input:not(:checked):not(.hidden) ~ .sm-clean {
-		display: none;
-	}
-	input:checked ~ .sm-clean {
-		display: block;
-		width: 100%;
+	@media only screen and (max-width: 767px) {
+		.bgtfw-menu-wrap {
+			// Hide the menu in mobile view.
+			&.ham-phone {
+				display: block;
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: none;
+				}
+				input:checked ~ .sm-clean {
+					display: block;
+					width: 100%;
+					li {
+						float: none;
+					}
+				}
+			}
+			&:not( .ham-phone ) {
+				/* hide the button in mobile if not enabled */
+				label[id$="-menu-btn"] {
+					position: absolute;
+					top: -99999px;
+				}
+
+				/* always show the menu if hamburger not enabled */
+				input:checked ~ .sm-clean,
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: flex;
+					width: 100%;
+					&.sm-vertical {
+						flex-direction: column;
+					}
+				}
+			}
+		}
 	}
 
-	@media only screen and (min-width: 768px) {
-		/* hide the button in desktop view */
-		label[id$="-menu-btn"] {
-			position: absolute;
-			top: -99999px;
-		}
+	@media only screen and (min-width: 768px) and (max-width: 991px ) {
+		.bgtfw-menu-wrap {
+			// Hide the menu in tablet view.
+			&.ham-tablet {
+				display: block;
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: none;
+				}
+				input:checked ~ .sm-clean {
+					display: block;
+					width: 100%;
+					li {
+						float: none;
+					}
+				}
+			}
+			&:not( .ham-tablet ) {
+				/* hide the button in tablet if not enabled */
+				label[id$="-menu-btn"] {
+					position: absolute;
+					top: -99999px;
+				}
 
-		/* always show the menu in desktop view */
-		input:checked ~ .sm-clean,
-		input:not(:checked):not(.hidden) ~ .sm-clean {
-			display: flex;
-			width: 100%;
-			flex-direction: row;
+				/* always show the menu if hamburger not enabled */
+				input:checked ~ .sm-clean,
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: flex;
+					width: 100%;
+					&.sm-vertical {
+						flex-direction: column;
+					}
+				}
+			}
 		}
 	}
+	@media only screen and (min-width: 992px) and (max-width: 1200px ) {
+		.bgtfw-menu-wrap {
+			// Hide the menu in tablet view.
+			&.ham-desktop {
+				display: block;
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: none;
+				}
+				input:checked ~ .sm-clean {
+					display: block;
+					width: 100%;
+					li {
+						float: none;
+					}
+				}
+			}
+			&:not( .ham-desktop ) {
+				/* hide the button in tablet if not enabled */
+				label[id$="-menu-btn"] {
+					position: absolute;
+					top: -99999px;
+				}
+
+				/* always show the menu if hamburger not enabled */
+				input:checked ~ .sm-clean,
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: flex;
+					width: 100%;
+					&.sm-vertical {
+						flex-direction: column;
+					}
+				}
+			}
+		}
+	}
+
+	@media only screen and (min-width: 1200px) {
+		.bgtfw-menu-wrap {
+			// Hide the menu in tablet view.
+			&.ham-large {
+				display: block;
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: none;
+				}
+				input:checked ~ .sm-clean {
+					display: block;
+					width: 100%;
+					li {
+						float: none;
+					}
+				}
+			}
+			&:not( .ham-large ) {
+				/* hide the button in tablet if not enabled */
+				label[id$="-menu-btn"] {
+					position: absolute;
+					top: -99999px;
+				}
+
+				/* always show the menu if hamburger not enabled */
+				input:checked ~ .sm-clean,
+				input:not(:checked):not(.hidden) ~ .sm-clean {
+					display: flex;
+					width: 100%;
+					&.sm-vertical {
+						flex-direction: column;
+					}
+				}
+			}
+		}
+	}
+
 	.sm-clean {
 		display: flex;
 		flex-wrap: wrap;
@@ -501,5 +726,13 @@
 	.sm.sm-clean {
 		padding-left: 15px;
 		padding-right: 15px;
+	}
+}
+
+li[class*="hvr-underline"]:not(.hvr-underline-reveal) a:not( .button-primary):not(.button-secondary ) {
+	transform: unset;
+	overflow: unset;
+	&:before {
+		bottom: -2.5px;
 	}
 }

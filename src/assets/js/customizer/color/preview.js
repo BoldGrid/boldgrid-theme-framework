@@ -10,7 +10,7 @@ export class Preview  {
 		this.classControls = [
 			{
 				name: 'bgtfw_footer_color',
-				selector: '#colophon, .footer-content',
+				selector: '#colophon:not(.template-footer), .footer-content:not(.template-footer)',
 				properties: [ 'background-color', 'text-default' ]
 			},
 			{
@@ -50,7 +50,7 @@ export class Preview  {
 			},
 			{
 				name: 'bgtfw_footer_links',
-				selector: '.footer-content',
+				selector: '.footer-content:not(.template-footer)',
 				properties: [ 'link-color' ]
 			}
 		];
@@ -152,6 +152,68 @@ export class Preview  {
 	}
 
 	/**
+	 * Get the css used for weForms label colors.
+	 *
+	 * @since 2.15.0
+	 *
+	 * @param  {string} to Them mod value.
+	 *
+	 * @return {string}    CSS for weForms.
+	 */
+	getWeformsLabelCss( to ) {
+		const color    = new PaletteSelector().getColor( to );
+		var labelColor = color;
+
+		let css                   = '',
+			hasSemicolon          = color ? color.indexOf( ';' ) : -1,
+			weformsLabelSelectors = [];
+
+		if ( color ) {
+			labelColor            = -1 !== hasSemicolon ? color.split( ';' )[0] : color;
+			weformsLabelSelectors = this.getWeformsLabelColorSelectors().join( ', ' );
+
+			css = `
+				${ weformsLabelSelectors } {
+					color: ${ labelColor } !important;
+				}
+			`;
+		}
+
+		return css;
+	}
+
+	/**
+	 * Get the css used for weForms sub-label colors.
+	 *
+	 * @since 2.15.0
+	 *
+	 * @param  {string} to Them mod value.
+	 *
+	 * @return {string}    CSS for weForms.
+	 */
+	getWeformsSubLabelCss( to ) {
+		const color    = new PaletteSelector().getColor( to );
+		var subLabelColor = color;
+
+		let css = '',
+			hasSemicolon = color ? color.indexOf( ';' ) : -1,
+			weformsSubLabelSelectors = [];
+
+		if ( color ) {
+			subLabelColor            = -1 !== hasSemicolon ? color.split( ';' )[0] : color;
+			weformsSubLabelSelectors = this.getWeformsSubLabelColorSelectors().join( ', ' );
+
+			css = `
+				${ weformsSubLabelSelectors } {
+					color: ${ subLabelColor } !important;
+				}
+			`;
+		}
+
+		return css;
+	}
+
+	/**
 	 * Get a list of heading selectors from the global.
 	 *
 	 * @since 2.0.0
@@ -171,6 +233,44 @@ export class Preview  {
 	}
 
 	/**
+	 * Get a list of weforms label selectors from the global.
+	 *
+	 * @since 2.15.0
+	 *
+	 * @return {array} list of selectors.
+	 */
+	getWeformsLabelColorSelectors() {
+		const selectors = [];
+
+		_.each( BOLDGRID.CUSTOMIZER.data.customizerOptions.typography.selectors, function( value, key ) {
+			if ( 'weformsLabel' === value.type ) {
+				selectors.push( key );
+			}
+		} );
+
+		return selectors;
+	}
+
+	/**
+	 * Get a list of weforms sub-label selectors from the global.
+	 *
+	 * @since 2.15.0
+	 *
+	 * @return {array} list of selectors.
+	 */
+	getWeformsSubLabelColorSelectors() {
+		const selectors = [];
+
+		_.each( BOLDGRID.CUSTOMIZER.data.customizerOptions.typography.selectors, function( value, key ) {
+			if ( 'weformsSubLabel' === value.type ) {
+				selectors.push( key );
+			}
+		} );
+
+		return selectors;
+	}
+
+	/**
 	 * Use the theme mod saved for a heading color to set the heading colors.
 	 *
 	 * @since 2.0.0
@@ -179,6 +279,29 @@ export class Preview  {
 		const css = this.getHeadingCSS( wp.customize( 'bgtfw_headings_color' )() );
 		this.previewUtility.updateDynamicStyles( 'bgtfw_headings_color', css );
 	}
+
+	/**
+	 * Use the theme mod saved for a weForms label color
+	 * to set the weForms label colors.
+	 *
+	 * @since 2.0.0
+	 */
+	setWeformsColors() {
+		const css = this.getWeformsLabelCss( wp.customize( 'bgtfw_weforms_label_color' )() );
+		this.previewUtility.updateDynamicStyles( 'bgtfw_weforms_label_color', css );
+	}
+
+	/**
+	 * Use the theme mod saved for a weForms sub-label color
+	 * to set the weForms sub-label colors.
+	 *
+	 * @since 2.0.0
+	 */
+	setWeformsSubColors() {
+		const css = this.getWeformsSubLabelCss( wp.customize( 'bgtfw_weforms_sublabel_color' )() );
+		this.previewUtility.updateDynamicStyles( 'bgtfw_weforms_sublabel_color', css );
+	}
+
 
 	/**
 	 * Get Hamburger menu CSS.
@@ -211,9 +334,28 @@ export class Preview  {
 	getActiveLinkColor( to, menuId ) {
 		const color = new PaletteSelector().getColor( to );
 		let css = `
-		#${menuId} .current-menu-item:not( .btn ) > a,
-		#${menuId} .current-menu-ancestor:not( .btn ) > a,
-		#${menuId} .current-menu-parent:not( .btn ) > a {
+		#${menuId} .current-menu-item > a:not( .btn ),
+		#${menuId} .current-menu-ancestor > a:not( .btn ),
+		#${menuId} .current-menu-parent > a:not( .btn ) {
+			color: ${color};
+		}`;
+
+		return css;
+	}
+
+	/**
+	 * Get Submenu Active Link Color
+	 *
+	 * @param {string} to The thememod's color value.
+	 * @param {string} menuId Menu ID for nav menu instance.
+	 * @returns {string} css The CSS to add.
+	 */
+	getSubActiveLinkColor( to, menuId ) {
+		const color = new PaletteSelector().getColor( to );
+		let css = `
+		#${menuId} ul > .current-menu-item > a:not( .btn ),
+		#${menuId} ul > .current-menu-ancestor > a:not( .btn ),
+		#${menuId} ul > .current-menu-parent > a:not( .btn ) {
 			color: ${color};
 		}`;
 
@@ -248,7 +390,8 @@ export class Preview  {
 	 * @return {String} css The CSS to add.
 	 */
 	getMenuColorsCSS( location ) {
-		let type = `bgtfw_menu_background_${location}`;
+		let type     = `bgtfw_menu_background_${location}`;
+		let subtype  = `bgtfw_menu_submenu_background_${location}`;
 		let inFooter = false;
 
 		if ( wp.customize( type )().includes( 'transparent' ) || _.isUndefined( wp.customize( type )() ) ) {
@@ -262,15 +405,26 @@ export class Preview  {
 			type = `bgtfw_${type}_color`;
 		}
 
-		let color = wp.customize( type )();
+		if ( wp.customize( subtype )().includes( 'transparent' ) || _.isUndefined( wp.customize( subtype )() ) ) {
+			subtype = 'header';
 
-		let paletteSelector = new PaletteSelector();
+			if ( BOLDGRID.CUSTOMIZER.data.menu.footerMenus.includes( location ) ) {
+				subtype = 'footer';
+				inFooter = true;
+			}
 
-		let colorVariable = paletteSelector.getColor( color );
+			subtype = `bgtfw_${subtype}_color`;
+		}
 
-		color = paletteSelector.getColor( color, true );
+		let paletteSelector  = new PaletteSelector();
+		let color            = wp.customize( type )();
+		let subcolor         = wp.customize( subtype )();
+		let subcolorVariable = paletteSelector.getColor( subcolor );
 
-		let alpha = parent.net.brehaut.Color( color );
+		color    = paletteSelector.getColor( color, true );
+		subcolor = paletteSelector.getColor( subcolor, true );
+
+		let alpha    = parent.net.brehaut.Color( color );
 		let css = '';
 
 		location = location.replace( /_/g, '-' );
@@ -280,10 +434,10 @@ export class Preview  {
 		}
 
 		css += '@media (min-width: 768px) {';
-		css += `#${location}-menu.sm-clean ul {background-color: ${colorVariable};}`;
-		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${alpha};}`;
-		css += `#${location}-menu.sm-clean ul { border: 1px solid ${alpha};}`;
-		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${colorVariable} transparent;}`;
+		css += `#${location}-menu.sm-clean ul {background-color: ${subcolorVariable};}`;
+		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${subcolorVariable};}`;
+		css += `#${location}-menu.sm-clean ul { border: 1px solid ${subcolorVariable};}`;
+		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${subcolorVariable} transparent;}`;
 		css += '}';
 
 		return css;
@@ -347,6 +501,20 @@ export class Preview  {
 	}
 
 	/**
+	 * Set Active Sub menu link color.
+	 *
+	 * @param {string} location menu location
+	 * @param {string} menuId menu id
+	 */
+	setActiveSubLinkColor( location, menuId ) {
+		let subMod = `bgtfw_menu_items_sub_active_link_color_${location}`;
+		let subTo = wp.customize( subMod )();
+		let subCss = this.getSubActiveLinkColor( subTo, menuId );
+
+		this.previewUtility.updateDynamicStyles( `active-link-sub-color-${location}-inline-css`, subCss );
+	}
+
+	/**
 	 * Set active menu item link colors.
 	 *
 	 * @since 2.0.0
@@ -358,6 +526,7 @@ export class Preview  {
 		let mod = `bgtfw_menu_items_active_link_color_${location}`;
 		let to = wp.customize( mod )();
 		let css = this.getActiveLinkColor( to, menuId );
+
 		this.previewUtility.updateDynamicStyles( `active-link-color-${location}-inline-css`, css );
 	}
 
@@ -402,9 +571,19 @@ export class Preview  {
 				properties: [ 'background-color' ]
 			},
 			{
+				name: `bgtfw_menu_submenu_background_${location}`,
+				selector: `#${menuId} ul`,
+				properties: [ 'background-color' ]
+			},
+			{
 				name: `bgtfw_menu_items_link_color_${location}`,
 				selector: `#${menuId}`,
 				properties: [ 'link-color' ]
+			},
+			{
+				name: `bgtfw_menu_items_sub_link_color_${location}`,
+				selector: `#${menuId}`,
+				properties: [ 'sub-link-color' ]
 			},
 			{
 				name: `bgtfw_menu_items_active_link_background_${location}`,
@@ -542,6 +721,9 @@ export class Preview  {
 				// Set active link colors.
 				this.setActiveLinkColor( props.theme_location, props.menu_id );
 
+				// Set active link colors.
+				this.setActiveSubLinkColor( props.theme_location, props.menu_id );
+
 				// Set supplementary menu CSS.
 				this.setMenuColors( props.theme_location );
 
@@ -577,6 +759,8 @@ export class Preview  {
 		// Setup event handlers.
 		this._bindConfiguredControls();
 		this._bindHeadingColor();
+		this._bindWeformsColor();
+		this._bindWeformsSubColor();
 		this._bindHeaderOverlay();
 		this._bindEntryHeader();
 		this._bindGlobalPageTitles();
@@ -621,7 +805,7 @@ export class Preview  {
 	 * @since 2.0.0
 	 */
 	_bindMenuColors( location ) {
-		wp.customize( `bgtfw_menu_background_${location}`, 'bgtfw_header_color', 'bgtfw_footer_color', ( ...args ) => {
+		wp.customize( `bgtfw_menu_background_${location}`, `bgtfw_menu_submenu_background_${location}`, 'bgtfw_header_color', 'bgtfw_footer_color', ( ...args ) => {
 			args.map( ( control ) => control.bind( () => this.setMenuColors( location ) ) );
 		} );
 	}
@@ -647,6 +831,28 @@ export class Preview  {
 	_bindHeadingColor() {
 		wp.customize( 'bgtfw_headings_color', ( value ) => {
 			value.bind( () => this.setHeadingColors() );
+		} );
+	}
+
+	/**
+	 * Bind the change events for weforms label colors changing.
+	 *
+	 * @since 2.15.0
+	 */
+	_bindWeformsColor() {
+		wp.customize( 'bgtfw_weforms_label_color', ( value ) => {
+			value.bind( () => this.setWeformsColors() );
+		} );
+	}
+
+	/**
+	 * Bind the change events for weForms sub-label colors changing.
+	 *
+	 * @since 2.15.0
+	 */
+	_bindWeformsSubColor() {
+		wp.customize( 'bgtfw_weforms_sublabel_color', ( value ) => {
+			value.bind( () => this.setWeformsSubColors() );
 		} );
 	}
 
@@ -683,6 +889,10 @@ export class Preview  {
 	_bindActiveLinkColors( location, menuId ) {
 		wp.customize( `bgtfw_menu_items_active_link_color_${location}`, ( value ) => {
 			value.bind( () => this.setActiveLinkColor( location, menuId ) );
+		} );
+
+		wp.customize( `bgtfw_menu_items_sub_active_link_color_${location}`, ( value ) => {
+			value.bind( () => this.setActiveSubLinkColor( location, menuId ) );
 		} );
 	}
 

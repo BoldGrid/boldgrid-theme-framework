@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph, jamesros161
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.8
+* **Tested up to:** 5.9
 * **License:** GPL-3.0-or-later
 * **License URI:** https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
@@ -35,6 +35,73 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.16.2 ###
+* Bug Fix: Dividing by Zero in the Header [#708](https://github.com/BoldGrid/boldgrid-theme-framework/issues/708)
+* Bug Fix: Featured Image background for Posts does not display [#717](https://github.com/BoldGrid/boldgrid-theme-framework/issues/717)
+* Bug Fix: WooCommerce Custom Ordering is Ignored [#363](https://github.com/BoldGrid/boldgrid-theme-framework/issues/363)
+* Bug Fix: Review z-index with dropdown menus [#489](https://github.com/BoldGrid/boldgrid-theme-framework/issues/489)
+
+### 2.16.1 ###
+* Bug Fix: Hover Underline Reveal effect for Menus is broken [#711](https://github.com/BoldGrid/boldgrid-theme-framework/issues/711)
+* Bug Fix: Allow filtering of Premium URL's in theme [#706](https://github.com/BoldGrid/boldgrid-theme-framework/issues/706)
+* Bug Fix: Fix submenu background colors not changing with palette
+* Bug Fix: Hover Effect for Links does not respect Customizer setting [#713](https://github.com/BoldGrid/boldgrid-theme-framework/issues/713)
+
+### 2.16.0 ###
+* New Feature: Change translucent overlays with palette changes [#554](https://github.com/BoldGrid/boldgrid-theme-framework/issues/554)
+* New Feature: Make menu underlines and menu hovers match styles [#586](https://github.com/BoldGrid/boldgrid-theme-framework/issues/586)
+* New Feature: Change Menu Button styles to match padding / margins of other menu items [#546](https://github.com/BoldGrid/boldgrid-theme-framework/issues/546)
+* Bug Fix: Transparent Buttons in Menus do not work as expected [#702](https://github.com/BoldGrid/boldgrid-theme-framework/issues/702)
+* Bug FIx: Responsive Typography - Live Preview is incorrect with Custom Page Headers [#704](https://github.com/BoldGrid/boldgrid-theme-framework/issues/704)
+* Bug Fix: MFW / FWR content has gap on left side [#701](https://github.com/BoldGrid/boldgrid-theme-framework/issues/701)
+* Bug Fix: Customizer Heading font used in dashboard [#705](https://github.com/BoldGrid/boldgrid-theme-framework/issues/705)
+* Bug Fix: Font weights do not update in live preview [#677](https://github.com/BoldGrid/boldgrid-theme-framework/issues/677)
+* Bug Fix: Responsive typography - live preview is incorrect [#684](https://github.com/BoldGrid/boldgrid-theme-framework/issues/684)
+
+### 2.15.0 ###
+* New Feature: Add font-display: swap to FontAwesome CSS [#649](https://github.com/BoldGrid/boldgrid-theme-framework/issues/649)
+* New Feature: Improve integration with weForms & Crio [#585](https://github.com/BoldGrid/boldgrid-theme-framework/issues/585)
+* Bug Fix: Footer menu inherits site content link underline [#678](https://github.com/BoldGrid/boldgrid-theme-framework/issues/678)
+
+### 2.14.0 ###
+* New Feature: New container type - full width but contained [#540](https://github.com/BoldGrid/boldgrid-theme-framework/issues/540)
+* New Feature: Extend new container type to headers & footers [#555](https://github.com/BoldGrid/boldgrid-theme-framework/issues/555)
+* Bug Fix: hamburger menu icon shows next to menu from 1160px - 1199px [#366](https://github.com/BoldGrid/post-and-page-builder/issues/366)
+
+### 2.13.3 ###
+* Bug Fix: Re-build release with 2.13.1 & 2.13.2 fixes properly merged.
+
+### 2.13.2 ###
+* Bug Fix: Fonts in Customizer are misaligned from input [#646](https://github.com/BoldGrid/boldgrid-theme-framework/issues/646)
+
+### 2.13.1 ###
+* Bug Fix: Responsive Utilities from PPB are not respected in latest Crio version [#637](https://github.com/BoldGrid/boldgrid-theme-framework/issues/637)
+
+### 2.13.0 ###
+* New Feature: Add controls for submenu backround, link, and active link colors [#587](https://github.com/BoldGrid/boldgrid-theme-framework/issues/587)
+* Feature Update: Update PPB and Crio Google Fonts [#276](https://github.com/BoldGrid/post-and-page-builder/issues/276)
+* Bug Fix: Headings responsive typography controls buttons [#623](https://github.com/BoldGrid/boldgrid-theme-framework/issues/623)
+### 2.12.0 ###
+* New Feature: Hamburger Menus on Tablet / Desktop [#512](https://github.com/BoldGrid/boldgrid-theme-framework/issues/512)
+* New Feature: Extend responsive text controls to Tagline & Custom Page Header Site Title [#557](https://github.com/BoldGrid/boldgrid-theme-framework/issues/557)
+* New Feature: Select primary / secondary button design from Customizer [#507](https://github.com/BoldGrid/boldgrid-theme-framework/issues/507)
+* New Feature: Make button text responsive [#556](https://github.com/BoldGrid/boldgrid-theme-framework/issues/556)
+* New Feature: Font control for buttons [#506](https://github.com/BoldGrid/boldgrid-theme-framework/issues/506)
+* Bug Fix: Custom Template 'Page Title' does not use calculated Heading Font Size values. [#553](https://github.com/BoldGrid/boldgrid-theme-framework/issues/553)
+* Bug Fix: wp_register_style was called incorrectly [#595](https://github.com/BoldGrid/boldgrid-theme-framework/issues/595)
+* Bug Fix: Custom Footers do not inherit main text setting from Customizer [#579](https://github.com/BoldGrid/boldgrid-theme-framework/issues/579)
+* Bug Fix: Inconsistent hover effect on links [#513](https://github.com/BoldGrid/boldgrid-theme-framework/issues/513)
+* Bug Fix: Sticky Headers & live preview [#564](https://github.com/BoldGrid/boldgrid-theme-framework/issues/564)
+* Bug Fix: Edit buttons & Custom Footers [#571](https://github.com/BoldGrid/boldgrid-theme-framework/issues/571)
+* Bug Fix: Fix hr alignment in custom footer templates [#578](https://github.com/BoldGrid/boldgrid-theme-framework/issues/578)
+* Bug Fix: Remove min-height from small buttons [#577](https://github.com/BoldGrid/boldgrid-theme-framework/issues/577)
+* Bug Fix: Hiding Page titles breaks title display in the Recent Post widget [#382](https://github.com/BoldGrid/boldgrid-theme-framework/issues/382)
+* Bug Fix: Button color stays orange after changing palette [#561](https://github.com/BoldGrid/boldgrid-theme-framework/issues/561)
+
+### 2.11.0 ###
+* New Feature: Added responsive font size controls for Body Font, Headings and Site Title[#84](https://github.com/BoldGrid/boldgrid-theme-framework/issues/84)
+* New Feature: Added support for new Sticky Header template and Footer Template features in Crio Pro 1.5.0[#544](https://github.com/BoldGrid/boldgrid-theme-framework/pull/544)
 
 ### 2.10.0 ###
 * Bug Fix: Add Menu Link Hover Color Control in Crio [#328](https://github.com/BoldGrid/boldgrid-theme-framework/issues/328)

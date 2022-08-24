@@ -89,6 +89,25 @@
 .container-fluid .boldgrid-section-group .boldgrid-section {
 	margin: auto;
 }
+
+
+#main-wrapper.full-width .main .entry-content .boldgrid-section {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	.boldgrid-section-divider {
+		width:  calc( 100% + 40px)!important;
+	}
+	.container-fluid {
+		width: calc( 100% + 30px );
+	}
+}
+
+.section-divider-bottom {
+	margin-bottom: -2px;
+}
+
 .container .container {
 	width: auto;
 }

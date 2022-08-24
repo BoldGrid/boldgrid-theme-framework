@@ -1,6 +1,7 @@
 .bgtfw-header, .bgtfw-sticky-header, .bgtfw-footer {
 	&.template-header {
 		.boldgrid-section {
+			flex-direction: column;
 			.container {
 				.row {
 					> div:first-child {
@@ -340,6 +341,111 @@
 		}
 	}
 }
+
+@media only screen and (min-width: 1200px) {
+	body[data-container="max-full-width"] {
+		.page-header-wrapper.full-width {
+			.page-header {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: calc( 100% + 30px );
+				> .featured-imgage-header:not( .container ) {
+					width: calc( 100% + 30px );
+				}
+			}
+		}
+		#main-wrapper.full-width .main .entry-content .container-fluid .row {
+			div[class^="col-"]:first-of-type {
+				>, div > {
+					p:not( .mod-reset ), h1, h2, h3, h4, h5, h6 {
+						padding-left: 10px;
+					}
+				}
+			}
+			div[class^="col-"]:last-of-type {
+				>, div > {
+					p:not( .mod-reset ), h1, h2, h3, h4, h5, h6 {
+						padding-right: 10px;
+					}
+				}
+			}
+		}
+		&.archive {
+			#content.site-content {
+				justify-content: center;
+				align-items: center;
+			}
+		}
+		&.single {
+			#main-wrapper.full-width .main .entry-content .boldgrid-section {
+				padding-left: 0px;
+				padding-right: 0px;
+			}
+		}
+		&.blog, &.archive, &.woocommerce, &.woocommerce-page {
+			#main-wrapper.full-width.max-full-width {
+				margin-left: auto;
+				margin-right: auto;
+				main.main {
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+			&.has-sidebar, &.woocommerce-page {
+				#main-wrapper.full-width.max-full-width {
+					main.main {
+						padding-left: 20px;
+						padding-right: 20px;
+					}
+				}
+			}
+		}
+		&.search {
+			#main-wrapper.full-width.max-full-width {
+				justify-content: center;
+				align-items: center;
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	body[data-container="max-full-width"] {
+		overflow-x: hidden;
+		#masthead .boldgrid-section>.container-fluid .row.full-width-row,
+		#masthead-sticky .boldgrid-section>.container-fluid .row.full-width-row,
+		#colophon .boldgrid-section>.container-fluid .row.full-width-row,
+		#main-wrapper.full-width.max-full-width .boldgrid-section>.container-fluid .row.full-width-row {
+			position: relative;
+			> div[class^=col-] {
+				z-index: 1;
+			}
+			.fwr-container {
+				width: calc( 100vw - 10px );
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 50%;
+				transform: translateX( -50% );
+				z-index: 0;
+				.fwr-left-container {
+					position:absolute;
+					left: 0;
+					top: 0;
+					bottom: 0;
+				}
+				.fwr-right-container {
+					position:absolute;
+					right: 0;
+					top: 0;
+					bottom: 0;
+				}
+			}
+		}
+	}
+}
+
 .page-header-wrapper {
 	.page-header {
 		.featured-imgage-header {
@@ -386,6 +492,10 @@
 			margin-right: -20px;
 			padding-left: 20px;
 			padding-right: 20px;
+			&.boldgrid-slider {
+				padding-left: 0px;
+				padding-right: 0px;
+			}
 			.full-width {
 				>.row {
 					>div {
@@ -468,6 +578,16 @@ body:not( .header-top ) {
 }
 #colophon {
 	.bgtfw-footer {
+		&.template-footer{
+			.bg-editor-hr-wrap {
+				padding-left: 0px;
+				padding-right: 0px;
+				> div {
+					padding-left: 0px;
+					padding-right: 0px;
+				}
+			}
+		}
 		>.boldgrid-section {
 			>.container {
 				>.row {
@@ -502,14 +622,6 @@ footer#colophon {
 }
 @media only screen and (max-width: 991px) {
 	.single {
-		.full-width {
-			.entry-content {
-				.boldgrid-section {
-					margin-left: 0px;
-					margin-right: 0px;
-				}
-			}
-		}
 		&.page-title-above {
 			&.has-sidebar {
 				&:not(.woocommerce) {

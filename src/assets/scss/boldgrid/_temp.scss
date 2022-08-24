@@ -100,13 +100,6 @@
 	.flexbox .header-right .site-content {
 		width: calc(100% - 400px);
 	}
-	/** Menu Styles */
-	.flexbox .header-left .site-header input:checked ~ .sm-clean,
-	.flexbox .header-left .site-header input:not(:checked):not(.hidden) ~ .sm-clean,
-	.flexbox .header-right .site-header input:checked ~ .sm-clean,
-	.flexbox .header-right .site-header input:not(:checked):not(.hidden) ~ .sm-clean {
-		display: block;
-	}
 	/** Left w/ fixed position **/
 	/* Header adjustments */
 	.flexbox .header-right.header-fixed .site-header {

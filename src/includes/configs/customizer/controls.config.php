@@ -43,6 +43,9 @@ $title_tagline_controls    = require dirname( __FILE__ ) . '/controls/title-tagl
 $typography_controls       = require dirname( __FILE__ ) . '/controls/typography.controls.php';
 $woocommerce_controls      = require dirname( __FILE__ ) . '/controls/woocommerce.controls.php';
 $general_controls          = require dirname( __FILE__ ) . '/controls/general.controls.php';
+$button_controls           = require dirname( __FILE__ ) . '/controls/buttons.controls.php';
+$container_width_controls  = require dirname( __FILE__ ) . '/controls/container-width.controls.php';
+$weforms_controls          = require dirname( __FILE__ ) . '/controls/weforms.controls.php';
 
 return array_merge(
 	$background_image_controls,
@@ -60,5 +63,8 @@ return array_merge(
 	$title_tagline_controls,
 	$typography_controls,
 	$woocommerce_controls,
+	$button_controls,
+	$container_width_controls,
+	$weforms_controls,
 	$general_controls
 );

@@ -17,7 +17,7 @@ return array(
 		'settings'          => 'bgtfw_headings_color',
 		'label'             => esc_attr__( 'Heading Font Color', 'bgtfw' ),
 		'section'           => 'boldgrid_typography',
-		'priority'          => 4,
+		'priority'          => 6,
 		'default'           => '',
 		'choices'           => array(
 			'colors' => $bgtfw_formatted_palette,
@@ -39,7 +39,7 @@ return array(
 			'subsets'        => array( 'latin-ext' ),
 			'text-transform' => 'none',
 		),
-		'priority'  => 2,
+		'priority'  => 3,
 		'output'    => $bgtfw_typography->get_output_values( $bgtfw_configs ),
 		'edit_vars' => array(
 			array(
@@ -50,18 +50,14 @@ return array(
 		),
 	),
 	'bgtfw_headings_font_size'         => array(
-		'type'      => 'slider',
+		'type'      => 'text',
 		'transport' => 'postMessage',
 		'settings'  => 'bgtfw_headings_font_size',
 		'label'     => esc_attr__( 'Font Size', 'bgtfw' ),
 		'section'   => 'boldgrid_typography',
 		'default'   => '14',
-		'choices'   => array(
-			'min'  => '6',
-			'max'  => '42',
-			'step' => '1',
-		),
-		'priority'  => 3,
+		'priority'  => 4,
+		'sanitize_callback' => array( $bgtfw_typography, 'sanitize_font_size' ),
 	),
 	'bgtfw_body_typography'            => array(
 		'type'      => 'typography',
@@ -79,10 +75,9 @@ return array(
 			'text-transform' => 'none',
 		),
 		'priority'  => 1,
-		'output'    => array(
-			array(
-				'element' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header',
-			),
+		'output'    => $bgtfw_typography->get_typography_output(
+			$bgtfw_configs,
+			'.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header, .template-footer'
 		),
 		'edit_vars' => array(
 			array(

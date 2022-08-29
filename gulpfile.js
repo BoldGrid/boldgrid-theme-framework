@@ -206,6 +206,8 @@ gulp.task('phpDeps', function () {
     // Use locally provided FontAwesome dependency.
     .pipe(replace(/([ \t]*)wp_enqueue_script\(\s?\'kirki-fontawesome-font\',\s?\'https:\/\/use.fontawesome.com\/30858dc40a.js\',\s?array\(\),\s?\'4.0.7\',\s?(?:true|false)\s?\)\;\s?^(?:[\t ]*(?:\r?\n|\r))*/gm, "$1global $boldgrid_theme_framework;\n$1$bgtfw_configs = $boldgrid_theme_framework->get_configs();\n\n$1if ( ! class_exists( 'BoldGrid_Framework_Styles' ) ) {\n$1\trequire_once $bgtfw_configs['framework']['includes_dir'] . 'class-boldgrid-framework-styles.php';\n$1}\n\n$1$bgtfw_styles = new BoldGrid_Framework_Styles( $bgtfw_configs );\n$1$bgtfw_styles->enqueue_fontawesome();\n\n"))
 	.pipe( deleteLines( { 'filters': [ /.*sourceMappingURL=.*/i ] } ) )
+  // Change 'final private' methods to 'private'.
+  .pipe( replace( /final private function/g, 'private function' ) )
 	.pipe(gulp.dest(config.dist + '/includes/kirki') );
   // Get Kirki CSS.
   gulp.src(config.node_modules + '/kirki-toolkit/assets/**/*.{css,json}')

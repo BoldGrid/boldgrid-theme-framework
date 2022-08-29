@@ -23,11 +23,13 @@ export default {
 			let customMenus = [];
 			Object.keys( _wpCustomizeNavMenusSettings.locationSlugMappedToName ).forEach( menu => {
 				let isActive = false;
-				if ( /.*_\d+/.test( menu ) ) {
+
+				// Only mark as active if there is a panel for it.
+				if ( /.*_\d+/.test( menu ) && api.panel( `bgtfw_menu_location_${menu}` ) ) {
 					isActive = true;
-					api.controlConstructor.nav_menu_location.prototype.updateMenuLocations( menu, isActive );
 					customMenus.push( menu );
 				}
+				api.controlConstructor.nav_menu_location.prototype.updateMenuLocations( menu, isActive );
 			} );
 			let menus = api.control( 'bgtfw_header_layout_custom' ).getConnectedMenus()
 				.map( menu => menu.replace( 'boldgrid_menu_', '' ) );
@@ -66,6 +68,11 @@ export default {
 								if ( /.*_\d+/.test( menu ) ) {
 									isActive = true;
 								}
+
+								// If there is no panel for this location, mark inactive.
+								if ( ! api.panel( `bgtfw_menu_location_${menu}` ) ) {
+									isActive = false;
+								}
 								api.controlConstructor.nav_menu_location.prototype.updateMenuLocations( menu, isActive );
 							} );
 						} );
@@ -95,6 +102,11 @@ export default {
 			isActive = () => menus.includes( this.id ) ? true : false;
 		}
 		let panel = api.panel( `bgtfw_menu_location_${ locationId }` );
+
+		// If there is no panel for this location quit.
+		if ( ! panel ) {
+			return;
+		}
 
 		// Force the active panel state to read JS state set with isActive() and ignore server response.
 		panel.active.validate = isActive;

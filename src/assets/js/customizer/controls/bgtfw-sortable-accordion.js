@@ -568,6 +568,11 @@ export default {
 			if ( 'sticky-header' === this.params.location && ! location.includes( 'sticky' ) ) {
 				return;
 			}
+
+			// Do not include menu locations without a customizer panel.
+			if ( ! api.panel( `bgtfw_menu_location_${location}` ) ) {
+				return;
+			}
 			attr = `boldgrid_menu_${ location }` === type ? 'selected' : '';
 			markup += `<option value="boldgrid_menu_${ location }"${ attr }>${ name }</option>`;
 		} );
@@ -886,7 +891,16 @@ export default {
 	 * @since 2.0.3
 	 */
 	getAllMenuActions() {
-		return Object.keys( window._wpCustomizeNavMenusSettings.locationSlugMappedToName ).map( item => `boldgrid_menu_${item}` );
+		var menuLocations = [];
+
+		// We only want to list menus that have an associated panel.
+		$.each( window._wpCustomizeNavMenusSettings.locationSlugMappedToName, ( location ) => {
+			if ( api.panel( `bgtfw_menu_location_${location}` ) ) {
+				menuLocations.push( location );
+			}
+		} );
+
+		return menuLocations.map( location => `bgtfw_menu_${ location }` );
 	},
 
 	/**

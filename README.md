@@ -36,7 +36,11 @@ user guide for more information.
 
 ## Changelog ##
 
-### 2.16.2 ###
+### 2.16.3 ###
+* Bug Fix: Logos using Flex display stretch vertically on iOS [#516](https://github.com/BoldGrid/boldgrid-theme-framework/issues/516)
+* Bug Fix: Duplicate Header in Customizer related to Windows display settings [#488](https://github.com/BoldGrid/boldgrid-theme-framework/issues/488)
+* Bug Fix: WPForms email confirmation field error [#614](https://github.com/BoldGrid/boldgrid-theme-framework/issues/614)
+* Bug Fix: Conflict with PolyLang, Header/Footer Layout Controls do not function [#401](https://github.com/BoldGrid/boldgrid-theme-framework/issues/401)
 * Update: Update "postcss" dependancy from 6.0.22 -> 8.2.13 [#370](https://github.com/BoldGrid/boldgrid-theme-framework/pull/370)
 * Update: Update "snyk " dependancy from 1.338.0 -> 1.685.0 [#562](https://github.com/BoldGrid/boldgrid-theme-framework/pull/562)
 * Update: Update "@wordpress/dom-ready" dependancy from 2.11.0 -> 2.13.2 [#367](https://github.com/BoldGrid/boldgrid-theme-framework/pull/367)

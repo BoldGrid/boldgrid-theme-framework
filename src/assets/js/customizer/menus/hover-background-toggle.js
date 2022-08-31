@@ -74,7 +74,13 @@ export class HoverBackgroundToggle {
 	 * @since 2.0.0
 	 */
 	_onLoad() {
-		this.menus = window._wpCustomizeNavMenusSettings.locationSlugMappedToName;
+		var menus  = window._wpCustomizeNavMenusSettings.locationSlugMappedToName;
+		this.menus = {};
+		Object.keys( menus ).forEach( ( menu ) => {
+			if ( api.panel( `bgtfw_menu_location_${menu}` ) ) {
+				this.menus[ menu ] = menus[ menu ];
+			}
+		} );
 		this._bindHoverBackgroundToggle();
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"name": "boldgrid-theme-framework",
-	"version": "2.16.2",
+	"version": "2.16.3",
 	"description": "BoldGrid Theme Framework",
 	"main": "index.js",
 	"engines": {
@@ -52,7 +52,12 @@
 		"url": "https://github.com/BoldGrid/boldgrid-theme-framework.git"
 	},
 	"resolutions": {
-		"natives": "1.1.6"
+		"natives": "1.1.6",
+		"i": "^0.3.7",
+		"**/chownr": "^1.1.4",
+		"**/url-parse": "^1.5.10",
+		"**/follow-redirects": "^1.14.9",
+		"**/nanoid": "^3.1.22"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.0.0-beta.47",
@@ -110,7 +115,7 @@
 		"jshint-stylish": "^2.1.0",
 		"mini-css-extract-plugin": "^0.4.0",
 		"mkdirp": "^0.5.1",
-		"moment": "^2.24.0",
+		"moment": "^2.29.4",
 		"multislider": "https://github.com/ippontech/multiSlider.js",
 		"php-parser": "^3.0.0-prerelease.8",
 		"pkg-dir": "^3.0.0",
@@ -132,10 +137,10 @@
 		"webpack-runtime-public-path-plugin": "^1.1.2"
 	},
 	"dependencies": {
-		"@babel/runtime-corejs2": "^7.12.1",
+		"@babel/runtime-corejs2": "^7.13.17",
 		"@boldgrid/components": "^2.16.2",
-		"@wordpress/dom-ready": "^2.11.0",
-		"@wordpress/hooks": "^2.10.0",
+		"@wordpress/dom-ready": "^2.13.2",
+		"@wordpress/hooks": "^2.12.2",
 		"Buttons": "https://github.com/boldgrid/Buttons#crio-buttons",
 		"animate.css": "3.7.2",
 		"bootstrap-sass": "~3.4.1",
@@ -154,11 +159,13 @@
 		"lodash.kebabcase": "^4.1.1",
 		"lodash.lowercase": "^4.3.0",
 		"lodash.startcase": "^4.4.0",
-		"postcss": "^6.0.22",
+		"postcss": "^8.2.13",
 		"sass.js": "~0.11.1",
 		"scssphp": "https://github.com/scssphp/scssphp#v1.10.0",
 		"smartmenus": "^1.1.0",
-		"wow.js": "^1.2.2"
-	}
+		"wow.js": "^1.2.2",
+		"snyk": "^1.685.0"
+	},
+	"snyk": true
 }
 

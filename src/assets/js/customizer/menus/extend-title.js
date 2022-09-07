@@ -25,6 +25,11 @@ export class SectionExtendTitle {
 	 */
 	_bindMenuPanels() {
 		for ( const location of Object.keys( this.menus ) ) {
+
+			// Do not try to bind panels that do not exist.
+			if ( ! api.panel( `bgtfw_menu_location_${location}` ) ) {
+				continue;
+			}
 			api.panel( `bgtfw_menu_location_${location}` ).expanded.bind( () => this.updateTitle( location ) );
 			api( `bgtfw_menu_hamburger_${location}`, ( value ) => value.bind( () => this.updateTitle( location ) ) );
 			api( `bgtfw_menu_hamburger_${location}_toggle`, ( value ) => value.bind( () => this.updateTitle( location ) ) );

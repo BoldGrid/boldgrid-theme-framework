@@ -36,6 +36,23 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.16.3 ###
+* Bug Fix: Logos using Flex display stretch vertically on iOS [#516](https://github.com/BoldGrid/boldgrid-theme-framework/issues/516)
+* Bug Fix: Duplicate Header in Customizer related to Windows display settings [#488](https://github.com/BoldGrid/boldgrid-theme-framework/issues/488)
+* Bug Fix: WPForms email confirmation field error [#614](https://github.com/BoldGrid/boldgrid-theme-framework/issues/614)
+* Bug Fix: Conflict with PolyLang, Header/Footer Layout Controls do not function [#401](https://github.com/BoldGrid/boldgrid-theme-framework/issues/401)
+* Update: Update "postcss" dependancy from 6.0.22 -> 8.2.13 [#370](https://github.com/BoldGrid/boldgrid-theme-framework/pull/370)
+* Update: Update "snyk " dependancy from 1.338.0 -> 1.685.0 [#562](https://github.com/BoldGrid/boldgrid-theme-framework/pull/562)
+* Update: Update "@wordpress/dom-ready" dependancy from 2.11.0 -> 2.13.2 [#367](https://github.com/BoldGrid/boldgrid-theme-framework/pull/367)
+* Update: Update "@wordpress/hooks" dependancy from 2.10.0 -> 2.12.2 [#366](https://github.com/BoldGrid/boldgrid-theme-framework/pull/366)
+* Update: Update "@babel/runtime-corejs2" dependancy from 7.12.1 -> 7.13.17 [#365](https://github.com/BoldGrid/boldgrid-theme-framework/pull/365)
+* Update: Update "moment" dependancy from 2.24.0 -> 2.29.4 [f4ddfd5](https://github.com/BoldGrid/boldgrid-theme-framework/commit/f4ddfd55dbecc26f492772aa391253374a8dff54)
+* Update: Update "follow-redirects" dependacy from 1.5.9 -> 1.15.1 [399bcab](https://github.com/BoldGrid/boldgrid-theme-framework/commit/399bcab7d87c39aa138c729407b0ac322fa9af3c)
+* Update: Update "url-parse" dependancy from 1.4.3 -> 1.5.10 [e9a9eee](https://github.com/BoldGrid/boldgrid-theme-framework/commit/e9a9eee394bbce774102a7e67df78ab93bc71714)
+* Update: Update "chownr" dependancy from 1.0.1 -> 1.1.4 [1b1d681](https://github.com/BoldGrid/boldgrid-theme-framework/commit/1b1d681f06337e70da7bf79e04316031fcc02d69)
+* Update: Update "i" dependancy from 0.3.6 -> 0.3.7 [855c5d0](https://github.com/BoldGrid/boldgrid-theme-framework/commit/855c5d0e6863759372cc027c6514957f65dec023)
+* Update: Update "puppeteer" dependancy from 1.9.0 -> 1.20.0 [132f018](https://github.com/BoldGrid/boldgrid-theme-framework/commit/132f018fd79b8de7a6326dd3fa6fd991e9d91f25)
+
 ### 2.16.2 ###
 * Bug Fix: Dividing by Zero in the Header [#708](https://github.com/BoldGrid/boldgrid-theme-framework/issues/708)
 * Bug Fix: Featured Image background for Posts does not display [#717](https://github.com/BoldGrid/boldgrid-theme-framework/issues/717)

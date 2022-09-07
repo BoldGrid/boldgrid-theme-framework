@@ -424,9 +424,8 @@ export class Preview  {
 		color    = paletteSelector.getColor( color, true );
 		subcolor = paletteSelector.getColor( subcolor, true );
 
-		let alpha    = parent.net.brehaut.Color( color );
-		let subalpha = parent.net.brehaut.Color( subcolor );
-		let css = '';
+		let alpha = parent.net.brehaut.Color( color );
+		let css   = '';
 
 		location = location.replace( /_/g, '-' );
 

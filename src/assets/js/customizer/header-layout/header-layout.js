@@ -1,5 +1,8 @@
 const controlApi = parent.wp.customize;
 
+// Sometimes underscore is needed, when the parent / parent.window are not defined.
+const underscore = parent.window._;
+
 parent.window.BOLDGRID.colWidthSliders = parent.window.BOLDGRID.colWidthSliders ?
 			parent.window.BOLDGRID.colWidthSliders :
 			{};
@@ -571,7 +574,7 @@ export class HeaderLayout  {
 				this.brandingNotices( controlApi( 'bgtfw_header_preset_branding' )(), controlApi.control( 'bgtfw_header_preset_branding' ) );
 				controlApi.control( 'bgtfw_header_preset' ).container.find( '.bgtfw_header_presetcustom' ).on( 'click', () => {
 					controlApi.section( 'bgtfw_header_layout_advanced' ).activate();
-					window._.defer( () => {
+					underscore.defer( () => {
 						controlApi.control( 'bgtfw_header_layout_position' ).focus();
 					} );
 				} );
@@ -928,7 +931,7 @@ export class HeaderLayout  {
 
 				if ( 'custom' === stickyHeaderPreset ) {
 					controlApi.section( 'bgtfw_sticky_header_layout_advanced' ).activate();
-					window._.defer( () => {
+					underscore.defer( () => {
 						controlApi.control( 'bgtfw_sticky_header_layout_custom' ).focus();
 					} );
 					requestData.customHeaderLayout = controlApi( 'bgtfw_sticky_header_layout_custom' )();

@@ -106,7 +106,15 @@ main {
 		}
 		.featured-imgage-header {
 			margin: 0 auto;
-			width: 100%
+			width: 100%;
+			position: relative;
+			a.featured-image-link {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+			}
 		}
 		.entry-title,
 		.entry-meta {

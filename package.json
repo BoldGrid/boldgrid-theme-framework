@@ -1,6 +1,6 @@
 {
 	"name": "boldgrid-theme-framework",
-	"version": "2.16.3",
+	"version": "2.16.2",
 	"description": "BoldGrid Theme Framework",
 	"main": "index.js",
 	"engines": {
@@ -164,8 +164,7 @@
 		"scssphp": "https://github.com/scssphp/scssphp#v1.10.0",
 		"smartmenus": "^1.1.0",
 		"wow.js": "^1.2.2",
-		"snyk": "^1.685.0"
+		"snyk": "1.685.0"
 	},
 	"snyk": true
 }
-

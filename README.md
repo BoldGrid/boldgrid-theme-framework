@@ -36,6 +36,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.17.0 ###
+* New Feature: Allow Post featured image to link to post single page [#399](https://github.com/BoldGrid/boldgrid-theme-framework/issues/399)
+* Bug Fix: Fix Build Dependancies [#734](https://github.com/BoldGrid/boldgrid-theme-framework/issues/734)
+
 ### 2.16.3 ###
 * Bug Fix: Logos using Flex display stretch vertically on iOS [#516](https://github.com/BoldGrid/boldgrid-theme-framework/issues/516)
 * Bug Fix: Duplicate Header in Customizer related to Windows display settings [#488](https://github.com/BoldGrid/boldgrid-theme-framework/issues/488)

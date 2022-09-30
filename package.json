@@ -164,7 +164,7 @@
 		"scssphp": "https://github.com/scssphp/scssphp#v1.10.0",
 		"smartmenus": "^1.1.0",
 		"wow.js": "^1.2.2",
-		"snyk": "1.685.0"
+		"snyk": "1.996.0"
 	},
 	"snyk": true
 }

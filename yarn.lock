@@ -1346,7 +1346,7 @@
 
 "Buttons@https://github.com/boldgrid/Buttons#crio-buttons":
   version "3.0.0"
-  resolved "https://github.com/boldgrid/Buttons#404517e61efef4a16782371f74a74e399b2add0e"
+  resolved "https://github.com/boldgrid/Buttons#d6f63cb4f5cb22f2820cb2d1659e811c0a51ee13"
   dependencies:
     grunt "^0.4.5"
     grunt-saucelabs "^8.3.2"

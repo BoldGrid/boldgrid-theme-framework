@@ -1,6 +1,11 @@
 /** Set Gutenberg metabox styles **/
 .js.block-editor-page {
 
+	h1, h2, h3, h4, h5, h6 {
+		font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+		color: #3c434a;
+	}
+
 	#bgtfw-attributes-meta-box.postbox {
 
 		.handlediv {

@@ -74,19 +74,17 @@ blockquote {
 }
 
 /* Support for button wrapping classes. */
-.main {
-	.btn,
-	.button-primary,
-	.button-secondary {
-		white-space: normal;
-		height: unset !important;
-		&:not( .btn-small ):not( .btn-tiny ) {
-			min-height: 40px;
-		}
-		&:hover,
-		&:focus {
-			text-decoration: none;
-		}
+.btn,
+.button-primary,
+.button-secondary {
+	white-space: normal;
+	height: unset !important;
+	&:not( .btn-small ):not( .btn-tiny ) {
+		min-height: 40px;
+	}
+	&:hover,
+	&:focus {
+		text-decoration: none;
 	}
 }
 

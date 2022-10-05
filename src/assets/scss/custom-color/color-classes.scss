@@ -102,20 +102,20 @@ $names: background background-color;
 		@for $each from 1 through length( $colors ) {
 			$reference: nth($colors, $color);
 			&.color-#{$each}-link-color {
-				a {
+				a:not( .btn ) {
 					color: #{nth($colors, $each)};
 				}
-				a:hover, a:focus, a:active, a.highlighted {
+				a:not( .btn ):hover, a:not( .btn ):focus, a:not( .btn ):active, a:not( .btn ).highlighted {
 					color: hover( nth($colors, $color), nth($colors, $each) );
 				}
 			}
 		}
 		@if variable-exists( palette-primary-neutral-color ) {
 			&.color-neutral-link-color {
-				a {
+				a:not( .btn ) {
 					color: $palette-primary-neutral-color;
 				}
-				a:hover, a:focus, a:active, a.highlighted {
+				a:not( .btn ):hover, a:not( .btn ):focus, a:not( .btn ):active, a:not( .btn ).highlighted {
 					color: hover( nth($colors, $color), $palette-primary-neutral-color );
 				}
 			}
@@ -147,19 +147,19 @@ $names: background background-color;
 		.color#{$color}-#{nth( $names, $i )} {
 			@for $each from 1 through length( $colors ) {
 				&.color-#{$each}-link-color {
-					a {
+					a:not( .btn ) {
 						color: #{nth($colors, $each)};
 					}
-					a:hover, a:focus, a:active, a.highlighted {
+					a:not( .btn ):hover, a:not( .btn ):focus, a:not( .btn ):active, a:not( .btn ).highlighted {
 						color: hover( nth($colors, $color), nth($colors, $each) );
 					}
 				}
 				&.sidebar {
 					&.color-#{$each}-link-color {
-						a {
+						a:not( .btn ) {
 							color: #{nth($colors, $each)};
 						}
-						a:hover, a:focus, a:active, a.highlighted {
+						a:not( .btn ):hover, a:not( .btn ):focus, a:not( .btn ):active, a:not( .btn ).highlighted {
 							color: hover( nth($colors, $color), nth($colors, $each) );
 						}
 					}

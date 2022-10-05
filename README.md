@@ -35,6 +35,8 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+
+### 2.17.1 ###
 * Bug Fix: (Sprout) Crio doesn't load sa_templates properly [#620](https://github.com/BoldGrid/boldgrid-theme-framework/issues/620)
 * Bug Fix: btn-large not consistent between button-primary and button-secondary [#738](https://github.com/BoldGrid/boldgrid-theme-framework/issues/)
 * Bug Fix: Footer links inherit site content link hover effect [#733](https://github.com/BoldGrid/boldgrid-theme-framework/issues/733)

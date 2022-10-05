@@ -12,7 +12,7 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	self.hover_bound = false;
 	self.section_click_bound = false;
 	$( function() {
-		$window.on( 'boldgrid_customizer_refresh', onload );
+		$( window ).on( 'boldgrid_customizer_refresh', onload );
 	} );
 
 	onload = function() {

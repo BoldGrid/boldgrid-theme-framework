@@ -8,7 +8,7 @@
 * **Contributors:** rramo012, timph, jamesros161
 * **Tags:** inspiration,customization,build,create,design
 * **Requires at least:** 4.9
-* **Tested up to:** 5.9
+* **Tested up to:** 6.1
 * **License:** GPL-3.0-or-later
 * **License URI:** https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
@@ -35,6 +35,10 @@ user guide for more information.
 1. Include boldgrid-theme-framework.php from your theme's functions.php
 
 ## Changelog ##
+* Bug Fix: (Sprout) Crio doesn't load sa_templates properly [#620](https://github.com/BoldGrid/boldgrid-theme-framework/issues/620)
+* Bug Fix: btn-large not consistent between button-primary and button-secondary [#738](https://github.com/BoldGrid/boldgrid-theme-framework/issues/)
+* Bug Fix: Footer links inherit site content link hover effect [#733](https://github.com/BoldGrid/boldgrid-theme-framework/issues/733)
+* Bug Fix: Add Media modal uses theme fonts & colors without PPB active [#721](https://github.com/BoldGrid/boldgrid-theme-framework/issues/721)
 
 ### 2.17.0 ###
 * New Feature: Allow Post featured image to link to post single page [#399](https://github.com/BoldGrid/boldgrid-theme-framework/issues/399)

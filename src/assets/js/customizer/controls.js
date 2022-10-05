@@ -5,24 +5,13 @@
  * @param $
  */
 ( function( $ ) {
-	var refreshEvent = $.Event( 'boldgrid_customizer_refresh' ),
-		$body = $( 'body' ),
-		$themeControls = $( '#customize-theme-controls' );
-	$window = $( window );
+	var refreshEvent   = $.Event( 'boldgrid_customizer_refresh' ),
+		$body          = $( 'body' ),
+		$themeControls = $( '#customize-theme-controls' ),
+		$window        = $( window );
 
 	$window.on( 'message', function( e ) {
-		var message,
-			event = e.originalEvent;
-
-		// Ensure we have a string that's JSON.parse-able.
-		if ( 'string' !== typeof event.data || '{' !== event.data[0] ) {
-			return;
-		}
-
-		message = JSON.parse( event.data );
-		if ( 'synced' === message.id ) {
-			$window.trigger( refreshEvent, message );
-		}
+		$window.trigger( refreshEvent,  e.originalEvent.data );
 	} );
 
 	// Prevent interaction with panels until Customizer fully loads.

@@ -15,6 +15,7 @@
 
 @if variable-exists( button-secondary-classes ) {
 	.button-secondary,
+	*:not( .menu-item ) > .button-secondary,
 	.woocommerce .alt.button {
 		.palette-primary & {
 			@extend #{$button-secondary-classes};

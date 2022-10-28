@@ -168,9 +168,9 @@ class Boldgrid_Framework_Links {
 					$footer_lightness   = max( $footer_lightness, 0 );
 					$footer_color_hover = $footer_ari_color->getNew( 'lightness', $footer_lightness )->toCSS( 'hsla' );
 
-					foreach( array( '1', '2', '3', '4', '5', 'neutral' ) as $sidebar_color_class ) {
+					foreach ( array( '1', '2', '3', '4', '5', 'neutral' ) as $sidebar_color_class ) {
 						$sidebar_color_value = BoldGrid::color_from_class( $sidebar_color_class );
-						$sidebar_color_hover = get_theme_mod( "bgtfw_body_link_color_hover" ) ?: 0;
+						$sidebar_color_hover = get_theme_mod( 'bgtfw_body_link_color_hover' ) ? get_theme_mod( 'bgtfw_body_link_color_hover' ) : 0;
 						$sidebar_ari_color   = ariColor::newColor( $sidebar_color_value );
 						$sidebar_lightness   = min( $sidebar_ari_color->lightness + $sidebar_color_hover, 100 );
 						$sidebar_lightness   = max( $sidebar_lightness, 0 );

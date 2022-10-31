@@ -498,6 +498,51 @@ BOLDGRID.Customizer.Util.getInitialPalettes = function( option ) {
 			$( '.site-description' ).toggleClass( 'screen-reader-text', 'show' !== to );
 		} ) );
 
+		/*
+		 * Automatically update palette selector controls whenever the
+		 * color palette is changed.
+		 */
+		controlApi( 'boldgrid_color_palette', function( value ) {
+			value.bind( function( to ) {
+				var colors,
+					neutral,
+					paletteSelectorControls = [];
+
+				colors = BOLDGRID.Customizer.Util.getInitialPalettes( to );
+				controlApi.control.each( function( control ) {
+					if ( 'bgtfw-palette-selector' === control.params.type ) {
+						paletteSelectorControls.push( control );
+					}
+				} );
+
+				if ( colors ) {
+					neutral = colors.pop();
+					_.each( paletteSelectorControls, function( control ) {
+						var $labels       = control.container.find( 'label' ),
+							value         = control.setting.get(),
+							valuePosition = value.split( ':' )[0].split( '-' )[1];
+
+						if ( 'neutral' === valuePosition ) {
+							control.setting.set( 'color-neutral:' + neutral );
+						} else {
+							control.setting.set( 'color-' + valuePosition + ':' + colors[ valuePosition - 1 ] );
+						}
+
+						$labels.each( function() {
+							var $label      = $( this ),
+								colorNumber = $label.attr( 'for' ).split( '-' )[1];
+
+								if ( 'neutral' === colorNumber ) {
+									$label.find( 'span' ).attr( 'style', 'background-color: ' + neutral );
+								} else {
+									$label.find( 'span' ).attr( 'style', 'background-color: ' + colors[ parseInt( colorNumber ) - 1 ] );
+								}
+						} );
+					} );
+				}
+			} );
+		} );
+
 		api( 'boldgrid_color_palette', function( value ) {
 			value.bind( function( to ) {
 				var colors,

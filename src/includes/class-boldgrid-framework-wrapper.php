@@ -67,12 +67,92 @@ class Boldgrid_Framework_Wrapper {
 	 * @since 1.1
 	 */
 	public function __construct( $template = 'base.php' ) {
-		$this->slug = sanitize_title( basename( $template, '.php' ) );
+		$this->slug      = sanitize_title( basename( $template, '.php' ) );
 		$this->templates = array( $template );
 
 		if ( self::$base ) {
 			$str = substr( $template, 0, -4 );
 			array_unshift( $this->templates, sprintf( $str . '-%s.php', self::$base ) );
+		}
+
+		$is_si_pdf      = $this->is_si_pdf();
+		$is_si_invoice  = $this->is_si_invoice();
+		$is_si_estimate = $this->is_si_estimate();
+
+		if ( $this->is_si_pdf() ) {
+			$this->templates = array( 'si-pdf-base.php' );
+		} elseif ( $this->is_si_invoice() ) {
+			$this->templates = array( 'si-invoice-base.php' );
+		} elseif ( $this->is_si_estimate() ) {
+			$this->templates = array( 'si-estimate-base.php' );
+		}
+	}
+
+	/**
+	 * Is this page an SI invoice?
+	 *
+	 * @since 2.17.2
+	 *
+	 * @return boolean
+	 */
+	public function is_si_invoice() {
+		if ( class_exists( 'SI_Invoice' ) ) {
+			return SI_Invoice::is_invoice_query();
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Is this page an SI estimate?
+	 *
+	 * @since 2.17.2
+	 *
+	 * @return boolean
+	 */
+	public function is_si_estimate() {
+		global $post;
+
+		if ( ! empty( $post ) && class_exists( 'SI_Invoice' ) ) {
+			return 'sa_estimate' === $post->post_type;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Is this page an SI PDF?
+	 *
+	 * @since 2.17.2
+	 *
+	 * @return boolean
+	 */
+	public function is_si_pdf() {
+		global $post;
+
+		// If Sprout is not active, we won't be viewing a sprout pdf.
+		if ( ! class_exists( 'SI_Invoice' ) ) {
+			return false;
+		}
+
+		// When viewing the sprout invoice, these two variables are always set.
+		if ( ! self::$base || ! isset( self::$main_template ) ) {
+			return false;
+		}
+
+		// If template doesn't contain 'sprout-invoices' in it's path, it's not a sprout pdf.
+		if ( false === strpos( self::$main_template, 'sprout-invoices' ) ) {
+			return false;
+		}
+
+		// At this point, we know its a sprout page. If it's a pdf redirected page, we know it's a pdf.
+		if ( isset( $_SERVER['REDIRECT_QUERY_STRING'] ) && 'pdf=1' === $_SERVER['REDIRECT_QUERY_STRING'] ) {
+			return true;
+		}
+
+		// If the base name contians '-pdf', then it's a sprout pdf.
+		if ( false !== strpos( self::$base, '-pdf' ) ) {
+			return true;
 		}
 	}
 
@@ -107,7 +187,7 @@ class Boldgrid_Framework_Wrapper {
 		}
 
 		self::$main_template = $main;
-		self::$base = basename( self::$main_template, '.php' );
+		self::$base          = basename( self::$main_template, '.php' );
 
 		// Check if index.php is the base.
 		if ( 'index' === self::$base ) {

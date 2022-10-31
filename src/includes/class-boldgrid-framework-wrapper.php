@@ -154,6 +154,8 @@ class Boldgrid_Framework_Wrapper {
 		if ( false !== strpos( self::$base, '-pdf' ) ) {
 			return true;
 		}
+
+		return false;
 	}
 
 	/**

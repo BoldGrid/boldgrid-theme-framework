@@ -175,7 +175,8 @@ class Boldgrid_Framework_Links {
 						$sidebar_lightness   = min( $sidebar_ari_color->lightness + $sidebar_color_hover, 100 );
 						$sidebar_lightness   = max( $sidebar_lightness, 0 );
 						$sidebar_color_hover = $sidebar_ari_color->getNew( 'lightness', $sidebar_lightness )->toCSS( 'hsla' );
-						$css .= ".sidebar.color-${sidebar_color_class}-link-color a:not( .btn ):hover, .sidebar.color-${sidebar_color_class}-link-color a:not( .btn ):focus { color: ${sidebar_color_hover}; }";
+
+						$css .= ".sidebar.color-${sidebar_color_class}-link-color a:not( .btn ):hover, .sidebar.color-${sidebar_color_class}-link-color a:not( .btn ):focus { color: ${sidebar_color_hover} !important; }";
 					}
 
 					$css .= "#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ) { text-decoration: ${decoration};}";

@@ -122,6 +122,22 @@ export class LinkPreview {
 				footerLinkColorHover  = parseInt( footerLinkColorHover, 10 ) / 100,
 				footerShiftedColorVal = colorLib.Color( footerLinkColor ).lightenByAmount( footerLinkColorHover ).toCSS();
 
+				let colorPaletteOption = JSON.parse( api( 'boldgrid_color_palette' )() );
+
+				let paletteColors  = colorPaletteOption.state.palettes['palette-primary'].colors;
+				let paletteNeutral = colorPaletteOption.state.palettes['palette-primary']['neutral-color'];
+
+				[ 1, 2, 3, 4, 5, 'neutral' ].map( sidebarColorClass => {
+					var sidebarColor      = 'neutral' === sidebarColorClass ? paletteNeutral : paletteColors[ sidebarColorClass - 1 ],
+						sidebarColorHover = api( 'bgtfw_body_link_color_hover' )() || 0,
+						sidebarAriColor;
+
+						sidebarColorHover = parseInt( sidebarColorHover, 10 ) / 100;
+						sidebarAriColor   = colorLib.Color( sidebarColor ).lightenByAmount( sidebarColorHover ).toCSS();
+
+						css += `.sidebar.color-${sidebarColorClass}-link-color a:not( .btn ):hover, .sidebar.color-${sidebarColorClass}-link-color a:not( .btn ):focus { color: ${sidebarAriColor} !important; }`;
+				} );
+
 				css += `
 				#colophon .bgtfw-footer.footer-content > a:not( .btn ),
 				#colophon .bgtfw-footer.footer-content *:not( .menu-item ) > a:not( .btn ) {

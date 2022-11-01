@@ -204,6 +204,8 @@ class BoldGrid_Framework {
 		// Load Customizer Files.
 		$this->load_customizer_files();
 
+		$this->load_third_party_files();
+
 		// Load Pro Feature Cards.
 		$this->load_pro_cards();
 
@@ -214,6 +216,24 @@ class BoldGrid_Framework {
 
 		// Loader instance.
 		$this->loader = new Boldgrid_Framework_Loader();
+	}
+
+	/**
+	 * Include third party compatibility files.
+	 *
+	 * @since 2.17.2
+	 * @access private
+	 */
+	private function load_third_party_files() {
+		$third_party_files = array(
+			'sprout-invoices',
+		);
+
+		foreach ( $third_party_files as $filename ) {
+			require_once trailingslashit( __DIR__ ) . 'third-party/class-boldgrid-framework-' . $filename . '.php';
+		}
+
+		Boldgrid_Framework_Sprout_Invoices::add_hooks();
 	}
 
 	/**

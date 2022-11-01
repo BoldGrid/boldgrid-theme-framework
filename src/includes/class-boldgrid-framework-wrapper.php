@@ -67,7 +67,7 @@ class Boldgrid_Framework_Wrapper {
 	 * @since 1.1
 	 */
 	public function __construct( $template = 'base.php' ) {
-		$this->slug = sanitize_title( basename( $template, '.php' ) );
+		$this->slug      = sanitize_title( basename( $template, '.php' ) );
 		$this->templates = array( $template );
 
 		if ( self::$base ) {
@@ -79,7 +79,7 @@ class Boldgrid_Framework_Wrapper {
 	/**
 	 * Set the string value for object.
 	 *
-	 * This applies a filter to the final $templates array, before returning
+	 * This applies filters to the final $templates array, before returning
 	 * the full path to the most specific existing base template via
 	 * locate_template()
 	 *
@@ -87,6 +87,8 @@ class Boldgrid_Framework_Wrapper {
 	 */
 	public function __toString() {
 		$this->templates = apply_filters( 'boldgrid/wrap_' . $this->slug, $this->templates );
+		$this->templates = apply_filters( 'bgtfw_wrapper_templates', $this->templates, self::$base, self::$main_template );
+
 		return locate_template( $this->templates );
 	}
 
@@ -107,7 +109,7 @@ class Boldgrid_Framework_Wrapper {
 		}
 
 		self::$main_template = $main;
-		self::$base = basename( self::$main_template, '.php' );
+		self::$base          = basename( self::$main_template, '.php' );
 
 		// Check if index.php is the base.
 		if ( 'index' === self::$base ) {

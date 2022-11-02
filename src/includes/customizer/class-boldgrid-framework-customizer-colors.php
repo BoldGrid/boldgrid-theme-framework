@@ -363,11 +363,13 @@ class Boldgrid_Framework_Customizer_Colors {
 			return;
 		}
 
+		libxml_use_internal_errors( true );
+
 		// Create an instance of DOMDocument
 		$dom = new \DOMDocument();
 
 		// Handle UTF-8, otherwise problems will occur with UTF-8 characters.
-		$dom->loadHTML( mb_convert_encoding( $post_content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+		$dom->loadHTML( mb_convert_encoding( '<html>' . $post_content . '</html>', 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
 
 		$elements = $dom->getElementsByTagName( '*' );
 
@@ -417,6 +419,8 @@ class Boldgrid_Framework_Customizer_Colors {
 		}
 
 		$new_content = $dom->saveHTML();
+		$new_content = str_replace( '<html>', '', $new_content );
+		$new_content = str_replace( '</html>', '', $new_content );
 
 		// Update the post content.
 		wp_update_post(

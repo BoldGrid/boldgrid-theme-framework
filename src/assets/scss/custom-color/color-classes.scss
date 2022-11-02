@@ -105,18 +105,12 @@ $names: background background-color;
 				a:not( .btn ) {
 					color: #{nth($colors, $each)};
 				}
-				a:not( .btn ):hover, a:not( .btn ):focus, a:not( .btn ):active, a:not( .btn ).highlighted {
-					color: hover( nth($colors, $color), nth($colors, $each) );
-				}
 			}
 		}
 		@if variable-exists( palette-primary-neutral-color ) {
 			&.color-neutral-link-color {
 				a:not( .btn ) {
 					color: $palette-primary-neutral-color;
-				}
-				a:not( .btn ):hover, a:not( .btn ):focus, a:not( .btn ):active, a:not( .btn ).highlighted {
-					color: hover( nth($colors, $color), $palette-primary-neutral-color );
 				}
 			}
 			&.color-neutral-sub-link-color.sm {
@@ -158,9 +152,6 @@ $names: background background-color;
 					&.color-#{$each}-link-color {
 						a:not( .btn ) {
 							color: #{nth($colors, $each)};
-						}
-						a:not( .btn ):hover, a:not( .btn ):focus, a:not( .btn ):active, a:not( .btn ).highlighted {
-							color: hover( nth($colors, $color), nth($colors, $each) );
 						}
 					}
 				}
@@ -249,8 +240,10 @@ $names: background background-color;
 					a {
 						color: #{nth($colors, $each)};
 					}
-					a:hover, a:focus, a:active, a.highlighted {
-						color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+					&:not( .sidebar ) {
+						a:hover, a:focus, a:active, a.highlighted {
+							color: hover( $palette-primary-neutral-color, nth($colors, $each) );
+						}
 					}
 				}
 				&.color-#{$each}-sub-link-color.sm {

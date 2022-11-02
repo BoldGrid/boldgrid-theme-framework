@@ -36,6 +36,12 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.17.2 ###
+* Bug Fix: Change metabox text color to black to pass accessibility [#755](https://github.com/BoldGrid/boldgrid-theme-framework/issues/755)
+* Bug Fix: Changing Color Palette changes page content [#750](https://github.com/BoldGrid/boldgrid-theme-framework/issues/750)
+* Bug Fix: (SproutPRO) Can't access PDF's with Crio enabled [#146](https://github.com/BoldGrid/prime/issues/146)
+* Bug Fix: Sidebar hover effects incorrect [#741](https://github.com/BoldGrid/boldgrid-theme-framework/issues/741)
+
 ### 2.17.1 ###
 * Bug Fix: (Sprout) Crio doesn't load sa_templates properly [#620](https://github.com/BoldGrid/boldgrid-theme-framework/issues/620)
 * Bug Fix: btn-large not consistent between button-primary and button-secondary [#738](https://github.com/BoldGrid/boldgrid-theme-framework/issues/)

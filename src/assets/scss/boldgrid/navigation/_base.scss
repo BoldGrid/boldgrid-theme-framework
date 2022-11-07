@@ -61,11 +61,11 @@
 	.sm-clean {
 		background: transparent;
 	}
-	.sm-clean a,
-	.sm-clean a:hover,
-	.sm-clean a:focus,
-	.sm-clean a:active,
-	.sm-clean a.highlighted {
+	.sm-clean li > a,
+	.sm-clean li > a:hover,
+	.sm-clean li > a:focus,
+	.sm-clean li > a:active,
+	.sm-clean li > a.highlighted {
 		display: inline-block;
 		padding: 13px 20px;
 		text-decoration: none;
@@ -298,22 +298,22 @@
 				border-radius: 5px;
 				box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2);
 			}
-			.sm-clean ul a,
-			.sm-clean ul a:hover,
-			.sm-clean ul a:focus,
-			.sm-clean ul a:active,
-			.sm-clean ul a.highlighted {
+			.sm-clean ul:not( .custom-sub-menu ) a,
+			.sm-clean ul:not( .custom-sub-menu ) a:hover,
+			.sm-clean ul:not( .custom-sub-menu ) a:focus,
+			.sm-clean ul:not( .custom-sub-menu ) a:active,
+			.sm-clean ul:not( .custom-sub-menu ) a.highlighted {
 				border: 0 !important;
 				padding: 10px 20px;
 			}
-			.sm-clean ul a.disabled {
+			.sm-clean ul:not( .custom-sub-menu ) a.disabled {
 				background: white;
 				color: #cccccc;
 			}
-			.sm-clean ul a.has-submenu {
+			.sm-clean ul:not( .custom-sub-menu ) a.has-submenu {
 				padding-right: 20px;
 			}
-			.sm-clean ul a span.sub-arrow {
+			.sm-clean ul:not( .custom-sub-menu ) a span.sub-arrow {
 				right: auto;
 				top: 50%;
 				margin-top: -5px;
@@ -422,10 +422,10 @@
 			.sm-clean.sm-vertical ul a:not( .btn ) {
 				padding: 10px 20px;
 			}
-			.sm-clean.sm-vertical ul a:hover,
-			.sm-clean.sm-vertical ul a:focus,
-			.sm-clean.sm-vertical ul a:active,
-			.sm-clean.sm-vertical ul a.highlighted {
+			.sm-clean.sm-vertical ul:not( .custom-sub-menu ) a:hover,
+			.sm-clean.sm-vertical ul:not( .custom-sub-menu ) a:focus,
+			.sm-clean.sm-vertical ul:not( .custom-sub-menu ) a:active,
+			.sm-clean.sm-vertical ul:not( .custom-sub-menu ) a.highlighted {
 				background: #eeeeee;
 			}
 			.sm-clean.sm-vertical ul a.disabled {

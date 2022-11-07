@@ -435,9 +435,9 @@ export class Preview  {
 
 		css += '@media (min-width: 768px) {';
 		css += `#${location}-menu.sm-clean ul {background-color: ${subcolorVariable};}`;
-		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${subcolorVariable};}`;
+		css += `#${location}-menu.sm-clean ul:not(.custom-sub-menu) li:not(.custom-sub-menu) > a, #${location}-menu.sm-clean ul:not(.custom-sub-menu) li:not(.custom-sub-menu) > a:hover, #${location}-menu.sm-clean ul:not(.custom-sub-menu) li:not(.custom-sub-menu) > a:focus, #${location}-menu.sm-clean ul:not(.custom-sub-menu) li:not(.custom-sub-menu) > a:active, #${location}-menu.sm-clean ul:not(.custom-sub-menu) li:not(.custom-sub-menu) > a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${subcolorVariable};}`;
 		css += `#${location}-menu.sm-clean ul { border: 1px solid ${subcolorVariable};}`;
-		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${subcolorVariable} transparent;}`;
+		css += `#${location}-menu.sm-clean > li:not( .custom-sub-menu ) > ul:before, #${location}-menu.sm-clean > li:not( .custom-sub-menu ) > ul:after { border-color: transparent transparent ${subcolorVariable} transparent;}`;
 		css += '}';
 
 		return css;

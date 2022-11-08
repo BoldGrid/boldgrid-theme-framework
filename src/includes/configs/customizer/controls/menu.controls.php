@@ -627,7 +627,7 @@ return array(
 		'priority'  => 20,
 		'output'    => $bgtfw_typography->get_typography_output(
 			$bgtfw_configs,
-			'#main-menu li a, .mce-content-body .sm-clean'
+			'#main-menu li.menu-item > a, .mce-content-body .sm-clean'
 		),
 	),
 );

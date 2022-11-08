@@ -367,7 +367,7 @@
 	}
 }
 .header-fixed.header-top {
-	.sm, .sm ul, .sm li {
+	.sm, .sm ul.sub-menu, .sm li.menu-item {
 		width: 100%;
 
 		@media (min-width: 768px) {

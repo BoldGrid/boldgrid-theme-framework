@@ -538,10 +538,22 @@ class BoldGrid_Framework_Styles {
 
 		$subcolor_obj->alpha = 0.4;
 
-		$css .= "#{$location}-menu.sm-clean ul {background-color: var(--{$submenu_background_class});}";
-		$css .= "#{$location}-menu.sm-clean ul:not(.custom-sub-menu) li:not(.custom-sub-menu) > a:not(.btn), #{$location}-menu.sm-clean ul:not(.custom-sub-menu) li:not(.custom-sub-menu) > a:not(.btn):hover, #{$location}-menu.sm-clean ul:not(.custom-sub-menu) li:not(.custom-sub-menu) > a:not(.btn):focus, #{$location}-menu.sm-clean ul:not(.custom-sub-menu) li:not(.custom-sub-menu) a:not(.btn):active, #{$location}-menu.sm-clean ul:not(.custom-sub-menu) li:not(.custom-sub-menu) > a:not(.btn).highlighted, #{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, #{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover { background-color: var(--{$submenu_background_class});}";
-		$css .= "#{$location}-menu.sm-clean ul { border: 1px solid var(--{$submenu_background_class});}";
-		$css .= "#{$location}-menu.sm-clean > li:not( .custom-sub-menu ) > ul:before, #{$location}-menu.sm-clean > li:not( .custom-sub-menu ) > ul:after { border-color: transparent transparent var(--{$submenu_background_class}) transparent;}";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) {background-color: var(--{$submenu_background_class});}";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:not(.btn), ";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:not(.btn):hover, ";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:not(.btn):focus, ";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:not(.btn):active, ";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:not(.btn).highlighted, ";
+		$css .= "#{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, ";
+		$css .= "#{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover ";
+		$css .= "{ background-color: var(--{$submenu_background_class}); }";
+
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) { border: 1px solid var(--{$submenu_background_class});}";
+
+		$css .= "#{$location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu:not(.custom-sub-menu):before, ";
+		$css .= "#{$location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu:not(.custom-sub-menu):after ";
+		$css .= "{ border-color: transparent transparent var(--{$submenu_background_class}) transparent; }";
+
 		$css .= '}';
 
 		return $css;

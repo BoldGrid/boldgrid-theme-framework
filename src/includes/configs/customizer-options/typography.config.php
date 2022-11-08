@@ -65,7 +65,7 @@ return array(
 			'amount' => 0.85,
 		),
 		// Enable this styling for Page Header Headings.
-		'.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header, .template-footer' => array(
+		'.widget, .site-content, .sm li.custom-sub-menu a, .sm li.custom-sub-menu .widget a, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header, .template-footer' => array(
 			'type'   => 'body',
 			'round'  => 'ceil',
 			'amount' => 1,
@@ -95,7 +95,7 @@ return array(
 		'bgtfw_body_font_size'                => array(
 			'section'         => 'boldgrid_typography',
 			'priority'        => 2,
-			'output_selector' => '.widget, .site-content, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header, .template-footer',
+			'output_selector' => '.widget, .site-content, .sm li.custom-sub-menu a, .sm li.custom-sub-menu .widget a, .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header, .template-footer',
 		),
 		'bgtfw_headings_responsive_font_size' => array(
 			'section'         => 'boldgrid_typography',

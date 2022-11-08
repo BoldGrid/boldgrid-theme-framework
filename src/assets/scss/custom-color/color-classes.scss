@@ -114,8 +114,8 @@ $names: background background-color;
 				}
 			}
 			&.color-neutral-sub-link-color.sm {
-				ul:not( .custom-sub-menu ) {
-					li {
+				ul.sub-menu:not( .custom-sub-menu ) {
+					li.menu-item {
 						> a:not(.btn) {
 							color: $palette-primary-neutral-color;
 						}
@@ -141,12 +141,14 @@ $names: background background-color;
 		.color#{$color}-#{nth( $names, $i )} {
 			@for $each from 1 through length( $colors ) {
 				&.color-#{$each}-link-color {
-					li:not( .custom-sub-menu ) {
+					li.menu-item:not( .custom-sub-menu ) {
 						> a:not( .btn ) {
 							color: #{nth($colors, $each)};
 						}
-						> a:not( .btn ):hover, a:not( .btn ):focus, a:not( .btn ):active, a:not( .btn ).highlighted {
-							color: hover( nth($colors, $color), nth($colors, $each) );
+						> a:not( .btn ) {
+							&:hover, &:focus, &:active, &.highlighted {
+								color: hover( nth($colors, $color), nth($colors, $each) );
+							}
 						}
 					}
 					
@@ -160,15 +162,17 @@ $names: background background-color;
 				}
 				&.sm {
 					&.color-#{$each}-link-color {
-						li.btn {
+						li.menu-item.btn {
 							> a {
 								color: inherit;
 							}
-							> a:hover, a:focus, a:active, a.highlighted {
-								color: inherit;
+							> a {
+								&:hover, &:focus, &:active, &.highlighted {
+									color: inherit;
+								}
 							}
 						}
-						li:not( .custom-sub-menu ) {
+						li.menu-item:not( .custom-sub-menu ) {
 							> a:not(.btn) {
 								color: #{nth($colors, $each)};
 							}
@@ -180,8 +184,8 @@ $names: background background-color;
 						}
 						@for $subeach from 1 through length( $colors ) {
 							&.color-#{$subeach}-sub-link-color {
-								li:not( .custom-sub-menu ) {
-									ul:not( .custom-sub-menu ) a:not(.btn) {
+								li.menu-item:not( .custom-sub-menu ) {
+									ul.sub-menu:not( .custom-sub-menu ) > a:not(.btn) {
 										color: #{nth($colors, $subeach)};
 										&:hover, &:focus, &:active, &.highlighted {
 											color: hover( nth($colors, $subeach), nth($colors, $subeach) );
@@ -203,9 +207,9 @@ $names: background background-color;
 					}
 				}
 				&.color-neutral-sub-link-color.sm {
-					ul:not( .custom-sub-menu ) {
-						li:not( .custom-sub-menu ) {
-							a:not(.btn) {
+					ul.sub-menu:not( .custom-sub-menu ) {
+						li.menu-item:not( .custom-sub-menu ) {
+							> a:not(.btn) {
 								color: $palette-primary-neutral-color;
 								&:hover, &:focus, &:active, &.highlighted {
 									color: hover( nth($colors, $color), $palette-primary-neutral-color );
@@ -216,9 +220,9 @@ $names: background background-color;
 				}
 				@for $subEach from 1 through length( $colors ) {
 					&.color-#{$subEach}-sub-link-color {
-						ul:not( .custom-sub-menu ) {
-							li:not( .custom-sub-menu ) {
-								a:not(.btn) {
+						ul.sub-menu:not( .custom-sub-menu ) {
+							li.menu-item:not( .custom-sub-menu ) {
+								> a:not(.btn) {
 									color: #{nth($colors, $subEach)};
 									&:hover, &:focus, &:active, &.highlighted {
 										color: hover( nth($colors, $color), nth($colors, $subEach) );
@@ -250,9 +254,9 @@ $names: background background-color;
 					}
 				}
 				&.color-#{$each}-sub-link-color.sm {
-					ul:not( .custom-sub-menu ) {
-						li:not( .custom-sub-menu ) {
-							a:not(.btn) {
+					ul.sub-menu:not( .custom-sub-menu ) {
+						li.menu-item:not( .custom-sub-menu ) {
+							> a:not(.btn) {
 								color: #{nth($colors, $each)};
 								&:hover, &:focus, &:active, &.highlighted {
 									color: hover( $palette-primary-neutral-color, nth($colors, $each) );
@@ -271,9 +275,9 @@ $names: background background-color;
 				}
 			}
 			&.color-neutral-sub-link-color.sm {
-				ul:not( .custom-sub-menu ) {
-					li:not( .custom-sub-menu ) {
-						a:not(.btn) {
+				ul.sub-menu:not( .custom-sub-menu ) {
+					li.menu-item:not( .custom-sub-menu ) {
+						> a:not(.btn) {
 							color: $palette-primary-neutral-color;
 							&:hover, &:focus, &:active, &.highlighted {
 								color: hover( $palette-primary-neutral-color, $palette-primary-neutral-color );

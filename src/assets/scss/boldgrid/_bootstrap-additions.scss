@@ -108,10 +108,6 @@
 	margin-bottom: -2px;
 }
 
-.container .container {
-	width: auto;
-}
-
 /** Nav Tabs Default Styles **/
 .nav-tabs {
 	border-bottom: 1px solid currentColor;
@@ -126,7 +122,8 @@
 }
 
 // Nav menu.
-.nav > li {
+.nav > li,
+.widget > .nav > li {
 	padding: 5px 0;
 	&.cat-item > a {
 		display: inline-block;

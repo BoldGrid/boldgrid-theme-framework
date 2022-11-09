@@ -561,7 +561,7 @@
 				input:checked ~ .sm-clean {
 					display: block;
 					width: 100%;
-					li {
+					li.menu-item {
 						float: none;
 					}
 				}

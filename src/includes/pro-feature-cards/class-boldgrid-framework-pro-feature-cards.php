@@ -48,7 +48,10 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 */
 	public function __construct( $configs ) {
 		$this->configs     = $configs;
-		$this->upgrade_url = apply_filters( 'bgtfw_upgrade_url_pro_features', 'upgrade_url' );
+		$this->upgrade_url = apply_filters(
+			'bgtfw_upgrade_url_pro_features',
+			'https://boldgrid.com/wordpress-themes/crio/?utm_source=Crio_-_Pro_Features&utm_medium=Button&utm_campaign=Crio_Pro_Features'
+		);
 	}
 
 	/**

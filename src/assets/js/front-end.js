@@ -630,6 +630,9 @@ var BoldGrid = BoldGrid || {};
 				sm.on( {
 					'show.smapi': function( e, menu ) {
 						$( menu ).removeClass( 'hide-animation' ).addClass( 'show-animation' );
+						if ( $( menu ).is( '.custom-sub-menu' ) ) {
+							BoldGrid.standard_menu_enabled.fixSubmenuOffset( menu );
+						}
 					},
 					'hide.smapi': function( e, menu ) {
 						$( menu ).removeClass( 'show-animation' ).addClass( 'hide-animation' );
@@ -668,6 +671,22 @@ var BoldGrid = BoldGrid || {};
 						} );
 					}
 				} );
+			},
+
+			// Fixes the offset of custom submenus so they don't go off screen
+			fixSubmenuOffset( sm ) {
+				var $subMenu     = $( sm ),
+					leftOffset   = $subMenu.offset().left,
+					subMenuWidth = $subMenu.children( 'li' ).outerWidth(),
+					rightOffset  = $( window ).outerWidth( true ) - ( leftOffset + subMenuWidth );
+
+				if ( 0 > rightOffset ) {
+					$subMenu.css( 'left', rightOffset );
+				}
+
+				if ( 0 > leftOffset ) {
+					$subMenu.css( 'left', ( -1 * leftOffset ) );
+				}
 			},
 
 			// Collpase the main navigation.

@@ -8,17 +8,17 @@
 		margin-left: -15px;
 		margin-right: -15px;
 	}
-	.container, .container-fluid {
-		padding-left: 0px;
-		padding-right: 0px;
-	}
-	.boldgrid-section {
+	> .boldgrid-section {
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
 		align-items: center;
-		.container-fluid {
+		> .container-fluid {
 			width: 100%;
+		}
+		> .container, > .container-fluid {
+			padding-left: 0px;
+			padding-right: 0px;
 		}
 		.row {
 			display: flex;

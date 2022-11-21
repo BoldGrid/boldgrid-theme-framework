@@ -1,6 +1,6 @@
 .bgtfw-header, .bgtfw-sticky-header, .bgtfw-footer {
 	&.template-header {
-		.boldgrid-section {
+		> .boldgrid-section {
 			flex-direction: column;
 			.container {
 				.row {

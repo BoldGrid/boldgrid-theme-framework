@@ -200,7 +200,7 @@
 			.sm-clean.nw,
 			.sm-clean.sw {
 				&:not( .sm-vertical ) {
-					li.menu-item:first-of-type a {
+					> li.menu-item:first-of-type a {
 						padding-left: 0px;
 					}
 				}
@@ -211,7 +211,7 @@
 			.sm-clean.ne,
 			.sm-clean.se {
 				&:not( .sm-vertical ) {
-					li.menu-item:last-of-type a {
+					> li.menu-item:last-of-type a {
 						padding-right: 0px;
 					}
 				}
@@ -285,11 +285,23 @@
 				border-style: dashed dashed solid dashed;
 				border-color: transparent transparent #bbbbbb transparent;
 			}
+			.sm-clean > li.menu-item > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):before,
+			.sm-clean > li.menu-item > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):after {
+				top: unset;
+				bottom: -18px;
+				border-style: solid dashed dashed dashed;
+				border-color: #bbbbbb transparent transparent transparent;
+			}
 			.sm-clean > li.menu-item > ul.sub-menu:not(.custom-sub-menu):after {
 				top: -16px;
 				left: 31px;
 				border-width: 8px;
 				border-color: transparent transparent white transparent;
+			}
+			.sm-clean > li.menu-item > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):after {
+				top: unset;
+				bottom: -16px;
+				border-color: white transparent transparent transparent;
 			}
 			.sm-clean ul.sub-menu:not(.custom-sub-menu) {
 				border: 1px solid #bbbbbb;

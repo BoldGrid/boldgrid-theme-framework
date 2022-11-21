@@ -452,6 +452,9 @@ export class Preview  {
 		css += `#${location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu:not(.custom-sub-menu):before,
 			#${location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu:not(.custom-sub-menu):after {
 				border-color: transparent transparent ${subcolorVariable} transparent;
+			}
+			#${location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):after {
+				border-color: ${subcolorVariable} transparent transparent transparent;
 			}`;
 		css += '}';
 

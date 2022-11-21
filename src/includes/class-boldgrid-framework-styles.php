@@ -554,6 +554,10 @@ class BoldGrid_Framework_Styles {
 		$css .= "#{$location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu:not(.custom-sub-menu):after ";
 		$css .= "{ border-color: transparent transparent var(--{$submenu_background_class}) transparent; }";
 
+		$css .= "#{$location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):before, ";
+		$css .= "#{$location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):after ";
+		$css .= "{ border-color: var(--{$submenu_background_class}) transparent transparent transparent; }";
+
 		$css .= '}';
 
 		return $css;

@@ -630,9 +630,7 @@ var BoldGrid = BoldGrid || {};
 				sm.on( {
 					'show.smapi': function( e, menu ) {
 						$( menu ).removeClass( 'hide-animation' ).addClass( 'show-animation' );
-						if ( $( menu ).is( '.custom-sub-menu' ) ) {
-							BoldGrid.standard_menu_enabled.fixSubmenuOffset( menu );
-						}
+						BoldGrid.standard_menu_enabled.fixSubmenuOffset( menu );
 					},
 					'hide.smapi': function( e, menu ) {
 						$( menu ).removeClass( 'show-animation' ).addClass( 'hide-animation' );
@@ -674,12 +672,27 @@ var BoldGrid = BoldGrid || {};
 			},
 
 			// Fixes the offset of custom submenus so they don't go off screen
-			fixSubmenuOffset( sm ) {
-				var $subMenu     = $( sm ),
-					leftOffset   = $subMenu.offset().left,
-					subMenuWidth = $subMenu.children( 'li' ).outerWidth(),
-					rightOffset  = $( window ).outerWidth( true ) - ( leftOffset + subMenuWidth );
+			fixSubmenuOffset( subMenu ) {
+				var $subMenu         = $( subMenu ),
+					leftOffset       = $subMenu.offset().left,
+					bottomOffset     = $subMenu.offset().top + $subMenu.outerHeight( true ),
+					$headerContainer = $subMenu.closest( '#masthead' ).length ? $subMenu.closest( '#masthead' ) : $subMenu.closest( '#colophon' ),
+					pointerHeight    = 9,
+					headerBottom     = $headerContainer.offset().top + $headerContainer.outerHeight(),
+					subMenuWidth     = $subMenu.children( 'li' ).outerWidth(),
+					subMenuHeight    = $subMenu.outerHeight( true ) + pointerHeight,
+					rightOffset      = $( window ).outerWidth( true ) - ( leftOffset + subMenuWidth );
 
+				// Adjust the offset for menu items in the footer so it opens upwards instead of down.
+				if ( bottomOffset > headerBottom && $subMenu.closest( '#colophon' ).length ) {
+					$subMenu.css( {
+						top: '-' + subMenuHeight + 'px'
+					} );
+
+					$subMenu.addClass( 'pointer-bottom' );
+				}
+
+				// Adjust left or right offset if submenu goes off screen.
 				if ( 0 > rightOffset ) {
 					$subMenu.css( 'left', rightOffset );
 				}

@@ -681,7 +681,8 @@ var BoldGrid = BoldGrid || {};
 					headerBottom     = $headerContainer.offset().top + $headerContainer.outerHeight(),
 					subMenuWidth     = $subMenu.children( 'li' ).outerWidth(),
 					subMenuHeight    = $subMenu.outerHeight( true ) + pointerHeight,
-					rightOffset      = $( window ).outerWidth( true ) - ( leftOffset + subMenuWidth );
+					rightOffset      = $( window ).outerWidth( true ) - ( leftOffset + subMenuWidth ),
+					screenWidth 	 = $( window ).width() + 16;
 
 				// Adjust the offset for menu items in the footer so it opens upwards instead of down.
 				if ( bottomOffset > headerBottom && $subMenu.closest( '#colophon' ).length ) {
@@ -693,6 +694,11 @@ var BoldGrid = BoldGrid || {};
 				}
 
 				// Adjust left or right offset if submenu goes off screen.
+				if ( 992 >= screenWidth ) {
+					$subMenu.css( 'left', 0 );
+					return;
+				}
+
 				if ( 0 > rightOffset ) {
 					$subMenu.css( 'left', rightOffset );
 				}

@@ -479,7 +479,7 @@ gulp.task('hovers', function() {
       digestType: 'base32',
       maxLength: 0,
       outputName: 'hover1',
-      classnameFormat: '[classname] a:not( .button-primary):not( .button-secondary )',
+      classnameFormat: '[classname] > a:not( .button-primary):not( .button-secondary )',
       type: '.json'
     })
   ];

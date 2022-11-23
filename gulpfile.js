@@ -369,9 +369,6 @@ gulp.task('scssDeps', function () {
     .pipe(replace("background: linear-gradient(top,", "background: linear-gradient("))
     .pipe(gulp.dest(config.dist + '/assets/scss/buttons'));
 
-  gulp.src(config.node_modules + '/smartmenus/dist/css/sm-core-css.css')
-    .pipe(gulp.dest(config.dist + '/assets/css/smartmenus'));
-
   // boldgrid-components.
   gulp.src('./node_modules/@boldgrid/components/dist/css/components.*')
     .pipe(gulp.dest(config.dist + '/assets/css'));

@@ -684,14 +684,6 @@ class BoldGrid_Framework_Styles {
 
 		wp_enqueue_style( 'boldgrid-theme-framework' );
 
-		/* Framework Base Styles */
-		wp_enqueue_style(
-			'bgtfw-smartmenus',
-			$this->configs['framework']['css_dir'] . 'smartmenus/sm-core-css.css',
-			array( 'bootstrap-styles' ),
-			$this->configs['version']
-		);
-
 		/* Hamburger Menu Styles */
 		wp_register_style(
 			'bgtfw-hamburgers',

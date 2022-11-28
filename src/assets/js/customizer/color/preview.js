@@ -434,7 +434,7 @@ export class Preview  {
 		}
 
 		css += '@media (min-width: 768px) {';
-		css += `#${location}-menu.sm-clean ul.sub-menu {background-color: ${subcolorVariable};}`;
+		css += `#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) {background-color: ${subcolorVariable};}`;
 		css += `#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a,
 			#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:hover,
 			#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:focus,
@@ -446,7 +446,7 @@ export class Preview  {
 			#${location}-menu.sm-clean span.scroll-down:hover {
 				background-color: ${subcolorVariable};
 			}`;
-		css += `#${location}-menu.sm-clean ul.sub-menu {
+		css += `#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) {
 			border: 1px solid ${subcolorVariable};
 			}`;
 		css += `#${location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu:not(.custom-sub-menu):before,
@@ -590,7 +590,7 @@ export class Preview  {
 			},
 			{
 				name: `bgtfw_menu_submenu_background_${location}`,
-				selector: `#${menuId} ul.sub-menu`,
+				selector: `#${menuId} ul.sub-menu:not(.custom-sub-menu)`,
 				properties: [ 'background-color' ]
 			},
 			{

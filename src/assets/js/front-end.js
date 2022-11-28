@@ -619,6 +619,10 @@ var BoldGrid = BoldGrid || {};
 
 			// Setup main navigation.
 			setupMenu: function( sm ) {
+				$( sm ).find( 'ul.custom-sub-menu' ).each( function() {
+					$( this ).find( 'ul' ).addClass( 'in-mega' );
+					$( this ).find( 'ul' ).dataSM( 'in-mega', true );
+				} );
 				sm.smartmenus( {
 					mainMenuSubOffsetX: -1,
 					mainMenuSubOffsetY: 4,

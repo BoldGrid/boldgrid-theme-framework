@@ -678,11 +678,23 @@ var BoldGrid = BoldGrid || {};
 					bottomOffset     = $subMenu.offset().top + $subMenu.outerHeight( true ),
 					$headerContainer = $subMenu.closest( '#masthead' ).length ? $subMenu.closest( '#masthead' ) : $subMenu.closest( '#colophon' ),
 					pointerHeight    = 9,
-					headerBottom     = $headerContainer.offset().top + $headerContainer.outerHeight(),
-					subMenuWidth     = $subMenu.children( 'li' ).outerWidth(),
-					subMenuHeight    = $subMenu.outerHeight( true ) + pointerHeight,
-					rightOffset      = $( window ).outerWidth( true ) - ( leftOffset + subMenuWidth ),
-					screenWidth 	 = $( window ).width() + 16;
+					headerBottom,
+					subMenuWidth,
+					subMenuHeight,
+					rightOffset,
+					screenWidth;
+
+				$headerContainer = $headerContainer.length ? $headerContainer : $subMenu.closest( '#masthead-sticky' );
+
+				if ( ! $headerContainer.length ) {
+					return;
+				}
+
+				headerBottom     = $headerContainer.offset().top + $headerContainer.outerHeight();
+				subMenuWidth     = $subMenu.children( 'li' ).outerWidth();
+				subMenuHeight    = $subMenu.outerHeight( true ) + pointerHeight;
+				rightOffset      = $( window ).outerWidth( true ) - ( leftOffset + subMenuWidth );
+				screenWidth 	 = $( window ).width() + 16;
 
 				// Adjust the offset for menu items in the footer so it opens upwards instead of down.
 				if ( bottomOffset > headerBottom && $subMenu.closest( '#colophon' ).length ) {

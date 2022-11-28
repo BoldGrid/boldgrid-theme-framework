@@ -77,7 +77,7 @@ return array(
 		'priority'  => 1,
 		'output'    => $bgtfw_typography->get_typography_output(
 			$bgtfw_configs,
-			'.widget, .site-content, .sm li.custom-sub-menu a:not(.btn), .sm li.custom-sub-menu .widget a:not(.btn), .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header, .template-footer'
+			'.widget, .site-content, .sm li.custom-sub-menu, .sm li.custom-sub-menu a:not(.btn), .sm li.custom-sub-menu .widget a:not(.btn), .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header, .template-footer'
 		),
 		'edit_vars' => array(
 			array(

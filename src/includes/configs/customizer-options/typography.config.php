@@ -65,7 +65,7 @@ return array(
 			'amount' => 0.85,
 		),
 		// Enable this styling for Page Header Headings.
-		'.widget, .site-content, .sm li.custom-sub-menu a:not(.btn), .sm li.custom-sub-menu .widget a:not(.btn), .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header, .template-footer' => array(
+		'.widget, .site-content, .sm li.custom-sub-menu, .sm li.custom-sub-menu a:not(.btn), .sm li.custom-sub-menu .widget a:not(.btn), .attribution-theme-mods-wrapper, .gutenberg .edit-post-visual-editor, .mce-content-body, .template-header, .template-footer' => array(
 			'type'   => 'body',
 			'round'  => 'ceil',
 			'amount' => 1,

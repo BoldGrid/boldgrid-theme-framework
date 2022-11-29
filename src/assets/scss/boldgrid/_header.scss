@@ -24,11 +24,11 @@
 			display: flex;
 			flex-wrap: wrap;
 		}
-		.full-width {
+		> .full-width {
 			padding-left: 0px;
 			padding-right: 0px;
 			width: 100%;
-			.row {
+			> .row {
 				display: flex;
 				flex-wrap: wrap;
 				aside.sidebar {
@@ -36,7 +36,7 @@
 					padding-right: 0px;
 					height: 100%;
 				}
-				div {
+				> div {
 					padding-left: 0px;
 					padding-right: 0px;
 				}

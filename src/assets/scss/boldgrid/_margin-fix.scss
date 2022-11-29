@@ -94,7 +94,7 @@
 	}
 }
 #masthead, #masthead-sticky {
-	.container {
+	> .boldgrid-section > .container {
 		padding-left: 15px;
 		padding-right: 15px;
 		.site-description {

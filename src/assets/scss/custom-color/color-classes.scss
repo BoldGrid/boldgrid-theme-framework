@@ -141,7 +141,8 @@ $names: background background-color;
 		.color#{$color}-#{nth( $names, $i )} {
 			@for $each from 1 through length( $colors ) {
 				&.color-#{$each}-link-color {
-					li.menu-item:not( .custom-sub-menu ) {
+					li.menu-item:not( .custom-sub-menu ),
+					.attribution-theme-mods .link {
 						> a:not( .btn ) {
 							color: #{nth($colors, $each)};
 						}

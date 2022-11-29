@@ -686,7 +686,8 @@ var BoldGrid = BoldGrid || {};
 					subMenuWidth,
 					subMenuHeight,
 					rightOffset,
-					screenWidth;
+					screenWidth,
+					isVerticalMegaMenu;
 
 				$headerContainer = $headerContainer.length ? $headerContainer : $subMenu.closest( '#masthead-sticky' );
 
@@ -700,8 +701,10 @@ var BoldGrid = BoldGrid || {};
 				rightOffset      = $( window ).outerWidth( true ) - ( leftOffset + subMenuWidth );
 				screenWidth 	 = $( window ).width() + 16;
 
+				isVerticalMegaMenu = $subMenu.closest( '.sm' ).hasClass( 'sm-vertical' ) && $subMenu.hasClass( 'custom-sub-menu' );
+
 				// Adjust the offset for menu items in the footer so it opens upwards instead of down.
-				if ( bottomOffset > headerBottom && $subMenu.closest( '#colophon' ).length ) {
+				if ( $subMenu.closest( '#colophon' ).length && ( bottomOffset > headerBottom || isVerticalMegaMenu ) ) {
 					$subMenu.css( {
 						top: '-' + subMenuHeight + 'px'
 					} );

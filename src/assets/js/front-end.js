@@ -619,10 +619,13 @@ var BoldGrid = BoldGrid || {};
 
 			// Setup main navigation.
 			setupMenu: function( sm ) {
+
+				// This has to be done here to ensure that the mega menus are configured before they are initialized.
 				$( sm ).find( 'ul.custom-sub-menu' ).each( function() {
 					$( this ).find( 'ul' ).addClass( 'in-mega' );
 					$( this ).find( 'ul' ).dataSM( 'in-mega', true );
 				} );
+
 				sm.smartmenus( {
 					mainMenuSubOffsetX: -1,
 					mainMenuSubOffsetY: 4,
@@ -634,7 +637,6 @@ var BoldGrid = BoldGrid || {};
 				sm.on( {
 					'show.smapi': function( e, menu ) {
 						$( menu ).removeClass( 'hide-animation' ).addClass( 'show-animation' );
-						BoldGrid.standard_menu_enabled.fixSubmenuOffset( menu );
 					},
 					'hide.smapi': function( e, menu ) {
 						$( menu ).removeClass( 'show-animation' ).addClass( 'hide-animation' );
@@ -673,58 +675,6 @@ var BoldGrid = BoldGrid || {};
 						} );
 					}
 				} );
-			},
-
-			// Fixes the offset of custom submenus so they don't go off screen
-			fixSubmenuOffset( subMenu ) {
-				var $subMenu         = $( subMenu ),
-					leftOffset       = $subMenu.offset().left,
-					bottomOffset     = $subMenu.offset().top + $subMenu.outerHeight( true ),
-					$headerContainer = $subMenu.closest( '#masthead' ).length ? $subMenu.closest( '#masthead' ) : $subMenu.closest( '#colophon' ),
-					pointerHeight    = 9,
-					headerBottom,
-					subMenuWidth,
-					subMenuHeight,
-					rightOffset,
-					screenWidth,
-					isVerticalMegaMenu;
-
-				$headerContainer = $headerContainer.length ? $headerContainer : $subMenu.closest( '#masthead-sticky' );
-
-				if ( ! $headerContainer.length ) {
-					return;
-				}
-
-				headerBottom     = $headerContainer.offset().top + $headerContainer.outerHeight();
-				subMenuWidth     = $subMenu.children( 'li' ).outerWidth();
-				subMenuHeight    = $subMenu.outerHeight( true ) + pointerHeight;
-				rightOffset      = $( window ).outerWidth( true ) - ( leftOffset + subMenuWidth );
-				screenWidth 	 = $( window ).width() + 16;
-
-				isVerticalMegaMenu = $subMenu.closest( '.sm' ).hasClass( 'sm-vertical' ) && $subMenu.hasClass( 'custom-sub-menu' );
-
-				// Adjust the offset for menu items in the footer so it opens upwards instead of down.
-				if ( $subMenu.closest( '#colophon' ).length && ( bottomOffset > headerBottom || isVerticalMegaMenu ) ) {
-					$subMenu.css( {
-						top: '-' + subMenuHeight + 'px'
-					} );
-
-					$subMenu.addClass( 'pointer-bottom' );
-				}
-
-				// Adjust left or right offset if submenu goes off screen.
-				if ( 992 >= screenWidth ) {
-					$subMenu.css( 'left', 0 );
-					return;
-				}
-
-				if ( 0 > rightOffset ) {
-					$subMenu.css( 'left', rightOffset );
-				}
-
-				if ( 0 > leftOffset ) {
-					$subMenu.css( 'left', ( -1 * leftOffset ) );
-				}
 			},
 
 			// Collpase the main navigation.

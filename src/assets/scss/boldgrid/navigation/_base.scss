@@ -446,7 +446,7 @@
 				right: auto;
 				left: 12px;
 			}
-			.sm-clean.sm-rtl.sm-vertical a.has-submenu {
+			.sm-clean.sm-rtl.sm-vertical li.menu-item > a.has-submenu {
 				padding: 10px 20px;
 			}
 			.sm-clean.sm-rtl.sm-vertical li.menu-item > a > span.sub-arrow {
@@ -463,7 +463,7 @@
 				left: auto;
 				right: 31px;
 			}
-			.sm-clean.sm-rtl ul.sub-menu a.has-submenu {
+			.sm-clean.sm-rtl ul.sub-menu li.menu-item > a.has-submenu {
 				padding: 10px 20px !important;
 			}
 			.sm-clean.sm-rtl ul.sub-menu li.menu-item > a > span.sub-arrow {
@@ -481,7 +481,7 @@
 				-o-border-radius: 5px;
 				border-radius: 5px;
 			}
-			.sm-clean.sm-vertical a:not( .btn ) {
+			.sm-clean.sm-vertical li.menu-item > a:not( .btn ) {
 				padding: 10px 20px;
 			}
 			.sm-clean.sm-vertical a.disabled {
@@ -498,7 +498,7 @@
 			.sm-clean.sm-vertical > li.menu-item > ul.sub-menu:after {
 				display: none;
 			}
-			.sm-clean.sm-vertical ul.sub-menu a:not( .btn ) {
+			.sm-clean.sm-vertical ul.sub-menu li.menu-item > a:not( .btn ) {
 				padding: 10px 20px;
 			}
 			.sm-clean.sm-vertical ul.sub-menu:not( .custom-sub-menu ) a:hover,

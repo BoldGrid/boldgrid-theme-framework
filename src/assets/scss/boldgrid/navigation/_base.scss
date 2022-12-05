@@ -299,8 +299,8 @@
 			.sm-clean a {
 				white-space: nowrap;
 			}
-			.sm-clean ul.sub-menu a,
-			.sm-clean.sm-vertical a {
+			.sm-clean ul.sub-menu li.menu-item > a,
+			.sm-clean.sm-vertical li.menu-item > a {
 				white-space: normal;
 			}
 			.sm-clean .sm-nowrap > li.menu-item > a,
@@ -377,19 +377,19 @@
 				border-radius: 5px;
 				box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2);
 			}
-			.sm-clean ul.sub-menu:not( .custom-sub-menu ) a,
-			.sm-clean ul.sub-menu:not( .custom-sub-menu ) a:hover,
-			.sm-clean ul.sub-menu:not( .custom-sub-menu ) a:focus,
-			.sm-clean ul.sub-menu:not( .custom-sub-menu ) a:active,
-			.sm-clean ul.sub-menu:not( .custom-sub-menu ) a.highlighted {
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a,
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a:hover,
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a:focus,
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a:active,
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a.highlighted {
 				border: 0 !important;
 				padding: 10px 20px;
 			}
-			.sm-clean ul.sub-menu:not( .custom-sub-menu ) a.disabled {
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a.disabled {
 				background: white;
 				color: #cccccc;
 			}
-			.sm-clean ul.sub-menu:not( .custom-sub-menu ) a.has-submenu {
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a.has-submenu {
 				padding-right: 20px;
 			}
 			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a > span.sub-arrow {

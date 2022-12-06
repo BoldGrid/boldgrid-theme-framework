@@ -37,7 +37,7 @@ user guide for more information.
 ## Changelog ##
 
 ### 2.18.0 ###
-* New Feature: Support for Crio Premium's Custom Sub Menus feature.
+* New Feature: Support for Crio Premium's MegaMenus feature.
 
 ### 2.17.2 ###
 * Bug Fix: Change metabox text color to black to pass accessibility [#755](https://github.com/BoldGrid/boldgrid-theme-framework/issues/755)

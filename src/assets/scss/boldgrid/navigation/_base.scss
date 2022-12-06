@@ -303,8 +303,8 @@
 			.sm-clean.sm-vertical li.menu-item > a {
 				white-space: normal;
 			}
-			.sm-clean .sm-nowrap > li.menu-item > a,
-			.sm-clean .sm-nowrap > li.menu-item >:not(ul) a {
+			.sm-clean ul.sub-menu.sm-nowrap > li.menu-item > a,
+			.sm-clean ul.sub-menu.sm-nowrap > li.menu-item >:not(ul) a {
 				white-space: nowrap;
 			}
 			/* ...end */

@@ -200,11 +200,13 @@ $names: background background-color;
 			}
 			@if variable-exists( palette-primary-neutral-color ) {
 				&.color-neutral-link-color {
-					a:not( .in-mega ) {
-						color: $palette-primary-neutral-color;
-					}
-					a:not( .in-mega ):hover, a:not( .in-mega ):focus, a:not( .in-mega ):active, a:not( .in-mega ).highlighted {
-						color: hover( nth($colors, $color), $palette-primary-neutral-color );
+					a {
+						&:not( .in-mega ):not( .btn ) {
+							color: $palette-primary-neutral-color;
+							&:hover, &:focus, &:active, &.highlighted {
+								color: hover( nth($colors, $color), $palette-primary-neutral-color );
+							}
+						}
 					}
 				}
 				&.color-neutral-sub-link-color.sm {

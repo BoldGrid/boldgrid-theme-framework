@@ -353,9 +353,9 @@ export class Preview  {
 	getSubActiveLinkColor( to, menuId ) {
 		const color = new PaletteSelector().getColor( to );
 		let css = `
-		#${menuId} ul > .current-menu-item > a:not( .btn ),
-		#${menuId} ul > .current-menu-ancestor > a:not( .btn ),
-		#${menuId} ul > .current-menu-parent > a:not( .btn ) {
+		#${menuId} ul.sub-menu > .current-menu-item > a:not( .btn ),
+		#${menuId} ul.sub-menu > .current-menu-ancestor > a:not( .btn ),
+		#${menuId} ul.sub-menu > .current-menu-parent > a:not( .btn ) {
 			color: ${color};
 		}`;
 
@@ -434,10 +434,28 @@ export class Preview  {
 		}
 
 		css += '@media (min-width: 768px) {';
-		css += `#${location}-menu.sm-clean ul {background-color: ${subcolorVariable};}`;
-		css += `#${location}-menu.sm-clean ul a, #${location}-menu.sm-clean ul a:hover, #${location}-menu.sm-clean ul a:focus, #${location}-menu.sm-clean ul a:active, #${location}-menu.sm-clean ul a.highlighted, #${location}-menu.sm-clean span.scroll-up, #${location}-menu.sm-clean span.scroll-down, #${location}-menu.sm-clean span.scroll-up:hover, #${location}-menu.sm-clean span.scroll-down:hover {background-color: ${subcolorVariable};}`;
-		css += `#${location}-menu.sm-clean ul { border: 1px solid ${subcolorVariable};}`;
-		css += `#${location}-menu.sm-clean > li > ul:before, #${location}-menu.sm-clean > li > ul:after { border-color: transparent transparent ${subcolorVariable} transparent;}`;
+		css += `#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) {background-color: ${subcolorVariable};}`;
+		css += `#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a,
+			#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:hover,
+			#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:focus,
+			#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:active,
+			#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a.highlighted,
+			#${location}-menu.sm-clean span.scroll-up,
+			#${location}-menu.sm-clean span.scroll-down,
+			#${location}-menu.sm-clean span.scroll-up:hover,
+			#${location}-menu.sm-clean span.scroll-down:hover {
+				background-color: ${subcolorVariable};
+			}`;
+		css += `#${location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) {
+			border: 1px solid ${subcolorVariable};
+			}`;
+		css += `#${location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu:not(.custom-sub-menu):before,
+			#${location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu:not(.custom-sub-menu):after {
+				border-color: transparent transparent ${subcolorVariable} transparent;
+			}
+			#${location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):after {
+				border-color: ${subcolorVariable} transparent transparent transparent;
+			}`;
 		css += '}';
 
 		return css;
@@ -562,7 +580,7 @@ export class Preview  {
 			},
 			{
 				name: `bgtfw_menu_items_border_color_${location}`,
-				selector: `#${menuId} > li`,
+				selector: `#${menuId} > li.menu-item`,
 				properties: [ 'border-color' ]
 			},
 			{
@@ -572,7 +590,7 @@ export class Preview  {
 			},
 			{
 				name: `bgtfw_menu_submenu_background_${location}`,
-				selector: `#${menuId} ul`,
+				selector: `#${menuId} ul.sub-menu:not(.custom-sub-menu)`,
 				properties: [ 'background-color' ]
 			},
 			{

@@ -36,6 +36,9 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.18.0 ###
+* New Feature: Support for Crio Premium's MegaMenus feature.
+
 ### 2.17.3 ###
 * Update: Updated WooCommerce templates used by Crio [#148](https://github.com/BoldGrid/prime/issues/148)
 * Update: Add additional filters to support and upsell URLs.

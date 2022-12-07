@@ -538,10 +538,26 @@ class BoldGrid_Framework_Styles {
 
 		$subcolor_obj->alpha = 0.4;
 
-		$css .= "#{$location}-menu.sm-clean ul {background-color: var(--{$submenu_background_class});}";
-		$css .= "#{$location}-menu.sm-clean ul a:not(.btn), #{$location}-menu.sm-clean ul a:not(.btn):hover, #{$location}-menu.sm-clean ul a:not(.btn):focus, #{$location}-menu.sm-clean ul a:not(.btn):active, #{$location}-menu.sm-clean ul a:not(.btn).highlighted, #{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, #{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover { background-color: var(--{$submenu_background_class});}";
-		$css .= "#{$location}-menu.sm-clean ul { border: 1px solid var(--{$submenu_background_class});}";
-		$css .= "#{$location}-menu.sm-clean > li > ul:before, #{$location}-menu.sm-clean > li > ul:after { border-color: transparent transparent var(--{$submenu_background_class}) transparent;}";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) {background-color: var(--{$submenu_background_class});}";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:not(.btn), ";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:not(.btn):hover, ";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:not(.btn):focus, ";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:not(.btn):active, ";
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) li.menu-item:not(.custom-sub-menu) > a:not(.btn).highlighted, ";
+		$css .= "#{$location}-menu.sm-clean span.scroll-up, #{$location}-menu.sm-clean span.scroll-down, ";
+		$css .= "#{$location}-menu.sm-clean span.scroll-up:hover, #{$location}-menu.sm-clean span.scroll-down:hover ";
+		$css .= "{ background-color: var(--{$submenu_background_class}); }";
+
+		$css .= "#{$location}-menu.sm-clean ul.sub-menu:not(.custom-sub-menu) { border: 1px solid var(--{$submenu_background_class});}";
+
+		$css .= "#{$location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu:not(.custom-sub-menu):before, ";
+		$css .= "#{$location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu:not(.custom-sub-menu):after ";
+		$css .= "{ border-color: transparent transparent var(--{$submenu_background_class}) transparent; }";
+
+		$css .= "#{$location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):before, ";
+		$css .= "#{$location}-menu.sm-clean > li.menu-item:not( .custom-sub-menu ) > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):after ";
+		$css .= "{ border-color: var(--{$submenu_background_class}) transparent transparent transparent; }";
+
 		$css .= '}';
 
 		return $css;
@@ -667,14 +683,6 @@ class BoldGrid_Framework_Styles {
 		wp_add_inline_style( 'boldgrid-theme-framework', $inline_css );
 
 		wp_enqueue_style( 'boldgrid-theme-framework' );
-
-		/* Framework Base Styles */
-		wp_enqueue_style(
-			'bgtfw-smartmenus',
-			$this->configs['framework']['css_dir'] . 'smartmenus/sm-core-css.css',
-			array( 'bootstrap-styles' ),
-			$this->configs['version']
-		);
 
 		/* Hamburger Menu Styles */
 		wp_register_style(

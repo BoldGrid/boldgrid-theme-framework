@@ -102,12 +102,12 @@ var BoldGrid = BoldGrid || {};
 
 					if ( $this.hasClass( 'button-primary' ) ) {
 						$this.removeClass( 'button-primary' );
-						$this.find( 'a' ).addClass( 'button-primary' );
+						$this.children( 'a' ).addClass( 'button-primary' );
 					}
 
 					if ( $this.hasClass( 'button-secondary' ) ) {
 						$this.removeClass( 'button-secondary' );
-						$this.find( 'a' ).addClass( 'button-secondary' );
+						$this.children( 'a' ).addClass( 'button-secondary' );
 					}
 
 					$this.removeClass( 'btn' );
@@ -117,7 +117,7 @@ var BoldGrid = BoldGrid || {};
 					$this.removeClass( function( index, className ) {
 						return ( className.match( /(^|\s)btn\S+/g ) || [] ).join( ' ' );
 					} );
-					$this.find( 'a' ).addClass( 'btn' );
+					$this.children( 'a' ).addClass( 'btn' );
 				} );
 			},
 
@@ -619,6 +619,13 @@ var BoldGrid = BoldGrid || {};
 
 			// Setup main navigation.
 			setupMenu: function( sm ) {
+
+				// This has to be done here to ensure that the mega menus are configured before they are initialized.
+				$( sm ).find( 'ul.custom-sub-menu' ).each( function() {
+					$( this ).find( 'ul' ).addClass( 'in-mega' );
+					$( this ).find( 'ul' ).dataSM( 'in-mega', true );
+				} );
+
 				sm.smartmenus( {
 					mainMenuSubOffsetX: -1,
 					mainMenuSubOffsetY: 4,

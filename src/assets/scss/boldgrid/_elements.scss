@@ -34,6 +34,7 @@ body.custom-background {
 	display: flex;
 	flex-direction: column;
 	flex: 1 0 auto;
+	z-index: 1;
 }
 @media only screen and (min-width: 768px) {
 	.site-content {

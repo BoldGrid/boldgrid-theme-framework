@@ -1,3 +1,70 @@
+.sm {
+	box-sizing: border-box;
+	position: relative;
+	z-index: 9999;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	display:block;
+	list-style:none;
+	margin:0;
+	padding:0;
+	line-height:normal;
+	direction:ltr;
+	text-align:left;
+	&::after {
+		content:"";
+		display:block;
+		height:0;
+		font:0px/0 serif;
+		clear:both;
+		overflow:hidden;
+	}
+	> li.menu-item, ul.sub-menu > li.menu-item, ul.sub-menu {
+		display:block;
+		list-style:none;
+		margin:0;
+		padding:0;
+		direction:ltr;
+		text-align:left;
+		&:not( .custom-sub-menu ) {
+			line-height:normal;
+		}
+	}
+	> li.menu-item {
+		a.disabled {
+			cursor:default;
+		}
+
+		> {
+			h1, h2, h3, h4, h5, h6 {
+				margin:0;
+				padding:0;
+			}
+		}
+	}
+
+	li.menu-item, li.menu-item > a {
+		position:relative;
+	}
+
+	ul.sub-menu {
+		display:none;
+	}
+
+	li.menu-item > a {
+		display:block;
+	}
+	*, *::before, *::after {
+		box-sizing:inherit;
+	}
+}
+
+.sm-rtl,
+.sm-rtl ul.sub-menu,
+.sm-rtl li.menu-item {
+	direction:rtl;
+	text-align:right;
+}
+
 @media only screen and (min-width: 768px) {
 	.header-top {
 		.bgtfw-menu-wrap {
@@ -61,11 +128,11 @@
 	.sm-clean {
 		background: transparent;
 	}
-	.sm-clean a,
-	.sm-clean a:hover,
-	.sm-clean a:focus,
-	.sm-clean a:active,
-	.sm-clean a.highlighted {
+	.sm-clean li.menu-item > a,
+	.sm-clean li.menu-item > a:hover,
+	.sm-clean li.menu-item > a:focus,
+	.sm-clean li.menu-item > a:active,
+	.sm-clean li.menu-item > a.highlighted {
 		display: inline-block;
 		padding: 13px 20px;
 		text-decoration: none;
@@ -87,7 +154,7 @@
 	.sm-clean a.disabled {
 		color: #bbbbbb;
 	}
-	.sm-clean a span.sub-arrow {
+	.sm-clean li.menu-item > a > span.sub-arrow {
 		position: relative;
 		right: auto;
 		width: 34px;
@@ -107,7 +174,7 @@
 		-o-border-radius: 5px;
 		border-radius: 5px;
 	}
-	.sm-clean a .sub-arrow {
+	.sm-clean li.menu-item > a > .sub-arrow {
 		position: absolute;
 		top: 50%;
 		margin-top: -17px;
@@ -122,44 +189,44 @@
 		background: rgba(255, 255, 255, 0.5);
 		border-radius: 5px;
 	}
-	.sm-clean a .sub-arrow::before {
+	.sm-clean li.menu-item > a >  .sub-arrow::before {
 		content: '+';
 	}
-	.sm-clean a.highlighted .sub-arrow::before {
+	.sm-clean li.menu-item > a.highlighted > .sub-arrow::before {
 		content: '-';
 	}
-	.sm-clean a.highlighted span.sub-arrow:before {
+	.sm-clean li.menu-item > a.highlighted > span.sub-arrow:before {
 		display: block;
 		content: '-';
 	}
-	.mobile-menu-indent .sm-clean ul a,
-	.mobile-menu-indent .sm-clean ul a:hover,
-	.mobile-menu-indent .sm-clean ul a:focus,
-	.mobile-menu-indent .sm-clean ul a:active {
+	.mobile-menu-indent .sm-clean ul.sub-menu a,
+	.mobile-menu-indent .sm-clean ul.sub-menu a:hover,
+	.mobile-menu-indent .sm-clean ul.sub-menu a:focus,
+	.mobile-menu-indent .sm-clean ul.sub-menu a:active {
 		border-left: 8px solid transparent;
 	}
-	.mobile-menu-indent .sm-clean ul ul a,
-	.mobile-menu-indent .sm-clean ul ul a:hover,
-	.mobile-menu-indent .sm-clean ul ul a:focus,
-	.mobile-menu-indent .sm-clean ul ul a:active {
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu a,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu a:hover,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu a:focus,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu a:active {
 		border-left: 16px solid transparent;
 	}
-	.mobile-menu-indent .sm-clean ul ul ul a,
-	.mobile-menu-indent .sm-clean ul ul ul a:hover,
-	.mobile-menu-indent .sm-clean ul ul ul a:focus,
-	.mobile-menu-indent .sm-clean ul ul ul a:active {
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu a,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu a:hover,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu a:focus,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu a:active {
 		border-left: 24px solid transparent;
 	}
-	.mobile-menu-indent .sm-clean ul ul ul ul a,
-	.mobile-menu-indent .sm-clean ul ul ul ul a:hover,
-	.mobile-menu-indent .sm-clean ul ul ul ul a:focus,
-	.mobile-menu-indent .sm-clean ul ul ul ul a:active {
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu ul.sub-menu a,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu ul.sub-menu a:hover,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu ul.sub-menu a:focus,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu ul.sub-menu a:active {
 		border-left: 32px solid transparent;
 	}
-	.mobile-menu-indent .sm-clean ul ul ul ul ul a,
-	.mobile-menu-indent .sm-clean ul ul ul ul ul a:hover,
-	.mobile-menu-indent .sm-clean ul ul ul ul ul a:focus,
-	.mobile-menu-indent .sm-clean ul ul ul ul ul a:active {
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu ul.sub-menu a,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu ul.sub-menu a:hover,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu ul.sub-menu a:focus,
+	.mobile-menu-indent .sm-clean ul.sub-menu ul.sub-menu ul.sub-menu ul.sub-menu a:active {
 		border-left: 40px solid transparent;
 	}
 
@@ -174,16 +241,16 @@
 					width: 100%;
 				}
 			}
-			.sm-clean ul {
+			.sm-clean ul.sub-menu {
 				position: absolute;
 				width: 12em;
 			}
-			.sm-clean li {
+			.sm-clean li.menu-item {
 				float: left;
 			}
 
 			.sm-clean:not( .sm-vertical ) {
-				li.item-has-btn {
+				li.menu-item.item-has-btn {
 						margin-left: 20px;
 						margin-right: 20px;
 					&:last-of-type {
@@ -200,7 +267,7 @@
 			.sm-clean.nw,
 			.sm-clean.sw {
 				&:not( .sm-vertical ) {
-					li:first-of-type a {
+					> li.menu-item:first-of-type a {
 						padding-left: 0px;
 					}
 				}
@@ -211,33 +278,33 @@
 			.sm-clean.ne,
 			.sm-clean.se {
 				&:not( .sm-vertical ) {
-					li:last-of-type a {
+					> li.menu-item:last-of-type > a {
 						padding-right: 0px;
 					}
 				}
 				&.sm-vertical {
-					ul.sub-arrow {
+					ul.sub-menu.sub-arrow {
 						margin-right: -20px;
 					}
 				}
 			}
-			.sm-clean.sm-rtl li {
+			.sm-clean.sm-rtl li.menu-item {
 				float: right;
 			}
-			.sm-clean ul li,
-			.sm-clean.sm-rtl ul li,
-			.sm-clean.sm-vertical li {
+			.sm-clean ul.sub-menu li.menu-item,
+			.sm-clean.sm-rtl ul.sub-menu li.menu-item,
+			.sm-clean.sm-vertical li.menu-item {
 				float: none;
 			}
 			.sm-clean a {
 				white-space: nowrap;
 			}
-			.sm-clean ul a,
-			.sm-clean.sm-vertical a {
+			.sm-clean ul.sub-menu li.menu-item > a,
+			.sm-clean.sm-vertical li.menu-item > a {
 				white-space: normal;
 			}
-			.sm-clean .sm-nowrap > li > a,
-			.sm-clean .sm-nowrap > li >:not(ul) a {
+			.sm-clean ul.sub-menu.sm-nowrap > li.menu-item > a,
+			.sm-clean ul.sub-menu.sm-nowrap > li.menu-item >:not(ul) a {
 				white-space: nowrap;
 			}
 			/* ...end */
@@ -250,7 +317,7 @@
 			.sm-clean a.has-submenu {
 				padding-right: 24px;
 			}
-			.sm-clean a span.sub-arrow {
+			.sm-clean li.menu-item > a > span.sub-arrow {
 				top: 50%;
 				margin-top: -2px;
 				right: auto;
@@ -266,14 +333,14 @@
 				-o-border-radius: 0;
 				border-radius: 0;
 			}
-			.sm-clean a.highlighted span.sub-arrow:before {
+			.sm-clean li.menu-item > a.highlighted > span.sub-arrow:before {
 				display: none;
 			}
-			.sm-clean li:not(.btn-border) {
+			.sm-clean li.menu-item:not(.btn-border) {
 				border-top: 0;
 			}
-			.sm-clean > li > ul:before,
-			.sm-clean > li > ul:after {
+			.sm-clean > li.menu-item > ul.sub-menu:not(.custom-sub-menu):before,
+			.sm-clean > li.menu-item > ul.sub-menu:not(.custom-sub-menu):after {
 				content: '';
 				position: absolute;
 				top: -18px;
@@ -285,35 +352,47 @@
 				border-style: dashed dashed solid dashed;
 				border-color: transparent transparent #bbbbbb transparent;
 			}
-			.sm-clean > li > ul:after {
+			.sm-clean > li.menu-item > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):before,
+			.sm-clean > li.menu-item > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):after {
+				top: unset;
+				bottom: -18px;
+				border-style: solid dashed dashed dashed;
+				border-color: #bbbbbb transparent transparent transparent;
+			}
+			.sm-clean > li.menu-item > ul.sub-menu:not(.custom-sub-menu):after {
 				top: -16px;
 				left: 31px;
 				border-width: 8px;
 				border-color: transparent transparent white transparent;
 			}
-			.sm-clean ul {
+			.sm-clean > li.menu-item > ul.sub-menu.pointer-bottom:not(.custom-sub-menu):after {
+				top: unset;
+				bottom: -16px;
+				border-color: white transparent transparent transparent;
+			}
+			.sm-clean ul.sub-menu:not(.custom-sub-menu) {
 				border: 1px solid #bbbbbb;
 				padding: 5px 0;
 				background: white;
 				border-radius: 5px;
 				box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2);
 			}
-			.sm-clean ul a,
-			.sm-clean ul a:hover,
-			.sm-clean ul a:focus,
-			.sm-clean ul a:active,
-			.sm-clean ul a.highlighted {
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a,
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a:hover,
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a:focus,
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a:active,
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a.highlighted {
 				border: 0 !important;
 				padding: 10px 20px;
 			}
-			.sm-clean ul a.disabled {
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a.disabled {
 				background: white;
 				color: #cccccc;
 			}
-			.sm-clean ul a.has-submenu {
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a.has-submenu {
 				padding-right: 20px;
 			}
-			.sm-clean ul a span.sub-arrow {
+			.sm-clean ul.sub-menu:not( .custom-sub-menu ) li.menu-item > a > span.sub-arrow {
 				right: auto;
 				top: 50%;
 				margin-top: -5px;
@@ -363,31 +442,31 @@
 				padding-right: 12px;
 				padding-left: 24px;
 			}
-			.sm-clean.sm-rtl a span.sub-arrow {
+			.sm-clean.sm-rtl li.menu-item > a >  span.sub-arrow {
 				right: auto;
 				left: 12px;
 			}
-			.sm-clean.sm-rtl.sm-vertical a.has-submenu {
+			.sm-clean.sm-rtl.sm-vertical li.menu-item > a.has-submenu {
 				padding: 10px 20px;
 			}
-			.sm-clean.sm-rtl.sm-vertical a span.sub-arrow {
+			.sm-clean.sm-rtl.sm-vertical li.menu-item > a > span.sub-arrow {
 				right: auto;
 				left: 8px;
 				border-style: dashed solid dashed dashed;
 				border-color: transparent currentColor transparent transparent;
 			}
-			.sm-clean.sm-rtl > li > ul:before {
+			.sm-clean.sm-rtl > li.menu-item > ul.sub-menu:before {
 				left: auto;
 				right: 30px;
 			}
-			.sm-clean.sm-rtl > li > ul:after {
+			.sm-clean.sm-rtl > li.menu-item > ul.sub-menu:after {
 				left: auto;
 				right: 31px;
 			}
-			.sm-clean.sm-rtl ul a.has-submenu {
+			.sm-clean.sm-rtl ul.sub-menu li.menu-item > a.has-submenu {
 				padding: 10px 20px !important;
 			}
-			.sm-clean.sm-rtl ul a span.sub-arrow {
+			.sm-clean.sm-rtl ul.sub-menu li.menu-item > a > span.sub-arrow {
 				right: auto;
 				left: 8px;
 				border-style: dashed solid dashed dashed;
@@ -402,30 +481,30 @@
 				-o-border-radius: 5px;
 				border-radius: 5px;
 			}
-			.sm-clean.sm-vertical a:not( .btn ) {
+			.sm-clean.sm-vertical li.menu-item > a:not( .btn ) {
 				padding: 10px 20px;
 			}
 			.sm-clean.sm-vertical a.disabled {
 				background: #eeeeee;
 			}
-			.sm-clean.sm-vertical a span.sub-arrow {
+			.sm-clean.sm-vertical li.menu-item > a > span.sub-arrow {
 				top: 50%;
 				margin-left: 10px;
 				border-width: 5px;
 				border-style: dashed dashed dashed solid;
 				border-color: transparent transparent transparent currentColor;
 			}
-			.sm-clean.sm-vertical > li > ul:before,
-			.sm-clean.sm-vertical > li > ul:after {
+			.sm-clean.sm-vertical > li.menu-item > ul.sub-menu:before,
+			.sm-clean.sm-vertical > li.menu-item > ul.sub-menu:after {
 				display: none;
 			}
-			.sm-clean.sm-vertical ul a:not( .btn ) {
+			.sm-clean.sm-vertical ul.sub-menu li.menu-item > a:not( .btn ) {
 				padding: 10px 20px;
 			}
-			.sm-clean.sm-vertical ul a:hover,
-			.sm-clean.sm-vertical ul a:focus,
-			.sm-clean.sm-vertical ul a:active,
-			.sm-clean.sm-vertical ul a.highlighted {
+			.sm-clean.sm-vertical ul.sub-menu:not( .custom-sub-menu ) a:hover,
+			.sm-clean.sm-vertical ul.sub-menu:not( .custom-sub-menu ) a:focus,
+			.sm-clean.sm-vertical ul.sub-menu:not( .custom-sub-menu ) a:active,
+			.sm-clean.sm-vertical ul.sub-menu:not( .custom-sub-menu ) a.highlighted {
 				background: #eeeeee;
 			}
 			.sm-clean.sm-vertical ul a.disabled {
@@ -561,7 +640,7 @@
 				input:checked ~ .sm-clean {
 					display: block;
 					width: 100%;
-					li {
+					li.menu-item {
 						float: none;
 					}
 				}
@@ -596,7 +675,7 @@
 				input:checked ~ .sm-clean {
 					display: block;
 					width: 100%;
-					li {
+					li.menu-item {
 						float: none;
 					}
 				}
@@ -632,7 +711,7 @@
 				input:checked ~ .sm-clean {
 					display: block;
 					width: 100%;
-					li {
+					li.menu-item {
 						float: none;
 					}
 				}
@@ -665,7 +744,7 @@
 		-webkit-font-smoothing: subpixel-antialiased;
 	}
 	/* show animation */
-	.sm-clean ul.show-animation {
+	.sm-clean ul.sub-menu.show-animation {
 		-webkit-animation: show-animation 0.2s;
 		animation: show-animation 0.2s;
 	}
@@ -696,7 +775,7 @@
 		}
 	}
 	/* hide animation */
-	.sm-clean ul.hide-animation {
+	.sm-clean ul.sub-menu.hide-animation {
 		-webkit-animation: hide-animation 0.2s;
 		animation: hide-animation 0.2s;
 	}
@@ -729,7 +808,7 @@
 	}
 }
 
-li[class*="hvr-underline"]:not(.hvr-underline-reveal) a:not( .button-primary):not(.button-secondary ) {
+li.menu-item[class*="hvr-underline"]:not(.hvr-underline-reveal) a:not( .button-primary):not(.button-secondary ) {
 	transform: unset;
 	overflow: unset;
 	&:before {

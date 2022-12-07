@@ -137,6 +137,12 @@ BOLDGRID.CUSTOMIZER = BOLDGRID.CUSTOMIZER || {};
 	};
 
 	var create_sections_selector = function() {
+		var widgets = wp.customize.panel( 'widgets' );
+
+		if ( 'undefined' === typeof widgets ) {
+			return;
+		}
+
 		var sections = wp.customize.panel( 'widgets' ).sections();
 
 		var section_selector = '';

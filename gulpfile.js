@@ -369,9 +369,6 @@ gulp.task('scssDeps', function () {
     .pipe(replace("background: linear-gradient(top,", "background: linear-gradient("))
     .pipe(gulp.dest(config.dist + '/assets/scss/buttons'));
 
-  gulp.src(config.node_modules + '/smartmenus/dist/css/sm-core-css.css')
-    .pipe(gulp.dest(config.dist + '/assets/css/smartmenus'));
-
   // boldgrid-components.
   gulp.src('./node_modules/@boldgrid/components/dist/css/components.*')
     .pipe(gulp.dest(config.dist + '/assets/css'));
@@ -482,7 +479,7 @@ gulp.task('hovers', function() {
       digestType: 'base32',
       maxLength: 0,
       outputName: 'hover1',
-      classnameFormat: '[classname] a:not( .button-primary):not( .button-secondary )',
+      classnameFormat: '[classname] > a:not( .button-primary):not( .button-secondary )',
       type: '.json'
     })
   ];
@@ -503,7 +500,7 @@ gulp.task('hoverColors', function() {
       digestType: 'base32',
       maxLength: 0,
       outputName: 'hover2',
-      classnameFormat: '[classname]:not( .button-primary):not( .button-secondary ) a',
+      classnameFormat: '[classname]:not( .button-primary):not( .button-secondary ) > a',
       type: '.json'
     }),
     require('postcss-prefix-selector')({ prefix: '%1$s' })

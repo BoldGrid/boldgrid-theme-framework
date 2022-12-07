@@ -37,7 +37,7 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 * @since 2.5.0
 	 * @var string
 	 */
-	public $upgrade_url = 'https://boldgrid.com/wordpress-themes/crio/?utm_source=Crio_-_Pro_Features&utm_medium=Button&utm_campaign=Crio_Pro_Features';
+	public $upgrade_url;
 
 	/**
 	 * Constructor
@@ -47,7 +47,11 @@ class BoldGrid_Framework_Pro_Feature_Cards {
 	 * @param array $configs Theme Configs.
 	 */
 	public function __construct( $configs ) {
-		$this->configs = $configs;
+		$this->configs     = $configs;
+		$this->upgrade_url = apply_filters(
+			'bgtfw_upgrade_url_pro_features',
+			'https://boldgrid.com/wordpress-themes/crio/?utm_source=Crio_-_Pro_Features&utm_medium=Button&utm_campaign=Crio_Pro_Features'
+		);
 	}
 
 	/**

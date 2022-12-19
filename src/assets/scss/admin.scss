@@ -83,3 +83,13 @@
 #toplevel_page_crio .wp-menu-image img {
   width: 20px;
 }
+
+body.appearance_page_bgtfw-install-plugins {
+  #tgmpa-plugins {
+    .check-column,
+    .bulkactions {
+      display: none;
+    }
+  }
+}
+

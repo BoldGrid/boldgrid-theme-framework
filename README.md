@@ -36,6 +36,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.18.1 ###
+* Bug Fix: Some footer designs are altered when upgrading from 2.17 to 2.18 [#774](https://github.com/BoldGrid/boldgrid-theme-framework/issues/774)
+* Bug Fix: PHP 8.1 installing recommended plugins [#776](https://github.com/BoldGrid/boldgrid-theme-framework/issues/776)
+
 ### 2.18.0 ###
 * New Feature: Support for Crio Premium's MegaMenus feature.
 

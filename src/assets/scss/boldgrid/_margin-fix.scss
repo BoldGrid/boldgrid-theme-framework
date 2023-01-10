@@ -805,6 +805,11 @@ footer#colophon {
 						margin-right: 0px;
 						padding-left: 0px;
 						padding-right: 0px;
+						&.wedge-cta,
+						&.bg-background-color {
+							padding-left: 20px;
+   							padding-right: 20px;
+						}
 						.sm-clean {
 							margin-left: 0;
 							margin-right: 0;

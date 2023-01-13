@@ -36,6 +36,10 @@ user guide for more information.
 
 ## Changelog ##
 
+### 2.18.2 ###
+* Bug Fix: Fixed Container CPH = 0 padding on mobile [#779](https://github.com/BoldGrid/boldgrid-theme-framework/issues/779)
+* Update: Remove unnecessary woocommerce template override global/quantity-input.php
+
 ### 2.18.1 ###
 * Bug Fix: Some footer designs are altered when upgrading from 2.17 to 2.18 [#774](https://github.com/BoldGrid/boldgrid-theme-framework/issues/774)
 * Bug Fix: PHP 8.1 installing recommended plugins [#776](https://github.com/BoldGrid/boldgrid-theme-framework/issues/776)

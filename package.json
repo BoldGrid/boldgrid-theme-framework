@@ -159,7 +159,7 @@
 		"lodash.kebabcase": "^4.1.1",
 		"lodash.lowercase": "^4.3.0",
 		"lodash.startcase": "^4.4.0",
-		"postcss": "^8.2.13",
+		"postcss": "^8.4.31",
 		"sass.js": "~0.11.1",
 		"scssphp": "https://github.com/scssphp/scssphp#v1.10.0",
 		"smartmenus": "^1.1.0",
